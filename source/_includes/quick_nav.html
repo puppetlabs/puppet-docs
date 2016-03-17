@@ -6,32 +6,14 @@
             <span class="drop-down-trigger"></span>
         </a>
         <dl>
-            <dt>Puppet Enterprise</dt>
-            {% if page.doc.my_versions.pe and page.doc.my_versions.pe != 'latest' %}{% assign next_url = site.document_version_index['pe'][page.doc.my_versions.pe] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
-            {% assign next_url = site.document_version_index['pe']['latest'] %}<dd><a href="/pe/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
-
-            <dt>Puppet (PE and open source)</dt>
-            {% if page.doc.my_versions.puppet and page.doc.my_versions.puppet != 'latest' %}{% assign next_url = site.document_version_index['puppet'][page.doc.my_versions.puppet] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
-            {% assign next_url = site.document_version_index['puppet']['latest'] %}<dd><a href="/puppet/latest/reference/">{{ site.document_list[next_url].version }} (latest)</a></dd>
-
-            <dt>Puppet Server (PE and open source)</dt>
-            {% if page.doc.my_versions.puppetserver and page.doc.my_versions.puppetserver != 'latest' %}{% assign next_url = site.document_version_index['puppetserver'][page.doc.my_versions.puppetserver] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
-            {% assign next_url = site.document_version_index['puppetserver']['latest'] %}<dd><a href="/puppetserver/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
-
-            <dt>PuppetDB (PE and open source)</dt>
-            {% if page.doc.my_versions.puppetdb and page.doc.my_versions.puppetdb != 'latest' %}{% assign next_url = site.document_version_index['puppetdb'][page.doc.my_versions.puppetdb] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
-            {% assign next_url = site.document_version_index['puppetdb']['latest'] %}<dd><a href="/puppetdb/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
-
-            <dt>Facter (PE and open source)</dt>
-            {% if page.doc.my_versions.facter and page.doc.my_versions.facter != 'latest' %}{% assign next_url = site.document_version_index['facter'][page.doc.my_versions.facter] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
-            {% assign next_url = site.document_version_index['facter']['latest'] %}<dd><a href="/facter/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
-
-            <dt>Hiera (PE and open source)</dt>
-            {% if page.doc.my_versions.hiera and page.doc.my_versions.hiera != 'latest' %}{% assign next_url = site.document_version_index['hiera'][page.doc.my_versions.hiera] %}<dd><a href="{{ next_url }}/">{{ site.document_list[next_url].version }} (recommended for {{ doc_longname }})</a></dd>{% endif %}
-            {% assign next_url = site.document_version_index['hiera']['latest'] %}<dd><a href="/hiera/latest/">{{ site.document_list[next_url].version }} (latest)</a></dd>
-
-            <dt>MCollective (PE and open source)</dt>
-            <dd><a href="/mcollective/index.html">Latest</a></dd>
+            <dt>Products</dt>
+            <dd><a href="{{pe}}/">Puppet Enterprise</a></dd>
+            <dd><a href="{{puppet}}/">Puppet (PE and open source)</a></dd>
+            <dd><a href="{{puppetserver}}/">Puppet Server (PE and open source)</a></dd>
+            <dd><a href="{{puppetdb}}/">PuppetDB (PE and open source)</a></dd>
+            <dd><a href="{{facter}}/">Facter (PE and open source)</a></dd>
+            <dd><a href="{{hiera}}/">Hiera (PE and open source)</a></dd>
+            <dd><a href="/mcollective/">MCollective (PE and open source)</a></dd>
 
             <dt>Other</dt>
             <dd><a href="/">Puppet Docs Front Page</a></dd>
