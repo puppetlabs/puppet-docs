@@ -103,8 +103,6 @@ If `pluginsync` is explicitly set via command-line or `puppet.conf`, then that s
 
   >>Note: In most cases there is no file/line information available, and this was one reason why only some cases were reported earlier. We expect to correct this in the next major version as it requires API breaking changes.
 
-* [PUP-5936](https://tickets.puppetlabs.com/browse/PUP-5936): Should be in the release notes together with the fix for PUP-5925.
-
 * [PUP-5964](https://tickets.puppetlabs.com/browse/PUP-5964): The error message generated from the function asssert_type is now of the same high quality as the message produced for automatically type checked parameters.
 
 * [PUP-5845](https://tickets.puppetlabs.com/browse/PUP-5845): The function type (x, inference_type = detailed) has been added. It produces the type of the given argument. This function removes the need to use the standard lib function type_of which does the same thing. The function can produce generalized, reduced or detailed type information. This is useful when producing custom error messages when a type check fails.
