@@ -57,7 +57,7 @@ Released March 16, 2016.
 
 * [PUP-5694](https://tickets.puppetlabs.com/browse/PUP-5694): `static_catalogs` is a new Puppet setting for controlling if the master should compile a static catalog. It can also be overridden per-environment in `$codedir/environments/<env>/environment.conf`. By default, the property is `true`, but can be set to `false` globally or per-environment. 
 
->>Note: the master will only compile a static catalog if static_catalogs is enabled via this setting, the agent is Puppet 4.4.0 or newer, and the master has a code_id, which identifies the version of puppet code that was used to generate the catalog.
+>>Note: the master will only compile a static catalog if static_catalogs is enabled via this setting, the agent is Puppet 4.4.0 or newer, and the master has a code_id, which identifies the version of Puppet code that was used to generate the catalog.
 
 #### Misc new features and behaviors
 
@@ -85,13 +85,13 @@ Released March 16, 2016.
 
 * [PUP-3149](https://tickets.puppetlabs.com/browse/PUP-3149): Previously, when uninstalling packages on platforms which include the Zypper package manager, Puppet would always fall back to using RPM to try and do the uninstallation. As RPM is incapable of dependency management, uninstallation would fail if the package had any dependencies. This change adds an `uninstall` method to the Zypper provider for versions of Zypper 1.0 and above to properly manage dependencies and remove packages using Zypper itself.
 
-* [PUP-5487](https://tickets.puppetlabs.com/browse/PUP-5487): The output of warnings about expressions that require storeconfigs to be turned on has been irritating users for quite some time. It is after all valid Puppet code, and almost everyone is running with storeconfigs turned on - except when doing testing. This is now changed so that the warnings are only issued when expressions are evaluated/used.
+* [PUP-5487](https://tickets.puppetlabs.com/browse/PUP-5487): The output of warnings about expressions that require storeconfigs to be turned on has been irritating users for quite some time. It is valid Puppet code, and almost everyone is running with storeconfigs turned on - except when doing testing. This is now changed so that the warnings are only issued when expressions are evaluated/used.
 
-* [PUP-1780](https://tickets.puppetlabs.com/browse/PUP-1780): All references to non-existing variables will now generate a warning. Earlier Puppet only warned about non existing qualified variables with more than one namespace segment. 
+* [PUP-1780](https://tickets.puppetlabs.com/browse/PUP-1780): All references to non-existing variables will now generate a warning. Earlier Puppet only warned about non-existing qualified variables with more than one namespace segment. 
 
-	It is possible to disable these warnings by adding 'undefined_variables' to the setting 'disabled_warnings'. 
+  It is possible to disable these warnings by adding `undefined_variables` to the setting `disabled_warnings`. 
 
-	>>Note: In most cases there is no file/line information available, and this was one reason why only some cases were reported earlier. We expect to correct this in the next major version as it requires API breaking changes."
+  >>Note: In most cases there is no file/line information available, and this was one reason why only some cases were reported earlier. We expect to correct this in the next major version as it requires API breaking changes.
 
 * [PUP-5936](https://tickets.puppetlabs.com/browse/PUP-5936): Should be in the release notes together with the fix for PUP-5925.
 
@@ -105,7 +105,7 @@ Released March 16, 2016.
 
 * [PUP-5735](https://tickets.puppetlabs.com/browse/PUP-5735): In an effort to improve Puppet's handling of Unicode user and group names on Windows, much of the code interacting with the Windows API has been rewritten to ensure wide character (UTF-16LE) API variants are called. Previously, Puppet relied on the win32-security gem for some of these interactions, which were implemented as ANSI Windows API calls. As a result, Puppet no longer needs the win32-security gem, and any code based references to the gem have been removed. Any module authors requiring functionality in Win32::Security should be aware that a subsequent release will remove this gem from the MSI package permanently. Though unused by Puppet, the gem currently remains for backward compatibility.
 
-* [PUP-5708](https://tickets.puppetlabs.com/browse/PUP-5708): The pluginsync setting is deprecated. By default, puppet will automatically do a pluginsync when requesting a new catalog, and will not pluginsync when applying a cached catalog. If pluginsync is specified explicitly on the command line or puppet.conf, then puppet will continue to observe the value of the setting.
+* [PUP-5708](https://tickets.puppetlabs.com/browse/PUP-5708): The `pluginsync` setting is deprecated. By default, Puppet will automatically do a pluginsync when requesting a new catalog, and will not pluginsync when applying a cached catalog. If pluginsync is specified explicitly on the command line or puppet.conf, then Puppet will continue to observe the value of the setting.
 
 ### Bug Fixes
 
@@ -113,7 +113,7 @@ Released March 16, 2016.
 
 * [PUP-6020](https://tickets.puppetlabs.com/browse/PUP-6020): A problem was found with the == operator when directly comparing one data type against another. The =~ operator was unaffected. This bug could cause undefined behavior for types used as keys in hashes, and could result in output of wrong type as the expected type in a type mismatch error.
 
-* [PUP-5577](https://tickets.puppetlabs.com/browse/PUP-5577): A puppet installation in a chroot environment on a RedHat osfamily might lack /run/systemd/system (e.g. if /run is not mounted yet) and so puppet wouldn't consider the systemd provider suitable. This restricts that check to Debian platforms to allow the use of puppet in such environments.
+* [PUP-5577](https://tickets.puppetlabs.com/browse/PUP-5577): A Puppet installation in a chroot environment on a RedHat osfamily might lack /run/systemd/system (e.g. if /run is not mounted yet) and so Puppet wouldn't consider the systemd provider suitable. This restricts that check to Debian platforms to allow the use of Puppet in such environments.
 
 * [PUP-5995](https://tickets.puppetlabs.com/browse/PUP-5995): A regression was found where UTF-8 multibyte characters in a manifest would cause problems in services extracting selected parts of the source code. Node Classifier would present truncated/misaligned source snippets for default value expressions in the UI, and Puppet String would present garbage in generated documentation, or in worst case crash.
 
@@ -142,9 +142,9 @@ Released March 16, 2016.
 * [PUP-5617](https://tickets.puppetlabs.com/browse/PUP-5617): Previously the agent would stall indefinitely if the network connection to the master were to break unexpectedly for some reason. This change allows the socket with the master to get closed and the agent to terminate cleanly. 
 an error, rather than waiting forever. 
 
-* [PUP-5513](https://tickets.puppetlabs.com/browse/PUP-5513): Previously, newlines in the ssh_known_hosts file would cause puppet to throw errors, as a regex in the type was not properly parsing blank lines. This fix updates the regexes to ensure blank lines do not cause issues.
+* [PUP-5513](https://tickets.puppetlabs.com/browse/PUP-5513): Previously, newlines in the ssh_known_hosts file would cause Puppet to throw errors, as a regex in the type was not properly parsing blank lines. This fix updates the regexes to ensure blank lines do not cause issues.
 
-* [PUP-5289](https://tickets.puppetlabs.com/browse/PUP-5289): Previously, puppet could only configure network devices in "access" mode, not the default "dynamic desirable". Also adds support for "dynamic desirable" mode, "negotiate" encapsulation type, and specifying the static access vlan interface.
+* [PUP-5289](https://tickets.puppetlabs.com/browse/PUP-5289): Previously, Puppet could only configure network devices in "access" mode, not the default "dynamic desirable". Also adds support for "dynamic desirable" mode, "negotiate" encapsulation type, and specifying the static access vlan interface.
 
 * [PUP-5734](https://tickets.puppetlabs.com/browse/PUP-5734): Prior to this ticket, when the dependencies field of the metadata for a module was not an array, the user would receive an uninformative error message. This ticket improves the error message for this error case.
 
@@ -153,7 +153,7 @@ an error, rather than waiting forever.
 * [PUP-5813](https://tickets.puppetlabs.com/browse/PUP-5813): Puppet now requires less memory under heavy and continuos load, as two 
 hard to detect memory leaks have been found and fixed.
 
-* [PUP-5819](https://tickets.puppetlabs.com/browse/PUP-5819): Puppet will now raise an error if a puppet language source file starts with a Byte Order Mark. The error identifies the name of the Byte Order Mark, and shows the bytes in hex that should be removed. Earlier such marks caused a SyntaxError to be issued and it was hard to understand the cause. 
+* [PUP-5819](https://tickets.puppetlabs.com/browse/PUP-5819): Puppet will now raise an error if a Puppet language source file starts with a Byte Order Mark. The error identifies the name of the Byte Order Mark, and shows the bytes in hex that should be removed. Earlier such marks caused a SyntaxError to be issued and it was hard to understand the cause. 
 Puppet always uses UTF-8, and forbids Byte Order Marks to be present in source files."
 
 * [PUP-5682](https://tickets.puppetlabs.com/browse/PUP-5682): Puppet's yumrepo type now recognizes bare word false and the quoted string "false" as valid values for its boolean properties, e.g. gpgcheck. Previously it only recognized "False" which could lead to surprising results.
@@ -178,7 +178,7 @@ Puppet always uses UTF-8, and forbids Byte Order Marks to be present in source f
 
 * [PUP-5015](https://tickets.puppetlabs.com/browse/PUP-5015): User attributes will no longer be down-cased on AIX.
 
-* [PUP-5895](https://tickets.puppetlabs.com/browse/PUP-5895): `puppet parser validate` failed when validating manifests containing functions written in the puppet language when they were in regular manifests. The functions in autoloaded locations are not validated by `puppet parser validate`.
+* [PUP-5895](https://tickets.puppetlabs.com/browse/PUP-5895): `puppet parser validate` failed when validating manifests containing functions written in the Puppet language when they were in regular manifests. The functions in autoloaded locations are not validated by `puppet parser validate`.
 
 * [PUP-5970](https://tickets.puppetlabs.com/browse/PUP-5970): Adds a `catalog_format` version field to the catalog identifying its schema. Newly compiled catalogs will have version 1. In the future, the version will be bumped if changes are made to the catalog format. This makes it possible to read a catalog in the future and know what data to expect.
 
@@ -186,9 +186,9 @@ Puppet always uses UTF-8, and forbids Byte Order Marks to be present in source f
 
 * [PUP-5428](https://tickets.puppetlabs.com/browse/PUP-5428): POST messages in the Puppet v3 API will now include the environment as a query parameter, providing uniformity between GET and POST URLs. Puppet will use POST instead of GET for large requests, so this ensures load balancers can make decisions based on the environment.
 
-* [PUP-5981](https://tickets.puppetlabs.com/browse/PUP-5981): Puppet will default to the DNF package provider on Fedora 23, which is a new supported platform in puppet 4.4.0/puppet-agent 1.4.0.
+* [PUP-5981](https://tickets.puppetlabs.com/browse/PUP-5981): Puppet will default to the DNF package provider on Fedora 23, which is a new supported platform in Puppet 4.4.0/puppet-agent 1.4.0.
 
-* [PUP-5729](https://tickets.puppetlabs.com/browse/PUP-5729): The function reverse_each has bee added. It works like the each function but iterates over elements in reverser order. This function in contrast to stdlib's reverse does not create a new reversed copy which makes it ideal for chaining into other Iterable functions. Also see the new puppet data types Iterable and Iterator.
+* [PUP-5729](https://tickets.puppetlabs.com/browse/PUP-5729): The function reverse_each has bee added. It works like the each function but iterates over elements in reverser order. This function in contrast to stdlib's reverse does not create a new reversed copy which makes it ideal for chaining into other Iterable functions. Also see the new Puppet data types Iterable and Iterator.
 
 * [PUP-5730](https://tickets.puppetlabs.com/browse/PUP-5730): The iterative function an_iterable.step(n) has been added. It yields every *nth* succesor from its input iterable when chained into another function. 
 Earlier it was difficult to iterate in steps other than one. This function makes use of the new types Iterable and Iterator which enable efficient chaining of iterative functions. See those types for more details."
