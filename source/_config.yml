@@ -388,7 +388,7 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
-  /puppetdb/4.0
+  /puppetdb/4.0:
     doc: puppetdb
     version: 4.0
     nav: ./_puppetdb_nav.html
