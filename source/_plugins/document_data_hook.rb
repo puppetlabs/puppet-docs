@@ -22,7 +22,7 @@ Jekyll::Hooks.register :pages, :pre_render do |page, payload|
       payload[doc] = document_version_index[doc][version]
     end
     # Also, set our own shortcut variable to our own version:
-    payload[ data['doc'] ] = data['version']
+    payload[ data['doc'] ] = data['base_url']
   else
     # Fall back to latest if this isn't a versioned doc.
     document_version_index.each do |doc, versions|
