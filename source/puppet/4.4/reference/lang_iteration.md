@@ -14,7 +14,7 @@ canonical: "/puppet/latest/reference/lang_iteration.html"
 [with]: ./function.html#with
 [array]: ./lang_data_array.html
 [hash]: ./lang_data_hash.html
-[defined types]: ./lang_defined_types
+[defined types]: ./lang_defined_types.html
 [array_titles]: ./lang_resources_advanced.html#arrays-of-titles
 
 

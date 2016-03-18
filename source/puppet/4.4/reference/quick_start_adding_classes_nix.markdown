@@ -41,7 +41,7 @@ Every module contains one or more **classes**. [Classes](./lang_classes.html) ar
 
 ## Editing Class Parameters in the Main Manifest
 
-You can edit the [parameters](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#defining-classes) of a class in `site.pp` as well. Parameters allow a class to request external data. If a class needs to configure itself with data other than [Puppet facts](https://docs.puppetlabs.com/puppet/latest/reference/lang_facts_and_builtin_vars.html), provide that data to the class via a parameter.
+You can edit the [parameters](./lang_classes.html#defining-classes) of a class in `site.pp` as well. Parameters allow a class to request external data. If a class needs to configure itself with data other than [Puppet facts](./lang_facts_and_builtin_vars.html), provide that data to the class via a parameter.
 
 
 **To edit the parameters of the** `apache` **class**:
@@ -54,12 +54,12 @@ You can edit the [parameters](https://docs.puppetlabs.com/puppet/latest/referenc
     	  docroot => '/var/www'
 		}
 
-	>**Note**: You must remove `include apache` because Puppet will only allow you to [declare a class once](https://docs.puppetlabs.com/puppet/latest/reference/lang_classes.html#declaring-classes).
+	>**Note**: You must remove `include apache` because Puppet will only allow you to [declare a class once](./lang_classes.html#declaring-classes).
 
 > That's it! You have set the Apache web server's root directory to `/var/www` instead of its default `/var/www/html`. If you refresh `http://myagentnodeIP:80/` in your web browser, it shows the list of files in `/var/www`. If you click `html`, the browser will again show the contents of `/var/www/html/index.html`.
 >
 > **Note:**
-> If you have Puppet Enterprise, you can do the steps in this guide through the PE web UI, [the console](https://docs.puppetlabs.com/pe/latest/console_accessing.html).
+> If you have Puppet Enterprise, you can do the steps in this guide through the PE web UI, [the console]({{pe}}/console_accessing.html).
 
 
 ----------

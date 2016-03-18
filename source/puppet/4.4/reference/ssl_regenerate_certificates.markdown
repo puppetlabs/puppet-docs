@@ -62,16 +62,14 @@ You may be using an extension, like PuppetDB or MCollective, to enhance Puppet. 
 
 For each extension like this, you'll need to regenerate the certificate(s) it uses. Many tools have scripts or documentation to help you set up SSL, and you can often just re-run the setup instructions.
 
-* [PuppetDB][] users should first follow [the instructions below on regenerating agent certificates][agent_certs], since PuppetDB re-uses Puppet agents' certificates. After that, [run PuppetDB's ssl configuration script][puppetdb_ssl] to regenerate its SSL configuration, and restart the PuppetDB service.
+* [PuppetDB][] users should first follow [the instructions below on regenerating agent certificates][agent_certs], since PuppetDB re-uses Puppet agents' certificates. After that, restart the PuppetDB service.
 * [MCollective][] often uses SSL certificates from Puppet's CA. If you are replacing your Puppet CA and are using the same certs for MCollective, you should [go through the standard deployment guide][standard_mco] and re-do any steps involving security credentials. You'll generally need to replace client certificates, your server keypair, and the ActiveMQ server's keystore and truststore.
 
 [standard_mco]: /mcollective/deploy/standard.html
-[puppetdb_ssl]: /puppetdb/latest/install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
-
 
 ## Step 3: Clear and Regenerate Certs for Puppet Agents
 
-[agent_certs]: #step-3-clear-and-regenerate-certs-for-agents
+[agent_certs]: #step-3-clear-and-regenerate-certs-for-puppet-agents
 
 To replace the certs on agents, you'll need to log into each agent node and do the following:
 

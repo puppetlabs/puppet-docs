@@ -186,7 +186,7 @@ README Style Notes
 
 ## General Principles of READMEs
 
-1. Write for both web and terminal viewing. We recommend [Markdown](commonmark). Above all else, your module must be easily readable and scannable.
+1. Write for both web and terminal viewing. We recommend [Markdown][commonmark]. Above all else, your module must be easily readable and scannable.
 2. Limit the number of external links. Linking to anything on the web limits the usability of the module, particularly if a range of users might use it in various environments, such as in terminal. Also, links look gross in plain Markdown and make your README less readable.
 3. Scannability is key. READMEs are formulaic and repetitious for a reason. Repetition means that no matter the module, users know where to get the information they're looking for.
 

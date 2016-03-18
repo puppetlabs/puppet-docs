@@ -82,7 +82,7 @@ $value = 0xLSD # Error, invalid hex
 
 Numbers are automatically converted to strings when interpolated into a string. The automatic conversion uses decimal (base 10) notation.
 
-If you need to convert numbers to non-decimal string representations, you can use [the `printf` function.](./function.html#printf)
+If you need to convert numbers to non-decimal string representations, you can use [the `sprintf` function.](./function.html#sprintf)
 
 ## Converting Strings to Numbers
 

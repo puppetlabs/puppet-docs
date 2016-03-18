@@ -124,7 +124,6 @@ Puppet resource lets you interactively inspect and manipulate resources on a sys
 
 For more information, see:
 
-* [Learning Puppet: Resources and the RAL](/learning/ral.html)
 * [Puppet Resource's Man Page][resource_man]
 
 ### Puppet Config

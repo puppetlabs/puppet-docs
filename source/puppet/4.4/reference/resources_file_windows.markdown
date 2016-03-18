@@ -45,7 +45,7 @@ Windows NTFS filesystems are case-insensitive (albeit case-preserving); Puppet i
 
 To manage files properly, Puppet needs the "Create symbolic links" (Vista/2008 and up), "Back up files and directories," and "Restore files and directories" privileges. The easiest way to handle this is:
 
-* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.  When you use the [`PUPPET_AGENT_ACCOUNT_USER` parameter](.puppet/latest/reference/install_windows.html#puppetagentaccountuser) with the MSI installer, the user will automatically be added to the administrators group.
+* When Puppet runs as a service, make sure its user account is a member of the local `Administrators` group.  When you use the [`PUPPET_AGENT_ACCOUNT_USER` parameter](./install_windows.html#puppetagentaccountuser) with the MSI installer, the user will automatically be added to the administrators group.
 * Before running Puppet interactively (on Vista/2008 and up), be sure to start the command prompt window with elevated privileges by right-clicking on the start menu and choosing "Run as Administrator."
 
 ## Managing File Permissions
@@ -106,6 +106,6 @@ Windows usually uses CRLF line endings instead of \*nix's LF line endings. In mo
 
 Prior to Puppet 3.4 / Puppet Enterprise 3.2, the `file` resource type had several limitations and problems. These were fixed as part of an NTFS support cleanup in 3.4.0. If you are writing manifests for Windows machines running an older version of Puppet, please be aware:
 
-* If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](./troubleshooting.html#file-pre-340).
+* If an `owner` or `group` are specified for a file, **you must also specify a `mode`.** Failing to do so can render a file inaccessible to Puppet. [See here for more details](/windows/troubleshooting.html#file-pre-340).
 * Setting a permissions mode can prevent the SYSTEM user from accessing the file (if SYSTEM isn't the file's owner or part of its group). This can make it so Puppet can access the file when run by a user, but can't access it when run as a service. In 3.4 and later, this is fixed, and Puppet will always ensure the SYSTEM user has the `FULL_CONTROL` access right (unless SYSTEM is specified as the owner or group for that file, in which case it will have the rights specified by the permissions mode).
 * Puppet will copy file permissions from the remote `source`; this isn't ideal, since the \*nix permissions on the Puppet master are unlikely to match what you want on your Windows machines. The only way to prevent this is to specify ownership, group, and mode for every file (or with a resource default). In 3.4 and up, the `source_permissions` attribute provides a way to turn this behavior off.

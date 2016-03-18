@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 
 [site_manifest]: ./dirs_manifest.html
 [autoload]: ./lang_namespaces.html#autoloader-behavior
-[config]: /guides/configuring.html
+[config]: ./config_file_main.html
 [usecacheonfailure]: ./configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [classes]: ./lang_classes.html
@@ -21,12 +21,11 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 [fact]: ./lang_variables.html#facts-and-built-in-variables
 [variables]: ./lang_variables.html
 [relationships]: ./lang_relationships.html
-[ordering]: ./lang_relationships.html#ordering-and-notification
-[notification]: ./lang_relationships.html#ordering-and-notification
+[ordering]: ./lang_relationships.html#ordering
+[notification]: ./lang_relationships.html#refreshing-and-notification
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_data_string.html#line-breaks
 [node]: ./lang_node_definitions.html
-[ordering]: ./configuration.html#ordering
 [hiera]: /hiera/latest
 [compilation]: ./subsystem_catalog_compilation.html
 

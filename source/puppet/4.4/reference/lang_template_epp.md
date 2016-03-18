@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/lang_template_epp.html"
 [variable_names]: ./lang_variables.html#naming
 [typed]: ./lang_data_type.html
 
-Embedded Puppet (EPP) is a templating language based on the [Puppet language](./lang_summary.html). You can use EPP in Puppet 4 and higher, as well as Puppet 3.5 through 3.8 with the [future parser](/3.8/reference/experiments_future.html) enabled.
+Embedded Puppet (EPP) is a templating language based on the [Puppet language](./lang_summary.html). You can use EPP in Puppet 4 and higher, as well as Puppet 3.5 through 3.8 with the [future parser](/puppet/3.8/reference/experiments_future.html) enabled.
 
 Puppet can evaluate EPP templates with the [`epp`][epp] and [`inline_epp`][inline_epp] functions.
 
@@ -128,6 +128,8 @@ You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) t
 
 ### Parameter Tags
 
+[inpage_paramtag]: #parameter-tags
+
 `<%- | Boolean $keys_enable = false, String $keys_file = '' | -%>`
 
 A parameter tag declares which parameters the template will accept. Each parameter can be [typed][] and can have a default value.
@@ -206,7 +208,7 @@ logfile <%= $logfile %>
 
 The keys of the hash should match the variable names you'll be using in the template, minus the leading `$` sign. Parameters must follow [the normal rules for local variable names.][variable_names]
 
-If the template has a [parameter tag](#parameter-tag), you can _only_ pass the parameters it declares. Passing any additional parameters is a syntax error. However, if a template omits the parameter tag, you can pass it any parameters.
+If the template has a [parameter tag][inpage_paramtag], you can _only_ pass the parameters it declares. Passing any additional parameters is a syntax error. However, if a template omits the parameter tag, you can pass it any parameters.
 
 If a template's parameter tag includes any parameters without default values, they are mandatory. You must pass values for them when calling the template.
 

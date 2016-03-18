@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/environments.html"
 [manifest_dir]: ./dirs_manifest.html
 [modulepath]: ./dirs_modulepath.html
 [assign]: ./environments_assigning.html
-[env_var]: ./lang_facts_and_builtin_vars.html#variables-set-by-the-puppet-master
+[env_var]: ./lang_facts_and_builtin_vars.html#puppet-master-variables
 [dir_env_create]: ./environments_creating.html
 
 Environments are isolated groups of Puppet agent nodes. A Puppet master server can serve each environment with completely different [main manifests][manifest_dir] and [modulepaths][modulepath].

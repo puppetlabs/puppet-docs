@@ -12,16 +12,15 @@ canonical: "/puppet/latest/reference/lang_visual_index.html"
 [string]: ./lang_data_string.html
 [function]: ./lang_functions.html
 [rvalue]: ./lang_functions.html#behavior
-[template_func]: /guides/templating.html
+[template_func]: ./lang_template.html
 [module]: modules_fundamentals.html
-[argument]: ./lang_functions.html#arguments
-[relationship_meta]: ./lang_relationships.html#relationship-metaparameters
+[relationship_meta]: ./lang_relationships.html#syntax-relationship-metaparameters
 [refs]: ./lang_data_resource_reference.html
-[chaining]: ./lang_relationships.html#chaining-arrows
+[chaining]: ./lang_relationships.html#syntax-chaining-arrows
 [variable]: ./lang_variables.html
 [array]: ./lang_data_array.html
 [hash]: ./lang_data_hash.html
-[interpolation]: ./lang_data_string.html#variable-interpolation
+[interpolation]: ./lang_data_string.html#interpolation
 [class_def]: ./lang_classes.html#defining-classes
 [class_decl]: ./lang_classes.html#declaring-classes
 [defined_type]: ./lang_defined_types.html
@@ -67,7 +66,7 @@ file {'ntp.conf':
 * `ntp.conf`: The [title][]
 * `path`: An [attribute][]
 * `'/etc/ntp.conf'`: The value of an [attribute][]; in this case, a [string][]
-* `template('ntp/ntp.conf')`: A [function][] call that [returns a value][rvalue]; in this case, the [`template`][template_func] function, with the name of a template in a [module][] as its [argument][]
+* `template('ntp/ntp.conf')`: A [function][] call that [returns a value][rvalue]; in this case, the [`template`][template_func] function, with the name of a template in a [module][] as its argument
 
 ~~~ ruby
 package {'ntp':

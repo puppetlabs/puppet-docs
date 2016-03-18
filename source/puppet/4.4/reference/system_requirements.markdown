@@ -4,7 +4,7 @@ title: "Puppet 4.4 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
-> To install Puppet, first [view the pre-install tasks](/pre_install.html).
+> To install Puppet, first [view the pre-install tasks](./install_pre.html).
 
 ## Hardware
 

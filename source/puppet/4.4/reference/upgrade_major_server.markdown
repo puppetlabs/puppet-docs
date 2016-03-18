@@ -20,6 +20,7 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 [upgrade PuppetDB]: /puppetdb/latest/install_via_module.html
 [puppetdb_module]: https://forge.puppetlabs.com/puppetlabs/puppetdb
 [PuppetDB 3.0 release notes]: /puppetdb/3.0/release_notes.html
+[future]: /puppet/3.8/reference/experiments_future.html
 
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process because you need to make more decisions during the upgrade.
 
@@ -66,7 +67,7 @@ In Puppet 4, we [moved][] all of Puppet's binaries on \*nix systems. They are no
 
 We also moved [`puppet.conf`][puppet.conf] to `/etc/puppetlabs/puppet/puppet.conf`, changed a lot of defaults, and removed many settings. Compare the new `puppet.conf` to the old one, which is probably at `/etc/puppet/puppet.conf`, and copy over the settings you need to keep.
 
-If you are installing Puppet Server 4 onto a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. You can also remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting you enabled for the [future parser](/puppet/latest/reference/experiments_future.html).
+If you are installing Puppet Server 4 onto a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. You can also remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting you enabled for the [future parser][future].
 
 ### Reconcile `auth.conf`
 
@@ -75,7 +76,7 @@ Puppet 4 uses different HTTPS URLs to fetch configurations. Any rules in `auth.c
 To convert the URLs:
 
 1. Open your old [`auth.conf`][auth.conf] file, which is probably at `/etc/puppet/auth.conf`.
-2. Identify [any _custom_ rules]({{puppetserver}}/compatibility_with_puppet_agent.html#transfer-and-modify-custom-authconf-rules) you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
+2. Identify [any _custom_ rules]({{puppetserver}}/compatibility_with_puppet_agent.html#transfer-and-update-authconf) you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
 3. Change the `path` of each custom rule to use Puppet 4 URLs.
     1. Add `/puppet/v3` to the beginning of most paths.
     2. Configure the `certificate_status` endpoint in `auth.conf`. Puppet Server's `ca.conf` file is [deprecated][] as of Puppet Server 2.2.
@@ -170,7 +171,7 @@ Move the contents of your old `environments` directory to `/etc/puppetlabs/code/
 
 If you're using a single [main manifest][] across all environments, move it to somewhere inside `/etc/puppetlabs/code` and confirm that [`default_manifest`][default_manifest] is correctly configured in `puppet.conf`.
 
-If you're configuring individual environments, check your `environment.conf` files. If you enabled the [future parser](/puppet/latest/reference/experiments_future.html) in environments, remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting.
+If you're configuring individual environments, check your `environment.conf` files. If you enabled the [future parser][future] in environments, remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting.
 
 If you're using [r10k][] or some other code deployment tool, change its configuration to use the new `environments` directory at `/etc/puppetlabs/code/environments`.
 

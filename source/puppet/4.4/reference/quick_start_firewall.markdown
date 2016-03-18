@@ -18,10 +18,10 @@ To best manage such rules with Puppet, you want to divide these rules into `pre`
 
 Using this guide, you will learn how to do the following tasks:
 
-* [Install the puppetlabs-firewall module](#install-the-puppet-firewall-module).
-* [Write a simple module to define the firewall rules for your Puppet-managed infrastructure](#write-the-my_firewall-module).
-* [Add the firewall module to the main manifest](#add-the-firewall-module-to-the-main-manifest).
-* [Enforce the desired state of the `my_firewall` class](#enforce-the-desired-state-of-the-my_firewall-class).
+* [Install the puppetlabs-firewall module][inpage_install].
+* [Write a simple module to define the firewall rules for your Puppet-managed infrastructure][inpage_write].
+* [Add the firewall module to the main manifest][inpage_add].
+* [Enforce the desired state of the `my_firewall` class][inpage_enforce].
 
 > Before starting this walk-through, complete the previous exercises in the [essential configuration tasks](./quick_start_essential_config.html). Log in as root or administrator on your nodes.
 
@@ -31,6 +31,8 @@ Using this guide, you will learn how to do the following tasks:
 
 
 ## Install the `puppetlabs-firewall` Module
+
+[inpage_install]: #install-the-puppetlabs-firewall-module
 
 The firewall module, available on the Puppet Forge, introduces the firewall resource, which is used to manage and configure firewall rules from with Puppet. Learn more about the module by visiting [http://forge.puppetlabs.com/puppetlabs/firewall](http://forge.puppetlabs.com/puppetlabs/firewall).
 
@@ -50,6 +52,8 @@ You should see output similar to the following:
 
 ## Write the `my_firewall` Module
 
+[inpage_write]: #write-the-myfirewall-module
+
 Some modules can be large, complex, and require a significant amount of trial and error. This module, however, will be a very simple module to write. It contains just three classes.
 
 > ### A Quick Note about Module Directories
@@ -58,7 +62,7 @@ Some modules can be large, complex, and require a significant amount of trial an
 >
 >**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
 Modules are directory trees. For this task, you'll create the following files:
 
@@ -127,6 +131,8 @@ Modules are directory trees. For this task, you'll create the following files:
 
 ## Add the Firewall Module to the Main Manifest
 
+[inpage_add]: #add-the-firewall-module-to-the-main-manifest
+
 1. On your Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Use your text editor to open `site.pp`.
 3. Add the following Puppet code to your `site.pp` file. This will clear any existing rules and make sure that only rules defined in Puppet exist on the machine.
@@ -135,7 +141,7 @@ Modules are directory trees. For this task, you'll create the following files:
 		    purge => true,
 		  }
 
-4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are [run in the correct order](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html) to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies the specified dependencies.
+4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are [run in the correct order](./lang_relationships.html) to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies the specified dependencies.
 
 		  Firewall {
 		    before  => Class['my_fw::post'],
@@ -166,6 +172,8 @@ Modules are directory trees. For this task, you'll create the following files:
 		target     prot opt source               destination
 
 ## Enforce the Desired State of the `my_firewall` Class
+
+[inpage_enforce]: #enforce-the-desired-state-of-the-myfirewall-class
 
 Lastly, let's take a look at how Puppet ensures the desired state of the `my_firewall` class on your agents. In the previous task, you applied your firewall class. Now imagine a scenario where a member of your team changes the contents of the `iptables` to allow connections on a random port that was not specified in `my_firewall`.
 

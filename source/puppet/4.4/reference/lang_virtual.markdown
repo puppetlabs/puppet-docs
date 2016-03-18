@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/lang_virtual.html"
 [collectors]: ./lang_collectors.html
 [search_expression]: ./lang_collectors.html#search-expressions
 [override]: ./lang_resources_advanced.html#amending-attributes-with-a-collector
-[chaining]: ./lang_relationships.html#chaining-arrows
+[chaining]: ./lang_relationships.html#syntax-chaining-arrows
 [virtual_guide]: /guides/virtual_resources.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 

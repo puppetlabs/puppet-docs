@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_classes.html"
 [namespace]: ./lang_namespaces.html
 [enc]: /guides/external_nodes.html
 [tags]: ./lang_tags.html
-[allowed]: ./lang_reserved.html#classes-and-types
+[allowed]: ./lang_reserved.html#classes-and-defined-types
 [reserved]: ./lang_reserved.html#reserved-parameter-names
 [function]: ./lang_functions.html
 [modules]: ./modules_fundamentals.html

@@ -481,7 +481,7 @@ Assignment Operators
 
 ### `=` (assignment)
 
-The assignment operator sets the [variable](http://docs.puppetlabs.com/puppet/latest/reference/lang_variables.html) on the left hand side to the value on the right hand side. The entire expression resolves to the value of the right hand side.
+The assignment operator sets the [variable][variables] on the left hand side to the value on the right hand side. The entire expression resolves to the value of the right hand side.
 
 Note that variables can only be set once, after which any attempt to set the variable to a new value will cause an error.
 

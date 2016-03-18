@@ -30,7 +30,6 @@ canonical: "/puppet/latest/reference/lang_data_type.html"
 [struct]: ./lang_data_abstract.html#struct
 [optional]: ./lang_data_abstract.html#optional
 [catalogentry]: ./lang_data_abstract.html#catalogentry
-[type]: ./lang_data_abstract.html#type
 [any]: ./lang_data_abstract.html#any
 [callable]: ./lang_data_abstract.html#callable
 [stdlib]: https://forge.puppetlabs.com/puppetlabs/stdlib
@@ -176,11 +175,13 @@ Abstract data types let you do more sophisticated or permissive type checking.
 * [`Struct`][Struct]
 * [`Optional`][Optional]
 * [`Catalogentry`][Catalogentry]
-* [`Type`][Type]
+* [`Type`][inpage_type]
 * [`Any`][Any]
 * [`Callable`][Callable]
 
 ## The `Type` Data Type
+
+[inpage_type]: #the-type-data-type
 
 The data type of literal data type values is `Type`.
 

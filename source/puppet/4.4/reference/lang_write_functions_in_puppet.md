@@ -7,7 +7,7 @@ canonical: "/puppet/latest/lang_write_functions_in_puppet.html"
 [defined_types]: ./lang_defined_types.html
 [literal_types]: ./lang_data_type.html
 [modules]: ./modules_fundamentals.html
-[naming]: ./lang_reserved.html#classes-and-types
+[naming]: ./lang_reserved.html#classes-and-defined-types
 [namespace]: ./lang_namespaces.html
 [resource]: ./lang_resources.html
 [resource_defaults]: ./lang_defaults.html
@@ -128,7 +128,7 @@ Puppet is automatically aware of functions in a valid module and will autoload t
 
 The [function call][function_call] acts like a normal call to any built-in Puppet function, and resolves to the function's returned value.
 
-Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest that lists the containing module as a dependency and from your [main manifest](./dirs_manifest). The arguments you pass to the function map to the parameters defined in the function's definition. You must pass arguments for the mandatory parameters, and can choose whether to pass in arguments for the optional ones.
+Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest that lists the containing module as a dependency and from your [main manifest](./dirs_manifest.html). The arguments you pass to the function map to the parameters defined in the function's definition. You must pass arguments for the mandatory parameters, and can choose whether to pass in arguments for the optional ones.
 
 ## Complex Function Example
 

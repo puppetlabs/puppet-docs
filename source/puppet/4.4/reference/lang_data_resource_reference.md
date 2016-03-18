@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/lang_data_resource_reference.html"
 ---
 
 [relationship]: ./lang_relationships.html
-[chaining]: ./lang_relationships.html#chaining-arrows
+[chaining]: ./lang_relationships.html#syntax-chaining-arrows
 [attribute_override]: ./lang_resources_advanced.html#adding-or-modifying-attributes
 [string]: ./lang_data_string.html
 [undef]: ./lang_data_undef.html

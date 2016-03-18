@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/lang_namespaces.html"
 [classes]: ./lang_classes.html
 [define]: ./lang_defined_types.html
 [variables]: ./lang_variables.html
-[modulepath]: ./modules_fundamentals.html#the-modulepath
+[modulepath]: ./dirs_modulepath.html
 [module]: ./modules_fundamentals.html
 [scopes]: ./lang_scope.html
 [include]: ./lang_classes.html#using-include

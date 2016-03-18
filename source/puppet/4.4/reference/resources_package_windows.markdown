@@ -94,7 +94,7 @@ The Windows package provider also supports package-specific `install_options` (e
 
 MSI properties can be specified as an array of strings following the 'property=key' pattern; you should use one string per property. Command line flags to executable installers can be specified as an array of strings, with one string per flag.
 
-Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately. For more info, see [the page on handling Windows file paths.](./file_paths.html)
+Any file path arguments within the `install_options` attribute (such as `INSTALLDIR`) should use backslashes, not forward slashes. Be sure to escape your backslashes appropriately. For more info, see [the page on handling Windows file paths.](./lang_windows_file_paths.html)
 
 It's a good idea to use the hash notation for file path arguments since they may contain spaces, for example:
 

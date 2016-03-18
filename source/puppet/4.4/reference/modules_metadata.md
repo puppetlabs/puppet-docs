@@ -137,7 +137,7 @@ The version specifiers allowed in module dependencies are:
 
 ## Specifying Operating System Compatibility
 
-[inpage_os]: #operating-system-compatibility-in-metadatajson
+[inpage_os]: #specifying-operating-system-compatibility
 
 If you are publishing your module to the Forge, we highly recommend that you include `operatingsystem_support` in `metadata.json`. Even if you do not intend to publish your module, including this information can be helpful for tracking your work.
 

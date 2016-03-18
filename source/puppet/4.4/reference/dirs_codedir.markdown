@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/dirs_codedir.html"
 ---
 
 [codedir]: ./configuration.html#codedir
-[puppetserver_conf]: {{puppetserver}}/configuration.html#puppetserverconf
+[puppetserver_conf]: {{puppetserver}}/config_file_puppetserver.html
 
 Puppet's `codedir` is the main directory for Puppet code and data. It contains environments (which contain your manifests and modules), a global modules directory for all environments, and your Hiera data.
 
@@ -46,7 +46,7 @@ Almost everything in the codedir has its own page of documentation.
 
 ### Code and Data Directories
 
-* [`environments`](./dirs_environments.html) --- contains alternate versions of the `modules` and `manifests` directories, to allow code changes to be tested on smaller sets of nodes before entering production.
+* [`environments`](./environments_configuring.html) --- contains alternate versions of the `modules` and `manifests` directories, to allow code changes to be tested on smaller sets of nodes before entering production.
 * [`modules`](./dirs_modulepath.html) --- the main directory for Puppet's modules.
 
 

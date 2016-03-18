@@ -30,17 +30,16 @@ Modules are directory trees. For this task, you'll create the following structur
       - `init.pp` (manifest file that contains the `helloworld` class)
       - `motd.pp` (manifest file that contains a file resource that ensures the creation of the motd)
 
-Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](https://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `helloworld`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>`, or in this case, `helloworld::motd`.
+Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](./lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `helloworld`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>`, or in this case, `helloworld::motd`.
 
-* For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on how modules work, see [Module Fundamentals](./modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
-* For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 
 **To write the `helloworld` class**:
 
 1. From the command line on the Puppet master, navigate to the modules directory: `cd /etc/puppetlabs/code/environments/production/modules`.
 2. Run `mkdir -p helloworld/manifests` to create the new module directory and its manifests directory.
-3. In the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so that it contains the following Puppet code: 
+3. In the `manifests` directory, use your text editor to create the `init.pp` file, and edit it so that it contains the following Puppet code:
 
         class helloworld {
            notify { 'hello, world!': }
@@ -62,13 +61,13 @@ Every manifest (.pp file) in a module contains a single class. File names map to
 
 6. Save and exit the file.
 
->  Hooray! You've written a module that contains two classes that will, once applied, show a notification message when Puppet runs, and manage the motd on your server. 
+>  Hooray! You've written a module that contains two classes that will, once applied, show a notification message when Puppet runs, and manage the motd on your server.
 
 ## Add the `helloworld` and `helloworld::motd` Classes to the Main Manifest
 
 For this procedure, you're going to add the `helloworld` classes to the default node in the main manifest. You will be using the default node throughout the Quick Start Guide.
 
-The [default node](.puppet/latest/reference/lang_node_definitions.html#the-default-node) is a special value for node names. If no node statement matching a given node name can be found, the default node will be used, making it an easy way to ensure compilation for any node will be successful. In Puppet, a given agent will only get the contents of one node definition. In order to simplify this process, and ensure that compilations are always successful, this guide will consistently use the `default` node in the `site.pp` manifest. The default node's properties apply to all the agents which have not had definitions applied to them yet, so in the case of this guide, the contents of the default node will apply to all of your agents.
+The [default node](./lang_node_definitions.html#the-default-node) is a special value for node names. If no node statement matching a given node name can be found, the default node will be used, making it an easy way to ensure compilation for any node will be successful. In Puppet, a given agent will only get the contents of one node definition. In order to simplify this process, and ensure that compilations are always successful, this guide will consistently use the `default` node in the `site.pp` manifest. The default node's properties apply to all the agents which have not had definitions applied to them yet, so in the case of this guide, the contents of the default node will apply to all of your agents.
 
 **To create the default node**
 
@@ -76,14 +75,14 @@ The [default node](.puppet/latest/reference/lang_node_definitions.html#the-defau
 2. Use your text editor to create the `site.pp` file, and edit it so that it contains the following Puppet code:
 
         node default {
-        
+
         }
 
 3. Add the following Puppet code within `node default {  }`:
 
         class { 'helloworld': }
 		class { 'helloworld::motd': }
-		   
+
 4. Save and exit the file.
 
 5. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file again and fix the problem before continuing.
@@ -108,7 +107,7 @@ From the command line of your agent, run `cat /etc/motd`. The result should show
 
 ## Other Resources
 
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 >
 > Check out the remainder of the [Quick Start Guide series](./quick_start.html) for additional module writing exercises.
 
