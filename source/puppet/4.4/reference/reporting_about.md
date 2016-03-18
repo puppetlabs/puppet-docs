@@ -32,7 +32,7 @@ On Puppet master servers (and nodes running Puppet apply), you can configure ena
 
 ## Practical Reporting for Beginners
 
-Puppet's reporting features are powerful, but there are simple ways to work with them. Puppet Enterprise includes [helpful reporting tools](/pe/latest/CM_reports.html) in the console. [PuppetDB]({{puppetdb}}/), with [its report processor enabled]({{puppetdb}}/connect_puppet_master.html#enabling-report-storage), can interface with third-party tools such as [Puppetboard](https://github.com/puppet-community/puppetboard) or [PuppetExplorer](https://github.com/spotify/puppetexplorer).
+Puppet's reporting features are powerful, but there are simple ways to work with them. Puppet Enterprise includes [helpful reporting tools]({{pe}}/CM_reports.html) in the console. [PuppetDB]({{puppetdb}}/), with [its report processor enabled]({{puppetdb}}/connect_puppet_master.html#enabling-report-storage), can interface with third-party tools such as [Puppetboard](https://github.com/puppet-community/puppetboard) or [PuppetExplorer](https://github.com/spotify/puppetexplorer).
 
 Puppet has several basic built-in [report processors](/puppet/latest/reference/report.html). For example, the `http` processor sends YAML dumps of reports via POST requests to a designated URL, while `log` saves received logs to a local log file.
 

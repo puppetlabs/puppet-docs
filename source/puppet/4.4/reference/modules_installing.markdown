@@ -17,8 +17,8 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 [errors]: /windows/troubleshooting.html#error-messages
 [metadata.json]: ./modules_metadata.html
 
-[code_mgr]: /pe/latest/code_mgr.html
-[r10k]: /pe/latest/r10k.html
+[code_mgr]: {{pe}}/code_mgr.html
+[r10k]: {{pe}}/r10k.html
 
 
 > **Windows Note**
@@ -159,7 +159,7 @@ We publish some premium modules exclusively for Puppet Enterprise users. To inst
 After you've run `puppet module install puppetlabs-<MODULE>` you can move the installed module to the directory, server, or version control system (VCS) repository of your choice.
 
 If you need to install a PE-only module on a PE node that doesn't have internet access, you can move the package:
- 
+
 1. Run `puppet module install puppetlabs-<MODULE>` on a licensed node with internet access.
 2. Run `puppet module build` to build the newly-installed module.
 3. Move the *.tar.gz wherever you choose.

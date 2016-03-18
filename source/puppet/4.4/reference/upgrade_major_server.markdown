@@ -14,7 +14,7 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 [retrieve and apply a catalog]: /puppet/latest/reference/man/agent.html#USAGE-NOTES
 [hiera.yaml]: {{hiera}}/configuring.html
 [Hiera]: {{hiera}}/
-[r10k]: /pe/latest/r10k.html
+[r10k]: {{pe}}/r10k.html
 [puppetdb-terminus]: {{puppetdb}}/connect_puppet_master.html#on-platforms-with-packages
 [puppetdb-termini]: {{puppetdb}}/connect_puppet_master.html#on-platforms-with-packages
 [upgrade PuppetDB]: {{puppetdb}}/install_via_module.html

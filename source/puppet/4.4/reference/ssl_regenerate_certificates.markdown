@@ -5,8 +5,8 @@ canonical: "/puppet/latest/reference/ssl_regenerate.html"
 description: "This page describes the steps for regenerating certs under an open source Puppet deployment."
 ---
 
-[split]: /pe/latest/trouble_regenerate_certs_split.html
-[monolithic]: /pe/latest/trouble_regenerate_certs_monolithic.html
+[split]: {{pe}}/trouble_regenerate_certs_split.html
+[monolithic]: {{pe}}/trouble_regenerate_certs_monolithic.html
 [puppetdb]: {{puppetdb}}/
 [puppet dashboard]: /dashboard/1.2
 [mcollective]: /mcollective

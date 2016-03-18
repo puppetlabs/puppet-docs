@@ -45,7 +45,7 @@ Puppet 4.4 and all of its prerequisites run on the following platforms, and Pupp
 
 ## Platforms Without Packages
 
-Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [System Requirements](/pe/latest/install_system_requirements.html#supported-operating-systems).
+Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [System Requirements]({{pe}}/install_system_requirements.html#supported-operating-systems).
 
 ### Other Linux
 

@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/install_windows.html"
 ---
 
 [downloads]: https://downloads.puppetlabs.com/windows/
-[peinstall]: /pe/latest/install_windows.html
+[peinstall]: {{pe}}/install_windows.html
 [pre_install]: ./install_pre.html
 [where]: ./whered_it_go.html
 [puppet.conf]: ./config_file_main.html

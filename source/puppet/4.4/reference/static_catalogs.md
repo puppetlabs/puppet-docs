@@ -26,9 +26,9 @@ canonical: "/puppet/latest/reference/static_catalogs.html"
 
 [Puppet Server]: {{puppetserver}}/
 [`puppetserver.conf`]: {{puppetserver}}/config_file_puppetserver.html
-[Application Orchestration]: /pe/latest/app_orchestration_overview.html
-[file sync]: /pe/latest/cmgmt_filesync.html
-[Code Manager]: /pe/latest/code_mgr.html
+[Application Orchestration]: {{pe}}/app_orchestration_overview.html
+[file sync]: {{pe}}/cmgmt_filesync.html
+[Code Manager]: {{pe}}/code_mgr.html
 [`code_content`]: {{puppetserver}}/
 
 Puppet 4.4 and Puppet Server 2.3 introduce a new feature for [catalog compilation][catalogs]: **static catalogs**.

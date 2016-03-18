@@ -4,7 +4,7 @@ title: "Installing Puppet: Pre-Install Tasks"
 canonical: "/puppet/latest/reference/install_pre.html"
 ---
 
-[peinstall]: /pe/latest/install_basic.html
+[peinstall]: {{pe}}/install_basic.html
 [sysreqs]: ./system_requirements.html
 [ruby]: ./system_requirements.html#basic-requirements
 [architecture]: /puppet/latest/reference/architecture.html
