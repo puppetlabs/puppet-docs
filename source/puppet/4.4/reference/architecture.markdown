@@ -12,7 +12,7 @@ title: "Overview of Puppet's Architecture"
 [report handlers]: ./report.html
 [lang_basics]: ./lang_summary.html
 [apply]: ./services_apply.html
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}/
 [resource]: ./lang_resources.html
 [Puppet Server]: {{puppetserver}}/
 

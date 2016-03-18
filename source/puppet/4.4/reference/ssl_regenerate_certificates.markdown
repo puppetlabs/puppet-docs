@@ -7,7 +7,7 @@ description: "This page describes the steps for regenerating certs under an open
 
 [split]: /pe/latest/trouble_regenerate_certs_split.html
 [monolithic]: /pe/latest/trouble_regenerate_certs_monolithic.html
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}/
 [puppet dashboard]: /dashboard/1.2
 [mcollective]: /mcollective
 [ssldir]: ./dirs_ssldir.html

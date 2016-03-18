@@ -16,9 +16,9 @@ canonical: "/puppet/latest/reference/lang_exported.html"
 [bacula]: https://forge.puppetlabs.com/puppetlabs/bacula
 [exported_collector]: ./lang_collectors.html#exported-resource-collectors
 [search]: ./lang_collectors.html#search-expressions
-[puppetdb]: /puppetdb/1
-[puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
-[puppetdb_install]: /puppetdb/latest/install_via_module.html
+[puppetdb]: {{puppetdb}}/
+[puppetdb_connect]: {{puppetdb}}/connect_puppet_master.html
+[puppetdb_install]: {{puppetdb}}/install_via_module.html
 [exported_guide]: /guides/exported_resources.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 

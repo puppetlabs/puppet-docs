@@ -4,10 +4,10 @@ title: "Config Files: puppetdb.conf"
 canonical: "/puppet/latest/reference/config_file_puppetdb.html"
 ---
 
-[puppetdb_connection]: /puppetdb/latest/puppetdb_connection.html
+[puppetdb_connection]: {{puppetdb}}/puppetdb_connection.html
 
 
-The `puppetdb.conf` file configures how Puppet should connect to one or more [PuppetDB](/puppetdb/latest/) servers. It is only used if you are using PuppetDB and have [connected your Puppet master to it](/puppetdb/latest/connect_puppet_master.html).
+The `puppetdb.conf` file configures how Puppet should connect to one or more [PuppetDB]({{puppetdb}}/) servers. It is only used if you are using PuppetDB and have [connected your Puppet master to it]({{puppetdb}}/connect_puppet_master.html).
 
 ## PuppetDB Documentation
 
@@ -38,5 +38,5 @@ The `puppetdb.conf` file uses the same INI-like format as `puppet.conf`, but onl
 * The `server` setting must be set to the hostname of the PuppetDB server.
 * The `port` setting must be set to the port of the PuppetDB server.
 
-See the [PuppetDB manual](/puppetdb/latest/) for more information.
+See the [PuppetDB manual]({{puppetdb}}/) for more information.
 

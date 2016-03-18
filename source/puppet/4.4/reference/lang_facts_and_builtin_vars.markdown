@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [noop]: ./configuration.html#noop
 [environment_setting]: ./configuration.html#environment
 [certname]: ./configuration.html#certname
-[puppetdb_facts]: /puppetdb/latest/api/index.html
+[puppetdb_facts]: {{puppetdb}}/api/index.html
 [localscope]: ./lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 [scope]: ./lang_scope.html

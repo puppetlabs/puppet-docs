@@ -13,11 +13,11 @@ canonical: "/puppet/latest/reference/upgrade_major_server.html"
 [default_manifest]: ./configuration.html#defaultmanifest
 [retrieve and apply a catalog]: /puppet/latest/reference/man/agent.html#USAGE-NOTES
 [hiera.yaml]: {{hiera}}/configuring.html
-[Hiera]: /hiera/
+[Hiera]: {{hiera}}/
 [r10k]: /pe/latest/r10k.html
-[puppetdb-terminus]: /puppetdb/latest/connect_puppet_master.html#on-platforms-with-packages
-[puppetdb-termini]: /puppetdb/latest/connect_puppet_master.html#on-platforms-with-packages
-[upgrade PuppetDB]: /puppetdb/latest/install_via_module.html
+[puppetdb-terminus]: {{puppetdb}}/connect_puppet_master.html#on-platforms-with-packages
+[puppetdb-termini]: {{puppetdb}}/connect_puppet_master.html#on-platforms-with-packages
+[upgrade PuppetDB]: {{puppetdb}}/install_via_module.html
 [puppetdb_module]: https://forge.puppetlabs.com/puppetlabs/puppetdb
 [PuppetDB 3.0 release notes]: /puppetdb/3.0/release_notes.html
 [future]: /puppet/3.8/reference/experiments_future.html

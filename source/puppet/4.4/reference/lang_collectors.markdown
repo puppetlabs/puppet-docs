@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/lang_collectors.html"
 [realize]: ./lang_virtual.html#syntax
 [exported]: ./lang_exported.html
 [puppetdb]: /puppetdb/
-[puppetdb_install]: /puppetdb/latest/install_via_module.html
-[puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
+[puppetdb_install]: {{puppetdb}}/install_via_module.html
+[puppetdb_connect]: {{puppetdb}}/connect_puppet_master.html
 [chaining]: ./lang_relationships.html#syntax-chaining-arrows
 [attribute]: ./lang_resources.html#attributes
 [expressions]: ./lang_expressions.html
