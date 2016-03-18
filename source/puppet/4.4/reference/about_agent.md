@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/about_agent.html"
 ---
 
 [Facter]: /facter/latest/
-[Hiera]: /hiera/latest/
+[Hiera]: {{hiera}}/
 [MCollective]: /mcollective/
 [agent]: ./services_agent_unix.html
 [apply]: ./services_apply.html

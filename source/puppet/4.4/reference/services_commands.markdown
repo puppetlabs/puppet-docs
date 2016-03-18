@@ -4,7 +4,7 @@ title: "Puppet's Commands"
 ---
 
 [facter_cli]: /facter/latest
-[hiera_cli]: /hiera/latest/command_line.html
+[hiera_cli]: {{hiera}}/command_line.html
 [arch]: ./architecture.html
 [agent_unix]: ./services_agent_unix.html
 [agent_windows]: ./services_agent_windows.html

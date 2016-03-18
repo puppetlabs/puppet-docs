@@ -81,7 +81,7 @@ Use one of the following versions of MRI (standard) Ruby:
 ### Mandatory Libraries
 
 * [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
-* [Hiera](/hiera/latest/) 2.0.0 or later
+* [Hiera]({{hiera}}/) 2.0.0 or later
 * The `json` gem (any modern version).
 * The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html).
 
