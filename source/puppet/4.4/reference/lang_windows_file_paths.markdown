@@ -85,7 +85,7 @@ Strings surrounded by single quotes `'like this'` do not interpolate variables. 
 
 Managing files in the `C:\Windows\system32` directory can be problematic. The short version is:
 
-* If you are using **Puppet 3.7.3 or later,** use [the `$system32` fact](/facter/latest/core_facts.html#system32) whenever you need to access the `system32` directory. Easy and reliable.
+* If you are using **Puppet 3.7.3 or later,** use [the `$system32` fact]({{facter}}/core_facts.html#system32) whenever you need to access the `system32` directory. Easy and reliable.
 * If you are using **Puppet 3.7.0 through 3.7.2** but are only using architecture-appropriate packages (32-bit on 32-bit systems, and 64-bit on 64-bit systems), you can access the `system32` directory directly. As soon as is practical, you should upgrade to 3.7.3 and start using the `$system32` fact.
 * If you are using **Puppet 3.7.0 through 3.7.2** and are installing the 32-bit package on 64-bit systems, continue reading.
 
@@ -108,7 +108,7 @@ There are two cases where you might be dealing with mixed Puppet/Windows archite
 
 ### Compensating for Redirection
 
-In Puppet code, the easy way to access `system32` is to use [the `$system32` fact,](/facter/latest/core_facts.html#system32) available in **Puppet 3.7.3 and later.** It automatically compensates for file system redirection wherever necessary.
+In Puppet code, the easy way to access `system32` is to use [the `$system32` fact,]({{facter}}/core_facts.html#system32) available in **Puppet 3.7.3 and later.** It automatically compensates for file system redirection wherever necessary.
 
 Prior to 3.7.3, you can manually compensate. On systems affected by file system redirection, you can use the `sysnative` alias in place of `system32` whenever you need to access files in the system directory. (For example: `C:\Windows\sysnative\inetsrv\config\application Host.config` will point to `C:\Windows\system32\inetsrv\config\application Host.config`, not `C:\Windows\SysWOW64\inetsrv\config\application Host.config`.)
 

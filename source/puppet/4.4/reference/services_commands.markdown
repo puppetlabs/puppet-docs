@@ -3,7 +3,7 @@ layout: default
 title: "Puppet's Commands"
 ---
 
-[facter_cli]: /facter/latest
+[facter_cli]: {{facter}}
 [hiera_cli]: {{hiera}}/command_line.html
 [arch]: ./architecture.html
 [agent_unix]: ./services_agent_unix.html

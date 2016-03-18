@@ -9,8 +9,8 @@ canonical: "/puppet/latest/reference/lang_exported.html"
 [concat]: http://forge.puppetlabs.com/ripienaar/concat
 [title]: ./lang_resources.html#title
 [namevar]: ./lang_resources.html#namenamevar
-[hostname]: /facter/latest/core_facts.html#hostname
-[fqdn]: /facter/latest/core_facts.html#fqdn
+[hostname]: {{facter}}/core_facts.html#hostname
+[fqdn]: {{facter}}/core_facts.html#fqdn
 [tags]: ./lang_tags.html
 [facts]: ./lang_variables.html#facts
 [bacula]: https://forge.puppetlabs.com/puppetlabs/bacula

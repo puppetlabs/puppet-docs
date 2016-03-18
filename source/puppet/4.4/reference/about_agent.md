@@ -4,7 +4,7 @@ title: "puppet-agent: What Is It, and What's In It?"
 canonical: "/puppet/latest/reference/about_agent.html"
 ---
 
-[Facter]: /facter/latest/
+[Facter]: {{facter}}/
 [Hiera]: {{hiera}}/
 [MCollective]: /mcollective/
 [agent]: ./services_agent_unix.html

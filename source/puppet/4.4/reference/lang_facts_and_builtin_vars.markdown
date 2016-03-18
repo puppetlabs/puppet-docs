@@ -7,10 +7,10 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [definedtype]: ./lang_defined_types.html
 [environment]: ./environments.html
 [topscope]: ./lang_scope.html#top-scope
-[core_facts]: /facter/latest/core_facts.html
-[facter]: /facter/latest
-[customfacts]: /facter/latest/custom_facts.html
-[external facts]: /facter/latest/custom_facts.html#external-facts
+[core_facts]: {{facter}}/core_facts.html
+[facter]: {{facter}}
+[customfacts]: {{facter}}/custom_facts.html
+[external facts]: {{facter}}/custom_facts.html#external-facts
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [noop]: ./configuration.html#noop
 [environment_setting]: ./configuration.html#environment

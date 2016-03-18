@@ -7,7 +7,7 @@ toc: false
 
 [Overview of Puppet's Architecture]: ./architecture.html
 [pre-install instructions]: ./install_pre.html
-[Facter 3]: /facter/latest/
+[Facter 3]: {{facter}}/
 [Hiera 3]: {{hiera}}/
 [Puppet Server 2.3]: {{puppetserver}}/
 [PuppetDB 3]: /puppetdb/latest/
