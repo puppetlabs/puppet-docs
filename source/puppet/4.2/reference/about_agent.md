@@ -23,13 +23,13 @@ See the table above for details about which components shipped in which `puppet-
 Starting with Puppet 4, we distribute Puppet as two core packages:
 
 - `puppet-agent` --- This package contains Puppet's main code and all of the dependencies needed to run it, including [Facter][], [Hiera][], and bundled versions of Ruby and OpenSSL. It also includes [MCollective][]. Once it's installed, you have everything you need to run [the Puppet agent service][agent] and the [`puppet apply` command][apply].
-- `puppetserver` --- This package depends on `puppet-agent`, and adds the JVM-based [Puppet Server][] application. Once it's installed, a server can serve catalogs to nodes running the Puppet agent service.
+- `puppetserver` --- This package depends on `puppet-agent`, and adds the JVM-based [Puppet Server][] application. Once it's installed, Puppet Server can serve catalogs to nodes running the Puppet agent service.
 
 > **Note:** For information about Puppet agent in Puppet 3, see the [Puppet 3 services documentation](/puppet/3.8/reference/services_commands.html#puppet-agent). To install Puppet agent on Puppet 3, see the [Puppet 3 installation documentation](/puppet/3.8/reference/pre_install.html#next-install-puppet).
 
 ## What's Up With the Version Numbers?
 
-Puppet Server is a separate application that, among other things, runs instances of the Puppet master application. It has its own version number separate from the version of Puppet it runs, and can usually work with several nearby Puppet versions. Right now, the Puppet Server 2.x series generally works with Puppet 4.x.
+Puppet Server is a separate application that, among other things, runs instances of the Puppet master application. It has its own version number separate from the version of Puppet it runs, and can usually work with several nearby Puppet versions. Right now, the agents running versions of Puppet 4 can generally work with masters running versions of Puppet Server 2. (Puppet masters running Puppet Server might depend on a specific version of Puppet Agent, but can still communicate with agents running older versions of Puppet. In other words, updating Puppet Server might also update Puppet Agent on the master, but the master will still work with nodes running previous versions of Puppet Agent.)
 
 The `puppet-agent` package also has its own version number, which doesn't match the version of Puppet it installs. For example, `puppet-agent` 1.2 includes Puppet 4.2.
 
