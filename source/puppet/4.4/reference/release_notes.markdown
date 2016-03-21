@@ -48,7 +48,7 @@ Released March 16, 2016.
 * [PUP-5836](https://tickets.puppetlabs.com/browse/PUP-5836): It is possible to produce an Array from Iterator values by using the splat operator. As an example the expression: 
 
   ~~~
-  [1,2,3].reverse_each 
+  *[1,2,3].reverse_each 
   # produces [3,2,1] 
   
   ~~~
@@ -63,7 +63,11 @@ Released March 16, 2016.
 
 * [PUP-5695](https://tickets.puppetlabs.com/browse/PUP-5695): Adds the `checksum_value` parameter to the file type. If present, Puppet will use the checksum (existing parameter) and checksum_value (new parameter) to determine if a file resource is insync or not.
 
-* [PUP-1540](https://tickets.puppetlabs.com/browse/PUP-1540): For undefined variables Puppet automatically issued warnings for qualified names with more than one name segment. This means that no warnings are issued for qualified references to global variables (such as `$::missing`). This fix adds the option to set `--strict_variables` to the value `warning` to make all cases of missing parameter a warning.
+* [PUP-1780](https://tickets.puppetlabs.com/browse/PUP-1780): All references to non-existing variables will now generate a warning. Earlier Puppet only warned about non-existing qualified variables with more than one namespace segment. 
+
+  It is possible to disable these warnings by adding `undefined_variables` to the setting `disabled_warnings`. 
+
+  >>Note: In most cases there is no file/line information available, and this was one reason why only some cases were reported earlier. We expect to correct this in the next major version as it requires API breaking changes.
 
 * [PUP-1985](https://tickets.puppetlabs.com/browse/PUP-1985): It is now allowed to reference earlier parameters in a default expression in a class, define or Puppet language function. This used to be unspecified behavior and would only work by chance under certain circumstances.
 
@@ -96,12 +100,6 @@ If `pluginsync` is explicitly set via command-line or `puppet.conf`, then that s
 * [PUP-3149](https://tickets.puppetlabs.com/browse/PUP-3149): Previously, when uninstalling packages on platforms which include the Zypper package manager, Puppet would always fall back to using RPM to try and do the uninstallation. As RPM is incapable of dependency management, uninstallation would fail if the package had any dependencies. This change adds an `uninstall` method to the Zypper provider for versions of Zypper 1.0 and above to properly manage dependencies and remove packages using Zypper itself.
 
 * [PUP-5487](https://tickets.puppetlabs.com/browse/PUP-5487): The output of warnings about expressions that require storeconfigs to be turned on has been irritating users for quite some time. It is valid Puppet code, and almost everyone is running with storeconfigs turned on - except when doing testing. This is now changed so that the warnings are only issued when expressions are evaluated/used.
-
-* [PUP-1780](https://tickets.puppetlabs.com/browse/PUP-1780): All references to non-existing variables will now generate a warning. Earlier Puppet only warned about non-existing qualified variables with more than one namespace segment. 
-
-  It is possible to disable these warnings by adding `undefined_variables` to the setting `disabled_warnings`. 
-
-  >>Note: In most cases there is no file/line information available, and this was one reason why only some cases were reported earlier. We expect to correct this in the next major version as it requires API breaking changes.
 
 * [PUP-5964](https://tickets.puppetlabs.com/browse/PUP-5964): The error message generated from the function asssert_type is now of the same high quality as the message produced for automatically type checked parameters.
 
