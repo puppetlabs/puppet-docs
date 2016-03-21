@@ -29,7 +29,7 @@ Starting with Puppet 4, we distribute Puppet as two core packages:
 
 ## What's Up With the Version Numbers?
 
-Puppet Server is a separate application that, among other things, runs instances of the Puppet master application. It has its own version number separate from the version of Puppet it runs, and can usually work with several nearby Puppet versions. Right now, the agents running versions of Puppet 4 can generally work with masters running versions of Puppet Server 2. (Puppet masters running Puppet Server might depend on a specific version of Puppet Agent, but can still communicate with agents running older versions of Puppet. In other words, updating Puppet Server might also update Puppet Agent on the master, but the master will still work with nodes running previous versions of Puppet Agent.)
+Puppet Server is a separate application that, among other things, runs instances of the Puppet master application. It has its own version number separate from the version of Puppet it runs, and can usually work with several nearby Puppet versions. For instance, agents running Puppet 4 work with masters running Puppet Server 2. (The Puppet Server package depends on a specific version of the Puppet Agent package, but can communicate with agents running older versions of Puppet. For instance, updating Puppet Server might update Puppet Agent on the master, but agents running previous versions of Puppet Agent will still work.)
 
 The `puppet-agent` package also has its own version number, which doesn't match the version of Puppet it installs. For example, `puppet-agent` 1.2 includes Puppet 4.2.
 
