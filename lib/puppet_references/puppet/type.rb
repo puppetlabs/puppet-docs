@@ -55,6 +55,7 @@ module PuppetReferences
         puts 'Type ref: Building unified page'
         header_data = {title: 'Resource Type Reference (Single-Page)',
                        canonical: "#{@latest}/type.html",
+                       toc_levels: 2,
                        toc: 'columns'}
         generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
 

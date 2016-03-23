@@ -3,6 +3,7 @@ layout: default
 built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
+toc_levels: 2
 toc: columns
 ---
 
