@@ -14,4 +14,12 @@ $( document ).ready( function() {
         e.stopPropagation();
     });
 
+    // If you click anywhere else (that is, the other two things didn't stop
+    // propagation of the event), hide the menu.
+    $( document ).on("click", function(e) {
+        var open_menus = $( "li.with-submenu" ).filter(".active")
+        open_menus.toggleClass("active");
+        open_menus.children('dl').slideToggle(200);
+    });
+
 });
