@@ -13,6 +13,7 @@ defaults: [ {scope: {path: ""},
                       nav: "/_includes/fallback_nav.html"} } ]
 defaultnav:
   /background/ssl: /_includes/background_ssl.html
+  /security: /security/_security_toc.html
   /community: /_includes/community_nav.html
   /forge: /_includes/forge.html
   /guides/deployment_guide: /_includes/deploy_guide.html
