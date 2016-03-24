@@ -9,6 +9,7 @@ $( document ).ready( function() {
     // If you click the label of the quick nav (i.e. outside the body of the nav menu),
     // toggle visibility of the menu.
     $( "li.with-submenu" ).on("click", function(e) {
+        e.preventDefault();
         $( this ).toggleClass("active");
         $( this ).children('dl').slideToggle(200);
         e.stopPropagation();
