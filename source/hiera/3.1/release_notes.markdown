@@ -3,13 +3,29 @@ layout: default
 title: "Hiera 3.1: Release Notes"
 ---
 
-[puppet-agent]: /puppet/4.3/reference/about_agent.html
+[puppet-agent]: /puppet/4.4/reference/about_agent.html
+
+## Hiera 3.1.1
+
+Released March 24, 2016.
+
+This is a small one-feature release shipped in [`puppet-agent`][] version [1.4.1](/puppet/4.4/reference/release_notes_agent.html#puppet-agent-140). 
+
+* [Fixed in Hiera 3.1.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.1.1%27)
+* [Introduced in Hiera 3.1.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.1.1%27)
+
+### New feature: interpolated keys can contain dot character
+
+It is now possible to lookup keys in Hiera data containing the `.` character (period), by quoting the entire name segment with either single or double quotes.
+
+>>**Note:** It is important to correctly quote with the corresponding YAML or JSON syntax rules for single and double quotes when using quoted keys in interpolation inside of the Hiera data.
+
 
 ## Hiera 3.1.0
 
 Released March 16, 2016.
 
-Shipped in [`puppet-agent`](/puppet/4.2/reference/about_agent.html) version [1.4.0]().
+Shipped in [`puppet-agent`][] version [1.4.0](/puppet/4.4/reference/release_notes_agent.html#puppet-agent-140).
 
 * [Fixed in Hiera 3.1.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.1.0%27)
 * [Introduced in Hiera 3.1.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.1.0%27)
