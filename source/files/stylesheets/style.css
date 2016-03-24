@@ -2,8 +2,8 @@
 /* --------------------------------------------
   - CSS Reset
   - Normalize
-  - Global Styles
   - Typography
+  - Global Styles
   - Basic Button styles
   - Global header and Navigation
   - Footer styles
@@ -31,89 +31,6 @@ table { border-collapse: collapse; border-spacing: 0; font-size: 0.9em; }
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block;vertical-align:baseline}audio:not([controls]){display:none;height:0}[hidden],template{display:none}a{background-color:transparent}a:active,a:hover{outline:0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:bold}dfn{font-style:italic}h1{font-size:2em;margin:0.67em 0}mark{background:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-0.5em}sub{bottom:-0.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:1em 40px}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}pre{overflow:auto}code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0}button{overflow:visible}button,select{text-transform:none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}input{line-height:normal}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em}legend{border:0;padding:0}textarea{overflow:auto}optgroup{font-weight:bold}table{border-collapse:collapse;border-spacing:0}td,th{padding:0}
-
-
-/* Global styles */
-/* -------------------------------------------- */
-
-body {
-  font-family: 'CalibreWeb-Light', Helvetica, Arial, sans-serif !important;
-  font-size: 1.0rem;
-  background: #ccc;
-}
-
-.site-width {
-  width: 90%;
-  max-width: 1060px;
-  min-width: 940px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.site-width:after {
-  content: ".";
-  display: block;
-  clear: both;
-  height: 0;
-  visibility: hidden;
-}
-
-/* anything with `display: none` will actually _not_ be announced by AT, but it looks like this is only used for the "Skip navigation" links. */
-.screen-reader-content {
-  display: none !important;
-}
-
-/* Make the line numbers in syntax-highlighted text not look like content */
-.lineno {
-  font-size: .8em !important;
-  color: #aaa;
-  padding-right: 1em !important;
-}
-
-/* All elements other than paragraphs that follow tables receive a top margin */
-table + *:not(blockquote) {
-  margin-top: 1.5em !important;
-}
-
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-}
-
-table th {
-  color: #fff;
-  padding: 0.5em;
-  background: rgba(48,44,109,.9);
-}
-
-table td {
-  padding: 0.5em;
-  color: rgba(48,44,109,.9);
-}
-
-table td,
-table th {
-  line-height: 1.6;
-}
-
-table th:first-child {
-  -webkit-border-top-left-radius: 0.5em;
-  -moz-border-radius-topleft: 0.5em;
-  border-top-left-radius: 0.5em;
-}
-
-table th:last-child {
-  -webkit-border-top-right-radius: 0.5em;
-  -moz-border-radius-topright: 0.5em;
-  border-top-right-radius: 0.5em;
-}
-
-table tbody tr:nth-child(even) {
-  background: rgba(48,44,109,0.05);
-}
-table tbody tr:nth-child(odd) {
-  background: rgba(48,44,109,.1);
-}
 
 /* Typography */
 /* -------------------------------------------- */
@@ -206,27 +123,99 @@ table tbody tr:nth-child(odd) {
   url(../fonts/inconsolata/inconsolata-webfont.woff) format('woff');
 }
 
-/* headlines */
-h1 strong,
-h2 strong,
-h3 strong,
-h4 strong {
-  color: #78B7D2;
+/* Global styles */
+/* -------------------------------------------- */
+
+body {
+  font-family: 'Calibre Web Light', Helvetica, Arial, sans-serif !important;
+  font-size: 1.0rem;
+  background: #f5f5f5;
 }
 
-h1, h2, h3 {
+.site-width {
+  width: 90%;
+  max-width: 1060px;
+  min-width: 940px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.site-width:after {
+  content: ".";
   display: block;
-  margin-bottom: 1rem;
-  line-height: 1.1rem;
-  font-family: 'CalibreWeb-Light', Helvetica, Arial, sans-serif !important;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+/* anything with `display: none` will actually _not_ be announced by AT, but it looks like this is only used for the "Skip navigation" links. */
+.screen-reader-content {
+  display: none !important;
+}
+
+/* Make the line numbers in syntax-highlighted text not look like content */
+.lineno {
+  font-size: .8em !important;
+  color: #aaa;
+  padding-right: 1em !important;
+}
+
+/* All elements other than paragraphs that follow tables receive a top margin */
+table + *:not(blockquote) {
+  margin-top: 1.5em !important;
+}
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+}
+
+table th {
+  color: #fff;
+  padding: 0.5em;
+  background: #222222;
+}
+
+table td {
+  padding: 0.5em;
+  color: #222222;
+}
+
+table td,
+table th {
+  line-height: 1.6;
+}
+
+table th:first-child {
+  -webkit-border-top-left-radius: 0.5em;
+  -moz-border-radius-topleft: 0.5em;
+  border-top-left-radius: 0.5em;
+}
+
+table th:last-child {
+  -webkit-border-top-right-radius: 0.5em;
+  -moz-border-radius-topright: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+table tbody tr:nth-child(even) {
+  background: #f5f5f5;
+}
+table tbody tr:nth-child(odd) {
+  background: #cccccc;
+}
+
+/* headlines */
+h1, h2, h3, h4, h5 {
+  display: block;
+  font-family: 'Calibre Web Light', Helvetica, Arial, sans-serif !important;
+  color: #222222;
 }
 
 h1, h2 {
   line-height: 1.125em;
   margin-top: 1em;
   margin-bottom: 0.5em;
-  color: #302c6d;
-  font-family: 'CalibreWeb-Light', Helvetica, Arial, sans-serif !important;
 }
 
 h1 {
@@ -237,33 +226,22 @@ h2 {
   font-size: 1.55em;
 }
 
-h3, h4 {
+h3 {
   line-height: 1.25em;
   margin-top: 1.5em;
   margin-bottom: 0.75em;
-  color: #302C6d;
-  font-family: 'CalibreWeb-Light', Helvetica, Arial, sans-serif !important;
-}
-
-h3 {
   font-size: 1.25em;
 }
 
-h4 {
-  font-size: 1.1em;
-  font-style: italic;
-  font-weight: bold;
+h4, h5 {
   margin-top: 1em;
   margin-bottom: 0.5em;
-  color: #f6b333;
+  font-size: 1.1em;
+  font-family: 'Calibre Web Medium Italic', Helvetica, Arial, sans-serif !important;
 }
 
 h5 {
-  color: #302c6d;
-  font-size: 1.1em;
-  font-style: italic;
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+  font-family: 'Calibre Web Light Italic', Helvetica, Arial, sans-serif !important;
 }
 
 div.section+h3 {
@@ -283,11 +261,11 @@ h3 + span.subheading {
 }
 
 strong {
-  font-weight: bold;
+  font-family: 'Calibre Web Medium', Helvetica, Arial, sans-serif !important;
 }
 
 em {
-  font-style: italic;
+  font-family: 'Calibre Web Light Italic', Helvetica, Arial, sans-serif !important;
 }
 
 p {
@@ -331,19 +309,19 @@ p:last-child {
 p.introduction {
   font-size: 1.33em !important;
   line-height: 1.5em;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: 'Calibre Web Light', Helvetica, Arial, sans-serif !important;
   margin-bottom: 0.75em;
 }
 
 a {
-  color: #0095dd;
+  color: #ffae1a;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 
 a:hover {
-  color: #396cb5;
+  color: #ffae1a;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
@@ -492,7 +470,7 @@ sup a:visited {
 /* BASIC BUTTONS */
 /* -------------------------------------- */
 .btn {
-  font-family: "Lucida Grande", Lucida, Verdana, sans-serif;
+  font-family: 'Calibre Web Regular', Helvetica, Arial, sans-serif !important;
   position:relative;
   display: inline-block;
   zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
@@ -1114,7 +1092,7 @@ ol.toc > li {
 
 ol.toc > li:before {
   content: "»";
-  color: #0095dd;
+  color: #ffae1a;
   position: relative;
   left: -5px;
 }
@@ -1201,7 +1179,7 @@ div#subCol ul > li {
 
 div#subCol ul > li:before {
   content: "»";
-  color: #0095dd;
+  color: #ffae1a;
   position: relative;
   left: -5px;
   display: inline-block;
@@ -1289,7 +1267,7 @@ ul#docs-navigation li.with-submenu {
 ul.doc-navigation li.with-submenu > a {
   display: block;
   position: relative;
-  background: rgba(48,44,109,.5);
+  background: #cccccc;
   padding: 0.25em 10px;
   padding-right: 32px;
   -webkit-border-radius: 0.5em;
@@ -1301,12 +1279,12 @@ ul.doc-navigation li.with-submenu > a {
 }
 
 ul.doc-navigation li.with-submenu:hover > a {
-  background: rgba(48,44,109,.75);
+  background: #999999;
 }
 
 ul.doc-navigation li.with-submenu.active > a,
 ul.doc-navigation li.with-submenu.active:hover > a {
-  background: rgba(48,44,109,1);
+  background: #222222;
 }
 
 ul.doc-navigation li.with-submenu > a span {
@@ -1365,7 +1343,7 @@ ul.doc-navigation ol li:hover span.drop-down-trigger {
 }
 
 ul.doc-navigation li.with-submenu dl {
-  background: rgba(48,44,109,1);
+  background: #222222;
   left: 0;
   z-index: 10;
   font-size: 1em;
@@ -1406,7 +1384,7 @@ ul.doc-navigation li.with-submenu dl dd {
 }
 
 ul.doc-navigation li.with-submenu dl dd a {
-  color: #f6b333;
+  color: #ffae1a;
 }
 
 ul.doc-navigation {
@@ -1531,7 +1509,8 @@ input, textarea {
   -webkit-border-radius: 0.375em;
   -moz-border-radius: 0.375em;
   border-radius: .375em;
-  font: 1em Georgia, "Times New Roman", Times, serif;
+  font-family: 'Calibre Web Light', Helvetica, Arial, sans-serif !important;
+  font-size: 1em;
   margin-bottom: 1.5em !important;
   text-indent: 0.2em;
   line-height: 1.5em;
