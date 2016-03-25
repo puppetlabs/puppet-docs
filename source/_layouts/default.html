@@ -2,11 +2,11 @@
 <html dir="ltr" lang="en-US">
   <head>
   	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  	<title>{{page.title}} — Documentation — Puppet Labs</title>
+  	<title>{{page.title}} — Documentation — Puppet</title>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
-    <link rel="alternate" type="application/atom+xml" title="Puppet Labs Blog Feed" href="http://puppetlabs.com/feed/">
-    <link rel='index' title='Puppet Labs Documentation' href='https://docs.puppetlabs.com' />
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+    <link rel="alternate" type="application/atom+xml" title="Puppet Blog Feed" href="http://puppetlabs.com/feed/">
+    <link rel='index' title='Puppet Documentation' href='https://docs.puppet.com' />
     <link rel='icon' href='/favicon.ico' />
 
      {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
@@ -44,14 +44,14 @@
     <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
     <script type='text/javascript' src='/files/javascripts/search-toggle.js'></script>
 
-    <script type="text/javascript" src="https://puppetlabs.com/sites/all/themes/puppetlabs/js/leadcapture.js"></script>
+    <script type="text/javascript" src="https://puppet.com/sites/all/themes/puppetlabs/js/leadcapture.js"></script>
 
     <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
     <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
     <!-- /all in one seo pack -->
 
     <!-- Set a canonical URL, in the following order: 1. explicit, from yaml frontmatter; 2. implicit, from document data; 3. singleton, from page URL. -NF -->
-    <link rel="canonical" href="https://docs.puppetlabs.com{% if page.canonical %}{{page.canonical}}{% elsif page.doc %}{% assign latest_baseurl = site.document_version_index[page.doc.doc]['latest'] %}{% change_baseurl page.url page.doc.base_url latest_baseurl %}{% else %}{{page.url}}{% endif %}" />
+    <link rel="canonical" href="https://docs.puppet.com{% if page.canonical %}{{page.canonical}}{% elsif page.doc %}{% assign latest_baseurl = site.document_version_index[page.doc.doc]['latest'] %}{% change_baseurl page.url page.doc.base_url latest_baseurl %}{% else %}{{page.url}}{% endif %}" />
 
     <!-- FIXME: absolute paths -->
 
@@ -105,25 +105,25 @@
           <nav class="global-header__nav-satellite"></nav>
           <nav class="global-header__nav-satellite">
             <div class="global-header__nav-satellite__item">
-              <a href="//www.puppet.com" class="home">Home</a>
+              <a href="//www.puppet.com" class="home" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Home']);">Home</a>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//forge.puppetlabs.com/" class="offsite forge">Forge</a>
+              <a href="//forge.puppet.com/" class="offsite forge" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">Forge</a>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//docs.puppetlabs.com" class="offsite docs">Docs</a>
+              <a href="//docs.puppet.com" class="offsite docs" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">Docs</a>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//learn.puppetlabs.com/" class="offsite learn">Learn</a>
+              <a href="//learn.puppet.com/" class="offsite learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">Learn</a>
             </div>
             <div class="global-header__nav-satellite__item">
               <span class="spacer"></span>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//www.puppet.com/support">Support &amp; Services</a>
+              <a href="//www.puppet.com/support" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Help']);">Support &amp; Services</a>
             </div>
             <div class="global-header__nav-satellite__item">
-              <a href="//www.puppet.com/contact">Contact Us</a>
+              <a href="//www.puppet.com/contact" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Contact']);">Contact Us</a>
             </div>
           </nav>
         </div>
@@ -154,7 +154,7 @@
               <div class="search-slider">
                 <div class="search-slider-table">
                   <div class="search-slider-table__cell">
-                    <input class="search-slider-table__cell__input" type="text">
+                    <input id="search-container" class="search-slider-table__cell__input" type="text">
                   </div>
                 </div>
               </div>
@@ -204,32 +204,32 @@
           <div class="fg-col">
             <h3>Overview</h3>
             <ul>
-              <li><a href="//www.puppet.com/product">Product</a></li>
-              <li><a href="//www.puppet.com/solutions">Solutions</a></li>
-              <li><a href="//www.puppet.com/resource-library">Resource Library</a></li>
-              <li><a href="//www.puppet.com/company">Company</a></li>
-              <li><a href="//www.puppet.com/open-source-projects">Open Source Projects</a></li>
-              <li><a href="//www.puppet.com/security">Security</a></li>
+              <li><a href="//www.puppet.com/product" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Product']);">Product</a></li>
+              <li><a href="//www.puppet.com/solutions" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Solutions']);">Solutions</a></li>
+              <li><a href="//www.puppet.com/resource-library" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Resource Library']);">Resource Library</a></li>
+              <li><a href="//www.puppet.com/company" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Company']);">Company</a></li>
+              <li><a href="//www.puppet.com/open-source-projects" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Open Source Projects']);">Open Source Projects</a></li>
+              <li><a href="//www.puppet.com/security" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Security']);">セキュリティ</a></li>
             </ul>
           </div>
 
           <div class="fg-col">
             <h3>Resources</h3>
             <ul>
-              <li><a href="//www.puppet.com/get-help">Get Help</a></li>
-              <li><a href="//puppet.com/find-a-partner">Find a Partner</a></li>
-              <li><a href="//www.puppet.com/training">Training</a></li>
-              <li><a href="//www.puppet.com/downloads">Downloads</a></li>
-              <li><a href="//www.puppet.com/sitemap">Site Map</a></li>
+              <li><a href="//www.puppet.com/get-help" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Get Help']);">Get Help</a></li>
+              <li><a href="//puppet.com/find-a-partner" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Find a Partner']);">Find a Partner</a></li>
+              <li><a href="//www.puppet.com/training" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Training']);">Training</a></li>
+              <li><a href="//www.puppet.com/downloads" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Download']);">Download</a></li>
+              <li><a href="//www.puppet.com/sitemap" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Site Map']);">Site Map</a></li>
             </ul>
           </div>
 
           <div class="fg-col">
             <h3>Connect</h3>
             <ul>
-              <li><a href="//www.puppet.com/contact">Contact Us</a></li>
-              <li><a href="//tickets.puppetlabs.com/events">Events</a></li>
-              <li><a href="//www.puppet.com/blog">Blog</a></li>
+              <li><a href="//www.puppet.com/contact" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Us']);">Contact Us</a></li>
+              <li><a href="//tickets.puppet.com/events" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Events']);">Events</a></li>
+              <li><a href="//www.puppet.com/blog" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Blog']);">Blog</a></li>
             </ul>
           </div>
         </div>
@@ -248,7 +248,7 @@
             <input class='mktFormHidden' name="Custom_Campaign__c" id="Custom_Campaign__c" type='hidden' value="null">
             <input class='mktFormHidden' name="Current_Custom_Campaign__c" id="Current_Custom_Campaign__c" type='hidden' value="null">
             <input class='mktFormHidden' name="honeypot" id="honeypot" type='hidden' value="null">
-            <input id='mktFrmSubmit' style="display: none;" type='submit' value='&#xf0a9;' name='submitButton'>
+            <input id='mktFrmSubmit' style="display:none;" type='submit' value='&#xf0a9;' name='submitButton'>
             <span style="display:none;"><input type="text" name="_marketo_comments" value=""></span>
             <input type="hidden" name="lpId" value="-1">
             <input type="hidden" name="subId" value="100">
@@ -288,20 +288,20 @@
             });
           </script>
           <p>
-            <a href="https://twitter.com/puppetlabs" class="social-icon"><img src="/images/social-icons/twitter-box-white.svg" alt="Twitter"></a>
-            <a href="https://www.linkedin.com/company/621389" class="social-icon"><img class="social-icon" src="/images/social-icons/linkedin-box-white.svg" alt="Facebook"></a>
-            <a href="https://www.facebook.com/puppetlabs" class="social-icon"><img class="social-icon" src="/images/social-icons/facebook-box-white.svg" alt="Facebook"></a>
-            <a href="https://www.youtube.com/channel/UCPfMWIY-qNbLhIrbZm2BFMQ" class="social-icon"><img class="social-icon" src="/images/social-icons/youtube-white.svg" alt="Youtube"></a>
-            <a href="https://plus.google.com/112682055028218091774" class="social-icon"><img class="social-icon" src="/images/social-icons/g-plus-white.svg" alt="Google+"></a>
+            <a href="https://twitter.com/puppetlabs" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Twitter']);"><img src="/images/social-icons/twitter-box-white.svg" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/company/621389" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'LinkedIn']);"><img class="social-icon" src="/images/social-icons/linkedin-box-white.svg" alt="LinkedIn"></a>
+            <a href="https://www.facebook.com/puppetlabs" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Facebook']);"><img class="social-icon" src="/images/social-icons/facebook-box-white.svg" alt="Facebook"></a>
+            <a href="https://www.youtube.com/channel/UCPfMWIY-qNbLhIrbZm2BFMQ" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'YouTube']);"><img class="social-icon" src="/images/social-icons/youtube-white.svg" alt="Youtube"></a>
+            <a href="https://plus.google.com/112682055028218091774" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Google+']);"><img class="social-icon" src="/images/social-icons/g-plus-white.svg" alt="Google+"></a>
           </p>
         </div>
       </div>
       <div class="footer-row-2">
         <div class="footer-row-2-wrapper">
           <div class="footer-row-2-col-1">
-            <a href="//www.puppet.com/legal">Legal</a>
-            <a href="//www.puppet.com/privacy">Privacy Policy</a>
-            <a href="http://www.puppet.com/terms">Terms of Use</a>
+            <a href="//www.puppet.com/legal" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Legal']);">Legal</a>
+            <a href="//www.puppet.com/privacy" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Privacy Policy']);">Privacy Policy</a>
+            <a href="http://www.puppet.com/terms" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Terms of Use']);">Terms of Use</a>
           </div>
           <div class="footer-row-2-col-2">
             <a href="/">&copy; 2016 Puppet</a>
