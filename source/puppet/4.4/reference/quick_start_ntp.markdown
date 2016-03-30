@@ -25,13 +25,13 @@ NTP is one of the most crucial, yet easiest, services to configure and manage wi
 This guide will step you through the following tasks:
 
 * [Install the `puppetlabs-ntp` module](#install-the-puppetlabs-ntp-module).
-* [Add classes to the `default` node in your main manifest](#use-the-main-manifest-to-add-classes-from-the-ntp-module).
+* [Add classes to the `default` node in your main manifest][inpage_usemain].
 * View the status of your NTP service.
 * [Use multiple nodes in the main manifest to configure NTP for different permissions](#use-multiple-nodes-to-configure-ntp-for-different-permissions).
 
 > For this walk-through, log in as root or administrator on your nodes.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet]({{puppetserver}}/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
 >**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, we will describe only one.
 
@@ -55,10 +55,10 @@ You should see output similar to the following:
 
 ## Add Classes from the NTP Module to the Main Manifest
 
-
+[inpage_usemain]: #add-classes-from-the-ntp-module-to-the-main-manifest
 [classification_selector]: ./images/quick/classification_selector.png
 
-The NTP module contains several **classes**. [Classes](../puppet/3/reference/lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet configures nodes. The NTP module contains the following classes:
+The NTP module contains several **classes**. [Classes](./lang_classes.html) are named chunks of Puppet code and are the primary means by which Puppet configures nodes. The NTP module contains the following classes:
 
 * `ntp`: the main class; this class includes all other NTP classes (including the classes in this list).
 * `ntp::install`: this class handles the installation packages.
@@ -137,7 +137,6 @@ For more information about working with the puppetlabs-ntp module, check out our
 
 Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* [Learning Puppet](http://docs.puppetlabs.com/learning/) is a series of exercises on various core topics about deploying and using Puppet.
 * The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 
 ----------

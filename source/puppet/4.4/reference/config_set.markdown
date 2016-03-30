@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/config_set.html"
 [config_sections]: ./config_file_main.html#config-sections
 [puppet.conf]: ./config_file_main.html
 [environments]: ./environments.html
-[confdir_sys]: ./dirs_confdir.html#system-and-user-confdirs
+[confdir_sys]: ./dirs_confdir.html#location
 
 Puppet loads most of its settings from [the puppet.conf config file.][puppet.conf] You can edit this file directly, or you can change individual settings with the `puppet config set` command.
 

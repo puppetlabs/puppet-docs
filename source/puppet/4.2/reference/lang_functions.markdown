@@ -1,5 +1,5 @@
 ---
-title: "Language: Functions"
+title: "Language: Function Calls"
 layout: default
 canonical: "/puppet/latest/reference/lang_functions.html"
 ---
@@ -23,7 +23,7 @@ Functions are plugins written in Ruby, which you can call during [compilation][c
 
 Most functions take one or more values as arguments, then return some other, resulting value. The Ruby code in the function can do any number of things to produce the final value, including evaluating templates, doing math, and looking up values from an external source.
 
-Functions may also:
+Functions can also:
 
 * Cause side effects that modify the [catalog][]
 * Evaluate a provided block of Puppet code, possibly using the function's arguments to modify that code or control how it runs.

@@ -4,7 +4,7 @@ title: "Config Files: hiera.yaml"
 canonical: "/puppet/latest/reference/config_file_hiera.html"
 ---
 
-[hiera]: /hiera/latest/
+[hiera]: {{hiera}}/
 [hiera_config]: ./configuration.html#hieraconfig
 
 The `hiera.yaml` file is used to configure [Hiera][], which Puppet can use to look up data.
@@ -38,4 +38,4 @@ The location of the `codedir` depends on your OS. [See the codedir documentation
 
 ## Format
 
-**[See the Hiera documentation for full details about the `hiera.yaml` file](/hiera/latest/configuring.html).**
+**[See the Hiera documentation for full details about the `hiera.yaml` file]({{hiera}}/configuring.html).**

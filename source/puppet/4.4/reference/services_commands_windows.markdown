@@ -6,7 +6,7 @@ title: "Running Puppet's Commands on Windows"
 [confdir]: ./dirs_confdir.html
 [codedir]: ./dirs_codedir.html
 [agent_service]: ./services_agent_windows.html
-[facter]: /facter/latest
+[facter]: {{facter}}
 [puppet agent]: ./man/agent.html
 [puppet apply]: ./man/apply.html
 [puppet module]: ./man/module.html

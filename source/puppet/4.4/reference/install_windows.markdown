@@ -5,7 +5,7 @@ canonical: "/puppet/latest/reference/install_windows.html"
 ---
 
 [downloads]: https://downloads.puppetlabs.com/windows/
-[peinstall]: /pe/latest/install_windows.html
+[peinstall]: {{pe}}/install_windows.html
 [pre_install]: ./install_pre.html
 [where]: ./whered_it_go.html
 [puppet.conf]: ./config_file_main.html
@@ -13,7 +13,7 @@ canonical: "/puppet/latest/reference/install_windows.html"
 [confdir]: ./dirs_confdir.html
 [codedir]: ./dirs_codedir.html
 [vardir]: ./dirs_vardir.html
-[server_install]: /puppetserver/2.2/install_from_packages.html
+[server_install]: {{puppetserver}}/install_from_packages.html
 
 ## Make Sure You're Ready
 

@@ -1,4 +1,4 @@
-We publish and test official `puppet-agent` packages for the following versions of Red Hat Enterprise Linux (RHEL):
+We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Red Hat Enterprise Linux (RHEL):
 
 * Enterprise Linux 7 (also supported by [Puppet Enterprise][peinstall])
 * Enterprise Linux 6 (also supported by [Puppet Enterprise][peinstall])

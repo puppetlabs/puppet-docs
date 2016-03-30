@@ -8,9 +8,9 @@ canonical: "/puppet/latest/reference/install_linux.html"
 [agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [where]: ./whered_it_go.html
 [dns_alt_names]: /puppet/latest/reference/configuration.html#dnsaltnames
-[server_heap]: /puppetserver/2.2/install_from_packages.html#memory-allocation
-[puppetserver_confd]: /puppetserver/2.2/configuration.html
-[server_install]: /puppetserver/2.2/install_from_packages.html
+[server_heap]: {{puppetserver}}/install_from_packages.html#memory-allocation
+[puppetserver_confd]: {{puppetserver}}/configuration.html
+[server_install]: {{puppetserver}}/install_from_packages.html
 [modules]: ./modules_fundamentals.html
 [main manifest]: ./dirs_manifest.html
 [environments]: ./environments.html

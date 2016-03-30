@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Resource Type: file'
 canonical: /puppet/latest/reference/types/file.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
 
 file
 -----
@@ -39,6 +39,7 @@ parent directories of a file, the file resource will autorequire them.
   <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether the file should exist, and if so what...</em>
   <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
   <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
+  <a href="#file-attribute-checksum_value">checksum_value</a>          =&gt; <em># The checksum of the source contents. Only md5...</em>
   <a href="#file-attribute-content">content</a>                 =&gt; <em># The desired contents of a file, as a string...</em>
   <a href="#file-attribute-ctime">ctime</a>                   =&gt; <em># A read-only state to check the file ctime. On...</em>
   <a href="#file-attribute-force">force</a>                   =&gt; <em># Perform the file operation even if it will...</em>
@@ -87,22 +88,21 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Whether the file should exist, and if so what kind of file it should be.
 Possible values are `present`, `absent`, `file`, `directory`, and `link`.
 
-* `present` will accept any form of file existence, and will create a
+* `present` accepts any form of file existence, and creates a
   normal file if the file is missing. (The file will have no content
   unless the `content` or `source` attribute is used.)
-* `absent` will make sure the file doesn't exist, deleting it
-  if necessary.
-* `file` will make sure it's a normal file, and enables use of the
-  `content` or `source` attribute.
-* `directory` will make sure it's a directory, and enables use of the
-  `source`, `recurse`, `recurselimit`, `ignore`, and `purge` attributes.
-* `link` will make sure the file is a symlink, and **requires** that you
-  also set the `target` attribute. Symlinks are supported on all Posix
+* `absent` ensures the file doesn't exist, and deletes it if necessary.
+* `file` ensures it's a normal file, and enables use of the `content` or
+  `source` attribute.
+* `directory` ensures it's a directory, and enables use of the `source`,
+  `recurse`, `recurselimit`, `ignore`, and `purge` attributes.
+* `link` ensures the file is a symlink, and **requires** that you also
+  set the `target` attribute. Symlinks are supported on all Posix
   systems and on Windows Vista / 2008 and higher. On Windows, managing
-  symlinks requires puppet agent's user account to have the "Create
+  symlinks requires Puppet agent's user account to have the "Create
   Symbolic Links" privilege; this can be configured in the "User Rights
-  Assignment" section in the Windows policy editor. By default, puppet
-  agent runs as the Administrator account, which does have this privilege.
+  Assignment" section in the Windows policy editor. By default, Puppet
+  agent runs as the Administrator account, which has this privilege.
 
 Puppet avoids destroying directories unless the `force` attribute is set
 to `true`. This means that if a file is currently a directory, setting
@@ -125,7 +125,9 @@ path to another file as the ensure value, it is equivalent to specifying
     }
 
 However, we recommend using `link` and `target` explicitly, since this
-behavior can be harder to read.
+behavior can be harder to read and is
+[deprecated](https://docs.puppetlabs.com/puppet/4.3/reference/deprecated_language.html)
+as of Puppet 4.3.0.
 
 Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
 
@@ -182,6 +184,16 @@ Valid values are `md5`, `md5lite`, `sha256`, `sha256lite`, `mtime`, `ctime`, `no
 
 ([↑ Back to file attributes](#file-attributes))
 
+<h4 id="file-attribute-checksum_value">checksum_value</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+The checksum of the source contents. Only md5 and sha256 are supported when
+specifying this parameter. If this parameter is set, source_permissions will be
+assumed to be false, and ownership and permissions will not be read from source.
+
+([↑ Back to file attributes](#file-attributes))
+
 <h4 id="file-attribute-content">content</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -208,8 +220,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](http://docs.puppetlabs.com/references/latest/function.html#template)
-or [file](http://docs.puppetlabs.com/references/latest/function.html#file)
+[template](https://docs.puppetlabs.com/references/latest/function.html#template)
+or [file](https://docs.puppetlabs.com/references/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -558,6 +570,7 @@ mount points.
 * Fully qualified paths to locally available files (including files on NFS
 shares or Windows mapped drives).
 * `file:` URIs, which behave the same as local file paths.
+* `http:` URIs, which point to files served by common web servers
 
 The normal form of a `puppet:` URI is:
 
@@ -572,6 +585,11 @@ Unlike `content`, the `source` attribute can be used to recursively copy
 directories if the `recurse` attribute is set to `true` or `remote`. If
 a source directory contains symlinks, use the `links` attribute to
 specify whether to recreate links or follow them.
+
+*HTTP* URIs cannot be used to recursively synchronize whole directory
+trees. It is also not possible to use `source_permissions` values other
+than `ignore`. That's because HTTP servers do not transfer any metadata
+that translates to ownership or permission details.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -736,4 +754,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700

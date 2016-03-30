@@ -10,11 +10,11 @@ canonical: "/puppet/latest/reference/services_apply.html"
 [environments]: ./environments.html
 [main manifest]: ./dirs_manifest.html
 [manifest_setting]: ./configuration.html#manifest
-[env_main_manifest]: ./environments.html#manifests-directory--main-manifest
+[env_main_manifest]: ./environments_creating.html#the-main-manifest
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
 [http_report]: ./report.html#http
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}/
 [report handlers]: ./report.html
 [reports_setting]: ./configuration.html#reports
 [reports_guide]: /guides/reporting.html

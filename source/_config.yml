@@ -56,8 +56,8 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
-  puppet: 4.3
-  hiera: 3.0
+#  puppet: 4.3
+#  hiera: 3.0
 
 document_names:
   pe: Puppet Enterprise
@@ -117,7 +117,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2015.3.2
+      commit: origin/pe2015.3.3
       subdirectory: source
     my_versions:
       puppet: 4.3
@@ -225,8 +225,8 @@ documents:
     nav: ./_puppet_toc.html
     my_versions:
       facter: 3.1
-      hiera: 3.0
-      puppetserver: 2.2
+      hiera: 3.1
+      puppetserver: 2.3
   /puppet/4.3/reference:
     doc: puppet
     version: 4.3
@@ -356,13 +356,25 @@ documents:
     version: 1
     nav: /_includes/hiera1.html
 
+  /puppetserver/2.3:
+    doc: puppetserver
+    version: 2.3
+    nav: /puppet/4.4/reference/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppet-server.git
+      commit: origin/stable
+      subdirectory: documentation
+    my_versions:
+      puppet: 4.4
+      facter: 3.1
+      hiera: 3.1
   /puppetserver/2.2:
     doc: puppetserver
     version: 2.2
     nav: /puppet/4.3/reference/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
-      commit: origin/stable
+      commit: puppet-server-2.2.1
       subdirectory: documentation
     my_versions:
       puppet: 4.3
@@ -402,13 +414,21 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/4.0:
+    doc: puppetdb
+    version: 4.0
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/stable
+      subdirectory: documentation
   /puppetdb/3.2:
     doc: puppetdb
     version: 3.2
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/stable
+      commit: origin/3.2.x
       subdirectory: documentation
   /puppetdb/3.1:
     doc: puppetdb

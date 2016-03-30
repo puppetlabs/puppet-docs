@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/lang_containment.html"
 [classes]: ./lang_classes.html
 [definedtype]: ./lang_defined_types.html
 [relationship]: ./lang_relationships.html
-[notify]: ./lang_relationships.html#ordering-and-notification
+[notify]: ./lang_relationships.html#refreshing-and-notification
 
 Containment
 -----

@@ -8,10 +8,10 @@ canonical: "/puppet/latest/reference/config_file_auth.html"
 [api]: ./http_api/http_api_index.html
 [default_file]: https://github.com/puppetlabs/puppet/blob/4.3.0/conf/auth.conf
 [environment]: ./environments.html
-[server_ca]: /puppetserver/2.2/config_file_ca.html
-[server_master]: /puppetserver/2.2/config_file_master.html
-[Puppet Server `auth.conf`]: /puppetserver/2.2/config_file_auth.html
-[Puppet Server 2.2]: /puppetserver/2.2/
+[server_ca]: {{puppetserver}}/config_file_ca.html
+[server_master]: {{puppetserver}}/config_file_master.html
+[Puppet Server `auth.conf`]: {{puppetserver}}/config_file_auth.html
+[Puppet Server]: {{puppetserver}}/
 
 Access to Puppet's HTTPS API is configured in `auth.conf`.
 
@@ -27,9 +27,9 @@ Since some endpoints should have restricted access (for example, a node shouldn'
 
 [confdir]: ./dirs_confdir.html
 
-[Puppet Server 2.2][] uses [`trapperkeeper-authorization`](https://github.com/puppetlabs/trapperkeeper-authorization)---a different implementation of the Puppet Certificate Authority (CA)---and ignores `auth.conf`'s access rules (ACLs) for any `/puppet-ca` endpoints. This is a dramatic change in how Puppet Server manages authorization, as you can now configure access to certificate status and administration endpoints by writing rules in Puppet Server's own new HOCON-formatted [`auth.conf`][Puppet Server `auth.conf`] file, located by default at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
+[Puppet Server][] uses [`trapperkeeper-authorization`](https://github.com/puppetlabs/trapperkeeper-authorization)---a different implementation of the Puppet Certificate Authority (CA)---and ignores `auth.conf`'s access rules (ACLs) for any `/puppet-ca` endpoints. This is a dramatic change in how Puppet Server manages authorization, as you can now configure access to certificate status and administration endpoints by writing rules in Puppet Server's own new HOCON-formatted [`auth.conf`][Puppet Server `auth.conf`] file, located by default at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
 
-> **Deprecation Note:** The legacy hardcoded authorization methods that use [`ca.conf`][server_ca] and [`master.conf`][server_master] are [deprecated](/puppetserver/2.2/deprecated_features.html).
+> **Deprecation Note:** The legacy hardcoded authorization methods that use [`ca.conf`][server_ca] and [`master.conf`][server_master] are [deprecated]({{puppetserver}}/deprecated_features.html).
 
 ## Location
 

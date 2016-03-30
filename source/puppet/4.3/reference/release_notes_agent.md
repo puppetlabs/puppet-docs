@@ -34,6 +34,15 @@ The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release 
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.3 release notes](./release_notes.html).
 
+## Puppet Agent 1.3.6
+
+Released March 14, 2016.
+
+This security release fixes a vulnerability that allowed arbitrary remote code execution on Puppet agent nodes.
+
+* [Puppet Labs CVE announcement](https://puppetlabs.com/security/cve/CVE-2016-2786)
+
+
 ## Puppet Agent 1.3.5
 
 Released February 3, 2016.

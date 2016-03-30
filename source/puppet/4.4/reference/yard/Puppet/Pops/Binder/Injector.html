@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="../../../_index.html">Index (I)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span>
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span>
      &raquo; 
     <span class="title">Injector</span>
   
@@ -105,7 +105,7 @@
 
 <h2>Initialization</h2>
 
-<p>The injector is initialized with a configured <span class='object_link'><a href="Binder.html" title="Puppet::Pops::Binder::Binder (class)">Binder</a></span>. The Binder instance contains a resolved set of
+<p>The injector is initialized with a configured <span class='object_link'>Binder</span>. The Binder instance contains a resolved set of
 <code>key =&gt; &quot;binding information&quot;</code> that is used to setup the injector.</p>
 
 <h2>Lookup</h2>
@@ -199,7 +199,7 @@ producer configured for a multibinding.</p>
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li><span class='object_link'><a href="Binder.html" title="Puppet::Pops::Binder::Binder (class)">Binder, for details about how to bind keys to producers</a></span></li>
+      <li><span class='object_link'>Binder, for details about how to bind keys to producers</span></li>
     
       <li><span class='object_link'><a href="BindingsFactory.html" title="Puppet::Pops::Binder::BindingsFactory (module)">BindingsFactory, for a convenient way to create a Binder and bindings</a></span></li>
     
@@ -273,7 +273,7 @@ producer configured for a multibinding.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#get_contributions-instance_method" title="#get_contributions (instance method)">- (Array&lt;Puppet::Pops::Binder::InjectorEntry&gt;) <strong>get_contributions</strong>(scope, contributions_key) </a>
+      <a href="#get_contributions-instance_method" title="#get_contributions (instance method)">- (Array&lt;InjectorEntry&gt;) <strong>get_contributions</strong>(scope, contributions_key) </a>
     
 
     
@@ -315,7 +315,7 @@ producer configured for a multibinding.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>An Injector is initialized with a configured <span class='object_link'><a href="Binder.html" title="Puppet::Pops::Binder::Binder (class)">Binder</a></span>.</p>
+    <span class="summary_desc"><div class='inline'><p>An Injector is initialized with a configured <span class='object_link'>Binder</span>.</p>
 </div></span>
   
 </li>
@@ -325,7 +325,7 @@ producer configured for a multibinding.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#key_factory-instance_method" title="#key_factory (instance method)">- (Puppet::Pops::Binder::KeyFactory) <strong>key_factory</strong> </a>
+      <a href="#key_factory-instance_method" title="#key_factory (instance method)">- (KeyFactory) <strong>key_factory</strong> </a>
     
 
     
@@ -400,7 +400,7 @@ producer configured for a multibinding.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#lookup_producer-instance_method" title="#lookup_producer (instance method)">- (Puppet::Pops::Binder::Producers::Producer, ...) <strong>lookup_producer</strong>(scope, *args) {|producer| ... }</a>
+      <a href="#lookup_producer-instance_method" title="#lookup_producer (instance method)">- (Producers::Producer, ...) <strong>lookup_producer</strong>(scope, *args) {|producer| ... }</a>
     
 
     
@@ -425,7 +425,7 @@ producer configured for a multibinding.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#lookup_producer_key-instance_method" title="#lookup_producer_key (instance method)">- (Puppet::Pops::Binder::Producers::Producer<sup>?</sup>) <strong>lookup_producer_key</strong>(scope, key) </a>
+      <a href="#lookup_producer_key-instance_method" title="#lookup_producer_key (instance method)">- (Producers::Producer<sup>?</sup>) <strong>lookup_producer_key</strong>(scope, key) </a>
     
 
     
@@ -450,7 +450,7 @@ producer configured for a multibinding.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#lookup_producer_type-instance_method" title="#lookup_producer_type (instance method)">- (Puppet::Pops::Binder::Producers::Producer<sup>?</sup>) <strong>lookup_producer_type</strong>(scope, type, name = &#39;&#39;) </a>
+      <a href="#lookup_producer_type-instance_method" title="#lookup_producer_type (instance method)">- (Producers::Producer<sup>?</sup>) <strong>lookup_producer_type</strong>(scope, type, name = &#39;&#39;) </a>
     
 
     
@@ -575,7 +575,7 @@ producer configured for a multibinding.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#type_calculator-instance_method" title="#type_calculator (instance method)">- (Puppet::Pops::Types::TypeCalculator) <strong>type_calculator</strong> </a>
+      <a href="#type_calculator-instance_method" title="#type_calculator (instance method)">- (Types::TypeCalculator) <strong>type_calculator</strong> </a>
     
 
     
@@ -613,7 +613,7 @@ producer configured for a multibinding.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>An Injector is initialized with a configured <span class='object_link'><a href="Binder.html" title="Puppet::Pops::Binder::Binder (class)">Binder</a></span>.</p>
+    <p>An Injector is initialized with a configured <span class='object_link'>Binder</span>.</p>
 
 
   </div>
@@ -627,7 +627,7 @@ producer configured for a multibinding.</p>
         <span class='name'>configured_binder</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Binder.html" title="Puppet::Pops::Binder::Binder (class)">Puppet::Pops::Binder::Binder</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'>Binder</span></tt>, <tt>nil</tt>)</span>
       
       
       
@@ -664,16 +664,16 @@ of nil creates an injector that returns or yields nil on all lookup requests.</p
       <pre class="lines">
 
 
-164
-165
 166
 167
 168
 169
-170</pre>
+170
+171
+172</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 166</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_configured_binder'>configured_binder</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_injector'>parent_injector</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_configured_binder'>configured_binder</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -730,19 +730,19 @@ produced by the given block. The block is evaluated with self bound to a Binding
       <pre class="lines">
 
 
-110
-111
 112
 113
-114</pre>
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>BindingsFactory</span>
+  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span>
   <span class='id identifier rubyid_layered_bindings'>layered_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_layer'>named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-layer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -758,7 +758,7 @@ produced by the given block. The block is evaluated with self bound to a Binding
       <div class="method_details first">
   <h3 class="signature first" id="get_contributions-instance_method">
   
-    - (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'><a href="InjectorEntry.html" title="Puppet::Pops::Binder::InjectorEntry (class)">Puppet::Pops::Binder::InjectorEntry</a></span>&gt;</tt>) <strong>get_contributions</strong>(scope, contributions_key) 
+    - (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'><a href="InjectorEntry.html" title="Puppet::Pops::Binder::InjectorEntry (class)">InjectorEntry</a></span>&gt;</tt>) <strong>get_contributions</strong>(scope, contributions_key) 
   
 
   
@@ -814,7 +814,7 @@ This method is typically used by multibind value producers, but may be used for 
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'><a href="InjectorEntry.html" title="Puppet::Pops::Binder::InjectorEntry (class)">Puppet::Pops::Binder::InjectorEntry</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'><a href="InjectorEntry.html" title="Puppet::Pops::Binder::InjectorEntry (class)">InjectorEntry</a></span>&gt;</tt>)</span>
       
       
       
@@ -832,12 +832,12 @@ This method is typically used by multibind value producers, but may be used for 
       <pre class="lines">
 
 
-330
-331
-332</pre>
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 330</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 332</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_contributions'>get_contributions</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_contributions_key'>contributions_key</span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_get_contributions'>get_contributions</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_contributions_key'>contributions_key</span><span class='rparen'>)</span>
@@ -850,7 +850,7 @@ This method is typically used by multibind value producers, but may be used for 
       <div class="method_details ">
   <h3 class="signature " id="key_factory-instance_method">
   
-    - (<tt><span class='object_link'><a href="KeyFactory.html" title="Puppet::Pops::Binder::KeyFactory (class)">Puppet::Pops::Binder::KeyFactory</a></span></tt>) <strong>key_factory</strong> 
+    - (<tt><span class='object_link'><a href="KeyFactory.html" title="Puppet::Pops::Binder::KeyFactory (class)">KeyFactory</a></span></tt>) <strong>key_factory</strong> 
   
 
   
@@ -873,7 +873,7 @@ A compatible type calculator can also be obtained from the key factory.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="KeyFactory.html" title="Puppet::Pops::Binder::KeyFactory (class)">Puppet::Pops::Binder::KeyFactory</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="KeyFactory.html" title="Puppet::Pops::Binder::KeyFactory (class)">KeyFactory</a></span></tt>)</span>
       
       
       
@@ -891,12 +891,12 @@ A compatible type calculator can also be obtained from the key factory.</p>
       <pre class="lines">
 
 
-179
-180
-181</pre>
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key_factory'>key_factory</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_key_factory'>key_factory</span>
@@ -1020,7 +1020,7 @@ based on the result of the lookup.</p>
         <span class='name'>type</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Puppet::Pops::Types::PAnyType</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Types::PAnyType</a></span></tt>)</span>
       
       
       
@@ -1200,12 +1200,12 @@ based on the result of the lookup.</p>
       <pre class="lines">
 
 
-226
-227
-228</pre>
+228
+229
+230</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 226</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 228</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1229,7 +1229,7 @@ based on the result of the lookup.</p>
     <p>Looks up the key and returns the entry, or nil if no entry is found.
 Produced type is checked for type conformance with its binding, but not with the lookup key.
 (This since all subtypes of PDataType are looked up using a key based on PDataType).
-Use the Puppet::Pops::Types::TypeCalculator#instance? method to check for conformance of the result
+Use the Types::TypeCalculator#instance? method to check for conformance of the result
 if this is wanted, or use #lookup_type.</p>
 
 
@@ -1297,12 +1297,12 @@ if this is wanted, or use #lookup_type.</p>
       <pre class="lines">
 
 
-259
-260
-261</pre>
+261
+262
+263</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 259</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 261</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_key'>lookup_key</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_lookup_key'>lookup_key</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1316,11 +1316,11 @@ if this is wanted, or use #lookup_type.</p>
   <h3 class="signature " id="lookup_producer-instance_method">
   
     
-      <span class="overload">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, key) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, key) </span>
     
-      <span class="overload">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, type, name = &#39;&#39;) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, type, name = &#39;&#39;) </span>
     
-      <span class="overload">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, name) </span>
+      <span class="overload">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, name) </span>
     
   
 
@@ -1346,7 +1346,7 @@ or other transformations, calculations based on the result of the lookup.</p>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, key) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, key) </span>
         <div class="docstring">
   <div class="discussion">
     
@@ -1395,7 +1395,7 @@ or other transformations, calculations based on the result of the lookup.</p>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, type, name = &#39;&#39;) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, type, name = &#39;&#39;) </span>
         <div class="docstring">
   <div class="discussion">
     
@@ -1426,7 +1426,7 @@ or other transformations, calculations based on the result of the lookup.</p>
         <span class='name'>type</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Puppet::Pops::Types::PAnyType</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Types::PAnyType</a></span></tt>)</span>
       
       
       
@@ -1461,7 +1461,7 @@ or other transformations, calculations based on the result of the lookup.</p>
     
       
       <li class="overload_item">
-        <span class="signature">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, name) </span>
+        <span class="signature">- (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, ...) <strong>lookup_producer</strong>(scope, name) </span>
         <div class="docstring">
   <div class="discussion">
     <p>Lookup of Data type with given name.</p>
@@ -1556,7 +1556,7 @@ or other transformations, calculations based on the result of the lookup.</p>
         <span class='name'>producer</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
@@ -1588,7 +1588,7 @@ or other transformations, calculations based on the result of the lookup.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, <tt><span class='object_link'>Object</span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, <tt><span class='object_link'>Object</span></tt>, <tt>nil</tt>)</span>
       
       
       
@@ -1623,12 +1623,12 @@ or other transformations, calculations based on the result of the lookup.</p>
       <pre class="lines">
 
 
-298
-299
-300</pre>
+300
+301
+302</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 298</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 300</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_producer'>lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer'>lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1641,7 +1641,7 @@ or other transformations, calculations based on the result of the lookup.</p>
       <div class="method_details ">
   <h3 class="signature " id="lookup_producer_key-instance_method">
   
-    - (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt><sup>?</sup>) <strong>lookup_producer_key</strong>(scope, key) 
+    - (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt><sup>?</sup>) <strong>lookup_producer_key</strong>(scope, key) 
   
 
   
@@ -1662,7 +1662,7 @@ or other transformations, calculations based on the result of the lookup.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
@@ -1680,12 +1680,12 @@ or other transformations, calculations based on the result of the lookup.</p>
       <pre class="lines">
 
 
-307
-308
-309</pre>
+309
+310
+311</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 307</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 309</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_producer_key'>lookup_producer_key</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer_key'>lookup_producer_key</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1698,7 +1698,7 @@ or other transformations, calculations based on the result of the lookup.</p>
       <div class="method_details ">
   <h3 class="signature " id="lookup_producer_type-instance_method">
   
-    - (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt><sup>?</sup>) <strong>lookup_producer_type</strong>(scope, type, name = &#39;&#39;) 
+    - (<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt><sup>?</sup>) <strong>lookup_producer_type</strong>(scope, type, name = &#39;&#39;) 
   
 
   
@@ -1726,7 +1726,7 @@ or other transformations, calculations based on the result of the lookup.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Puppet::Pops::Binder::Producers::Producer</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="Producers/Producer.html" title="Puppet::Pops::Binder::Producers::Producer (class)">Producers::Producer</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
@@ -1744,12 +1744,12 @@ or other transformations, calculations based on the result of the lookup.</p>
       <pre class="lines">
 
 
-317
-318
-319</pre>
+319
+320
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 317</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 319</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_producer_type'>lookup_producer_type</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer_type'>lookup_producer_type</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1786,12 +1786,12 @@ to a Data key, and the result is type checked to conform with the given key.</p>
         <span class='name'>type</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Puppet::Pops::Types::PAnyType</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Types::PAnyType</a></span></tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>the type to lookup as defined by Puppet::Pops::Types::TypeFactory</p>
+        <div class='inline'><p>the type to lookup as defined by Types::TypeFactory</p>
 </div>
       
     </li>
@@ -1858,12 +1858,12 @@ The name may be an empty String (the default), but not nil. The name is required
       <pre class="lines">
 
 
-243
-244
-245</pre>
+245
+246
+247</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 243</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_type'>lookup_type</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_lookup_type'>lookup_type</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1910,19 +1910,19 @@ The block is evaluated with self bound to a BindingsContainerBuilder.</p>
       <pre class="lines">
 
 
-127
-128
 129
 130
-131</pre>
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_override'>override</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>BindingsFactory</span>
+  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span>
   <span class='id identifier rubyid_layered_bindings'>layered_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_layer'>named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-layer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1955,21 +1955,21 @@ created with the given name, and the bindings given in the key_value_hash</p>
       <pre class="lines">
 
 
-149
-150
 151
 152
 153
-154</pre>
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_override_with_hash'>override_with_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_key_value_hash'>key_value_hash</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>BindingsFactory</span>
+  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span>
   <span class='id identifier rubyid_named_bindings'>named_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_key_value_hash'>key_value_hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_bind'>bind</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_layered_bindings'>layered_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_layer'>named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-layer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2002,21 +2002,21 @@ may consists of multiple layers of bindings.</p>
       <pre class="lines">
 
 
-138
-139
 140
 141
 142
-143</pre>
+143
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 138</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_override_with_model'>override_with_model</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>LayeredBindings</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>LayeredBindings</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Expected a LayeredBindings model, got &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bindings_model'>bindings_model</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Binder</span><span class='op'>::</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2026,7 +2026,7 @@ may consists of multiple layers of bindings.</p>
       <div class="method_details ">
   <h3 class="signature " id="type_calculator-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">Puppet::Pops::Types::TypeCalculator</a></span></tt>) <strong>type_calculator</strong> 
+    - (<tt><span class='object_link'><a href="../Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">Types::TypeCalculator</a></span></tt>) <strong>type_calculator</strong> 
   
 
   
@@ -2048,7 +2048,7 @@ to check type conformance, or infer the type of Ruby objects.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">Puppet::Pops::Types::TypeCalculator</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">Types::TypeCalculator</a></span></tt>)</span>
       
       
       
@@ -2066,12 +2066,12 @@ to check type conformance, or infer the type of Ruby objects.</p>
       <pre class="lines">
 
 
-189
-190
-191</pre>
+191
+192
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 191</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type_calculator'>type_calculator</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_type_calculator'>type_calculator</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -2086,7 +2086,7 @@ to check type conformance, or infer the type of Ruby objects.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:49 2016 by
+  Generated on Wed Mar 16 18:28:51 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

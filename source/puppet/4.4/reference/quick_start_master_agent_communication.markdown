@@ -9,7 +9,7 @@ canonical: "/puppet/latest/quick_start_master_agent_communication.html"
 
 This guide walks you through the process to make sure your Puppet master and agents are able to communicate. This involves modifying the `/etc/hosts` file on your master and agents, and also opening the firewall to your master so that it is able to sign certificates from the agents.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet]({{puppetserver}}/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 >
 > For this walk-through, log in as root or administrator on your nodes.
 

@@ -41,7 +41,7 @@ Released October 29, 2015.
 Includes [Puppet 4.2.3](./release_notes.html#puppet-423), [Facter 3.1.1][], [Hiera 3.0.4][], [MCollective 2.8.6][], Ruby 2.1.7, and OpenSSL 1.0.2d.
 
 ### New Platforms
- 
+
 The [Puppet Enterprise 2015.2.3](/pe/2015.2/) repositories include `puppet-agent` packages for AIX and Solaris 11.
 
 ### Security
@@ -90,6 +90,7 @@ Includes [Puppet 4.2.2](./release_notes.html#puppet-422), [Facter 3.1.0][], [Hie
 
 * Updates Puppet, Facter, and MCollective.
 
+<a id="puppet-agent-123"></a>
 There was no `puppet-agent` 1.2.3 release.
 
 ## Puppet Agent 1.2.2

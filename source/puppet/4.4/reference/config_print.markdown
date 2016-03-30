@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/config_print.html"
 
 [config_sections]: ./config_file_main.html#config-sections
 [setting_sources]: ./config_about_settings.html
-[confdir_sys]: ./dirs_confdir.html#system-and-user-confdirs
+[confdir_sys]: ./dirs_confdir.html#location
 [environment]: ./environments.html
 [confdir]: ./dirs_confdir.html
 [vardir]: ./dirs_vardir.html

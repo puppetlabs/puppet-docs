@@ -114,7 +114,7 @@ If you assembled your module manually, you must make sure that you have a metada
 
 Build Your Module
 ------
-In order for your module to be successfully uploaded to and displayed on the Forge, your [metadata.json][] file must include the following keys:
+In order for your module to be successfully uploaded to and displayed on the Forge, your [metadata.json][metadata] file must include the following keys:
 
 * `name`
 * `version`

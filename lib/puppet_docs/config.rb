@@ -80,7 +80,9 @@ module PuppetDocs
           !( self['document_version_index'][group].has_key?(version) )
         }
 
-        # Exclude self:
+        # The third rule of Tautology Club: my own version is my version.
+        data['my_versions'][ data['doc'] ] = data['version']
+        # As for the rest of our known document groups...
         other_groups = document_groups - [ data['doc'] ]
         # If we have an explicit version for a given group, keep it:
         unknown_groups = other_groups.reject {|group| data['my_versions'].has_key?(group)}
@@ -115,7 +117,7 @@ module PuppetDocs
       self['defaultnav'].each {|prefix, nav|
         new_default = {
             # Jekyll requires us to strip any trailing or leading slash.
-            'scope' => {'path' => prefix.sub(/\A\//, '').sub(/\/\Z/, '')},
+            'scope' => {'path' => prefix.sub(%r{\A/}, '').sub(%r{/\Z}, '')},
             'values' => {'nav' => nav}
         }
         self['defaults'] << new_default

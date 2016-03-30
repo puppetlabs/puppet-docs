@@ -12,9 +12,9 @@ In the [Module Writing Basics for Linux Quick Start Guide](./quick_writing_nix.h
 
 The process for installing a module is the same on both Windows and *nix operating systems.
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet]({{puppetserver}}/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
-> Before starting this walk-through, complete the [Hello World](./quick_start_helloworld) exercise in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
+> Before starting this walk-through, complete the [Hello World](./quick_start_helloworld.html) exercise in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 
 ## Installing a Forge Module

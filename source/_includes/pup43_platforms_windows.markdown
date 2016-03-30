@@ -1,4 +1,4 @@
-We publish and test official `puppet-agent` packages for the following versions of Windows:
+We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Windows:
 
 * Windows Server 2012 R2 (also supported by [Puppet Enterprise][peinstall])
 * Windows Server 2008 R2 (also supported by [Puppet Enterprise][peinstall])

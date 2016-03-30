@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "日本語ホーム"
-canonical: "/ja/index.html"
+canonical: "/ja/index_1.html"
 ---
 
 Puppet Labs 日本語マニュアルについて

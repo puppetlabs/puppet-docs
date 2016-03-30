@@ -7,7 +7,7 @@ canonical: "/puppet/latest/quick_start_user_group.html"
 
 ## Before you begin
 
-> **Prerequisites**: This guide assumes you've already [installed Puppet](/puppetserver/2.2/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
+> **Prerequisites**: This guide assumes you've already [installed Puppet]({{puppetserver}}/install_from_packages.html), and have installed at least one [*nix agent](./install_linux.html).
 
 > For this  walk-through, log in as root or administrator on your nodes.
 
@@ -91,7 +91,7 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 13. From the command line on your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
 > Success! You have created a user, `jargyle`, and added jargyle to the group with `groups => web`.
-> For more information on users and groups, check out the documentation for Puppet resource types regarding [users](https://docs.puppetlabs.com/puppet/latest/reference/type.html#user) and [groups](https://docs.puppetlabs.com/puppet/latest/reference/type.html#group).
+> For more information on users and groups, check out the documentation for Puppet resource types regarding [users](./types/user.html) and [groups](./types/group.html).
 > With users and groups, you can assign different permissions for managing Puppet.
 
 ---------

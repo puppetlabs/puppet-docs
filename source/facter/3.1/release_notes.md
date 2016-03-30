@@ -5,8 +5,39 @@ title: "Facter 3.1: Release Notes"
 
 [puppet-agent 1.2.x]: /puppet/4.2/reference/about_agent.html
 [puppet-agent 1.3.x]: /puppet/4.3/reference/about_agent.html
+[puppet-agent 1.4.x]: /puppet/4.4/reference/about_agent.html
+
 
 This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+
+## Facter 3.1.5
+
+Released March 16, 2016.
+
+Shipped in [`puppet-agent` 1.4.0][puppet-agent 1.4.x].
+
+Facter 3.1.5 is an improvement and bug fix release in the Facter 3.1 series.
+
+* [Fixed in Facter 3.1.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.1.5%27)
+* [Introduced in Facter 3.1.5](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.1.5%27)
+
+### Improvement: networking.ip fallback
+
+Facter will now consider the 'source' attribute of routing table entries associated with an interface to be an additional address tied to that interface.
+
+* [FACT-1282](https://tickets.puppetlabs.com/browse/FACT-1282)
+
+### FIX: Windows extended characters
+
+In Puppet with Facter 3, using Windows-1252 extended characters such as ö and æ in a user name on Windows would cause an exception to be thrown by Facter. This has been fixed.
+
+* [FACT-1341](https://tickets.puppetlabs.com/browse/FACT-1341) 
+
+### FIX: YAML
+
+Previously, Facter 3 YAML output would not quote some strings that YAML 1.1 and 1.2 allow interpreting as other types such as booleans, sexagesimal patterns, and comma-separated lists of integers. These will now be correctly quoted.
+
+* [FACT-1317](https://tickets.puppetlabs.com/browse/FACT-1317)
 
 ## Facter 3.1.4
 

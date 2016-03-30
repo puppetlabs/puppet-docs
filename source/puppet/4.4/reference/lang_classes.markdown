@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_classes.html"
 [namespace]: ./lang_namespaces.html
 [enc]: /guides/external_nodes.html
 [tags]: ./lang_tags.html
-[allowed]: ./lang_reserved.html#classes-and-types
+[allowed]: ./lang_reserved.html#classes-and-defined-types
 [reserved]: ./lang_reserved.html#reserved-parameter-names
 [function]: ./lang_functions.html
 [modules]: ./modules_fundamentals.html
@@ -37,10 +37,10 @@ canonical: "/puppet/latest/reference/lang_classes.html"
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
 [ldap_nodes]: /guides/ldap_nodes.html
-[hiera]: /hiera/latest
-[external_data]: /hiera/latest/puppet.html
-[array_search]: /hiera/latest/lookup_types.html#array-merge
-[hiera_hierarchy]: /hiera/latest/hierarchy.html
+[hiera]: {{hiera}}/
+[external_data]: {{hiera}}/puppet.html
+[array_search]: {{hiera}}/lookup_types.html#array-merge
+[hiera_hierarchy]: {{hiera}}/hierarchy.html
 
 **Classes** are named blocks of Puppet code that are stored in [modules][] for later use and are not applied until they are invoked by name. They can be added to a node's [catalog][] by either **declaring** them in your manifests or **assigning** them from an [ENC][].
 

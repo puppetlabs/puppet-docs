@@ -7,14 +7,14 @@ title: "Overview of Puppet's Architecture"
 [agent_win]: ./services_agent_windows.html
 [https_walkthrough]: ./subsystem_agent_master_comm.html
 [master_http]: ./http_api/http_api_index.html
-[auth.conf]: ./conf_file_auth.html
+[auth.conf]: ./config_file_auth.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
 [report handlers]: ./report.html
 [lang_basics]: ./lang_summary.html
 [apply]: ./services_apply.html
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}/
 [resource]: ./lang_resources.html
-[Puppet Server]: /puppetserver/latest/
+[Puppet Server]: {{puppetserver}}/
 
 Puppet usually uses an agent/master (client/server) architecture for configuring systems, using the **Puppet agent** and **Puppet master** applications. It can also run in a self-contained architecture with the **Puppet apply** application.
 

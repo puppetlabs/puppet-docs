@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Puppet HTTP API: Index'
 canonical: /puppet/latest/reference/http_api/http_api_index.html
 ---
@@ -64,7 +64,7 @@ these services and use the Puppet master's data for other purposes.
 
 The V3 API contains endpoints of two types: those that are based on dispatching
 to Puppet's internal "indirector" framework, and those that are not (namely the
-[environments endpoint](#environments-endpoint)).
+[environment endpoints](#environment-endpoints)).
 
 Every HTTP endpoint that dispatches to the indirector follows the form:
 `/puppet/v3/:indirection/:key?environment=:environment` where:
@@ -99,15 +99,24 @@ tools.
 * [Resource Type](./http_resource_type.md)
 * [Status](./http_status.md)
 
-### Environments Endpoint
+### Environment Endpoints
 
-The one endpoint with a different format is the `/puppet/v3/environments`
-endpoint.
+The endpoints with a different format are the `/puppet/v3/environments` and
+the `/puppet/v3/environment/:environment` endpoints.
 
-This endpoint will only accept payloads formatted as JSON and respond with JSON
-(MIME type of `application/json`).
+These endpoints will only accept payloads formatted as JSON and respond
+with JSON (MIME type of `application/json`).
 
 * [Environments](./http_environments.md)
+* [Environment Catalog](./http_environment.md)
+
+### Puppet Server-specific endpoints
+
+When using [Puppet Server 2.3 or newer](https://docs.puppetlabs.com/puppetserver/2.3/)
+as a Puppet master, Puppet Server adds additional `/puppet/v3/` endpoints:
+
+* [Static File Content](https://docs.puppetlabs.com/puppetserver/latest/puppet-api/v3/static_file_content.md)
+* [Environment Classes](https://docs.puppetlabs.com/puppetserver/latest/puppet-api/v3/environment_classes.md)
 
 #### Error Responses
 

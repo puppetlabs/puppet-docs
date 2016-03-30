@@ -1,10 +1,12 @@
 ---
 layout: default
-title: "Facter 3.1: Core Facts"
+built_from_commit: b7aadc67f3be3d76a92fb38dcab71ccf958f8252
+title: 'Facter: Core Facts'
 toc: columns
+canonical: /facter/latest/core_facts.html
 ---
 
-This is a list of all of the built-in facts that ship with Facter 3.1, which includes both legacy facts and newer structured facts.
+This is a list of all of the built-in facts that ship with Facter, which includes both legacy facts and newer structured facts.
 
 Not all of them apply to every system, and your site might also use [custom facts](./custom_facts.html) delivered via Puppet modules. To see the full list of structured facts and values on a given system (including plugin facts), run `puppet facts` at the command line. If you are using Puppet Enterprise, you can view all of the facts for any node on the node's page in the console.
 
@@ -14,28 +16,9 @@ You can access facts in your Puppet manifests as `$fact_name` or `$facts[fact_na
 
 * * *
 
-## `architecture`
+## Modern Facts
 
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the operating system's hardware architecture.
-
-**Resolution:**
-
-* POSIX platforms: use the `uname` function to retrieve the OS hardware architecture.
-* Windows: use the `GetNativeSystemInfo` function to retrieve the OS hardware architecture.
-
-**Caveats:**
-
-* Linux: Debian, Gentoo, kFreeBSD, and Ubuntu use "amd64" for "x86_64" and Gentoo uses "x86" for "i386".
-
-([↑ Back to top](#page-nav))
-
-## `augeas`
+### `augeas`
 
 **Type:** map
 
@@ -55,333 +38,7 @@ Return information about augeas.
 
 ([↑ Back to top](#page-nav))
 
-## `augeasversion`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the version of augeas.
-
-
-**Resolution:**
-
-* All platforms: query augparse for the augeas version.
-
-
-([↑ Back to top](#page-nav))
-
-## `blockdevices`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return a comma-separated list of block devices.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/block/<device>/`.
-* Solaris: use the `kstat` function to query disk information.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `blockdevice_<devicename>_model`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the model name of block devices attached to the system.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/block/<device>/device/model` to retrieve the model name/number for a device.
-* Solaris: use the `kstat` function to query disk information.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `blockdevice_<devicename>_size`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** integer
-
-**Purpose:**
-
-Return the size of a block device in bytes.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/block/<device>/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
-* Solaris: use the `kstat` function to query disk information.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `blockdevice_<devicename>_vendor`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the vendor name of block devices attached to the system.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/block/<device>/device/vendor` to retrieve the vendor for a device.
-* Solaris: use the `kstat` function to query disk information.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `bios_release_date`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the release date of the system BIOS.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/bios_date` to retrieve the system BIOS release date.
-* Solaris: use the `smbios` utility to retrieve the system BIOS release date.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `bios_vendor`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the vendor of the system BIOS.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/bios_vendor` to retrieve the system BIOS vendor.
-* Solaris: use the `smbios` utility to retrieve the system BIOS vendor.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `bios_version`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the version of the system BIOS.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/bios_version` to retrieve the system BIOS version.
-* Solaris: use the `smbios` utility to retrieve the system BIOS version.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `boardassettag`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system board asset tag.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/board_asset_tag` to retrieve the system board asset tag.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `boardmanufacturer`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system board manufacturer.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/board_vendor` to retrieve the system board manufacturer.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `boardproductname`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system board product name.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/board_name` to retrieve the system board product name.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `boardserialnumber`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system board serial number.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/board_serial` to retrieve the system board serial number.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `chassisassettag`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system chassis asset tag.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/chassis_asset_tag` to retrieve the system chassis asset tag.
-* Solaris: use the `smbios` utility to retrieve the system chassis asset tag.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `chassistype`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system chassis type.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/chassis_type` to retrieve the system chassis type.
-* Solaris: use the `smbios` utility to retrieve the system chassis type.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `dhcp_servers`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** map
-
-**Purpose:**
-
-Return the DHCP servers for the system.
-
-**Elements:**
-
-* `<interface>` (ip) --- The DHCP server for the interface.
-* `system` (ip) --- The DHCP server for the default interface.
-
-
-**Resolution:**
-
-* Linux: parse `dhclient` lease files or use the `dhcpcd` utility to retrieve the DHCP servers.
-* Mac OSX: use the `ipconfig` utility to retrieve the DHCP servers.
-* Solaris: use the `dhcpinfo` utility to retrieve the DHCP servers.
-* Windows: use the `GetAdaptersAddresses` (Windows Server 2003: `GetAdaptersInfo`) function to retrieve the DHCP servers.
-
-
-([↑ Back to top](#page-nav))
-
-## `disks`
+### `disks`
 
 **Type:** map
 
@@ -410,7 +67,7 @@ Return the disk (block) devices attached to the system.
 
 ([↑ Back to top](#page-nav))
 
-## `dmi`
+### `dmi`
 
 **Type:** map
 
@@ -452,26 +109,7 @@ Return the system management information.
 
 ([↑ Back to top](#page-nav))
 
-## `domain`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the network domain of the system.
-
-
-**Resolution:**
-
-* POSIX platforms: use the `getaddrinfo` function to retrieve the network domain.
-* Windows: query the registry to retrieve the network domain; falls back to the primary interface's domain if not set in the registry.
-
-
-([↑ Back to top](#page-nav))
-
-## `ec2_metadata`
+### `ec2_metadata`
 
 **Type:** map
 
@@ -492,7 +130,7 @@ Please see the [EC2 instance metadata documentation](http://docs.aws.amazon.com/
 
 ([↑ Back to top](#page-nav))
 
-## `ec2_userdata`
+### `ec2_userdata`
 
 **Type:** string
 
@@ -513,7 +151,7 @@ Please see the [EC2 instance user data documentation](http://docs.aws.amazon.com
 
 ([↑ Back to top](#page-nav))
 
-## `env_windows_installdir`
+### `env_windows_installdir`
 
 **Type:** string
 
@@ -534,7 +172,7 @@ Return the path of the directory in which Puppet was installed.
 
 ([↑ Back to top](#page-nav))
 
-## `facterversion`
+### `facterversion`
 
 **Type:** string
 
@@ -550,7 +188,7 @@ Return the version of facter.
 
 ([↑ Back to top](#page-nav))
 
-## `filesystems`
+### `filesystems`
 
 **Type:** string
 
@@ -572,26 +210,7 @@ Return the usable file systems for block or disk devices.
 
 ([↑ Back to top](#page-nav))
 
-## `fqdn`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the fully qualified domain name (FQDN) of the system.
-
-
-**Resolution:**
-
-* POSIX platforms: use the `getaddrinfo` function to retrieve the FQDN or use host and domain names.
-* Windows: use the host and domain names to build the FQDN.
-
-
-([↑ Back to top](#page-nav))
-
-## `gce`
+### `gce`
 
 **Type:** map
 
@@ -612,100 +231,7 @@ Please see the [GCE metadata documentation](https://cloud.google.com/compute/doc
 
 ([↑ Back to top](#page-nav))
 
-## `gid`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the group identifier (GID) of the user running facter.
-
-
-**Resolution:**
-
-* POSIX platforms: use the `getegid` fuction to retrieve the group identifier.
-
-
-([↑ Back to top](#page-nav))
-
-## `hardwareisa`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the hardware instruction set architecture (ISA).
-
-
-**Resolution:**
-
-* POSIX platforms: use `uname` to retrieve the hardware ISA.
-* Windows: use WMI to retrieve the hardware ISA.
-
-
-([↑ Back to top](#page-nav))
-
-## `hardwaremodel`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the operating system's hardware model.
-
-
-**Resolution:**
-
-* POSIX platforms: use the `uname` function to retrieve the OS hardware model.
-* Windows: use the `GetNativeSystemInfo` function to retrieve the OS hardware model.
-
-
-([↑ Back to top](#page-nav))
-
-## `hostname`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the host name of the system.
-
-
-**Resolution:**
-
-* POSIX platforms: use the `gethostname` function to retrieve the host name
-* Windows: use the `GetComputerNameExW` function to retrieve the host name.
-
-
-([↑ Back to top](#page-nav))
-
-## `id`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the user identifier (UID) of the user running facter.
-
-
-**Resolution:**
-
-* POSIX platforms: use the `geteuid` fuction to retrieve the user identifier.
-
-
-([↑ Back to top](#page-nav))
-
-## `identity`
+### `identity`
 
 **Type:** map
 
@@ -729,112 +255,7 @@ Return the identity information of the user running facter.
 
 ([↑ Back to top](#page-nav))
 
-## `interfaces`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the comma-separated list of network interface names.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface names.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface names.
-* Solaris: use the `ioctl` function to retrieve the network interface names.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface names.
-
-
-([↑ Back to top](#page-nav))
-
-## `ipaddress`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip
-
-**Purpose:**
-
-Return the IPv4 address for the default network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface address.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
-* Solaris: use the `ioctl` function to retrieve the network interface address.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
-
-
-([↑ Back to top](#page-nav))
-
-## `ipaddress6`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip6
-
-**Purpose:**
-
-Return the IPv6 address for the default network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface address.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
-* Solaris: use the `ioctl` function to retrieve the network interface address.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
-
-
-([↑ Back to top](#page-nav))
-
-## `ipaddress6_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip6
-
-**Purpose:**
-
-Return the IPv6 address for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface address.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
-* Solaris: use the `ioctl` function to retrieve the network interface address.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
-
-
-([↑ Back to top](#page-nav))
-
-## `ipaddress_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip
-
-**Purpose:**
-
-Return the IPv4 address for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface address.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
-* Solaris: use the `ioctl` function to retrieve the network interface address.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
-
-
-([↑ Back to top](#page-nav))
-
-## `is_virtual`
+### `is_virtual`
 
 **Type:** boolean
 
@@ -853,7 +274,7 @@ Return whether or not the host is a virtual machine.
 
 ([↑ Back to top](#page-nav))
 
-## `kernel`
+### `kernel`
 
 **Type:** string
 
@@ -870,7 +291,7 @@ Return the kernel's name.
 
 ([↑ Back to top](#page-nav))
 
-## `kernelmajversion`
+### `kernelmajversion`
 
 **Type:** string
 
@@ -887,7 +308,7 @@ Return the kernel's major version.
 
 ([↑ Back to top](#page-nav))
 
-## `kernelrelease`
+### `kernelrelease`
 
 **Type:** string
 
@@ -904,7 +325,7 @@ Return the kernel's release.
 
 ([↑ Back to top](#page-nav))
 
-## `kernelversion`
+### `kernelversion`
 
 **Type:** string
 
@@ -921,7 +342,7 @@ Return the kernel's version.
 
 ([↑ Back to top](#page-nav))
 
-## `ldom`
+### `ldom`
 
 **Type:** map
 
@@ -937,25 +358,7 @@ Return Solaris LDom information from the `virtinfo` utility.
 
 ([↑ Back to top](#page-nav))
 
-## `ldom_<name>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return Solaris LDom information.
-
-
-**Resolution:**
-
-* Solaris: use the `virtinfo` utility to retrieve LDom information.
-
-
-([↑ Back to top](#page-nav))
-
-## `load_averages`
+### `load_averages`
 
 **Type:** map
 
@@ -977,309 +380,7 @@ Return the load average over the last 1, 5 and 15 minutes.
 
 ([↑ Back to top](#page-nav))
 
-## `lsbdistcodename`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Linux Standard Base (LSB) distribution code name.
-
-
-**Resolution:**
-
-* Linux: use the `lsb_release` utility to retrieve the LSB distribution code name.
-
-**Caveats:**
-
-* Linux: Requires that the `lsb_release` utility be installed.
-
-([↑ Back to top](#page-nav))
-
-## `lsbdistdescription`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Linux Standard Base (LSB) distribution description.
-
-
-**Resolution:**
-
-* Linux: use the `lsb_release` utility to retrieve the LSB distribution description.
-
-**Caveats:**
-
-* Linux: Requires that the `lsb_release` utility be installed.
-
-([↑ Back to top](#page-nav))
-
-## `lsbdistid`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Linux Standard Base (LSB) distribution identifier.
-
-
-**Resolution:**
-
-* Linux: use the `lsb_release` utility to retrieve the LSB distribution identifier.
-
-**Caveats:**
-
-* Linux: Requires that the `lsb_release` utility be installed.
-
-([↑ Back to top](#page-nav))
-
-## `lsbdistrelease`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Linux Standard Base (LSB) distribution release.
-
-
-**Resolution:**
-
-* Linux: use the `lsb_release` utility to retrieve the LSB distribution release.
-
-**Caveats:**
-
-* Linux: Requires that the `lsb_release` utility be installed.
-
-([↑ Back to top](#page-nav))
-
-## `lsbmajdistrelease`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Linux Standard Base (LSB) major distribution release.
-
-
-**Resolution:**
-
-* Linux: use the `lsb_release` utility to retrieve the LSB major distribution release.
-
-**Caveats:**
-
-* Linux: Requires that the `lsb_release` utility be installed.
-
-([↑ Back to top](#page-nav))
-
-## `lsbminordistrelease`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Linux Standard Base (LSB) minor distribution release.
-
-
-**Resolution:**
-
-* Linux: use the `lsb_release` utility to retrieve the LSB minor distribution release.
-
-**Caveats:**
-
-* Linux: Requires that the `lsb_release` utility be installed.
-
-([↑ Back to top](#page-nav))
-
-## `lsbrelease`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Linux Standard Base (LSB) release.
-
-
-**Resolution:**
-
-* Linux: use the `lsb_release` utility to retrieve the LSB release.
-
-**Caveats:**
-
-* Linux: Requires that the `lsb_release` utility be installed.
-
-([↑ Back to top](#page-nav))
-
-## `macaddress`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** mac
-
-**Purpose:**
-
-Return the MAC address for the default network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface address.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
-* Solaris: use the `ioctl` function to retrieve the network interface address.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
-
-
-([↑ Back to top](#page-nav))
-
-## `macaddress_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** mac
-
-**Purpose:**
-
-Return the MAC address for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface address.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
-* Solaris: use the `ioctl` function to retrieve the network interface address.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
-
-
-([↑ Back to top](#page-nav))
-
-## `macosx_buildversion`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Mac OSX build version.
-
-
-**Resolution:**
-
-* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX build version.
-
-
-([↑ Back to top](#page-nav))
-
-## `macosx_productname`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Mac OSX product name.
-
-
-**Resolution:**
-
-* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product name.
-
-
-([↑ Back to top](#page-nav))
-
-## `macosx_productversion`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Mac OSX product version.
-
-
-**Resolution:**
-
-* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product version.
-
-
-([↑ Back to top](#page-nav))
-
-## `macosx_productversion_major`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Mac OSX product major version.
-
-
-**Resolution:**
-
-* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product major version.
-
-
-([↑ Back to top](#page-nav))
-
-## `macosx_productversion_minor`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Mac OSX product minor version.
-
-
-**Resolution:**
-
-* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product minor version.
-
-
-([↑ Back to top](#page-nav))
-
-## `manufacturer`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system manufacturer.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/sys_vendor` to retrieve the system manufacturer.
-* Solaris: use the `prtconf` utility to retrieve the system manufacturer.
-* Windows: use WMI to retrieve the system manufacturer.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `memory`
+### `memory`
 
 **Type:** map
 
@@ -1318,91 +419,7 @@ Return the system memory information.
 
 ([↑ Back to top](#page-nav))
 
-## `memoryfree`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the display size of the free system memory (e.g. "1 GiB").
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the free system memory.
-* Mac OSX: use the `sysctl` function to retrieve the free system memory.
-* Solaris: use the `kstat` function to retrieve the free system memory.
-* Windows: use the `GetPerformanceInfo` function to retrieve the free system memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `memoryfree_mb`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** double
-
-**Purpose:**
-
-Return the size of the free system memory, in mebibytes.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the free system memory.
-* Mac OSX: use the `sysctl` function to retrieve the free system memory.
-* Solaris: use the `kstat` function to retrieve the free system memory.
-* Windows: use the `GetPerformanceInfo` function to retrieve the free system memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `memorysize`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the display size of the total system memory (e.g. "1 GiB").
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the total system memory.
-* Mac OSX: use the `sysctl` function to retrieve the total system memory.
-* Solaris: use the `kstat` function to retrieve the total system memory.
-* Windows: use the `GetPerformanceInfo` function to retrieve the total system memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `memorysize_mb`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** double
-
-**Purpose:**
-
-Return the size of the total system memory, in mebibytes.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the total system memory.
-* Mac OSX: use the `sysctl` function to retrieve the total system memory.
-* Solaris: use the `kstat` function to retrieve the total system memory.
-* Windows: use the `GetPerformanceInfo` function to retrieve the total system memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `mountpoints`
+### `mountpoints`
 
 **Type:** map
 
@@ -1434,202 +451,7 @@ Return the current mount points of the system.
 
 ([↑ Back to top](#page-nav))
 
-## `mtu_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** integer
-
-**Purpose:**
-
-Return the Maximum Transmission Unit (MTU) for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `ioctl` function to retrieve the network interface MTU.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface MTU.
-* Solaris: use the `ioctl` function to retrieve the network interface MTU.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface MTU.
-
-
-([↑ Back to top](#page-nav))
-
-## `netmask`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip
-
-**Purpose:**
-
-Return the IPv4 netmask for the default network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
-* Solaris: use the `ioctl` function to retrieve the network interface netmask.
-* Windows: use the `GetAdaptersAddresses` (Windows Server 2003: `GetAdaptersInfo`) function to retrieve the network interface netmask.
-
-
-([↑ Back to top](#page-nav))
-
-## `netmask6`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip6
-
-**Purpose:**
-
-Return the IPv6 netmask for the default network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
-* Solaris: use the `ioctl` function to retrieve the network interface netmask.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface netmask.
-
-**Caveats:**
-
-* Windows Server 2003: IPv6 netmasks are not supported.
-
-([↑ Back to top](#page-nav))
-
-## `netmask6_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip6
-
-**Purpose:**
-
-Return the IPv6 netmask for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
-* Solaris: use the `ioctl` function to retrieve the network interface netmask.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface netmask.
-
-**Caveats:**
-
-* Windows Server 2003: IPv6 netmasks are not supported.
-
-([↑ Back to top](#page-nav))
-
-## `netmask_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip
-
-**Purpose:**
-
-Return the IPv4 netmask for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
-* Solaris: use the `ioctl` function to retrieve the network interface netmask.
-* Windows: use the `GetAdaptersAddresses` (Windows Server 2003: `GetAdaptersInfo`) function to retrieve the network interface netmask.
-
-
-([↑ Back to top](#page-nav))
-
-## `network`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip
-
-**Purpose:**
-
-Return the IPv4 network for the default network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface network.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
-* Solaris: use the `ioctl` function to retrieve the network interface network.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
-
-
-([↑ Back to top](#page-nav))
-
-## `network6`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip6
-
-**Purpose:**
-
-Return the IPv6 network for the default network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface network.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
-* Solaris: use the `ioctl` function to retrieve the network interface network.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
-
-
-([↑ Back to top](#page-nav))
-
-## `network6_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip6
-
-**Purpose:**
-
-Return the IPv6 network for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface network.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
-* Solaris: use the `ioctl` function to retrieve the network interface network.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
-
-
-([↑ Back to top](#page-nav))
-
-## `network_<interface>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** ip
-
-**Purpose:**
-
-Return the IPv4 network for a network interface.
-
-
-**Resolution:**
-
-* Linux: use the `getifaddrs` function to retrieve the network interface network.
-* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
-* Solaris: use the `ioctl` function to retrieve the network interface network.
-* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
-
-
-([↑ Back to top](#page-nav))
-
-## `networking`
+### `networking`
 
 **Type:** map
 
@@ -1680,71 +502,7 @@ Return the networking information for the system.
 
 ([↑ Back to top](#page-nav))
 
-## `operatingsystem`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the name of the operating system.
-
-
-**Resolution:**
-
-* All platforms: default to the kernel name.
-* Linux: use various release files in `/etc` to retrieve the OS name.
-
-
-([↑ Back to top](#page-nav))
-
-## `operatingsystemmajrelease`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the major release of the operating system.
-
-
-**Resolution:**
-
-* All platforms: default to the major version of the kernel release.
-* Linux: parse the contents of release files in `/etc` to retrieve the OS major release.
-* Solaris: parse the contents of `/etc/release` to retrieve the OS major release.
-* Windows: use WMI to retrieve the OS major release.
-
-**Caveats:**
-
-* Linux: for Ubuntu, the major release is X.Y (e.g. "10.4").
-
-([↑ Back to top](#page-nav))
-
-## `operatingsystemrelease`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the release of the operating system.
-
-
-**Resolution:**
-
-* All platforms: default to the kernel release.
-* Linux: parse the contents of release files in `/etc` to retrieve the OS release.
-* Solaris: parse the contents of `/etc/release` to retrieve the OS release.
-* Windows: use WMI to retrieve the OS release.
-
-
-([↑ Back to top](#page-nav))
-
-## `os`
+### `os`
 
 **Type:** map
 
@@ -1799,28 +557,7 @@ Return information about the host operating system.
 
 ([↑ Back to top](#page-nav))
 
-## `osfamily`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the family of the operating system.
-
-
-**Resolution:**
-
-* All platforms: default to the kernel name.
-* Linux: map various Linux distributions to their base distribution (e.g. Ubuntu is a "Debian" distro).
-* Solaris: map various Solaris-based operating systems to the "Solaris" family.
-* Windows: use "windows" as the family name.
-
-
-([↑ Back to top](#page-nav))
-
-## `partitions`
+### `partitions`
 
 **Type:** map
 
@@ -1852,7 +589,7 @@ Return the disk partitions of the system.
 
 ([↑ Back to top](#page-nav))
 
-## `path`
+### `path`
 
 **Type:** string
 
@@ -1868,76 +605,7 @@ Return the PATH environment variable.
 
 ([↑ Back to top](#page-nav))
 
-## `physicalprocessorcount`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** integer
-
-**Purpose:**
-
-Return the count of physical processors.
-
-
-**Resolution:**
-
-* Linux: parse the contents `/sys/devices/system/cpu/` and `/proc/cpuinfo` to retrieve the count of physical processors.
-* Mac OSX: use the `sysctl` function to retrieve the count of physical processors.
-* Solaris: use the `kstat` function to retrieve the count of physical processors.
-* Windows: use WMI to retrieve the count of physical processors.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `processor<N>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the model string of processor N.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/cpuinfo` to retrieve the processor model string.
-* Mac OSX: use the `sysctl` function to retrieve the processor model string.
-* Solaris: use the `kstat` function to retrieve the processor model string.
-* Windows: use WMI to retrieve the processor model string.
-
-
-([↑ Back to top](#page-nav))
-
-## `processorcount`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** integer
-
-**Purpose:**
-
-Return the count of logical processors.
-
-
-**Resolution:**
-
-* Linux: parse the contents `/sys/devices/system/cpu/` and `/proc/cpuinfo` to retrieve the count of logical processors.
-* Mac OSX: use the `sysctl` function to retrieve the count of logical processors.
-* Solaris: use the `kstat` function to retrieve the count of logical processors.
-* Windows: use WMI to retrieve the count of logical processors.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `processors`
+### `processors`
 
 **Type:** map
 
@@ -1964,31 +632,7 @@ Return information about the system's processors.
 
 ([↑ Back to top](#page-nav))
 
-## `productname`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system product name.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/product_name` to retrieve the system product name.
-* Mac OSX: use the `sysctl` function to retrieve the system product name.
-* Solaris: use the `smbios` utility to retrieve the system product name.
-* Windows: use WMI to retrieve the system product name.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `ruby`
+### `ruby`
 
 **Type:** map
 
@@ -2013,201 +657,7 @@ Return information about the Ruby loaded by facter.
 
 ([↑ Back to top](#page-nav))
 
-## `rubyplatform`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the platform Ruby was built for.
-
-
-**Resolution:**
-
-* All platforms: use `RUBY_PLATFORM` from the Ruby loaded by facter.
-
-**Caveats:**
-
-* All platforms: facter must be able to locate `libruby`.
-
-([↑ Back to top](#page-nav))
-
-## `rubysitedir`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the path to Ruby's site library directory.
-
-
-**Resolution:**
-
-* All platforms: use `RbConfig` from the Ruby loaded by facter.
-
-**Caveats:**
-
-* All platforms: facter must be able to locate `libruby`.
-
-([↑ Back to top](#page-nav))
-
-## `rubyversion`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the version of Ruby.
-
-
-**Resolution:**
-
-* All platforms: use `RUBY_VERSION` from the Ruby loaded by facter.
-
-**Caveats:**
-
-* All platforms: facter must be able to locate `libruby`.
-
-([↑ Back to top](#page-nav))
-
-## `selinux`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** boolean
-
-**Purpose:**
-
-Return whether Security-Enhanced Linux (SELinux) is enabled.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/self/mounts` to determine if SELinux is enabled.
-
-
-([↑ Back to top](#page-nav))
-
-## `selinux_config_mode`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the configured Security-Enhanced Linux (SELinux) mode.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/etc/selinux/config` to retrieve the configured SELinux mode.
-
-
-([↑ Back to top](#page-nav))
-
-## `selinux_config_policy`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the configured Security-Enhanced Linux (SELinux) policy.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/etc/selinux/config` to retrieve the configured SELinux policy.
-
-
-([↑ Back to top](#page-nav))
-
-## `selinux_current_mode`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the current Security-Enhanced Linux (SELinux) mode.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `<mountpoint>/enforce` to retrieve the current SELinux mode.
-
-
-([↑ Back to top](#page-nav))
-
-## `selinux_enforced`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** boolean
-
-**Purpose:**
-
-Return whether Security-Enhanced Linux (SELinux) is enforced.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `<mountpoint>/enforce` to retrieve the current SELinux mode.
-
-
-([↑ Back to top](#page-nav))
-
-## `selinux_policyversion`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the Security-Enhanced Linux (SELinux) policy version.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `<mountpoint>/policyvers` to retrieve the SELinux policy version.
-
-
-([↑ Back to top](#page-nav))
-
-## `serialnumber`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system product serial number.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/product_name` to retrieve the system product serial number.
-* Solaris: use the `smbios` utility to retrieve the system product serial number.
-* Windows: use WMI to retrieve the system product serial number.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `solaris_zones`
+### `solaris_zones`
 
 **Type:** map
 
@@ -2235,25 +685,7 @@ Return information about Solaris zones.
 
 ([↑ Back to top](#page-nav))
 
-## `sp_<name>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return Mac OSX system profiler information.
-
-
-**Resolution:**
-
-* Mac OSX: use the `system_profiler` utility to retrieve system profiler information.
-
-
-([↑ Back to top](#page-nav))
-
-## `ssh`
+### `ssh`
 
 **Type:** map
 
@@ -2295,165 +727,7 @@ Return SSH public keys and fingerprints.
 
 ([↑ Back to top](#page-nav))
 
-## `ssh<algorithm>key`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the SSH public key for the algorithm.
-
-
-**Resolution:**
-
-* POSIX platforms: parse SSH public key files.
-
-**Caveats:**
-
-* POSIX platforms: facter must be built with OpenSSL support.
-
-([↑ Back to top](#page-nav))
-
-## `sshfp_<algorithm>`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the SSH fingerprints for the algorithm's public key.
-
-
-**Resolution:**
-
-* POSIX platforms: derive the SHA1 and SHA256 fingerprints; delimit with a new line character.
-
-**Caveats:**
-
-* POSIX platforms: facter must be built with OpenSSL support.
-
-([↑ Back to top](#page-nav))
-
-## `swapencrypted`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** boolean
-
-**Purpose:**
-
-Return whether or not the swap is encrypted.
-
-
-**Resolution:**
-
-* Mac OSX: use the `sysctl` function to retrieve swap encryption status.
-
-
-([↑ Back to top](#page-nav))
-
-## `swapfree`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the display size of the free swap memory (e.g. "1 GiB").
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the free swap memory.
-* Mac OSX: use the `sysctl` function to retrieve the free swap memory.
-* Solaris: use the `swapctl` function to retrieve the free swap memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `swapfree_mb`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** double
-
-**Purpose:**
-
-Return the size of the free swap memory, in mebibytes.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the free swap memory.
-* Mac OSX: use the `sysctl` function to retrieve the free swap memory.
-* Solaris: use the `swapctl` function to retrieve the free swap memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `swapsize`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the display size of the total swap memory (e.g. "1 GiB").
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the total swap memory.
-* Mac OSX: use the `sysctl` function to retrieve the total swap memory.
-* Solaris: use the `swapctl` function to retrieve the total swap memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `swapsize_mb`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** double
-
-**Purpose:**
-
-Return the size of the total swap memory, in mebibytes.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/proc/meminfo` to retrieve the total swap memory.
-* Mac OSX: use the `sysctl` function to retrieve the total swap memory.
-* Solaris: use the `swapctl` function to retrieve the total swap memory.
-
-
-([↑ Back to top](#page-nav))
-
-## `system32`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the path to the System32 directory on Windows.
-
-
-**Resolution:**
-
-* Windows: use the `SHGetFolderPath` function to retrieve the path to the System32 directory.
-
-
-([↑ Back to top](#page-nav))
-
-## `system_profiler`
+### `system_profiler`
 
 **Type:** map
 
@@ -2493,7 +767,7 @@ Return information from the Mac OSX system profiler.
 
 ([↑ Back to top](#page-nav))
 
-## `system_uptime`
+### `system_uptime`
 
 **Type:** map
 
@@ -2519,7 +793,7 @@ Return the system uptime information.
 
 ([↑ Back to top](#page-nav))
 
-## `timezone`
+### `timezone`
 
 **Type:** string
 
@@ -2536,113 +810,7 @@ Return the system timezone.
 
 ([↑ Back to top](#page-nav))
 
-## `uptime`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system uptime.
-
-
-**Resolution:**
-
-* Linux: use the `sysinfo` function to retrieve the system uptime.
-* POSIX platforms: use the `uptime` utility to retrieve the system uptime.
-* Solaris: use the `kstat` function to retrieve the system uptime.
-* Windows: use WMI to retrieve the system uptime.
-
-
-([↑ Back to top](#page-nav))
-
-## `uptime_days`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** integer
-
-**Purpose:**
-
-Return the system uptime days.
-
-
-**Resolution:**
-
-* Linux: use the `sysinfo` function to retrieve the system uptime days.
-* POSIX platforms: use the `uptime` utility to retrieve the system uptime days.
-* Solaris: use the `kstat` function to retrieve the system uptime days.
-* Windows: use WMI to retrieve the system uptime days.
-
-
-([↑ Back to top](#page-nav))
-
-## `uptime_hours`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** integer
-
-**Purpose:**
-
-Return the system uptime hours.
-
-
-**Resolution:**
-
-* Linux: use the `sysinfo` function to retrieve the system uptime hours.
-* POSIX platforms: use the `uptime` utility to retrieve the system uptime hours.
-* Solaris: use the `kstat` function to retrieve the system uptime hours.
-* Windows: use WMI to retrieve the system uptime hours.
-
-
-([↑ Back to top](#page-nav))
-
-## `uptime_seconds`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** integer
-
-**Purpose:**
-
-Return the system uptime seconds.
-
-
-**Resolution:**
-
-* Linux: use the `sysinfo` function to retrieve the system uptime seconds.
-* POSIX platforms: use the `uptime` utility to retrieve the system uptime seconds.
-* Solaris: use the `kstat` function to retrieve the system uptime seconds.
-* Windows: use WMI to retrieve the system uptime seconds.
-
-
-([↑ Back to top](#page-nav))
-
-## `uuid`
-
-This legacy fact is hidden by default in Facter's command-line output.
-
-**Type:** string
-
-**Purpose:**
-
-Return the system product unique identifier.
-
-
-**Resolution:**
-
-* Linux: parse the contents of `/sys/class/dmi/id/product_uuid` to retrieve the system product unique identifier.
-* Solaris: use the `smbios` utility to retrieve the system product unique identifier.
-
-**Caveats:**
-
-* Linux: kernel 2.6+ is required due to the reliance on sysfs.
-
-([↑ Back to top](#page-nav))
-
-## `virtual`
+### `virtual`
 
 **Type:** string
 
@@ -2661,7 +829,7 @@ Return the hypervisor name for virtual machines or "physical" for physical machi
 
 ([↑ Back to top](#page-nav))
 
-## `xen`
+### `xen`
 
 **Type:** map
 
@@ -2684,7 +852,1922 @@ Return metadata for the Xen hypervisor.
 
 ([↑ Back to top](#page-nav))
 
-## `xendomains`
+### `zfs_featurenumbers`
+
+**Type:** string
+
+**Purpose:**
+
+Return the comma-delimited feature numbers for ZFS.
+
+
+**Resolution:**
+
+* Solaris: use the `zfs` utility to retrieve the feature numbers for ZFS
+
+**Caveats:**
+
+* Solaris: the `zfs` utility must be present.
+
+([↑ Back to top](#page-nav))
+
+### `zfs_version`
+
+**Type:** string
+
+**Purpose:**
+
+Return the version for ZFS.
+
+
+**Resolution:**
+
+* Solaris: use the `zfs` utility to retrieve the version for ZFS
+
+**Caveats:**
+
+* Solaris: the `zfs` utility must be present.
+
+([↑ Back to top](#page-nav))
+
+### `zpool_featurenumbers`
+
+**Type:** string
+
+**Purpose:**
+
+Return the comma-delimited feature numbers for ZFS storage pools.
+
+
+**Resolution:**
+
+* Solaris: use the `zpool` utility to retrieve the feature numbers for ZFS storage pools
+
+**Caveats:**
+
+* Solaris: the `zpool` utility must be present.
+
+([↑ Back to top](#page-nav))
+
+### `zpool_version`
+
+**Type:** string
+
+**Purpose:**
+
+Return the version for ZFS storage pools.
+
+
+**Resolution:**
+
+* Solaris: use the `zpool` utility to retrieve the version for ZFS storage pools
+
+**Caveats:**
+
+* Solaris: the `zpool` utility must be present.
+
+([↑ Back to top](#page-nav))
+
+## Legacy Facts
+
+### `architecture`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the operating system's hardware architecture.
+
+
+**Resolution:**
+
+* POSIX platforms: use the `uname` function to retrieve the OS hardware architecture.
+* Windows: use the `GetNativeSystemInfo` function to retrieve the OS hardware architecture.
+
+**Caveats:**
+
+* Linux: Debian, Gentoo, kFreeBSD, and Ubuntu use "amd64" for "x86_64" and Gentoo uses "x86" for "i386".
+
+([↑ Back to top](#page-nav))
+
+### `augeasversion`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the version of augeas.
+
+
+**Resolution:**
+
+* All platforms: query augparse for the augeas version.
+
+
+([↑ Back to top](#page-nav))
+
+### `blockdevices`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return a comma-separated list of block devices.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/block/<device>/`.
+* Solaris: use the `kstat` function to query disk information.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `blockdevice_<devicename>_model`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the model name of block devices attached to the system.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/block/<device>/device/model` to retrieve the model name/number for a device.
+* Solaris: use the `kstat` function to query disk information.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `blockdevice_<devicename>_size`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** integer
+
+**Purpose:**
+
+Return the size of a block device in bytes.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/block/<device>/size` to receive the size (multiplying by 512 to correct for blocks-to-bytes).
+* Solaris: use the `kstat` function to query disk information.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `blockdevice_<devicename>_vendor`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the vendor name of block devices attached to the system.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/block/<device>/device/vendor` to retrieve the vendor for a device.
+* Solaris: use the `kstat` function to query disk information.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `bios_release_date`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the release date of the system BIOS.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/bios_date` to retrieve the system BIOS release date.
+* Solaris: use the `smbios` utility to retrieve the system BIOS release date.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `bios_vendor`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the vendor of the system BIOS.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/bios_vendor` to retrieve the system BIOS vendor.
+* Solaris: use the `smbios` utility to retrieve the system BIOS vendor.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `bios_version`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the version of the system BIOS.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/bios_version` to retrieve the system BIOS version.
+* Solaris: use the `smbios` utility to retrieve the system BIOS version.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `boardassettag`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system board asset tag.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/board_asset_tag` to retrieve the system board asset tag.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `boardmanufacturer`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system board manufacturer.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/board_vendor` to retrieve the system board manufacturer.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `boardproductname`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system board product name.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/board_name` to retrieve the system board product name.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `boardserialnumber`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system board serial number.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/board_serial` to retrieve the system board serial number.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `chassisassettag`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system chassis asset tag.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/chassis_asset_tag` to retrieve the system chassis asset tag.
+* Solaris: use the `smbios` utility to retrieve the system chassis asset tag.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `chassistype`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system chassis type.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/chassis_type` to retrieve the system chassis type.
+* Solaris: use the `smbios` utility to retrieve the system chassis type.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `dhcp_servers`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** map
+
+**Purpose:**
+
+Return the DHCP servers for the system.
+
+**Elements:**
+
+* `<interface>` (ip) --- The DHCP server for the interface.
+* `system` (ip) --- The DHCP server for the default interface.
+
+
+**Resolution:**
+
+* Linux: parse `dhclient` lease files or use the `dhcpcd` utility to retrieve the DHCP servers.
+* Mac OSX: use the `ipconfig` utility to retrieve the DHCP servers.
+* Solaris: use the `dhcpinfo` utility to retrieve the DHCP servers.
+* Windows: use the `GetAdaptersAddresses` (Windows Server 2003: `GetAdaptersInfo`) function to retrieve the DHCP servers.
+
+
+([↑ Back to top](#page-nav))
+
+### `domain`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the network domain of the system.
+
+
+**Resolution:**
+
+* POSIX platforms: use the `getaddrinfo` function to retrieve the network domain.
+* Windows: query the registry to retrieve the network domain; falls back to the primary interface's domain if not set in the registry.
+
+
+([↑ Back to top](#page-nav))
+
+### `fqdn`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the fully qualified domain name (FQDN) of the system.
+
+
+**Resolution:**
+
+* POSIX platforms: use the `getaddrinfo` function to retrieve the FQDN or use host and domain names.
+* Windows: use the host and domain names to build the FQDN.
+
+
+([↑ Back to top](#page-nav))
+
+### `gid`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the group identifier (GID) of the user running facter.
+
+
+**Resolution:**
+
+* POSIX platforms: use the `getegid` fuction to retrieve the group identifier.
+
+
+([↑ Back to top](#page-nav))
+
+### `hardwareisa`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the hardware instruction set architecture (ISA).
+
+
+**Resolution:**
+
+* POSIX platforms: use `uname` to retrieve the hardware ISA.
+* Windows: use WMI to retrieve the hardware ISA.
+
+
+([↑ Back to top](#page-nav))
+
+### `hardwaremodel`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the operating system's hardware model.
+
+
+**Resolution:**
+
+* POSIX platforms: use the `uname` function to retrieve the OS hardware model.
+* Windows: use the `GetNativeSystemInfo` function to retrieve the OS hardware model.
+
+
+([↑ Back to top](#page-nav))
+
+### `hostname`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the host name of the system.
+
+
+**Resolution:**
+
+* POSIX platforms: use the `gethostname` function to retrieve the host name
+* Windows: use the `GetComputerNameExW` function to retrieve the host name.
+
+
+([↑ Back to top](#page-nav))
+
+### `id`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the user identifier (UID) of the user running facter.
+
+
+**Resolution:**
+
+* POSIX platforms: use the `geteuid` fuction to retrieve the user identifier.
+
+
+([↑ Back to top](#page-nav))
+
+### `interfaces`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the comma-separated list of network interface names.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface names.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface names.
+* Solaris: use the `ioctl` function to retrieve the network interface names.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface names.
+
+
+([↑ Back to top](#page-nav))
+
+### `ipaddress`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip
+
+**Purpose:**
+
+Return the IPv4 address for the default network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface address.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
+* Solaris: use the `ioctl` function to retrieve the network interface address.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
+
+
+([↑ Back to top](#page-nav))
+
+### `ipaddress6`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip6
+
+**Purpose:**
+
+Return the IPv6 address for the default network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface address.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
+* Solaris: use the `ioctl` function to retrieve the network interface address.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
+
+
+([↑ Back to top](#page-nav))
+
+### `ipaddress6_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip6
+
+**Purpose:**
+
+Return the IPv6 address for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface address.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
+* Solaris: use the `ioctl` function to retrieve the network interface address.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
+
+
+([↑ Back to top](#page-nav))
+
+### `ipaddress_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip
+
+**Purpose:**
+
+Return the IPv4 address for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface address.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
+* Solaris: use the `ioctl` function to retrieve the network interface address.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
+
+
+([↑ Back to top](#page-nav))
+
+### `ldom_<name>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return Solaris LDom information.
+
+
+**Resolution:**
+
+* Solaris: use the `virtinfo` utility to retrieve LDom information.
+
+
+([↑ Back to top](#page-nav))
+
+### `lsbdistcodename`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Linux Standard Base (LSB) distribution code name.
+
+
+**Resolution:**
+
+* Linux: use the `lsb_release` utility to retrieve the LSB distribution code name.
+
+**Caveats:**
+
+* Linux: Requires that the `lsb_release` utility be installed.
+
+([↑ Back to top](#page-nav))
+
+### `lsbdistdescription`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Linux Standard Base (LSB) distribution description.
+
+
+**Resolution:**
+
+* Linux: use the `lsb_release` utility to retrieve the LSB distribution description.
+
+**Caveats:**
+
+* Linux: Requires that the `lsb_release` utility be installed.
+
+([↑ Back to top](#page-nav))
+
+### `lsbdistid`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Linux Standard Base (LSB) distribution identifier.
+
+
+**Resolution:**
+
+* Linux: use the `lsb_release` utility to retrieve the LSB distribution identifier.
+
+**Caveats:**
+
+* Linux: Requires that the `lsb_release` utility be installed.
+
+([↑ Back to top](#page-nav))
+
+### `lsbdistrelease`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Linux Standard Base (LSB) distribution release.
+
+
+**Resolution:**
+
+* Linux: use the `lsb_release` utility to retrieve the LSB distribution release.
+
+**Caveats:**
+
+* Linux: Requires that the `lsb_release` utility be installed.
+
+([↑ Back to top](#page-nav))
+
+### `lsbmajdistrelease`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Linux Standard Base (LSB) major distribution release.
+
+
+**Resolution:**
+
+* Linux: use the `lsb_release` utility to retrieve the LSB major distribution release.
+
+**Caveats:**
+
+* Linux: Requires that the `lsb_release` utility be installed.
+
+([↑ Back to top](#page-nav))
+
+### `lsbminordistrelease`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Linux Standard Base (LSB) minor distribution release.
+
+
+**Resolution:**
+
+* Linux: use the `lsb_release` utility to retrieve the LSB minor distribution release.
+
+**Caveats:**
+
+* Linux: Requires that the `lsb_release` utility be installed.
+
+([↑ Back to top](#page-nav))
+
+### `lsbrelease`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Linux Standard Base (LSB) release.
+
+
+**Resolution:**
+
+* Linux: use the `lsb_release` utility to retrieve the LSB release.
+
+**Caveats:**
+
+* Linux: Requires that the `lsb_release` utility be installed.
+
+([↑ Back to top](#page-nav))
+
+### `macaddress`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** mac
+
+**Purpose:**
+
+Return the MAC address for the default network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface address.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
+* Solaris: use the `ioctl` function to retrieve the network interface address.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
+
+
+([↑ Back to top](#page-nav))
+
+### `macaddress_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** mac
+
+**Purpose:**
+
+Return the MAC address for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface address.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface address.
+* Solaris: use the `ioctl` function to retrieve the network interface address.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface address.
+
+
+([↑ Back to top](#page-nav))
+
+### `macosx_buildversion`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Mac OSX build version.
+
+
+**Resolution:**
+
+* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX build version.
+
+
+([↑ Back to top](#page-nav))
+
+### `macosx_productname`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Mac OSX product name.
+
+
+**Resolution:**
+
+* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product name.
+
+
+([↑ Back to top](#page-nav))
+
+### `macosx_productversion`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Mac OSX product version.
+
+
+**Resolution:**
+
+* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product version.
+
+
+([↑ Back to top](#page-nav))
+
+### `macosx_productversion_major`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Mac OSX product major version.
+
+
+**Resolution:**
+
+* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product major version.
+
+
+([↑ Back to top](#page-nav))
+
+### `macosx_productversion_minor`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Mac OSX product minor version.
+
+
+**Resolution:**
+
+* Mac OSX: use the `sw_vers` utility to retrieve the Mac OSX product minor version.
+
+
+([↑ Back to top](#page-nav))
+
+### `manufacturer`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system manufacturer.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/sys_vendor` to retrieve the system manufacturer.
+* Solaris: use the `prtconf` utility to retrieve the system manufacturer.
+* Windows: use WMI to retrieve the system manufacturer.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `memoryfree`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the display size of the free system memory (e.g. "1 GiB").
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the free system memory.
+* Mac OSX: use the `sysctl` function to retrieve the free system memory.
+* Solaris: use the `kstat` function to retrieve the free system memory.
+* Windows: use the `GetPerformanceInfo` function to retrieve the free system memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `memoryfree_mb`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** double
+
+**Purpose:**
+
+Return the size of the free system memory, in mebibytes.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the free system memory.
+* Mac OSX: use the `sysctl` function to retrieve the free system memory.
+* Solaris: use the `kstat` function to retrieve the free system memory.
+* Windows: use the `GetPerformanceInfo` function to retrieve the free system memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `memorysize`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the display size of the total system memory (e.g. "1 GiB").
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the total system memory.
+* Mac OSX: use the `sysctl` function to retrieve the total system memory.
+* Solaris: use the `kstat` function to retrieve the total system memory.
+* Windows: use the `GetPerformanceInfo` function to retrieve the total system memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `memorysize_mb`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** double
+
+**Purpose:**
+
+Return the size of the total system memory, in mebibytes.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the total system memory.
+* Mac OSX: use the `sysctl` function to retrieve the total system memory.
+* Solaris: use the `kstat` function to retrieve the total system memory.
+* Windows: use the `GetPerformanceInfo` function to retrieve the total system memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `mtu_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** integer
+
+**Purpose:**
+
+Return the Maximum Transmission Unit (MTU) for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `ioctl` function to retrieve the network interface MTU.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface MTU.
+* Solaris: use the `ioctl` function to retrieve the network interface MTU.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface MTU.
+
+
+([↑ Back to top](#page-nav))
+
+### `netmask`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip
+
+**Purpose:**
+
+Return the IPv4 netmask for the default network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
+* Solaris: use the `ioctl` function to retrieve the network interface netmask.
+* Windows: use the `GetAdaptersAddresses` (Windows Server 2003: `GetAdaptersInfo`) function to retrieve the network interface netmask.
+
+
+([↑ Back to top](#page-nav))
+
+### `netmask6`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip6
+
+**Purpose:**
+
+Return the IPv6 netmask for the default network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
+* Solaris: use the `ioctl` function to retrieve the network interface netmask.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface netmask.
+
+**Caveats:**
+
+* Windows Server 2003: IPv6 netmasks are not supported.
+
+([↑ Back to top](#page-nav))
+
+### `netmask6_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip6
+
+**Purpose:**
+
+Return the IPv6 netmask for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
+* Solaris: use the `ioctl` function to retrieve the network interface netmask.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface netmask.
+
+**Caveats:**
+
+* Windows Server 2003: IPv6 netmasks are not supported.
+
+([↑ Back to top](#page-nav))
+
+### `netmask_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip
+
+**Purpose:**
+
+Return the IPv4 netmask for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface netmask.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface netmask.
+* Solaris: use the `ioctl` function to retrieve the network interface netmask.
+* Windows: use the `GetAdaptersAddresses` (Windows Server 2003: `GetAdaptersInfo`) function to retrieve the network interface netmask.
+
+
+([↑ Back to top](#page-nav))
+
+### `network`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip
+
+**Purpose:**
+
+Return the IPv4 network for the default network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface network.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
+* Solaris: use the `ioctl` function to retrieve the network interface network.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
+
+
+([↑ Back to top](#page-nav))
+
+### `network6`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip6
+
+**Purpose:**
+
+Return the IPv6 network for the default network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface network.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
+* Solaris: use the `ioctl` function to retrieve the network interface network.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
+
+
+([↑ Back to top](#page-nav))
+
+### `network6_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip6
+
+**Purpose:**
+
+Return the IPv6 network for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface network.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
+* Solaris: use the `ioctl` function to retrieve the network interface network.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
+
+
+([↑ Back to top](#page-nav))
+
+### `network_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** ip
+
+**Purpose:**
+
+Return the IPv4 network for a network interface.
+
+
+**Resolution:**
+
+* Linux: use the `getifaddrs` function to retrieve the network interface network.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface network.
+* Solaris: use the `ioctl` function to retrieve the network interface network.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface network.
+
+
+([↑ Back to top](#page-nav))
+
+### `operatingsystem`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the name of the operating system.
+
+
+**Resolution:**
+
+* All platforms: default to the kernel name.
+* Linux: use various release files in `/etc` to retrieve the OS name.
+
+
+([↑ Back to top](#page-nav))
+
+### `operatingsystemmajrelease`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the major release of the operating system.
+
+
+**Resolution:**
+
+* All platforms: default to the major version of the kernel release.
+* Linux: parse the contents of release files in `/etc` to retrieve the OS major release.
+* Solaris: parse the contents of `/etc/release` to retrieve the OS major release.
+* Windows: use WMI to retrieve the OS major release.
+
+**Caveats:**
+
+* Linux: for Ubuntu, the major release is X.Y (e.g. "10.4").
+
+([↑ Back to top](#page-nav))
+
+### `operatingsystemrelease`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the release of the operating system.
+
+
+**Resolution:**
+
+* All platforms: default to the kernel release.
+* Linux: parse the contents of release files in `/etc` to retrieve the OS release.
+* Solaris: parse the contents of `/etc/release` to retrieve the OS release.
+* Windows: use WMI to retrieve the OS release.
+
+
+([↑ Back to top](#page-nav))
+
+### `osfamily`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the family of the operating system.
+
+
+**Resolution:**
+
+* All platforms: default to the kernel name.
+* Linux: map various Linux distributions to their base distribution (e.g. Ubuntu is a "Debian" distro).
+* Solaris: map various Solaris-based operating systems to the "Solaris" family.
+* Windows: use "windows" as the family name.
+
+
+([↑ Back to top](#page-nav))
+
+### `physicalprocessorcount`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** integer
+
+**Purpose:**
+
+Return the count of physical processors.
+
+
+**Resolution:**
+
+* Linux: parse the contents `/sys/devices/system/cpu/` and `/proc/cpuinfo` to retrieve the count of physical processors.
+* Mac OSX: use the `sysctl` function to retrieve the count of physical processors.
+* Solaris: use the `kstat` function to retrieve the count of physical processors.
+* Windows: use WMI to retrieve the count of physical processors.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `processor<N>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the model string of processor N.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/cpuinfo` to retrieve the processor model string.
+* Mac OSX: use the `sysctl` function to retrieve the processor model string.
+* Solaris: use the `kstat` function to retrieve the processor model string.
+* Windows: use WMI to retrieve the processor model string.
+
+
+([↑ Back to top](#page-nav))
+
+### `processorcount`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** integer
+
+**Purpose:**
+
+Return the count of logical processors.
+
+
+**Resolution:**
+
+* Linux: parse the contents `/sys/devices/system/cpu/` and `/proc/cpuinfo` to retrieve the count of logical processors.
+* Mac OSX: use the `sysctl` function to retrieve the count of logical processors.
+* Solaris: use the `kstat` function to retrieve the count of logical processors.
+* Windows: use WMI to retrieve the count of logical processors.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `productname`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system product name.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/product_name` to retrieve the system product name.
+* Mac OSX: use the `sysctl` function to retrieve the system product name.
+* Solaris: use the `smbios` utility to retrieve the system product name.
+* Windows: use WMI to retrieve the system product name.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `rubyplatform`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the platform Ruby was built for.
+
+
+**Resolution:**
+
+* All platforms: use `RUBY_PLATFORM` from the Ruby loaded by facter.
+
+**Caveats:**
+
+* All platforms: facter must be able to locate `libruby`.
+
+([↑ Back to top](#page-nav))
+
+### `rubysitedir`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the path to Ruby's site library directory.
+
+
+**Resolution:**
+
+* All platforms: use `RbConfig` from the Ruby loaded by facter.
+
+**Caveats:**
+
+* All platforms: facter must be able to locate `libruby`.
+
+([↑ Back to top](#page-nav))
+
+### `rubyversion`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the version of Ruby.
+
+
+**Resolution:**
+
+* All platforms: use `RUBY_VERSION` from the Ruby loaded by facter.
+
+**Caveats:**
+
+* All platforms: facter must be able to locate `libruby`.
+
+([↑ Back to top](#page-nav))
+
+### `selinux`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** boolean
+
+**Purpose:**
+
+Return whether Security-Enhanced Linux (SELinux) is enabled.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/self/mounts` to determine if SELinux is enabled.
+
+
+([↑ Back to top](#page-nav))
+
+### `selinux_config_mode`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the configured Security-Enhanced Linux (SELinux) mode.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/etc/selinux/config` to retrieve the configured SELinux mode.
+
+
+([↑ Back to top](#page-nav))
+
+### `selinux_config_policy`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the configured Security-Enhanced Linux (SELinux) policy.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/etc/selinux/config` to retrieve the configured SELinux policy.
+
+
+([↑ Back to top](#page-nav))
+
+### `selinux_current_mode`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the current Security-Enhanced Linux (SELinux) mode.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `<mountpoint>/enforce` to retrieve the current SELinux mode.
+
+
+([↑ Back to top](#page-nav))
+
+### `selinux_enforced`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** boolean
+
+**Purpose:**
+
+Return whether Security-Enhanced Linux (SELinux) is enforced.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `<mountpoint>/enforce` to retrieve the current SELinux mode.
+
+
+([↑ Back to top](#page-nav))
+
+### `selinux_policyversion`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the Security-Enhanced Linux (SELinux) policy version.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `<mountpoint>/policyvers` to retrieve the SELinux policy version.
+
+
+([↑ Back to top](#page-nav))
+
+### `serialnumber`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system product serial number.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/product_name` to retrieve the system product serial number.
+* Solaris: use the `smbios` utility to retrieve the system product serial number.
+* Windows: use WMI to retrieve the system product serial number.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `sp_<name>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return Mac OSX system profiler information.
+
+
+**Resolution:**
+
+* Mac OSX: use the `system_profiler` utility to retrieve system profiler information.
+
+
+([↑ Back to top](#page-nav))
+
+### `ssh<algorithm>key`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the SSH public key for the algorithm.
+
+
+**Resolution:**
+
+* POSIX platforms: parse SSH public key files.
+
+**Caveats:**
+
+* POSIX platforms: facter must be built with OpenSSL support.
+
+([↑ Back to top](#page-nav))
+
+### `sshfp_<algorithm>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the SSH fingerprints for the algorithm's public key.
+
+
+**Resolution:**
+
+* POSIX platforms: derive the SHA1 and SHA256 fingerprints; delimit with a new line character.
+
+**Caveats:**
+
+* POSIX platforms: facter must be built with OpenSSL support.
+
+([↑ Back to top](#page-nav))
+
+### `swapencrypted`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** boolean
+
+**Purpose:**
+
+Return whether or not the swap is encrypted.
+
+
+**Resolution:**
+
+* Mac OSX: use the `sysctl` function to retrieve swap encryption status.
+
+
+([↑ Back to top](#page-nav))
+
+### `swapfree`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the display size of the free swap memory (e.g. "1 GiB").
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the free swap memory.
+* Mac OSX: use the `sysctl` function to retrieve the free swap memory.
+* Solaris: use the `swapctl` function to retrieve the free swap memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `swapfree_mb`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** double
+
+**Purpose:**
+
+Return the size of the free swap memory, in mebibytes.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the free swap memory.
+* Mac OSX: use the `sysctl` function to retrieve the free swap memory.
+* Solaris: use the `swapctl` function to retrieve the free swap memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `swapsize`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the display size of the total swap memory (e.g. "1 GiB").
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the total swap memory.
+* Mac OSX: use the `sysctl` function to retrieve the total swap memory.
+* Solaris: use the `swapctl` function to retrieve the total swap memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `swapsize_mb`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** double
+
+**Purpose:**
+
+Return the size of the total swap memory, in mebibytes.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/meminfo` to retrieve the total swap memory.
+* Mac OSX: use the `sysctl` function to retrieve the total swap memory.
+* Solaris: use the `swapctl` function to retrieve the total swap memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `system32`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the path to the System32 directory on Windows.
+
+
+**Resolution:**
+
+* Windows: use the `SHGetFolderPath` function to retrieve the path to the System32 directory.
+
+
+([↑ Back to top](#page-nav))
+
+### `uptime`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system uptime.
+
+
+**Resolution:**
+
+* Linux: use the `sysinfo` function to retrieve the system uptime.
+* POSIX platforms: use the `uptime` utility to retrieve the system uptime.
+* Solaris: use the `kstat` function to retrieve the system uptime.
+* Windows: use WMI to retrieve the system uptime.
+
+
+([↑ Back to top](#page-nav))
+
+### `uptime_days`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** integer
+
+**Purpose:**
+
+Return the system uptime days.
+
+
+**Resolution:**
+
+* Linux: use the `sysinfo` function to retrieve the system uptime days.
+* POSIX platforms: use the `uptime` utility to retrieve the system uptime days.
+* Solaris: use the `kstat` function to retrieve the system uptime days.
+* Windows: use WMI to retrieve the system uptime days.
+
+
+([↑ Back to top](#page-nav))
+
+### `uptime_hours`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** integer
+
+**Purpose:**
+
+Return the system uptime hours.
+
+
+**Resolution:**
+
+* Linux: use the `sysinfo` function to retrieve the system uptime hours.
+* POSIX platforms: use the `uptime` utility to retrieve the system uptime hours.
+* Solaris: use the `kstat` function to retrieve the system uptime hours.
+* Windows: use WMI to retrieve the system uptime hours.
+
+
+([↑ Back to top](#page-nav))
+
+### `uptime_seconds`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** integer
+
+**Purpose:**
+
+Return the system uptime seconds.
+
+
+**Resolution:**
+
+* Linux: use the `sysinfo` function to retrieve the system uptime seconds.
+* POSIX platforms: use the `uptime` utility to retrieve the system uptime seconds.
+* Solaris: use the `kstat` function to retrieve the system uptime seconds.
+* Windows: use WMI to retrieve the system uptime seconds.
+
+
+([↑ Back to top](#page-nav))
+
+### `uuid`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the system product unique identifier.
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/sys/class/dmi/id/product_uuid` to retrieve the system product unique identifier.
+* Solaris: use the `smbios` utility to retrieve the system product unique identifier.
+
+**Caveats:**
+
+* Linux: kernel 2.6+ is required due to the reliance on sysfs.
+
+([↑ Back to top](#page-nav))
+
+### `xendomains`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2705,45 +2788,7 @@ Return a list of comma-separated active Xen domain names.
 
 ([↑ Back to top](#page-nav))
 
-## `zfs_featurenumbers`
-
-**Type:** string
-
-**Purpose:**
-
-Return the comma-delimited feature numbers for ZFS.
-
-
-**Resolution:**
-
-* Solaris: use the `zfs` utility to retrieve the feature numbers for ZFS
-
-**Caveats:**
-
-* Solaris: the `zfs` utility must be present.
-
-([↑ Back to top](#page-nav))
-
-## `zfs_version`
-
-**Type:** string
-
-**Purpose:**
-
-Return the version for ZFS.
-
-
-**Resolution:**
-
-* Solaris: use the `zfs` utility to retrieve the version for ZFS
-
-**Caveats:**
-
-* Solaris: the `zfs` utility must be present.
-
-([↑ Back to top](#page-nav))
-
-## `zone_<name>_brand`
+### `zone_<name>_brand`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2764,7 +2809,7 @@ Return the brand for the Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zone_<name>_iptype`
+### `zone_<name>_iptype`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2785,7 +2830,7 @@ Return the IP type for the Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zone_<name>_name`
+### `zone_<name>_name`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2806,7 +2851,7 @@ Return the name for the Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zone_<name>_uuid`
+### `zone_<name>_uuid`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2827,7 +2872,7 @@ Return the unique identifier for the Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zone_<name>_id`
+### `zone_<name>_id`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2848,7 +2893,7 @@ Return the zone identifier for the Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zone_<name>_path`
+### `zone_<name>_path`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2869,7 +2914,7 @@ Return the zone path for the Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zone_<name>_status`
+### `zone_<name>_status`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2890,7 +2935,7 @@ Return the zone state for the Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zonename`
+### `zonename`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2911,7 +2956,7 @@ Return the name of the current Solaris zone.
 
 ([↑ Back to top](#page-nav))
 
-## `zones`
+### `zones`
 
 This legacy fact is hidden by default in Facter's command-line output.
 
@@ -2929,44 +2974,6 @@ Return the count of Solaris zones.
 **Caveats:**
 
 * Solaris: the `zoneadm` utility must be present.
-
-([↑ Back to top](#page-nav))
-
-## `zpool_featurenumbers`
-
-**Type:** string
-
-**Purpose:**
-
-Return the comma-delimited feature numbers for ZFS storage pools.
-
-
-**Resolution:**
-
-* Solaris: use the `zpool` utility to retrieve the feature numbers for ZFS storage pools
-
-**Caveats:**
-
-* Solaris: the `zpool` utility must be present.
-
-([↑ Back to top](#page-nav))
-
-## `zpool_version`
-
-**Type:** string
-
-**Purpose:**
-
-Return the version for ZFS storage pools.
-
-
-**Resolution:**
-
-* Solaris: use the `zpool` utility to retrieve the version for ZFS storage pools
-
-**Caveats:**
-
-* Solaris: the `zpool` utility must be present.
 
 ([↑ Back to top](#page-nav))
 

@@ -1,12 +1,13 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
+toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
 
 ## About Resource Types
 
@@ -462,29 +463,29 @@ comment.
 
 Example:
 
-    cron { logrotate:
-      command => "/usr/sbin/logrotate",
-      user    => root,
+    cron { 'logrotate':
+      command => '/usr/sbin/logrotate',
+      user    => 'root',
       hour    => 2,
-      minute  => 0
+      minute  => 0,
     }
 
 Note that all periodic attributes can be specified as an array of values:
 
-    cron { logrotate:
-      command => "/usr/sbin/logrotate",
-      user    => root,
-      hour    => [2, 4]
+    cron { 'logrotate':
+      command => '/usr/sbin/logrotate',
+      user    => 'root',
+      hour    => [2, 4],
     }
 
 ...or using ranges or the step syntax `*/2` (although there's no guarantee
 that your `cron` daemon supports these):
 
-    cron { logrotate:
-      command => "/usr/sbin/logrotate",
-      user    => root,
+    cron { 'logrotate':
+      command => '/usr/sbin/logrotate',
+      user    => 'root',
       hour    => ['2-4'],
-      minute  => '*/10'
+      minute  => '*/10',
     }
 
 An important note: _the Cron type will not reset parameters that are
@@ -1112,6 +1113,7 @@ parent directories of a file, the file resource will autorequire them.
   <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether the file should exist, and if so what...</em>
   <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
   <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
+  <a href="#file-attribute-checksum_value">checksum_value</a>          =&gt; <em># The checksum of the source contents. Only md5...</em>
   <a href="#file-attribute-content">content</a>                 =&gt; <em># The desired contents of a file, as a string...</em>
   <a href="#file-attribute-ctime">ctime</a>                   =&gt; <em># A read-only state to check the file ctime. On...</em>
   <a href="#file-attribute-force">force</a>                   =&gt; <em># Perform the file operation even if it will...</em>
@@ -1160,22 +1162,21 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Whether the file should exist, and if so what kind of file it should be.
 Possible values are `present`, `absent`, `file`, `directory`, and `link`.
 
-* `present` will accept any form of file existence, and will create a
+* `present` accepts any form of file existence, and creates a
   normal file if the file is missing. (The file will have no content
   unless the `content` or `source` attribute is used.)
-* `absent` will make sure the file doesn't exist, deleting it
-  if necessary.
-* `file` will make sure it's a normal file, and enables use of the
-  `content` or `source` attribute.
-* `directory` will make sure it's a directory, and enables use of the
-  `source`, `recurse`, `recurselimit`, `ignore`, and `purge` attributes.
-* `link` will make sure the file is a symlink, and **requires** that you
-  also set the `target` attribute. Symlinks are supported on all Posix
+* `absent` ensures the file doesn't exist, and deletes it if necessary.
+* `file` ensures it's a normal file, and enables use of the `content` or
+  `source` attribute.
+* `directory` ensures it's a directory, and enables use of the `source`,
+  `recurse`, `recurselimit`, `ignore`, and `purge` attributes.
+* `link` ensures the file is a symlink, and **requires** that you also
+  set the `target` attribute. Symlinks are supported on all Posix
   systems and on Windows Vista / 2008 and higher. On Windows, managing
-  symlinks requires puppet agent's user account to have the "Create
+  symlinks requires Puppet agent's user account to have the "Create
   Symbolic Links" privilege; this can be configured in the "User Rights
-  Assignment" section in the Windows policy editor. By default, puppet
-  agent runs as the Administrator account, which does have this privilege.
+  Assignment" section in the Windows policy editor. By default, Puppet
+  agent runs as the Administrator account, which has this privilege.
 
 Puppet avoids destroying directories unless the `force` attribute is set
 to `true`. This means that if a file is currently a directory, setting
@@ -1198,7 +1199,9 @@ path to another file as the ensure value, it is equivalent to specifying
     }
 
 However, we recommend using `link` and `target` explicitly, since this
-behavior can be harder to read.
+behavior can be harder to read and is
+[deprecated](https://docs.puppetlabs.com/puppet/4.3/reference/deprecated_language.html)
+as of Puppet 4.3.0.
 
 Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
 
@@ -1255,6 +1258,16 @@ Valid values are `md5`, `md5lite`, `sha256`, `sha256lite`, `mtime`, `ctime`, `no
 
 ([↑ Back to file attributes](#file-attributes))
 
+<h4 id="file-attribute-checksum_value">checksum_value</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+The checksum of the source contents. Only md5 and sha256 are supported when
+specifying this parameter. If this parameter is set, source_permissions will be
+assumed to be false, and ownership and permissions will not be read from source.
+
+([↑ Back to file attributes](#file-attributes))
+
 <h4 id="file-attribute-content">content</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -1281,8 +1294,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](http://docs.puppetlabs.com/references/latest/function.html#template)
-or [file](http://docs.puppetlabs.com/references/latest/function.html#file)
+[template](https://docs.puppetlabs.com/references/latest/function.html#template)
+or [file](https://docs.puppetlabs.com/references/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -1631,6 +1644,7 @@ mount points.
 * Fully qualified paths to locally available files (including files on NFS
 shares or Windows mapped drives).
 * `file:` URIs, which behave the same as local file paths.
+* `http:` URIs, which point to files served by common web servers
 
 The normal form of a `puppet:` URI is:
 
@@ -1645,6 +1659,11 @@ Unlike `content`, the `source` attribute can be used to recursively copy
 directories if the `recurse` attribute is set to `true` or `remote`. If
 a source directory contains symlinks, use the `links` attribute to
 specify whether to recreate links or follow them.
+
+*HTTP* URIs cannot be used to recursively synchronize whole directory
+trees. It is also not possible to use `source_permissions` values other
+than `ignore`. That's because HTTP servers do not transfer any metadata
+that translates to ownership or permission details.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -1836,7 +1855,7 @@ Filebuckets are used for the following features:
   puppet master's filebucket with the _desired_ content for each file,
   then instructs the agent to retrieve the content for a specific
   checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](http://docs.puppetlabs.com/references/latest/indirection.html#catalog).
+  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/references/latest/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -2323,6 +2342,7 @@ switchport characteristics (speed, duplex).
 <pre><code>interface { 'resource title':
   <a href="#interface-attribute-name">name</a>                =&gt; <em># <strong>(namevar)</strong> The interface's...</em>
   <a href="#interface-attribute-ensure">ensure</a>              =&gt; <em># The basic property that the resource should be...</em>
+  <a href="#interface-attribute-access_vlan">access_vlan</a>         =&gt; <em># Interface static access vlan.  Values can match...</em>
   <a href="#interface-attribute-allowed_trunk_vlans">allowed_trunk_vlans</a> =&gt; <em># Allowed list of Vlans that this trunk can...</em>
   <a href="#interface-attribute-description">description</a>         =&gt; <em># Interface...</em>
   <a href="#interface-attribute-device_url">device_url</a>          =&gt; <em># The URL at which the router or switch can be...</em>
@@ -2331,7 +2351,7 @@ switchport characteristics (speed, duplex).
   <a href="#interface-attribute-etherchannel">etherchannel</a>        =&gt; <em># Channel group this interface is part of.  Values </em>
   <a href="#interface-attribute-ipaddress">ipaddress</a>           =&gt; <em># IP Address of this interface. Note that it might </em>
   <a href="#interface-attribute-mode">mode</a>                =&gt; <em># Interface switchport mode.  Valid values are...</em>
-  <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan (for access mode only)....</em>
+  <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan when trunking.  Values can </em>
   <a href="#interface-attribute-provider">provider</a>            =&gt; <em># The specific backend to use for this `interface` </em>
   <a href="#interface-attribute-speed">speed</a>               =&gt; <em># Interface speed.  Valid values are `auto`...</em>
   # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
@@ -2352,6 +2372,16 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The basic property that the resource should be in.
 
 Valid values are `present` (also called `no_shutdown`), `absent` (also called `shutdown`).
+
+([↑ Back to interface attributes](#interface-attributes))
+
+<h4 id="interface-attribute-access_vlan">access_vlan</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Interface static access vlan.
+
+Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2395,7 +2425,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport encapsulation.
 
-Valid values are `none`, `dot1q`, `isl`.
+Valid values are `none`, `dot1q`, `isl`, `negotiate`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2433,7 +2463,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport mode.
 
-Valid values are `access`, `trunk`.
+Valid values are `access`, `trunk`, `dynamic auto`, `dynamic desirable`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2441,7 +2471,7 @@ Valid values are `access`, `trunk`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Interface native vlan (for access mode only).
+Interface native vlan when trunking.
 
 Values can match `/^\d+/`.
 
@@ -2572,7 +2602,7 @@ macauthorization
 <h3 id="macauthorization-description">Description</h3>
 
 Manage the Mac OS X authorization database. See the
-[Apple developer site](http://developer.apple.com/documentation/Security/Conceptual/Security_Overview/Security_Services/chapter_4_section_5.html)
+[Apple developer site](https://developer.apple.com/documentation/Security/Conceptual/Security_Overview/Security_Services/chapter_4_section_5.html)
 for more information.
 
 Note that authorization store directives with hyphens in their names have
@@ -7081,6 +7111,12 @@ value. On packaging systems that manage configuration files separately
 from "normal" system files, you can uninstall config files by
 specifying `purged` as the ensure value. This defaults to `installed`.
 
+Version numbers must match the full version to install, including
+release if the provider uses a release moniker. Ranges or semver
+patterns are not accepted except for the `gem` package provider. For
+example, to install the bash package from the rpm
+`bash-4.1.2-29.el6.x86_64.rpm`, use the string `'4.1.2-29.el6'`.
+
 Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`. Values can match `/./`.
 
 ([↑ Back to package attributes](#package-attributes))
@@ -7396,7 +7432,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`.
-* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22`.
+* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23`.
 * Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
@@ -8410,7 +8446,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](http://docs.puppetlabs.com/references/latest/metaparameter.html#schedule)
+[`schedule`](https://docs.puppetlabs.com/references/latest/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -9345,7 +9381,7 @@ framework for Mac OS X (and may be available for use on other platforms).
 
 For `launchd` documentation, see:
 
-* <http://developer.apple.com/macosx/launchd.html>
+* <https://developer.apple.com/macosx/launchd.html>
 * <http://launchd.macosforge.org/>
 
 This provider reads plists out of the following directories:
@@ -9376,7 +9412,7 @@ be in a state of "stopped/enabled" or "running/disabled".
 
 Note that this provider does not support overriding 'restart' or 'status'.
 
-* Required binaries: `/bin/launchctl`, `/usr/bin/plutil`.
+* Required binaries: `/bin/launchctl`.
 * Default for `operatingsystem` == `darwin`.
 * Supported features: `enableable`, `refreshable`.
 
@@ -9497,7 +9533,7 @@ is not yet supported.
 Manages `systemd` services using `systemctl`.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -9981,7 +10017,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](http://docs.puppetlabs.com/references/latest/metaparameter.html#stage).
+[the `stage` metaparameter](https://docs.puppetlabs.com/references/latest/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -10212,7 +10248,7 @@ user's roles, the user resource will autorequire those role accounts.
   <a href="#user-attribute-purge_ssh_keys">purge_ssh_keys</a>       =&gt; <em># Whether to purge authorized SSH keys for this...</em>
   <a href="#user-attribute-role_membership">role_membership</a>      =&gt; <em># Whether specified roles should be considered the </em>
   <a href="#user-attribute-roles">roles</a>                =&gt; <em># The roles the user has.  Multiple roles should...</em>
-  <a href="#user-attribute-salt">salt</a>                 =&gt; <em># This is the 32 byte salt used to generate the...</em>
+  <a href="#user-attribute-salt">salt</a>                 =&gt; <em># This is the 32-byte salt used to generate the...</em>
   <a href="#user-attribute-shell">shell</a>                =&gt; <em># The user's login shell.  The shell must exist...</em>
   <a href="#user-attribute-system">system</a>               =&gt; <em># Whether the user is a system user, according to...</em>
   <a href="#user-attribute-uid">uid</a>                  =&gt; <em># The user ID; must be specified numerically. If...</em>
@@ -10376,8 +10412,9 @@ Requires features manages_aix_lam.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 This is the number of iterations of a chained computation of the
-password hash (http://en.wikipedia.org/wiki/PBKDF2).  This parameter
-is used in OS X. This field is required for managing passwords on OS X >= 10.8.
+[PBKDF2 password hash](https://en.wikipedia.org/wiki/PBKDF2). This parameter
+is used in OS X, and is required for managing passwords on OS X 10.8 and
+newer.
 
 
 
@@ -10443,25 +10480,26 @@ Valid values are `inclusive`, `minimum`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The user's password, in whatever encrypted format the local
-system requires.
+The user's password, in whatever encrypted format the local system
+requires. Consult your operating system's documentation for acceptable password
+encryption formats and requirements.
 
-* Most modern Unix-like systems use salted SHA1 password hashes. You can use
-  Puppet's built-in `sha1` function to generate a hash from a password.
-* Mac OS X 10.5 and 10.6 also use salted SHA1 hashes.
-* Mac OS X 10.7 (Lion) uses salted SHA512 hashes. The Puppet Labs [stdlib][]
-  module contains a `str2saltedsha512` function which can generate password
-  hashes for Lion.
-* Mac OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. When
-  managing passwords on these systems the salt and iterations properties
-  need to be specified as well as the password.
+* Mac OS X 10.5 and 10.6, and some older Linux distributions, use salted SHA1
+  hashes. You can use Puppet's built-in `sha1` function to generate a salted SHA1
+  hash from a password.
+* Mac OS X 10.7 (Lion), and many recent Linux distributions, use salted SHA512
+  hashes. The Puppet Labs [stdlib][] module contains a `str2saltedsha512` function
+  which can generate password hashes for these operating systems.
+* OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. When managing passwords
+  on these systems, the `salt` and `iterations` attributes need to be specified as
+  well as the password.
 * Windows passwords can only be managed in cleartext, as there is no Windows API
   for setting the password hash.
 
 [stdlib]: https://github.com/puppetlabs/puppetlabs-stdlib/
 
-Be sure to enclose any value that includes a dollar sign ($) in single
-quotes (') to avoid accidental variable interpolation.
+Enclose any value that includes a dollar sign ($) in single quotes (') to avoid
+accidental variable interpolation.
 
 
 
@@ -10593,7 +10631,7 @@ Requires features manages_solaris_rbac.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-This is the 32 byte salt used to generate the PBKDF2 password used in
+This is the 32-byte salt used to generate the PBKDF2 password used in
 OS X. This field is required for managing passwords on OS X >= 10.8.
 
 
@@ -10660,7 +10698,7 @@ User management for AIX.
 
 User management on OS X.
 
-* Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/plutil`, `/usr/bin/uuidgen`.
+* Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/uuidgen`.
 * Default for `operatingsystem` == `darwin`.
 * Supported features: `manages_password_salt`, `manages_passwords`, `manages_shell`.
 
@@ -12264,4 +12302,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700

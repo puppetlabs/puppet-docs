@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Resource Type: cron'
 canonical: /puppet/latest/reference/types/cron.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
 
 cron
 -----
@@ -29,29 +29,29 @@ comment.
 
 Example:
 
-    cron { logrotate:
-      command => "/usr/sbin/logrotate",
-      user    => root,
+    cron { 'logrotate':
+      command => '/usr/sbin/logrotate',
+      user    => 'root',
       hour    => 2,
-      minute  => 0
+      minute  => 0,
     }
 
 Note that all periodic attributes can be specified as an array of values:
 
-    cron { logrotate:
-      command => "/usr/sbin/logrotate",
-      user    => root,
-      hour    => [2, 4]
+    cron { 'logrotate':
+      command => '/usr/sbin/logrotate',
+      user    => 'root',
+      hour    => [2, 4],
     }
 
 ...or using ranges or the step syntax `*/2` (although there's no guarantee
 that your `cron` daemon supports these):
 
-    cron { logrotate:
-      command => "/usr/sbin/logrotate",
-      user    => root,
+    cron { 'logrotate':
+      command => '/usr/sbin/logrotate',
+      user    => 'root',
       hour    => ['2-4'],
-      minute  => '*/10'
+      minute  => '*/10',
     }
 
 An important note: _the Cron type will not reset parameters that are
@@ -254,4 +254,4 @@ Optional; if specified, must be between 0 and 7, inclusive, with
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700

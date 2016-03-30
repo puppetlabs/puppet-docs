@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/lang_data_string.html"
 [data type]: ./lang_data_type.html
 [enum]: ./lang_data_abstract.html#enum
 [pattern]: ./lang_data_abstract.html#pattern
-[function_statement]: ./lang_functions.html#statement-function-calls
+[function_statement]: ./lang_functions.html#list-of-built-in-statement-functions
 [function_chain]: ./lang_functions.html#chained-function-calls
 [hash access]: ./lang_data_hash.html#accessing-values
 [array access]: ./lang_data_array.html#accessing-values

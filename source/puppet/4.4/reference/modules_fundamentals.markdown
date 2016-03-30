@@ -11,13 +11,13 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 
 [plugins]: /guides/plugins_in_modules.html
 
-[external facts]: /facter/latest/custom_facts.html#external-facts
-[custom facts]: /facter/latest/custom_facts.html
+[external facts]: {{facter}}/custom_facts.html#external-facts
+[custom facts]: {{facter}}/custom_facts.html
 [classes]: ./lang_classes.html
 [defined_types]: ./lang_defined_types.html
 [enc]: /guides/external_nodes.html
 [environment]: ./environments.html
-[templates]: /guides/templating.html
+[templates]: ./lang_template.html
 [forge]: http://forge.puppetlabs.com
 [file_function]: ./function.html#file
 [reserved names]: ./lang_reserved.html
@@ -238,7 +238,7 @@ mymodule/tests/init.pp
 
 For help getting started writing your module, see the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html).
 
-You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as [described in the "Module Layout" section above](#module_layout). If you take this route, you **must** ensure that your `metadata.json` file is properly formatted or your module **will not work**.
+You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as [described in the "Module Layout" section above](#module-layout). If you take this route, you **must** ensure that your `metadata.json` file is properly formatted or your module **will not work**.
 
 * [See here][classes] for more information on classes
 * [See here][defined_types] for more information on defined types

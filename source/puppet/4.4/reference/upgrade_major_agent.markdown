@@ -41,7 +41,7 @@ The `puppet_agent`  module is completely inert on nodes already running Puppet 4
 ### Install the module on Puppet servers
 
 * If you manage your Puppet code manually, install it by running `puppet module install puppetlabs/puppet_agent --environment <ENVIRONMENT>`
-* If you manage your code with [r10k](/pe/latest/r10k.html), add the module and its dependencies to your Puppetfile.
+* If you manage your code with [r10k]({{pe}}/r10k.html), add the module and its dependencies to your Puppetfile.
 * If you manage your code some other way, install `puppet_agent` as you would any other module.
 
 ### Assign the `puppet_agent` class to nodes

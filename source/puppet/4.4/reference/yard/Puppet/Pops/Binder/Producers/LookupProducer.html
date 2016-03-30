@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="../../../../_index.html">Index (L)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span> &raquo; <span class='title'><span class='object_link'><a href="../Producers.html" title="Puppet::Pops::Binder::Producers (module)">Producers</a></span></span>
+    <span class='title'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span> &raquo; <span class='title'><span class='object_link'><a href="../Producers.html" title="Puppet::Pops::Binder::Producers (module)">Producers</a></span></span>
      &raquo; 
     <span class="title">LookupProducer</span>
   
@@ -303,7 +303,7 @@
         <span class='name'>injector</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Injector.html" title="Puppet::Pops::Binder::Injector (class)">Puppet::Pops::Binder::Injector</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Injector.html" title="Puppet::Pops::Binder::Injector (class)">Injector</a></span></tt>)</span>
       
       
       
@@ -318,7 +318,7 @@
         <span class='name'>binder</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../Bindings/Binding.html" title="Puppet::Pops::Binder::Bindings::Binding (class)">Puppet::Pops::Binder::Bindings::Binding</a></span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Bindings/Binding.html" title="Puppet::Pops::Binder::Bindings::Binding (class)">Bindings::Binding</a></span></tt>, <tt>nil</tt>)</span>
       
       
       
@@ -374,7 +374,7 @@
       
         <li>
           <span class="name">:transformer</span>
-          <span class="type">(<tt><span class='object_link'>Puppet::Pops::Model::LambdaExpression</span></tt>)</span>
+          <span class="type">(<tt><span class='object_link'>Model::LambdaExpression</span></tt>)</span>
           <span class="default">
             
               &mdash; default:
@@ -389,7 +389,7 @@
       
         <li>
           <span class="name">:type</span>
-          <span class="type">(<tt><span class='object_link'><a href="../../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Puppet::Pops::Types::PAnyType</a></span></tt>)</span>
+          <span class="type">(<tt><span class='object_link'><a href="../../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">Types::PAnyType</a></span></tt>)</span>
           <span class="default">
             
           </span>
@@ -437,15 +437,15 @@
       <pre class="lines">
 
 
-327
-328
-329
 330
 331
-332</pre>
+332
+333
+334
+335</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 327</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 330</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_injector'>injector</span><span class='comma'>,</span> <span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='kw'>super</span>
@@ -489,12 +489,12 @@
       <pre class="lines">
 
 
-317
-318
-319</pre>
+320
+321
+322</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 317</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 320</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -530,12 +530,12 @@
       <pre class="lines">
 
 
-314
-315
-316</pre>
+317
+318
+319</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 314</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 317</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type'>type</span>
   <span class='ivar'>@type</span>
@@ -580,12 +580,12 @@
       <pre class="lines">
 
 
-337
-338
-339</pre>
+340
+341
+342</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 337</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/producers.rb', line 340</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_internal_produce'>internal_produce</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup_type'>lookup_type</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -600,7 +600,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:50 2016 by
+  Generated on Wed Mar 16 18:28:52 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

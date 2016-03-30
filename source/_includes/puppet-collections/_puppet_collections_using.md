@@ -2,4 +2,4 @@ A Puppet Collection (PC) is numbered with an integer, beginning with Puppet Coll
 
 The way you access a Puppet Collection depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Collection by adding it as a package repository.
 
-> **Note:** OS X and Windows support the Puppet agent software only, via the [`puppet-agent` pacakge](/puppet/latest/reference/about_agent.html). OS X `puppet-agent` packages are organized by Puppet Collection; for more information, see [the OS X installation instructions](./install_osx.html).
+> **Note:** OS X and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/reference/about_agent.html). OS X `puppet-agent` packages are organized by Puppet Collection; for more information, see [the OS X installation instructions](./install_osx.html).

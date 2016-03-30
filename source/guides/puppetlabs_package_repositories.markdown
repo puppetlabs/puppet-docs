@@ -38,7 +38,7 @@ To enable the repository, run the command below that corresponds to your OS vers
 
     sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-5.noarch.rpm
 
-> **Note:** For recent versions of Puppet, we only ship new versions of the `puppet-agent` package for RHEL 5.
+> **Note:** For recent versions of Puppet, we only ship new versions of the [`puppet-agent`](/puppet/latest/reference/about_agent.html) package for RHEL 5.
 
 #### Fedora 22
 
@@ -142,10 +142,10 @@ There are two kinds of nightly repo for each product:
 3. Click through to your repository's `repo_configs/rpm` directory, and identify the `.repo` file that applies to your operating system. This looks like `pl-puppet-<COMMIT>-el-7-x86_64.repo`.
 4. Download the `.repo` file into the system's `/etc/yum.repos.d/` directory. For example:
 
-    ~~~ bash
-    cd /etc/yum.repos.d
-    sudo wget https://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/rpm/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-el-7-x86_64.repo
-    ~~~
+   ~~~ bash
+   cd /etc/yum.repos.d
+   sudo wget https://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/rpm/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-el-7-x86_64.repo
+   ~~~
 5. Upgrade or install the product as usual.
 
 ### Enabling Nightly Repositories on Apt-based Systems
@@ -155,9 +155,9 @@ There are two kinds of nightly repo for each product:
 3. Click through to your repository's `repo_configs/deb` directory, and identify the `.list` file that applies to your operating system. This looks like `pl-puppet-<COMMIT>-precise.list`.
 4. Download the `.list` file into the system's `/etc/apt/sources.list.d/` directory. For example:
 
-    ~~~ bash
-    cd /etc/apt/sources.list.d
-    sudo wget https://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/deb/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-precise.list
-    ~~~
+   ~~~ bash
+   cd /etc/apt/sources.list.d
+   sudo wget https://nightlies.puppetlabs.com/puppet/30e4febe85e24c278a2830530965871dc3c0eec1/repo_configs/deb/pl-puppet-30e4febe85e24c278a2830530965871dc3c0eec1-precise.list
+   ~~~
 5. Run `sudo apt-get update`.
 6. Upgrade or install the product as usual.

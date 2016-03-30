@@ -67,7 +67,13 @@
 from the master.  The master must be configured to be a CA.  The returned
 CRL is always in the <code>.pem</code> format.</p>
 
-<p>In all requests the <code>:environment</code> and <code>:nodename</code> must be given, but neither has any bearing on the request.</p>
+<p>Under Puppet Server&#39;s CA service, the <code>environment</code> parameter is ignored and can
+be omitted. Under a Rack or WEBrick Puppet master, <code>environment</code> is required and
+must be a valid environment, but it has no effect on the response.</p>
+
+<p>The <code>:nodename</code> should always be <code>ca</code>, due to the default auth.conf rules for
+WEBrick and Rack Puppet masters. (You can use a different <code>:nodename</code> if you
+change the auth rules, but it will have no effect on the response.)</p>
 
 <h2>Find</h2>
 
@@ -252,7 +258,7 @@ standard scheme such as json/pson/yaml, so no schema is applicable.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:44 2016 by
+  Generated on Wed Mar 16 18:28:44 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

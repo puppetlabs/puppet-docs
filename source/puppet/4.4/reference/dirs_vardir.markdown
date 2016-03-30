@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/dirs_vardir.html"
 
 [confdir]: ./dirs_confdir.html
 [config_ref]: ./configuration.html
-[puppetserver_conf]: /puppetserver/2.2/configuration.html#puppetserverconf
+[puppetserver_conf]: {{puppetserver}}/config_file_puppetserver.html
 
 Puppet's cache directory, sometimes called `vardir`, contains **dynamic and/or growing data** that Puppet creates automatically in the course of its normal operations. Some of this data can be mined for interesting analysis, or to integrate other tools with Puppet; other parts are just infrastructure and should be ignored by most or all users.
 
@@ -64,7 +64,6 @@ The default layout of the vardir is as follows. Most of the files and directorie
 * [`puppet-module` (`module_working_dir`)][module_working_dir]
     * [`skeleton` (`module_skeleton_dir`)][module_skeleton_dir]
 * [`reports` (`reportdir`)][reportdir] --- When the `store` report is enabled, a Puppet master will store all reports received from agents as YAML files in this directory. These can be easily mined for analysis by an out-of-band process.
-* [`rrd` (`rrddir`)][rrddir]
 * [`server_data` (`serverdatadir`)][serverdatadir]
 * [`state` (`statedir`)][statedir]
     * [`agent_catalog_run.lock` (`agent_catalog_run_lockfile`)][agent_catalog_run_lockfile]
@@ -73,10 +72,8 @@ The default layout of the vardir is as follows. Most of the files and directorie
     * [`graphs` (`graphdir`)][graphdir] --- Agent nodes write a set of .dot graph files to this directory when graphing is enabled. These graphs can be used to diagnose problems with catalog application, as well as to visualize the configuration catalog.
     * [`last_run_summary.yaml` (`lastrunfile`)][lastrunfile]
     * [`last_run_report.yaml` (`lastrunreport`)][lastrunreport]
-    * [`localconfig` (`localconfig`)][localconfig]
     * [`resources.txt` (`resourcefile`)][resourcefile]
     * [`state.yaml` (`statefile`)][statefile]
-* [`templates` (`templatedir`)][templatedir] --- This directory generally shouldn't be used; templates should be stored in modules.
 * [`yaml` (`yamldir`)][yamldir]
 
 [bucketdir]: ./configuration.html#bucketdir
@@ -96,7 +93,6 @@ The default layout of the vardir is as follows. Most of the files and directorie
 [masterlog]: ./configuration.html#masterlog
 [puppetdlog]: ./configuration.html#puppetdlog
 [reportdir]: ./configuration.html#reportdir
-[rrddir]: ./configuration.html#rrddir
 [rundir]: ./configuration.html#rundir
 [pidfile]: ./configuration.html#pidfile
 [serverdatadir]: ./configuration.html#serverdatadir
@@ -107,8 +103,6 @@ The default layout of the vardir is as follows. Most of the files and directorie
 [graphdir]: ./configuration.html#graphdir
 [lastrunfile]: ./configuration.html#lastrunfile
 [lastrunreport]: ./configuration.html#lastrunreport
-[localconfig]: ./configuration.html#localconfig
 [resourcefile]: ./configuration.html#resourcefile
 [statefile]: ./configuration.html#statefile
-[templatedir]: ./configuration.html#templatedir
 [yamldir]: ./configuration.html#yamldir

@@ -4,11 +4,11 @@ title: "Installing Puppet: Pre-Install Tasks"
 canonical: "/puppet/latest/reference/install_pre.html"
 ---
 
-[peinstall]: /pe/latest/install_basic.html
+[peinstall]: {{pe}}/install_basic.html
 [sysreqs]: ./system_requirements.html
 [ruby]: ./system_requirements.html#basic-requirements
 [architecture]: /puppet/latest/reference/architecture.html
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}/
 [server_setting]: ./configuration.html#server
 
 > **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
@@ -62,11 +62,11 @@ Once these tasks are complete, you can install Puppet.
 
 Install Puppet Server before installing Puppet on your agent nodes.
 
-* [Installing Puppet Server](/puppetserver/2.2/install_from_packages.html)
+* [Installing Puppet Server]({{puppetserver}}/install_from_packages.html)
 
 If you're using PuppetDB, install it once Puppet Server is up and running.
 
-* [Installing PuppetDB](/puppetdb/latest/install_via_module.html)
+* [Installing PuppetDB]({{puppetdb}}/install_via_module.html)
 
 Once Puppet Server is installed and configured, you can install agents:
 

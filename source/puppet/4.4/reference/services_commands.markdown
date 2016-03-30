@@ -3,8 +3,8 @@ layout: default
 title: "Puppet's Commands"
 ---
 
-[facter_cli]: /facter/latest
-[hiera_cli]: /hiera/latest/command_line.html
+[facter_cli]: {{facter}}
+[hiera_cli]: {{hiera}}/command_line.html
 [arch]: ./architecture.html
 [agent_unix]: ./services_agent_unix.html
 [agent_windows]: ./services_agent_windows.html
@@ -30,9 +30,9 @@ title: "Puppet's Commands"
 [help_man]: ./man/help.html
 [man_man]: ./man/man.html
 [all_manpages]: ./man/
-[about_server]: /puppetserver/2.2/services_master_puppetserver.html
-[server_vs_passenger]: /puppetserver/2.2/puppetserver_vs_passenger.html
-[subcommands]: /puppetserver/2.2/subcommands.html
+[about_server]: {{puppetserver}}/services_master_puppetserver.html
+[server_vs_passenger]: {{puppetserver}}/puppetserver_vs_passenger.html
+[subcommands]: {{puppetserver}}/subcommands.html
 
 
 Puppet's command line interface consists of a single `puppet` command with many subcommands.
@@ -124,7 +124,6 @@ Puppet resource lets you interactively inspect and manipulate resources on a sys
 
 For more information, see:
 
-* [Learning Puppet: Resources and the RAL](/learning/ral.html)
 * [Puppet Resource's Man Page][resource_man]
 
 ### Puppet Config

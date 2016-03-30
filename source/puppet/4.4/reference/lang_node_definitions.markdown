@@ -4,7 +4,7 @@ title: "Language: Node Definitions"
 canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
-[hiera]: /hiera/latest
+[hiera]: {{hiera}}/
 [sitepp]: ./dirs_manifest.html
 [certname]: ./config_important_settings.html#basics
 [classes]: ./lang_classes.html

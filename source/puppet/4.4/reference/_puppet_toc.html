@@ -1,4 +1,4 @@
-{% capture server_version %}2.2{% endcapture %}
+{% capture server_version %}2.3{% endcapture %}
 {% capture puppet_version %}4.4{% endcapture %}
 {% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
 
@@ -65,7 +65,7 @@
           <li><a href="{{ puppet_dir }}/install_osx.html">Install Agent: Mac OS X</a></li>
         </ul>
       </li>
-      <li><a href="/puppetdb/latest/install_via_module.html">Install: PuppetDB</a></li>
+      <li><a href="{{puppetdb}}/install_via_module.html">Install: PuppetDB</a></li>
       <li><a href="{{ puppet_dir }}/upgrade_minor.html">Upgrade: From Puppet 4.x</a></li>
       <li><strong>Upgrade: From Puppet 3.x</strong>
         <ul>
@@ -107,6 +107,8 @@
           <li><a href="/puppetserver/{{ server_version }}/config_file_global.html">global.conf: Trapperkeeper Settings</a></li>
           <li><a href="/puppetserver/{{ server_version }}/config_file_ca.html">ca.conf: CA Service Access Control (deprecated)</a></li>
           <li><a href="/puppetserver/{{ server_version }}/config_file_master.html">master.conf: Authorization by HTTP Header (deprecated)</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_logbackxml.html">logback.xml: Logging Level and Location</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_logging_advanced.html">Advanced Logging Configuration</a></li>
         </ul>
       </li>
       <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
@@ -191,6 +193,7 @@
       <li><a href="/puppetserver/{{ server_version }}/external_ca_configuration.html">Using an External CA</a></li>
       <li><a href="/puppetserver/{{ server_version }}/external_ssl_termination.html">External SSL Termination</a></li>
       <li><a href="/puppetserver/{{ server_version }}/tuning_guide.html">Tuning Guide</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/restarting.html">Restarting the Server</a></li>
       <li><strong>Known Issues and Workarounds</strong>
         <ul>
           <li><a href="/puppetserver/{{ server_version }}/known_issues.html">Known Issues</a></li>
@@ -201,6 +204,12 @@
         <ul>
           <li><a href="/puppetserver/{{ server_version }}/admin-api/v1/environment-cache.html">Environment Cache</a></li>
           <li><a href="/puppetserver/{{ server_version }}/admin-api/v1/jruby-pool.html">JRuby Pool</a></li>
+        </ul>
+      </li>
+      <li><strong>Puppet API</strong>
+        <ul>
+          <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/environment_classes.html">Environment Classes</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/static_file_content.html">Static File Content</a></li>
         </ul>
       </li>
       <li><strong>Developer Info</strong>
@@ -232,6 +241,7 @@
       <li><a href="{{ puppet_dir }}/lang_comments.html">Comments</a></li>
       <li><a href="{{ puppet_dir }}/lang_facts_and_builtin_vars.html">Facts and Built-in Variables</a></li>
       <li><a href="{{ puppet_dir }}/lang_reserved.html">Reserved Words and Acceptable Names</a></li>
+      <li><a href="{{ puppet_dir }}/lang_write_functions_in_puppet.html">Writing Functions in the Puppet Language</a></li>
       <li><strong>Values and Data Types</strong>
         <ul>
           <li><a href="{{ puppet_dir }}/lang_data.html">About Values and Data Types</a></li>

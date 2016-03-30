@@ -63,7 +63,7 @@ If directory environments are enabled with the `environmentpath` setting, they w
 * Puppet will always ignore the `manifest` setting in puppet.conf.
 * Puppet will always ignore the `modulepath` setting in puppet.conf.
 * Puppet will always ignore any [environment config sections][config_file_envs_sections] in puppet.conf.
-* If a node is assigned to a non-existant environment, the puppet master will fail compilation of its catalog.
+* If a node is assigned to a non-existent environment, the puppet master will fail compilation of its catalog.
 
 Puppet will **always** use environment-specific values for the effective [site manifest][manifest_dir] and [modulepath][]; it will never fall back to a global value if the environment-specific directory is missing.
 

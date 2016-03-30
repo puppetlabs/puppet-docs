@@ -11,7 +11,7 @@ Welcome to the Module Writing section of the Quick Start Guide series. This walk
 * [Write your own Puppet module](#writing-a-puppet-module)
 * [Create a site module that composes other modules into machine roles](#using-a-site-module)
 
-> Before starting this walk-through, complete the previous exercises in the [introductory quick start guide](./quick_start.html). These steps assume that you have installed Puppet and Puppet agents, and have [installed the latest version of the puppetlabs-apache module](./quick_start_module_install_nix.html). 
+> Before starting this walk-through, complete the previous exercises in the [introductory quick start guide](./quick_start.html). These steps assume that you have installed Puppet and Puppet agents, and have [installed the latest version of the puppetlabs-apache module](./quick_start_module_install_nix.html).
 You should still be logged in as root or administrator on your nodes.
 
 ## Editing a Forge Module
@@ -25,7 +25,7 @@ Although many Forge modules are exact solutions that fit your site, many are *al
 >
 >**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Modules and Manifests](./puppet_modules_manifests.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 
 
 
@@ -38,12 +38,11 @@ Modules are directory trees. For these exercises you'll use the following files:
         - `vhost/`
             - `_file_header.erb` (contains the vhost template, managed by Puppet)
 
-Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](/reference/lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `apache`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>` or `<MODULE NAME>::<FOLDER>::<FILE NAME>`.
+Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](./lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `apache`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>` or `<MODULE NAME>::<FOLDER>::<FILE NAME>`.
 Many modules, including Apache, contain directories other than `manifests` and `templates`. For simplicity's sake, we do not cover them in this introductory guide.
 
 * For more on how modules work, see [Module Fundamentals](./modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
-* For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 
 ### Writing a Puppet Module
 
@@ -60,8 +59,8 @@ Many modules, including Apache, contain directories other than `manifests` and `
         # ************************************
 
 4. Collect the following facts about your agent:
-   - on your Puppet agent, run `facter osfamily`. This returns your agent's OS. 
-   - on your Puppet agent, run `facter id`. This returns the id of the currently logged in user. 
+   - on your Puppet agent, run `facter osfamily`. This returns your agent's OS.
+   - on your Puppet agent, run `facter id`. This returns the id of the currently logged in user.
 5. Edit the header of `_file_header.erb` so that it contains the following variables for Facter lookups:
 
         # ************************************
@@ -74,7 +73,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
         #
         # Deployment by any other user or on any other system is strictly prohibited.
         # ************************************
-        
+
 6. From the command line of your Puppet agent, run `puppet agent -t` to trigger a Puppet run.
 
 At this point, Puppet configures Apache and starts the httpd service. When this happens, a default Apache virtual host is created based on the contents of `_file_header.erb`.
@@ -151,7 +150,7 @@ Puppet Labs modules save time, but at some point you may need to write your own 
 		 node default {
            class { 'puppet_quickstart_app': }
 		 }
-   
+
    >**Note**: Since the `puppet_quickstart_app` includes the `apache` class, you need to remove the first `apache` class you added the master node, as Puppet will only allow you to declare a class once.
 
 3. From the command line on your agent, run `puppet agent -t` to trigger a Puppet run.
@@ -194,13 +193,13 @@ Site modules hide complexity so you can more easily divide labor at your site. S
         }
 
 
-This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent is a Linux machine, Puppet will apply your `puppet_quickstart_app` class. If it is a Windows machine, Puppet will apply the `registry::compliance_example` class. For more information about declaring classes, see the [modules and classes chapters of Learning Puppet](/learning/modules1.html).
+This class declares other classes with the `include` function. Note the "if" conditional that sets different classes for different kernels using the `$kernel` fact. In this example, if an agent is a Linux machine, Puppet will apply your `puppet_quickstart_app` class. If it is a Windows machine, Puppet will apply the `registry::compliance_example` class.
 
 1. From the command line on the Puppet master, navigate to the main manifest: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Add the following Puppet code to the default node in `site.pp`, retaining the classes you have already added:
-       
+
         class { ‘site::basic’: }
-        
+
 3. Save and exit, then run `puppet agent -t` from the command line of your Puppet agent.
 
 ## Summary

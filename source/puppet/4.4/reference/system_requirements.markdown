@@ -4,7 +4,7 @@ title: "Puppet 4.4 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
-> To install Puppet, first [view the pre-install tasks](/pre_install.html).
+> To install Puppet, first [view the pre-install tasks](./install_pre.html).
 
 ## Hardware
 
@@ -45,7 +45,7 @@ Puppet 4.4 and all of its prerequisites run on the following platforms, and Pupp
 
 ## Platforms Without Packages
 
-Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [System Requirements](/pe/latest/install_system_requirements.html#supported-operating-systems).
+Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [System Requirements]({{pe}}/install_system_requirements.html#supported-operating-systems).
 
 ### Other Linux
 
@@ -81,7 +81,7 @@ Use one of the following versions of MRI (standard) Ruby:
 ### Mandatory Libraries
 
 * [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
-* [Hiera](/hiera/latest/) 2.0.0 or later
+* [Hiera]({{hiera}}/) 2.0.0 or later
 * The `json` gem (any modern version).
 * The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html).
 

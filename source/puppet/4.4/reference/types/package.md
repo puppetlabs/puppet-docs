@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Resource Type: package'
 canonical: /puppet/latest/reference/types/package.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
 
 package
 -----
@@ -163,6 +163,12 @@ retrieve by specifying a version number or `latest` as the ensure
 value. On packaging systems that manage configuration files separately
 from "normal" system files, you can uninstall config files by
 specifying `purged` as the ensure value. This defaults to `installed`.
+
+Version numbers must match the full version to install, including
+release if the provider uses a release moniker. Ranges or semver
+patterns are not accepted except for the `gem` package provider. For
+example, to install the bash package from the rpm
+`bash-4.1.2-29.el6.x86_64.rpm`, use the string `'4.1.2-29.el6'`.
 
 Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`. Values can match `/./`.
 
@@ -479,7 +485,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`.
-* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22`.
+* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23`.
 * Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
@@ -1386,4 +1392,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700

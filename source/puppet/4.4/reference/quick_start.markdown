@@ -13,9 +13,9 @@ The following guides present tasks in the order that you would most likely perfo
 Follow [these instructions](./install_pre.html) to ensure you meet the system requirements for Puppet, to designate servers, to decide on a deployment type, and more.
 
 ### 2. Install Puppet
-Next, you'll install and configure your Puppet master and agents. 
+Next, you'll install and configure your Puppet master and agents.
 
- A computer that runs the Puppet Server is called the "master." Follow [these instructions](http://docs.puppetlabs.com/puppetserver/2.2/install_from_packages.html) to install and configure Puppet Server.
+ A computer that runs the Puppet Server is called the "master." Follow [these instructions]({{puppetserver}}/install_from_packages.html) to install and configure Puppet Server.
 
 A computer that runs the Puppet agent is called a "Puppet agent" or simply "agent". The Puppet agent regularly pulls configuration catalogs from a master and applies them to the local system.
 
@@ -32,7 +32,7 @@ Instructions are available for *nix only.
  Modules contain [classes](./puppet/3.8/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet configures and manages nodes. The instructions in the [Hello World! Quick Start Guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your message of the day (motd) and create a Hello, World! notification on the command line.
 
 ### 5. Install a Module
- Next, learn how to install a Puppet Labs module by following the [Module Installation Quick Start Guide](./quick_start_module_install_nix.html). 
+ Next, learn how to install a Puppet Labs module by following the [Module Installation Quick Start Guide](./quick_start_module_install_nix.html).
 
  The instructions are written specifically for *nix, but the installation process is the same for Windows.
 
@@ -42,7 +42,7 @@ Follow the [Adding Classes Quick Start Guide](./quick_start_adding_classes_nix.h
 Instructions are available for *nix only.
 
 
-### 7. Write Modules 
+### 7. Write Modules
 Follow the [Writing Modules Quick Start Guide](./quick_writing_nix.html) for exercises in writing modules to help you become more familiar with Puppet modules and module development.
 
 Instructions are available for *nix only.

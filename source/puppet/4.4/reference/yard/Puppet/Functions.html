@@ -342,6 +342,31 @@ call other functions visible from its loader.</p>
 <li class="public ">
   <span class="summary_signature">
     
+      <a href="#create_loaded_function-class_method" title="create_loaded_function (class method)">+ (Class&lt;Function&gt;) <strong>create_loaded_function</strong>(func_name, loader, function_base = Function, &amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a function in, or in a local loader under the given loader.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
       <a href="#default_dispatcher-class_method" title="default_dispatcher (class method)">+ (Object) <strong>default_dispatcher</strong>(the_class, func_name) </a>
     
 
@@ -426,15 +451,15 @@ call other functions visible from its loader.</p>
       <pre class="lines">
 
 
-222
-223
-224
-225
-226
-227</pre>
+258
+259
+260
+261
+262
+263</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_any_signature'>any_signature</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
   <span class='comment'># Construct the type for the signature
@@ -531,21 +556,120 @@ Function to create</p>
 159
 160
 161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 155</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'>Function</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='comment'># Ruby &lt; 2.1.0 does not have method on Binding, can only do eval
+</span>  <span class='comment'># and it will fail unless protected with an if defined? if the local
+</span>  <span class='comment'># variable does not exist in the block&#39;s binder.
+</span>  <span class='comment'>#
+</span>  <span class='id identifier rubyid_loader'>loader</span> <span class='op'>=</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_eval'>eval</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>loader_injected_arg if defined?(loader_injected_arg)</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_create_loaded_function'>create_loaded_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="create_loaded_function-class_method">
+  
+    + (<tt><span class='object_link'>Class</span>&lt;<span class='object_link'><a href="Functions/Function.html" title="Puppet::Functions::Function (class)">Function</a></span>&gt;</tt>) <strong>create_loaded_function</strong>(func_name, loader, function_base = Function, &amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a function in, or in a local loader under the given loader.
+This method should only be used when manually creating functions 
+for the sake of testing. Functions that are autoloaded should
+always use the <code>create_function</code> method and the autoloader will supply
+the correct loader.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>func_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a simple or qualified function name</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>loader</span>
+      
+      
+        <span class='type'>(<tt>Puppet::Pops::Loaders::Loader</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the loader loading the function</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block</span>
+      
+      
+        <span class='type'>(<tt>Proc</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the block that defines the methods and dispatch of the
+Function to create</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Class</span>&lt;<span class='object_link'><a href="Functions/Function.html" title="Puppet::Functions::Function (class)">Function</a></span>&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the newly created Function class</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
 177
 178
 179
@@ -565,12 +689,48 @@ Function to create</p>
 193
 194
 195
-196</pre>
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 177</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'>Function</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'>create_loaded_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'>Function</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_function_base'>function_base</span><span class='period'>.</span><span class='id identifier rubyid_ancestors'>ancestors</span><span class='period'>.</span><span class='id identifier rubyid_none?'>none?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>==</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Functions</span><span class='op'>::</span><span class='const'>Function</span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Functions must be based on Puppet::Pops::Functions::Function. Got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_function_base'>function_base</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
@@ -580,7 +740,12 @@ Function to create</p>
 </span>  <span class='comment'># The idea being that it is garbage collected when there are no more
 </span>  <span class='comment'># references to it.
 </span>  <span class='comment'>#
-</span>  <span class='id identifier rubyid_the_class'>the_class</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_function_base'>function_base</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+</span>  <span class='comment'># (Do not give the class the block here, as instance variables should be set first)
+</span>  <span class='id identifier rubyid_the_class'>the_class</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_function_base'>function_base</span><span class='rparen'>)</span>
+
+  <span class='kw'>unless</span> <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_the_class'>the_class</span><span class='period'>.</span><span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='symbol'>:@loader</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_private_loader'>private_loader</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 
   <span class='comment'># Make the anonymous class appear to have the class-name &lt;func_name&gt;
 </span>  <span class='comment'># Even if this class is not bound to such a symbol in a global ruby scope and
@@ -593,10 +758,19 @@ Function to create</p>
 </span>  <span class='comment'>#
 </span>  <span class='id identifier rubyid_the_class'>the_class</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span> <span class='kw'>do</span>
     <span class='ivar'>@func_name</span> <span class='op'>=</span> <span class='id identifier rubyid_func_name'>func_name</span>
+
     <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
       <span class='ivar'>@func_name</span>
     <span class='kw'>end</span>
+
+    <span class='kw'>def</span> <span class='id identifier rubyid_loader'>loader</span>
+      <span class='ivar'>@loader</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
+
+  <span class='comment'># The given block can now be evaluated and have access to name and loader
+</span>  <span class='comment'>#
+</span>  <span class='id identifier rubyid_the_class'>the_class</span><span class='period'>.</span><span class='id identifier rubyid_class_eval'>class_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 
   <span class='comment'># Automatically create an object dispatcher based on introspection if the
 </span>  <span class='comment'># loaded user code did not define any dispatchers. Fail if function name
@@ -646,15 +820,15 @@ Function to create</p>
       <pre class="lines">
 
 
-201
-202
-203
-204
-205
-206</pre>
+237
+238
+239
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 201</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 237</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_default_dispatcher'>default_dispatcher</span><span class='lparen'>(</span><span class='id identifier rubyid_the_class'>the_class</span><span class='comma'>,</span> <span class='id identifier rubyid_func_name'>func_name</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_the_class'>the_class</span><span class='period'>.</span><span class='id identifier rubyid_method_defined?'>method_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='rparen'>)</span>
@@ -695,17 +869,17 @@ Function to create</p>
       <pre class="lines">
 
 
-209
-210
-211
-212
-213
-214
-215
-216</pre>
+245
+246
+247
+248
+249
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 209</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_min_max_param'>min_max_param</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:req</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:opt</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:rest</span> <span class='op'>=&gt;</span> <span class='int'>0</span> <span class='rbrace'>}</span>
@@ -725,7 +899,7 @@ Function to create</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:44 2016 by
+  Generated on Wed Mar 16 18:28:45 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

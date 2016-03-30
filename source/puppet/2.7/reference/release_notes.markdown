@@ -1924,10 +1924,10 @@ Author: Gary Larizza <gary@puppetlabs.com>
 The group provider on OS X uses “dseditgroup” to manage group
 membership. Due to Apple bug 8481241 (“dseditgroup can’t remove unknown
 users from groups”), however, if the puppet group provider needs to
-remove a non-existant user from a group it manages, it will fail.
+remove a non-existent user from a group it manages, it will fail.
 
 To remedy this, in the meantime, the provider will call dscl to delete
-the non-existant member from the group. If that fails then the error
+the non-existent member from the group. If that fails then the error
 is rescued and feedback is provided.
 
 #### Build a Rake task for building Apple Packages

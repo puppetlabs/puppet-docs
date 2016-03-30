@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 3b5d15cb1c5ed830cb460f2687fde710e5383e69
+built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
 title: 'Resource Type: interface'
 canonical: /puppet/latest/reference/types/interface.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
 
 interface
 -----
@@ -24,6 +24,7 @@ switchport characteristics (speed, duplex).
 <pre><code>interface { 'resource title':
   <a href="#interface-attribute-name">name</a>                =&gt; <em># <strong>(namevar)</strong> The interface's...</em>
   <a href="#interface-attribute-ensure">ensure</a>              =&gt; <em># The basic property that the resource should be...</em>
+  <a href="#interface-attribute-access_vlan">access_vlan</a>         =&gt; <em># Interface static access vlan.  Values can match...</em>
   <a href="#interface-attribute-allowed_trunk_vlans">allowed_trunk_vlans</a> =&gt; <em># Allowed list of Vlans that this trunk can...</em>
   <a href="#interface-attribute-description">description</a>         =&gt; <em># Interface...</em>
   <a href="#interface-attribute-device_url">device_url</a>          =&gt; <em># The URL at which the router or switch can be...</em>
@@ -32,7 +33,7 @@ switchport characteristics (speed, duplex).
   <a href="#interface-attribute-etherchannel">etherchannel</a>        =&gt; <em># Channel group this interface is part of.  Values </em>
   <a href="#interface-attribute-ipaddress">ipaddress</a>           =&gt; <em># IP Address of this interface. Note that it might </em>
   <a href="#interface-attribute-mode">mode</a>                =&gt; <em># Interface switchport mode.  Valid values are...</em>
-  <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan (for access mode only)....</em>
+  <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan when trunking.  Values can </em>
   <a href="#interface-attribute-provider">provider</a>            =&gt; <em># The specific backend to use for this `interface` </em>
   <a href="#interface-attribute-speed">speed</a>               =&gt; <em># Interface speed.  Valid values are `auto`...</em>
   # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
@@ -53,6 +54,16 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The basic property that the resource should be in.
 
 Valid values are `present` (also called `no_shutdown`), `absent` (also called `shutdown`).
+
+([↑ Back to interface attributes](#interface-attributes))
+
+<h4 id="interface-attribute-access_vlan">access_vlan</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Interface static access vlan.
+
+Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -96,7 +107,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport encapsulation.
 
-Valid values are `none`, `dot1q`, `isl`.
+Valid values are `none`, `dot1q`, `isl`, `negotiate`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -134,7 +145,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport mode.
 
-Valid values are `access`, `trunk`.
+Valid values are `access`, `trunk`, `dynamic auto`, `dynamic desirable`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -142,7 +153,7 @@ Valid values are `access`, `trunk`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Interface native vlan (for access mode only).
+Interface native vlan when trunking.
 
 Values can match `/^\d+/`.
 
@@ -180,4 +191,4 @@ Cisco switch/router provider for interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-01-27 14:15:19 +0000
+> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700

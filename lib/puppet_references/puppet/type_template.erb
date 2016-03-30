@@ -19,7 +19,7 @@
 <% sorted_attribute_list.each do |attribute_name| -%>
   <a href="#<%= name %>-attribute-<%= attribute_name %>"><%= attribute_name %></a><%= ' ' * (longest_attribute_name - attribute_name.length) %> =&gt; <em># <% if this_type['attributes'][attribute_name]['namevar'] %><strong>(namevar)</strong> <% end %><%= this_type['attributes'][attribute_name]['description'][0,49].gsub("\n", ' ').gsub('<', '&lt;').sub(/\W? \S+$/, '...') %></em>
 <% end -%>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <% sorted_attribute_list.each do |attribute_name| -%>

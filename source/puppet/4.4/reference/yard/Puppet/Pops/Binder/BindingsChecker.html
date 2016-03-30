@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="../../../_index.html">Index (B)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Pops.html" title="Puppet::Pops (module)">Pops</a></span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span>
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span>
      &raquo; 
     <span class="title">BindingsChecker</span>
   
@@ -731,20 +731,20 @@
       <pre class="lines">
 
 
-13
-14
 15
 16
 17
-18</pre>
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 15</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_diagnostics_producer'>diagnostics_producer</span><span class='rparen'>)</span>
-  <span class='cvar'>@@check_visitor</span>     <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Visitor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>check</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
-  <span class='ivar'>@type_calculator</span>      <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span>
-  <span class='ivar'>@expression_validator</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Validation</span><span class='op'>::</span><span class='const'>ValidatorFactory_4_0</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_checker'>checker</span><span class='lparen'>(</span><span class='id identifier rubyid_diagnostics_producer'>diagnostics_producer</span><span class='rparen'>)</span>
+  <span class='cvar'>@@check_visitor</span>     <span class='op'>||=</span> <span class='const'>Visitor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>check</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@type_calculator</span>      <span class='op'>=</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span>
+  <span class='ivar'>@expression_validator</span> <span class='op'>=</span> <span class='const'>Validation</span><span class='op'>::</span><span class='const'>ValidatorFactory_4_0</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_checker'>checker</span><span class='lparen'>(</span><span class='id identifier rubyid_diagnostics_producer'>diagnostics_producer</span><span class='rparen'>)</span>
   <span class='ivar'>@acceptor</span>             <span class='op'>=</span> <span class='id identifier rubyid_diagnostics_producer'>diagnostics_producer</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -787,8 +787,6 @@
       <pre class="lines">
 
 
-186
-187
 188
 189
 190
@@ -797,10 +795,12 @@
 193
 194
 195
-196</pre>
+196
+197
+198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 188</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
@@ -847,12 +847,12 @@
       <pre class="lines">
 
 
-33
-34
-35</pre>
+35
+36
+37</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='cvar'>@@check_visitor</span><span class='period'>.</span><span class='id identifier rubyid_visit_this_0'>visit_this_0</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
@@ -891,13 +891,13 @@
       <pre class="lines">
 
 
-144
-145
 146
-147</pre>
+147
+148
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 146</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_ArrayMultibindProducerDescriptor'>check_ArrayMultibindProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
@@ -937,16 +937,16 @@
       <pre class="lines">
 
 
-39
-40
 41
 42
 43
 44
-45</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_Binding'>check_Binding</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='comment'># Must have a type
@@ -989,12 +989,12 @@
       <pre class="lines">
 
 
-63
-64
-65</pre>
+65
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 65</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_Bindings'>check_Bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_BINDINGS</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_entries?'>has_entries?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_bindings'>bindings</span><span class='rparen'>)</span>
@@ -1034,8 +1034,6 @@ of the value is compatible with the type declared in the binding</p>
       <pre class="lines">
 
 
-95
-96
 97
 98
 99
@@ -1046,10 +1044,12 @@ of the value is compatible with the type declared in the binding</p>
 104
 105
 106
-107</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_ConstantProducerDescriptor'>check_ConstantProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='comment'># the product must be of compatible type
@@ -1098,17 +1098,17 @@ of the value is compatible with the type declared in the binding</p>
       <pre class="lines">
 
 
-111
-112
 113
 114
-115</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_EvaluatingProducerDescriptor'>check_EvaluatingProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_expression'>expression</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Model</span><span class='op'>::</span><span class='const'>Expression</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_expression'>expression</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Model</span><span class='op'>::</span><span class='const'>Expression</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_EXPRESSION</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1145,12 +1145,12 @@ of the value is compatible with the type declared in the binding</p>
       <pre class="lines">
 
 
-165
-166
-167</pre>
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_Expression'>check_Expression</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='ivar'>@expression_validator</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
@@ -1190,13 +1190,13 @@ checks associated with the super class</p>
       <pre class="lines">
 
 
-137
-138
 139
-140</pre>
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_HashLookupProducerDescriptor'>check_HashLookupProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_KEY</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -1236,13 +1236,13 @@ checks associated with the super class</p>
       <pre class="lines">
 
 
-151
-152
 153
-154</pre>
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_HashMultibindProducerDescriptor'>check_HashMultibindProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
@@ -1282,12 +1282,12 @@ checks associated with the super class</p>
       <pre class="lines">
 
 
-119
-120
-121</pre>
+121
+122
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_InstanceProducerDescriptor'>check_InstanceProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_CLASS_NAME</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='symbol'>:binding</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_class_name'>class_name</span><span class='rparen'>)</span>
@@ -1326,12 +1326,12 @@ checks associated with the super class</p>
       <pre class="lines">
 
 
-82
-83
-84</pre>
+84
+85
+86</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 84</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_LayeredBindings'>check_LayeredBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_LAYERS</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_entries?'>has_entries?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_layers'>layers</span><span class='rparen'>)</span>
@@ -1371,16 +1371,16 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-126
-127
 128
 129
 130
 131
-132</pre>
+132
+133
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_LookupProducerDescriptor'>check_LookupProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_b'>b</span> <span class='op'>=</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
@@ -1423,8 +1423,6 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-49
-50
 51
 52
 53
@@ -1433,10 +1431,12 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
 56
 57
 58
-59</pre>
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_Multibinding'>check_Multibinding</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='comment'># id is optional (empty id blocks contributions)
@@ -1483,13 +1483,13 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-69
-70
 71
-72</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_NamedBindings'>check_NamedBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_BINDINGS_NAME</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1529,12 +1529,12 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-76
-77
-78</pre>
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_NamedLayer'>check_NamedLayer</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>MISSING_LAYER_NAME</span><span class='comma'>,</span> <span class='id identifier rubyid_binding_parent'>binding_parent</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_l'>l</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1573,12 +1573,12 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-88
-89
-90</pre>
+90
+91
+92</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 90</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_NonCachingProducerDescriptor'>check_NonCachingProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_acceptor'>acceptor</span><span class='period'>.</span><span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>Issues</span><span class='op'>::</span><span class='const'>PRODUCER_MISSING_PRODUCER</span><span class='comma'>,</span> <span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>ProducerDescriptor</span><span class='rparen'>)</span>
@@ -1616,12 +1616,12 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-170
-171
-172</pre>
+172
+173
+174</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_PAnyType'>check_PAnyType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='comment'># Do nothing
@@ -1660,14 +1660,14 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-158
-159
 160
 161
-162</pre>
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 158</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_ProducerProducerDescriptor'>check_ProducerProducerDescriptor</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>ProducerDescriptor</span><span class='rparen'>)</span>
@@ -1721,12 +1721,12 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-176
-177
-178</pre>
+178
+179
+180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 176</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_chars?'>has_chars?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1777,12 +1777,12 @@ declared in the binding. The name can be an empty string to denote &#39;no name&
       <pre class="lines">
 
 
-181
-182
-183</pre>
+183
+184
+185</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 181</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 183</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_entries?'>has_entries?</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span>
   <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span>
@@ -1819,13 +1819,13 @@ given when creating this Checker.</p>
       <pre class="lines">
 
 
-26
-27
 28
-29</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_checker.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_check'>check</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
@@ -1841,7 +1841,7 @@ given when creating this Checker.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:52 2016 by
+  Generated on Wed Mar 16 18:28:54 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

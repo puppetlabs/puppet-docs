@@ -549,24 +549,27 @@ as a source of data to report in such a registered report.</p>
       <pre class="lines">
 
 
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
 178
 179
 180
-181</pre>
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 178</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_kind'>kind</span><span class='comma'>,</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_transaction_uuid'>transaction_uuid</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@metrics</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -576,10 +579,13 @@ as a source of data to report in such a registered report.</p>
   <span class='ivar'>@host</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:node_name_value</span><span class='rbracket'>]</span>
   <span class='ivar'>@time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
   <span class='ivar'>@kind</span> <span class='op'>=</span> <span class='id identifier rubyid_kind'>kind</span>
-  <span class='ivar'>@report_format</span> <span class='op'>=</span> <span class='int'>4</span>
+  <span class='ivar'>@report_format</span> <span class='op'>=</span> <span class='int'>5</span>
   <span class='ivar'>@puppet_version</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>
   <span class='ivar'>@configuration_version</span> <span class='op'>=</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span>
   <span class='ivar'>@transaction_uuid</span> <span class='op'>=</span> <span class='id identifier rubyid_transaction_uuid'>transaction_uuid</span>
+  <span class='ivar'>@code_id</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@catalog_uuid</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@cached_catalog_status</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span>
   <span class='ivar'>@status</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>failed</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># assume failed until the report is finalized
 </span><span class='kw'>end</span></pre>
@@ -623,13 +629,13 @@ as a source of data to report in such a registered report.</p>
       <pre class="lines">
 
 
-111
-112
-113
-114</pre>
+122
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='op'>&lt;&lt;</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
   <span class='ivar'>@logs</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_msg'>msg</span>
@@ -668,19 +674,19 @@ as a source of data to report in such a registered report.</p>
       <pre class="lines">
 
 
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131</pre>
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_metric'>add_metric</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_metric'>metric</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -725,12 +731,12 @@ as a source of data to report in such a registered report.</p>
       <pre class="lines">
 
 
-134
-135
-136</pre>
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 145</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_resource_status'>add_resource_status</span><span class='lparen'>(</span><span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
   <span class='ivar'>@resource_statuses</span><span class='lbracket'>[</span><span class='id identifier rubyid_status'>status</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
@@ -768,12 +774,12 @@ as a source of data to report in such a registered report.</p>
       <pre class="lines">
 
 
-117
-118
-119</pre>
+128
+129
+130</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_times'>add_times</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@external_times</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -811,18 +817,18 @@ as a source of data to report in such a registered report.</p>
       <pre class="lines">
 
 
-139
-140
-141
-142
-143
-144
-145
-146
-147</pre>
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_compute_status'>compute_status</span><span class='lparen'>(</span><span class='id identifier rubyid_resource_metrics'>resource_metrics</span><span class='comma'>,</span> <span class='id identifier rubyid_change_metric'>change_metric</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_resource_metrics'>resource_metrics</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>failed</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>&gt;</span> <span class='int'>0</span>
@@ -888,16 +894,16 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-303
-304
-305
-306
-307
-308
-309</pre>
+333
+334
+335
+336
+337
+338
+339</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 303</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 333</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exit_status'>exit_status</span>
   <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='int'>0</span>
@@ -939,19 +945,19 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164</pre>
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 166</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_finalize_report'>finalize_report</span>
   <span class='id identifier rubyid_prune_internal_data'>prune_internal_data</span>
@@ -996,20 +1002,6 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
 198
 199
 200
@@ -1028,10 +1020,37 @@ individual bits represent the presence of different metrics.</p>
 213
 214
 215
-216</pre>
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize_from_hash'>initialize_from_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
   <span class='ivar'>@puppet_version</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puppet_version</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
@@ -1042,6 +1061,19 @@ individual bits represent the presence of different metrics.</p>
   <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>status</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='ivar'>@host</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>host</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
   <span class='ivar'>@time</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>time</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_catalog_uuid'>catalog_uuid</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>catalog_uuid</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@catalog_uuid</span> <span class='op'>=</span> <span class='id identifier rubyid_catalog_uuid'>catalog_uuid</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_code_id'>code_id</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>code_id</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@code_id</span> <span class='op'>=</span> <span class='id identifier rubyid_code_id'>code_id</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_cached_catalog_status'>cached_catalog_status</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cached_catalog_status</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@cached_catalog_status</span> <span class='op'>=</span> <span class='id identifier rubyid_cached_catalog_status'>cached_catalog_status</span>
+  <span class='kw'>end</span>
+
   <span class='kw'>if</span> <span class='ivar'>@time</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
     <span class='ivar'>@time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='ivar'>@time</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -1113,12 +1145,12 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-239
-240
-241</pre>
+269
+270
+271</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 269</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='id identifier rubyid_host'>host</span>
@@ -1156,12 +1188,12 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-150
-151
-152</pre>
+161
+162
+163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prune_internal_data'>prune_internal_data</span>
   <span class='id identifier rubyid_resource_statuses'>resource_statuses</span><span class='period'>.</span><span class='id identifier rubyid_delete_if'>delete_if</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_res'>res</span><span class='op'>|</span> <span class='id identifier rubyid_res'>res</span><span class='period'>.</span><span class='id identifier rubyid_resource_type'>resource_type</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Whit</span><span class='tstring_end'>&#39;</span></span><span class='rbrace'>}</span>
@@ -1213,23 +1245,23 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291</pre>
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 278</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 308</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_raw_summary'>raw_summary</span>
   <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>version</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>  <span class='rbrace'>}</span> <span class='rbrace'>}</span>
@@ -1299,34 +1331,34 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-248
-249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272</pre>
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 248</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 278</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_summary'>summary</span>
   <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='id identifier rubyid_raw_summary'>raw_summary</span>
@@ -1386,12 +1418,12 @@ individual bits represent the presence of different metrics.</p>
       <pre class="lines">
 
 
-313
-314
-315</pre>
+343
+344
+345</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 313</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 343</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_yaml_properties'>to_yaml_properties</span>
   <span class='kw'>super</span> <span class='op'>-</span> <span class='lbracket'>[</span><span class='symbol'>:@external_times</span><span class='rbracket'>]</span>
@@ -1406,7 +1438,7 @@ individual bits represent the presence of different metrics.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Jan 15 16:54:49 2016 by
+  Generated on Wed Mar 16 18:28:51 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>
