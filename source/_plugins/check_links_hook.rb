@@ -11,7 +11,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
     NGINX_CONFIG = "#{site.source}/nginx_rewrite.conf"
 
     link_test_results = {}
-    link_regex = %r{(href|src)=(['"])([^'"]+)\2}i
+    link_regex = %r{<[^>]+(href|src)=(['"])([^'"]+)\2}i
     redirections = File.read(NGINX_CONFIG).scan(%r{^rewrite\s+(\S+)}).map{|ary| Regexp.new(ary[0]) }
 
     site.pages.each do |page|
