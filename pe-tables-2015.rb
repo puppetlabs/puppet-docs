@@ -77,9 +77,9 @@ server_body = VersionTables::PE::make_table_body(our_versions, server_stuff, ver
 
 # now make tables
 
-print "### Agent Components (On All Nodes)\n\n"
+print "### Agent components (on all nodes)\n\n"
 print VersionTables::table_from_header_and_array_of_body_rows(agent_header, agent_body)
-print "### Server Components\n\n"
+print "### Server components\n\n"
 print VersionTables::table_from_header_and_array_of_body_rows(server_header, server_body)
 
 # done
