@@ -100,7 +100,7 @@
 
   <!-- Rebuild of Site Header -->
   <header>
-    {% include template/header_en.html %}
+    {% if page.url contains "/ja/" %}{% include template/header_ja.html %}{% else %}{% include template/header_en.html %}{% endif %}
   </header>
 
   <section id="masthead">
@@ -132,7 +132,7 @@
 
 
   <footer class="layout-footer">
-    {% include template/footer_en.html %}
+    {% if page.url contains "/ja/" %}{% include template/footer_ja.html %}{% else %}{% include template/footer_en.html %}{% endif %}
   </footer>
 
   <script type="text/javascript">
