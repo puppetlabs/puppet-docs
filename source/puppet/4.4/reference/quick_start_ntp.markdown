@@ -10,13 +10,13 @@ canonical: "/puppet/latest/quick_start_ntp.html"
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
 
-Welcome to the Open Source Puppet NTP Quick Start Guide. This document provides instructions for getting started managing an NTP service using the Puppet Labs NTP module.
+Welcome to the Open Source Puppet NTP Quick Start Guide. This document provides instructions for getting started managing an NTP service using the Puppet NTP module.
 
 The clocks on your servers are not inherently accurate. They need to synchronize with something to let them know what the right time is. NTP is a protocol designed to synchronize the clocks of computers over a network. NTP uses Coordinated Universal Time (UTC) to synchronize computer clock times to within a millisecond.
 
 Your entire datacenter, from the network to the applications, depends on accurate time for many different things, such as security services, certificate validation, and file sharing across Puppet agents. If the time is wrong, your Puppet master might mistakenly issue agent certificates from the distant past or future, which other agents will treat as expired.
 
-NTP is one of the most crucial, yet easiest, services to configure and manage with Puppet. Using the Puppet Labs NTP module, you can do the following tasks:
+NTP is one of the most crucial, yet easiest, services to configure and manage with Puppet. Using the Puppet NTP module, you can do the following tasks:
 
 * Ensure time is correctly synced across all the servers in your infrastructure.
 * Ensure time is correctly synced across your configuration management tools.
@@ -135,9 +135,9 @@ In this fashion, it is possible to create multiple nodes to suit your needs.
 
 For more information about working with the puppetlabs-ntp module, check out our [How to Manage NTP](http://puppetlabs.com/webinars/how-manage-ntp) webinar.
 
-Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
+Puppet offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
+* The Puppet workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 
 ----------
 

@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/config_ssl_external_ca.html"
 
 In lieu of its built-in certificate authority (CA) and public key infrastructure (PKI) tools, Puppet can use an existing external CA for all of its secure socket layer (SSL) communications.
 
-This page describes the supported and tested configurations for external CAs in this version of Puppet. If you have an external CA use case that isn't covered here, please contact Puppet Labs so we can learn more about it.
+This page describes the supported and tested configurations for external CAs in this version of Puppet. If you have an external CA use case that isn't covered here, please contact Puppet so we can learn more about it.
 
 > **Note:** This page uses RFC 2119 style semantics for MUST, SHOULD, and MAY.
 

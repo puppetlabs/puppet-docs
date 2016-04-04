@@ -32,7 +32,7 @@ Instructions are available for *nix only.
  Modules contain [classes](./puppet/3.8/reference/lang_classes.html), which are named chunks of Puppet code and are the primary means by which Puppet configures and manages nodes. The instructions in the [Hello World! Quick Start Guide](./quick_start_helloworld.html) lead you through the fundamentals of Puppet module writing. You'll write a very simple module that contains classes to manage your message of the day (motd) and create a Hello, World! notification on the command line.
 
 ### 5. Install a Module
- Next, learn how to install a Puppet Labs module by following the [Module Installation Quick Start Guide](./quick_start_module_install_nix.html).
+ Next, learn how to install a Puppet module by following the [Module Installation Quick Start Guide](./quick_start_module_install_nix.html).
 
  The instructions are written specifically for *nix, but the installation process is the same for Windows.
 
