@@ -429,7 +429,7 @@ For general information about Puppet's architecture, see [the Puppet documentati
 
 ### Puppet Collection
 
-A **Puppet Collection** is a package repository that contains versions of open-source Puppet components designed to work together. Puppet Collections were introduced with Puppet 4. For more information, see the [Using the Puppet Labs Package Repositories](/guides/puppetlabs_package_repositories.html) guide.
+A **Puppet Collection** is a package repository that contains versions of open-source Puppet components designed to work together. Puppet Collections were introduced with Puppet 4. For more information, see the [Using the Puppet Package Repositories](/guides/puppetlabs_package_repositories.html) guide.
 
 ### Puppet Enterprise
 
