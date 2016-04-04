@@ -146,8 +146,6 @@ To run Puppet agent remotely on any number of systems, you should use Puppet Ent
 
 Open source Puppet users can install [MCollective][] and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent) to get similar capabilities, but Puppet Labs doesn't provide standalone MCollective packages for Windows.
 
-Puppet agent on Windows doesn't support the deprecated Puppet kick command.
-
 ## Disabling and Re-enabling Puppet Runs
 
 You can prevent Puppet agent from doing any Puppet runs by [starting a command prompt with elevated privileges][running] and running `puppet agent --disable "<MESSAGE>"`. You can re-enable it with `puppet agent --enable`.
