@@ -4,7 +4,7 @@ layout: default
 ---
 
 This is a guide for managing bugs in Puppet open-source projects, including Puppet, Facter, MCollective, Hiera, and PuppetDB.
-The official Puppet Labs bug tracker is run through JIRA and is located at <http://tickets.puppetlabs.com/>.
+The official Puppet bug tracker is run through JIRA and is located at <http://tickets.puppetlabs.com/>.
 This guide covers the following tasks:
 
   - [How to Create a JIRA Account](#create-a-jira-account)
@@ -14,7 +14,7 @@ This guide covers the following tasks:
 
 ## Create a JIRA Account
 
-In order to prevent spam and fake accounts, Puppet Labs requires users to create an account on JIRA before filing new tickets or commenting on existing ones.
+In order to prevent spam and fake accounts, Puppet requires users to create an account on JIRA before filing new tickets or commenting on existing ones.
 Accounts can be created by visiting <http://tickets.puppetlabs.com> and following the "Sign Up" link in the "Login" box.
 
 
@@ -153,9 +153,9 @@ Links to other JIRA tickets and external web pages can be created using the "Lin
   It might be a request for a new feature or a change in existing behaviour.
   In this case the product owner for the project needs to make a decision about whether the change fits into the product direction or perform further investigation and discovery into what the right solution ought to be.
   Setting the *Status* to _Needs Information_ and *Assignee* to the product owner will ensure it gets to the right people (even if, as often happens, the product owner him- or herself is not the final decision-maker, part of the job is to make sure the right eyes see the issue).
-* *Status*: _Ready for Engineering_, *Assignee*: _Community or Puppet Labs Developer_ -- Once a ticket is actively being worked on, but no code is ready to merge, it should go into _Ready for Engineering_ status and be assigned to the person working on it.
+* *Status*: _Ready for Engineering_, *Assignee*: _Community or Puppet Developer_ -- Once a ticket is actively being worked on, but no code is ready to merge, it should go into _Ready for Engineering_ status and be assigned to the person working on it.
   Tickets which are in status _Ready for Engineering_ but do not have a target release assigned by the product owner are not being actively worked on by Puppet Labs.
-* *Status*: _Ready for Merge_, *Assignee*: _Puppet Labs Developer_ -- Once there is code in a pull request, and a *Link* has been created pointing to the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
+* *Status*: _Ready for Merge_, *Assignee*: _Puppet Developer_ -- Once there is code in a pull request, and a *Link* has been created pointing to the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
 * *Status*: _Resolved_, *Resolution*: _Fixed_ -- This status is set when a fix for an issue has been merged, but is pending validation and release.
 * *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket ("Fixed", "Duplicate", "Cannot Reproduce", etc)
 

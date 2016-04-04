@@ -10,7 +10,7 @@ The definition of trivial below is intended to correspond roughly with changes t
 
 **Policy**: Contributions that are trivial, as defined below, do not require the contributor to have signed the [Contributor License Agreement](https://cla.puppetlabs.com/).
 
-**Puppet Labs Definition of Trivial**: A trivial patch is a pull request that does not contain creative work. As a rule of thumb, changes are trivial patches if they:
+**Puppet Definition of Trivial**: A trivial patch is a pull request that does not contain creative work. As a rule of thumb, changes are trivial patches if they:
 
 * are fewer than 10 lines, and
 * introduce no new functionality.
@@ -18,7 +18,7 @@ The definition of trivial below is intended to correspond roughly with changes t
 General Guidance for Using this Policy
 -----
 
-Since, we need to be consistent within Puppet Labs about what we consider trivial, the following is meant to provide general guidance about what is defined as trivial.
+Since, we need to be consistent within Puppet about what we consider trivial, the following is meant to provide general guidance about what is defined as trivial.
 
 A patch containing any of the following things is not trivial, no matter how short the patch (even if it is less than 10 lines in length):
 
