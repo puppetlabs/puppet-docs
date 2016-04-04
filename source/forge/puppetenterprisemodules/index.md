@@ -6,7 +6,7 @@ canonical: "/forge/puppetenterprisemodules/index.html"
 
 # Puppet Enterprise Modules
 
-Puppet Enterprise modules are modules built by Puppet Labs specifically for use with Puppet Enterprise (PE). These modules were launched with PE 3.7, and quickly and easily give PE users expanded functionality.
+Puppet Enterprise modules are modules built by Puppet specifically for use with Puppet Enterprise (PE). These modules were launched with PE 3.7, and quickly and easily give PE users expanded functionality.
 
 ## Installing Puppet Enterprise Modules
 
