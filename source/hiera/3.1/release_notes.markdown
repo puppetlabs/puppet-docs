@@ -3,7 +3,7 @@ layout: default
 title: "Hiera 3.1: Release Notes"
 ---
 
-[puppet-agent]: /puppet/4.4/reference/about_agent.html
+[`puppet-agent`]: /puppet/4.4/reference/about_agent.html
 
 ## Hiera 3.1.1
 
