@@ -96,7 +96,7 @@ Released March 16, 2016.
 
 * [PUP-5694](https://tickets.puppetlabs.com/browse/PUP-5694): `static_catalogs` is a new Puppet setting for controlling if the master should compile a static catalog. It can also be overridden per-environment in `$codedir/environments/<env>/environment.conf`. By default, the property is `true`, but can be set to `false` globally or per-environment. 
 
->>Note: the master will only compile a static catalog if static_catalogs is enabled via this setting, the agent is Puppet 4.4.0 or newer, and the master has a code_id, which identifies the version of Puppet code that was used to generate the catalog.
+  > **Note:** The master will only compile a static catalog if static_catalogs is enabled via this setting, the agent is Puppet 4.4.0 or newer, and the master has a code_id, which identifies the version of Puppet code that was used to generate the catalog.
 
 #### Misc new features and behaviors
 
@@ -108,7 +108,7 @@ Released March 16, 2016.
 
   It is possible to disable these warnings by adding `undefined_variables` to the setting `disabled_warnings`. 
 
-  >>Note: In most cases there is no file/line information available, and this was one reason why only some cases were reported earlier. We expect to correct this in the next major version as it requires API breaking changes.
+  > **Note:** In most cases there is no file/line information available, and this was one reason why only some cases were reported earlier. We expect to correct this in the next major version as it requires API breaking changes.
 
 * [PUP-1985](https://tickets.puppetlabs.com/browse/PUP-1985): It is now allowed to reference earlier parameters in a default expression in a class, define or Puppet language function. This used to be unspecified behavior and would only work by chance under certain circumstances.
 
