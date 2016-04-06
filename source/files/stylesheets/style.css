@@ -2099,9 +2099,9 @@ html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
 }
 
 .layout-footer .footer-row-1 > .fg-col input[type="email"] {
-	width: 100%;
-	max-width: 100%;
-	padding: 10px;
+	width: 98%;
+	max-width: 98%;
+	padding: 2%;
 	background: #222222;
 	border: 1px solid rgba(219, 218, 218, 0.1);
 	border-radius: 0;
