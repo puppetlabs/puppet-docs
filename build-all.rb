@@ -15,6 +15,8 @@ puts "3.7–3.8..."
 system("#{my_dir}/pe-tables-late3.rb > #{my_dir}/output/_versions_late_3.x.md")
 puts "2015.x..."
 system("#{my_dir}/pe-tables-2015.rb > #{my_dir}/output/_versions_2015.md")
+puts "2016.x..."
+system("#{my_dir}/pe-tables-2016.rb > #{my_dir}/output/_versions_2016.md")
 puts "Building agent tables:"
 puts "1.x..."
 system("#{my_dir}/agent-tables-1x.rb > #{my_dir}/output/_agent1.x.html")

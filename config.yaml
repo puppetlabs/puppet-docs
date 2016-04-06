@@ -20,3 +20,4 @@ pe:
     3.7.2: 3.7.2
   exclude:
     # - 2015.3.1-1 # burned or faulty tag
+    2016.1.0: 2016.1.0
