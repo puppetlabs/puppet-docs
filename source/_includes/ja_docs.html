@@ -1,6 +1,36 @@
+<h3><a href="./index.html">Puppet Enterprise 2016.1</a></h3>
 <ul>
-  <li><strong><a href="/ja/index.html">Puppet Labs 日本語ホーム</a></strong></li>
-  <li><strong>Puppet Enterpriseクイックスタートガイド</strong>
+  <li><strong>概要</strong>
+    <ul>
+      <li><a href="./overview_about_pe.html">About PE</a></li>
+      <li><a href="./pe_architecture_overview.html">PE architecture overview</a></li>
+      <li><a href="./overview_version_table.html">Component Versions in Recent PE Releases</a></li>
+      <li><a href="./overview_getting_support.html">Getting Support</a></li>
+      <li><a href="./pe_versioning.html">PE Version Numbers</a></li>
+      <li><strong><a href="/ja/index_1.html">日本語リソースについて</a></strong></li>
+    </ul>
+  </li>
+  <li><strong>Release Notes</strong>
+    <ul>
+        <li><a href="./release_notes.html">New Features and Deprecations</a></li>
+        <li><strong><a href="./release_notes_known_issues.html">Known Issues</a></strong>
+          <ul>
+            <li><a href="./release_notes_known_issues_install.html">Install and Upgrade</a></li>
+            <li><a href="./release_notes_known_issues_console.html">PE Console and Console Services</a></li>
+            <li><a href="./release_notes_known_issues_puppetserver.html">Puppet Server</a></li>
+            <li><a href="./release_notes_known_issues_puppetdb.html">PuppetDB and PostgreSQL</a></li>
+            <li><a href="./release_notes_known_issues_app.html">Application Orchestration</a></li>
+            <li><a href="./release_notes_known_issues_core.html">PE Services and Puppet Core</a></li>
+            <li><a href="./release_notes_known_issues_platforms.html">Supported Platforms</a></li>
+            <li><a href="./release_notes_known_issues_razor.html">Razor</a></li>
+            <li><a href="./release_notes_known_issues_codemgmt.html">Code Management</a></li>
+            <li><a href="./release_notes_known_issues_docs.html">Documentation</a></li>
+          </ul>
+         </li>
+        <li><a href="./release_notes_security.html">Security and Bug Fixes</a></li>
+    </ul>
+  </li>
+  <li><strong>クイックスタートガイド</strong>
   	<ul>
   		<li><a href="/ja/pe/quick_start_ja.html">*nix向けのクイックスタートガイド</a>
   			<ul>
@@ -12,15 +42,307 @@
   				<li><a href="/ja/pe/quick_start_nc_rbac_ja.html">6: ノードの分類とユーザー許可の割り当て</a></li>
   				<li><a href="/ja/pe/quick_writing_nix_ja.html">7: モジュールの記述</a></li>
   			</ul>
-  			</li>
+  		</li>
+  		<li><strong><a href="./quick_start_windows_intro.html">Quick Start Guide for Windows Users</a></strong>
+          <ul>
+            <li><a href="/ja/pe/quick_start_install_mono_ja.html">1: Install PE</a></li>
+            <li><a href="./quick_start_install_agents_windows.html">2: Install Agents</a></li>
+            <li><a href="./quick_start_module_install_windows.html">3: Module Install</a></li>
+            <li><a href="./quick_start_adding_class_windows.html">4: Classifying Agents</a></li>
+            <li><a href="./quick_start_rbac_windows.html">5: Assigning User Permissions</a></li>
+            <li><a href="./quick_writing_windows.html">6: Writing Modules (Windows)</a></li>
+         </ul>
+        </li>
+        <li><strong><a href="./quick_start_essential_config.html">Essential Configuration Tasks</a></strong>
+           <ul>
+            <li><a href="./quick_start_ntp.html">NTP Quick Start Guide</a></li>
+            <li><a href="./quick_start_dns.html">DNS Quick Start Guide</a></li>
+            <li><a href="./quick_start_ssh.html">SSH Quick Start Guide</a></li>
+            <li><a href="./quick_start_sudo.html">Sudo Quick Start Guide</a></li>
+            <li><a href="./quick_start_firewall.html">Firewall Quick Start Guide</a></li>
+          </ul>
+        </li>
+    </ul>
+  </li>
+  <li><a href="./puppet_overview.html">Puppet Platform Documentation</a></li>
+  <li><strong>Managing Windows in PE</strong>
+    <ul>
+    <li><a href="./windows_installing.html">Installing Puppet Enterprise for a Windows Environment</a></li>
+      <li><a href="./windows_config_mgmnt.html">Managing Windows Configurations</a></li>
+      <li><a href="./windows_modules.html">Installing and Using Windows Modules</a></li>
     </ul>
   </li>
   	<li><strong>Puppet Enterpriseのインストール</strong>
     		<ul>
+      			<li><a href="/ja/pe/install_system_requirements_ja.html">システム要件</a></li>
       			<li><a href="/ja/pe/install_basic_ja.html">PEインストールの概要</a></li>
-    		</ul>
+      			<li><strong>Web-based Installation</strong>
+           <ul>
+             <li><a href="./install_pe_mono.html">Installing PE: Monolithic</a></li>
+             <li><a href="./install_pe_split.html">Installing PE: Split</a></li>
+           </ul>
+         <li><strong>Installing PE Agents</strong>
+           <ul>
+             <li><a href="./install_agents.html">Installing PE Agents: *nix</a></li>
+             <li><a href="./install_windows.html">Installing PE Agents: Windows</a></li>
+             <li><a href="./install_osx.html">Installing PE Agents: Mac OS X</a></li>
+             <li><strong>Network Device Agents</strong>
+                 <ul>
+                   <li><a href="./install_eos.html">Installing PE Agents: Arista EOS</a></li>
+                   <li><a href="./install_nxos.html">Installing PE Agents: Cisco NS-OX EOS</a></li>
+                   <li><a href="./install_iosxr.html">Intalling PE Agents: Cisco IOS-XR</a></li>
+                   <li><a href="./install_cumulus.html">Intalling PE Agents: Cumulus Linux</a></li>
+                 </ul>
+           </ul>
+         <li><strong>Large Environment Installation</strong>
+           <ul>
+             <li><a href="./install_multimaster.html">Compile Master Installation</a></li>
+             <li><a href="./install_add_activemq.html">Additional ActiveMQ Hub and Spoke Installation</a></li>
+             <li><a href="./install_lei_upgrade.html">Upgrading Large Environment Installations</a></li>
+             <li><a href="./install_lei_load.html">Load balancing LEI</a></li>
+           </ul>
+         <li><strong>Answer File Installation</strong>
+           <ul>
+             <li><a href="./install_automated.html">Installing with an Answer File</a></li>
+             <li><a href="./install_complete_answer_file_reference.html">Complete Answer File Reference</a></li>
+             <li><a href="./install_mono_answers.html">Monolithic Install Answer File Reference</a></li>
+             <li><strong>Split Install Answer File Reference</strong>
+                 <ul>
+                   <li><a href="./install_split_console_answers.html">Console Answer File Reference</a></li>
+                   <li><a href="./install_split_master_answers.html">Puppet Master Answer File Reference</a></li>
+                   <li><a href="./install_split_puppetdb_answers.html">PuppetDB Answer File Reference</a></li>
+                 </ul>
+                </ul>
+          <li><a href="./install_pe_client_tools.html">Installing PE Client Tools</a></li>
+          <li><a href="./install_uninstalling.html">Uninstalling</a></li>
+          <li><a href="./install_what_and_where.html">What Gets Installed Where?</a></li>
+          <li><strong>PE and External PostgreSQL</strong>
+             <ul>
+               <li><a href="./install_ssl_postgresql.html">SSL for PE and External PostgreSQL</a></li>
+               <li><a href="./install_external_postgresql.html">PE and External PostgreSQL without Root Access</a></li>
+              </ul>
+          </li>
+    	</ul>
     </li>
-  <li><strong><a href="/ja/learning/introduction_ja.html">Puppetを学ぶ</a></strong></li>
-  <li><strong><a href="/ja/puppet/3.7/reference/index_ja.html">Puppetリファレンスマニュアル</a></strong></li>
-  <li><strong><a href="/ja/guides/install_puppet/pre_install_ja.html">Puppetのインストール</a></strong></li>
+    <li><strong>Upgrading to PE 2015.3</strong>
+    <ul>
+      <li><a href="./migrate_pe_catalog_preview.html">Preparing for Migration/Upgrade to PE 2015.3</a></li>
+      <li><a href="./install_upgrading.html">Upgrading PE Components</a></li>
+      <li><a href="./install_upgrading_agents.html">Upgrading Puppet Agents</a></li>
+      <li><a href="./install_upgrading_notes.html">Upgrading: Important Notes</a></li>
+      <li><a href="./install_upgrading_path_changes.html">Upgrading: Major Path Changes in PE 2015.3</a></li>
+    </ul>
+   </li>
+   <li><strong>Configuring PE</strong>
+    <ul>
+      <li><a href="./config_intro.html">Your PE Infrastructure</a></li>
+      <li><a href="./config_puppetserver.html">Tuning Puppet Server</a></li>
+      <li><a href="./puppet_server_config_files.html">Puppet Server Config Files</a></li>
+      <li><a href="./config_nc.html">Tuning Node Classifier</a></li>
+      <li><a href="./console_config.html">Tuning the Console</a></li>
+      <li><a href="./config_puppetdb.html">Tuning PuppetDB</a></li>
+      <li><a href="./config_orchestration.html">Tuning Orchestration</a></li>
+      <li><a href="./config_java_args.html">Java Arguments For PE</a></li>
+      <li><a href="./config_hocon.html">Writing Configuration Files</a></li>
+    </ul>
+  </li>
+  <li><strong>Monitoring Your PE Configuration</strong>
+         <ul>
+           <li><a href="./CM_overview.html">Monitor and Analyze Infrastructure State</a></li>
+           <li><a href="./CM_events.html">Analyze Changes Across Puppet Runs</a></li>
+           <li><a href="./CM_reports.html">Infrastructure Reports</a></li>
+           <li><a href="./puppet_server_metrics.html">Monitoring Puppet Server</a></li>
+           <li><a href="./status_api.html">Monitoring PE Services</a></li>
+		</ul>
+	</li>
+	<li><strong>Managing Nodes</strong>
+              <ul>
+                 <li><a href="./console_cert_mgmt.html">Managing Node Requests</a></li>
+                 <li><a href="./console_classes_groups_running_puppet.html">Running Puppet on a Node</a></li>
+                 <li><a href="./console_classes_groups_getting_started.html">Getting Started With Classification</a></li>
+                 <li><a href="./console_classes_groups.html">Grouping and Classifying Nodes</a></li>
+                 <li><a href="./nodes_viewing.html">Viewing Node-Specific Information</a></li>
+                 <li><a href="./console_classes_groups_making_changes.html">Making Changes in the Node Classifier</a></li>
+                 <li><a href="./node_deactivation.html">Removing Nodes From PE</a></li>
+                 <li><a href="./console_classes_groups_preconfigured_groups.html">Preconfigured Node Groups</a></li>
+                 <li><a href="./console_classes_groups_inheritance.html">How Does Inheritance Work?</a></li>
+                 <li><a href="./console_classes_groups_environment_override.html">Working With Environments</a></li>
+                 <li><strong>Node Classifier Service API</strong>
+               <ul>
+                  <li><a href="./nc_index.html">Endpoints</a></li>
+                  <li><a href="./nc_forming_requests.html">Forming Node Classifier Requests</a></li>
+                  <li><strong><a href="./nc_groups.html">Groups</a></strong>
+                    <ul>
+                      <li><a href="./nc_groups_example.html">Groups endpoint examples</a></li>
+                    </ul>
+                  <li><a href="./nc_classes.html">Classes</a></li>
+                  <li><a href="./nc_classification.html">Classification</a></li>
+                  <li><a href="./nc_environments.html">Environments</a></li>
+                  <li><a href="./nc_nodes.html">Nodes</a></li>
+                  <li><a href="./nc_rules.html">Rules</a></li>
+                  <li><a href="./nc_import-hierarchy.html">Importing Node Classifier Hierarchy</a></li>
+                  <li><a href="./nc_last_class_update.html">Last Class</a></li>
+                  <li><a href="./nc_nodes.html">Node History</a></li>
+                  <li><a href="./nc_update_classes.html">Updating Node Classifier Classes</a></li>
+                  <li><a href="./nc_validate.html">Validating Node Classifier Endpoints</a></li>
+                  <li><a href="./nc_errors.html">Node Classifier Errors</a></li>
+               </ul>
+      		</ul>
+      	</li>
+      	<li><strong>Managing Access to PE</strong>
+               <ul>
+                  <li><a href="./console_accessing.html">Accessing the Console</a></li>
+                  <li><a href="./rbac_intro.html">Working with Role-Based Access Control</a></li>
+                  <li><a href="./rbac_ldap.html">Connecting PE with External Directory Services</a></li>
+                  <li><a href="./rbac_permissions.html">About RBAC Permissions</a></li>
+                  <li><a href="./rbac_user_roles.html">Creating and Managing Users and User Roles</a></li>
+                  <li><a href="./rbac_token_auth.html">Token-Based Authentication</a></li>
+                  <li><a href="./deploy_nonroot-agent.html">Running Agents Without Root Privileges</a></li>
+                  <li><strong>RBAC Service API</strong>
+                  <ul>
+                    <li><a href="./rbac_serviceindex.html">Endpoints</a></li>
+                    <li><a href="./rbac_forming_requests.html">Forming RBAC Requests</a></li>
+                    <li><a href="./rbac_users.html">Users</a></li>
+                    <li><a href="./rbac_usergroups.html">User Groups</a></li>
+                    <li><a href="./rbac_roles.html">Roles</a></li>
+                    <li><a href="./rbac_permissionsref.html">Permissions</a></li>
+                    <li><a href="./rbac_token.html">Authentication Tokens</a></li>
+                    <li><a href="./rbac_dsref.html">Directory Service</a></li>
+                    <li><a href="./rbac_passwords.html">Passwords</a></li>
+                    <li><a href="./rbac_serviceerrors.html">Errors</a></li>
+                    <li><a href="./rbac_config.html">Configuration Options</a></li>
+                 </ul>
+                 <li><strong>Activity Service API</strong>
+            	<ul>
+                  <li><a href="./rbac_activityapis.html">Endpoints</a></li>
+                  <li><a href="./rbac_activityreporting.html">Activity Reporting</a></li>
+               </ul>
+               </li>
+               </ul>
+  		</li>
+  		<li><strong>Orchestrating Applications</strong>
+    <ul>
+      <li><a href="./app_orchestration_overview.html">Application Orchestration: Overview</a></li>
+      <li><strong>Application Orchestration: Key Concepts and Workflow</strong>
+       <ul>
+         <li><a href="./app_orchestration_workflow.html">Application Orchestration Workflow</a></li>
+         <li><a href="./app_orchestration_app_definition.html">Creating Application Definitions</a></li>
+         <li><a href="./app_orchestration_declare_instance.html">Declaring Application Instances</a></li>
+         <li><a href="./app_orchestration_produce_consume.html">Producing and Consuming Service Resources</a></li>
+         <li><a href="./app_orchestration_writing_service_resources.html">Writing Service Resources</a></li>
+         <li><a href="./app_orchestration_availability_tests.html">Using Availability Tests</a></li>
+        </ul>
+      <li><strong>Puppet Orchestrator</strong>
+       <ul>
+        <li><a href="./orchestrator_intro.html">Puppet Orchestrator Introduction</a></li>
+        <li><a href="./orchestrator_install.html">Installing Puppet Orchestrator</a></li>
+        <li><a href="./orchestrator_job_run.html">Running Jobs</a></li>
+        <li><a href="./orchestrator_job_status_view.html">Viewing Jobs</a></li>
+        <li><a href="./orchestrator_app.html">Reviewing Applications</a></li>
+       </ul>
+    </ul>
+  </li>
+    <li><strong>Managing and Deploying Puppet Code</strong>
+      <ul>
+       <li><a href="./cmgmt_managing_code.html">Managing and Deploying Puppet Code</a></li>
+       <li><a href="./cmgmt_control_repo.html">Setting Up a Control Repository</a></li>
+       <li><a href="./cmgmt_puppetfile.html">Managing Modules with Puppetfiles</a></li>
+     <li><strong>Code Manager</strong>
+        <ul>
+         <li><a href="./code_mgr.html">Managing Code with Code Manager</a></li>
+         <li><a href="./code_mgr_config.html">Configuring Code Manager</a></li>
+         <li><a href="./code_mgr_upgrade.html">Setting Up Code Manager with a PE Upgrade</a></li>
+         <li><a href="./code_mgr_custom.html">Customizing Code Manager Configuration</a></li>
+         <li><a href="./code_mgr_webhook.html">Triggering Code Manager with a Webhook</a></li>
+         <li><a href="./code_mgr_scripts.html">Triggering Code Manager with Custom Scripts</a></li>
+        </ul>
+      <li><strong>r10k</strong>
+         <ul>
+          <li><a href="./r10k.html">Managing Code with r10k</a></li>
+          <li><a href="./r10k_config.html">Configuring r10k</a></li>
+          <li><a href="./r10k_custom.html">Customizing r10k Configuration</a></li>
+          <li><a href="./r10k_run.html">Deploying Environments with r10k</a></li>
+          <li><a href="./r10k_reference.html">r10k Subcommand Reference</a></li>
+         </ul>
+      <li><a href="./cmgmt_filesync.html">About File Sync</a></li>
+      <li><a href="./cmgmt_filesync_api.html">File Sync API</a></li>
+    </ul>
+  </li>
+  <li><strong>Provisioning With Razor</strong>
+    <ul>
+      <li><a href="./razor_intro.html">Bare-Metal Provisioning with Razor</a></li>
+      <li><a href="./razor_prereqs.html">Setting Up an Environment for Razor</a></li>
+      <li><a href="./razor_install.html">Installing Razor</a></li>
+      <li><a href="./razor_upgrade.html">Upgrading Razor</a></li>
+      <li><a href="./razor_objects.html">Razor Objects for Provisioning</a></li>
+      <li><a href="./razor_brownfield.html">Provisioning in a Brownfield Environment</a></li>
+      <li><a href="./razor_using.html">Provision Nodes - How To</a></li>
+      <ul>
+      <li><a href="./razor_hooks_hostnames.html">Assigning Dynamic Hostnames Using Hooks</a></li>
+      </ul>
+      <li><a href="./razor_windows_install.html">Setting Up and Installing Windows</a></li>
+      <li><a href="./razor_reference.html">Razor Command Reference</a></li>
+      <li><a href="./razor_brokertypes.html">Writing Broker Types</a></li>
+    </ul>
+  </li>
+    <li><strong>SSL and Certificates</strong>
+    <ul>
+     <li><strong>Complete PE Cert Regeneration</strong>
+        <ul>
+          <li><a href="./trouble_regenerate_certs_split.html">Regenerating Certificates: Split Deployments</a></li>
+          <li><a href="./trouble_regenerate_certs_monolithic.html">Regenerating Certificates: Monolithic Deployments</a></li>
+        </ul>
+     <li><strong>Individual PE Component Cert Regeneration</strong>
+        <ul>
+           <li><a href="./regenerate_certs_master.html">Regenerating Certs for the Puppet Master</a></li>
+           <li><a href="./regenerate_certs_puppetdb.html">Regenerating Certs for PuppetDB</a></li>
+           <li><a href="./regenerate_certs_console.html">Regenerating Certs for the PE Console</a></li>
+         </ul>
+     <li><a href="./agent_cert_regen.html">Regenerating a Puppet Agent Certificate</a></li>
+     <li><a href="./external_ca.html">Using an External Certificate Authority with PE</a></li>
+     <li><a href="./custom_console_cert.html">Configuring the PE Console to Use a Custom Certificate</a></li>
+     <li><a href="./trouble_dh_generate.html">Custom Diffie-Hellman Param File Generation</a></li>
+     <li><a href="./install_ssl_postgresql.html">SSL for PE and External PostgreSQL</a></li>
+    </ul>
+  </li>
+  <li><strong>Understanding Puppet Core</strong>
+    <ul>
+      <li><a href="./puppet_assign_configurations.html">Assigning Configurations to Nodes</a></li>
+    </ul>
+  </li>
+  <li><strong>APIs</strong>
+   <ul>
+      <li><a href="./api_index.html">Index of APIs</a></li>
+    </ul>
+      <li><strong>Managing PE MCollective</strong>
+    <ul>
+      <li><a href="./orchestration_overview.html">Overview</a></li>
+      <li><a href="./orchestration_invoke_cli.html">Invoking Actions</a></li>
+      <li><a href="./orchestration_puppet.html">Controlling Puppet</a></li>
+      <li><a href="./orchestration_actions.html">List of Built-In Actions</a></li>
+      <li><a href="./orchestration_adding_actions.html">Adding New Actions</a></li>
+      <li><a href="./orchestration_config.html">Configuring Orchestration</a></li>
+    </ul>
+  </li>
+  <li><strong>Maintenance</strong>
+    <ul>
+      <li><a href="./maintain_console-db.html">PE Database Maintenance</a></li>
+      <li><a href="./maintain_backup_restore.html">Back Up and Restore PE</a></li>
+    </ul>
+  </li>
+  <li><strong>Troubleshooting</strong>
+    <ul>
+     <li><a href="./trouble_install.html">Troubleshooting the Installer</a></li>
+     <li><a href="./trouble_comms.html">Troubleshooting Connections and Communications</a></li>
+     <li><a href="./trouble_console-db.html">Troubleshooting the Database</a></li>
+     <li><a href="./trouble_puppet.html">Troubleshooting the Puppet Core</a></li>
+     <li><a href="./trouble_orchestration.html">Troubleshooting Orchestration</a></li>
+     <li><a href="./trouble_windows.html">Troubleshooting Windows</a></li>
+    </ul>
+  </li>
+   <li><strong>Appendix</strong>
+    <ul>
+       <li><a href="./compliance_alt.html">Compliance Alternate Workflow</a></li>
+    </ul>
+  </li>
 </ul>

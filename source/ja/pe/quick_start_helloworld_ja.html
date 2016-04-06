@@ -4,7 +4,6 @@ title: "Hello World! クイックスタートガイド"
 canonical: "/ja/pe/quick_start_helloworld_ja.html"
 ---
 
-
 <div>
 <h2 id="overview">概要</h2>
 
@@ -21,12 +20,12 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 </p>
 
 <blockquote>
-  <h3 id="a-quick-note-about-modules">モジュールに関する注意</h3>
+  <h3 id="note-about-modules">モジュールに関する注意</h3>
 
-  <p> デフォルトで、ノード管理に使用するモジュールは、<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これらのモジュールには、Puppet Enterpriseによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。
+  <p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これらのモジュールには、Puppet Enterpriseによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。 フレッシュインストールの場合は、<code>/etc/puppetlabs/code/environments/production</code>に移動し、<code>mkdir modules</code>を実行して、このモジュールのサブディレクトリを手動で作成しなければならない場合があります。
 </p>
 
-  <p> <strong>注意</strong>: Puppet Enterpriseによって<code>/opt/puppetlabs/puppet/modules</code>にもモジュールがインストールされますが、このディレクトリ内のモジュールを変更したり、作成したモジュールを追加したりしないでください。
+  <p> <strong>注意</strong>：PEによって、<code>/opt/puppetlabs/puppet/modules</code>、<code>/etc/puppetlabs/staging-code/modules</code>の2つのモジュールディレクトリが作成されますが、  <code>/opt/puppetlabs/puppet/modules</code>の内容を変更したり、モジュールを追加したりしないでください。 <code>/etc/puppetlabs/staging-code/modules</code>ディレクトリは、ファイルの同期専用です。Code Managerやファイル同期を使用していない場合は、このディレクトリにコードを追加しないでください。
 </p>
 </blockquote>
 
@@ -59,9 +58,7 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 </p>
 
     <pre><code> class helloworld {
-
     notify { 'hello, world!': }
-
  }
 </code></pre>
   </li>
@@ -71,14 +68,12 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 </p>
 
     <pre><code> class helloworld::motd {
-
     file { '/etc/motd':
     owner  =&gt; 'root',
     group  =&gt; 'root',
     mode    =&gt; '0644',
     content =&gt; "hello, world!\n",
     }
-
  }
 </code></pre>
   </li>
@@ -92,7 +87,7 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 <h2 id="add-the-helloworld-and-helloworldmotd-classes-in-the-console">
 <code>helloworld</code>クラスと<code>helloworld::motd</code>クラスをコンソールに追加する</h2>
 
-<p> ここでは、「<strong>HelloWorld</strong>」というノードグループを作成し、<code>helloworld</code>クラスを追加します。 使用環境やインフラに応じて別のグループにNTPを割り当てる場合も、手順は同じです。
+<p> ここでは、「<strong>HelloWorld</strong>」というノードグループを作成し、<code>helloworld</code>クラスを追加します。 使用環境やインフラストラクチャによって、別のグループに<code>helloworld</code>を割り当てる場合も、手順は同じです。
 </p>
 
 <p> <strong>HelloWorldノードグループの作成手順</strong>
@@ -101,36 +96,36 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 <ol>
 <li>コンソールのサイドナビゲーションバーにある<strong>Nodes</strong>をクリックし、<strong>Classification</strong>を選択します。</li>
   <li>
-<strong>Node group name</strong>フィールドに「<strong>HelloWorld</strong>」と入力し、グループ名を指定します。</li>
-  <li>
-    <p> <strong>Add group</strong>をクリックします。
+    <p> <strong>Node group name</strong>フィールドに「<strong>HelloWorld</strong>」と入力し、グループ名を指定します。
 </p>
 
     <p> <strong>注意</strong>: <strong>Parent name</strong>と<strong>Environment</strong>の値はデフォルト値(<strong>All Nodes</strong>、<strong>production</strong>)のままにしておきます。
 </p>
   </li>
   <li>
-<strong>Classification</strong>ページで、<strong>HelloWorld</strong>グループをクリックし、<em>_Rules</em>タブをクリックします。</li>
+<strong>Add group</strong>をクリックします。</li>
   <li>
-<strong>Fact</strong>フィールドに“name”(ダブルクォーテーション“”は付けません)と入力します。</li>
+<strong>Classification</strong>ページで、<strong>HelloWorld</strong>グループをクリックし、<strong>Rules</strong>タブをクリックします。</li>
+  <li>
+<strong>Fact</strong>フィールドに<code>name</code>と入力します。</li>
   <li>
 <strong>Operator</strong>ドロップダウンリストから<strong>matches regex</strong>を選択します。</li>
   <li>
-<strong>Value</strong>フィールドに“.*” (ダブルクォーテーション“”は付けません)と入力します。</li>
+<strong>Value</strong>フィールドに<code>.*</code>と入力します。</li>
   <li>
-    <p> [<strong>Add rule</strong>]をクリックします。
+    <p> <strong>Add rule</strong>をクリックし、<strong>Commit 1 change</strong>をクリックします。
 </p>
 
-    <p> このルールによって、<strong>HelloWorld</strong>グループに[すべてのノードが「動的に」ピンされます](/pe/2015.2/console_classes_groups.html#adding-nodes-dynamically)。 このルールはテスト目的で作成します。 商用環境にあるグループのノードをピンする(ノードを手動でグループに付加する)かどうかの判断は状況によって異なります。
+    <p> このルールによって、<strong>HelloWorld</strong>グループに<a href="/pe/2016.1/console_classes_groups.html#adding-nodes-dynamically">すべてのノードが動的にピン</a>されます。 このルールはテスト目的で作成します。 商用環境にあるグループのノードをピンする(ノードを手動でグループに付加する)かどうかの判断は状況によって異なります。
 </p>
   </li>
 </ol>
-<p> <code>helloworld</code>クラスを <strong>NTPグループ</strong>に<strong>追加する手順</strong>:
+<p> <code>helloworld</code>クラスを <strong>HelloWorldグループ</strong>に<strong>追加する手順</strong>:
 </p>
 
 <ol>
 <li>
-    <p> <strong>Classification</strong>ページで、<em>_HelloWorld</em>グループをクリックします。
+    <p> <strong>Classification</strong>ページで、<strong>HelloWorld</strong>グループをクリックします。
 </p>
   </li>
   <li>
@@ -150,21 +145,17 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 </p>
   </li>
   <li>
-    <p> <strong>Commit change</strong>ボタンをクリックします。
+    <p> <strong>Commit 2 changes</strong>をクリックします。
 </p>
 
-    <p> <strong>注意</strong>: <code>helloworld</code>クラスが<strong>HelloWorld</strong>グループのクラスの一覧リストに表示はされますが、この段階ではまだノードに反映されていません。 ノードに反映するには、Puppetを実行する必要があります。
-</p>
-  </li>
-  <li>
-    <p> Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。
+    <p> <strong>注意</strong>: <code>helloworld</code>クラスが<strong>HelloWorld</strong>グループのクラスの一覧リストに表示はされますが、この段階ではまだノードに反映されていません。 ノードに反映させるには、PEの管理対象ノードでPuppetを実行する必要があります。
 </p>
   </li>
   <li>
     <p> Puppet Enterpriseが管理している各ノードそれぞれのコマンドライン上でも<code>puppet agent -t</code>を実行します。
 </p>
 
-    <p> これで割り当てられたクラスが、各ノードに対して反映されます。
+    <p> これで、新たに割り当てたクラスによってノードが設定されます。
 </p>
   </li>
 </ol>
@@ -181,7 +172,7 @@ Info: Caching catalog for master.example.com
 Info: Applying configuration version '1416331291'
 Notice: hello, world!
 Notice: /Stage[main]/Helloworld/Notify[hello, world!]/message: defined 'message' as 'hello, world!'
-Notice: Finished catalog run in 9.42 seconds
+Notice: Applied catalog in 9.42 seconds
 </code></pre>
 
 <p> ここで<code>cat /etc/motd</code>を実行します。 その結果、<code>hello, world!</code>と表示されます。
@@ -190,14 +181,14 @@ Notice: Finished catalog run in 9.42 seconds
 <h2 id="other-resources">その他のリソース</h2>
 
 <blockquote>
-  <p> モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 例えば、「<a href="/pe/2015.2/puppet_modules_manifests.html">Modules and Manifests</a>」、「<a href="/guides/module_guides/bgtm.html">Beginner’s Guide to Modules</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。
+  <p> モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 「<a href="/puppet/4.4/reference/modules_fundamentals.html">Puppet: Module fundamentals</a>」、「<a href="/puppet/4.4/reference/dirs_modulepath.html">Puppet: The modulepath</a>」、「<a href="/guides/module_guides/bgtm.html">Beginner’s guide to modules</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。
 </p>
 
-  <p> <a href="./quick_start.html">クイックスタートガイドシリーズ</a>には、さらに多くのモジュールの記述エクササイズが紹介されています。
+  <p> <a href="./quick_start_ja.html">クイックスタートガイドシリーズ</a>には、さらに多くのモジュールの記述エクササイズが紹介されています。
 </p>
 </blockquote>
 
 <hr>
-<p> Next: <a href="/pe/2015.2/quick_start_module_install_nix.html">Installing Modules (*nix)</a>または<a href="/pe/2015.2/quick_start_module_install_windows.html">Installing Modules (Windows)</a>
+<p> 次の手順: <a href="./quick_start_module_install_nix_ja.html">モジュールをインストール</a>
 </p>
 </div>

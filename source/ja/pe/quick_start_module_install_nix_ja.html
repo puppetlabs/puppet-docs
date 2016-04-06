@@ -7,10 +7,10 @@ canonical: "/ja/pe/quick_start_module_install_nix_ja.html"
 <div>
 <h2 id="overview">概要</h2>
 
-<p> このガイドでは、puppetlabs-apacheモジュールをインストールします。このモジュールは、Puppet Enterpriseでの動作が保証されたモジュールです。 モジュールには<a href="/puppet/4.2/reference/lang_classes.html">クラス</a>が含まれています。クラスとは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 PEのお客様にはPuppet Forgeで提供される<a href="http://forge.puppetlabs.com/supported">サポート付きモジュール</a>についてPuppet Labsからのサポートが提供されます。 これらのモジュールは、一般的なサービスをより簡単にするためのもので、Puppet Labsによりテストおよび維持されています。
+<p> このガイドでは、puppetlabs-apacheモジュールをインストールします。このモジュールは、Puppet Enterpriseでの動作が保証されたモジュールです。 モジュールには<a href="./puppet/4.2/reference/lang_classes.html">クラス</a>が含まれています。クラスとは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 PEのお客様にはPuppet Forgeで提供される<a href="http://forge.puppetlabs.com/supported">サポート付きモジュール</a>についてPuppet Labsからのサポートが提供されます。 これらのモジュールは、一般的なサービスをより簡単にするためのもので、Puppet社によりテストおよび維持されています。
 </p>
 
-<p> <a href="./quick_writing_nix_ja.html">Linuxのためのモジュール記述の基本QSG</a>では、<a href="/pe/2015.2/quick_writing_windows.html">Windows</a>または<a href="./quick_writing_nix_ja.html">*nix</a>プラットフォームでの独自モジュールのカスタマイズや記述といった、モジュールに関する詳しい操作を説明しています。
+<p> <a href="./quick_writing_nix_ja.html">.nixのためのモジュール記述の基本クイックスタートガイド</a>では、*nixプラットフォーム上でのモジュールについて、モジュールのカスタマイズや独自に作成する方法も含めて説明します。
 </p>
 
 <blockquote>
@@ -54,16 +54,16 @@ canonical: "/ja/pe/quick_start_module_install_nix_ja.html"
 </blockquote>
 
 <blockquote>
-  <h3 id="a-quick-note-about-module-directories">モジュールディレクトリに関する注意</h3>
+  <h3 id="note-about-module-directories">モジュールディレクトリに関する注意</h3>
 
-  <p> デフォルトで、ノード管理に使用するモジュールは、<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これらのモジュールには、PEによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。
+  <p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これにはPEによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。 フレッシュインストールの場合は、<code>/etc/puppetlabs/code/environments/production</code>に移動し、<code>mkdir modules</code>を実行して、このモジュールのサブディレクトリを手動で作成しなければならない場合があります。
 </p>
 
-  <p> <strong>注意</strong>: PEによって<code>/opt/puppetlabs/puppet/modules</code>にも追加のモジュールがインストールされますが、このディレクトリ内のモジュールを変更したり、作成したモジュールをこのディレクトリに追加したりしないでください。アップグレードの際に削除される可能性があります。
+  <p> <strong>注意</strong>：PEによって、<code>/opt/puppetlabs/puppet/modules</code>、<code>/etc/puppetlabs/staging-code/modules</code>の2つのモジュールディレクトリが作成されますが、  <code>/opt/puppetlabs/puppet/modules</code>の内容を変更したり、モジュールを追加したりしないでください。 <code>/etc/puppetlabs/staging-code/modules</code>ディレクトリは、ファイルの同期専用です。Code Managerやファイル同期を使用していない場合は、このディレクトリにコードを追加しないでください。
 </p>
 </blockquote>
 
 <hr>
-<p> 次の手順: <a href="./quick_start_adding_class_nix_ja.html">Puppet Agentノード(*nix)にクラスを追加する</a>
+<p> 次の手順: <a href="./quick_start_adding_class_nix_ja.html">Puppet agentノード(*nix)にクラスを追加する</a>
 </p>
 </div>
