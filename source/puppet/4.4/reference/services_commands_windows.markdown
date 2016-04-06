@@ -101,7 +101,7 @@ This shortcut automatically requests UAC elevation, then performs a single Puppe
 
 ### Start Command Prompt with Puppet
 
-This shortcut starts a normal command prompt with the working directory set to Puppet's program directory. The command prompt's window icon is also set to the Puppet Labs logo.
+This shortcut starts a normal command prompt with the working directory set to Puppet's program directory. The command prompt's window icon is also set to the Puppet logo.
 
 This was useful in previous versions of Puppet, before the installer was revised to add Puppet's commands to the PATH, but it's no longer necessary.
 
@@ -109,6 +109,6 @@ Note that this shortcut **does not** automatically request UAC elevation; just l
 
 ### Documentation
 
-This folder contains several links to the Puppet Labs website.
+This folder contains several links to the Puppet website.
 
 

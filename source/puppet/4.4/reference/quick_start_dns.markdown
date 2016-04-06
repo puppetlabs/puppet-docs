@@ -105,9 +105,9 @@ Finally, let's take a look at how Puppet will ensure the desired state of the `r
 
 For more information about working with Puppet and DNS, check out our [Dealing with Name Resolution Issues](http://puppetlabs.com/blog/resolving-dns-issues) blog post.
 
-Puppet Labs offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [Learning Puppet page](https://puppetlabs.com/learn) to discover more.
+Puppet offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [Learning Puppet page](https://puppetlabs.com/learn) to discover more.
 
-* The Puppet Labs workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
+* The Puppet workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
 * Learn about [Puppet DNS](https://puppetlabs.com/learn/puppet-dns) through this online training workshop.
 
 ----------

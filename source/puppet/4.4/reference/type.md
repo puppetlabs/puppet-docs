@@ -10488,7 +10488,7 @@ encryption formats and requirements.
   hashes. You can use Puppet's built-in `sha1` function to generate a salted SHA1
   hash from a password.
 * Mac OS X 10.7 (Lion), and many recent Linux distributions, use salted SHA512
-  hashes. The Puppet Labs [stdlib][] module contains a `str2saltedsha512` function
+  hashes. The Puppet [stdlib][] module contains a `str2saltedsha512` function
   which can generate password hashes for these operating systems.
 * OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. When managing passwords
   on these systems, the `salt` and `iterations` attributes need to be specified as

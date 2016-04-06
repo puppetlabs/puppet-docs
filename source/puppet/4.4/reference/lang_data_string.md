@@ -330,7 +330,7 @@ Puppet does not attempt to convert line breaks, which means whatever type of lin
 
 Puppet treats strings as sequences of bytes. It does not recognize encodings or translate between them, and non-printing characters are preserved.
 
-However, Puppet Labs recommends that all strings be valid UTF8. Future versions of Puppet might impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
+However, Puppet recommends that all strings be valid UTF8. Future versions of Puppet might impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
 
 ## Accessing Substrings
 
