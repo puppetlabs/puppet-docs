@@ -202,7 +202,7 @@ table tbody tr:nth-child(even) {
   background: #f5f5f5;
 }
 table tbody tr:nth-child(odd) {
-  background: #cccccc;
+  background: #fafafa;
 }
 
 /* headlines */
@@ -300,7 +300,24 @@ code {
   padding: 2px;
 }
 
-var  {
+pre em,
+pre strong,
+code em,
+code strong {
+  font-family: Inconsolata, "Courier New", Courier, monospace !important;
+}
+
+pre em,
+code em {
+  font-style: italic;
+}
+
+pre strong,
+code strong {
+  font-weight: bold;
+}
+
+var {
   font-family: Inconsolata, "Courier New", Courier, monospace;
   font-weight: bold;
 }
