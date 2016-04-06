@@ -84,6 +84,8 @@ body {
   height: 1px;
   background-color: #cccccc;
 }
+
+/* "OR" graphic, uses images. */
 .homepage-callout .hc-wrapper .hc-col-box .hc-hr-wrapper .img {
   height: 40px;
   width: 76px;
@@ -94,6 +96,29 @@ body {
   margin-left: -38px;
   background: url("/images/or-graphic.png");
 }
+/* "OR" graphic, uses CSS. */
+.homepage-callout .hc-wrapper .hc-col-box .hc-hr-wrapper .square {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #FAFAFA none repeat scroll 0% 0%;
+}
+.homepage-callout .hc-wrapper .hc-col-box .hc-hr-wrapper .square .or-square {
+  background: #FFAE1A none repeat scroll 0% 0%;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+  height: 40px;
+  color: white;
+  font-family: 'Calibre Web Light', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+
 .homepage-callout .hc-wrapper .hc-col-box .hc-col-subtitle {
   margin: 30px 0;
   color: #2f2d6e;
