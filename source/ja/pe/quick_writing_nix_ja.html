@@ -5,17 +5,15 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 ---
 
 <div>
-<p> Puppet Enterpriseクイックスタートガイドのモジュール記述演習にようこそ。 このドキュメントでは、Puppetモジュール、モジュール開発、その他のPE機能について簡単に見ていきます。 その過程で、以下の内容を学んでいきます。
+<p> Puppet Enterpriseクイックスタートガイドのモジュール記述演習にようこそ。 このドキュメントでは、Puppetモジュール、モジュール開発、その他PEの機能について簡単に見ていきます。 その過程で、以下の内容を学んでいきます。
 </p>
 
 <ul>
 <li>Forgeから入手したモジュールの修正</li>
   <li>独自のPuppetモジュールの記述</li>
-  <li>他のモジュールをマシンのロールに組み込むためのサイトモジュールの作成</li>
-  <li>コンソールを用いたPuppetクラスのグループへの適用</li>
 </ul>
 <blockquote>
-  <p> この演習をはじめる前に、<a href="./quick_start_ja.html">初級クイックスタートガイド</a>にある前段階の演習を完了してください。 ここでも、ルートまたは管理者としてノードにログインする必要があります。
+  <p> この演習をはじめる前に、<a href="./quick_start_ja.html">初級クイックスタートガイド</a>にある前段階の演習を完了してください。 ここでも、rootまたは管理者としてノードにログインする必要があります。
 </p>
 </blockquote>
 
@@ -29,12 +27,12 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 
 <h2 id="editing-a-forge-module">Forgeモジュールを編集する</h2>
 
-<p> Forgeモジュールの多くはサイトに合った的確なソリューションですが、多くの場合は、ニーズに<em>ほとんど</em>合っているものの、ぴったり合っているわけではありません。 場合によっては、Forgeモジュールの編集が必要になることもあります。
+<p> Forgeモジュールの多くはあなたのサイトに適合する確かなソリューションではありますが、<em>わずかに</em>あなたのニーズを満たさないモジュールもあるでしょう。 場合によっては、Forgeモジュールの編集が必要になることもあります。
 </p>
 
 <h3 id="module-basics">モジュールの基礎</h3>
 
-<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 このパスは、<code>puppet.conf</code>の<a href="/puppet/4.2/reference/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。 )
+<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 このパスは、<code>puppet.conf</code>の<a href="/references/4.4.latest/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。 )
 </p>
 
 <p> モジュールはディレクトリツリー構造になっています。 ここでは、以下のファイルを使用します。
@@ -73,13 +71,12 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 </p>
 
 <ul>
-<li>モジュールの機能の詳細については、Puppetドキュメントの<a href="/puppet/4.2/reference/modules_fundamentals.html">Module Fundamentals</a>をご覧ください。</li>
-  <li>モジュール記述のベストプラクティス、各種手法、アプローチの詳細については、<a href="/guides/module_guides/bgtm.html">Beginners Guide to Modules</a>をご覧ください。</li>
-  <li>より詳細なガイドツアーは、<a href="/ja/learning/modules1_ja.html">Learning Puppetのモジュールの章</a>でもご覧いただけます。</li>
+<li>モジュールの機能の詳細については、Puppetドキュメントの<a href="/puppet/4.4/reference/modules_fundamentals.html">モジュールの基本</a>をご覧ください。</li>
+  <li>モジュール記述のベストプラクティス、各種手法、アプローチの詳細については、<a href="/guides/module_guides/bgtm.html">モジュールに関するビギナーズガイド</a>をご覧ください。</li>
 </ul>
 <h3 id="editing-a-manifest">マニフェストを編集する</h3>
 
-<p> この簡単な演習では、Puppet Labs Apacheモジュールのテンプレート、具体的には<code>'vhost.conf.erb</code>を修正し、ノードに関するfactが(PEのFacter実装を使って)追加される簡単な変数が含まれるようにします。
+<p> この簡単な演習では、Puppet Labs Apacheモジュールのテンプレート、具体的には<code>'vhost.conf.erb'</code>を、ノードに関するfact(PEのFacter実装を利用）が自動的に配置する変数を含むように修正します。
 </p>
 
 <ol>
@@ -127,9 +124,9 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
   </li>
   <li>
 <strong>agentノードで</strong>、お使いのオペレーティングシステムに応じて、以下のロケーションのいずれかに移動します。<ul>
-<li>Redhatベース: <code>/etc/httpd/conf.d</code>
+<li>Redhat系: <code>/etc/httpd/conf.d</code>
 </li>
-      <li>Debianベース: <code>/etc/apache2/sites-available</code>
+      <li>Debian系: <code>/etc/apache2/sites-available</code>
 </li>
     </ul>
 </li>
@@ -221,115 +218,8 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 </p>
 
 <ul>
-<li>ガイドツアー形式でのリソース宣言、条件文、クラスの記述方法については、<a href="/ja/learning/introduction_ja">Learning Puppetの冒頭から学習をはじめてください</a>。</li>
-  <li>Puppet言語の構文に関する完璧かつ簡潔なガイドについては、<a href="/puppet/4.2/reference/lang_summary.html">Puppet 3言語リファレンスをご覧ください</a>。</li>
-  <li>利用可能なリソースタイプに関するドキュメントの完全版については、<a href="/puppet/4.2/reference/type.html">型リファレンスをご覧ください</a>。</li>
+<li>ガイドツアー形式での<a href="/puppet/4.4/reference/lang_resources.html">リソース宣言文</a>、<a href="/puppet/4.4/reference/lang_conditional.html">条件文</a>、<a href="puppet/4.4/reference/lang_classes.html">クラス</a>の記述方法を含め、Puppet言語の構文に関する完璧かつ簡潔なガイドについては、<a href="/puppet/4.4/reference/lang_summary.html">Puppet 4.3言語リファレンス</a>を参照してください。</li>
+  <li>利用可能なリソース型に関するドキュメントの完全版については、<a href="/references/4.4.latest/type.html">型リファレンス</a>を参照してください。</li>
   <li>短い印刷可能なリファレンスについては、<a href="/module_cheat_sheet.pdf">モジュールカンニングペーパー</a>と<a href="/puppet_core_types_cheatsheet.pdf">コアタイプカンニングペーパー</a>をご覧ください。</li>
-</ul>
-<h3 id="using-your-custom-module-in-the-console">コンソールでカスタムモジュールを使う</h3>
-
-<ol>
-<li>
-<strong>コンソールで</strong>、<strong>Add classes</strong>をクリックし、リストから<code>pe_quickstart_app</code>クラスを選択したら、<strong>Add selected classes</strong>をクリックし、利用できる状態にします。<a href="./quick_start_ja.html#using-modules-in-the-console">以前の例</a>と同様です。クラスがリストに表示されるまで、しばらく待つ必要があるかもしれません。</li>
-  <li>
-    <p>  agentのノード閲覧ページに移動し、<strong>Edit</strong>をクリックして<code>pe_quickstart_app</code>クラスを追加し、先に追加した <code>apache</code>クラスを削除します。
-</p>
-
-    <blockquote>
-      <p> <strong>注意</strong>: <code>pe_quickstart_app</code>には<code>apache</code>クラスが含まれているため、追加した 最初の<code>apache</code>クラスを削除する必要があります。これは、Puppetではクラスの宣言が一度しかできないためです。
-</p>
-    </blockquote>
-  </li>
-  <li>
-    <p> agentのコマンドラインから、<code>puppet agent -t</code>を実行します。
-</p>
-
-    <p> Puppetの実行が完了したら、アプリの仮想ホストが作成され、Apacheサービス(httpd)が開始されたことがノードのログに表示されます。
-</p>
-  </li>
-  <li>
-    <p> ブラウザを使って、ノードのIPアドレスのポート80に移動します: <code>http://&lt;yournodeip&gt;:80</code>。
-</p>
-
-    <blockquote>
-      <p> <strong>ヒント</strong>: <code>https</code>ではなく、必ず<code>http</code>を使用してください。
-</p>
-    </blockquote>
-
-    <p> <img src="/pe/2015.2/images/quick/php_info.png" alt="PHP Info Page">
-</p>
-  </li>
-</ol>
-<p> これで、新しいクラスをはじめから作成し、それを用いてApache PHPベースのWebアプリを立ち上げることができました。 言うまでもありませんが、現実の世界では、アプリはPHP情報ページの表示だけでなく、もっと多くのことをします。 ただし、この演習では、PEでアプリを管理する方法について、もう少し詳しく見ていきます。
-</p>
-
-<h3 id="using-pe-to-manage-your-app">PEを使ってアプリを管理する</h3>
-
-<ol>
-<li>
-<strong>agentで</strong><code>/var/www/pe_quickstart_app/index.php</code>を開き、内容を変更します。「THIS APP IS MANAGED BY PUPPET!」のようなメッセージに変更してください。</li>
-  <li>ブラウザを更新します。PHP情報ページが先ほどの新しいメッセージに置き換わるはずです。</li>
-  <li>Puppet実行後、ブラウザを更新します。PuppetがWebアプリをリセットし、PHP情報ページが表示されるようになるはずです。<code>/var/www/pe_quickstart_app/index.php</code>の内容が、マニフェストで指定したものにリセットされているのもわかるはずです。</li>
-</ol>
-<h2 id="using-a-site-module">サイトモジュールを使う</h2>
-
-<p> 多くのユーザーは「サイト」モジュールを作成します。 サイトモジュールのクラスは、小さなユニットの設定を記述するのではなく、任意の<em>タイプ</em>のマシンに関する完全な設定を記述します。 たとえば、サイトモジュールに含まれるものとしては、以下が考えられます。
-</p>
-
-<ul>
-<li>
-<code>site::basic</code>クラス。セキュリティ管理は必要とするが、まだ特定のロールを与えられていないノードに関するもの。</li>
-  <li>
-<code>site::webserver</code>クラス。Webコンテンツを供給するノードに関するもの。</li>
-  <li>
-<code>site::dbserver</code>クラス。データベースサーバーを他のアプリケーションに提供するノードに関するもの。 </li>
-</ul>
-<p> サイトモジュールでは見た目の複雑さがなくなるため、より簡単にサイトの作業を分割することができます。 システムアーキテクトがサイトクラスを作成し、下位の管理者がコンソールで新しいマシンを作成して1つの「役割」クラスを割り当てることも可能です。 このワークフローでは、コンソールが制御するのは、細かい実装ではなくポリシーです。
-</p>
-
-<ul>
-<li>
-    <p> <strong>Puppet masterで</strong>、<code>/etc/puppetlabs/code/environments/production/modules/site/manifests/basic.pp</code>を作成し、以下が含まれるようにファイルを編集します。
-</p>
-
-    <pre><code>  class site::basic {
-    if $kernel == 'Linux' {
-      include pe_quickstart_app
-    }
-    elsif $kernel == 'windows' {
-      include registry::compliance_example
-    }
-  }
-</code></pre>
-  </li>
-</ul>
-<p> このクラスは、<code>include</code>ファンクションを持つ他のクラスを宣言するものです。  「if」条件文で、<code>$kernel</code>ファクトを用いて別のカーネルの別のクラスを設定している点に注目してください。 この例では、agentノードがLinuxマシンの場合に、Puppetが<code>pe_quickstart_app</code>クラスを適用します。Windowsマシンの場合には、<code>registry::compliance_example</code>クラスが適用されます。 クラス宣言の詳細については、<a href="/ja/learning/modules1_ja.html">Learning Puppetのモジュールおよびクラスの章</a>を参照してください。
-</p>
-
-<ol>
-<li>
-<strong>コンソールで</strong>、各ノードまたはグループのページを編集し、ノードとグループから以前の例のクラスをすべて削除します。<code>pe_*</code>クラスはそのままにしておいてください。</li>
-  <li>先ほどと同じように、サイドバーの<strong>Add classes</strong>をクリックし、<code>site::basic</code>クラスをコンソールに追加します。 </li>
-  <li>
-<a href="./quick_start_adding_class_nix_ja.html">クラス追加QSG</a>で作成した<strong>apache_example</strong>グループに<code>site::basic</code>クラスを割り当てます。</li>
-</ol>
-<blockquote>
-  <p> これで、ノードが以前と同じ設定になりましたが、コンソールではインターフェースが簡略化されます。 新しいノードに与えるクラスを決める代わりに、ノードの<em>タイプ</em>を決め、それ以前に決めた内容を活用することもできます。
-</p>
-</blockquote>
-
-<h2 id="summary">まとめ</h2>
-
-<p> これで、中級Puppetユーザーの中心的なワークフローが完了しました。 中級ユーザーは、通常の作業過程で以下のことをします。
-</p>
-
-<ul>
-<li>各自の配備上のニーズに応じて、Forgeモジュールをダウンロードおよび修正する。</li>
-  <li>新しいモジュールの作成および新しいクラスの記述により、ファイル、サービスなどのさまざまなタイプのリソースを管理する。</li>
-  <li>サイトモジュールを構築および管理し、下位の管理者に安全に権限を与え、新しいマシンの配備に関する判断を簡略化する。</li>
-</ul>
-<hr>
-<ul>
-<li><a href="/pe/2015.2/install_system_requirements.html">次の手順: システム要件</a></li>
 </ul>
 </div>

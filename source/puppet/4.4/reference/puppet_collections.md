@@ -58,7 +58,7 @@ Puppet Collection 1 contains the following components:
 
 ## Verifying Puppet packages
 
-At Puppet Labs, we sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet Labs and have not been compromised.
+At Puppet Labs, we sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
 
 Security-conscious users can use GPG to verify signatures on our packages.
 
@@ -66,7 +66,7 @@ Security-conscious users can use GPG to verify signatures on our packages.
 
 Certain operating system and installation methods automatically verify our package signatures.
 
-* If you install Puppet Labs packages via our Yum and Apt repositories, the Puppet Collection release package that enables the repository also installs our release signing key. The Yum and Apt tools automatically verify the integrity of our packages as you install them.
+* If you install Puppet packages via our Yum and Apt repositories, the Puppet Collection release package that enables the repository also installs our release signing key. The Yum and Apt tools automatically verify the integrity of our packages as you install them.
 * Our Microsoft Installer (MSI) packages for Windows are signed with a different key, and the Windows installer automatically verifies the signature before installing the package.
 
 In these cases, you don't need to do anything to verify the package signature.
@@ -77,7 +77,7 @@ If you're using Puppet source tarballs or Ruby gems, or installing RPM packages 
 
 #### Import the release signing key
 
-Before you can verify signatures, you must import the Puppet Labs public key and verify its fingerprint. This key is certified by several Puppet developers and should be available from the public keyservers.
+Before you can verify signatures, you must import the Puppet public key and verify its fingerprint. This key is certified by several Puppet developers and should be available from the public keyservers.
 
 To import the release signing key, run:
 
@@ -98,7 +98,7 @@ The key is also [available via HTTP](http://pool.sks-keyservers.net:11371/pks/lo
 
 #### Verify the fingerprint
 
-The fingerprint of the Puppet Labs release signing key is **`47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30`**. Run the following:
+The fingerprint of the Puppet release signing key is **`47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30`**. Run the following:
 
     gpg --list-key --fingerprint 1054b7a24bd6ec30
 
@@ -132,11 +132,11 @@ This is normal if you do not have a trust path to the key. If you've verified th
 
 #### Verify an RPM package
 
-Puppet RPM packages include an embedded signature. To verify it, you must import the Puppet Labs public key to `rpm`, then use `rpm` to check the signature.
+Puppet RPM packages include an embedded signature. To verify it, you must import the Puppet public key to `rpm`, then use `rpm` to check the signature.
 
-First, retrieve the [Puppet Labs public key](http://pool.sks-keyservers.net:11371/pks/lookup?op=get&search=0x1054B7A24BD6EC30) and place it in a file on your node.
+First, retrieve the [Puppet public key](http://pool.sks-keyservers.net:11371/pks/lookup?op=get&search=0x1054B7A24BD6EC30) and place it in a file on your node.
 
-Next, run the following, replacing `<PUBLIC KEY FILE>` with the path to the file containing the Puppet Labs public key:
+Next, run the following, replacing `<PUBLIC KEY FILE>` with the path to the file containing the Puppet public key:
 
     sudo rpm --import PUBKEY <PUBLIC KEY FILE>
 
@@ -156,7 +156,7 @@ puppetlabs-release-pc1-fedora-22.noarch.rpm:
     MD5 digest: OK (97a9c407a8a7ee9f8689c79bab97250e)
 ~~~
 
-If you don't import the Puppet Labs public key, you can still verify the package's integrity using `rpm -vK`. However, you won't be able to validate the package's origin:
+If you don't import the Puppet public key, you can still verify the package's integrity using `rpm -vK`. However, you won't be able to validate the package's origin:
 
 ~~~
 puppetlabs-release-pc1-fedora-22.noarch.rpm:
@@ -168,7 +168,7 @@ puppetlabs-release-pc1-fedora-22.noarch.rpm:
 
 #### Verify an OS X `puppet-agent` package
 
-Puppet Labs signs `puppet-agent` packages for OS X with a developer ID and certificate. To verify the signature, download and mount the `puppet-agent` disk image, then use the `pkgutil` tool with the `--check-signature` flag:
+Puppet signs `puppet-agent` packages for OS X with a developer ID and certificate. To verify the signature, download and mount the `puppet-agent` disk image, then use the `pkgutil` tool with the `--check-signature` flag:
 
     pkgutil --check-signature /Volumes/puppet-agent-1.3.2-1.osx10.10/puppet-agent-1.3.2-1-installer.pkg
 

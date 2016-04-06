@@ -1,8 +1,7 @@
 ---
-layout: lvm
 title: Thank You for Downloading
 toc: false
-
+snowflake: downloads
 ---
 
 <section>

@@ -13,6 +13,7 @@ defaults: [ {scope: {path: ""},
                       nav: "/_includes/fallback_nav.html"} } ]
 defaultnav:
   /background/ssl: /_includes/background_ssl.html
+  /security: /security/_security_toc.html
   /community: /_includes/community_nav.html
   /forge: /_includes/forge.html
   /guides/deployment_guide: /_includes/deploy_guide.html
@@ -93,15 +94,6 @@ documents:
       repo: git@github.com:puppetlabs/pe-docs-private.git
       commit: origin/couch
       subdirectory: source
-  # Burnside preview at the real URLs
-  /pe/2016.1:
-    doc: pe
-    version: 2016.1
-    nav: ./_pe_toc.html
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/burnside
-      subdirectory: source
   # Extra copy of burnside for existing preview URLs.
   /pe/burnside:
     doc: pe
@@ -111,6 +103,22 @@ documents:
       repo: git@github.com:puppetlabs/pe-docs-private.git
       commit: origin/burnside
       subdirectory: source
+
+  /pe/2016.1:
+    doc: pe
+    version: 2016.1
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/burnside
+      subdirectory: source
+    my_versions:
+      puppet: 4.4
+      facter: 3.1
+      hiera: 3.1
+      puppetserver: 2.3
+      puppetdb: 4.0
+
   /pe/2015.3:
     doc: pe
     version: 2015.3

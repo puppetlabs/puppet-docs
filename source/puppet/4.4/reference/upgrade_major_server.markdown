@@ -39,7 +39,7 @@ If you're having any problems with your Puppet 3 configuration, **fix them first
 
 ## Plan your Upgrade
 
-Puppet masters are in charge of managing your Puppet infrastructure, and this upgrade will interrupt their work. Bring up replacement masters and gradually cut over service to them, take a few masters out of your pool for upgrades while always leaving a few to handle traffic, or schedule Puppet service downtime.
+Puppet masters are in charge of managing your Puppet infrastructure, and this upgrade interrupt their work. Bring up replacement masters and gradually cut over service to them, take a few masters out of your pool for upgrades while always leaving a few to handle traffic, or schedule Puppet service downtime.
 
 If you have multiple Puppet masters, upgrade or replace the certificate authority (CA) master first, and pause provisioning of new Puppet agents while upgrading or replacing the CA server.
 

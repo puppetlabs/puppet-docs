@@ -22,7 +22,7 @@ Experimental features are **not officially supported** by Puppet Labs, and we do
 
 Enabling experimental features might degrade the performance of your Puppet infrastructure, interfere with the normal operation of your managed nodes, introduce unexpected security risks, or have other undesired effects.
 
-This is especially relevant to Puppet Enterprise customers. If Puppet Labs support is assisting you with a problem, we might ask you to disable any experimental features.
+This is especially relevant to Puppet Enterprise customers. If Puppet support is assisting you with a problem, we might ask you to disable any experimental features.
 
 Changes to Experimental Features
 -----
@@ -45,5 +45,5 @@ Giving Feedback on Experimental Features
 
 If you are testing Puppet's experimental features: Thank you! Please tell us more about your experience, so we can keep making Puppet better.
 
-* The best places to talk about experimental features are the [puppet-users](https://groups.google.com/group/puppet-users) and [puppet-dev](https://groups.google.com/group/puppet-dev) mailing lists. This tells us what's working and what isn't, while also helping others learn from your experience. For more information about the Puppet Labs mailing lists, please see [the community guidelines for mailing lists](/community/community_guidelines.html#mailing-list-guidelines).
+* The best places to talk about experimental features are the [puppet-users](https://groups.google.com/group/puppet-users) and [puppet-dev](https://groups.google.com/group/puppet-dev) mailing lists. This tells us what's working and what isn't, while also helping others learn from your experience. For more information about the Puppet mailing lists, please see [the community guidelines for mailing lists](/community/community_guidelines.html#mailing-list-guidelines).
 * For more immediate conversations, you can use the #puppet and #puppet-dev channels on irc.freenode.net. For more information about these channels, please see [the community guidelines for IRC](/community/community_guidelines.html#ircslack).

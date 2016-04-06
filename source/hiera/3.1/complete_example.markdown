@@ -17,7 +17,7 @@ description: "Learn how to use Hiera to pull site-specific data out of your mani
 [special hash and array lookups]: ./lookup_types.html
 [class_parameters]: /puppet/latest/reference/lang_classes.html#class-parameters-and-variables
 
-In this example, we'll use the popular [Puppet Labs ntp module][ntp_module], an exemplar of the package/file/service pattern in common use among Puppet users. We'll start simply, using Hiera to provide the ntp module with parameter data based on particular nodes in our organization. Then we'll use Hiera to assign the `ntp` class provided by the module to specific nodes.
+In this example, we'll use the popular [Puppet ntp module][ntp_module], an exemplar of the package/file/service pattern in common use among Puppet users. We'll start simply, using Hiera to provide the ntp module with parameter data based on particular nodes in our organization. Then we'll use Hiera to assign the `ntp` class provided by the module to specific nodes.
 
 ##  What Can We Do With Hiera?
 

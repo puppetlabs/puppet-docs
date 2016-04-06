@@ -251,4 +251,4 @@ Manifests in one module should never reference files or templates stored in anot
 
 Be wary of having classes declare classes from other modules, as this makes modules harder to redistribute. When possible, it's best to isolate "super-classes" that declare many other classes in a local "site" module.
 
-For more best practices, see the [Puppet Labs Modules Style Guide](/guides/style_guide.html).
+For more best practices, see the [Puppet Modules Style Guide](/guides/style_guide.html).

@@ -5,7 +5,7 @@ toc: false
 ---
 
 
-This page collects information about foundational technologies and practices. These are not tied to any specific Puppet Labs' product, but we believe many of our users will either need to or want to be familiar with them.
+This page collects information about foundational technologies and practices. These are not tied to any specific Puppet product, but we believe many of our users will either need to or want to be familiar with them.
 
 
 ## [SSL and Related Topics](./ssl/)
