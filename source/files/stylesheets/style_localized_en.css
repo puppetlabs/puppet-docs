@@ -1,0 +1,11 @@
+body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ol ol {
+  margin-left: 2em;
+  list-style-type: lower-alpha;
+  list-style-position: outside;
+}
+
+body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ol ol ol {
+  margin-left: 2em;
+  list-style-type: lower-roman;
+  list-style-position: outside;
+}
