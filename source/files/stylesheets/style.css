@@ -275,6 +275,7 @@ h3 + span.subheading {
 
 strong {
   font-family: 'Calibre Web Medium', Helvetica, Arial, sans-serif !important;
+  font-weight: 300;
 }
 
 em {
