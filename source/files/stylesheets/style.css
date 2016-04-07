@@ -1254,7 +1254,7 @@ a.disabled-nav-link {
 
 li.selected a.disabled-nav-link {
   font-weight: bold;
-  color: #ffae1a;
+  color: #222;
 }
 
 a.disabled-nav-link:hover {
