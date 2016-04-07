@@ -139,6 +139,12 @@ end
 def packages_json_to_versions_sorted_by_platform(packagedata)
   result = {}
   packagedata.each do | platform, platform_hash |
+    # Skip never-shipped network device OSes.
+    # https://tickets.puppetlabs.com/browse/DOC-2645
+    if platform == "nxos-1-x86_64" || platform == "cumulus-1.5-powerpc" || platform == "nxos-1-i386"
+      next
+    end
+
     platform_hash.each do | package_name, package_data |
       we_care = @package_name_variations.detect {|k,v| v.include?(package_name)}
       if we_care
