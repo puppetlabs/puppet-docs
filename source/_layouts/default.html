@@ -16,6 +16,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <!-- Other stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen">
+
     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
     <meta name="description" content="{{ description }}">
     <!-- Set a canonical URL, in the following order: 1. explicit, from yaml frontmatter; 2. implicit, from document data; 3. singleton, from page URL. -NF -->
@@ -32,6 +35,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/files/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
   </body>
 
 </html>
