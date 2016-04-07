@@ -1015,6 +1015,7 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content {
   float: right;
+  font-size: 1.1rem; /* Get us to the same font sizes as the main site. */
 }
 
 /* body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .secondary-content */
