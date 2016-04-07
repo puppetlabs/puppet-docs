@@ -968,7 +968,7 @@ span.edit a:hover {
 /* -------------------------------------- */
 section#content {
   background: #ffffff;
-  color: #777777;
+  color: #222;
   padding-bottom: 2.5em;
   border-top: 1px solid white;
   z-index: 5;
@@ -1192,7 +1192,7 @@ div#subCol h3 {
 }
 
 div#subCol h3 a {
-  color: #777777;
+  color: #222;
 }
 
 div#subCol > p {
@@ -1248,7 +1248,7 @@ div#subCol ul:not(.doc-navigation) > li {
 }
 
 div#subCol ul > li.selected:before {
-  color: #777777;
+  color: #222;
 }
 
 a.disabled-nav-link {
