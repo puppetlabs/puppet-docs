@@ -1903,7 +1903,9 @@ body.search-open .global-header__row.__row2 .global-header__nav-main .search a .
 	right: -6px;
 	width: 0;
 	height: 100%;
-	display: none;
+/*	display: none; disabled slider JS */
+  display: block;
+  width: 350px;
 }
 
 .global-header__row.__row2 .global-header__nav-main .search .search-slider .search-slider-table {
@@ -1920,14 +1922,14 @@ body.search-open .global-header__row.__row2 .global-header__nav-main .search a .
 }
 
 .global-header__row.__row2 .global-header__nav-main .search .search-slider .search-slider-table__cell input {
-	width: 98%;
+	width: 300px;
 	max-width: 100%;
-	padding: 5px 10px;
+	padding: 5px 50px 5px 10px;
 	color: white;
 	font-family: 'CalibreWeb-Light', Helvetica, Arial, sans-serif;
 	border: 1px solid #3a3a3a;
 	border-radius: 0;
-	background-color: #222222;
+	background-color: #222;
 }
 
 body.global-header-row-2-fixed .global-header__row.__row2 .global-header__nav-main .search .search-slider .search-slider-table__cell {
