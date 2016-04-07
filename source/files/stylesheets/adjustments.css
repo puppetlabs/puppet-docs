@@ -5,9 +5,9 @@ nav.in-page {
 
 nav.multi-column {
   -webkit-column-width: 13em;
-  -webkit-column-gap: 1.5em;
+  -webkit-column-gap: 2.5em;
   -moz-column-width: 13em;
-  -moz-column-gap: 1.5em;
+  -moz-column-gap: 2.5em;
   column-width: 13em;
   column-gap: 2.5em;
 }
