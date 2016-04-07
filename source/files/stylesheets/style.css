@@ -1927,9 +1927,9 @@ body.search-open .global-header__row.__row2 .global-header__nav-main .search a .
 	padding: 5px 50px 5px 10px;
 	color: white;
 	font-family: 'CalibreWeb-Light', Helvetica, Arial, sans-serif;
-	border: 1px solid #3a3a3a;
+	border: 1px solid #444;
 	border-radius: 0;
-	background-color: #222;
+	background-color: #3a3a3a;
 }
 
 body.global-header-row-2-fixed .global-header__row.__row2 .global-header__nav-main .search .search-slider .search-slider-table__cell {
