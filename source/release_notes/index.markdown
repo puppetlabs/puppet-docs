@@ -86,6 +86,8 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 [3.6]: /puppet/3.6/reference/release_notes.html
 [3.5]: /puppet/3.5/reference/release_notes.html
 [3.x]: /puppet/3/reference/release_notes.html
+[pe2016.1]: /pe/2016.1/release_notes.html
+[pe2015.3]: /pe/2015.3/release_notes.html
 [pe2015.2]: /pe/2015.2/release_notes.html
 [pe3.8]: /pe/3.8/release_notes.html
 [pe3.7]: /pe/3.7/release_notes.html
