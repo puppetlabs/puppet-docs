@@ -1044,16 +1044,23 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ul li {
-  margin-bottom: 0.67em;
-  margin-top: 0.67em;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
   padding-left: 0.5em;
   position: relative;
 }
 
-/* This adds up to the same left spacing as unordered lists get... sort of. */
+/* Comment when 2.5em: This adds up to the same left spacing as unordered lists get... sort of. */
+/* Changed to 2em and modified ol li margins to match unordered lists. */
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ol {
-  margin-left: 2.5em;
+  margin-left: 2em;
 }
+
+/* Added to give the ol lis the same alignment as uls */
+body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ol li {
+  padding-left: 0.5em;
+}
+
 
 body#puppetlabsdocs.docs section#content div.site-width ol.toc {
   margin-left: 0 !important;
