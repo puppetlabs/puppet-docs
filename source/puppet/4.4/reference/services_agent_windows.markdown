@@ -144,7 +144,7 @@ This will ask for UAC confirmation:
 
 To run Puppet agent remotely on any number of systems, you should use Puppet Enterprise's orchestration tools. For info, see the Puppet Enterprise manual [page on triggering Puppet runs][].
 
-Open source Puppet users can install [MCollective][] and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent) to get similar capabilities, but Puppet Labs doesn't provide standalone MCollective packages for Windows.
+Open source Puppet users can install [MCollective][] and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent) to get similar capabilities, but Puppet doesn't provide standalone MCollective packages for Windows.
 
 ## Disabling and Re-enabling Puppet Runs
 

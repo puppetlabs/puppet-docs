@@ -31,7 +31,7 @@ To install on other operating systems, see the pages linked in the navigation si
 
 You can also download [older versions of Puppet](https://downloads.puppetlabs.com/mac/); browse to `<OS X VERSION>/PC1/x86_64` for the most recently released packages.
 
-These packages are tied to Puppet Collection 1, which is a set of Puppet Labs software designed to work well with Puppet 4. The `puppet-agent` package bundles all of Puppet's prerequisites, so you don't need to download anything else to install Puppet on an agent node.
+These packages are tied to Puppet Collection 1, which is a set of Puppet software designed to work well with Puppet 4. The `puppet-agent` package bundles all of Puppet's prerequisites, so you don't need to download anything else to install Puppet on an agent node.
 
 ### Choosing a package
 

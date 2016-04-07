@@ -46,7 +46,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 
 ### Writing a Puppet Module
 
- In this simplified exercise, you'll modify a template from the Puppet Labs Apache module, specifically `vhost.conf.erb`, to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
+ In this simplified exercise, you'll modify a template from the Puppet Apache module, specifically `vhost.conf.erb`, to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
 
 1. **On the Puppet master,** navigate to the modules directory by running `cd /etc/puppetlabs/code/environments/production/modules`.
 2. Run `ls` to view the currently installed modules, and note that `apache` is present.
@@ -101,7 +101,7 @@ But now, let's see what happens when you write your own Puppet code.
 
 ## Writing a Puppet Module
 
-Puppet Labs modules save time, but at some point you may need to write your own modules.
+Puppet modules save time, but at some point you may need to write your own modules.
 
 ### Writing a Class in a Module
 

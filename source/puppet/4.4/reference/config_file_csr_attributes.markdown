@@ -57,7 +57,7 @@ Also note that the Puppet-specific OIDs listed below can also be used in CSR att
 
 Extension request OIDs **must** be under the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`) or "ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`) OID arcs.
 
-Puppet Labs provides several registered OIDs (under "ppRegCertExt") for the most common kinds of extension information, as well as a private OID range ("ppPrivCertExt") for site-specific extension information. The benefits of using the registered OIDs are:
+Puppet provides several registered OIDs (under "ppRegCertExt") for the most common kinds of extension information, as well as a private OID range ("ppPrivCertExt") for site-specific extension information. The benefits of using the registered OIDs are:
 
 * They can be referenced in `csr_attributes.yaml` using their short names instead of their numeric IDs.
 * When using Puppet tools to print certificate info, they will appear using their descriptive names instead of their numeric IDs.

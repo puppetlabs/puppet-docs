@@ -1,8 +1,7 @@
 ---
-layout: lvm
 title: Download Puppet Documentation
 toc: false
-
+snowflake: downloads
 ---
 
 <section>

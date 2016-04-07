@@ -11,11 +11,11 @@ canonical: "/forge/contributing.html"
 [dev]:           https://groups.google.com/forum/?fromgroups#!forum/puppet-dev
 
 
-# Contributing to Puppet Labs Modules
+# Contributing to Puppet Modules
 
 ## How to contribute
 
-Puppet Labs modules on the Puppet Forge are open projects and community contributions are essential for keeping them great. We can't access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve.
+Puppet modules on the Puppet Forge are open projects and community contributions are essential for keeping them great. We can't access the huge number of platforms and myriad hardware, software, and deployment configurations that Puppet is intended to serve.
 
 We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.
 
@@ -110,7 +110,7 @@ versions as much as possible.
 
 We are willing to accept backward-incompatible changes if there is
 no possible way around it. Those changes MUST provide a migration strategy
-and, if possible, deprecation warnings about the older functionality. Ask for help from the community or a Puppet Labs employee if you'd like some advice on approaches here.
+and, if possible, deprecation warnings about the older functionality. Ask for help from the community or a Puppet employee if you'd like some advice on approaches here.
 
 ### Submitting Changes
 
@@ -153,7 +153,7 @@ code before any discussion happened.
 
 ### Becoming a Committer
 
-Puppet Labs modules are an open project: any contributor can become a committer.  Being a committer comes with great responsibility: your decisions directly shape the community, as well as the effectiveness of Puppet Forge modules. You will probably invest more and produce less as a committer than a regular developer
+Puppet modules are an open project: any contributor can become a committer.  Being a committer comes with great responsibility: your decisions directly shape the community, as well as the effectiveness of Puppet Forge modules. You will probably invest more and produce less as a committer than a regular developer
 submitting pull requests.
 
 As a committer, your code is subject to the same review and commit restrictions
@@ -178,7 +178,7 @@ The process for adding a committer is:
   coding standards by submitting at least two pull requests that are accepted
   without modification.
 2. The candidate is proposed by an existing committer.
-3. The product owner at Puppet Labs responsible for the Puppet Forge and Modules reviews the candidate and makes a decision.
+3. The product owner at Puppet responsible for the Puppet Forge and Modules reviews the candidate and makes a decision.
 
 The decision on adding a committer is absolutely private and any feedback to candidates about why they were not accepted is at the option of the product owner.
 

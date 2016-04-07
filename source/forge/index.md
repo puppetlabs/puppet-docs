@@ -6,7 +6,7 @@ canonical: "/forge/index.html"
 
 # The Puppet Forge
 
-The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules for Puppet written by both Puppet Labs and the Puppet community. These modules can help you extend Puppet across your infrastructure and help you get your work done quicker.
+The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules for Puppet written by both Puppet and the Puppet community. These modules can help you extend Puppet across your infrastructure and help you get your work done quicker.
 
 ### Get Started With Modules
 
@@ -31,4 +31,4 @@ The [Puppet Forge](https://forge.puppetlabs.com/) is a repository of modules for
 ### Resources
 
 * [Style Guide](https://docs.puppetlabs.com/guides/style_guide.html)
-* [Contributing to Puppet Labs modules](https://docs.puppetlabs.com/forge/contributing.html)
+* [Contributing to Puppet modules](https://docs.puppetlabs.com/forge/contributing.html)

@@ -38,7 +38,7 @@ Activity-Specific Guidelines
 * [Getting Technical Help](#getting-technical-help)
 * [IRC Guidelines](#irc-guidelines)
 * [Mailing List Guidelines](#mailing-list-guidelines)
-* [Ask Puppet Labs Q&A Site Guidelines](#ask-puppet-labs-qa-site-guidelines)
+* [Ask Puppet Q&A Site Guidelines](#ask-puppet-labs-qa-site-guidelines)
 * [Bug Guidelines](#bug-guidelines)
 * [Documentation Guidelines](#documentation-guidelines)
 * [Git / Source Guidelines](#git--source-guidelines)
@@ -63,7 +63,7 @@ If you can't solve a problem on your own, there are a lot of places you can go t
 
 ### IRC/Slack
 
-For some Puppet Labs events, a Slack will be created to enable attendees to communicate.  The following guidelines apply to all Slack channels and groups as well as IRC.
+For some Puppet events, a Slack will be created to enable attendees to communicate.  The following guidelines apply to all Slack channels and groups as well as IRC.
 
 A great place to get real-time help with Puppet is our IRC channel: #puppet on irc.freenode.net. There are usually many helpful people there in addition to some of the Puppetlabs staff.
 Please read and understand this [fantastic guide to getting help for open-source projects on irc](http://workaround.org/getting-help-on-irc) before diving in. All of the points there apply to #puppet, especially “Don’t repeat yourself”, “Don’t ask to ask”, and “Stick around”. #puppet in particular has heavy concentrations of people in UK (GMT) and West-coast US (PST), so asking your question when those time zones are in business hours is more likely to get a good result.
@@ -95,7 +95,7 @@ Remember, when you post to a community mailing list, you are, in effect, asking 
 * [Puppet-Dev](https://groups.google.com/group/puppet-dev): The Puppet-dev mailing list, for all public discussions related to the development of the puppet codebase.
 * [Puppet-Razor](https://groups.google.com/group/puppet-razor): The mailing list for any and all questions about the Razor project.
 * [Puppet-Announce](https://groups.google.com/group/puppet-announce) (Read-Only): A list for announcements related to Puppet, e.g.; major version releases
-* [Puppet-Security](https://groups.google.com/forum/#!forum/puppet-security-announce) (Read-Only): A list for announcements of security-related releases of Puppet Labs software.
+* [Puppet-Security](https://groups.google.com/forum/#!forum/puppet-security-announce) (Read-Only): A list for announcements of security-related releases of Puppet software.
 * [Puppet Bugs](http://groups.google.com/group/puppet-bugs) (Read-Only): An automated list that gets a copy of all project ticket activity.
 * [Puppet Commit](http://groups.google.com/group/puppet-commit) (Read-Only): An automated list that gets a copy of all git source code commits.
 
@@ -149,7 +149,7 @@ Remember that thousands of copies of your message will exist in mailboxes:
 
 Credit to the [Fedora Mailing List Guidelines](http://fedoraproject.org/wiki/Communicate/MailingListGuidelines) as a starting point under the Creative Commons Attribution-ShareAlike 3.0 Unported license.
 
-### Ask Puppet Labs Q&A Site Guidelines
+### Ask Puppet Q&A Site Guidelines
 
 The [Ask Puppet Labs](http://ask.puppetlabs.com) site is a place where you can get answers to questions about anything related to Puppet.
 
@@ -209,9 +209,9 @@ The [Puppet Forge](http://forge.puppetlabs.com/) is a repository of modules, wri
 
 ### Event Code of Conduct
 
-Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet Labs (PuppetConf,  Puppet Camps, training classes, and others) or held at Puppet Labs facilities are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, and we do not tolerate harassment of participants in any form.
+Exhibitors, speakers, sponsors, staff and all other attendees at events organized by Puppet (PuppetConf,  Puppet Camps, training classes, and others) or held at Puppet facilities are subject to these Community Guidelines and Code of Conduct. We are dedicated to providing a harassment-free experience for everyone, and we do not tolerate harassment of participants in any form.
 
-We ask you to be considerate of others and behave professionally and respectfully to all other participants. Remember that sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the event without a refund at the discretion of the organizers or Puppet Labs staff members.
+We ask you to be considerate of others and behave professionally and respectfully to all other participants. Remember that sexual language and imagery is not appropriate for any event venue, including talks. Participants violating these rules may be sanctioned or expelled from the event without a refund at the discretion of the organizers or Puppet staff members.
 
 Harassment includes offensive verbal comments related to gender, gender identity or expression, sexual orientation, disability, physical appearance, body size, race, religion, sexual images in public spaces, real or implied violence, intimidation, oppression, stalking, following, harassing photography or recording, sustained disruption of talks or other events, inappropriate physical contact, and unwelcome sexual attention. Participants asked to stop any harassing behavior are expected to comply immediately.
 

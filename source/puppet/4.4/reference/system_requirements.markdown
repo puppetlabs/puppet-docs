@@ -21,7 +21,7 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 ## Platforms With Packages
 
-Puppet 4.4 and all of its prerequisites run on the following platforms, and Puppet Labs provides official packages in [Puppet Collections](./upgrade_minor.html#puppet-collections-and-upgrading).
+Puppet 4.4 and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./upgrade_minor.html#puppet-collections-and-upgrading).
 
 ### Red Hat Enterprise Linux (and Derivatives)
 
@@ -56,7 +56,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 ### Other Unix
 
-* Oracle Solaris, version 10 and higher (Puppet Labs performs limited automated testing on Solaris 11)
+* Oracle Solaris, version 10 and higher (Puppet performs limited automated testing on Solaris 11)
 * AIX, version 5.3 and higher
 * FreeBSD 4.7 and later
 * OpenBSD 4.1 and later
