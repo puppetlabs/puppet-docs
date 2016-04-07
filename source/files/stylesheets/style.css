@@ -1236,7 +1236,7 @@ div#subCol ul > li {
 
 div#subCol ul > li:before {
   content: "»";
-  color: #ffae1a;
+  color: #159680;
   position: relative;
   left: -5px;
   display: inline-block;
@@ -1258,7 +1258,7 @@ a.disabled-nav-link {
 
 li.selected a.disabled-nav-link {
   font-weight: bold;
-  color: rgb(96, 96, 144);
+  color: #ffae1a;
 }
 
 a.disabled-nav-link:hover {
