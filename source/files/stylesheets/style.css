@@ -184,7 +184,7 @@ table td {
 /* Normalize adds an bottom border to abbr tags, which are unwanted in version tables.
    We could remove the abbr tags from the tables, or classify the version tables to
    target this more narrowly. */
-table td abbr {
+table td abbr[title] {
   border: none;
 }
 
