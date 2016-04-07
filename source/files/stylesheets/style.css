@@ -1059,10 +1059,6 @@ body#puppetlabsdocs.docs section#content div.site-width ol.toc {
   margin-left: 0 !important;
 }
 
-body#puppetlabsdocs.docs section#content div.site-width ol.toc a {
-  font-family: 'Calibre Web Medium', Helvetica, Arial, sans-serif;
-}
-
 body#puppetlabsdocs.docs section#content div.site-width ol.toc ol {
   margin-left: 2.5em !important;
 }
