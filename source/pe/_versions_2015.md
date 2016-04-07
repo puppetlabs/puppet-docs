@@ -1,4 +1,4 @@
-### Agent Components (On All Nodes)
+### Agent components (on all nodes)
 
 <table>
   <thead>
@@ -19,7 +19,7 @@
   </tbody>
 </table>
 
-### Server Components
+### Server components
 
 <table>
   <thead>
