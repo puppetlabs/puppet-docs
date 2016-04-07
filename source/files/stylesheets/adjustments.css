@@ -54,6 +54,7 @@ nav.main ul > li strong {
 
 nav.main ul > li strong:hover {
   color: #999;
+  text-decoration: underline;
 }
 
 li.currentsection {
