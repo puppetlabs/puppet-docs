@@ -27,11 +27,13 @@
 
   <body>
     <div class="container">
-      <div class="sidebar col-md-2">
-        {% partial {{page.nav}} %}
+      <div class="sidebar col-md-3 col-lg-4">
+        <nav class="main">
+          {% partial {{page.nav}} %}
+        </nav>
       </div>
 
-      <div class="main-content col-md-8 col-xs-12">
+      <div class="main-content col-xs-12 col-md-9 col-lg-8">
         <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
         <div id="version-note"> {% include version_note.html %} </div>
         {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
