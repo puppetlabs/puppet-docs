@@ -17,6 +17,7 @@
     <![endif]-->
 
     <!-- Other stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/adjustments.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen" />
 
     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
@@ -55,6 +56,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/files/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/files/javascripts/prism.js"></script>
+
+    <!-- Other JS -->
+    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
   </body>
 
 </html>
