@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
   <head>
-  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  	<title>{{page.title}} — Documentation — Puppet</title>
-  	<link rel="alternate" type="application/atom+xml" title="Puppet Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
-    <link rel="alternate" type="application/atom+xml" title="Puppet Blog Feed" href="http://puppetlabs.com/feed/">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{page.title}} — Documentation — Puppet</title>
+    <link rel="alternate" type="application/atom+xml" title="Puppet Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom" />
+    <link rel="alternate" type="application/atom+xml" title="Puppet Blog Feed" href="http://puppetlabs.com/feed/" />
     <link rel='index' title='Puppet Documentation' href='https://docs.puppet.com' />
     <link rel='icon' href='/favicon.ico?v=20160406' />
     <!-- Bootstrap -->
-    <link href="/files/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/files/css/bootstrap.min.css" rel="stylesheet" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -17,10 +17,10 @@
     <![endif]-->
 
     <!-- Other stylesheets -->
-    <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen" />
 
     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
-    <meta name="description" content="{{ description }}">
+    <meta name="description" content="{{ description }}" />
     <!-- Set a canonical URL, in the following order: 1. explicit, from yaml frontmatter; 2. implicit, from document data; 3. singleton, from page URL. -NF -->
     <link rel="canonical" href="https://docs.puppet.com{% if page.canonical %}{{page.canonical}}{% elsif page.doc %}{% assign latest_baseurl = site.document_version_index[page.doc.doc]['latest'] %}{% change_baseurl page.url page.doc.base_url latest_baseurl %}{% else %}{{page.url}}{% endif %}" />
   </head>
