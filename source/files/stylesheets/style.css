@@ -356,14 +356,14 @@ p.introduction {
 }
 
 a {
-  color: #ffae1a;
+  color: #159680;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 
 a:hover {
-  color: #ffae1a;
+  color: #5bb5a6;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
@@ -1144,7 +1144,7 @@ ol.toc > li {
 
 ol.toc > li:before {
   content: "»";
-  color: #ffae1a;
+  color: #159680;
   position: relative;
   left: -5px;
 }
