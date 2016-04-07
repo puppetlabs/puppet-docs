@@ -1,3 +1,59 @@
+/* In-page TOC styling */
+nav.in-page {
+  padding-top: 1em;
+}
+
+nav.multi-column {
+  -webkit-column-width: 13em;
+  -webkit-column-gap: 1.5em;
+  -moz-column-width: 13em;
+  -moz-column-gap: 1.5em;
+  column-width: 13em;
+  column-gap: 2.5em;
+}
+
+ol.toc {
+  list-style-type: none !important;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+ol.toc a {
+  font-weight: normal;
+}
+
+/* Second-level TOCs should have lighter text and be smaller */
+
+ol.toc > li > ol.toc {
+  padding-bottom: 0;
+  padding-top: 0.25em;
+  padding-left: 0;
+  margin-bottom: 0;
+  font-size: 0.9em;
+  margin-left: 2.5em;
+}
+
+ol.toc > li {
+  margin-bottom: 0;
+  margin-left: 0;
+/*
+  padding-left: 0.5em;
+ */
+  line-height: 1.5em;
+}
+
+ol.toc > li:before {
+  content: "»";
+  color: #159680;
+  position: relative;
+  left: -5px;
+}
+
+ol.toc > li > ol.toc > li {
+  line-height: 1.25em;
+  padding-bottom: 0.25em;
+}
+
 /* Sidebar navigation styling */
 nav.main ul {
   list-style-type: none;
