@@ -1199,6 +1199,11 @@ div#subCol ul > li > ol.toc {
   margin-bottom: 0;
 }
 
+/* Address complaints about bold in the sidebar nav. */
+div#subCol ul li strong {
+  font-family: 'Calibre Web Light', Helvetica, Arial, sans-serif !important;
+}
+
 div#subCol ul > li.expanded-nav, div#subCol ul > li.hidden-nav {
   list-style-type: none;
 }
