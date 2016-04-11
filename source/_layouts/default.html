@@ -27,6 +27,7 @@
     <!-- Other stylesheets -->
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/adjustments.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/anchor.css">
 
     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
     <meta name="description" content="{{ description }}" />
@@ -37,7 +38,7 @@
   <body>
     <div class="container">
 
-      <div class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
+      <div id="content" class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
         <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
         <div id="version-note"> {% include version_note.html %} </div>
         {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
@@ -67,6 +68,17 @@
 
     <!-- Other JS -->
     <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+    <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        addAnchors("#content h1");
+        addAnchors("#content h2");
+        addAnchors("#content h3");
+        addAnchors("#content h4");
+        });
+    </script>
+    <!-- Code for hover anchor links ends -->
   </body>
 
 </html>
