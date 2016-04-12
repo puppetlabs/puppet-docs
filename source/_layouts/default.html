@@ -48,11 +48,6 @@
         </div>
     </form>
 
-    <!-- Rebuild of Site Header -->
-    <header>
-      {% if page.url contains "/ja/" %}{% include template/header_ja.html %}{% else %}{% include template/header_en.html %}{% endif %}
-    </header>
-
 
     <div class="container">
 
@@ -73,11 +68,6 @@
       </div>
 
     </div>
-
-
-    <footer class="layout-footer">
-      {% if page.url contains "/ja/" %}{% include template/footer_ja.html %}{% else %}{% include template/footer_en.html %}{% endif %}
-    </footer>
 
 
 
