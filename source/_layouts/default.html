@@ -38,6 +38,22 @@
   </head>
 
   <body>
+    <!-- Hidden Search Field -->
+    <form action="https://www.google.com/cse" id="cse-search-box">
+        <div>
+            <input type="hidden" name="cx" value="018276284386040486881:wgstg4mh_uq" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="text" name="q" class="gsc-input" size="31" />
+            <input type="submit" name="sa" class="searchbtn" value="Search" />
+        </div>
+    </form>
+
+    <!-- Rebuild of Site Header -->
+    <header>
+      {% if page.url contains "/ja/" %}{% include template/header_ja.html %}{% else %}{% include template/header_en.html %}{% endif %}
+    </header>
+
+
     <div class="container">
 
       <div id="content" class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
@@ -58,6 +74,10 @@
 
     </div>
 
+
+    <footer class="layout-footer">
+      {% if page.url contains "/ja/" %}{% include template/footer_ja.html %}{% else %}{% include template/footer_en.html %}{% endif %}
+    </footer>
 
 
 
