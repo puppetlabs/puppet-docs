@@ -69,29 +69,7 @@
             <input type="hidden" name="_mkt_disp" value="return">
             <input type="hidden" name="_mkt_trk" value="">
           </form>
-          <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
 
-          <script type="text/javascript">
-            // Handle routing of search to real (hidden) search input
-            $("#search-container").on( 'keypress', function (e) {
-              if (e.keyCode == 13) {
-                $('#cse-search-box [type="text"]').val($("#search-container").val());
-                $('#cse-search-box [type="submit"]').click();
-                return false;
-              }
-            });
-            $("#search-icon").on( 'click', function(e) {
-              $('#cse-search-box [type="text"]').val($("#search-container").val());
-              $('#cse-search-box [type="submit"]').click();
-            });
-
-            $( '#Email' ).on( 'keypress', function (evt) {
-              if (evt.keyCode == 13) {
-                $( '#mktFrmSubmit' ).click();
-                return false;
-              }
-            });
-          </script>
           <p>
             <a href="https://twitter.com/puppetize" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Twitter']);"><img src="/images/social-icons/twitter-box-white.svg" alt="Twitter"></a>
             <a href="https://www.linkedin.com/company/puppet-labs-inc" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'LinkedIn']);"><img class="social-icon" src="/images/social-icons/linkedin-box-white.svg" alt="LinkedIn"></a>
