@@ -1,3 +1,18 @@
+body {
+  padding-top: 70px;
+}
+
+a.navbar-brand img {
+  width: auto;
+  height: 46px;
+}
+
+/*
+.navbar {
+  min-height: 70px;
+}
+ */
+
 /* New Satelight Nav Menu */
 /* ---------------------------------------------- */
 .global-header {
