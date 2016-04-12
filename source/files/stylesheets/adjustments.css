@@ -335,7 +335,7 @@ body.global-header-row-2-fixed .global-header__row.__row2 .global-header__nav-ma
 
 .layout-footer .footer-row-1 {
 	margin: 0 auto;
-	max-width: 76rem;
+	max-width: 67em;
 	padding: 0 10px;
 	min-height: 260px;
 }
@@ -439,8 +439,8 @@ html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
 .layout-footer .footer-row-1 > .fg-col h3 {
 	margin: 18px 0 20px 0;
 	color: rgba(219, 218, 218, 0.5);
-	font-size: 1em;
-	letter-spacing: 2px;
+	font-size: 1.3em;
+	font-weight: 400;
 }
 
 .layout-footer .footer-row-1 > .fg-col ul {
@@ -464,7 +464,7 @@ html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
 	background: #222222;
 	border: 1px solid rgba(219, 218, 218, 0.1);
 	border-radius: 0;
-	font-family: 'CalibreWeb-Light', Helvetica, Arial, sans-serif !important;
+	font-family: 'Calibre Web', Helvetica, Arial, sans-serif !important;
 }
 
 .layout-footer .footer-row-1 .puppet-logo {
@@ -475,6 +475,7 @@ html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
 
 .layout-footer .footer-row-1 .social-icon {
 	float: left;
+	margin-top: 10px;
 }
 
 .layout-footer .footer-row-1 .social-icon + .social-icon {
