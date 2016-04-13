@@ -1,10 +1,9 @@
 ---
 layout: default
-title: "Technical Preview"
+title: "Technical Preview Scope of Support"
+toc: false
 canonical: "/tech_preview/tech_preview.html"
 ---
-
-## Tech Preview Scope of Support
 
 [Puppet Enterprise](/pe/) capabilities with the “tech preview” designation provide early access to upcoming product innovations, enabling you to evaluate functionality and provide feedback during the development process. These capabilities, however, are not fully supported, may not be functionally complete, and are not intended for production use. As Puppet considers making future iterations of tech preview capabilities generally available, we will attempt to resolve any issues that customers experience during their evaluation.
 
