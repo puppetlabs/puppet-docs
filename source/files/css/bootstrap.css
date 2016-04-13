@@ -6758,8 +6758,13 @@ button.close {
   }
 }
 /* Calibre Web Light */
+/* Calibre Web Medium */
 body {
   font-weight: 300;
+}
+b,
+strong {
+  font-weight: 500;
 }
 table {
   width: 100%;
