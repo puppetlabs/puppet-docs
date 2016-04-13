@@ -1,10 +1,26 @@
+/*
 body {
   padding-top: 70px;
+}
+ */
+
+.navbar-brand {
+  height: auto;
+}
+
+.navbar .row {
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 a.navbar-brand img {
   width: auto;
   height: 46px;
+}
+
+img#search-icon {
+  height: 20px;
+  width: 20px;
 }
 
 /*
