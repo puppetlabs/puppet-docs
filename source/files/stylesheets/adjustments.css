@@ -31,6 +31,10 @@ img#search-icon {
 
 /* Quick nav styling (after being moved to the sidebar instead of the masthead) (NF 2014.04.02) */
 /* ---------------------- */
+ul.doc-navigation {
+  padding: 0;
+}
+
 ul.doc-navigation > li:before {
   content: "" !important;
   display: inline !important;
@@ -54,7 +58,7 @@ ul.doc-navigation li.with-submenu > a {
   -moz-border-radius: 0.5em;
   border-radius: 0.5em;
   color: white;
-  width: 246px;
+  width: 288px;
   line-height: 1.4em;
 }
 
