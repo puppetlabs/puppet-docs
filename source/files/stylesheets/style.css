@@ -205,7 +205,7 @@ em {
 
 p {
   margin-bottom: 1em;
-  line-height: 1.75em;
+  line-height: 1.5;
 }
 
 pre {
@@ -266,14 +266,14 @@ p.introduction {
 }
 
 a {
-  color: #ffae1a;
+  color: #159680;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 
 a:hover {
-  color: #ffae1a;
+  color: #5bb5a6;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
@@ -878,7 +878,7 @@ span.edit a:hover {
 /* -------------------------------------- */
 section#content {
   background: #ffffff;
-  color: #777777;
+  color: #222;
   padding-bottom: 2.5em;
   border-top: 1px solid white;
   z-index: 5;
@@ -954,23 +954,26 @@ body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-co
 }
 
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ul li {
-  margin-bottom: 0.67em;
-  margin-top: 0.67em;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
   padding-left: 0.5em;
   position: relative;
 }
 
-/* This adds up to the same left spacing as unordered lists get... sort of. */
+/* Comment when 2.5em: This adds up to the same left spacing as unordered lists get... sort of. */
+/* Changed to 2em and modified ol li margins to match unordered lists. */
 body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ol {
-  margin-left: 2.5em;
+  margin-left: 2em;
 }
+
+/* Added to give the ol lis the same alignment as uls */
+body#puppetlabsdocs.docs section#content div.site-width div.primary-secondary-content .primary-content ol li {
+  padding-left: 0.5em;
+}
+
 
 body#puppetlabsdocs.docs section#content div.site-width ol.toc {
   margin-left: 0 !important;
-}
-
-body#puppetlabsdocs.docs section#content div.site-width ol.toc a {
-  font-family: 'Calibre Web Medium', Helvetica, Arial, sans-serif;
 }
 
 body#puppetlabsdocs.docs section#content div.site-width ol.toc ol {
@@ -1054,7 +1057,7 @@ ol.toc > li {
 
 ol.toc > li:before {
   content: "»";
-  color: #ffae1a;
+  color: #159680;
   position: relative;
   left: -5px;
 }
@@ -1102,7 +1105,7 @@ div#subCol h3 {
 }
 
 div#subCol h3 a {
-  color: #777777;
+  color: #222;
 }
 
 div#subCol > p {
@@ -1146,7 +1149,7 @@ div#subCol ul > li {
 
 div#subCol ul > li:before {
   content: "»";
-  color: #ffae1a;
+  color: #159680;
   position: relative;
   left: -5px;
   display: inline-block;
@@ -1158,7 +1161,7 @@ div#subCol ul:not(.doc-navigation) > li {
 }
 
 div#subCol ul > li.selected:before {
-  color: #777777;
+  color: #222;
 }
 
 a.disabled-nav-link {
@@ -1168,7 +1171,7 @@ a.disabled-nav-link {
 
 li.selected a.disabled-nav-link {
   font-weight: bold;
-  color: rgb(96, 96, 144);
+  color: #222;
 }
 
 a.disabled-nav-link:hover {

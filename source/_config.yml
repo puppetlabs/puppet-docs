@@ -4,7 +4,7 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-url: "https://docs.puppetlabs.com"
+url: "https://docs.puppet.com"
 safe: false
 # YAML frontmatter defaults:
 defaults: [ {scope: {path: ""},
@@ -351,7 +351,7 @@ documents:
     nav: /puppet/4.4/reference/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppet-server.git
-      commit: origin/stable
+      commit: 7b4d499
       subdirectory: documentation
     my_versions:
       puppet: 4.4
