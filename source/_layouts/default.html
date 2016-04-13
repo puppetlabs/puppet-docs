@@ -28,6 +28,7 @@
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/adjustments.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/anchor.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Localized styles, like sub-list numbering -->
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/style_localized_{% if page.url contains "/ja/" %}ja{% else %}en{% endif %}.css" media="screen">
 
@@ -94,6 +95,11 @@
     </nav>
 
 
+    <div id="doc-switchers" class="container">
+      <div class="col-md-8">{% include quick_nav.html %} / {% include version_switcher.html %}</div>
+      <div class="col-md-4"></div>
+    </div>
+
     <div class="container">
 
       <div id="content" class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
@@ -128,6 +134,7 @@
 
     <!-- Other JS -->
     <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+    <script type='text/javascript' src='/files/javascripts/quick_nav.js'></script>
     <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
     <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
     <script>

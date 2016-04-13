@@ -29,6 +29,151 @@ img#search-icon {
   display: none;
 }
 
+/* Quick nav styling (after being moved to the sidebar instead of the masthead) (NF 2014.04.02) */
+/* ---------------------- */
+ul.doc-navigation > li:before {
+  content: "" !important;
+  display: inline !important;
+}
+
+ul.doc-navigation > li:first-child {
+  margin-top: 0.5rem;
+}
+
+ul#docs-navigation li.with-submenu {
+  width: 100%;
+}
+
+ul.doc-navigation li.with-submenu > a {
+  display: block;
+  position: relative;
+  background: #cccccc;
+  padding: 0.25em 10px;
+  padding-right: 32px;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  color: white;
+  width: 246px;
+  line-height: 1.4em;
+}
+
+ul.doc-navigation li.with-submenu:hover > a {
+  background: #999999;
+}
+
+ul.doc-navigation li.with-submenu.active > a,
+ul.doc-navigation li.with-submenu.active:hover > a {
+  background: #222222;
+}
+
+ul.doc-navigation li.with-submenu > a span {
+  font-weight: lighter;
+}
+
+ul.doc-navigation li {
+  display: inline-block;
+  color: white;
+  margin: 0;
+  margin-top: 10px;
+  margin-left: 0 !important;
+  margin-right: 0;
+  -webkit-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  border-radius: 0.5em;
+  position: relative;
+}
+
+ul.doc-navigation dt {
+  color: white;
+}
+
+ul.doc-navigation li.active a {
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-bottomright: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+ul.doc-navigation span.drop-down-trigger {
+  display: block;
+  width: 20px;
+  height: 1.4em;
+  position: absolute;
+  top: 0.25em;
+  right: 0.5em;
+  -webkit-border-radius: 0.4em;
+  -moz-border-radius: 0.4em;
+  border-radius: 0.4em;
+  -webkit-transition: 0.125s opacity linear;
+  padding: 0;
+}
+
+ul.doc-navigation span.drop-down-trigger:before {
+  font-family: FontAwesome;
+  content: '\f0c9';
+  font-size: 1.4em;
+}
+
+ul.doc-navigation ol li:hover span.drop-down-trigger {
+  opacity: 1;
+  visibility: visible;
+}
+
+ul.doc-navigation li.with-submenu dl {
+  background: #222222;
+  left: 0;
+  z-index: 10;
+  font-size: 1em;
+  transition: opacity 0.3s linear;
+  -webkit-transition: opacity 0.3s linear;
+  width: 288px;
+  padding: 0 0 10px;
+  opacity: 0;
+  visibility: hidden;
+  display: none;
+  position: absolute;
+}
+
+ul.doc-navigation li.active.with-submenu dl {
+  opacity: 1;
+  visibility: visible;
+}
+
+ul.doc-navigation li.with-submenu dl:last-child {
+  -webkit-border-bottom-left-radius: 0.5em;
+  -webkit-border-bottom-right-radius: 0.5em;
+  -moz-border-radius-bottomleft: 0.5em;
+  -moz-border-radius-bottomright: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+ul.doc-navigation li.with-submenu dl dt {
+  padding: 0.75em 10px 0;
+}
+
+ul.doc-navigation li.with-submenu dl dd {
+  padding: 0.25em 10px;
+  display: block;
+  line-height: 1.33em;
+  margin-bottom: 0.25em;
+  color: #ffffff;
+}
+
+ul.doc-navigation li.with-submenu dl dd a {
+  color: #ffae1a;
+}
+
+ul.doc-navigation {
+  margin: 0;
+  display: inline;
+}
+/* End quick nav */
+
+
 /* Site Footer */
 /* -------------------------------------- */
 .layout-footer {
