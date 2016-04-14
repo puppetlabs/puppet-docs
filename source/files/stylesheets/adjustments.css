@@ -38,7 +38,7 @@ img#search-icon {
   }
 
   div#navbar-bottom {
-    border-top: 1px solid #444;
+    border-top: 1px solid #303030;
   }
 
   a#navbar-logo {
@@ -51,7 +51,6 @@ img#search-icon {
 
   div#navbar-container div#navbar-top.row {
     margin-left: 14.3rem;
-    border-bottom: 1px solid #222;
   }
 
   li.navbar-gap {
