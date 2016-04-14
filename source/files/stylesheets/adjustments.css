@@ -18,9 +18,98 @@ a.navbar-brand img {
   height: 46px;
 }
 
+/* Move the search icon into the search bar. */
+
 img#search-icon {
-  height: 20px;
-  width: 20px;
+  height: 1.25rem;
+  width: 1.25rem;
+  position: relative;
+  right: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  /* Style wide nav options */
+  div#navbar-container {
+    padding: 0;
+  }
+
+  div#navbar-container .row {
+    margin: 0;
+  }
+
+  div#navbar-bottom {
+    border-top: 1px solid #303030;
+  }
+
+  a#navbar-logo {
+    margin-left: 25px;
+  }
+
+  div#navbar-container div#navbar-bottom.row form.navbar-right {
+    margin-right: 5px;
+  }
+
+  div#navbar-container div#navbar-top.row {
+    margin-left: 14.3rem;
+  }
+
+  li.navbar-gap {
+    margin-left: 3.75rem;
+  }
+
+  ul.navbar-nav li:last-child a {
+    padding-right: 0;
+  }
+
+  a#navbar-site-name {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    margin-top: 2.66rem;
+    margin-left: 4rem;
+    font-weight: 400;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+
+  nav.main > h3,
+  nav.main > h3 > a {
+    color: #ffae1a;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  nav.main > h3 {
+    border-bottom: 1px solid #ffae1a;
+    padding-bottom: 0.5rem;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  img#search-icon {
+    position: absolute;
+    right: 2rem;
+    bottom: 2.6rem;
+  }
+
+  /* Style mobile nav options */
+  .navbar-inverse .navbar-nav > li > a {
+    font-size: 1rem;
+    font-weight: 400;
+    border-left: 3px solid #ffad1a;
+    border-bottom: 1px solid #444;
+    margin-bottom: 1px;
+  }
+  .navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+  }
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li.active > a:hover {
+    color: #59a1f7;
+    border-left: 3px solid #59a1f7;
+    transition: color linear 0.2s, border-left linear 0.2s;
+  }
 }
 
 /* Hide the real custom search engine for some reason */
