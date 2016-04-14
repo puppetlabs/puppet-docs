@@ -29,13 +29,37 @@ img#search-icon {
 
 @media screen and (min-width: 768px) {
   /* Style wide nav options */
-  div#navbar {
-    margin-left: 13.3rem;
+  div#navbar-container {
+    padding: 0;
+  }
+
+  div#navbar-container .row {
+    margin: 0;
+  }
+
+  div#navbar-bottom {
+    border-top: 1px solid #444;
+  }
+
+  a#navbar-logo {
+    margin-left: 25px;
+  }
+
+  div#navbar-container div#navbar-bottom.row form.navbar-right {
+    margin-right: 5px;
+  }
+
+  div#navbar-container div#navbar-top.row {
+    margin-left: 14.3rem;
     border-bottom: 1px solid #222;
   }
 
   li.navbar-gap {
     margin-left: 3.75rem;
+  }
+
+  ul.navbar-nav li:last-child a {
+    padding-right: 0;
   }
 
   a#navbar-site-name {
@@ -60,6 +84,7 @@ img#search-icon {
     border-bottom: 1px solid #ffae1a;
     padding-bottom: 0.5rem;
   }
+
 }
 
 @media screen and (max-width: 767px) {
