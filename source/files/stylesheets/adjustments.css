@@ -48,6 +48,18 @@ img#search-icon {
     color: #fff;
     font-size: 1.2rem;
   }
+
+  nav.main > h3,
+  nav.main > h3 > a {
+    color: #ffae1a;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  nav.main > h3 {
+    border-bottom: 1px solid #ffae1a;
+    padding-bottom: 0.5rem;
+  }
 }
 
 @media screen and (max-width: 767px) {
