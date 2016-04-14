@@ -27,6 +27,29 @@ img#search-icon {
   right: 2rem;
 }
 
+@media screen and (min-width: 768px) {
+  /* Style wide nav options */
+  div#navbar {
+    margin-left: 13.3rem;
+    border-bottom: 1px solid #222;
+  }
+
+  li.navbar-gap {
+    margin-left: 3.75rem;
+  }
+
+  a#navbar-site-name {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    margin-top: 2.66rem;
+    margin-left: 4rem;
+    font-weight: 400;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+}
+
 @media screen and (max-width: 767px) {
   img#search-icon {
     position: absolute;
