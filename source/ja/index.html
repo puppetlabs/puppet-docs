@@ -251,6 +251,27 @@ layout: fragment
 
     <style type="text/css">h1, h2, .btn { visibility : visible; }</style>
 <!-- BEGIN: MARKETO TRACKING --><!-- Per Alanna, this must be directly before the closing body tag. --><script src="https://munchkin.marketo.net/munchkin.js" type="text/javascript"></script><script>mktoMunchkin("307-QLA-991");</script><!-- END: MARKETO TRACKING --><script type="text/javascript" src="/files/javascripts/prism.js"></script>
+    <script type="text/javascript">
+      // Handle routing of search to real (hidden) search input
+      $("#search-container").on( 'keypress', function (e) {
+        if (e.keyCode == 13) {
+          $('#cse-search-box [type="text"]').val($("#search-container").val());
+          $('#cse-search-box [type="submit"]').click();
+          return false;
+        }
+      });
+      $("#search-icon").on( 'click', function(e) {
+        $('#cse-search-box [type="text"]').val($("#search-container").val());
+        $('#cse-search-box [type="submit"]').click();
+      });
+
+      $( '#Email' ).on( 'keypress', function (evt) {
+        if (evt.keyCode == 13) {
+          $( '#mktFrmSubmit' ).click();
+          return false;
+        }
+      });
+    </script>
 
 
 </body>
