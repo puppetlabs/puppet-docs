@@ -128,6 +128,17 @@
       });
     </script>
 
+    <script type="text/javascript">
+        // The interim language switcher, used only on the homepages
+        jQuery('#language-select').on('change', function() {
+            var optionSelected = $("option:selected", this);
+            if (optionSelected.attr('data-language') != 'null') {
+                window.location = optionSelected.attr('data-url');
+            }
+        });
+    </script>
+
+
   </body>
 
 </html>
