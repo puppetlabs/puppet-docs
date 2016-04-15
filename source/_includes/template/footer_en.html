@@ -1,12 +1,13 @@
 
-      <div class="footer-row-1">
-        <div class="fg-col">
 
-          <div class="fg-col">
+      <div class="footer-row-1 container">
+        <div class="fg-col col-md-8 container">
+
+          <div class="fg-col col-md-3">
             <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/232088/puppet-logo-white-sm.png" class="puppet-logo">
           </div>
 
-          <div class="fg-col">
+          <div class="fg-col col-md-3">
             <h3>Overview</h3>
             <ul>
               <li><a href="//puppet.com/product" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Product']);">Product</a></li>
@@ -18,7 +19,7 @@
             </ul>
           </div>
 
-          <div class="fg-col">
+          <div class="fg-col col-md-3">
             <h3>Resources</h3>
             <ul>
               <li><a href="//puppet.com/support/customer-support" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Get Help']);">Get Help</a></li>
@@ -29,7 +30,7 @@
             </ul>
           </div>
 
-          <div class="fg-col">
+          <div class="fg-col col-md-3">
             <h3>Connect</h3>
             <ul>
               <li><a href="//puppet.com/company/contact" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Contact Us']);">Contact Us</a></li>
@@ -39,7 +40,7 @@
           </div>
         </div>
 
-        <div class="fg-col">
+        <div class="fg-col col-md-3">
           <h3>Join our mailing list</h3>
           <p>Get our monthly newsletter and the occasional email we think you'll like.</p>
           <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-sjh.marketo.com/index.php/leadCapture/save" id="mktForm_1047" name="mktForm_1047">
@@ -69,31 +70,9 @@
             <input type="hidden" name="_mkt_disp" value="return">
             <input type="hidden" name="_mkt_trk" value="">
           </form>
-          <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
 
-          <script type="text/javascript">
-            // Handle routing of search to real (hidden) search input
-            $("#search-container").on( 'keypress', function (e) {
-              if (e.keyCode == 13) {
-                $('#cse-search-box [type="text"]').val($("#search-container").val());
-                $('#cse-search-box [type="submit"]').click();
-                return false;
-              }
-            });
-            $("#search-icon").on( 'click', function(e) {
-              $('#cse-search-box [type="text"]').val($("#search-container").val());
-              $('#cse-search-box [type="submit"]').click();
-            });
-
-            $( '#Email' ).on( 'keypress', function (evt) {
-              if (evt.keyCode == 13) {
-                $( '#mktFrmSubmit' ).click();
-                return false;
-              }
-            });
-          </script>
           <p>
-            <a href="https://twitter.com/puppetize" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Twitter']);"><img src="/images/social-icons/twitter-box-white.svg" alt="Twitter"></a>
+            <a href="https://twitter.com/puppetize" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Twitter']);"><img class="social-icon" src="/images/social-icons/twitter-box-white.svg" alt="Twitter"></a>
             <a href="https://www.linkedin.com/company/puppet" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'LinkedIn']);"><img class="social-icon" src="/images/social-icons/linkedin-box-white.svg" alt="LinkedIn"></a>
             <a href="https://www.facebook.com/PuppetSoftware" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Facebook']);"><img class="social-icon" src="/images/social-icons/facebook-box-white.svg" alt="Facebook"></a>
             <a href="https://www.youtube.com/c/Puppet-Inc" class="social-icon" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'YouTube']);"><img class="social-icon" src="/images/social-icons/youtube-white.svg" alt="YouTube"></a>
@@ -101,15 +80,17 @@
           </p>
         </div>
       </div>
-      <div class="footer-row-2">
+
+      <div class="footer-row-2 container">
         <div class="footer-row-2-wrapper">
-          <div class="footer-row-2-col-1">
+          <div class="footer-row-2-col-1 col-md-9">
             <a href="//puppet.com/legal" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Legal']);">Legal</a>
             <a href="//puppet.com/legal/privacy" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Privacy Policy']);">Privacy Policy</a>
             <a href="//puppet.com/legal/terms" onclick="_gaq.push(['_trackEvent', 'Footer', 'click', 'Terms of Use']);">Terms of Use</a>
           </div>
-          <div class="footer-row-2-col-2">
+          <div class="footer-row-2-col-2 col-md-3">
             <a href="/">&copy; 2016 Puppet</a>
           </div>
         </div>
       </div>
+

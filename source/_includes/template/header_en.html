@@ -1,63 +1,43 @@
-      <div class="global-header">
-        <div class="global-header__row __row1">
-          <nav class="global-header__nav-satellite"></nav>
-          <nav class="global-header__nav-satellite">
-            <div class="global-header__nav-satellite__item">
-              <a href="//www.puppet.com" class="home" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Home']);">Home</a>
-            </div>
-            <div class="global-header__nav-satellite__item">
-              <a href="//forge.puppet.com/" class="offsite forge" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">Forge</a>
-            </div>
-            <div class="global-header__nav-satellite__item">
-              <a href="//docs.puppet.com" class="offsite docs" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">Docs</a>
-            </div>
-            <div class="global-header__nav-satellite__item">
-              <a href="//learn.puppet.com/" class="offsite learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">Learn</a>
-            </div>
-            <div class="global-header__nav-satellite__item">
-              <span class="spacer"></span>
-            </div>
-            <div class="global-header__nav-satellite__item">
-              <a href="//www.puppet.com/support" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Support Services']);">Support &amp; Services</a>
-            </div>
-            <div class="global-header__nav-satellite__item">
-              <a href="//www.puppet.com/contact" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Contact']);">Contact Us</a>
-            </div>
-          </nav>
-        </div>
-        <div class="global-header__row __row2">
-          <div class="global-header__row__col __col1">
-            <a href="http://www.puppet.com">
-              <img src="/images/puppet-logo/puppet-logo-amber-white-lg.png">
-            </a>
-          </div>
-          <div class="global-header__row__col __col2">
-            <nav class="global-header__nav-main">
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div id="navbar-container" class="container-fluid">
 
-              <!-- Puppet Enterprise -->
-              <div class="global-header__nav-main__item dropdown">
-                <a href="/" class="dropdown__tab">
-                  <div class="dropdown__tab__title">Documentation</div>
-                  <div class="dropdown__tab__indicator product"></div>
-                </a>
-                <div class="dropdown-grow-bar"></div>
-              </div>
+        <div id="navbar-top" class="row navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="//puppet.com" class="home" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Home']);">Home</a></li>
+            <li><a href="//forge.puppet.com" class="offsite forge" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">Forge</a></li>
+            <li class="active"><a href="/" class="offsite docs" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">Docs</a></li>
+            <li><a href="//learn.puppet.com" class="offsite learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">Learn</a></li>
+            <li class="navbar-gap"><a href="//puppet.com/support" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Support Services']);">Support & services</a></li>
+            <li><a href="//puppet.com/contact" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Contact']);">Contact us</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
 
-              <!-- Search -->
-              <div class="global-header__nav-main__item search">
-                <a class="dropdown__tab">
-                  <img class="search-white" src="/images/puppet-icons/search-white-2.svg" alt="Search">
-                  <img id="search-icon" class="search-amber" src="/images/puppet-icons/search-amber.svg" alt="Search">
-                </a>
-              <div class="search-slider">
-                <div class="search-slider-table">
-                  <div class="search-slider-table__cell">
-                    <input id="search-container" class="search-slider-table__cell__input" type="text">
-                  </div>
-                </div>
-              </div>
-              </div>
-            </nav>
+
+
+        <div id="navbar-bottom" class="row">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a id="navbar-logo" class="navbar-brand" href="//puppet.com"><img src="/images/puppet-logo/puppet-logo-amber-white-lg.png" alt="Puppet"></a>
           </div>
+
+          <div class="navbar-header hidden-xs">
+            <a id="navbar-site-name" class="navbar-brand" href="/">Documentation</a>
+          </div>
+
+          <form class="navbar-form navbar-right navbar-collapse collapse" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="search-container" placeholder="Search...">
+              <img class="search-white" id="search-icon" src="/images/puppet-icons/search-white-2.svg" alt="Search">
+            </div>
+          </form>
         </div>
+
+
+
       </div>
+    </nav>

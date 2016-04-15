@@ -1,6 +1,6 @@
 $( document ).ready( function() {
     "use strict";
-    var navList = $( "nav.main > div#subCol > ul:not(#doc-navigation)" );
+    var navList = $( "nav.main > ul" );
 
     // Find nav links to current page
         // To make the regex, we transform the current page's pathname to:
