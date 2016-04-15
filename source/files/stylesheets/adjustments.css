@@ -161,7 +161,7 @@ ul.doc-navigation li.with-submenu.active:hover > a {
 }
 
 ul.doc-navigation li.with-submenu > a span {
-  font-weight: lighter;
+  font-weight: 400;
 }
 
 ul.doc-navigation li {
