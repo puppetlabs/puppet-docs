@@ -89,7 +89,69 @@ layout: fragment
 
   <!-- Rebuild of Site Header -->
   <header>
-    {% include template/header_en.html %}
+      <div class="global-header">
+        <div class="global-header__row __row1">
+          <nav class="global-header__nav-satellite"></nav>
+          <nav class="global-header__nav-satellite">
+            <div class="global-header__nav-satellite__item">
+              <a href="//www.puppet.com" class="home" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Home']);">Home</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//forge.puppet.com/" class="offsite forge" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Forge']);">Forge</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//docs.puppet.com" class="offsite docs" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Docs']);">Docs</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//learn.puppet.com/" class="offsite learn" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Training']);">Learn</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <span class="spacer"></span>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//www.puppet.com/support" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Support Services']);">Support &amp; Services</a>
+            </div>
+            <div class="global-header__nav-satellite__item">
+              <a href="//www.puppet.com/contact" onclick="_gaq.push(['_trackEvent', 'Toolbar', 'click', 'Contact']);">Contact Us</a>
+            </div>
+          </nav>
+        </div>
+        <div class="global-header__row __row2">
+          <div class="global-header__row__col __col1">
+            <a href="http://www.puppet.com">
+              <img src="/images/puppet-logo/puppet-logo-amber-white-lg.png">
+            </a>
+          </div>
+          <div class="global-header__row__col __col2">
+            <nav class="global-header__nav-main">
+
+              <!-- Puppet Enterprise -->
+              <div class="global-header__nav-main__item dropdown">
+                <a href="/" class="dropdown__tab">
+                  <div class="dropdown__tab__title">Documentation</div>
+                  <div class="dropdown__tab__indicator product"></div>
+                </a>
+                <div class="dropdown-grow-bar"></div>
+              </div>
+
+              <!-- Search -->
+              <div class="global-header__nav-main__item search">
+                <a class="dropdown__tab">
+                  <img class="search-white" src="/images/puppet-icons/search-white-2.svg" alt="Search">
+                  <img id="search-icon" class="search-amber" src="/images/puppet-icons/search-amber.svg" alt="Search">
+                </a>
+              <div class="search-slider">
+                <div class="search-slider-table">
+                  <div class="search-slider-table__cell">
+                    <input id="search-container" class="search-slider-table__cell__input" type="text">
+                  </div>
+                </div>
+              </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
   </header>
 
   <section id="content">
@@ -165,7 +227,7 @@ layout: fragment
                                           <a href="/pe/latest/app_orchestration_overview.html">Orchestrating Applications</a>
                                       </li>
                                       <li>
-                                          <a href="/pe/latest/console_cert_mgmt.html">Managing Nodes</a>
+                                          <a href="/pe/latest/orchestrator_intro.html">Running Orchestrator Jobs</a>
                                       </li>
 
                                   </ul>
@@ -174,6 +236,9 @@ layout: fragment
                                   <ul>
                                       <li>
                                           <a href="/pe/latest/rbac_intro.html">Managing Users</a>
+                                      </li>
+                                      <li>
+                                          <a href="/pe/latest/console_cert_mgmt.html">Managing Nodes</a>
                                       </li>
                                       <li>
                                           <a href="/pe/latest/CM_overview.html">Monitoring PE Configurations</a>
@@ -309,5 +374,27 @@ layout: fragment
     <script src="https://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script>
  <!-- END: MARKETO TRACKING -->
     <script type="text/javascript" src="/files/javascripts/prism.js"></script>
+    <script type="text/javascript">
+      // Handle routing of search to real (hidden) search input
+      $("#search-container").on( 'keypress', function (e) {
+        if (e.keyCode == 13) {
+          $('#cse-search-box [type="text"]').val($("#search-container").val());
+          $('#cse-search-box [type="submit"]').click();
+          return false;
+        }
+      });
+      $("#search-icon").on( 'click', function(e) {
+        $('#cse-search-box [type="text"]').val($("#search-container").val());
+        $('#cse-search-box [type="submit"]').click();
+      });
+
+      $( '#Email' ).on( 'keypress', function (evt) {
+        if (evt.keyCode == 13) {
+          $( '#mktFrmSubmit' ).click();
+          return false;
+        }
+      });
+    </script>
+
 	</body>
 </html>

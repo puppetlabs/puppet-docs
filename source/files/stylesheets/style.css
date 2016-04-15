@@ -266,16 +266,19 @@ p.introduction {
 }
 
 a {
-  color: #159680;
+  color: #1B50AF;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 
 a:hover {
-  color: #5bb5a6;
   text-decoration: underline;
   transition: color 0.3s ease;
+}
+
+a:visited {
+  color: #416BC5;
 }
 
 a[rel="external"] {
