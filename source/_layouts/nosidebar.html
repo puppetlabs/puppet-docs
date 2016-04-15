@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/anchor.css">
     <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/homepage.css" />
     <!-- Localized styles, like sub-list numbering -->
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/style_localized_{% if page.url contains "/ja/" %}ja{% else %}en{% endif %}.css" media="screen">
 
@@ -60,20 +61,10 @@
 
     <div class="container">
 
-      <div id="content" class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
-        <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-        <div id="version-note"> {% include version_note.html %} </div>
-        {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
+      <div id="content" class="main-content col-xs-12 col-md-12 col-lg-12">
         <div id="rendered-markdown">
           {{ content }}
         </div>
-        <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
-      </div>
-
-      <div class="sidebar col-xs-12 col-md-3 col-md-pull-9 col-lg-4 col-lg-pull-8">
-        <nav class="main">
-          {% partial {{page.nav}} %}
-        </nav>
       </div>
 
     </div>
