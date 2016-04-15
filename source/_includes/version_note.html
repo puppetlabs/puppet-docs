@@ -1,11 +1,11 @@
 {% if page.doc and page.doc.doc != "pe" and page.doc.my_versions.pe != "latest" %}
-<p class="noisy">Included in Puppet Enterprise {{page.doc.my_versions.pe}}.
+<div id="version-note"><p class="noisy">Included in Puppet Enterprise {{page.doc.my_versions.pe}}.
 {% assign ver_note_open = "true" %}
 {% endif %}
 
 {% if page.doc and site.document_version_index[page.doc.doc]["latest"] != page.doc.base_url %}
-{% unless ver_note_open %}<p class="noisy">{% endunless %}A newer version is available; see the version menu above for details.
+{% unless ver_note_open %}<div id="version-note"><p class="noisy">{% endunless %}A newer version is available; see the version menu above for details.
 {% assign ver_note_open = "true" %}
 {% endif %}
 
-{% if ver_note_open %}</p>{% endif %}
+{% if ver_note_open %}</p></div>{% endif %}
