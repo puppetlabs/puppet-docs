@@ -100,6 +100,9 @@ body {
 }
 /* "OR" graphic, uses CSS. */
 .homepage-callout .hc-wrapper .hc-col-box .hc-hr-wrapper .square {
+  box-sizing: content-box;
+    /* We did this math in a content-box world,
+    and most of the site uses border-box now. */
   width: 40px;
   height: 40px;
   position: absolute;
@@ -117,8 +120,8 @@ body {
   line-height: 40px;
   height: 40px;
   color: white;
-  font-family: 'Calibre Web Light', Helvetica, Arial, sans-serif;
-  font-weight: 600;
+  font-family: 'Calibre Web', Helvetica, Arial, sans-serif;
+  font-weight: 400;
 }
 
 .homepage-callout .hc-wrapper .hc-col-box .hc-col-subtitle {
