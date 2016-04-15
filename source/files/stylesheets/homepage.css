@@ -170,10 +170,14 @@ body {
   padding-right: 1em;
 }
 .homepage-callout .hc-col-list .hc-col-list-col ul {
+  list-style-type: none;
+  padding: 0;
 }
 .homepage-callout .hc-col-list .hc-col-list-col li {
   line-height: 1.2rem;
   font-weight: lighter;
+  margin-bottom: 0.5em;
+  font-size: 0.9em;
 }
 
 /* homepage-sub-footer */
@@ -203,7 +207,9 @@ body {
 .hc-footer-list-col {
   display: table-cell;
   width: 33%;
+  list-style-type: none;
 }
 .hc-footer-list-col li {
   margin-bottom: 0;
+  font-size: 0.9em;
 }
