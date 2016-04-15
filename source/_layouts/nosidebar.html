@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{{page.title}} — Documentation — Puppet</title>
+    <link rel="alternate" type="application/atom+xml" title="Puppet Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom" />
+    <link rel="alternate" type="application/atom+xml" title="Puppet Blog Feed" href="http://puppetlabs.com/feed/" />
+    <link rel='index' title='Puppet Documentation' href='https://docs.puppet.com' />
+    <link rel='icon' href='/favicon.ico?v=20160406' />
+
+    <!-- Fonts: must come before Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/fonts.css" />
+
+    <!-- Bootstrap -->
+    <link href="/files/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Other stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/adjustments.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/anchor.css">
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <!-- Localized styles, like sub-list numbering -->
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style_localized_{% if page.url contains "/ja/" %}ja{% else %}en{% endif %}.css" media="screen">
+
+    {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
+    <meta name="description" content="{{ description }}" />
+    <!-- Set a canonical URL, in the following order: 1. explicit, from yaml frontmatter; 2. implicit, from document data; 3. singleton, from page URL. -NF -->
+    <link rel="canonical" href="https://docs.puppet.com{% if page.canonical %}{{page.canonical}}{% elsif page.doc %}{% assign latest_baseurl = site.document_version_index[page.doc.doc]['latest'] %}{% change_baseurl page.url page.doc.base_url latest_baseurl %}{% else %}{{page.url}}{% endif %}" />
+  </head>
+
+  <body>
+    <!-- Hidden Search Field -->
+    <form action="https://www.google.com/cse" id="cse-search-box">
+        <div>
+            <input type="hidden" name="cx" value="018276284386040486881:wgstg4mh_uq" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            <input type="text" name="q" class="gsc-input" size="31" />
+            <input type="submit" name="sa" class="searchbtn" value="Search" />
+        </div>
+    </form>
+
+    <!-- Static navbar -->
+    {% if page.url contains "/ja/" %}{% include template/header_ja.html %}{% else %}{% include template/header_en.html %}{% endif %}
+
+
+    <div id="doc-switchers" class="container">
+      <div class="col-md-8">{% include quick_nav.html %} / {% include version_switcher.html %}</div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <div class="container">
+
+      <div id="content" class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
+        <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
+        <div id="version-note"> {% include version_note.html %} </div>
+        {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
+        <div id="rendered-markdown">
+          {{ content }}
+        </div>
+        <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
+      </div>
+
+      <div class="sidebar col-xs-12 col-md-3 col-md-pull-9 col-lg-4 col-lg-pull-8">
+        <nav class="main">
+          {% partial {{page.nav}} %}
+        </nav>
+      </div>
+
+    </div>
+
+
+    <footer class="layout-footer">
+      {% if page.url contains "/ja/" %}{% include template/footer_ja.html %}{% else %}{% include template/footer_en.html %}{% endif %}
+    </footer>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/files/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
+
+    <!-- Other JS -->
+    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+    <script type='text/javascript' src='/files/javascripts/quick_nav.js'></script>
+    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+    <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        addAnchors("#content h1");
+        addAnchors("#content h2");
+        addAnchors("#content h3");
+        addAnchors("#content h4");
+        });
+    </script>
+    <!-- Code for hover anchor links ends -->
+    <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
+
+    <script type="text/javascript">
+      // Handle routing of search to real (hidden) search input
+      $("#search-container").on( 'keypress', function (e) {
+        if (e.keyCode == 13) {
+          $('#cse-search-box [type="text"]').val($("#search-container").val());
+          $('#cse-search-box [type="submit"]').click();
+          return false;
+        }
+      });
+      $("#search-icon").on( 'click', function(e) {
+        $('#cse-search-box [type="text"]').val($("#search-container").val());
+        $('#cse-search-box [type="submit"]').click();
+      });
+
+      $( '#Email' ).on( 'keypress', function (evt) {
+        if (evt.keyCode == 13) {
+          $( '#mktFrmSubmit' ).click();
+          return false;
+        }
+      });
+    </script>
+
+  </body>
+
+</html>
