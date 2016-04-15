@@ -44,13 +44,13 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 4. Build an uploadable tarball of your module.
 5. Upload your module using the Puppet Forge's web interface.
 
-> ###A note on module names
+> ### A note on module names
 >
 > Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Puppet Forge as "puppetlabs-mysql".
 >
 > **Be sure to use this long name in your module's [metadata.json file](#write-a-metadatajson-file).** However, you do not have to rename the module's directory, and can leave the module in your active modulepath --- the build action will do the right thing as long as the metadata.json is correct.
 
-> ###Another note on module names
+> ### Another note on module names
 >
 > Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style in your metadata files and when issuing commands.
 
@@ -201,7 +201,7 @@ You can express this field through an array of hashes, classified under `operati
       }
     ]
 
-> ###A Note on Semantic Versioning
+> ### A Note on Semantic Versioning
 >
 > When writing your metadata.json file, you're setting a version for your own module and optionally expressing dependencies on others' module versions. We strongly recommend following the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification. Doing so allows others to rely on your modules without unexpected change.
 >
