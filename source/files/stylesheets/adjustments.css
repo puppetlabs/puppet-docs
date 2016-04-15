@@ -27,7 +27,8 @@ img#search-icon {
   right: 2rem;
 }
 
-nav.main ul li a.disabled-nav-link {
+nav.main ul li a.disabled-nav-link,
+table th {
   font-weight: 600;
 }
 
