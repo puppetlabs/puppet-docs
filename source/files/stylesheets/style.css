@@ -84,6 +84,7 @@ table th {
   color: #fff;
   padding: 0.5em;
   background: #222222;
+  font-weight: 600;
 }
 
 table td {
@@ -984,7 +985,7 @@ body#puppetlabsdocs.docs section#content div.site-width ol.toc ol {
 }
 
 /* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
-section#content div.primary-secondary-content div.primary-content p img {
+div#content div#rendered-markdown p img {
   border: solid 1px #ccc;
   box-shadow: 0px 0px 8px #999;
   /* Image width should be constrained by the <p> width in all browsers that are supported (lets images expand to 740px on a wide screen) */

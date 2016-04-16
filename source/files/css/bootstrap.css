@@ -1482,6 +1482,18 @@ blockquote,
   font-size: 1.1rem;
   border-left: 5px solid #eee;
 }
+blockquote h2:first-child,
+.callout-placeholder h2:first-child,
+blockquote h3:first-child,
+.callout-placeholder h3:first-child,
+blockquote h4:first-child,
+.callout-placeholder h4:first-child,
+blockquote h5:first-child,
+.callout-placeholder h5:first-child,
+blockquote h6:first-child,
+.callout-placeholder h6:first-child {
+  margin-top: 0;
+}
 blockquote p:last-child,
 .callout-placeholder p:last-child,
 blockquote ul:last-child,
@@ -6989,6 +7001,13 @@ div#version-note {
   border-left: 5px solid #eee;
   border-left: 5px solid #d9534f;
 }
+div#version-note h2:first-child,
+div#version-note h3:first-child,
+div#version-note h4:first-child,
+div#version-note h5:first-child,
+div#version-note h6:first-child {
+  margin-top: 0;
+}
 div#version-note p:last-child,
 div#version-note ul:last-child,
 div#version-note ol:last-child {
@@ -7017,6 +7036,13 @@ blockquote {
   border-bottom: 1px solid #ccc;
   border-left: 5px solid #eee;
   border-left: 5px solid #ffae1a;
+}
+blockquote h2:first-child,
+blockquote h3:first-child,
+blockquote h4:first-child,
+blockquote h5:first-child,
+blockquote h6:first-child {
+  margin-top: 0;
 }
 blockquote p:last-child,
 blockquote ul:last-child,
