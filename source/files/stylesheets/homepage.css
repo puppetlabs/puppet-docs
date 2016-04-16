@@ -168,14 +168,11 @@ body {
 
 .homepage-callout .hc-col-list {
   display: table;
-  width: 100%;
   height: 100px;
   text-align: left;
   border-spacing: 0;
 }
 .homepage-callout .hc-col-list .hc-col-list-col {
-  display: table-cell;
-  width: 50%;
 }
 .hc-col-list-col:first-child {
   padding-right: 1em;
