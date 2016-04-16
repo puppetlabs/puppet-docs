@@ -142,7 +142,8 @@ body {
   font-weight: lighter;
   font-size: 1.225em;
 }
-.homepage-callout .hc-wrapper .hc-col-box a.btn {
+.homepage-callout .hc-wrapper .hc-col-box a.homepage-button {
+  display: inline-block;
   border: 1px solid #d8d8d8;
   border-radius: 4px;
   color: #222;
