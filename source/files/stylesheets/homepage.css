@@ -212,12 +212,8 @@ body {
   padding: 40px;
 }
 .hc-footer-list {
-  display: table;
-  width: 100%;
 }
 .hc-footer-list-col {
-  display: table-cell;
-  width: 33%;
   list-style-type: none;
 }
 .hc-footer-list-col li {
