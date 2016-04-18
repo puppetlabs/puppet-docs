@@ -686,11 +686,11 @@ parameter and conditional relationship declarations. For instance,
        }
 
        service { 'hidd':
-         enable         => $service_enable,
-         ensure         => $service_ensure,
-         status         => 'source /etc/init.d/functions; status hidd',
-         hasstatus      => true,
-         hasrestart     => true,
+         enable     => $service_enable,
+         ensure     => $service_ensure,
+         status     => 'source /etc/init.d/functions; status hidd',
+         hasstatus  => true,
+         hasrestart => true,
       }
 
       # Finally, declare relations based on desired behavior

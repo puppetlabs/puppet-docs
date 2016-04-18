@@ -3,7 +3,7 @@ layout: default
 title: "Hiera 3.1: Release Notes"
 ---
 
-[puppet-agent]: /puppet/4.4/reference/about_agent.html
+[`puppet-agent`]: /puppet/4.4/reference/about_agent.html
 
 ## Hiera 3.1.1
 
@@ -18,7 +18,7 @@ This is a small one-feature release shipped in [`puppet-agent`][] version [1.4.1
 
 It is now possible to lookup keys in Hiera data containing the `.` character (period), by quoting the entire name segment with either single or double quotes.
 
->>**Note:** It is important to correctly quote with the corresponding YAML or JSON syntax rules for single and double quotes when using quoted keys in interpolation inside of the Hiera data.
+> **Note:** It is important to correctly quote with the corresponding YAML or JSON syntax rules for single and double quotes when using quoted keys in interpolation inside of the Hiera data.
 
 
 ## Hiera 3.1.0
