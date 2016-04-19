@@ -77,26 +77,29 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Bootstrap's stock JS components -->
     <script src="/files/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
 
-    <!-- Other JS -->
+    <!-- Utility JS -->
+    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
     <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
     <script type='text/javascript' src='/files/javascripts/quick_nav.js'></script>
-    <!-- Code for hover anchor links on headers begins. Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
-    <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        addAnchors("#content h1");
-        addAnchors("#content h2");
-        addAnchors("#content h3");
-        addAnchors("#content h4");
-        });
-    </script>
-    <!-- Code for hover anchor links ends -->
+    <!-- Hover anchor links on headers -->
+      <!-- Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+      <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
+      <script>
+      $(document).ready(function(){
+          addAnchors("#content h1");
+          addAnchors("#content h2");
+          addAnchors("#content h3");
+          addAnchors("#content h4");
+          });
+      </script>
+    <!-- End hover anchor links -->
+
     <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
 
+    <!-- One-off JS snippets -->
     <script type="text/javascript">
       // Handle routing of search to real (hidden) search input
       $("#search-container").on( 'keypress', function (e) {
@@ -128,7 +131,6 @@
             }
         });
     </script>
-
 
   </body>
 
