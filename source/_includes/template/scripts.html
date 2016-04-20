@@ -47,7 +47,17 @@
     <!-- Marketo form support v1 (used only for the newsletter sign-up form) -->
       <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
     <!-- Marketo tracking -->
-      <script src="https://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script>
+      <!-- Assumes jQuery is available (which it is); see https://docs.marketo.com/display/public/DOCS/Add+Munchkin+Tracking+Code+to+Your+Website#AddMunchkinTrackingCodetoYourWebsite-TypesofMunchkinTrackingCodes -->
+      <script type="text/javascript">
+      $.ajax({
+        url: '//munchkin.marketo.net/munchkin.js',
+        dataType: 'script',
+        cache: true,
+        success: function() {
+          Munchkin.init('307-QLA-991');
+        }
+      });
+      </script>
     <!-- End Marketo tracking -->
 
 
