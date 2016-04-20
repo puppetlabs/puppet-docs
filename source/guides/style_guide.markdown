@@ -21,22 +21,22 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC 2119](http://www.faqs.org/rfcs/rfc2119.html).
 
-Unless explicitly called out, everything discussed here applies specifically to Puppet (i.e. Puppet modules, Puppet classes, etc.). To save your eyes and our fingers, 'Puppet' will not be appended to every topic discussed.
+Unless explicitly called out, everything discussed here applies specifically to Puppet (i.e. Puppet modules, Puppet classes, etc.). To save your eyes and our fingers, 'Puppet' is not appended to every topic discussed.
 
 ## 2. Purpose
 
-The purpose of this style guide is to promote consistent formatting across modules (from Puppet Labs and the community), which gives users and developers of Puppet modules a common pattern, design, and style to follow. Additionally, consistency in code and module structure makes continued development and contributions easier.
+The purpose of this style guide is to promote consistent formatting across modules (from Puppet and the community), which gives users and developers of Puppet modules a common pattern, design, and style to follow. Additionally, consistency in code and module structure makes continued development and contributions easier.
 
-## 3. Guiding Principles
+## 3. Guiding principles
 
-We can never cover every possible circumstance you might run into when developing Puppet code or creating a module. Eventually, a judgement call will be necessary. When that happens, keep in mind the following general principles:
+We can never cover every possible circumstance you might run into when developing Puppet code or creating a module. Eventually, a judgement call is necessary. When that happens, keep in mind the following general principles:
 
 1.  **Readability matters.**
-
+    
     If you have to choose between two equally effective alternatives, pick the
     more readable one. While this is subjective, if you can read your
     own code three months from now, it's a great start. In particular, code that generates readable diffs is highly preferred.
-
+    
 2. **Scoping and simplicity are key.**
 
     When in doubt, err on the side of simplicity. A module should contain related resources that enable it to accomplish a task. If you describe the function of your module and you find yourself using the word 'and,' it's time to split the module at the 'and.' You should have one goal, with all your classes and parameters focused on achieving it.
@@ -47,11 +47,11 @@ We can never cover every possible circumstance you might run into when developin
 
 ## 4. Versioning
 
-Your module must be versioned. We recommend (and use) [SemVer](http://semver.org/spec/v1.0.0.html); meaning for a version x.y.z., an increase in x indicates backwards incompatible changes or a complete rewrite, an increase in y indicates the addition of new features, and an increase in z indicates non-breaking bug fixes.
+Your module must be versioned. We recommend (and use) [SemVer](http://semver.org/spec/v1.0.0.html); meaning for a version x.y.z., an increase in x indicates backwards incompatible changes or a complete rewrite, an increase in y indicates the addition of new features, and an increase in z indicates non-breaking bug fixes. 
 
 This style guide is versioned using SemVer.
 
-## 5. Spacing, Indentation, and Whitespace
+## 5. Spacing, indentation, and whitespace
 
 Module manifests:
 
@@ -65,52 +65,52 @@ Module manifests:
 
 ## 6. Quoting
 
-* All strings must be enclosed in single quotes, unless they contain variables or single quotes.
+* All strings must be enclosed in single quotes, unless they contain variables or single quotes.  
 * Quoting is optional when the string is an enumerable set of options (such as present/absent).
 * All variables must be enclosed in braces when interpolated in a string.  For example:
 
 **Good:**
 
-~~~
+```
     "/etc/${file}.conf"
     "${::operatingsystem} is not supported by ${module_name}"
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     "/etc/$file.conf"
     "$::operatingsystem is not supported by $module_name"
-~~~
+```
 
 * Variables standing by themselves should not be quoted, unless they are a resource title.  For example:
 
 **Good:**
 
-~~~
+```
     mode => $my_mode
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     mode => "$my_mode"
     mode => "${my_mode}"
-~~~
+```
 
 * Double quotes should be used rather than escaping when a string contains single quotes.
 
-**Good:**
+**Good:**  
 
-~~~
+```
 warning("Class['apache'] parameter purge_vdir is deprecated in favor of purge_configs")
-~~~
+```
 
 **Bad:**
 
-~~~
+```
 warning('Class[\'apache\'] parameter purge_vdir is deprecated in favor of purge_configs')
-~~~
+```
 
 ## 7. Comments
 
@@ -118,23 +118,23 @@ You must use hash comments (`# This is a comment`). Comments should explain the 
 
 **Good:**
 
-~~~
+```
 # Configures NTP
 file { '/etc/ntp.conf': … }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
 /* Creates file /etc/ntp.conf */
 file { '/etc/ntp.conf': … }
-~~~
+```
 
-## 8. Module Metadata
+## 8. Module metadata
 
 Every publicly available module must have metadata defined in the metadata.json file.  Your metadata should follow the below format:
 
-~~~
+```
     {
       "name": "examplecorp-mymodule",
       "version": "0.1.0",
@@ -155,7 +155,7 @@ Every publicly available module must have metadata defined in the metadata.json 
         },
         {
           "operatingsystem": "Ubuntu",
-          "operatingsystemrelease": [
+          "operatingsystemrelease": [ 
             "12.04",
             "10.04"
          ]
@@ -166,43 +166,44 @@ Every publicly available module must have metadata defined in the metadata.json 
         { "name": "puppetlabs/firewall", "version_requirement": ">= 0.4.0 <5.0.0" },
       ]
     }
-~~~
-A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppetlabs.com/puppet/latest/reference/modules_publishing.html#write-a-metadatajson-file).
+```
+
+A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/reference/modules_publishing.html#write-a-metadatajson-file).
 
 ### 8.1 Dependencies
 
-Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://forge.puppetlabs.com/puppetlabs/rabbitmq#module-dependencies).)
+Hard dependencies must be declared explicitly in your module's metadata.json file. Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://forge.puppet.com/puppetlabs/rabbitmq#module-dependencies).)
 
 Your hard dependency declarations should not be unbounded.
 
 ## 9. Resources
 
-### 9.1. Resource Names
+### 9.1. Resource names
 
-All resource titles must be strings, and must not be bare words. If you are using an array of titles to assign multiple resources at once, you must quote each title in the array, but must not quote the array itself.
+All resource names or titles must be quoted. If you are using an array of titles you must quote each title in the array, but cannot quote the array itself.
 
 **Good:**
 
-~~~
+```
     package { 'openssh': ensure => present }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     package { openssh: ensure => present }
-~~~
+```
 
-### 9.2. Arrow Alignment
+### 9.2. Arrow alignment
 
 All of the hash rockets (`=>`) in a resource's attribute/value list should
 be aligned. The hash rockets should be placed one space ahead of the longest
 attribute name. Nested blocks must be indented by two spaces, and hash rockets within a nested block should be aligned (one space ahead of the longest attribute name).
-
+ 
 
 **Good:**
 
-~~~
+```
     exec { 'hambone':
       path => '/usr/bin',
       cwd  => '/tmp',
@@ -220,11 +221,11 @@ attribute name. Nested blocks must be indented by two spaces, and hash rockets w
         'key2'        => 'value2',
       },
     }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     exec { 'hambone':
       path  => '/usr/bin',
       cwd => '/tmp',
@@ -234,32 +235,32 @@ attribute name. Nested blocks must be indented by two spaces, and hash rockets w
       subscribe => File['/etc/test'],
       refreshonly => true,
     }
-~~~
+```
 
-### 9.3. Attribute Ordering
+### 9.3. Attribute ordering
 
 If a resource declaration includes an `ensure` attribute, it should be the
 first attribute specified so a user can quickly see if the resource is being created or deleted.
 
 **Good:**
 
-~~~
+```
     file { '/tmp/readme.txt':
       ensure => file,
       owner  => '0',
       group  => '0',
       mode   => '0644',
     }
-~~~
+```
 
 
-### 9.4. Resource Arrangement
+### 9.4. Resource arrangement
 
 Within a manifest, resources should be grouped by logical relationship to each other, rather than by resource type. Semicolons must not be used to declare multiple resources within a set of curly braces.
 
 **Good:**
 
-~~~
+```
     file { '/tmp/dir':
       ensure => directory,
     }
@@ -275,109 +276,100 @@ Within a manifest, resources should be grouped by logical relationship to each o
     file { '/tmp/dir2/b':
       content => 'b',
     }
-~~~
+```
 
 **Bad:**
 
-~~~
-
-    file {
-    '/tmp/dir':
-      ensure => directory;
-    '/tmp/dir2':
-      ensure => directory;
+```
+    file { '/tmp/dir':
+      ensure => directory,
     }
 
-    file {
-      '/tmp/dir/a':
-        content => 'a';
-      '/tmp/dir2/b':
-        content => 'b';
+    file { '/tmp/dir2':
+      ensure => directory,
+    }
+    
+    file { '/tmp/dir/a':
+      content => 'a',
     }
 
-~~~
+    file { '/tmp/dir2/b':
+      content => 'b',
+    }
+```
 
-### 9.5. Symbolic Links
+### 9.5. Symbolic links
 
 Symbolic links must be declared with an ensure value of `ensure => link` and explicitly specify a value for the `target` attribute. Doing so more explicitly informs the user that a link is being created.
 
 **Good:**
 
-~~~
+```
     file { '/var/log/syslog':
       ensure => link,
       target => '/var/log/messages',
     }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     file { '/var/log/syslog':
       ensure => '/var/log/messages',
     }
-~~~
+```
 
-### 9.6. File Modes
+### 9.6. File modes
 
 * POSIX numeric notation must be represented as 4 digits.
 * POSIX symbolic notation must be a string.
-* You should not use file mode with Windows; instead use the [acl module](https://forge.puppetlabs.com/puppetlabs/acl).
+* You should not use file mode with Windows; instead use the [acl module](https://forge.puppet.com/puppetlabs/acl).
 * You should use numeric notation whenever possible.
 
 **Good:**
 
-~~~
-  file { '/var/log/syslog':
-      ensure => file,
-      mode   => '0644',
-  }
-~~~
-
-**Also Good:**
-
-~~~
+```
   file { '/var/log/syslog':
       ensure => file,
       mode   => 'o-rwx',
   }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     file { '/var/log/syslog':
       ensure => present,
       mode   => 644,
     }
-~~~
+```
 
-### 9.7. Resource Defaults
+### 9.7. Resource defaults
 
 Resource defaults should be used in a very controlled manner and should only
 be declared at the edges of your manifest ecosystem. Specifically, they may be declared:
 
 * At top scope in site.pp, or
-* In a class which is guaranteed to never declare or be inherited by
-a class or define from another module.
+* In a class which is guaranteed to never declare or be inherited by 
+a class or defined type from another module.
 
-This is due to the way resource defaults propagate through dynamic scope, which can have
+This is due to the way resource defaults propagate through dynamic scope, which can have 
 unpredictable effects far away from where the default was declared.
 
 **Good:**
 
-~~~
+```
     # /etc/puppetlabs/puppet/manifests/site.pp:
     File {
       owner => 'root',
       group => '0',
       mode  => '0644',
     }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     # /etc/puppetlabs/puppet/modules/apache/manifests/init.pp
     File {
       owner => 'nobody',
@@ -389,17 +381,17 @@ unpredictable effects far away from where the default was declared.
       notify  => Class['Apache::Service'],
       require => Package['httpd'],
     }
-~~~
+```
 
-## 10. Classes and Defines
+## 10. Classes and defined types
 
-### 10.1. Separate Files
+### 10.1. Separate files
 
-All classes and resource type definitions (defines) must be separate files in the `manifests` directory of the module.
+All classes and resource type definitions (defined types) must be separate files in the `manifests` directory of the module. 
 
 **Good:**
 
-~~~
+```
     # /etc/puppetlabs/puppet/modules/apache/manifests
 
     # init.pp
@@ -408,13 +400,13 @@ All classes and resource type definitions (defines) must be separate files in th
       class apache::ssl { }
     # virtual_host.pp
       define apache::virtual_host () { }
-~~~
+```
 
-Separating classes and defines into separate files is functionally identical to declaring them in init.pp, but has the benefit of highlighting the structure of the module and making the function and structure more legible.
+Separating classes and defined types into separate files is functionally identical to declaring them in init.pp, but has the benefit of highlighting the structure of the module and making the function and structure more legible.
 
-### 10.2. Internal Organization of Classes and Defines
+### 10.2. Internal organization of classes and defined types
 
-Classes and defines must be structured to accomplish one task. Below is a line-by-line general layout of what lines of code should come first, second, and so on.
+Classes and defined types must be structured to accomplish one task. Below is a line-by-line general layout of what lines of code should come first, second, and so on. 
 
 1. First line: Name of class or type.
 1. Following lines, if applicable: Define parameters.
@@ -426,7 +418,7 @@ Classes and defines must be structured to accomplish one task. Below is a line-b
 
 The following example follows the recommended style:
 
-~~~
+```
     # init.pp
     class myservice (
       $service_ensure     = $myservice::params::service_ensure,
@@ -442,7 +434,7 @@ The following example follows the recommended style:
         fail("Module ${module_name} does not support ${::operatingsystem}")
       }
 
-      # temp file contents must not contain numbers
+      # temp file contents cannot contain numbers
       case $tempfile_contents {
         /\d/: {
           $_tempfile_contents = regsubst($tempfile_contents, '\d', '', 'G')
@@ -493,21 +485,21 @@ The following example follows the recommended style:
         }
       }
     }
-~~~
+```
 
-### 10.3. Public and Private
+### 10.3. Public and private
 
-We recommend that you split your module into public and private classes and defines where possible. Public classes or defines should contain the parts of the module meant to be configured or customized by the user, while private classes should contain things you do not expect the user to change via parameters. Separating into public and private classes/defines helps build reusable and readable code.
+We recommend that you split your module into public and private classes and defined types where possible. Public classes or defined types should contain the parts of the module meant to be configured or customized by the user, while private classes should contain things you do not expect the user to change via parameters. Separating into public and private classes or defined types helps build reusable and readable code.
 
 You should help indicate to the user which classes are which by both calling out the public classes in the README and making sure all public classes have complete [comments](#comments).
 
->Note: As of stdlib 4.4.0, there is a `private` function that will cause a failure if a private class is called externally. You can use this to enforce the privacy of private classes.
+>Note: As of stdlib 4.4.0, there is a `private` function that causea a failure if a private class is called externally. You can use this to enforce the privacy of private classes.
 
 ### 10.4. Chaining Arrow Syntax
 
-Most of the time, use [relationship metaparameters](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used.  Chaining arrows must be used left to right.
+Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used.  Chaining arrows must be used left to right.
 
-**Good:**
+**Good:** 
 
     Package['httpd'] -> Service['httpd']
 
@@ -515,33 +507,33 @@ Most of the time, use [relationship metaparameters](https://docs.puppetlabs.com/
 
     Service['httpd'] <- Package['httpd']
 
-### 10.5. Nested Classes or Defines
+### 10.5. Nested classes or defined types
 
-Classes and defined resource types must not be defined within other classes or defined types. Classes and defines should be declared as close to node scope as possible. If you have a class or define which requires another class or define, graceful failures must be in place if those required classes or defines are not declared elsewhere.
+Classes and defined resource types must not be defined within other classes or defined types. Classes and defined types should be declared as close to node scope as possible. If you have a class or defined type which requires another class or defined type, graceful failures must be in place if those required classes or defined types are not declared elsewhere. 
 
 **Very Bad:**
 
-~~~
+```
     class apache {
       class ssl { ... }
     }
-~~~
+```
 
 **Also Very Bad:**
 
-~~~
+```
     class apache {
       define config() { ... }
     }
-~~~
+```
 
 ### 10.6. Display Order of Parameters
 
-In parameterized class and define declarations, required parameters must be listed before optional parameters (i.e., parameters with defaults).
+In parameterized class and defined type declarations, required parameters must be listed before optional parameters (i.e., parameters with defaults).
 
 **Good:**
 
-~~~
+```
 class dhcp (
   $dnsdomain,
   $nameservers,
@@ -549,21 +541,21 @@ class dhcp (
   $max_lease_time     = 86400
 ) {}
 
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     class ntp (
       $options   = "iburst",
       $servers,
       $multicast = false
     ) {}
-~~~
+```
 
 ### 10.7 Parameter defaults
 
-When writing a module that accepts class and define parameters, appropriate defaults should be provided for optional parameters. Establishing good defaults gives the end user the option of not explicitly specifying the parameter when declaring the class or define. Provided defaults should be specified with the parameter and not inside the class/define.
+When writing a module that accepts class and defined type parameters, appropriate defaults should be provided for optional parameters. Establishing good defaults gives the end user the option of not explicitly specifying the parameter when declaring the class or defined type. Provided defaults should be specified with the parameter and not inside the class or defined type.
 
 When creating parameter defaults, you:
 
@@ -572,16 +564,16 @@ When creating parameter defaults, you:
 
 **Good:**
 
-~~~
+```
 class my_module (
   $source = $my_module::params::source,
   $config = $my_module::params::config,
 ){}
-~~~
+```
 
 **Bad:**
 
-~~~
+```
 class my_module (
   $source = undef,
 ) {
@@ -591,16 +583,16 @@ class my_module (
     $_source = $my_module::params::source
   }
 }
-~~~
+```
 
 ### 10.8 Exported Resources
 Exported resources should be opt-in rather than opt-out. Your module should not be written to use exported resources to function by default unless it is expressly required. When using exported resources, you should name the property `collect_exported`.
 
-Exported resources should be exported and collected selectively using a [search expression](https://docs.puppetlabs.com/puppet/3.7/reference/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
+Exported resources should be exported and collected selectively using a [search expression](https://docs.puppet.com/puppet/3.7/reference/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
 
 **Good:**
 
-~~~
+```
 define haproxy::frontend (
   $ports            = undef,
   $ipaddress        = [$::ipaddress],
@@ -613,7 +605,7 @@ define haproxy::frontend (
     ],
   },
 ) { … }
-~~~
+```
 
 ## 11. Classes
 
@@ -625,30 +617,30 @@ way, such as with include statements or relationship declarations.
 
 **Good:**
 
-~~~
+```
     class ssh { ... }
 
     class ssh::client inherits ssh { ... }
 
     class ssh::server inherits ssh { ... }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     class ssh inherits server { ... }
 
     class ssh::client inherits workstation { ... }
 
     class wordpress inherits apache { ... }
-~~~
+```
 
 Generally, inheritance should be avoided when alternatives are viable. For
 example, rather than using inheritance to override relationships in an existing
 class when stopping a service, consider using a single class with an `ensure`
 parameter and conditional relationship declarations. For instance,
 
-~~~
+```
     class bluetooth (
       $ensure      = 'present',
       $autoupgrade = false,
@@ -686,11 +678,11 @@ parameter and conditional relationship declarations. For instance,
        }
 
        service { 'hidd':
-         enable     => $service_enable,
-         ensure     => $service_ensure,
-         status     => 'source /etc/init.d/functions; status hidd',
-         hasstatus  => true,
-         hasrestart => true,
+         enable         => $service_enable,
+         ensure         => $service_ensure,
+         status         => 'source /etc/init.d/functions; status hidd',
+         hasstatus      => true,
+         hasrestart     => true,
       }
 
       # Finally, declare relations based on desired behavior
@@ -704,26 +696,26 @@ parameter and conditional relationship declarations. For instance,
         Package['bluez-utils'] -> Package['bluez-libs']
       }
     }
-~~~
+```
 
 Remember:
 
-Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic.
+Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic. 
 
 ### 11.2 A Note About Publicly Available Modules
 
 When declaring classes in publicly available modules, you should use `include`, `contain`, or `require` rather than class resource declaration. This avoids duplicate class declarations and vendor lock-in.
 
 
-## 12. Defined Resource Types (Defines)
+## 12. Defined Resource Types 
 
 ### 12.1. Uniqueness
 
-Since defined resource types (defines) can have multiple instances, resource names must have a unique variable to avoid duplicate declarations.
+Since defined resource types can have multiple instances, resource names must have a unique variable to avoid duplicate declarations.
 
 **Good:**
 
-~~~
+```
 define apache::listen {
   $listen_addr_port = $name
 
@@ -734,16 +726,16 @@ define apache::listen {
     content => template('apache/listen.erb'),
   }
 }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
 file { 'Required VHost directory':
   path   => '/etc/apache/vhost/corpsite',
   ensure => directory,
 }
-~~~
+```
 
 ## 13. Variables
 
@@ -755,15 +747,15 @@ You should avoid accidental scoping issues by explicitly specifying empty namesp
 
 **Good:**
 
-~~~
+```
     $::operatingsystem
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     $operatingsystem
-~~~
+```
 
 ### 13.2. Variable Format
 
@@ -772,19 +764,19 @@ underscores. You should not use camelCasing, as it introduces inconsistency in s
 
 **Good:**
 
-~~~
+```
 $foo_bar
 $some_long_variable
 $foo_bar123
-~~~
+```
 
 **Bad:**
 
-~~~
+```
 $fooBar
 $someLongVariable
 $foo-bar123
-~~~
+```
 
 ## 14. Conditionals
 
@@ -795,7 +787,7 @@ resource declarations.
 
 **Good:**
 
-~~~
+```
     $file_mode = $::operatingsystem ? {
       'debian' => '0007',
       'redhat' => '0776',
@@ -807,11 +799,11 @@ resource declarations.
       content => "Hello World\n",
       mode    => $file_mode,
     }
-~~~
+```
 
 **Bad:**
 
-~~~
+```
     file { '/tmp/readme.txt':
       ensure  => file,
       content => "Hello World\n",
@@ -821,7 +813,7 @@ resource declarations.
         default  => '0700',
       }
     }
-~~~
+```
 
 ### 14.2. Defaults for Case Statements and Selectors
 
@@ -834,7 +826,7 @@ Selectors should omit default selections only if you explicitly want catalog com
 
 **Good:**
 
-~~~
+```
     case $::operatingsystem {
       'centos': {
         $version = '1.2.3'
@@ -846,7 +838,7 @@ Selectors should omit default selections only if you explicitly want catalog com
         fail("Module ${module_name} is not supported on ${::operatingsystem}")
       }
     }
-~~~
+```
 
 When setting the default case, keep in mind that the default case should cause the catalog compilation to fail if the resulting behavior cannot be predicted on the platforms the module was built to be used on.
 
@@ -868,22 +860,22 @@ All publicly available modules should include the documentation covered below.
 
 ### 17.1 README
 
-Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. There is a [Puppet Labs README template](https://docs.puppetlabs.com/puppet/latest/reference/READMEtemplate.txt) available for your use; it can also be obtained by running `puppet module generate` (available in Puppet 3.6 and above). Using the .md/.markdown format allows your README to be parsed and displayed by both GitHub and the Puppet Forge.
+Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. There is a [Puppet README template](https://docs.puppet.com/puppet/latest/reference/READMEtemplate.txt) available for your use; it can also be obtained by running `puppet module generate` (available in Puppet 3.6 and above). Using the .md/.markdown format allows your README to be parsed and displayed by both GitHub and the Puppet Forge.
 
-If you are prolific with your in-code comments, you can use `puppet doc` up until Puppet 4 is released. If you're currently using the future parser, you might want to check out [strings](https://github.com/puppetlabs/puppetlabs-strings), the replacement for `puppet doc` that (only) works with the future parser.
+If you are prolific with your in-code comments, you can use `puppet doc` up until Puppet 4 is released. If you're currently using the future parser, you might want to check out [strings](https://github.com/puppetlabs/puppetlabs-strings), the replacement for `puppet doc` that (only) works with the future parser. 
 
-There's an entire [guide](https://docs.puppetlabs.com/puppet/latest/reference/modules_documentation.html) to writing a great README, but overall you should:
+There's an entire [guide](https://docs.puppet.com/puppet/latest/reference/modules_documentation.html) to writing a great README, but overall you should:
 
 * Call out what your module does.
-* Note any part of a user's system the module might impact (e.g. "This module will overwrite everything in animportantfile.conf.").
-* List all of the classes, defines, types, providers, and parameters the user might need to configure with a brief description, the default values (if any), and what the valid options are.
+* Note any part of a user's system the module might impact (e.g. "This module overwrites everything in animportantfile.conf.").
+* List all of the classes, defined types, types, providers, and parameters the user might need to configure with a brief description, the default values (if any), and what the valid options are.
 
 ### 17.2 CHANGELOG
 
-Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG should:
+Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG should: 
 
-* Have entries for each release.
-* List bugfixes and features included in the release.
+* Have entries for each release. 
+* List bugfixes and features included in the release. 
 * Specifically call out backwards-incompatible changes
 
 ## 19. Verifying style
