@@ -1453,7 +1453,7 @@ dd {
   line-height: 1.375;
 }
 dt {
-  font-weight: bold;
+  font-weight: 500;
 }
 dd {
   margin-left: 0;
