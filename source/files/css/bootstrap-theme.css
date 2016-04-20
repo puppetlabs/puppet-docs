@@ -3,6 +3,12 @@
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+/* Set font weights, since Calibre is a bit of an odd one when used for real text. */
+/* Calibre Web Thin */
+/* For body text. (Bootstrap has no preference, so the browser defaults it to 400.) */
+/* Calibre Web Light */
+/* Calibre Web Regular */
+/* Calibre Web Medium */
 .btn-default,
 .btn-primary,
 .btn-success,

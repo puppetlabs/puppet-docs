@@ -3,6 +3,12 @@
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+/* Set font weights, since Calibre is a bit of an odd one when used for real text. */
+/* Calibre Web Thin */
+/* For body text. (Bootstrap has no preference, so the browser defaults it to 400.) */
+/* Calibre Web Light */
+/* Calibre Web Regular */
+/* Calibre Web Medium */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
   font-family: sans-serif;
@@ -54,7 +60,7 @@ abbr[title] {
 }
 b,
 strong {
-  font-weight: bold;
+  font-weight: 500;
 }
 dfn {
   font-style: italic;
@@ -177,7 +183,7 @@ textarea {
   overflow: auto;
 }
 optgroup {
-  font-weight: bold;
+  font-weight: 500;
 }
 table {
   border-spacing: 0;
@@ -272,7 +278,7 @@ th {
   display: inline-block;
   font-family: 'Glyphicons Halflings';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1;
 
   -webkit-font-smoothing: antialiased;
@@ -1213,7 +1219,7 @@ h6 .small,
 .h4 .small,
 .h5 .small,
 .h6 .small {
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1;
   color: #777;
 }
@@ -1293,7 +1299,7 @@ p {
 .lead {
   margin-bottom: 1.5125rem;
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: 200;
   line-height: 1.4;
 }
 @media (min-width: 768px) {
@@ -1453,7 +1459,7 @@ dd {
   line-height: 1.375;
 }
 dt {
-  font-weight: bold;
+  font-weight: 500;
 }
 dd {
   margin-left: 0;
@@ -1569,7 +1575,7 @@ kbd {
 kbd kbd {
   padding: 0;
   font-size: 100%;
-  font-weight: bold;
+  font-weight: 500;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
@@ -2525,7 +2531,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight: 500;
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -2660,7 +2666,7 @@ input[type="search"] {
   min-height: 1.5125rem;
   padding-left: 20px;
   margin-bottom: 0;
-  font-weight: normal;
+  font-weight: 300;
   cursor: pointer;
 }
 .radio input[type="radio"],
@@ -2681,7 +2687,7 @@ input[type="search"] {
   display: inline-block;
   padding-left: 20px;
   margin-bottom: 0;
-  font-weight: normal;
+  font-weight: 300;
   vertical-align: middle;
   cursor: pointer;
 }
@@ -3022,7 +3028,7 @@ select[multiple].input-lg {
   padding: 6px 12px;
   margin-bottom: 0;
   font-size: 1.1rem;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1.375;
   text-align: center;
   white-space: nowrap;
@@ -3417,7 +3423,7 @@ fieldset[disabled] .btn-danger.focus {
   background-color: #fff;
 }
 .btn-link {
-  font-weight: normal;
+  font-weight: 300;
   color: #1b50af;
   border-radius: 0;
 }
@@ -3571,7 +3577,7 @@ tbody.collapse.in {
   display: block;
   padding: 3px 20px;
   clear: both;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1.375;
   color: #333;
   white-space: nowrap;
@@ -3916,7 +3922,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .input-group-addon {
   padding: 6px 12px;
   font-size: 1.1rem;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1;
   color: #555;
   text-align: center;
@@ -4862,7 +4868,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline;
   padding: .2em .6em .3em;
   font-size: 75%;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1;
   color: #fff;
   text-align: center;
@@ -4930,7 +4936,7 @@ a.label:focus {
   min-width: 10px;
   padding: 3px 7px;
   font-size: .9200004rem;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1;
   color: #fff;
   text-align: center;
@@ -5051,7 +5057,7 @@ a.thumbnail.active {
   color: inherit;
 }
 .alert .alert-link {
-  font-weight: bold;
+  font-weight: 500;
 }
 .alert > p,
 .alert > ul {
@@ -5857,7 +5863,7 @@ button.list-group-item-danger.active:focus {
 .close {
   float: right;
   font-size: 1.65rem;
-  font-weight: bold;
+  font-weight: 500;
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
@@ -6009,7 +6015,7 @@ button.close {
   font-family: "Calibre Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: .9200004rem;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1.375;
   text-align: left;
   text-align: start;
@@ -6128,7 +6134,7 @@ button.close {
   font-family: "Calibre Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.1rem;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 300;
   line-height: 1.375;
   text-align: left;
   text-align: start;
@@ -6772,13 +6778,10 @@ button.close {
 }
 /* Typography */
 /* ---------- */
+/* See also variables.less for some typography-related values. */
 html {
   font-size: 16px;
 }
-/* Set body text font-weight (Bootstrap has no preference, so the browser defaults it to 400.) */
-/* Calibre Web Light */
-/* Calibre Web Regular */
-/* Calibre Web Medium */
 body {
   font-weight: 300;
 }
@@ -6983,7 +6986,7 @@ a.disabled-nav-link:hover {
   text-decoration: none;
 }
 nav.main ul > li strong {
-  font-weight: normal;
+  font-weight: 400;
   cursor: pointer;
 }
 nav.main ul > li strong:hover {
