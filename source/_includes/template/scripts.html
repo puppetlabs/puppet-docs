@@ -1,3 +1,4 @@
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Bootstrap's stock JS components -->
@@ -44,19 +45,22 @@
       '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-PF6FV6');</script>
     <!-- End Google Tag Manager -->
-    <!-- Marketo form support v1 (used only for the newsletter sign-up form) -->
+    <!-- Marketo form support v1 -->
+      <!-- Used only for the newsletter sign-up form. To update or confirm working condition, contact BizOps department. -->
       <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
     <!-- Marketo tracking -->
-      <!-- Assumes jQuery is available (which it is); see https://docs.marketo.com/display/public/DOCS/Add+Munchkin+Tracking+Code+to+Your+Website#AddMunchkinTrackingCodetoYourWebsite-TypesofMunchkinTrackingCodes -->
+      <!-- To update or confirm working condition, contact BizOps department. -->
+      <!-- This is the "asynchronous jQuery" version of the tracking code, which assumes jQuery is available. -->
+      <!-- See https://docs.marketo.com/display/public/DOCS/Add+Munchkin+Tracking+Code+to+Your+Website#AddMunchkinTrackingCodetoYourWebsite-TypesofMunchkinTrackingCodes -->
       <script type="text/javascript">
-      $.ajax({
-        url: '//munchkin.marketo.net/munchkin.js',
-        dataType: 'script',
-        cache: true,
-        success: function() {
-          Munchkin.init('307-QLA-991');
-        }
-      });
+        $.ajax({
+          url: '//munchkin.marketo.net/munchkin.js',
+          dataType: 'script',
+          cache: true,
+          success: function() {
+            Munchkin.init('307-QLA-991');
+          }
+        });
       </script>
     <!-- End Marketo tracking -->
 
