@@ -54,7 +54,7 @@
 
 
     <div id="doc-switchers" class="container">
-      <div class="col-md-8">{% include quick_nav.html %}<span class="hidden-xs"> / </span>{% include version_switcher.html %}</div>
+      <div class="col-md-8">{% include template/quick_nav.html %}<span class="hidden-xs"> / </span>{% include template/version_switcher.html %}</div>
       <div class="col-md-4"></div>
     </div>
 
@@ -62,7 +62,7 @@
 
       <div id="content" class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
         <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-        {% include version_note.html %}
+        {% include template/version_note.html %}
         {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
         <div id="rendered-markdown">
           {{ content }}
