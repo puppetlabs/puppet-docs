@@ -1593,11 +1593,15 @@ pre {
 }
 pre code {
   padding: 0;
+  overflow-x: auto;
   font-size: inherit;
   color: inherit;
-  white-space: pre-wrap;
+  word-wrap: normal;
+  white-space: pre;
   background-color: transparent;
   border-radius: 0;
+
+  overflow-wrap: normal;
 }
 .pre-scrollable {
   max-height: 340px;
