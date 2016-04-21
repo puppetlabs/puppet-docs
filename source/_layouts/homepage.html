@@ -55,7 +55,7 @@
 
 
     <div id="doc-switchers" class="container">
-      <div class="col-md-8">{% include quick_nav.html %}</div>
+      <div class="col-md-8">{% include template/quick_nav.html %}</div>
       <div class="col-md-4"></div>
     </div>
 
@@ -74,63 +74,7 @@
       {% if page.url contains "/ja/" %}{% include template/footer_ja.html %}{% else %}{% include template/footer_en.html %}{% endif %}
     </footer>
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Bootstrap's stock JS components -->
-    <script src="/files/js/bootstrap.min.js"></script>
-
-    <!-- Utility JS -->
-    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
-    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
-    <script type='text/javascript' src='/files/javascripts/quick_nav.js'></script>
-    <!-- Hover anchor links on headers -->
-      <!-- Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
-      <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
-      <script>
-      $(document).ready(function(){
-          addAnchors("#content h1");
-          addAnchors("#content h2");
-          addAnchors("#content h3");
-          addAnchors("#content h4");
-          });
-      </script>
-    <!-- End hover anchor links -->
-
-    <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
-
-    <!-- One-off JS snippets -->
-    <script type="text/javascript">
-      // Handle routing of search to real (hidden) search input
-      $("#search-container").on( 'keypress', function (e) {
-        if (e.keyCode == 13) {
-          $('#cse-search-box [type="text"]').val($("#search-container").val());
-          $('#cse-search-box [type="submit"]').click();
-          return false;
-        }
-      });
-      $("#search-icon").on( 'click', function(e) {
-        $('#cse-search-box [type="text"]').val($("#search-container").val());
-        $('#cse-search-box [type="submit"]').click();
-      });
-
-      $( '#Email' ).on( 'keypress', function (evt) {
-        if (evt.keyCode == 13) {
-          $( '#mktFrmSubmit' ).click();
-          return false;
-        }
-      });
-    </script>
-
-    <script type="text/javascript">
-        // The interim language switcher, used only on the homepages
-        jQuery('#language-select').on('change', function() {
-            var optionSelected = $("option:selected", this);
-            if (optionSelected.attr('data-language') != 'null') {
-                window.location = optionSelected.attr('data-url');
-            }
-        });
-    </script>
+    {% include template/scripts.html %}
 
   </body>
 
