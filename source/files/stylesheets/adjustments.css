@@ -311,6 +311,21 @@ ul.doc-navigation {
   transition: color 0.2s linear;
 }
 
+/* On desktop, keep some negative space between footer content and legal links */
+.layout-footer .footer-row-1 {
+  min-height: 260px;
+}
+
+/* IE 11 hack to prevent footer-splosion */
+.layout-footer .footer-row-1:before,
+.layout-footer .footer-row-1:after,
+.layout-footer .footer-row-1 > .fg-col:first-child:before,
+.layout-footer .footer-row-1 > .fg-col:first-child:after,
+.layout-footer .footer-row-1 > .fg-col:last-child:before,
+.layout-footer .footer-row-1 > .fg-col:last-child:after {
+  content: "";
+}
+
 .layout-footer .footer-row-1 > .fg-col {
   font-size: 0.9em;
 }
@@ -335,6 +350,11 @@ ul.doc-navigation {
   background: #222222;
   border: 1px solid rgba(219, 218, 218, 0.1);
   border-radius: 0;
+}
+
+/* Space between mailing list copy and form field */
+.layout-footer .footer-row-1 > .fg-col p {
+  margin: 0 0 20px 0;
 }
 
 .layout-footer .footer-row-1 .puppet-logo {
