@@ -1,0 +1,24 @@
+{% if page.doc %}
+<div class="btn-group">
+  <button type="button" class="btn btn-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Version: {{ page.doc.version }}{% if site.document_version_index[page.doc.doc].latest == page.doc.base_url %} (latest){% endif %}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    {% for base_url in site.document_version_order[page.doc.doc] %}
+    {% if site['document_list'][base_url]['hide'] and base_url != page.doc.base_url %}
+      {% continue %}
+    {% endif %}
+    {% if base_url == page.doc.base_url %}
+      <li class="active">
+        <a>Version {{page.doc.version}}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}</a>
+      </li>
+      {% else %}
+      <li>
+        <a href="{% change_baseurl page.url page.doc.base_url base_url %}">Version {{ site['document_list'][base_url]['version'] }}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}</a>
+      </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

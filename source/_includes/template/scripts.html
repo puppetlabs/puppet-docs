@@ -1,0 +1,85 @@
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Bootstrap's stock JS components -->
+    <script src="/files/js/bootstrap.min.js"></script>
+
+    <!-- Utility JS -->
+    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
+    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+    <!-- Hover anchor links on headers -->
+      <!-- Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
+      <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
+      <script>
+      $(document).ready(function(){
+          addAnchors("#content h1");
+          addAnchors("#content h2");
+          addAnchors("#content h3");
+          addAnchors("#content h4");
+          });
+      </script>
+    <!-- End hover anchor links -->
+
+    <!-- Marketing and tracking javascripts -->
+    <!-- Google Tag Manager -->
+      <!-- To update or confirm working condition, contact the Web team, or search Confluence for "Google Tag Manager" or "Google Analytics". Contrary to the current docs, we've verified that this doesn't need to be at the top of the page. -->
+      <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PF6FV6"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PF6FV6');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Marketo form support v1 -->
+      <!-- Used only for the newsletter sign-up form. To update or confirm working condition, contact BizOps department. -->
+      <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
+    <!-- Marketo tracking -->
+      <!-- To update or confirm working condition, contact BizOps department. -->
+      <!-- This is the "asynchronous jQuery" version of the tracking code, which assumes jQuery is available. -->
+      <!-- See https://docs.marketo.com/display/public/DOCS/Add+Munchkin+Tracking+Code+to+Your+Website#AddMunchkinTrackingCodetoYourWebsite-TypesofMunchkinTrackingCodes -->
+      <script type="text/javascript">
+        $.ajax({
+          url: '//munchkin.marketo.net/munchkin.js',
+          dataType: 'script',
+          cache: true,
+          success: function() {
+            Munchkin.init('307-QLA-991');
+          }
+        });
+      </script>
+    <!-- End Marketo tracking -->
+
+
+    <!-- One-off JS snippets -->
+    <script type="text/javascript">
+      // Handle routing of search to real (hidden) search input
+      $("#search-container").on( 'keypress', function (e) {
+        if (e.keyCode == 13) {
+          $('#cse-search-box [type="text"]').val($("#search-container").val());
+          $('#cse-search-box [type="submit"]').click();
+          return false;
+        }
+      });
+      $("#search-icon").on( 'click', function(e) {
+        $('#cse-search-box [type="text"]').val($("#search-container").val());
+        $('#cse-search-box [type="submit"]').click();
+      });
+
+      $( '#Email' ).on( 'keypress', function (evt) {
+        if (evt.keyCode == 13) {
+          $( '#mktFrmSubmit' ).click();
+          return false;
+        }
+      });
+    </script>
+
+    <script type="text/javascript">
+        // The interim language switcher, used only on the homepages
+        jQuery('#language-select').on('change', function() {
+            var optionSelected = $("option:selected", this);
+            if (optionSelected.attr('data-language') != 'null') {
+                window.location = optionSelected.attr('data-url');
+            }
+        });
+    </script>

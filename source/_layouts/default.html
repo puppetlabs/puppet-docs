@@ -54,7 +54,7 @@
 
 
     <div id="doc-switchers" class="container">
-      <div class="col-md-8">{% include quick_nav.html %}<span class="hidden-xs"> / </span>{% include version_switcher.html %}</div>
+      <div class="col-md-8">{% include template/doc_switcher.html %} {% include template/version_switcher.html %}</div>
       <div class="col-md-4"></div>
     </div>
 
@@ -62,7 +62,7 @@
 
       <div id="content" class="main-content col-xs-12 col-md-9 col-md-push-3 col-lg-8 col-lg-push-4">
         <h1>{% if page.subtitle %}{{page.subtitle}}{% else %}{{page.title}}{% endif %}</h1>
-        {% include version_note.html %}
+        {% include template/version_note.html %}
         {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
         <div id="rendered-markdown">
           {{ content }}
@@ -83,63 +83,7 @@
       {% if page.url contains "/ja/" %}{% include template/footer_ja.html %}{% else %}{% include template/footer_en.html %}{% endif %}
     </footer>
 
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Bootstrap's stock JS components -->
-    <script src="/files/js/bootstrap.min.js"></script>
-
-    <!-- Utility JS -->
-    <script type="text/javascript" src="/files/javascripts/prism.js"></script>
-    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
-    <script type='text/javascript' src='/files/javascripts/quick_nav.js'></script>
-    <!-- Hover anchor links on headers -->
-      <!-- Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
-      <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
-      <script>
-      $(document).ready(function(){
-          addAnchors("#content h1");
-          addAnchors("#content h2");
-          addAnchors("#content h3");
-          addAnchors("#content h4");
-          });
-      </script>
-    <!-- End hover anchor links -->
-
-    <script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script>
-
-    <!-- One-off JS snippets -->
-    <script type="text/javascript">
-      // Handle routing of search to real (hidden) search input
-      $("#search-container").on( 'keypress', function (e) {
-        if (e.keyCode == 13) {
-          $('#cse-search-box [type="text"]').val($("#search-container").val());
-          $('#cse-search-box [type="submit"]').click();
-          return false;
-        }
-      });
-      $("#search-icon").on( 'click', function(e) {
-        $('#cse-search-box [type="text"]').val($("#search-container").val());
-        $('#cse-search-box [type="submit"]').click();
-      });
-
-      $( '#Email' ).on( 'keypress', function (evt) {
-        if (evt.keyCode == 13) {
-          $( '#mktFrmSubmit' ).click();
-          return false;
-        }
-      });
-    </script>
-
-    <script type="text/javascript">
-        // The interim language switcher, used only on the homepages
-        jQuery('#language-select').on('change', function() {
-            var optionSelected = $("option:selected", this);
-            if (optionSelected.attr('data-language') != 'null') {
-                window.location = optionSelected.attr('data-url');
-            }
-        });
-    </script>
+    {% include template/scripts.html %}
 
   </body>
 
