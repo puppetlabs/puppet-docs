@@ -78,6 +78,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
 [puppetserver_config_files]: {{puppetserver}}/configuration.html
 [settings_diffs]: {{puppetserver}}/puppet_conf_setting_diffs.html
+[auth.conf]: {{puppetserver}}/config_file_auth.html
 [puppet_admin]: {{puppetserver}}/config_file_puppetserver.html
 [jruby_puppet]: {{puppetserver}}/tuning_guide.html#puppet-server-and-jruby
 [jvm_heap_config]: {{puppetserver}}/install_from_packages.html#memory-allocation
@@ -170,6 +171,8 @@ Puppet Server has [its own configuration files][puppetserver_config_files]; cons
 * [`puppet-admin`][puppet_admin] --- Settings to control which authorized clients can use the admin interface.
 * [`jruby-puppet`][jruby_puppet] --- Provides details on tuning JRuby for better performance.
 * [`JAVA_ARGS`][jvm_heap_config] --- Instructions on tuning the Puppet Server memory allocation.
+
+Also, Puppet Server uses its own [auth.conf][] file by default instead of its `puppet-admin` section to authorize client requests.
 
 ### Rack-Related Settings
 
