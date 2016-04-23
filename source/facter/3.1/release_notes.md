@@ -31,7 +31,7 @@ Facter will now consider the 'source' attribute of routing table entries associa
 
 In Puppet with Facter 3, using Windows-1252 extended characters such as ö and æ in a user name on Windows would cause an exception to be thrown by Facter. This has been fixed.
 
-* [FACT-1341](https://tickets.puppetlabs.com/browse/FACT-1341) 
+* [FACT-1341](https://tickets.puppetlabs.com/browse/FACT-1341)
 
 ### FIX: YAML
 
@@ -282,3 +282,14 @@ The `puppet-agent` package that installs Facter 3.0.0 did not create the `rubysi
 
 * [FACT-1154](https://tickets.puppetlabs.com/browse/FACT-1154)
 
+### BREAK: Removed `file_read.rb` and `registry.rb`
+
+Facter 3 removed the [`file_read.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/file_read.rb) and [`registry.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/registry.rb), which provide the `Facter::Util::FileRead` and `Facter::Util::Registry` modules to Facter. This can break custom facts that rely on these modules, and produce error messages like this:
+
+```
+Error: Facter: error while resolving custom facts in /opt/configmgmt/environments/production/modules/custom_facts/lib/facter/customfact.rb: cannot load such file -- facter/util/file_read
+```
+
+As a workaround, you can rewrite your custom facts to avoid these Util implementations, which handle only error cases. You can also copy the missing Facter 2 files (such as from the Raw versions of the above links) to the `lib/facter/util/` subdirectory of the affected `custom_facts` path, such as `/opt/configmgmt/environments/production/modules/custom_facts/lib/facter/util/` in the above example.
+
+* [PE-13225](https://tickets.puppetlabs.com/browse/PE-13225)

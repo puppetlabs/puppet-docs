@@ -76,7 +76,7 @@ When running the MCollective agent plugin on Windows, Facter could report a miss
 
 * [FACT-1125](https://tickets.puppetlabs.com/browse/FACT-1125)
 
-### REGRESSION FIX: Resolved an OLE COM Initialization Issue When Reporting Windows Facts 
+### REGRESSION FIX: Resolved an OLE COM Initialization Issue When Reporting Windows Facts
 
 Facter 3.0.0 can fail when reporting Windows facts that require `win32ole`, resulting in a "fail: OLE initialize" error. Facter 3.0.2 resolves this issue.
 
@@ -90,7 +90,7 @@ If a command returns a non-zero exit code or can't be found, Facter 3.0.0 return
 
 ### REGRESSION FIX: Fixed `stderr` Redirection
 
-When Facter 3.0.0 invokes commands to report facts that result in `stderr` output, Facter reports the `stderr` output as the fact. Also, if the required command doesn't exist, Facter 3.0.0 reports a null value. 
+When Facter 3.0.0 invokes commands to report facts that result in `stderr` output, Facter reports the `stderr` output as the fact. Also, if the required command doesn't exist, Facter 3.0.0 reports a null value.
 
 Facter 3.0.2 correctly reports facts in these situations. To view additional diagnostic information, including the invoked commands' `stderr` output, run Facter with the `--debug` flag.
 
@@ -234,6 +234,18 @@ We reversed this decision in Facter 3.0.2.
 We changed the value of the hardware fact (`os.hardware`) from "x64" to "x86_64" for 64-bit Windows editions to make Windows consistent with other operating systems. The `architecture` fact is still "x64" as it represents the platform-specific name for the system architecture.
 
 * [FACT-610](https://tickets.puppetlabs.com/browse/FACT-610)
+
+### BREAK: Removed `file_read.rb` and `registry.rb`
+
+Facter 3 removed the [`file_read.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/file_read.rb) and [`registry.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/registry.rb), which provide the `Facter::Util::FileRead` and `Facter::Util::Registry` modules to Facter. This can break custom facts that rely on these modules, and produce error messages like this:
+
+```
+Error: Facter: error while resolving custom facts in /opt/configmgmt/environments/production/modules/custom_facts/lib/facter/customfact.rb: cannot load such file -- facter/util/file_read
+```
+
+As a workaround, you can rewrite your custom facts to avoid these Util implementations, which handle only error cases. You can also copy the missing Facter 2 files (such as from the Raw versions of the above links) to the `lib/facter/util/` subdirectory of the affected `custom_facts` path, such as `/opt/configmgmt/environments/production/modules/custom_facts/lib/facter/util/` in the above example.
+
+* [PE-13225](https://tickets.puppetlabs.com/browse/PE-13225)
 
 ### REGRESSION / BREAK (fixed in 3.0.2): Hostname missing from the `fqdn` fact
 
