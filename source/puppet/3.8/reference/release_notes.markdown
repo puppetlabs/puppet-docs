@@ -42,11 +42,39 @@ We always recommend that you **upgrade your Puppet master servers before upgradi
 
 If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppet first!][upgrade] We have important advice about upgrade plans and package management practices. The short version is: test first, roll out in stages, give yourself plenty of time to work with. Also, read the [release notes for Puppet 3][puppet_3] for a list of all the breaking changes made between the 2.x and 3.x series.
 
+## Puppet 3.8.7
+
+Released April 25, 2016.
+
+This is a bug release in the Puppet 3.8 series.
+
+* [All fixes for Puppet 3.8.7](https://tickets.puppetlabs.com/issues/?filter=19117)
+* [Introduced in puppet 3.8.7](https://tickets.puppetlabs.com/issues/?filter=19118)
+
+### Bug Fixes
+
+* [PUP-4818](https://tickets.puppetlabs.com/browse/PUP-4818): One part of the `relative namespacing` feature was not removed when using the future parser. When a class was declared with a resource like expression the references to classes were still interpreted as being relative. This is now fixed, and should help with migration to 4.x as the 3.x future parser will now also use absolute naming in these cases.
+
+* [PUP-6113](https://tickets.puppetlabs.com/browse/PUP-6113): Puppet will no longer attempt to retrieve the nonexistent `password_min_age` property from LDAP users on Solaris.
+
+* [PUP-6073](https://tickets.puppetlabs.com/browse/PUP-6073): launchd plists with line continuations no longer cause the launchd service provider to return `Error: Could not prefetch service provider 'launchd': undefined method to_ruby for nil:NilClass`.
+
+* [PUP-5898](https://tickets.puppetlabs.com/browse/PUP-5898): `:undef` caused unexpected behaviors with hashes due to the 3.x calling convention also applying to resource expressions.
+
+* [PUP-5637](https://tickets.puppetlabs.com/browse/PUP-5637): Puppet systemd packages now include an `ExecReload` command in the puppet.service files in order to facilitate graceful restart on systemd systems.
+
+* [PUP-5356](https://tickets.puppetlabs.com/browse/PUP-5356): Fixed the Puppet Nagios extension with Ruby 1.9.3+.
+
+* [PUP-4545](https://tickets.puppetlabs.com/browse/PUP-4545): Removed a script that restarts Puppet in response to network changes on EL based systems. It was causing pain in containers and other systems where network restarts are common and frequent. 
+
+If users have frequent system reboots combined with slow DHCP responses, they may want to add the script back to ensure that their agent is able to connect with their Puppet master.
+
+
 ## Puppet 3.8.6
 
 Released February 3, 2016.
 
-This release is a security only release for Windows that contains an updated version of OpenSSL that has addresses a vulnerability announced by OpenSSL on January 28, 2016.
+This is a security only release for Windows, that contains an updated version of OpenSSL that addresses a vulnerability announced by OpenSSL on January 28, 2016.
 
 * [Puppet Labs CVE announcement](https://puppetlabs.com/security/cve/openssl-jan-2016-security-fixes)
 * [OpenSSL security announcement](http://openssl.org/news/secadv/20160128.txt)
@@ -66,7 +94,7 @@ Puppet 3.8.5 is a maintenance release in the Puppet 3.8 series that fixes severa
 
 Puppet 3.8.5 queries service enablement status on OS X several times faster than previous versions of Puppet.
 
-* [PUP-5505](https://tickets.puppetlabs.com/browse/PUP-5505):
+* [PUP-5505](https://tickets.puppetlabs.com/browse/PUP-5505)
 
 #### Faster compilation when `environment_timeout = 0`
 
@@ -99,8 +127,8 @@ In previous version of Puppet 3 for Windows, no-op Puppet runs (such as running 
 
 ### Bug Fixes: Miscellaneous
 
-* [PUP-4426](https://tickets.puppetlabs.com/browse/PUP-4426):
-* [PUP-1293](https://tickets.puppetlabs.com/browse/PUP-1293):
+* [PUP-4426](https://tickets.puppetlabs.com/browse/PUP-4426)
+* [PUP-1293](https://tickets.puppetlabs.com/browse/PUP-1293)
 * [PUP-5480: Puppet does not apply inheritable SYSTEM permissions to directories it manages on Windows under certain circumstances](https://tickets.puppetlabs.com/browse/PUP-5480)
 * [PUP-5522: Puppet::Node attributes not kept consistent with its parameters](https://tickets.puppetlabs.com/browse/PUP-5522): In some Puppet-related applications, or in certain cases when using Puppet from Ruby, a Node object could use one environment but report that it was in another, resulting in the node having the wrong set of parameters. This doesn't affect regular catalog compilation, and is resolved in Puppet 3.8.5.
 * [PUP-4516: Agent does not stop with Ctrl-C](https://tickets.puppetlabs.com/browse/PUP-4516): In previous versions of Puppet 3, if the agent process was idle, it could take up to 5 seconds to stop the process in response to SIGINT and SIGTERM signals, such as when pressing **Ctrl-C**. If the Puppet agent was performing a run, it could not be interrupted until after the run completed. Puppet 3.8.5 agents and WEBrick masters immediately exit.
@@ -258,8 +286,6 @@ In using the Temp directory instead we allow for longer path names in the module
 ### Bug Fixes: HTTP API
 
 * [PUP-4747: resource_types response has AST for parameters' default values](https://tickets.puppetlabs.com/browse/PUP-4747)
-
-
 
 
 ## Puppet 3.8.1
