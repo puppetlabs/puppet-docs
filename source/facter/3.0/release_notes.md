@@ -235,15 +235,15 @@ We changed the value of the hardware fact (`os.hardware`) from "x64" to "x86_64"
 
 * [FACT-610](https://tickets.puppetlabs.com/browse/FACT-610)
 
-### BREAK: Removed `file_read.rb` and `registry.rb`
+### BREAK: Removed Ruby Facter implementations
 
-Facter 3 removed the [`file_read.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/file_read.rb) and [`registry.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/registry.rb), which provide the `Facter::Util::FileRead` and `Facter::Util::Registry` modules to Facter. This can break custom facts that rely on these modules, and produce error messages like this:
+Facter 3 removed the Ruby implementations of some features and replaced it with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` will fail with an error. For example, requiring the [`file_read.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/file_read.rb) (`Facter::Util::FileRead`) Ruby module will produce an error message like this:
 
 ```
 Error: Facter: error while resolving custom facts in /opt/configmgmt/environments/production/modules/custom_facts/lib/facter/customfact.rb: cannot load such file -- facter/util/file_read
 ```
 
-As a workaround, you can rewrite your custom facts to avoid these Util implementations, which handle only error cases. You can also copy the missing Facter 2 files (such as from the Raw versions of the above links) to the `lib/facter/util/` subdirectory of the affected `custom_facts` path, such as `/opt/configmgmt/environments/production/modules/custom_facts/lib/facter/util/` in the above example.
+As a workaround, you can rewrite your custom facts to avoid requiring these Ruby implementations, and instead use the [new API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). You can also [copy the necessary Facter 2 Ruby libraries](https://github.com/puppetlabs/facter/tree/2.x/lib/facter/util) to the `lib/facter/util/` subdirectory of the affected `custom_facts` path, such as `/opt/configmgmt/environments/production/modules/custom_facts/lib/facter/util/` in the above example. For more information about writing custom facts for Facter 3, see [the Facter documentation](https://docs.puppet.com/facter/3.0/custom_facts.html).
 
 * [PE-13225](https://tickets.puppetlabs.com/browse/PE-13225)
 
