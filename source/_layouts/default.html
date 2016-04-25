@@ -55,7 +55,9 @@
 
     <div id="doc-switchers" class="container">
       <div class="col-md-8">{% include template/doc_switcher.html %} {% include template/version_switcher.html %}</div>
-      <div class="col-md-4"><div class="visible-sm-inline visible-xs-inline"><a href="#document-nav">Jump to table of contents</a></div></div>
+      <div class="col-md-4"><div class="visible-sm-inline visible-xs-inline"><a href="#document-nav">
+        Jump to {% if page.doc %}{{ site.document_names[page.doc.doc] }} navigation{% else %}related pages{% endif %}
+      </a></div></div>
     </div>
 
     <div class="container">
