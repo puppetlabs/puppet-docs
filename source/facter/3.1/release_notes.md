@@ -8,7 +8,7 @@ title: "Facter 3.1: Release Notes"
 [puppet-agent 1.4.x]: /puppet/4.4/reference/about_agent.html
 
 
-This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+This page documents the history of the Facter 3.1 series. If you're upgrading from Facter 2, also review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality.
 
 ## Facter 3.1.5
 
@@ -281,15 +281,3 @@ Facter now reports the 'noatime' option in the `mountpoints` fact when it is set
 The `puppet-agent` package that installs Facter 3.0.0 did not create the `rubysitedir` pointed to by the `rubysitedir` fact. The `puppet-agent` 1.2.4 update resolves this issue.
 
 * [FACT-1154](https://tickets.puppetlabs.com/browse/FACT-1154)
-
-### BREAK: Removed Ruby Facter implementations
-
-Facter 3.0 removed the Ruby implementations of some features and replaced it with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` will fail with an error. For example, requiring the [`file_read.rb`](https://github.com/puppetlabs/facter/blob/2.x/lib/facter/util/file_read.rb) (`Facter::Util::FileRead`) Ruby module will produce an error message like this:
-
-```
-Error: Facter: error while resolving custom facts in /opt/configmgmt/environments/production/modules/custom_facts/lib/facter/customfact.rb: cannot load such file -- facter/util/file_read
-```
-
-As a workaround when porting Facter 2-compatible custom facts to Facter 3, you can rewrite your custom facts to avoid requiring these Ruby implementations, and instead use the [new API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). You can also [copy the necessary Facter 2 Ruby libraries](https://github.com/puppetlabs/facter/tree/2.x/lib/facter/util) to the `lib/facter/util/` subdirectory of the affected `custom_facts` path, such as `/opt/configmgmt/environments/production/modules/custom_facts/lib/facter/util/` in the above example. For more information about writing custom facts for Facter 3, see [the Facter documentation](./custom_facts.html).
-
-* [FACT-1400](https://tickets.puppetlabs.com/browse/FACT-1400)
