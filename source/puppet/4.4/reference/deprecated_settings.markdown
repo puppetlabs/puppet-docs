@@ -6,6 +6,15 @@ title: "Deprecated Settings"
 
 The following Puppet settings are deprecated and will be removed in Puppet 5.0.
 
+## The legacy `auth.conf` file
+
+[legacy_auth]: ./config_file_auth.html
+[new_auth]: {{puppetserver}}/config_file_auth.html
+
+Puppet Server 2.2 and higher use a [new, HOCON-based `auth.conf` file][new_auth], which is a full replacement for the [old `auth.conf` format][legacy_auth]. The old file will be removed in Puppet 5.0 (and the Puppet Server version that supports it). Puppet Server's old `client-whitelist` settings for the `/puppet-ca/v1/certificate_status` and `/puppet-admin-api` endpoints will be removed at the same time.
+
+* The [new `auth.conf` file][new_auth] is located at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
+* The [old `auth.conf` file][old_auth] is located at `$confdir/auth.conf`.
 
 ## `cfacter`
 
