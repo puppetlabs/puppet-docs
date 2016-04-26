@@ -10,6 +10,67 @@ title: "Facter 3.1: Release Notes"
 
 This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
 
+## Facter 3.1.6
+
+Released April 26, 2016.
+
+Shipped in [`puppet-agent` 1.4.2.][puppet-agent 1.4.x].
+
+Facter 3.1.6 is primarily a Windows bug fix release, however it also includes one improvement, and a few other miscellaneous bug fixes.
+
+### Improvement
+
+#### `facter -h` is the same as `facter --help`
+
+For consistency with other command-line tools, `facter -h` is now equivalent to `facter --help`.
+
+[FACT-1376](https://tickets.puppetlabs.com/browse/FACT-1376)
+
+
+### Bug fixes: Windows
+
+#### Facter would not serialize large integers in structured facts
+
+This fix corrects a bug in Facter preventing it from properly serializing integers exceeding the 32bit boundary.
+
+[FACT-1364](https://tickets.puppetlabs.com/browse/FACT-1364)
+
+
+#### Google Cloud instances not recognized as virtual
+	
+Google Cloud Windows instances are now recognized as virtual, and will collect GCE metadata.
+
+[FACT-1387](https://tickets.puppetlabs.com/browse/FACT-1387)
+
+
+#### Module level external facts not resolved when using Vagrant
+
+Facter can now resolve external facts across NTFS reparse points.	
+
+[FACT-1276](https://tickets.puppetlabs.com/browse/FACT-1276)
+
+#### Facter falsely reported OpenStack instances virtual as physical
+
+Facter incorrectly reported OpenStack based Windows VMs as not virtual. This fix changes them to report as virtual, with the label 'openstack'.	
+
+[FACT-1043](https://tickets.puppetlabs.com/browse/FACT-1043)
+
+### Bug fixes: Misc
+
+#### Regression of `Facter::Util::Resolution.exec` not setting `$?.exitstatus` based on exec result
+
+`Facter::Util::Resolution.exec` will now set the Ruby `$?` exit status variable.	
+
+[FACT-1284](https://tickets.puppetlabs.com/browse/FACT-1284)
+
+
+#### Facter failed when locale files were missing for a specified locale on CentOS 7	
+
+An issue where Facter failed in some invalid locale environments with `failed to initialize logging system due to a locale error: Invalid or unsupported charset:ANSI_X3.4-1968` has been addressed; it should now always fall back to a C locale.
+
+[FACT-1392](https://tickets.puppetlabs.com/browse/FACT-1392)
+
+
 ## Facter 3.1.5
 
 Released March 16, 2016.
