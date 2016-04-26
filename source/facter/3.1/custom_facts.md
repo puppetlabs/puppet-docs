@@ -22,6 +22,8 @@ the best solution is to add a new fact to Facter. These additional facts
 can then be distributed to Puppet clients and are available for use
 in manifests and templates, just like any other fact would be.
 
+> **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` will fail with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
+
 ## The Concept
 
 You can add new facts by writing snippets of Ruby code on the
@@ -61,7 +63,6 @@ Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
 Facter can take multiple `--custom-dir` options on the command line that specifies a single directory
 to search for custom facts. Facter attempts to load all Ruby files in the specified directories.
 This allows you to do something like this:
-
 
     $ ls my_facts
     system_load.rb
@@ -329,7 +330,7 @@ In a module (recommended):
 
     <MODULEPATH>/<MODULE>/facts.d/
 
-On Unix/Linux/Mac OS X, there are three directories:
+On Unix/Linux/OS X, there are three directories:
 
     /opt/puppetlabs/facter/facts.d/
     /etc/puppetlabs/facter/facts.d/

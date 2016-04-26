@@ -8,7 +8,7 @@ title: "Facter 3.1: Release Notes"
 [puppet-agent 1.4.x]: /puppet/4.4/reference/about_agent.html
 
 
-This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+This page documents the history of the Facter 3.1 series. If you're upgrading from Facter 2, also review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality.
 
 ## Facter 3.1.5
 
@@ -31,7 +31,7 @@ Facter will now consider the 'source' attribute of routing table entries associa
 
 In Puppet with Facter 3, using Windows-1252 extended characters such as ö and æ in a user name on Windows would cause an exception to be thrown by Facter. This has been fixed.
 
-* [FACT-1341](https://tickets.puppetlabs.com/browse/FACT-1341) 
+* [FACT-1341](https://tickets.puppetlabs.com/browse/FACT-1341)
 
 ### FIX: YAML
 
@@ -281,4 +281,3 @@ Facter now reports the 'noatime' option in the `mountpoints` fact when it is set
 The `puppet-agent` package that installs Facter 3.0.0 did not create the `rubysitedir` pointed to by the `rubysitedir` fact. The `puppet-agent` 1.2.4 update resolves this issue.
 
 * [FACT-1154](https://tickets.puppetlabs.com/browse/FACT-1154)
-
