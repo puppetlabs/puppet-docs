@@ -44,7 +44,7 @@ If you're upgrading from Puppet 2.x, please [learn about major upgrades of Puppe
 
 ## Puppet 3.8.7
 
-Released April 25, 2016.
+Released April 26, 2016.
 
 This is a bug release in the Puppet 3.8 series.
 
