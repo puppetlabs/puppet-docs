@@ -31,39 +31,35 @@ Puppet 4.4.2 is a bug fix release in the Puppet 4.4 series.
 
 ### Bug fixes
 
-[PUP-6133](https://tickets.puppetlabs.com/browse/PUP-6133): Using a Struct type as a hash key had undefined result (often resulting in a failed access to the value stored at that key).
+* [PUP-6133](https://tickets.puppetlabs.com/browse/PUP-6133): Using a Struct type as a hash key had undefined result (often resulting in a failed access to the value stored at that key).
 
-[PUP-6117](https://tickets.puppetlabs.com/browse/PUP-6117): Type aliases that included themselves recursively in a non meaningful way caused the created type to match anything. If you defined something like MyType = Variant[Integer, MyType], it would match anything. Now such constructs are correctly reduced to what they really mean.
+* [PUP-6117](https://tickets.puppetlabs.com/browse/PUP-6117): Type aliases that included themselves recursively in a non meaningful way caused the created type to match anything. If you defined something like MyType = Variant[Integer, MyType], it would match anything. Now such constructs are correctly reduced to what they really mean.
 
-[PUP-6110](https://tickets.puppetlabs.com/browse/PUP-6110): The function assert_type has been improved to point out details about a type mismatch where it earlier in some cases would report nonsense like "Expected Hash, got Hash".
+* [PUP-6110](https://tickets.puppetlabs.com/browse/PUP-6110): The function assert_type has been improved to point out details about a type mismatch where it earlier in some cases would report nonsense like "Expected Hash, got Hash".
 
-[PUP-6108](https://tickets.puppetlabs.com/browse/PUP-6108): Before this, mistakes in type aliases could cause endless recursion ending with an out of stack error. This is now gracefully handled with a specific error message.
+* [PUP-6108](https://tickets.puppetlabs.com/browse/PUP-6108): Before this, mistakes in type aliases could cause endless recursion ending with an out of stack error. This is now gracefully handled with a specific error message.
 
-[PUP-6090](https://tickets.puppetlabs.com/browse/PUP-6090): If an attempt was made to call a function (for example, `notice`) with the result of a call to a function that produces an Iterator (for example, reverse_each) the operation would fail. Now the iterator is transformed to an array in those cases. 
+* [PUP-6090](https://tickets.puppetlabs.com/browse/PUP-6090): If an attempt was made to call a function (for example, `notice`) with the result of a call to a function that produces an Iterator (for example, reverse_each) the operation would fail. Now the iterator is transformed to an array in those cases. 
 
-[PUP-6089](https://tickets.puppetlabs.com/browse/PUP-6089): The notation for empty Array and Hash were earlier unspecified and the output showed internal details related to the implementation of the Puppet Type System. Empty Array is now displayed as `Array[0, 0]`, and an empty Hash as `Hash[0, 0]`. In conjunction with this change, it is now also illegal to specify an element (or key/value) type when also specifying empty. For instance, `Array[Integer, 0, 0]` is now illegal. 
+* [PUP-6089](https://tickets.puppetlabs.com/browse/PUP-6089): The notation for empty Array and Hash were earlier unspecified and the output showed internal details related to the implementation of the Puppet Type System. Empty Array is now displayed as `Array[0, 0]`, and an empty Hash as `Hash[0, 0]`. In conjunction with this change, it is now also illegal to specify an element (or key/value) type when also specifying empty. For instance, `Array[Integer, 0, 0]` is now illegal. 
 
+* [PUP-6074](https://tickets.puppetlabs.com/browse/PUP-6074): The experimental lookup option `--unpack-arrays` had very strange behavior and it was decided that it should be removed. It is not removed from both the lookup command line application and lookup function. 
 
-[PUP-6074](https://tickets.puppetlabs.com/browse/PUP-6074): The experimental lookup option `--unpack-arrays` had very strange behavior and it was decided that it should be removed. It is not removed from both the lookup command line application and lookup function. 
+* [PUP-6064](https://tickets.puppetlabs.com/browse/PUP-6064): A regression in the functions `epp`, and `inline_epp` caused given `undef` values to be treated as missing given arguments. This was a known issue in Puppet 4.4.1, and has now been resolved.
 
-[PUP-6064](https://tickets.puppetlabs.com/browse/PUP-6064): A regression in the functions `epp`, and `inline_epp` caused given `undef` values to be treated as missing given arguments. This was a known issue in Puppet 4.4.1, and has now been resolved.
+* [PUP-6145](https://tickets.puppetlabs.com/browse/PUP-6145): If self recursive type aliases were compared against each other using `<`, `>`, or `=`, there were cases when this would result in an `Out of Stack` error.
 
-[PUP-6145](https://tickets.puppetlabs.com/browse/PUP-6145): If self recursive type aliases were compared against each other using `<`, `>`, or `=`, there were cases when this would result in an `Out of Stack` error.
+* [PUP-6146](https://tickets.puppetlabs.com/browse/PUP-6146): When comparing Hash vs Struct types, the result could be undef instead of false.
 
-[PUP-6146](https://tickets.puppetlabs.com/browse/PUP-6146): When comparing Hash vs Struct types, the result could be undef instead of false.
+* [PUP-6179](https://tickets.puppetlabs.com/browse/PUP-6179): The Puppet CA face was broken with the release of Puppet 4. You could get help, but all command invocation would fail. It now works.
 
-[PUP-6179](https://tickets.puppetlabs.com/browse/PUP-6179): The Puppet CA face was broken with the release of Puppet 4. You could get help, but all command invocation would fail. It now works.
+* [PUP-6149](https://tickets.puppetlabs.com/browse/PUP-6149): The abstract Collection type when created with only a size constraint (Collection[5,5]) would use the resulting integer range as the element type instead of a size constraint, and the constructed type would be unbound in size.
 
+* [PUP-6147](https://tickets.puppetlabs.com/browse/PUP-6147): Comparison of Hash vs. Struct type did not work as expected as the type of the key was ignored. 
 
-[PUP-6149](https://tickets.puppetlabs.com/browse/PUP-6149): The abstract Collection type when created with only a size constraint (Collection[5,5]) would use the resulting integer range as the element type instead of a size constraint, and the constructed type would be unbound in size.
+* [PUP-6148](https://tickets.puppetlabs.com/browse/PUP-6148): Comparing Callable types could result in an error being raised. 
 
-[PUP-6147](https://tickets.puppetlabs.com/browse/PUP-6147): Comparison of Hash vs. Struct type did not work as expected as the type of the key was ignored. 
-
-
-[PUP-6148](https://tickets.puppetlabs.com/browse/PUP-6148): Comparing Callable types could result in an error being raised. 
-
-[PUP-6049](https://tickets.puppetlabs.com/browse/PUP-6049): Corrected help text for Puppet Lookup's `--knock-out-prefix` option.
-
+* [PUP-6049](https://tickets.puppetlabs.com/browse/PUP-6049): Corrected help text for Puppet Lookup's `--knock-out-prefix` option.
 
 
 ## Puppet 4.4.1
