@@ -1,12 +1,16 @@
 ---
 layout: default
 title: "Security and vulnerability announcements"
-toc_levels: h1, h2 
+toc_levels: h1, h2
 ---
 
 This page contains information about security fixes from both Puppet and third-party software vendors used in Puppet products. For information about our security policies and instructions on how to report findings, refer to the [vulnerability submission process](./vulnerability_submission_process.html).
 
 ## Internal Security Announcements
+
+- [CVE-2016-2785: Incorrect URL Decoding](https://puppet.com/security/cve/cve-2016-2785)
+
+    Resolved in Puppet Server 2.3.2, Puppet 4.4.2, and Puppet agent 1.4.2.
 
 - [CVE-2016-2786: Incorrect Client Verification in Puppet Communications Protocol](https://puppetlabs.com/security/cve/CVE-2016-2786)
 
@@ -21,11 +25,11 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in PuppetDB 3.2.4
 
 - [CVE-2015-7330: Non-whitelisted hosts could access Puppet communications protocol](https://puppetlabs.com/security/cve/cve-2015-7330)
-   
+
    Resolved in Puppet Enterprise 2015.3.1
 
 - [CVE-2015-8470: Puppet Enterprise Console JSESSIONID Cookies Are Issued Without the Secure Flag](https://puppetlabs.com/security/cve/CVE-2015-8470)
-   
+
    Resolved in Puppet Enterprise 2015.3.0
 
 - [Advisory: puppetlabs-ntp default configuration does not fully mitigate CVE-2013-5211](https://puppetlabs.com/security/cve/puppetlabs-ntp-nov-2015-advisory)
@@ -123,7 +127,7 @@ This page contains information about security fixes from both Puppet and third-p
 - [CVE-2013-4762: Logout Link Did Not Destroy Server Session](https://puppetlabs.com/security/cve/cve-2013-4762?_ga=1.47907310.892778398.1448482056)
 
    Resolved in Puppet Enterprise 3.0.1
-   
+
 - [CVE-2013-4962 – Lack of Reauthentication for Sensitive Transactions](https://puppetlabs.com/security/cve/cve-2013-4962?_ga=1.44393069.892778398.1448482056)
 
    Resolved in Puppet Enterprise 3.0.1
@@ -238,15 +242,15 @@ This page contains information about security fixes from both Puppet and third-p
 - [CVE-2016-0787: libssh2 Vulnerability](https://puppetlabs.com/security/cve/CVE-2016-0787)
 
    Resolved in Puppet Enterprise 2015.3.3
-   
+
 - [CVE-2016-0739 - libssh Vulnerability](https://puppetlabs.com/security/cve/CVE-2016-0739)
 
    Resolved in Puppet Enterprise 2015.3.3
-   
+
 - [CVE-2016-0773: PostgreSQL Regular Expression Parsing Vulnerability](https://puppetlabs.com/security/cve/CVE-2016-0773)
 
    Resolved in Puppet Enterprise 2015.3.3
-   
+
 - [OpenSSL March 2016 Security Fixes](https://puppetlabs.com/security/cve/openssl-mar-2016-security-fixes)
 
    Resolved in Puppet Enterprise 2015.3.3
@@ -264,7 +268,7 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in Puppet Enterprise 2015.3.2, Puppet Enterprise 3.8.4, Puppet Agent 1.3.5 and Puppet 3.8.6 (Windows)
 
 - [Passenger December 2015 Security Fixes](https://puppetlabs.com/security/cve/passenger-dec-2015-security-fixes)
-   
+
    Resolved in Puppet Enterprise 3.8.4
 
 - [ActiveMQ December 2015 Security Fixes](https://puppetlabs.com/security/cve/activemq-dec-2015-security-fixes)
