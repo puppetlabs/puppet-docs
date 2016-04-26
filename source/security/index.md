@@ -1,11 +1,12 @@
 ---
 layout: default
 title: "Security and vulnerability announcements"
+toc_levels: h1, h2 
 ---
 
 This page contains information about security fixes from both Puppet and third-party software vendors used in Puppet products. For information about our security policies and instructions on how to report findings, refer to the [vulnerability submission process](./vulnerability_submission_process.html).
 
-# Internal Security Announcements
+## Internal Security Announcements
 
 - [CVE-2016-2786: Incorrect Client Verification in Puppet Communications Protocol](https://puppetlabs.com/security/cve/CVE-2016-2786)
 
@@ -232,7 +233,7 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in Puppet 0.25.2
 
 
-# Third-party Security Announcments
+## Third-party Security Announcments
 
 - [CVE-2016-0787: libssh2 Vulnerability](https://puppetlabs.com/security/cve/CVE-2016-0787)
 
