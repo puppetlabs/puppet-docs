@@ -12,28 +12,19 @@ title: "Overview of Puppet on Windows"
 **Puppet runs on Microsoft Windows® and can manage Windows systems alongside \*nix systems.** This page will help get you oriented and ready to manage Windows systems with Puppet.
 
 
-Installing
------
-
-### Puppet Enterprise
-
-To install Puppet Enterprise on Windows, [see the Puppet Enterprise manual's installation instructions.](/pe/latest/windows_installing.html)
-
-### Open Source
+## Installing
 
 To install open source Puppet on Windows, follow the instructions on the following pages, in order:
 
 * [Pre-install tasks](/puppet/latest/reference/install_pre.html)
 * [Installation instructions](/puppet/latest/reference/install_windows.html)
 
-* * *
 
-Running
------
+## Running
 
 * Windows systems can run `puppet agent` and `puppet apply`, but they can't act as a Puppet master server.
 * Puppet is available in 32- and 64-bit versions. Install the appropriate Puppet package for your version of Windows.
-* Puppet should usually run with elevated privileges. If you want to run any of Puppet's commands interactively on systems with UAC, you'll have to start a command prompt by right-clicking and choosing "Run as administrator."
+* Puppet usually runs with elevated privileges. If you want to run any of Puppet's commands interactively on systems with UAC, you need to start a command prompt by right-clicking and choosing "Run as administrator."
 * Puppet's configuration and data are stored in different places on different Windows versions. For more details, see the Puppet reference manual pages on [the confdir][] and [the vardir][].
 
 For more information, see:
@@ -42,14 +33,12 @@ For more information, see:
 * [Running Puppet Commands on Windows][win_commands], for information on running commands interactively.
 * [Puppet Agent on Windows][win_agent], for information on the puppet agent service's run environment.
 
-* * *
 
-Writing Manifests
------
+## Writing manifests
 
 In general, manifests written for Windows nodes work the same way as manifests written for \*nix nodes.
 
-### Resource Types
+### Resource types
 
 Some \*nix resource types aren't supported on Windows, and there are some Windows-only resource types.
 
@@ -66,13 +55,13 @@ The following core resource types can be managed on Windows:
 
 Also, there are some popular [optional resource types for Windows.](/puppet/latest/reference/resources_windows_optional.html)
 
-### Handling File Paths
+### Handling file paths
 
 Some resource types take file paths as attributes. On Windows, there are some extra things to take into account when writing file paths, including directory separators. For more info, see:
 
 * [Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html)
 
-### Line Endings
+### Line endings
 
 Windows systems generally use different line endings in text files than \*nix systems do. Puppet manifest files can use either kind of line ending.
 
@@ -89,14 +78,12 @@ Windows nodes with a default install of Puppet will include the following notabl
 * `id` --- This fact will be `<DOMAIN>\<USER NAME>`. You can use the user name to determine whether Puppet is running as a service or was triggered manually.
 
 
-* * *
-
-Important Windows Concepts for Unix Admins
------
+## Important Windows concepts for Unix admins
 
 Windows differs from \*nix systems in many ways, several of which affect how Puppet works.
 
-### Security Context
+
+### Security context
 
 On Unix, puppet is either running as root or not. On Windows, this maps to running with **elevated privileges** or not.
 
@@ -105,17 +92,22 @@ For more information, see the following pages in the Puppet reference manual:
 * [Running Puppet Commands on Windows][win_commands], for information on running commands interactively.
 * [Puppet Agent on Windows][win_agent], for information on the puppet agent service's run environment.
 
-### File System Redirection (Windows Server 2003 or older versions of Puppet)
+
+### File system redirection (Older versions of Puppet)
 
 As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. This means that as long as you've installed the correct package for your version of Windows, file system redirection should no longer be an issue.
 
-However, if you are running Windows Server 2003, which is incompatible with 64-bit Puppet, or if you are using an earlier version of Puppet, file system redirection will still affect you. Please see [Language: Handling File Paths on Windows](/puppet/latest/reference/lang_windows_file_paths.html) for how to safely handle file system redirection when running 32-bit Puppet on a 64-bit Windows system. Note that the information about file system redirection applies to extensions as well.
+However, if you are using an earlier version of Puppet, file system redirection will still affect you. Please see [Language: Handling file paths on windows](/puppet/latest/reference/lang_windows_file_paths.html) for how to safely handle file system redirection when running 32-bit Puppet on a 64-bit Windows system. The information about file system redirection applies to extensions as well.
 
-### Developing Extensions
+>*Note*: By end of year 2016, running 32-bit Puppet agent on a 64-bit Windows system will be deprecated. Update your Puppet installation to match your platform by December 31, 2016.
+
+
+### Developing extensions
 
 If you're developing custom types and providers or writing custom facts, be aware that the <a href="http://msdn.microsoft.com/en-us/library/aa384187(v=vs.85).aspx">File System Redirector</a> and the <a href="http://msdn.microsoft.com/en-us/library/aa384232(v=vs.85).aspx">Registry Redirector</a> will also affect these types, providers, and facts.
 
-#### Registry Redirection
+
+#### Registry redirection
 
 If you need to access registry keys in the native 64-bit registry space, you'll need to make sure you opt out of redirection. Here's an example of avoiding redirection in a custom fact:
 
