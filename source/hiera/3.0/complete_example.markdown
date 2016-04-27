@@ -165,7 +165,7 @@ ntp::servers:
   - 3.us.pool.ntp.org iburst
 ~~~
 
-Since we want to provide this data for a specific node, and since we're using the certname to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/environments/production/hieradata/node` directory as `kermit.example.com.yaml`.
+Since we want to provide this data for a specific node, and since we're using the certname to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/environments/production/hieradata/nodes` directory as `kermit.example.com.yaml`.
 
 Once you've saved that, let's do a quick test using Puppet apply:
 
