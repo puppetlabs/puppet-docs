@@ -6861,6 +6861,9 @@ h6 strong {
 a {
   font-weight: 400;
 }
+a code {
+  color: inherit;
+}
 a:visited {
   color: #416bc5;
 }
@@ -6984,7 +6987,18 @@ ol.toc {
   margin-left: 0;
   list-style-type: none !important;
 }
-/* Second-level TOCs should have lighter text and be smaller */
+ol.toc > li {
+  margin-bottom: 0;
+  margin-left: 0;
+  line-height: 1.5em;
+  /* Second-level TOCs should have lighter text and be smaller */
+}
+ol.toc > li:before {
+  position: relative;
+  left: -5px;
+  color: #1b50af;
+  content: "»";
+}
 ol.toc > li > ol.toc {
   padding-top: .25em;
   padding-bottom: 0;
@@ -6992,20 +7006,6 @@ ol.toc > li > ol.toc {
   margin-bottom: 0;
   margin-left: 2.5em;
   font-size: .9em;
-}
-ol.toc > li {
-  margin-bottom: 0;
-  margin-left: 0;
-  /*
-  padding-left: 0.5em;
- */
-  line-height: 1.5em;
-}
-ol.toc > li:before {
-  position: relative;
-  left: -5px;
-  color: #1b50af;
-  content: "»";
 }
 ol.toc > li > ol.toc > li {
   padding-bottom: .25em;
@@ -7017,9 +7017,6 @@ nav.main ul {
   margin-left: -1.5em;
   list-style-type: none;
 }
-nav.main > ul {
-  margin-left: -2em;
-}
 nav.main ul > li::before {
   position: relative;
   left: -.75em;
@@ -7030,21 +7027,12 @@ nav.main ul > li::before {
   content: "»";
 }
 nav.main ul > li.hidden-nav::before {
-  font-weight: 300;
   color: #777;
   content: "+";
 }
 nav.main ul > li.expanded-nav::before {
-  font-weight: 300;
   color: #777;
   content: "–";
-}
-a.disabled-nav-link {
-  color: #555;
-  cursor: text;
-}
-a.disabled-nav-link:hover {
-  text-decoration: none;
 }
 nav.main ul > li strong {
   font-weight: 400;
@@ -7053,6 +7041,16 @@ nav.main ul > li strong {
 nav.main ul > li strong:hover {
   color: #777;
   text-decoration: underline;
+}
+nav.main > ul {
+  margin-left: -2em;
+}
+a.disabled-nav-link {
+  color: #555;
+  cursor: text;
+}
+a.disabled-nav-link:hover {
+  text-decoration: none;
 }
 /* Callouts with colored accents */
 /* ----------------------------- */
