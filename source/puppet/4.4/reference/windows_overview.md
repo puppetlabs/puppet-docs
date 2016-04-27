@@ -99,7 +99,7 @@ As of Puppet 3.7, the Puppet agent can run as either a 32- or a 64-bit process. 
 
 However, if you are using an earlier version of Puppet, file system redirection will still affect you. Please see [Language: Handling file paths on windows](/puppet/latest/reference/lang_windows_file_paths.html) for how to safely handle file system redirection when running 32-bit Puppet on a 64-bit Windows system. The information about file system redirection applies to extensions as well.
 
->*Note*: By end of year 2016, running 32-bit Puppet agent on a 64-bit Windows system will be deprecated. Update your Puppet installation to match your platform by December 31, 2016.
+>*Note*: By end of year 2016, running 32-bit Puppet agent on a 64-bit Windows system will be deprecated. Upgrade your Puppet installation to 64-bit by December 31, 2016.
 
 
 ### Developing extensions
