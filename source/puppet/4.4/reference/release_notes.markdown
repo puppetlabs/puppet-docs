@@ -24,7 +24,7 @@ Also of interest: the [Puppet 4.3 release notes](/puppet/4.3/reference/release_n
 
 Released April 26, 2016.
 
-Puppet 4.4.2 is a bug fix release in the Puppet 4.4 series.
+Puppet 4.4.2 is a bug fix and security release in the Puppet 4.4 series. Users should [see the security announcement](https://puppet.com/security/cve/cve-2016-2785) for risk information.
 
 * [Fixed in Puppet 4.4.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.4.2%27) 
 * [Introduced in Puppet 4.4.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.4.2%27)

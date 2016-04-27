@@ -39,6 +39,8 @@ Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.4 release 
 
 Released April 26, 2016.
 
+Security and bug fix release. See [the security notice](https://puppet.com/security/cve/cve-2016-2785) for risk information.
+
 ### Component updates
 
 Includes bug fixes to [Puppet 4.4.2][], [Facter 3.1.6][], and [Hiera 3.1.2][].
