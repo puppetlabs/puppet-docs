@@ -5,7 +5,7 @@
     {{include.current_language}}
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu">
+  <ul class="dropdown-menu dropdown-menu-right">
     {% assign this_language = 'English' %}
     <li{% if include.current_language == this_language %} class="active"{% endif %}><a href="/">{{this_language}}</a></li>
     {% assign this_language = '日本語' %}
