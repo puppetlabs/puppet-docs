@@ -1,8 +1,19 @@
-/*
-body {
-  padding-top: 70px;
+/* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
+div#rendered-markdown p img {
+  border: solid 1px #ccc;
+  box-shadow: 0px 0px 8px #999;
+  /* Image width should be constrained by the <p> width in all browsers that are supported (lets images expand to 740px on a wide screen) */
+  max-width: 100%;
 }
- */
+
+/* Hide the real custom search engine for some reason. (I think something made it hard/impossible to style, but someone else originally did this so I'm not really sure. There's a replacement search form that uses JS to submit the real one.) */
+
+#cse-search-box {
+  display: none;
+}
+
+/* Site Header */
+/* -------------------------------------- */
 
 .navbar-brand {
   height: auto;
@@ -110,20 +121,6 @@ img#search-icon {
     border-left: 3px solid #59a1f7;
     transition: color linear 0.2s, border-left linear 0.2s;
   }
-}
-
-/* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
-div#content div#rendered-markdown p img {
-  border: solid 1px #ccc;
-  box-shadow: 0px 0px 8px #999;
-  /* Image width should be constrained by the <p> width in all browsers that are supported (lets images expand to 740px on a wide screen) */
-  max-width: 100%;
-}
-
-/* Hide the real custom search engine for some reason */
-
-#cse-search-box {
-  display: none;
 }
 
 /* Site Footer */
