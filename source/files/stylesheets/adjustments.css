@@ -27,11 +27,6 @@ img#search-icon {
   right: 2rem;
 }
 
-nav.main ul li a.disabled-nav-link,
-table th {
-  font-weight: 600;
-}
-
 @media screen and (min-width: 768px) {
   /* Style wide nav options */
   div#navbar-container {
