@@ -69,14 +69,16 @@ Certain versions of Ruby are tested more thoroughly with Puppet than others, and
 > ![windows logo](/images/windows-logo-small.jpg) The [Windows installers](http://downloads.puppetlabs.com/windows) provided by Puppet Labs don't rely on the OS's Ruby version, and can be installed alongside any version of Ruby or on systems without Ruby installed.
 
 Ruby version | Puppet 3.x              | Puppet 4.x
--------------|-------------------------------------------
+-------------|----------------------------------------------------------
+2.3.x\*      | No                      | Lightly Tested (4.5 and higher)
 2.2.x        | No                      | Lightly Tested
 2.1.x        | Tested (3.5 and higher) | Tested
 2.0.x        | Tested (3.2 and higher) | Lightly Tested
-1.9.3\*      | Tested                  | Lightly Tested
+1.9.3\*\*    | Tested                  | Lightly Tested
 1.8.7        | Tested                  | No
 
-> \* Ruby 1.9.3-p392 and up only. Unfortunately, Ubuntu Precise ships with 1.9.3-p0. If you're using Precise with Puppet 3.x, we recommend using Puppet Enterprise or installing a third-party Ruby package.
+> \* Ruby 2.3.1+. Ruby 2.3.0 has a bug that causes segmentation faults under certain scenarios with puppet.
+> \*\* Ruby 1.9.3-p392 and up only. Unfortunately, Ubuntu Precise ships with 1.9.3-p0. If you're using Precise with Puppet 3.x, we recommend using Puppet Enterprise or installing a third-party Ruby package.
 
 Versions marked as "Tested" are recommended by Puppet Labs and are under automated test coverage. As of Puppet 4, where puppet-agent packages bundle Ruby, versions marked "Lightly Tested" are under reduced automated test coverage (specifically, spec tests only) -- the Ruby version bundled with puppet-agent is the recommended version. Other versions are not recommended and we make no guarantees about their performance with Puppet.
 
