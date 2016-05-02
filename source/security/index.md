@@ -30,7 +30,7 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [CVE-2015-8470: Puppet Enterprise Console JSESSIONID Cookies Are Issued Without the Secure Flag](https://puppetlabs.com/security/cve/CVE-2015-8470)
 
-   Resolved in Puppet Enterprise 2015.3.0
+   Resolved in Puppet Enterprise 2015.3.0 and Puppet Enterprise 3.8.5
 
 - [Advisory: puppetlabs-ntp default configuration does not fully mitigate CVE-2013-5211](https://puppetlabs.com/security/cve/puppetlabs-ntp-nov-2015-advisory)
 
@@ -239,6 +239,22 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party Security Announcments
 
+- [NGINX January 2016 Security Fixes](https://puppet.com/security/cve/nginx-jan-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.1.2
+
+- [Rails February 2016 Security Fixes](https://puppet.com/security/cve/rails-feb-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 3.8.5
+      
+- [ActiveMQ March 2016 Security Fixes](https://puppet.com/security/cve/activemq-mar-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.1.2 and Puppet Enterprise 3.8.5
+   
+- [Oracle Java April 2016 Security Fixes](https://puppet.com/security/cve/oracle-java-apr-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.1.2 and Puppet Enterprise 3.8.5
+
 - [CVE-2016-0787: libssh2 Vulnerability](https://puppetlabs.com/security/cve/CVE-2016-0787)
 
    Resolved in Puppet Enterprise 2015.3.3
@@ -247,13 +263,13 @@ This page contains information about security fixes from both Puppet and third-p
 
    Resolved in Puppet Enterprise 2015.3.3
 
-- [CVE-2016-0773: PostgreSQL Regular Expression Parsing Vulnerability](https://puppetlabs.com/security/cve/CVE-2016-0773)
+- [CVE-2016-0773: PostgreSQL regular expression parsing vulnerability](https://puppetlabs.com/security/cve/CVE-2016-0773)
 
-   Resolved in Puppet Enterprise 2015.3.3
+   Resolved in Puppet Enterprise 2015.3.3 and Puppet Enterprise 3.8.5
 
 - [OpenSSL March 2016 Security Fixes](https://puppetlabs.com/security/cve/openssl-mar-2016-security-fixes)
 
-   Resolved in Puppet Enterprise 2015.3.3
+   Resolved in Puppet Enterprise 2015.3.3 and Puppet Enterprise 3.8.5
 
 - [Oracle Java January 2016 Security Fixes](https://puppetlabs.com/security/cve/oracle-java-jan-2016-security-fixes)
 
