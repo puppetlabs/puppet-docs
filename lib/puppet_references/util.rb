@@ -12,6 +12,7 @@ module PuppetReferences
       YAML.dump(clean_data) + "---\n\n"
     end
 
+    # Run a command that can't cope with a contaminated shell environment.
     def self.run_dirty_command(command)
       result = Bundler.with_clean_env do
         # Bundler replaces the entire environment once this block is finished.
@@ -20,5 +21,84 @@ module PuppetReferences
       end
       result
     end
+
+    # Just build an HTML table.
+    def self.table_from_header_and_array_of_body_rows(header_row, other_rows)
+      html_table = <<EOT
+<table>
+  <thead>
+    <tr>
+      <th>#{header_row.join('</th> <th>')}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>#{other_rows.map {|row| "<td>" << row.join("</td> <td>") << "</td>"}.join("</tr>\n    <tr>")}</tr>
+  </tbody>
+</table>
+
+EOT
+      html_table
+    end
+
+    # Get the Puppet version for a given puppet-agent version. (Currently broken, I think.)
+    def self.puppet_version_for_agent_version(agent_version)
+      agent_info = JSON.load(File.read(Pathname.new(__FILE__).dirname + 'agent.json'))
+      agent_info[agent_version]['Puppet']
+    end
+
+    # Build a release notes URL for a given version, using what we know about each project's URLs and doc formats.
+    def self.release_notes_for_component_version(component, version) # returns string or nil.
+      x = version.split('.')[0]
+      x_dot_y = version.split('.')[0..1].join('.')
+      dotless = version.gsub(/\./, '')
+      case component
+        when 'Puppet'
+          if x == '3' and x_dot_y.to_f < 3.5
+            "/puppet/3/reference/release_notes.html#puppet-#{dotless}"
+          else
+            "/puppet/#{x_dot_y}/reference/release_notes.html#puppet-#{dotless}"
+          end
+        when 'Puppet Agent'
+          if x_dot_y.to_f < 1.2
+            nil
+          else
+            puppet_docs = puppet_version_for_agent_version(version).split('.')[0..1].join('.')
+            "/puppet/#{puppet_docs}/reference/release_notes_agent.html#puppet-agent-#{dotless}"
+          end
+        when 'Puppet Server'
+          "/puppetserver/#{x_dot_y}/release_notes.html#puppet-server-#{dotless}"
+        when 'Facter'
+          "/facter/#{x_dot_y}/release_notes.html#facter-#{dotless}"
+        when 'Hiera'
+          if x == '1'
+            "/hiera/1/release_notes.html#hiera-#{dotless}"
+          else
+            "/hiera/#{x_dot_y}/release_notes.html#hiera-#{dotless}"
+          end
+        when 'PuppetDB'
+          "/puppetdb/#{x_dot_y}/release_notes.html" # Anchors are broken because Kramdown is silly.
+        when 'MCollective'
+          "/mcollective/releasenotes.html" # Anchors broken here too.
+        when 'r10k'
+          "https://github.com/puppetlabs/r10k/blob/master/CHANGELOG.mkd##{dotless}"
+        else
+          nil
+      end
+    end
+
+    # Returns the provided text, wrapping it in a link if it can find an applicable release notes URL.
+    def self.link_release_notes_if_applicable(component, text, version = nil)
+      unless version
+        version = text
+      end
+      notes = release_notes_for_component_version(component, version)
+      if notes
+        '<a href="' << notes << '">' << text << '</a>'
+      else
+        text
+      end
+    end
+
   end
 end
