@@ -31,9 +31,6 @@ module PuppetReferences
             'PostgreSQL',
             'Java',
             'ActiveMQ',
-            'Apache',
-            'LibAPR',
-            'Passenger',
             'Nginx'
         ]
       end
@@ -101,6 +98,9 @@ module PuppetReferences
       def merge_vanagon_info!(this_pe_version_info, name_of_vanagon_package, vanagon_data)
         # Remember that we might have to handle multiple agent/client-tools versions per PE release. So...
         versions_and_operating_systems = this_pe_version_info[name_of_vanagon_package] # it's a hash. '1.2.2' => ['os-1', 'os-2']
+        if versions_and_operating_systems.nil?
+          return
+        end
         versions_and_operating_systems.each {|vanagon_version, os_list|
           vanagon_contents = vanagon_data[vanagon_version] # it's a hash. 'Component' => '4.2.2'
           vanagon_contents.each {|component, component_version|
