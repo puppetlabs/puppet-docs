@@ -19,6 +19,8 @@ module PuppetReferences
   require 'puppet_references/puppet/type'
   require 'puppet_references/puppet/http'
   require 'puppet_references/facter/core_facts'
+  require 'puppet_references/version_tables/config'
+  require 'puppet_references/version_tables/data/pe'
 
   def self.build_puppet_references(commit)
     references = [
