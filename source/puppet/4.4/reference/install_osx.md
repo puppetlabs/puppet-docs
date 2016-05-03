@@ -7,19 +7,28 @@ canonical: "/puppet/latest/reference/install_osx.html"
 [server_install]: {{puppetserver}}/install_from_packages.html
 [where]: ./whered_it_go.html
 [agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
-[Puppet Collection]: ./puppet_collections.html
+[puppet_collections]: ./puppet_collections.html
+[server_setting]: ./configuration.html#server
+
+> **Note:** These instructions describe how to install the open source Puppet agent software on OS X.
+>
+> -   To install the Puppet Enterprise agent on supported operating systems, see [its documentation]({{pe}}/install_agents.html).
+> -   To install the open source agent on Linux distributions that don't have official packages, review [Puppet's prerequisites](./system_requirements.html#platforms-without-packages).
+> -   To install the open source agent on Windows operating systems, see the [Windows installation instructions](./install_windows.html).
+> -   To install the open source agent on Linux distributions, see the [Linux installation instructions](./install_linux.html).
+> -   To install open source Puppet Server on a Puppet master, see [its documentation][server_install].
 
 ## Make sure you're ready
 
-Before installing Puppet agent, read the [pre-install tasks](./install_pre.html) and [install Puppet Server][server_install].
+Before installing Puppet agent on any nodes, complete the [pre-install tasks](./install_pre.html) and [install Puppet Server][server_install] on your designated Puppet master.
 
-> **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
+> **Note:** Puppet 4 changes the locations for many of the most important files and directories. If you're familiar with Puppet 3 and earlier, read [a summary of the changes][where] and refer to the [full specification of Puppet directories](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md).
 
 ## Review supported versions
 
-{% include pup43_platforms_osx.markdown %}
+Puppet agent is distributed in a package that includes all of Puppet's prerequisites. You don't need to download anything else to install Puppet agent on a node. These packages are tied to a [Puppet Collection][puppet_collections] (PC), which is a set of Puppet 4 software designed and tested to work well together.
 
-To install on other operating systems, see the pages linked in the navigation sidebar.
+{% include pup44_platforms_osx.markdown %}
 
 ## Download the OS X `puppet-agent` package
 
@@ -29,34 +38,32 @@ To install on other operating systems, see the pages linked in the navigation si
 {% include puppet-collections/_puppet_collection_1_osx1010.md %}
 {% include puppet-collections/_puppet_collection_1_osx1009.md %}
 
-You can also download [older versions of Puppet](https://downloads.puppetlabs.com/mac/); browse to `<OS X VERSION>/PC1/x86_64` for the most recently released packages.
-
-These packages are tied to Puppet Collection 1, which is a set of Puppet software designed to work well with Puppet 4. The `puppet-agent` package bundles all of Puppet's prerequisites, so you don't need to download anything else to install Puppet on an agent node.
+You can also download older versions of Puppet from [downloads.puppetlabs.com](https://downloads.puppetlabs.com/mac/). Browse to `<OS X VERSION>/PC1/x86_64` for the most recently released packages. For example, the path to the PC1 package for OS X 10.11 is `https://downloads.puppetlabs.com/mac/10.11/PC1/x86_64`.
 
 ### Choosing a package
 
-OS X packages are named according to their `puppet-agent` version and compatible OS X version:
+Packages are named according to their `puppet-agent` version and compatible OS X version. They also contain a release number --- typically `1` --- that represents the iteration of that version's package.
 
-    puppet-agent-<PACKAGE VERSION>.osx<OS X VERSION>.dmg
+    puppet-agent-<PACKAGE VERSION>-<RELEASE NUMBER>.osx<OS X VERSION>.dmg
 
-For example:
+For example, the filename for the first release of the `puppet-agent` 1.4.2 package on OS X 10.11 is:
 
-    puppet-agent-1.3.2.osx10.11.dmg
+    puppet-agent-1.4.2-1.osx10.11.dmg
 
-To see which versions of Puppet and its related tools and components are in a given `puppet-agent` release, as well as release notes for each release, [see About Puppet Agent](./about_agent.html).
+To see which versions of Puppet, its related tools, and required components are in a given `puppet-agent` release, as well as release notes for each release, see [About Puppet agent](./about_agent.html).
 
 > #### Previous package names
 >
-> We used some different naming schemes in the puppet-agent 1.2 series before settling on the current convention in 1.2.5.
+> We used different naming schemes in the `puppet-agent` 1.2 series before settling on the current convention used since 1.2.5.
 >
-> * 1.2.0 through 1.2.2: `puppet-agent-<VERSION>-osx-<OS X VERSION>-<ARCH>.dmg`. Redundant; OS X only runs on x86_64.
-> * 1.2.4: `puppet-agent-<VERSION>-<OS X CODE NAME>.dmg`. This was too hard for automated tooling to deal with, because OS X's built-in CLI tools don't report the code name.
+> -   **1.2.0 through 1.2.2:** `puppet-agent-<PACKAGE VERSION>-osx-<OS X VERSION>-<ARCH>.dmg`. Redundant; OS X only runs on x86_64.
+> -   **1.2.4:** `puppet-agent-<PACKAGE VERSION>-<OS X CODE NAME>.dmg`. This was too hard for automated tooling to deal with, because OS X's built-in CLI tools don't report the code name.
 
 ## Make sure you can run Puppet executables
 
 The new location for Puppet's executables is `/opt/puppetlabs/bin/`, which is not in your `PATH` environment variable by default.
 
-This doesn't matter for Puppet services, so enabling or disabling Puppet agent with `launchctl` works fine. However, if you're running any interactive `puppet` commands, you need to either add the location to your `PATH` or refer to the executables by their full locations.
+This doesn't matter for Puppet services, so enabling or disabling Puppet agent with `launchctl` works fine. However, to run interactive `puppet` commands, either add the location to your `PATH` or refer to the executables by their full locations.
 
 For more information, see [our page about files and directories moved in Puppet 4][where].
 
@@ -64,59 +71,86 @@ For more information, see [our page about files and directories moved in Puppet 
 
 There are three ways to install Puppet on OS X:
 
-* With the GUI installer.
-* On the command line.
-* With Puppet (if upgrading).
+-   [With the GUI installer.](#installing-with-the-gui)
+-   [On the command line.](#installing-on-the-command-line)
+-   [With Puppet](#upgrading-with-puppet) (if upgrading).
 
-Regardless which you choose, installing the package will start the `puppet` and `mcollective` services. You can later disable these services with `launchctl` or with `sudo puppet resource service <NAME> ensure=stopped enable=false`.
+Regardless of which method you choose, the `puppet` and `mcollective` services launch automatically once they're installed. You can disable these services with `launchctl` or by running:
+
+    sudo puppet resource service <SERVICE NAME> ensure=stopped enable=false
 
 ### Installing with the GUI
 
-Double-click the `puppet-agent` disk image you downloaded. This mounts it at `/Volumes/<DMG NAME>`.
+To install Puppet with a graphic user interface:
 
-A Finder window appears showing the disk's contents: a single `puppet-agent-<VERSION>-installer.pkg` file. Double-click the package file, and follow the installer prompts to install it. When installation finishes, Puppet agent and MCollective will be running.
+1.  Double-click the `puppet-agent` disk image you downloaded.
 
-After installing, unmount and delete the disk image.
+    OS X verifies the image, and then mounts it at `/Volumes/<DMG NAME>`. A Finder window then appears showing the image's contents: a single `puppet-agent-<PACKAGE VERSION>-<RELEASE NUMBER>-installer.pkg` file.
+
+2.  Double-click the package file, and then follow the installer prompts.
+
+    Once the installation is complete, the `puppet` and `mcollective` services launch automatically.
+
+3.  Unmount the disk image. You can then delete the image.
 
 ### Installing on the command line
 
-Alternately, you can use the `hdiutil` and `installer` commands to mount the disk image and install the package from the command line.
+You can use the `hdiutil` and `installer` commands to mount the disk image, and then install the package from the command line.
 
-First, mount the disk image with:
+1.  Mount the disk image by running:
 
-    sudo hdiutil mount <DMG FILE>
+        sudo hdiutil mount <DMG FILE>
 
-Next, locate the `.pkg` file in the mounted volume and install it with:
+2.  Locate the `.pkg` file in the mounted volume and install it by running:
 
-    sudo installer -pkg /Volumes/<IMAGE>/<PKG FILE> -target /
+        sudo installer -pkg /Volumes/<IMAGE>/<PKG FILE> -target /
 
-When installation finishes, Puppet agent and MCollective will be running.
+        Once the installation is complete, the `puppet` and `mcollective` services launch automatically.
 
-After installing, unmount the disk image with:
+3.  Unmount the disk image by running:
 
-    sudo hdiutil unmount /Volumes/<IMAGE>
+        sudo hdiutil unmount /Volumes/<IMAGE>
 
-You can then delete the `.dmg` file.
+    You can then delete the disk image.
 
 ### Upgrading with Puppet
 
-Puppet includes a `package` resource provider for OS X that can install `.pkg` files from a disk image. If you already have Puppet installed, you can use the `puppet resource` command to upgrade with fewer steps.
+Puppet includes a [`pkgdmg` package provider](./type.html#package-provider-pkgdmg) that can install OS X installation packages (`.pkg` files) from a disk image (`.dmg` file). If you already have Puppet installed, you can use the `puppet resource` command to upgrade with fewer steps.
 
-Locate the disk image you downloaded, and note both the filename and its full path on disk. Then, run:
+1.  Locate the `puppet-agent` disk image you downloaded, and note both the filename and its full path on disk.
 
-    sudo puppet resource package "<NAME>.dmg" ensure=present source=<FULL PATH TO DMG>
+2.  Have Puppet install the package by running:
+
+        sudo puppet resource package "<IMAGE NAME>.dmg" ensure=present source=<FULL PATH TO IMAGE>
 
 ## Configure critical agent settings
 
-You probably want to set the `server` setting to your master's hostname. The default value is `server = puppet`, so if your master is reachable at that address, you can skip this.
+Set the agent's [`server` setting][server_setting] to your Puppet master's hostname. The default value is `server = puppet`, so if your master's hostname is already `puppet`, you can skip this step.
 
-For other settings you might want to change, see [the list of agent-related settings.][agent_settings]
+See the [list of agent-related settings][agent_settings] for more configuration options.
 
-## Sign certificates (on the CA master)
+## Test Puppet agent
 
-As each agent runs for the first time, it will submit a certificate signing request (CSR) to the certificate authority (CA) Puppet master. You'll need to log into that server to check for certs and sign them.
+By default, the `puppet` service performs a Puppet run every 30 minutes. To manually launch and watch a Puppet run, run:
 
-* Run `sudo /opt/puppetlabs/bin/puppet cert list` to see any outstanding requests.
-* Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
+    sudo puppet agent --test
 
-After an agent's certificate is signed, it regularly fetches and applies configurations from the Puppet master.
+## Sign certificates on the CA master
+
+As each agent attempts its first run, it submits a certificate signing request (CSR) to the certificate authority (CA) Puppet master. The CA master must sign these certificates before it can manage the agents.
+
+To do this:
+
+1.  Log into the CA Puppet master.
+
+2.  View outstanding requests by running:
+
+        sudo puppet cert list
+
+3.  Sign a request by running:
+
+        sudo puppet cert sign <NAME>
+
+    Once the Puppet master signs an agent's certificate, the agent regularly fetches and applies configuration catalogs from the master.
+
+> **Note:** The Puppet documentation includes a [detailed description of Puppet's agent/master communications](./subsystem_agent_master_comm.html).
