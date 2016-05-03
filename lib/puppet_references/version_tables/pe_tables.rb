@@ -1,4 +1,3 @@
-require 'json'
 require 'pathname'
 require 'puppet_references'
 
