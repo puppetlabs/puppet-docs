@@ -355,7 +355,9 @@ the user that Puppet is supposed to run as, it defaults to a system
 directory, but if it's running as any other user, it defaults to being
 in the user's home directory.
 
-- *Default*: Unix/Linux: /etc/puppetlabs/code -- Windows: C:\ProgramData\PuppetLabs\code -- Non-root user: ~/.puppetlabs/etc/code
+- *Default*: Unix/Linux: /etc/puppetlabs/code
+- Windows: C:\ProgramData\PuppetLabs\code
+- Non-root user: ~/.puppetlabs/etc/code
 
 ### color
 
@@ -373,7 +375,9 @@ the user that Puppet is supposed to run as, it defaults to a system
 directory, but if it's running as any other user, it defaults to being
 in the user's home directory.
 
-- *Default*: Unix/Linux: /etc/puppetlabs/puppet -- Windows: C:\ProgramData\PuppetLabs\puppet\etc -- Non-root user: ~/.puppetlabs/etc/puppet
+- *Default*: Unix/Linux: /etc/puppetlabs/puppet
+- Windows: C:\ProgramData\PuppetLabs\puppet\etc
+- Non-root user: ~/.puppetlabs/etc/puppet
 
 ### config
 
@@ -1022,7 +1026,9 @@ Default logging level for messages from Puppet. Allowed values are:
 
 The directory in which to store log files
 
-- *Default*: Unix/Linux: /var/log/puppetlabs/puppet -- Windows: C:\ProgramData\PuppetLabs\puppet\var\log -- Non-root user: ~/.puppetlabs/var/log
+- *Default*: Unix/Linux: /var/log/puppetlabs/puppet
+- Windows: C:\ProgramData\PuppetLabs\puppet\var\log
+- Non-root user: ~/.puppetlabs/var/log
 
 ### manage_internal_file_permissions
 
@@ -1483,7 +1489,9 @@ The YAML file containing indirector route configuration.
 
 Where Puppet PID files are kept.
 
-- *Default*: Unix/Linux: /var/run/puppetlabs -- Windows: C:\ProgramData\PuppetLabs\puppet\var\run -- Non-root user: ~/.puppetlabs/var/run
+- *Default*: Unix/Linux: /var/run/puppetlabs
+- Windows: C:\ProgramData\PuppetLabs\puppet\var\run
+- Non-root user: ~/.puppetlabs/var/run
 
 ### runinterval
 
@@ -1769,7 +1777,9 @@ The user puppet master should run as.
 Where Puppet stores dynamic and growing data.  The default for this
 setting is calculated specially, like `confdir`_.
 
-- *Default*: Unix/Linux: /opt/puppetlabs/puppet/cache -- Windows: C:\ProgramData\PuppetLabs\puppet\cache -- Non-root user: ~/.puppetlabs/opt/puppet/cache
+- *Default*: Unix/Linux: /opt/puppetlabs/puppet/cache
+- Windows: C:\ProgramData\PuppetLabs\puppet\cache
+- Non-root user: ~/.puppetlabs/opt/puppet/cache
 
 ### waitforcert
 
