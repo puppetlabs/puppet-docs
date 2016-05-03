@@ -2,7 +2,7 @@ require 'puppet_references'
 module PuppetReferences
   module VersionTables
     class PeEarly3 < PuppetReferences::VersionTables::PeTables
-      def initialize(pe_data, agent_data = nil)
+      def initialize(pe_data, agent_data = {})
         super
         @server_stuff << 'Apache'
         @server_stuff << 'LibAPR'

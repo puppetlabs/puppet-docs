@@ -8,7 +8,7 @@ module PuppetReferences
     class PeTables
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'version_tables'
 
-      def initialize(pe_data, agent_data = nil)
+      def initialize(pe_data, agent_data = {})
         @pe_data = pe_data
         @agent_data = agent_data
         @file = 'generic.md' # override me
@@ -76,7 +76,7 @@ module PuppetReferences
               pkg_ver,
               @agent_data
           )
-        }.join("<br>")
+        }.join('<br>')
       end
 
       def make_table_body(versions, components, historical_packages)
