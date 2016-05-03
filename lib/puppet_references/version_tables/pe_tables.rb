@@ -31,9 +31,9 @@ module PuppetReferences
             'PostgreSQL',
             'Java',
             'ActiveMQ',
-            #   'Apache',
-            #   'LibAPR',
-            #   'Passenger',
+            'Apache',
+            'LibAPR',
+            'Passenger',
             'Nginx'
         ]
       end

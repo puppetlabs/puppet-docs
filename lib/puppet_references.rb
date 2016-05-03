@@ -22,6 +22,8 @@ module PuppetReferences
   require 'puppet_references/version_tables/config'
   require 'puppet_references/version_tables/data/pe'
   require 'puppet_references/version_tables/data/agent'
+  require 'puppet_references/version_tables/pe_tables'
+  require 'puppet_references/version_tables/pe_2015'
 
   def self.build_puppet_references(commit)
     references = [
