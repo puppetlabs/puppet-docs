@@ -41,14 +41,15 @@ EOT
       html_table
     end
 
-    # Get the Puppet version for a given puppet-agent version. (Currently broken, I think.)
-    def self.puppet_version_for_agent_version(agent_version)
-      agent_info = JSON.load(File.read(Pathname.new(__FILE__).dirname + 'agent.json'))
+    # Get the Puppet version for a given puppet-agent version.
+    def self.puppet_version_for_agent_version(agent_version, agent_info = {})
       agent_info[agent_version]['Puppet']
     end
 
     # Build a release notes URL for a given version, using what we know about each project's URLs and doc formats.
-    def self.release_notes_for_component_version(component, version) # returns string or nil.
+    # This has to take the hash of agent info, but only because finding the agent release notes relies on hidden info.
+    # If we ever move those to their own dir, it'll fix that.
+    def self.release_notes_for_component_version(component, version, agent_info = {}) # returns string or nil.
       x = version.split('.')[0]
       x_dot_y = version.split('.')[0..1].join('.')
       dotless = version.gsub(/\./, '')
@@ -63,7 +64,7 @@ EOT
           if x_dot_y.to_f < 1.2
             nil
           else
-            puppet_docs = puppet_version_for_agent_version(version).split('.')[0..1].join('.')
+            puppet_docs = puppet_version_for_agent_version(version, agent_info).split('.')[0..1].join('.')
             "/puppet/#{puppet_docs}/reference/release_notes_agent.html#puppet-agent-#{dotless}"
           end
         when 'Puppet Server'
@@ -88,11 +89,11 @@ EOT
     end
 
     # Returns the provided text, wrapping it in a link if it can find an applicable release notes URL.
-    def self.link_release_notes_if_applicable(component, text, version = nil)
+    def self.link_release_notes_if_applicable(component, text, version = nil, agent_data = {})
       unless version
         version = text
       end
-      notes = release_notes_for_component_version(component, version)
+      notes = release_notes_for_component_version(component, version, agent_data)
       if notes
         '<a href="' << notes << '">' << text << '</a>'
       else
