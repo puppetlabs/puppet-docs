@@ -6,6 +6,7 @@ module PuppetReferences
   FACTER_DIR = BASE_DIR + 'vendor/facter'
   AGENT_DIR = BASE_DIR + 'vendor/puppet-agent'
   PE_DIR = BASE_DIR + 'vendor/enterprise-dist'
+  PE_SERVER_DIR = BASE_DIR + 'vendor/pe-puppetserver'
   OUTPUT_DIR = BASE_DIR + 'references_output'
 
   require 'puppet_references/util'
