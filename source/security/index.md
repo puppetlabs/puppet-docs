@@ -10,7 +10,7 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [CVE-2016-2785: Incorrect URL Decoding](https://puppet.com/security/cve/cve-2016-2785)
 
-    Resolved in Puppet Server 2.3.2, Puppet 4.4.2, and Puppet agent 1.4.2.
+    Resolved in Puppet Enterprise 2016.1.2, Puppet Server 2.3.2, Puppet 4.4.2, and Puppet agent 1.4.2.
 
 - [CVE-2016-2786: Incorrect Client Verification in Puppet Communications Protocol](https://puppetlabs.com/security/cve/CVE-2016-2786)
 
