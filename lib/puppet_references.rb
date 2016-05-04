@@ -66,4 +66,34 @@ module PuppetReferences
     puts "NOTE: You'll have to move the generated files into place yourself. The 'latest' location for each is:"
     puts locations
   end
+
+  def self.build_version_tables
+    require 'json'
+    pe_data = PuppetReferences::VersionTables::Data::Pe.new.data
+    agent_data = PuppetReferences::VersionTables::Data::Agent.new.data
+
+    # Write json to disk in case we need to investigate anything in it
+    tables_dir = OUTPUT_DIR + 'version_tables'
+    tables_dir.mkpath
+    File.open(tables_dir + 'pe.json', 'w') {|fh| fh.write(JSON.dump(pe_data))}
+    File.open(tables_dir + 'agent.json', 'w') {|fh| fh.write(JSON.dump(agent_data))}
+
+    pe_classes = [
+        PuppetReferences::VersionTables::Pe2016,
+        PuppetReferences::VersionTables::Pe2015,
+        PuppetReferences::VersionTables::PeLate3,
+        PuppetReferences::VersionTables::PeEarly3
+    ]
+    agent_classes = [
+        PuppetReferences::VersionTables::Agent1x
+    ]
+
+    # Write all tables
+    pe_classes.each do |klass|
+      klass.new(pe_data, agent_data).build_all
+    end
+    agent_classes.each do |klass|
+      klass.new(agent_data).build_all
+    end
+  end
 end
