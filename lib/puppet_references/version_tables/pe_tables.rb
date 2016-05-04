@@ -35,6 +35,7 @@ module PuppetReferences
       end
 
       def build_all
+        puts "Building #{@file}"
         # Merge info from puppet-agent and client tools packages into PE version info!
         @versions.each {|pe_version|
           merge_vanagon_info!( @pe_data[pe_version], 'Puppet Agent', @agent_data )

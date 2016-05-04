@@ -37,8 +37,10 @@ module PuppetReferences
         # The main method: just return everything.
         def data
           unless @data
+            puts 'Updating historical agent data by reading the puppet-agent repo...'
             @data = Hash[
                 @versions_and_commits.map {|name, commit|
+                  puts "#{name}..."
                   @repo.checkout(commit)
                   components_hash = @component_files.reduce(Hash.new) {|result, (component, config)|
                     component_file = PuppetReferences::AGENT_DIR + 'configs/components' + config

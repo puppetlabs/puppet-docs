@@ -16,6 +16,7 @@ module PuppetReferences
       end
 
       def build_all
+        puts "Building #{@file}"
         header = ['puppet-agent'].concat(@agent_stuff)
         body = @versions.map {|version| # Make a row for each version
           component_versions = @agent_stuff.map {|component| # read from the version info

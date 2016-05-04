@@ -95,5 +95,9 @@ module PuppetReferences
     agent_classes.each do |klass|
       klass.new(agent_data).build_all
     end
+
+    puts 'NOTE: Generated files are in the references_output/version_tables directory.'
+    puts "NOTE: You'll have to move the generated files into place yourself. They go in source/pe and source/puppet-agent."
+
   end
 end

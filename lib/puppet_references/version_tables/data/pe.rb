@@ -67,7 +67,9 @@ module PuppetReferences
         # The main method: just return everything.
         def data
           unless @data
+            puts 'Updating historical PE data by reading the enterprise-dist repo...'
             @data = @versions_and_commits.reduce( {} ) do |result, (name, commit)|
+              puts "#{name}..."
               result[name] = packages_json_to_versions_sorted_by_platform( load_package_json(commit) )
               result
             end
