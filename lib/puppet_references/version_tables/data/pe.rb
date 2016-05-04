@@ -95,17 +95,25 @@ module PuppetReferences
               lein_tree = `lein deps :tree`
               unless $?.success?
                 puts "
-ERROR: Uh, something weird went wrong. Are you in the office or on the VPN?
-If not, Leiningen won't be able to get pe-puppetserver's dependencies,
-since it has to contact a private Maven server. Check lein's error-spew
-above for more info."
+ERROR: Uh, something weird went wrong. Probably one of two things:
+
+* Are you not on the office wi-fi or the VPN?
+  If not, Leiningen won't be able to get pe-puppetserver's dependencies,
+  since it has to contact a private Maven server. Check lein's error-spew
+  above for more info.
+
+* Is Java uninstalled?
+  Sometimes (when you upgrade your OS?) you can end up in a situation where
+  Leiningen is installed, but Java no longer is. Try running `java -version` and
+  see what happens, then follow up if necessary."
                 exit(1)
               end
             rescue Errno::ENOENT
               puts "
 ERROR: Building the version tables requires Leiningen, and I can't find it!
 Make sure the `lein` command is available in your PATH, then try again. You can
-find install instructions at http://leiningen.org/#install"
+find install instructions at http://leiningen.org/#install (although they assume
+you have a ~/bin directory; if you don't, you can just install to /usr/local/bin)"
               exit(1)
             end
           end
