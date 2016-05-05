@@ -123,6 +123,41 @@ img#search-icon {
   }
 }
 
+/* Sticky navbar styles        */
+/* =========================== */
+/* Style navbar when sticky    */
+nav.navbar.affix {
+  width: 100%;
+  top: 0;
+}
+
+/* Shift content down          */
+div#doc-switchers.content-affix {
+  margin-top: 7.125rem;
+}
+
+/* Accommodate sticky wide nav */
+@media screen and (min-width: 768px) {
+  /* Hide topmost when sticky  */
+  nav.navbar.affix {
+    top: -2.75rem;
+  }
+
+  /* ... but do it smoothly    */
+  nav.navbar {
+    top: 0;
+    transition: top 0.25s linear 0.25s;
+    -webkit-transition: top 0.25s linear 0.25s;
+  }
+
+  /* Push content down further */
+  div#doc-switchers.content-affix {
+    margin-top: 10rem;
+  }
+}
+/* =========================== */
+
+
 /* Site Footer */
 /* -------------------------------------- */
 .layout-footer {
