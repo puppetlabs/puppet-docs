@@ -459,7 +459,7 @@ A **puppetized** [node](#node), [resource](#resource), or [property](#property) 
 
 ### r10k
 
-The **r10k** tool in [Puppet Enterprise](#puppet-enterprise) helps you manage [Puppet code](#puppet-language) in [enivronments](#environment) and [modules](#module) by using [Puppetfiles](#puppetfile). For more information, see the [Getting to Know r10k](/pe/latest/r10k.html) guide.
+The **r10k** tool in [Puppet Enterprise](#puppet-enterprise) helps you manage [Puppet code](#puppet-language) in [environments](#environment) and [modules](#module) by using [Puppetfiles](#puppetfile). For more information, see the [Getting to Know r10k](/pe/latest/r10k.html) guide.
 
 ### Razor
 
@@ -478,7 +478,7 @@ A virtually declared resource is present in the [catalog](#catalog) but won't be
 
 A [resource](#resource) is **refreshed** when a resource it [subscribes to](#subscribe) (or which [notifies it](#notify)) is modified.
 
-Different resource types do different things when they're refreshed. For instance, Sservices restart, mount points unmount and remount, and `exec`s execute if the `refreshonly` [attribute](#attribute) is set.
+Different resource types do different things when they're refreshed. For instance, services restart, mount points unmount and remount, and `exec`s execute if the `refreshonly` [attribute](#attribute) is set.
 
 ### relationship
 
