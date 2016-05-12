@@ -1,8 +1,9 @@
 /* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
+div#rendered-markdown li img,
 div#rendered-markdown p img {
   border: solid 1px #ccc;
   box-shadow: 0px 0px 8px #999;
-  /* Image width should be constrained by the <p> width in all browsers that are supported (lets images expand to 740px on a wide screen) */
+  /* Keep high-rez images from blowing up the page */
   max-width: 100%;
 }
 
