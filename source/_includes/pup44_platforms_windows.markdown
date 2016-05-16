@@ -1,9 +1,9 @@
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) installers for the following versions of Windows, including both 32-bit and 64-bit architectures:
+We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) installers for 32-bit and 64-bit editions of the following Windows versions:
 
 -   Windows Server 2012 R2
 -   Windows Server 2008 R2
 
-We also publish, but do not automatically test, open source `puppet-agent` packages for the following versions of Windows for 64-bit architectures:
+We also publish, but do not automatically test, open source `puppet-agent` packages for the 32-bit and 64-bit editions of the following Windows versions:
 
 -   Windows Server 2012
 -   Windows Server 2008
@@ -13,7 +13,6 @@ We also publish, but do not automatically test, open source `puppet-agent` packa
 -   Windows 7
 -   Windows Vista
 
-All of these versions are supported in [Puppet Enterprise][peinstall].
+[Puppet Enterprise][/pe/latest/install_windows.html] supports the 32-bit and 64-bit versions of Windows Server 2012 R2 and 2008 R2, and the 64-bit versions of the other Windows versions listed above.
 
-[peinstall]: /pe/latest/install_windows.html
 <!-- When updating these, check the current version of the PE system requirements and make sure they don't need a bump as well. -->
