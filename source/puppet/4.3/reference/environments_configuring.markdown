@@ -1,6 +1,7 @@
 ---
 layout: default
 title: "Configuring Environments"
+canonical: "/puppet/latest/reference/environments_configuring.html"
 ---
 
 [environmentpath]: ./configuration.html#environmentpath
@@ -44,7 +45,7 @@ The `environmentpath` setting should usually be set in the `[main]` section of [
 
 Although environments should contain their own modules, you might want some modules to be available to all environments.
 
-[The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$codedir/modules` for user-accessible modules and `/opt/puppetlabs/puppet/modules` for system modules. 
+[The `basemodulepath` setting][basemodulepath] configures the global module directories. By default, it includes `$codedir/modules` for user-accessible modules and `/opt/puppetlabs/puppet/modules` for system modules.
 
 To add additional directories containing global modules, you can set your own value for `basemodulepath`. See [the page on the modulepath][modulepath] for more details.
 
@@ -73,7 +74,7 @@ This requires `default_manifest` to be an absolute path.
 ## `environment_timeout`
 
 [inpage_timeout]: #environmenttimeout
-[puppetserver.conf]: /puppetserver/latest/configuration.html#puppetserverconf
+[auth.conf]: {{puppetserver}}/config_file_auth.html
 [environment-cache]: /puppetserver/latest/admin-api/v1/environment-cache.html
 
 [(See also: Full description of `environment_timeout` setting.)](./configuration.html#environmenttimeout)
@@ -86,7 +87,7 @@ For best performance, you should:
 
 * Set `environment_timeout = unlimited` in puppet.conf.
 * Change your code deployment process to refresh the Puppet master whenever you deploy updated code. (For example, set a `postrun` command in your r10k config or add a step to your CI job.)
-    * With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
+    * With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in Puppet Server's [auth.conf][] file.
     * With a Rack Puppet master, restart the web server or the
       application server. Passenger lets you touch a `restart.txt` file to
       refresh an application without restarting Apache; see the [Passenger docs](/guides/passenger.html)

@@ -79,6 +79,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [puppetserver_config_files]: /puppetserver/2.2/configuration.html
 [settings_diffs]: /puppetserver/2.2/puppet_conf_setting_diffs.html
 [puppet_admin]: /puppetserver/2.2/configuration.html#puppetserverconf
+[auth.conf]: /puppetserver/2.2/config_file_auth.html
 [jruby_puppet]: /puppetserver/2.2/tuning_guide.html#puppet-server-and-jruby
 [jvm_heap_config]: /puppetserver/2.2/install_from_packages.html#memory-allocation
 [puppetserver_ca]: /puppetserver/2.2/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
@@ -167,7 +168,7 @@ These settings should usually go in `[master]`. However, if you're using Puppet 
 
 Puppet Server has [its own configuration files][puppetserver_config_files]; consequently, there are [several settings in `puppet.conf` that Puppet Server ignores][settings_diffs].
 
-* [`puppet-admin`][puppet_admin] --- Settings to control which authorized clients can use the admin interface.
+* Puppet Server uses its own [auth.conf][] file by default instead of its [`puppet-admin`][puppet_admin] section to authorize client requests. You must configure authorization rules for the admin interface before you can use it.
 * [`jruby-puppet`][jruby_puppet] --- Provides details on tuning JRuby for better performance.
 * [`JAVA_ARGS`][jvm_heap_config] --- Instructions on tuning the Puppet Server memory allocation.
 
