@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: http_node
+  
+    &mdash; Documentation by YARD 0.8.7.6
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!file.http_node.html";
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_node</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Node</h1>
+
+<p>The <code>node</code> endpoint is used by the puppet agent to get basic information
+about a node. The returned information includes the node name and
+environment, and optionally any classes set by an External Node
+Classifier and a hash of parameters which may include the node&#39;s facts.
+The returned node may have a different environment from the one given in
+the request if Puppet is configured with an ENC.</p>
+
+<h2>Find</h2>
+
+<p>Retrieve data for a node</p>
+
+<pre class="code ruby"><code class="ruby">GET /puppet/v3/node/:certname?environment=:environment&amp;transaction_uuid=:transaction_uuid&amp;configured_environment=:environment
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>PSON</p>
+
+<h3>Parameters</h3>
+
+<p>One parameter should be provided to the GET:</p>
+
+<ul>
+<li><code>transaction_uuid</code>: a transaction uuid identifying the entire transaction (shows up in the report as well)</li>
+</ul>
+
+<p>An optional parameter can be provided to the GET to notify a node classifier that the client requested a specific
+environment, which might differ from what the client believes is its current environment:</p>
+
+<ul>
+<li><code>configured_environment</code>: the environment configured on the client</li>
+</ul>
+
+<h3>Examples</h3>
+
+<pre class="code ruby"><code class="ruby">&gt; GET /puppet/v3/node/mycertname?environment=production&amp;transaction_uuid=aff261a2-1a34-4647-8c20-ff662ec11c4c&amp;configured_environment=production HTTP/1.1
+&gt; Accept: pson, b64_zlib_yaml, yaml, raw
+
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: text/pson
+&lt; Content-Length: 4630
+
+{
+  &quot;name&quot;:&quot;thinky.corp.puppetlabs.net&quot;,
+  &quot;parameters&quot;:{
+    &quot;architecture&quot;:&quot;amd64&quot;,
+    &quot;kernel&quot;:&quot;Linux&quot;,
+    &quot;blockdevices&quot;:&quot;sda,sr0&quot;,
+    &quot;clientversion&quot;:&quot;3.3.1&quot;,
+    &quot;clientnoop&quot;:&quot;false&quot;,
+    &quot;environment&quot;:&quot;production&quot;,
+    ...
+  },
+  &quot;environment&quot;:&quot;production&quot;
+}
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>A node response body conforms to
+<a href="../schemas/node.json">the node schema.</a></p>
+</div></div>
+
+    <div id="footer">
+  Generated on Wed Mar 16 18:28:44 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.6 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>
