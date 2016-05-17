@@ -81,7 +81,7 @@ Run Puppet for a while with the future parser enabled to ensure you've got any k
 
 ## Read the Puppet 4.x release notes
 
-Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), [4.2](/puppet/4.2/reference/release_notes.html), [4.3](/puppet/4.3/reference/release_notes.html) [4.4](./release_notes.html) and prepare accordingly.
+Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), [4.2](/puppet/4.2/reference/release_notes.html), [4.3](/puppet/4.3/reference/release_notes.html), [4.4](/puppet/4.4/reference/release_notes.html), and [4.5](./release_notes.html) and prepare accordingly.
 
 ## You're ready!
 

@@ -30,7 +30,7 @@ canonical: "/puppet/latest/reference/static_catalogs.html"
 [file sync]: {{pe}}/cmgmt_filesync.html
 [Code Manager]: {{pe}}/code_mgr.html
 [`code_content`]: {{puppetserver}}/
-Puppet 4.4 and Puppet Server 2.3 introduce a new feature for [catalog compilation][catalogs]: **static catalogs**.
+Puppet 4.4 and Puppet Server 2.3 introduced a new feature for [catalog compilation][catalogs]: **static catalogs**.
 
 > #### What's a catalog?
 >

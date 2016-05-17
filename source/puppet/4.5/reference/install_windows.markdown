@@ -25,7 +25,7 @@ Before installing Puppet on any agent nodes, make sure you've read the [pre-inst
 
 {% include pup43_platforms_windows.markdown %}
 
-> **Deprecation Note:** Puppet 4.2 deprecated Windows Server 2003 and 2003 R2. The Windows installation package for `puppet-agent` 1.4.0, which contains Puppet 4.4, won't install on those versions of Windows Server.
+> **Deprecation Note:** Puppet 4.2 deprecated Windows Server 2003 and 2003 R2. The Windows installation packages for `puppet-agent` 1.4.0 and above, which contain Puppet won't install on those versions of Windows Server.
 
 To install on other operating systems, see the pages linked in the navigation sidebar.
 
