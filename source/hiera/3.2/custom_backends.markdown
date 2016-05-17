@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Writing custom backends"
+title: "Writing custom backends"
 ---
 
 

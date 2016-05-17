@@ -1,5 +1,5 @@
 ---
-title: "Hiera 3.1: Overview"
+title: "Overview"
 layout: default
 ---
 
