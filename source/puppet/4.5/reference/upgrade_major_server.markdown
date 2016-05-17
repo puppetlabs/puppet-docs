@@ -179,9 +179,11 @@ If you're using [r10k][] or some other code deployment tool, change its configur
 
 If you use [Hiera][], move its configuration and data files:
 
-1. Move your [`hiera.yaml`][hiera.yaml] file to `/etc/puppetlabs/code/hiera.yaml`.
+1. Make sure your [`hiera.yaml`][hiera.yaml] file is in `/etc/puppetlabs/puppet/hiera.yaml`.
 2. Move your Hiera data files to somewhere inside `/etc/puppetlabs/code`.
 3. Update file references in `hiera.yaml` accordingly.
+
+>**Note**: In Puppet 4.0, the default location of hiera.yaml changed from `/etc/puppetlabs/puppet/hiera.yaml` to `/etc/puppetlabs/code/hiera.yaml`. In Puppet 4.5, its location was reverted to `/etc/puppetlabs/puppet/hiera.yaml`. If you are upgrading with a package from puppet-agent 1.5.0 or newer, it will **not** move your hiera.yaml file. If you are starting with a new installation, it will place it in the correct location.
 
 ### Start Puppet Server
 
