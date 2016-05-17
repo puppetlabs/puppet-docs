@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: zone'
 canonical: /puppet/latest/reference/types/zone.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 zone
 -----
@@ -41,7 +41,7 @@ autorequire that directory.
   <a href="#zone-attribute-realhostname">realhostname</a> =&gt; <em># The actual hostname of the...</em>
   <a href="#zone-attribute-shares">shares</a>       =&gt; <em># Number of FSS CPU shares allocated to the...</em>
   <a href="#zone-attribute-sysidcfg">sysidcfg</a>     =&gt; <em># The text to go into the `sysidcfg` file when the </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="zone-attribute-name">name</h4>
@@ -218,11 +218,11 @@ booted.  The best way is to use a template:
 
 And then call that:
 
-    zone { myzone:
-      ip           => "bge0:192.168.0.23",
-      sysidcfg     => template("site/sysidcfg.erb"),
-      path         => "/opt/zones/myzone",
-      realhostname => "fully.qualified.domain.name"
+    zone { 'myzone':
+      ip           => 'bge0:192.168.0.23',
+      sysidcfg     => template('site/sysidcfg.erb'),
+      path         => '/opt/zones/myzone',
+      realhostname => 'fully.qualified.domain.name',
     }
 
 The `sysidcfg` only matters on the first booting of the zone,
@@ -243,4 +243,4 @@ Provider for Solaris Zones.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

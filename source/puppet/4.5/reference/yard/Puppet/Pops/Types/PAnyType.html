@@ -113,7 +113,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span>, <span class='object_link'><a href="PCatalogEntryType.html" title="Puppet::Pops::Types::PCatalogEntryType (class)">PCatalogEntryType</a></span>, <span class='object_link'><a href="PCollectionType.html" title="Puppet::Pops::Types::PCollectionType (class)">PCollectionType</a></span>, <span class='object_link'><a href="PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span>, <span class='object_link'><a href="PDefaultType.html" title="Puppet::Pops::Types::PDefaultType (class)">PDefaultType</a></span>, <span class='object_link'><a href="PRuntimeType.html" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span>, <span class='object_link'><a href="PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span>, <span class='object_link'><a href="PStructType.html" title="Puppet::Pops::Types::PStructType (class)">PStructType</a></span>, <span class='object_link'><a href="PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span>, <span class='object_link'><a href="PTypeWithContainedType.html" title="Puppet::Pops::Types::PTypeWithContainedType (class)">PTypeWithContainedType</a></span>, <span class='object_link'><a href="PUndefType.html" title="Puppet::Pops::Types::PUndefType (class)">PUndefType</a></span>, <span class='object_link'><a href="PUnitType.html" title="Puppet::Pops::Types::PUnitType (class)">PUnitType</a></span>, <span class='object_link'><a href="PVariantType.html" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></p>
+  <p class="children"><span class='object_link'><a href="PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span>, <span class='object_link'><a href="PCatalogEntryType.html" title="Puppet::Pops::Types::PCatalogEntryType (class)">PCatalogEntryType</a></span>, <span class='object_link'><a href="PCollectionType.html" title="Puppet::Pops::Types::PCollectionType (class)">PCollectionType</a></span>, <span class='object_link'><a href="PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span>, <span class='object_link'><a href="PDefaultType.html" title="Puppet::Pops::Types::PDefaultType (class)">PDefaultType</a></span>, <span class='object_link'><a href="PObjectType.html" title="Puppet::Pops::Types::PObjectType (class)">PObjectType</a></span>, <span class='object_link'><a href="PRuntimeType.html" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span>, <span class='object_link'><a href="PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span>, <span class='object_link'><a href="PStructType.html" title="Puppet::Pops::Types::PStructType (class)">PStructType</a></span>, <span class='object_link'><a href="PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span>, <span class='object_link'><a href="PTypeAliasType.html" title="Puppet::Pops::Types::PTypeAliasType (class)">PTypeAliasType</a></span>, <span class='object_link'><a href="PTypeWithContainedType.html" title="Puppet::Pops::Types::PTypeWithContainedType (class)">PTypeWithContainedType</a></span>, <span class='object_link'><a href="PUndefType.html" title="Puppet::Pops::Types::PUndefType (class)">PUndefType</a></span>, <span class='object_link'><a href="PUnitType.html" title="Puppet::Pops::Types::PUnitType (class)">PUnitType</a></span>, <span class='object_link'><a href="PVariantType.html" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></p>
 </div>
 
   <h2>Constant Summary</h2>
@@ -233,10 +233,10 @@
 
       
         
-<li class="protected ">
+<li class="public ">
   <span class="summary_signature">
     
-      <a href="#class_from_string-instance_method" title="#class_from_string (instance method)">- (Object) <strong>class_from_string</strong>(str) </a>
+      <a href="#check_self_recursion-instance_method" title="#check_self_recursion (instance method)">- (Object) <strong>check_self_recursion</strong>(originator) </a>
     
 
     
@@ -245,13 +245,14 @@
   
   
   
-  <span class="note title protected">protected</span>
+  
   
   
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>Called from the <code>PTypeAliasType</code> when it detects self recursion.</p>
+</div></span>
   
 </li>
 
@@ -276,6 +277,31 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Generalizes value specific types.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#instance%3F-instance_method" title="#instance? (instance method)">- (Boolean) <strong>instance?</strong>(o, guard = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns true if the given argument <em>o</em> is an instance of this type.</p>
 </div></span>
   
 </li>
@@ -335,6 +361,31 @@
 <li class="public ">
   <span class="summary_signature">
     
+      <a href="#name-instance_method" title="#name (instance method)">- (String) <strong>name</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns the name of the type, without parameters.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
       <a href="#normalize-instance_method" title="#normalize (instance method)">- (PAnyType) <strong>normalize</strong>(guard = nil) </a>
     
 
@@ -357,10 +408,60 @@
 
       
         
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#really_instance%3F-instance_method" title="#really_instance? (instance method)">- (Integer) <strong>really_instance?</strong>(o, guard = nil) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>An object is considered to really be an instance of a type when something other than a TypeAlias or a Variant responds true to a call to <span class='object_link'><a href="#instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#instance? (method)">#instance?</a></span>.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resolve-instance_method" title="#resolve (instance method)">- (PTypeAliasType) <strong>resolve</strong>(type_parser, loader) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Called from the TypeParser once it has found a type using the Loader to enable that this type can resolve internal type expressions using a loader.</p>
+</div></span>
+  
+</li>
+
+      
+        
 <li class="protected ">
   <span class="summary_signature">
     
-      <a href="#tuple_entry_at-instance_method" title="#tuple_entry_at (instance method)">- (Object) <strong>tuple_entry_at</strong>(tuple_t, from, to, index) </a>
+      <a href="#tuple_entry_at-instance_method" title="#tuple_entry_at (instance method)">- (Object) <strong>tuple_entry_at</strong>(tuple_t, to, index) </a>
     
 
     
@@ -474,12 +575,12 @@
       <pre class="lines">
 
 
-217
-218
-219</pre>
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 217</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 272</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PAnyType</span><span class='rparen'>)</span>
@@ -607,22 +708,22 @@ the transformed array.</p>
       <pre class="lines">
 
 
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291</pre>
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 279</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 321</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alter_type_array'>alter_type_array</span><span class='lparen'>(</span><span class='id identifier rubyid_types'>types</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_method_args'>method_args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_modified'>modified</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -730,7 +831,6 @@ to <code>self</code> since all checks up to that point were positive.</p>
       <pre class="lines">
 
 
-65
 66
 67
 68
@@ -763,14 +863,15 @@ to <code>self</code> since all checks up to that point were positive.</p>
 95
 96
 97
-98</pre>
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 65</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
-    <span class='kw'>when</span> <span class='const'>Class</span>
+  <span class='kw'>when</span> <span class='const'>Class</span>
     <span class='comment'># Safe to call _assignable directly since a Class never is a Unit or Variant
 </span>    <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='const'>PUnitType</span>
@@ -887,12 +988,12 @@ to <code>self</code> since all checks up to that point were positive.</p>
       <pre class="lines">
 
 
-114
 115
-116</pre>
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callable_args?'>callable_args?</span><span class='lparen'>(</span><span class='id identifier rubyid_callable'>callable</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>false</span>
@@ -903,9 +1004,9 @@ to <code>self</code> since all checks up to that point were positive.</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="class_from_string-instance_method">
+  <h3 class="signature " id="check_self_recursion-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>class_from_string</strong>(str)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>check_self_recursion</strong>(originator) &nbsp;<span class="private note title">private</span>
   
 
   
@@ -917,12 +1018,50 @@ to <code>self</code> since all checks up to that point were positive.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
+<p>Called from the <code>PTypeAliasType</code> when it detects self recursion. The default is to do nothing
+but some self recursive constructs are illegal such as when a <code>PObjectType</code> somehow inherits itself</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>originator</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="PTypeAliasType.html" title="Puppet::Pops::Types::PTypeAliasType (class)">PTypeAliasType</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the starting point for the check</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>Puppet::Error if an illegal self recursion is detected</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -930,27 +1069,13 @@ to <code>self</code> since all checks up to that point were positive.</p>
       <pre class="lines">
 
 
-224
-225
-226
-227
-228
-229
-230
-231
-232</pre>
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 224</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 124</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_class_from_string'>class_from_string</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
-  <span class='kw'>begin</span>
-    <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='const'>NAME_SEGMENT_SEPARATOR</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_reduce'>reduce</span><span class='lparen'>(</span><span class='const'>Object</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_memo'>memo</span><span class='comma'>,</span> <span class='id identifier rubyid_name_segment'>name_segment</span><span class='op'>|</span>
-      <span class='id identifier rubyid_memo'>memo</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='id identifier rubyid_name_segment'>name_segment</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-  <span class='kw'>rescue</span> <span class='const'>NameError</span>
-    <span class='kw'>return</span> <span class='kw'>nil</span>
-  <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_check_self_recursion'>check_self_recursion</span><span class='lparen'>(</span><span class='id identifier rubyid_originator'>originator</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1000,17 +1125,91 @@ the generalized type is returned.</p>
       <pre class="lines">
 
 
-123
-124
-125
-126</pre>
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generalize'>generalize</span>
   <span class='comment'># Applicable to all types that have no variables
 </span>  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="instance?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>instance?</strong>(o, guard = nil) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns true if the given argument <em>o</em> is an instance of this type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>guard</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>guard against recursion. Only used by internal calls</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+204
+205
+206</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 204</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_instance?'>instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1096,12 +1295,12 @@ A Type[T] is assignable to an Iterable[Type[T]] if T is an Integer or Enum</code
       <pre class="lines">
 
 
-171
-172
-173</pre>
+192
+193
+194</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 171</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_iterable_type'>iterable_type</span><span class='lparen'>(</span><span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>nil</span>
@@ -1192,15 +1391,72 @@ false, all optional callables.</p>
       <pre class="lines">
 
 
-145
-146
-147</pre>
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 166</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kind_of_callable?'>kind_of_callable?</span><span class='lparen'>(</span><span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="name-instance_method">
+  
+    - (<tt>String</tt>) <strong>name</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the name of the type, without parameters</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the type</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+244
+245
+246</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 244</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='id identifier rubyid_simple_name'>simple_name</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1272,12 +1528,12 @@ T are enums into an Enum.</p>
       <pre class="lines">
 
 
-135
-136
-137</pre>
+144
+145
+146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize'>normalize</span><span class='lparen'>(</span><span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>self</span>
@@ -1288,9 +1544,168 @@ T are enums into an Enum.</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="really_instance?-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>really_instance?</strong>(o, guard = nil) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>An object is considered to really be an instance of a type when something other than a
+TypeAlias or a Variant responds true to a call to <span class='object_link'><a href="#instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#instance? (method)">#instance?</a></span>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>-1 = is not instance, 0 = recursion detected, 1 = is instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+213
+214
+215</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 213</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_instance?'>instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='op'>-</span><span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="resolve-instance_method">
+  
+    - (<tt><span class='object_link'><a href="PTypeAliasType.html" title="Puppet::Pops::Types::PTypeAliasType (class)">PTypeAliasType</a></span></tt>) <strong>resolve</strong>(type_parser, loader) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Called from the TypeParser once it has found a type using the Loader to enable that this type can
+resolve internal type expressions using a loader. Presently, this method is a no-op for all types
+except the {PTypeAliasType}.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>type_parser</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>TypeParser</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>type parser</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>loader</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Loader/Loader.html" title="Puppet::Pops::Loader::Loader (class)">Loader::Loader</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>loader to use</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="PTypeAliasType.html" title="Puppet::Pops::Types::PTypeAliasType (class)">PTypeAliasType</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the receiver of the call, i.e. <code>self</code></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 156</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
+  <span class='kw'>self</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="tuple_entry_at-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>tuple_entry_at</strong>(tuple_t, from, to, index)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>tuple_entry_at</strong>(tuple_t, to, index)  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
   
 
   
@@ -1319,22 +1734,22 @@ from must be less than to, and from may not be less than 0</p>
       <pre class="lines">
 
 
-241
-242
-243
-244
-245
-246
-247
-248
-249
-250
-251</pre>
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 241</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 283</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_tuple_entry_at'>tuple_entry_at</span><span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_tuple_entry_at'>tuple_entry_at</span><span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_regular'>regular</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_regular'>regular</span>
     <span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span>
@@ -1382,15 +1797,15 @@ if size_type.to == nil max size == Infinity</p>
       <pre class="lines">
 
 
-260
-261
-262
-263
-264
-265</pre>
+302
+303
+304
+305
+306
+307</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 260</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 302</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type_to_range'>type_to_range</span><span class='lparen'>(</span><span class='id identifier rubyid_size_type'>size_type</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_size_type'>size_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1408,7 +1823,7 @@ if size_type.to == nil max size == Infinity</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:49 2016 by
+  Generated on Mon May 16 22:13:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

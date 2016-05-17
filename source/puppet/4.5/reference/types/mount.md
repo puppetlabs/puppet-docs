@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: mount'
 canonical: /puppet/latest/reference/types/mount.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 mount
 -----
@@ -27,7 +27,11 @@ Puppet will try to unmount then remount that filesystem.
 
 **Autorequires:** If Puppet is managing any parents of a mount resource ---
 that is, other mount points higher up in the filesystem --- the child
-mount will autorequire them.
+mount will autorequire them. If Puppet is managing the file path of a
+mount point, the mount resource will autorequire it.
+
+**Autobefores:**  If Puppet is managing any child file paths of a mount
+point, the mount resource will autobefore them.
 
 <h3 id="mount-attributes">Attributes</h3>
 
@@ -44,7 +48,7 @@ mount will autorequire them.
   <a href="#mount-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `mount...</em>
   <a href="#mount-attribute-remounts">remounts</a>    =&gt; <em># Whether the mount can be remounted  `mount -o...</em>
   <a href="#mount-attribute-target">target</a>      =&gt; <em># The file in which to store the mount table....</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="mount-attribute-name">name</h4>
@@ -203,4 +207,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

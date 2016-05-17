@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: nagios_hostdependency'
 canonical: /puppet/latest/reference/types/nagios_hostdependency.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 nagios_hostdependency
 -----
@@ -46,7 +46,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_hostdependency-attribute-register">register</a>                      =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_hostdependency-attribute-target">target</a>                        =&gt; <em># The...</em>
   <a href="#nagios_hostdependency-attribute-use">use</a>                           =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_hostdependency-attribute-_naginator_name">_naginator_name</h4>
@@ -210,4 +210,4 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

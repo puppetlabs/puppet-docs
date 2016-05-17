@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: scheduled_task'
 canonical: /puppet/latest/reference/types/scheduled_task.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 scheduled_task
 -----
@@ -32,7 +32,7 @@ of the `trigger` attribute for details on setting schedules.
   <a href="#scheduled_task-attribute-trigger">trigger</a>     =&gt; <em># One or more triggers defining when the task...</em>
   <a href="#scheduled_task-attribute-user">user</a>        =&gt; <em># The user to run the scheduled task as.  Please...</em>
   <a href="#scheduled_task-attribute-working_dir">working_dir</a> =&gt; <em># The full path of the directory in which to start </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="scheduled_task-attribute-name">name</h4>
@@ -228,4 +228,4 @@ This provider manages scheduled tasks on Windows.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

@@ -191,7 +191,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#class_from_string-instance_method" title="Puppet::Pops::Types::PAnyType#class_from_string (method)">#class_from_string</a></span>, <span class='object_link'><a href="PAnyType.html#iterable_type-instance_method" title="Puppet::Pops::Types::PAnyType#iterable_type (method)">#iterable_type</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#iterable_type-instance_method" title="Puppet::Pops::Types::PAnyType#iterable_type (method)">#iterable_type</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
 
   
   
@@ -257,23 +257,25 @@
       <pre class="lines">
 
 
-1585
-1586
-1587
-1588
-1589
-1590
-1591
-1592
-1593
-1594
-1595
-1596
-1597
-1598</pre>
+1904
+1905
+1906
+1907
+1908
+1909
+1910
+1911
+1912
+1913
+1914
+1915
+1916
+1917
+1918
+1919</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1585</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1904</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PCallableType</span><span class='rparen'>)</span>
@@ -282,7 +284,9 @@
 
   <span class='comment'># NOTE: these tests are made in reverse as it is calling the callable that is constrained
 </span>  <span class='comment'># (it&#39;s lower bound), not its upper bound
-</span>  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_param_types'>param_types</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='ivar'>@param_types</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+</span>  <span class='id identifier rubyid_other_param_types'>other_param_types</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_param_types'>param_types</span>
+
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_other_param_types'>other_param_types</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span>  <span class='op'>!</span><span class='id identifier rubyid_other_param_types'>other_param_types</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='ivar'>@param_types</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='comment'># names are ignored, they are just information
 </span>  <span class='comment'># Blocks must be compatible
 </span>  <span class='id identifier rubyid_this_block_t'>this_block_t</span> <span class='op'>=</span> <span class='ivar'>@block_type</span> <span class='op'>||</span> <span class='const'>PUndefType</span><span class='op'>::</span><span class='const'>DEFAULT</span>
@@ -335,13 +339,13 @@
       <pre class="lines">
 
 
-1539
-1540
-1541
-1542</pre>
+1858
+1859
+1860
+1861</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1539</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1858</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callable_args?'>callable_args?</span><span class='lparen'>(</span><span class='id identifier rubyid_required_callable_t'>required_callable_t</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='comment'># If the required callable is euqal or more specific than self, self is acceptable arguments
@@ -357,7 +361,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:50 2016 by
+  Generated on Mon May 16 22:13:37 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

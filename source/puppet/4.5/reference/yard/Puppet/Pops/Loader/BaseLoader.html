@@ -121,7 +121,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="DependencyLoader.html" title="Puppet::Pops::Loader::DependencyLoader (class)">DependencyLoader</a></span></p>
+  <p class="children"><span class='object_link'><a href="DependencyLoader.html" title="Puppet::Pops::Loader::DependencyLoader (class)">DependencyLoader</a></span>, <span class='object_link'><a href="Runtime3TypeLoader.html" title="Puppet::Pops::Loader::Runtime3TypeLoader (class)">Runtime3TypeLoader</a></span></p>
 </div>
 
   <h2>Constant Summary</h2>
@@ -195,6 +195,30 @@
   <span class="summary_signature">
     
       <a href="#load_typed-instance_method" title="#load_typed (instance method)">- (Object) <strong>load_typed</strong>(typed_name) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#loaded_entry-instance_method" title="#loaded_entry (instance method)">- (Object) <strong>loaded_entry</strong>(typed_name, check_dependencies = false) </a>
     
 
     
@@ -311,12 +335,12 @@
       <pre class="lines">
 
 
-58
-59
-60</pre>
+86
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_entry'>add_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set_entry'>set_entry</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>TypedName</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
@@ -355,12 +379,12 @@
       <pre class="lines">
 
 
-45
-46
-47</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_entry'>get_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rparen'>)</span>
   <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span>
@@ -430,6 +454,57 @@
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="loaded_entry-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>loaded_entry</strong>(typed_name, check_dependencies = false) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45
+46
+47
+48
+49
+50
+51</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_loaded_entry'>loaded_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_check_dependencies'>check_dependencies</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@named_values</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rparen'>)</span>
+    <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_parent'>parent</span>
+    <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_loaded_entry'>loaded_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_check_dependencies'>check_dependencies</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="promote_entry-instance_method">
   
     - (<tt><span class='object_link'>Object</span></tt>) <strong>promote_entry</strong>(named_entry) &nbsp;<span class="private note title">private</span>
@@ -458,14 +533,14 @@
       <pre class="lines">
 
 
-66
-67
-68
-69
-70</pre>
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_promote_entry'>promote_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_named_entry'>named_entry</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_typed_name'>typed_name</span> <span class='op'>=</span> <span class='id identifier rubyid_named_entry'>named_entry</span><span class='period'>.</span><span class='id identifier rubyid_typed_name'>typed_name</span>
@@ -505,17 +580,49 @@
       <pre class="lines">
 
 
-51
-52
-53
-54</pre>
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/base_loader.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_entry'>set_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_entry'>entry</span> <span class='op'>=</span> <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span> <span class='kw'>then</span> <span class='id identifier rubyid_fail_redefine'>fail_redefine</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span>
-  <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>NamedEntry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
+
+  <span class='comment'># It is never ok to redefine in the very same loader unless redefining a &#39;not found&#39;
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_entry'>entry</span> <span class='op'>=</span> <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_fail_redefine'>fail_redefine</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Check if new entry shadows existing entry and fail
+</span>  <span class='comment'># (unless special loader allows shadowing)
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_typed_name'>typed_name</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='symbol'>:type</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_allow_shadowing?'>allow_shadowing?</span>
+    <span class='id identifier rubyid_entry'>entry</span> <span class='op'>=</span> <span class='id identifier rubyid_loaded_entry'>loaded_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_entry'>entry</span>
+      <span class='id identifier rubyid_fail_redefine'>fail_redefine</span><span class='lparen'>(</span><span class='id identifier rubyid_entry'>entry</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_entry'>entry</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='comment'>#|| entry.value == value
+</span>    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='ivar'>@last_result</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>NamedEntry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span><span class='rparen'>)</span>
+  <span class='ivar'>@last_name</span> <span class='op'>=</span> <span class='id identifier rubyid_typed_name'>typed_name</span>
+  <span class='ivar'>@named_values</span><span class='lbracket'>[</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@last_result</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -527,7 +634,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:52 2016 by
+  Generated on Mon May 16 22:13:40 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

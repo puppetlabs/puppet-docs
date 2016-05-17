@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Puppet HTTP API: File Bucket File'
 canonical: /puppet/latest/reference/http_api/http_file_bucket_file.html
 ---
@@ -13,7 +13,7 @@ file bucket. All access to files is managed with the md5 checksum of the
 file contents, represented as `:md5`. Where used, `:filename` means the
 full absolute path of the file on the client system. This is usually
 optional and used as an error check to make sure correct file is
-retrieved.  The environment is required in all requests but ignored, as
+retrieved. The environment is required in all requests but ignored, as
 the file bucket does not distinguish between environments.
 
 Find

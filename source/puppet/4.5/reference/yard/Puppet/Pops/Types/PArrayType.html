@@ -200,7 +200,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#class_from_string-instance_method" title="Puppet::Pops::Types::PAnyType#class_from_string (method)">#class_from_string</a></span>, <span class='object_link'><a href="PAnyType.html#iterable_type-instance_method" title="Puppet::Pops::Types::PAnyType#iterable_type (method)">#iterable_type</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#iterable_type-instance_method" title="Puppet::Pops::Types::PAnyType#iterable_type (method)">#iterable_type</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
 
   
   
@@ -267,42 +267,42 @@
       <pre class="lines">
 
 
-1645
-1646
-1647
-1648
-1649
-1650
-1651
-1652
-1653
-1654
-1655
-1656
-1657
-1658
-1659
-1660
-1661
-1662
-1663
-1664
-1665
-1666
-1667
-1668
-1669
-1670
-1671
-1672
-1673
-1674
-1675
-1676
-1677</pre>
+2004
+2005
+2006
+2007
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+2017
+2018
+2019
+2020
+2021
+2022
+2023
+2024
+2025
+2026
+2027
+2028
+2029
+2030
+2031
+2032
+2033
+2034
+2035
+2036</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1645</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2004</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_s_entry'>s_entry</span> <span class='op'>=</span> <span class='id identifier rubyid_element_type'>element_type</span>
@@ -326,7 +326,7 @@
 </span>    <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_o_regular'>o_regular</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>+</span> <span class='id identifier rubyid_o_to'>o_to</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_max'>max</span>
     <span class='comment'># each tuple type must be assignable to the element type
 </span>    <span class='id identifier rubyid_o_required'>o_required</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
-      <span class='id identifier rubyid_o_entry'>o_entry</span> <span class='op'>=</span> <span class='id identifier rubyid_tuple_entry_at'>tuple_entry_at</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_o_from'>o_from</span><span class='comma'>,</span> <span class='id identifier rubyid_o_to'>o_to</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_o_entry'>o_entry</span> <span class='op'>=</span> <span class='id identifier rubyid_tuple_entry_at'>tuple_entry_at</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_o_to'>o_to</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
       <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_s_entry'>s_entry</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o_entry'>o_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='comment'># ... and so must the last, possibly optional (ranged) type
@@ -383,15 +383,15 @@
       <pre class="lines">
 
 
-1606
-1607
-1608
-1609
-1610
-1611</pre>
+1927
+1928
+1929
+1930
+1931
+1932</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1606</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1927</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callable_args?'>callable_args?</span><span class='lparen'>(</span><span class='id identifier rubyid_callable'>callable</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_param_t'>param_t</span> <span class='op'>=</span> <span class='id identifier rubyid_callable'>callable</span><span class='period'>.</span><span class='id identifier rubyid_param_types'>param_types</span>
@@ -409,7 +409,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:50 2016 by
+  Generated on Mon May 16 22:13:37 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

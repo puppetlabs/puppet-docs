@@ -140,6 +140,64 @@ base class for all resource-like behaviour.</p>
 
   
     <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resource_type-class_method" title="resource_type (class method)">+ (Puppet::Type, Puppet::Resource::Type) <strong>resource_type</strong>(type, title, environment) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The resource&#39;s type implementation.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type_and_title-class_method" title="type_and_title (class method)">+ (Object) <strong>type_and_title</strong>(type, title) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
       Instance Method Summary
       <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
     </h2>
@@ -461,9 +519,6 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
       <pre class="lines">
 
 
-195
-196
-197
 198
 199
 200
@@ -535,10 +590,11 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
 266
 267
 268
-269</pre>
+269
+270</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 195</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 198</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@parameters</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -570,6 +626,11 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
       <span class='kw'>self</span><span class='lbracket'>[</span><span class='id identifier rubyid_p'>p</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Puppet::Resource.new does not take a hash as the first argument. </span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Did you mean (</span><span class='embexpr_beg'>#{</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>, </span><span class='embexpr_beg'>#{</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='lbracket'>[</span><span class='symbol'>:title</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_type'>type</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>title</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='embexpr_end'>}</span><span class='tstring_content'>) ?</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
     <span class='id identifier rubyid_environment'>environment</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:environment</span><span class='rbracket'>]</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Class</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>&lt;</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Type</span>
       <span class='comment'># Set the resource type to avoid an expensive `known_resource_types`
@@ -586,22 +647,15 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
       <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_attr'>attr</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
 
-    <span class='ivar'>@type</span><span class='comma'>,</span> <span class='ivar'>@title</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_type_and_title'>extract_type_and_title</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
-
-    <span class='ivar'>@type</span> <span class='op'>=</span> <span class='id identifier rubyid_munge_type_name'>munge_type_name</span><span class='lparen'>(</span><span class='ivar'>@type</span><span class='rparen'>)</span>
-
-    <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class?'>class?</span>
-      <span class='ivar'>@title</span> <span class='op'>=</span> <span class='symbol'>:main</span> <span class='kw'>if</span> <span class='ivar'>@title</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
-      <span class='ivar'>@title</span> <span class='op'>=</span> <span class='id identifier rubyid_munge_type_name'>munge_type_name</span><span class='lparen'>(</span><span class='ivar'>@title</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
+    <span class='ivar'>@type</span><span class='comma'>,</span> <span class='ivar'>@title</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_type_and_title'>type_and_title</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:parameters</span><span class='rbracket'>]</span>
       <span class='id identifier rubyid_extract_parameters'>extract_parameters</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
 
-  	<span class='kw'>if</span> <span class='id identifier rubyid_resource_type'>resource_type</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_resource_type'>resource_type</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:deprecate_params</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_resource_type'>resource_type</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_resource_type'>resource_type</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:deprecate_params</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_resource_type'>resource_type</span><span class='period'>.</span><span class='id identifier rubyid_deprecate_params'>deprecate_params</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='lbracket'>[</span><span class='symbol'>:parameters</span><span class='rbracket'>]</span><span class='rparen'>)</span>
-  	<span class='kw'>end</span>
+    <span class='kw'>end</span>
 
     <span class='id identifier rubyid_tag'>tag</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_tag_if_valid'>tag_if_valid</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
@@ -622,6 +676,144 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
   
 </div>
 
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="resource_type-class_method">
+  
+    + (<tt><span class='object_link'><a href="Type.html" title="Puppet::Type (class)">Puppet::Type</a></span></tt>, <tt><span class='object_link'><a href="Resource/Type.html" title="Puppet::Resource::Type (class)">Puppet::Resource::Type</a></span></tt>) <strong>resource_type</strong>(type, title, environment) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The resource&#39;s type implementation</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Type.html" title="Puppet::Type (class)">Puppet::Type</a></span></tt>, <tt><span class='object_link'><a href="Resource/Type.html" title="Puppet::Resource::Type (class)">Puppet::Resource::Type</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 314</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resource_type'>resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
+  <span class='kw'>when</span> <span class='const'>TYPE_CLASS</span><span class='semicolon'>;</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span><span class='period'>.</span><span class='id identifier rubyid_hostclass'>hostclass</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span> <span class='op'>==</span> <span class='symbol'>:main</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='const'>TYPE_NODE</span><span class='semicolon'>;</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span><span class='period'>.</span><span class='id identifier rubyid_node'>node</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='const'>TYPE_SITE</span><span class='semicolon'>;</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span><span class='period'>.</span><span class='id identifier rubyid_site'>site</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Type</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span>
+      <span class='id identifier rubyid_krt'>krt</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span>
+      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_krt'>krt</span><span class='period'>.</span><span class='id identifier rubyid_definition'>definition</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_krt'>krt</span><span class='period'>.</span><span class='id identifier rubyid_application'>application</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="type_and_title-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>type_and_title</strong>(type, title) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+528
+529
+530
+531
+532
+533
+534
+535</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 528</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_type_and_title'>type_and_title</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_type_and_title'>extract_type_and_title</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_munge_type_name'>munge_type_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span> <span class='op'>==</span> <span class='const'>TYPE_CLASS</span>
+    <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='id identifier rubyid_title'>title</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span> <span class='op'>?</span> <span class='symbol'>:main</span> <span class='op'>:</span> <span class='id identifier rubyid_munge_type_name'>munge_type_name</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -656,13 +848,13 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
       <pre class="lines">
 
 
-298
 299
 300
-301</pre>
+301
+302</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 298</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 299</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_export'>export</span>
   <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='kw'>self</span><span class='lbracket'>[</span><span class='symbol'>:export</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -715,37 +907,15 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
       <pre class="lines">
 
 
-306
 307
 308
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
-319</pre>
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 307</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resource_type'>resource_type</span>
-  <span class='ivar'>@rstype</span> <span class='op'>||=</span> <span class='kw'>case</span> <span class='id identifier rubyid_type'>type</span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Class</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span><span class='period'>.</span><span class='id identifier rubyid_hostclass'>hostclass</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span> <span class='op'>==</span> <span class='symbol'>:main</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Node</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span><span class='period'>.</span><span class='id identifier rubyid_node'>node</span><span class='lparen'>(</span><span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span>
-  <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Site</span><span class='tstring_end'>&quot;</span></span><span class='semicolon'>;</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span><span class='period'>.</span><span class='id identifier rubyid_site'>site</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='kw'>else</span>
-    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Type</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
-    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_result'>result</span>
-      <span class='id identifier rubyid_krt'>krt</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_known_resource_types'>known_resource_types</span>
-      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_krt'>krt</span><span class='period'>.</span><span class='id identifier rubyid_definition'>definition</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_krt'>krt</span><span class='period'>.</span><span class='id identifier rubyid_application'>application</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_result'>result</span>
-  <span class='kw'>end</span>
+  <span class='ivar'>@rstype</span> <span class='op'>||=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_resource_type'>resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -796,12 +966,12 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
       <pre class="lines">
 
 
-324
-325
-326</pre>
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 324</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 332</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resource_type='>resource_type=</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='ivar'>@rstype</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span>
@@ -841,14 +1011,6 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
       <pre class="lines">
 
 
-431
-432
-433
-434
-435
-436
-437
-438
 439
 440
 441
@@ -869,10 +1031,18 @@ be the full resource name in the form of <code>&quot;Type[Title]&quot;</code>.</
 456
 457
 458
-459</pre>
+459
+460
+461
+462
+463
+464
+465
+466
+467</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 431</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 439</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_default_parameters'>set_default_parameters</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='rparen'>)</span>
   <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>The method Puppet::Resource.set_default_parameters is deprecated and will be removed in the next major release of Puppet.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -956,12 +1126,12 @@ all of the instance variables defined on this class.</p>
       <pre class="lines">
 
 
-107
-108
-109</pre>
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 110</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_yaml_properties'>to_yaml_properties</span>
   <span class='const'>YAML_ATTRIBUTES</span> <span class='op'>&amp;</span> <span class='kw'>super</span>
@@ -1005,14 +1175,6 @@ because Type#set_parameters needs specifically ordered behavior.</p>
       <pre class="lines">
 
 
-476
-477
-478
-479
-480
-481
-482
-483
 484
 485
 486
@@ -1026,10 +1188,18 @@ because Type#set_parameters needs specifically ordered behavior.</p>
 494
 495
 496
-497</pre>
+497
+498
+499
+500
+501
+502
+503
+504
+505</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 476</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource.rb', line 484</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_complete'>validate_complete</span>
   <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>The method Puppet::Resource.validate_complete is deprecated and will be removed in the next major release of Puppet.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1063,7 +1233,7 @@ because Type#set_parameters needs specifically ordered behavior.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:48 2016 by
+  Generated on Mon May 16 22:13:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

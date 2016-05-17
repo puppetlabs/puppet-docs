@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Man Page: puppet lookup'
 canonical: /puppet/latest/reference/man/lookup.html
 ---
@@ -23,7 +23,7 @@ to be run on a puppet master or a node in a masterless setup.</p>
 
 <p>puppet lookup [--help] [--type <var>TYPESTRING</var>] [--merge unique|hash|deep]
   [--knock-out-prefix <var>PREFIX-STRING</var>] [--sort-merged-arrays]
-  [--unpack-arrays <var>STRING-VALUE</var>] [--merge-hash-arrays] [--explain]
+  [--merge-hash-arrays] [--explain]
   [--default <var>VALUE</var>] [--node <var>NODE-NAME</var>] [--facts <var>FILE</var>]
   [--compile]
   [--render-as s|json|yaml|binary|msgpack] <var>keys</var></p>
@@ -61,16 +61,13 @@ overwriting keys of lower lookup priority. 'unique' appends everything
 to an array containing no nested arrays and where all duplicates have been
 removed. 'deep' Performs a deep merge on values of Array and Hash type. There
 are additional option flags that can be used with 'deep'.</p></li>
-<li><p>--knock_out_prefix <var>PREFIX-STRING</var>
+<li><p>--knock-out-prefix <var>PREFIX-STRING</var>
 Can be used with the 'deep' merge strategy. Specify string value to signify
 prefix which deletes elements from existing element.</p></li>
-<li><p>--sort_merged_arrays
+<li><p>--sort-merged-arrays
 Can be used with the 'deep' merge strategy. When this flag is used all
 merged arrays will be sorted.</p></li>
-<li><p>--unpack_arrays <var>STRING-VALUE</var>
-Can be used with the 'deep' merge strategy. Specify a string value used
-as a deliminator to join all array values and then split them again.</p></li>
-<li><p>--merge_hash_arrays
+<li><p>--merge-hash-arrays
 Can be used with the 'deep' merge strategy. When this flag is used arrays
 and hashes will be merged.</p></li>
 <li><p>--explain
@@ -114,7 +111,7 @@ and the default when producing an explanation is s.</p></li>
 <p>  If you wanted to get the first value found for 'key_name_one' and 'key_name_two'
   within the scope of the agent.local node while merging values and knocking out
   the prefix 'foo' while merging, you would call lookup like this:
-  $ puppet lookup --node agent.local --merge deep --knock_out_prefix foo key_name_one key_name_two</p>
+  $ puppet lookup --node agent.local --merge deep --knock-out-prefix foo key_name_one key_name_two</p>
 
 <p>  If you wanted to lookup 'key_name' within the scope of the agent.local node,
   and return a default value of 'bar' if nothing was found, you would call

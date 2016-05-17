@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: sshkey'
 canonical: /puppet/latest/reference/types/sshkey.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 sshkey
 -----
@@ -15,9 +15,11 @@ sshkey
 
 <h3 id="sshkey-description">Description</h3>
 
-Installs and manages ssh host keys.  At this point, this type
-only knows how to install keys into `/etc/ssh/ssh_known_hosts`.  See
-the `ssh_authorized_key` type to manage authorized keys.
+Installs and manages ssh host keys.  By default, this type will
+install keys into `/etc/ssh/ssh_known_hosts`. To manage ssh keys in a
+different `known_hosts` file, such as a user's personal `known_hosts`,
+pass its path to the `target` parameter. See the `ssh_authorized_key`
+type to manage authorized keys.
 
 <h3 id="sshkey-attributes">Attributes</h3>
 
@@ -29,7 +31,7 @@ the `ssh_authorized_key` type to manage authorized keys.
   <a href="#sshkey-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `sshkey...</em>
   <a href="#sshkey-attribute-target">target</a>       =&gt; <em># The file in which to store the ssh key.  Only...</em>
   <a href="#sshkey-attribute-type">type</a>         =&gt; <em># The encryption type used.  Probably ssh-dss or...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="sshkey-attribute-name">name</h4>
@@ -108,4 +110,4 @@ Parse and generate host-wide known hosts files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

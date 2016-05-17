@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: file'
 canonical: /puppet/latest/reference/types/file.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 file
 -----
@@ -67,7 +67,7 @@ parent directories of a file, the file resource will autorequire them.
   <a href="#file-attribute-type">type</a>                    =&gt; <em># A read-only state to check the file...</em>
   <a href="#file-attribute-validate_cmd">validate_cmd</a>            =&gt; <em># A command for validating the file's syntax...</em>
   <a href="#file-attribute-validate_replacement">validate_replacement</a>    =&gt; <em># The replacement string in a `validate_cmd` that...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="file-attribute-path">path</h4>
@@ -115,13 +115,13 @@ path to another file as the ensure value, it is equivalent to specifying
 
     # Equivalent resources:
 
-    file { "/etc/inetd.conf":
-      ensure => "/etc/inet/inetd.conf",
+    file { '/etc/inetd.conf':
+      ensure => '/etc/inet/inetd.conf',
     }
 
-    file { "/etc/inetd.conf":
+    file { '/etc/inetd.conf':
       ensure => link,
-      target => "/etc/inet/inetd.conf",
+      target => '/etc/inet/inetd.conf',
     }
 
 However, we recommend using `link` and `target` explicitly, since this
@@ -208,20 +208,20 @@ With very small files, you can construct content strings directly in
 the manifest...
 
     define resolve(nameserver1, nameserver2, domain, search) {
-        $str = "search $search
-            domain $domain
-            nameserver $nameserver1
-            nameserver $nameserver2
+        $str = "search ${search}
+            domain ${domain}
+            nameserver ${nameserver1}
+            nameserver ${nameserver2}
             "
 
-        file { "/etc/resolv.conf":
-          content => "$str",
+        file { '/etc/resolv.conf':
+          content => $str,
         }
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](https://docs.puppetlabs.com/references/latest/function.html#template)
-or [file](https://docs.puppetlabs.com/references/latest/function.html#file)
+[template](https://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
+or [file](https://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -277,11 +277,9 @@ e.g., `*/*`.
 <h4 id="file-attribute-links">links</h4>
 
 How to handle links during file actions.  During file copying,
-`follow` will copy the target file instead of the link, `manage`
-will copy the link itself, and `ignore` will just pass it by.
-When not copying, `manage` and `ignore` behave equivalently
-(because you cannot really ignore links entirely during local
-recursion), and `follow` will manage the file to which the link points.
+`follow` will copy the target file instead of the link and `manage`
+will copy the link itself. When not copying, `manage` will manage
+the link, and `follow` will manage the file to which the link points.
 
 Valid values are `follow`, `manage`.
 
@@ -595,11 +593,11 @@ Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
 files to different system types:
 
-    file { "/etc/nfs.conf":
+    file { '/etc/nfs.conf':
       source => [
-        "puppet:///modules/nfs/conf.$host",
-        "puppet:///modules/nfs/conf.$operatingsystem",
-        "puppet:///modules/nfs/conf"
+        "puppet:///modules/nfs/conf.${host}",
+        "puppet:///modules/nfs/conf.${operatingsystem}",
+        'puppet:///modules/nfs/conf'
       ]
     }
 
@@ -655,9 +653,9 @@ and `content`.
 Symlink targets can be relative, as well as absolute:
 
     # (Useful on Solaris)
-    file { "/etc/inetd.conf":
+    file { '/etc/inetd.conf':
       ensure => link,
-      target => "inet/inetd.conf",
+      target => 'inet/inetd.conf',
     }
 
 Directories of symlinks can be served recursively by instead using the
@@ -754,4 +752,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

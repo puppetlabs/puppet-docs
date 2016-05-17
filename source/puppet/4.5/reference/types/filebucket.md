@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: filebucket'
 canonical: /puppet/latest/reference/types/filebucket.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 filebucket
 -----
@@ -32,7 +32,7 @@ Filebuckets are used for the following features:
   puppet master's filebucket with the _desired_ content for each file,
   then instructs the agent to retrieve the content for a specific
   checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/references/latest/indirection.html#catalog).
+  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/puppet/latest/reference/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -58,7 +58,7 @@ restricted `auth.conf` file, you may need to allow access to the
   <a href="#filebucket-attribute-path">path</a>   =&gt; <em># The path to the _local_ filebucket; defaults to...</em>
   <a href="#filebucket-attribute-port">port</a>   =&gt; <em># The port on which the remote server is...</em>
   <a href="#filebucket-attribute-server">server</a> =&gt; <em># The server providing the remote filebucket...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="filebucket-attribute-name">name</h4>
@@ -98,4 +98,4 @@ This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

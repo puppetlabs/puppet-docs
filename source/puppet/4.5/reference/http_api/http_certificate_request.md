@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Puppet HTTP API: Certificate Request'
 canonical: /puppet/latest/reference/http_api/http_certificate_request.html
 ---
@@ -9,7 +9,7 @@ Certificate Request
 =============
 
 The `certificate_request` endpoint submits a Certificate Signing Request (CSR)
-to the master.  The master must be configured to be a CA.  The returned
+to the master. The master must be configured to be a CA. The returned
 CSR is always in the `.pem` format.
 
 Under Puppet Server's CA service, the `environment` parameter is ignored and can

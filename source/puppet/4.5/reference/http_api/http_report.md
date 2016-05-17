@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Puppet HTTP API: Report'
 canonical: /puppet/latest/reference/http_api/http_report.html
 ---
@@ -12,7 +12,7 @@ Report Format 4 in technical term. Also see the
 [documentation](https://docs.puppetlabs.com/puppet/latest/reference/format_report.html).
 
 The `report` endpoint allows clients to send reports to the master via `http`
-or `https`.  Once received by the master they are processed by the *report
+or `https`. Once received by the master they are processed by the *report
 processors* configured to be triggered when a report is received. As an
 example, storing reports in PuppetDB is handled by one such report processor.
 

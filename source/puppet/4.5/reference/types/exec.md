@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: exec'
 canonical: /puppet/latest/reference/types/exec.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 exec
 -----
@@ -84,7 +84,7 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
   <a href="#exec-attribute-unless">unless</a>      =&gt; <em># If this parameter is set, then this `exec` will...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  Note that if...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="exec-attribute-command">command</h4>
@@ -108,10 +108,10 @@ only run if the file **doesn't exist.**
 This parameter doesn't cause Puppet to create a file; it is only
 useful if **the command itself** creates a file.
 
-    exec { "tar -xf /Volumes/nfs02/important.tar":
-      cwd     => "/var/tmp",
-      creates => "/var/tmp/myfile",
-      path    => ["/usr/bin", "/usr/sbin"]
+    exec { 'tar -xf /Volumes/nfs02/important.tar':
+      cwd     => '/var/tmp',
+      creates => '/var/tmp/myfile',
+      path    => ['/usr/bin', '/usr/sbin',],
     }
 
 In this example, `myfile` is assumed to be a file inside
@@ -164,9 +164,9 @@ Valid values are `true`, `false`, `on_failure`.
 If this parameter is set, then this `exec` will only run if
 the command has an exit code of 0.  For example:
 
-    exec { "logrotate":
-      path   => "/usr/bin:/usr/sbin:/bin",
-      onlyif => "test `du /var/log/messages | cut -f1` -gt 100000"
+    exec { 'logrotate':
+      path   => '/usr/bin:/usr/sbin:/bin',
+      onlyif => 'test `du /var/log/messages | cut -f1` -gt 100000',
     }
 
 This would run `logrotate` only if that test returned true.
@@ -180,7 +180,7 @@ that differs by provider will match.
 
 Also note that onlyif can take an array as its value, e.g.:
 
-    onlyif => ["test -f /tmp/file1", "test -f /tmp/file2"]
+    onlyif => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
 This will only run the exec if _all_ conditions in the array return true.
 
@@ -225,15 +225,15 @@ makes sense to use this option when this command depends on some
 other object; it is useful for triggering an action:
 
     # Pull down the main aliases file
-    file { "/etc/aliases":
-      source => "puppet://server/module/aliases"
+    file { '/etc/aliases':
+      source => 'puppet://server/module/aliases',
     }
 
     # Rebuild the database, but only when the file changes
     exec { newaliases:
-      path        => ["/usr/bin", "/usr/sbin"],
-      subscribe   => File["/etc/aliases"],
-      refreshonly => true
+      path        => ['/usr/bin', '/usr/sbin'],
+      subscribe   => File['/etc/aliases'],
+      refreshonly => true,
     }
 
 Note that only `subscribe` and `notify` can trigger actions, not `require`,
@@ -307,9 +307,9 @@ Sets the umask to be used while executing this command
 If this parameter is set, then this `exec` will run unless
 the command has an exit code of 0.  For example:
 
-    exec { "/bin/echo root >> /usr/lib/cron/cron.allow":
-      path   => "/usr/bin:/usr/sbin:/bin",
-      unless => "grep root /usr/lib/cron/cron.allow 2>/dev/null"
+    exec { '/bin/echo root >> /usr/lib/cron/cron.allow':
+      path   => '/usr/bin:/usr/sbin:/bin',
+      unless => 'grep root /usr/lib/cron/cron.allow 2>/dev/null',
     }
 
 This would add `root` to the cron.allow file (on Solaris) unless
@@ -323,7 +323,7 @@ that differs by provider will match.
 
 Also note that unless can take an array as its value, e.g.:
 
-    unless => ["test -f /tmp/file1", "test -f /tmp/file2"]
+    unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
 This will only run the exec if _all_ conditions in the array return false.
 
@@ -396,4 +396,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: interface'
 canonical: /puppet/latest/reference/types/interface.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 interface
 -----
@@ -36,7 +36,7 @@ switchport characteristics (speed, duplex).
   <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan when trunking.  Values can </em>
   <a href="#interface-attribute-provider">provider</a>            =&gt; <em># The specific backend to use for this `interface` </em>
   <a href="#interface-attribute-speed">speed</a>               =&gt; <em># Interface speed.  Valid values are `auto`...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="interface-attribute-name">name</h4>
@@ -191,4 +191,4 @@ Cisco switch/router provider for interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

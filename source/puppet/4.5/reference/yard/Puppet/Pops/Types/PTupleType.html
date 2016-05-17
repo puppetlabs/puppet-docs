@@ -196,7 +196,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#class_from_string-instance_method" title="Puppet::Pops::Types::PAnyType#class_from_string (method)">#class_from_string</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
 
   
   
@@ -262,75 +262,69 @@
       <pre class="lines">
 
 
-1453
-1454
-1455
-1456
-1457
-1458
-1459
-1460
-1461
-1462
-1463
-1464
-1465
-1466
-1467
-1468
-1469
-1470
-1471
-1472
-1473
-1474
-1475
-1476
-1477
-1478
-1479
-1480
-1481
-1482
-1483
-1484
-1485</pre>
+1775
+1776
+1777
+1778
+1779
+1780
+1781
+1782
+1783
+1784
+1785
+1786
+1787
+1788
+1789
+1790
+1791
+1792
+1793
+1794
+1795
+1796
+1797
+1798
+1799
+1800
+1801
+1802
+1803
+1804</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1453</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1775</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='kw'>self</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PTupleType</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PArrayType</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_s_types'>s_types</span> <span class='op'>=</span> <span class='id identifier rubyid_types'>types</span>
-  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_s_types'>s_types</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PArrayType</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_size_s'>size_s</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>||</span> <span class='const'>PIntegerType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_size_range'>size_range</span><span class='rparen'>)</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PTupleType</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_size_o'>size_o</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>||</span> <span class='const'>PIntegerType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_range'>size_range</span><span class='rparen'>)</span>
-
-    <span class='comment'># not assignable if the number of types in o is outside number of types in t1
-</span>    <span class='kw'>if</span> <span class='id identifier rubyid_size_s'>size_s</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_size_o'>size_o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_size_s'>size_s</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_size_o'>size_o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_s_types'>s_types</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
       <span class='id identifier rubyid_o_types'>o_types</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span>
+      <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_o_types'>o_types</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
       <span class='id identifier rubyid_o_types'>o_types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
         <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_s_types'>s_types</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_s_types'>s_types</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o_types'>o_types</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
-      <span class='kw'>return</span> <span class='kw'>true</span>
-    <span class='kw'>else</span>
-      <span class='kw'>return</span> <span class='kw'>false</span>
     <span class='kw'>end</span>
-  <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PArrayType</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_o_entry'>o_entry</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span>
-    <span class='comment'># Array of anything can not be assigned (unless tuple is tuple of anything) - this case
-</span>    <span class='comment'># was handled at the top of this method.
-</span>    <span class='comment'>#
-</span>    <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_o_entry'>o_entry</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>else</span>
     <span class='id identifier rubyid_size_o'>size_o</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>||</span> <span class='const'>PCollectionType</span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span>
     <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_size_s'>size_s</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_size_o'>size_o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-    <span class='lbracket'>[</span><span class='id identifier rubyid_s_types'>s_types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span> <span class='id identifier rubyid_size_o'>size_o</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_index'>index</span><span class='op'>|</span> <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_s_types'>s_types</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_s_types'>s_types</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o_entry'>o_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-    <span class='kw'>true</span>
-  <span class='kw'>else</span>
-    <span class='kw'>false</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_s_types'>s_types</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+      <span class='id identifier rubyid_o_entry'>o_entry</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span>
+      <span class='comment'># Array of anything can not be assigned (unless tuple is tuple of anything) - this case
+</span>      <span class='comment'># was handled at the top of this method.
+</span>      <span class='comment'>#
+</span>      <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_o_entry'>o_entry</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_s_types'>s_types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span> <span class='id identifier rubyid_size_o'>size_o</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_index'>index</span><span class='op'>|</span> <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='lparen'>(</span><span class='id identifier rubyid_s_types'>s_types</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_s_types'>s_types</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o_entry'>o_entry</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
+  <span class='kw'>true</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -378,40 +372,40 @@
       <pre class="lines">
 
 
-1331
-1332
-1333
-1334
-1335
-1336
-1337
-1338
-1339
-1340
-1341
-1342
-1343
-1344
-1345
-1346
-1347
-1348
-1349
-1350
-1351
-1352
-1353
-1354
-1355
-1356
-1357
-1358
-1359
-1360
-1361</pre>
+1647
+1648
+1649
+1650
+1651
+1652
+1653
+1654
+1655
+1656
+1657
+1658
+1659
+1660
+1661
+1662
+1663
+1664
+1665
+1666
+1667
+1668
+1669
+1670
+1671
+1672
+1673
+1674
+1675
+1676
+1677</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1331</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1647</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callable_args?'>callable_args?</span><span class='lparen'>(</span><span class='id identifier rubyid_callable_t'>callable_t</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_size_type'>size_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -454,7 +448,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:50 2016 by
+  Generated on Mon May 16 22:13:37 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

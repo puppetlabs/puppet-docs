@@ -132,6 +132,41 @@ Access is typically given to logic that resides inside of the module, but not to
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#loaded_entry-instance_method" title="#loaded_entry (instance method)">- (Object) <strong>loaded_entry</strong>(typed_name, check_dependencies = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -139,7 +174,7 @@ Access is typically given to logic that resides inside of the module, but not to
   
   
   
-  <h2>Method Summary</h2>
+  
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="BaseLoader.html" title="Puppet::Pops::Loader::BaseLoader (class)">BaseLoader</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="BaseLoader.html#add_entry-instance_method" title="Puppet::Pops::Loader::BaseLoader#add_entry (method)">#add_entry</a></span>, <span class='object_link'><a href="BaseLoader.html#get_entry-instance_method" title="Puppet::Pops::Loader::BaseLoader#get_entry (method)">#get_entry</a></span>, <span class='object_link'><a href="BaseLoader.html#load_typed-instance_method" title="Puppet::Pops::Loader::BaseLoader#load_typed (method)">#load_typed</a></span>, <span class='object_link'><a href="BaseLoader.html#promote_entry-instance_method" title="Puppet::Pops::Loader::BaseLoader#promote_entry (method)">#promote_entry</a></span>, <span class='object_link'><a href="BaseLoader.html#set_entry-instance_method" title="Puppet::Pops::Loader::BaseLoader#set_entry (method)">#set_entry</a></span></p>
@@ -156,10 +191,55 @@ Access is typically given to logic that resides inside of the module, but not to
   <p class="inherited"><span class='object_link'><a href="Loader.html#%5B%5D-instance_method" title="Puppet::Pops::Loader::Loader#[] (method)">#[]</a></span>, <span class='object_link'><a href="Loader.html#get_entry-instance_method" title="Puppet::Pops::Loader::Loader#get_entry (method)">#get_entry</a></span>, <span class='object_link'><a href="Loader.html#load-instance_method" title="Puppet::Pops::Loader::Loader#load (method)">#load</a></span>, <span class='object_link'><a href="Loader.html#load_typed-instance_method" title="Puppet::Pops::Loader::Loader#load_typed (method)">#load_typed</a></span>, <span class='object_link'><a href="Loader.html#loadables-instance_method" title="Puppet::Pops::Loader::Loader#loadables (method)">#loadables</a></span>, <span class='object_link'><a href="Loader.html#private_loader-instance_method" title="Puppet::Pops::Loader::Loader#private_loader (method)">#private_loader</a></span>, <span class='object_link'><a href="Loader.html#set_entry-instance_method" title="Puppet::Pops::Loader::Loader#set_entry (method)">#set_entry</a></span></p>
 
 
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="loaded_entry-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>loaded_entry</strong>(typed_name, check_dependencies = false) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/dependency_loader.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_loaded_entry'>loaded_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_check_dependencies'>check_dependencies</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>super</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_check_dependencies'>check_dependencies</span> <span class='op'>?</span> <span class='id identifier rubyid_loaded_entry_in_dependency'>loaded_entry_in_dependency</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_check_dependencies'>check_dependencies</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:54 2016 by
+  Generated on Mon May 16 22:13:43 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

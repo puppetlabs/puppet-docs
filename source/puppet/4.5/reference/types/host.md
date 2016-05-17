@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: host'
 canonical: /puppet/latest/reference/types/host.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 host
 -----
@@ -29,7 +29,7 @@ will have different solutions.
   <a href="#host-attribute-ip">ip</a>           =&gt; <em># The host's IP address, IPv4 or...</em>
   <a href="#host-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `host...</em>
   <a href="#host-attribute-target">target</a>       =&gt; <em># The file in which to store service information.  </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="host-attribute-name">name</h4>
@@ -106,4 +106,4 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: mailalias'
 canonical: /puppet/latest/reference/types/mailalias.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 mailalias
 -----
@@ -26,7 +26,7 @@ Creates an email alias in the local alias database.
   <a href="#mailalias-attribute-provider">provider</a>  =&gt; <em># The specific backend to use for this `mailalias` </em>
   <a href="#mailalias-attribute-recipient">recipient</a> =&gt; <em># Where email should be sent.  Multiple values...</em>
   <a href="#mailalias-attribute-target">target</a>    =&gt; <em># The file in which to store the aliases.  Only...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="mailalias-attribute-name">name</h4>
@@ -97,4 +97,4 @@ those providers that write to disk.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

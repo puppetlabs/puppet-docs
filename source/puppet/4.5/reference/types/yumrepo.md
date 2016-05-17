@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: yumrepo'
 canonical: /puppet/latest/reference/types/yumrepo.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 yumrepo
 -----
@@ -71,7 +71,7 @@ exinstence of files listed in the `include` attribute.
   <a href="#yumrepo-attribute-target">target</a>                       =&gt; <em># The filename to write the yum repository...</em>
   <a href="#yumrepo-attribute-throttle">throttle</a>                     =&gt; <em># Enable bandwidth throttling for downloads. This...</em>
   <a href="#yumrepo-attribute-timeout">timeout</a>                      =&gt; <em># Number of seconds to wait for a connection...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="yumrepo-attribute-name">name</h4>
@@ -572,4 +572,4 @@ section will be created in '/etc/yum.conf'.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

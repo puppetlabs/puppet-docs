@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 ## About Resource Types
 
@@ -135,7 +135,7 @@ Sample usage with an array and custom lenses:
   <a href="#augeas-attribute-root">root</a>       =&gt; <em># A file system path; all files loaded by Augeas...</em>
   <a href="#augeas-attribute-show_diff">show_diff</a>  =&gt; <em># Whether to display differences when the file...</em>
   <a href="#augeas-attribute-type_check">type_check</a> =&gt; <em># Whether augeas should perform typechecking...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="augeas-attribute-name">name</h4>
@@ -361,7 +361,7 @@ the Computer resource will autorequire it.
   <a href="#computer-attribute-ip_address">ip_address</a> =&gt; <em># The IP Address of the Computer...</em>
   <a href="#computer-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `computer...</em>
   <a href="#computer-attribute-realname">realname</a>   =&gt; <em># The 'long' name of the computer...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="computer-attribute-name">name</h4>
@@ -515,7 +515,7 @@ that user.
   <a href="#cron-attribute-target">target</a>      =&gt; <em># The name of the crontab file in which the cron...</em>
   <a href="#cron-attribute-user">user</a>        =&gt; <em># The user who owns the cron job.  This user must...</em>
   <a href="#cron-attribute-weekday">weekday</a>     =&gt; <em># The weekday on which to run the command...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="cron-attribute-name">name</h4>
@@ -767,7 +767,7 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
   <a href="#exec-attribute-unless">unless</a>      =&gt; <em># If this parameter is set, then this `exec` will...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  Note that if...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="exec-attribute-command">command</h4>
@@ -791,10 +791,10 @@ only run if the file **doesn't exist.**
 This parameter doesn't cause Puppet to create a file; it is only
 useful if **the command itself** creates a file.
 
-    exec { "tar -xf /Volumes/nfs02/important.tar":
-      cwd     => "/var/tmp",
-      creates => "/var/tmp/myfile",
-      path    => ["/usr/bin", "/usr/sbin"]
+    exec { 'tar -xf /Volumes/nfs02/important.tar':
+      cwd     => '/var/tmp',
+      creates => '/var/tmp/myfile',
+      path    => ['/usr/bin', '/usr/sbin',],
     }
 
 In this example, `myfile` is assumed to be a file inside
@@ -847,9 +847,9 @@ Valid values are `true`, `false`, `on_failure`.
 If this parameter is set, then this `exec` will only run if
 the command has an exit code of 0.  For example:
 
-    exec { "logrotate":
-      path   => "/usr/bin:/usr/sbin:/bin",
-      onlyif => "test `du /var/log/messages | cut -f1` -gt 100000"
+    exec { 'logrotate':
+      path   => '/usr/bin:/usr/sbin:/bin',
+      onlyif => 'test `du /var/log/messages | cut -f1` -gt 100000',
     }
 
 This would run `logrotate` only if that test returned true.
@@ -863,7 +863,7 @@ that differs by provider will match.
 
 Also note that onlyif can take an array as its value, e.g.:
 
-    onlyif => ["test -f /tmp/file1", "test -f /tmp/file2"]
+    onlyif => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
 This will only run the exec if _all_ conditions in the array return true.
 
@@ -908,15 +908,15 @@ makes sense to use this option when this command depends on some
 other object; it is useful for triggering an action:
 
     # Pull down the main aliases file
-    file { "/etc/aliases":
-      source => "puppet://server/module/aliases"
+    file { '/etc/aliases':
+      source => 'puppet://server/module/aliases',
     }
 
     # Rebuild the database, but only when the file changes
     exec { newaliases:
-      path        => ["/usr/bin", "/usr/sbin"],
-      subscribe   => File["/etc/aliases"],
-      refreshonly => true
+      path        => ['/usr/bin', '/usr/sbin'],
+      subscribe   => File['/etc/aliases'],
+      refreshonly => true,
     }
 
 Note that only `subscribe` and `notify` can trigger actions, not `require`,
@@ -990,9 +990,9 @@ Sets the umask to be used while executing this command
 If this parameter is set, then this `exec` will run unless
 the command has an exit code of 0.  For example:
 
-    exec { "/bin/echo root >> /usr/lib/cron/cron.allow":
-      path   => "/usr/bin:/usr/sbin:/bin",
-      unless => "grep root /usr/lib/cron/cron.allow 2>/dev/null"
+    exec { '/bin/echo root >> /usr/lib/cron/cron.allow':
+      path   => '/usr/bin:/usr/sbin:/bin',
+      unless => 'grep root /usr/lib/cron/cron.allow 2>/dev/null',
     }
 
 This would add `root` to the cron.allow file (on Solaris) unless
@@ -1006,7 +1006,7 @@ that differs by provider will match.
 
 Also note that unless can take an array as its value, e.g.:
 
-    unless => ["test -f /tmp/file1", "test -f /tmp/file2"]
+    unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
 This will only run the exec if _all_ conditions in the array return false.
 
@@ -1141,7 +1141,7 @@ parent directories of a file, the file resource will autorequire them.
   <a href="#file-attribute-type">type</a>                    =&gt; <em># A read-only state to check the file...</em>
   <a href="#file-attribute-validate_cmd">validate_cmd</a>            =&gt; <em># A command for validating the file's syntax...</em>
   <a href="#file-attribute-validate_replacement">validate_replacement</a>    =&gt; <em># The replacement string in a `validate_cmd` that...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="file-attribute-path">path</h4>
@@ -1189,13 +1189,13 @@ path to another file as the ensure value, it is equivalent to specifying
 
     # Equivalent resources:
 
-    file { "/etc/inetd.conf":
-      ensure => "/etc/inet/inetd.conf",
+    file { '/etc/inetd.conf':
+      ensure => '/etc/inet/inetd.conf',
     }
 
-    file { "/etc/inetd.conf":
+    file { '/etc/inetd.conf':
       ensure => link,
-      target => "/etc/inet/inetd.conf",
+      target => '/etc/inet/inetd.conf',
     }
 
 However, we recommend using `link` and `target` explicitly, since this
@@ -1282,20 +1282,20 @@ With very small files, you can construct content strings directly in
 the manifest...
 
     define resolve(nameserver1, nameserver2, domain, search) {
-        $str = "search $search
-            domain $domain
-            nameserver $nameserver1
-            nameserver $nameserver2
+        $str = "search ${search}
+            domain ${domain}
+            nameserver ${nameserver1}
+            nameserver ${nameserver2}
             "
 
-        file { "/etc/resolv.conf":
-          content => "$str",
+        file { '/etc/resolv.conf':
+          content => $str,
         }
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](https://docs.puppetlabs.com/references/latest/function.html#template)
-or [file](https://docs.puppetlabs.com/references/latest/function.html#file)
+[template](https://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
+or [file](https://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -1351,11 +1351,9 @@ e.g., `*/*`.
 <h4 id="file-attribute-links">links</h4>
 
 How to handle links during file actions.  During file copying,
-`follow` will copy the target file instead of the link, `manage`
-will copy the link itself, and `ignore` will just pass it by.
-When not copying, `manage` and `ignore` behave equivalently
-(because you cannot really ignore links entirely during local
-recursion), and `follow` will manage the file to which the link points.
+`follow` will copy the target file instead of the link and `manage`
+will copy the link itself. When not copying, `manage` will manage
+the link, and `follow` will manage the file to which the link points.
 
 Valid values are `follow`, `manage`.
 
@@ -1669,11 +1667,11 @@ Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
 files to different system types:
 
-    file { "/etc/nfs.conf":
+    file { '/etc/nfs.conf':
       source => [
-        "puppet:///modules/nfs/conf.$host",
-        "puppet:///modules/nfs/conf.$operatingsystem",
-        "puppet:///modules/nfs/conf"
+        "puppet:///modules/nfs/conf.${host}",
+        "puppet:///modules/nfs/conf.${operatingsystem}",
+        'puppet:///modules/nfs/conf'
       ]
     }
 
@@ -1729,9 +1727,9 @@ and `content`.
 Symlink targets can be relative, as well as absolute:
 
     # (Useful on Solaris)
-    file { "/etc/inetd.conf":
+    file { '/etc/inetd.conf':
       ensure => link,
-      target => "inet/inetd.conf",
+      target => 'inet/inetd.conf',
     }
 
 Directories of symlinks can be served recursively by instead using the
@@ -1855,7 +1853,7 @@ Filebuckets are used for the following features:
   puppet master's filebucket with the _desired_ content for each file,
   then instructs the agent to retrieve the content for a specific
   checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/references/latest/indirection.html#catalog).
+  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/puppet/latest/reference/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -1881,7 +1879,7 @@ restricted `auth.conf` file, you may need to allow access to the
   <a href="#filebucket-attribute-path">path</a>   =&gt; <em># The path to the _local_ filebucket; defaults to...</em>
   <a href="#filebucket-attribute-port">port</a>   =&gt; <em># The port on which the remote server is...</em>
   <a href="#filebucket-attribute-server">server</a> =&gt; <em># The server providing the remote filebucket...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="filebucket-attribute-name">name</h4>
@@ -1955,7 +1953,7 @@ a group record.
   <a href="#group-attribute-members">members</a>              =&gt; <em># The members of the group. For directory services </em>
   <a href="#group-attribute-provider">provider</a>             =&gt; <em># The specific backend to use for this `group...</em>
   <a href="#group-attribute-system">system</a>               =&gt; <em># Whether the group is a system group with lower...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="group-attribute-name">name</h4>
@@ -2246,7 +2244,7 @@ will have different solutions.
   <a href="#host-attribute-ip">ip</a>           =&gt; <em># The host's IP address, IPv4 or...</em>
   <a href="#host-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `host...</em>
   <a href="#host-attribute-target">target</a>       =&gt; <em># The file in which to store service information.  </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="host-attribute-name">name</h4>
@@ -2354,7 +2352,7 @@ switchport characteristics (speed, duplex).
   <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan when trunking.  Values can </em>
   <a href="#interface-attribute-provider">provider</a>            =&gt; <em># The specific backend to use for this `interface` </em>
   <a href="#interface-attribute-speed">speed</a>               =&gt; <em># Interface speed.  Valid values are `auto`...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="interface-attribute-name">name</h4>
@@ -2531,7 +2529,7 @@ the `.k5login` file as the name, and an array of principals as the
   <a href="#k5login-attribute-mode">mode</a>       =&gt; <em># The desired permissions mode of the `.k5login...</em>
   <a href="#k5login-attribute-principals">principals</a> =&gt; <em># The principals present in the `.k5login` file...</em>
   <a href="#k5login-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `k5login...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="k5login-attribute-path">path</h4>
@@ -2631,7 +2629,7 @@ macauthorization resource will autorequire it.
   <a href="#macauthorization-attribute-shared">shared</a>            =&gt; <em># Whether the Security Server should mark the...</em>
   <a href="#macauthorization-attribute-timeout">timeout</a>           =&gt; <em># The number of seconds in which the credential...</em>
   <a href="#macauthorization-attribute-tries">tries</a>             =&gt; <em># The number of tries...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="macauthorization-attribute-name">name</h4>
@@ -2837,7 +2835,7 @@ Creates an email alias in the local alias database.
   <a href="#mailalias-attribute-provider">provider</a>  =&gt; <em># The specific backend to use for this `mailalias` </em>
   <a href="#mailalias-attribute-recipient">recipient</a> =&gt; <em># Where email should be sent.  Multiple values...</em>
   <a href="#mailalias-attribute-target">target</a>    =&gt; <em># The file in which to store the aliases.  Only...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="mailalias-attribute-name">name</h4>
@@ -2932,7 +2930,7 @@ and remove lists; it cannot currently reconfigure them.
   <a href="#maillist-attribute-password">password</a>    =&gt; <em># The admin...</em>
   <a href="#maillist-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `maillist...</em>
   <a href="#maillist-attribute-webserver">webserver</a>   =&gt; <em># The name of the host providing web archives and...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="maillist-attribute-name">name</h4>
@@ -3039,7 +3037,7 @@ MCX settings refer to, the MCX resource will autorequire that user, group, or co
   <a href="#mcx-attribute-ds_name">ds_name</a>  =&gt; <em># The name to attach the MCX Setting to. (For...</em>
   <a href="#mcx-attribute-ds_type">ds_type</a>  =&gt; <em># The DirectoryService type this MCX setting...</em>
   <a href="#mcx-attribute-provider">provider</a> =&gt; <em># The specific backend to use for this `mcx...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="mcx-attribute-name">name</h4>
@@ -3183,7 +3181,11 @@ Puppet will try to unmount then remount that filesystem.
 
 **Autorequires:** If Puppet is managing any parents of a mount resource ---
 that is, other mount points higher up in the filesystem --- the child
-mount will autorequire them.
+mount will autorequire them. If Puppet is managing the file path of a
+mount point, the mount resource will autorequire it.
+
+**Autobefores:**  If Puppet is managing any child file paths of a mount
+point, the mount resource will autobefore them.
 
 <h3 id="mount-attributes">Attributes</h3>
 
@@ -3200,7 +3202,7 @@ mount will autorequire them.
   <a href="#mount-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `mount...</em>
   <a href="#mount-attribute-remounts">remounts</a>    =&gt; <em># Whether the mount can be remounted  `mount -o...</em>
   <a href="#mount-attribute-target">target</a>      =&gt; <em># The file in which to store the mount table....</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="mount-attribute-name">name</h4>
@@ -3393,7 +3395,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_command-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this...</em>
   <a href="#nagios_command-attribute-target">target</a>       =&gt; <em># The...</em>
   <a href="#nagios_command-attribute-use">use</a>          =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_command-attribute-command_name">command_name</h4>
@@ -3555,7 +3557,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_contact-attribute-service_notifications_enabled">service_notifications_enabled</a> =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_contact-attribute-target">target</a>                        =&gt; <em># The...</em>
   <a href="#nagios_contact-attribute-use">use</a>                           =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_contact-attribute-contact_name">contact_name</h4>
@@ -3859,7 +3861,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_contactgroup-attribute-register">register</a>             =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_contactgroup-attribute-target">target</a>               =&gt; <em># The...</em>
   <a href="#nagios_contactgroup-attribute-use">use</a>                  =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_contactgroup-attribute-contactgroup_name">contactgroup_name</h4>
@@ -4060,7 +4062,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_host-attribute-target">target</a>                       =&gt; <em># The...</em>
   <a href="#nagios_host-attribute-use">use</a>                          =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_host-attribute-vrml_image">vrml_image</a>                   =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_host-attribute-host_name">host_name</h4>
@@ -4553,7 +4555,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_hostdependency-attribute-register">register</a>                      =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_hostdependency-attribute-target">target</a>                        =&gt; <em># The...</em>
   <a href="#nagios_hostdependency-attribute-use">use</a>                           =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_hostdependency-attribute-_naginator_name">_naginator_name</h4>
@@ -4759,7 +4761,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_hostescalation-attribute-register">register</a>              =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_hostescalation-attribute-target">target</a>                =&gt; <em># The...</em>
   <a href="#nagios_hostescalation-attribute-use">use</a>                   =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_hostescalation-attribute-_naginator_name">_naginator_name</h4>
@@ -4970,7 +4972,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_hostextinfo-attribute-target">target</a>          =&gt; <em># The...</em>
   <a href="#nagios_hostextinfo-attribute-use">use</a>             =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_hostextinfo-attribute-vrml_image">vrml_image</a>      =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_hostextinfo-attribute-host_name">host_name</h4>
@@ -5158,7 +5160,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_hostgroup-attribute-register">register</a>          =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_hostgroup-attribute-target">target</a>            =&gt; <em># The...</em>
   <a href="#nagios_hostgroup-attribute-use">use</a>               =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_hostgroup-attribute-hostgroup_name">hostgroup_name</h4>
@@ -5392,7 +5394,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_service-attribute-stalking_options">stalking_options</a>             =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_service-attribute-target">target</a>                       =&gt; <em># The...</em>
   <a href="#nagios_service-attribute-use">use</a>                          =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_service-attribute-_naginator_name">_naginator_name</h4>
@@ -5895,7 +5897,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_servicedependency-attribute-service_description">service_description</a>           =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_servicedependency-attribute-target">target</a>                        =&gt; <em># The...</em>
   <a href="#nagios_servicedependency-attribute-use">use</a>                           =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_servicedependency-attribute-_naginator_name">_naginator_name</h4>
@@ -6119,7 +6121,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_serviceescalation-attribute-servicegroup_name">servicegroup_name</a>     =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_serviceescalation-attribute-target">target</a>                =&gt; <em># The...</em>
   <a href="#nagios_serviceescalation-attribute-use">use</a>                   =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_serviceescalation-attribute-_naginator_name">_naginator_name</h4>
@@ -6347,7 +6349,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_serviceextinfo-attribute-service_description">service_description</a> =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_serviceextinfo-attribute-target">target</a>              =&gt; <em># The...</em>
   <a href="#nagios_serviceextinfo-attribute-use">use</a>                 =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_serviceextinfo-attribute-_naginator_name">_naginator_name</h4>
@@ -6542,7 +6544,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_servicegroup-attribute-servicegroup_members">servicegroup_members</a> =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_servicegroup-attribute-target">target</a>               =&gt; <em># The...</em>
   <a href="#nagios_servicegroup-attribute-use">use</a>                  =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_servicegroup-attribute-servicegroup_name">servicegroup_name</h4>
@@ -6732,7 +6734,7 @@ in the default file locations.  This is an architectural limitation.
   <a href="#nagios_timeperiod-attribute-tuesday">tuesday</a>         =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_timeperiod-attribute-use">use</a>             =&gt; <em># Nagios configuration file...</em>
   <a href="#nagios_timeperiod-attribute-wednesday">wednesday</a>       =&gt; <em># Nagios configuration file...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="nagios_timeperiod-attribute-timeperiod_name">timeperiod_name</h4>
@@ -6921,7 +6923,7 @@ Sends an arbitrary message to the agent run-time log.
   <a href="#notify-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> An arbitrary tag for your own reference; the...</em>
   <a href="#notify-attribute-message">message</a>  =&gt; <em># The message to be sent to the...</em>
   <a href="#notify-attribute-withpath">withpath</a> =&gt; <em># Whether to show the full object path. Defaults...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="notify-attribute-name">name</h4>
@@ -7010,7 +7012,7 @@ resource will autorequire those files.
   <a href="#package-attribute-status">status</a>               =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-uninstall_options">uninstall_options</a>    =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="package-attribute-provider">provider</h4>
@@ -7081,8 +7083,8 @@ conditionally:
     }
 
     package { 'openssl':
+      ensure => installed,
       name   => $ssl,
-      ensure => installed
     }
 
     . etc. .
@@ -7093,9 +7095,9 @@ conditionally:
     }
 
     package { 'openssh':
-      name    => $ssh
       ensure  => installed,
-      require => Package['openssl']
+      name    => $ssh,
+      require => Package['openssl'],
     }
 
 ([↑ Back to package attributes](#package-attributes))
@@ -7564,7 +7566,7 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Supported features: `installable`, `uninstallable`, `upgradeable`.
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -8071,15 +8073,15 @@ Provider support:
     <tr>
       <td>pip3</td>
       <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
@@ -8360,7 +8362,7 @@ purging is only logged and does not actually happen.
   <a href="#resources-attribute-purge">purge</a>              =&gt; <em># Whether to purge unmanaged resources.  When set...</em>
   <a href="#resources-attribute-unless_system_user">unless_system_user</a> =&gt; <em># This keeps system users from being purged.  By...</em>
   <a href="#resources-attribute-unless_uid">unless_uid</a>         =&gt; <em># This keeps specific uids or ranges of uids from...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="resources-attribute-name">name</h4>
@@ -8420,7 +8422,7 @@ Manages connected router.
 
 <pre><code>router { 'resource title':
   <a href="#router-attribute-url">url</a> =&gt; <em># <strong>(namevar)</strong> An SSH or telnet URL at which to access the...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="router-attribute-url">url</h4>
@@ -8446,7 +8448,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/references/latest/metaparameter.html#schedule)
+[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -8468,7 +8470,7 @@ wanted to restrict certain resources to only running once, between
 the hours of two and 4 AM, then you would use this schedule:
 
     schedule { 'maint':
-      range  => "2 - 4",
+      range  => '2 - 4',
       period => daily,
       repeat => 1,
     }
@@ -8500,7 +8502,7 @@ This will cause resources to be applied every 30 minutes by default.
   <a href="#schedule-attribute-range">range</a>       =&gt; <em># The earliest and latest that a resource can be...</em>
   <a href="#schedule-attribute-repeat">repeat</a>      =&gt; <em># How often a given resource may be applied in...</em>
   <a href="#schedule-attribute-weekday">weekday</a>     =&gt; <em># The days of the week in which the schedule...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="schedule-attribute-name">name</h4>
@@ -8512,10 +8514,10 @@ to a resource with the `schedule` metaparameter:
 
     schedule { 'everyday':
       period => daily,
-      range  => "2 - 4",
+      range  => '2 - 4',
     }
 
-    exec { "/usr/bin/apt-get update":
+    exec { '/usr/bin/apt-get update':
       schedule => 'everyday',
     }
 
@@ -8575,7 +8577,7 @@ seconds can optionally be provided, using the normal colon as a
 separator. For instance:
 
     schedule { 'maintenance':
-      range => "1:30 - 4:30",
+      range => '1:30 - 4:30',
     }
 
 This is mostly useful for restricting certain resources to being
@@ -8647,7 +8649,7 @@ of the `trigger` attribute for details on setting schedules.
   <a href="#scheduled_task-attribute-trigger">trigger</a>     =&gt; <em># One or more triggers defining when the task...</em>
   <a href="#scheduled_task-attribute-user">user</a>        =&gt; <em># The user to run the scheduled task as.  Please...</em>
   <a href="#scheduled_task-attribute-working_dir">working_dir</a> =&gt; <em># The full path of the directory in which to start </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="scheduled_task-attribute-name">name</h4>
@@ -8863,7 +8865,7 @@ are any of the ones found in `/selinux/booleans/`.
   <a href="#selboolean-attribute-persistent">persistent</a> =&gt; <em># If set true, SELinux booleans will be written to </em>
   <a href="#selboolean-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this...</em>
   <a href="#selboolean-attribute-value">value</a>      =&gt; <em># Whether the SELinux boolean should be enabled or </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="selboolean-attribute-name">name</h4>
@@ -8945,7 +8947,7 @@ resource will autorequire that file.
   <a href="#selmodule-attribute-selmoduledir">selmoduledir</a>  =&gt; <em># The directory to look for the compiled pp module </em>
   <a href="#selmodule-attribute-selmodulepath">selmodulepath</a> =&gt; <em># The full path to the compiled .pp policy module. </em>
   <a href="#selmodule-attribute-syncversion">syncversion</a>   =&gt; <em># If set to `true`, the policy will be reloaded if </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="selmodule-attribute-name">name</h4>
@@ -9075,7 +9077,7 @@ can be configured:
   <a href="#service-attribute-start">start</a>      =&gt; <em># Specify a *start* command manually.  Most...</em>
   <a href="#service-attribute-status">status</a>     =&gt; <em># Specify a *status* command manually.  This...</em>
   <a href="#service-attribute-stop">stop</a>       =&gt; <em># Specify a *stop* command...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="service-attribute-name">name</h4>
@@ -9319,9 +9321,9 @@ The daemon directory should be in one of the following locations:
 
 ...or this can be overriden in the resource's attributes:
 
-    service { "myservice":
-      provider => "daemontools",
-      path     => "/path/to/daemons",
+    service { 'myservice':
+      provider => 'daemontools',
+      path     => '/path/to/daemons',
     }
 
 This provider supports out of the box:
@@ -9477,9 +9479,9 @@ The daemon directory should be in one of the following locations:
 
 or this can be overriden in the service resource parameters::
 
-    service { "myservice":
-      provider => "runit",
-      path => "/path/to/daemons",
+    service { 'myservice':
+      provider => 'runit',
+      path     => '/path/to/daemons',
     }
 
 This provider supports out of the box:
@@ -9531,6 +9533,10 @@ is not yet supported.
 <h4 id="service-provider-systemd">systemd</h4>
 
 Manages `systemd` services using `systemctl`.
+
+Because `systemd` defaults to assuming the `.service` unit type, the suffix
+may be omitted.  Other unit types (such as `.path`) may be managed by
+providing the proper suffix.
 
 * Required binaries: `systemctl`.
 * Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04`.
@@ -9803,7 +9809,7 @@ that user.
   <a href="#ssh_authorized_key-attribute-target">target</a>   =&gt; <em># The absolute filename in which to store the SSH...</em>
   <a href="#ssh_authorized_key-attribute-type">type</a>     =&gt; <em># The encryption type used.  Valid values are...</em>
   <a href="#ssh_authorized_key-attribute-user">user</a>     =&gt; <em># The user account in which the SSH key should be...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="ssh_authorized_key-attribute-name">name</h4>
@@ -9912,9 +9918,11 @@ sshkey
 
 <h3 id="sshkey-description">Description</h3>
 
-Installs and manages ssh host keys.  At this point, this type
-only knows how to install keys into `/etc/ssh/ssh_known_hosts`.  See
-the `ssh_authorized_key` type to manage authorized keys.
+Installs and manages ssh host keys.  By default, this type will
+install keys into `/etc/ssh/ssh_known_hosts`. To manage ssh keys in a
+different `known_hosts` file, such as a user's personal `known_hosts`,
+pass its path to the `target` parameter. See the `ssh_authorized_key`
+type to manage authorized keys.
 
 <h3 id="sshkey-attributes">Attributes</h3>
 
@@ -9926,7 +9934,7 @@ the `ssh_authorized_key` type to manage authorized keys.
   <a href="#sshkey-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `sshkey...</em>
   <a href="#sshkey-attribute-target">target</a>       =&gt; <em># The file in which to store the ssh key.  Only...</em>
   <a href="#sshkey-attribute-type">type</a>         =&gt; <em># The encryption type used.  Probably ssh-dss or...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="sshkey-attribute-name">name</h4>
@@ -10017,7 +10025,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](https://docs.puppetlabs.com/references/latest/metaparameter.html#stage).
+[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -10039,7 +10047,7 @@ for classes.
 
 <pre><code>stage { 'resource title':
   <a href="#stage-attribute-name">name</a> =&gt; <em># <strong>(namevar)</strong> The name of the stage. Use this as the value for </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="stage-attribute-name">name</h4>
@@ -10086,7 +10094,7 @@ actual deletion.
   <a href="#tidy-attribute-rmdirs">rmdirs</a>  =&gt; <em># Tidy directories in addition to files; that is...</em>
   <a href="#tidy-attribute-size">size</a>    =&gt; <em># Tidy files whose size is equal to or greater...</em>
   <a href="#tidy-attribute-type">type</a>    =&gt; <em># Set the mechanism for determining age. Default...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="tidy-attribute-path">path</h4>
@@ -10126,10 +10134,10 @@ be specified using an array.
 
 Example:
 
-    tidy { "/tmp":
-      age     => "1w",
+    tidy { '/tmp':
+      age     => '1w',
       recurse => 1,
-      matches => [ "[0-9]pub*.tmp", "*.temp", "tmpfile?" ]
+      matches => [ '[0-9]pub*.tmp', '*.temp', 'tmpfile?' ],
     }
 
 This removes files from `/tmp` if they are one week old or older,
@@ -10252,7 +10260,7 @@ user's roles, the user resource will autorequire those role accounts.
   <a href="#user-attribute-shell">shell</a>                =&gt; <em># The user's login shell.  The shell must exist...</em>
   <a href="#user-attribute-system">system</a>               =&gt; <em># Whether the user is a system user, according to...</em>
   <a href="#user-attribute-uid">uid</a>                  =&gt; <em># The user ID; must be specified numerically. If...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="user-attribute-name">name</h4>
@@ -10488,7 +10496,7 @@ encryption formats and requirements.
   hashes. You can use Puppet's built-in `sha1` function to generate a salted SHA1
   hash from a password.
 * Mac OS X 10.7 (Lion), and many recent Linux distributions, use salted SHA512
-  hashes. The Puppet [stdlib][] module contains a `str2saltedsha512` function
+  hashes. The Puppet Labs [stdlib][] module contains a `str2saltedsha512` function
   which can generate password hashes for these operating systems.
 * OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. When managing passwords
   on these systems, the `salt` and `iterations` attributes need to be specified as
@@ -10969,7 +10977,7 @@ Manages a VLAN on a router or switch.
   <a href="#vlan-attribute-description">description</a> =&gt; <em># The VLAN's...</em>
   <a href="#vlan-attribute-device_url">device_url</a>  =&gt; <em># The URL of the router or switch maintaining this </em>
   <a href="#vlan-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `vlan...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="vlan-attribute-name">name</h4>
@@ -11094,7 +11102,7 @@ exinstence of files listed in the `include` attribute.
   <a href="#yumrepo-attribute-target">target</a>                       =&gt; <em># The filename to write the yum repository...</em>
   <a href="#yumrepo-attribute-throttle">throttle</a>                     =&gt; <em># Enable bandwidth throttling for downloads. This...</em>
   <a href="#yumrepo-attribute-timeout">timeout</a>                      =&gt; <em># Number of seconds to wait for a connection...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="yumrepo-attribute-name">name</h4>
@@ -11648,7 +11656,7 @@ parent zfs instances, the zfs resource will autorequire them.
   <a href="#zfs-attribute-vscan">vscan</a>          =&gt; <em># The vscan property. Valid values are `on`...</em>
   <a href="#zfs-attribute-xattr">xattr</a>          =&gt; <em># The xattr property. Valid values are `on`...</em>
   <a href="#zfs-attribute-zoned">zoned</a>          =&gt; <em># The zoned property. Valid values are `on`...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="zfs-attribute-name">name</h4>
@@ -11977,7 +11985,7 @@ autorequire that directory.
   <a href="#zone-attribute-realhostname">realhostname</a> =&gt; <em># The actual hostname of the...</em>
   <a href="#zone-attribute-shares">shares</a>       =&gt; <em># Number of FSS CPU shares allocated to the...</em>
   <a href="#zone-attribute-sysidcfg">sysidcfg</a>     =&gt; <em># The text to go into the `sysidcfg` file when the </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="zone-attribute-name">name</h4>
@@ -12154,11 +12162,11 @@ booted.  The best way is to use a template:
 
 And then call that:
 
-    zone { myzone:
-      ip           => "bge0:192.168.0.23",
-      sysidcfg     => template("site/sysidcfg.erb"),
-      path         => "/opt/zones/myzone",
-      realhostname => "fully.qualified.domain.name"
+    zone { 'myzone':
+      ip           => 'bge0:192.168.0.23',
+      sysidcfg     => template('site/sysidcfg.erb'),
+      path         => '/opt/zones/myzone',
+      realhostname => 'fully.qualified.domain.name',
     }
 
 The `sysidcfg` only matters on the first booting of the zone,
@@ -12205,7 +12213,7 @@ Supports vdevs with mirrors, raidz, logs and spares.
   <a href="#zpool-attribute-raid_parity">raid_parity</a> =&gt; <em># Determines parity when using the `raidz...</em>
   <a href="#zpool-attribute-raidz">raidz</a>       =&gt; <em># List of all the devices to raid for this pool...</em>
   <a href="#zpool-attribute-spare">spare</a>       =&gt; <em># Spare disk(s) for this...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="zpool-attribute-pool">pool</h4>
@@ -12302,4 +12310,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

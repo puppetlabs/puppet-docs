@@ -441,9 +441,6 @@ None of its methods are API except those that are clearly marked as such.</p>
       <pre class="lines">
 
 
-979
-980
-981
 982
 983
 984
@@ -453,10 +450,13 @@ None of its methods are API except those that are clearly marked as such.</p>
 988
 989
 990
-991</pre>
+991
+992
+993
+994</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 979</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 982</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^function_(.*)$</span><span class='regexp_end'>/</span></span>
@@ -570,12 +570,12 @@ or in a specific visible named scope.</p>
       <pre class="lines">
 
 
-542
-543
-544</pre>
+545
+546
+547</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 542</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 545</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_lookupvar'>lookupvar</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -664,12 +664,12 @@ scope/namespace than the scope passed to a method.</p>
       <pre class="lines">
 
 
-818
-819
-820</pre>
+821
+822
+823</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 818</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 821</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_setvar'>setvar</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
@@ -864,12 +864,12 @@ manifest.</p>
       <pre class="lines">
 
 
-865
-866
-867</pre>
+868
+869
+870</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 865</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 868</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pop_ephemerals'>pop_ephemerals</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
   <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
@@ -923,12 +923,12 @@ manifest.</p>
       <pre class="lines">
 
 
-872
-873
-874</pre>
+875
+876
+877</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 872</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 875</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_push_ephemerals'>push_ephemerals</span><span class='lparen'>(</span><span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ephemeral_scope'>ephemeral_scope</span><span class='op'>|</span> <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_ephemeral_scope'>ephemeral_scope</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -969,17 +969,17 @@ manifest.</p>
       <pre class="lines">
 
 
-851
-852
-853
 854
 855
 856
 857
-858</pre>
+858
+859
+860
+861</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 851</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 854</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unset_ephemeral_var'>unset_ephemeral_var</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='op'>=</span><span class='symbol'>:all</span><span class='rparen'>)</span>
   <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Method Parser::Scope#unset_ephemeral_var() is deprecated</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1059,12 +1059,12 @@ manifest.</p>
       <pre class="lines">
 
 
-895
-896
-897</pre>
+898
+899
+900</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 895</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 898</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_global_scope'>with_global_scope</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_find_global_scope'>find_global_scope</span><span class='period'>.</span><span class='id identifier rubyid_without_ephemeral_scopes'>without_ephemeral_scopes</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1120,17 +1120,17 @@ manifest.</p>
       <pre class="lines">
 
 
-927
-928
-929
 930
 931
 932
 933
-934</pre>
+934
+935
+936
+937</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 927</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 930</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_guarded_scope'>with_guarded_scope</span>
   <span class='id identifier rubyid_elevel'>elevel</span> <span class='op'>=</span> <span class='id identifier rubyid_ephemeral_level'>ephemeral_level</span>
@@ -1174,16 +1174,16 @@ manifest.</p>
       <pre class="lines">
 
 
-914
-915
-916
 917
 918
 919
-920</pre>
+920
+921
+922
+923</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 914</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 917</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_parameter_scope'>with_parameter_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_param_scope'>param_scope</span> <span class='op'>=</span> <span class='const'>ParameterScope</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
@@ -1226,18 +1226,18 @@ manifest.</p>
       <pre class="lines">
 
 
-902
-903
-904
 905
 906
 907
 908
 909
-910</pre>
+910
+911
+912
+913</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 902</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 905</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_without_ephemeral_scopes'>without_ephemeral_scopes</span>
   <span class='id identifier rubyid_save_ephemeral'>save_ephemeral</span> <span class='op'>=</span> <span class='ivar'>@ephemeral</span>
@@ -1258,7 +1258,7 @@ manifest.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:48 2016 by
+  Generated on Mon May 16 22:13:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

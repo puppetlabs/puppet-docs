@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: maillist'
 canonical: /puppet/latest/reference/types/maillist.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 maillist
 -----
@@ -29,7 +29,7 @@ and remove lists; it cannot currently reconfigure them.
   <a href="#maillist-attribute-password">password</a>    =&gt; <em># The admin...</em>
   <a href="#maillist-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `maillist...</em>
   <a href="#maillist-attribute-webserver">webserver</a>   =&gt; <em># The name of the host providing web archives and...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="maillist-attribute-name">name</h4>
@@ -102,4 +102,4 @@ The name of the host providing web archives and the administrative interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

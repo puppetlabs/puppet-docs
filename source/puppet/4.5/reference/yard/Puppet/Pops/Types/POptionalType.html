@@ -177,7 +177,7 @@ required_type - is a short hand for Variant[T, Undef]</p>
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#class_from_string-instance_method" title="Puppet::Pops::Types::PAnyType#class_from_string (method)">#class_from_string</a></span>, <span class='object_link'><a href="PAnyType.html#generalize-instance_method" title="Puppet::Pops::Types::PAnyType#generalize (method)">#generalize</a></span>, <span class='object_link'><a href="PAnyType.html#iterable_type-instance_method" title="Puppet::Pops::Types::PAnyType#iterable_type (method)">#iterable_type</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#generalize-instance_method" title="Puppet::Pops::Types::PAnyType#generalize (method)">#generalize</a></span>, <span class='object_link'><a href="PAnyType.html#iterable_type-instance_method" title="Puppet::Pops::Types::PAnyType#iterable_type (method)">#iterable_type</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
 
   
   
@@ -243,18 +243,18 @@ required_type - is a short hand for Variant[T, Undef]</p>
       <pre class="lines">
 
 
-2187
-2188
-2189
-2190
-2191
-2192
-2193
-2194
-2195</pre>
+2582
+2583
+2584
+2585
+2586
+2587
+2588
+2589
+2590</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2187</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2582</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PUndefType</span><span class='rparen'>)</span>
@@ -275,7 +275,7 @@ required_type - is a short hand for Variant[T, Undef]</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:50 2016 by
+  Generated on Mon May 16 22:13:38 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

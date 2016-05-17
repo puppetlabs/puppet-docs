@@ -246,15 +246,15 @@
       <pre class="lines">
 
 
-1239
-1240
 1241
 1242
 1243
-1244</pre>
+1244
+1245
+1246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1239</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1241</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='id identifier rubyid_value_sets'>value_sets</span><span class='comma'>,</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='rparen'>)</span>
   <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_mode'>mode</span>
@@ -338,8 +338,6 @@ if the looked up value is a String.</p>
       <pre class="lines">
 
 
-1273
-1274
 1275
 1276
 1277
@@ -361,10 +359,12 @@ if the looked up value is a String.</p>
 1293
 1294
 1295
-1296</pre>
+1296
+1297
+1298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1273</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1275</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_interpolate'>interpolate</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_setting'>setting</span> <span class='op'>=</span> <span class='ivar'>@defaults</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
@@ -456,8 +456,6 @@ if the looked up value is a String.</p>
       <pre class="lines">
 
 
-1251
-1252
 1253
 1254
 1255
@@ -468,10 +466,12 @@ if the looked up value is a String.</p>
 1260
 1261
 1262
-1263</pre>
+1263
+1264
+1265</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1251</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1253</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set'>set</span> <span class='op'>=</span> <span class='ivar'>@value_sets</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value_set'>value_set</span><span class='op'>|</span>
@@ -496,7 +496,7 @@ if the looked up value is a String.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:47 2016 by
+  Generated on Mon May 16 22:13:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

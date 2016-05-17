@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: user'
 canonical: /puppet/latest/reference/types/user.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 user
 -----
@@ -66,7 +66,7 @@ user's roles, the user resource will autorequire those role accounts.
   <a href="#user-attribute-shell">shell</a>                =&gt; <em># The user's login shell.  The shell must exist...</em>
   <a href="#user-attribute-system">system</a>               =&gt; <em># Whether the user is a system user, according to...</em>
   <a href="#user-attribute-uid">uid</a>                  =&gt; <em># The user ID; must be specified numerically. If...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="user-attribute-name">name</h4>
@@ -302,7 +302,7 @@ encryption formats and requirements.
   hashes. You can use Puppet's built-in `sha1` function to generate a salted SHA1
   hash from a password.
 * Mac OS X 10.7 (Lion), and many recent Linux distributions, use salted SHA512
-  hashes. The Puppet [stdlib][] module contains a `str2saltedsha512` function
+  hashes. The Puppet Labs [stdlib][] module contains a `str2saltedsha512` function
   which can generate password hashes for these operating systems.
 * OS X 10.8 and higher use salted SHA512 PBKDF2 hashes. When managing passwords
   on these systems, the `salt` and `iterations` attributes need to be specified as
@@ -763,4 +763,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

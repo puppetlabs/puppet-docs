@@ -131,6 +131,9 @@ will be merged according to a given (optional) merge strategy.</p>
 </ul>
 
 </div>
+  <h2>Constant Summary</h2>
+  
+
 
 
 
@@ -236,6 +239,23 @@ will be merged according to a given (optional) merge strategy.</p>
   
   <h3 class="inherited">Methods included from <span class='object_link'>DataProvider</span></h3>
   <p class="inherited"><span class='object_link'><a href="DataProvider.html#data_key-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#data_key (method)">#data_key</a></span>, <span class='object_link'><a href="DataProvider.html#initialize_data-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#initialize_data (method)">#initialize_data</a></span>, <span class='object_link'><a href="DataProvider.html#lookup-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#lookup (method)">#lookup</a></span>, <span class='object_link'><a href="DataProvider.html#post_process-instance_method" title="Puppet::Plugins::DataProviders::DataProvider#post_process (method)">#post_process</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Puppet::Pops::Lookup::SubLookup</span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Pops/Lookup/SubLookup.html#split_key-instance_method" title="Puppet::Pops::Lookup::SubLookup#split_key (method)">#split_key</a></span>, <span class='object_link'><a href="../../Pops/Lookup/SubLookup.html#sub_lookup-instance_method" title="Puppet::Pops::Lookup::SubLookup#sub_lookup (method)">#sub_lookup</a></span></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
@@ -330,14 +350,14 @@ will be merged according to a given (optional) merge strategy.</p>
       <pre class="lines">
 
 
-186
-187
-188
-189
-190</pre>
+193
+194
+195
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_data_provider'>parent_data_provider</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
@@ -482,14 +502,14 @@ request.</p>
       <pre class="lines">
 
 
-206
-207
-208
-209
-210</pre>
+213
+214
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 213</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_data_key'>data_key</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_compiler'>compiler</span> <span class='op'>=</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_compiler'>compiler</span>
@@ -591,13 +611,6 @@ the value is found in more than one location and <em>merge</em> is not nil.</p>
       <pre class="lines">
 
 
-225
-226
-227
-228
-229
-230
-231
 232
 233
 234
@@ -616,12 +629,26 @@ the value is found in more than one location and <em>merge</em> is not nil.</p>
 247
 248
 249
-250</pre>
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 225</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 232</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unchecked_lookup'>unchecked_lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='comma'>,</span> <span class='id identifier rubyid_merge'>merge</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_segments'>segments</span> <span class='op'>=</span> <span class='id identifier rubyid_split_key'>split_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_root_key'>root_key</span> <span class='op'>=</span> <span class='id identifier rubyid_segments'>segments</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span>
+
   <span class='id identifier rubyid_module_name'>module_name</span> <span class='op'>=</span> <span class='ivar'>@parent_data_provider</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='ivar'>@parent_data_provider</span><span class='period'>.</span><span class='id identifier rubyid_data_key'>data_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='symbol'>:data_provider</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_merge_strategy'>merge_strategy</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>MergeStrategy</span><span class='period'>.</span><span class='id identifier rubyid_strategy'>strategy</span><span class='lparen'>(</span><span class='id identifier rubyid_merge'>merge</span><span class='rparen'>)</span>
@@ -630,8 +657,9 @@ the value is found in more than one location and <em>merge</em> is not nil.</p>
         <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='symbol'>:path</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span> <span class='kw'>do</span>
           <span class='kw'>if</span> <span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span>
             <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='id identifier rubyid_load_data'>load_data</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='period'>.</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_module_name'>module_name</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span>
-            <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span>
-            <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>||</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_root_key'>root_key</span><span class='rbracket'>]</span>
+            <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>||</span> <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_root_key'>root_key</span><span class='rparen'>)</span>
+              <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_sub_lookup'>sub_lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='comma'>,</span> <span class='id identifier rubyid_segments'>segments</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_segments'>segments</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
               <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_found'>report_found</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_post_process'>post_process</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span><span class='rparen'>)</span>
             <span class='kw'>else</span>
               <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_not_found'>report_not_found</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
@@ -657,7 +685,7 @@ the value is found in more than one location and <em>merge</em> is not nil.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:56 2016 by
+  Generated on Mon May 16 22:13:45 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

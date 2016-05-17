@@ -172,7 +172,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#class_from_string-instance_method" title="Puppet::Pops::Types::PAnyType#class_from_string (method)">#class_from_string</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span>, <span class='object_link'><a href="PAnyType.html#type_to_range-instance_method" title="Puppet::Pops::Types::PAnyType#type_to_range (method)">#type_to_range</a></span></p>
 
   
   
@@ -238,40 +238,50 @@
       <pre class="lines">
 
 
-1279
-1280
-1281
-1282
-1283
-1284
-1285
-1286
-1287
-1288
-1289
-1290
-1291
-1292
-1293
-1294
-1295
-1296
-1297
-1298
-1299
-1300
-1301
-1302
-1303
-1304
-1305
-1306
-1307
-1308
-1309</pre>
+1585
+1586
+1587
+1588
+1589
+1590
+1591
+1592
+1593
+1594
+1595
+1596
+1597
+1598
+1599
+1600
+1601
+1602
+1603
+1604
+1605
+1606
+1607
+1608
+1609
+1610
+1611
+1612
+1613
+1614
+1615
+1616
+1617
+1618
+1619
+1620
+1621
+1622
+1623
+1624
+1625</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1279</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1585</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PStructType</span><span class='rparen'>)</span>
@@ -289,16 +299,26 @@
   <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PHashType</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='int'>0</span>
     <span class='id identifier rubyid_required_elements_assignable'>required_elements_assignable</span> <span class='op'>=</span> <span class='id identifier rubyid_elements'>elements</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_key_type'>key_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'>PUndefType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
-        <span class='kw'>true</span>
+      <span class='id identifier rubyid_key_type'>key_type</span> <span class='op'>=</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_key_type'>key_type</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_key_type'>key_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'>PUndefType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
+        <span class='comment'># Element is optional so Hash does not need to provide it
+</span>        <span class='kw'>true</span>
       <span class='kw'>else</span>
         <span class='id identifier rubyid_required'>required</span> <span class='op'>+=</span> <span class='int'>1</span>
-        <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_e'>e</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+          <span class='comment'># Hash must have something that is assignable. We don&#39;t care about the name or size of the key though
+</span>          <span class='comment'># because we have no instance of a hash to compare against.
+</span>          <span class='id identifier rubyid_key_type'>key_type</span><span class='period'>.</span><span class='id identifier rubyid_generalize'>generalize</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_key_type'>key_type</span><span class='rparen'>)</span>
+        <span class='kw'>else</span>
+          <span class='kw'>false</span>
+        <span class='kw'>end</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_required_elements_assignable'>required_elements_assignable</span>
-      <span class='id identifier rubyid_size_o'>size_o</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>||</span> <span class='id identifier rubyid_collection_default_size_t'>collection_default_size_t</span>
+      <span class='id identifier rubyid_size_o'>size_o</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>||</span> <span class='const'>PCollectionType</span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span>
       <span class='const'>PIntegerType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_required'>required</span><span class='comma'>,</span> <span class='id identifier rubyid_elements'>elements</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_size_o'>size_o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='kw'>false</span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
     <span class='kw'>false</span>
@@ -314,7 +334,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:50 2016 by
+  Generated on Mon May 16 22:13:37 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

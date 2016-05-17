@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: schedule'
 canonical: /puppet/latest/reference/types/schedule.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 schedule
 -----
@@ -15,7 +15,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/references/latest/metaparameter.html#schedule)
+[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -37,7 +37,7 @@ wanted to restrict certain resources to only running once, between
 the hours of two and 4 AM, then you would use this schedule:
 
     schedule { 'maint':
-      range  => "2 - 4",
+      range  => '2 - 4',
       period => daily,
       repeat => 1,
     }
@@ -69,7 +69,7 @@ This will cause resources to be applied every 30 minutes by default.
   <a href="#schedule-attribute-range">range</a>       =&gt; <em># The earliest and latest that a resource can be...</em>
   <a href="#schedule-attribute-repeat">repeat</a>      =&gt; <em># How often a given resource may be applied in...</em>
   <a href="#schedule-attribute-weekday">weekday</a>     =&gt; <em># The days of the week in which the schedule...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="schedule-attribute-name">name</h4>
@@ -81,10 +81,10 @@ to a resource with the `schedule` metaparameter:
 
     schedule { 'everyday':
       period => daily,
-      range  => "2 - 4",
+      range  => '2 - 4',
     }
 
-    exec { "/usr/bin/apt-get update":
+    exec { '/usr/bin/apt-get update':
       schedule => 'everyday',
     }
 
@@ -144,7 +144,7 @@ seconds can optionally be provided, using the normal colon as a
 separator. For instance:
 
     schedule { 'maintenance':
-      range => "1:30 - 4:30",
+      range => '1:30 - 4:30',
     }
 
 This is mostly useful for restricting certain resources to being
@@ -189,4 +189,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

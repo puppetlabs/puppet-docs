@@ -302,6 +302,31 @@ between loaders or a search if loader with private entity is a parent of the ori
 <li class="public ">
   <span class="summary_signature">
     
+      <a href="#loaded_entry-instance_method" title="#loaded_entry (instance method)">- (NamedEntry<sup>?</sup>) <strong>loaded_entry</strong>(typed_name, check_dependencies = false) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Returns an already loaded entry if one exists, or nil.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
       <a href="#private_loader-instance_method" title="#private_loader (instance method)">- (Object) <strong>private_loader</strong> </a>
     
 
@@ -410,16 +435,16 @@ define the name.</p>
       <pre class="lines">
 
 
-67
-68
-69
-70
-71
-72
-73</pre>
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span> <span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='id identifier rubyid_get_entry'>get_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rparen'>)</span>
@@ -513,12 +538,12 @@ An implementation of find typically caches the result.</p>
       <pre class="lines">
 
 
-84
-85
-86</pre>
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -606,12 +631,12 @@ An implementation of find typically caches the result.</p>
       <pre class="lines">
 
 
-121
-122
-123</pre>
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 121</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_entry'>get_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -843,15 +868,126 @@ if it cannot load all kinds.</p>
       <pre class="lines">
 
 
-129
-130
-131</pre>
+141
+142
+143</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_loadables'>loadables</span>
   <span class='const'>LOADABLE_KINDS</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="loaded_entry-instance_method">
+  
+    - (<tt><span class='object_link'>NamedEntry</span></tt><sup>?</sup>) <strong>loaded_entry</strong>(typed_name, check_dependencies = false) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an already loaded entry if one exists, or nil. This does not trigger loading
+of the given type/name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>typed_name</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>TypedName</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul>
+<li>the type, name combination to lookup</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>check_dependencies</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><ul>
+<li>if dependencies should be checked in additiona to here and parent</li>
+</ul>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>NamedEntry</span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the entry containing the loaded value, or nil if not found</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>NotImplementedError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+66
+67
+68</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 66</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_loaded_entry'>loaded_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_typed_name'>typed_name</span><span class='comma'>,</span> <span class='id identifier rubyid_check_dependencies'>check_dependencies</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -888,12 +1024,12 @@ For loaders that does not provide a private loader, self is returned.</p>
       <pre class="lines">
 
 
-97
-98
-99</pre>
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_private_loader'>private_loader</span>
   <span class='kw'>self</span>
@@ -1013,12 +1149,12 @@ For loaders that does not provide a private loader, self is returned.</p>
       <pre class="lines">
 
 
-110
-111
-112</pre>
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/loader/loader.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_entry'>set_entry</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_origin'>origin</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -1033,7 +1169,7 @@ For loaders that does not provide a private loader, self is returned.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:51 2016 by
+  Generated on Mon May 16 22:13:38 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

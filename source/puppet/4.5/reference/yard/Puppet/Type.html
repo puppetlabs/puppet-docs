@@ -735,7 +735,7 @@ their name, and these resources are said to be non-isomorphic.</li>
   
   
   <h3 class="inherited">Methods included from <span class='object_link'>MetaType::Manager</span></h3>
-  <p class="inherited"><span class='object_link'><a href="MetaType/Manager.html#allclear-instance_method" title="Puppet::MetaType::Manager#allclear (method)">allclear</a></span>, <span class='object_link'><a href="MetaType/Manager.html#newtype-instance_method" title="Puppet::MetaType::Manager#newtype (method)">newtype</a></span>, <span class='object_link'><a href="MetaType/Manager.html#rmtype-instance_method" title="Puppet::MetaType::Manager#rmtype (method)">rmtype</a></span>, <span class='object_link'><a href="MetaType/Manager.html#typeloader-instance_method" title="Puppet::MetaType::Manager#typeloader (method)">typeloader</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="MetaType/Manager.html#allclear-instance_method" title="Puppet::MetaType::Manager#allclear (method)">allclear</a></span>, <span class='object_link'><a href="MetaType/Manager.html#clear_misses-instance_method" title="Puppet::MetaType::Manager#clear_misses (method)">clear_misses</a></span>, <span class='object_link'><a href="MetaType/Manager.html#newtype-instance_method" title="Puppet::MetaType::Manager#newtype (method)">newtype</a></span>, <span class='object_link'><a href="MetaType/Manager.html#rmtype-instance_method" title="Puppet::MetaType::Manager#rmtype (method)">rmtype</a></span>, <span class='object_link'><a href="MetaType/Manager.html#typeloader-instance_method" title="Puppet::MetaType::Manager#typeloader (method)">typeloader</a></span></p>
 
   
   
@@ -829,12 +829,12 @@ and should not be changed thereafter.</p>
       <pre class="lines">
 
 
-1722
-1723
-1724</pre>
+1728
+1729
+1730</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1722</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1728</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_providerloader'>providerloader</span>
   <span class='ivar'>@providerloader</span>
@@ -897,12 +897,12 @@ and should not be changed thereafter.</p>
       <pre class="lines">
 
 
-2330
-2331
-2332</pre>
+2336
+2337
+2338</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2330</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2336</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_original_parameters'>original_parameters</span>
   <span class='ivar'>@original_parameters</span>
@@ -1296,13 +1296,13 @@ requirement.</p>
       <pre class="lines">
 
 
-2035
-2036
-2037
-2038</pre>
+2041
+2042
+2043
+2044</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2035</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2041</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_autorequire'>autorequire</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@autorequires</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -2489,12 +2489,12 @@ the message as an argument.</p>
       <pre class="lines">
 
 
-2287
-2288
-2289</pre>
+2293
+2294
+2295</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2287</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2293</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:validate</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -2557,12 +2557,12 @@ of hosts.</p>
       <pre class="lines">
 
 
-2596
-2597
-2598</pre>
+2602
+2603
+2604</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2596</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2602</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_appliable_to_device?'>appliable_to_device?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_can_apply_to'>can_apply_to</span><span class='lparen'>(</span><span class='symbol'>:device</span><span class='rparen'>)</span>
@@ -2618,12 +2618,12 @@ of hosts.</p>
       <pre class="lines">
 
 
-2603
-2604
-2605</pre>
+2609
+2610
+2611</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2603</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2609</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_appliable_to_host?'>appliable_to_host?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_can_apply_to'>can_apply_to</span><span class='lparen'>(</span><span class='symbol'>:host</span><span class='rparen'>)</span>
@@ -2664,16 +2664,16 @@ of the catalog.  This is mostly used for logging purposes.</p>
       <pre class="lines">
 
 
-1225
-1226
-1227
-1228
-1229
-1230
-1231</pre>
+1231
+1232
+1233
+1234
+1235
+1236
+1237</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1225</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pathbuilder'>pathbuilder</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='id identifier rubyid_parent'>parent</span>
@@ -2738,14 +2738,14 @@ of the system.</p>
       <pre class="lines">
 
 
-1089
-1090
-1091
-1092
-1093</pre>
+1095
+1096
+1097
+1098
+1099</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1089</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1095</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_retrieve_resource'>retrieve_resource</span>
   <span class='id identifier rubyid_resource'>resource</span> <span class='op'>=</span> <span class='id identifier rubyid_retrieve'>retrieve</span>
@@ -2762,7 +2762,7 @@ of the system.</p>
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:47 2016 by
+  Generated on Mon May 16 22:13:34 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Types: Index'
 canonical: /puppet/latest/reference/types/index.html
 ---

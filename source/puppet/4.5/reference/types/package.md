@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: package'
 canonical: /puppet/latest/reference/types/package.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 package
 -----
@@ -63,7 +63,7 @@ resource will autorequire those files.
   <a href="#package-attribute-status">status</a>               =&gt; <em># A read-only parameter set by the...</em>
   <a href="#package-attribute-uninstall_options">uninstall_options</a>    =&gt; <em># An array of additional options to pass when...</em>
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="package-attribute-provider">provider</h4>
@@ -134,8 +134,8 @@ conditionally:
     }
 
     package { 'openssl':
+      ensure => installed,
       name   => $ssl,
-      ensure => installed
     }
 
     . etc. .
@@ -146,9 +146,9 @@ conditionally:
     }
 
     package { 'openssh':
-      name    => $ssh
       ensure  => installed,
-      require => Package['openssl']
+      name    => $ssh,
+      require => Package['openssl'],
     }
 
 ([↑ Back to package attributes](#package-attributes))
@@ -617,7 +617,7 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Supported features: `installable`, `uninstallable`, `upgradeable`.
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkg">pkg</h4>
 
@@ -1124,15 +1124,15 @@ Provider support:
     <tr>
       <td>pip3</td>
       <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
@@ -1392,4 +1392,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Resource Type: stage'
 canonical: /puppet/latest/reference/types/stage.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
 
 stage
 -----
@@ -17,7 +17,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](https://docs.puppetlabs.com/references/latest/metaparameter.html#stage).
+[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -39,7 +39,7 @@ for classes.
 
 <pre><code>stage { 'resource title':
   <a href="#stage-attribute-name">name</a> =&gt; <em># <strong>(namevar)</strong> The name of the stage. Use this as the value for </em>
-  # ...plus any applicable <a href="./metaparameter.html">metaparameters</a>.
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
 <h4 id="stage-attribute-name">name</h4>
@@ -55,4 +55,4 @@ when assigning classes to this stage.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-03-16 18:28:11 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500

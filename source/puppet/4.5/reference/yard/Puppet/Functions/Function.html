@@ -182,6 +182,31 @@ specialized class is created for each puppet function.</p>
 </li>
 
       
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#local_types-class_method" title="local_types (class method)">+ (Object) <strong>local_types</strong>(&amp;block) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Allows types local to the function to be defined to ease the use of complex types in a 4.x function.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -327,12 +352,102 @@ to the function.</p>
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="local_types-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>local_types</strong>(&amp;block) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Allows types local to the function to be defined to ease the use of complex types
+in a 4.x function. Within the given block, calls to <code>type</code> can be made with a string
+&#39;AliasType = ExistingType` can be made to define aliases. The defined aliases are
+available for further aliases, and in all dispatchers.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>4.5.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 302</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_local_types'>local_types</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No loader present. Call create_loaded_function(:myname, loader,...), instead of &#39;create_function&#39; if running tests</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_aliases'>aliases</span> <span class='op'>=</span> <span class='const'>LocalTypeAliasesBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_loader'>loader</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='comment'># Add the loaded types to the builder
+</span>  <span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_local_types'>local_types</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_type_alias_expr'>type_alias_expr</span><span class='op'>|</span>
+    <span class='comment'># Bind the type alias to the local_loader using the alias
+</span>    <span class='id identifier rubyid_t'>t</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Loader</span><span class='op'>::</span><span class='const'>TypeDefinitionInstantiator</span><span class='period'>.</span><span class='id identifier rubyid_create_from_model'>create_from_model</span><span class='lparen'>(</span><span class='id identifier rubyid_type_alias_expr'>type_alias_expr</span><span class='comma'>,</span> <span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
+
+    <span class='comment'># Also define a method for convenient access to the defined type alias.
+</span>    <span class='comment'># Since initial capital letter in Ruby means a Constant these names use a prefix of 
+</span>    <span class='comment'># `type`. As an example, the type &#39;MyType&#39; is accessed by calling `type_MyType`.
+</span>    <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>type_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_t'>t</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Store the loader in the class
+</span>  <span class='ivar'>@loader</span> <span class='op'>=</span> <span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_loader'>loader</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
     <div id="footer">
-  Generated on Wed Mar 16 18:28:48 2016 by
+  Generated on Mon May 16 22:13:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.0.0).
 </div>

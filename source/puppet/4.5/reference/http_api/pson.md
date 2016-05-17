@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e800bc25e695b8e8b58521d0a6ecdbd18aab031b
+built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
 title: 'Puppet HTTP API: PSON'
 canonical: /puppet/latest/reference/http_api/pson.html
 ---
@@ -39,7 +39,7 @@ characters:
 
 In addition, any character between 0x00 and 0x1F, (except the ones listed
 above) must be encoded as a six byte sequence of \u followed by four ASCII
-digits of the hex number of the desired character.  For example the ASCII
+digits of the hex number of the desired character. For example the ASCII
 Record Separator character (0x1E) is represented as \u001E (0x5C, 0x75, 0x30,
 0x30, 0x31, 0x45).
 
