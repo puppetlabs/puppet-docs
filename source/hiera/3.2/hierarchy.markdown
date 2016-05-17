@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Creating Hierarchies"
+title: "Hiera 3.1: Creating hierarchies"
 ---
 
 [config]: ./configuring.html
@@ -15,8 +15,8 @@ title: "Hiera 3.1: Creating Hierarchies"
 
 Hiera uses an ordered hierarchy to look up data. This allows you to have a large amount of common data and override smaller amounts of it wherever necessary.
 
-Location and Syntax
------
+## Location and syntax
+
 
 Hiera loads the hierarchy from the [hiera.yaml config file][config]. The hierarchy must be the value of the top-level `:hierarchy` key.
 
@@ -34,14 +34,14 @@ Each element in the hierarchy must be a **string,** which may or may not include
   - common
 ~~~
 
-> ### Best Practice: Use Fully-Qualified Puppet Variables
+> ### Best practice: Use fully-qualified Puppet variables
 >
 > If your hierarchy includes any [variables][] set by Puppet, we recommend that you use their [fully-qualified top-scope name.][qualified_var] (E.g. `::clientcert`.)
 >
 > For more details, see [the Best Practices section](./puppet.html#best-practices) of the Using Hiera With Puppet page.
 
-Terminology
------
+## Terminology
+
 
 We use these two terms within the Hiera docs and in various other places:
 
@@ -63,7 +63,7 @@ Each element in the hierarchy resolves to the name of a [data source][data]. Hie
     * In a [hash][] lookup, Hiera will continue, **expecting every value to be a hash** and throwing an error if any non-hash values are discovered. It will then merge all of the discovered hashes and return the result, allowing values from higher in the hierarchy to replace values from lower.
 * If Hiera goes through the entire hierarchy without finding a value, it will use the default value if one was provided, or fail with an error if one wasn't.
 
-### Multiple Backends
+### Multiple backends
 
 You can [specify multiple backends as an array in `hiera.yaml`][config]. If you do, they function as a **second hierarchy.**
 
@@ -89,8 +89,8 @@ Hiera will give priority to the first backend, and will **check every level of t
 * `two.json`
 * `three.json`
 
-Example
------
+
+## Example
 
 Assume the following hierarchy:
 
@@ -126,13 +126,13 @@ Given two different nodes with different Puppet variables, here are two ways the
 - `$server_facts[environment]` = `production`
 - `$::is_virtual` = `true`
 
-#### Data Source Resolution
+#### Data source resolution
 
 _(Note: The text in this image may be out of date.)_
 
 ![A hierarchy interpreted for a node](./images/hierarchy1.png)
 
-#### Final Hierarchy
+#### Final hierarchy
 
 - nodes/web01.example.com.yaml
 - environment/production.yaml
@@ -147,16 +147,16 @@ _(Note: The text in this image may be out of date.)_
 - `$server_facts[environment]` = `development`
 - `$::is_virtual` = `false`
 
-#### Data Source Resolution
+#### Data source resolution
 
 _(Note: The text in this image may be out of date.)_
 
 ![The same hierarchy, interpreted for another node](./images/hierarchy2.png)
 
-#### Final Hierarchy
+#### Final hierarchy
 
 - nodes/db01.example.com.yaml
 - environment/development.yaml
 - common.yaml
 
-Note that, since `virtual/false.yaml` doesn't exist, it gets skipped entirely.
+Note that since `virtual/false.yaml` doesn't exist, it gets skipped entirely.

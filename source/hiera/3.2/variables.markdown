@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Interpolation Tokens, Variables, and Lookup Functions"
+title: "Hiera 3.1: Interpolation tokens, variables, and lookup functions"
 ---
 
 [config]: ./configuring.html
@@ -15,8 +15,8 @@ title: "Hiera 3.1: Interpolation Tokens, Variables, and Lookup Functions"
 When writing Hiera's [settings][config] and [data][], you can instruct it to look up values at run-time and insert them into strings. This lets you make dynamic data sources in the [hierarchy][], and avoid repeating yourself when writing data.
 
 
-Interpolation Tokens
------
+## Interpolation tokens
+
 
 **Interpolation tokens** look like `%{variable}`, `%{variable.subkey}`, or `%{function("input")}`. That is, they consist of:
 
@@ -34,7 +34,7 @@ If any [setting in the config file][config] or [value in a data source][data] co
 > * Hiera can interpolate values of any of Puppet's data types, but the value will be converted to a string. For arrays and hashes, this won't fully match [Puppet's rules for interpolating non-string values][puppet_interpolation], but it will be close.
 > * In YAML files, **any string containing an interpolation token must be quoted.**
 
-### Interpolating Normal Variables
+### Interpolating normal variables
 
 Hiera receives a set of variables whenever it is invoked, and it can insert them by name into any string. This is the default behavior; if the content of the interpolation token doesn't match one of the lookup functions listed below, Hiera will treat it as a variable name.
 
@@ -42,7 +42,7 @@ Hiera receives a set of variables whenever it is invoked, and it can insert them
 
 See ["Passing Variables to Hiera"](#passing-variables-to-hiera) below for details on how Hiera receives these variables.
 
-### Interpolating Hash or Array Elements
+### Interpolating hash or array elements
 
 If a variable is an array or a hash, you can interpolate a single element of it by putting a dot and a subkey after the variable name, like `%{trusted.certname}`.
 
@@ -50,7 +50,7 @@ A subkey can be an integer if the value is an array, or a key name if the value 
 
 You can also chain subkeys together to access nested data structures. For example, to interpolate the current hours of uptime you could use `%{facts.system_uptime.hours}`.
 
-### Using Lookup Functions
+### Using lookup functions
 
 Hiera currently has two lookup functions: [`scope()`](#the-scope-lookup-function) and [`hiera()`](#the-hiera-lookup-function). These are described in their own sections below.
 
@@ -69,7 +69,7 @@ Notes on this syntax:
     * The parentheses and the quoted input value
     * The quotes and the input value itself
 
-### The `hiera()` Lookup Function
+### The `hiera()` lookup function
 
 The `hiera()` lookup function performs a Hiera lookup, using its input as the lookup key. The result of the lookup must be a string; any other result will cause an error.
 
@@ -81,7 +81,7 @@ The value looked up by the `hiera()` function may itself contain a `hiera()` loo
 
 > **Note:** Using recursive lookups in Hiera's config file is untested and can potentially cause infinite recursion. (See [HI-220](https://tickets.puppetlabs.com/browse/HI-220).) You should only use the `hiera()` function in data sources.
 
-### The `scope()` Lookup Function
+### The `scope()` lookup function
 
 The `scope()` lookup function interpolates variables; it works identically to variable interpolation as described above. The function's input is the name of a variable surrounded by single or double quotes.
 
@@ -90,7 +90,7 @@ The following two values would be identical:
     smtpserver: "mail.%{::domain}"
     smtpserver: "mail.%{scope('::domain')}"
 
-### The `alias()` Lookup Function
+### The `alias()` lookup function
 
 The `alias()` function allows you to make one key in Hiera data act as an alias for another. This is different than just interpolating another key, since that results in a string.
 
@@ -105,7 +105,7 @@ This returns an array with `['a', 'b']` for both the original and the aliased ke
 
 The data entry that uses the alias function cannot combine it with post/prefix text --- that is, `aliased: "%{alias('original')} -c"` would be an illegal value.
 
-### The `literal()` Lookup Function
+### The `literal()` lookup function
 
 The literal lookup function allows you to escape '%{}' in Hiera data. This is useful when you have data containing this literal string, as with some Apache variables like `%{SERVER_NAME}` or `%{QUERY_STRING}`.
 
@@ -113,10 +113,10 @@ With this function, `%{literal('%')}{secret}` returns `%{secret}`, without attem
 
 The only value you should pass to `literal()` is a single `%` sign.
 
-Where to Interpolate Data
------
+## Where to interpolate data
 
-### In Data Sources
+
+### In data sources
 
 The main use for interpolation is in the [config file][config], where you can set dynamic data sources in the [hierarchy][]:
 
@@ -131,7 +131,7 @@ The main use for interpolation is in the [config file][config], where you can se
 
 In this example, every data source except the final one will vary depending on the current values of `$trusted[certname], $server_facts[environment],` and `$facts[is_virtual]`.
 
-### In Other Settings
+### In other settings
 
 You can also interpolate variables into other [settings][config], such as `:datadir` (in the YAML and JSON backends):
 
@@ -140,7 +140,7 @@ You can also interpolate variables into other [settings][config], such as `:data
 
 This example would let you use completely separate data directories for your production and development environments.
 
-### In Data
+### In data
 
 Within a data source, you can interpolate values into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
 
@@ -194,14 +194,14 @@ When used with Puppet, Hiera **automatically** receives **all** of Puppet's curr
 * Remove Puppet's `$` (dollar sign) prefix when using its variables in Hiera. (That is, a variable called `$::clientcert` in Puppet is called `::clientcert` in Hiera.)
 * Puppet variables can be accessed by their [short name or qualified name][qualified_var].
 
-> #### Best Practices
+> #### Best practices
 >
-> * Usually avoid referencing **user-set local variables** from Hiera. Instead, use [**facts,** **built-in variables,**][built_in_vars] **top-scope variables,** **node-scope variables,** or **variables from an ENC** whenever possible.
+> * Avoid referencing **user-set local variables** from Hiera. Instead, use [**facts,** **built-in variables,**][built_in_vars] **top-scope variables,** **node-scope variables,** or **variables from an ENC** whenever possible.
 > * When possible, reference variables by their [**fully-qualified names**][qualified_var] (e.g. `%{::environment}` and `%{::clientcert}`) to make sure their values are not masked by local scopes.
 >
 > These two guidelines will make Hiera more predictable, and can help protect you from accidentally mingling data and code in your Puppet manifests.
 
-### From the Command Line
+### From the command line
 
 When called from the command line, Hiera defaults to having no variables available. You can specify individual variables, or a file or service from which to obtain a complete "scope" of variables. See [command line usage][command_line] for more details.
 

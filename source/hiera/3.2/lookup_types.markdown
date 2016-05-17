@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Lookup Types"
+title: "Hiera 3.1: Lookup types"
 ---
 
 Hiera always takes a lookup key and returns a single value (of some simple or complex data type), but it has several methods for extracting/assembling that one value from the hierarchy. We refer to these as "lookup methods."
@@ -8,8 +8,8 @@ Hiera always takes a lookup key and returns a single value (of some simple or co
 All of these lookup methods are available via Hiera's Puppet functions, command line interface, and Ruby API.
 
 
-Priority (default)
------
+## Priority (default)
+
 
 A **priority lookup** gets a value from **the** most specific matching level of the hierarchy. Only one hierarchy level --- the first one to match --- is consulted.
 
@@ -17,7 +17,7 @@ Priority lookups can retrieve values of any data type (strings, arrays, hashes),
 
 This is Hiera's default lookup method.
 
-### Lookup Keys
+### Lookup keys
 
 Unlike the other lookup types, priority lookup accepts two kinds of key:
 
@@ -50,12 +50,11 @@ A subkey can be an integer if the value is an array, or a key name if the value 
 
 If no matching key or subkey is found, Hiera returns a `nil` result. If a subkey is an unexpected type (e.g., you tried to use an integer as a hash key or a string as an array index), an exception is returned.
 
-#### Note About Other Lookup Methods
+#### Note about other lookup methods
 
 Hiera doesn't support using qualified keys with array merge or hash merge lookups. If you're looking up merged data, you must use a non-segmented key to get the entire merged hash or array and then manipulate the data as needed.
 
-Array Merge
------
+## Array merge
 
 An **array merge lookup** assembles a value from **every** matching level of the hierarchy. It retrieves **all** of the (string or array) values for a given key, then **flattens** them into a single array of unique values. If priority lookup can be thought of as a "default with overrides" pattern, array merge lookup can be though of as "default with additions."
 
@@ -81,15 +80,15 @@ For example, given a hierarchy of:
 In this version of Hiera, array merge lookups fail with an error if any of the values found in the data sources are hashes. It only works with strings, string-like scalar values (booleans, numbers), and arrays.
 
 
-Hash Merge
------
+## Hash merge
+
 
 A **hash merge lookup** assembles a value from **every** matching level of the hierarchy. It retrieves **all** of the (hash) values for a given key, then **merges** the hashes into a single hash.
 
 Hash merge lookups fail with an error if any of the values found in the data sources are strings or arrays. It only works when every value found is a hash.
 
 
-### Native Merging
+### Native merging
 
 In a native hash merge, Hiera merges only the **top-level keys and values** in each source hash. If the same key exists in both a lower priority source and a higher priority source, the higher priority value is used.
 
@@ -114,7 +113,7 @@ For example, given a hierarchy of:
 
 ...a native hash merge lookup would return a value of `{z => "local value", a => "common value", b => "other common value"}`. Note that in cases where two or more source hashes share some keys, higher priority data sources in the hierarchy override lower ones.
 
-### Deep Merging in Hiera
+### Deep merging in Hiera
 
 You can also configure hash merge lookups to **recursively merge** hash keys. (Implemented as [Issue 16107](https://projects.puppetlabs.com/issues/16107).) This is intended for users who have moved complex data structures (such as [`create_resources` hashes][create]) into Hiera.
 
@@ -132,7 +131,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 [puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems
 [deepmerge_options]: ./configuring.html#deepmergeoptions
 
-#### Merge Behaviors
+#### Merge behaviors
 
 There are three merge behaviors available.
 

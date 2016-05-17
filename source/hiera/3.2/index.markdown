@@ -17,8 +17,8 @@ layout: default
 
 Hiera is a key/value lookup tool for configuration data, built to **make [Puppet][] better** and let you **set node-specific data without repeating yourself.** See ["Why Hiera?" below](#why-hiera) for more information, or get started using it right away:
 
-Getting Started With Hiera
------
+## Getting started with Hiera
+
 
 > To get started with Hiera, you'll need to do all of the following:
 >
@@ -30,15 +30,15 @@ Getting Started With Hiera
 
 After you have Hiera working, you can adjust your data and hierarchy whenever you need to. You can also [test Hiera from the command line][command_line] to make sure it's fetching the right data for each node.
 
-### Learning From Example
+### Learning from Example
 
 If you learn best from example code, start with [this simple end-to-end Hiera and Puppet walkthrough][complete_example]. To learn more, you can go back and read the sections linked above.
 
 
-Why Hiera?
------
+## Why Hiera?
 
-### Making Puppet Better
+
+### Making Puppet better
 
 Hiera makes Puppet better by **keeping site-specific data out of your manifests.** Puppet classes can request whatever data they need, and your Hiera data will act like a site-wide config file.
 
@@ -48,7 +48,7 @@ This makes it:
 * Easier to re-use public Puppet modules: don't edit the code, just put the necessary data in Hiera.
 * Easier to publish your own modules for collaboration: no need to worry about cleaning out your data before showing it around, and no more clashing variable names.
 
-### Avoiding Repetition
+### Avoiding repetition
 
 With Hiera, you can:
 

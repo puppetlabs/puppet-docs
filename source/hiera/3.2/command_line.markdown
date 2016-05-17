@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Command Line Usage"
+title: "Hiera 3.1: Command line usage"
 ---
 
 [priority_lookup]: ./lookup_types.html#priority-default
@@ -21,11 +21,11 @@ A more standard invocation will provide a set of variables for Hiera to use, so 
 
 `$ hiera ntp_server --yaml web01.example.com.yaml`
 
-## Configuration File Location
+## Configuration file location
 
 The Hiera command line tool looks for its configuration in `/etc/puppetlabs/code/hiera.yaml`. You can use the `--config` argument to specify a different configuration file. See the documentation on Hiera's [configuration file](configuring.html#location) for details about this file.
 
-### Order of Arguments
+### Order of arguments
 
 Hiera is sensitive to the position of its command-line arguments:
 
@@ -51,7 +51,7 @@ Argument                              | Use
 
 
 
-## Fact Sources
+## Fact sources
 
 When used from Puppet, Hiera automatically receives all of the facts it needs. On the command line, you'll need to manually pass it those facts.
 
@@ -63,13 +63,13 @@ You'll typically run the Hiera command line tool on your Puppet master node, whe
 
 Descriptions of these choices are below.
 
-### Command Line Variables
+### Command line variables
 
 Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g., `hiera ntp_server ::osfamily=Debian clientcert="web01.example.com"`. Variables on the command line must be specified in a way that matches how they appear in `hiera.yaml`, including the leading `::` for facts and other top-scope variables. Variable values must be strings and must be quoted if they contain spaces.
 
 This is useful if the values you're testing only rely on a few facts. It can become unweildy if your hierarchy is large or you need to test values for many nodes at once. In these cases, you should use one of the other options below.
 
-### JSON and YAML Scopes
+### JSON and YAML scopes
 
 Rather than passing a list of variables to Hiera as command line arguments, you can use JSON and YAML files. You can construct these files yourself, or use a YAML file retrieved from Puppet's cache or generated with `facter --yaml`.
 
@@ -81,7 +81,7 @@ Given this command using command line variable assignments:
 
 The following YAML and JSON examples provide equivalent results:
 
-#### Example YAML Scope
+#### Example YAML scope
 
 `$ hiera ntp_server -y facts.yaml`
 
@@ -94,7 +94,7 @@ The following YAML and JSON examples provide equivalent results:
 
 
 
-#### Example JSON Scope
+#### Example JSON scope
 
 `$ hiera ntp_server -j facts.json`
 
@@ -118,7 +118,7 @@ To do this, use the `-m` or `--mcollective` flag and give it the name of an MCol
 
 Note that you must be running the Hiera command from a user account that is authorized and configured to send MCollective commands, and is also able to read the Hiera configuration and data files.
 
-#### Puppet Enterprise Example
+#### Puppet Enterprise example
 
 In Puppet Enterprise 2.x or 3.x, you can do Hiera lookups with MCollective by switching to the `peadmin` account on the Puppet master server, which is authorized to issue orchestration commands.
 
@@ -128,11 +128,11 @@ In Puppet Enterprise 2.x or 3.x, you can do Hiera lookups with MCollective by sw
 Make sure that the `peadmin` user is allowed to read the Hiera config and data files.
 
 
-## Lookup Types
+## Lookup types
 
 By default, the Hiera command line tool will use a [priority lookup][priority_lookup], which returns a single value --- the first value found in the hierarchy. There are two other lookup types available: array merge and hash merge.
 
-### Array Merge
+### Array merge
 
 An array merge lookup assembles a value by merging every value it finds in the hierarchy into a flattened array of unique values. [See "Array Merge Lookup"][array_lookup] for more details.
 

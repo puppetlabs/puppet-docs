@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: The hiera.yaml Config File"
+title: "Hiera 3.1: The hiera.yaml config file"
 ---
 
 [common_appdata]: /puppet/latest/reference/install_windows.html#the-commonappdata-folder
@@ -15,15 +15,15 @@ Hiera's config file is usually referred to as `hiera.yaml`. Use this file to con
 
 Hiera will fail with an error if the config file can't be found, although an empty config file is allowed.
 
-Location
------
+## Location
+
 
 By default, the config file is:
 
-* `/etc/puppetlabs/code/hiera.yaml` on \*nix systems
-* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\code\hiera.yaml` on Windows
+* `/etc/puppetlabs/puppet/hiera.yaml` on \*nix systems
+* [`COMMON_APPDATA`][common_appdata]`\PuppetLabs\puppet\hiera.yaml` on Windows
 
-### Changing the Config File Location
+### Changing the config file location
 
 You can specify a different config file for Hiera via Puppet, the command line, or Ruby code.
 
@@ -31,22 +31,21 @@ You can specify a different config file for Hiera via Puppet, the command line, 
 
 You can use [the `hiera_config` setting](/puppet/latest/reference/configuration.html#hieraconfig) in `puppet.conf` to specify a different config file.
 
-#### From the Command Line
+#### From the command line
 
 You can specify a different config file with the `-c` (`--config`) option.
 
-#### From Ruby Code
+#### From Ruby code
 
 You can specify a different config file or a hash of settings when calling `Hiera.new`.
 
-Format
------
+## Format
 
 Hiera's config file must be a [YAML][] hash. The file must be valid YAML, but may contain no data.
 
 Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix.** The available settings are listed below, under ["Global Settings"](#global-settings) and ["Backend-Specific Settings"](#backend-specific-settings).
 
-### Example Config File
+### Example config file
 
 [example]: #example-config-file
 
@@ -65,7 +64,7 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
   - "common"
 ~~~
 
-### Default Config Values
+### Default config values
 
 If the config file exists but has no data, the default settings will be equivalent to the following:
 
@@ -85,8 +84,8 @@ If the config file exists but has no data, the default settings will be equivale
 :deep_merge_options: {}
 ~~~
 
-Global Settings
------
+## Global settings
+
 
 The Hiera config file may contain any the following settings. If absent, they will have default values. **Note that each setting must be a Ruby symbol with a colon (`:`) prefix.**
 
@@ -146,8 +145,8 @@ Available options are documented in [the `deep_merge` gem][deep_merge_gem_docs].
 
 **Default value:** An empty hash of options.
 
-Backend-Specific Settings
------
+## Backend-specific settings
+
 
 Any backend can define its own settings and read them from Hiera's config file. If present, the value of a given backend's key must be a **hash,** whose keys are the settings it uses.
 

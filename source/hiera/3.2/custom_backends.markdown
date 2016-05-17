@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "Hiera 3.1: Writing Custom Backends"
+title: "Hiera 3.1: Writing custom backends"
 ---
 
 
 Custom Hiera backends must be written in Ruby, must conform to certain API requirements, and must be available in Ruby's load path; when using Hiera with Puppet, you can load backends from the `lib` directory of Puppet modules. Backends that retrieve data from multiple files on disk (similar to the default `yaml` and `json` backends) can take advantage of [extra helper methods](#available-helper-methods) provided by the `Backend` Ruby module.
 
-Backend API Versions
------
+## Backend API versions
+
 
 This page describes the updated custom backend API used in this version of Hiera. If you define a `lookup()` method that takes **five arguments,** as described below, your backend will behave as described on this page.
 
@@ -15,10 +15,10 @@ If you define a `lookup()` method that takes **four arguments,** your backend wi
 
 [The main differences are described in the Hiera 2.0 release notes.](./release_notes.html#api-change-for-custom-backends-backwards-compatible)
 
-Backend API and Requirements
------
+## Backend API and requirements
 
-### Namespace and Name
+
+### Namespace and name
 
 Each Hiera backend must be a Ruby class under the `Hiera::Backend` namespace. This most often means nesting the class inside `class Hiera` and `module Backend` statements.
 
@@ -34,7 +34,7 @@ You must choose a unique **short common name** for your backend, and derive a **
     end
 ~~~
 
-### Filename/Path
+### Filename/path
 
 By standard Ruby code loading conventions, the file containing a backend should be located in a Ruby lib directory with a sub path of `hiera/backend/<LOWERCASED CLASS NAME>.rb`.
 
@@ -42,7 +42,7 @@ When using Hiera with Puppet, you can load backends from the `lib` directory of 
 
 A backend named `file` would be located in a lib directory at `hiera/backend/file_backend.rb`.
 
-### `initialize` Method
+### The `initialize` method
 
 If you have any setup to do in your backend before you can look up data --- for example, loading a library necessary for interfacing with a database --- you should put it in an `initialize` method. From the crayfishx/hiera-mysql backend:
 
@@ -59,7 +59,7 @@ If you have any setup to do in your backend before you can look up data --- for 
     end
 ~~~
 
-### `lookup` Method
+### The `lookup` method
 
 Every backend must define a `lookup(key, scope, order_override, resolution_type, context)` method, which must either return a value or throw the symbol `:no_such_key`.
 
@@ -92,7 +92,7 @@ When Hiera calls the lookup method, it passes five pieces of data as arguments:
 ~~~
 
 
-### Available Helper Methods
+### Available helper methods
 
 Index of methods:
 
@@ -266,7 +266,7 @@ These two methods log messages at the debug and warn loglevels, respectively.
 Tips
 ----
 
-### Handling Lookup Types
+### Handling lookup types
 
 Your backend should generally support all three [lookup types](./lookup_types.html). In this version of Hiera, the lookup type passed to your `lookup` method (as the fourth argument) will always be one of:
 
@@ -280,7 +280,7 @@ Usually, the block you pass to `Backend.datasources` will contain a case stateme
 * Array lookups should continue iterating and append any new answers onto an array of existing answers.
 * Hash lookups should continue iterating and use [the `Backend.merge_answer` method][merge_answer] to merge any new answers into a hash of existing answers.
 
-### What To Do and Not Do in the Datasources Block
+### What to do and not do in the datasources block
 
 In our examples here, the block passed to the [`Backend.datasources` method][datasources] is doing all of the data lookup work and is directly modifying the answer that will eventually be returned by the `lookup` method. This makes sense for simple file-based backends, where lookups are resource-cheap.
 
@@ -294,12 +294,12 @@ In this case, you might want to use the hierarchy iterator block to construct a 
 This way, you could get answers for every hierarchy level at once, and make decisions about which answer(s) to use once you have the full results in your hand. If your data is highly hierarchical and you frequently have lookup misses at the top of the hierarchy (say most of your data is in fact-based hierarchy levels, and only a few answers are ever assigned directly to individual nodes), this might double your backend's performance.
 
 
-Complete Example
------
+## Complete example
+
 
 This backend was written as an example by Reid Vandewiele. It only handles priority lookups, and only handles string values. It expects a collection of `hierarchy_level.d` directories containing files named after lookup keys; when looking up a key, the contents of the file corresponding to that key will be returned as a string.
 
-### Terse Version
+### Terse version
 
 ~~~ ruby
 class Hiera
@@ -332,7 +332,7 @@ class Hiera
 end
 ~~~
 
-### Annotated Version
+### Annotated version
 
 ~~~ ruby
 # This is an annotated walkthrough of a *very* simple custom backend for Hiera,
@@ -549,8 +549,8 @@ class Hiera
 end
 ~~~
 
-More Examples
------
+
+## More examples
 
 Read the code for Hiera's built-in yaml and json backends to learn more about looking up data from files on disk:
 

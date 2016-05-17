@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Writing Data Sources"
+title: "Hiera 3.1: Writing data sources"
 ---
 
 
@@ -14,14 +14,14 @@ Hiera can use several different data backends, including two built-in backends a
 
 This page describes the built-in `yaml` and `json` backends, as well as the `puppet` backend included with Hiera's Puppet integration. For optional backends, see the backend's documentation.
 
-YAML
------
+
+## YAML
 
 ### Summary
 
 The `yaml` backend looks for data sources on disk, in the directory specified in its [`:datadir` setting][datadir]. It expects each data source to be a text file containing valid YAML data, with a file extension of `.yaml`. No other file extension (e.g. `.yml`) is allowed.
 
-### Data Format
+### Data format
 
 See [yaml.org][yaml] and [the "YAML for Ruby" cookbook][yaml_ruby] for a complete description of valid YAML.
 
@@ -70,14 +70,14 @@ sshd_settings: {root_allowed: no, password_allowed: yes}
 
 ~~~
 
-JSON
------
+
+## JSON
 
 ### Summary
 
 The `json` backend looks for data sources on disk, in the directory specified in its [`:datadir` setting][datadir]. It expects each data source to be a text file containing valid JSON data, with a file extension of `.json`. No other file extension is allowed.
 
-### Data Format
+### Data format
 
 [See the JSON spec for a complete description of valid JSON.][json]
 

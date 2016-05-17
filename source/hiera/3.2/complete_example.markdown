@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Complete Example"
+title: "Hiera 3.1: Complete example"
 description: "Learn how to use Hiera to pull site-specific data out of your manifests with this walkthrough."
 ---
 
@@ -19,11 +19,11 @@ description: "Learn how to use Hiera to pull site-specific data out of your mani
 
 In this example, we'll use the popular [Puppet ntp module][ntp_module], an exemplar of the package/file/service pattern in common use among Puppet users. We'll start simply, using Hiera to provide the ntp module with parameter data based on particular nodes in our organization. Then we'll use Hiera to assign the `ntp` class provided by the module to specific nodes.
 
-##  What Can We Do With Hiera?
+##  What can you do with Hiera?
 
-Let's get started by looking at the ntp module. It does all of its work in a single `ntp` class, which lives in [the `init.pp` manifest][ntp_init.pp]. The `ntp` class also evaluates some ERB templates stored in the module's [template directory][]. So, what can we do with Hiera?
+Get started by looking at the ntp module. It does all of its work in a single `ntp` class, which lives in [the `init.pp` manifest][ntp_init.pp]. The `ntp` class also evaluates some ERB templates stored in the module's [template directory][]. So, what can you do with Hiera?
 
-### Express Organizational Information
+### Express organizational information
 
 The `ntp` class takes five parameters:
 
@@ -39,11 +39,11 @@ Without Hiera, we might find ourselves adding organizational data to our module 
 
 With Hiera, we can move these decisions into a hierarchy built around the facts that drive these decisions, increase sharability, and repeat ourselves less.
 
-### Classify Nodes With Hiera
+### Classify nodes with Hiera
 
 We can also use Hiera to assign classes to nodes using the [hiera_include][] function, adding a single line to our `site.pp` manifest, then assigning classes to nodes within Hiera instead of within our site manifests. This can be a useful shortcut when we're explicitly assigning classes to specific nodes within Hiera, but it becomes very powerful when we implicitly assign classes based on a node's characteristics. In other words, we'll show you how you don't need to know the name of every VMWare guest in your organization to make sure they all have a current version of VMWare Tools installed.
 
-## Describing Our Environment
+## Describing your environment
 
 For purposes of this walkthrough, we'll assume a situation that looks something like this:
 
@@ -52,7 +52,7 @@ For purposes of this walkthrough, we'll assume a situation that looks something 
 - We have a number of other ntp servers that will use our two primary servers.
 - We have a number of VMWare guest operating systems that need to have VMWare Tools installed.
 
-### Our Environment Before Hiera
+### Your environment before Hiera
 
 How did things look before we decided to use Hiera? Classes are assigned to nodes via the Puppet site manifest (`/etc/puppetlabs/code/environments/production/manifests/sites.pp` for Puppet open source), so here's how our site manifest might have looked:
 
@@ -84,7 +84,7 @@ node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
 }
 ~~~
 
-## Configuring Hiera and Setting Up the Hierarchy
+## Configuring Hiera and setting up the hierarchy
 
 All Hiera configuration begins with `hiera.yaml`. You can read a [full discussion of this file][hiera.yaml], including where you should put it depending on the version of Puppet you're using.  Here's the one we'll be using for this walkthrough:
 
@@ -118,20 +118,20 @@ Step-by-step:
 
 > **Puppet master note:** If you modify `hiera.yaml` between agent runs, you'll have to restart your Puppet master for your changes to take effect.
 
-### Configuring for the Command Line
+### Configuring for the command line
 
 The [Hiera command line tool][] is useful when you're in the process of designing and testing your hierarchy. You can use it to mock in
 facts for Hiera to look up without having to go through cumbersome trial-and-error Puppet runs.
 
 This version of Hiera uses the same default config file on the command line as it does via Puppet, so your existing config should already work.
 
-## Writing the Data Sources
+## Writing the data sources
 
 Now that we've got Hiera configured, we're ready to return to the ntp module and take a look at the `ntp` class's parameters.
 
 > **Learning About Hiera Data Sources:** This example won't cover all the data types you might want to use, and we're only using one of two built-in data backends (YAML). For a more complete look at data sources, please see our guide to [writing Hiera data sources][hiera_datasources], which includes more complete examples written in JSON and YAML.
 
-### Identifying Parameters
+### Identifying parameters
 
 We need to start by figuring out the parameters required by the `ntp` class. So let's look at the [ntp module's `init.pp` manifest][ntp_init.pp], where we see five:
 
@@ -144,7 +144,7 @@ We need to start by figuring out the parameters required by the `ntp` class. So 
 
 > * [See the Puppet language reference for more about class parameters.][class_parameters]
 
-### Making Decisions and Expressing Them in Hiera
+### Making decisions and expressing them in Hiera
 
 Now that we know the parameters the `ntp` class expects, we can start making decisions about the nodes on our system, then expressing those decisions as Hiera data. Let's start with kermit and grover: The two nodes in our organization that we allow to talk to the outside world for purposes of timekeeping.
 
@@ -228,7 +228,7 @@ Unlike kermit and grover, for which we had slightly different but node-specific 
     $ puppet apply --certname=snuffie.example.com -e "notice(hiera('ntp::servers'))"
     Notice: Scope(Class[main]): ["kermit.example.com iburst", "grover.example.com iburst"]
 
-#### Modifying Our `site.pp` Manifest
+#### Modifying our `site.pp` manifest
 
 Now that everything has tested out from the command line, it's time to get a little benefit from this work in production.
 
@@ -265,7 +265,7 @@ Since Hiera is automatically providing the parameter data from the data sources 
 
 If you're interested in taking things a step further, using the decision-making skills you picked up in this example to choose which nodes even get a particular class, let's keep going.
 
-## Assigning a Class to a Node With Hiera
+## Assigning a class to a node with Hiera
 
 In the first part of our example, we were concerned with how to use Hiera to provide data to a parameterized class, but we were assigning the classes to nodes in the traditional Puppet way: By making `class` declarations for each node in our `site.pp` manifest. Thanks to the `hiera_include` function, you can assign nodes to a class the same way you can assign values to class parameters: Picking a facter fact on which you want to base a decision, adding to the hierarchy in your `hiera.yaml` file, then writing data sources.
 
@@ -325,7 +325,7 @@ We can test which classes we've assigned to a given node with the Hiera command 
 
 > **Note:** The `hiera_include` function will do an [array merge lookup](./lookup_types.html#array-merge), which can let more specific data sources **add to** common sources instead of **replacing** them. This helps you avoid repeating yourself.
 
-#### Using Facts to Drive Class Assignments
+#### Using facts to drive class assignments
 
 That demonstrates a very simple case for `hiera_include`, where we knew that we wanted to assign a particular class to a specific host by name. But just as we used the `$trusted['certname']` fact to choose which of our nodes received specific parameter values, we can use that or any other fact to drive class assignments. In other words, you can assign classes to nodes based on characteristics that aren't as obvious as their names, creating the possibility of configuring nodes based on more complex characteristics.
 
@@ -408,7 +408,7 @@ Once you've got all that configured, go ahead and test with the Hiera command li
 
 If everything worked, great. If not, [consult the checklist we provided earlier](#something-went-wrong) and give it another shot.
 
-## Exploring Hiera Further
+## Exploring Hiera further
 
 We hope this walkthrough gave you a good feel for the things you can do with Hiera. There are a few things we didn't touch on, though:
 

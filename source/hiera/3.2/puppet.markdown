@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Hiera 3.1: Using Hiera With Puppet"
+title: "Hiera 3.1: Using Hiera with Puppet"
 ---
 
 [hiera_config]: /puppet/latest/reference/configuration.html#hieraconfig
@@ -47,14 +47,14 @@ Puppet 4 and later ships with Hiera support already enabled. You don't need to d
 * Puppet expects to find the [hiera.yaml file][hiera_yaml] at `/etc/puppetlabs/code/hiera.yaml` on \*nix systems and `C:\ProgramData\PuppetLabs\code` on Windows. You can change this with the [`hiera_config`][hiera_config] setting.
 * Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the [`$codedir`][codedir], so that the data is in the first place your fellow admins expect it. By default, each environment has its own datadir, at `/etc/puppetlabs/code/environments/<ENVIRONMENT>/hieradata`.
 
-Puppet Variables Passed to Hiera
------
+## Puppet variables passed to Hiera
+
 
 Whenever a Hiera lookup is triggered from Puppet, Hiera receives a copy of **all** of the variables currently available to Puppet, including both top scope and local variables.
 
 Hiera can then use any of these variables in the [interpolation tokens][variable_tokens] scattered throughout its [hierarchy][] and [data sources][data_sources]. You can enable more flexible hierarchies by creating [custom facts][custom_facts] for things like datacenter location and server purpose.
 
-### Special Pseudo-Variables
+### Special pseudo-variables
 
 When doing any Hiera lookup, with both automatic parameter lookup and the Hiera functions, Puppet sets three variables that aren't available in regular Puppet manifests:
 
@@ -66,7 +66,7 @@ Note that these variables are effectively local scope, as they are pseudo-variab
 
 [module_name]: /puppet/latest/reference/lang_variables.html#parser-set-variables
 
-### Best Practices
+### Best practices
 
 There are two practices we always recommend when using Puppet's variables in Hiera:
 
@@ -79,8 +79,8 @@ There are two practices we always recommend when using Puppet's variables in Hie
 
     **Note:** This only applies to [classic `$fact_name` facts][classic_facts]. The [`$facts`][facts_hash], [`$trusted`][trusted_facts], and [`$server_facts`][server_facts] variables are protected, so it's safe to skip the `::` prefix.
 
-Automatic Parameter Lookup
------
+## Automatic parameter lookup
+
 
 Puppet automatically retrieves class parameters from Hiera, using lookup keys like `myclass::parameter_one`.
 
@@ -122,13 +122,13 @@ You could then say `include myclass` for every node, and each node would get its
 
 Automatic parameter lookup is good for writing reusable code because it is **regular and predictable.** Anyone downloading your module can look at the first line of each manifest and easily see which keys they need to set in their own Hiera data. If you use the Hiera functions in the body of a class instead, you need to clearly document which keys the user needs to set.
 
-#### To Disable
+#### To disable
 
 If you need to disable this feature, then you can set `data_binding_terminus = none` in your master's `puppet.conf`
 
 ### Limitations
 
-#### Priority Only
+#### Priority only
 
 Automatic parameter lookup can only use the [priority][] lookup method.
 
@@ -137,8 +137,8 @@ This means that, although it **can** receive any type of data from Hiera (string
 If you need to merge arrays or merge hashes from multiple hierarchy levels, you will have to use the `hiera_array` or `hiera_hash` functions in the body of your classes.
 
 
-Hiera Lookup Functions
------
+## Hiera lookup functions
+
 
 Puppet has three lookup functions for retrieving data from Hiera. All of these functions return a single value (though note that this value may be an arbitrarily complex nested data structure), and can be used anywhere that Puppet accepts values of that type. (Resource attributes, resource titles, the values of variables, etc.)
 
@@ -153,15 +153,15 @@ Each of these functions takes three arguments. In order:
 3. Override (optional): the name of an arbitrary [hierarchy level][hierarchy] to insert at the top of the hierarchy. This lets you use a temporary modified hierarchy for a single lookup. (E.g., instead of a hierarchy of `$trusted['certname'] -> $osfamily -> common`, a lookup would use `specialvalues -> $trusted['certname'] -> $osfamily -> common`; you would need to be sure to have `specialvalues.yaml` or whatever in your Hiera data.)
 
 
-### Don't Use the Lookup Functions from Templates
+### Don't use the lookup functions from templates
 
 It's possible to use the Hiera functions from templates, but don't do it. That pattern is too obscure, and hurts your code's maintainability --- if a co-author of your code needs to change the Hiera invocations and is searching `.pp` files for them, they might miss the extra invocations in the template. Even if only one person is maintaining this code, they're likely to make similar mistakes after a few months have passed.
 
 It's much better to use the lookup functions in a Puppet manifest, assign their value to a local variable, and then reference the variable from the template. This keeps the function calls isolated in one layer of your code, where they'll be easy to find if you need to modify them later or document them for other users.
 
 
-Interacting With Structured Data from Hiera
------
+## Interacting with structured data from Hiera
+
 
 The lookup functions and the automatic parameter lookup return values of top-level keys in your Hiera data. As of Hiera 2.0, you can also use qualified [lookup keys][lookup_keys] to look up specific elements.
 
@@ -193,8 +193,8 @@ $use_ip = hiera( 'proxies.1.ipaddress' )
 ~~~
 
 
-Assigning Classes to Nodes With Hiera (`hiera_include`)
------
+## Assigning classes to nodes with Hiera (`hiera_include`)
+
 
 You can use Hiera to assign classes to nodes with the special `hiera_include` function. This lets you assign classes in great detail without repeating yourself --- it's essentially what people have traditionally tried and failed to use node inheritance for. It can get you the benefits of a rudimentary [external node classifier][enc] without having to write an actual ENC.
 
