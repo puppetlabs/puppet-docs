@@ -10,6 +10,28 @@ title: "Facter 3.1: Release notes"
 
 This page documents the history of the Facter 3.1 series. If you're upgrading from Facter 2, also review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality.
 
+
+## Facter 3.1.7
+
+Released May 17, 2016.
+
+Shipped in [`puppet-agent` 1.5.0.][puppet-agent 1.5.x].
+
+Facter 3.1.7 is a minor bug fix release in the Facter 3.1 series.
+
+* [Fixed in Facter 3.1.7](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.1.7%27)
+* [Introduced in Facter 3.1.7](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.1.7%27)
+
+### Bug fixes
+
+*[FACT-1387](https://tickets.puppetlabs.com/browse/): Google Cloud Windows instances are now recognized as virtual and will collect GCE metadata.
+
+* [FACT-1375](https://tickets.puppetlabs.com/browse/): Before this fix, `facter ipaddress` could return the address of the wrong network interface when there were routes for 0.0.0.0, with non-zero subnet mask, in addition to the default route. The correct ip address is the address of the interface associated with the interface on the route table entry for the default gateway.
+
+* [FACT-1373](https://tickets.puppetlabs.com/browse/): Previously, if Facter was called from an external fact it would generate endless recursive Facter calls and fork bomb the agent. In order to prevent this, we will now detect recursive calls to evaluate external facts, and if we encounter one we will log a warning and stop evaluating external facts. 
+
+  To do this, we set an environment variable called `INSIDE_FACTER` the first time external facts are evaluated and check this variable before we evaluate external facts to ensure it hasn't been set. It is possible that a user may have their own environment variable called `INSIDE_FACTER` set to true, so anytime we encounter that variable set to true, we log a debug warning.
+
 ## Facter 3.1.6
 
 Released April 26, 2016.
