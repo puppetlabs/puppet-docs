@@ -13,7 +13,7 @@ Puppet can run on many operating systems and hardware configurations. Before ins
 
 ## Puppet agent
 
-The Puppet agent service is lightweight enough to run on nearly any system capable of running a Ruby interpreter. To be managed by a Puppet master, the agent must be accessible from the master. See the [pre-installation instructions][preinstall-network] for details about the required DNS and port configuration for agents.
+The Puppet agent service is lightweight enough to run on nearly any system capable of running a Ruby interpreter. To be managed by a Puppet master, the agent must be able to communicate with the master. See the [pre-installation instructions][preinstall-network] for details about the required DNS and port configuration for agents.
 
 For simple installation, Puppet builds and packages the open source agent and its prerequisites for 32-bit (i386) and 64-bit (x86_64 and amd64) versions of many Linux distributions, OS X, and Windows.
 
@@ -73,7 +73,7 @@ Use one of the following versions of MRI (standard) Ruby:
 
 -   [Facter]({{facter}}/) 2.4.3 or later. Facter 3 is recommended.
 -   [Hiera]({{hiera}}/) 2.0.0 or later.
--   The `json` gem (any modern version).
+-   The `json` gem (any modern version; included with Ruby).
 -   The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later. If you're upgrading from Puppet 3, note that the "future parser" in Puppet 3 (which introduced the `rgen` dependency) is the default parser in Puppet 4. [Update your manifests appropriately.](./lang_updating_manifests.html)
 
 #### Optional libraries

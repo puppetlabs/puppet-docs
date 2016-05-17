@@ -115,7 +115,7 @@ You can use the `hdiutil` and `installer` commands to mount the disk image, and 
 
 ### Upgrading with Puppet
 
-Puppet includes a [`pkgdmg` package provider](./type.html#package-provider-pkgdmg) that can install OS X installation packages (`.pkg` files) from a disk image (`.dmg` file). If you already have Puppet installed, you can use the `puppet resource` command to upgrade with fewer steps.
+If you already have Puppet installed, you can use the `puppet resource` command to upgrade with fewer steps.
 
 1.  Locate the `puppet-agent` disk image you downloaded, and note both the filename and its full path on disk.
 
