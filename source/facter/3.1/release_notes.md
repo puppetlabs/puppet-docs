@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Facter 3.1: Release Notes"
+title: "Facter 3.1: Release notes"
 ---
 
 [puppet-agent 1.2.x]: /puppet/4.2/reference/about_agent.html

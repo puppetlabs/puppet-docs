@@ -2,77 +2,68 @@
 {% capture puppet_version %}4.4{% endcapture %}
 {% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
 
-<h3 id="puppet-{{ puppet_version }}-reference-manual">Puppet {{ puppet_version }} Reference Manual</h3>
+<h3 id="puppet-{{ puppet_version }}-reference-manual">Puppet {{ puppet_version }} reference manual</h3>
 
 <ul>
   <li><a href="{{ puppet_dir }}/index.html">Introduction</a></li>
-  <li><strong>Quick Start Guides</strong>
+  <li><strong>Quick start guides</strong>
     <ul>
-        <li><strong><a href="{{ puppet_dir }}/quick_start.html">Quick Start Intro for *Nix Users</a></strong>
+        <li><strong><a href="{{ puppet_dir }}/quick_start.html">Quick start intro for *nix users</a></strong>
           <ul>
-            <li><a href="{{ puppet_dir }}/quick_start_user_group.html">1: Creating Users and Groups</a></li>
-            <li><a href="{{ puppet_dir }}/quick_start_helloworld.html">2: Hello, World!</a></li>
-            <li><a href="{{ puppet_dir }}/quick_start_module_install_nix.html">3: Module Installation</a></li>
-            <li><a href="{{ puppet_dir }}/quick_start_adding_classes_nix.html">4: Adding Classes</a></li>
-            <li><a href="{{ puppet_dir }}/quick_writing_nix.html">5: Writing Modules</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_user_group.html">1: Creating users and groups</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_helloworld.html">2: Hello, world!</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_module_install_nix.html">3: Module installation</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_adding_classes_nix.html">4: Adding classes</a></li>
+            <li><a href="{{ puppet_dir }}/quick_writing_nix.html">5: Writing modules</a></li>
            </ul>
         </li>
-        <li><strong><a href="{{ puppet_dir }}/quick_start_essential_config.html">Essential Configuration Tasks</a></strong>
+        <li><strong><a href="{{ puppet_dir }}/quick_start_essential_config.html">Essential configuration tasks</a></strong>
            <ul>
-            <li><a href="{{ puppet_dir }}/quick_start_ntp.html">NTP Quick Start Guide</a></li>
-            <li><a href="{{ puppet_dir }}/quick_start_dns.html">DNS Quick Start Guide</a></li>
-            <li><a href="{{ puppet_dir }}/quick_start_sudo.html">Sudo Quick Start Guide</a></li>
-            <li><a href="{{ puppet_dir }}/quick_start_firewall.html">Firewall Quick Start Guide</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_ntp.html">NTP quick start guide</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_dns.html">DNS quick start guide</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_sudo.html">Sudo quick start guide</a></li>
+            <li><a href="{{ puppet_dir }}/quick_start_firewall.html">Firewall quick start guide</a></li>
           </ul>
         </li>
     </ul>
   </li>
-  <li><a href="{{ puppet_dir }}/release_notes.html">Puppet {{ puppet_version }} Release Notes</a></li>
-  <li><a href="{{ puppet_dir }}/release_notes_agent.html">Puppet Agent Release Notes</a></li>
-  <li><a href="/puppetserver/{{ server_version }}/release_notes.html">Puppet Server {{ server_version }} Release Notes</a></li>
-  <li><a href="{{ puppet_dir }}/about_agent.html">puppet-agent: What Is It, What's In It?</a></li>
-  <li><a href="{{ puppet_dir }}/whered_it_go.html">Where Did Everything Go?</a></li>
-  <li><strong>Deprecated Features</strong>
+  <li><a href="{{ puppet_dir }}/release_notes.html">Puppet {{ puppet_version }} release notes</a></li>
+  <li><a href="{{ puppet_dir }}/release_notes_agent.html">Puppet agent release notes</a></li>
+  <li><a href="/puppetserver/{{ server_version }}/release_notes.html">Puppet Server {{ server_version }} release notes</a></li>
+  <li><a href="{{ puppet_dir }}/about_agent.html">puppet-agent: What is it, what's in it?</a></li>
+  <li><a href="{{ puppet_dir }}/whered_it_go.html">Where did everything go?</a></li>
+  <li><strong>Deprecated features</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/deprecated_summary.html">About Deprecations in This Version</a></li>
-      <li><a href="{{ puppet_dir }}/deprecated_servers.html">Web Servers</a></li>
-      <li><a href="{{ puppet_dir }}/deprecated_win2003.html">Operating Systems</a></li>
-      <li><a href="{{ puppet_dir }}/deprecated_language.html">Language Features</a></li>
-<!--
-      <li><a href="{{ puppet_dir }}/deprecated_resource.html">Resource Type Features</a></li>
- -->
-      <li><a href="{{ puppet_dir }}/deprecated_api.html">Extension Points and APIs</a></li>
-<!--
-      <li><a href="{{ puppet_dir }}/deprecated_command.html">Command Line Features</a></li>
- -->
+      <li><a href="{{ puppet_dir }}/deprecated_summary.html">About deprecations in this version</a></li>
+      <li><a href="{{ puppet_dir }}/deprecated_servers.html">Web servers</a></li>
+      <li><a href="{{ puppet_dir }}/deprecated_win2003.html">Operating systems</a></li>
+      <li><a href="{{ puppet_dir }}/deprecated_language.html">Language features</a></li>
+      <li><a href="{{ puppet_dir }}/deprecated_api.html">Extension points and APIs</a></li>
       <li><a href="{{ puppet_dir }}/deprecated_settings.html">Settings</a></li>
-<!--
-      <li><a href="{{ puppet_dir }}/deprecated_misc.html">Other Features</a></li>
- -->
     </ul>
   </li>
 
-  <li><strong>Installing and Upgrading</strong>
+  <li><strong>Installing and upgrading</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's Architecture</a></li>
-      <li><a href="{{ puppet_dir }}/system_requirements.html">System Requirements</a></li>
-      <li><a href="{{ puppet_dir }}/install_pre.html">Pre-Install Tasks</a></li>
+      <li><a href="{{ puppet_dir }}/architecture.html">Overview of Puppet's architecture</a></li>
+      <li><a href="{{ puppet_dir }}/system_requirements.html">System requirements</a></li>
+      <li><a href="{{ puppet_dir }}/install_pre.html">Pre-install tasks</a></li>
       <li><a href="/puppetserver/{{ server_version }}/install_from_packages.html">Install: Puppet Server</a></li>
-      <li><strong>Install: Puppet Agent</strong>
+      <li><strong>Install: Puppet agent</strong>
         <ul>
-          <li><a href="{{ puppet_dir }}/install_linux.html">Install Agent: Linux</a></li>
-          <li><a href="{{ puppet_dir }}/install_windows.html">Install Agent: Windows</a></li>
-          <li><a href="{{ puppet_dir }}/install_osx.html">Install Agent: Mac OS X</a></li>
+          <li><a href="{{ puppet_dir }}/install_linux.html">Install agent: Linux</a></li>
+          <li><a href="{{ puppet_dir }}/install_windows.html">Install agent: Windows</a></li>
+          <li><a href="{{ puppet_dir }}/install_osx.html">Install agent: Mac OS X</a></li>
         </ul>
       </li>
       <li><a href="{{puppetdb}}/install_via_module.html">Install: PuppetDB</a></li>
       <li><a href="{{ puppet_dir }}/upgrade_minor.html">Upgrade: From Puppet 4.x</a></li>
       <li><strong>Upgrade: From Puppet 3.x</strong>
         <ul>
-          <li><a href="{{ puppet_dir }}/upgrade_major_pre.html">Get Upgrade-Ready</a></li>
+          <li><a href="{{ puppet_dir }}/upgrade_major_pre.html">Get upgrade-ready</a></li>
           <li><a href="{{ puppet_dir }}/upgrade_major_server.html">Upgrade Puppet Server and PuppetDB</a></li>
-          <li><a href="{{ puppet_dir }}/upgrade_major_agent.html">Upgrade 3.x Agents</a></li>
-          <li><a href="{{ puppet_dir }}/upgrade_major_post.html">Post-Upgrade Clean-Up</a></li>
+          <li><a href="{{ puppet_dir }}/upgrade_major_agent.html">Upgrade 3.x agents</a></li>
+          <li><a href="{{ puppet_dir }}/upgrade_major_post.html">Post-upgrade clean-up</a></li>
         </ul>
       </li>
     </ul>
@@ -80,11 +71,11 @@
 
   <li><strong>Configuration</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/config_about_settings.html">About Puppet's Settings</a></li>
-      <li><a href="{{ puppet_dir }}/config_important_settings.html">Short List of Important Settings</a></li>
-      <li><strong>Config Files</strong>
+      <li><a href="{{ puppet_dir }}/config_about_settings.html">About Puppet's settings</a></li>
+      <li><a href="{{ puppet_dir }}/config_important_settings.html">Short list of important settings</a></li>
+      <li><strong>Config files</strong>
         <ul>
-          <li><a href="{{ puppet_dir }}/config_file_main.html">puppet.conf: The Main Config File</a></li>
+          <li><a href="{{ puppet_dir }}/config_file_main.html">puppet.conf: The main config file</a></li>
           <li><a href="{{ puppet_dir }}/config_file_environment.html">environment.conf: Per-environment settings</a></li>
           <li><a href="{{ puppet_dir }}/config_file_auth.html">auth.conf (LEGACY): HTTPS authorization</a></li>
           <li><a href="{{ puppet_dir }}/config_file_fileserver.html">fileserver.conf: Custom fileserver mount points</a></li>
@@ -99,70 +90,70 @@
       </li>
       <li><strong>Configuring Puppet Server</strong>
         <ul>
-          <li><a href="/puppetserver/{{ server_version }}/configuration.html">Puppet Server's Config Files</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_puppetserver.html">puppetserver.conf: Main Config File</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_auth.html">auth.conf: Access Control</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_webserver.html">webserver.conf: Jetty Web Server Config</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_web-routes.html">web-routes.conf: Mount Points for Component Services</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_global.html">global.conf: Trapperkeeper Settings</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_ca.html">ca.conf: CA Service Access Control (deprecated)</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_master.html">master.conf: Authorization by HTTP Header (deprecated)</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_logbackxml.html">logback.xml: Logging Level and Location</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_logging_advanced.html">Advanced Logging Configuration</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/configuration.html">Puppet Server's config files</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_puppetserver.html">puppetserver.conf: Main config file</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_auth.html">auth.conf: Access control</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_webserver.html">webserver.conf: Jetty web server config</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_web-routes.html">web-routes.conf: Mount points for component services</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_global.html">global.conf: Trapperkeeper settings</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_ca.html">ca.conf: CA service access control (deprecated)</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_master.html">master.conf: Authorization by HTTP header (deprecated)</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_logbackxml.html">logback.xml: Logging level and location</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_logging_advanced.html">Advanced logging configuration</a></li>
         </ul>
       </li>
-      <li><a href="{{ puppet_dir }}/config_print.html">Checking Values of Settings</a></li>
-      <li><a href="{{ puppet_dir }}/config_set.html">Editing Settings on the Command Line</a></li>
-      <li><a href="{{ puppet_dir }}/configuration.html">Complete List of Settings (Configuration Reference)</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that Differ Under Puppet Server</a></li>
+      <li><a href="{{ puppet_dir }}/config_print.html">Checking values of settings</a></li>
+      <li><a href="{{ puppet_dir }}/config_set.html">Editing settings on the command line</a></li>
+      <li><a href="{{ puppet_dir }}/configuration.html">Complete list of settings (configuration reference)</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Settings that differ under Puppet Server</a></li>
     </ul>
   </li>
-  <li><strong>Important Directories and Files</strong>
+  <li><strong>Important directories and files</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/dirs_codedir.html">Code and Data Directory (codedir)</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_confdir.html">Config Directory (confdir)</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_manifest.html">The Main Manifest(s)</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_modulepath.html">The Modulepath</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_codedir.html">Code and data directory (codedir)</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_confdir.html">Config directory (confdir)</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_manifest.html">The main manifest(s)</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_modulepath.html">The modulepath</a></li>
       <li><a href="{{ puppet_dir }}/dirs_ssldir.html">The SSLdir</a></li>
-      <li><a href="{{ puppet_dir }}/dirs_vardir.html">Cache Directory (vardir)</a></li>
+      <li><a href="{{ puppet_dir }}/dirs_vardir.html">Cache directory (vardir)</a></li>
     </ul>
   </li>
   <li><strong>Environments</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/environments.html">About Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_configuring.html">Configuring Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_creating.html">Creating Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_assigning.html">Assigning Environments to Nodes</a></li>
-      <li><a href="{{ puppet_dir }}/environments_suggestions.html">Suggestions for Use</a></li>
-      <li><a href="{{ puppet_dir }}/environments_limitations.html">Limitations of Environments</a></li>
-      <li><a href="{{ puppet_dir }}/environments_https.html">Environments and Puppet's HTTPS Interface</a></li>
+      <li><a href="{{ puppet_dir }}/environments.html">About environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_configuring.html">Configuring environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_creating.html">Creating environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_assigning.html">Assigning environments to nodes</a></li>
+      <li><a href="{{ puppet_dir }}/environments_suggestions.html">Suggestions for use</a></li>
+      <li><a href="{{ puppet_dir }}/environments_limitations.html">Limitations of environments</a></li>
+      <li><a href="{{ puppet_dir }}/environments_https.html">Environments and Puppet's HTTPS interface</a></li>
     </ul>
   </li>
   <li><strong>Modules</strong>
     <ul>
       <li><a href="{{ puppet_dir }}/modules_fundamentals.html">Fundamentals</a></li>
-      <li><a href="/guides/plugins_in_modules.html">Plugins in Modules</a></li>
-      <li><a href="{{ puppet_dir }}/modules_installing.html">Installing Modules</a></li>
-      <li><a href="{{ puppet_dir }}/modules_publishing.html">Publishing Modules on the Puppet Forge</a></li>
-      <li><a href="{{ puppet_dir }}/modules_metadata.html">Module Metadata and metadata.json</a></li>
-      <li><a href="{{ puppet_dir }}/modules_documentation.html">Documenting Modules</a></li>
+      <li><a href="/guides/plugins_in_modules.html">Plugins in modules</a></li>
+      <li><a href="{{ puppet_dir }}/modules_installing.html">Installing modules</a></li>
+      <li><a href="{{ puppet_dir }}/modules_publishing.html">Publishing modules on the Puppet Forge</a></li>
+      <li><a href="{{ puppet_dir }}/modules_metadata.html">Module metadata and metadata.json</a></li>
+      <li><a href="{{ puppet_dir }}/modules_documentation.html">Documenting modules</a></li>
     </ul>
   </li>
 
-  <li><strong>Puppet's Services and Tools</strong>
+  <li><strong>Puppet's services and tools</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/services_commands.html">Puppet's Commands</a></li>
-      <li><a href="{{ puppet_dir }}/services_commands_windows.html">Running Puppet Commands on Windows</a></li>
-      <li><strong>Puppet Master</strong>
+      <li><a href="{{ puppet_dir }}/services_commands.html">Puppet's commands</a></li>
+      <li><a href="{{ puppet_dir }}/services_commands_windows.html">Running Puppet commands on Windows</a></li>
+      <li><strong>Puppet master</strong>
         <ul>
           <li><a href="/puppetserver/{{ server_version }}/services_master_puppetserver.html">Puppet Server</a></li>
-          <li><a href="{{ puppet_dir }}/services_master_rack.html">The Rack Puppet Master</a></li>
-          <li><a href="{{ puppet_dir }}/services_master_webrick.html">The WEBrick Puppet Master</a></li>
+          <li><a href="{{ puppet_dir }}/services_master_rack.html">The rack Puppet master</a></li>
+          <li><a href="{{ puppet_dir }}/services_master_webrick.html">The WEBrick Puppet master</a></li>
         </ul>
       </li>
-      <li><a href="{{ puppet_dir }}/services_agent_unix.html">Puppet Agent on *nix</a></li>
-      <li><a href="{{ puppet_dir }}/services_agent_windows.html">Puppet Agent on Windows</a></li>
-      <li><a href="{{ puppet_dir }}/services_apply.html">Puppet Apply</a></li>
+      <li><a href="{{ puppet_dir }}/services_agent_unix.html">Puppet agent on *nix</a></li>
+      <li><a href="{{ puppet_dir }}/services_agent_windows.html">Puppet agent on Windows</a></li>
+      <li><a href="{{ puppet_dir }}/services_apply.html">Puppet apply</a></li>
     </ul>
   </li>
 
@@ -170,147 +161,142 @@
     <ul>
       <li><a href="/puppetserver/{{ server_version }}/index.html">Index</a></li>
       <li><a href="/puppetserver/{{ server_version }}/services_master_puppetserver.html">About Puppet Server</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/release_notes.html">Release Notes</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/deprecated_features.html">Deprecated Features</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/puppetserver_vs_passenger.html">Notable Differences vs. the Apache/Passenger Stack</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/release_notes.html">Release notes</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/deprecated_features.html">Deprecated features</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/puppetserver_vs_passenger.html">Notable differences vs. the Apache/Passenger stack</a></li>
       <li><a href="/puppetserver/{{ server_version }}/install_from_packages.html">Installation</a></li>
       <li><strong>Configuring Puppet Server</strong>
         <ul>
-          <li><a href="/puppetserver/{{ server_version }}/configuration.html">Puppet Server's Config Files</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_puppetserver.html">puppetserver.conf: Main Config File</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_auth.html">auth.conf: Access Control</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_webserver.html">webserver.conf: Jetty Web Server Config</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_web-routes.html">web-routes.conf: Mount Points for Component Services</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_global.html">global.conf: Trapperkeeper Settings</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_ca.html">ca.conf: CA Service Access Control (deprecated)</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/config_file_master.html">master.conf: Authorization by HTTP Header (deprecated)</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/configuration.html">Puppet Server's config files</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_puppetserver.html">puppetserver.conf: Main config file</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_auth.html">auth.conf: Access control</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_webserver.html">webserver.conf: Jetty web server config</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_web-routes.html">web-routes.conf: Mount points for component services</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_global.html">global.conf: Trapperkeeper settings</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_ca.html">ca.conf: CA service access control (deprecated)</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/config_file_master.html">master.conf: Authorization by HTTP header (deprecated)</a></li>
         </ul>
       </li>
-      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Differing Behavior in puppet.conf</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/gems.html">Using Ruby Gems</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/puppet_conf_setting_diffs.html">Differing behavior in puppet.conf</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/gems.html">Using Ruby gems</a></li>
       <li><a href="/puppetserver/{{ server_version }}/subcommands.html">Subcommands</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/compatibility_with_puppet_agent.html">Backwards Compatibility With Puppet 3 Agents</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/external_ca_configuration.html">Using an External CA</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/external_ssl_termination.html">External SSL Termination</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/tuning_guide.html">Tuning Guide</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/restarting.html">Restarting the Server</a></li>
-      <li><strong>Known Issues and Workarounds</strong>
+      <li><a href="/puppetserver/{{ server_version }}/compatibility_with_puppet_agent.html">Backwards compatibility with Puppet 3 agents</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/external_ca_configuration.html">Using an external CA</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/external_ssl_termination.html">External SSL termination</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/tuning_guide.html">Tuning guide</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/restarting.html">Restarting Puppet Server</a></li>
+      <li><strong>Known issues and workarounds</strong>
         <ul>
-          <li><a href="/puppetserver/{{ server_version }}/known_issues.html">Known Issues</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/ssl_server_certificate_change_and_virtual_ips.html">SSL Problems With Load-Balanced PuppetDB Servers ("Server Certificate Change" error)</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/known_issues.html">Known issues</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/ssl_server_certificate_change_and_virtual_ips.html">SSL problems with load-balanced PuppetDB servers ("server certificate change" error)</a></li>
         </ul>
       </li>
       <li><strong>Administrative API</strong>
         <ul>
-          <li><a href="/puppetserver/{{ server_version }}/admin-api/v1/environment-cache.html">Environment Cache</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/admin-api/v1/jruby-pool.html">JRuby Pool</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/admin-api/v1/environment-cache.html">Environment cache</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/admin-api/v1/jruby-pool.html">JRuby pool</a></li>
         </ul>
       </li>
       <li><strong>Puppet API</strong>
         <ul>
-          <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/environment_classes.html">Environment Classes</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/static_file_content.html">Static File Content</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/environment_classes.html">Environment classes</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/static_file_content.html">Static file content</a></li>
         </ul>
       </li>
-      <li><strong>Developer Info</strong>
+      <li><strong>Developer info</strong>
         <ul>
           <li><a href="/puppetserver/{{ server_version }}/dev_debugging.html">Debugging</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/dev_running_from_source.html">Running From Source</a></li>
-          <li><a href="/puppetserver/{{ server_version }}/dev_trace_func.html">Tracing Code Events</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/dev_running_from_source.html">Running from source</a></li>
+          <li><a href="/puppetserver/{{ server_version }}/dev_trace_func.html">Tracing code events</a></li>
         </ul>
       </li>
     </ul>
   </li>
 
-  <li><strong>The Puppet Language</strong>
+  <li><strong>The Puppet language</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/lang_updating_manifests.html">Updating 3.x Manifests for Puppet 4.x</a></li>
-      <li><a href="{{ puppet_dir }}/lang_visual_index.html">Visual Index</a></li>
+      <li><a href="{{ puppet_dir }}/lang_updating_manifests.html">Updating 3.x manifests for Puppet 4.x</a></li>
+      <li><a href="{{ puppet_dir }}/lang_visual_index.html">Visual index</a></li>
       <li><a href="{{ puppet_dir }}/lang_summary.html">Basics</a></li>
-      <li><a href="{{ puppet_dir }}/lang_windows_file_paths.html">Handling File Paths on Windows</a></li>
+      <li><a href="{{ puppet_dir }}/lang_windows_file_paths.html">Handling file paths on Windows</a></li>
       <li><a href="{{ puppet_dir }}/lang_variables.html">Variables</a></li>
       <li><a href="{{ puppet_dir }}/lang_resources.html">Resources</a></li>
-      <li><a href="{{ puppet_dir }}/lang_resources_advanced.html">Resources (Advanced)</a></li>
-      <li><a href="{{ puppet_dir }}/lang_relationships.html">Relationships and Ordering</a></li>
+      <li><a href="{{ puppet_dir }}/lang_resources_advanced.html">Resources (advanced)</a></li>
+      <li><a href="{{ puppet_dir }}/lang_relationships.html">Relationships and ordering</a></li>
       <li><a href="{{ puppet_dir }}/lang_classes.html">Classes</a></li>
-      <li><a href="{{ puppet_dir }}/lang_defined_types.html">Defined Resource Types</a></li>
-      <li><a href="{{ puppet_dir }}/lang_expressions.html">Expressions and Operators</a></li>
-      <li><a href="{{ puppet_dir }}/lang_conditional.html">Conditional Statements and Expressions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_defined_types.html">Defined resource types</a></li>
+      <li><a href="{{ puppet_dir }}/lang_expressions.html">Expressions and operators</a></li>
+      <li><a href="{{ puppet_dir }}/lang_conditional.html">Conditional statements and expressions</a></li>
       <li><a href="{{ puppet_dir }}/lang_functions.html">Functions</a></li>
-      <li><a href="{{ puppet_dir }}/lang_node_definitions.html">Node Definitions</a></li>
+      <li><a href="{{ puppet_dir }}/lang_node_definitions.html">Node definitions</a></li>
       <li><a href="{{ puppet_dir }}/lang_comments.html">Comments</a></li>
-      <li><a href="{{ puppet_dir }}/lang_facts_and_builtin_vars.html">Facts and Built-in Variables</a></li>
-      <li><a href="{{ puppet_dir }}/lang_reserved.html">Reserved Words and Acceptable Names</a></li>
-      <li><a href="{{ puppet_dir }}/lang_write_functions_in_puppet.html">Writing Functions in the Puppet Language</a></li>
-      <li><strong>Values and Data Types</strong>
+      <li><a href="{{ puppet_dir }}/lang_facts_and_builtin_vars.html">Facts and built-in variables</a></li>
+      <li><a href="{{ puppet_dir }}/lang_reserved.html">Reserved words and acceptable names</a></li>
+      <li><a href="{{ puppet_dir }}/lang_write_functions_in_puppet.html">Writing functions in the Puppet language</a></li>
+      <li><strong>Values and data types</strong>
         <ul>
-          <li><a href="{{ puppet_dir }}/lang_data.html">About Values and Data Types</a></li>
+          <li><a href="{{ puppet_dir }}/lang_data.html">About values and data types</a></li>
           <li><a href="{{ puppet_dir }}/lang_data_string.html">Strings</a></li>
           <li><a href="{{ puppet_dir }}/lang_data_number.html">Numbers</a></li>
           <li><a href="{{ puppet_dir }}/lang_data_boolean.html">Booleans</a></li>
           <li><a href="{{ puppet_dir }}/lang_data_array.html">Arrays</a></li>
           <li><a href="{{ puppet_dir }}/lang_data_hash.html">Hashes</a></li>
-          <li><a href="{{ puppet_dir }}/lang_data_regexp.html">Regular Expressions</a></li>
+          <li><a href="{{ puppet_dir }}/lang_data_regexp.html">Regular expressions</a></li>
           <li><a href="{{ puppet_dir }}/lang_data_undef.html">Undef</a></li>
-          <li><a href="{{ puppet_dir }}/lang_data_resource_reference.html">Resource References</a></li>
-          <li><a href="{{ puppet_dir }}/lang_data_resource_type.html">Resource Types</a></li>
+          <li><a href="{{ puppet_dir }}/lang_data_resource_reference.html">Resource references</a></li>
+          <li><a href="{{ puppet_dir }}/lang_data_resource_type.html">Resource types</a></li>
           <li><a href="{{ puppet_dir }}/lang_data_default.html">Default</a></li>
-          <li><a href="{{ puppet_dir }}/lang_data_type.html">Data Type Syntax</a></li>
-          <li><a href="{{ puppet_dir }}/lang_data_abstract.html">Abstract Data Types</a></li>
+          <li><a href="{{ puppet_dir }}/lang_data_type.html">Data type syntax</a></li>
+          <li><a href="{{ puppet_dir }}/lang_data_abstract.html">Abstract data types</a></li>
         </ul>
       </li>
       <li><strong>Templates</strong>
         <ul>
-          <li><a href="{{ puppet_dir }}/lang_template.html">Using Templates</a></li>
-          <li><a href="{{ puppet_dir }}/lang_template_epp.html">Embedded Puppet (EPP) Template Syntax</a></li>
-          <li><a href="{{ puppet_dir }}/lang_template_erb.html">Embedded Ruby (ERB) Template Syntax</a></li>
+          <li><a href="{{ puppet_dir }}/lang_template.html">Using templates</a></li>
+          <li><a href="{{ puppet_dir }}/lang_template_epp.html">Embedded Puppet (EPP) template syntax</a></li>
+          <li><a href="{{ puppet_dir }}/lang_template_erb.html">Embedded Ruby (ERB) template syntax</a></li>
         </ul>
       </li>
-      <li><strong>Advanced Constructs</strong>
+      <li><strong>Advanced constructs</strong>
         <ul>
-          <li><a href="{{ puppet_dir }}/lang_iteration.html">Iteration and Loops</a></li>
-          <li><a href="{{ puppet_dir }}/lang_lambdas.html">Lambdas (Code Blocks)</a></li>
-          <li><a href="{{ puppet_dir }}/lang_defaults.html">Resource Defaults</a></li>
-          <li><a href="{{ puppet_dir }}/lang_collectors.html">Resource Collectors</a></li>
-          <li><a href="{{ puppet_dir }}/lang_virtual.html">Virtual Resources</a></li>
-          <li><a href="{{ puppet_dir }}/lang_exported.html">Exported Resources</a></li>
+          <li><a href="{{ puppet_dir }}/lang_iteration.html">Iteration and loops</a></li>
+          <li><a href="{{ puppet_dir }}/lang_lambdas.html">Lambdas (code blocks)</a></li>
+          <li><a href="{{ puppet_dir }}/lang_defaults.html">Resource defaults</a></li>
+          <li><a href="{{ puppet_dir }}/lang_collectors.html">Resource collectors</a></li>
+          <li><a href="{{ puppet_dir }}/lang_virtual.html">Virtual resources</a></li>
+          <li><a href="{{ puppet_dir }}/lang_exported.html">Exported resources</a></li>
           <li><a href="{{ puppet_dir }}/lang_tags.html">Tags</a></li>
-          <li><a href="{{ puppet_dir }}/lang_run_stages.html">Run Stages</a></li>
+          <li><a href="{{ puppet_dir }}/lang_run_stages.html">Run stages</a></li>
         </ul>
       </li>
-      <li><strong>Details of Complex Behaviors</strong>
+      <li><strong>Details of complex behaviors</strong>
         <ul>
-          <li><a href="{{ puppet_dir }}/lang_containment.html">Containment of Resources</a></li>
+          <li><a href="{{ puppet_dir }}/lang_containment.html">Containment of resources</a></li>
           <li><a href="{{ puppet_dir }}/lang_scope.html">Scope</a></li>
-          <li><a href="{{ puppet_dir }}/lang_namespaces.html">Namespaces and Autoloading</a></li>
+          <li><a href="{{ puppet_dir }}/lang_namespaces.html">Namespaces and autoloading</a></li>
         </ul>
       </li>
     </ul>
   </li>
 
-  <li><strong>Puppet Lookup</strong>
+  <li><strong>Puppet lookup</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/lookup_quick.html">Quick Reference for Hiera Users</a></li>
-      <li><a href="{{ puppet_dir }}/lookup_quick_module.html">Quick Intro to Module Data</a></li>
+      <li><a href="{{ puppet_dir }}/lookup_quick.html">Quick reference for Hiera users</a></li>
+      <li><a href="{{ puppet_dir }}/lookup_quick_module.html">Quick intro to module data</a></li>
     </ul>
   </li>
 
 
-  <li><strong>Resource Types</strong>
+  <li><strong>Resource types</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/type.html">All Resource Types (Single-Page Reference)</a></li>
-      <li><a href="{{ puppet_dir }}/resources_windows_optional.html">TIPS: Optional Resource Types for Windows</a></li>
-
+      <li><a href="{{ puppet_dir }}/type.html">All resource types (single-page reference)</a></li>
       <li><a href="{{ puppet_dir }}/types/augeas.html">augeas</a></li>
       <li><a href="{{ puppet_dir }}/types/computer.html">computer</a></li>
       <li><a href="{{ puppet_dir }}/types/cron.html">cron</a></li>
       <li><a href="{{ puppet_dir }}/types/exec.html">exec</a></li>
-      <li><a href="{{ puppet_dir }}/resources_exec_windows.html">TIPS: Exec Resources (Windows)</a></li>
       <li><a href="{{ puppet_dir }}/types/file.html">file</a></li>
-      <li><a href="{{ puppet_dir }}/resources_file_windows.html">TIPS: File Resources (Windows)</a></li>
       <li><a href="{{ puppet_dir }}/types/filebucket.html">filebucket</a></li>
       <li><a href="{{ puppet_dir }}/types/group.html">group</a></li>
-      <li><a href="{{ puppet_dir }}/resources_user_group_windows.html">TIPS: User and Group Resources (Windows)</a></li>
       <li><a href="{{ puppet_dir }}/types/host.html">host</a></li>
       <li><a href="{{ puppet_dir }}/types/index.html">index</a></li>
       <li><a href="{{ puppet_dir }}/types/interface.html">interface</a></li>
@@ -336,55 +322,61 @@
       <li><a href="{{ puppet_dir }}/types/nagios_timeperiod.html">nagios_timeperiod</a></li>
       <li><a href="{{ puppet_dir }}/types/notify.html">notify</a></li>
       <li><a href="{{ puppet_dir }}/types/package.html">package</a></li>
-      <li><a href="{{ puppet_dir }}/resources_package_windows.html">TIPS: Package Resources (Windows)</a></li>
       <li><a href="{{ puppet_dir }}/types/resources.html">resources</a></li>
       <li><a href="{{ puppet_dir }}/types/router.html">router</a></li>
       <li><a href="{{ puppet_dir }}/types/schedule.html">schedule</a></li>
       <li><a href="{{ puppet_dir }}/types/scheduled_task.html">scheduled_task</a></li>
-      <li><a href="{{ puppet_dir }}/resources_scheduled_task_windows.html">TIPS: Scheduled Task Resources (Windows)</a></li>
       <li><a href="{{ puppet_dir }}/types/selboolean.html">selboolean</a></li>
       <li><a href="{{ puppet_dir }}/types/selmodule.html">selmodule</a></li>
       <li><a href="{{ puppet_dir }}/types/service.html">service</a></li>
-      <li><a href="{{ puppet_dir }}/resources_service.html">TIPS: Service Resources (All OSes)</a></li>
       <li><a href="{{ puppet_dir }}/types/ssh_authorized_key.html">ssh_authorized_key</a></li>
       <li><a href="{{ puppet_dir }}/types/sshkey.html">sshkey</a></li>
       <li><a href="{{ puppet_dir }}/types/stage.html">stage</a></li>
       <li><a href="{{ puppet_dir }}/types/tidy.html">tidy</a></li>
       <li><a href="{{ puppet_dir }}/types/user.html">user</a></li>
-      <li><a href="{{ puppet_dir }}/resources_user_group_windows.html">TIPS: User and Group Resources (Windows)</a></li>
       <li><a href="{{ puppet_dir }}/types/vlan.html">vlan</a></li>
       <li><a href="{{ puppet_dir }}/types/yumrepo.html">yumrepo</a></li>
       <li><a href="{{ puppet_dir }}/types/zfs.html">zfs</a></li>
       <li><a href="{{ puppet_dir }}/types/zone.html">zone</a></li>
       <li><a href="{{ puppet_dir }}/types/zpool.html">zpool</a></li>
+        <ul><strong>Tips for resource types</strong>
+          <li><a href="{{ puppet_dir }}/resources_windows_optional.html">Optional resource types for Windows</a></li>
+          <li><a href="{{ puppet_dir }}/resources_exec_windows.html">Exec resources (Windows)</a></li>
+          <li><a href="{{ puppet_dir }}/resources_file_windows.html">File resources (Windows)</a></li>
+          <li><a href="{{ puppet_dir }}/resources_user_group_windows.html">User and group resources (Windows)</a></li>
+          <li><a href="{{ puppet_dir }}/resources_package_windows.html">Package resources (Windows)</a></li>
+          <li><a href="{{ puppet_dir }}/resources_scheduled_task_windows.html">Scheduled task resources (Windows)</a></li>
+          <li><a href="{{ puppet_dir }}/resources_user_group_windows.html">User and group resources (Windows)</a></li>
+          <li><a href="{{ puppet_dir }}/resources_service.html">Service resources (all operating systems)</a></li>
+        </ul>
     </ul>
   </li>
 
-  <li><strong>Reports: Tracking Puppet's Activity</strong>
+  <li><strong>Reports: Tracking Puppet's activity</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/reporting_about.html">About Reporting</a></li>
-      <li><a href="{{ puppet_dir }}/report.html">Built-in Report Processors</a></li>
-      <li><a href="{{ puppet_dir }}/reporting_write_processors.html">Writing Custom Report Processors</a></li>
-      <li><a href="{{ puppet_dir }}/format_report.html">Puppet::Transaction::Report Object Format</a></li>
+      <li><a href="{{ puppet_dir }}/reporting_about.html">About reporting</a></li>
+      <li><a href="{{ puppet_dir }}/report.html">Built-in report processors</a></li>
+      <li><a href="{{ puppet_dir }}/reporting_write_processors.html">Writing custom report processors</a></li>
+      <li><a href="{{ puppet_dir }}/format_report.html">Puppet::Transaction::Report object format</a></li>
     </ul>
   </li>
 
-  <li><strong>Misc. References (Settings, Functions, etc.)</strong>
+  <li><strong>Misc. references (settings, functions, etc.)</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/configuration.html">Settings (Configuration Reference)</a></li>
+      <li><a href="{{ puppet_dir }}/configuration.html">Settings (configuration reference)</a></li>
       <li><a href="{{ puppet_dir }}/function.html">Functions</a></li>
       <li><a href="{{ puppet_dir }}/metaparameter.html">Metaparameters</a></li>
-      <li><a href="{{ puppet_dir }}/report.html">Built-in Report Processors</a></li>
-      <li><a href="{{ puppet_dir }}/indirection.html">Indirections and Termini</a></li>
-      <li><a href="{{ puppet_dir }}/yard/frames.html">Ruby API for Developing Extensions</a></li>
+      <li><a href="{{ puppet_dir }}/report.html">Built-in report processors</a></li>
+      <li><a href="{{ puppet_dir }}/indirection.html">Indirections and termini</a></li>
+      <li><a href="{{ puppet_dir }}/yard/frames.html">Ruby API for developing extensions</a></li>
     </ul>
   </li>
 
-  <li><strong>Man Pages</strong>
+  <li><strong>Man pages</strong>
     <ul>
 
       <li><a href="{{ puppet_dir }}/man/index.html">Index</a></li>
-      <li><strong>Core Tools</strong>
+      <li><strong>Core tools</strong>
         <ul>
           <li><a href="{{ puppet_dir }}/man/agent.html">puppet agent</a></li>
           <li><a href="{{ puppet_dir }}/man/apply.html">puppet apply</a></li>
@@ -396,7 +388,7 @@
         </ul>
       </li>
 
-      <li><strong>Occasionally Useful</strong>
+      <li><strong>Occasionally useful</strong>
         <ul>
           <li><a href="{{ puppet_dir }}/man/config.html">puppet config</a></li>
           <li><a href="{{ puppet_dir }}/man/describe.html">puppet describe</a></li>
@@ -440,12 +432,12 @@
         <ul>
           <li><a href="{{ puppet_dir }}/http_api/http_catalog.html">Catalog</a></li>
           <li><a href="{{ puppet_dir }}/http_api/http_node.html">Node</a></li>
-          <li><a href="{{ puppet_dir }}/http_api/http_file_bucket_file.html">File Bucket File</a></li>
-          <li><a href="{{ puppet_dir }}/http_api/http_file_content.html">File Content</a></li>
-          <li><a href="{{ puppet_dir }}/http_api/http_file_metadata.html">File Metadata</a></li>
+          <li><a href="{{ puppet_dir }}/http_api/http_file_bucket_file.html">File bucket file</a></li>
+          <li><a href="{{ puppet_dir }}/http_api/http_file_content.html">File content</a></li>
+          <li><a href="{{ puppet_dir }}/http_api/http_file_metadata.html">File metadata</a></li>
           <li><a href="{{ puppet_dir }}/http_api/http_report.html">Report</a></li>
           <li><a href="{{ puppet_dir }}/http_api/http_environments.html">Environments</a></li>
-          <li><a href="{{ puppet_dir }}/http_api/http_resource_type.html">Resource Type</a></li>
+          <li><a href="{{ puppet_dir }}/http_api/http_resource_type.html">Resource type</a></li>
           <li><a href="{{ puppet_dir }}/http_api/http_status.html">Status</a></li>
         </ul>
       </li>
@@ -453,9 +445,9 @@
       <li><strong>CA v1 API</strong>
         <ul>
           <li><a href="{{ puppet_dir }}/http_api/http_certificate.html">Certificate</a></li>
-          <li><a href="{{ puppet_dir }}/http_api/http_certificate_request.html">Certificate Signing Requests</a></li>
-          <li><a href="{{ puppet_dir }}/http_api/http_certificate_status.html">Certificate Status</a></li>
-          <li><a href="{{ puppet_dir }}/http_api/http_certificate_revocation_list.html">Certificate Revocation List</a></li>
+          <li><a href="{{ puppet_dir }}/http_api/http_certificate_request.html">Certificate signing requests</a></li>
+          <li><a href="{{ puppet_dir }}/http_api/http_certificate_status.html">Certificate status</a></li>
+          <li><a href="{{ puppet_dir }}/http_api/http_certificate_revocation_list.html">Certificate revocation list</a></li>
         </ul>
       </li>
 
@@ -477,27 +469,27 @@
 
     </ul>
   </li>
-  <li><strong>SSL and Certificates</strong>
+  <li><strong>SSL and certificates</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/config_ssl_external_ca.html">Using an External CA</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/external_ca_configuration.html">Using an External CA With Puppet Server</a></li>
-      <li><a href="/puppetserver/{{ server_version }}/external_ssl_termination.html">External SSL Termination With Puppet Server</a></li>
-      <li><a href="{{ puppet_dir }}/ssl_autosign.html">Configuring Autosigning</a></li>
-      <li><a href="{{ puppet_dir }}/ssl_attributes_extensions.html">CSR Attributes and Certificate Extensions</a></li>
-      <li><a href="{{ puppet_dir }}/ssl_regenerate_certificates.html">Regenerating All Certificates in a Deployment</a></li>
+      <li><a href="{{ puppet_dir }}/config_ssl_external_ca.html">Using an external CA</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/external_ca_configuration.html">Using an external CA with Puppet Server</a></li>
+      <li><a href="/puppetserver/{{ server_version }}/external_ssl_termination.html">External SSL termination with Puppet Server</a></li>
+      <li><a href="{{ puppet_dir }}/ssl_autosign.html">Configuring autosigning</a></li>
+      <li><a href="{{ puppet_dir }}/ssl_attributes_extensions.html">CSR attributes and certificate extensions</a></li>
+      <li><a href="{{ puppet_dir }}/ssl_regenerate_certificates.html">Regenerating all certificates in a deployment</a></li>
     </ul>
   </li>
 
-  <li><strong>Details About Puppet's Internals</strong>
+  <li><strong>Details about Puppet's internals</strong>
     <ul>
-      <li><a href="{{ puppet_dir }}/subsystem_agent_master_comm.html">Agent/Master HTTPS Communications</a></li>
-      <li><a href="{{ puppet_dir }}/subsystem_catalog_compilation.html">Catalog Compilation</a></li>
+      <li><a href="{{ puppet_dir }}/subsystem_agent_master_comm.html">Agent/master HTTPS communications</a></li>
+      <li><a href="{{ puppet_dir }}/subsystem_catalog_compilation.html">Catalog compilation</a></li>
     </ul>
   </li>
-  <li><strong>Experimental Features</strong>
+  <li><strong>Experimental features</strong>
     <ul>
       <li><a href="{{ puppet_dir }}/experiments_overview.html">Overview</a></li>
-      <li><a href="{{ puppet_dir }}/experiments_msgpack.html">Msgpack Support</a></li>
+      <li><a href="{{ puppet_dir }}/experiments_msgpack.html">Msgpack support</a></li>
     </ul>
   </li>
 </ul>
