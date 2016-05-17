@@ -37,8 +37,8 @@ title: "Using Hiera with Puppet"
 Puppet can use Hiera to look up data. This helps you disentangle site-specific data from Puppet code, for easier code reuse and easier management of data that needs to differ across your node population.
 
 
-Enabling and Configuring Hiera for Puppet
------
+## Enabling and configuring Hiera for Puppet
+
 
 ### Puppet 4
 
