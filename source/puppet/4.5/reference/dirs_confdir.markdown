@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Directories: Config Directory (confdir)"
+title: "Directories: Config directory (confdir)"
 canonical: "/puppet/latest/reference/dirs_confdir.html"
 ---
 
@@ -46,7 +46,7 @@ Items labeled "master only" below may also be present on standalone Puppet apply
 
 * [`ssl`](./dirs_ssldir.html) --- contains each node's certificate infrastructure. (All nodes.)
 
-### Config Files
+### Config files
 
 * [`puppet.conf`](./config_file_main.html) --- Puppet's main config file. (All nodes.)
 * [`auth.conf`](./config_file_auth.html) --- access control rules for the Puppet master's network services.
