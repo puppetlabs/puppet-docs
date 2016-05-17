@@ -1,13 +1,13 @@
 ---
 layout: default
-title: "Language: About Values and Data Types"
+title: "Language: About values and data types"
 canonical: "/puppet/latest/reference/lang_data.html"
 ---
 
 
 
 
-## Values and Data
+## Values and data
 
 Most of the things you can do with the Puppet language involve some form of data.
 
@@ -16,7 +16,7 @@ An individual piece of data is called a **value,** and every value has a **data 
 Strings are the most common and useful data type, but you'll also have to work with others, including numbers, arrays, and some Puppet-specific data types like resource references.
 
 
-## Puppet's Data Types
+## Puppet's data types
 
 * [Strings](./lang_data_string.html)
 * [Numbers](./lang_data_number.html)
@@ -28,7 +28,7 @@ Strings are the most common and useful data type, but you'll also have to work w
 * [Resource References](./lang_data_resource_reference.html)
 * [Default](./lang_data_default.html)
 
-## Literal Data Types as Values
+## Literal data types as values
 
 Although you'll mostly interact with values _of_ the various data types, Puppet also includes values like `String` that _represent_ data types.
 

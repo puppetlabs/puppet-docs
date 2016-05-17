@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "SSL Configuration: CSR Attributes and Certificate Extensions"
+title: "SSL configuration: CSR attributes and certificate extensions"
 canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 ---
 
@@ -24,7 +24,7 @@ It might also be useful in deployments where Puppet is used to deploy private ke
 
 If your deployment doesn't match one of these descriptions, you might not need this feature.
 
-## Timing: When Data Can be Added to CSRs and Certificates
+## Timing: When data can be added to CSRs and certificates
 
 When Puppet agent starts the process of requesting a catalog, it first checks whether it has a valid signed certificate. If it does not, it generates a key pair, crafts a CSR, and submits it to the certificate authority (CA) Puppet master. The steps are [covered in more detail in the reference page about agent/master HTTPS traffic][cert_request].
 
@@ -34,7 +34,7 @@ This means **any desired extra data must be present _before_ Puppet agent attemp
 
 Practically speaking, you should populate any extra data when provisioning the node. If you mess up, see [Recovering From Failed Data Embedding](#recovering-from-failed-data-embedding) below.
 
-## Data Location and Format
+## Data location and format
 
 Extra data for the CSR is read from the `csr_attributes.yaml` file in Puppet's [`confdir`][confdir]. (The location of this file can be changed with [the `csr_attributes` setting][csr_attributes].)
 
@@ -50,15 +50,15 @@ The value of each key must also be a hash, where:
 
 See the respective sections below for information about how each hash is used and recommended OIDs for each hash.
 
-## Custom Attributes (Transient CSR Data)
+## Custom attributes (transient CSR data)
 
 **Custom Attributes** are pieces of data that are _only_ embedded in the CSR. The CA can use them when deciding whether to sign the certificate, but they are discarded after that and aren't transferred to the final certificate.
 
-### Default Behavior
+### Default behavior
 
 By default, Puppet's CA tools don't do anything with custom attributes. The `puppet cert list` command doesn't display custom attributes for pending CSRs, and [basic autosigning (autosign.conf)][autosign_basic] doesn't check them before signing.
 
-### Configurable Behavior
+### Configurable behavior
 
 If you use [policy-based autosigning][autosign_policy], your policy executable receives the complete CSR in PEM format. The executable can extract and inspect the custom attributes, and use them when deciding whether to sign the certificate.
 
@@ -66,7 +66,7 @@ The simplest use is to embed a pre-shared key of some kind in the custom attribu
 
 A more complex use might be to embed an instance-specific ID and write a policy executable that can check it against a list of your recently requested instances on a public cloud, like EC2 or GCE.
 
-### Manually Checking for Custom Attributes in CSRs
+### Manually checking for custom attributes in CSRs
 
 You can check for custom attributes by using OpenSSL to dump a PEM-format CSR to text format. Do this by running:
 
@@ -81,7 +81,7 @@ Attributes:
     challengePassword        :342thbjkt82094y0uthhor289jnqthpc2290
 ~~~
 
-### Recommended OIDs for Attributes
+### Recommended OIDs for attributes
 
 Custom attributes can use any public or site-specific OID, **with the exception of the OIDs used for core X.509 functionality.** This means you can't re-use existing OIDs for things like subject alternative names.
 
@@ -89,13 +89,13 @@ One useful OID is the "challengePassword" attribute --- `1.2.840.113549.1.9.7`. 
 
 You can also use the Puppet-specific OIDs [referenced below][puppet_oids] in the section on extension requests.
 
-## Extension Requests (Permanent Certificate Data)
+## Extension requests (permanent certificate data)
 
 **Extension requests** are pieces of data that are _transferred to the final certificate_ (as **extensions**) when the CA signs the CSR. They persist as trusted, immutable data, that cannot be altered after the certificate is signed.
 
 They can also be used by the CA when deciding whether or not to sign the certificate.
 
-### Default Behavior
+### Default behavior
 
 When signing a certificate, Puppet's CA tools transfer any extension requests into the final certificate.
 
@@ -112,11 +112,11 @@ Visibility of extensions is somewhat limited:
 
 Puppet's authorization system (`auth.conf`) does not use certificate extensions.
 
-### Configurable Behavior
+### Configurable behavior
 
 If you use [policy-based autosigning][autosign_policy], your policy executable receives the complete CSR in PEM format. The executable can extract and inspect the extension requests, and use them when deciding whether to sign the certificate.
 
-### Manually Checking for Extensions in CSRs and Certificates
+### Manually checking for extensions in CSRs and certificates
 
 You can check for extension requests in a CSR by using OpenSSL to dump a PEM-format CSR to text format. Do this by running:
 
@@ -162,7 +162,7 @@ X509v3 extensions:
         my_ami_image
 ~~~
 
-### Recommended OIDs for Extensions
+### Recommended OIDs for extensions
 
 Extension request OIDs **must** be under the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`) or "ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`) OID arcs.
 
@@ -176,11 +176,11 @@ The private range is available for any information you want to embed into a cert
 
 You can use [the `custom_trusted_oid_mapping.yaml` file][oid_map] to set short names for any private extension OIDs you use. Note that this only enables the short names in the `$trusted[extensions]` hash.
 
-#### Puppet-Specific Registered IDs
+#### Puppet-specific registered IDs
 
 {% partial ./_registered_oids.md %}
 
-## AWS Attributes and Extensions Population Example
+## AWS attributes and extensions population example
 
 You can use an automated script (possibly using cloud-init or a similar tool) to populate the `csr_attributes.yaml` file when you provision a node.
 
@@ -204,7 +204,7 @@ Assuming your image has the `erb` binary available, this populates the attribute
 
 ## Troubleshooting
 
-### Recovering from Failed Data Embedding
+### Recovering from failed data embedding
 
 When first testing this feature, you might fail to embed the right information in a CSR or certificate and want to start over for your test nodes. (This is not really a problem once your provisioning system is changed to populate the data, but it can happen pretty easily when doing things manually.)
 

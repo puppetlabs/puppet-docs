@@ -1,7 +1,7 @@
 ---
 layout: default
 toc_levels: 1234
-title: "Puppet 4.4 Release Notes"
+title: "Puppet 4.5 Release Notes"
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Where Did Everything Go in Puppet 4.x?"
+title: "Where did everything go in Puppet 4.x?"
 ---
 
 
@@ -15,8 +15,7 @@ This page is a summary, to quickly orient users arriving from Puppet 3.
 
 > If you want full details, [we've written a specification of the directories used by all of Puppet's tools.][spec]
 
-New All-in-One `puppet-agent` Package
------
+## New All-in-One `puppet-agent` package
 
 On managed \*nix systems, you'll now install `puppet-agent` instead of `puppet`. (This package also provides `puppet apply`, suitable for standalone Puppet systems.)
 
@@ -26,8 +25,8 @@ It also includes MCollective.
 
 On Windows, you'll use the same package as before, but the open source package now includes MCollective.
 
-\*nix Executables are in `/opt/puppetlabs/bin/`
------
+## \*nix executables are in `/opt/puppetlabs/bin/`
+
 
 On \*nix platforms, the main executables moved to `/opt/puppetlabs/bin`. This means **Puppet and related tools aren't included in your PATH by default.** You'll need to either:
 
@@ -37,7 +36,7 @@ On \*nix platforms, the main executables moved to `/opt/puppetlabs/bin`. This me
 
 On Windows, executables stayed in the same location, and the MSI package still adds Puppet's tools to the PATH.
 
-### Private `bin` Dirs
+### Private `bin` directories
 
 The executables in `/opt/puppetlabs/bin` are just the "public" applications that make up Puppet. Private supporting commands like `ruby` and `gem` are in `/opt/puppetlabs/puppet/bin`, to keep them from accidentally overriding system tools if you add the public bin dir to your PATH.
 
@@ -50,17 +49,17 @@ The [`confdir`][confdir] is the directory that holds config files like `puppet.c
 
 On Windows, this stayed the same. It's still in the `COMMON_APPDATA` folder, defaulting to `C:\ProgramData\PuppetLabs\puppet\etc` on modern Windows versions.
 
-### `ssldir` is Inside `confdir`
+### `ssldir` is inside `confdir`
 
 On some Linux distros, our default config used to set Puppet's `ssldir` as `$vardir/ssl` rather than `$confdir/ssl`. Now we're not doing that; the default location is in the `confdir` on all platforms.
 
-### Other Stuff in `/etc/puppetlabs`
+### Other stuff in `/etc/puppetlabs`
 
 We're also moving other related configs into the `/etc/puppetlabs` directory. Puppet Server now uses `/etc/puppetlabs/puppetserver`, and MCollective uses `/etc/puppetlabs/mcollective`.
 
 
-New `codedir` Holds All Modules/Manifests/Data
------
+## New `codedir` holds all modules/manifests/data
+
 
 All of the content used to configure nodes has moved into a new directory, named `codedir`. (This stuff used to be in the `confdir`.)
 
@@ -77,7 +76,7 @@ The main contents of the `codedir` are:
     * Note: This is only for module versions you specifically want in _all_ environments.
 * The `hiera.yaml` config file
 
-### Directory Environments are Always On
+### Directory environments are always on
 
 [Directory environments][] are always enabled now.
 
@@ -90,12 +89,12 @@ This means that if you're starting from scratch, you should:
 
 You can still put global modules in `$codedir/modules`, and can configure a global [main manifest][] with the `default_manifest` setting.
 
-### Hiera Data Goes in Environments by Default
+### Hiera data goes in environments by default
 
 Hiera's default settings now use an environment-specific datadir for the YAML and JSON backends. So the `production` environment's default Hiera data directory would be `/etc/puppetlabs/code/environments/production/hieradata`.
 
-Some Other Directories Have Moved
------
+## Some other directories have moved
+
 
 * The system `vardir` for `puppet agent` has moved, and is now separate from Puppet Server's `vardir`.
     * On \*nix: `/opt/puppetlabs/puppet/cache`

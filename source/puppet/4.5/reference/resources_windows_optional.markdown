@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Optional Resource Types for Windows"
+title: "Optional resource types for Windows"
 toc: false
 ---
 

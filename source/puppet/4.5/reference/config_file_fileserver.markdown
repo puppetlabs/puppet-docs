@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: fileserver.conf"
+title: "Config files: fileserver.conf"
 canonical: "/puppet/latest/reference/config_file_fileserver.html"
 ---
 
@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/config_file_fileserver.html"
 
 The `fileserver.conf` file configures custom static mount points for Puppet's file server. If custom mount points are present, [`file` resources][file] can access them with their `source` attributes.
 
-## When to Use `fileserver.conf`
+## When to use `fileserver.conf`
 
 By default, `fileserver.conf` isn't necessary --- Puppet automatically serves files from the `files` directory of modules, and most users find this sufficient. ([More info on serving files from modules is available here][module_files].)
 
@@ -43,7 +43,7 @@ A `fileserver.conf` file consists of a collection of mount-point stanzas, and lo
 * A `path` directive, pointing to an absolute path on disk. This is where the mount point's files are stored.
 * Any number of `allow` or `deny` directives. In this version of Puppet, we recommend using only a `allow *` directive in `fileserver.conf`.
 
-### Security Directives
+### Security directives
 
 The `allow` and `deny` directives in a mount point stanza can be used to control which nodes may access the files in it. However, this feature predates the `auth.conf` file used in this version of Puppet, and **we recommend against using it.** If possible, you should keep all authorization rules centralized in `auth.conf`. To do this, put a single `allow *` rule in each custom mount point.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Embedded Puppet (EPP) Template Syntax"
+title: "Language: Embedded Puppet (EPP) template syntax"
 canonical: "/puppet/latest/reference/lang_template_epp.html"
 ---
 
@@ -23,7 +23,7 @@ Puppet can evaluate EPP templates with the [`epp`][epp] and [`inline_epp`][inlin
 
 This page covers how to write EPP templates. See [Templates](./lang_template.html) for information about what templates are and how to evaluate them.
 
-## EPP Structure and Syntax
+## EPP structure and syntax
 
 ~~~ erp
 <%- | Boolean $keys_enable,
@@ -72,7 +72,7 @@ EPP has two tags for Puppet code, optional tags for parameters and comments, and
 
 Text outside a tag becomes literal text, but it is subject to any tagged Puppet code surrounding it. For example, text surrounded by a tagged `if` statement only appears in the output if the condition is true.
 
-### Expression-Printing Tags
+### Expression-printing tags
 
 `<%= $fqdn %>`
 
@@ -85,13 +85,13 @@ ServerName <%= $fqdn %>
 ServerAlias <%= $hostname %>
 ~~~
 
-#### Space Trimming
+#### Space trimming
 
 You can trim trailing whitespace and line breaks after expression-printing tags by adding a hyphen to the closing tag delimiter.
 
 * `-%>` --- If the tag ends a line, trim all trailing whitespace and the following line break.
 
-### Non-Printing Tags
+### Non-printing tags
 
 `<% if $broadcastclient == true { %> ...text... <% } %>`
 
@@ -119,14 +119,14 @@ Expressions in non-printing tags don't have to resolve to a value or be a comple
 
 You must keep `|server| {` inside the first tag, because you can't insert an arbitrary statement between a function call and its required block.
 
-#### Space Trimming
+#### Space trimming
 
 You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) to the tag delimiters.
 
 * `<%-` --- If the tag is indented, trim the indentation.
 * `-%>` --- If the tag ends a line, trim any trailing whitespace and the following line break.
 
-### Parameter Tags
+### Parameter tags
 
 [inpage_paramtag]: #parameter-tags
 
@@ -153,31 +153,31 @@ Parameters with default values are optional, and can be omitted when the templat
 See [Parameters](#parameters) below for details about passing parameters.
 
 
-#### Space Trimming
+#### Space trimming
 
 You can trim whitespace surrounding a parameter tag by adding hyphens (`-`) to the tag delimiters.
 
 * `<%- |` --- If the tag is indented, trim the indentation.
 * `| -%>` --- If the tag ends a line, trim the trailing whitespace and the following line break.
 
-### Comment Tags
+### Comment tags
 
 `<%# This is a comment. %>`
 
 A comment tag's contents do not appear in the template's output. It starts with an opening tag delimiter and a hash sign (`<%#`) and ends with a closing tag delimiter (`%>`).
 
-#### Space Trimming
+#### Space trimming
 
 You can trim line breaks after comment tags by adding a hyphen to the closing tag delimiter.
 
 * `-%>` --- If the tag ends a line, trim the trailing whitespace and the following line break.
 
-### Literal Tag Delimiters
+### Literal tag delimiters
 
 If you need the template's final output to contain a literal `<%` or `%>`, you can escape them as `<%%` or `%%>`.
 
 
-## Accessing Variables
+## Accessing variables
 
 EPP templates can access [variables][] with Puppet's normal `$variable` syntax (`The tinker value is <%= $ntp::tinker %>`), which is a major advantage over ERB.
 
@@ -212,7 +212,7 @@ If the template has a [parameter tag][inpage_paramtag], you can _only_ pass the 
 
 If a template's parameter tag includes any parameters without default values, they are mandatory. You must pass values for them when calling the template.
 
-#### Why Use Parameters?
+#### Why use parameters?
 
 Templates have two ways to use data:
 
@@ -225,7 +225,7 @@ You should use class variables when a template is closely tied to the class that
 
 You should use parameters when a template might be used in several different places and you want to keep it flexible. Also, declaring parameters with a tag makes a template's data requirements visible at a glance.
 
-### Special Scope Rule for `inline_epp`
+### Special scope rule for `inline_epp`
 
 If:
 
@@ -236,7 +236,7 @@ If:
 ...you can access variables from the calling class in the template by using the variables' short names. This exceptional behavior is only allowed if **all** of those conditions are true.
 
 
-## Example Template
+## Example template
 
 The following example is an EPP translation of the `ntp.conf.erb` template from the [`puppetlabs-ntp`][ntp] module.
 

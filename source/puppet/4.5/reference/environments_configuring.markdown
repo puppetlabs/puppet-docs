@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Configuring Environments"
+title: "Configuring environments"
 ---
 
 [environmentpath]: ./configuration.html#environmentpath
@@ -17,8 +17,8 @@ title: "Configuring Environments"
 [disable_per_environment_manifest]: ./configuration.html#disableperenvironmentmanifest
 [main manifest]: ./dirs_manifest.html
 
-Global Settings for Configuring Environments
------
+## Global settings for configuring environments
+
 
 Puppet uses five settings in [puppet.conf][] to configure the behavior of environments:
 

@@ -20,7 +20,7 @@ canonical: "/puppet/latest/reference/lang_scope.html"
 [diagram]: ./images/scope-euler-diagram.png
 [lambda]: ./lang_lambdas.html
 
-## Scope Basics
+## Scope basics
 
 A **scope** is a specific **area of code** that is partially isolated from other areas of code. Scopes limit the reach of:
 
@@ -32,7 +32,7 @@ Scopes **do not** limit the reach of:
 * [Resource titles][resources], which are all global
 * [Resource references][refs], which can refer to a resource declared in any scope
 
-### Summary Diagram
+### Summary diagram
 
 ![An Euler diagram of several scopes. Top scope contains node scope, which contains the example::other, example::four, and example::parent scopes. Example::parent contains the example::child scope.][diagram]
 
@@ -45,7 +45,7 @@ In the diagram above:
 * Each of the `example::parent, example::other`, and `example::four` classes can access variables and defaults from their own scope, node scope, and top scope.
 * The `example::child` class can access variables and defaults from its own scope, `example::parent`'s scope, node scope, and top scope.
 
-### Top Scope
+### Top scope
 
 Code that is _outside_ any class definition, type definition, or node definition exists at **top scope.** Variables and defaults declared at top scope are available **everywhere.**
 
@@ -65,7 +65,7 @@ $ puppet apply site.pp
 notice: Message from elsewhere: Hi!
 ~~~
 
-### Node Scope
+### Node scope
 
 Code inside a [node definition][node] exists at **node scope.** Note that since only one node definition can match a given node, only one node scope can exist at a time.
 
@@ -93,7 +93,7 @@ notice: Message from top scope:
 
 In this example, node scope can access top scope variables, but not vice-versa.
 
-### Local Scopes
+### Local scopes
 
 Code inside a [class definition][class], [defined type][definedtype], or [lambda][] exists in a **local scope.**
 
@@ -127,7 +127,7 @@ notice: Message from top scope:
 
 In this example, a local scope can see "out" into node and top scope, but outer scopes cannot see "in."
 
-### Overriding Received Values
+### Overriding received values
 
 Variables and defaults declared at node scope can override those received from top scope. Those declared at local scope can override those received from node and top scope, as well as any parent scopes. That is: if multiple variables with the same name are available, **Puppet will use the "most local" one.**
 
@@ -173,9 +173,9 @@ include scope_example
 
 In this example, `/tmp/example` would be a directory owned by the `puppet` user, and would combine the defaults from top and local scope.
 
-## More Details
+## More details
 
-### Scope of External Node Classifier Data
+### Scope of external node classifier data
 
 * **Variables** provided by an [ENC][] are set at top scope.
 * However, all of the **classes** assigned by an ENC are declared at node scope.
@@ -184,13 +184,13 @@ This gives approximately the best and most-expected behavior --- variables from 
 
 > **Note:** this means compilation will fail if the site manifest tries to set a variable that was already set at top scope by an ENC.
 
-### Named Scopes and Anonymous Scopes
+### Named scopes and anonymous scopes
 
 A class definition creates a **named scope,** whose name is the same as the class's name. Top scope is also a named scope; its name is the empty string.
 
 Node scope and the local scopes created by lambdas and defined resources are **anonymous** and cannot be directly referenced.
 
-### Accessing Out-of-Scope Variables
+### Accessing out-of-scope variables
 
 Variables declared in **named scopes** can be referenced directly from anywhere (including scopes that otherwise would not have access to them) by using their global **qualified name.**
 
@@ -214,7 +214,7 @@ This example would set the variable `$local_copy` to the value of the `$confdir`
 
 Variables declared in **anonymous scopes** can only be accessed normally and do not have global qualified names.
 
-## Scope Lookup Rules
+## Scope lookup rules
 
 [scope_lookup_rules]: #scope-lookup-rules
 
@@ -225,7 +225,7 @@ There are two different sets of scope lookup rules: **static scope** and **dynam
 * Static scope for [variables][]
 * Dynamic scope for [resource defaults][resourcedefaults]
 
-### Static Scope
+### Static scope
 
 In **static scope,** parent scopes are only assigned in the following ways:
 
@@ -241,7 +241,7 @@ In **static scope,** parent scopes are only assigned in the following ways:
 
 This version of Puppet uses static scope for looking up variables.
 
-### Dynamic Scope
+### Dynamic scope
 
 In **dynamic scope,** parent scopes are assigned by both **inheritance** and **declaration,** with preference being given to inheritance. The full list of rules is:
 
@@ -258,7 +258,7 @@ In **dynamic scope,** parent scopes are assigned by both **inheritance** and **d
 
 This version of Puppet uses dynamic scope only for resource defaults.
 
-## Messy Under-the-Hood Details
+## Messy under-the-hood details
 
 * Node scope only exists if there is at least one node definition in the main manifest. If no node definitions exist, then ENC classes get declared at top scope.
 * Although top scope and node scope are described above as being special scopes, they are actually implemented as part of the chain of parent scopes, with node scope being a child of top scope and the parent of any classes declared inside the node definition. However, since the move to static scoping causes them to behave as little islands of dynamic scoping in a statically scoped world, it's simpler to think of them as special cases.

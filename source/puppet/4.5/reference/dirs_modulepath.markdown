@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Directories: The Modulepath (Default Config)"
+title: "Directories: The modulepath (default config)"
 canonical: "/puppet/latest/reference/dirs_modulepath.html"
 ---
 
@@ -56,7 +56,7 @@ Each environment can set its full modulepath in [environment.conf][] with the `m
 
 When running `puppet apply` on the command line, you also have the option of directly setting the modulepath with the `--modulepath` flag.
 
-### The `modulepath` Setting
+### The `modulepath` setting
 
 The `modulepath` setting can only be set in [environment.conf][]. It configures the entire modulepath for that environment.
 
@@ -66,7 +66,7 @@ Note that the modulepath can include relative paths, such as `./modules` or `./s
 
 If you want an environment to have access to the global module directories, it should include `$basemodulepath`.
 
-### The Base Modulepath
+### The base modulepath
 
 The **base modulepath** is a list of _global_ module directories for use with all [environments][]. It can be configured with [the `basemodulepath` setting][basemodulepath_setting], but its default value is probably suitable for you unless you're doing something unusual.
 
@@ -76,19 +76,19 @@ The default value of the `basemodulepath` setting is `$codedir/modules:/opt/pupp
 
 When running `puppet apply`, you can supply a full modulepath as a command line option. This overrides the modulepath from the current environment.
 
-## Loading Content from Modules
+## Loading content from modules
 
 [inpage_loading]: #loading-content-from-modules
 
 Puppet uses modules from every directory in the modulepath.
 
-### Empty and Absent Directories
+### Empty and absent directories
 
 Directories in the modulepath can be empty, and might even be absent. In both cases, this is not an error; it just means Puppet does not load modules from those directories.
 
 If no modules are present across the entire modulepath, or if modules are present but none of them contains a `lib` directory, then Puppet agent will log an error when attempting to sync plugins from the Puppet master. This error is benign and will not prevent the rest of the Puppet run.
 
-### Duplicate or Conflicting Modules and Content
+### Duplicate or conflicting modules and content
 
 If the modulepath contains multiple modules with the same name, Puppet uses the version from the directory that comes _earliest_ in the modulepath. This allows directories earlier in the modulepath to override later directories.
 

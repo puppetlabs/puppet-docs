@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Deprecated Settings"
+title: "Deprecated settings"
 ---
 
 

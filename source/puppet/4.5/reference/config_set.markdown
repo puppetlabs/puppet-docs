@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Configuration: Editing Settings on the Command Line"
+title: "Configuration: Editing settings on the command line"
 canonical: "/puppet/latest/reference/config_set.html"
 ---
 
@@ -21,8 +21,8 @@ Puppet loads most of its settings from [the puppet.conf config file.][puppet.con
 >
 > If you find yourself changing many settings at once, you might prefer to edit the puppet.conf file or manage it with a template.
 
-Usage
------
+## Usage
+
 
 To assign a new value to a setting, run:
 
@@ -30,7 +30,7 @@ To assign a new value to a setting, run:
 
 This will declaratively set the value of `<SETTING NAME>` to `<VALUE>` (in the specified config section). It will work the same way regardless of whether the setting already had a value.
 
-### Config Sections
+### Config sections
 
 The `--section` option specifies which [section of puppet.conf][config_sections] to modify. It is optional, and defaults to `main`. Valid sections are:
 
@@ -41,8 +41,8 @@ The `--section` option specifies which [section of puppet.conf][config_sections]
 
 If modifying the [system config file][confdir_sys], be sure to use `sudo` or run the command as `root` or `Administrator`.
 
-Example
------
+## Example
+
 
 **Before:**
 

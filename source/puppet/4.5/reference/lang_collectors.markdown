@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Resource Collectors"
+title: "Language: Resource collectors"
 canonical: "/puppet/latest/reference/lang_collectors.html"
 ---
 
@@ -26,8 +26,8 @@ Resource collectors (AKA the spaceship operator) select a group of resources by 
 
 Collectors have an irregular syntax that lets them function as both a statement and a value.
 
-Syntax
------
+## Syntax
+
 
 ~~~ ruby
 User <| title == 'luke' |> # Will collect a single user resource whose title is 'luke'
@@ -45,7 +45,7 @@ The general form of a resource collector is:
 
 Note that exported resource collectors have a slightly different syntax; [see below](#exported-resource-collectors).
 
-### Search Expressions
+### Search expressions
 
 Collectors can search the values of resource titles and attributes using a special expression syntax. This resembles the normal syntax for [Puppet expressions][expressions], but is not the same.
 
@@ -96,8 +96,8 @@ For a given resource, this operator will **match** if **either** of the operands
 
 This operator has lower priority than `and`.
 
-Location
------
+## Location
+
 
 Resource collectors may be used as independent statements, as the operand of a [chaining statement][chaining], or in a [collector attribute block][amend] for amending resource attributes.
 
@@ -109,8 +109,8 @@ Notably, collectors **cannot** be used in the following contexts:
 - As the operand of an expression other than a chaining statement
 
 
-Behavior
------
+## Behavior
+
 
 A resource collector will **always** [realize][] any [virtual resources][virtual] that match its search expression. Note that empty search expressions match every resource of the specified resource type.
 
@@ -123,8 +123,8 @@ In addition to realizing, collectors can function as a value in two places:
 
 Note again that collectors used as values will also realize any matching virtual resources. If you use virtualized resources, you must use care when chaining collectors or using them for overrides.
 
-Exported Resource Collectors
------
+## Exported resource collectors
+
 
 An **exported resource collector** uses a modified syntax that realizes [exported resources][exported].
 

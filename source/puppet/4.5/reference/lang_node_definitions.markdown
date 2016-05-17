@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Node Definitions"
+title: "Language: Node definitions"
 canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
@@ -29,13 +29,13 @@ Node statements are an **optional feature** of Puppet. They can be replaced by o
 
 Unlike more general conditional structures, node statements only match nodes by **name.** By default, the name of a node is its [certname][] (which defaults to the node's fully qualified domain name).
 
-Location
------
+## Location
+
 
 Node definitions should go in [the main manifest][sitepp]. The main manifest can be a single file, or a directory containing many files.
 
-Syntax
------
+## Syntax
+
 
 ~~~ ruby
 # /etc/puppetlabs/puppet/manifests/site.pp
@@ -60,7 +60,7 @@ Node definitions look like class definitions. The general form of a node definit
 * Any mixture of class declarations, variables, resource declarations, collectors, conditional statements, chaining relationships, and functions
 * A closing curly brace
 
-> #### Aside: Best Practices
+> #### Aside: Best practices
 >
 > Although node statements can contain almost any Puppet code, we recommend that you **only** use them to **set variables** and **declare classes.** Avoid using resource declarations, collectors, conditional statements, chaining relationships, and functions in them; all of these belong in classes or defined types.
 >
@@ -68,8 +68,8 @@ Node definitions look like class definitions. The general form of a node definit
 
 
 
-Naming
------
+## Naming
+
 
 Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn defaults to the node's fully qualified domain name.
 
@@ -84,7 +84,7 @@ A node statement's **name** must be one of the following:
 You may not create two node statements with the same name.
 
 
-### Multiple Names
+### Multiple names
 
 You can use a comma-separated list of names to create a group of nodes with a single node statement:
 
@@ -97,11 +97,11 @@ node 'www1.example.com', 'www2.example.com', 'www3.example.com' {
 
 This example creates three identical nodes: `www1.example.com`, `www2.example.com`, and `www3.example.com`.
 
-### The Default Node
+### The default node
 
 The name `default` (without quotes) is a special value for node names. If no node statement matching a given node can be found, the `default` node will be used. See [Behavior](#behavior) below.
 
-### Regular Expression Names
+### Regular expression names
 
 [Regular expressions (regexes)][regex] can be used as node names. This is another method for writing a single node statement that matches multiple nodes.
 
@@ -125,8 +125,8 @@ node /^(foo|bar)\.example\.com$/ {
 The above example would match `foo.example.com` and `bar.example.com`, but no other nodes.
 
 
-Behavior
------
+## Behavior
+
 
 If [the main manifest][sitepp] contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the usefulness of [the `default` node](#the-default-node).) If the main manifest contains **no** node definitions, this requirement is dropped.
 
@@ -151,19 +151,19 @@ Thus, for the node `www01.example.com`, Puppet would try the following, in order
 
 You can turn off this fuzzy name matching by changing the Puppet master's [`strict_hostname_checking`][strict] setting to `true`. This will cause Puppet to skip step 3 and only use the node's full name before resorting to `default`.
 
-### Regex Capture Variables
+### Regex capture variables
 
 Regex node definitions will set numbered regex capture variables ($1, $2, etc.) within the body of the node definition. This is similar to the behavior of [conditional statements][conditional] that use regexes.
 
-### Code Outside Node Statements
+### Code outside node statements
 
 Puppet code that is outside any node statement will be compiled for every node. That is, a given node will get both the code in its node definition and the code outside any node definition.
 
-### Node Scope
+### Node scope
 
 Node definitions create a new anonymous scope that can override variables and defaults from top scope. See [the section on node scope][nodescope] for details.
 
-### Merging With ENC Data
+### Merging with ENC data
 
 Node definitions and [external node classifiers][enc] can co-exist. Puppet merges their data as follows:
 
@@ -172,6 +172,6 @@ Node definitions and [external node classifiers][enc] can co-exist. Puppet merge
 
 Although ENCs and node definitions can work together, we recommend that most users pick one or the other.
 
-### Inheritance is Not Allowed
+### Inheritance is not allowed
 
 In earlier versions of the Puppet language, nodes could inherit from other nodes using the `inherits` keyword. We removed that feature, and this version of the language will raise an error if you try to use it.

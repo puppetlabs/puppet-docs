@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Writing Functions in the Puppet Language"
+title: "Writing functions in the Puppet language"
 canonical: "/puppet/latest/lang_write_functions_in_puppet.html"
 ---
 
@@ -67,7 +67,7 @@ The general form of a function written in Puppet language is:
 Functions are passed arguments by **parameter position**. This means that the _order_ of parameters is important, and the parameter names will not affect the order they are passed.
 
 
-#### Mandatory and Optional Parameters
+#### Mandatory and optional parameters
 
 If a parameter has a default value, then it's optional to pass a value for it when the function is called. If the caller doesn't pass in an argument for that parameter, the function will use the default value.
 
@@ -77,7 +77,7 @@ However, since parameters are passed by position, _optional parameters must be l
 
 If you reference a variable in a default value for a parameter, Puppet will always start looking for that variable at top scope. So if you use `$fqdn`, but then you call the function from a class that overrides the variable `$fqdn`, the parameter's default value will be the value from top scope, not the value from the class. You can reference qualified variable names in a function default value, but compilation will fail if that class wasn't declared by the time the function gets called.
 
-#### The Extra Arguments Parameter
+#### The extra arguments parameter
 
 The _final_ parameter of a function can optionally be a special _extra arguments parameter_, which will collect an unlimited number of extra arguments into an array. This is useful when you don't know in advance how many arguments the caller will provide.
 
@@ -95,7 +95,7 @@ An extra arguments parameter can have a default value, which has some automatic 
 An extra arguments parameter can also have a [data type][literal_types]. Puppet will use this data type to validate _the elements_ of the array. That is, if you specify a data type of `String`, the real data type of the extra arguments parameter will be `Array[String]`.
 
 
-### The Function Body
+### The function body
 
 Functions are meant for constructing values and transforming data, so the body of your function code will differ based on what you're trying to achieve with your function, and the parameters that you're requiring. Avoid declaring resources in the body of your function. If you want to create resources based on inputs, use [defined types][defined_types] instead.
 
@@ -114,7 +114,7 @@ Store the functions you write in your modules' `functions` folder, which is a to
 Puppet is automatically aware of functions in a valid module and will autoload them by name.
 
 
->### Aside: Writing Functions in the Main Manifest
+>### Aside: Writing functions in the main manifest
 >
 >In most circumstances, you will store functions in modules. However, in rare situations you might find it necessary to put a function in the main manifest. This is not recommended. If you do put a function in the main manifest, it will override any function of the same name in all modules (except built-in functions).
 
@@ -124,13 +124,13 @@ Puppet is automatically aware of functions in a valid module and will autoload t
 [The characters allowed in a function's name are listed here][naming].
 
 
-## Calling a Function
+## Calling a function
 
 The [function call][function_call] acts like a normal call to any built-in Puppet function, and resolves to the function's returned value.
 
 Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest that lists the containing module as a dependency and from your [main manifest](./dirs_manifest.html). The arguments you pass to the function map to the parameters defined in the function's definition. You must pass arguments for the mandatory parameters, and can choose whether to pass in arguments for the optional ones.
 
-## Complex Function Example
+## Complex function example
 
 The below code is a re-written version of a Ruby function from the [`postgresql`](https://forge.puppetlabs.com/puppetlabs/postgresql) module into Puppet code. This function translates the IPv4 and IPv6 ACLs format into a resource suitable for `create_resources`. The writer of this function also left helpful inline comments for other people who use the it, or in case it needs to be altered in the future. In this case the filename would be `acls_to_resource_hash.pp`, and it would be saved in a folder named `functions` in the top-level directory of the `postgresql` module.
 

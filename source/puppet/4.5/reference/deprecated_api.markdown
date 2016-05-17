@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Deprecated Extension Points and APIs"
+title: "Deprecated extension points and APIs"
 ---
 
 

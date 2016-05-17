@@ -26,7 +26,7 @@ Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a man
 
 An upgraded Puppet Server can handle both Puppet 3 and Puppet 4 agents. Don't start upgrading agents until after the servers are stabilized.
 
-## Prepare to Upgrade
+## Prepare to upgrade
 
 Before upgrading, complete the [pre-upgrade steps](./upgrade_major_pre.html) to ensure your Puppet infrastructure is stable and running the following things:
 
@@ -37,17 +37,17 @@ Before upgrading, complete the [pre-upgrade steps](./upgrade_major_pre.html) to 
 
 If you're having any problems with your Puppet 3 configuration, **fix them first** before upgrading.
 
-## Plan your Upgrade
+## Plan your upgrade
 
 Puppet masters are in charge of managing your Puppet infrastructure, and this upgrade interrupt their work. Bring up replacement masters and gradually cut over service to them, take a few masters out of your pool for upgrades while always leaving a few to handle traffic, or schedule Puppet service downtime.
 
 If you have multiple Puppet masters, upgrade or replace the certificate authority (CA) master first, and pause provisioning of new Puppet agents while upgrading or replacing the CA server.
 
-## Upgrade Each Puppet Master
+## Upgrade each Puppet master
 
 Repeat the following steps for each Puppet Server until you're running a pure Puppet 4/Puppet Server 2.1+ infrastructure.
 
-### Install the Latest Puppet Server
+### Install the latest Puppet Server
 
 Starting with Puppet 4, our software releases are grouped into **Puppet Collections**.
 
@@ -55,7 +55,7 @@ To upgrade Puppet Server, you'll need to add the Puppet Collection repository to
 
 Even after you've installed the package, **don't start the `puppetserver` service yet**! You should do a few other things first.
 
-### Get Familiar with the New Binary Locations
+### Get familiar with the new binary locations
 
 In Puppet 4, we [moved][] all of Puppet's binaries on \*nix systems. They are now at `/opt/puppetlabs/bin`, which isn't in your system's `PATH` by default. You should do one of the following :
 
@@ -83,7 +83,7 @@ To convert the URLs:
 4. (Optional) Convert your rules to use new authorization methods and `auth.conf` format. See the [Puppet Server configuration documentation]({{puppetserver}}/configuration.html) for details.
 5. Add the custom rules to Puppet Server's new `/etc/puppetlabs/puppet/conf.d/auth.conf` file.
 
-#### Example `auth.conf` Rules for Puppet 3 and 4 Agents
+#### Example `auth.conf` rules for Puppet 3 and 4 agents
 
 The other examples in this section convert this Puppet 3 example `auth.conf` rule to be compatible with Puppet 4:
 
@@ -147,7 +147,7 @@ method find
 allow $1
 ~~~
 
-### Move Other Configuration Files
+### Move other configuration files
 
 If you have [other configuration files](./config_about_settings.html#main-settings-vs-extra-config-files), including [`puppetdb.conf`](./config_file_puppetdb.html), move them to `/etc/puppetlabs/puppet/`.
 
@@ -163,7 +163,7 @@ If this is a new Puppet master but _isn't_ serving as a certificate authority, u
 
 2. Sign the certificate on the CA, then run the above `puppet agent` command again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service]({{puppetserver}}/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
 
-### Move Code
+### Move code
 
 > **Note:** You should have already switched to [directory environments](/puppet/latest/reference/environments.html) in the pre-upgrade steps, as [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4.
 
@@ -193,7 +193,7 @@ Puppet Server won't automatically start up on boot---you'll need to enable it. U
 
 Once Puppet Server has started, check `/var/log/puppetlabs/puppetserver/puppetserver.log` to confirm that your agents have checked in.
 
-### Confirm Agents Can Connect
+### Confirm agents can connect
 
 Log into any Puppet agent and test its connection to the upgraded Puppet Server:
 
@@ -201,7 +201,7 @@ Log into any Puppet agent and test its connection to the upgraded Puppet Server:
 
 Enter the Puppet Server's hostname or IP address and confirm the agent can [retrieve and apply a catalog][].
 
-### Go Live!
+### Go live!
 
 At this point, Puppet Server is ready to serve nodes in production. If you pulled the server back to stage the upgrade, you can now push the node back into use.
 
@@ -213,6 +213,6 @@ Now that you've upgraded Puppet Server, you can [upgrade PuppetDB][] to version 
 
 Use the [`puppetlabs/puppetdb`][puppetdb_module] module to manage your PuppetDB version. Also, note that the terminus package's name is now [`puppetdb-termini`][puppetdb-termini] instead of `puppetdb-terminus`.
 
-## You're Done Upgrading Puppet Server!
+## You're done upgrading Puppet Server!
 
 Once you've upgraded all of your Puppet Server nodes, you can start [upgrading your Puppet agents](./upgrade_major_agent.html). After you've upgraded all your nodes, follow the [post-install guide](./upgrade_major_post.html) to complete the upgrade.

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Regular Expressions"
+title: "Language: Data types: Regular expressions"
 canonical: "/puppet/latest/reference/lang_data_regexp.html"
 ---
 
@@ -34,7 +34,7 @@ Alternate forms of regex quoting like Ruby's `%r{^www(\d+)\.}` are not allowed. 
 
 Some places in the language accept both real regex values and stringified regexes --- that is, the same pattern quoted as a string instead of surrounded by slashes.
 
-## Regex Options
+## Regex options
 
 Regexes in Puppet cannot have options or encodings appended after the final slash. However, you can turn options on or off for portions of the expression using the `(?<ENABLED OPTION>:<SUBPATTERN>)` and `(?-<DISABLED OPTION>:<SUBPATTERN>)` notation. The following example enables the `i` option while disabling the `m` and `x` options:
 
@@ -51,7 +51,7 @@ The following options are allowed:
 * m --- Treat a newline as a character matched by `.`
 * x --- Ignore whitespace and comments in the pattern
 
-## Regex Capture Variables
+## Regex capture variables
 
 Within [conditional statements][conditional] and [node definitions][node], any captured substrings from parentheses in a regular expression will be available as numbered variables (`$1, $2`, etc.) inside the associated code section, and the entire match will be available as `$0`.
 
@@ -61,7 +61,7 @@ These are not normal variables, and have some special behaviors:
 * You can't manually assign values to a variable with only digits in its name; they can only be set by pattern matching.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
-## The `Regexp` Data Type
+## The `Regexp` data type
 
 The [data type][] of regular expressions is `Regexp`.
 
@@ -86,6 +86,6 @@ Position | Parameter        | Data Type | Default Value | Description
 * `Regexp` --- matches any regular expression.
 * `Regexp[/foo/]` --- matches the regular expression `/foo/` only.
 
-### Related Data Types
+### Related data types
 
 `Regexp` only matches literal regular expression values. It's not to be confused with [the abstract `Pattern` data type][pattern], which uses a regular expression to match a limited set of `String` values.

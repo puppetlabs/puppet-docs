@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Namespaces and Autoloading"
+title: "Language: Namespaces and autoloading"
 canonical: "/puppet/latest/reference/lang_namespaces.html"
 ---
 
@@ -19,8 +19,8 @@ canonical: "/puppet/latest/reference/lang_namespaces.html"
 
 [Class][classes] and [defined type][define] names may be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module].
 
-Syntax
------
+## Syntax
+
 
 Puppet [class][classes] and [defined type][define] names may consist of any number of namespace segments separated by the `::` (double colon) namespace separator. (This separator is analogous to the `/` \[slash\] in a file path.)
 
@@ -31,7 +31,7 @@ class apache::mod::passenger { ... }
 define apache::vhost { ... }
 ~~~
 
-### Nested Definitions
+### Nested definitions
 
 If a class/defined type is defined inside another class/defined type definition, its name goes under the exterior definition's namespace.
 
@@ -49,8 +49,8 @@ In the above code, the interior class's real name is `first::second`, but search
 
 In short: please never do this, but you might encounter it in extraordinarily old Puppet code.
 
-Autoloader Behavior
------
+## Autoloader behavior
+
 
 When a class or defined resource is declared, Puppet will use its full name to find the class or defined type in your modules. Every class and defined type should be in its own file in the module's `manifests` directory, and each file should have the `.pp` file extension.
 
@@ -70,7 +70,7 @@ name                     | file path
 
 Note again that `init.pp` always contains a class or defined type named after the module, and any other `.pp` file contains a class or defined type with at least two namespace segments. (That is, `apache.pp` would contain a class named `apache::apache`.) This also means you can't have a class named `<MODULE NAME>::init`.
 
-### Handling Missing Files
+### Handling missing files
 
 If the manifest file that corresponds to a name doesn't exist, Puppet will continue to look for the requested class or defined type. It does this by removing the final segment of the name and trying to load the corresponding file, continuing to fall back until it reaches the module's `init.pp` file.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: csr_attributes.yaml"
+title: "Config files: csr_attributes.yaml"
 canonical: "/puppet/latest/reference/config_file_csr_attributes.html"
 ---
 
@@ -45,7 +45,7 @@ The value of each key must also be a hash, where:
 * Each key is a valid [object identifier (OID)](http://en.wikipedia.org/wiki/Object_identifier). Note that [Puppet-specific OIDs][puppet_oids] may optionally be referenced by short name instead of by numeric ID. (In the example above, `pp_uuid` is a short name for a Puppet-specific OID.)
 * Each value is an object that can be cast to a string (that is, numbers are allowed but arrays are not).
 
-### Allowed OIDs for Custom Attributes
+### Allowed OIDs for custom attributes
 
 Custom attributes can use any public or site-specific OID, **with the exception of the OIDs used for core X.509 functionality.** This means you can't re-use existing OIDs for things like subject alternative names.
 
@@ -53,7 +53,7 @@ One useful OID is the "challengePassword" attribute --- `1.2.840.113549.1.9.7`. 
 
 Also note that the Puppet-specific OIDs listed below can also be used in CSR attributes.
 
-### Allowed OIDs for Extension Requests
+### Allowed OIDs for extension requests
 
 Extension request OIDs **must** be under the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`) or "ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`) OID arcs.
 
@@ -66,6 +66,6 @@ The private range is available for any information you want to embed into a cert
 
 [puppet_oids]: #puppet-specific-registered-ids
 
-#### Puppet-Specific Registered IDs
+#### Puppet-specific registered IDs
 
 {% partial ./_registered_oids.md %}

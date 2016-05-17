@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Containment of Resources"
+title: "Language: Containment of resources"
 canonical: "/puppet/latest/reference/lang_containment.html"
 ---
 
@@ -10,8 +10,8 @@ canonical: "/puppet/latest/reference/lang_containment.html"
 [relationship]: ./lang_relationships.html
 [notify]: ./lang_relationships.html#refreshing-and-notification
 
-Containment
------
+## Containment
+
 
 [Classes][] and [defined type][definedtype] instances **contain** the resources they declare. Any contained resources will not be applied before the container is begun, and will be finished before the container is finished.
 
@@ -42,13 +42,13 @@ In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happ
 
 This feature also allows you to [notify and subscribe to][notify] classes and defined resource types as though they were a single resource.
 
-Containing Resources
------
+## Containing Resources
+
 
 Resources of both native and defined resource types are automatically contained by the class or defined type in which they are declared.
 
-Containing Classes
------
+
+## Containing Classes
 
 Having classes contain other classes can be very useful, especially in larger modules where you want to improve code readability by moving chunks of implementation into separate files.
 
@@ -56,7 +56,7 @@ However, unlike resources, Puppet does not _automatically_ contain classes when 
 
 Instead, you must _manually_ contain any classes that need to be contained.
 
-### The `contain` Function
+### The `contain` function
 
 Use the `contain` function when a class should be contained. The `contain` function will declare the class with include-like behavior if it isn't already declared, and will cause it to be contained by the surrounding class.
 
@@ -96,7 +96,7 @@ class ntp {
 }
 ~~~
 
-### Anchor Pattern Containment (for Compatibility With Puppet ≤ 3.4.0)
+### Anchor pattern containment (for compatibility with Puppet ≤ 3.4.0)
 
 Versions prior to Puppet 3.4.0 and Puppet Enterprise 3.2 do not ship with the `contain` function. If your code needs to support these versions, it should contain classes with the **anchor pattern.**
 

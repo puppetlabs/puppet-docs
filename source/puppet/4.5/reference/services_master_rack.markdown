@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet's Services: The Rack Puppet Master"
+title: "Puppet's services: The Rack Puppet master"
 canonical: "/puppet/latest/reference/services_master_rack.html"
 ---
 
@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/services_master_rack.html"
 [puppet server]: {{puppetserver}}/services_master_puppetserver.html
 [deprecate]: http://links.puppetlabs.com/deprecate-rack-webrick-servers
 
-> ## Important: Deprecation Warning
+> ## Important: Deprecation warning
 >
 > [The Rack Puppet master server is deprecated][deprecate] and will be removed in a future Puppet release.
 
@@ -33,13 +33,13 @@ This page describes the generic requirements and run environment for running und
 
 For details about invoking the Puppet master command, see [the puppet master man page](./man/master.html).
 
-## Supported Platforms
+## Supported platforms
 
 The Rack Puppet master will run on any \*nix platform, including all Linux variants and OS X. It requires a **multi-process** (_not_ threaded) Rack web server.
 
 You cannot run a Puppet master on Windows.
 
-### Rack Web Servers
+### Rack web servers
 
 There are a lot of Rack web server stacks available. Puppet should work with any Rack server that spawns multiple processes to handle parallel requests.
 
@@ -49,13 +49,13 @@ If you don't have any particular preference, you should start with [Passenger][]
 
 The Unicorn + Nginx stack is also fairly popular, but it has more pieces that you'll need to assemble and configure.
 
-## Controlling the Service
+## Controlling the service
 
 Under Rack, the Puppet master processes are started and managed by your Rack web server. The way to start and stop the Puppet master will depend on your specific web server stack.
 
 If your Rack stack isn't running any other applications or sites, you can simply start and stop the whole server process; if it also provides other services, as a Passenger/Apache stack sometimes does, you may need to disable the Puppet master's virtual host and do a graceful restart.
 
-## The Rack Puppet Master's Run Environment
+## The Rack Puppet master's run environment
 
 Rack and the Puppet master application each have various expectations about their environment. To make them work together, you'll need to make sure these expectations are met.
 
@@ -76,7 +76,7 @@ All of the Puppet master's files and directories must be readable and writable b
 
 [user]: ./configuration.html#user
 
-### Required Directories
+### Required directories
 
 [confdir]: ./dirs_confdir.html
 [codedir]: ./dirs_codedir.html
@@ -100,7 +100,7 @@ A Rack Puppet master will ignore [the `masterport` setting](./configuration.html
 
 If you want to switch to a non-default port, you'll have to change your web server's configuration, then make sure `masterport` is set correctly on all agents.
 
-### Keepalive Timeout
+### Keepalive timeout
 
 By default, the Puppet agent application will keep its HTTPS connections open for **up to four seconds** of idle time. (Configurable with [the `http_keepalive_timeout` setting.](./configuration.html#httpkeepalivetimeout))
 
@@ -120,7 +120,7 @@ You can adjust how verbose the logs are with [the `log_level` setting](./configu
 
 Alternately, if you specify the `--logdest <FILE>` option in `config.ru`, Puppet master will log to the file specified by `<FILE>`.
 
-### The `config.ru` File
+### The `config.ru` file
 
 All Rack web servers use a `config.ru` file to load applications. This file is a Ruby script that loads any necessary libraries, performs any necessary configuration, and creates an application object that can handle Rack-formatted requests.
 
@@ -132,7 +132,7 @@ The exact steps will depend on your Rack server; see the [Passenger guide][passe
 
 Note that the `config.ru` file must be owned by the user `puppet` and the group `puppet` (or whatever user you want the Puppet master to run as; see "User" above). Most Rack servers use this file's ownership to set the application's user. Alternately, you may be able to explicitly configure your Rack server to use a specific user.
 
-### SSL Termination
+### SSL termination
 
 Your Rack web server stack must terminate SSL and verify agent certificates. The stack must also pass certain certificate data from each request to the Puppet master.
 
@@ -153,7 +153,7 @@ Your SSL termination must be configured as follows:
 
 [ssl_persist]: /background/ssl/https.html#persistence-of-sslcertificate-data-in-https-applications
 
-### Required Environment Variables / Headers
+### Required environment variables/headers
 
 The Rack server should set three per-request environment variables for the Puppet master: `HTTP_X_CLIENT_VERIFY`, `HTTP_X_CLIENT_DN`, and `SSL_CLIENT_CERT`.
 
@@ -187,7 +187,7 @@ If the Rack server is _not_ embedded in the SSL terminating part of your stack (
 
 The name of this variable is not configurable.
 
-## Configuring a Rack Puppet Master
+## Configuring a Rack Puppet master
 
 As [described elsewhere,][about_settings] the Puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line. When running under Rack, Puppet master gets its command line options from the `config.ru` file. The default `config.ru` file sets some common options for you.
 
@@ -196,7 +196,7 @@ To change the Puppet master's settings, you should use [puppet.conf][]. The only
 [about_settings]: ./config_about_settings.html
 [puppet.conf]: ./config_file_main.html
 
-> ## Aside: How a Rack Puppet Master Works
+> ## Aside: How a Rack Puppet master works
 >
 > A Rack web server loads and executes a special part of Puppet's Ruby code, which creates a Puppet master application object that can respond to specially formatted requests. To handle parallel requests, it can do this any number of times. (The number of workers depends on how the Rack server is configured.)
 >

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Resource Types"
+title: "Language: Data types: resource types"
 canonical: "/puppet/latest/reference/lang_data_resource_type.html"
 ---
 
@@ -30,7 +30,7 @@ Additionally, there is a parent `Resource` data type. All of these one-off data 
 
 ## Usage
 
-### Resource Data Types Without Title
+### Resource data types without title
 
 A resource data type can be used in the following places:
 
@@ -62,13 +62,13 @@ File {
 }
 ~~~
 
-### Resource Data Types With Title
+### Resource data types with title
 
 If a resource data type includes a title, it acts as a [resource reference][].
 
 A resource reference can be used in several places. They're useful enough that they have [their own page.][resource reference]
 
-## The `<SOME ARBITRARY RESOURCE TYPE>` Data Type
+## The `<SOME ARBITRARY RESOURCE TYPE>` data type
 
 For each resource type `mytype` known to Puppet, there is a [data type][] `Mytype`. It matches **no** values that can be produced in the Puppet language.
 
@@ -95,7 +95,7 @@ Also:
 
 * `Type[File]` --- the data type that _matches_ any [resource references][resource reference] to `file` resources. This is useful for, e.g., restricting the values of class or defined type parameters.
 
-## The `Resource` Data Type
+## The `Resource` data type
 
 There is also a general `Resource` data type, which all `<SOME ARBITRARY RESOURCE TYPE>` data types are more-specific subtypes of.
 
@@ -137,7 +137,7 @@ Also:
 * `Type[Resource["file"]]` --- another synonym for the data type that _matches_ any [resource references][resource reference] to `file` resources. This is useful for, e.g., restricting the values of class or defined type parameters.
 
 
-## The `Class` Data Type
+## The `Class` data type
 
 There is also a `Class` data type, which is roughly equivalent to the set of `Mytype` data types except for [classes][].
 
@@ -166,6 +166,6 @@ Also:
 
 * `Type[Class]` --- the data type that _matches_ any [class references][class reference]. This is useful for, e.g., restricting the values of class or defined type parameters.
 
-## Related Data Types
+## Related data types
 
 The abstract [`Catalogentry` data type][catalogentry] is the supertype of `Resource` and `Class`. You can use `Type[Catalogentry]` as the data type for a class or defined type parameter that can accept both class references and resource references.

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Code and Data Directory (codedir)"
+title: "Code and data directory (codedir)"
 canonical: "/puppet/latest/reference/dirs_codedir.html"
 ---
 
@@ -48,8 +48,3 @@ Almost everything in the codedir has its own page of documentation.
 
 * [`environments`](./environments_configuring.html) --- contains alternate versions of the `modules` and `manifests` directories, to allow code changes to be tested on smaller sets of nodes before entering production.
 * [`modules`](./dirs_modulepath.html) --- the main directory for Puppet's modules.
-
-
-### Config Files
-
-* [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system.

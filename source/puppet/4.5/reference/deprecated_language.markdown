@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "Deprecated Language Features"
+title: "Deprecated language features"
 ---
 
 The following features of the Puppet language are deprecated, and will be removed in Puppet 5.0.
 
-## Non-Strict Variables
+## Non-strict variables
 
 #### Now
 
@@ -17,11 +17,11 @@ If you set the `strict_variables` setting to true, Puppet will instead raise an 
 
 The `strict_variables` setting will be removed, and Puppet will always raise an error for accessing unassigned variables.
 
-#### Detecting and Updating
+#### Detecting and updating
 
 Enable `strict_variables` on your Puppet master, run as normal for a while, and look for compilation errors.
 
-## Automatic Symbolic Links for `ensure` Values in `file` Resources
+## Automatic symbolic links for `ensure` values in `file` resources
 
 #### Now
 
@@ -64,6 +64,6 @@ lrwxrwxrwx 1 root root 10 Nov  9 20:53 /etc/inetd.conf -> filer
 
 This behavior will be removed. If the value of `ensure` isn't one of its allowed values, the Puppet run will fail with an error instead of attempting to create a symlink.
 
-#### Detecting and Updating
+#### Detecting and updating
 
 Confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.

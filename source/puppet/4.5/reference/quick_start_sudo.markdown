@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Quick Start » Sudo Users"
-subtitle: "Sudo Users Quick Start Guide"
+title: "Quick Start » Sudo users"
+subtitle: "Sudo users quick start guide"
 canonical: "/puppet/latest/quick_start_sudo.html"
 ---
 
@@ -24,7 +24,7 @@ In most cases, managing sudo on your agents involves controlling which users hav
 
 >**Note**: You can add the sudo and privileges classes to as many agents as needed, although we describe only one for ease of explanation.
 
-## Install the `saz-sudo` Module
+## Install the `saz-sudo` module
 
 The `saz-sudo` module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
 
@@ -43,11 +43,11 @@ You should see output similar to the following:
 
 > That's it! You've just installed the `saz-sudo` module.
 
-## Write the `privileges` Class
+## Write the `privileges` class
 
 Some modules can be large, complex, and require a significant amount of trial and error as you create them, while others often work right out of the box. This module will be a very simple module to write. It contains just one class.
 
-> ### A Quick Note about Modules Directories
+> ### A quick note about modules directories
 >
 >By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
@@ -84,7 +84,7 @@ Modules are directory trees. For this task, you'll create the following files:
 >
 > * The `sudo::conf ‘admins’` line creates a sudoers rule to ensure that members of the `admins` group have the ability to run any command using sudo. This resource creates configuration fragment file to define this rule in `/etc/sudoers.d/`. It will be called something like `10_admins`.
 
-## Add the Privileges and Sudo Classes
+## Add the privileges and sudo classes
 
 [inpage_add]: #add-the-privileges-and-sudo-classes
 
@@ -133,7 +133,7 @@ From the command line on the Puppet agent, run `sudo -l -U jargyle` to confirm i
     (ALL) NOPASSWD: ALL
 
 
-### Other Resources
+### Other resources
 
 For more information about working with Puppet and Sudo Users, check out our [Module of The Week: saz/sudo - Manage sudo configuration](https://puppetlabs.com/blog/module-of-the-week-sazsudo-manage-sudo-configuration) blog post.
 
@@ -144,7 +144,7 @@ Puppet offers many opportunities for learning and training, from formal certific
 
 ----------
 
-Next: [Firewall Quick Start Guide](./quick_start_firewall.html)
+Next: [Firewall quick start guide](./quick_start_firewall.html)
 
 
 

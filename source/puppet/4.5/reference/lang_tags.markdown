@@ -31,17 +31,17 @@ canonical: "/puppet/latest/reference/lang_tags.html"
 * Analyzing [reports][]
 * Restricting catalog runs
 
-Tag Names
------
+## Tag Names
+
 
 [See here for the characters allowed in tag names.][tagnames]
 
-Assigning Tags to Resources
------
+## Assigning tags to resources
+
 
 A resource may have any number of tags. There are several ways to assign a tag to a resource.
 
-### Automatic Tagging
+### Automatic tagging
 
 Every resource automatically receives the following tags:
 
@@ -57,7 +57,7 @@ Class tags are generally the most useful, especially when setting up the [tagmai
 
 Like [relationships][] and most metaparameters, tags are passed along by [containment][]. This means a resource will receive all of the tags from the class and/or defined type that contains it. In the case of nested containment (e.g. a class that declares a defined resource, or a defined type that declares other defined resources), a resource will receive tags from all of its containers.
 
-### The `tag` Metaparameter
+### The `tag` metaparameter
 
 You can use [the `tag` metaparameter][tagmeta] in a resource declaration to add any number of tags:
 
@@ -70,7 +70,7 @@ apache::vhost {'docs.puppetlabs.com':
 
 The `tag` metaparameter can accept a single tag or an array. These will be added to the tags the resource already has. Also, `tag` can be used with normal resources, [defined resources][defined], and classes (when using the resource-like declaration syntax). Since [containment][] applies to tags, the example above would assign the `us_mirror1` and `us_mirror2` tags to every resource contained by `Apache::Vhost['docs.puppetlabs.com']`.
 
-### The `tag` Function
+### The `tag` function
 
 You can use [the `tag` function][tagfunction] inside a class definition or defined type to assign tags to the surrounding container and all of the resources it contains:
 
@@ -88,14 +88,13 @@ class role::public_web {
 
 The example above would assign the `us_mirror1` and `us_mirror2` tags to all of the defined resources being declared in the class `role::public_web`, as well as to all of the resources each of them contains.
 
-Using Tags
------
+## Using tags
 
-### Collecting Resources
+### Collecting resources
 
 Tags can be used as an attribute in the [search expression][collector_search] of a [resource collector][collectors]. This is mostly useful for realizing [virtual][] and [exported][] resources.
 
-### Restricting Catalog Runs
+### Restricting catalog runs
 
 Puppet agent and Puppet apply can use [the `tags` setting][tags_setting] to only apply a subset of the node's [catalog][]. This is useful when refactoring modules, and allows you to only apply a single class on a test node.
 
@@ -105,11 +104,11 @@ The `tags` setting can be set in `puppet.conf` (to permanently restrict the cata
 
 The value of the `tags` setting should be a comma-separated list of tags (with no spaces between tags).
 
-### Sending Tagmail Reports
+### Sending tagmail reports
 
 The [tagmail][] module can send emails to arbitrary email addresses whenever resources with certain tags are changed.
 
-### Reading Tags in Custom Report Handlers
+### Reading tags in custom report handlers
 
 Resource tags are available to custom report handlers and out-of-band report processors: Each `Puppet::Resource::Status` object and `Puppet::Util::Log` object has a `tags` key whose value is an array containing every tag for the resource in question. See the following pages for more info:
 

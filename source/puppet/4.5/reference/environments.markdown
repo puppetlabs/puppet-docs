@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "About Environments"
+title: "About environments"
 canonical: "/puppet/latest/reference/environments.html"
 ---
 
@@ -15,33 +15,32 @@ Environments are isolated groups of Puppet agent nodes. A Puppet master server c
 
 This frees you to use different versions of the same modules for different populations of nodes, which is useful for testing changes to your Puppet code before implementing them on production machines. (You could also do this by running a separate Puppet master for testing, but using environments is often easier.)
 
-Assigning Nodes to Environments
------
+## Assigning nodes to environments
+
 
 You can assign agent nodes to environments using either the agent's config file, or an external node classifier (ENC). If you are using Puppet Enterprise (PE), you can use the PE console to set environments.
 
 For details, see [the page on assigning nodes to environments.][assign]
 
-Referencing the Environment in Manifests
------
+## Referencing the environment in manifests
+
 
 In Puppet manifests, you can get the name of the current environment by using the `$environment` variable, which is [set by the Puppet master.][env_var]
 
 
-About Environments
------
+## About environments
+
 
 You can add a new environment by simply adding a new directory of config data. To start using environments, do the following:
 
 * [Create your environments][dir_env_create]
 * [Assign nodes to their environments][assign]
 
-### Unconfigured Environments Aren't Allowed
+### Unconfigured environments aren't allowed
 
-If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master will fail compilation of its catalog.
+If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master fails compilation of its catalog.
 
-Other Information About Environments
------
+## Other information about environments
 
 This section of the Puppet reference manual has several other pages about environments:
 

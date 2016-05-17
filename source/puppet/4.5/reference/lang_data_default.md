@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Default"
+title: "Language: Data types: Default"
 canonical: "/puppet/latest/reference/lang_data_default.html"
 ---
 
@@ -21,11 +21,11 @@ The only value in the default data type is the bare word `default`.
 
 The special `default` value is used in a few places:
 
-### Cases and Selectors
+### Cases and selectors
 
 In [case statements][] and [selector expressions][], you can use `default` as a _case,_ where it causes special behavior. Puppet will only try to match a `default` case last, after it has tried to match against every other case.
 
-### Per-Block Resource Defaults
+### Per-block resource defaults
 
 You can use `default` as the title in a [resource declaration][] to invoke special behavior. (For details, see [Resources (Advanced).][resources_advanced])
 
@@ -54,13 +54,13 @@ file {
 
 All of the resources in the block above will inherit attributes from `default` unless they specifically override them.
 
-### Parameters of Data Types
+### Parameters of data types
 
 Several [data types][data type] take parameters that have default values. In some cases, like minimum and maximum sizes, the default value can be difficult or impossible to refer to using the available literal values in the Puppet language. For example, the default value of [the `String` type][string]'s max length parameter is infinity, which can't be represented in the Puppet language.
 
 These parameters will often let you provide a value of `default` to say you want the otherwise-unwieldy default value.
 
-### Anywhere Else
+### Anywhere else
 
 You can also use the value `default` anywhere you aren't prohibited from using it. In these cases, it generally won't have any special meaning.
 
@@ -74,13 +74,13 @@ In other words, using `default` would let you distinguish between:
 
 In other other words, `default` can be useful when you need a truly meaningless value.
 
-## The `Default` Data Type
+## The `Default` data type
 
 The [data type][] of `default` is `Default`.
 
 It matches only the value `default`, and takes no parameters.
 
-### Examples
+### Example
 
 * `Variant[String, Default, Undef]` --- matches `undef`, `default`, or any string.
 

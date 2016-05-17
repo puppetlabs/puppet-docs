@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Windows 2003 Support is Removed"
+title: "Windows 2003 support is removed"
 toc: false
 ---
 

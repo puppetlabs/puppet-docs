@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Deprecated Command Line Features"
+title: "Deprecated command line features"
 ---
 
 

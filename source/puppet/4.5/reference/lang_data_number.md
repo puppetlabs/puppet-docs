@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Numbers"
+title: "Language: Data types: Numbers"
 canonical: "/puppet/latest/reference/lang_data_number.html"
 ---
 
@@ -30,7 +30,7 @@ Integers are numbers without decimal points.
 
 If you divide two integers, the result _will not_ be a float; instead, Puppet will truncate the remainder. (That is, `2/3 == 0`.)
 
-### Floating Point Numbers
+### Floating point numbers
 
 Floating point numbers ("floats") are numbers that include a fractional value after a decimal point (even if that fractional value is zero, like `2.0`).
 
@@ -54,7 +54,7 @@ You can express floating point numbers in scientific notation: append `e` or `E`
 $product = 8 * 3e5  # evaluates to 240000.0
 ~~~
 
-### Octal and Hexadecimal Integers
+### Octal and hexadecimal integers
 
 Integer values can be expressed in decimal notation (base 10), octal notation (base 8), and hexadecimal notation (base 16).
 
@@ -78,13 +78,13 @@ $value = 0xDEF # same as above
 $value = 0xLSD # Error, invalid hex
 ~~~
 
-## Converting Numbers to Strings
+## Converting numbers to strings
 
 Numbers are automatically converted to strings when interpolated into a string. The automatic conversion uses decimal (base 10) notation.
 
 If you need to convert numbers to non-decimal string representations, you can use [the `sprintf` function.](./function.html#sprintf)
 
-## Converting Strings to Numbers
+## Converting strings to numbers
 
 The [arithmetic operators][arithmetic] will automatically convert strings to numbers.
 
@@ -94,7 +94,7 @@ In all other contexts (resource attributes, function arguments, etc.), Puppet _w
 * Use [the `scanf` function](./function.html#scanf) to manually extract numbers from strings. This function can also account for surrounding non-numerical text.
 
 
-## The `Integer` Data Type
+## The `Integer` data type
 
 The [data type][] of integers is `Integer`.
 
@@ -125,7 +125,7 @@ Practically speaking, the integer size limit is the range of a 64-bit signed int
 * `Integer[2, 8]` --- matches any integer from 2 to 8, inclusive.
 
 
-## The `Float` Data Type
+## The `Float` data type
 
 The [data type][] of floating point numbers is `Float`.
 
@@ -154,13 +154,13 @@ Position | Parameter        | Data Type | Default Value | Description
 * `Float[1.6, 3.501]` --- matches any floating point number from 1.6 to 3.501, inclusive.
 
 
-## The `Numeric` Data Type
+## The `Numeric` data type
 
 The [data type][] of all numbers, both integer and floating point, is `Numeric`.
 
 It matches any integer or floating point number, and takes no parameters.
 
 
-### Related Data Types
+### Related data types
 
 `Numeric` is equivalent to `Variant[Integer, Float]`. If you need to set size limits but still accept both integers and floats, you can use [the abstract `Variant` type][variant] to construct an appropriate data type, e.g. `Variant[Integer[-3,3], Float[-3.0,3.0]]`.

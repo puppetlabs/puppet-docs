@@ -46,7 +46,7 @@ canonical: "/puppet/latest/reference/lang_classes.html"
 
 Classes generally configure large or medium-sized chunks of functionality, such as all of the packages, config files, and services needed to run an application.
 
-## Defining Classes
+## Defining classes
 
 Defining a class makes it available for later use. It doesn't yet add any resources to the catalog; to do that, you must [declare it (see below)][declare] or [assign it from an ENC][enc].
 
@@ -105,7 +105,7 @@ The general form of a class definition is:
 * A block of arbitrary Puppet code, which generally contains at least one [resource declaration][resource_declaration]
 * A closing curly brace
 
-### Class Parameters and Variables
+### Class parameters and variables
 
 **Parameters** allow a class to request external data. If a class needs to configure itself with data other than [facts][], that data should usually enter the class via a parameter.
 
@@ -125,7 +125,7 @@ Classes should be stored in their module's `manifests/` directory as one class p
 
 A class definition statement isn't an expression and can't be used where a value is expected.
 
-> #### Other Locations
+> #### Other locations
 >
 > Most users should **only** put classes in individual files in modules. However, it's technically possible to put classes in the following additional locations and still load the class by name:
 >
@@ -143,7 +143,7 @@ Classes can also contain other classes, but _you must manually specify that a cl
 
 A contained class is automatically [tagged][tags] with the name of its container.
 
-### Auto-Tagging
+### Auto-tagging
 
 Every resource in a class gets automatically [tagged][tags] with the class's name and each of its [namespace segments][namespace].
 
@@ -174,7 +174,7 @@ Inheritance causes three things to happen:
 >
 > Note also that you can [use resource collectors to override resource attributes][collector_override] in unrelated classes, although this feature should be handled with care.
 
-#### Overriding Resource Attributes
+#### Overriding resource attributes
 
 The attributes of any resource in the base class can be overridden with a [reference][resource_reference] to the resource you wish to override, followed by a set of curly braces containing attribute => value pairs:
 
@@ -205,7 +205,7 @@ This causes the attribute to be unmanaged by Puppet.
 
 > **Note:** If a base class declares other classes with the resource-like syntax, a class derived from it cannot override the class parameters of those inner classes. This is a known bug.
 
-#### Appending to Resource Attributes
+#### Appending to resource attributes
 
 Some resource attributes, such as the [relationship metaparameters][relationships], can accept multiple values in an array. When overriding attributes in a derived class, you can add to the existing values instead of replacing them by using the `+>` ("plusignment") keyword instead of the standard `=>` hash rocket:
 
@@ -226,19 +226,19 @@ class apache::ssl inherits apache {
 }
 ~~~
 
-## Declaring Classes
+## Declaring classes
 
 **Declaring** a class in a Puppet manifest adds all of its resources to the catalog. You can declare classes in [node definitions][node], at top scope in the [site manifest][sitedotpp], and in other classes or [defined types][definedtype]. Declaring classes isn't the only way to add them to the catalog; you can also [assign classes to nodes with an ENC](#assigning-classes-from-an-enc).
 
 Classes are singletons --- although a given class can have very different behavior depending on how its parameters are set, the resources in it will only be evaluated **once per compilation.**
 
-### Include-Like vs. Resource-Like
+### Include-like vs. resource-like
 
 Puppet has two main ways to declare classes: include-like and resource-like.
 
 > **Note:** These two behaviors **should not be mixed** for a given class. Puppet's behavior when declaring or assigning a class with both styles is undefined, and will sometimes work and sometimes cause compilation failures.
 
-#### Include-Like Behavior
+#### Include-like behavior
 
 [include-like]: #include-like-behavior
 
@@ -250,7 +250,7 @@ Include-like behavior relies on [external data][external_data] and defaults for 
 2. Use the default value.
 3. Fail compilation with an error if no value can be found.
 
-#### Resource-like Behavior
+#### Resource-like behavior
 
 [resource-like]: #resource-like-behavior
 
@@ -261,7 +261,7 @@ Resource-like class declarations require that you **only declare a given class o
 3. Use the default value.
 4. Fail compilation with an error if no value can be found.
 
-> **Aside: Why Do Resource-Like Declarations Have to Be Unique?**
+> **Aside: Why do resource-like declarations have to be unique?**
 >
 > This is necessary to avoid paradoxical or conflicting parameter values. Since overridden values from the class declaration always win, are computed at compile-time, and do not have a built-in hierarchy for resolving conflicts, allowing repeated overrides would cause catalog compilation to be unreliable and evaluation-order dependent.
 >
@@ -367,7 +367,7 @@ On the node `web01.example.com` in the production environment, the example above
 
 The `hiera_include` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It accepts a single lookup key.
 
-### Using Resource-Like Declarations
+### Using resource-like declarations
 
 Resource-like declarations look like [normal resource declarations][resource_declaration], using the special `class` pseudo-resource type.
 
@@ -396,11 +396,11 @@ However, note that:
 * Any resource can specifically override metaparameter values received from its container.
 * Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any resource-specific values.
 
-## Assigning Classes From an ENC
+## Assigning classes from an ENC
 
 Classes can also be assigned to nodes by [external node classifiers][enc] and [LDAP node data][ldap_nodes]. Note that most ENCs assign classes with include-like behavior, and some ENCs assign them with resource-like behavior. See the [documentation of the ENC interface][enc] or the documentation of your specific ENC for complete details.
 
-## Appendix: Smart Parameter Defaults
+## Appendix: Smart parameter defaults
 
 This design pattern can make for significantly cleaner code while enabling some really sophisticated behavior around default values.
 

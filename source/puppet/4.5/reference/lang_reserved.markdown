@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Reserved Words and Acceptable Names"
+title: "Language: Reserved words and acceptable names"
 canonical: "/puppet/latest/reference/lang_reserved.html"
 ---
 
@@ -20,8 +20,8 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 [func_ref]: ./function.html
 [environment]: ./environments.html
 
-Reserved Words
------
+## Reserved words
+
 
 Several words in the Puppet language are **reserved**. This means they:
 
@@ -64,8 +64,8 @@ Additionally:
 * You cannot use the name of any existing [resource type][type_ref] as the name of a defined type.
 * You _shouldn't_ use the name of any existing data type (e.g. integer) as the name of a defined type, as this will make it inconvenient to interact with. (You can't directly reference a resource of that defined type with only its uppercased name --- instead of writing a resource reference like `Integer[title]`, you would have to use `Resource[integer, title]`.)
 
-Reserved Class Names
------
+## Reserved class names
+
 
 The following are built-in namespaces used by Puppet and so must not be used as class names:
 
@@ -101,8 +101,8 @@ Additionally, the names of data types can't be used as class names:
 * `variant`, `Variant`
 
 
-Reserved Variable Names
------
+## Reserved variable names
+
 
 The following variable names are reserved. Unless otherwise noted, you can't assign values to them or use them as parameters in classes or defined types.
 
@@ -116,8 +116,8 @@ The following variable names are reserved. Unless otherwise noted, you can't ass
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 
 
-Acceptable Characters in Names
------
+## Acceptable characters in names
+
 
 Puppet limits the characters you can use when naming language constructs.
 
@@ -127,9 +127,9 @@ Puppet limits the characters you can use when naming language constructs.
 
 {% partial ./_naming_variables.md %}
 
-### Classes and Defined Types
+### Classes and defined resource types
 
-The names of classes and defined types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
+The names of classes and defined resource types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
 
 * Lowercase letters
 * Digits

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Abstract Data Types"
+title: "Language: Data types: Abstract data types"
 canonical: "/puppet/latest/reference/lang_data_abstract.html"
 ---
 
@@ -21,7 +21,7 @@ Each of those core data types will only match a particular set of values. They l
 If you're using data types to match or restrict values and need more flexibility, you can use one of the _abstract data types_ on this page to construct a data type that suits your needs and matches the values you want.
 
 
-## Flexible Data Types
+## Flexible data types
 
 These abstract data types can match values with a variety of concrete data types. Some of them are similar to a concrete type but offer alternate ways to restrict them (like `Enum`), and some of them let you combine types and match a union of what they would individually match (like `Variant` and `Optional`).
 
@@ -190,7 +190,7 @@ Position | Parameter        | Data Type | Default Value | Description
 1 | Schema hash | `Hash[Variant[String, Optional, NotUndef], Type]` | none **(mandatory)** | A hash that has all of the allowed keys and data types for the struct.
 
 
-#### Schema Hashes
+#### Schema hashes
 
 A struct's schema hash must have the same keys as the hashes it will match. Each value must be a [data type][types] that matches the allowed values for that key.
 
@@ -232,7 +232,7 @@ Struct[{mode            => Enum[read, write, update],
 
 In this data type, the owner key is mandatory, but it allows an explicit `undef` value.
 
-## Parent Types
+## Parent types
 
 These abstract data types are the parents of multiple other types, and match values that would match _any_ of their sub-types. They're mostly useful when you have very loose restrictions but still want to guard against something weird.
 
@@ -284,7 +284,7 @@ It takes no parameters.
 The `Any` data type matches _any_ value of _any_ data type.
 
 
-## Unusual Types
+## Unusual types
 
 These types aren't quite like the others.
 

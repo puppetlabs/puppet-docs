@@ -1,5 +1,5 @@
 ---
-title: "Language: Conditional Statements and Expressions"
+title: "Language: Conditional statements and expressions"
 layout: default
 canonical: "/puppet/latest/reference/lang_conditional.html"
 ---
@@ -22,8 +22,8 @@ canonical: "/puppet/latest/reference/lang_conditional.html"
 
 Conditional statements let your Puppet code behave differently in different situations. They are most helpful when combined with [facts][] or with data retrieved from an external source.
 
-Summary
------
+## Summary
+
 
 Puppet supports "if" and "unless" statements, case statements, and selectors.
 
@@ -76,8 +76,8 @@ file { '/etc/passwd':
 }
 ~~~
 
-"If" Statements
------
+## "If" statements
+
 
 **"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **true.** They can optionally include `elsif` and `else` clauses.
 
@@ -117,7 +117,7 @@ If none of the conditions in the statement match and there is no `else` block, P
 
 "If" statements will execute a maximum of one code block.
 
-#### When Used as a Value
+#### When used as a value
 
 In addition to executing the code in a block, an `if` statement is also an expression that produces a value, and can be used wherever a value is allowed.
 
@@ -135,7 +135,7 @@ Expressions that resolve to non-boolean values will be [automatically converted 
 
 Static values may also be conditions, although doing this would be pointless.
 
-#### Regex Capture Variables
+#### Regex capture variables
 
 If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
@@ -152,8 +152,8 @@ These are not normal variables, and have some special behaviors:
 * The values of the numbered variables do not persist outside the code block associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
-"Unless" Statements
------
+## "Unless" statements
+
 
 **"Unless" statements** work like reversed "if" statements. They take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **false.** They **cannot** include `elsif` clauses.
 
@@ -178,7 +178,7 @@ If an `elsif` clause is included in an "unless" statement, it is a syntax error 
 
 The condition is evaluated first and, if it is false, the code block is executed. If the condition is true, Puppet will do nothing and move on.
 
-#### When Used as a Value
+#### When used as a value
 
 In addition to executing the code in a block, an `unless` statement is also an expression that produces a value, and can be used wherever a value is allowed.
 
@@ -196,7 +196,7 @@ Expressions that resolve to non-boolean values will be [automatically converted 
 
 Static values may also be conditions, although doing this would be pointless.
 
-#### Regex Capture Variables
+#### Regex capture variables
 
 Although "unless" statements receive regex capture variables like "if" statements, they usually aren't used, since the code in the statement will only be executed if the condition didn't match anything. It's possible to use regex captures in the "else" clause, but it would make more sense to just use an "if" statement.
 
@@ -238,7 +238,7 @@ Case statements will execute a _maximum_ of one code block. If none of the cases
 
 See "Case Matching" below for details on how Puppet matches different kinds of cases.
 
-#### Control Expressions
+#### Control expressions
 
 The control expression of a case statement can be any expression that resolves to a value. This includes:
 
@@ -246,7 +246,7 @@ The control expression of a case statement can be any expression that resolves t
 * [Expressions][]
 * [Functions][] that return values
 
-#### Case Matching
+#### Case matching
 
 A case can be any expression that resolves to a value. (This includes literal values, variables, function calls, etc.)
 
@@ -266,14 +266,14 @@ Depending on the [data type][datatypes] of a case's value, Puppet will use one o
 
 {{case_matching_behavior}}
 
-#### When Used as a Value
+#### When used as a value
 
 In addition to executing the code in a block, a `case` statement is also an expression that produces a value, and can be used wherever a value is allowed.
 
 The value of a `case` expression is the value of the last expression in the executed block, or `undef` if no block was executed.
 
 
-#### Regex Capture Variables
+#### Regex capture variables
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
@@ -292,16 +292,16 @@ These are not normal variables, and have some special behaviors:
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
 
 
-> #### Aside: Best Practices
+> #### Aside: Best practices
 >
-> Case statements should usually have a default case.
+> Case statements should have a default case.
 >
 > * If the rest of your cases are meant to be comprehensive, putting a [`fail('message')`][fail] call in the default case makes your code more robust by protecting against mystery failures due to behavior changes elsewhere in your manifests.
 > * If your cases aren't comprehensive and nodes that match none should do nothing, write a default case with an empty code block (`default: {}`). This makes your intention obvious to the next person who has to maintain your code.
 
 
-Selectors
------
+## Selectors
+
 
 **Selector expressions** are similar to case statements, but only return a value instead of executing a code block.
 
@@ -316,7 +316,7 @@ Selectors can be used wherever a **value** is expected. This includes:
 * A value in another selector
 * [Expressions][]
 
-> #### Aside: Best Practices
+> #### Aside: Best practices
 >
 > For readability's sake, you should generally only use selectors in variable assignments.
 
@@ -362,7 +362,7 @@ If none of the cases match, Puppet will **fail compilation with an error.**
 
 See "Case Matching" below for details on how Puppet matches different kinds of cases.
 
-#### Control Expressions
+#### Control expressions
 
 The control expression of a selector can be any expression that resolves to a value. This includes:
 
@@ -370,7 +370,7 @@ The control expression of a selector can be any expression that resolves to a va
 * [Expressions][]
 * [Functions][] that return values
 
-#### Case Matching
+#### Case matching
 
 A case can be any expression that resolves to a value. (This includes literal values, variables, function calls, etc.)
 
@@ -378,7 +378,7 @@ A case can be any expression that resolves to a value. (This includes literal va
 
 {{case_matching_behavior}}
 
-#### Regex Capture Variables
+#### Regex capture variables
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 

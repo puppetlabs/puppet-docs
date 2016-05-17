@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Documenting Modules"
+title: "Documenting modules"
 canonical: "/puppet/latest/reference/modules_documentation.html"
 ---
 
@@ -24,8 +24,8 @@ There is a [README template][template] to assist you put together complete and c
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agents.
 
 
-README Template
----
+## README Template
+
 
 If you used the `puppet module generate` command to generate your module skeleton, you already have a copy of the README template in .md format. You can also use the standalone [template][template] to guide you. Again, we strongly recommend using .md format for your README.
 
@@ -51,14 +51,14 @@ The table of contents is a best practice, particularly for large or complicated 
 
 The section headings for each top-level section (following the numbered sections in the TOC) should be Level 2 Headings, with each subsection decreasing from there. Subsections can be included in the ToC if needed, as shown in the Setup subsections above.
 
-## Module Description
+## Module description
 
 Assume **Module Description** is the first thing a user reads. First, it should briefly address what software the module is working with and what it does with that software. Does it just install it? Does it install and configure it? Check the `summary` field in the module's [metadata.json][]. Your **Module Description** should be slightly longer and more informative than that.
 
 A second paragraph can go into more depth on the "How?" and "What?" of a module, giving a user more information about what to expect from the module so they can assess whether they would like to use it or not.
 
 ~~~
-## Module Description
+## Module description
 
 The cat module installs, configures, and maintains your cat in both
 apartment and residential house settings.
@@ -137,10 +137,10 @@ Generally, unless your module is very small (only 1 - 4 classes or defines (defi
 
 ### Classes
 
-#### Public Classes
+#### Public classes
 *[`pet::cat`](#petcat): Installs and configures a cat in your environment.
 
-#### Private Classes
+#### Private classes
 *[`pet::cat::install`]: Handles the cat packages.
 *[`pet::cat::configure`]: Handles the configuration file.
 ~~~
@@ -169,7 +169,7 @@ Valid options: A hash with the following keys:
 * `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
 ~~~
 
-## Limitations and Development
+## Limitations and development
 
 The **Limitations** section is the place to call out surprise incompatibilities.
 
@@ -181,16 +181,16 @@ This module cannot be used with the smallchild module.
 
 Since your module is awesome, other users will want to play with it. The **Development** section is where you let them know what the ground rules for contributing are.
 
-README Style Notes
----
+## README style notes
 
-## General Principles of READMEs
+
+## General principles of READMEs
 
 1. Write for both web and terminal viewing. We recommend [Markdown][commonmark]. Above all else, your module must be easily readable and scannable.
 2. Limit the number of external links. Linking to anything on the web limits the usability of the module, particularly if a range of users might use it in various environments, such as in terminal. Also, links look gross in plain Markdown and make your README less readable.
 3. Scannability is key. READMEs are formulaic and repetitious for a reason. Repetition means that no matter the module, users know where to get the information they're looking for.
 
-## Style and Formatting
+## Style and formatting
 
 1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
 2. *Public* classes and defines are intended to be tweaked, changed, or otherwise interacted with by the user. *Private** classes and defines do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.
@@ -213,7 +213,7 @@ README Style Notes
 8. You don't need to comment out _ because neither GitHub nor the Forge's Markdown rendering hides _.
 9. The Forge's Markdown rendering is exactly GitHub's rendering.
 
-## Documentation Best Practices
+## Documentation best practices
 
 If you really want your documentation to shine, following a few best practices can help make your documentation clear and readable.
 

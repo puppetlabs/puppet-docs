@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Subsystems: Catalog Compilation"
+title: "Subsystems: Catalog compilation"
 canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 ---
 
@@ -34,8 +34,7 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [manifest naming conventions]: ./modules_fundamentals.html#manifests
 [modulepath]: ./dirs_modulepath.html
 
-Background Info
------
+## Background info
 
 ### What's a catalog?
 
@@ -55,8 +54,8 @@ Puppet manifests are concise because they can express variation between nodes wi
 Puppet apply compiles its own catalog and then applies it, so it plays the role of both Puppet master and Puppet agent.
 
 
-Information Sources
------
+## Information sources
+
 
 Puppet compiles a catalog using three main sources of configuration info:
 
@@ -66,7 +65,7 @@ Puppet compiles a catalog using three main sources of configuration info:
 
 All of these sources are used by both agent/master deployments and by stand-alone Puppet apply nodes.
 
-### Agent-Provided Data
+### Agent-provided data
 
 When agents request a catalog, they send four pieces of information to the Puppet master:
 
@@ -76,7 +75,7 @@ When agents request a catalog, they send four pieces of information to the Puppe
 * Their requested [environment][], which is embedded in the request URL. (e.g. `/puppet/v3/catalog/web01.example.com?environment=production`) Before requesting a catalog, agents will ask the master which environment they should be in, but they will use the environment in their own config file if the master doesn't have an opinion.
 
 
-### External Data
+### External data
 
 Puppet can use external data at several stages when compiling, but there are two main kinds to be aware of:
 
@@ -88,7 +87,7 @@ Puppet can use external data at several stages when compiling, but there are two
     * [Exported resources][] queried from [PuppetDB][]
     * The results of [functions][], which can access arbitrary data sources including Hiera or an external CMDB
 
-### Puppet Manifests, Templates, etc.
+### Puppet manifests, templates, etc.
 
 This is the heart of a Puppet deployment. It can include:
 
@@ -96,8 +95,7 @@ This is the heart of a Puppet deployment. It can include:
 * [Modules][] downloaded from the [Puppet Forge](https://forge.puppetlabs.com)
 * [Modules][] written specifically for your site
 
-The Process of Catalog Compilation
------
+## The process of catalog compilation
 
 This description is simplified. It doesn't delve into the internals of the parser, model, evaluator, etc., and some items are presented out of order for the sake of conceptual clarity.
 
@@ -105,7 +103,7 @@ For practical purposes, you can treat Puppet apply nodes as simply a combined ag
 
 This process begins after the catalog request has been received.
 
-### Step 1: Retrieve the Node Object
+### Step 1: Retrieve the node object
 
 Once the Puppet master has the agent-provided information for this request, it asks its configured **[node terminus][]** for a node object.
 
@@ -117,7 +115,7 @@ Less commonly, some people use the [`ldap` node terminus][ldap_node], which will
 
 Finally, it's possible to write a custom node terminus that retrieves classes, variables, and environments from any kind of external system.
 
-### Step 2: Set Variables from the Node Object, from Facts, and from the Certificate
+### Step 2: Set variables from the node object, from facts, and from the certificate
 
 * Any variables provided by the node object will now be set as top-scope Puppet variables.
 * The node's facts are also set as top-scope variables.
@@ -126,7 +124,7 @@ Finally, it's possible to write a custom node terminus that retrieves classes, v
 
 All of these variables will be available for use by any manifest or template during the subsequent stages of compilation.
 
-### Step 3: Evaluate the Main Manifest
+### Step 3: Evaluate the main manifest
 
 Puppet now parses the [main manifest][]. The node's [environment][] may specify a main manifest to use; if it doesn't, the Puppet master will use the main manifest from its config file.
 
@@ -137,7 +135,7 @@ The main manifest can contain any arbitrary Puppet code. The way it is evaluated
 * Any code **outside** any node definition is evaluated. Any [resources][] are added to the node's catalog. Any [class declarations][] cause classes to be loaded from modules and declared (see Step 3a below).
 * If a matching node definition was found, any code in it is evaluated at [node scope][]. (This means it may contain [variable assignments][variables] that can override top-scope variables.) Any resources are added to the catalog, and any class declarations cause classes to be loaded and declared.
 
-### Step 3a: Load and Evaluate Classes from Modules
+### Step 3a: Load and evaluate classes from modules
 
 It's possible for the main manifest to contain [class definitions][], but usually classes are defined elsewhere, in [modules][].
 
@@ -149,7 +147,7 @@ Once a class is loaded, the Puppet code in it is evaluated, and any resources ar
 
 Classes can also declare other classes; if they do, Puppet will load and evaluate those in the same way.
 
-### Step 4: Evaluate Classes from the Node Object
+### Step 4: Evaluate classes from the node object
 
 Finally, after Puppet has evaluated the main manifest and any classes it declared (and any classes _they_ declared), it will load from modules and evaluate any classes that were specified by the node object. Resources from those classes will be added to the catalog.
 

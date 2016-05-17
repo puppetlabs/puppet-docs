@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "Experimental Features: Msgpack Support"
+title: "Experimental features: Msgpack support"
 canonical: "/puppet/latest/reference/experiments_msgpack.html"
 ---
 
-Background on Msgpack
------
+## Background on Msgpack
+
 
 Puppet agents and masters communicate over HTTPS, exchanging structured data in JSON (or, more specifically, "PSON," which allows binary data).
 
@@ -14,8 +14,8 @@ Puppet agents and masters communicate over HTTPS, exchanging structured data in 
 When msgpack is enabled, the Puppet master and agent will communicate using msgpack instead of PSON.
 
 
-Enabling Msgpack Serialization
------
+## Enabling Msgpack serialization
+
 
 Enabling msgpack is easy, but first it must be installed, as we don't include this gem in the puppet-agent or puppetserver packages. 
 

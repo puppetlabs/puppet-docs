@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Using Templates"
+title: "Language: Using templates"
 canonical: "/puppet/latest/reference/lang_template.html"
 ---
 
@@ -25,7 +25,7 @@ Templates are documents that combine code, data, and literal text to produce a f
 
 In Puppet, you'll usually use templates to manage the content of configuration files (via the `content` attribute of the `file` resource type).
 
-## Templating Languages
+## Templating languages
 
 Templates are written in a _templating language_, which is specialized for generating text from data.
 
@@ -34,7 +34,7 @@ Puppet supports two templating languages:
 * [Embedded Puppet (EPP)][epp] uses Puppet expressions in special tags. It's easy for any Puppet user to read, but only works with newer Puppet versions. (≥ 4.0, or late 3.x versions with future parser enabled.)
 * [Embedded Ruby (ERB)][erb] uses Ruby code in tags. You need to know a small bit of Ruby to read it, but it works with all Puppet versions.
 
-## Using Templates
+## Using templates
 
 Once you have a template, you can pass it to a [function][functions] that will evaluate it and return a final [string][].
 
@@ -45,7 +45,7 @@ Template Language     | File       | String
 Embedded Puppet (EPP) | `epp`      | `inline_epp`
 Embedded Ruby (ERB)   | `template` | `inline_template`
 
-### With a Template File: `template` and `epp`
+### With a template file: `template` and `epp`
 
 You can put template files in the `templates` directory of a [module][]. EPP files should have the `.epp` extension, and ERB files should have the `.erb` extension.
 
@@ -67,7 +67,7 @@ file { '/etc/ntp.conf':
 }
 ~~~
 
-#### Referencing Files
+#### Referencing files
 
 The first argument to these functions should be a string like `'<MODULE>/<FILE>'`, which will load `<FILE>` from `<MODULE>`'s `templates` directory.
 
@@ -76,7 +76,7 @@ File Reference                  | Actual File
 `ntp/ntp.conf.epp`              | `<MODULES DIRECTORY>/ntp/templates/ntp.conf.epp`
 `activemq/amq/activemq.xml.erb` | `<MODULES DIRECTORY>/activemq/templates/amq/activemq.xml.erb`
 
-#### EPP Parameters
+#### EPP parameters
 
 {% capture epp_params %}
 EPP templates can declare parameters, and you can provide values for them by passing a parameter [hash][] to the `epp` function.
@@ -90,11 +90,11 @@ The keys of the hash must be [valid local variable names][] (minus the `$`). Ins
 
 {{ epp_params }}
 
-#### Extra ERB Files
+#### Extra ERB files
 
 The `template` function can take any number of additional template files, and will concatenate their outputs together to produce the final string.
 
-### With a Template String: `inline_template` and `inline_epp`
+### With a template string: `inline_template` and `inline_epp`
 
 If you have a [string][] value that contains template content, you can evaluate it with the `inline_template` (ERB) or `inline_epp` functions as follows:
 
@@ -120,21 +120,21 @@ In older versions of Puppet, `inline_template` was mostly used to get around lim
 
 In modern versions of Puppet, inline templates are usable in some of the same situations template files are. Since the [heredoc][] syntax makes it easy to write large and complicated strings in a manifest, you can use `inline_template` and `inline_epp` to reduce the number of files needed for a simple module that manages a small config file.
 
-#### EPP Parameters
+#### EPP parameters
 
 {{ epp_params }}
 
-#### Extra ERB Strings
+#### Extra ERB strings
 
 The `inline_template` function can take any number of additional template strings, and will concatenate their outputs together to produce the final value.
 
-## Validating and Previewing Templates
+## Validating and previewing templates
 
 Before deploying a template, you should validate its syntax and render its output to ensure it's producing the results you expect.
 
 Puppet 4 includes the [`puppet epp`][man epp] command-line tool for EPP templates, while Ruby can check ERB syntax after trimming the template with its `erb` command.
 
-### EPP Validation
+### EPP validation
 
 `puppet epp validate <TEMPLATE NAME>`
 
@@ -146,7 +146,7 @@ You can also pipe EPP code directly to the validator:
 
 The command is silent on a successful validation. It reports and halts on the first error it encounters; to modify this behavior, check the command's [man page][man epp].
 
-### EPP Rendering
+### EPP rendering
 
 `puppet epp render <TEMPLATE NAME>`
 
@@ -158,7 +158,7 @@ If your template relies on specific parameters or values to function, you can si
 
 You can also render inline EPP by using the `-e` flag or piping EPP code to `puppet epp render`, and even simulate facts using YAML. For details, see the command's [man page][man epp].
 
-### ERB Validation
+### ERB validation
 
 `erb -P -x -T '-' example.erb | ruby -c`
 
@@ -174,7 +174,7 @@ validate_erb() {
 
 You can then use `validate_erb example.erb` to validate an ERB template.
 
-## When to Use (and Not Use) Templates
+## When to use (and not use) templates
 
 Templates are more powerful than normal strings, and less powerful than modeling individual settings as resources.
 

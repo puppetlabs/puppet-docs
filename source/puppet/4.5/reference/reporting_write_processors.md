@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Writing Custom Report Processors"
+title: "Writing custom report processors"
 canonical: "/puppet/latest/reference/reporting_write_processors.html"
 ---
 
@@ -10,7 +10,7 @@ canonical: "/puppet/latest/reference/reporting_write_processors.html"
 
 You can write your own [report processor][] in Ruby and include it in a [Puppet module][]. Puppet can then use the processor to send report data to any service and in any format.
 
-## Writing a Report Processor
+## Writing a report processor
 
 A report processor must adhere to these standards:
 

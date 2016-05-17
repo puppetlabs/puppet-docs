@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.4 System Requirements"
+title: "Puppet 4.5 System Requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
@@ -19,11 +19,11 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 {% include agent_lifecycle.md %}
 
-## Platforms With Packages
+## Platforms with packages
 
-Puppet 4.4 and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./upgrade_minor.html#puppet-collections-and-upgrading).
+Puppet 4.5 and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./upgrade_minor.html#puppet-collections-and-upgrading).
 
-### Red Hat Enterprise Linux (and Derivatives)
+### Red Hat Enterprise Linux (and derivatives)
 
 {% include pup43_platforms_redhat_like.markdown %}
 
@@ -43,7 +43,7 @@ Puppet 4.4 and all of its prerequisites run on the following platforms, and Pupp
 
 {% include pup43_platforms_osx.markdown %}
 
-## Platforms Without Packages
+## Platforms without packages
 
 Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [System Requirements]({{pe}}/install_system_requirements.html#supported-operating-systems).
 
@@ -62,11 +62,11 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 * OpenBSD 4.1 and later
 * HP-UX
 
-## Basic Requirements
+## Basic requirements
 
 If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-Puppet 4.4 has the following prerequisites:
+Puppet 4.5 has the following prerequisites:
 
 ### Ruby
 
@@ -78,13 +78,13 @@ Use one of the following versions of MRI (standard) Ruby:
 
 > **Note:** We currently only test and package with 2.1.x versions of Ruby, therefore we recommend you only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
-### Mandatory Libraries
+### Mandatory libraries
 
 * [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
 * [Hiera]({{hiera}}/) 2.0.0 or later
 * The `json` gem (any modern version).
 * The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html).
 
-### Optional Libraries
+### Optional libraries
 
 * The `msgpack` gem is required if you are using [msgpack serialization](./experiments_msgpack.html).

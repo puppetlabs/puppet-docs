@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Deprecated Web Servers"
+title: "Deprecated web servers"
 ---
 
 [puppet server]: {{puppetserver}}/services_master_puppetserver.html

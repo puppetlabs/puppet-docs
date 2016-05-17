@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Strings"
+title: "Language: Data types: Strings"
 canonical: "/puppet/latest/reference/lang_data_string.html"
 ---
 
@@ -36,7 +36,7 @@ There are four ways to write literal strings in the Puppet language:
 
 Each of these have slightly different behavior around syntax, interpolation features, and escape sequences.
 
-## Bare Words
+## Bare words
 
 ~~~ ruby
 service { "ntp":
@@ -55,7 +55,7 @@ Unquoted words that begin with upper case letters are interpreted as [data types
 
 Bare word strings can't interpolate values and can't use escape sequences.
 
-## Single-Quoted Strings
+## Single-quoted strings
 
 ~~~ ruby
 if $autoupdate {
@@ -81,13 +81,13 @@ Some common things to watch out for:
 * To include a backslash at the very end of a single-quoted string, you must use a double backslash instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
 * To include a literal double backslash you must use a quadruple backslash.
 
-## Double-Quoted Strings
+## Double-quoted ttrings
 
 Strings can also be surrounded by double quotes, `"like this"`. Line breaks within the string are interpreted as literal line breaks, and you can also insert line breaks with `\n` (Unix-style) or `\r\n` (Windows-style).
 
 Double-quoted strings can interpolate values. [See below for details on interpolation.][interpolation]
 
-### Escape Sequences
+### Escape sequences
 
 The following escape sequences are available in double-quoted strings:
 
@@ -158,7 +158,7 @@ The general form of a heredoc string is:
 
 If a line of Puppet code includes more than one heredoc tag, Puppet will read all of those heredocs in order: the first one will begin on the following line and continue until its end marker, the second one will begin on the line immediately after the first end marker, etc. Puppet won't start evaluating additional lines of Puppet code until it reaches the end marker for the final heredoc on that original line.
 
-### End Text
+### End text
 
 [inpage_end]: #end-text
 
@@ -176,7 +176,7 @@ The following are all valid end text:
 
 You should make sure your end text stands out from the actual text of the string. Uppercase end text is usually best.
 
-### Enabling Interpolation
+### Enabling interpolation
 
 [inpage_enable_interp]: #enabling-interpolation
 
@@ -187,7 +187,7 @@ By default, heredocs _do not_ allow you to [interpolate values.][interpolation] 
 
 By default, you can't use the `\$` escape sequence to prevent interpolation, but you can optionally enable that escape sequence. (See the next section.)
 
-### Enabling Escape Sequences
+### Enabling escape sequences
 
 [inpage_enable_escape]: #enabling-escape-sequences
 
@@ -216,13 +216,13 @@ Switch | Sequence        | Result
 
 If a string has escapes enabled and includes several literal backslashes in a row, you should make sure each literal backslash is represented by the `\\` escape sequence. (Quadruple backslash to represent a double backslash, etc.)
 
-### Formatting Control
+### Formatting control
 
 [inpage_format]: #formatting-control
 
 You can control the formatting of a heredoc string by stripping indentation and suppressing line breaks.
 
-#### Stripping Indentation
+#### Stripping indentation
 
 To make your files easier to read, you can indent the content of a heredoc to separate it from the surrounding Puppet code.
 
@@ -241,7 +241,7 @@ $mytext = @(EOT)
 
 Indentation can also include tab characters, but Puppet won't automatically convert tabs to spaces, so make sure you use the exact same sequence of space and tab characters on each line.
 
-#### Suppressing Literal Line Breaks
+#### Suppressing literal line breaks
 
 If you enable the `L` escape switch, you can end a line with a backslash (`\`) to exclude the following line break from the final string. This lets you break up long lines in your source code without adding unwanted literal line breaks.
 
@@ -253,7 +253,7 @@ lg = "log --pretty=format:'%C(yellow)%h%C(reset) %s \
 ~~~
 
 
-#### Suppressing the Final Line Break
+#### Suppressing the final line break
 
 By default, heredocs end with a trailing line break, but you can exclude this line break from the final string. To suppress it, add a hyphen (`-`) to the end marker (before the end text, but after the indentation pipe if you used one).
 
@@ -282,11 +282,11 @@ An interpolated expression can include quote marks that would end the string if 
 
 Only double-quoted strings and heredocs can interpolate values. With heredocs, you have to [explicitly enable interpolation.][inpage_enable_interp]
 
-### Preventing Interpolation
+### Preventing interpolation
 
 If you want a string to include a literal sequence that looks like an interpolation token --- and prevent Puppet from replacing it with a value --- you must either escape the dollar sign (with `\$`) or use a quoting syntax that disables interpolation (single quotes or a non-interpolating heredoc).
 
-### Short Forms for Variable Interpolation
+### Short forms for variable interpolation
 
 The most common thing to interpolate into a string is the value of a [variable][variables]. To make this easier, Puppet has some shorter forms of the interpolation syntax:
 
@@ -300,7 +300,7 @@ The most common thing to interpolate into a string is the value of a [variable][
     With this syntax, you can also follow a variable name with any combination of [chained function calls][function_chain] and/or [hash access][] / [array access][] / [substring access][inpage_substring] expressions. For example: `"Using interface ${::interfaces.split(',')[3]} for broadcast"`. However, this doesn't work if the variable's name overlaps with a language keyword. For example, if you had a variable called `$inherits`, you would have to use normal-style interpolation, like `"Inheriting ${$inherits.upcase}."`.
 
 
-### Conversion of Interpolated Values
+### Conversion of interpolated values
 
 Puppet will convert the value of any interpolated expression to a string as follows:
 
@@ -317,7 +317,7 @@ String                                  | The contents of the string, with any q
 
 
 
-## Line Breaks
+## Line breaks
 
 Quoted strings can continue over multiple lines, and line breaks are preserved as a literal part of the string. Heredocs let you suppress these line breaks if you enable the `L` escape.
 
@@ -332,7 +332,7 @@ Puppet treats strings as sequences of bytes. It does not recognize encodings or 
 
 However, Puppet recommends that all strings be valid UTF8. Future versions of Puppet might impose restrictions on string encoding, and using only UTF8 will protect you in this event. Additionally, PuppetDB will remove invalid UTF8 characters when storing catalogs.
 
-## Accessing Substrings
+## Accessing substrings
 
 [inpage_substring]: #accessing-substrings
 
@@ -371,7 +371,7 @@ notice( $foo[-10,2] ) # resolves to ''
 notice( $foo[-10,6] ) # resolves to 'ab'
 ~~~
 
-## The `String` Data Type
+## The `String` data type
 
 The [data type][] of strings is `String`.
 
@@ -399,7 +399,7 @@ Position | Parameter        | Data Type | Default Value | Description
 * `String[6, 8]` --- matches a string with at least 6 and at most 8 characters.
 
 
-### Related Data Types
+### Related data types
 
 The abstract [`Enum` type][enum] matches against a list of specific allowed string values.
 

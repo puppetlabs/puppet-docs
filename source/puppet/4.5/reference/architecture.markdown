@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Overview of Puppet's Architecture"
+title: "Overview of Puppet's architecture"
 ---
 
 [agent_unix]: ./services_agent_unix.html
@@ -33,8 +33,8 @@ Puppet usually uses an agent/master (client/server) architecture for configuring
 > To compile a catalog, Puppet uses several sources of information. For more info, see the pages on [basics of the Puppet language][lang_basics] and [catalog compilation][catalog_compilation].
 
 
-The Agent/Master Architecture
------
+## The agent/master architecture
+
 
 Puppet usually runs in an agent/master architecture, where a Puppet master server controls important configuration info and managed agent nodes request only their own configuration catalogs.
 
@@ -48,13 +48,13 @@ Once it receives a catalog, Puppet agent applies it by checking each [resource][
 
 After applying the catalog, the agent submits a report to the Puppet master.
 
-### About the Puppet Services
+### About the Puppet services
 
 * [Puppet Agent on \*nix Systems][agent_unix]
 * [Puppet Agent on Windows Systems][agent_win]
 * [Puppet Server][]
 
-### Communications and Security
+### Communications and security
 
 Puppet agent nodes and Puppet masters communicate via HTTPS with client-verification.
 
@@ -73,8 +73,7 @@ Puppet includes a built-in certificate authority (CA) for managing certificates.
 For general info about SSL, see [our background reference on SSL and HTTPS.](/background/ssl/)
 
 
-The Stand-Alone Architecture
------
+## The stand-alone architecture
 
 Puppet can run in a stand-alone architecture, where each managed server has its own complete copy of your configuration info and compiles its own catalog.
 
@@ -88,12 +87,12 @@ After Puppet apply compiles the catalog, it immediately applies it by checking e
 
 After applying the catalog, Puppet apply stores a report on disk. It can also be configured to send reports to a central service.
 
-### About the Puppet Apply Application
+### About the Puppet apply application
 
 * [The Puppet Apply Application][apply]
 
 
-> Note: Differences Between Agent/Master and Puppet Apply
+> Note: Differences between agent/master and puppet apply
 > -----
 >
 > In general, Puppet apply can do the same things as the combination of Puppet agent and Puppet master, but there are several trade-offs around security and the ease of certain tasks.

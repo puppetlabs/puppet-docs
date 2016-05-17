@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: routes.yaml"
+title: "Config files: routes.yaml"
 canonical: "/puppet/latest/reference/config_file_routes.html"
 ---
 

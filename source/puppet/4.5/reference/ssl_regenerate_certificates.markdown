@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "SSL: Regenerating All Certificates in a Puppet Deployment"
+title: "SSL: Regenerating all Certificates in a Puppet deployment"
 canonical: "/puppet/latest/reference/ssl_regenerate.html"
 description: "This page describes the steps for regenerating certs under an open source Puppet deployment."
 ---
@@ -17,7 +17,7 @@ description: "This page describes the steps for regenerating certs under an open
 [blog]: http://puppetlabs.com/blog/heartbleed-security-bug-update-puppet-users
 [cve]: https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2014-0160
 
-> **IMPORTANT:** This page describes the steps for regenerating certs in an open source Puppet deployment. If you use Puppet Enterprise you  should **NOT** use this page since doing so will leave you with an incomplete replacement and non-functional deployment. Instead, **PE customers must refer to one of the following pages**:
+> **IMPORTANT:** This page describes the steps for regenerating certs in an open source Puppet deployment. If you use Puppet Enterprise you should **NOT** use this page as doing so will leave you with an incomplete replacement and non-functional deployment. Instead, **PE customers must refer to one of the following pages**:
 >
 > * [Regenerating certificates in split PE deployments][split]
 > * [Regenerating certificates in monolithic PE deployments][monolithic]
@@ -33,7 +33,7 @@ Regardless of your situation, regenerating your certs involves the following thr
 Note that this process **destroys the certificate authority and all other certificates.** It is meant for use in the event of a total compromise of your site, or some other unusual circumstance. If you just need to replace a few agent certificates, you can use the `puppet cert clean` command on your Puppet master and then follow step 3 for any agents that need to be replaced.
 
 
-## Step 1: Clear and Regenerate Certs on Your Puppet Master
+## Step 1: Clear and regenerate certs on your Puppet master
 
 **On the Puppet master hosting the CA:**
 
@@ -56,7 +56,7 @@ Note that this process **destroys the certificate authority and all other certif
 > * The Puppet master will reject any requests for configuration catalogs from nodes that haven't replaced their certificates (which, at this point, will be all of them except itself).
 > * If you are using any extensions that rely on Puppet certificates, like PuppetDB or MCollective, the Puppet master won't be able to communicate with them. Consequently, it may not be able to serve catalogs, even to agents that do have new certificates.
 
-## Step 2: Clear and Regenerate Certs for any Extensions
+## Step 2: Clear and regenerate certs for any extensions
 
 You may be using an extension, like PuppetDB or MCollective, to enhance Puppet. These extensions probably use certificates from Puppet's CA in order to communicate securely with the Puppet master.
 
@@ -67,7 +67,7 @@ For each extension like this, you'll need to regenerate the certificate(s) it us
 
 [standard_mco]: /mcollective/deploy/standard.html
 
-## Step 3: Clear and Regenerate Certs for Puppet Agents
+## Step 3: Clear and regenerate certs for Puppet agents
 
 [agent_certs]: #step-3-clear-and-regenerate-certs-for-puppet-agents
 

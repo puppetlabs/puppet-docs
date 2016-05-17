@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Exported Resources"
+title: "Language: Exported resources"
 canonical: "/puppet/latest/reference/lang_exported.html"
 ---
 
@@ -29,8 +29,8 @@ canonical: "/puppet/latest/reference/lang_exported.html"
 
 An **exported resource declaration** specifies a desired state for a resource, **does not** manage the resource on the target system, and publishes the resource for use by **other nodes.** Any node (including the node that exported it) can then **collect** the exported resource and manage its own copy of it.
 
-Purpose
------
+## Purpose
+
 
 Exported resources allow the Puppet compiler to share information among nodes by combining information from multiple nodes' catalogs. This helps you manage things that rely on nodes knowing the states or activity of other nodes.
 
@@ -41,8 +41,8 @@ The most common use cases are monitoring and backups. A class that manages a ser
 For more details, see [Exported Resource Design Patterns][exported_guide].
 
 
-Syntax
------
+## Syntax
+
 
 Using exported resources requires two steps: declaring and collecting.
 
@@ -60,7 +60,7 @@ class ssh {
 
 In the example above, every node with the `ssh` class will export its own SSH host key and then collect the SSH host key of every node (including its own). This will cause every node in the site to trust SSH connections from every other node.
 
-### Declaring an Exported Resource
+### Declaring an exported resource
 
 To declare an exported resource, prepend `@@` (a double "at" sign) to the **resource type** of a standard [resource declaration][resources]:
 
@@ -75,7 +75,7 @@ To declare an exported resource, prepend `@@` (a double "at" sign) to the **reso
 }
 ~~~
 
-### Collecting Exported Resources
+### Collecting exported resources
 
 To collect exported resources you must use an [exported resource collector][exported_collector]:
 
@@ -93,8 +93,8 @@ Since any node could be exporting a resource, it is difficult to predict what th
 See [Exported Resource Collectors][exported_collector] for more detail on the collector syntax and search expressions.
 
 
-Behavior
------
+## Behavior
+
 
 When catalog storage and searching (AKA storeconfigs) are enabled, the Puppet master will send a copy of every [catalog][] it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node and provides the Puppet master with a search interface to those catalogs.
 
@@ -115,7 +115,7 @@ Every exported resource must be **globally unique** across every single node. If
 
 To ensure uniqueness, every resource you export should include a substring unique to the node exporting it into its title and name/namevar. The most expedient way is to use the [`hostname`][hostname] or [`fqdn`][fqdn] [facts][].
 
-### Exported Resource Collectors
+### Exported resource collectors
 
 Exported resource collectors do not collect normal or virtual resources. In particular, they cannot retrieve non-exported resources from other nodes' catalogs.
 

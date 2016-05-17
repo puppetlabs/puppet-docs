@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Directories: The Cache Directory (vardir)"
+title: "Directories: The cache directory (vardir)"
 canonical: "/puppet/latest/reference/dirs_vardir.html"
 ---
 

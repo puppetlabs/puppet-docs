@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Quick Start » Writing Modules (*nix)"
-subtitle: "Module Writing Basics for *nix"
+title: "Quick start » Writing modules (*nix)"
+subtitle: "Module writing basics for *nix"
 canonical: "/puppet/latest/quick_writing_nix.html"
 ---
 
@@ -14,12 +14,12 @@ Welcome to the Module Writing section of the Quick Start Guide series. This walk
 > Before starting this walk-through, complete the previous exercises in the [introductory quick start guide](./quick_start.html). These steps assume that you have installed Puppet and Puppet agents, and have [installed the latest version of the puppetlabs-apache module](./quick_start_module_install_nix.html).
 You should still be logged in as root or administrator on your nodes.
 
-## Editing a Forge Module
+## Editing a Forge module
 
 Although many Forge modules are exact solutions that fit your site, many are *almost* but not quite what you need. Sometimes you will need to edit some of your Forge modules.
 
-### Module Basics
-> ### About Module Directories
+### Module basics
+> ### About module directories
 >
 >By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself. In a fresh installation, you need to create this `modules` subdirectory yourself by navigating to `/etc/puppetlabs/code/environments/production` and running `mkdir modules`.
 >
@@ -44,7 +44,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
 * For more on how modules work, see [Module Fundamentals](./modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
 
-### Writing a Puppet Module
+### Writing a Puppet module
 
  In this simplified exercise, you'll modify a template from the Puppet Apache module, specifically `vhost.conf.erb`, to include some simple variables that will be populated by facts (using Puppet's implementation of Facter) about your node.
 
@@ -99,11 +99,11 @@ As you can see, Puppet has used Facter to retrieve some key facts about your nod
 
 But now, let's see what happens when you write your own Puppet code.
 
-## Writing a Puppet Module
+## Writing a Puppet module
 
 Puppet modules save time, but at some point you may need to write your own modules.
 
-### Writing a Class in a Module
+### Writing a class in a module
 
  In this exercise, you will create a class called `puppet_quickstart_app` that will manage a PHP-based web app running on an Apache virtual host.
 
@@ -142,7 +142,7 @@ Puppet modules save time, but at some point you may need to write your own modul
 > * The `priority` attribute of `10` ensures that your app has a higher priority on port 80 than the default Apache vhost app.
 > * The file `/var/puppet_quickstart_app/index.php` contains whatever is specified by the `content` attribute. This is the content you will see when you launch your app. Puppet uses the `ensure` attribute to create that file the first time the class is applied.
 
-### Using Your Custom Module in the Main Manifest
+### Using your custom module in the main manifest
 
 1. From the command line on the Puppet master, navigate to the main manifest (`cd /etc/puppetlabs/code/environments/production/manifests`).
 2. With your text editor, open `site.pp` and add the following Puppet code to your default node. **Remove the apache class you added previously.** Your site.pp file should look like this after you make your changes (although you may have portions from earlier in the Quick Start Guide):
@@ -163,14 +163,14 @@ Puppet modules save time, but at some point you may need to write your own modul
 
  Congratulations! You have created a new class from scratch and used it to launch a Apache PHP-based web app. Needless to say, in the real world, your apps will do a lot more than display PHP info pages. But for the purposes of this exercise, let's take a closer look at how Puppet is managing your app.
 
-### Using Puppet to Manage Your App
+### Using Puppet to manage your app
 
 1. **On the Puppet agent**, open `/var/www/puppet_quickstart_app/index.php`, and change the content to something like, "THIS APP IS MANAGED BY PUPPET!"
 2. Refresh your browser, and notice that the PHP info page has been replaced with your new message.
 3. Run `puppet agent -t --onetime` on your Puppet agent.
 4. Refresh your browser, and notice that Puppet has reset your web app to display the PHP info page. (You can also see that the contents of `/var/www/puppet_quickstart_app/index.php` has been reset to what was specified in your manifest.)
 
-## Using a Site Module
+## Using a site module
 
 Many users create a "site" module. Instead of describing smaller units of a configuration, the classes in a site module describe a complete configuration for a given *type* of machine. For example, a site module might contain:
 
@@ -212,4 +212,4 @@ You have now performed the core workflows of an intermediate Puppet user. In the
 
 * * *
 
-- [Next: Essential Configuration Tasks](./quick_start_essential_config.html)
+- [Next: Essential configuration tasks](./quick_start_essential_config.html)

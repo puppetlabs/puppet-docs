@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Environments: Limitations of Environments"
+title: "Environments: Limitations of environments"
 canonical: "/puppet/latest/reference/environments_limitations.html"
 ---
 
@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/environments_limitations.html"
 
 Environments solve a lot of problems in a convenient way, but they still have some limitations. Some of these are just features Puppet doesn't have yet, and some of them are outside Puppet's control. We want to fix all of them, but some may take a lot longer than others.
 
-## Plugins Running on the Puppet Master are Weird
+## Plugins running on the Puppet master are weird
 
 Puppet modules can contain Puppet code, templates, file sources, and Ruby plugin code (in the `lib` directory). Environments work perfectly with most of those, but there's a lingering problem with plugins.
 
@@ -18,7 +18,7 @@ This has to do with the way Ruby loads code, and we're not sure if it can be fix
 
 If you're interested in the issue, it's being tracked as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
 
-## For Best Performance, You Might Have to Change Your Deploy Process
+## For best performance, you might have to change your deploy process
 
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
 
@@ -28,13 +28,13 @@ For best performance, you should set `environment_timeout = unlimited`, but this
 
 For more info, see [the timeout section of the Configuring Environments page.][configuring_timeout]
 
-## Hiera Configuration Can't be Specified Per Environment
+## Hiera configuration can't be specified per environment
 
 Puppet will only use a global [hiera.yaml](./config_file_hiera.html) file; you can't put per-environment configs in an environment directory.
 
 When using the built-in YAML or JSON backends, it _is_ possible to separate your Hiera data per environment; you will need to interpolate [the `$environment` variable][env_var] into [the `:datadir` setting.]({{hiera}}/configuring.html#yaml-and-json) (e.g. `:datadir: /etc/puppetlabs/code/environments/%{::environment}/hieradata`)
 
-## Exported Resources Can Conflict or Cross Over
+## Exported resources can conflict or cross over
 
 Nodes in one environment can accidentally collect resources that were exported from another environment, which causes problems --- either a compilation error due to identically titled resources, or creation and management of unintended resources.
 

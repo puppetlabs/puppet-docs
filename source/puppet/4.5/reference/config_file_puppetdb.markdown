@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: puppetdb.conf"
+title: "Config files: puppetdb.conf"
 canonical: "/puppet/latest/reference/config_file_puppetdb.html"
 ---
 
@@ -9,11 +9,11 @@ canonical: "/puppet/latest/reference/config_file_puppetdb.html"
 
 The `puppetdb.conf` file configures how Puppet should connect to one or more [PuppetDB]({{puppetdb}}/) servers. It is only used if you are using PuppetDB and have [connected your Puppet master to it]({{puppetdb}}/connect_puppet_master.html).
 
-## PuppetDB Documentation
+## PuppetDB documentation
 
 If you're using PuppetDB 3.0 or higher, [`puppetdb.conf` is documented in the PuppetDB docs.][puppetdb_connection]
 
-## PuppetDB 2.3 and Earlier
+## PuppetDB 2.3 and earlier
 
 The following description does **not** apply to PuppetDB 3.0 and later. If you're using a newer version, see [the PuppetDB docs][puppetdb_connection] instead, as the file format has changed.
 

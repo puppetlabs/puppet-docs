@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Installing Puppet Agent: OS X"
+title: "Installing Puppet agent: OS X"
 canonical: "/puppet/latest/reference/install_osx.html"
 ---
 

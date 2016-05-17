@@ -1,5 +1,5 @@
 ---
-title: "Subsystems: Agent/Master HTTPS Communications"
+title: "Subsystems: Agent/master HTTPS communications"
 layout: default
 canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
 ---
@@ -20,7 +20,7 @@ Puppet agent and Puppet master communicate via host-verified HTTPS.
 
 The HTTPS endpoints Puppet uses are detailed in the [HTTP API reference][http_api]. Note that access to each individual endpoint is controlled by [auth.conf][authconf] on the master.
 
-## Persistent Connections / Keepalive
+## Persistent connections/Keep-alive
 
 When acting as an HTTPS client, Puppet will try to re-use connections in order to reduce TLS overhead, by sending `Connection: Keep-Alive` in the HTTP request. This helps improve performance for runs with dozens of HTTPS requests.
 
@@ -41,7 +41,7 @@ This flow diagram illustrates the pattern of agent-side checks and HTTPS request
 
 [![An illustration of the process described below -- this diagram contains no new content, but is simply a visual interpretation of everything from "check for keys and certificates" on down.](./images/agent-master-https-sequence-small.gif)](./images/agent-master-https-sequence-large.gif)
 
-## Check for Keys and Certificates
+## Check for keys and certificates
 
 1. Does the agent have a private key at `$ssldir/private_keys/<NAME>.pem`?
     * If no, generate one.
@@ -51,7 +51,7 @@ This flow diagram illustrates the pattern of agent-side checks and HTTPS request
     * If yes, skip the following section and continue to "request node object."
     * (If it has a cert but it doesn't match the private key, bail with an error.)
 
-## Obtain a Certificate (if necessary)
+## Obtain a certificate (if necessary)
 
 Note that if the agent has submitted a certificate signing request, an admin user will need to run `puppet cert sign <NAME>` on the CA Puppet master before the agent can fetch a signed certificate. (Unless autosign is enabled.) Since incoming CSRs are unverified, you can use fingerprints to prove them, by comparing `puppet agent --fingerprint` on the agent to `puppet cert list` on the CA master.
 
@@ -65,7 +65,7 @@ Note that if the agent has submitted a certificate signing request, an admin use
 4. If the agent has reached this step, it has never requested a certificate, so request one now. (Unverified PUT request to `/puppet-ca/v1/certificate_request/<NAME>`.)
 5. Return to the first step of this section, in case the master has autosign enabled; if it doesn't, the agent will end up bailing at step 2.
 
-## Request Node Object and Switch Environments
+## Request node object and switch environments
 
 1. Do a GET request to `/puppet/v3/node/<NAME>`.
     * If successful, read the environment from the node object.
@@ -74,7 +74,7 @@ Note that if the agent has submitted a certificate signing request, an admin use
 
 > **Note:** This step was added in Puppet 3.0.0, to allow an ENC to centrally assign nodes to environments. The lenient failure mode is because many users' [auth.conf][authconf] files didn't allow access to node objects, since that rule was only added to the default auth.conf in Puppet 2.7.0 and many people don't update their config files for every upgrade.
 
-## Fetch Plugins
+## Fetch plugins
 
 If `pluginsync` is enabled on the agent:
 
@@ -82,7 +82,7 @@ If `pluginsync` is enabled on the agent:
 2. Check whether any of the discovered plugins need to be downloaded.
     * If so, do a GET request to `/puppet/v3/file_content/plugins/<FILE>` for each one.
 
-## Request Catalog While Submitting Facts
+## Request catalog while submitting facts
 
 1. Do a POST request to `/puppet/v3/catalog/<NAME>`, where the post data is all of the node's [facts][] encoded as JSON. Receive a compiled [catalog][] in return.
 
@@ -90,7 +90,7 @@ If `pluginsync` is enabled on the agent:
 >
 > Note also that submitting facts isn't necessarily logically bound to requesting a catalog, and could be done out of band on a different schedule; this is just the way Puppet happens to do it, because the original design assumptions were that relevant facts could change at any moment and you'd always want to guarantee the most recent data.
 
-## Make File Source Requests While Applying Catalog
+## Make file source requests while applying catalog
 
 [File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and Puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.
 
@@ -109,7 +109,7 @@ If you are using the [static compiler][static], all file metadata is embedded in
 
 Note that this is cheaper in terms of network traffic, but potentially more expensive during catalog compilation. Large amounts of files, especially recursive directories, will amplify the effect in both directions.
 
-## Submit Report
+## Submit report
 
 If `report` is enabled on the agent:
 

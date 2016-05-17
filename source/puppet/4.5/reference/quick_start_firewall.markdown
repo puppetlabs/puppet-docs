@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Quick Start » Firewall"
-subtitle: "Firewall Quick Start Guide"
+subtitle: "Firewall quick start guide"
 canonical: "/puppet/latest/quick_start_firewall.html"
 ---
 
@@ -30,7 +30,7 @@ Using this guide, you will learn how to do the following tasks:
 > You should still be logged in as root or administrator on your nodes.
 
 
-## Install the `puppetlabs-firewall` Module
+## Install the `puppetlabs-firewall` module
 
 [inpage_install]: #install-the-puppetlabs-firewall-module
 
@@ -50,13 +50,13 @@ You should see output similar to the following:
 
 > That's it! You've just installed the firewall module.
 
-## Write the `my_firewall` Module
+## Write the `my_firewall` module
 
 [inpage_write]: #write-the-myfirewall-module
 
 Some modules can be large, complex, and require a significant amount of trial and error. This module, however, will be a very simple module to write. It contains just three classes.
 
-> ### A Quick Note about Module Directories
+> ### A quick note about module directories
 >
 >By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
@@ -129,7 +129,7 @@ Modules are directory trees. For this task, you'll create the following files:
 > * `pre.pp` defines the “pre” group rules the firewall applies when a service requests access. It is run before any other rules.
 > * `post.pp` defines the rule for the firewall to drop any requests that haven’t met the rules defined by `pre.pp` or in `site.pp` (see [next section](#add-the-firewall-module-to-the-main-manifest)).
 
-## Add the Firewall Module to the Main Manifest
+## Add the firewall module to the main manifest
 
 [inpage_add]: #add-the-firewall-module-to-the-main-manifest
 
@@ -171,7 +171,7 @@ Modules are directory trees. For this task, you'll create the following files:
 		Chain OUTPUT (policy ACCEPT)
 		target     prot opt source               destination
 
-## Enforce the Desired State of the `my_firewall` Class
+## Enforce the desired state of the `my_firewall` class
 
 [inpage_enforce]: #enforce-the-desired-state-of-the-myfirewall-class
 
@@ -191,15 +191,15 @@ Lastly, let's take a look at how Puppet ensures the desired state of the `my_fir
 
 > That's it--Puppet has enforced the desired state of your agent!
 
-## Other Resources
+## Other resources
 
 You can learn more about the Puppet Firewall module by visiting [the Puppet Forge](http://forge.puppetlabs.com/puppetlabs/firewall).
 
 Check out the other quick start guides in our Puppet QSG series:
 
-- [NTP Quick Start Guide](./quick_start_ntp.html)
-- [DNS Quick Start Guide](./quick_start_dns.html)
-- [Sudo Users Quick Start Guide](./quick_start_sudo.html)
+- [NTP quick start guide](./quick_start_ntp.html)
+- [DNS quick start guide](./quick_start_dns.html)
+- [Sudo users quick start guide](./quick_start_sudo.html)
 
 Puppet offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
 

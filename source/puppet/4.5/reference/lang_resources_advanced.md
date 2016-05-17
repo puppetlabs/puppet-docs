@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Resources (Advanced)"
+title: "Language: Resources (advanced)"
 canonical: "/puppet/latest/reference/lang_resources_advanced.html"
 ---
 
@@ -41,8 +41,7 @@ This page describes the full syntax of resource expressions. Please make sure yo
 
 
 
-Full Syntax
------
+## Full syntax
 
 ~~~ ruby
 <TYPE> {
@@ -85,8 +84,9 @@ The full, generalized form of a resource declaration expression is:
 * Optionally, a trailing semicolon after the last resource body.
 * A closing curly brace (`}`).
 
-Multiple Resource Bodies
------
+
+## Multiple resource bodies
+
 
 If a resource expression includes more than one resource body, the expression will declare multiple resources of that resource type. (A resource body is a title and a set of attributes; each body must be separated from the next one with a semicolon.)
 
@@ -96,8 +96,7 @@ Each resource in an expression is almost completely independent of the others, a
 * They can all draw from the same pool of default values, if a resource body with the special title `default` is present. (See below for details.)
 
 
-Value of a Resource Expression
------
+##Value of a resource expression
 
 Resource declarations are [expressions][] in the Puppet language --- they always have a side effect (adding a resource to the catalog), but they also resolve to a value.
 
@@ -106,8 +105,7 @@ The value of a resource declaration is an [array][] of [resource references][ref
 **Note:** A resource declaration has extremely low precedence; in fact, it's even lower than the variable assignment operator (`=`). This means that in almost every place where you can use a resource declaration for its value, you will need to surround it with parentheses to properly associate it with the expression that uses the value.
 
 
-Per-Expression Default Attributes
------
+## Per-expression default attributes
 
 [inpage_defaults]: #per-expression-default-attributes
 
@@ -140,8 +138,8 @@ The position of the `default` body in an expression doesn't matter; resources ab
 You can only have one `default` resource body per resource expression.
 
 
-Setting Attributes from a Hash
------
+## Setting attributes from a hash
+
 
 [inpage_splat]: #setting-attributes-from-a-hash
 
@@ -174,8 +172,8 @@ You cannot set any attribute more than once for a given resource; if you try, Pu
 
 If you want to use some attributes from a hash and override others, you can either use a hash to set [per-expression defaults][inpage_defaults], or use [the `+` (merging) operator][hash_merge] to combine attributes from two hashes (with the right-hand hash overriding the left-hand one).
 
-Using an Abstract Resource Type
------
+## Using an abstract resource type
+
 
 [inpage_abstract]: #using-an-abstract-resource-type
 
@@ -197,8 +195,8 @@ Resource[$mytypename] { "/tmp/foo": ensure => file, }
 
 This lets you declare resources without knowing in advance what type of resources they'll be, which can enable interesting transformations of data into resources. For a demonstration, see the `create_resources` example below.
 
-Arrays of Titles
------
+## Arrays of titles
+
 
 If you specify an [array][] of [strings][string] as the title of a resource body, Puppet will create multiple resources with the same set of attributes. This is useful when you have many resources that are nearly identical.
 
@@ -219,12 +217,12 @@ file { $rc_dirs:
 
 Note that if you do this, you _must_ let the [namevar][] attributes of these resources default to their titles. You can't specify an explicit value for the namevar, because it will apply to all of those resources.
 
-Adding or Modifying Attributes
------
+## Adding or modifying attributes
+
 
 Although you cannot declare the same resource twice, you can add attributes to an already-declared resource. In certain circumstances, you can also override attributes.
 
-### Amending Attributes With a Resource Reference
+### Amending attributes with a resource reference
 
 ~~~ ruby
 file {'/etc/passwd':
@@ -249,7 +247,7 @@ Normally, you can only use this syntax to add previously unmanaged attributes to
 
 You can also use the special `*` attribute to amend attributes from a hash. See [Setting Attributes From a Hash (above)][inpage_splat] for details.
 
-### Amending Attributes With a Collector
+### Amending attributes with a collector
 
 ~~~ ruby
 class base::linux {
@@ -288,10 +286,9 @@ You can also use the special `*` attribute to amend attributes from a hash. See 
 
 
 
-Advanced Examples
------
+## Advanced examples
 
-### Local Resource Defaults
+### Local resource defaults
 
 Since classic [resource default statements][resdefaults] are subject to dynamic scope, they can escape the place where they're declared and affect unpredictable areas of code. Sometimes this is powerful and useful, and other times it's really bad, like when you want to set defaults for your module's file resources, but you're also declaring classes and defined resources from other modules and want to avoid any contagious effect.
 
@@ -316,7 +313,7 @@ class mymodule inherits mymodule::params {
 }
 ~~~
 
-### Implementing the `create_resources` Function
+### Implementing the `create_resources` function
 
 Since the Puppet 2.7 era, the `create_resources` function has been a useful tool of last resort when creating modules that were too complex to express in the Puppet language. It lets you use anything you want to create a data structure describing any number of resources, then add all of those resources to the catalog.
 

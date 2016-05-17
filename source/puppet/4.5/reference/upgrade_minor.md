@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Minor Upgrades: Within 4.x (Puppet Collection 1 / PC1)"
+title: "Minor upgrades: Within 4.x (Puppet Collection 1 / PC1)"
 canonical: "/puppet/latest/reference/upgrade_minor.html"
 ---
 
@@ -43,7 +43,7 @@ On masters that use `yum`, run:
 
 > **Note**: If you pinned or held your Puppet packages to a specific version, remove the pins or holds before continuing. On systems that use `apt`, remove any special `.pref` files from `/etc/apt/preferences.d/` that pin Puppet packages, and use the `apt-mark unhold` command on each held package. For `yum` packages locked with the versionlock plugin, edit `/etc/yum/pluginconf.d/versionlock.list` and remove the Puppet lock.
 
-### Upgrading Puppet on Agents
+### Upgrading Puppet on agents
 
 You should regularly upgrade Puppet on agents, and in most cases you shouldn't need to do anything to prepare for such upgrades. Read the [release notes](./release_notes.html) before upgrading to learn about changes that affect specific systems or workflows.
 

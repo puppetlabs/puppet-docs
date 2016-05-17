@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Quick Start » Creating Users and Groups"
-subtitle: "Users and Groups Quick Start Guide"
+title: "Quick Start » Creating users and groups"
+subtitle: "Users and groups quick start guide"
 canonical: "/puppet/latest/quick_start_user_group.html"
 ---
 
@@ -11,7 +11,7 @@ canonical: "/puppet/latest/quick_start_user_group.html"
 
 > For this  walk-through, log in as root or administrator on your nodes.
 
-## Create a User and Group
+## Create a user and group
 
 Puppet uses some defaults for unspecified user and group attributes, so all you'll need to do to create a new user and group is set the 'ensure' attribute to 'present'. This 'present' value tells Puppet to check if the resource exists on the system, and to create the specified resource if it does not.
 
@@ -21,7 +21,7 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 
 > That's it! You've successfully created the Puppet user `jargyle` and the Puppet group `web`.
 
-## Add the Group to the Main Manifest
+## Add the group to the main manifest
 
 1. From the command line on your Puppet master, run `puppet resource -e group web`. This opens a file in your text editor with the following content:
 
@@ -44,7 +44,7 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 
 > That's it! You've successfully added your group, `web`, to the main manifest.
 
-## Add the User to the Main Manifest
+## Add the user to the main manifest
 
 1. From the command line on your Puppet master, run `puppet resource -e user jargyle`. This opens a file in your text editor with the following content:
 
@@ -95,4 +95,4 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 > With users and groups, you can assign different permissions for managing Puppet.
 
 ---------
-Next: [Hello, World!](./quick_start_helloworld.html)
+Next: [Hello, world!](./quick_start_helloworld.html)

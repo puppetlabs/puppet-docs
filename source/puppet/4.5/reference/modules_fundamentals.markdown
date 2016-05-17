@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Module Fundamentals"
+title: "Module fundamentals"
 canonical: "/puppet/latest/reference/modules_fundamentals.html"
 ---
 
@@ -34,7 +34,7 @@ Every Puppet user should expect to write at least some of their own modules.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
 
-## Using Modules
+## Using modules
 
 Modules are how Puppet finds the classes and types it can use --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Any of these classes or defines can be declared by name within a manifest or from an [external node classifier (ENC)][enc].
 
@@ -63,7 +63,7 @@ To make a module available to Puppet, place it in one of the directories in Pupp
 You can easily install modules written by other users with the `puppet module` subcommand. [See "Installing Modules"][installing] for details.
 
 
-## Module Layout
+## Module layout
 
 On disk, a module is simply a directory tree with a specific, predictable structure:
 
@@ -124,7 +124,7 @@ Thus:
 
 The double colon that divides the sections of a class's name is called the *namespace separator.*
 
-### Allowed Module Names
+### Allowed module names
 
 Module names should only contain lowercase letters, numbers, and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, but with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested.
 
@@ -161,7 +161,7 @@ Template function | (' | Name of module/ | Name of template | ')
 
 So `template('my_module/component.erb')` would render the template `my_module/templates/component.erb`, and `epp('my_module/component.epp')` would render `my_module/templates/component.epp`.
 
-## Writing Modules
+## Writing modules
 
 To write a module, we strongly suggest running `puppet module generate <USERNAME>-<MODULE NAME>`.
 

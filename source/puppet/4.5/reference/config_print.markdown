@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Configuration: Checking Values of Settings"
+title: "Configuration: Checking values of settings"
 canonical: "/puppet/latest/reference/config_print.html"
 ---
 

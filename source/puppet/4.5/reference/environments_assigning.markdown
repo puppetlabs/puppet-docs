@@ -21,7 +21,7 @@ There are two ways to assign nodes to a different environment:
 
 The value from the ENC is authoritative, if it exists. If the ENC doesn't specify an environment, the node's config value is used.
 
-## Assigning Environments Via an ENC
+## Assigning environments via an ENC
 
 The interface to set the environment for a node will be different for each ENC. Some ENCs cannot manage environments.
 
@@ -29,13 +29,13 @@ When writing an ENC, simply ensure that the `environment:` key is set in the YAM
 
 If the environment key isn't set in the ENC's YAML output, the Puppet master will just use the environment requested by the agent.
 
-## Assigning Environments Via the Agent's Config File
+## Assigning environments via the agent's config file
 
 In [puppet.conf][] on each agent node, you can set [the `environment` setting][env_setting] in either the `agent` or `main` config section. When that node requests a catalog from the Puppet master, it will request that environment.
 
 If you are using an ENC and it specifies an environment for that node, it will override whatever is in the config file.
 
-## Non-Existant Environments
+## Non-existant environments
 
 Nodes **can't** be assigned to unconfigured environments. If a node is assigned to an environment which doesn't exist --- that is, there is no directory of that name in any of the `environmentpath` directories --- the Puppet master will fail compilation of its catalog.
 

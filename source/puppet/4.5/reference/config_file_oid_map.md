@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: custom_trusted_oid_mapping.yaml"
+title: "Config files: custom_trusted_oid_mapping.yaml"
 canonical: "/puppet/latest/reference/config_file_oid_map.html"
 ---
 
@@ -15,7 +15,7 @@ The `custom_trusted_oid_mapping.yaml` file lets you set your own short names for
 
 It is only valid on a Puppet master server; in Puppet apply, the compiler doesn't add certificate extensions to `$trusted`.
 
-## More About Certificate Extensions
+## More about certificate extensions
 
 When a node requests a certificate, it can ask the CA to include some additional, permanent metadata in that cert. (Puppet agent uses [the `csr_attributes.yaml` file][csr_attributes] to decide what extensions to request.)
 
@@ -29,7 +29,7 @@ For more info, see:
 * [The `csr_attributes.yaml` File][csr_attributes]
 * [Trusted Facts][trusted]
 
-### Limitations of OID Mapping
+### Limitations of OID mapping
 
 Mapping OIDs in this file _only_ affects the keys in the `$trusted[extensions]` hash. It does not affect:
 

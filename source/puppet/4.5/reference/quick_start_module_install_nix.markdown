@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Quick Start » Module Installation (*nix)"
-subtitle: "Module Installation Quick Start Guide"
+title: "Quick start » Module installation (*nix)"
+subtitle: "Module installation quick start guide"
 canonical: "/puppet/latest/quick_start_module_install_nix.html"
 ---
 
@@ -17,7 +17,7 @@ The process for installing a module is the same on both Windows and *nix operati
 > Before starting this walk-through, complete the [Hello World](./quick_start_helloworld.html) exercise in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
 
-## Installing a Forge Module
+## Installing a Forge module
 
 1. **On the Puppet master**, run `puppet module search apache`. This command searches for modules from the Puppet Forge with `apache` in their names or descriptions.
 
@@ -40,7 +40,7 @@ The process for installing a module is the same on both Windows and *nix operati
 
 >  That's it! You have installed a Puppet module. All of the classes in the module are now available to be assigned to nodes.
 
-> ### A Quick Note about Module Directories
+> ### A quick note about module directories
 >
 >By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
@@ -50,7 +50,7 @@ The process for installing a module is the same on both Windows and *nix operati
 
 --------
 
-Next: [Adding Classes to Puppet Agents (*nix)](./quick_start_adding_classes_nix.html)
+Next: [Adding classes to Puppet agents (*nix)](./quick_start_adding_classes_nix.html)
 
 
 

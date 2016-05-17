@@ -33,8 +33,8 @@ A **resource declaration** is an expression that describes the desired state for
 This page describes the basics of using resource declarations. For more advanced syntax, see [Resources (Advanced).][resource_advanced]
 
 
-Resource Types
------
+## Resource types
+
 
 Every resource is associated with a **resource type,** which determines the kind of configuration it manages.
 
@@ -45,8 +45,8 @@ You can also add new resource types to Puppet:
 * [Defined types][defined_type] are lightweight resource types written in the Puppet language.
 * [Custom resource types][custom_types] are written in Ruby, and have access to the same capabilities as Puppet's built-in types.
 
-Simplified Syntax
------
+## Simplified syntax
+
 
 [inpage_simplified]: #simplified-syntax
 
@@ -103,14 +103,14 @@ Each resource type has its own set of available attributes; see [the resource ty
 
 Every attribute you declare must have a value; the [data type][datatype] of the value depends on what the attribute accepts.
 
-> #### Synonym Note: Parameters and Properties
+> #### Synonym Note: Parameters and properties
 >
 > When discussing resources and types, **parameter** is a synonym for attribute. You might also hear **property,** which has a slightly different meaning when discussing the Ruby implementation of a resource type or provider. (Properties always represent concrete state on the target system. A provider can check the current state of a property, and switch it to new states.)
 >
 > When talking about resource declarations in the Puppet language, you should use either "attribute" or "parameter." We suggest "attribute."
 
-Behavior
------
+## Behavior
+
 
 A resource declaration adds a resource to the catalog, and tells Puppet to manage that resource's state. When Puppet applies the compiled catalog, it will:
 
@@ -118,7 +118,7 @@ A resource declaration adds a resource to the catalog, and tells Puppet to manag
 * Compare the actual state to the desired state
 * If necessary, change the system to enforce the desired state
 
-### Unmanaged Resources
+### Unmanaged resources
 
 If the catalog doesn't contain a resource, Puppet will _do nothing_ with whatever that resource might have described.
 
@@ -132,7 +132,7 @@ Puppet uses the [title](#title) and [name/namevar](#namenamevar) to identify dup
 
 If multiple classes require the same resource, you can use a [class][] or a [virtual resource][virtual] to add it to the catalog in multiple places without duplicating it.
 
-### Relationships and Ordering
+### Relationships and ordering
 
 [ordering]: ./configuration.html#ordering
 
@@ -140,11 +140,11 @@ By default, Puppet applies unrelated resources in the order in which they're wri
 
 However, if a resource must be applied before or after some other resource, you should declare a relationship between them, to show that their order isn't coincidental. You can also make changes in one resource cause a refresh of some other resource. See [the Relationships and Ordering page][relationships] for more information.
 
-### Changes, Events, and Reporting
+### Changes, events, and reporting
 
 If Puppet makes any changes to a resource, it will log those changes as events. These events will appear in Puppet agent's log and in the run [report][], which is sent to the Puppet master and forwarded to any number of report processors.
 
-### Scope Independence
+### Scope independence
 
 Resources are not subject to [scope][] --- a resource in any scope can be [referenced][reference] from any other scope, and local scopes do not introduce local namespaces for resource titles.
 
@@ -152,7 +152,7 @@ Resources are not subject to [scope][] --- a resource in any scope can be [refer
 
 Resources can be contained by [classes][class] and [defined types][defined_type] --- when something forms a [relationship][relationships] with the container, the contained resources are also affected. See [Containment][] for more details.
 
-### Delaying Resource Evaluation
+### Delaying resource evaluation
 
 The Puppet language includes some constructs that let you describe a resource but delay adding it to the catalog. For example:
 
@@ -160,10 +160,10 @@ The Puppet language includes some constructs that let you describe a resource bu
 * [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
 
 
-Special Resource Attributes
------
+## Special resource attributes
 
-### Name/Namevar
+
+### Name/namevar
 
 [inpage_namevar]: #namenamevar
 
@@ -175,7 +175,7 @@ The separation between title and namevar lets you use a consistently-titled reso
 
 The [resource type reference][types] lists the namevars for all of the core resource types. For custom resource types, check the documentation for the module that provides that resource type.
 
-#### Simple Namevars
+#### Simple namevars
 
 Most resource types only have one namevar.
 
@@ -183,7 +183,7 @@ With a single namevar, the value **must be unique per resource type,** with only
 
 If a value for the namevar isn't specified, it will default to the resource's title.
 
-#### Multiple Namevars
+#### Multiple namevars
 
 Sometimes, a single value isn't sufficient to identify a resource on the target system. For example, consider a system that has multiple package providers available: the `yum` provider has a package called `mysql`, and the `gem` provider _also_ has a package called `mysql` that installs completely different (and non-conflicting) software. In this case, the `name` of both packages would be `mysql`.
 

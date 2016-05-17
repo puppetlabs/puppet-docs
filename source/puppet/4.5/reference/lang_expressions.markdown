@@ -1,5 +1,5 @@
 ---
-title: "Language: Expressions and Operators"
+title: "Language: Expressions and operators"
 layout: default
 canonical: "/puppet/latest/reference/lang_expressions.html"
 ---
@@ -31,14 +31,14 @@ canonical: "/puppet/latest/reference/lang_expressions.html"
 
 You can use expressions almost anywhere a value (of the standard [data types][datatypes]) is required. Expressions can be compounded with other expressions, and the entire combined expression will resolve to a single value.
 
-Basics
-------
+## Basics
+
 
 In this version of the Puppet language, nearly everything is an expression, including [literal values][datatypes], references to [variables][], [resource declarations][resources], [function calls][function], and more.
 
 In other words: almost all statements in the language will resolve to a value, and can be used anywhere that value would be expected.
 
-### Expressions Constructed with Operators
+### Expressions constructed with operators
 
 Most of this page is about **expressions constructed with operators.** Operators are built-in constructs that take input values of some kind and result in some other value.
 
@@ -65,8 +65,8 @@ The following statements are NOT normal expressions: they don't resolve to usabl
 * [Lambdas][]
 
 
-Location
------
+## Location
+
 
 Expressions can be used almost everywhere, including:
 
@@ -85,15 +85,15 @@ Expressions cannot be used:
 * As the name of a variable (the name of the variable must be a literal name)
 * Where a literal resource type or name of a resource type is expected (e.g. in the type position of a resource declaration)
 
-Expression Syntax
------
+## Expression syntax
+
 
 Each kind of expression has its own syntax. Most have their own pages in this manual, where we describe their syntax and behavior in greater detail. See the sections below for the syntax of expressions constructed with operators.
 
 Any expression can optionally be surrounded by parentheses. This can change the order of evaluation in compound expressions (e.g. `10+10/5` is 12, and `(10+10)/5` is 4), or just make your code clearer.
 
-Operator Syntax
------
+## Operator syntax
+
 
 There are two kinds of operators:
 
@@ -116,8 +116,8 @@ When creating compound expressions by using other expressions as operands, you s
 ~~~
 
 
-Order of Operations
------
+## Order of Operations
+
 
 Compound expressions are evaluated in a standard order of operations. However, parentheses will override the order of operations:
 
@@ -145,8 +145,8 @@ The precedence of operators, from highest to lowest:
 13. `=` (assignment)
 
 
-Comparison Operators
------
+## Comparison operators
+
 
 Comparison operators have the following traits:
 
@@ -157,7 +157,7 @@ Comparisons of [numbers][numbers] automatically convert between floating point a
 
 You can compare any two values with equals (`==`) or not equals (`!=`), but only strings, numbers, and data types can be compared with the less than or greater than operators that require values to have a defined order.
 
-### String Encoding and Comparisons
+### String encoding and comparisons
 
 Comparisons of [string][strings] values are case insensitive for characters in the US ASCII range. Characters outside this range are case sensitive.
 
@@ -304,8 +304,8 @@ notice ( !$my_value ) # Will resolve to false
 Resolves to `true` if the operand is false, and `false` if the operand is true.
 
 
-Arithmetic Operators
------
+## Arithmetic operators
+
 
 Arithmetic Operators have the following traits:
 
@@ -426,8 +426,8 @@ If the left operand isn't an array, Puppet will interpret `-` as arithmetic subt
 
 This operator does not change its operands; it only creates a new value.
 
-Hash Operators
------
+## Hash Operators
+
 
 Hash operators take:
 
@@ -476,8 +476,8 @@ The right operand can be one of the following:
 This operator does not change its operands; it only creates a new value.
 
 
-Assignment Operators
------
+## Assignment operators
+
 
 ### `=` (assignment)
 
@@ -487,7 +487,6 @@ Note that variables can only be set once, after which any attempt to set the var
 
 
 
-Formal Descriptions of Puppet Expressions
------
+## Formal descriptions of Puppet expressions
 
 For formal descriptions of the Puppet language, including expressions constructed with operators, please see [the Puppet language specification.][spec]

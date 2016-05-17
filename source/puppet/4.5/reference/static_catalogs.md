@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Static Catalogs"
+title: "Static catalogs"
 canonical: "/puppet/latest/reference/static_catalogs.html"
 ---
 

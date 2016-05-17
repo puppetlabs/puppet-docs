@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet's Services: The WEBrick Puppet Master"
+title: "Puppet's services: The WEBrick Puppet master"
 canonical: "/puppet/latest/reference/services_master_webrick.html"
 ---
 
@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/services_master_webrick.html"
 [rack_master]: ./services_master_rack.html
 [deprecate]: http://links.puppetlabs.com/deprecate-rack-webrick-servers
 
-> ## Important: Deprecation Warning
+> ## Important: Deprecation warning
 >
 > [The WEBrick Puppet master server is deprecated][deprecate] and will be removed in a future Puppet release.
 
@@ -20,23 +20,23 @@ The WEBrick Puppet master server is not capable of handling production-level num
 
 For details about invoking the Puppet master command, see [the puppet master man page](./man/master.html).
 
-## Supported Platforms
+## Supported platforms
 
 The WEBrick Puppet master will run on any \*nix platform, including all Linux variants and OS X.
 
 You cannot run a Puppet master on Windows.
 
-## Controlling the Service
+## Controlling the service
 
 The WEBrick Puppet master runs as a single Ruby process. You can manage it from the command line.
 
-### Run `puppet master` on the Command Line
+### Run `puppet master` on the command line
 
 By default, running the `puppet master` command will start a Puppet master server daemonized in the background. To stop the service, you'll need to check the process table with something like `ps aux | grep puppet`, then `kill` the process.
 
 If you're testing something quickly and want to view logs in real time, it's more useful to run `sudo puppet master --verbose --no-daemonize`. This will keep the Puppet master process in the foreground and print verbose logs to your terminal.
 
-## The WEBrick Puppet Master's Run Environment
+## The WEBrick Puppet master's run environment
 
 The WEBrick Puppet master runs as a single Ruby process. This single process does everything related to handling Puppet agent requests: It terminates SSL, routes HTTP requests, and executes the Ruby methods that recognize agent requests and build responses to them.
 
@@ -73,7 +73,7 @@ When running in the foreground with the `--verbose` or `--debug` options, Puppet
 
 When started with the `--logdest <FILE>` option, Puppet master logs to the file specified by `<FILE>`.
 
-## Configuring a WEBrick Puppet Master
+## Configuring a WEBrick Puppet master
 
 As [described elsewhere,][about_settings] the Puppet master application reads most of its settings from [puppet.conf][] and can accept additional settings on the command line.
 

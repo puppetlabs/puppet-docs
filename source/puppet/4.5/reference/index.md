@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.4 Reference Manual"
+title: "Puppet 4.4 reference manual"
 canonical: "/puppet/latest/reference/index.html"
 toc: false
 ---
@@ -22,13 +22,13 @@ toc: false
 [Updating 3.x Manifests for Puppet 4.x]: ./lang_updating_manifests.html
 [Release Notes]: ./release_notes.html
 
-Welcome to the Puppet 4.4 Reference Manual. Use the navigation to the left to get around.
+Welcome to the Puppet 4. Reference Manual. Use the navigation to the left to get around.
 
-## What is This?
+## What is this?
 
 For an introduction to how Puppet manages systems, see the [Overview of Puppet's Architecture][].
 
-## Getting Started
+## Getting started
 
 Puppet 4.4 consists of:
 
@@ -50,11 +50,11 @@ Puppet 4 changes many things about how Puppet works, and you must be careful whe
 
 4. After the upgrade, confirm that everything's working and clean up your configuration with the [post-upgrade guide][].
 
-### Updating from Earlier Versions of Puppet 4
+### Updating from earlier versions of Puppet 4
 
 If you're already running Puppet 4, the [minor upgrade guide][] can help you update Puppet across your infrastructure.
 
-## Getting Around
+## Getting around
 
 This manual is split into several sections, which can be reached from the left sidebar. A few notable pages:
 

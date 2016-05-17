@@ -33,7 +33,7 @@ Puppet uses its own configuration language, which was designed to be accessible 
 
 > To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](/guides/language_history.html).
 
-## Resources, Classes, and Nodes
+## Resources, classes, and nodes
 
 The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility and convenience to the way resources are declared.
 
@@ -60,7 +60,7 @@ Any [classes][] [declared][] in the main manifest can be [autoloaded][autoload] 
 
 The simplest Puppet deployment is a lone main manifest file with a few resources. Complexity can grow progressively, by grouping resources into modules and classifying your nodes more granularly.
 
-### Line Endings in Windows Text Files
+### Line endings in Windows text files
 
 Windows uses CRLF line endings instead of \*nix's LF line endings.
 
@@ -70,7 +70,7 @@ Windows uses CRLF line endings instead of \*nix's LF line endings.
 
 > **Note:** When writing your own resource types, you can get this behavior by using the `flat` filetype.
 
-## Compilation and Catalogs
+## Compilation and catalogs
 
 Puppet manifests can use conditional logic to describe many nodes' configurations at once. Before configuring a node, Puppet compiles manifests into a **catalog,** which is only valid for a single node and which contains no ambiguous logic.
 

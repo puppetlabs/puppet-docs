@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Embedded Ruby (ERB) Template Syntax"
+title: "Language: Embedded Ruby (ERB) template syntax"
 canonical: "/puppet/latest/reference/lang_template_erb.html"
 ---
 
@@ -22,7 +22,7 @@ This page covers how to write ERB templates. See [Templates](./lang_template.htm
 
 **Note:** If you've used ERB in other projects, it might have had different features enabled. This page only describes how ERB works in Puppet.
 
-## ERB Structure and Syntax
+## ERB structure and syntax
 
 ~~~ erb
 <%# Non-printing tag ↓ -%>
@@ -61,7 +61,7 @@ ERB has two tags for Ruby code, a tag for comments, and a way to escape tag deli
 
 Text outside a tag becomes literal text, but it is subject to any tagged Ruby code surrounding it. For example, text surrounded by a tagged `if` statement only appears in the output if the condition is true.
 
-### Expression-Printing Tags
+### Expression-printing tags
 
 `<%= @fqdn %>`
 
@@ -74,13 +74,13 @@ ServerName <%= @fqdn %>
 ServerAlias <%= @hostname %>
 ~~~
 
-#### Space Trimming
+#### Space trimming
 
 You can trim line breaks after expression-printing tags by adding a hyphen to the closing tag delimiter.
 
 * `-%>` --- If the tag ends a line, trim the following line break.
 
-### Non-Printing Tags
+### Non-printing tags
 
 `<% if @broadcastclient == true %> ...text... <% end %>`
 
@@ -108,30 +108,30 @@ Non-printing code doesn't have to resolve to a value or be a complete statement,
 
 You must keep `do |server|` inside the first tag, because you can't insert an arbitrary statement between a method call and its required block.
 
-#### Space Trimming
+#### Space trimming
 
 You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) to the tag delimiters.
 
 * `<%-` --- If the tag is indented, trim the indentation.
 * `-%>` --- If the tag ends a line, trim the following line break.
 
-### Comment Tags
+### Comment tags
 
 `<%# This is a comment. %>`
 
 A comment tag's contents do not appear in the template's output. It starts with an opening tag delimiter and a hash sign (`<%#`) and ends with a closing tag delimiter (`%>`).
 
-#### Space Trimming
+#### Space trimming
 
 You can trim line breaks after comment tags by adding a hyphen to the closing tag delimiter.
 
 * `-%>` --- If the tag ends a line, trim the following line break.
 
-### Literal Tag Delimiters
+### Literal tag delimiters
 
 If you need the template's final output to contain a literal `<%` or `%>`, you can escape them as `<%%` or `%%>`.
 
-## Accessing Puppet Variables
+## Accessing Puppet variables
 
 Templates can access Puppet's [variables][]. This is the main source of data for templates.
 
@@ -154,17 +154,17 @@ Puppet also passes templates an object called `scope`, which can access all vari
 
 There is also another way to use the `scope` object: you can call its `lookupvar` method and pass the variable's name as its argument, like `scope.lookupvar('ntp::tinker')`. This is exactly equivalent to the above, but slightly less convenient. It predates the hash-style indexing, which was added in Puppet 3.0.
 
-### Puppet Data Types in Ruby
+### Puppet data types in Ruby
 
 Puppet's data types are converted to Ruby classes as follows:
 
 {% partial ./_puppet_types_to_ruby_types.md %}
 
-### Testing for Undefined Variables
+### Testing for undefined variables
 
 If a Puppet variable was never defined, its value is `undef`, which means its value in a template will be `nil`.
 
-## Some Basic Ruby for ERB Templates
+## Some basic Ruby for ERB templates
 
 To manipulate and print data in ERB templates, you'll need to know a small amount of Ruby. We can't teach that on this page, but we can give a brief look at some of the things you're likely to use.
 
@@ -207,7 +207,7 @@ Some stuff with two
 
 This example also trims line breaks for the non-printing tags, so they won't appear as blank lines in the output.
 
-### Manipulating Data
+### Manipulating data
 
 Usually, your templates will use data from Puppet variables. These values will almost always be [strings][], [numbers][], [arrays][], and [hashes][].
 
@@ -220,7 +220,7 @@ These will become the equivalent Ruby objects when you access them from an ERB t
 
 Also, note that Puppet's [special `undef` value][undef] becomes Ruby's special `nil` value in ERB templates.
 
-## Calling Puppet Functions from Templates
+## Calling Puppet functions from templates
 
 You can use [Puppet functions][functions] inside templates, but their use is slightly different from their use in manifests:
 
@@ -237,7 +237,7 @@ To log a warning using Puppet's own logging system, so that it will appear in re
     <%= scope.function_warning(["Template was missing some data; this config file may be malformed."]) %>
 
 
-## Example Template
+## Example template
 
 This example template is taken from [the puppetlabs/ntp][ntp] module.
 

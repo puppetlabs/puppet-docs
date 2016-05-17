@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Installing Puppet Agent: Linux"
+title: "Installing Puppet agent: Linux"
 canonical: "/puppet/latest/reference/install_linux.html"
 ---
 

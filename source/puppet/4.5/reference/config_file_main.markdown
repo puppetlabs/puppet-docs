@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: The Main Config File (puppet.conf)"
+title: "Config files: The main config file (puppet.conf)"
 canonical: "/puppet/latest/reference/config_file_main.html"
 ---
 
@@ -36,7 +36,7 @@ The location of the `confdir` depends on your OS. [See the confdir documentation
 
 ## Examples
 
-### Example Agent Config
+### Example agent config
 
 ~~~
 [main]
@@ -46,7 +46,7 @@ environment = production
 runinterval = 1h
 ~~~
 
-### Example Master Config
+### Example master config
 
 ~~~
 [main]
@@ -71,7 +71,7 @@ The puppet.conf file consists of one or more **config sections,** each of which 
 
 The file may also include **comment lines** at any point.
 
-### Config Sections
+### Config sections
 
     [main]
         certname = puppetmaster01.example.com
@@ -93,11 +93,11 @@ Puppet uses four **config sections**:
 
 Puppet prefers to use settings from one of the three application-specific sections (`master`, `agent`, or `user`). If it doesn't find a setting in the application section, it will use the value from `main`. (If `main` doesn't set one, it will fall back to the default value.)
 
-### Puppet Server Ignores Some Config Settings
+### Puppet Server ignores some config settings
 
 If you're using Puppet Server, you should note that it honors almost all settings in `puppet.conf` and should pick them up automatically. However, [some Puppet Server settings differ from a Ruby Puppet master’s `puppet.conf` settings][puppetserver_diff].
 
-### Comment Lines
+### Comment lines
 
     # This is a comment.
 
@@ -105,7 +105,7 @@ Comment lines start with a hash sign (`#`). They may be indented with any amount
 
 Partial-line comments (e.g. `report = true # this enables reporting`) are not allowed, and will be treated as part of the value of the setting. To be treated as a comment, the hash sign must be the first non-space character on the line.
 
-### Setting Lines
+### Setting lines
 
     certname = puppetmaster01.example.com
 
@@ -116,7 +116,7 @@ A setting line consists of:
 * An **equals sign** (`=`), which may optionally be surrounded by any number of spaces.
 * A **value** for the setting.
 
-### Special Types of Values for Settings
+### Special types of values for settings
 
 Generally, the value of a setting will be a single word. However, there are a few special types of values:
 
@@ -135,7 +135,7 @@ Some settings (like [`environmentpath`][environmentpath]) take a list of directo
 
 Path lists are ordered; Puppet will always check the first directory first, then move on to the others if it doesn't find what it needs.
 
-#### Files or Directories
+#### Files or directories
 
 Settings that take a single file or directory (like [`ssldir`][ssldir]) can accept an optional hash of permissions. When starting up, Puppet will enforce those permissions on the file or directory.
 
@@ -148,7 +148,7 @@ The allowed keys in the hash are `owner`, `group`, and `mode`. There are only tw
 * `root` --- the root or Administrator user or group should own the file.
 * `service` --- the user or group that the Puppet service is running as should own the file. (The service's user and group are specified by the `user` and `group` settings. On a Puppet master running open source Puppet, these default to `puppet`;  on Puppet Enterprise they default to `pe-puppet`.)
 
-### Interpolating Variables in Settings
+### Interpolating variables in settings
 
 The values of settings are available as variables within puppet.conf, and you can insert them into the values of other settings. To reference a setting as a variable, prefix its name with a dollar sign (`$`):
 

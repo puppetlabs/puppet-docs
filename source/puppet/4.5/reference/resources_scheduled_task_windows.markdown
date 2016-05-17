@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Resource Tips and Examples: Scheduled Task on Windows"
+title: "Resource tips and examples: Scheduled task on Windows"
 toc: false
 ---
 
@@ -31,6 +31,6 @@ For more information, see [the reference documentation for the `scheduled_task` 
 
 ## Errata
 
-### Known Issues Prior to Puppet 3.8.0
+### Known issues prior to Puppet 3.8.0
 
 Puppet did not support "every X minutes" type triggers.

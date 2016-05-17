@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Environments and Puppet's HTTPS Interface"
+title: "Environments and Puppet's HTTPS interface"
 canonical: "/puppet/latest/reference/environments_https.html"
 ---
 
@@ -9,8 +9,8 @@ canonical: "/puppet/latest/reference/environments_https.html"
 
 Puppet's environments interact in several ways with Puppet's HTTPS interface.
 
-Environments are Embedded in Puppet's HTTPS Requests
------
+## Environments are embedded in Puppet's HTTPS requests
+
 
 Puppet's agent and master applications communicate via an HTTPS API. Most of the HTTPS URLs used today by Puppet agent include an environment. See the [HTTP API reference][http_api] for details about how to provide environments in requests.
 
@@ -33,12 +33,11 @@ Endpoints where environment makes no difference:
 - [Status](./http_api/http_status.html)
 - [Certificate](./http_api/http_certificate.html), [certificate signing request](./http_api/http_certificate_request.html), [certificate status](./http_api/http_certificate_status.html), and [certificate revocation list](./http_api/http_certificate_revocation_list.html) --- The CA doesn't differ by environment.)
 
-### Controlling HTTPS Access Based on Environment
+### Controlling HTTPS access based on environment
 
 The Puppet master's [auth.conf file][] can use the environment of a request to help decide whether to authorize a request. This generally isn't necessary or useful, but it's there if the need arises. See the [auth.conf documentation][auth.conf file] for details.
 
-You Can Query Environment Info via the Master's HTTP API
------
+## You can query environment info via the master's HTTP API
 
 If you are extending Puppet and need a way to query information about the available environments, you can do this via the [environments endpoint.][env_endpoint]
 

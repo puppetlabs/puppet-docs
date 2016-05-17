@@ -29,8 +29,8 @@ In the Puppet language, variables are actually constants, since they [can't be r
 >
 > Puppet has many built-in variables that you can use in your manifests. For a list of these, see [the page on facts and built-in variables.](./lang_facts_and_builtin_vars.html)
 
-Syntax
------
+## Syntax
+
 
 ### Assignment
 
@@ -44,7 +44,7 @@ Variables can be assigned values of any [data type][datatype]. Any statement tha
 
 Variables can only be assigned using their [short name](#naming). That is, a given [scope][] cannot assign values to variables in a foreign scope.
 
-### Assigning Multiple Variables
+### Assigning multiple variables
 
 You can assign multiple vairiables at once from an array or hash. 
 
@@ -104,8 +104,8 @@ Puppet can resolve variables in [double-quoted strings][double_quote]; this is c
 
 Inside a double-quoted string, you can optionally surround the name of the variable (the portion after the `$`) with curly braces (`${var_name}`). This syntax helps to avoid ambiguity and allows variables to be placed directly next to non-whitespace characters. These optional curly braces are only allowed inside strings.
 
-Behavior
------
+## Behavior
+
 
 ### Scope
 
@@ -113,7 +113,7 @@ The area of code where a given variable is visible is dictated by its [scope][].
 
 See the [section on scope][scope] for complete details.
 
-### Accessing Out-of-Scope Variables
+### Accessing out-of-scope variables
 
 You can access out-of-scope variables from named scopes by using their [qualified names](#naming):
 
@@ -123,7 +123,7 @@ $vhostdir = $apache::params::vhostdir
 
 Note that the top scope's name is the empty string --- thus, the qualified name of a top scope variable would be, e.g., `$::osfamily`. See [scope][] for details.
 
-### Unassigned Variables and Strict Mode
+### Unassigned variables and strict mode
 
 By default, you can access variables that have never had values assigned to them. If you do, their value will be [`undef`.][undef]
 
@@ -131,7 +131,7 @@ This is usually not what you want, because using an unassigned variable is often
 
 If you'd rather have unassigned variable usage throw an error, so you can get warned early and fix the problem, you can enable strict mode. Set [`strict_variables = true`][strict_variables] in [puppet.conf][] on your Puppet master(s) and any nodes that run Puppet apply.
 
-### No Reassignment
+### No reassignment
 
 Unlike most other languages, Puppet only allows a given variable to be assigned **once** within a given [scope][]. You may not change the value of a variable, although you may assign a different value to the same variable name in a new scope:
 
@@ -156,7 +156,7 @@ class myclass {
 
 In the example above, `$myvar` has several different values, but only one value will apply to any given scope.
 
-### Evaluation-Order Dependence
+### Evaluation-order dependence
 
 Unlike [resource declarations][resource], variable assignments are evaluation-order dependent. This means you cannot resolve a variable before it has been assigned.
 
@@ -164,7 +164,7 @@ This is the main way in which the Puppet language fails to be fully declarative.
 
 
 
-Naming
------
+## Naming
+
 
 {% partial ./_naming_variables.md %}

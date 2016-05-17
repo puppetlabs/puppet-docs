@@ -1,5 +1,5 @@
 ---
-title: "Language: Lambdas (Code Blocks)"
+title: "Language: Lambdas (code blocks)"
 layout: default
 canonical: "/puppet/latest/reference/lang_lambdas.html"
 ---
@@ -63,7 +63,7 @@ The general form of a lambda is:
 * A closing curly brace.
 
 
-## Parameters and Variables
+## Parameters and variables
 
 A lambda can include a list of parameters, and functions can set values for them when they call the lambda. Inside the lambda's code block you can use each parameter as a variable.
 
@@ -73,13 +73,13 @@ Each function decides how many parameters it will pass to a lambda, and in what 
 
 In the parameter list, each parameter can be preceeded by an optional [**data type**][literal_types]. If you include one, Puppet will check the parameter's value at runtime to make sure that it has the right data type, and raise an error if the value is illegal. If no data type is provided, the parameter will accept values of any data type.
 
-### Mandatory and Optional Parameters
+### Mandatory and optional parameters
 
 If a parameter has a default value, it's optional --- the lambda will use the default if the caller doesn't provide a value for that parameter.
 
 However, since parameters are passed by position, _any optional parameters have to go after the required parameters._ If you put a required parameter after an optional one, it will cause an evaluation error. And if you have multiple optional parameters, the later ones can only receive values if all of the prior ones do.
 
-### The Extra Arguments Parameter
+### The extra arguments parameter
 
 The _final_ parameter of a lambda can optionally be a special _extra arguments parameter,_ which will collect an unlimited number of extra arguments into an array. This is useful when you don't know in advance how many arguments the caller will provide.
 
@@ -112,7 +112,7 @@ Some functions can call a single lambda multiple times, providing different para
 
 In this version of the Puppet language, the only way to call a lambda is to pass it to a [function][functions] that will call it.
 
-### Resource Uniqueness
+### Resource uniqueness
 
 If you use any [resource declarations][resources] in the body of a lambda, make sure those resources will be unique. Duplicate resources will cause a compilation failure.
 
@@ -129,7 +129,7 @@ When we called the `each` function, we knew the array we passed had no repeated 
 
 This uniqueness requirement is [similar to defined types][define_unique], which are also blocks of Puppet code that can be evaluated multiple times.
 
-### Lambda-Produced Values
+### Lambda-produced values
 
 [inpage_values]: #lambda-produced-values
 
@@ -144,7 +144,7 @@ For example:
 * The `each` function throws away its lambda's values and returns a copy of its main argument.
 
 
-### Lambda Scope
+### Lambda scope
 
 Every lambda creates its own [local scope][]. This local scope is anonymous, and variables inside it cannot be accessed by qualified names from any other scope.
 
@@ -153,7 +153,7 @@ The parent scope of a lambda is the local scope in which that lambda is written.
 Lambdas can contain other lambdas, which makes the outer lambda the parent scope of the inner one.
 
 
-### Detailed Behavior: the Callable Data Type
+### Detailed behavior: The callable data type
 
 Under the hood, a lambda is actually a value with [the Callable data type][callable], and functions using the modern function API (`Puppet::Functions`) can use that data type to validate any lambda values it receives.
 

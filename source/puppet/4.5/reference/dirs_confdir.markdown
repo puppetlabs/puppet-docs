@@ -54,5 +54,5 @@ Items labeled "master only" below may also be present on standalone Puppet apply
 * [`csr_attributes.yaml`](./config_file_csr_attributes.html) --- optional data to be inserted into new certificate requests. (All nodes.)
 * [`device.conf`](./config_file_device.html) --- configuration for network devices managed by the `puppet device` command. (All nodes.)
 * [`fileserver.conf`](./config_file_fileserver.html) --- configuration for additional fileserver mount points. (Master only.)
-* [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system. (Master only.)
+* [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system. (All nodes.)
 * [`routes.yaml`](./config_file_routes.html) --- advanced configuration of indirector behavior. (Master only.)

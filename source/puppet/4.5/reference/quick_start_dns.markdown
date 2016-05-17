@@ -23,11 +23,11 @@ Sysadmins typically need to manage a nameserver file for internal resources that
 
 >**Note**: You can add the DNS nameserver class to as many agents as needed. For ease of explanation, this guide will describe only one agent.
 
-### Write the `resolver` Class
+### Write the `resolver` class
 
 Some modules can be large, complex, and require a significant amount of trial and error, while others often work right out of the box. This module will be a very simple module to write, as it contains just one class and one template.
 
-> #### A Quick Note about Modules
+> #### A quick note about modules
 >
 >By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
@@ -63,7 +63,7 @@ Modules are directory trees. For this task, you'll create the following files:
 
 > That's it! You've created a Ruby template to populate `/etc/resolv.conf`.
 
-## Add the resolv.conf File to Your Main Manifest
+## Add the resolv.conf file to your main manifest
 
 1. On the Puppet master, open `/etc/resolv.conf` with your text editor, and copy the IP address of your master's nameserver (in this example, the nameserver is `10.0.2.3`).
 
@@ -90,7 +90,7 @@ Modules are directory trees. For this task, you'll create the following files:
 > * It ensures the creation of the file `/etc/resolv.conf`.
 > * The content of `/etc/resolv.conf` is modified and managed by the template, `resolv.conf.erb`.
 
-### Enforce the Desired State of the `resolver` Class
+### Enforce the desired state of the `resolver` class
 
 Finally, let's take a look at how Puppet will ensure the desired state of the `resolver` class on your agents. In the previous task, you set the nameserver IP address. Now imagine a scenario where a member of your team changes the contents of `/etc/resolv.conf` to use a different nameserver and can no longer access any internal resources.
 
@@ -101,7 +101,7 @@ Finally, let's take a look at how Puppet will ensure the desired state of the `r
 
 > That's it --- Puppet has enforced the desired state of your agent!
 
-### Other Resources
+### Other resources
 
 For more information about working with Puppet and DNS, check out our [Dealing with Name Resolution Issues](http://puppetlabs.com/blog/resolving-dns-issues) blog post.
 
@@ -112,4 +112,4 @@ Puppet offers many opportunities for learning and training, from formal certific
 
 ----------
 
-Next: [Sudo Quick Start Guide](./quick_start_sudo.html)
+Next: [Sudo quick start guide](./quick_start_sudo.html)

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Undef"
+title: "Language: Data types: Undef"
 canonical: "/puppet/latest/reference/lang_data_undef.html"
 ---
 
@@ -27,14 +27,14 @@ When used as a boolean, `undef` is false.
 
 When interpolated into a string, `undef` will be converted to the empty string.
 
-## The `Undef` Data Type
+## The `Undef` data type
 
 The [data type][] of `undef` is `Undef`.
 
 It matches only the value `undef`, and takes no parameters.
 
 
-### Related Data Types
+### Related data types
 
 Several of the abstract data types will also match the value `undef`:
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Resource Tips and Examples: Exec on Windows"
+title: "Resource tips and examples: Exec on Windows"
 ---
 
 [package]: ./type.html#package
@@ -11,11 +11,11 @@ Puppet can execute binaries (exe, com, bat, etc.), and can log the child process
 
 Since Puppet uses the same [`exec`][exec] resource type on both \*nix and Windows systems, there are a few Windows-specific caveats to keep in mind.
 
-## Command Extensions
+## Command extensions
 
 If a file extension for the `command` is not specified (for example, `ruby` instead of `ruby.exe`), Puppet will use the `PATHEXT` environment variable to resolve the appropriate binary. `PATHEXT` is a Windows-specific variable that lists the valid file extensions for executables.
 
-## Exit Codes
+## Exit codes
 
 On Windows, **most** exit codes should be integers between 0 and 2147483647.
 
@@ -23,7 +23,7 @@ Larger exit codes on Windows can behave inconsistently across different tools. T
 
 Microsoft recommends against using negative/very large exit codes, and you should avoid them when possible. To convert a negative exit code to the positive one Puppet will use, subtract it from 4294967296.
 
-## Shell Built-ins
+## Shell built-ins
 
 Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.) When using `cmd.exe` and specifying a file path in the command line, be sure to use backslashes. (For example, `'cmd.exe /c type c:\path\to\file.txt'`.) If you use forward slashes, `cmd.exe` will error.
 
@@ -33,7 +33,7 @@ An optional PowerShell exec provider is available as a plugin and is is particul
 
 * [The puppetlabs/powershell module](https://forge.puppetlabs.com/puppetlabs/powershell)
 
-## Inline PowerShell Scripts
+## Inline PowerShell scripts
 
 If you choose to execute PowerShell scripts using Puppet's default `exec` provider on Windows, you must specify the `remotesigned` execution policy as part of the `powershell.exe` invocation:
 
@@ -42,10 +42,3 @@ If you choose to execute PowerShell scripts using Puppet's default `exec` provid
       command => 'C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -executionpolicy remotesigned -file C:\test.ps1',
     }
 ~~~
-
-
-## Errata
-
-### Known Issues Prior to Puppet 3.4 / PE 3.2
-
-Before Puppet 3.4 / Puppet Enterprise 3.2, Puppet would truncate the exit codes of `exec` resources if they were over 255. (For example, an exit code of 3090 would be reported as 194 --- i.e. 3090 mod 256.) In 3.4 and later, exit codes are reported accurately.

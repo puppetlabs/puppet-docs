@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: auth.conf (LEGACY)"
+title: "Config files: auth.conf (LEGACY)"
 canonical: "/puppet/latest/reference/config_file_auth.html"
 ---
 
@@ -75,7 +75,7 @@ auth yes
 allow *.example.com
 allow_ip 192.168.100.0/24
 
-# Allow all nodes to access all file services.
+# allow all nodes to access all file services.
 path /puppet/v3/file
 allow *
 
@@ -116,13 +116,13 @@ path /
 auth any
 ~~~
 
-## Access Control Behavior
+## Access control behavior
 
 Whenever Puppet master receives a valid HTTPS request, it checks it against its full list of authorization rules, in order. As soon as it finds a rule that matches the request, it will use that rule's `allow` and `allow_ip` permissions to decide whether to allow the request. If the request isn't allowed, Puppet will deny it, and will not check any further authorization rules.
 
 In other words, authorization rules work like simple firewall rules. If you want to specifically allow a request that could be caught and rejected by some more general rule, you need to put the more specific rule earlier in the auth.conf file.
 
-### Default Auth Rules
+### Default auth rules
 
 Puppet master uses two sets of auth rules: the rules from auth.conf, which it checks first, and a set of hardcoded default rules, which it only checks if a request doesn't match any rules in auth.conf.
 
@@ -133,13 +133,13 @@ There are two reasons for this:
 * Visibility. It's easier to see where your custom rules should go if you can see the whole picture.
 * Poor behavior in the default rules code. If an ACL in auth.conf has the same `path` value as a default rule, Puppet will magically exclude the default rule even if the additional directives in the ACL mean they match completely disjunct sets of nodes.
 
-## File Format
+## File format
 
 The auth.conf file is an ordered list of access control lists (ACLs). ACLs are separated by one or more empty lines.
 
 The file can also include comments, which are lines starting with `#`. Comments do not count as empty lines for separating ACLs.
 
-## ACL Syntax
+## ACL syntax
 
 [inpage_acl]: #acl-syntax
 
@@ -173,13 +173,13 @@ Which URLs the ACL applies to. **Required.** Must be the first directive in the 
 
 **Allowed values:** This directive must describe some set of URLs in the `puppet` or `puppet-ca` APIs. You can specify a group of URLs as a prefix, or as a regular expression.
 
-#### URL Prefix
+#### URL prefix
 
     path /puppet/v3/report
 
 If the value of `path` is just an absolute path, Puppet master interprets it as a prefix. The ACL will match any URL that _begins_ with that string.
 
-#### Regular Expression
+#### Regular expression
 
     path ~ ^/puppet/v3/report/([^/]+)$
 

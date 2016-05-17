@@ -1,5 +1,5 @@
 ---
-title: "Language: Defined Resource Types"
+title: "Language: Defined resource types"
 layout: default
 canonical: "/puppet/latest/reference/lang_defined_types.html"
 ---
@@ -29,10 +29,10 @@ canonical: "/puppet/latest/reference/lang_defined_types.html"
 
 Defines can be used as simple macros or as a lightweight way to develop fairly sophisticated resource types.
 
-Syntax
------
+## Syntax
 
-### Defining a Type
+
+### Defining a type
 
 You can use a `define` statement to create a new defined resource type.
 
@@ -74,7 +74,7 @@ The general form of a define statement is:
 
 The definition does not cause the code in the block to be added to the [catalog][]; it only makes it available. To execute the code, you must declare one or more resources of the defined type.
 
-### Declaring an Instance
+### Declaring an instance
 
 Instances of a defined type (often just called "resources") can be declared the same way a [normal resource][resource] is declared. (That is, with a resource type, title, and set of attribute/value pairs.)
 
@@ -89,14 +89,14 @@ apache::vhost {'homepages':
 }
 ~~~
 
-Behavior
------
+## Behavior
+
 
 If a defined type is present and loadable (see ["Location"](#location) below), you can declare resources of that defined type anywhere in your manifests.
 
 Declaring a new resource of the defined type will make Puppet re-evaluate the block of code in the definition, using different values for the parameters.
 
-### Parameters and Attributes
+### Parameters and attributes
 
 Every parameter of a defined type can be used as a local variable inside the definition. These variables are not set with [normal assignment statements][variable_assignment]; instead, each instance of the defined type uses its attributes to set them:
 
@@ -124,7 +124,7 @@ Unlike the other parameters, the values of `$title` and `$name` are already avai
 define apache::vhost (Integer $port, String[1] $docroot, String $servername = $title, String[1] $vhost_name = '*') { ...
 ~~~
 
-### Resource Uniqueness
+### Resource uniqueness
 
 Since multiple instances of a defined type might be declared in your manifests, you must make sure that every resource in the definition will be **different in every instance.** Failing to do this will result in compilation failures with a "duplicate resource declaration" error.
 
@@ -147,7 +147,7 @@ The declaration of a defined type instance can include any [metaparameter][metap
 * Every resource contained in the instance will also have that metaparameter. So if you declare a defined resource with `noop => true`, every resource contained in it will also have `noop => true`, unless they specifically override it. Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any specific values from the individual resource.
 * The value of the metaparameter can be used as a variable in the definition, as though it were a normal parameter. (For example, in an instance declared with `require => Class['ntp']`, the local value of `$require` would be `Class['ntp']`.)
 
-### Resource Defaults
+### Resource defaults
 
 Just like with a normal resource type, you can declare [resource defaults][resource_defaults] for a defined type:
 
@@ -160,16 +160,15 @@ Apache::Vhost {
 
 In this example, every `apache::vhost` resource would default to port 80 unless specifically overridden.
 
-Location
------
+## Location
 
-Defined types can (and should) be stored in [modules][]. Puppet is automatically aware of any defined types in a valid module and can autoload them by name.
+Defined resource types can (and should) be stored in [modules][]. Puppet is automatically aware of any defined types in a valid module and can autoload them by name.
 
 Definitions should be stored in the `manifests/` directory of a module with one definition per file, and each filename should reflect the name of its defined type. See [Module Fundamentals][modules] for more details.
 
 A define statement isn't an expression, and can't be used where a value is expected.
 
-> #### Aside: Best Practices
+> #### Aside: Best practices
 >
 > You should usually only load defined types from modules. Although the additional options below this aside will work, they are not recommended.
 
@@ -178,8 +177,8 @@ You can also put define statements in [the site manifest][sitedotpp]. If you do 
 Define statements may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet, but may become so in a future release.
 
 
-Naming
------
+## Naming
+
 
 [The characters allowed in a defined type's name are listed here][naming].
 

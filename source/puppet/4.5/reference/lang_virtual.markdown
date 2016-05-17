@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Virtual Resources"
+title: "Language: Virtual resources"
 canonical: "/puppet/latest/reference/lang_virtual.html"
 ---
 
@@ -21,8 +21,7 @@ A **virtual resource declaration** specifies a desired state for a resource **wi
 
 Although virtual resources can only be _declared_ once, they can be _realized_ any number of times (much as a class may be [`included`][include] multiple times).
 
-Purpose
------
+## Purpose
 
 Virtual resources are useful for:
 
@@ -37,8 +36,8 @@ Virtual resources can be used in some of the same situations as [classes][], sin
 
 For more details, see [Virtual Resource Design Patterns][virtual_guide].
 
-Syntax
------
+## Syntax
+
 
 Virtual resources are used in two steps: declaring and realizing.
 
@@ -63,7 +62,7 @@ realize A2mod['rewrite']
 
 In the example above, the `apache` class declares a virtual resource, and both the `wordpress` and `freight` classes realize it. The resource will be managed on any node that has the `wordpress` and/or `freight` classes applied to it.
 
-### Declaring a Virtual Resource
+### Declaring a virtual resource
 
 To declare a virtual resource, prepend `@` (the "at" sign) to the **resource type** of a normal [resource declaration][resources]:
 
@@ -77,7 +76,7 @@ To declare a virtual resource, prepend `@` (the "at" sign) to the **resource typ
 }
 ~~~
 
-### Realizing With the `realize` Function
+### Realizing with the `realize` function
 
 To realize one or more virtual resources **by title,** use the [`realize`][realize_function] function, which accepts one or more [resource references][references]:
 
@@ -87,7 +86,7 @@ realize User['deploy'], User['zleslie']
 
 The `realize` function may be used multiple times on the same virtual resource and the resource will only be added to the catalog once.
 
-### Realizing With a Collector
+### Realizing with a collector
 
 Any [resource collector][collectors] will realize any virtual resource that matches its [search expression][search_expression]:
 
@@ -101,20 +100,19 @@ Note that a collector will also collect and realize any exported resources from 
 
 Note also that a collector used in an [override block][override] or a [chaining statement][chaining] will also realize any matching virtual resources.
 
-Behavior
------
+## Behavior
 
 By itself, a virtual resource declaration will not add any resources to the catalog. Instead, it makes the virtual resource available to the compiler, which may or may not realize it. A matching resource collector or a call to the `realize` function will cause the compiler to add the resource to the catalog.
 
-### Evaluation-Order Independence
+### Evaluation-order independence
 
 Virtual resources do not depend on evaluation order. You may realize a virtual resource before the resource has been declared.
 
-### Collectors vs. the `realize` Function
+### Collectors vs. the `realize` function
 
 The `realize` function will cause a compilation failure if you attempt to realize a virtual resource that has not been declared. Resource collectors will fail silently if they do not match any resources.
 
-### Virtual Resources in Classes
+### Virtual resources in classes
 
 If a virtual resource is contained in a class, it cannot be realized unless the class is declared at some point during the compilation. A common pattern is to declare a class full of virtual resources and then use a collector to choose the set of resources you need:
 
@@ -123,10 +121,10 @@ include virtual::users
 User <| groups == admin or group == wheel |>
 ~~~
 
-### Defined Resource Types
+### Defined resource types
 
 You may declare virtual resources of defined resource types. This will cause every resource contained in the defined resource to behave virtually --- they will not be added to the catalog unless the defined resource is realized.
 
-### Run Stages
+### Run stages
 
 Virtual resources will be evaluated in the [run stage](./lang_run_stages.html) in which they are **declared,** not the run stage in which they are **realized.**

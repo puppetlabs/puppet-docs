@@ -1,7 +1,7 @@
 ---
 layout: default
-title: "Quick Start » Hello World!"
-subtitle: "Hello World! Quick Start Guide"
+title: "Quick start » Hello world!"
+subtitle: "Hello world! Quick start guide"
 canonical: "/puppet/latest/quick_start_helloworld.html"
 ---
 
@@ -13,11 +13,11 @@ While the module you'll write doesn't have an incredible amount of functionality
 
 > For this walk-through, log in as root or administrator on your nodes.
 
-## Write the `helloworld` Class
+## Write the `helloworld` class
 
 Some modules can be large, complex, and require a significant amount of trial and error. This module will be a very simple module to write; it contains just two classes.
 
-> ### A Quick Note about Modules
+> ### A quick note about modules
 >
 >By default, Puppet keeps modules in an environment's [`modulepath`](./dirs_modulepath.html), which for the production environment defaults to `/etc/puppetlabs/code/environments/production/modules`. This includes modules that Puppet installs, those that you download from the Forge, and those you write yourself.
 >
@@ -63,7 +63,7 @@ Every manifest (.pp file) in a module contains a single class. File names map to
 
 >  Hooray! You've written a module that contains two classes that will, once applied, show a notification message when Puppet runs, and manage the motd on your server.
 
-## Add the `helloworld` and `helloworld::motd` Classes to the Main Manifest
+## Add the `helloworld` and `helloworld::motd` classes to the main manifest
 
 For this procedure, you're going to add the `helloworld` classes to the default node in the main manifest. You will be using the default node throughout the Quick Start Guide.
 
@@ -89,7 +89,7 @@ The [default node](./lang_node_definitions.html#the-default-node) is a special v
 
 6. From the CLI of your Puppet agent, use `puppet agent -t` to trigger a Puppet run.
 
-### Viewing the Results
+### Viewing the results
 
 After you kick off the puppet run, you will see the following on the command line as the `helloworld` class is applied:
 
@@ -105,7 +105,7 @@ After you kick off the puppet run, you will see the following on the command lin
 
 From the command line of your agent, run `cat /etc/motd`. The result should show `hello, world!`
 
-## Other Resources
+## Other resources
 
 >There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
 >

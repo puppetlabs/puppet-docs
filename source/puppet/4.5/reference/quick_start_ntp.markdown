@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Quick Start » NTP"
-subtitle: "NTP Quick Start Guide"
+subtitle: "NTP quick start guide"
 canonical: "/puppet/latest/quick_start_ntp.html"
 ---
 
@@ -35,7 +35,7 @@ This guide will step you through the following tasks:
 
 >**Note**: You can add the NTP service to as many agents as needed. For ease of explanation, we will describe only one.
 
-## Install the puppetlabs-ntp Module
+## Install the puppetlabs-ntp module
 
 The puppetlabs-ntp module is part of the [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the puppetlabs-ntp module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp).
 
@@ -53,7 +53,7 @@ You should see output similar to the following:
 
 > That's it! You've just installed the puppetlabs-ntp module.
 
-## Add Classes from the NTP Module to the Main Manifest
+## Add classes from the NTP module to the main manifest
 
 [inpage_usemain]: #add-classes-from-the-ntp-module-to-the-main-manifest
 [classification_selector]: ./images/quick/classification_selector.png
@@ -93,7 +93,7 @@ You're going to add the `ntp` class to the `default` node in your main manifest.
  		  enable => 'true',
 		}
 
-## Use Multiple Nodes to Configure NTP for Different Permissions
+## Use multiple nodes to configure NTP for different permissions
 
 Until now, you've been using the default node in this Quick Start Guide. If you want to configure the NTP service to run differently on different nodes, you can set up NTP differently in multiple nodes in the `site.pp` file.
 
@@ -131,7 +131,7 @@ The `site.pp` looks like this:
 
 In this fashion, it is possible to create multiple nodes to suit your needs.
 
-## Other Resources
+## Other resources
 
 For more information about working with the puppetlabs-ntp module, check out our [How to Manage NTP](http://puppetlabs.com/webinars/how-manage-ntp) webinar.
 
@@ -141,4 +141,4 @@ Puppet offers many opportunities for learning and training, from formal certific
 
 ----------
 
-Next: [DNS Quick Start Guide](./quick_start_dns.html)
+Next: [DNS quick start guide](./quick_start_dns.html)

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Hashes"
+title: "Language: Data types: Hashes"
 canonical: "/puppet/latest/reference/lang_data_hash.html"
 ---
 
@@ -29,7 +29,7 @@ Hash keys can be any data type, but you should generally only use strings or num
 
 Hash values can be any data type.
 
-## Accessing Values
+## Accessing values
 
 You can access hash members with their key; square brackets are used for accessing.
 
@@ -61,7 +61,7 @@ notice ( $main_site[port][https] )
 
 This example manifest would log `443` as a notice.
 
-## Additional Functions
+## Additional functions
 
 The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with hashes, including:
 
@@ -72,7 +72,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `validate_hash`
 * `values`
 
-## The `Hash` Data Type
+## The `Hash` data type
 
 The [data type][] of hashes is `Hash`.
 
@@ -105,7 +105,7 @@ Position | Parameter        | Data Type | Default Value | Description
 * `Hash[Integer, String, 1, 8]` --- same as above, but with a maximum size of eight key-value pairs.
 
 
-### Related Data Types
+### Related data types
 
 The abstract [`Struct` data type][struct] lets you specify the exact keys allowed in a hash, as well as what value types are allowed for each key.
 

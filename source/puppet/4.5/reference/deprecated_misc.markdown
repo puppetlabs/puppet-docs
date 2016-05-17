@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Other Deprecated Features"
+title: "Other deprecated features"
 ---
 
 

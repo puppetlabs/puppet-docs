@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet Lookup: Quick Intro to Module Data"
+title: "Puppet Lookup: Quick intro to module data"
 canonical: "/puppet/latest/reference/lookup_quick_module.html"
 ---
 
@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/lookup_quick_module.html"
 
 This page is a short introduction to setting default parameter values in a module with Puppet lookup.
 
-## General Instructions: Migrating From `params.pp`
+## General instructions: Migrating from `params.pp`
 
 Many modules today already specify complex default values for their parameters using the "params.pp" pattern. (This is where the main classes inherit from a `<MODULE>::params` class, which only sets variables.)
 
@@ -26,7 +26,7 @@ If you already use the "params.pp" pattern, you can easily switch to using a fun
     * Stop inheriting from `<MODULE>::params`.
 * Delete the params class.
 
-## More About the Function Data Provider
+## More about the function data provider
 
 In a module, the `function` provider calls a function named `<MODULE NAME>::data`. This function must take no arguments and return a hash; Puppet will try to find the requested data as a key in that hash.
 
@@ -37,7 +37,7 @@ The `<MODULE NAME>::data` function can be one of:
 
 Within the bounds of that interface (special function name, does something to return a hash), you could pretty much do anything with this provider. But practically speaking, you'll probably write something that looks a lot like a params class, which uses conditional logic to set different values depending on a node's facts.
 
-## Complete Examples
+## Complete examples
 
 The following examples illustrate three different ways to set default parameter values:
 
@@ -47,7 +47,7 @@ The following examples illustrate three different ways to set default parameter 
 
 They don't use very many parameters, but they demonstrate the sort of defaults-plus-overrides behavior you'll see in most params classes.
 
-### Example With Params.pp
+### Example with params.pp
 
 ~~~ ruby
 # ntp/manifests/params.pp
@@ -81,7 +81,7 @@ class ntp (
 }
 ~~~
 
-### Example With Function
+### Example with function
 
 ~~~ json
 # ntp/metadata.json
@@ -134,7 +134,7 @@ class ntp (
 }
 ~~~
 
-### Example With Hiera
+### Example with Hiera
 
 ~~~ json
 # ntp/metadata.json

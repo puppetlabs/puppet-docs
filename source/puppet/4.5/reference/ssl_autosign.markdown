@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "SSL Configuration: Autosigning Certificate Requests"
+title: "SSL configuration: autosigning certificate requests"
 canonical: "/puppet/latest/reference/ssl_autosign.html"
 ---
 
@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/ssl_autosign.html"
 [csr_attributes]: ./ssl_attributes_extensions.html
 
 
-CSRs, Certificates, and Autosigning
+CSRs, certificates, and autosigning
 -----
 
 Before Puppet agent nodes can retrieve their configuration catalogs, they need a signed certificate from the local Puppet certificate authority (CA). When using Puppet's built-in CA (that is, not [using an external CA][external_ca]), agents will submit a certificate signing request (CSR) to the CA Puppet master and will retrieve a signed certificate once one is available.
@@ -21,23 +21,21 @@ Alternately, you can configure the CA Puppet master to automatically sign certai
 > **Important security note:** Autosigning CSRs will change the nature of your deployment's security, and you should be sure you understand the implications before configuring it. Each kind of autosigning has its own security impact.
 
 
-Disabling Autosigning
------
+## Disabling autosigning
 
 By default, the CA Puppet master will use the `$confdir/autosign.conf` file as a whitelist; [see "Basic Autosigning" below][inpage_basic]. Since this file doesn't exist by default, autosigning is implicitly disabled, and the CA will not autosign any certificates.
 
 To _explicitly_ disable autosigning, you can set `autosign = false` in the `[master]` section of the CA Puppet master's puppet.conf. This will cause the CA to never autosign even if an autosign.conf file is written later.
 
-Naïve Autosigning
------
+## Naïve autosigning
 
 Naïve autosigning causes the CA to autosign **all** CSRs.
 
-### Enabling Naïve Autosigning
+### Enabling naïve autosigning
 
 To enable naïve autosigning, set `autosign = true` in the `[master]` section of the CA Puppet master's puppet.conf.
 
-### Security Implications of Naïve Autosigning
+### Security implications of naïve cutosigning
 
 **You should never do this in a production deployment.** Naïve autosigning is only suitable for temporary test deployments that are incapable of serving catalogs containing sensitive information.
 
@@ -48,13 +46,13 @@ Basic Autosigning (autosign.conf)
 
 In basic autosigning, the CA uses a config file containing a whitelist of certificate names and domain name globs. When a CSR arrives, the requested certificate name is checked against the whitelist file. If the name is present (or covered by one of the domain name globs), the certificate is autosigned; if not, it is left for manual review.
 
-### Enabling Basic Autosigning
+### Enabling basic autosigning
 
 To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` section of the CA Puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the Puppet master; otherwise it will be treated as a policy executable.
 
 > **Note:** Basic autosigning is enabled by default and looks for a whitelist located at `$confdir/autosign.conf`. For more info, see [the page on the confdir](./dirs_confdir.html).
 
-### The `autosign.conf` File
+### The `autosign.conf` file
 
 The `autosign.conf` whitelist file is a list of certnames or domain name globs (one per line) whose certificate requests will automatically be signed.
 
@@ -64,25 +62,24 @@ The `autosign.conf` whitelist file is a list of certnames or domain name globs (
 
 Note that domain name globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.)
 
-### Security Implications of Basic Autosigning
+### Security implications of basic autosigning
 
 Since any host can provide any certname when requesting a certificate, basic autosigning should only be used in situations where you fully trust any computer able to connect to the Puppet master.
 
 With basic autosigning enabled, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the Puppet master. They would then be able to obtain a configuration catalog, which may or may not contain sensitive information (depending on your deployment's Puppet code and node classification).
 
 
-Policy-Based Autosigning
------
+## Policy-based autosigning
 
 In policy-based autosigning, the CA will run an external policy executable every time it receives a CSR. This executable will examine the CSR and tell the CA whether the certificate is approved for autosigning. If the executable approves, the certificate is autosigned; if not, it is left for manual review.
 
-### Enabling Policy-Based Autosigning
+### Enabling policy-based autosigning
 
 To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` section of the CA Puppet master's puppet.conf.
 
 The policy executable file **must be executable by the same user as the Puppet master.** If not, it will be treated as a certname whitelist file.
 
-### Custom Policy Executables
+### Custom policy executables
 
 A custom policy executable can be written in any programming language; it just has to be executable in a \*nix-like environment. The Puppet master will pass it the certname of the request (as a command line argument) and the PEM-encoded CSR (on stdin), and will expect a `0` (approved) or non-zero (rejected) exit code.
 
@@ -90,7 +87,7 @@ Once it has the CSR, a policy executable can extract information from it and dec
 
 If you aren't embedding additional data, the CSR will contain only the node's certname and public key. This can still provide more flexibility and security than `autosign.conf`, as the executable can do things like query your provisioning system, CMDB, or cloud provider to make sure a node with that name was recently added.
 
-### Security Implications of Policy-Based Autosigning
+### Security implications of policy-based autosigning
 
 Policy-based autosigning can be both fast and extremely secure, _depending on how you manage the information the policy executable is using._ For example:
 
@@ -100,7 +97,7 @@ Policy-based autosigning can be both fast and extremely secure, _depending on ho
 As you can see, you must think things through carefully when designing your CSR data and signing policy. As long as you can arrange reasonable end-to-end security for secret data on your nodes, you should be able to rig up a secure autosigning system.
 
 
-### Policy Executable API
+### Policy executable API
 
 The API for policy executables is as follows:
 

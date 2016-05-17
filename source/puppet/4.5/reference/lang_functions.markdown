@@ -30,19 +30,19 @@ Functions may also:
 
 Puppet includes several built-in functions, and more are available in modules on the [Puppet Forge][forge], particularly the [puppetlabs-stdlib][stdlib] module. You can also write [custom functions][custom] and put them in your own modules.
 
-Location
------
+## Location
+
 
 Like any [expression][], a function call can be used anywhere the value it returns would be allowed.
 
 Function calls can also stand on their own, which will cause their value to be ignored. (Any side effects will still occur.)
 
-Syntax
------
+## Syntax
+
 
 There are two ways to call functions in the Puppet language: classic **prefix calls** like `template("ntp/ntp.conf.erb")`, and **chained calls** like `"ntp/ntp.conf.erb".template`. There's also a modified form of prefix call that can only be used with certain functions.
 
-### Choosing a Call Style
+### Choosing a call style
 
 These two call styles have the exact same capabilities, so you can choose whichever one is more readable. In general:
 
@@ -53,13 +53,13 @@ These two call styles have the exact same capabilities, so you can choose whiche
 
 For other cases, tastes vary, so do whatever you prefer.
 
-### Function Names
+### Function names
 
 Most functions have short, one-word names. However, the modern function API also allows qualified function names like `mymodule::foo`.
 
 Functions must always be called with their full names; you can't shorten a qualified function name.
 
-### Prefix Function Calls
+### Prefix function calls
 
 You can call a function by writing its name and providing a list of arguments in parentheses.
 
@@ -108,7 +108,7 @@ The general form of a prefix function call is:
 
 
 
-### Chained Function Calls
+### Chained function calls
 
 You can also call a function by writing its first argument, a period, and the name of the function.
 
@@ -152,8 +152,8 @@ The general form of a chained function call is:
 
 
 
-Behavior
------
+## Behavior
+
 
 An entire function call (including the name, arguments, and lambda) constitutes an [expression][]. It will resolve to a single value, and can be used anywhere a value of that type is accepted.
 
@@ -162,8 +162,8 @@ A function call may also result in some side effect, in addition to returning a 
 All functions run during [compilation][catalog], which means they can only access code and data available on the Puppet master. To make changes to an agent node, you must use a [resource][]; to collect data from an agent node, you must use a [custom fact][custom_facts].
 
 
-Documentation for Functions
------
+## Documentation for functions
+
 
 Each function defines how many arguments it takes, what [data types][datatype] it expects those arguments to be, what values it returns, and any side effects it has. Thus, each function has its own docs.
 
@@ -172,8 +172,8 @@ For info about any _built-in_ function, [see the Function Reference.][func_ref]
 For info about a function included in a module, see that module's documentation.
 
 
-List of Built-In Statement Functions
------
+## List of built-in statement functions
+
 
 [inpage_statement]: #list-of-built-in-statement-functions
 
@@ -185,7 +185,7 @@ Statement functions return a value like any other function, but will always retu
 
 The built-in statement functions are:
 
-### Catalog Statements
+### Catalog statements
 
 * [`include`](./function.html#include) --- includes given classes in catalog
 * [`require`](./function.html#require) --- includes given classes in the catalog and adds them as a dependency of the current class or defined resource
@@ -193,7 +193,7 @@ The built-in statement functions are:
 * [`realize`](./function.html#realize) --- makes a virtual resource real
 * [`tag`](./function.html#tag) --- adds the specified tag(s) to the containing class or defined resource
 
-### Logging Statements
+### Logging statements
 
 * [`debug`](./function.html#debug) --- logs message at debug level
 * [`info`](./function.html#info) --- logs message at info level
@@ -203,6 +203,6 @@ The built-in statement functions are:
 
 Although there are a few additional logging functions, they cannot be called as statements.
 
-### Failure Statements
+### Failure statements
 
 * [`fail`](./function.html#fail) --- logs error message and aborts compilation

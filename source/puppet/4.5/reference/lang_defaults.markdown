@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Resource Default Statements"
+title: "Language: Resource default statements"
 canonical: "/puppet/latest/reference/lang_defaults.html"
 ---
 
@@ -12,8 +12,8 @@ canonical: "/puppet/latest/reference/lang_defaults.html"
 
 Resource default statements let you set default attribute values for a given resource type. Any resource declaration within the area of effect that omits those attributes will inherit the default values.
 
-Syntax
------
+## Syntax
+
 
 ~~~ ruby
 Exec {
@@ -33,8 +33,8 @@ The general form of resource defaults is:
 
 You can specify defaults for any resource type in Puppet, including [defined types][definedtypes].
 
-Behavior
------
+## Behavior
+
 
 Within the [area of effect](#area-of-effect), every resource of the specified type that omits a given attribute will use that attribute's default value.
 
@@ -42,14 +42,14 @@ Attributes that are set explicitly in a resource declaration will always overrid
 
 Resource defaults are **evaluation-order independent** --- that is, a default will affect resource declarations written both above and below it.
 
-### Area of Effect
+### Area of effect
 
 Puppet still uses dynamic scope for resource defaults, even though it no longer uses dynamic _variable_ lookup. This means that if you use a resource default statement in a class, it has the potential to affect any classes or defined types that class declares. [See here for a full description of scope rules][dynamic_scope].
 
 You can declare _global_ resource defaults in the [site manifest][sitemanifest] outside any [node definition][node].
 
 
-### Overriding Defaults From Parent Scopes
+### Overriding defaults from parent scopes
 
 Resource defaults declared in the local scope will override any defaults received from parent scopes.
 

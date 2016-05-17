@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Resource and Class References"
+title: "Language: Data types: Resource and class references"
 canonical: "/puppet/latest/reference/lang_data_resource_reference.html"
 ---
 
@@ -36,7 +36,7 @@ The general form of a resource reference is:
 
 Unlike variables, resource references are not evaluation-order dependent, and can be used before the resource itself is declared.
 
-### Class References
+### Class references
 
 Class references work identically to resource references, but use the pseudo-resource type `Class` instead of some other resource type name.
 
@@ -45,7 +45,7 @@ require => Class['ntp::install'],
 ~~~
 
 
-### Multi-Resource References
+### Multi-resource references
 
 Resource reference expressions with an **array of titles** or **comma-separated list of titles** refer to multiple resources of the same type. They evaluate to an array of single-title resource references.
 
@@ -60,7 +60,7 @@ require => File[$my_files]
 They can be used wherever an array of references might be used. They can also go on either side of a [chaining arrow][chaining] or receive a [block of additional attributes][attribute_override].
 
 
-## Accessing Attribute Values
+## Accessing attribute values
 
 You can use a resource reference to access the values of a [resource][]'s attributes. To access a value, use square brackets and the name of an attribute (as a [string][]). This works much like [accessing hash values.][hash access]
 
@@ -86,7 +86,7 @@ file { "/etc/second.conf":
     * It also can't read the values of attributes that default to some predictable value; for example, in the code above, you wouldn't be able to access the value of the `path` attribute, even though it defaults to the resource's title.
 * Like with [hash access][], the value of an attribute whose value was never set is [`undef`.][undef]
 
-## Resource References as Data Types
+## Resource references as data types
 
 If you've read the [Data Type Syntax][data type] page, or perused the lower sections of the other data type pages, you might have noticed that resource references use the same syntax as [values that represent data types.][data type]
 
@@ -96,7 +96,7 @@ Internally, they're implemented the same way, and each resource reference is act
 
 But if you're interested in the meta-details, please see [the page about resource types as data types.][resource_types]
 
-### The Short Version
+### The short version
 
 If you just need to restrict values for a class or defined type parameter so that users must provide your code a resource reference, do one of the following.
 

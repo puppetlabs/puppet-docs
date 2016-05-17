@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Data Types: Data Type Syntax"
+title: "Language: Data types: Data type syntax"
 canonical: "/puppet/latest/reference/lang_data_type.html"
 ---
 
@@ -66,7 +66,7 @@ For example:
 
 This is an abstract data type (`Variant`) which takes any number of data types as parameters; one of the parameters we provided is _another_ abstract data type (`Enum`) that takes any number of strings as parameters.
 
-> ### Note on Required Parameters
+> ### Note on required parameters
 >
 > The only situation where you can leave out required parameters is if you're referring to the type itself; that is, `Type[Variant]` is legal, even though `Variant` has required parameters.
 
@@ -74,7 +74,7 @@ This is an abstract data type (`Variant`) which takes any number of data types a
 
 Data types are useful in parameter lists, match (`=~`) expressions, case statements, and selector expressions. There are also a few less common uses for them.
 
-### Parameter Lists
+### Parameter lists
 
 [Classes][], [defined types][], and [lambdas][] all let you specify _parameters,_ which let your code request data from a user or some other source.
 
@@ -120,28 +120,28 @@ $enable_real = $enable ? {
 }
 ~~~
 
-### Match Expressions
+### Match expressions
 
 [The `=~` and `!~` match operators][match_operator] can accept a data type on the right operand, and will test whether the left operand is a value of that data type.
 
 For example: `5 =~ Integer` and `5 =~ Integer[1,10]` both resolve to `true`.
 
-### Less Common Uses
+### Less common uses
 
 The built-in [`assert_type` function][assert_type] takes a value and a data type, and will raise errors if your code encounters an illegal value. It's basically a shorthand for an `if` statement with a non-match (`!~`) expression and a `fail()` function call.
 
 You can also provide data types as both operands for the `==`, `!=`, `<`, `>`, `<=`, and `>=` comparison operators, which tests whether two data types are equal, whether one is a subset of another, etc. This feature doesn't have any particular practical use.
 
-### Obtaining Data Types
+### Obtaining data types
 
 [The `puppetlabs/stdlib` module][stdlib] includes a `type_of` function, which can return the type of any value. E.g. `type_of(3)` returns `Integer[3,3]`.
 
 
-## Known Data Types
+## Known data types
 
 The following data types are available in Puppet:
 
-### Core Data Types
+### Core data types
 
 These are the "real" data types, which make up the most common values you'll interact with in the Puppet language.
 
@@ -154,14 +154,14 @@ These are the "real" data types, which make up the most common values you'll int
 * [`Undef`][undef]
 * [`Default`][default]
 
-### Resource and Class References
+### Resource and class references
 
 Resource references and class references are implemented as data types, although they behave somewhat differently from other values.
 
 * [`Resource` and `Class`][resource_reference]
 
 
-### Abstract Data Types
+### Abstract data types
 
 Abstract data types let you do more sophisticated or permissive type checking.
 
@@ -179,7 +179,7 @@ Abstract data types let you do more sophisticated or permissive type checking.
 * [`Any`][Any]
 * [`Callable`][Callable]
 
-## The `Type` Data Type
+## The `Type` data type
 
 [inpage_type]: #the-type-data-type
 

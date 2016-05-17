@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Resource Tips and Examples: User and Group on Windows"
+title: "Resource tips and examples: User and group on Windows"
 ---
 
 [user]: ./type.html#user
@@ -15,15 +15,15 @@ Puppet's built-in [`user`][user] and [`group`][group] resource types can manage 
 
 This page describes what you'll want to know before using them.
 
-## What Puppet Can Manage
+## What Puppet can manage
 
-### Local User/Group Resources
+### Local user/group resources
 
 Puppet can use the `user` and `group` resource types to manage **local** accounts.
 
 You can't write a Puppet resource that describes a **domain** user or group. However, a local `group` resource can manage which domain accounts belong to the local group. See the next section for details.
 
-### Group Membership
+### Group membership
 
 Windows can manage group membership by specifying the groups to which a user belongs, or specifying the members of a group. Puppet supports both cases.
 
@@ -37,7 +37,7 @@ If you want to ensure a `user` belongs to only the `groups` listed in the manife
 
 Similarly, when managing a `group`, Puppet will make sure all of the `members` listed in the manifest are added to the group. Existing members of the group not listed in the manifest will be ignored. If you want to ensure a `group` contains only the `members` listed in the manifest, and no more, you can specify the [`auth_membership`][auth_membership_group] attribute for the `group`. If set to `true`, Puppet will remove existing members of the group that are not listed in the manifest.
 
-### Allowed Attributes
+### Allowed attributes
 
 When managing Windows [**user**][user] accounts, you can use the following attributes:
 
@@ -61,7 +61,7 @@ When managing Windows [**group**][group] accounts, you can use the following att
 
 Additionally, the `gid` attribute is available as a read-only property when inspecting a group with `puppet resource group <NAME>`. Its value will be the group's SID (see below).
 
-## Names and Security Identifiers (SIDs)
+## Names and security identifiers (SIDs)
 
 On Windows, user and group account names can take multiple forms, e.g. `Administrators`, `<host>\Administrators`, `BUILTIN\Administrators`, `S-1-5-32-544` --- the last is called a security identifier (SID). Puppet treats all these forms as equivalent: when comparing two account names, it first transforms account names into their canonical SID form and compares the SIDs instead.
 
@@ -71,11 +71,11 @@ If you need to refer to a user or group in multiple places in a manifest (e.g. w
 
 ## Errata
 
-### Known Issues Prior to Puppet 4
+### Known issues prior to Puppet 4
 
 * Before 4.0, Puppet would, by default, remove members of a group that were not specified in the manifest.
 
-### Known Issues Prior to Puppet 3.4 / PE 3.2
+### Known issues prior to Puppet 3.4 / PE 3.2
 
 Before Puppet 3.4 / Puppet Enterprise 3.2, Puppet could not:
 

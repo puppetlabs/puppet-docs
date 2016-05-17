@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Deprecated Resource Type Features"
+title: "Deprecated resource type features"
 ---
 
 

@@ -49,7 +49,7 @@ Its location can be configured with the [`ssldir` setting][ssldir]. To check the
 >
 > If a distro changes the ssldir location, it will do so by setting `ssldir` in the `$confdir/puppet.conf` file, usually in the `[main]` section. You can find out for sure by [printing the `ssldir` setting value][print_settings].
 
-## Summary of Contents
+## Summary of contents
 
 The ssldir contains Puppet's certificates, private keys, certificate signing requests (CSRs), and other cryptographic documents.
 
@@ -62,7 +62,7 @@ Since agent and master credentials are identified by [certname][], a Puppet agen
 All of the files and directories in the ssldir have corresponding Puppet settings, which can be used to individually change their locations. However, this is generally not recommended.
 
 
-## Detailed Contents
+## Detailed contents
 
 The permissions mode of the ssldir should be 0771, and it and every file it contains should be owned by the user Puppet runs as (i.e., root or Administrator on Puppet agent nodes and defaulting to `puppet` or `pe-puppet` on a Puppet master server). Ownership and permissions in the ssldir are generally managed automatically.
 

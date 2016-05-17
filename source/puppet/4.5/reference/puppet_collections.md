@@ -1,18 +1,18 @@
 ---
 layout: default
-title: "About Puppet Collections and Packages"
+title: "About Puppet collections and packages"
 canonical: "/puppet/latest/reference/puppet_collections.html"
 ---
 
 {% include puppet-collections/_puppet_collections_intro.md %}
 
-## Puppet Collection contents
+## Puppet collection contents
 
 Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_contents.md %}
 
-## Using Puppet Collections
+## Using Puppet collections
 
 {% include puppet-collections/_puppet_collections_using.md %}
 

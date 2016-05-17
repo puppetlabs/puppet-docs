@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Quick Start » Adding Classes (*nix)"
+title: "Quick start » Adding classes (*nix)"
 subtitle: "Adding Classes Quick Start Guide"
 canonical: "/puppet/latest/quick_start_adding_class_nix.html"
 ---
@@ -17,7 +17,7 @@ Every module contains one or more **classes**. [Classes](./lang_classes.html) ar
 
 > Before starting this walk-through, complete the previous exercises in the [introductory quick start guide](./quick_start.html). You should still be logged in as root or administrator on your nodes.
 
-## Add Apache to the Main Manifest
+## Add Apache to the main manifest
 
 1. From the command line of your Puppet master, navigate to the main manifest directory: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Use your text editor to open the `site.pp` file, and edit it so that it contains the following Puppet code:
@@ -39,7 +39,7 @@ Every module contains one or more **classes**. [Classes](./lang_classes.html) ar
 
    You will see the contents of `/var/www/html/index.html` displayed.
 
-## Editing Class Parameters in the Main Manifest
+## Editing class parameters in the main manifest
 
 You can edit the [parameters](./lang_classes.html#defining-classes) of a class in `site.pp` as well. Parameters allow a class to request external data. If a class needs to configure itself with data other than [Puppet facts](./lang_facts_and_builtin_vars.html), provide that data to the class via a parameter.
 

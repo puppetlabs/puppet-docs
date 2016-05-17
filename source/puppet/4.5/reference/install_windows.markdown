@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Installing Puppet Agent: Microsoft Windows"
+title: "Installing Puppet agent: Microsoft Windows"
 canonical: "/puppet/latest/reference/install_windows.html"
 ---
 
@@ -15,13 +15,13 @@ canonical: "/puppet/latest/reference/install_windows.html"
 [vardir]: ./dirs_vardir.html
 [server_install]: {{puppetserver}}/install_from_packages.html
 
-## Make Sure You're Ready
+## Make sure you're ready
 
 Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
 
 > **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
-## Review Supported Versions
+## Review supported versions
 
 {% include pup43_platforms_windows.markdown %}
 
@@ -29,7 +29,7 @@ Before installing Puppet on any agent nodes, make sure you've read the [pre-inst
 
 To install on other operating systems, see the pages linked in the navigation sidebar.
 
-## Download the Windows `puppet-agent` Package
+## Download the Windows `puppet-agent` package
 
 [Puppet Labs' Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
 
@@ -44,7 +44,7 @@ The list of Windows packages might include release candidates, whose filenames h
 
 You can install Puppet [with a graphical wizard](#graphical-installation) or [on the command line](#automated-installation). The command-line installer provides more configuration options.
 
-### Graphical Installation
+### Graphical installation
 
 [server]: ./images/wizard_server.png
 
@@ -58,7 +58,7 @@ For standalone Puppet nodes that won't connect to a master, use the default host
 
 Once the installer finishes, Puppet will be installed, running, and at least partially configured.
 
-### Automated Installation
+### Automated installation
 
 Use the `msiexec` command to install the Puppet package:
 
@@ -76,7 +76,7 @@ See [the MSI Properties section](#msi-properties) for information about these MS
 
 Once the installer finishes, Puppet will be installed, running, and at least partially configured.
 
-### MSI Properties
+### MSI properties
 
 These options are only available when installing Puppet on the command line (see above).
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Running Puppet's Commands on Windows"
+title: "Running Puppet's commands on Windows"
 ---
 
 [confdir]: ./dirs_confdir.html
@@ -20,8 +20,7 @@ Puppet was originally designed to run on \*nix systems, so its commands generall
 
 Since Windows systems work differently, there are a few extra things to keep in mind when using Puppet's commands.
 
-Supported Commands
------
+## Supported commands
 
 Not all of Puppet's commands work on Windows. Notably, Windows nodes can't run the Puppet master or Puppet cert commands.
 
@@ -35,15 +34,13 @@ The following commands are designed for use on Windows:
 - [puppet help][]
 - [puppet man][]
 
-Running Puppet's Commands
------
+## Running Puppet's commands
 
 The installer adds Puppet's commands to the PATH. After installing, you can run them from any **command prompt (cmd.exe)** or **PowerShell prompt.**
 
 You may have to open a new command prompt after installing; any processes that were already running before you ran the installer will not pick up the changed PATH value.
 
-Running With Administrator Privileges
------
+## Running With Administrator Privileges
 
 [uac]: ./images/uac.png
 [rightclick]: ./images/run_as_admin.png
@@ -77,8 +74,7 @@ When the command prompt window opens, you'll notice that its title bar begins wi
 ![A command prompt with Administrator in the title bar][admin_prompt]
 
 
-The Puppet Start Menu Items
------
+## The Puppet Start Menu items
 
 [start_menu]: ./images/start_menu.png
 
@@ -95,20 +91,16 @@ The Start Menu items do the following:
 This shortcut automatically requests UAC elevation, then runs [Facter][] in a command prompt window with administrator privileges.
 
 
-### Run Puppet Agent
+### Run Puppet agent
 
 This shortcut automatically requests UAC elevation, then performs a single Puppet agent run in a command prompt window with administrator privileges.
 
-### Start Command Prompt with Puppet
+### Start command prompt with Puppet
 
 This shortcut starts a normal command prompt with the working directory set to Puppet's program directory. The command prompt's window icon is also set to the Puppet logo.
 
 This was useful in previous versions of Puppet, before the installer was revised to add Puppet's commands to the PATH, but it's no longer necessary.
 
 Note that this shortcut **does not** automatically request UAC elevation; just like with a normal command prompt, you'll need to right-click the icon and choose "Run as administrator."
-
-### Documentation
-
-This folder contains several links to the Puppet website.
 
 

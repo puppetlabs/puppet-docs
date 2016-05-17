@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet Lookup: Quick Reference for Hiera Users"
+title: "Puppet Lookup: Quick reference for Hiera users"
 canonical: "/puppet/latest/reference/lookup_quick.html"
 ---
 
@@ -21,7 +21,7 @@ canonical: "/puppet/latest/reference/lookup_quick.html"
 
 We designed Puppet lookup to be familiar to Hiera users, but there are a few important differences. If you already use Hiera, this page will catch you up on the changes.
 
-## What Is Puppet Lookup?
+## What is Puppet lookup?
 
 It's a lot like Hiera, except:
 
@@ -33,7 +33,7 @@ It's a lot like Hiera, except:
 
 There are some extra details, and we might add more new features in the future, but those are the most important bits.
 
-## Three Tiers: Classic Hiera → Environment Data → Module Data
+## Three tiers: Classic Hiera → environment data → module data
 
 Every time you request data through Puppet lookup, Puppet will search three tiers of data, in this order:
 
@@ -43,13 +43,13 @@ Every time you request data through Puppet lookup, Puppet will search three tier
 
 If you do a merging lookup, Puppet can combine answers from all three tiers.
 
-### What Are the Tiers For?
+### What are the tiers For?
 
 * Environment data is the core of Puppet lookup. It's where most of your data should live.
 * Classic Hiera is for global overrides, when you need to fix something before a change can roll through your environments.
 * Module data can only provide default values for a module's own parameters. Puppet lookup enforces that by only using it for keys in a given module's [namespace][]. (For example, Puppet will check the `apache` module for keys starting with `apache::`.)
 
-## Three Tools: Function, Command, and Automatic Lookup
+## Three tools: Function, command, and automatic lookup
 
 There are three ways to use Puppet lookup:
 
@@ -59,16 +59,16 @@ There are three ways to use Puppet lookup:
 
 The Hiera functions and CLI tool are still around, but they can only access classic Hiera.
 
-## Data Files are Hiera-Compatible
+## Data files are Hiera-compatible
 
 If you use Puppet lookup's `hiera` data provider in an environment or module, the YAML and JSON data files work exactly the same as Hiera's do. This means they can interpolate variables, do sub-lookups with the `hiera()` and `alias()` functions, etc. For details, see the following Hiera pages:
 
 * [Writing Data Sources][]
 * [Interpolation and Variables][hiera_interpolation]
 
-## Using Environment Data
+## Using environment data
 
-### ...If You Already Use Hiera in Environments
+### ...If you already use Hiera in environments
 
 If you already keep Hiera's YAML or JSON data in your environments (probably with something like `:datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"`), you can switch to new-style environment data like this:
 
@@ -81,7 +81,7 @@ Once these steps are done, your Puppet infrastructure should work the same way i
 
 To interactively see where Puppet is finding data, log into your Puppet master server and run `sudo puppet lookup <KEY> --node <NAME> --explain`. This will show you whether Puppet is using the new environment data or not.
 
-### ...In General
+### ...In general
 
 Every environment can specify a **data provider.** Whenever Puppet compiles a catalog for a given environment, it will use that environment's data provider for all lookups.
 
@@ -96,7 +96,7 @@ The default data provider is `none`, which doesn't provide any data. There are t
 
 {{ dataproviders }}
 
-#### More About the Function Data Provider
+#### More about the function data provider
 
 In an environment, the `function` provider calls a function named `environment::data`. (That's the literal string "environment", not the name of the environment.) This function must take no arguments and return a hash; Puppet will try to find the requested data as a key in that hash.
 
@@ -107,7 +107,7 @@ The `environment::data` function can be one of:
 
 Since using a data function with an environment is kind of impractical, this quick reference won't cover it in detail.
 
-## Using Module Data
+## Using module data
 
 Every module can also specify a data provider. Whenever Puppet looks up a key _in a module's namespace,_ it will search that module's data after checking both Hiera and the current environment. (For example: since `apache::service::service_enable` starts with `apache::`, it's in the `apache` module's namespace.)
 
@@ -115,22 +115,22 @@ To specify a data provider, set a value for the `data_provider` key in a module'
 
 {{ dataproviders }}
 
-### Details and Examples
+### Details and examples
 
 Module data works almost exactly like environment data, but it supports a different use case. This makes it more complicated to explain than just "hiera.yaml lives in your environments now," so we put some examples on a separate page:
 
 [Quick Intro to Module Data][quick_module]
 
-## There Are Two `hiera.yaml` Formats Now
+## There are two `hiera.yaml` formats now
 
 [inpage_config_4]: #there-are-two-hierayaml-formats-now
 
 These files have the same name, but they're different. Sorry. We couldn't fix some of Hiera's limitations without a new format, but we couldn't change classic Hiera's config format in a minor Puppet agent release, so you'll be using two different formats for a while.
 
-* [**Old `hiera.yaml`**][hiera_config] configures classic Hiera. It's [documented in the Hiera manual][hiera_config]. Puppet can only use one Hiera config file, and it's global across all environments.
+* [**Old `hiera.yaml`**][hiera_config] configures classic Hiera. It's [documented in the Hiera manual][hiera_config]. Puppet can only use one Hiera config file, and it is global across all environments.
 * [**`hiera.yaml` (version 4)**][inpage_config_4] configures environment and module data. Every environment or module has its own `hiera.yaml` (version 4) file, but there's no global one.
 
-### `hiera.yaml` (Version 4) in a Nutshell
+### `hiera.yaml` (Version 4) in a nutshell
 
 ~~~ yaml
 # /etc/puppetlabs/code/environments/production/hiera.yaml
@@ -183,7 +183,7 @@ Each hierarchy level can contain the following keys:
 
 Variable interpolation in `hiera.yaml` (version 4) works the same way as it does in classic Hiera. See [the Hiera interpolation docs][hiera_interpolation] for details.
 
-## Specifying Merge Behavior
+## Specifying merge behavior
 
 Classic Hiera could optionally do deep merging of values when doing hash-merge lookups, but you could only configure this globally, in the `hiera.yaml` file. This was very hacky, and made a lot of simple use cases totally impossible.
 
@@ -192,7 +192,7 @@ In Puppet lookup, you can't configure global merge behavior like that. Instead, 
 * **At lookup time,** as an argument to the `lookup` function or `puppet lookup` command. This always wins, overriding any default merge behavior. See the function and command documentation for details.
 * **In the data source,** using the new `lookup_options` metadata key. This allows you to set default merge behavior for any lookup, _including automatic parameter lookup_ (which previously could not do merging lookup at all). If a lookup specifies its own merge behavior, this will override the default behavior.
 
-### Setting `lookup_options` in Data
+### Setting `lookup_options` in data
 
 Any normal data source can set a special `lookup_options` metadata key, which controls the default merge behavior for _other_ keys in your data.
 
@@ -213,21 +213,21 @@ Whenever Puppet looks up a key, it also checks `lookup_options` to see if it con
 
 In the example above, Puppet will default to a `unique` merge (also called an array merge) any time it looks up the `ntp::servers` key. This includes automatic lookup (as a default for the `ntp` class's `$servers` parameter).
 
-#### The `lookup_options` Key is Reserved
+#### The `lookup_options` key is reserved
 
 `lookup_options` is a special reserved metadata key, and you cannot do a manual lookup for it. If you attempt to look up `lookup_options`, it will fail.
 
-#### Modules Can Set Lookup Options for Their Own Namespace
+#### Modules can set lookup options for their own namespace
 
 Usually, module data can only set values for keys in that module's namespace. The `lookup_options` key is a special exception: a module can set a value for it, but it can only set options for keys in that module's namespace.
 
 If a module sets options for keys outside its namespace, they will be ignored.
 
-#### Environments and Classic Hiera can Set Options for Anything
+#### Environments and Classic Hiera can set options for anything
 
 ...although options from Hiera only apply when it's consulted by Puppet lookup; the classic `hiera` functions will ignore them.
 
-#### Lookup Options are Merged
+#### Lookup options are merged
 
 Before deciding on a merge behavior, Puppet merges the `lookup_options` values using a hash merge. (_Not_ a deep merge; if a higher-priority source sets any options for a given key, it overrides _all_ that key's options from lower-priority sources.)
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Facts and Built-in Variables"
+title: "Language: Facts and built-in variables"
 canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 ---
 
@@ -31,7 +31,7 @@ Puppet also pre-sets some **other special variables** which behave a lot like fa
 
 This page describes how to use facts, and lists all of the special variables added by Puppet.
 
-## Which Facts?
+## Which facts?
 
 Puppet can access the following facts:
 
@@ -42,13 +42,13 @@ You can see the [list of core facts][core_facts] to get acquainted with what's a
 
 For building other tools, [PuppetDB's API][puppetdb_facts] offers powerful ways to to search and report on your entire deployment's facts. (PuppetDB is included in Puppet Enterprise.)
 
-## Data Types
+## Data types
 
 This version of Puppet supports fact values of [any data type][datatypes]. It will never convert boolean, numeric, or structured facts to strings.
 
-### Handling Boolean Facts in Older Puppet Versions
+### Handling boolean facts in older Puppet versions
 
-Puppet 3.x will sometimes convert all fact values to [strings][] (e.g. `"false"` instead of `false`), depending on the `stringify_facts` setting and the installed Facter version.
+Puppet 3.x sometimes converts all fact values to [strings][] (e.g. `"false"` instead of `false`), depending on the `stringify_facts` setting and the installed Facter version.
 
 If you're writing code that might be used with pre-4.0 versions of Puppet, you'll need to take extra care when dealing with boolean facts like `$is_virtual`, since the string `"false"` is actually true when used as the condition of an [`if` statement.](./lang_conditional.html#if-statements)
 
@@ -62,14 +62,14 @@ if str2bool("$is_virtual") {
 
 This pattern (quote the variable, then pass it to `str2bool`) will work with both stringified facts and full data type support.
 
-## Accessing Facts From Puppet Code
+## Accessing facts from Puppet code
 
 There are two ways to access facts from Puppet code:
 
 * Classic `$fact_name` facts
 * The `$facts['fact_name']` hash
 
-### Classic `$fact_name` Facts
+### Classic `$fact_name` facts
 
 All facts appear in Puppet as [top-scope variables][topscope]. They can be accessed in manifests as `$fact_name`.
 
@@ -100,7 +100,7 @@ if $osfamily == 'redhat' {
 >
 > Since Puppet 3.0, `$::fact` has never been strictly necessary, but some people still use it to alert readers that they're using a top-scope variable, as described above.
 
-### The `$facts['fact_name']` Hash
+### The `$facts['fact_name']` hash
 
 Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it.
 
@@ -116,7 +116,7 @@ if $facts['osfamily'] == 'redhat' {
 
 **Drawbacks:** Only works with Puppet 3.5 or later. Disabled by default in open source releases prior to Puppet 4.0.
 
-## Special Variables Added by Puppet
+## Special variables added by Puppet
 
 In addition to Facter's core facts and any custom facts, Puppet creates some special variables of its own. The main categories of special variables are:
 
@@ -125,7 +125,7 @@ In addition to Facter's core facts and any custom facts, Puppet creates some spe
 * **Puppet master variables,** which are set by the Puppet master (and sometimes by `puppet apply`)
 * **Compiler variables,** which are special local variables set for each scope.
 
-### Trusted Facts
+### Trusted facts
 
 A few special **trusted facts** appear in a `$trusted` hash. They can be accessed in manifests as `$trusted['fact_name']`. The variable name `$trusted` is reserved, so local scopes cannot re-use it.
 
@@ -173,7 +173,7 @@ if $trusted['extensions']['pp_image_name'] == 'storefront_production' {
 }
 ~~~
 
-### `$server_facts` Variable
+### `$server_facts` variable
 
 The `$server_facts` variable provides a hash of server-side facts that cannot be overwritten by client side facts. This is important because it enables you to get trusted server facts that could otherwise be overwritten by client-side facts.
 
@@ -196,7 +196,7 @@ The following is an example `$server_facts` hash.
 }
 ~~~
 
-### Puppet Agent Facts
+### Puppet agent facts
 
 Puppet agent and Puppet apply both add several extra pieces of info to their facts before requesting or compiling a catalog. Like other facts, these are available as either top-scope variables or elements in the `$facts` hash.
 
@@ -207,7 +207,7 @@ Puppet agent and Puppet apply both add several extra pieces of info to their fac
 
     If no value was set for the `environment` setting (in puppet.conf or with `--environment`), the value of `$agent_specified_environment` will be `undef`. (That is, it won't default to `production` like the setting does.)
 
-### Puppet Master Variables
+### Puppet master variables
 
 Several variables are set by the Puppet master. These are most useful when managing Puppet with Puppet. (For example, managing puppet.conf with a template.)
 
@@ -219,7 +219,7 @@ These are **not** available in the `$facts` hash.
 * `$serverversion` --- the current version of Puppet on the Puppet master.
 * `$settings::<name of setting>` (also available to `puppet apply`) --- the value of any of the master's [settings](./config_about_settings.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment` and `$clientnoop`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
 
-### Compiler Variables
+### Compiler variables
 
 These variables are set in every [local scope][scope] by the compiler during compilation. They are mostly useful when implementing complex [defined types][definedtype].
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Resource Tips and Examples: Service"
+title: "Resource tips and examples: Service"
 ---
 
 [service]: /puppet/3.8/reference/type.html#service
@@ -15,9 +15,9 @@ title: "Resource Tips and Examples: Service"
 
 Puppet can manage [services][service] on nearly all operating systems.
 
-## Most Linux and \*nix Systems
+## Most Linux and \*nix systems
 
-### Normal Operation
+### Normal operation
 
 If your OS has a good system for managing services, and all the services you care about have working init scripts or service configs, you can write small service resources with just the [`ensure`][ensure] and [`enable`][enable] attributes:
 
@@ -30,7 +30,7 @@ If your OS has a good system for managing services, and all the services you car
 
 (Note that some OSes don't support the `enable` attribute.)
 
-### Defective Init Script
+### Defective init script
 
 On platforms that use SysV-style init scripts, Puppet assumes the script will have working `start`, `stop`, and `status` commands.
 
@@ -38,7 +38,7 @@ If the `status` command is missing, you will need to set `hasstatus => false` fo
 
 In some rare cases --- such as virtual services like Red Hat's `network` --- a service won't have a matching entry in the process table. If a service acts like this and is _also_ missing a status command, you'll need to set `hasstatus => false` and also specify either the `status` or `pattern` attribute.
 
-### No Init Script or Service Config
+### No init script or service config
 
 ~~~ ruby
     service { "apache2":

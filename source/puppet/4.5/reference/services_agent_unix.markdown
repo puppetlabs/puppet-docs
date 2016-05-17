@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet's Services: Puppet Agent on *nix Systems"
+title: "Puppet's services: Puppet agent on *nix systems"
 canonical: "/puppet/latest/reference/services_master_unix.html"
 ---
 
@@ -26,13 +26,13 @@ Puppet agent is the application that manages configurations on nodes. It require
 
 For details about invoking the Puppet agent command, see [the puppet agent man page](./man/agent.html).
 
-## Supported Platforms
+## Supported platforms
 
 This page describes how Puppet agent behaves on \*nix systems. For information about Windows, see [Puppet Agent on Windows Systems][win_agent].
 
 Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
 
-## Puppet Agent's Run Environment
+## Puppet agent's run environment
 
 Puppet agent runs as a specific user (usually `root`) and initiates outbound connections on port 8140.
 
@@ -42,7 +42,7 @@ By default, Puppet agent runs as `root`, which lets it manage the configuration 
 
 Puppet agent can also run as a non-root user, as long as it is started by that user. This will restrict the resources that Puppet agent can manage (see below), and requires you to run Puppet agent via a cron job instead of a service.
 
-#### Resource Types For Non-Root Puppet Agents
+#### Resource types For non-root Puppet agents
 
 When running without root permissions, most of Puppet's resource providers cannot use `sudo` to elevate permissions. This means Puppet can only manage resources that its user can modify without using `sudo`.
 
@@ -82,7 +82,7 @@ In addition to local logging, Puppet agent will submit a [report][] to the Puppe
 
 In Puppet Enterprise, you can browse these reports in the PE console's node pages, and you can analyze correlated events with the PE event inspector.
 
-## Managing Systems With Puppet Agent
+## Managing systems with puppet agent
 
 In a normal Puppet site, every node should periodically do configuration runs, to revert unwanted changes and to pick up recent updates.
 
@@ -94,13 +94,13 @@ On \*nix nodes, there are three main ways to do this:
 
 Choose whichever one works best for your infrastructure and culture.
 
-### Running Puppet Agent as a Service
+### Running Puppet agent as a service
 
 The Puppet agent command can start a long-lived daemon process, which will do configuration runs at a set interval.
 
 **Note:** If you are running Puppet agent as a non-root user, you should use a cron job instead.
 
-#### Starting the Service
+#### Starting the service
 
 The best way to do this is with Puppet agent's init script / service configuration. If you installed Puppet with packages, they should have included an init script or service configuration for controlling Puppet agent, usually with the service name `puppet` (for both open source and Puppet Enterprise).
 
@@ -118,7 +118,7 @@ Alternately, you can run `sudo puppet agent` on the command line with no additio
 sudo kill $(puppet config print pidfile --section agent)
 ~~~
 
-#### Configuring the Run Interval
+#### Configuring the run interval
 
 The Puppet agent service defaults to doing a configuration run every 30 minutes. You can configure this with [the `runinterval` setting][runinterval] in [puppet.conf][]:
 
@@ -130,7 +130,7 @@ The Puppet agent service defaults to doing a configuration run every 30 minutes.
 
 If you don't need an aggressive schedule of configuration runs, a longer run interval will let your Puppet master server(s) handle many more agent nodes.
 
-### Running Puppet Agent as a Cron Job
+### Running Puppet agent as a cron job
 
 If [the `onetime` setting][onetime] is set to `true`, the Puppet agent command will do one configuration run and then quit. If [the `daemonize` setting][daemonize] is set to `false`, the command will stay in the foreground until the run is finished; if set to `true`, it will do the run in the background.
 
@@ -142,13 +142,13 @@ You can use the Puppet resource command to set up this cron job. Below is an exa
 sudo puppet resource cron puppet-agent ensure=present user=root minute=30 command='/opt/puppetlabs/bin/puppet agent --onetime --no-daemonize --splay --splaylimit 60'
 ~~~
 
-### Running Puppet Agent On Demand
+### Running Puppet agent on demand
 
 Some sites prefer to only run Puppet agent on demand; others use scheduled runs, but occasionally need to do an on-demand run.
 
 Puppet agent runs can be started locally (while logged in to the target system), or remotely via an orchestration tool.
 
-#### While Logged in to the Target System
+#### While logged in to the target system
 
 If you are currently logged into the machine that needs to run Puppet agent, you can do one of the following:
 
@@ -184,12 +184,12 @@ Alternately, [parallel SSH][pssh] can be a more lightweight solution for doing P
 
 [pssh]: https://code.google.com/p/parallel-ssh/
 
-## Disabling and Re-enabling Puppet Runs
+## Disabling and re-enabling Puppet runs
 
 Regardless of how you're running Puppet agent, you can prevent it from doing any Puppet runs by running `sudo puppet agent --disable "<MESSAGE>"`. You can re-enable it with `sudo puppet agent --enable`.
 
 If Puppet agent attempts to do a configuration run while disabled --- either a scheduled run or a manually triggered one --- it will log a message like `Notice: Skipping run of Puppet configuration client; administratively disabled (Reason: 'Investigating a problem 5/23/14 -NF'); Use 'puppet agent --enable' to re-enable.`
 
-## Configuring Puppet Agent
+## Configuring Puppet agent
 
 Puppet agent should be configured with [puppet.conf][], using the `[agent]` and/or `[main]` section. For notes on which settings are most relevant to Puppet agent, see the [short list of important settings][short_settings].

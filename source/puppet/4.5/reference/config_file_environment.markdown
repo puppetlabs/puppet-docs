@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: environment.conf"
+title: "Config files: environment.conf"
 canonical: "/puppet/latest/reference/config_file_environment.html"
 ---
 
@@ -34,7 +34,7 @@ For example, if your environments are in the default directory (`$codedir/enviro
 
 The environment.conf file uses the same INI-like format as [puppet.conf][], with one exception: it cannot contain config sections like `[main]`. All settings in environment.conf must be outside any config section.
 
-### Relative Paths in Values
+### Relative paths in values
 
 Most of the allowed settings accept **file paths** or **lists of paths** as their values.
 
@@ -42,7 +42,7 @@ If any of these paths are **relative paths** --- that is, they start _without_ a
 
 For example, if you set `config_version = get_environment_commit.sh` in the `test` environment, Puppet will use the file at `/etc/puppetlabs/code/environments/test/get_environment_commit.sh`.
 
-### Interpolation in Values
+### Interpolation in values
 
 The settings in environment.conf can use the values of other settings as variables (e.g., `$codedir`). Additionally, the `config_version` setting can use the special `$environment` variable, which gets replaced with the name of the active environment.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet's Services: Puppet Apply"
+title: "Puppet's services: Puppet apply"
 canonical: "/puppet/latest/reference/services_apply.html"
 ---
 
@@ -25,19 +25,19 @@ Puppet apply is an application that compiles and manages configurations on nodes
 
 For details about invoking the Puppet apply command, see [the puppet apply man page][man].
 
-## Supported Platforms
+## Supported platforms
 
 Puppet apply runs similarly on both \*nix and Windows systems.
 
 Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
 
-## Puppet Apply's Run Environment
+## Puppet apply's run environment
 
 Unlike Puppet agent, Puppet apply never runs as a daemon or service. It always runs as a single task in the foreground, which compiles a catalog, applies it, files a report, and exits.
 
 By default, it never initiates outbound network connections, although it can be configured to do so. It never accepts inbound network connections.
 
-### Main Manifest
+### Main manifest
 
 Like the Puppet master application, Puppet apply uses its [settings][short_settings] (such as `basemodulepath`) and the configured [environments][] to locate the Puppet code and configuration data it will use when compiling a catalog.
 
@@ -56,7 +56,7 @@ To manage a complete system, you should run Puppet apply as:
 
 Puppet apply can also run as a non-root user. This will restrict the resources that Puppet can manage (see below).
 
-#### Resource Types For Non-Root Puppet Apply Runs
+#### Resource types for non-root Puppet apply runs
 
 When running without root permissions, most of Puppet's resource providers cannot use `sudo` to elevate permissions. This means Puppet can only manage resources that its user can modify without using `sudo`.
 
@@ -74,7 +74,7 @@ Out of the core resource types listed in the [resource type reference][], the fo
 
 If you need to install packages into a directory controlled by a non-root user, you can either use an `exec` to unzip a tarball or use a recursive `file` resource to copy a directory into place.
 
-### Network Access
+### Network access
 
 By default, Puppet apply does not communicate over the network. It uses its local collection of [modules][] for any file sources, and does not submit reports to a central server.
 
@@ -103,7 +103,7 @@ In addition to local logging, Puppet apply will process a report using its confi
 To disable reporting and avoid taking up disk space with the `store` report handler, you can set [`report = false`](./configuration.html#report) in [puppet.conf][].
 
 
-## Managing Systems With Puppet Apply
+## Managing systems with Puppet apply
 
 In a normal Puppet site, every node should periodically do configuration runs, to revert unwanted changes and to pick up recent updates.
 
@@ -113,6 +113,6 @@ On \*nix, you can use the Puppet resource command to set up a cron job. Below is
 
     sudo puppet resource cron puppet-apply ensure=present user=root minute=30 command='/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/puppet/manifests --logdest syslog'
 
-## Configuring Puppet Apply
+## Configuring Puppet apply
 
 Puppet apply should be configured with [puppet.conf][], using the `[user]` and/or `[main]` section. For notes on which settings are most relevant to puppet apply, see the [short list of important settings][short_settings].
