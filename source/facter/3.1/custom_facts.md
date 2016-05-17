@@ -1,17 +1,16 @@
 ---
 layout: default
-title: "Facter 3.1: Custom Facts Walkthrough"
+title: "Facter 3.1: Custom facts walkthrough"
 ---
 
 [Facter 3.0.2 release notes]: /facter/3.0/release_notes.html#facter--p-restored
 [Plugins in Modules]: /guides/plugins_in_modules.html
 
-Custom Facts
-============
+## Custom facts
 
-Extend facter by writing your own custom facts to provide information to Puppet.
+Extend Facter by writing your own custom facts to provide information to Puppet.
 
-## Adding Custom Facts to Facter
+## Adding custom facts to Facter
 
 Sometimes you need to be able to write conditional expressions
 based on site-specific data that just isn't available via Facter,
@@ -24,13 +23,13 @@ in manifests and templates, just like any other fact would be.
 
 > **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` will fail with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
 
-## The Concept
+## The concept
 
 You can add new facts by writing snippets of Ruby code on the
 Puppet master. Puppet then uses [Plugins in Modules][]
 to distribute the facts to the client.
 
-## Loading Custom Facts
+## Loading custom facts
 
 Facter offers a few methods of loading facts:
 
@@ -87,14 +86,14 @@ This allows you to do something like this:
     system_load => 0.25
     users => thomas,pat
 
-> ### Note: Changes in Built-in Pluginsync Support in Facter 3
+> ### Note: Changes in built-in pluginsync support in Facter 3
 >
 > Facter 2.4 **deprecated** Facter's support for loading facts via Puppet's pluginsync
 > (the `-p` option), and Facter 3.0.0 **removed** the `-p` option. However, we reversed
 > this decision in Facter 3.0.2 and re-enabled the `-p` option. For details about current
 > and future support for this option, see the [Facter 3.0.2 release notes][].
 
-## Two Parts of Every Fact
+## Two parts of every fact
 
 Setting aside external facts for now, most facts have at least two elements:
 
@@ -103,7 +102,7 @@ Setting aside external facts for now, most facts have at least two elements:
 
 Facts *can* get a lot more complicated than that, but those two together are the most common implementation of a custom fact.
 
-## Executing Shell Commands in Facts
+## Executing shell commands in facts
 
 Puppet gets information about a system from Facter, and the most common way for Facter to
 get that information is by executing shell commands. You can then parse and manipulate the
@@ -118,7 +117,7 @@ from within the `setcode do`...`end` block. As always, whatever the `setcode` st
 
 It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements will not work. The best way to handle this limitation is to write your conditional logic in Ruby.
 
-### An Example
+### Example
 
 Let's say you need to get the output of `uname --hardware-platform` to single out a
 specific type of workstation. To do this, you would create a new custom
@@ -140,7 +139,7 @@ You can then use the instructions in the [Plugins in Modules][] page to copy
 the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
 will be available to use in your manifests and templates.
 
-## Using Other Facts
+## Using other facts
 
 You can write a fact that uses other facts by accessing `Facter.value(:somefact)`.
 If the fact fails to resolve or is not present, Facter returns `nil`.
@@ -163,11 +162,11 @@ Facter.add(:osfamily) do
 end
 ~~~
 
-## Configuring Facts
+## Configuring facts
 
 Facts have a few properties that you can use to customize how facts are evaluated.
 
-### Confining Facts
+### Confining facts
 
 One of the more commonly used properties is the `confine` statement, which
 restricts the fact to only run on systems that matches another given fact.
@@ -188,7 +187,7 @@ available on the given system. Since this is only available on Linux systems,
 we use the confine statement to ensure that this fact isn't needlessly run on
 systems that don't support this type of enumeration.
 
-### Fact Precedence
+### Fact precedence
 
 A single fact can have multiple **resolutions**, each of which is a different way
 of ascertaining what the value of the fact should be. It's very common to have
@@ -235,7 +234,7 @@ Facter.add(:role) do
 end
 ~~~
 
-### Execution Timeouts
+### Execution timeouts
 
 Facter 2.x supported a `:timeout` option to `Facter#add`. Facter no longer
 supports this option, and produces a warning if it's used.
@@ -256,11 +255,11 @@ Facter.add(:sleep) do
 end
 ~~~
 
-## Structured Facts
+## Structured facts
 
 While the norm is for a fact to return a single string, Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement. You can see some relevant examples in the [writing structured facts](fact_overview.html#writing-structured-facts) section of the [Fact Overview](fact_overview.html).
 
-## Aggregate Resolutions
+## Aggregate resolutions
 
 If your fact combines the output of multiple commands, it may make sense to use **aggregate resolutions**. An aggregate resolution is split into "chunks", each one responsible for resolving one piece of the fact. After all of the chunks have been resolved separately, they're combined into a single flat or structured fact and returned.
 
@@ -304,20 +303,20 @@ If the `chunk` blocks either all return arrays or all return hashes, you can omi
 
 For more examples of aggregate resolutions, see the [aggregate resolutions](fact_overview.html#writing-facts-with-aggregate-resolutions) section of the [Fact Overview](fact_overview.html) page.
 
-## Viewing Fact Values
+## Viewing fact values
 
 [puppetdb]: /puppetdb/latest
 
 If your Puppet master(s) are configured to use [PuppetDB][puppetdb], you can view and search all of the facts for any node, including custom facts. See [the PuppetDB docs][puppetdb] for more info.
 
-External Facts
---------------
+## External facts
 
-### What Are External Facts?
+
+### What are external facts?
 
 External facts provide a way to use arbitrary executables or scripts as facts, or set facts statically with structured data. If you've ever wanted to write a custom fact in Perl, C, or a one-line text file, this is how.
 
-### Fact Locations
+### Fact locations
 
 The best way to distribute external facts is with pluginsync, which added support for them in [Puppet 3.4](/puppet/3/reference/release_notes.html#preparations-for-syncing-external-facts)/[Facter 2.0.1](../2.0/release_notes.html#pluginsync-for-external-facts). To add external facts to your Puppet modules, just place them in `<MODULEPATH>/<MODULE>/facts.d/`.
 
@@ -348,7 +347,7 @@ When running as a non-root / non-Administrator user:
 
     <HOME DIRECTORY>/.facter/facts.d/
 
-### Executable Facts --- Unix
+### Executable facts --- Unix
 
 Executable facts on Unix work by dropping an executable file into the standard
 external fact path above. A [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) is
@@ -378,7 +377,7 @@ STDOUT in the format:
 
 Using this format, a single script can return multiple facts.
 
-### Executable Facts --- Windows
+### Executable facts --- Windows
 
 Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
 
@@ -394,7 +393,7 @@ As with Unix facts, each script must return key/value pairs on STDOUT in the for
 
 Using this format, a single script can return multiple facts in one return.
 
-#### Batch Scripts
+#### Batch scripts
 
 The file encoding for `.bat/.cmd` files must be `ANSI` or `UTF8 without BOM` (Byte Order Mark), otherwise you may get strange output.
 
@@ -407,7 +406,7 @@ Here is a sample batch script which outputs facts using the required format:
     REM Invalid - echo 'key4=val4'
     REM Invalid - echo "key5=val5"
 
-#### PowerShell Scripts
+#### PowerShell scripts
 
 The encoding that should be used with `.ps1` files is pretty open. PowerShell determines the encoding of the file at run time.
 
@@ -419,7 +418,7 @@ Here is a sample PowerShell script which outputs facts using the required format
 
 You should be able to save and execute this PowerShell script on the command line.
 
-### Structured Data Facts
+### Structured data facts
 
 Facter can parse structured data files stored in the external facts directory and set facts based on their contents.
 
@@ -454,7 +453,7 @@ key3=value3
 
 As with executable facts, structured data files can set multiple facts at once.
 
-#### Structured Data Facts on Windows
+#### Structured data facts on Windows
 
 All of the above types are supported on Windows with the following caveats:
 
@@ -486,7 +485,7 @@ Running `puppet facts --debug` should yield a useful message:
     Debug: Facter: completed resolving facts from executable file "/tmp/test.sh".
     ...
 
-#### External Facts and stdlib
+#### External facts and stdlib
 
 If you find that an external fact does not match what you have configured in your `facts.d`
 directory, make sure you have not defined the same fact using the external facts capabilities
