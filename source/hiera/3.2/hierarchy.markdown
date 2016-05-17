@@ -25,7 +25,7 @@ The hierarchy should be an **array.** (Alternately, it may be a string; this wil
 Each element in the hierarchy must be a **string,** which may or may not include [interpolation tokens][variables]. Hiera will treat each element in the hierarchy as **the name of a [data source][data].**
 
 ~~~ yaml
-# /etc/puppetlabs/code/hiera.yaml
+# /etc/puppetlabs/puppet/hiera.yaml
 ---
 :hierarchy:
   - "nodes/%{trusted.certname}"
@@ -95,7 +95,7 @@ Hiera will give priority to the first backend, and will **check every level of t
 Assume the following hierarchy:
 
 ~~~ yaml
-# /etc/puppetlabs/code/hiera.yaml
+# /etc/puppetlabs/puppet/hiera.yaml
 ---
 :hierarchy:
   - "nodes/%{trusted.certname}"

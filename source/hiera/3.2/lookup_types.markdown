@@ -163,7 +163,7 @@ for hashes in Hiera is building a data structure which gets passed to the
 In hiera.yaml, we set a two-level hierarchy:
 
 ~~~ yaml
-    # /etc/puppetlabs/code/hiera.yaml
+    # /etc/puppetlabs/puppet/hiera.yaml
     ---
     :backends:
       - yaml

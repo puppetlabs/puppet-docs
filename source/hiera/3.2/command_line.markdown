@@ -23,7 +23,7 @@ A more standard invocation will provide a set of variables for Hiera to use, so 
 
 ## Configuration file location
 
-The Hiera command line tool looks for its configuration in `/etc/puppetlabs/code/hiera.yaml`. You can use the `--config` argument to specify a different configuration file. See the documentation on Hiera's [configuration file](configuring.html#location) for details about this file.
+The Hiera command line tool looks for its configuration in `/etc/puppetlabs/puppet/hiera.yaml`. You can use the `--config` argument to specify a different configuration file. See the documentation on Hiera's [configuration file](configuring.html#location) for details about this file.
 
 ### Order of arguments
 
