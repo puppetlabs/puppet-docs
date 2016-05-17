@@ -58,7 +58,7 @@ symlink_latest:
   - pe
 lock_latest:
   puppet: 4.4
-#  hiera: 3.0
+  hiera: 3.1
 
 document_names:
   pe: Puppet Enterprise
