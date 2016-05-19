@@ -34,7 +34,9 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_apt.md %}
 
-{% include puppet-collections/_puppet_collection_1_u1504.md %}
+{% include puppet-collections/_puppet_collection_1_u1604.md %}
+
+{% include puppet-collections/_puppet_collection_1_u1510.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1404.md %}
 
