@@ -62,7 +62,7 @@ Parentheses may be used to improve readability, and to modify the priority/group
 
 #### `==` (equality search)
 
-This operator is non-transitive:
+This operator is non-symmetric:
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
 * The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version of Puppet.
@@ -71,7 +71,7 @@ For a given resource, this operator will **match** if the value of the attribute
 
 #### `!=` (non-equality search)
 
-This operator is non-transitive:
+This operator is non-symmetric:
 
 * The left operand (attribute) must be the name of a [resource attribute][attribute] or the word `title` (which searches on the resource's title).
 * The right operand (search key) must be a [string][], [boolean][], [number][], [resource reference][reference], or [undef][]. The behavior of arrays and hashes in the right operand is **undefined** in this version of Puppet.
