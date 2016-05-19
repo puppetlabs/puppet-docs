@@ -411,13 +411,21 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/4.1:
+    doc: puppetdb
+    version: 4.1
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/stable
+      subdirectory: documentation
   /puppetdb/4.0:
     doc: puppetdb
     version: 4.0
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/stable
+      commit: origin/4.0.x
       subdirectory: documentation
   /puppetdb/3.2:
     doc: puppetdb
