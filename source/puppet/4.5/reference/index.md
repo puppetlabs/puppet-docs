@@ -9,7 +9,7 @@ toc: false
 [pre-install instructions]: ./install_pre.html
 [Facter 3]: {{facter}}/
 [Hiera 3]: {{hiera}}/
-[Puppet Server 2.3]: {{puppetserver}}/
+[Puppet Server 2.4]: {{puppetserver}}/
 [PuppetDB 3]: {{puppetdb}}/
 [Linux installation]: ./install_linux.html
 [Windows installation]: ./install_windows.html
@@ -33,7 +33,7 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 Puppet 4.5 consists of:
 
 * A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter 3][], [Hiera 3][], and supporting code.
-* A `puppetserver` package that installs [Puppet Server 2.3][].
+* A `puppetserver` package that installs [Puppet Server 2.4][].
 * A `puppetdb` package that installs [PuppetDB 3][].
 
 To install these, read the [pre-install instructions][], then see the Puppet installation guides for [Linux][Linux installation], [Windows][Windows installation], and [Mac OS X][OSX installation].
