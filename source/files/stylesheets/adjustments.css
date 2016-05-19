@@ -1,8 +1,20 @@
-/*
-body {
-  padding-top: 70px;
+/* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
+div#rendered-markdown li img,
+div#rendered-markdown p img {
+  border: solid 1px #ccc;
+  box-shadow: 0px 0px 8px #999;
+  /* Keep high-rez images from blowing up the page */
+  max-width: 100%;
 }
- */
+
+/* Hide the real custom search engine for some reason. (I think something made it hard/impossible to style, but someone else originally did this so I'm not really sure. There's a replacement search form that uses JS to submit the real one.) */
+
+#cse-search-box {
+  display: none;
+}
+
+/* Site Header */
+/* -------------------------------------- */
 
 .navbar-brand {
   height: auto;
@@ -25,11 +37,6 @@ img#search-icon {
   width: 1.25rem;
   position: relative;
   right: 2rem;
-}
-
-nav.main ul li a.disabled-nav-link,
-table th {
-  font-weight: 600;
 }
 
 @media screen and (min-width: 768px) {
@@ -117,29 +124,9 @@ table th {
   }
 }
 
-/* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
-div#content div#rendered-markdown p img {
-  border: solid 1px #ccc;
-  box-shadow: 0px 0px 8px #999;
-  /* Image width should be constrained by the <p> width in all browsers that are supported (lets images expand to 740px on a wide screen) */
-  max-width: 100%;
-}
-
-/* Hide the real custom search engine for some reason */
-
-#cse-search-box {
-  display: none;
-}
-
 /* Site Footer */
 /* -------------------------------------- */
 .layout-footer {
-/*
-  margin: 0 auto;
-  max-width: 100%;
-  min-width: 768px;
-  position: relative;
- */
   padding: 60px 0 0 0;
   background: #222222;
   color: rgba(219, 218, 218, 0.5);
@@ -168,139 +155,26 @@ div#content div#rendered-markdown p img {
   transition: color 0.2s linear;
 }
 
+/* On desktop, keep some negative space between footer content and legal links */
 .layout-footer .footer-row-1 {
-  margin: 0 auto;
-/*
-  max-width: 67em;
- */
-  padding: 0 10px;
   min-height: 260px;
 }
 
+/* IE 11 hack to prevent footer-splosion */
 .layout-footer .footer-row-1:before,
-.layout-footer .footer-row-1:after {
+.layout-footer .footer-row-1:after,
+.layout-footer .footer-row-1 > .fg-col:first-child:before,
+.layout-footer .footer-row-1 > .fg-col:first-child:after,
+.layout-footer .footer-row-1 > .fg-col:last-child:before,
+.layout-footer .footer-row-1 > .fg-col:last-child:after {
   content: "";
-/*
-  display: table;
- */
 }
-
-/*
-.layout-footer .footer-row-1:after {
-  clear: both;
-}
- */
 
 .layout-footer .footer-row-1 > .fg-col {
   font-size: 0.9em;
 }
 
-/*
-.layout-footer .footer-row-1 > .fg-col:first-child {
-  position: relative;
-  float: left;
-}
- */
-
-/*
-.layout-footer .footer-row-1 > .fg-col:first-child {
-  box-sizing: border-box;
-}
- */
-
-.layout-footer .footer-row-1 > .fg-col:first-child:before,
-.layout-footer .footer-row-1 > .fg-col:first-child:after {
-  content: " ";
-/*
-  display: table;
- */
-}
-
-/*
-.layout-footer .footer-row-1 > .fg-col:first-child:after {
-  clear: both;
-}
- */
-
-/*
-html.csscalc .layout-footer .footer-row-1 > .fg-col:first-child {
-  margin-left: 20px;
-}
- */
-
-html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:first-child {
-  margin-left: 1.6%;
-}
-
-html.csscalc .layout-footer .footer-row-1 > .fg-col:first-child:first-child,
-html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:first-child:first-child {
-  margin-left: 0;
-}
-
-html.csscalc .layout-footer .footer-row-1 > .fg-col:first-child {
-  width: -webkit-calc(66.6666% - (20px / 2));
-  width: calc(66.6666% - (20px / 2));
-}
-
-html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:first-child {
-  width: 65.8666%;
-}
-
-/*
-.layout-footer .footer-row-1 > .fg-col:last-child {
-  position: relative;
-  float: left;
-}
- */
-
-/*
-.layout-footer .footer-row-1 > .fg-col:last-child {
-  box-sizing: border-box;
-}
- */
-
-.layout-footer .footer-row-1 > .fg-col:last-child:before,
-.layout-footer .footer-row-1 > .fg-col:last-child:after {
-  content: " ";
-/*
-  display: table;
- */
-}
-
-/*
-.layout-footer .footer-row-1 > .fg-col:last-child:after {
-  clear: both;
-}
- */
-
-html.csscalc .layout-footer .footer-row-1 > .fg-col:last-child {
-  margin-left: 20px;
-}
-
-html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
-  margin-left: 1.6%;
-}
-
-html.csscalc .layout-footer .footer-row-1 > .fg-col:last-child:first-child,
-html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child:first-child {
-  margin-left: 0;
-}
-
-/*
-html.csscalc .layout-footer .footer-row-1 > .fg-col:last-child {
-  width: -webkit-calc(33.3333% - (20px / 2));
-  width: calc(33.3333% - (20px / 2));
-}
-
-html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
-  width: 32.5333%;
-}
- */
-
 .layout-footer .footer-row-1 > .fg-col h3 {
-/*
-  margin: 18px 0 20px 0;
- */
   color: rgba(219, 218, 218, 0.5);
   font-size: 1.3em;
   font-weight: 400;
@@ -316,20 +190,15 @@ html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
   margin-top: 10px;
 }
 
-.layout-footer .footer-row-1 > .fg-col p {
-  margin: 0 0 20px 0;
-}
-
 .layout-footer .footer-row-1 > .fg-col input[type="email"] {
-/*
-  width: 98%;
-  max-width: 98%;
-  padding: 2%;
- */
   background: #222222;
   border: 1px solid rgba(219, 218, 218, 0.1);
   border-radius: 0;
-  font-family: 'Calibre Web', Helvetica, Arial, sans-serif !important;
+}
+
+/* Space between mailing list copy and form field */
+.layout-footer .footer-row-1 > .fg-col p {
+  margin: 0 0 20px 0;
 }
 
 .layout-footer .footer-row-1 .puppet-logo {
@@ -338,18 +207,12 @@ html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
   height: auto;
 }
 
-.layout-footer .footer-row-1 .social-icon {
-  float: left;
-  margin-top: 10px;
-}
-
-.layout-footer .footer-row-1 .social-icon + .social-icon {
-  margin-left: 10px;
-}
-
 .layout-footer .footer-row-1 .social-icon img {
+  float: left;
+  margin-top: 20px;
   width: 20px;
   height: auto;
+  margin-right: 10px;
 }
 
 .layout-footer .footer-row-2 {
@@ -363,41 +226,12 @@ html:not(.csscalc) .layout-footer .footer-row-1 > .fg-col:last-child {
   overflow: auto;
   padding: 10px;
   margin: 0 auto;
-/*
-  max-width: 960px;
- */
 }
 
 .layout-footer .footer-row-2 .footer-row-2-wrapper a {
-/*
-  float: left;
- */
   color: rgba(219, 218, 218, 0.5);
+  margin-right: 20px;
 }
-
-.layout-footer .footer-row-2 .footer-row-2-wrapper a + a {
-  margin-left: 20px;
-}
-
-/*
-.layout-footer .footer-row-2 .footer-row-2-wrapper .footer-row-2-col-1 {
-  float: left;
-}
- */
-
-/*
-.layout-footer .footer-row-2 .footer-row-2-wrapper .footer-row-2-col-2 {
-  float: right;
-}
- */
-
-/*
-.layout-footer .fg-col {
-  display: block;
-  float: left;
-  width: 25%;
-}
- */
 
 .social-icon img {
   opacity: 0.7;

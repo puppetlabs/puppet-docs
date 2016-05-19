@@ -6,7 +6,7 @@
 
     <!-- Utility JS -->
     <script type="text/javascript" src="/files/javascripts/prism.js"></script>
-    <script type='text/javascript' src='/files/javascripts/navigation-accordion.js'></script>
+    <script type="text/javascript" src="/files/javascripts/navigation-accordion.js"></script>
     <!-- Hover anchor links on headers -->
       <!-- Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs -->
       <script type="text/javascript" src="/files/javascripts/anchor.min.js"></script>
@@ -72,14 +72,4 @@
           return false;
         }
       });
-    </script>
-
-    <script type="text/javascript">
-        // The interim language switcher, used only on the homepages
-        jQuery('#language-select').on('change', function() {
-            var optionSelected = $("option:selected", this);
-            if (optionSelected.attr('data-language') != 'null') {
-                window.location = optionSelected.attr('data-url');
-            }
-        });
     </script>

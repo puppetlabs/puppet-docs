@@ -3,6 +3,8 @@ vendor/puppet
 vendor/hiera
 vendor/facter
 vendor/bundle
+vendor/enterprise-dist
+vendor/puppet-agent
 bin/mar*
 output
 references_output

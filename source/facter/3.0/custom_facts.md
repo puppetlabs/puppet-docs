@@ -22,6 +22,8 @@ the best solution is to add a new fact to Facter. These additional facts
 can then be distributed to Puppet clients and are available for use
 in manifests and templates, just like any other fact would be.
 
+> **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` will fail with an error. For more information, see the [Facter 3.0 release notes](./release_notes.html).
+
 ## The Concept
 
 You can add new facts by writing snippets of Ruby code on the
@@ -89,8 +91,8 @@ This allows you to do something like this:
 > ### Note: Changes in Built-in Pluginsync Support in Facter 3
 >
 > Facter 2.4 **deprecated** Facter's support for loading facts via Puppet's pluginsync
-> (the `-p` option), and Facter 3.0.0 **removed** the `-p` option. However, we reversed 
-> this decision in Facter 3.0.2 and re-enabled the `-p` option. For details about current 
+> (the `-p` option), and Facter 3.0.0 **removed** the `-p` option. However, we reversed
+> this decision in Facter 3.0.2 and re-enabled the `-p` option. For details about current
 > and future support for this option, see the [Facter 3.0.2 release notes][].
 
 ## Two Parts of Every Fact

@@ -123,6 +123,6 @@ style and usage guide, which are both in the root of this project.
 Copyright
 ---------
 
-Copyright (c) 2009-2011 Puppet Labs. See LICENSE for details.
+Copyright (c) 2009-2016 Puppet, Inc. See LICENSE for details.
 
 
