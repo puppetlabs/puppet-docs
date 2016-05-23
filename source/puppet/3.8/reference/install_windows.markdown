@@ -3,7 +3,7 @@ layout: default
 title: "Installing Puppet: Microsoft Windows"
 ---
 
-[downloads]: http://downloads.puppetlabs.com/windows
+[downloads]: https://downloads.puppetlabs.com/windows
 [peinstall]: /pe/latest/install_windows.html
 [pre_install]: ./pre_install.html
 [puppet.conf]: /puppet/latest/reference/config_file_main.html
@@ -17,34 +17,33 @@ title: "Installing Puppet: Microsoft Windows"
 First
 -----
 
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+Before installing Puppet, review the [pre-install tasks.](./pre_install.html)
 
 Supported Versions
 -----
 
-{% include platforms_windows.markdown %}
+{% include pup38_platforms_windows.markdown %}
 
-To install on other operating systems, see the pages linked in the navigation sidebar.
-
+To install on other operating systems, see the product navigation.
 
 Step 1: Configure a Puppet Master Server
 -----
 
-Windows machines can't act as puppet master servers. Before installing any Windows agent nodes, be sure that you have a \*nix puppet master installed and configured, and that you know its permanent hostname.
+Windows machines can't act as Puppet master servers. Before installing Puppet agent on any Windows nodes, install and configure a \*nix Puppet master and note its permanent hostname.
 
-If you haven't done this yet, go back to the [pre-install tasks][pre_install], make any necessary decisions, and follow the install instructions and post-install tasks for your puppet master's OS.
+If you haven't done this yet, go back to the [pre-install tasks][pre_install], make any necessary decisions, and follow the install instructions and post-install tasks for your Puppet master's OS.
 
-Step 2: Download Package
+Step 2: Download Installer
 -----
 
-[Puppet Labs' Windows packages can be found here.][downloads] You will need the most recent package for your OS's architecture:
+Windows installers for Puppet agent are available at [downloads.puppetlabs.com/windows][downloads]. You need the most recent Puppet 3.8 package for your OS's architecture:
 
-* 64-bit versions of Windows Vista/2008 and higher should use `puppet-<VERSION>-x64.msi`.
-* 32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, should use `puppet-<VERSION>.msi`.
+-   64-bit versions of Windows Vista/2008 and higher should use `puppet-<VERSION>-x64.msi`.
+-   32-bit versions of Windows, as well as the 64-bit version of Windows Server 2003, should use `puppet-<VERSION>.msi`.
 
 These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
-The list of Windows packages may include release candidates, whose filenames have something like `-rc1` after the version number. Only use these if you want to test upcoming Puppet versions.
+The list of Windows packages might include release candidates, whose filenames have something like `-rc1` after the version number. Only use these if you want to test upcoming Puppet versions.
 
 Step 3: Install Puppet
 -----

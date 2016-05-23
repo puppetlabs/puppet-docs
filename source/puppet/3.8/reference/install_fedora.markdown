@@ -12,18 +12,18 @@ title: "Installing Puppet: Fedora"
 First
 -----
 
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+Before installing Puppet, review the [pre-install tasks.](./pre_install.html)
 
 Supported Versions
 -----
 
-{% include platforms_fedora.markdown %}
+{% include pup38_platforms_fedora.markdown %}
 
-Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
+Users of out-of-production versions might have vendor packages of Puppet available, but can't use our provided packages.
 
-To install on other operating systems, see the pages linked in the navigation sidebar.
+To install on other operating systems, see the product navigation.
 
-Step 1: Enable the Puppet Labs Package Repository
+Step 1: Enable the Puppet Package Repository
 -----
 
 The newest versions of Puppet can be installed from the [yum.puppetlabs.com](https://yum.puppetlabs.com) package repository.
@@ -32,7 +32,7 @@ The newest versions of Puppet can be installed from the [yum.puppetlabs.com](htt
 
 ### Optionally: Enable Prereleases
 
-If you want to be able to test release candidate (RC) versions of Puppet and related projects, you can turn on the prerelease repo, which is disabled by default. Note that RCs may contain unexpected changes, so be careful.
+To test release candidate (RC) versions of Puppet and related projects, you can enable the prerelease repo, which is disabled by default. Note that RCs can contain unexpected changes, so be careful.
 
 {% include repo_pre_redhat.markdown %}
 
@@ -41,19 +41,23 @@ Step 2: Install Puppet on the Puppet Master Server
 
 (Skip this step for a standalone deployment.)
 
-On your puppet master node, run `sudo yum install puppet-server`. This will install Puppet and a systemd configuration (`/usr/lib/systemd/system/puppetmaster.service`) for running a test-quality puppet master server.
+On your Puppet master node, run:
 
-Do not start the puppet master service yet.
+    sudo yum install puppet-server
+
+This installs Puppet and a `systemd` configuration (`/usr/lib/systemd/system/puppetmaster.service`) to run a test-quality Puppet master server.
+
+Do not start the Puppet master service yet.
 
 ### Upgrading
 
-**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+> **Note:** Read our [tips on upgrading](./upgrading.html) before upgrading your Puppet deployment.
 
-To upgrade to the latest version of Puppet, you can run:
+To upgrade a Puppet master to the latest version of Puppet 3, run:
 
-    $ sudo puppet resource package puppet-server ensure=latest
+    sudo puppet resource package puppet-server ensure=latest
 
-You'll need to restart the puppet master web server after upgrading.
+After upgrading, restart the Puppet master web server.
 
 Step 3: Install Puppet on Agent Nodes
 -----
@@ -68,12 +72,11 @@ Do not start the `puppet` service yet.
 
 **Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
 
-To upgrade to the latest version of Puppet, you can run:
+To upgrade a Puppet agent to the latest version of Puppet 3, run:
 
     $ sudo puppet resource package puppet ensure=latest
 
-You'll need to restart the `puppet` service after upgrading.
-
+After upgrading, restart the `puppet` service.
 
 Next
 ----
