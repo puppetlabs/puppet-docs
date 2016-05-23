@@ -6,8 +6,8 @@ canonical: "/puppet/latest/reference/install_pre.html"
 
 [peinstall]: {{pe}}/install_basic.html
 [sysreqs]: ./system_requirements.html
-[ruby]: ./system_requirements.html#basic-requirements
-[architecture]: /puppet/latest/reference/architecture.html
+[ruby]: ./system_requirements.html#requirements-and-prerequisites
+[architecture]: ./architecture.html
 [puppetdb]: {{puppetdb}}/
 [server_setting]: ./configuration.html#server
 
@@ -15,61 +15,55 @@ canonical: "/puppet/latest/reference/install_pre.html"
 
 Before you install Puppet, you should do the following tasks.
 
-## Decide on a Deployment Type
+## Decide on a deployment type
 
-Puppet usually uses an agent/master (client/server) architecture, but it can also run in a self-contained architecture. Your choice determines which packages you'll be installing, and what extra configuration you'll need to do.
+Puppet usually uses an agent/master (client/server) architecture, but it can also run in a self-contained architecture. Your choice determines which packages you need to install and what additional configuration you'll need to do. Puppet's documentation includes [an overview of Puppet's architecture][architecture] that can help you decide.
 
-Additionally, you should consider using [PuppetDB][], which enables extra Puppet features and makes it easy to query and analyze Puppet's data about your infrastructure.
+Additionally, consider using [PuppetDB][], which enables extra Puppet features and makes it easy to query and analyze Puppet's data about your infrastructure.
 
-[Learn more about Puppet's architectures here.][architecture]
+## Designate servers
 
-## Designate Servers
+If you choose the standard agent/master architecture, you'll need to decide which servers will act as the Puppet master (and the [PuppetDB][] server, if you choose to use it). In most installations, the Puppet master should run [Puppet Server]({{puppetserver}}), a high-performance implementation of the Puppet master service.
 
-If you choose the standard agent/master architecture, you'll need to decide which server(s) will act as the Puppet master (and the [PuppetDB][] server, if you choose to use it).
+You should completely install and configure Puppet or Puppet Server on your Puppet masters, and PuppetDB if you choose to use it, before installing Puppet on any agents. The master must run some form of \*nix; Windows and OS X systems can't run the master service.
 
-You should completely install and configure Puppet on any Puppet masters and PuppetDB servers before installing on any agent nodes. The master must be running some kind of \*nix. Windows machines can't be masters.
+## Check OS versions and system requirements
 
-A Puppet master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk. It must also be reachable at a reliable hostname.
+The Puppet master service performs best on a dedicated server with multiple fast processor cores, lots of RAM, and a fast disk. The Puppet agent service, on the other hand, can run on nearly any system. Review Puppet's [system requirements][sysreqs] and consider the following:
 
-> Note: Agent nodes will default to contacting the master at the hostname `puppet`. If you make sure this hostname resolves to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
+-   Your Puppet masters should have the necessary resources to handle the number of agents they need to serve.
+-   It's easier to install Puppet on operating systems for which we provide official packages.
+-   Systems we don't provide packages for _might_ be able to run Puppet, as long as [Puppet's prerequisites, including Ruby][ruby], are installed. Puppet is also more difficult to install and maintain on these systems.
 
+## Check your network configuration
 
-## Check OS Versions and System Requirements
+In an agent/master deployment, your network must be prepared for Puppet's traffic.
 
-See the [system requirements](system_requirements.html) for the version of Puppet you are installing, and consider the following:
+-   **Firewalls:** The Puppet master must allow incoming connections on port 8140, and agents must be able to connect to the master on that port.
+-   **Name resolution:** Every node must have a unique hostname, and you **must** configure both forward _and_ reverse DNS resolution correctly on every node. (Instructions for configuring DNS are beyond the scope of this guide. If your site lacks DNS, you must configure the `hosts` file on each agent.)
 
-* Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
-* Systems we provide official packages for will have an easier install path.
-* Systems we don't provide packages for _might_ still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed. See the [list of supported Ruby versions and prerequisites.][ruby] You'll also need to follow a more complex install path.
+    > **Note:** By default, the Puppet agent service attempts to contact a master at the hostname `puppet`. If you resolve this hostname on your network to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
 
-## Check Your Network Configuration
+## Check timekeeping on your Puppet master
 
-In an agent/master deployment, you must prepare your network for Puppet's traffic.
+The time must be set accurately on the Puppet master that will act as the infrastructure's certificate authority. You can configure agents and masters to synchronize their clocks via the [Network Time Protocol](http://www.ntp.org) (NTP). Consult your operating system's documentation to install and configure NTP synchronization on your nodes.
 
-* **Firewalls:** The Puppet master server must allow incoming connections on port 8140, and agent nodes must be able to connect to the master on that port.
-* **Name resolution:** Every node must have a unique hostname. **Forward and reverse DNS** must both be configured correctly. (Instructions for configuring DNS are beyond the scope of this guide. If your site lacks DNS, you must write an `/etc/hosts` file on each node.)
-    * **Note:** The default Puppet master hostname is `puppet`. Your agent nodes can be ready sooner if this hostname resolves to your Puppet master.
-
-## Check Timekeeping on Your Puppet Master Server
-
-The time must be set accurately on the Puppet master server that will be acting as the certificate authority. You should probably use NTP.
-
-(If the time is wrong, it might mistakenly issue agent certificates from the distant past or future, which other nodes will treat as expired.)
+If the time on the master falls out of sync with agents, it might mistakenly issue agent certificates from the distant past or future that other nodes will treat as expired.
 
 ## Next: Install Puppet
 
 Once these tasks are complete, you can install Puppet.
 
-Install Puppet Server before installing Puppet on your agent nodes.
+Install Puppet Server before installing Puppet on your agents.
 
-* [Installing Puppet Server]({{puppetserver}}/install_from_packages.html)
+-   [Installing Puppet Server]({{puppetserver}}/install_from_packages.html)
 
 If you're using PuppetDB, install it once Puppet Server is up and running.
 
-* [Installing PuppetDB]({{puppetdb}}/install_via_module.html)
+-   [Installing PuppetDB]({{puppetdb}}/install_via_module.html)
 
-Once Puppet Server is installed and configured, you can install agents:
+Once Puppet Server is installed and configured, you can install agents.
 
-* [Installing Puppet Agent on Linux](./install_linux.html)
-* [Installing Puppet Agent on Windows](./install_windows.html)
-* [Installing Puppet Agent on Mac OS X](./install_osx.html)
+-   [Installing Puppet agent on Linux](./install_linux.html)
+-   [Installing Puppet agent on Windows](./install_windows.html)
+-   [Installing Puppet agent on OS X](./install_osx.html)
