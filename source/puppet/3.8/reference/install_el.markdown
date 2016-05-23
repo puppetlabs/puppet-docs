@@ -17,7 +17,7 @@ Before installing Puppet, review the [pre-install tasks.](./pre_install.html)
 Supported Versions
 -----
 
-{% include pup38_redhat_like.markdown %}
+{% include pup38_platforms_redhat_like.markdown %}
 
 To install on other operating systems, see the product navigation.
 
