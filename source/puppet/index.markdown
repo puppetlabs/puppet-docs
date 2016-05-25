@@ -94,7 +94,6 @@ Get the latest version of Puppet up and running.
 * [Visual index](/guides/techniques.html) --- A list of common syntax elements.
 * [Troubleshooting](/guides/troubleshooting.html) --- Avoid common problems and confusions.
 * [Style Guide](/guides/style_guide.html) --- Puppet community conventions.
-* [Best Practices](/guides/best_practices.html) --- Use Puppet effectively.
 * [Exported Resources](/guides/exported_resources.html) --- Share data between hosts.
 * [Using the Augeas Resource Type](/guides/augeas.html) --- Safely edit many types of config files.
 
@@ -133,11 +132,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Writing Custom Types & Providers](/guides/custom_types.html)
 * [Complete Resource Example](/guides/complete_resource_example.html) --- More information on custom types & providers
 * [Provider Development](/guides/provider_development.html) --- More about providers.
-
-### Developing Puppet
-
-* [Development Life Cycle](/guides/development_lifecycle.html) --- Learn how to contribute code.
-* [Puppet Internals](/guides/puppet_internals.html) --- Understand how Puppet works internally.
 
 
 * * *
