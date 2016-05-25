@@ -91,7 +91,7 @@ Get the latest version of Puppet up and running.
 
 ### Help with writing Puppet code
 
-* [Techniques](/guides/techniques.html) --- Common design patterns, tips, and tricks.
+* [Visual index](/guides/techniques.html) --- A list of common syntax elements.
 * [Troubleshooting](/guides/troubleshooting.html) --- Avoid common problems and confusions.
 * [Style Guide](/guides/style_guide.html) --- Puppet community conventions.
 * [Best Practices](/guides/best_practices.html) --- Use Puppet effectively.
