@@ -9,7 +9,7 @@ title: "Deprecated Command Line Features"
 [pe_mco_puppet]: /pe/latest/orchestration_puppet.html
 [pssh]: https://code.google.com/p/parallel-ssh/
 [puppetdb]: /puppetdb/latest
-[inventory service]: /guides/inventory_service.html
+[inventory service]: https://github.com/puppetlabs/puppet-docs/blob/0db89cbafa112be256aab67c42b913501200cdca/source/guides/inventory_service.markdown
 [puppetdb_curl]: /puppetdb/latest/api/query/curl.html
 [puppetdb_facts_wire]: /puppetdb/latest/api/wire_format/facts_format_v3.html
 [puppetdb_facts_replace]: /puppetdb/latest/api/commands.html#replace-facts-version-3

@@ -12,7 +12,7 @@ title: "Deprecated Settings"
 [config file environments]: ./environments_classic.html
 [directory environments]: ./environments.html
 [puppetdb]: /puppetdb/latest
-[inventory service]: /guides/inventory_service.html
+[inventory service]: https://github.com/puppetlabs/puppet-docs/blob/0db89cbafa112be256aab67c42b913501200cdca/source/guides/inventory_service.markdown
 
 The following Puppet settings are deprecated and will be removed in Puppet 4.0. Many of them are related to other deprecated features.
 

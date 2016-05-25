@@ -118,8 +118,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Hacking and extending: Using Puppet's data
 
-* [Puppet Data Library: Overview](/guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
-* [Inventory Service](/guides/inventory_service.html) --- Use Puppet's inventory of nodes at your site in your own custom applications.
 * [Reporting](/guides/reporting.html) --- Learn what your nodes are up to.
 
 ### Hacking and extending: APIs and interfaces
