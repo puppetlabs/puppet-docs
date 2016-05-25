@@ -3,9 +3,6 @@ layout: default
 title: "Puppet 4.1 Release Notes"
 ---
 
-
-
-
 This page lists the changes in Puppet 4.1 and its patch releases.
 
 Puppet's version numbers use the format X.Y.Z, where:
@@ -13,7 +10,6 @@ Puppet's version numbers use the format X.Y.Z, where:
 * X must increase for major backwards-incompatible changes
 * Y may increase for backwards-compatible new functionality
 * Z may increase for bug fixes
-
 
 ## Puppet 4.1.0
 
@@ -109,11 +105,10 @@ This release fixes several bugs with the Puppet language.
 * [PUP-4520: Future parser is not correctly handling the default case of a case statement](https://tickets.puppetlabs.com/browse/PUP-4520)
 * [PUP-4278: unless with else when then part is empty produces nil result (future parser)](https://tickets.puppetlabs.com/browse/PUP-4278)
 
-
 ### Misc. Bug Fixes
 
 * [PUP-4420: Executable external facts broken in 4.0.0: not executable on agent](https://tickets.puppetlabs.com/browse/PUP-4420)
-* [PUP-4436: With a gem install of puppet, when run as root, 'puppet {agent|apply}' fail](https://tickets.puppetlabs.com/browse/PUP-4436)
+* [PUP-4436: With a gem install of puppet, when run as root, 'puppet agent` and `puppet apply' fail](https://tickets.puppetlabs.com/browse/PUP-4436)
 * [PUP-4461: manifest changes are ignored when using hiera_include](https://tickets.puppetlabs.com/browse/PUP-4461)
 * [PUP-4607: External facts no longer load from pluginsync'ed directory](https://tickets.puppetlabs.com/browse/PUP-4607)
 * [PUP-927: puppet apply on Windows always uses *nix style newlines from templates](https://tickets.puppetlabs.com/browse/PUP-927)
