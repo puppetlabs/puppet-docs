@@ -140,13 +140,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Puppet Internals](/guides/puppet_internals.html) --- Understand how Puppet works internally.
 
 
-### Historical guides
-
-Puppet has gone through some transitional periods, and we've occasionally written short guides to explain major changes in its behavior.
-
-* [Scope and Puppet](/guides/scope_and_puppet.html) --- Understand and banish dynamic lookup warnings with Puppet 2.7.
-
-
 * * *
 
 ## Other resources
