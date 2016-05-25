@@ -1,0 +1,19 @@
+
+{% comment %}Requires variables: include.current_language {% endcomment %}
+<div class="btn-group">
+  <button type="button" class="btn btn-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{include.current_language}}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-right">
+    {% assign this_language = 'English' %}
+    <li{% if include.current_language == this_language %} class="active"{% endif %}><a href="/">{{this_language}}</a></li>
+    {% assign this_language = '日本語' %}
+    <li{% if include.current_language == this_language %} class="active"{% endif %}><a href="/ja/">{{this_language}}</a></li>
+    {% assign this_language = 'Español' %}
+    <li{% if include.current_language == this_language %} class="active"{% endif %}><a href="/es/">{{this_language}}</a></li>
+    {% assign this_language = 'Deutsch' %}
+    <li{% if include.current_language == this_language %} class="active"{% endif %}><a href="/de/pe/2015.2/index.html">{{this_language}}</a></li>
+
+  </ul>
+</div>

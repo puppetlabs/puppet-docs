@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Puppet Documentation Index
+title: Puppet documentation index
 toc: false
 ---
 
@@ -8,8 +8,8 @@ This is the documentation for Puppet, as well as several related tools and appli
 
 Most of the content here applies equally to Puppet Enterprise and open source releases of Puppet, but make sure you're using the right docs version for your Puppet Enterprise version. If you get lost, check the version note in red text at the top of each page.
 
-Main Docs
------
+## Main docs
+
 
 Practically speaking, Puppet is a collection of several projects. Here's the documentation for all of the major components that make up a Puppet deployment:
 
@@ -24,8 +24,8 @@ PuppetDB      | [Latest](/puppetdb/latest)         | [Other versions](/puppetdb)
 
 * * *
 
-Cheat Sheets and Glossary
-----------
+## Cheat sheets and glossary
+
 
 Small documents for getting help fast.
 
@@ -35,8 +35,7 @@ Small documents for getting help fast.
 
 * * *
 
-Puppet Reference Manuals
------
+## Puppet reference manuals
 
 A concise reference to Puppet's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
@@ -46,7 +45,7 @@ A concise reference to Puppet's usage and internals. Use the left sidebar of any
 * [Puppet 4.2](/puppet/4.2/reference) is included with Puppet Enterprise 2015.2.
 
 
-### Older Versions
+### Older versions
 
 * [Puppet 4.1](/puppet/4.1/reference)
 * [Puppet 4.0](/puppet/4.0/reference)
@@ -57,7 +56,7 @@ A concise reference to Puppet's usage and internals. Use the left sidebar of any
 * [Puppet 3.0 through 3.4](/puppet/3/reference)
 * [Puppet 2.7](/puppet/2.7/reference)
 
-### Other Reference Material
+### Other reference material
 
 * [Versioned References](/references/) --- Inline reference docs from Puppet's past and present.
 * [History of the Puppet Language](/guides/language_history.html) --- A table showing which language features were added and removed in which Puppet versions.
@@ -65,12 +64,11 @@ A concise reference to Puppet's usage and internals. Use the left sidebar of any
 
 * * *
 
-Puppet Guides
--------------
+## Puppet guides
 
 Learn about different areas of Puppet, problem fixes, and design solutions.
 
-### Installing and Configuring
+### Installing and configuring
 
 Get the latest version of Puppet up and running.
 
@@ -81,17 +79,17 @@ Get the latest version of Puppet up and running.
   * [Upgrading Puppet 3.x Agents](/puppet/4.0/reference/upgrade_agent.html)
   * [Upgrading Puppet 3.x Servers](/puppet/4.0/reference/upgrade_server.html)
 
-### Previous Install Guides
+### Previous install guides
 
 * [The Puppet 3.8 Installation Guide](puppet/3.8/reference/pre_install.html)
 
-### Building and Using Modules
+### Building and using modules
 
 * [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html) --- Nearly all of your Puppet code should be in modules.
 * [Installing Modules from the Puppet Forge](/puppet/latest/reference/modules_installing.html) --- Save time by using pre-existing modules.
 * [Publishing Modules on the Puppet Forge](/puppet/latest/reference/modules_publishing.html) --- Preparing your best modules to go public.
 
-### Help With Writing Puppet Code
+### Help with writing Puppet code
 
 * [Techniques](/guides/techniques.html) --- Common design patterns, tips, and tricks.
 * [Troubleshooting](/guides/troubleshooting.html) --- Avoid common problems and confusions.
@@ -101,7 +99,7 @@ Get the latest version of Puppet up and running.
 * [Exported Resources](/guides/exported_resources.html) --- Share data between hosts.
 * [Using the Augeas Resource Type](/guides/augeas.html) --- Safely edit many types of config files.
 
-### Using Optional Features
+### Using optional features
 
 * [Puppet File Serving](/guides/file_serving.html) --- Files in modules are automatically served; this guide explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
 
@@ -112,25 +110,25 @@ You can manage Windows nodes side by side with your \*nix infrastructure, with P
 * [Overview of Puppet on Windows](/windows/)
 * [Troubleshooting Puppet on Windows](/windows/troubleshooting.html)
 
-### Tuning and Scaling
+### Tuning and scaling
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
 
 * [Running a Production-Grade Puppet Master Server With Passenger](/guides/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
 * [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- A guide to deployments with multiple Puppet masters.
 
-### Hacking and Extending: Using Puppet's Data
+### Hacking and extending: Using Puppet's data
 
 * [Puppet Data Library: Overview](/guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
 * [Inventory Service](/guides/inventory_service.html) --- Use Puppet's inventory of nodes at your site in your own custom applications.
 * [Reporting](/guides/reporting.html) --- Learn what your nodes are up to.
 
-### Hacking and Extending: APIs and Interfaces
+### Hacking and extending: APIs and interfaces
 
 * [External Nodes](/guides/external_nodes.html) --- Specify what your machines do using external data sources.
     * [LDAP Nodes](/guides/ldap_nodes.html) --- A special-case tool for keeping node information in your LDAP directory.
 
-### Hacking and Extending: Ruby Plugins
+### Hacking and extending: Ruby plugins
 
 * [Plugins In Modules](/guides/plugins_in_modules.html) --- Where to put plugins, and how to sync them to clients.
 * [Writing Custom Facts](/facter/latest/custom_facts.html)
@@ -145,7 +143,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Puppet Internals](/guides/puppet_internals.html) --- Understand how Puppet works internally.
 
 
-### Historical Guides
+### Historical guides
 
 Puppet has gone through some transitional periods, and we've occasionally written short guides to explain major changes in its behavior.
 
@@ -154,7 +152,6 @@ Puppet has gone through some transitional periods, and we've occasionally writte
 
 * * *
 
-Other Resources
----------------
+## Other resources
 
 * [Puppet Bug Tracker](https://tickets.puppetlabs.com/browse/PUP)

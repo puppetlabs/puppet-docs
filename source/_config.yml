@@ -4,7 +4,7 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-url: "https://docs.puppetlabs.com"
+url: "https://docs.puppet.com"
 safe: false
 # YAML frontmatter defaults:
 defaults: [ {scope: {path: ""},
@@ -57,8 +57,8 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
-#  puppet: 4.3
-#  hiera: 3.0
+ # puppet: 4.4
+ # hiera: 3.1
 
 document_names:
   pe: Puppet Enterprise
@@ -91,7 +91,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/burnside
+      commit: origin/pe2016.1.2
       subdirectory: source
     my_versions:
       puppet: 4.4
@@ -134,7 +134,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe3.8.4
+      commit: origin/pe3.8.5
       subdirectory: source
     my_versions:
       puppet: 3.8
@@ -208,6 +208,14 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
+  /puppet/4.5/reference:
+    doc: puppet
+    version: 4.5
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.1
+      hiera: 3.2
+      puppetserver: 2.4
   /puppet/4.4/reference:
     doc: puppet
     version: 4.4
@@ -345,13 +353,25 @@ documents:
     version: 1
     nav: /_includes/hiera1.html
 
+  /puppetserver/2.4:
+    doc: puppetserver
+    version: 2.4
+    nav: /puppet/4.5/reference/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 631d5d83
+      subdirectory: documentation
+    my_versions:
+      puppet: 4.5
+      facter: 3.1
+      hiera: 3.2
   /puppetserver/2.3:
     doc: puppetserver
     version: 2.3
     nav: /puppet/4.4/reference/_puppet_toc.html
     external_source:
-      repo: git://github.com/puppetlabs/puppet-server.git
-      commit: origin/stable
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 592ecf9
       subdirectory: documentation
     my_versions:
       puppet: 4.4
@@ -362,7 +382,7 @@ documents:
     version: 2.2
     nav: /puppet/4.3/reference/_puppet_toc.html
     external_source:
-      repo: git://github.com/puppetlabs/puppet-server.git
+      repo: git://github.com/puppetlabs/puppetserver.git
       commit: puppet-server-2.2.1
       subdirectory: documentation
     my_versions:
@@ -374,7 +394,7 @@ documents:
     version: 2.1
     nav: /_includes/puppet4.2.html
     external_source:
-      repo: git://github.com/puppetlabs/puppet-server.git
+      repo: git://github.com/puppetlabs/puppetserver.git
       # This is a tag:
       commit: puppet-server-2.1.3-alpha1
       subdirectory: documentation
@@ -383,7 +403,7 @@ documents:
     version: 2.0
     nav: /_includes/server2.0.html
     external_source:
-      repo: git://github.com/puppetlabs/puppet-server.git
+      repo: git://github.com/puppetlabs/puppetserver.git
       commit: 239776a
       subdirectory: documentation
   /puppetserver/1.1:
@@ -391,7 +411,7 @@ documents:
     version: 1.1
     nav: /_includes/puppet_3_8.html
     external_source:
-      repo: git://github.com/puppetlabs/puppet-server.git
+      repo: git://github.com/puppetlabs/puppetserver.git
       commit: origin/1.x
       subdirectory: documentation
   /puppetserver/1.0:
@@ -399,17 +419,25 @@ documents:
     version: 1.0
     nav: /_includes/server1.0.html
     external_source:
-      repo: git://github.com/puppetlabs/puppet-server.git
+      repo: git://github.com/puppetlabs/puppetserver.git
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/4.1:
+    doc: puppetdb
+    version: 4.1
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/stable
+      subdirectory: documentation
   /puppetdb/4.0:
     doc: puppetdb
     version: 4.0
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/stable
+      commit: origin/4.0.x
       subdirectory: documentation
   /puppetdb/3.2:
     doc: puppetdb

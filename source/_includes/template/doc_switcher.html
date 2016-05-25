@@ -1,0 +1,26 @@
+
+<div class="btn-group">
+  <button type="button" class="btn btn-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {% if page.doc %}{{ site.document_names[page.doc.doc] }}{% else %}Choose a Product{% endif %}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li class="dropdown-header">Products</li>
+    <li{% if page.doc.doc == 'pe' %} class="active"{% endif %}><a href="{{pe}}/">Puppet Enterprise</a></li>
+    <li{% if page.doc.doc == 'puppet' %} class="active"{% endif %}><a href="{{puppet}}/">Puppet (PE and open source)</a></li>
+    <li{% if page.doc.doc == 'puppetserver' %} class="active"{% endif %}><a href="{{puppetserver}}/">Puppet Server (PE and open source)</a></li>
+    <li{% if page.doc.doc == 'puppetdb' %} class="active"{% endif %}><a href="{{puppetdb}}/">PuppetDB (PE and open source)</a></li>
+    <li{% if page.doc.doc == 'facter' %} class="active"{% endif %}><a href="{{facter}}/">Facter (PE and open source)</a></li>
+    <li{% if page.doc.doc == 'hiera' %} class="active"{% endif %}><a href="{{hiera}}/">Hiera (PE and open source)</a></li>
+    <li><a href="/mcollective/">MCollective (PE and open source)</a></li>
+
+    <li class="dropdown-header">Other</li>
+    <li><a href="/">Puppet Docs Front Page</a></li>
+    <li><a href="/security/">Security Announcements</a></li>
+    <li><a href="/forge/">Using the Puppet Forge</a></li>
+    <li><a href="/puppet/latest/reference/type.html">Resource Type Reference</a></li>
+    <li><a href="/community/community_guidelines.html">Puppet Community Guidelines</a></li>
+    <li><a href="/references/glossary.html">Glossary of Puppet Terms</a></li>
+
+  </ul>
+</div>

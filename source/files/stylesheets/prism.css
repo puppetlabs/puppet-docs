@@ -1,4 +1,4 @@
-/* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+apacheconf+bash+c+cpp+coffeescript+css-extras+http+ini+java+less+markdown+perl+php+powershell+python+ruby+scss+sql+wiki+yaml&plugins=line-highlight+line-numbers */
+/* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+apacheconf+bash+c+cpp+coffeescript+ruby+css-extras+diff+http+ini+java+json+less+markdown+perl+php+powershell+puppet+python+rust+scss+sql+wiki+yaml&plugins=line-highlight+line-numbers */
 /**
  * prism.js default theme for JavaScript, CSS and HTML
  * Based on dabblet (http://dabblet.com)
@@ -8,13 +8,14 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	/* color: black; */
+	/* background: none; */
 	/* text-shadow: 0 1px white; */
-	/* font-family: Consolas, Monaco, 'Andale Mono', monospace; */
-	direction: ltr;
+	/* font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; */
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	/* word-wrap: normal; */
 	/* line-height: 1.5; */
 
 	-moz-tab-size: 4;
@@ -64,6 +65,7 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
+	white-space: normal;
 }
 
 .token.comment,
@@ -150,10 +152,10 @@ pre[data-line] {
 	margin-top: 1em; /* Same as .prism’s padding-top */
 
 	background: hsla(24, 20%, 50%,.08);
-	background: -moz-linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-	background: -webkit-linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-	background: -o-linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-	background: linear-gradient(left, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+	background: -moz-linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+	background: -webkit-linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+	background: -o-linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
 
 	pointer-events: none;
 
@@ -184,6 +186,7 @@ pre[data-line] {
 		top: auto;
 		bottom: .4em;
 	}
+
 pre.line-numbers {
 	position: relative;
 	padding-left: 3.8em;

@@ -162,7 +162,7 @@ We want one of these two nodes, `kermit.example.com`, to act as the primary orga
       - 2.us.pool.ntp.org iburst
       - 3.us.pool.ntp.org iburst
 
-Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/hieradata/node` directory as `kermit.example.com.yaml`.
+Since we want to provide this data for a specific node, and since we're using the `fqdn` fact to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/hieradata/nodes` directory as `kermit.example.com.yaml`.
 
 Once you've saved that, let's do a quick test using the [Hiera command line tool][]:
 

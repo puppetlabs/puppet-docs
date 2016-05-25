@@ -1,0 +1,245 @@
+/* NF: Inline images should have an outer glow for legibility, especially in cases where we have screenshots of browser-rendered text. */
+div#rendered-markdown li img,
+div#rendered-markdown p img {
+  border: solid 1px #ccc;
+  box-shadow: 0px 0px 8px #999;
+  /* Keep high-rez images from blowing up the page */
+  max-width: 100%;
+}
+
+/* Hide the real custom search engine for some reason. (I think something made it hard/impossible to style, but someone else originally did this so I'm not really sure. There's a replacement search form that uses JS to submit the real one.) */
+
+#cse-search-box {
+  display: none;
+}
+
+/* Site Header */
+/* -------------------------------------- */
+
+.navbar-brand {
+  height: auto;
+}
+
+.navbar .row {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+a.navbar-brand img {
+  width: auto;
+  height: 46px;
+}
+
+/* Move the search icon into the search bar. */
+
+img#search-icon {
+  height: 1.25rem;
+  width: 1.25rem;
+  position: relative;
+  right: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  /* Style wide nav options */
+  div#navbar-container {
+    padding: 0;
+  }
+
+  div#navbar-container .row {
+    margin: 0;
+  }
+
+  div#navbar-bottom {
+    border-top: 1px solid #303030;
+  }
+
+  a#navbar-logo {
+    margin-left: 25px;
+  }
+
+  div#navbar-container div#navbar-bottom.row form.navbar-right {
+    margin-right: 5px;
+  }
+
+  div#navbar-container div#navbar-top.row {
+    margin-left: 14.3rem;
+  }
+
+  li.navbar-gap {
+    margin-left: 3.75rem;
+  }
+
+  ul.navbar-nav li:last-child a {
+    padding-right: 0;
+  }
+
+  a#navbar-site-name {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    margin-top: 2.66rem;
+    margin-left: 4rem;
+    font-weight: 400;
+    color: #fff;
+    font-size: 1.2rem;
+  }
+
+  nav.main > h3,
+  nav.main > h3 > a {
+    color: #ffae1a;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  nav.main > h3 {
+    border-bottom: 1px solid #ffae1a;
+    padding-bottom: 0.5rem;
+  }
+
+}
+
+@media screen and (max-width: 767px) {
+  img#search-icon {
+    position: absolute;
+    right: 2rem;
+    bottom: 2.6rem;
+  }
+
+  /* Style mobile nav options */
+  .navbar-inverse .navbar-nav > li > a {
+    font-size: 1rem;
+    font-weight: 400;
+    border-left: 3px solid #ffad1a;
+    border-bottom: 1px solid #444;
+    margin-bottom: 1px;
+  }
+  .navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+  }
+  .navbar-inverse .navbar-nav > li > a:hover,
+  .navbar-inverse .navbar-nav > li.active > a:hover {
+    color: #59a1f7;
+    border-left: 3px solid #59a1f7;
+    transition: color linear 0.2s, border-left linear 0.2s;
+  }
+}
+
+/* Site Footer */
+/* -------------------------------------- */
+.layout-footer {
+  padding: 60px 0 0 0;
+  background: #222222;
+  color: rgba(219, 218, 218, 0.5);
+  opacity: 1;
+  transition: opacity 1s linear;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}
+
+.layout-footer.active {
+  opacity: 1;
+  transition: opacity 1s linear;
+}
+
+.layout-footer a {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1em;
+  text-decoration: none;
+  transition: color 0.2s linear;
+}
+
+.layout-footer a:hover,
+.layout-footer a:active {
+  color: white;
+  transition: color 0.2s linear;
+}
+
+/* On desktop, keep some negative space between footer content and legal links */
+.layout-footer .footer-row-1 {
+  min-height: 260px;
+}
+
+/* IE 11 hack to prevent footer-splosion */
+.layout-footer .footer-row-1:before,
+.layout-footer .footer-row-1:after,
+.layout-footer .footer-row-1 > .fg-col:first-child:before,
+.layout-footer .footer-row-1 > .fg-col:first-child:after,
+.layout-footer .footer-row-1 > .fg-col:last-child:before,
+.layout-footer .footer-row-1 > .fg-col:last-child:after {
+  content: "";
+}
+
+.layout-footer .footer-row-1 > .fg-col {
+  font-size: 0.9em;
+}
+
+.layout-footer .footer-row-1 > .fg-col h3 {
+  color: rgba(219, 218, 218, 0.5);
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.layout-footer .footer-row-1 > .fg-col ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.layout-footer .footer-row-1 > .fg-col ul li + li {
+  margin-top: 10px;
+}
+
+.layout-footer .footer-row-1 > .fg-col input[type="email"] {
+  background: #222222;
+  border: 1px solid rgba(219, 218, 218, 0.1);
+  border-radius: 0;
+}
+
+/* Space between mailing list copy and form field */
+.layout-footer .footer-row-1 > .fg-col p {
+  margin: 0 0 20px 0;
+}
+
+.layout-footer .footer-row-1 .puppet-logo {
+  width: 100%;
+  max-width: 100px;
+  height: auto;
+}
+
+.layout-footer .footer-row-1 .social-icon img {
+  float: left;
+  margin-top: 20px;
+  width: 20px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.layout-footer .footer-row-2 {
+  margin-top: 20px;
+  border-top: 1px solid rgba(219, 218, 218, 0.1);
+  overflow: auto;
+  font-size: .8em;
+}
+
+.layout-footer .footer-row-2 .footer-row-2-wrapper {
+  overflow: auto;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.layout-footer .footer-row-2 .footer-row-2-wrapper a {
+  color: rgba(219, 218, 218, 0.5);
+  margin-right: 20px;
+}
+
+.social-icon img {
+  opacity: 0.7;
+  transition: all 1s linear;
+}
+
+.social-icon img:hover {
+  opacity: 1;
+  transition: all 1s linear;
+}
+

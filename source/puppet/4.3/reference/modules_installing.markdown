@@ -86,11 +86,18 @@ sudo puppet module upgrade puppetlabs-apache --version 0.0.3
 
 ## Using the Module Tool Behind a Proxy
 
-In order to use the Puppet module tool behind a proxy, set the following:
+In order to use the Puppet module tool behind a proxy, set the following, replacing `<PROXY IP>` and `<PROXY PORT>` with the proxy's IP address and port:
 
 ```
-export http_proxy=http://10.187.255.9:8080
-export https_proxy=http://10.187.255.9:8080
+export http_proxy=http://<PROXY IP>:<PROXY PORT>
+export https_proxy=http://<PROXY IP>:<PROXY PORT>
+```
+
+For instance, with an HTTP proxy at 192.168.0.10 on port 8080, set:
+
+```
+export http_proxy=http://192.168.0.10:8080
+export https_proxy=http://192.168.0.10:8080
 ```
 
 Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](./configuration.html).
@@ -159,7 +166,7 @@ We publish some premium modules exclusively for Puppet Enterprise users. To inst
 After you've run `puppet module install puppetlabs-<MODULE>` you can move the installed module to the directory, server, or version control system (VCS) repository of your choice.
 
 If you need to install a PE-only module on a PE node that doesn't have internet access, you can move the package:
- 
+
 1. Run `puppet module install puppetlabs-<MODULE>` on a licensed node with internet access.
 2. Run `puppet module build` to build the newly-installed module.
 3. Move the *.tar.gz wherever you choose.

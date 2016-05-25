@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
 
-# This file should go in the ~/Library/Application Support/BBEdit/Preview Filters
-# directory. It will allow you to render Markdown files with the Kramdown filter
-# in preview windows -- just use the drop-down at the top of the window.
+# This file should go in one of the following directories:
+#   * ~/Library/Application Support/BBEdit/Preview Filters
+#   * ~/Dropbox/Application Support/BBEdit/Preview Filters
+# It lets you render Markdown files with the Kramdown filter in preview windows
+# -- just use the drop-down at the top of the window.
 
 # You may need to run `sudo gem install kramdown` before this will work.
 
@@ -27,5 +29,12 @@ require 'kramdown'
 
 ARGF.set_encoding('utf-8')
 $content = ARGF.read
+if $content =~ /\A---$/
+  require 'yaml'
+  (_blank, yaml_frontmatter, $content) = $content.split(/^---$/, 3)
+  metadata = YAML.load("---\n" + yaml_frontmatter)
+  lil_table = "<table>\n" + metadata.map {|k,v| "<tr> <td>#{k}</td> <td>#{v}</td> </tr>"}.join("\n") + "\n</table>\n"
+  puts lil_table
+end
 
 puts Kramdown::Document.new($content, {input: "GFM", hard_wrap: false}).to_html

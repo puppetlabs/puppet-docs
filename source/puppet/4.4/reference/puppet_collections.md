@@ -56,9 +56,15 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_osx1009.md %}
 
+### Windows systems
+
+Microsoft Installer (MSI) packages for `puppet-agent` are distributed from [downloads.puppetlabs.com](https://downloads.puppetlabs.com/windows/) and aren't directly associated with Puppet Collections. For more information, see the [Windows Agent installation documentation](./install_windows.html).
+
+{% include pup44_platforms_windows.markdown %}
+
 ## Verifying Puppet packages
 
-At Puppet Labs, we sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
+At Puppet, we sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
 
 Security-conscious users can use GPG to verify signatures on our packages.
 

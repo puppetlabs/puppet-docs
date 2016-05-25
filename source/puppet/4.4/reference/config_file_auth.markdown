@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Config Files: auth.conf"
+title: "Config Files: auth.conf (LEGACY)"
 canonical: "/puppet/latest/reference/config_file_auth.html"
 ---
 
@@ -10,10 +10,28 @@ canonical: "/puppet/latest/reference/config_file_auth.html"
 [environment]: ./environments.html
 [server_ca]: {{puppetserver}}/config_file_ca.html
 [server_master]: {{puppetserver}}/config_file_master.html
-[Puppet Server `auth.conf`]: {{puppetserver}}/config_file_auth.html
+[server_auth_conf]: {{puppetserver}}/config_file_auth.html
+[puppetserver.conf]: {{puppetserver}}/config_file_puppetserver.html
 [Puppet Server]: {{puppetserver}}/
+[confdir]: ./dirs_confdir.html
+
 
 Access to Puppet's HTTPS API is configured in `auth.conf`.
+
+> ## **Important:** This is a deprecated config file
+>
+> Puppet Server has a [new HOCON-formatted `auth.conf` file][server_auth_conf], which is a full replacement for the old `auth.conf` format described on this page. The old `auth.conf` file will be removed in Puppet 5.0.
+>
+> Until then, Puppet Server uses a combination of the new `auth.conf` file and this legacy `auth.conf` file:
+>
+> * For most `/puppet/v3` endpoints, it defaults to the **legacy `auth.conf`.**
+>     * You can completely switch to the new `auth.conf` by setting [puppetserver.conf][] > `jruby-puppet` > `use-legacy-auth-conf: false`.
+> * For `certificate_status` and `puppet-admin-api`, it uses the **new `auth.conf`.**
+>     * However, it will use the old `client-whitelist` settings instead if they're present.
+> * For most `/puppet-ca/v1` endpoints and any new `/puppet/v3` endpoints added during the Puppet Server 2.x series, it only uses the **new `auth.conf`.**
+>
+> The default location of the new `auth.conf` is `/etc/puppetlabs/puppetserver/conf.d/auth.conf`. See [the Puppet Server `auth.conf` docs][server_auth_conf] for details.
+
 
 ## About Puppet's HTTPS API
 
@@ -22,14 +40,6 @@ Access to Puppet's HTTPS API is configured in `auth.conf`.
 The Puppet agent service requests configurations over HTTPS, and the Puppet master application provides several HTTPS endpoints to support this. (For example, requesting a catalog uses a different endpoint than submitting a report.) There are also a few endpoints that aren't used by Puppet agent.
 
 Since some endpoints should have restricted access (for example, a node shouldn't request another node's configuration catalog), the Puppet master has a list of access rules for all of its HTTPS services. You can edit these rules in `auth.conf`.
-
-### New Puppet Server Authorization Options
-
-[confdir]: ./dirs_confdir.html
-
-[Puppet Server][] uses [`trapperkeeper-authorization`](https://github.com/puppetlabs/trapperkeeper-authorization)---a different implementation of the Puppet Certificate Authority (CA)---and ignores `auth.conf`'s access rules (ACLs) for any `/puppet-ca` endpoints. This is a dramatic change in how Puppet Server manages authorization, as you can now configure access to certificate status and administration endpoints by writing rules in Puppet Server's own new HOCON-formatted [`auth.conf`][Puppet Server `auth.conf`] file, located by default at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
-
-> **Deprecation Note:** The legacy hardcoded authorization methods that use [`ca.conf`][server_ca] and [`master.conf`][server_master] are [deprecated]({{puppetserver}}/deprecated_features.html).
 
 ## Location
 

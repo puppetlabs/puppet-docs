@@ -23,9 +23,9 @@ The Puppet language has looping and iteration features, which can help you write
 Basics
 -----
 
-In Puppet, iteration features are implemented as [functions][] that accept [lambdas][].
+In Puppet, iteration features are implemented as [functions][] that accept blocks of code ([lambdas][]).
 
-That is, you write a block of code ("lambda") that requires some kind of extra information, then pass it to a function that can provide that information and evaluate the code, possibly multiple times.
+That is, you write a block of code (lambda) that requires some kind of extra information, then pass it to a function that can provide that information and evaluate the code, possibly multiple times.
 
 This differs from some other languages where looping constructs are special keywords; in Puppet, they're just functions.
 

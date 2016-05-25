@@ -20,12 +20,20 @@ module PuppetReferences
         puts 'done cloning.'
       end
       @repo = Git.open(@directory)
+      @fetched = nil
     end
 
     def checkout(commit)
-      @repo.fetch
+      unless @fetched
+        @repo.fetch
+        @fetched = true
+      end
       @repo.checkout(commit, {force: true})
       @repo.revparse(commit)
+    end
+
+    def tags
+      @repo.tags
     end
 
     def update_bundle

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Facter 3.1: Release Notes"
+title: "Facter 3.1: Release notes"
 ---
 
 [puppet-agent 1.2.x]: /puppet/4.2/reference/about_agent.html
@@ -8,7 +8,90 @@ title: "Facter 3.1: Release Notes"
 [puppet-agent 1.4.x]: /puppet/4.4/reference/about_agent.html
 
 
-This page documents the history of the Facter 3.1 series. (Previous version: [Facter 3.0 release notes](../3.0/release_notes.html).)
+This page documents the history of the Facter 3.1 series. If you're upgrading from Facter 2, also review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality.
+
+
+## Facter 3.1.7
+
+Released May 17, 2016.
+
+Shipped in [`puppet-agent` 1.5.0.][puppet-agent 1.5.x].
+
+Facter 3.1.7 is a minor bug fix release in the Facter 3.1 series.
+
+* [Fixed in Facter 3.1.7](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.1.7%27)
+* [Introduced in Facter 3.1.7](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.1.7%27)
+
+### Bug fixes
+
+*[FACT-1387](https://tickets.puppetlabs.com/browse/): Google Cloud Windows instances are now recognized as virtual and will collect GCE metadata.
+
+* [FACT-1375](https://tickets.puppetlabs.com/browse/): Before this fix, `facter ipaddress` could return the address of the wrong network interface when there were routes for 0.0.0.0, with non-zero subnet mask, in addition to the default route. The correct ip address is the address of the interface associated with the interface on the route table entry for the default gateway.
+
+* [FACT-1373](https://tickets.puppetlabs.com/browse/): Previously, if Facter was called from an external fact it would generate endless recursive Facter calls and fork bomb the agent. In order to prevent this, we will now detect recursive calls to evaluate external facts, and if we encounter one we will log a warning and stop evaluating external facts. 
+
+  To do this, we set an environment variable called `INSIDE_FACTER` the first time external facts are evaluated and check this variable before we evaluate external facts to ensure it hasn't been set. It is possible that a user may have their own environment variable called `INSIDE_FACTER` set to true, so anytime we encounter that variable set to true, we log a debug warning.
+
+## Facter 3.1.6
+
+Released April 26, 2016.
+
+Shipped in [`puppet-agent` 1.4.2.][puppet-agent 1.4.x].
+
+Facter 3.1.6 is primarily a Windows bug fix release, however it also includes one improvement, and a few other miscellaneous bug fixes.
+
+### Improvement
+
+#### `facter -h` is the same as `facter --help`
+
+For consistency with other command-line tools, `facter -h` is now equivalent to `facter --help`.
+
+[FACT-1376](https://tickets.puppetlabs.com/browse/FACT-1376)
+
+
+### Bug fixes: Windows
+
+#### Facter would not serialize large integers in structured facts
+
+This fix corrects a bug in Facter preventing it from properly serializing integers exceeding the 32bit boundary.
+
+[FACT-1364](https://tickets.puppetlabs.com/browse/FACT-1364)
+
+
+#### Google Cloud instances not recognized as virtual
+	
+Google Cloud Windows instances are now recognized as virtual, and will collect GCE metadata.
+
+[FACT-1387](https://tickets.puppetlabs.com/browse/FACT-1387)
+
+
+#### Module level external facts not resolved when using Vagrant
+
+Facter can now resolve external facts across NTFS reparse points.	
+
+[FACT-1276](https://tickets.puppetlabs.com/browse/FACT-1276)
+
+#### Facter falsely reported OpenStack instances virtual as physical
+
+Facter incorrectly reported OpenStack based Windows VMs as not virtual. This fix changes them to report as virtual, with the label 'openstack'.	
+
+[FACT-1043](https://tickets.puppetlabs.com/browse/FACT-1043)
+
+### Bug fixes: Misc
+
+#### Regression of `Facter::Util::Resolution.exec` not setting `$?.exitstatus` based on exec result
+
+`Facter::Util::Resolution.exec` will now set the Ruby `$?` exit status variable.	
+
+[FACT-1284](https://tickets.puppetlabs.com/browse/FACT-1284)
+
+
+#### Facter failed when locale files were missing for a specified locale on CentOS 7	
+
+An issue where Facter failed in some invalid locale environments with `failed to initialize logging system due to a locale error: Invalid or unsupported charset:ANSI_X3.4-1968` has been addressed; it should now always fall back to a C locale.
+
+[FACT-1392](https://tickets.puppetlabs.com/browse/FACT-1392)
+
 
 ## Facter 3.1.5
 
@@ -31,7 +114,7 @@ Facter will now consider the 'source' attribute of routing table entries associa
 
 In Puppet with Facter 3, using Windows-1252 extended characters such as ö and æ in a user name on Windows would cause an exception to be thrown by Facter. This has been fixed.
 
-* [FACT-1341](https://tickets.puppetlabs.com/browse/FACT-1341) 
+* [FACT-1341](https://tickets.puppetlabs.com/browse/FACT-1341)
 
 ### FIX: YAML
 
@@ -281,4 +364,3 @@ Facter now reports the 'noatime' option in the `mountpoints` fact when it is set
 The `puppet-agent` package that installs Facter 3.0.0 did not create the `rubysitedir` pointed to by the `rubysitedir` fact. The `puppet-agent` 1.2.4 update resolves this issue.
 
 * [FACT-1154](https://tickets.puppetlabs.com/browse/FACT-1154)
-

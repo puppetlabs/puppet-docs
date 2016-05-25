@@ -286,6 +286,7 @@ task :references do
   puts 'The following references are available:'
   puts 'bundle exec rake references:puppet VERSION=<GIT TAG OR COMMIT>'
   puts 'bundle exec rake references:facter VERSION=<GIT TAG OR COMMIT>'
+  puts 'bundle exec rake references:version_tables'
 end
 
 namespace :references do
@@ -297,6 +298,11 @@ namespace :references do
   task :facter => 'references:check_version' do
     require 'puppet_references'
     PuppetReferences.build_facter_references(ENV['VERSION'])
+  end
+
+  task :version_tables do
+    require 'puppet_references'
+    PuppetReferences.build_version_tables
   end
 
   task :check_version do
