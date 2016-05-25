@@ -1,18 +1,18 @@
 ---
 layout: default
-title: "About Puppet collections and packages"
+title: "About Puppet Collections and Packages"
 canonical: "/puppet/latest/reference/puppet_collections.html"
 ---
 
 {% include puppet-collections/_puppet_collections_intro.md %}
 
-## Puppet collection contents
+## Puppet Collection contents
 
 Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_contents.md %}
 
-## Using Puppet collections
+## Using Puppet Collections
 
 {% include puppet-collections/_puppet_collections_using.md %}
 
@@ -34,31 +34,25 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_apt.md %}
 
-{% include puppet-collections/_puppet_collection_1_u1504.md %}
+{% include puppet-collections/_puppet_collection_1_u1410.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1404.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1204.md %}
 
-{% include puppet-collections/_puppet_collection_1_d8.md %}
-
 {% include puppet-collections/_puppet_collection_1_d7.md %}
 
 {% include puppet-collections/_puppet_collection_1_d6.md %}
 
-### OS X systems
+### Windows systems
 
-{% include puppet-collections/_puppet_collection_1_osx.md %}
+Microsoft Installer (MSI) packages for `puppet-agent` are distributed from [downloads.puppetlabs.com](https://downloads.puppetlabs.com/windows/) and aren't directly associated with Puppet Collections. For more information, see the [Windows Agent installation documentation](./install_windows.html).
 
-{% include puppet-collections/_puppet_collection_1_osx1011.md %}
-
-{% include puppet-collections/_puppet_collection_1_osx1010.md %}
-
-{% include puppet-collections/_puppet_collection_1_osx1009.md %}
+{% include pup40_platforms_windows.markdown %}
 
 ## Verifying Puppet packages
 
-We sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
+At Puppet, we sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
 
 Security-conscious users can use GPG to verify signatures on our packages.
 

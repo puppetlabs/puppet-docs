@@ -1,18 +1,18 @@
 ---
 layout: default
-title: "About Puppet collections and packages"
+title: "About Puppet Collections and Packages"
 canonical: "/puppet/latest/reference/puppet_collections.html"
 ---
 
 {% include puppet-collections/_puppet_collections_intro.md %}
 
-## Puppet collection contents
+## Puppet Collection contents
 
 Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_contents.md %}
 
-## Using Puppet collections
+## Using Puppet Collections
 
 {% include puppet-collections/_puppet_collections_using.md %}
 
@@ -25,10 +25,6 @@ Puppet Collection 1 contains the following components:
 {% include puppet-collections/_puppet_collection_1_el6.md %}
 
 {% include puppet-collections/_puppet_collection_1_el5.md %}
-
-{% include puppet-collections/_puppet_collection_1_f22.md %}
-
-{% include puppet-collections/_puppet_collection_1_f21.md %}
 
 ### Apt-based systems
 
@@ -50,15 +46,19 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_osx.md %}
 
-{% include puppet-collections/_puppet_collection_1_osx1011.md %}
-
 {% include puppet-collections/_puppet_collection_1_osx1010.md %}
 
 {% include puppet-collections/_puppet_collection_1_osx1009.md %}
 
+### Windows systems
+
+Microsoft Installer (MSI) packages for `puppet-agent` are distributed from [downloads.puppetlabs.com](https://downloads.puppetlabs.com/windows/) and aren't directly associated with Puppet Collections. For more information, see the [Windows Agent installation documentation](./install_windows.html).
+
+{% include pup42_platforms_windows.markdown %}
+
 ## Verifying Puppet packages
 
-We sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
+At Puppet, we sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
 
 Security-conscious users can use GPG to verify signatures on our packages.
 
@@ -66,8 +66,8 @@ Security-conscious users can use GPG to verify signatures on our packages.
 
 Certain operating system and installation methods automatically verify our package signatures.
 
-* If you install Puppet packages via our Yum and Apt repositories, the Puppet Collection release package that enables the repository also installs our release signing key. The Yum and Apt tools automatically verify the integrity of our packages as you install them.
-* Our Microsoft Installer (MSI) packages for Windows are signed with a different key, and the Windows installer automatically verifies the signature before installing the package.
+-   If you install Puppet packages via our Yum and Apt repositories, the Puppet Collection release package that enables the repository also installs our release signing key. The Yum and Apt tools automatically verify the integrity of our packages as you install them.
+-   Our Microsoft Installer (MSI) packages for Windows are signed with a different key, and the Windows installer automatically verifies the signature before installing the package.
 
 In these cases, you don't need to do anything to verify the package signature.
 
@@ -138,7 +138,7 @@ First, retrieve the [Puppet public key](http://pool.sks-keyservers.net:11371/pks
 
 Next, run the following, replacing `<PUBLIC KEY FILE>` with the path to the file containing the Puppet public key:
 
-    sudo rpm --import PUBKEY <PUBLIC KEY FILE>
+    sudo rpm --import <PUBLIC KEY FILE>
 
 The `rpm` tool won't output anything if successful.
 
@@ -148,34 +148,34 @@ Then to verify an RPM you've downloaded, run the `rpm` tool with the `checksig` 
 
 This verifies the embedded signature, as signified by the `OK` results in the `rpm` output:
 
-~~~
-puppetlabs-release-pc1-fedora-22.noarch.rpm:
+```
+puppetlabs-release-el-7.noarch.rpm:
     Header V4 RSA/SHA1 Signature, key ID 4bd6ec30: OK
-    Header SHA1 digest: OK (403bb336706e52f1eca63424a55b7f123e644b2b)
+    Header SHA1 digest: OK (56f61c254f780d67d01e2d685d4dad2be9decafb)
     V4 RSA/SHA1 Signature, key ID 4bd6ec30: OK
-    MD5 digest: OK (97a9c407a8a7ee9f8689c79bab97250e)
-~~~
+    MD5 digest: OK (6c7d3948cdecdeccb8e4f24947ad4d20)
+```
 
 If you don't import the Puppet public key, you can still verify the package's integrity using `rpm -vK`. However, you won't be able to validate the package's origin:
 
-~~~
-puppetlabs-release-pc1-fedora-22.noarch.rpm:
+```
+puppetlabs-release-el-7.noarch.rpm:
     Header V4 RSA/SHA1 Signature, key ID 4bd6ec30: NOKEY
-    Header SHA1 digest: OK (403bb336706e52f1eca63424a55b7f123e644b2b)
+    Header SHA1 digest: OK (56f61c254f780d67d01e2d685d4dad2be9decafb)
     V4 RSA/SHA1 Signature, key ID 4bd6ec30: NOKEY
-    MD5 digest: OK (97a9c407a8a7ee9f8689c79bab97250e)
-~~~
+    MD5 digest: OK (6c7d3948cdecdeccb8e4f24947ad4d20)
+```
 
 #### Verify an OS X `puppet-agent` package
 
 Puppet signs `puppet-agent` packages for OS X with a developer ID and certificate. To verify the signature, download and mount the `puppet-agent` disk image, then use the `pkgutil` tool with the `--check-signature` flag:
 
-    pkgutil --check-signature /Volumes/puppet-agent-1.3.2-1.osx10.10/puppet-agent-1.3.2-1-installer.pkg
+    pkgutil --check-signature /Volumes/puppet-agent-1.2.7-1.osx10.10/puppet-agent-1.2.7-1-installer.pkg
 
 The tool confirms the signature and outputs fingerprints for each certificate in the chain:
 
-~~~
-Package "puppet-agent-1.3.2-1-installer.pkg":
+```
+Package "puppet-agent-1.2.7-1-installer.pkg":
    Status: signed by a certificate trusted by Mac OS X
    Certificate Chain:
     1. Developer ID Installer: PUPPET LABS, INC. (VKGLGN2B6Y)
@@ -186,7 +186,7 @@ Package "puppet-agent-1.3.2-1-installer.pkg":
        -----------------------------------------------------------------------------
     3. Apple Root CA
        SHA1 fingerprint: 61 1E 5B 66 2C 59 3A 08 FF 58 D1 4A E2 24 52 D1 98 DF 6C 60
-~~~
+```
 
 You can also confirm the certificate when installing the package by clicking the lock icon in the top-right corner of the installer:
 
