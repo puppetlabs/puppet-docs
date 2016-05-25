@@ -1,7 +1,6 @@
 ---
 layout: default
-title: "Quick start » Intro for *Nix users"
-subtitle: "Open Source Puppet Quick Start Guide Series: 3.8.0"
+title: "Quick start » Intro for *nix users"
 canonical: "/puppet/latest/quick_start.html"
 ---
 

@@ -3047,7 +3047,7 @@ We've spiffed up our man pages. Static man files are in the `man/` directory of 
 We're starting the hourglass on a few older features:
 
 * **'puppet' as a synonym for 'puppet apply'** --- Starting today, running `puppet my-manifest.pp` will issue a warning; you should start using `puppet apply` directly instead. Support for implicit invocation of puppet apply will be dropped in Puppet 2.8.
-* **Dynamic scope** --- We've started issuing warnings when variables or resource defaults are found via dynamic lookup. [There's more info and explanation in a guide on the docs site](/guides/scope_and_puppet.html), but the short version is that you should start referencing variables with their qualified names instead of counting on dynamic scope. We hope to drop support for dynamic scope in Puppet 2.8. (Issue #5027)
+* **Dynamic scope** --- We've started issuing warnings when variables or resource defaults are found via dynamic lookup. [There's more info and explanation here](./scope_and_puppet.html), but the short version is that you should start referencing variables with their qualified names instead of counting on dynamic scope. We hope to drop support for dynamic scope in Puppet 2.8. (Issue #5027)
 * **No more `--parseonly` option** --- This one's already gone, because we used Faces to build a drop-in replacement: use `puppet parser validate [<manifest>] [<manifest> ...]` instead.
 
 ### Notice Changed Manifests on the First Try

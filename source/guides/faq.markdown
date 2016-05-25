@@ -11,8 +11,6 @@ Frequently Asked Questions
 This document covers frequently asked questions not well covered elsewhere in the
 documentation or on the main website.
 
-You may also wish to see [Troubleshooting](./troubleshooting.html) or [Techniques](./techniques.html)
-for additional assorted information about specific technical items.
 
 General
 -------
