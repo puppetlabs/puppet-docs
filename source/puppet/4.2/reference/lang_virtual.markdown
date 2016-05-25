@@ -13,7 +13,6 @@ canonical: "/puppet/latest/reference/lang_virtual.html"
 [search_expression]: ./lang_collectors.html#search-expressions
 [override]: ./lang_resources_advanced.html#amending-attributes-with-a-collector
 [chaining]: ./lang_relationships.html#chaining-arrows
-[virtual_guide]: /guides/virtual_resources.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
 
@@ -34,8 +33,6 @@ Virtual resources can be used in some of the same situations as [classes][], sin
 
 * **Searchability** via [resource collectors][collectors], which lets you realize overlapping clumps of virtual resources
 * **Flatness,** such that you can declare a virtual resource and realize it a few lines later without having to clutter your modules with many single-resource classes
-
-For more details, see [Virtual Resource Design Patterns][virtual_guide].
 
 Syntax
 -----
