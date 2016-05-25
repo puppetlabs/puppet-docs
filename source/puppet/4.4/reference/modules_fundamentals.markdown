@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [publishing]: ./modules_publishing.html
 [documentation]: ./modules_documentation.html
 
-[plugins]: /guides/plugins_in_modules.html
+[plugins]: ./plugins_in_modules.html
 
 [external facts]: {{facter}}/custom_facts.html#external-facts
 [custom facts]: {{facter}}/custom_facts.html
