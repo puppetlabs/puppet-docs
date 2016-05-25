@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "About Puppet collections and packages"
+title: "About Puppet Collections and packages"
 canonical: "/puppet/latest/reference/puppet_collections.html"
 ---
 
