@@ -15,7 +15,7 @@ canonical: "/puppet/latest/reference/lang_scope.html"
 [enc]: /guides/external_nodes.html
 [inheritance]: ./lang_classes.html#inheritance
 [import]: ./lang_import.html
-[scopedoc]: /guides/scope_and_puppet.html
+[scopedoc]: /puppet/2.7/reference/scope_and_puppet.html
 [variables]: ./lang_variables.html
 [namespace]: ./lang_namespaces.html
 [diagram]: ./images/scope-euler-diagram.png
