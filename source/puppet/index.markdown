@@ -126,7 +126,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Hacking and extending: Ruby plugins
 
-* [Plugins In Modules](/guides/plugins_in_modules.html) --- Where to put plugins, and how to sync them to clients.
+* [Plugins In Modules](/puppet/latest/reference/plugins_in_modules.html) --- Where to put plugins, and how to sync them to clients.
 * [Writing Custom Facts](/facter/latest/custom_facts.html)
 * [Writing Custom Functions](/guides/custom_functions.html)
 * [Writing Custom Types & Providers](/guides/custom_types.html)
