@@ -4,10 +4,8 @@ title: "Adding file server mount points"
 
 [module_files]: ./modules_fundamentals.html#files
 [fileserver.conf]: ./config_file_fileserver.html
-[deprecated]: ./deprecated_settings.html#authorization-rules-in-fileserverconf
-[auth.conf]: {{puppetserver}}/config_file_auth.html
-[auth_legacy]: ./config_file_auth.html
-[disable_legacy]: {{puppetserver}}/config_file_puppetserver.html
+[deprecated]: /puppet/4.5/reference/deprecated_settings.html#authorization-rules-in-fileserverconf
+[auth.conf]: ./config_file_auth.html
 
 Puppet Server includes a file server for transferring static file content to agents; this is what's used whenever a `file` resource has a `source => puppet:///...` attribute specified.
 
@@ -54,7 +52,7 @@ In the example above, a file at `/etc/puppetlabs/puppet/installer_files/oracle.p
 
 Make sure that the `puppet` user can access that directory and its contents.
 
-Always include the `allow *` line, since the default behavior is to deny all access. If you need to control access to a custom mount point, do so in [`auth.conf`][auth.conf]. [Putting authorization rules in `fileserver.conf` is deprecated.][deprecated]
+Always include the `allow *` line, since the default behavior is to deny all access. If you need to control access to a custom mount point, do so in [`auth.conf`][auth.conf]. [Putting authorization rules in `fileserver.conf` is deprecated.][deprecated] (This deprecation targets Puppet 5.0; authorization rules in `fileserver.conf` still work in Puppet 4.x.)
 
 ## Controlling access to a custom mount point in `auth.conf`
 
@@ -62,41 +60,9 @@ By default, any node with a valid certificate can access the files in your new m
 
 If necessary, you can restrict access to a custom mount point in [`auth.conf`][auth.conf].
 
-### New-style `auth.conf`
-
-If you've [disabled the legacy `auth.conf` file by setting `jruby-puppet.use-legacy-auth-conf: true`][disable_legacy], you'll be adding a rule to [Puppet Server's HOCON-format `auth.conf` file][auth.conf], located at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
-
-Your new auth rule must meet the following requirements:
-
-* It matches requests to all four of these prefixes:
-    * `/puppet/v3/file_metadata/<MOUNT POINT>`
-    * `/puppet/v3/file_metadatas/<MOUNT POINT>`
-    * `/puppet/v3/file_content/<MOUNT POINT>`
-    * `/puppet/v3/file_contents/<MOUNT POINT>`
-* Its `sort-order` must be lower than 500, so that it overrides the default rule for the file server.
-
-For example:
-
-```
-{
-    # Allow nodes to access all file services; this is necessary for
-    # pluginsync, file serving from modules, and file serving from
-    # custom mount points (see fileserver.conf). Note that the `/file`
-    # prefix matches requests to file_metadata, file_content, and
-    # file_bucket_file paths.
-    match-request: {
-        path: "^/puppet/v3/file_(content|metadata)s?/installer_files"
-        type: regex
-    }
-    allow: "*.dev.example.com"
-    sort-order: 400
-    name: "dev.example.com large installer files"
-},
-```
-
 ### Legacy `auth.conf`
 
-If you haven't disabled the legacy `auth.conf` file, you'll be adding a stanza to `/etc/puppetlabs/puppet/auth.conf`.
+You'll be adding a stanza to `/etc/puppetlabs/puppet/auth.conf`.
 
 Your new auth rule must meet the following requirements:
 
