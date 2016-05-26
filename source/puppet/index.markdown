@@ -112,7 +112,7 @@ You can manage Windows nodes side by side with your \*nix infrastructure, with P
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
 
-* [Running a Production-Grade Puppet Master Server With Passenger](/guides/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
+* [Running a Production-Grade Puppet Master Server With Passenger](/puppet/latest/reference/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
 * [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- A guide to deployments with multiple Puppet masters.
 
 ### Hacking and extending: Using Puppet's data
