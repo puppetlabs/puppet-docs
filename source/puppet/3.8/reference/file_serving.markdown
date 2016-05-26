@@ -76,6 +76,7 @@ Your new auth rule must meet the following requirements:
 For example:
 
 ```
+# Allow limited access to files in /etc/puppetlabs/puppet/installer_files:
 path ~ ^/file_(metadata|content)s?/installer_files/
 auth yes
 allow *.dev.example.com

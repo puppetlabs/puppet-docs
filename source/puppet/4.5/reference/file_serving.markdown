@@ -79,11 +79,7 @@ For example:
 
 ```
 {
-    # Allow nodes to access all file services; this is necessary for
-    # pluginsync, file serving from modules, and file serving from
-    # custom mount points (see fileserver.conf). Note that the `/file`
-    # prefix matches requests to file_metadata, file_content, and
-    # file_bucket_file paths.
+    # Allow limited access to files in /etc/puppetlabs/puppet/installer_files:
     match-request: {
         path: "^/puppet/v3/file_(content|metadata)s?/installer_files"
         type: regex
@@ -110,6 +106,7 @@ Your new auth rule must meet the following requirements:
 For example:
 
 ```
+# Allow limited access to files in /etc/puppetlabs/puppet/installer_files:
 path ~ ^/file_(metadata|content)s?/installer_files/
 auth yes
 allow *.dev.example.com
