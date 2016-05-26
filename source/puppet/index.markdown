@@ -105,8 +105,9 @@ Get the latest version of Puppet up and running.
 
 You can manage Windows nodes side by side with your \*nix infrastructure, with Puppet 2.7 and higher (including Puppet Enterprise ≥ 2.5).
 
-* [Overview of Puppet on Windows](/windows/)
-* [Troubleshooting Puppet on Windows](/windows/troubleshooting.html)
+* [Installing Puppet 4 for Windows](/puppet/4.0/reference/install_windows.html)
+* [Basic tasks and concepts in Windows](/pe/latest/windows_basic_tasks.html)
+* [Troubleshooting Puppet on Windows](/pe/latest/troubleshooting_windows.html)
 
 ### Tuning and scaling
 
