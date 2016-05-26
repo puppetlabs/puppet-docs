@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/services_master_rack.html"
 
 
 [rack]: http://rack.github.io/
-[passenger_guide]: /guides/passenger.html
+[passenger_guide]: ./passenger.html
 [passenger]: http://www.modrails.com/
 [external_ca]: ./config_ssl_external_ca.html
 [client authentication]: /background/ssl/tls_ssl.html

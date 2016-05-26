@@ -89,7 +89,7 @@ For best performance, you should:
     * With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
     * With a Rack Puppet master, restart the web server or the
       application server. Passenger lets you touch a `restart.txt` file to
-      refresh an application without restarting Apache; see the [Passenger docs](/guides/passenger.html)
+      refresh an application without restarting Apache; see the [Passenger docs](./passenger.html)
       for details.
 
 This setting can be overridden per-environment in [environment.conf][], but most users should avoid doing that.
