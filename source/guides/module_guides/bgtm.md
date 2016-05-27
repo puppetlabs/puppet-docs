@@ -287,7 +287,7 @@ The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helpe
 
 ## Step Four: Module versioning
 
-Modules, like any other piece of software, must be versioned and released when changes are made. We use and recommend using [SemVer](http://semver.org/). It sets out the exact rules around when to increment major versions and so forth.
+Modules, like any other piece of software, must be versioned and released when changes are made. We use and recommend using [SemVer 1.0.0](http://semver.org/spec/v1.0.0.html). It sets out the exact rules around when to increment major versions and so forth.
 
 Once you've decided on the new version number, you must increase the version number metadata in the Modulefile. Versioning within the Modulefile allows you to build Puppet environments by picking and choosing specific versions of a module or set of modules.
 
