@@ -10,7 +10,7 @@ toc: false
 [Facter 3]: {{facter}}/
 [Hiera 3]: {{hiera}}/
 [Puppet Server 2.4]: {{puppetserver}}/
-[PuppetDB 3]: {{puppetdb}}/
+[PuppetDB 4]: {{puppetdb}}/
 [Linux installation]: ./install_linux.html
 [Windows installation]: ./install_windows.html
 [OSX installation]: ./install_osx.html
@@ -22,7 +22,7 @@ toc: false
 [Updating 3.x Manifests for Puppet 4.x]: ./lang_updating_manifests.html
 [Release Notes]: ./release_notes.html
 
-Welcome to the Puppet 4. Reference Manual. Use the navigation to the left to get around.
+Welcome to the Puppet reference manual. Use the navigation to the left to get around.
 
 ## What is this?
 
@@ -34,7 +34,7 @@ Puppet 4.5 consists of:
 
 * A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter 3][], [Hiera 3][], and supporting code.
 * A `puppetserver` package that installs [Puppet Server 2.4][].
-* A `puppetdb` package that installs [PuppetDB 3][].
+* A `puppetdb` package that installs [PuppetDB 4][].
 
 To install these, read the [pre-install instructions][], then see the Puppet installation guides for [Linux][Linux installation], [Windows][Windows installation], and [Mac OS X][OSX installation].
 
