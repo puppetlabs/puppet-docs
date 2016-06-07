@@ -99,7 +99,6 @@ Position | Parameter        | Data Type | Default Value | Description
 ### Examples
 
 * `Hash` --- matches a hash of any length; any keys must match `Scalar` and any values must match `Data`.
-* `Hash[String]` --- matches any hash that uses only strings as keys.
 * `Hash[Integer, String]` --- matches a hash that uses integers for keys and strings for values.
 * `Hash[Integer, String, 1]` --- same as above, but requires a non-empty hash.
 * `Hash[Integer, String, 1, 8]` --- same as above, but with a maximum size of eight key-value pairs.
