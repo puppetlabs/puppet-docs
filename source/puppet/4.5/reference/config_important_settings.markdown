@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [manifest_dir]: ./dirs_manifest.html
 [report_reference]: ./report.html
 [write_reports]: /guides/reporting.html#writing-custom-reports
-[passenger_headers]: /guides/passenger.html#notes-on-ssl-verification
+[passenger_headers]: ./passenger.html#notes-on-ssl-verification
 [puppetdb_install]: {{puppetdb}}/connect_puppet_master.html
 [static_compiler]: ./indirection.html#staticcompiler-terminus
 [ssl_autosign]: ./ssl_autosign.html

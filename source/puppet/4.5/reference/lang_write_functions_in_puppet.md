@@ -73,7 +73,7 @@ If a parameter has a default value, then it's optional to pass a value for it wh
 
 However, since parameters are passed by position, _optional parameters must be listed after all required parameters_. If you put a required parameter after an optional one, it will cause an evaluation error.
 
- #### Variables in Default Parameter Values
+#### Variables in Default Parameter Values
 
 If you reference a variable in a default value for a parameter, Puppet will always start looking for that variable at top scope. So if you use `$fqdn`, but then you call the function from a class that overrides the variable `$fqdn`, the parameter's default value will be the value from top scope, not the value from the class. You can reference qualified variable names in a function default value, but compilation will fail if that class wasn't declared by the time the function gets called.
 

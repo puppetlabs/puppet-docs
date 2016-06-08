@@ -19,7 +19,6 @@ canonical: "/puppet/latest/reference/lang_exported.html"
 [puppetdb]: {{puppetdb}}/
 [puppetdb_connect]: {{puppetdb}}/connect_puppet_master.html
 [puppetdb_install]: {{puppetdb}}/install_via_module.html
-[exported_guide]: /guides/exported_resources.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
 > **Note:** Exported resources require catalog storage and searching (formerly known as "storeconfigs") to be enabled on your Puppet master. Both the catalog storage and the searching (among other features) are provided by [PuppetDB][]. To enable exported resources, follow these instructions:
@@ -37,8 +36,6 @@ Exported resources allow the Puppet compiler to share information among nodes by
 > **Note:** Exported resources rely on the compiler having access to the information, and cannot use information that's never sent to the compiler, such as the contents of arbitrary files on a node.
 
 The most common use cases are monitoring and backups. A class that manages a service like PostgreSQL can export a [`nagios_service`][nagios_service] resource describing how to monitor the service, including information like its hostname and port. The Nagios server can then collect every `nagios_service` resource, and will automatically start monitoring the Postgres server.
-
-For more details, see [Exported Resource Design Patterns][exported_guide].
 
 
 ## Syntax
@@ -92,7 +89,7 @@ Since any node could be exporting a resource, it is difficult to predict what th
 
 See [Exported Resource Collectors][exported_collector] for more detail on the collector syntax and search expressions.
 
-
+    
 ## Behavior
 
 
@@ -119,3 +116,41 @@ To ensure uniqueness, every resource you export should include a substring uniqu
 
 Exported resource collectors do not collect normal or virtual resources. In particular, they cannot retrieve non-exported resources from other nodes' catalogs.
 
+### Exported resources with Nagios
+
+The following example shows Puppet native types for managing Nagios configuration
+files. These types become very powerful when you export and collect
+them. For example, you could create a class for something like
+Apache that adds a service definition on your Nagios host,
+automatically monitoring the web server:
+
+    # /etc/puppetlabs/puppet/modules/nagios/manifests/target/apache.pp
+    class nagios::target::apache {
+       @@nagios_host { $fqdn:
+            ensure  => present,
+            alias   => $hostname,
+            address => $ipaddress,
+            use     => "generic-host",
+       }
+       @@nagios_service { "check_ping_${hostname}":
+            check_command       => "check_ping!100.0,20%!500.0,60%",
+            use                 => "generic-service",
+            host_name           => "$fqdn",
+            notification_period => "24x7",
+            service_description => "${hostname}_check_ping"
+       }
+    }
+
+    # /etc/puppetlabs/puppet/modules/nagios/manifests/monitor.pp
+    class nagios::monitor {
+        package { [ nagios, nagios-plugins ]: ensure => installed, }
+        service { nagios:
+            ensure     => running,
+            enable     => true,
+            #subscribe => File[$nagios_cfgdir],
+            require    => Package[nagios],
+        }
+        # collect resources and populate /etc/nagios/nagios_*.cfg
+        Nagios_host <<||>>
+        Nagios_service <<||>>
+    }

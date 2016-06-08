@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [publishing]: ./modules_publishing.html
 [documentation]: ./modules_documentation.html
 
-[plugins]: /guides/plugins_in_modules.html
+[plugins]: ./plugins_in_modules.html
 
 [external facts]: {{facter}}/custom_facts.html#external-facts
 [custom facts]: {{facter}}/custom_facts.html
@@ -76,7 +76,7 @@ On disk, a module is simply a directory tree with a specific, predictable struct
     * `examples`
     * `spec`
 
-> **Deprecation Note:** The `tests` directory is deprecated in favor of the `examples` directory. If you use [`puppet module generate`](#writing-modules) to create your module skeleton, rename the `tests` directory to `examples`.
+> Note: As of Puppet 4.5, using [`puppet module generate`](#writing-modules) to create your module skeleton creates an `examples` directory instead of the deprecated `tests` directory.
 
 ### Example
 

@@ -44,7 +44,7 @@ Puppet can use Hiera to look up data. This helps you disentangle site-specific d
 
 Puppet 4 and later ships with Hiera support already enabled. You don't need to do anything extra. Hiera data should live on the Puppet master(s).
 
-* Puppet expects to find the [hiera.yaml file][hiera_yaml] at `/etc/puppetlabs/puppet/hiera.yaml` on \*nix systems and `C:\ProgramData\PuppetLabs\code\hiera.yaml` on Windows. You can change this with the [`hiera_config`][hiera_config] setting.
+* Puppet expects to find the [hiera.yaml file][hiera_yaml] at `/etc/puppetlabs/puppet/hiera.yaml` on \*nix systems and ` C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml` on Windows. You can change this with the [`hiera_config`][hiera_config] setting.
 * Remember to set the [`:datadir`][datadir] setting for any backends you are using. It's generally best to use something within the [`$codedir`][codedir], so that the data is in the first place your fellow admins expect it. By default, each environment has its own datadir, at `/etc/puppetlabs/code/environments/<ENVIRONMENT>/hieradata`.
 
 ## Puppet variables passed to Hiera

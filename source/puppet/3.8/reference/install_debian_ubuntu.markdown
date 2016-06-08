@@ -12,18 +12,18 @@ title: "Installing Puppet: Debian and Ubuntu"
 First
 -----
 
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+Before installing Puppet, review the [pre-install tasks.](./pre_install.html)
 
 Supported Versions
 -----
 
-{% include platforms_debian_like.markdown %}
+{% include pup38_platforms_debian_like.markdown %}
 
-Users of out-of-production versions may have vendor packages of Puppet available, but cannot use the Puppet Labs packages.
+Users of out-of-production versions might have vendor packages of Puppet available, but can't use our provided packages.
 
-To install on other operating systems, see the pages linked in the navigation sidebar.
+To install on other operating systems, see the product navigation.
 
-Step 1: Enable the Puppet Labs Package Repository
+Step 1: Enable the Puppet Package Repository
 -----
 
 The newest versions of Puppet can be installed from the [apt.puppetlabs.com](https://apt.puppetlabs.com) package repository.
@@ -32,7 +32,7 @@ The newest versions of Puppet can be installed from the [apt.puppetlabs.com](htt
 
 ### Optionally: Enable Prereleases
 
-If you want to be able to test release candidate (RC) versions of Puppet and related projects, you can turn on the prerelease repo, which is disabled by default. Note that RCs may contain unexpected changes, so be careful.
+To test release candidate (RC) versions of Puppet and related projects, you can enable the prerelease repo, which is disabled by default. Note that RCs can contain unexpected changes, so be careful.
 
 {% include repo_pre_debian_ubuntu.markdown %}
 
@@ -41,42 +41,48 @@ Step 2: Install Puppet on the Puppet Master Server
 
 (Skip this step for a standalone deployment.)
 
-On your puppet master node, run:
+On your Puppet master, run:
 
-    $ sudo apt-get install puppetserver
-    
+    sudo apt-get install puppetserver
+
 This installs Puppet, its prerequisites, and [Puppet Server](/puppetserver/), a JVM-based Puppet master server that's ready for production.
+
+> **Note:** Puppet 3.8 is compatible with [Puppet Server 1.1](/puppetserver/1.1/). [Puppet Server 2 and newer](/puppetserver/latest/) require [Puppet 4](/puppet/latest/).
 
 Do not start Puppet Server yet.
 
 ### Upgrading
 
-> **Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+> **Note:** Read our [tips on upgrading](./upgrading.html) before upgrading your Puppet deployment.
 
-To upgrade to the latest version of Puppet, you can run:
+To upgrade a Puppet master to the latest version of Puppet 3, run:
 
-    $ sudo apt-get update
-    $ sudo puppet resource package puppetmaster ensure=latest
+    sudo apt-get update
+    sudo puppet resource package puppetmaster ensure=latest
 
-You'll need to restart the puppet master web server after upgrading.
+After upgrading, restart Puppet Server.
 
 Step 3: Install Puppet on Agent Nodes
 -----
 
-On your other nodes, run `sudo apt-get install puppet`. This will install Puppet and an init script (`/etc/init.d/puppet`) for running the puppet agent daemon.
+On your Puppet agents, run:
+
+    sudo apt-get install puppet
+
+This installs Puppet and an init script (`/etc/init.d/puppet`) that runs the Puppet agent daemon.
 
 Do not start the `puppet` service yet.
 
 ### Upgrading
 
-**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+> **Note:** Read our [tips on upgrading](./upgrading.html) before upgrading your Puppet deployment.
 
-To upgrade to the latest version of Puppet, you can run:
+To upgrade a Puppet agent to the latest version of Puppet 3, run:
 
-    $ sudo apt-get update
-    $ sudo puppet resource package puppet ensure=latest
+    sudo apt-get update
+    sudo puppet resource package puppet ensure=latest
 
-You'll need to restart the `puppet` service after upgrading.
+After upgrading, restart the `puppet` service.
 
 Next
 ----

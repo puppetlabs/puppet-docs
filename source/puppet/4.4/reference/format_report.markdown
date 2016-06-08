@@ -5,6 +5,6 @@ canonical: "/puppet/latest/reference/format_report.html"
 ---
 
 
-This version of Puppet uses report format 4.
+This version of Puppet uses report format 5.
 
-{% include reportformat/4.markdown %}
+{% include reportformat/5.markdown %}

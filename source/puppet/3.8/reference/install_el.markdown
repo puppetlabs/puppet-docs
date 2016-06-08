@@ -12,21 +12,21 @@ title: "Installing Puppet: Red Hat Enterprise Linux (and Derivatives)"
 First
 -----
 
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+Before installing Puppet, review the [pre-install tasks.](./pre_install.html)
 
 Supported Versions
 -----
 
-{% include platforms_redhat_like.markdown %}
+{% include pup38_platforms_redhat_like.markdown %}
 
-To install on other operating systems, see the pages linked in the navigation sidebar.
+To install on other operating systems, see the product navigation.
 
 Step 1: Enable Dependencies (RHEL Only)
 -----
 
 CentOS and other community forks have several packages Puppet depends on in their main repos, but RHEL itself is split into channels. If you're installing Puppet on RHEL, you'll want to make sure the "optional" channel is enabled. [Instructions are available here.](https://access.redhat.com/documentation/en-US/Red_Hat_Subscription_Management/1/html/RHSM/supplementary-repos.html)
 
-Step 2: Enable the Puppet Labs Package Repository
+Step 2: Enable the Puppet Package Repository
 -----
 
 The newest versions of Puppet can be installed from the [yum.puppetlabs.com](https://yum.puppetlabs.com) package repository.
@@ -35,7 +35,7 @@ The newest versions of Puppet can be installed from the [yum.puppetlabs.com](htt
 
 ### Optionally: Enable Prereleases
 
-If you want to be able to test release candidate (RC) versions of Puppet and related projects, you can turn on the prerelease repo, which is disabled by default. Note that RCs may contain unexpected changes, so be careful.
+To test release candidate (RC) versions of Puppet and related projects, you can enable the prerelease repo, which is disabled by default. Note that RCs can contain unexpected changes, so be careful.
 
 {% include repo_pre_redhat.markdown %}
 
@@ -44,21 +44,23 @@ Step 3: Install Puppet on the Puppet Master Server
 
 (Skip this step for a standalone deployment.)
 
-On your puppet master node(s), run `sudo yum install puppetserver`. This will install Puppet and an init script (`/etc/init.d/puppetmaster`) for running a test-quality puppet master server.
+On your Puppet masters, run:
 
-> **Note:** Puppet 3.8 is compatible with Puppet Server 1.1. Puppet Server 2 and newer require Puppet 4.
+    sudo yum install puppetserver
 
-Do not start the puppet master service yet.
+This installs Puppet and an init script (`/etc/init.d/puppetmaster`) that runs a test-quality Puppet master server.
+
+Do not start the Puppet master service yet.
 
 ### Upgrading
 
-**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+> **Note:** Read our [tips on upgrading](./upgrading.html) before upgrading your Puppet deployment.
 
-To upgrade to the latest version of Puppet, you can run:
+To upgrade a Puppet master to the latest version of Puppet 3, run:
 
-    $ sudo puppet resource package puppet-server ensure=latest
+    sudo puppet resource package puppet-server ensure=latest
 
-You'll need to restart the puppet master web server after upgrading.
+After upgrading, restart the Puppet master web server.
 
 Step 4: Install Puppet on Agent Nodes
 -----
@@ -71,11 +73,11 @@ Do not start the `puppet` service yet.
 
 **Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
 
-To upgrade to the latest version of Puppet, you can run:
+To upgrade a Puppet agent to the latest version of Puppet 3, run:
 
-    $ sudo puppet resource package puppet ensure=latest
+    sudo puppet resource package puppet ensure=latest
 
-You'll need to restart the `puppet` service after upgrading.
+After upgrading, restart the `puppet` service.
 
 Next
 ----

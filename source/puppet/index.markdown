@@ -39,14 +39,17 @@ Small documents for getting help fast.
 
 A concise reference to Puppet's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
-### Current Versions
+### Current versions
 
-* [Puppet 4.3](/puppet/4.3/reference) is included with Puppet Enterprise 2015.3.
-* [Puppet 4.2](/puppet/4.2/reference) is included with Puppet Enterprise 2015.2.
+* [Puppet 4.5](/puppet/4.5/reference)
+* [Puppet 4.4](/puppet/4.4/reference) is included with Puppet Enterprise 2016.1
+
 
 
 ### Older versions
 
+* [Puppet 4.3](/puppet/4.3/reference) is included with Puppet Enterprise 2015.3.
+* [Puppet 4.2](/puppet/4.2/reference) is included with Puppet Enterprise 2015.2.
 * [Puppet 4.1](/puppet/4.1/reference)
 * [Puppet 4.0](/puppet/4.0/reference)
 * [Puppet 3.8](/puppet/3.8/reference) is included with Puppet Enterprise 3.8.
@@ -91,11 +94,9 @@ Get the latest version of Puppet up and running.
 
 ### Help with writing Puppet code
 
-* [Techniques](/guides/techniques.html) --- Common design patterns, tips, and tricks.
+* [Visual index](/guides/techniques.html) --- A list of common syntax elements.
 * [Troubleshooting](/guides/troubleshooting.html) --- Avoid common problems and confusions.
 * [Style Guide](/guides/style_guide.html) --- Puppet community conventions.
-* [Best Practices](/guides/best_practices.html) --- Use Puppet effectively.
-* [Virtual Resources](/guides/virtual_resources.html)
 * [Exported Resources](/guides/exported_resources.html) --- Share data between hosts.
 * [Using the Augeas Resource Type](/guides/augeas.html) --- Safely edit many types of config files.
 
@@ -107,20 +108,19 @@ Get the latest version of Puppet up and running.
 
 You can manage Windows nodes side by side with your \*nix infrastructure, with Puppet 2.7 and higher (including Puppet Enterprise ≥ 2.5).
 
-* [Overview of Puppet on Windows](/windows/)
-* [Troubleshooting Puppet on Windows](/windows/troubleshooting.html)
+* [Installing Puppet 4 for Windows](/puppet/4.0/reference/install_windows.html)
+* [Basic tasks and concepts in Windows](/pe/latest/windows_basic_tasks.html)
+* [Troubleshooting Puppet on Windows](/pe/latest/troubleshooting_windows.html)
 
 ### Tuning and scaling
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
 
-* [Running a Production-Grade Puppet Master Server With Passenger](/guides/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
+* [Running a Production-Grade Puppet Master Server With Passenger](/puppet/latest/reference/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
 * [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- A guide to deployments with multiple Puppet masters.
 
 ### Hacking and extending: Using Puppet's data
 
-* [Puppet Data Library: Overview](/guides/puppet_data_library.html) --- Puppet automatically gathers reams of data about your infrastructure. Learn where that data is, how to access it, and how to mine it for knowledge.
-* [Inventory Service](/guides/inventory_service.html) --- Use Puppet's inventory of nodes at your site in your own custom applications.
 * [Reporting](/guides/reporting.html) --- Learn what your nodes are up to.
 
 ### Hacking and extending: APIs and interfaces
@@ -130,24 +130,12 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Hacking and extending: Ruby plugins
 
-* [Plugins In Modules](/guides/plugins_in_modules.html) --- Where to put plugins, and how to sync them to clients.
+* [Plugins In Modules](/puppet/latest/reference/plugins_in_modules.html) --- Where to put plugins, and how to sync them to clients.
 * [Writing Custom Facts](/facter/latest/custom_facts.html)
 * [Writing Custom Functions](/guides/custom_functions.html)
 * [Writing Custom Types & Providers](/guides/custom_types.html)
 * [Complete Resource Example](/guides/complete_resource_example.html) --- More information on custom types & providers
 * [Provider Development](/guides/provider_development.html) --- More about providers.
-
-### Developing Puppet
-
-* [Development Life Cycle](/guides/development_lifecycle.html) --- Learn how to contribute code.
-* [Puppet Internals](/guides/puppet_internals.html) --- Understand how Puppet works internally.
-
-
-### Historical guides
-
-Puppet has gone through some transitional periods, and we've occasionally written short guides to explain major changes in its behavior.
-
-* [Scope and Puppet](/guides/scope_and_puppet.html) --- Understand and banish dynamic lookup warnings with Puppet 2.7.
 
 
 * * *

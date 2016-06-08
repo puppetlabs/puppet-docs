@@ -16,6 +16,14 @@ Puppet Server 2.2 and higher use a [new, HOCON-based `auth.conf` file][new_auth]
 * The [new `auth.conf` file][new_auth] is located at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
 * The [old `auth.conf` file][old_auth] is located at `$confdir/auth.conf`.
 
+## Authorization rules in `fileserver.conf`
+
+[fileserver.conf]: ./config_file_fileserver.html
+
+Before `auth.conf` existed, [`fileserver.conf`][fileserver.conf] let you specify authorization rules for the file server on a per-mountpoint basis. After authorization was centralized, this was redundant; all authorization rules should go in `auth.conf` (new style).
+
+In Puppet 5.0 (and the Puppet Server version that supports it), "allow" and "deny" rules in `fileserver.conf` will not be allowed.
+
 ## `cfacter`
 
 The `cfacter` setting was used to enable pre-releases of native Facter (distributed as the "cfacter" package) prior to the release of Facter 3.0. Now that native Facter is the default in puppet-agent packages, this setting has no purpose.

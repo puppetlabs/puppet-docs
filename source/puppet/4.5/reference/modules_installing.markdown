@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 
 [publishing]: ./modules_publishing.html
 [fundamentals]: ./modules_fundamentals.html
-[plugins]: /guides/plugins_in_modules.html
+[plugins]: ./plugins_in_modules.html
 [documentation]: ./modules_documentation.html
 [errors]: /windows/troubleshooting.html#error-messages
 [metadata.json]: ./modules_metadata.html

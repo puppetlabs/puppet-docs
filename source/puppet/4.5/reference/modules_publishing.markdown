@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/modules_publishing.html"
 
 [installing]: ./modules_installing.html
 [fundamentals]: ./modules_fundamentals.html
-[plugins]: /guides/plugins_in_modules.html
+[plugins]: ./plugins_in_modules.html
 [forge]: https://forge.puppetlabs.com/
 [rspec]: http://rspec-puppet.com/
 [signup]: ./images/forge_signup.png

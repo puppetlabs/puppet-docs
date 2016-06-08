@@ -6,16 +6,31 @@ title: "Facter 3.1: Release notes"
 [puppet-agent 1.2.x]: /puppet/4.2/reference/about_agent.html
 [puppet-agent 1.3.x]: /puppet/4.3/reference/about_agent.html
 [puppet-agent 1.4.x]: /puppet/4.4/reference/about_agent.html
-
+[puppet-agent 1.5.x]: /puppet/4.5/reference/about_agent.html
 
 This page documents the history of the Facter 3.1 series. If you're upgrading from Facter 2, also review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality.
 
+## Facter 3.1.8
+
+Released June 1, 2016.
+
+Shipped in [`puppet-agent` 1.5.1.][puppet-agent 1.5.x].
+
+Facter 3.1.8 is a bug fix release in the Facter 3.1 series.
+
+### Bug fixes
+
+* [FACT-1416](https://tickets.puppetlabs.com/browse/FACT-1416): Previously, the `solaris_zones` fact was only displaying information about zones which were running. This was fixed, and that fact now includes information about all zones on the system, whether they are running or not.
+
+* [FACT-1409](https://tickets.puppetlabs.com/browse/FACT-1409): Previously, Facter assumed that an inability to initialize locales on common Linux environments was a catastrophic failure. It now continues with a warning.
+
+* [FACT-1408](https://tickets.puppetlabs.com/browse/FACT-1408): In Facter 3, the `productname` fact in Solaris was less detailed than its predecessor in Facter 2. The fact has been updated to use the `prtdiag` command which restores the original level of detail.
 
 ## Facter 3.1.7
 
 Released May 17, 2016.
 
-Shipped in [`puppet-agent` 1.5.0.][puppet-agent 1.5.x].
+Shipped in [`puppet-agent` 1.5.0][puppet-agent 1.5.x].
 
 Facter 3.1.7 is a minor bug fix release in the Facter 3.1 series.
 
@@ -24,11 +39,11 @@ Facter 3.1.7 is a minor bug fix release in the Facter 3.1 series.
 
 ### Bug fixes
 
-*[FACT-1387](https://tickets.puppetlabs.com/browse/): Google Cloud Windows instances are now recognized as virtual and will collect GCE metadata.
+*[FACT-1387](https://tickets.puppetlabs.com/browse/FACT-1387): Google Cloud Windows instances are now recognized as virtual and will collect GCE metadata.
 
-* [FACT-1375](https://tickets.puppetlabs.com/browse/): Before this fix, `facter ipaddress` could return the address of the wrong network interface when there were routes for 0.0.0.0, with non-zero subnet mask, in addition to the default route. The correct ip address is the address of the interface associated with the interface on the route table entry for the default gateway.
+* [FACT-1375](https://tickets.puppetlabs.com/browse/FACT-1375): Before this fix, `facter ipaddress` could return the address of the wrong network interface when there were routes for 0.0.0.0, with non-zero subnet mask, in addition to the default route. The correct ip address is the address of the interface associated with the interface on the route table entry for the default gateway.
 
-* [FACT-1373](https://tickets.puppetlabs.com/browse/): Previously, if Facter was called from an external fact it would generate endless recursive Facter calls and fork bomb the agent. In order to prevent this, we will now detect recursive calls to evaluate external facts, and if we encounter one we will log a warning and stop evaluating external facts. 
+* [FACT-1373](https://tickets.puppetlabs.com/browse/FACT-1373): Previously, if Facter was called from an external fact it would generate endless recursive Facter calls and fork bomb the agent. In order to prevent this, we will now detect recursive calls to evaluate external facts, and if we encounter one we will log a warning and stop evaluating external facts. 
 
   To do this, we set an environment variable called `INSIDE_FACTER` the first time external facts are evaluated and check this variable before we evaluate external facts to ensure it hasn't been set. It is possible that a user may have their own environment variable called `INSIDE_FACTER` set to true, so anytime we encounter that variable set to true, we log a debug warning.
 

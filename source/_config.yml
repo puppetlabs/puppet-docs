@@ -234,7 +234,7 @@ documents:
     my_versions:
       facter: 3.1
       hiera: 3.2
-      puppetserver: 2.3
+      puppetserver: 2.4
   /puppet/4.4/reference:
     doc: puppet
     version: 4.4
@@ -372,13 +372,25 @@ documents:
     version: 1
     nav: /_includes/hiera1.html
 
+  /puppetserver/2.4:
+    doc: puppetserver
+    version: 2.4
+    nav: /puppet/4.5/reference/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 522083d
+      subdirectory: documentation
+    my_versions:
+      puppet: 4.5
+      facter: 3.1
+      hiera: 3.2
   /puppetserver/2.3:
     doc: puppetserver
     version: 2.3
     nav: /puppet/4.4/reference/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 7365ebc
+      commit: 585c701
       subdirectory: documentation
     my_versions:
       puppet: 4.4
@@ -430,13 +442,21 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/4.1:
+    doc: puppetdb
+    version: 4.1
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/stable
+      subdirectory: documentation
   /puppetdb/4.0:
     doc: puppetdb
     version: 4.0
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/stable
+      commit: origin/4.0.x
       subdirectory: documentation
   /puppetdb/3.2:
     doc: puppetdb

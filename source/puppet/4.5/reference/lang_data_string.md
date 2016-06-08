@@ -81,7 +81,7 @@ Some common things to watch out for:
 * To include a backslash at the very end of a single-quoted string, you must use a double backslash instead of a single backslash. For example: `path => 'C:\Program Files(x86)\\'`
 * To include a literal double backslash you must use a quadruple backslash.
 
-## Double-quoted ttrings
+## Double-quoted strings
 
 Strings can also be surrounded by double quotes, `"like this"`. Line breaks within the string are interpreted as literal line breaks, and you can also insert line breaks with `\n` (Unix-style) or `\r\n` (Windows-style).
 

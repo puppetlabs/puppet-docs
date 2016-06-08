@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Installing Puppet: Mac OS X"
+title: "Installing Puppet: OS X"
 ---
 
 [peinstall]: /pe/latest/install_basic.html
@@ -11,25 +11,27 @@ title: "Installing Puppet: Mac OS X"
 First
 -----
 
-Before installing Puppet, make sure you've looked at the [pre-install tasks.](./pre_install.html)
+Before installing Puppet, review the [pre-install tasks.](./pre_install.html)
 
 Supported Versions
 -----
 
-Puppet Labs builds packages for OS X, but we don't run automated testing on them.
+Puppet builds packages for OS X, but we don't run automated testing on them.
 
-We recommend using Puppet on the newest version of OS X available, and we will tend to not fix bugs related to older versions. Our current packages are intended for OS X Mavericks (10.9) and later.
+{% include pup38_platforms_osx.markdown %}
 
-To install on other operating systems, see the pages linked in the navigation sidebar.
+We recommend using Puppet on the newest version of OS X available, because we might not address bugs related to older versions. Our Puppet 3.8 packages are intended for OS X 10.9 (Mavericks) and later, and newer versions of Puppet are built and tested against newer versions of OS X.
+
+To install on other operating systems, see the product navigation.
 
 Step 1: Download Packages
 -----
 
-[Puppet Labs' OS X packages can be found here.](http://downloads.puppetlabs.com/mac/) You will need three packages total:
+Download Puppet's OS X installers from [downloads.puppetlabs.com/mac](http://downloads.puppetlabs.com/mac/). You need these three packages:
 
-* The most recent Facter package (`facter-<VERSION>.dmg`)
-* The most recent Hiera package (`hiera-<VERSION>.dmg`)
-* The most recent Puppet package (`puppet-<VERSION>.dmg`)
+-   The most recent Facter package (`facter-<VERSION>.dmg`)
+-   The most recent Hiera package (`hiera-<VERSION>.dmg`)
+-   The most recent Puppet package (`puppet-<VERSION>.dmg`)
 
 The list of OS X packages includes release candidates, whose filenames have something like `-rc1` after the version number. Only use these if you want to test upcoming Puppet versions.
 
@@ -52,7 +54,7 @@ Although OS X systems can act as puppet master servers, we don't ship separate p
 
 ### Upgrading
 
-**Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
+> **Note:** Be sure to read our [tips on upgrading](./upgrading.html) before upgrading your whole Puppet deployment.
 
 To upgrade to the latest versions of Puppet, Facter, and Hiera, download new packages and run the installers again.
 
@@ -143,7 +145,6 @@ See [the puppet agent man page](/puppet/latest/reference/man/agent.html) for det
 ### Don't Worry About Loading the Launchd Service
 
 As long as a service plist is in the `/Library/LaunchDaemons` directory, `puppet resource service` can manage it by name. You do not need to use `launchctl load` to enable the service.
-
 
 Next
 ----

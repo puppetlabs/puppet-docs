@@ -19,6 +19,37 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), s
 
 Also of interest: the [Puppet 4.4 release notes](/puppet/4.4/reference/release_notes.html) and [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
 
+## Puppet 4.5.1
+
+Released June 1, 2016.
+
+A bug fix release in the Puppet 4.5 series.
+
+* [Fixed in Puppet 4.5.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.5.1%27)
+* [Introduced in Puppet 4.5.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27PUP%204.5.1%27)
+
+### Regression warning
+
+A regression was found that caused undef to be equal to a literal undef when running on JRuby. This in turn is caused in what appears to be a discrepancy in the implementations of String and Symbol in MRI vs. JRuby. 
+
+Users writing Ruby code should be aware that `String == Symbol` is different than `Symbol == String` and that the safe way to make such comparisons until discrepancies are solved (or before Puppet 5.0.0) should compare symbols using `:undef.equal?(x)` rather than `:undef == x` (which will fail), and `x == :undef` (since that triggers a slower code path on JRuby).
+
+* [PUP-6336](https://tickets.puppetlabs.com/browse/PUP-6336)
+
+
+### Bug fixes
+
+* [PUP-6354](https://tickets.puppetlabs.com/browse/PUP-6354): The Enum type did not make a unique set of its entries, which could lead to surprises when iterating its content, for example `Enum[a,b,a]` would contain 'a' twice.
+
+* [PUP-6339](https://tickets.puppetlabs.com/browse/PUP-6339): If data in a module using "data in modules" depended on node/fact/compilation specific input it would not get the correct data if environment timeout was set to greater than 0. It would instead produce the value for the node for which a catalog was compiled in that environment's life cycle. Modules having only static data were not affected by this problem.
+
+* [PUP-6321](https://tickets.puppetlabs.com/browse/PUP-6321): A regression from Puppet 4.4 caused types that used autorequire to fail when the referenced set contained undef entries. This could also be the cause of other errors, although none have been reported at this time.
+
+* [PUP-6320](https://tickets.puppetlabs.com/browse/PUP-6320): A bad type mismatch message was produced when size constraint on Array was not met. It now clearly states that it was the size of the array that caused the failure.
+
+* [PUP-6319](https://tickets.puppetlabs.com/browse/PUP-6319): A bad type mismatch message was produced when size constraint on hash was not met. It now clearly states that it was the size of the hash that caused the failure.
+
+
 ## Puppet 4.5.0
 
 Released May 17, 2016.

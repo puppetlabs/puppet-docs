@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/modules_documentation.html"
 
 [installing]: ./modules_installing.html
 [fundamentals]: ./modules_fundamentals.html
-[plugins]: /guides/plugins_in_modules.html
+[plugins]: ./plugins_in_modules.html
 [publishing]: ./modules_publishing.html
 [template]: ./READMEtemplate.txt
 [forge]: https://forge.puppetlabs.com/
