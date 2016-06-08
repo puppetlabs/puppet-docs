@@ -50,8 +50,13 @@
     </form>
 
     <!-- Static navbar -->
-    {% if page.url contains "/ja/" %}{% include template/header_ja.html %}{% else %}{% include template/header_en.html %}{% endif %}
-    {% if page.url contains "/fr/" %}{% include template/header_fr.html %}{% else %}{% include template/header_en.html %}{% endif %}
+    {% if page.url contains "/ja/" %}
+        {% include template/header_ja.html %}
+    {% elsif page.url contains "/fr/" %}
+        {% include template/header_fr.html %}
+    {% else %}
+        {% include template/header_en.html %}
+    {% endif %}
 
 
     <div id="doc-switchers" class="container">
