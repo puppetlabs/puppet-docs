@@ -39,14 +39,17 @@ Small documents for getting help fast.
 
 A concise reference to Puppet's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
-### Current Versions
+### Current versions
 
-* [Puppet 4.3](/puppet/4.3/reference) is included with Puppet Enterprise 2015.3.
-* [Puppet 4.2](/puppet/4.2/reference) is included with Puppet Enterprise 2015.2.
+* [Puppet 4.5](/puppet/4.5/reference)
+* [Puppet 4.4](/puppet/4.4/reference) is included with Puppet Enterprise 2016.1
+
 
 
 ### Older versions
 
+* [Puppet 4.3](/puppet/4.3/reference) is included with Puppet Enterprise 2015.3.
+* [Puppet 4.2](/puppet/4.2/reference) is included with Puppet Enterprise 2015.2.
 * [Puppet 4.1](/puppet/4.1/reference)
 * [Puppet 4.0](/puppet/4.0/reference)
 * [Puppet 3.8](/puppet/3.8/reference) is included with Puppet Enterprise 3.8.
