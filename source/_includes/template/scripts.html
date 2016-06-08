@@ -72,4 +72,13 @@
           return false;
         }
       });
+
+      // Shift content when top nav is affixed
+      $('.navbar').on('affix.bs.affix', function(){
+        document.getElementById('doc-switchers').className += ' content-affix';
+      });
+
+      $('.navbar').on('affix-top.bs.affix', function(){
+        document.getElementById('doc-switchers').className -= ' content-affix';
+      });
     </script>
