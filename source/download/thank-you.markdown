@@ -7,8 +7,8 @@ snowflake: downloads
 <section>
     <p>This download includes all the documentation for Puppet Enterprise, Open Source Puppet, Hiera, Facter, and more.</p>
 
-    <p>If your download does not automatically start <a id="offline-doc" href="https://docs.puppetlabs.com/puppetdocs-latest.tar.gz">click here</a>.</p>
-    <iframe src="https://docs.puppetlabs.com/puppetdocs-latest.tar.gz" width="1" height="1" frameborder="0" style="display: none;"></iframe>
+    <p>If your download does not automatically start <a id="offline-doc" href="/puppetdocs-latest.tar.gz">click here</a>.</p>
+    <iframe src="/puppetdocs-latest.tar.gz" width="1" height="1" frameborder="0" style="display: none;"></iframe>
 
     <h4>Related Puppet Resources</h4>
     <ul>
