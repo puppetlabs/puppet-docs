@@ -91,6 +91,7 @@ documents:
     doc: pe
     version: 2016.2
     nav: ./_pe_toc.html
+    draft: true
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
       commit: origin/couch
