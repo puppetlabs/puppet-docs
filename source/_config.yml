@@ -35,8 +35,8 @@ defaultnav:
 
 #Anatomy of an external source:
 #  /puppetdb/2.2:                                   # The absolute URL where the source's contents should be mounted in the final site.
-#    repo: git://github.com/puppetlabs/puppetdb.git # The URL of the upstream repo, in a form acceptable to `git clone`. This must be accessible to anyone who will need to deploy the site.
-#    commit: origin/2.2.x                           # a git treeish (in a form acceptable to `git checkout`) that the external source should track. This should almost always be either a tag, which will never update, or an upstream tracking branch on the default "origin" remote (origin/<branch>), which will update every time someone builds the site.
+#    repo: git://github.com/puppetlabs/puppetdb.git # The URL of the upstream repo, in any form `git clone` understands. This must be accessible to anyone who will need to build the site.
+#    commit: origin/2.2.x                           # A git treeish (in any form `git checkout` understands) that the external source should track. This should almost always be either a tag, which will never update, or an upstream tracking branch on the default "origin" remote (origin/<branch>), which will update every time someone builds the site.
 #    subdirectory: documentation                    # A subdirectory within the remote repository that contains the documentation files that we'll build and mount at the specified url.
 externalsources:
   /mcollective:
@@ -74,11 +74,12 @@ document_names:
 #    version: 2015.3              # Version. Used for associating confirmed version numbers with a URL.
 #    nav: ./_pe_toc.html          # Nav snippet. Can be an absolute URL, or relative to the base URL.
 #    hide: false                  # Whether to hide this version in the version switcher. Optional; defaults to false.
-#    external_source:             # External source. Works the same as external sources above; requires repo, commit, and subdirectory keys.
-#      repo: git@github.com:puppetlabs/pe-docs-private.git
+#    draft: false                 # Whether to warn in the version note that this is a draft for an unreleased version. Optional; defaults to false.
+#    external_source:             # External source. (Works the same as external sources above.) Optional; if absent, we use content from this repo instead of an external repo.
+#      repo: git@github.com:puppetlabs/pe-docs-private.git   # A git repo
 #      commit: origin/pe2015.3.1
 #      subdirectory: source
-#    my_versions:                 # A hash, where you can specify the one most-relevant version for any number of other documents.
+#    my_versions:                 # A hash, where you can specify the most-relevant version for any number of other documents.
 #      puppet: 4.3                # The keys of this hash should be document group IDs; that is, the value of the `doc` key from another document.
 #      facter: 3.1
 #      hiera: 3.0

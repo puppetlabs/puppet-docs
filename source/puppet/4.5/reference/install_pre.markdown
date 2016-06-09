@@ -29,7 +29,7 @@ If you choose the standard agent/master architecture, you'll need to decide whic
 
 You should completely install and configure Puppet on any Puppet masters and PuppetDB servers before installing on any agent nodes. The master must be running some kind of \*nix. Windows machines can't be masters.
 
-A Puppet master should be a dedicated machine with a fast processor, lots of RAM, and a fast disk. It must also be reachable at a reliable hostname.
+A Puppet master should be a dedicated machine. It must also be reachable at a reliable hostname. See the [system requirements](system_requirements.html) for minimum hardware requirements.
 
 > Note: Agent nodes will default to contacting the master at the hostname `puppet`. If you make sure this hostname resolves to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
 
