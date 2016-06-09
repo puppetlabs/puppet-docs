@@ -11,7 +11,7 @@ title: Beginner's Guide to Modules
 [service]: ./images/bgtmntpservice.png
 
 
-This module guide will help you learn how to create fantastic modules by introducing Puppet Labs' module best practice [standards and architecture](/guides/style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
+This module guide will help you learn how to create fantastic modules by introducing module best practices [standards and architecture](/guides/style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
 ## Requirements
 
@@ -29,7 +29,7 @@ To help plan your module appropriately, ask yourself some questions:
 
 (*Tip: If you describe the function of your module and you find yourself using the word 'and', it's time to split the module at the 'and'*.)
 
-It is standard practice for Puppet users to have upwards of 200 modules in their environment. Each module in your environment should contain related resources that enable it to accomplish a task, the simpler the better. Puppet Labs best practice strongly recommends creating multiple modules when and where applicable. The practice of having many small, focused modules is encouraged, as it promotes code reuse and turns modules into building blocks rather than full solutions.
+It is standard practice for Puppet users to have upwards of 200 modules in their environment. Each module in your environment should contain related resources that enable it to accomplish a task, the simpler the better. We strongly recommend creating multiple modules when and where applicable. The practice of having many small, focused modules is encouraged, as it promotes code reuse and turns modules into building blocks rather than full solutions.
 
 As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppetlabs.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [puppetlabs/postgresql](http://forge.puppetlabs.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the puppetdb module needs to manipulate puppet.conf in order to operate PuppetDB. Instead of having the puppetdb module handle it internally, the author took advantage of the [puppetlabs/inifile](http://forge.puppetlabs.com/puppetlabs/inifile) module to enable puppetdb to make only the required edits to puppet.conf.
 
@@ -188,7 +188,7 @@ For example, in the ntp module
 
 If you have a parameter that toggles an entire function on and off, the naming convention can be amended to `thing_manage`. This applies, in particular, to Boolean toggles such as managing the installation altogether. The `thing_manage` convention allows you to wrap all of the resources in an `if $package_manage {}` test.
 
-Consistent naming across modules helps with the readability and usability of your code. While Puppet Labs doesn't have a set of standards for parameters to conform to, there's a community project working to establish one. If you care about name standardization, offer issues and pull requests [here](https://github.com/stdmod/puppet-modules/blob/master/Parameters_List.md).
+Consistent naming across modules helps with the readability and usability of your code. While we don't have a set of standards for parameters to conform to, there's a community project working to establish one. If you care about name standardization, offer issues and pull requests [here](https://github.com/stdmod/puppet-modules/blob/master/Parameters_List.md).
 
 #### Number
 
@@ -259,7 +259,7 @@ Rspec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to a
 
     it { should contain_file('configuration') }
 
-RSpec lets you provide facts, like `osfamily`, in order to test the module in various scenarios. A typical use case for Puppet Labs is iteration over a list of operating systems, asserting that the package and service should exist in the catalog for every operating system we support.
+RSpec lets you provide facts, like `osfamily`, in order to test the module in various scenarios. A typical use is iteration over a list of operating systems, asserting that the package and service should exist in the catalog for every operating system we support.
 
 You can read more at [http://rspec-puppet.com/](http://rspec-puppet.com/).
 
@@ -267,7 +267,7 @@ You can read more at [http://rspec-puppet.com/](http://rspec-puppet.com/).
 
 [Rspec-system](https://github.com/puppetlabs/rspec-system) is an acceptance/integration testing framework that provisions, configures, and uses various [Vagrant](http://www.vagrantup.com/) virtual machines to apply your puppet module to a real machine and then test things (such as ensuring a package is installed or a service is running) from the command line within the VM.
 
-At Puppet Labs, we use rspec-system to do things like build a Debian virtual machine, run the apache module on it, then ensure we can curl to http://localhost:80 and retrieve the contents of a virtual host.
+We use rspec-system to do things like build a Debian virtual machine, run the apache module on it, then ensure we can curl to http://localhost:80 and retrieve the contents of a virtual host.
 
 ### serverspec
 
