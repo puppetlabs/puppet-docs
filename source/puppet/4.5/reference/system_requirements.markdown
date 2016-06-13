@@ -21,27 +21,27 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 ## Platforms with packages
 
-Puppet 4.5 and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./upgrade_minor.html#puppet-collections-and-upgrading).
+Puppet 4.5 and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./puppet_collections.html).
 
 ### Red Hat Enterprise Linux (and derivatives)
 
-{% include pup43_platforms_redhat_like.markdown %}
+{% include pup45_platforms_redhat_like.markdown %}
 
 ### Debian and Ubuntu
 
-{% include pup40_platforms_debian_like.markdown %}
+{% include pup45_platforms_debian_like.markdown %}
 
 ### Fedora
 
-{% include pup43_platforms_fedora.markdown %}
+{% include pup45_platforms_fedora.markdown %}
 
 ### Windows
 
-{% include pup43_platforms_windows.markdown %}
+{% include pup45_platforms_windows.markdown %}
 
-### Mac OS X
+### OS X
 
-{% include pup43_platforms_osx.markdown %}
+{% include pup45_platforms_osx.markdown %}
 
 ## Platforms without packages
 

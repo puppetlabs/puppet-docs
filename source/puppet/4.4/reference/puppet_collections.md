@@ -26,6 +26,8 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_el5.md %}
 
+{% include puppet-collections/_puppet_collection_1_f23.md %}
+
 {% include puppet-collections/_puppet_collection_1_f22.md %}
 
 {% include puppet-collections/_puppet_collection_1_f21.md %}
