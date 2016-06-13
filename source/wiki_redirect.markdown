@@ -1,7 +1,6 @@
  ---
 layout: default
 title: Information for Puppet Wiki readers
-toc: false
 ---
 
 The Puppet Wiki is closed
