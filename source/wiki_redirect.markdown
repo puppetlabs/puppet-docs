@@ -1,4 +1,4 @@
- ---
+---
 layout: default
 title: Information for Puppet Wiki readers
 ---
