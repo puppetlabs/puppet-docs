@@ -18,6 +18,29 @@ Puppet's version numbers use the format X.Y.Z, where:
 Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover breaking changes since Puppet 3.8.
 
 Also of interest: the [Puppet 4.4 release notes](/puppet/4.4/reference/release_notes.html) and [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
+## Puppet 4.5.2
+
+Released June 14, 2016.
+
+A bug fix release in the Puppet 4.5 series.
+
+* [Fixed in Puppet 4.5.1]()
+* [Introduced in Puppet 4.5.1]()
+
+### Bug fixes
+* [PUP-6279](https://tickets.puppetlabs.com/browse/PUP-6279): It was not possible to call the type() function using postfix notation, for example `1.type()` would not work, but `type(1)` did. Now both work.
+
+
+* Error handling for attempts to form relationships with undef resources was improved in [PUP-6028](https://tickets.puppetlabs.com/browse/PUP-6028). This led to a problem with code using `create_resources` and the stdlib functions `ensure_resource`, `ensure_resources`, and `ensure_packages`. This combination could feed an undef resource reference into the catalog, and is now always treated as an error. 
+
+  The problem manifests itself as the error message: 
+
+  ~~~
+  No title provided and "" is not a valid resource reference 
+  ~~~
+
+  For more information, see [PUP-6385](https://tickets.puppetlabs.com/browse/PUP-6385).
+
 
 ## Puppet 4.5.1
 

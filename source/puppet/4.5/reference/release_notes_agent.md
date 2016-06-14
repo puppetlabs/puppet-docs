@@ -33,6 +33,16 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.5 release notes](./release_notes.html).
 
+## Puppet agent 1.5.2
+
+Released June 14, 2016.
+
+### Component updates
+
+Bug fixes in Puppet 4.5.2.
+
+All other components remain unchanged from `puppet-agent` 1.5.1.
+
 ## Puppet agent 1.5.1
 
 Released June 1, 2016.
