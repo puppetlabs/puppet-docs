@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 
 [Puppet 4.5.0]: /puppet/4.5/reference/release_notes.html#puppet-450
 [Puppet 4.5.1]: /puppet/4.5/reference/release_notes.html#puppet-451
-
+[Puppet 4.5.2]: /puppet/4.5/reference/release_notes.html#puppet-452
 
 [Facter 3.1.7]: /facter/3.1/release_notes.html#facter-317
 [Facter 3.1.8]: /facter/3.1/release_notes.html#facter-318
