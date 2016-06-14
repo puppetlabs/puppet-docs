@@ -18,6 +18,7 @@ Puppet's version numbers use the format X.Y.Z, where:
 Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover breaking changes since Puppet 3.8.
 
 Also of interest: the [Puppet 4.4 release notes](/puppet/4.4/reference/release_notes.html) and [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
+
 ## Puppet 4.5.2
 
 Released June 14, 2016.
