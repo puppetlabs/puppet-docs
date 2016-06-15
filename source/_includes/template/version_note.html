@@ -8,4 +8,9 @@
 {% assign ver_note_open = "true" %}
 {% endif %}
 
+{% if page.doc and page.doc.draft %}
+{% unless ver_note_open %}<div id="version-note"><p class="noisy">{% endunless %}<strong>Draft document:</strong> This is an unedited, potentially incomplete draft.
+{% assign ver_note_open = "true" %}
+{% endif %}
+
 {% if ver_note_open %}</p></div>{% endif %}
