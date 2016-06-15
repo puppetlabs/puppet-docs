@@ -3,10 +3,6 @@ Report Format 5
 
 This is the format of reports output by Puppet versions 4.4.0 and later. It is backwards-compatible with report format 4, as it only adds two fields.
 
-### Known Issues
-
-In Puppet 4.0 through 4.3, the `tags` fields of `Puppet::Util::Log` and `Puppet::Resource::Status` objects are `Puppet::Util::TagSet` objects (inheriting from the Ruby `Set` class) instead of arrays of strings. This is a bug, tracked as [PUP-5341](https://tickets.puppetlabs.com/browse/PUP-5341).
-
 ### Puppet::Transaction::Report
 
 The Puppet::Transaction::Report contains the following attributes:
@@ -20,7 +16,7 @@ The Puppet::Transaction::Report contains the following attributes:
   <tr><td>resource_statuses</td><td>hash</td><td>maps from resource name to Puppet::Resource::Status</td></tr>
   <tr><td>configuration_version</td><td>string or integer</td><td>The "configuration version" of the puppet run.  This is a string if the user has specified their own versioning scheme, otherwise an integer representing seconds since the epoch.</td></tr>
   <tr><td>transaction_uuid</td><td>string</td><td>A UUID covering the transaction.  The query parameters for the catalog retrieval will have included the same UUID.</td></tr>
-  <tr><td>catalog_uuid</td><td><string></td><td>A master generated catalog uuid, useful for connecting a single catalog to multiple reports.</td></tr>
+  <tr><td>catalog_uuid</td><td>string</td><td>A master generated catalog uuid, useful for connecting a single catalog to multiple reports.</td></tr>
   <tr><td>report_format</td><td>integer</td><td>4</td></tr>
   <tr><td>puppet_version</td><td>string</td><td>The version of the Puppet agent.</td></tr>
   <tr><td>kind</td><td>string</td><td>"inspect" if this report came from a "puppet inspect" run, "apply" if it came from a "puppet apply" or "puppet agent" run.</td></tr>
@@ -116,6 +112,6 @@ Puppet::Transaction::Event#status has the following meanings:
 * `noop`: property was out of sync, and wasn't changed due to noop mode.
 * `audit`: property was in sync, and was being audited.
 
-### Differences from Report Format 
+### Differences from Report Format 4
 
 * Puppet::Transaction::Report gained `catalog_uuid` and `cached_catalog_status`.
