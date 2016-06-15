@@ -6974,6 +6974,7 @@ table > tfoot > tr > td {
 /* ------------------- */
 nav.in-page {
   padding-top: 1em;
+  padding-bottom: 1em;
 }
 nav.multi-column {
   -webkit-column-width: 13em;
