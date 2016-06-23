@@ -59,6 +59,7 @@ body {
   border-radius: 12px;
   background: #fafafa;
   padding: 30px;
+  min-height: 660px;
 }
 
 .homepage-callout .hc-wrapper .hc-col.left .hc-col-box {
