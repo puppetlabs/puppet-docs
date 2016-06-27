@@ -1,18 +1,18 @@
 ---
 layout: default
-title: "About Puppet Collections and packages"
+title: "About Puppet Collections and Packages"
 canonical: "/puppet/latest/reference/puppet_collections.html"
 ---
 
 {% include puppet-collections/_puppet_collections_intro.md %}
 
-## Puppet collection contents
+## Puppet Collection contents
 
 Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_contents.md %}
 
-## Using Puppet collections
+## Using Puppet Collections
 
 {% include puppet-collections/_puppet_collections_using.md %}
 
@@ -26,39 +26,33 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_el5.md %}
 
-{% include puppet-collections/_puppet_collection_1_f23.md %}
-
 {% include puppet-collections/_puppet_collection_1_f22.md %}
+
+{% include puppet-collections/_puppet_collection_1_f21.md %}
 
 ### Apt-based systems
 
 {% include puppet-collections/_puppet_collection_1_apt.md %}
 
-{% include puppet-collections/_puppet_collection_1_u1604.md %}
-
-{% include puppet-collections/_puppet_collection_1_u1510.md %}
+{% include puppet-collections/_puppet_collection_1_u1410.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1404.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1204.md %}
 
-{% include puppet-collections/_puppet_collection_1_d8.md %}
-
 {% include puppet-collections/_puppet_collection_1_d7.md %}
 
-### OS X systems
+{% include puppet-collections/_puppet_collection_1_d6.md %}
 
-{% include puppet-collections/_puppet_collection_1_osx.md %}
+### Windows systems
 
-{% include puppet-collections/_puppet_collection_1_osx1011.md %}
+Microsoft Installer (MSI) packages for `puppet-agent` are distributed from [downloads.puppetlabs.com](https://downloads.puppetlabs.com/windows/) and aren't directly associated with Puppet Collections. For more information, see the [Windows Agent installation documentation](./install_windows.html).
 
-{% include puppet-collections/_puppet_collection_1_osx1010.md %}
-
-{% include puppet-collections/_puppet_collection_1_osx1009.md %}
+{% include pup40_platforms_windows.markdown %}
 
 ## Verifying Puppet packages
 
-We sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
+At Puppet, we sign most of our packages, Ruby gems, and release tarballs with GNU Privacy Guard (GPG). This helps prove that the packages originate from Puppet and have not been compromised.
 
 Security-conscious users can use GPG to verify signatures on our packages.
 
@@ -195,62 +189,3 @@ You can also confirm the certificate when installing the package by clicking the
 This displays details about the `puppet-agent` package's certificate:
 
 ![Details about the puppet-agent package's certificate displayed by the OS X package installer.](./images/os-x-signature-gui-2.png)
-
-## Nightly repositories
-<!-- We should keep information about nightly repos on the /latest/ version of Puppet only. It's not relevant for older versions.-->
-
-We provide automatically built [nightly repositories](https://nightlies.puppetlabs.com/) for *nix operating systems containing packages of **pre-release software not intended for production use**. The nightly repositories require that you also have the standard Puppet Collection repository enabled.
-
-### Nightly?
-
-Our automated systems create new "nightly" repositories for builds that pass our acceptance testing on the most popular platforms. This means we might not technically release builds nightly. However, they still represent bleeding-edge Puppet builds **that are not intended for production use.**
-
-### Nightly repository contents
-
-Each nightly repo contains a single product. We make nightly repositories for Puppet Server, Puppet Agent (including its related tools), and PuppetDB.
-
-### Latest vs. specific commit
-
-There are two kinds of nightly repository for each product:
-
--   The "-latest" repository stays around forever and always contains the latest build. We publish new packages to this repository every day or two, and are good for persistent canary systems.
-
--   The other repositories are all named after a specific git commit. They contain a single build, so you can reliably install the same version on many systems. These repositories are useful when testing a specific build, such to help Puppet test an impending release announced on the [puppet-users mailing list](https://groups.google.com/forum/#!forum/puppet-users).
-
-    We delete single-commit repositories a week or two after we create them, so if you want to keep the packages available, import them into your local repository.
-
-### Enabling nightly repositories on Yum-based systems
-
-1.  Enable the main Puppet Collection repository, as described [above](#yum-based-systems).
-
-2.  In a web browser, go to <https://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
-
-3.  Click through to your repository's `repo_configs/rpm` directory, and identify the `.repo` file that applies to your operating system. This looks like `pl-puppet-agent-<COMMIT>-el-7-x86_64.repo`.
-
-4.  Download the `.repo` file into the system's `/etc/yum.repos.d/` directory. For example, to install the RHEL 7 puppet-agent nightly repository for commit 732e883, run:
-
-    ``` bash
-    cd /etc/yum.repos.d
-    sudo wget https://nightlies.puppetlabs.com/puppet-agent/732e883733fe5e5989afe330e3c5cea00b678d1e/repo_configs/rpm/pl-puppet-agent-732e883733fe5e5989afe330e3c5cea00b678d1e-el-7-x86_64.repo
-    ```
-
-5.  Upgrade or install the product.
-
-### Enabling nightly repositories on Apt-based systems
-
-1.  Enable the main Puppet Collection repository, as described [above](#apt-based-systems).
-
-2.  In a web browser, go to <https://nightlies.puppetlabs.com/>. Choose the repository you want; this will be either `<PRODUCT>-latest`, or `<PRODUCT>/<COMMIT>`.
-
-3.  Click through to your repository's `repo_configs/deb` directory, and identify the `.list` file that applies to your operating system. This looks like `pl-puppet-agent-<COMMIT>-xenial.list`.
-
-4.  Download the `.list` file into the system's `/etc/apt/sources.list.d/` directory. For example, to install the Ubuntu 16.04 (Xenial) puppet-agent nightly repository for commit 732e883, run:
-
-    ``` bash
-    cd /etc/apt/sources.list.d
-    sudo wget https://nightlies.puppetlabs.com/puppet-agent/732e883733fe5e5989afe330e3c5cea00b678d1e/repo_configs/deb/pl-puppet-agent-732e883733fe5e5989afe330e3c5cea00b678d1e-xenial.list
-    ```
-
-5. Run `sudo apt-get update`.
-
-6. Upgrade or install the product.
