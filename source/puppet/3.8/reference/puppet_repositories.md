@@ -20,7 +20,7 @@ You can easily add Puppet's package repositories to a *nix operating system by d
 
 For Red Hat Enterprise Linux and its derivatives:
 
-{% include repo_el.md %}
+{% include repo_el.markdown %}
 
 For Fedora:
 
