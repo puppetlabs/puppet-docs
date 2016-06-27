@@ -4,7 +4,7 @@ title: "Upgrading Puppet"
 ---
 
 [release_notes]: /release_notes/
-[repos]: /guides/puppetlabs_package_repositories.html
+[repos]: ./puppet_repositories.html
 [puppet_3_release_notes]: /puppet/3/reference/release_notes.html
 [mailing_list]: https://groups.google.com/group/puppet-users/
 [tarball]: http://downloads.puppetlabs.com/puppet/
@@ -13,11 +13,10 @@ title: "Upgrading Puppet"
 
 Since Puppet is likely managing your entire infrastructure, it should be **upgraded with care.** This page describes our recommendations for upgrading Puppet.
 
-
 Upgrade Intentionally
 -----
 
-If you are using `ensure => latest` on the Puppet package or running large-scale package upgrade commands, you might receive a Puppet upgrade you were not expecting, especially if you subscribe to the [Puppet Labs package repos][repos], which always contain the most recent version of Puppet. **We highly recommend avoiding unintentional upgrades.** Although we try our best not to break things, especially between minor releases, Puppet has a lot of surface area, and bugs can and do slip in.
+If you are using `ensure => latest` on the Puppet package or running large-scale package upgrade commands, you might receive a Puppet upgrade you were not expecting, especially if you subscribe to the [Puppet package repos][repos], which always contain the most recent version of Puppet. **We highly recommend avoiding unintentional upgrades.** Although we try our best not to break things, especially between minor releases, Puppet has a lot of surface area, and bugs can and do slip in.
 
 We recommend doing one of the following:
 

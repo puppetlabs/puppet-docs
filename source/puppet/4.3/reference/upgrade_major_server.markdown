@@ -50,7 +50,7 @@ Repeat the following steps for each Puppet Server until you're running a pure Pu
 
 Starting with Puppet 4, our software releases are grouped into **Puppet Collections**.
 
-To upgrade Puppet Server, you'll need to add the Puppet Collection repository to each node's package manager. Follow the [Puppet Server installation instructions](/puppetserver/2.2/install_from_packages.html) to [enable the Puppet Collection 1 repository.](/guides/puppetlabs_package_repositories.html) and install the `puppetserver` package.
+To upgrade Puppet Server, you'll need to add the Puppet Collection repository to each node's package manager. Follow the [Puppet Server installation instructions](/puppetserver/2.2/install_from_packages.html) to [enable the Puppet Collection 1 repository](./puppet_collections.html) and install the `puppetserver` package.
 
 Even after you've installed the package, **don't start the `puppetserver` service yet**! You should do a few other things first.
 
