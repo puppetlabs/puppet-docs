@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 [approved]: https://forge.puppet.com/approved
 [supported]: https://forge.puppet.com/supported
 [score]: /forge/assessingmodulequality.html
-
+[environment]: ./environments.html
 
 This page explains how to install and manage modules using the `puppet module` command.
 
@@ -40,10 +40,10 @@ The [Puppet Forge][forge] is a repository of modules written both by Puppet and 
 
 The `puppet module` tool provides a command line interface for managing modules from the Forge. Its interface is similar to several common package managers (such as `gem`, `apt-get`, or `yum`). You can use the `puppet module` command to search for, install, and manage modules.
 
-> If you are using [Code Manager][code_mgr] or [r10k][r10k], do not use the `puppet module` command to install or manage modules. Instead, you'll use a [Puppetfile][puppetfile] to manage modules in your environments. In particular, note that Code Manager purges modules that were installed to the live code directory with the `puppet module` command.
+> **Important:** If you are using [Code Manager][code_mgr] or [r10k][r10k], do not use the `puppet module` command to install or manage modules. Instead, use a [Puppetfile][puppetfile] to manage modules in your environments. In particular, note that Code Manager purges modules that were installed to the live code directory with the `puppet module` command.
 
 
-> **Solaris Note**: To use `puppet module` commands on Solaris systems, you must first install gtar.
+> **Solaris Note:** To use `puppet module` commands on Solaris systems, you must first install gtar.
 
 ### Using `puppet module` behind a proxy
 
@@ -61,13 +61,13 @@ export http_proxy=http://192.168.0.10:8080
 export https_proxy=http://192.168.0.10:8080
 ```
 
-Alternatively, you can set these two proxy settings inside the `user` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [Configuration Reference](./configuration.html).
+Alternatively, you can set these two proxy settings inside the `[user]` config section in the `puppet.conf` file: `http_proxy_host` and `http_proxy_port`. For more information, see [the configuration reference](./configuration.html#httpproxyhost).
 
-> **Note:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects.
+> **Important:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects.
 
 ## Finding Forge modules
 
-You can find modules by browsing the [Puppet Forge][forge] on the web or by using the module tool's [`search`](#search-modules-from-the-command-line) action. 
+You can find modules by browsing the [Puppet Forge][forge] on the web or by using the module tool's [`search`](#search-modules-from-the-command-line) action.
 
 The Forge houses thousands of modules, including Puppet **supported** or **approved** modules. Puppet [approved][approved] modules pass our specific quality and usability requirements. These modules are recommended by Puppet, but are not supported as part of a Puppet Enterprise license agreement. Puppet [supported][supported] modules have been tested with Puppet Enterprise and are fully supported by Puppet. If there are no supported or approved modules for what you want to do, evaluate available modules by [score][score], compatibility, documentation, last release date, and number of downloads.
 
@@ -87,7 +87,7 @@ jamtur01-apachemodules         Puppet Apache Modu...  @jamtur01       apache
 adobe-hadoop                   Puppet module to d...  @adobe          apache
 ```
 
-Whether you've n you've identified the module you want, you can then install it.
+Once you've identified the module you want, you can install it.
 
 ## Installing modules
 
@@ -100,8 +100,8 @@ sudo puppet module install puppetlabs-apache
 This command accepts the following options:
 
 * Use the `--target-dir` option to specify a different directory for installation. Relatedly:
-    * Use the `--environment` option to install into a different [environment][].
-    * Use the `--modulepath` option to manually specify a different modulepath, which will be used to calculate dependencies and choose a default value for `--target-dir`.
+    * Use the `--environment` option to install into a different [environment][]. (Each environment has its own modulepath, which is used to calculate dependencies and choose a default value for `--target-dir`.)
+    * Use the `--modulepath` option to manually specify a modulepath, instead of using an environment's.
 * Use the `--version` option to specify a version of the module. You can use an exact version or a requirement string like `>=1.0.3`.
 * Use the `--force` option to forcibly install a module or re-install an existing module. (**Note:** Does not install dependencies.)
 * Use the `--ignore-dependencies` option to skip installing any modules required by this module.
@@ -212,7 +212,7 @@ To upgrade your Puppet Enterprise module, as with installation, you must:
 
 ## Reference: `puppet module` actions
 
-View a full description of each action with `puppet man module` or by [viewing the man page][module_man]. The main actions of the `puppet module` command are:
+View a full description of each action with `puppet man module` or by [viewing the man page online][module_man]. The main actions of the `puppet module` command are:
 
 #### `install`
 
