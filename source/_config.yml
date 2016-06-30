@@ -351,11 +351,14 @@ documents:
     version: 1.6
     nav: /_includes/facter16.html
 
+  /hiera/3.2:
+    doc: hiera
+    version: 3.2
+    nav: ./_hiera_toc.html
   /hiera/3.1:
     doc: hiera
     version: 3.1
     nav: ./_hiera_toc.html
-    # hide: true
   /hiera/3.0:
     doc: hiera
     version: 3.0
