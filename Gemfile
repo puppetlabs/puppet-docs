@@ -3,7 +3,7 @@ gemspec :name => 'puppet_docs'
 
 gem 'versionomy'
 gem 'rake'
-gem 'rack'
+gem 'rack', '~> 1.6' # We don't want Rack 2.0 because our builders can't handle it (and it's probably incompatible, too)
 gem 'git'
 gem 'json'
 
