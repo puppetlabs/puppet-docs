@@ -55,7 +55,6 @@ server = puppet
 environment = production
 runinterval = 1h
 strict_variables = true
-trusted
 
 [master]
 dns_alt_names = puppetmaster01,puppetmaster01.example.com,puppet,puppet.example.com

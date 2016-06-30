@@ -39,7 +39,7 @@ Released June 14, 2016.
 
 ### Component updates
 
-Bug fixes in Puppet 4.5.2.
+Bug fixes in [Puppet 4.5.2][].
 
 All other components remain unchanged from `puppet-agent` 1.5.1.
 

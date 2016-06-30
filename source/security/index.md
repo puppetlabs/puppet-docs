@@ -238,6 +238,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party security announcements
 
+- [OpenSSL May 2016 Security Fixes](https://puppet.com/security/cve/openssl-may-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.2
+
 - [NGINX January 2016 Security Fixes](https://puppet.com/security/cve/nginx-jan-2016-security-fixes)
 
    Resolved in Puppet Enterprise 2016.1.2

@@ -9,7 +9,7 @@ Puppet Enterprise is the best-of-breed distribution for the Puppet family of sys
 Current Version
 -----
 
-* [Puppet Enterprise 2016.1 User's Guide](./2016.1)
+* [Puppet Enterprise 2016.2 User's Guide](./2016.2)
 
 Previous Versions
 -----
@@ -18,6 +18,7 @@ Previous Versions
 
 Please select your version of Puppet Enterprise:
 
+* [Puppet Enterprise 2016.1](./2016.1)
 * [Puppet Enterprise 2015.3](./2015.3)
 * [Puppet Enterprise 2015.2](./2015.2)
 * [Puppet Enterprise 3.8](./3.8)
