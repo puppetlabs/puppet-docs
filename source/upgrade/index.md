@@ -12,9 +12,7 @@ That's why we started this project: we want to bring the whole community forward
 
 ## What's so awesome about Puppet 4, anyway?
 
-Right out of the box, Puppet 4 scales better than ever. There are two big innovations under the hood that supercharge its performance: the Clojure-based Puppet Server and Static Catalogs. The Puppet Server takes the place of the Apache+Passenger parts of the network stack and lets the same master serve more agents, faster. Static Catalogs optimize the most computationally expensive part of Puppet by reducing both the number of catalogs compiled and file checksum requests as the agents are applying their catalogs. There's more detail in the links below, but we'll let the numbers do the talking:
-
-[ perf graphs ]
+Right out of the box, Puppet 4 scales better than ever. There are two big innovations under the hood that supercharge its performance: the Clojure-based Puppet Server and Static Catalogs. The Puppet Server takes the place of the Apache+Passenger parts of the network stack and lets the same master serve more agents, faster. Static Catalogs optimize the most computationally expensive part of Puppet by reducing both the number of catalogs compiled and file checksum requests as the agents are applying their catalogs.
 
 There's more — much more – on this topic below, but the Puppet language got a huge overhaul for Puppet 4. A completely rewritten parser, cool new constructs like iterators and lambdas, and an opt-in data type system all make for modules that do more with less work. There are improved error messages to reduce the amount of time you spend head-scratching, structured facts to allow you to access inventory data like network interfaces more intuitively, resources that apply in top-down order so your manifests work the way you expect them to, and much more. It all adds up to a system with a better combination of power and usability than anything else on the market — including earlier versions of Puppet.
 
@@ -22,25 +20,17 @@ Managing your agent software gets a lot easier with Puppet 4's all-in-one packag
 
 If you haven't looked at Puppet Enterprise lately, be prepared to be impressed. In 2015, Puppet Enterprise moved to a quarterly release cadence with a numbering scheme that represents the year/number/patch, like Puppet Enterprise 2016.1.2, to decouple their numbers from the Puppet codebase. Since the first of these (Puppet Enterprise 2015.2), each release has built killer features on the open-source platform: orchestration, visualization and reporting, and role-based access control are just some of the highlights.
 
-### Orchestration
-
 In 2016, we debuted new orchestration capabilities in Puppet Enterprise that make it easier to deploy changes rapidly with confidence and run ordered deployments across your infrastructure and applications. You can orchestrate change on-demand and run phased deployments, with full and direct control, real-time visibility and feedback, and built-in intelligence to account for dependencies across your infrastructure.
-
-### Interactive dependency visualizations
 
 Puppet Enterprise now includes new ways to visualize your infrastructure model as a graph, making it easy to see the upstream and downstream dependencies across all the configurations you define and enforce on each node. This makes it easier than ever to collaborate, troubleshoot issues, and understand which configuration resources depend on each other so you can deploy more confidently.
 
-### Code management
-
 Building on the popular r10k tool, Puppet Enterprise now includes automated workflows to review, test, promote and deploy Puppet code across your development, testing and production environments. You can check your code into common version control systems, automatically sync code across multiple compile masters, and more easily ensure consistency across your environments.
-
-### Automated provisioning
 
 Puppet Enterprise now includes new supported modules and workflows to automate Day One provisioning across your bare metal, virtual, cloud and containerized infrastructure. You’ll find supported modules to install and launch AWS, Docker, Microsoft Azure and vSphere, plus fully supported Razor for bare metal provisioning.
 
-### Role-based access control
+Finally, Puppet Enterprise includes powerful role-based access control (RBAC) to enable you to safely delegate work to the right individuals and teams. You can assign permissions and control who has access to what, and set guard rails so your teams can work together safely.
 
-Puppet Enterprise includes powerful role-based access control (RBAC) to enable you to safely delegate work to the right individuals and teams. You can assign permissions and control who has access to what, and set guard rails so your teams can work together safely.
+Regardless of whether you're running Open Source Puppet or Puppet Enterprise, you'll find a Puppet 4 based infrastructure scales better, takes less work to manage, and unlocks powerful new capabilities for modules.
 
 ## Your infrastructure, improved
 
@@ -56,9 +46,9 @@ Node classification means determining which classes are applied to a given node,
 
 ### Prepare your code
 
-One of the biggest changes in Puppet 4 is the new parser. It's been optionally available as the "future parser" since 2013, but it's not the "future" any more: it's here. Most Puppet 3 code works just fine, but there are enough changes that you'll definitely want to test it out. Here's how:
+One of the biggest changes in Puppet 4 is the new parser. It's been optionally available behind a feature flag called "future parser" since 2013, but it's not the "future" any more: it's here. Most Puppet 3 code works just fine, but there are enough changes under the hood that you'll definitely want to test your codebase out. Here's how:
 
-* Branch your code repo: If you're not already using version control on your Puppet code, now's the time to start. If you are (please, please say you are!), now's the time to make a new branch, based on your production branch, to test the changes without affecting your business-critical systems. If you're feeling extra-motivated, this can be a great opportunity to implement r10k and its branch-per-environment workflow, but it's completely optional. One thing at a time.
+* Branch your code repo: If you're not already using version control on your Puppet code, now's the time to start. If you are (please, please say you are!), you should make a new branch, based on your production branch, so you can test the code and commit fixes without affecting your business-critical systems. If you're feeling extra-motivated, this is be a great opportunity to implement r10k and its branch-per-environment workflow, but that's completely optional. One thing at a time.
   * TODO Link to Preparation section of CS guide
   * R10K docs: https://docs.puppet.com/pe/latest/r10k.html
 
@@ -80,7 +70,7 @@ It's the moment of truth. Your fleet needs their puppet agents updated to a vers
 
 The Puppet 3.x to 4.x jump is a bit different than previous versions because, as we mentioned above, the packaging and file system layout have changed a bit. There's now the same Ruby stack and library dependencies for both Open Source Puppet and Puppet Enterprise, and it's all contained inside one package that installs itself into `/opt/puppetlabs`, out of the way of your OS libraries. On Unix and Linux systems, configuration files now live under `/etc/puppetlabs` and we make symlinks for the binaries into `/usr/local/bin` so scripts and CLI interactions might need adjustment. On Windows, we've been using this all-in-one methodology since the start, so nothing special should be needed.
 
-All of this works out really nicely, but there's a bit of jump to get everything moved over. So, we did what any self-respecting devops organization would do: we automated it. There's a really slick module: `puppetlabs-puppet_agent`,  which works with both PE and open-source agents, and when applied to a 3.x node, will take care of the details: moving SSL certificates and keys, dropping in new config files while preserving local customizations, and upgrading the packages themselves.
+All of this works out really nicely, but there's a bit of jump to get everything moved over. So, we did what any self-respecting devops organization would do: we automated it. There's a really slick module, `puppetlabs-puppet_agent`,  which works with both PE and open-source agents, and when applied to a 3.x node, will take care of the details: moving SSL certificates and keys, dropping in new config files while preserving local customizations, and upgrading the packages themselves.
 
 * You can check out the module documentation on the Forge https://forge.puppet.com/puppetlabs/puppet_agent
 * There's Puppet Enterprise-specific instructions for assigning and configuring the class onto your nodes here: https://docs.puppet.com/pe/latest/install_upgrading_agents.html#upgrade-agents-using-the-puppetagent-module
@@ -93,18 +83,18 @@ Happy upgrading!
 
 
 ## Links and supporting docs:
-Puppet Server intro blog - https://puppet.com/blog/puppet-server-bringing-soa-to-a-puppet-master-near-you
-Static Catalogs documentation - https://docs.puppet.com/puppet/latest/reference/static_catalogs.html
-Puppet 4 Language intro: https://docs.puppet.com/puppet/4.4/reference/lang_summary.html
-Puppet Agent info: https://docs.puppet.com/puppet/4.4/reference/about_agent.html
-Puppet management module: https://forge.puppet.com/puppetlabs/puppet_agent
-Puppet Enterprise capabilities: https://puppet.com/product/capabilities
-Migrate from pre-PE3.8 to the node classifier: https://docs.puppet.com/pe/3.8/install_upgrade_migration_tool.html
-Read more about roles and profiles: https://docs.puppet.com/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules  (TODO replace with link to new guide)
-Automatically import node files with the manifestdir setting: https://docs.puppet.com/puppet/latest/reference/dirs_manifest.html#directory-behavior-vs-single-file
-R10K docs: https://docs.puppet.com/pe/latest/r10k.html
-The catalog preview module: https://docs.puppet.com/pe/latest/migrate_pe_catalog_preview.html
-Open-source server migration docs: https://docs.puppet.com/puppet/latest/reference/upgrade_major_pre.html
-PE server migration docs: https://docs.puppet.com/pe/latest/migrate_monolithic.html  
-The puppet-agent upgrade module: https://forge.puppet.com/puppetlabs/puppet_agent
-Guide to using the puppet-agent module with PE: https://docs.puppet.com/pe/latest/install_upgrading_agents.html#upgrade-agents-using-the-puppetagent-module
+* Puppet Server intro blog - https://puppet.com/blog/puppet-server-bringing-soa-to-a-puppet-master-near-you
+* Static Catalogs documentation - https://docs.puppet.com/puppet/latest/reference/static_catalogs.html
+* Puppet 4 Language intro: https://docs.puppet.com/puppet/4.4/reference/lang_summary.html
+* Puppet Agent info: https://docs.puppet.com/puppet/4.4/reference/about_agent.html
+* Puppet management module: https://forge.puppet.com/puppetlabs/puppet_agent
+* Puppet Enterprise capabilities: https://puppet.com/product/capabilities
+* Migrate from pre-PE3.8 to the node classifier: https://docs.puppet.com/pe/3.8/install_upgrade_migration_tool.html
+* Read more about roles and profiles: https://docs.puppet.com/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules  (TODO replace with link to new guide)
+* Automatically import node files with the manifestdir setting: https://docs.puppet.com/puppet/latest/reference/dirs_manifest.html#directory-behavior-vs-single-file
+* R10K docs: https://docs.puppet.com/pe/latest/r10k.html
+* The catalog preview module: https://docs.puppet.com/pe/latest/migrate_pe_catalog_preview.html
+* Open-source server migration docs: https://docs.puppet.com/puppet/latest/reference/upgrade_major_pre.html
+* PE server migration docs: https://docs.puppet.com/pe/latest/migrate_monolithic.html  
+* The puppet-agent upgrade module: https://forge.puppet.com/puppetlabs/puppet_agent
+* Guide to using the puppet-agent module with PE: https://docs.puppet.com/pe/latest/install_upgrading_agents.html#upgrade-agents-using-the-puppetagent-module
