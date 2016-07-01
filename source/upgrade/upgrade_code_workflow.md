@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Workflow for updating Puppet code"
-canonical: "/puppet/latest/reference/upgrade_code_workflow.html"
+canonical: "/upgrade/upgrade_code_workflow.html"
 ---
 
 This guide is intended for anyone that needs to update their Puppet code in preparation for an upgrade from Puppet 3 to Puppet 4. An opinionated workflow will be shown that uses Git to make changes in a controlled and testable manner. This workflow should be used in conjunction with an automated catalog diffing tool or static analysis tool. 
