@@ -39,7 +39,7 @@ For details about module contents and structure, see [the documentation on modul
 
 ## Location
 
-The modulepath is set by the current node's [environment][environments]. By default, it is usually be something like:
+The modulepath is set by the current node's [environment][environments]. By default, it is usually something like:
 
 `<ACTIVE ENVIRONMENT'S MODULES DIRECTORY>:$codedir/modules:/opt/puppetlabs/puppet/modules`
 
