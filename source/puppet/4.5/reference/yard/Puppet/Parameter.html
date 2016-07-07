@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Class: Puppet::Parameter
   
-    &mdash; Documentation by YARD 0.8.7.6
+    &mdash; Documentation by YARD 0.9.0
   
 </title>
 
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "Puppet::Parameter";
   relpath = '../';
-  framesUrl = "../frames.html#!Puppet/Parameter.html";
 </script>
 
 
@@ -28,51 +27,50 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="../_index.html">Index (P)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span>
      &raquo; 
     <span class="title">Parameter</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="../class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="../method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="../file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <iframe id="search_frame" src="../class_list.html"></iframe>
 
-    <div id="content"><h1>Class: Puppet::Parameter
+      <div id="content"><h1>Class: Puppet::Parameter
   
   
   
 </h1>
-
-<dl class="box">
+<div class="box_info">
   
-    <dt class="r1">Inherits:</dt>
-    <dd class="r1">
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
       <span class="inheritName"><span class='object_link'>Object</span></span>
       
         <ul class="fullTree">
@@ -83,25 +81,30 @@
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
       
-      </dd>
-    
+    </dd>
+  </dl>
   
-  
-    
-  
-    
-      <dt class="r2">Includes:</dt>
-      <dd class="r2"><span class='object_link'><a href="Util/Errors.html" title="Puppet::Util::Errors (module)">Util::Errors</a></span></dd>
-      
-    
+
   
   
   
-    <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/puppet/parameter.rb</dd>
   
-</dl>
-<div class="clear"></div>
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="Util/Errors.html" title="Puppet::Util::Errors (module)">Util::Errors</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/puppet/parameter.rb</dd>
+  </dl>
+  
+</div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
@@ -147,20 +150,17 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   
 </p>
 
-  <h2>Constant Summary</h2>
-  
 
 
 
-
-  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <h2>Class Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
     
       
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#required_features-class_method" title="required_features (class method)">+ (Array&lt;Symbol&gt;) <strong>required_features</strong> </a>
+      <a href="#required_features-class_method" title="required_features (class method)">.<strong>required_features</strong>  &#x21d2; Array&lt;Symbol&gt; </a>
     
 
     
@@ -192,7 +192,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#value_collection-class_method" title="value_collection (class method)">+ (Puppet::Parameter::ValueCollection) <strong>value_collection</strong> </a>
+      <a href="#value_collection-class_method" title="value_collection (class method)">.<strong>value_collection</strong>  &#x21d2; Puppet::Parameter::ValueCollection </a>
     
 
     
@@ -220,14 +220,14 @@ one particular attribute data type; its valid value(s), and conversion to/from i
     
   </ul>
 
-  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
     
       
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#parent-instance_method" title="#parent (instance method)">- (Puppet::Parameter) <strong>parent</strong> </a>
+      <a href="#parent-instance_method" title="#parent (instance method)">#<strong>parent</strong>  &#x21d2; Puppet::Parameter </a>
     
 
     
@@ -259,7 +259,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   
     <h2>
       Class Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -268,7 +268,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#aliasvalue-class_method" title="aliasvalue (class method)">+ (Object) <strong>aliasvalue</strong>(name, other) </a>
+      <a href="#aliasvalue-class_method" title="aliasvalue (class method)">.<strong>aliasvalue</strong>(name, other)  &#x21d2; Object </a>
     
 
     
@@ -295,7 +295,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#defaultto-class_method" title="defaultto (class method)">+ <strong>defaultto</strong>(value = nil, &amp;block) </a>
+      <a href="#defaultto-class_method" title="defaultto (class method)">.<strong>defaultto</strong>(value = nil, &amp;block)  </a>
     
 
     
@@ -322,7 +322,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#desc-class_method" title="desc (class method)">+ (String) <strong>desc</strong>(str) </a>
+      <a href="#desc-class_method" title="desc (class method)">.<strong>desc</strong>(str)  &#x21d2; String </a>
     
 
     
@@ -349,7 +349,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#doc-class_method" title="doc (class method)">+ (String) <strong>doc</strong> </a>
+      <a href="#doc-class_method" title="doc (class method)">.<strong>doc</strong>  &#x21d2; String </a>
     
 
     
@@ -374,7 +374,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initvars-class_method" title="initvars (class method)">+ <strong>initvars</strong> </a>
+      <a href="#initvars-class_method" title="initvars (class method)">.<strong>initvars</strong>  </a>
     
 
     
@@ -399,7 +399,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#isnamevar-class_method" title="isnamevar (class method)">+ <strong>isnamevar</strong> </a>
+      <a href="#isnamevar-class_method" title="isnamevar (class method)">.<strong>isnamevar</strong>  </a>
     
 
     
@@ -426,7 +426,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#isnamevar%3F-class_method" title="isnamevar? (class method)">+ (Boolean) <strong>isnamevar?</strong> </a>
+      <a href="#isnamevar%3F-class_method" title="isnamevar? (class method)">.<strong>isnamevar?</strong>  &#x21d2; Boolean </a>
     
 
     
@@ -451,7 +451,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#isrequired-class_method" title="isrequired (class method)">+ <strong>isrequired</strong> </a>
+      <a href="#isrequired-class_method" title="isrequired (class method)">.<strong>isrequired</strong>  </a>
     
 
     
@@ -478,7 +478,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#munge-class_method" title="munge (class method)">+ (Object) <strong>munge</strong>({|| ... }) </a>
+      <a href="#munge-class_method" title="munge (class method)">.<strong>munge</strong>({|| ... })  &#x21d2; Object </a>
     
 
     
@@ -505,7 +505,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#newvalues-class_method" title="newvalues (class method)">+ <strong>newvalues</strong>(*names) </a>
+      <a href="#newvalues-class_method" title="newvalues (class method)">.<strong>newvalues</strong>(*names)  </a>
     
 
     
@@ -532,7 +532,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#nodefault-class_method" title="nodefault (class method)">+ <strong>nodefault</strong> </a>
+      <a href="#nodefault-class_method" title="nodefault (class method)">.<strong>nodefault</strong>  </a>
     
 
     
@@ -559,7 +559,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#proxymethods-class_method" title="proxymethods (class method)">+ (Object) <strong>proxymethods</strong>(*values) </a>
+      <a href="#proxymethods-class_method" title="proxymethods (class method)">.<strong>proxymethods</strong>(*values)  &#x21d2; Object </a>
     
 
     
@@ -584,7 +584,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#required%3F-class_method" title="required? (class method)">+ (Boolean) <strong>required?</strong> </a>
+      <a href="#required%3F-class_method" title="required? (class method)">.<strong>required?</strong>  &#x21d2; Boolean </a>
     
 
     
@@ -609,7 +609,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#unmunge-class_method" title="unmunge (class method)">+ (Object) <strong>unmunge</strong>({|| ... }) </a>
+      <a href="#unmunge-class_method" title="unmunge (class method)">.<strong>unmunge</strong>({|| ... })  &#x21d2; Object </a>
     
 
     
@@ -636,7 +636,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#validate-class_method" title="validate (class method)">+ <strong>validate</strong>({|| ... }) </a>
+      <a href="#validate-class_method" title="validate (class method)">.<strong>validate</strong>({|| ... })  </a>
     
 
     
@@ -663,7 +663,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   
     <h2>
       Instance Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -672,7 +672,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Parameter) <strong>initialize</strong>(options = {}) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(options = {})  &#x21d2; Parameter </a>
     
 
     
@@ -699,7 +699,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#log-instance_method" title="#log (instance method)">- <strong>log</strong>(msg) </a>
+      <a href="#log-instance_method" title="#log (instance method)">#<strong>log</strong>(msg)  </a>
     
 
     
@@ -724,7 +724,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pathbuilder-instance_method" title="#pathbuilder (instance method)">- (Object) <strong>pathbuilder</strong> </a>
+      <a href="#pathbuilder-instance_method" title="#pathbuilder (instance method)">#<strong>pathbuilder</strong>  &#x21d2; Object </a>
     
 
     
@@ -749,7 +749,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#unsafe_munge-instance_method" title="#unsafe_munge (instance method)">- (Object) <strong>unsafe_munge</strong>(value) </a>
+      <a href="#unsafe_munge-instance_method" title="#unsafe_munge (instance method)">#<strong>unsafe_munge</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -774,7 +774,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#unsafe_validate-instance_method" title="#unsafe_validate (instance method)">- <strong>unsafe_validate</strong>(value) </a>
+      <a href="#unsafe_validate-instance_method" title="#unsafe_validate (instance method)">#<strong>unsafe_validate</strong>(value)  </a>
     
 
     
@@ -799,7 +799,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#validate-instance_method" title="#validate (instance method)">- <strong>validate</strong>(value) </a>
+      <a href="#validate-instance_method" title="#validate (instance method)">#<strong>validate</strong>(value)  </a>
     
 
     
@@ -876,7 +876,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="Puppet::Parameter (class)">Parameter</a></span></tt>) <strong>initialize</strong>(options = {}) 
+    #<strong>initialize</strong>(options = {})  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Parameter (class)">Parameter</a></span></tt> 
   
 
   
@@ -1009,9 +1009,9 @@ the name of the attribute to set, and the value as the value to set.</p>
   <h3 class="signature first" id="required_features-class_method">
   
     
-      <span class="overload">+ (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>) <strong>required_features</strong> &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>required_features</strong>  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span></span>
     
-      <span class="overload">+ (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>) <strong>required_features=</strong>(*args) &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>required_features=</strong>(*args)  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span></span>
     
   
 
@@ -1033,7 +1033,7 @@ the returned names are always all lower case symbols.</p>
     
       
       <li class="overload_item">
-        <span class="signature">+ (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>) <strong>required_features</strong> </span>
+        <span class="signature">.<strong>required_features</strong>  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> </span>
         <div class="docstring">
   <div class="discussion">
     <p>Returns the required <em>provider features</em> as an array of lower case symbols</p>
@@ -1049,7 +1049,7 @@ the returned names are always all lower case symbols.</p>
     
       
       <li class="overload_item">
-        <span class="signature">+ (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>) <strong>required_features=</strong>(*args) </span>
+        <span class="signature">.<strong>required_features=</strong>(*args)  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> </span>
         <div class="docstring">
   <div class="discussion">
     <p>Sets the required_provider_features_ from one or more values, or array. The given arguments
@@ -1145,7 +1145,7 @@ the returned names are always all lower case symbols.</p>
       <div class="method_details ">
   <h3 class="signature " id="value_collection-class_method">
   
-    + (<tt><span class='object_link'><a href="Parameter/ValueCollection.html" title="Puppet::Parameter::ValueCollection (class)">Puppet::Parameter::ValueCollection</a></span></tt>) <strong>value_collection</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+    .<strong>value_collection</strong>  &#x21d2; <tt><span class='object_link'><a href="Parameter/ValueCollection.html" title="Puppet::Parameter::ValueCollection (class)">Puppet::Parameter::ValueCollection</a></span></tt>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
   
 
   
@@ -1213,7 +1213,7 @@ the returned names are always all lower case symbols.</p>
       <div class="method_details first">
   <h3 class="signature first" id="parent-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="Puppet::Parameter (class)">Puppet::Parameter</a></span></tt>) <strong>parent</strong> &nbsp;<span class="private note title">private</span>
+    #<strong>parent</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Parameter (class)">Puppet::Parameter</a></span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1281,7 +1281,7 @@ the returned names are always all lower case symbols.</p>
       <div class="method_details first">
   <h3 class="signature first" id="aliasvalue-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>aliasvalue</strong>(name, other) &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>aliasvalue</strong>(name, other)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -1340,9 +1340,9 @@ instead of the alias).</p>
   <h3 class="signature " id="defaultto-class_method">
   
     
-      <span class="overload">+ <strong>defaultto</strong>(value) &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>defaultto</strong>(value)  &nbsp;<span class="note title readonly">DSL</span></span>
     
-      <span class="overload">+ <strong>defaultto</strong>({|| ... }) &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>defaultto</strong>({|| ... })  &nbsp;<span class="note title readonly">DSL</span></span>
     
   
 
@@ -1365,7 +1365,7 @@ A default of <code>nil</code> can not be used.</p>
     
       
       <li class="overload_item">
-        <span class="signature">+ <strong>defaultto</strong>(value) </span>
+        <span class="signature">.<strong>defaultto</strong>(value)  </span>
         <div class="docstring">
   <div class="discussion">
     <p>Defines the default value with a literal value</p>
@@ -1400,7 +1400,7 @@ A default of <code>nil</code> can not be used.</p>
     
       
       <li class="overload_item">
-        <span class="signature">+ <strong>defaultto</strong>({|| ... }) </span>
+        <span class="signature">.<strong>defaultto</strong>({|| ... })  </span>
         <div class="docstring">
   <div class="discussion">
     <p>Defines that the default value is produced by the given block. The given block
@@ -1497,7 +1497,7 @@ should produce the default value.</p>
       <div class="method_details ">
   <h3 class="signature " id="desc-class_method">
   
-    + (<tt>String</tt>) <strong>desc</strong>(str) &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>desc</strong>(str)  &#x21d2; <tt>String</tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -1595,7 +1595,7 @@ should produce the default value.</p>
       <div class="method_details ">
   <h3 class="signature " id="doc-class_method">
   
-    + (<tt>String</tt>) <strong>doc</strong> 
+    .<strong>doc</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -1682,7 +1682,7 @@ for this parameter specified with the <span class='object_link'><a href="#desc-c
       <div class="method_details ">
   <h3 class="signature " id="initvars-class_method">
   
-    + <strong>initvars</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>initvars</strong>  &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1727,7 +1727,7 @@ Clears the internal value collection (set of allowed values).</p>
       <div class="method_details ">
   <h3 class="signature " id="isnamevar-class_method">
   
-    + <strong>isnamevar</strong> &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>isnamevar</strong>  &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -1786,7 +1786,7 @@ This also makes the parameter a required value. The marker can not be unset once
       <div class="method_details ">
   <h3 class="signature " id="isnamevar?-class_method">
   
-    + (<tt><span class='object_link'>Boolean</span></tt>) <strong>isnamevar?</strong> 
+    .<strong>isnamevar?</strong>  &#x21d2; <tt><span class='object_link'>Boolean</span></tt> 
   
 
   
@@ -1843,7 +1843,7 @@ This also makes the parameter a required value. The marker can not be unset once
       <div class="method_details ">
   <h3 class="signature " id="isrequired-class_method">
   
-    + <strong>isrequired</strong> &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>isrequired</strong>  &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -1899,7 +1899,7 @@ Once set, it is not possible to make a parameter optional.</p>
       <div class="method_details ">
   <h3 class="signature " id="munge-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>munge</strong>({|| ... }) &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>munge</strong>({|| ... })  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -1973,7 +1973,7 @@ If a munge method is not defined, the DSL/string value is used as is.</p>
       <div class="method_details ">
   <h3 class="signature " id="newvalues-class_method">
   
-    + <strong>newvalues</strong>(*names) &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>newvalues</strong>(*names)  &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -2056,7 +2056,7 @@ regular expression patterns.</p>
       <div class="method_details ">
   <h3 class="signature " id="nodefault-class_method">
   
-    + <strong>nodefault</strong> &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>nodefault</strong>  &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -2122,7 +2122,7 @@ a default value method).</p>
       <div class="method_details ">
   <h3 class="signature " id="proxymethods-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>proxymethods</strong>(*values) &nbsp;<span class="private note title">private</span>
+    .<strong>proxymethods</strong>(*values)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2174,7 +2174,7 @@ a default value method).</p>
       <div class="method_details ">
   <h3 class="signature " id="required?-class_method">
   
-    + (<tt><span class='object_link'>Boolean</span></tt>) <strong>required?</strong> 
+    .<strong>required?</strong>  &#x21d2; <tt><span class='object_link'>Boolean</span></tt> 
   
 
   
@@ -2232,7 +2232,7 @@ A parameter is required if a call has been made to the DSL method <span class='o
       <div class="method_details ">
   <h3 class="signature " id="unmunge-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>unmunge</strong>({|| ... }) &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>unmunge</strong>({|| ... })  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -2304,7 +2304,7 @@ If an <code>unmunge</code> method is not defined, the internal form is used.</p>
       <div class="method_details ">
   <h3 class="signature " id="validate-class_method">
   
-    + <strong>validate</strong>({|| ... }) &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>validate</strong>({|| ... })  &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -2371,7 +2371,7 @@ To validate the munged value instead, just munge the value (<code>munge(value)</
       <div class="method_details first">
   <h3 class="signature first" id="log-instance_method">
   
-    - <strong>log</strong>(msg) 
+    #<strong>log</strong>(msg)  
   
 
   
@@ -2419,7 +2419,7 @@ To validate the munged value instead, just munge the value (<code>munge(value)</
       <div class="method_details ">
   <h3 class="signature " id="pathbuilder-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>pathbuilder</strong> &nbsp;<span class="private note title">private</span>
+    #<strong>pathbuilder</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2473,7 +2473,7 @@ of the catalog.  This is mostly used for logging purposes.</p>
       <div class="method_details ">
   <h3 class="signature " id="unsafe_munge-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>unsafe_munge</strong>(value) &nbsp;<span class="private note title">private</span>
+    #<strong>unsafe_munge</strong>(value)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2518,7 +2518,7 @@ The DSL method <span class='object_link'><a href="#munge-class_method" title="Pu
       <div class="method_details ">
   <h3 class="signature " id="unsafe_validate-instance_method">
   
-    - <strong>unsafe_validate</strong>(value) &nbsp;<span class="private note title">private</span>
+    #<strong>unsafe_validate</strong>(value)  &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2600,7 +2600,7 @@ the literal values (enumerator) and/or patterns defined by calling <span class='
       <div class="method_details ">
   <h3 class="signature " id="validate-instance_method">
   
-    - <strong>validate</strong>(value) 
+    #<strong>validate</strong>(value)  
   
 
   
@@ -2683,11 +2683,12 @@ A protected validation method that only ever raises useful exceptions.</p>
 
 </div>
 
-    <div id="footer">
-  Generated on Mon May 16 22:13:35 2016 by
+      <div id="footer">
+  Generated on Thu Jul  7 12:40:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.0.0).
+  0.9.0 (ruby-2.0.0).
 </div>
 
+    </div>
   </body>
 </html>

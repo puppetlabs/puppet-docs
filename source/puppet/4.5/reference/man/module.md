@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
+built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: 'Man Page: puppet module'
 canonical: /puppet/latest/reference/man/module.html
 ---
@@ -54,7 +54,7 @@ Windows path separator is ';'.)</p>
 directory environments instead. If you need to use something other than the
 default modulepath of <code>&lt;ACTIVE ENVIRONMENT'S MODULES DIR>:$basemodulepath</code>,
 you can set <code>modulepath</code> in environment.conf. For more info, see
-https://docs.puppetlabs.com/puppet/latest/reference/environments.html</p></dd>
+<a href="https://docs.puppet.com/puppet/latest/reference/environments.html" data-bare-link="true">https://docs.puppet.com/puppet/latest/reference/environments.html</a></p></dd>
 </dl>
 
 

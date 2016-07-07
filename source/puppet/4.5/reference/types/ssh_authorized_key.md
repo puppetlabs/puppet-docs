@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
+built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: 'Resource Type: ssh_authorized_key'
 canonical: /puppet/latest/reference/types/ssh_authorized_key.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
 
 ssh_authorized_key
 -----
@@ -21,14 +21,14 @@ In their native habitat, SSH keys usually appear as a single long line. This
 resource type requires you to split that line into several attributes. Thus, a
 key that appears in your `~/.ssh/id_rsa.pub` file like this...
 
-    ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAy5mtOAMHwA2ZAIfW6Ap70r+I4EclYHEec5xIN59ROUjss23Skb1OtjzYpVPaPH8mSdSmsN0JHaBLiRcu7stl4O8D8zA4mz/vw32yyQ/Kqaxw8l0K76k6t2hKOGqLTY4aFbFISV6GDh7MYLn8KU7cGp96J+caO5R5TqtsStytsUhSyqH+iIDh4e4+BrwTc6V4Y0hgFxaZV5d18mLA4EPYKeG5+zyBCVu+jueYwFqM55E0tHbfiaIN9IzdLV+7NEEfdLkp6w2baLKPqWUBmuvPF1Mn3FwaFLjVsMT3GQeMue6b3FtUdTDeyAYoTxrsRo/WnDkS6Pa3YhrFwjtUqXfdaQ== nick@magpie.puppetlabs.lan
+    ssh-rsa AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan
 
 ...would translate to the following resource:
 
     ssh_authorized_key { 'nick@magpie.puppetlabs.lan':
       user => 'nick',
       type => 'ssh-rsa',
-      key  => 'AAAAB3NzaC1yc2EAAAABIwAAAQEAy5mtOAMHwA2ZAIfW6Ap70r+I4EclYHEec5xIN59ROUjss23Skb1OtjzYpVPaPH8mSdSmsN0JHaBLiRcu7stl4O8D8zA4mz/vw32yyQ/Kqaxw8l0K76k6t2hKOGqLTY4aFbFISV6GDh7MYLn8KU7cGp96J+caO5R5TqtsStytsUhSyqH+iIDh4e4+BrwTc6V4Y0hgFxaZV5d18mLA4EPYKeG5+zyBCVu+jueYwFqM55E0tHbfiaIN9IzdLV+7NEEfdLkp6w2baLKPqWUBmuvPF1Mn3FwaFLjVsMT3GQeMue6b3FtUdTDeyAYoTxrsRo/WnDkS6Pa3YhrFwjtUqXfdaQ==',
+      key  => 'AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan',
     }
 
 To ensure that only the currently approved keys are present, you can purge
@@ -158,4 +158,4 @@ Parse and generate authorized_keys files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500

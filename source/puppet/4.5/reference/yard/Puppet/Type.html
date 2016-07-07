@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Class: Puppet::Type
   
-    &mdash; Documentation by YARD 0.8.7.6
+    &mdash; Documentation by YARD 0.9.0
   
 </title>
 
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "Puppet::Type";
   relpath = '../';
-  framesUrl = "../frames.html#!Puppet/Type.html";
 </script>
 
 
@@ -28,51 +27,50 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="../_index.html">Index (T)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span>
      &raquo; 
     <span class="title">Type</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="../class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="../method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="../file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <iframe id="search_frame" src="../class_list.html"></iframe>
 
-    <div id="content"><h1>Class: Puppet::Type
+      <div id="content"><h1>Class: Puppet::Type
   
   
   
 </h1>
-
-<dl class="box">
+<div class="box_info">
   
-    <dt class="r1">Inherits:</dt>
-    <dd class="r1">
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
       <span class="inheritName"><span class='object_link'>Object</span></span>
       
         <ul class="fullTree">
@@ -83,29 +81,35 @@
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
       
-      </dd>
-    
+    </dd>
+  </dl>
+  
+
   
   
-    
-      <dt class="r2">Extended by:</dt>
-      <dd class="r2">Enumerable, <span class='object_link'><a href="Util/ClassGen.html" title="Puppet::Util::ClassGen (module)">Util::ClassGen</a></span></dd>
-      
-    
-  
-    
-      <dt class="r1">Includes:</dt>
-      <dd class="r1">Comparable, Enumerable, <span class='object_link'><a href="Util/Errors.html" title="Puppet::Util::Errors (module)">Util::Errors</a></span></dd>
-      
-    
+  <dl>
+      <dt>Extended by:</dt>
+      <dd>Enumerable, <span class='object_link'><a href="Util/ClassGen.html" title="Puppet::Util::ClassGen (module)">Util::ClassGen</a></span></dd>
+  </dl>
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/puppet/type.rb</dd>
+  <dl>
+      <dt>Includes:</dt>
+      <dd>Comparable, Enumerable, <span class='object_link'><a href="Util/Errors.html" title="Puppet::Util::Errors (module)">Util::Errors</a></span></dd>
+  </dl>
   
-</dl>
-<div class="clear"></div>
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/puppet/type.rb</dd>
+  </dl>
+  
+</div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
@@ -187,20 +191,17 @@ their name, and these resources are said to be non-isomorphic.</li>
   
 
 </div>
-  <h2>Constant Summary</h2>
-  
 
 
 
-
-  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <h2>Class Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
     
       
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#providerloader-class_method" title="providerloader (class method)">+ (Object) <strong>providerloader</strong> </a>
+      <a href="#providerloader-class_method" title="providerloader (class method)">.<strong>providerloader</strong>  &#x21d2; Object </a>
     
 
     
@@ -226,14 +227,14 @@ their name, and these resources are said to be non-isomorphic.</li>
     
   </ul>
 
-  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
     
       
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#original_parameters-instance_method" title="#original_parameters (instance method)">- (Hash) <strong>original_parameters</strong> </a>
+      <a href="#original_parameters-instance_method" title="#original_parameters (instance method)">#<strong>original_parameters</strong>  &#x21d2; Hash </a>
     
 
     
@@ -267,7 +268,7 @@ their name, and these resources are said to be non-isomorphic.</li>
   
     <h2>
       Class Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -276,7 +277,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_to-class_method" title="apply_to (class method)">+ (Symbol) <strong>apply_to</strong> </a>
+      <a href="#apply_to-class_method" title="apply_to (class method)">.<strong>apply_to</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -301,7 +302,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_to_all-class_method" title="apply_to_all (class method)">+ (Symbol) <strong>apply_to_all</strong> </a>
+      <a href="#apply_to_all-class_method" title="apply_to_all (class method)">.<strong>apply_to_all</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -326,7 +327,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_to_device-class_method" title="apply_to_device (class method)">+ (Symbol) <strong>apply_to_device</strong> </a>
+      <a href="#apply_to_device-class_method" title="apply_to_device (class method)">.<strong>apply_to_device</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -351,7 +352,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#apply_to_host-class_method" title="apply_to_host (class method)">+ (Symbol) <strong>apply_to_host</strong> </a>
+      <a href="#apply_to_host-class_method" title="apply_to_host (class method)">.<strong>apply_to_host</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -376,7 +377,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#autorequire-class_method" title="autorequire (class method)">+ <strong>autorequire</strong>(name) {| | ... }</a>
+      <a href="#autorequire-class_method" title="autorequire (class method)">.<strong>autorequire</strong>(name) {| | ... } </a>
     
 
     
@@ -403,7 +404,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#can_apply_to-class_method" title="can_apply_to (class method)">+ (Boolean) <strong>can_apply_to</strong>(target) </a>
+      <a href="#can_apply_to-class_method" title="can_apply_to (class method)">.<strong>can_apply_to</strong>(target)  &#x21d2; Boolean </a>
     
 
     
@@ -428,7 +429,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ensurable-class_method" title="ensurable (class method)">+ <strong>ensurable</strong> {|| ... }</a>
+      <a href="#ensurable-class_method" title="ensurable (class method)">.<strong>ensurable</strong> {|| ... } </a>
     
 
     
@@ -455,7 +456,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#newmetaparam-class_method" title="newmetaparam (class method)">+ (Class&lt;inherits Puppet::Parameter&gt;) <strong>newmetaparam</strong>(name, options = {}) {|| ... }</a>
+      <a href="#newmetaparam-class_method" title="newmetaparam (class method)">.<strong>newmetaparam</strong>(name, options = {}) {|| ... } &#x21d2; Class&lt;inherits Puppet::Parameter&gt; </a>
     
 
     
@@ -482,7 +483,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#newparam-class_method" title="newparam (class method)">+ (Class&lt;inherits Puppet::Parameter&gt;) <strong>newparam</strong>(name, options = {}) {|| ... }</a>
+      <a href="#newparam-class_method" title="newparam (class method)">.<strong>newparam</strong>(name, options = {}) {|| ... } &#x21d2; Class&lt;inherits Puppet::Parameter&gt; </a>
     
 
     
@@ -509,7 +510,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#newproperty-class_method" title="newproperty (class method)">+ (Class&lt;inherits Puppet::Property&gt;) <strong>newproperty</strong>(name, options = {}) {|| ... }</a>
+      <a href="#newproperty-class_method" title="newproperty (class method)">.<strong>newproperty</strong>(name, options = {}) {|| ... } &#x21d2; Class&lt;inherits Puppet::Property&gt; </a>
     
 
     
@@ -536,7 +537,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#title_patterns-class_method" title="title_patterns (class method)">+ (Array&lt;Array&lt;Regexp, Array&lt;Array &lt;Symbol, Proc&gt;&gt;&gt;&gt;<sup>?</sup>) <strong>title_patterns</strong> </a>
+      <a href="#title_patterns-class_method" title="title_patterns (class method)">.<strong>title_patterns</strong>  &#x21d2; Array&lt;Array&lt;Regexp, Array&lt;Array &lt;Symbol, Proc&gt;&gt;&gt;&gt;<sup>?</sup> </a>
     
 
     
@@ -561,7 +562,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#validate-class_method" title="validate (class method)">+ <strong>validate</strong> {|| ... }</a>
+      <a href="#validate-class_method" title="validate (class method)">.<strong>validate</strong> {|| ... } </a>
     
 
     
@@ -588,7 +589,7 @@ their name, and these resources are said to be non-isomorphic.</li>
   
     <h2>
       Instance Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -597,7 +598,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#appliable_to_device%3F-instance_method" title="#appliable_to_device? (instance method)">- (Boolean) <strong>appliable_to_device?</strong> </a>
+      <a href="#appliable_to_device%3F-instance_method" title="#appliable_to_device? (instance method)">#<strong>appliable_to_device?</strong>  &#x21d2; Boolean </a>
     
 
     
@@ -622,7 +623,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#appliable_to_host%3F-instance_method" title="#appliable_to_host? (instance method)">- (Boolean) <strong>appliable_to_host?</strong> </a>
+      <a href="#appliable_to_host%3F-instance_method" title="#appliable_to_host? (instance method)">#<strong>appliable_to_host?</strong>  &#x21d2; Boolean </a>
     
 
     
@@ -647,7 +648,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pathbuilder-instance_method" title="#pathbuilder (instance method)">- (Object) <strong>pathbuilder</strong> </a>
+      <a href="#pathbuilder-instance_method" title="#pathbuilder (instance method)">#<strong>pathbuilder</strong>  &#x21d2; Object </a>
     
 
     
@@ -672,7 +673,7 @@ their name, and these resources are said to be non-isomorphic.</li>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#retrieve_resource-instance_method" title="#retrieve_resource (instance method)">- (Puppet::Resource) <strong>retrieve_resource</strong> </a>
+      <a href="#retrieve_resource-instance_method" title="#retrieve_resource (instance method)">#<strong>retrieve_resource</strong>  &#x21d2; Puppet::Resource </a>
     
 
     
@@ -800,7 +801,7 @@ their name, and these resources are said to be non-isomorphic.</li>
       <div class="method_details first">
   <h3 class="signature first" id="providerloader-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>providerloader</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>providerloader</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -854,7 +855,7 @@ and should not be changed thereafter.</p>
       <div class="method_details first">
   <h3 class="signature first" id="original_parameters-instance_method">
   
-    - (<tt><span class='object_link'>Hash</span></tt>) <strong>original_parameters</strong>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+    #<strong>original_parameters</strong>  &#x21d2; <tt><span class='object_link'>Hash</span></tt>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
   
 
   
@@ -897,12 +898,12 @@ and should not be changed thereafter.</p>
       <pre class="lines">
 
 
-2336
-2337
-2338</pre>
+2338
+2339
+2340</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2336</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2338</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_original_parameters'>original_parameters</span>
   <span class='ivar'>@original_parameters</span>
@@ -922,7 +923,7 @@ and should not be changed thereafter.</p>
       <div class="method_details first">
   <h3 class="signature first" id="apply_to-class_method">
   
-    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>apply_to</strong>  &#x21d2; <tt><span class='object_link'>Symbol</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -983,7 +984,7 @@ and should not be changed thereafter.</p>
       <div class="method_details ">
   <h3 class="signature " id="apply_to_all-class_method">
   
-    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to_all</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>apply_to_all</strong>  &#x21d2; <tt><span class='object_link'>Symbol</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1044,7 +1045,7 @@ and should not be changed thereafter.</p>
       <div class="method_details ">
   <h3 class="signature " id="apply_to_device-class_method">
   
-    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to_device</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>apply_to_device</strong>  &#x21d2; <tt><span class='object_link'>Symbol</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1105,7 +1106,7 @@ and should not be changed thereafter.</p>
       <div class="method_details ">
   <h3 class="signature " id="apply_to_host-class_method">
   
-    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>apply_to_host</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>apply_to_host</strong>  &#x21d2; <tt><span class='object_link'>Symbol</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1166,7 +1167,7 @@ and should not be changed thereafter.</p>
       <div class="method_details ">
   <h3 class="signature " id="autorequire-class_method">
   
-    + <strong>autorequire</strong>(name) {| | ... }&nbsp;<span class="note title readonly">DSL</span>
+    .<strong>autorequire</strong>(name) {| | ... } &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -1316,7 +1317,7 @@ requirement.</p>
       <div class="method_details ">
   <h3 class="signature " id="can_apply_to-class_method">
   
-    + (<tt>Boolean</tt>) <strong>can_apply_to</strong>(target) &nbsp;<span class="private note title">private</span>
+    .<strong>can_apply_to</strong>(target)  &#x21d2; <tt>Boolean</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1397,9 +1398,9 @@ requirement.</p>
   <h3 class="signature " id="ensurable-class_method">
   
     
-      <span class="overload">+ <strong>ensurable</strong> &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>ensurable</strong>  &nbsp;<span class="note title readonly">DSL</span></span>
     
-      <span class="overload">+ <strong>ensurable</strong>({|| ... }) &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>ensurable</strong>({|| ... })  &nbsp;<span class="note title readonly">DSL</span></span>
     
   
 
@@ -1512,7 +1513,7 @@ valid values.</p>
       <div class="method_details ">
   <h3 class="signature " id="newmetaparam-class_method">
   
-    + (<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>) <strong>newmetaparam</strong>(name, options = {}) {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+    .<strong>newmetaparam</strong>(name, options = {}) {|| ... } &#x21d2; <tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -1769,7 +1770,7 @@ block is evaluated.</p>
       <div class="method_details ">
   <h3 class="signature " id="newparam-class_method">
   
-    + (<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt>) <strong>newparam</strong>(name, options = {}) {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+    .<strong>newparam</strong>(name, options = {}) {|| ... } &#x21d2; <tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Puppet::Parameter</a></span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -2014,7 +2015,7 @@ block is evaluated.</p>
       <div class="method_details ">
   <h3 class="signature " id="newproperty-class_method">
   
-    + (<tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Property.html" title="Puppet::Property (class)">Puppet::Property</a></span>&gt;</tt>) <strong>newproperty</strong>(name, options = {}) {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+    .<strong>newproperty</strong>(name, options = {}) {|| ... } &#x21d2; <tt><span class='object_link'>Class</span>&lt;inherits <span class='object_link'><a href="Property.html" title="Puppet::Property (class)">Puppet::Property</a></span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -2326,7 +2327,7 @@ to retrieve the current value of this property.</p>
       <div class="method_details ">
   <h3 class="signature " id="title_patterns-class_method">
   
-    + (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span>&lt;Regexp, <span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span> &lt;<span class='object_link'>Symbol</span>, Proc&gt;&gt;&gt;&gt;</tt><sup>?</sup>) <strong>title_patterns</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>title_patterns</strong>  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span>&lt;Regexp, <span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span> &lt;<span class='object_link'>Symbol</span>, Proc&gt;&gt;&gt;&gt;</tt><sup>?</sup> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2431,7 +2432,7 @@ in the type&#39;s definition.</p>
       <div class="method_details ">
   <h3 class="signature " id="validate-class_method">
   
-    + <strong>validate</strong> {|| ... }&nbsp;<span class="note title readonly">DSL</span>
+    .<strong>validate</strong> {|| ... } &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -2489,12 +2490,12 @@ the message as an argument.</p>
       <pre class="lines">
 
 
-2293
-2294
-2295</pre>
+2295
+2296
+2297</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2293</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2295</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:validate</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -2513,7 +2514,7 @@ the message as an argument.</p>
       <div class="method_details first">
   <h3 class="signature first" id="appliable_to_device?-instance_method">
   
-    - (<tt>Boolean</tt>) <strong>appliable_to_device?</strong> &nbsp;<span class="private note title">private</span>
+    #<strong>appliable_to_device?</strong>  &#x21d2; <tt>Boolean</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2557,12 +2558,12 @@ of hosts.</p>
       <pre class="lines">
 
 
-2602
-2603
-2604</pre>
+2604
+2605
+2606</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2602</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2604</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_appliable_to_device?'>appliable_to_device?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_can_apply_to'>can_apply_to</span><span class='lparen'>(</span><span class='symbol'>:device</span><span class='rparen'>)</span>
@@ -2575,7 +2576,7 @@ of hosts.</p>
       <div class="method_details ">
   <h3 class="signature " id="appliable_to_host?-instance_method">
   
-    - (<tt>Boolean</tt>) <strong>appliable_to_host?</strong> &nbsp;<span class="private note title">private</span>
+    #<strong>appliable_to_host?</strong>  &#x21d2; <tt>Boolean</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2618,12 +2619,12 @@ of hosts.</p>
       <pre class="lines">
 
 
-2609
-2610
-2611</pre>
+2611
+2612
+2613</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2609</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2611</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_appliable_to_host?'>appliable_to_host?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_can_apply_to'>can_apply_to</span><span class='lparen'>(</span><span class='symbol'>:host</span><span class='rparen'>)</span>
@@ -2636,7 +2637,7 @@ of hosts.</p>
       <div class="method_details ">
   <h3 class="signature " id="pathbuilder-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>pathbuilder</strong> &nbsp;<span class="private note title">private</span>
+    #<strong>pathbuilder</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2690,7 +2691,7 @@ of the catalog.  This is mostly used for logging purposes.</p>
       <div class="method_details ">
   <h3 class="signature " id="retrieve_resource-instance_method">
   
-    - (<tt><span class='object_link'><a href="Resource.html" title="Puppet::Resource (class)">Puppet::Resource</a></span></tt>) <strong>retrieve_resource</strong> &nbsp;<span class="private note title">private</span>
+    #<strong>retrieve_resource</strong>  &#x21d2; <tt><span class='object_link'><a href="Resource.html" title="Puppet::Resource (class)">Puppet::Resource</a></span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2761,11 +2762,12 @@ of the system.</p>
 
 </div>
 
-    <div id="footer">
-  Generated on Mon May 16 22:13:34 2016 by
+      <div id="footer">
+  Generated on Thu Jul  7 12:40:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.0.0).
+  0.9.0 (ruby-2.0.0).
 </div>
 
+    </div>
   </body>
 </html>

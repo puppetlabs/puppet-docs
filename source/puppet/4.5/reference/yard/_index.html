@@ -1,10 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Documentation by YARD 0.8.7.6
+  Documentation by YARD 0.9.0
   
 </title>
 
@@ -13,9 +13,8 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = null;
   relpath = '';
-  framesUrl = "frames.html#!_index.html";
 </script>
 
 
@@ -26,37 +25,36 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
-  
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
 
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <iframe id="search_frame" src="class_list.html"></iframe>
 
-    <div id="content"><h1 class="noborder title">Documentation by YARD 0.8.7.6</h1>
+      <div id="content"><h1 class="noborder title">Documentation by YARD 0.9.0</h1>
 <div id="listing">
   <h1 class="alphaindex">Alphabetic Index</h1>
   
@@ -211,6 +209,13 @@
               </li>
             
               <li>
+                <span class='object_link'><a href="Puppet/Pops/Types/Annotatable.html" title="Puppet::Pops::Types::Annotatable (module)">Annotatable</a></span>
+                
+                  <small>(Puppet::Pops::Types)</small>
+                
+              </li>
+            
+              <li>
                 <span class='object_link'><a href="Puppet/Parser/Functions/AnonymousModuleAdapter.html" title="Puppet::Parser::Functions::AnonymousModuleAdapter (class)">AnonymousModuleAdapter</a></span>
                 
                   <small>(Puppet::Parser::Functions)</small>
@@ -338,16 +343,16 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Pops/Binder/Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span>
+                <span class='object_link'><a href="Puppet/Bindings.html" title="Puppet::Bindings (class)">Bindings</a></span>
                 
-                  <small>(Puppet::Pops::Binder)</small>
+                  <small>(Puppet)</small>
                 
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Bindings.html" title="Puppet::Bindings (class)">Bindings</a></span>
+                <span class='object_link'><a href="Puppet/Pops/Binder/Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span>
                 
-                  <small>(Puppet)</small>
+                  <small>(Puppet::Pops::Binder)</small>
                 
               </li>
             
@@ -727,16 +732,16 @@
           <ul>
             
               <li>
-                <span class='object_link'><a href="Puppet/Pops/Validation/Factory.html" title="Puppet::Pops::Validation::Factory (class)">Factory</a></span>
+                <span class='object_link'><a href="Puppet/Network/HTTP/Factory.html" title="Puppet::Network::HTTP::Factory (class)">Factory</a></span>
                 
-                  <small>(Puppet::Pops::Validation)</small>
+                  <small>(Puppet::Network::HTTP)</small>
                 
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Network/HTTP/Factory.html" title="Puppet::Network::HTTP::Factory (class)">Factory</a></span>
+                <span class='object_link'><a href="Puppet/Pops/Validation/Factory.html" title="Puppet::Pops::Validation::Factory (class)">Factory</a></span>
                 
-                  <small>(Puppet::Network::HTTP)</small>
+                  <small>(Puppet::Pops::Validation)</small>
                 
               </li>
             
@@ -818,16 +823,16 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Functions.html" title="Puppet::Functions (module)">Functions</a></span>
+                <span class='object_link'><a href="Puppet/Parser/Functions.html" title="Puppet::Parser::Functions (module)">Functions</a></span>
                 
-                  <small>(Puppet)</small>
+                  <small>(Puppet::Parser)</small>
                 
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Parser/Functions.html" title="Puppet::Parser::Functions (module)">Functions</a></span>
+                <span class='object_link'><a href="Puppet/Functions.html" title="Puppet::Functions (module)">Functions</a></span>
                 
-                  <small>(Puppet::Parser)</small>
+                  <small>(Puppet)</small>
                 
               </li>
             
@@ -1029,9 +1034,9 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Pops/Loader/Loader.html" title="Puppet::Pops::Loader::Loader (class)">Loader</a></span>
+                <span class='object_link'><a href="Puppet/DataProviders/LookupAdapter.html" title="Puppet::DataProviders::LookupAdapter (class)">LookupAdapter</a></span>
                 
-                  <small>(Puppet::Pops::Loader)</small>
+                  <small>(Puppet::DataProviders)</small>
                 
               </li>
             
@@ -1888,16 +1893,16 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Environments/Static.html" title="Puppet::Environments::Static (class)">Static</a></span>
+                <span class='object_link'><a href="Puppet/Settings/EnvironmentConf/Static.html" title="Puppet::Settings::EnvironmentConf::Static (class)">Static</a></span>
                 
-                  <small>(Puppet::Environments)</small>
+                  <small>(Puppet::Settings::EnvironmentConf)</small>
                 
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Settings/EnvironmentConf/Static.html" title="Puppet::Settings::EnvironmentConf::Static (class)">Static</a></span>
+                <span class='object_link'><a href="Puppet/Environments/Static.html" title="Puppet::Environments::Static (class)">Static</a></span>
                 
-                  <small>(Puppet::Settings::EnvironmentConf)</small>
+                  <small>(Puppet::Environments)</small>
                 
               </li>
             
@@ -1973,16 +1978,16 @@
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Resource/Type.html" title="Puppet::Resource::Type (class)">Type</a></span>
+                <span class='object_link'><a href="Puppet/Type.html" title="Puppet::Type (class)">Type</a></span>
                 
-                  <small>(Puppet::Resource)</small>
+                  <small>(Puppet)</small>
                 
               </li>
             
               <li>
-                <span class='object_link'><a href="Puppet/Type.html" title="Puppet::Type (class)">Type</a></span>
+                <span class='object_link'><a href="Puppet/Resource/Type.html" title="Puppet::Resource::Type (class)">Type</a></span>
                 
-                  <small>(Puppet)</small>
+                  <small>(Puppet::Resource)</small>
                 
               </li>
             
@@ -2008,9 +2013,23 @@
               </li>
             
               <li>
+                <span class='object_link'><a href="Puppet/Pops/Types/PTypeSetType/TypeSetLoader.html" title="Puppet::Pops::Types::PTypeSetType::TypeSetLoader (class)">TypeSetLoader</a></span>
+                
+                  <small>(Puppet::Pops::Types::PTypeSetType)</small>
+                
+              </li>
+            
+              <li>
                 <span class='object_link'><a href="Puppet/Pops/Types/TypedModelObject.html" title="Puppet::Pops::Types::TypedModelObject (class)">TypedModelObject</a></span>
                 
                   <small>(Puppet::Pops::Types)</small>
+                
+              </li>
+            
+              <li>
+                <span class='object_link'><a href="Puppet/Pops/Loader/TypedName.html" title="Puppet::Pops::Loader::TypedName (class)">TypedName</a></span>
+                
+                  <small>(Puppet::Pops::Loader)</small>
                 
               </li>
             
@@ -2112,11 +2131,12 @@
 
 </div>
 
-    <div id="footer">
-  Generated on Mon May 16 22:13:32 2016 by
+      <div id="footer">
+  Generated on Thu Jul  7 12:40:29 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.0.0).
+  0.9.0 (ruby-2.0.0).
 </div>
 
+    </div>
   </body>
 </html>

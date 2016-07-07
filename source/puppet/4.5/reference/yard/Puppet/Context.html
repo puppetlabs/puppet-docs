@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Class: Puppet::Context
   
-    &mdash; Documentation by YARD 0.8.7.6
+    &mdash; Documentation by YARD 0.9.0
   
 </title>
 
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "Puppet::Context";
   relpath = '../';
-  framesUrl = "../frames.html#!Puppet/Context.html";
 </script>
 
 
@@ -28,51 +27,50 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="../_index.html">Index (C)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span>
      &raquo; 
     <span class="title">Context</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="../class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="../method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="../file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <iframe id="search_frame" src="../class_list.html"></iframe>
 
-    <div id="content"><h1>Class: Puppet::Context
+      <div id="content"><h1>Class: Puppet::Context
   
   
   <span class="private note title">Private</span>
 </h1>
-
-<dl class="box">
+<div class="box_info">
   
-    <dt class="r1">Inherits:</dt>
-    <dd class="r1">
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
       <span class="inheritName"><span class='object_link'>Object</span></span>
       
         <ul class="fullTree">
@@ -83,21 +81,25 @@
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
       
-      </dd>
-    
+    </dd>
+  </dl>
   
-  
-    
-  
-    
+
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/puppet/context.rb</dd>
   
-</dl>
-<div class="clear"></div>
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/puppet/context.rb</dd>
+  </dl>
+  
+</div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
@@ -140,7 +142,7 @@ delay expensive production of values until they are needed.</p>
   
     <h2>
       Instance Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -149,7 +151,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ignore-instance_method" title="#ignore (instance method)">- (Object) <strong>ignore</strong>(name) </a>
+      <a href="#ignore-instance_method" title="#ignore (instance method)">#<strong>ignore</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -173,7 +175,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Context) <strong>initialize</strong>(initial_bindings) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(initial_bindings)  &#x21d2; Context </a>
     
 
     
@@ -200,7 +202,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#lookup-instance_method" title="#lookup (instance method)">- (Object) <strong>lookup</strong>(name, &amp;block) </a>
+      <a href="#lookup-instance_method" title="#lookup (instance method)">#<strong>lookup</strong>(name, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -224,7 +226,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mark-instance_method" title="#mark (instance method)">- (Object) <strong>mark</strong>(name) </a>
+      <a href="#mark-instance_method" title="#mark (instance method)">#<strong>mark</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -249,7 +251,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#override-instance_method" title="#override (instance method)">- (Object) <strong>override</strong>(bindings, description = &quot;&quot;, &amp;block) </a>
+      <a href="#override-instance_method" title="#override (instance method)">#<strong>override</strong>(bindings, description = &quot;&quot;, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -273,7 +275,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pop-instance_method" title="#pop (instance method)">- (Object) <strong>pop</strong> </a>
+      <a href="#pop-instance_method" title="#pop (instance method)">#<strong>pop</strong>  &#x21d2; Object </a>
     
 
     
@@ -297,7 +299,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#push-instance_method" title="#push (instance method)">- (Object) <strong>push</strong>(overrides, description = &quot;&quot;) </a>
+      <a href="#push-instance_method" title="#push (instance method)">#<strong>push</strong>(overrides, description = &quot;&quot;)  &#x21d2; Object </a>
     
 
     
@@ -321,7 +323,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#restore-instance_method" title="#restore (instance method)">- (Object) <strong>restore</strong>(name) </a>
+      <a href="#restore-instance_method" title="#restore (instance method)">#<strong>restore</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -345,7 +347,7 @@ delay expensive production of values until they are needed.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#rollback-instance_method" title="#rollback (instance method)">- (Object) <strong>rollback</strong>(name) </a>
+      <a href="#rollback-instance_method" title="#rollback (instance method)">#<strong>rollback</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -375,7 +377,7 @@ delay expensive production of values until they are needed.</p>
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="Puppet::Context (class)">Context</a></span></tt>) <strong>initialize</strong>(initial_bindings) &nbsp;<span class="private note title">private</span>
+    #<strong>initialize</strong>(initial_bindings)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Context (class)">Context</a></span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -436,7 +438,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details first">
   <h3 class="signature first" id="ignore-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>ignore</strong>(name) &nbsp;<span class="private note title">private</span>
+    #<strong>ignore</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -479,7 +481,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details ">
   <h3 class="signature " id="lookup-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>lookup</strong>(name, &amp;block) &nbsp;<span class="private note title">private</span>
+    #<strong>lookup</strong>(name, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -536,7 +538,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details ">
   <h3 class="signature " id="mark-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>mark</strong>(name) &nbsp;<span class="private note title">private</span>
+    #<strong>mark</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -607,7 +609,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details ">
   <h3 class="signature " id="override-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>override</strong>(bindings, description = &quot;&quot;, &amp;block) &nbsp;<span class="private note title">private</span>
+    #<strong>override</strong>(bindings, description = &quot;&quot;, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -662,7 +664,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details ">
   <h3 class="signature " id="pop-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>pop</strong> &nbsp;<span class="private note title">private</span>
+    #<strong>pop</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -713,7 +715,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details ">
   <h3 class="signature " id="push-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>push</strong>(overrides, description = &quot;&quot;) &nbsp;<span class="private note title">private</span>
+    #<strong>push</strong>(overrides, description = &quot;&quot;)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -762,7 +764,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details ">
   <h3 class="signature " id="restore-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>restore</strong>(name) &nbsp;<span class="private note title">private</span>
+    #<strong>restore</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -813,7 +815,7 @@ delay expensive production of values until they are needed.</p>
       <div class="method_details ">
   <h3 class="signature " id="rollback-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>rollback</strong>(name) &nbsp;<span class="private note title">private</span>
+    #<strong>rollback</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -896,11 +898,12 @@ the current context stack the behavior of rollback is undefined.</p>
 
 </div>
 
-    <div id="footer">
-  Generated on Mon May 16 22:13:34 2016 by
+      <div id="footer">
+  Generated on Thu Jul  7 12:40:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.0.0).
+  0.9.0 (ruby-2.0.0).
 </div>
 
+    </div>
   </body>
 </html>

@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
+built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
 
 ## About Resource Types
 
@@ -9412,7 +9412,7 @@ Here is how the Puppet states correspond to `launchd` states:
 Note that this allows you to do something `launchctl` can't do, which is to
 be in a state of "stopped/enabled" or "running/disabled".
 
-Note that this provider does not support overriding 'restart' or 'status'.
+Note that this provider does not support overriding 'restart'
 
 * Required binaries: `/bin/launchctl`.
 * Default for `operatingsystem` == `darwin`.
@@ -9539,7 +9539,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -9771,14 +9771,14 @@ In their native habitat, SSH keys usually appear as a single long line. This
 resource type requires you to split that line into several attributes. Thus, a
 key that appears in your `~/.ssh/id_rsa.pub` file like this...
 
-    ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAy5mtOAMHwA2ZAIfW6Ap70r+I4EclYHEec5xIN59ROUjss23Skb1OtjzYpVPaPH8mSdSmsN0JHaBLiRcu7stl4O8D8zA4mz/vw32yyQ/Kqaxw8l0K76k6t2hKOGqLTY4aFbFISV6GDh7MYLn8KU7cGp96J+caO5R5TqtsStytsUhSyqH+iIDh4e4+BrwTc6V4Y0hgFxaZV5d18mLA4EPYKeG5+zyBCVu+jueYwFqM55E0tHbfiaIN9IzdLV+7NEEfdLkp6w2baLKPqWUBmuvPF1Mn3FwaFLjVsMT3GQeMue6b3FtUdTDeyAYoTxrsRo/WnDkS6Pa3YhrFwjtUqXfdaQ== nick@magpie.puppetlabs.lan
+    ssh-rsa AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan
 
 ...would translate to the following resource:
 
     ssh_authorized_key { 'nick@magpie.puppetlabs.lan':
       user => 'nick',
       type => 'ssh-rsa',
-      key  => 'AAAAB3NzaC1yc2EAAAABIwAAAQEAy5mtOAMHwA2ZAIfW6Ap70r+I4EclYHEec5xIN59ROUjss23Skb1OtjzYpVPaPH8mSdSmsN0JHaBLiRcu7stl4O8D8zA4mz/vw32yyQ/Kqaxw8l0K76k6t2hKOGqLTY4aFbFISV6GDh7MYLn8KU7cGp96J+caO5R5TqtsStytsUhSyqH+iIDh4e4+BrwTc6V4Y0hgFxaZV5d18mLA4EPYKeG5+zyBCVu+jueYwFqM55E0tHbfiaIN9IzdLV+7NEEfdLkp6w2baLKPqWUBmuvPF1Mn3FwaFLjVsMT3GQeMue6b3FtUdTDeyAYoTxrsRo/WnDkS6Pa3YhrFwjtUqXfdaQ==',
+      key  => 'AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan',
     }
 
 To ensure that only the currently approved keys are present, you can purge
@@ -12310,4 +12310,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500

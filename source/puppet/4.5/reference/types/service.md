@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
+built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: 'Resource Type: service'
 canonical: /puppet/latest/reference/types/service.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
 
 service
 -----
@@ -394,7 +394,7 @@ Here is how the Puppet states correspond to `launchd` states:
 Note that this allows you to do something `launchctl` can't do, which is to
 be in a state of "stopped/enabled" or "running/disabled".
 
-Note that this provider does not support overriding 'restart' or 'status'.
+Note that this provider does not support overriding 'restart'
 
 * Required binaries: `/bin/launchctl`.
 * Default for `operatingsystem` == `darwin`.
@@ -521,7 +521,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -737,4 +737,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500

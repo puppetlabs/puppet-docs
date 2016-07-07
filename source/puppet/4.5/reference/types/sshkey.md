@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
+built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: 'Resource Type: sshkey'
 canonical: /puppet/latest/reference/types/sshkey.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
 
 sshkey
 -----
@@ -110,4 +110,4 @@ Parse and generate host-wide known hosts files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-05-16 22:12:52 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
