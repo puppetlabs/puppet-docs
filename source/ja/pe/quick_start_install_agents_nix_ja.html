@@ -1,9 +1,3 @@
----
-layout: default
-title: "Agent インストールのクイックスタートガイド"
-canonical: "/ja/pe/quick_start_install_agents_nix_ja.html"
----
-
 <div>
 <h2 id="overview">概要</h2>
 
@@ -54,7 +48,7 @@ canonical: "/ja/pe/quick_start_install_agents_nix_ja.html"
 <p> agentのOSとアーキテクチャがPuppet masterとは異なる場合は、以下の例に従ってインストールします。オプションはお使いのagentのOSとアーキテクチャ に合わせて変更してください。 以下は、AMD64ハードウェアでDebian 6を実行するagentを追加する場合の例です。
 </p>
 
-<p> Puppet masterとOSが異なるagentをインストールするには、まず、agentパッケージが含まれているリポジトリに適切なクラスを追加します。 次に、PE Masterのノードグループを、そのクラスに分類します。 最後に、agentからmasterに対してcurlコマンドを実行し、agentのインストールに必要なパッケージを取得します。
+<p> Puppet masterとOSが異なるagentをインストールするには、まず、agentパッケージが含まれているリポジトリに適切なクラスを追加します。 次に、PE Masterのノードグループを、そのクラスに分類します。 最後に、agentからmasterに対してcURLコマンドを実行し、agentのインストールに必要なパッケージを取得します。
 </p>
 
 <blockquote>
@@ -126,7 +120,7 @@ canonical: "/ja/pe/quick_start_install_agents_nix_ja.html"
 </p>
 </blockquote>
 
-<h3 id="approving-the-certificate-request">証明書要求の承認</h3>
+<h2 id="approving-the-certificate-request">証明書要求の承認</h2>
 
 <p> インストール中、agentノードはPuppet masterに対して証明書要求を送信します。 ノードをコンソールに追加して設定を管理し始めるには、<strong>Puppet master上で要求を承認します</strong>。 これは以下の手順で、コンソールで行うのがもっとも簡単です。
 </p>
@@ -146,7 +140,7 @@ canonical: "/ja/pe/quick_start_install_agents_nix_ja.html"
 </p>
 </blockquote>
 
-<h3 id="testing-the-agent-nodes">Agentノードのテスト</h3>
+<h2 id="testing-the-agent-nodes">Agentノードのテスト</h2>
 
 <p> 以下の手順では、Puppet agentを手動で実行します。 デフォルトでは、agentはバックグラウンドで実行され、Puppet masterから30分おきに設定をフェッチします (この間隔は、「puppet.conf」の<code>runinterval</code>設定で変更できます )が、コマンドラインから手動でPuppetを実行することもできます。
 </p>

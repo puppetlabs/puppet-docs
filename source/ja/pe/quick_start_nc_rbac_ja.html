@@ -1,16 +1,10 @@
----
-layout: default
-title: "ノードの分類とユーザー許可の割り当て"
-canonical: "/ja/pe/quick_start_nc_rbac_ja.html"
----
-
 <div>
 <h2 id="overview">概要</h2>
 
 <p> Puppet Enterprise (PE)コンソールでは、ノードグループやユーザを管理することができます。  ノードグループを作成し、それを通じて各ノードにクラスを割り当てることが可能です。 複数のロケーションでユーザやグループを作成して管理する代わりに、Active DirectoryやOpenLDAPといった外部のディレクトリと接続し、ユーザやグループをインポートすることができます。 ユーザのロール(役割)を作成し、各ユーザをそれらのロールに割り当てることも可能です。 各ロールには、ノードグループ上での動作のパーミッションなど、各種パーミッションが付与されます。 ユーザやユーザグループに対してロールを割り当てると、より組織的にパーミッションを付与できます。
 </p>
 
-<p> この演習では新しいノードグループを作成し、そのグループに含めるノードを定義するルールを適用します。またグループに対してクラスを追加します。 また、新規ユーザロールを作成し、作成したノードグループの閲覧権限を新規ロールに付与します。 最後に、新しいローカルユーザを作成し、そのユーザにユーザロールを割り当てます。 この演習では、OpenLDAPやActive Directoryとの接続は扱いません。 詳細については、「<a href="pe/2016.1/rbac_ldap.html">Connecting PE with external directory services</a>」を参照してください。
+<p> この演習では新しいノードグループを作成し、そのグループに含めるノードを定義するルールを適用します。またグループに対してクラスを追加します。 また、新規ユーザロールを作成し、作成したノードグループの閲覧権限を新規ロールに付与します。 最後に、新しいローカルユーザを作成し、そのユーザにユーザロールを割り当てます。 この演習では、OpenLDAPやActive Directoryとの接続は扱いません。 詳細については、「<a href="/pe/2015.2/rbac_ldap.html">Connecting PE with external directory services</a>」を参照してください。
 </p>
 
 <blockquote>
@@ -22,7 +16,7 @@ canonical: "/ja/pe/quick_start_nc_rbac_ja.html"
   <p> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono_ja.html">PEがモノリシックインストール</a>されており、少なくとも1つの <a href="./quick_start_install_agents_nix_ja.html">*nix agentノード</a>または1つの<a href="/pe/2015.2/quick_start_install_agents_windows.html">Windowsノード</a>がインストールされているものと想定します。
 </p>
 
-  <p> また、<a href="./quick_start_module_install_nix_ja.html">*nix</a>または<a href="/pe/2016.1/quick_start_module_install_windows.html">Windows</a>モジュールもインストールしているものと想定しています。 さらに、これらの手順にはロールへのユーザの割り当てが含まれるため、アドミンパーミッションを持っている必要があります。
+  <p> また、<a href="./quick_start_module_install_nix_ja.html">*nix</a>または<a href="/pe/2015.2/quick_start_module_install_windows.html">Windows</a>モジュールもインストールしているものと想定しています。 さらに、これらの手順にはロールへのユーザの割り当てが含まれるため、アドミンパーミッションを持っている必要があります。
 </p>
 </blockquote>
 
@@ -55,13 +49,13 @@ canonical: "/ja/pe/quick_start_nc_rbac_ja.html"
   <li>
 <strong>Rules</strong>タブの<strong>Fact</strong>フィールドに、<strong>osfamily</strong>と入力するか選択します。</li>
   <li>
-    <p> <strong>Operator</strong>ドロップダウンリストから<strong>is</strong>を選択し、<strong>Value</strong>フィールドに、お使いのagentのOSに応じて<strong>RedHat</strong>または<strong>Windows</strong>と入力します。
+    <p> <strong>Operator</strong>ドロップダウンリストから<strong>=</strong> (is)を選択し、<strong>Value</strong>フィールドに、お使いのagentのOSに応じて<strong>RedHat</strong>または<strong>Windows</strong>と入力します。
 </p>
 
     <p> ルールを入力すると、<strong>Node matches</strong>列の数字が変わり、そのルールが及ぶノードの数が示されます。 
 </p>
 
-    <p> <img src="/pe/2016.1/images/quick/assign_rule.png" alt="adding rule to node group">
+    <p> <img src="/pe/2015.2/images/quick/assign_rule.png" alt="adding rule to node group">
 </p>
   </li>
   <li>
@@ -79,13 +73,14 @@ canonical: "/ja/pe/quick_start_nc_rbac_ja.html"
 <strong>Add new class</strong>フィールドで、*nixの場合は<code>apache</code>を選択します。Windowsの場合は<code>registry</code>を選択します。</li>
   <li>
 <strong>Add class</strong>をクリックします。</li>
-  <li>[<strong>Parameter</strong>]ボックスで[<strong>Parameter name</strong>]をクリックし、 編集するパラメータを選択します。例えば<code>logroot</code>などを使用します。[<strong>Value</strong>]フィールドに<code>/var/log</code>を入力します。</li>
-</ol>
-<p> <strong>注意</strong>: 一部のパラメータについては、値がグレーのテキストで表示されますが、これはデフォルト値です。この値としては、リテラル値かPuppet変数のいずれかを使えます。 パラメータの追加後に<strong>Discard changes</strong>を選択すれば、この値を元に戻すことができます。
+  <li>
+    <p> [<strong>Parameter</strong>]ボックスで[<strong>Parameter name</strong>]をクリックし、 編集するパラメータを選択します。 この例では、<code>logroot</code>を使います。 <strong>Value</strong>フィールドに<code>/var/log</code>と入力します。
 </p>
 
-<ol>
-<li>
+    <p> <strong>注意</strong>: 一部のパラメータについては、値がグレーのテキストで表示されますが、これはデフォルト値です。この値としては、リテラル値かPuppet変数のいずれかを使えます。 パラメータの追加後に<strong>Discard changes</strong>を選択すれば、この値を元に戻すことができます。
+</p>
+  </li>
+  <li>
 <strong>Add parameter</strong>をクリックし、Commitボタンをクリックします。</li>
 </ol>
 <p> <strong>Nodes</strong> &gt; <strong>Inventory</strong>の順にクリックし、ノードグループの任意のノードをクリックすれば、これらの変更を確認することができます。 <strong>Classification</strong>ページには、<strong>ソースグループ</strong>が<code>web_app_servers</code>の<code>apache</code>クラスが表示されます。
@@ -105,7 +100,7 @@ canonical: "/ja/pe/quick_start_nc_rbac_ja.html"
 </ol>
 <h2 id="create-a-new-user-and-add-the-user-to-your-new-role">新しいユーザを作成し、新しいロールにそのユーザを追加する</h2>
 
-<p> この手順では、新しいローカルユーザを作成する方法を実践します。 ディレクトリサービスの既存ユーザの追加に関する情報は、「<a href="/pe/2016.1/rbac_user_roles.html#adding-ldap-users-to-pe">LDAPユーザをPEに追加する</a>」を参照してください。
+<p> この手順では、新しいローカルユーザを作成する方法を実践します。 ディレクトリサービスの既存ユーザの追加に関する情報は、「<a href="/pe/2015.2/rbac_user_roles.html#adding-ldap-users-to-pe">LDAPユーザをPEに追加する</a>」を参照してください。
 </p>
 
 <ol>

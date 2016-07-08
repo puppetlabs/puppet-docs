@@ -1,9 +1,3 @@
----
-layout: default
-title: "Hello World! クイックスタートガイド"
-canonical: "/ja/pe/quick_start_helloworld_ja.html"
----
-
 <div>
 <h2 id="overview">概要</h2>
 
@@ -20,12 +14,12 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 </p>
 
 <blockquote>
-  <h3 id="note-about-modules">モジュールに関する注意</h3>
+  <h3 id="note-about-module-directories">モジュールディレクトリに関する注意</h3>
 
-  <p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これらのモジュールには、Puppet Enterpriseによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。 フレッシュインストールの場合は、<code>/etc/puppetlabs/code/environments/production</code>に移動し、<code>mkdir modules</code>を実行して、このモジュールのサブディレクトリを手動で作成しなければならない場合があります。
+  <p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これらのモジュールには、Puppet Enterpriseによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。
 </p>
 
-  <p> <strong>注意</strong>：PEによって、<code>/opt/puppetlabs/puppet/modules</code>、<code>/etc/puppetlabs/staging-code/modules</code>の2つのモジュールディレクトリが作成されますが、  <code>/opt/puppetlabs/puppet/modules</code>の内容を変更したり、モジュールを追加したりしないでください。 <code>/etc/puppetlabs/staging-code/modules</code>ディレクトリは、ファイルの同期専用です。Code Managerやファイル同期を使用していない場合は、このディレクトリにコードを追加しないでください。
+  <p> <strong>注意</strong>：PEによって、<code>/opt/puppetlabs/puppet/modules</code>のモジュールディレクトリも作成されます。  このディレクトリに内容を変更したり、モジュールを追加したりしないでください。
 </p>
 </blockquote>
 
@@ -96,6 +90,8 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
 <ol>
 <li>コンソールのサイドナビゲーションバーにある<strong>Nodes</strong>をクリックし、<strong>Classification</strong>を選択します。</li>
   <li>
+<strong>Add group</strong>をクリックします。</li>
+  <li>
     <p> <strong>Node group name</strong>フィールドに「<strong>HelloWorld</strong>」と入力し、グループ名を指定します。
 </p>
 
@@ -109,14 +105,14 @@ canonical: "/ja/pe/quick_start_helloworld_ja.html"
   <li>
 <strong>Fact</strong>フィールドに<code>name</code>と入力します。</li>
   <li>
-<strong>Operator</strong>ドロップダウンリストから<strong>matches regex</strong>を選択します。</li>
+<strong>Operator</strong>ドロップダウンリストから<strong>~</strong>を選択します。</li>
   <li>
 <strong>Value</strong>フィールドに<code>.*</code>と入力します。</li>
   <li>
     <p> <strong>Add rule</strong>をクリックし、<strong>Commit 1 change</strong>をクリックします。
 </p>
 
-    <p> このルールによって、<strong>HelloWorld</strong>グループに<a href="/pe/2016.1/console_classes_groups.html#adding-nodes-dynamically">すべてのノードが動的にピン</a>されます。 このルールはテスト目的で作成します。 商用環境にあるグループのノードをピンする(ノードを手動でグループに付加する)かどうかの判断は状況によって異なります。
+    <p> このルールによって、<strong>HelloWorld</strong>グループに<a href="/pe/2016.2/console_classes_groups.html#adding-nodes-dynamically">すべてのノードが動的にピン</a>されます。 このルールはテスト目的で作成します。 商用環境にあるグループのノードをピンする(ノードを手動でグループに付加する)かどうかの判断は状況によって異なります。
 </p>
   </li>
 </ol>
@@ -181,7 +177,7 @@ Notice: Applied catalog in 9.42 seconds
 <h2 id="other-resources">その他のリソース</h2>
 
 <blockquote>
-  <p> モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 「<a href="/puppet/4.4/reference/modules_fundamentals.html">Puppet: Module fundamentals</a>」、「<a href="/puppet/4.4/reference/dirs_modulepath.html">Puppet: The modulepath</a>」、「<a href="/guides/module_guides/bgtm.html">Beginner’s guide to modules</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。
+  <p> モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 「<a href="/puppet/4.5/reference/modules_fundamentals.html">Puppet: Module fundamentals</a>」、「<a href="/puppet/4.5/reference/dirs_modulepath.html">Puppet: The modulepath</a>」、「<a href="/guides/module_guides/bgtm.html">Beginner’s guide to modules</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。
 </p>
 
   <p> <a href="./quick_start_ja.html">クイックスタートガイドシリーズ</a>には、さらに多くのモジュールの記述エクササイズが紹介されています。
