@@ -7,15 +7,18 @@ canonical: "/puppet/latest/reference/config_file_fileserver.html"
 [file]: ./type.html#file
 [module_files]: ./modules_fundamentals.html#files
 [fileserverconfig]: ./configuration.html#fileserverconfig
-[auth_conf]: ./config_file_auth.html
+[auth_conf]: {{puppetserver}}/config_file_auth.html
+[deprecated]: ./deprecated_settings.html#authorization-rules-in-fileserverconf
+[custom_mount]: ./file_serving.html
+[mount_auth_examples]: ./file_serving.html#controlling-access-to-a-custom-mount-point-in-authconf
 
 The `fileserver.conf` file configures custom static mount points for Puppet's file server. If custom mount points are present, [`file` resources][file] can access them with their `source` attributes.
 
 ## When to use `fileserver.conf`
 
-By default, `fileserver.conf` isn't necessary --- Puppet automatically serves files from the `files` directory of modules, and most users find this sufficient. ([More info on serving files from modules is available here][module_files].)
+This file is only necessary if you are [creating custom mount points.][custom_mount]
 
-However, some use cases make custom mount points more attractive: for example, large files that shouldn't be checked into version control along with your Puppet modules, or sensitive credentials that likewise shouldn't go into version control.
+Puppet automatically serves files from the `files` directory of every module, and most users find this sufficient. ([More info on serving files from modules][module_files].) However, custom mount points are useful for things that shouldn't be stored in version control with your modules, like very large files and sensitive credentials.
 
 ## Location
 
@@ -27,31 +30,32 @@ The location of the `confdir` depends on your OS. [See the confdir documentation
 
 ## Example
 
-    # Files in the /path/to/files directory will be served
-    # at puppet:///extra_files/.
-    [extra_files]
-        path /etc/puppetlabs/puppet/extra_files
-        allow *
+```
+# Files in the /path/to/files directory will be served
+# at puppet:///extra_files/.
+[extra_files]
+    path /etc/puppetlabs/puppet/extra_files
+    allow *
+```
 
-This `fileserver.conf` file would create a new mount point named `extra_files`. The `allow *` directive would leave access control to the main auth.conf file.
+This `fileserver.conf` file would create a new mount point named `extra_files`.
+
+> **Caution:** You should always restrict write access to mounted directories. The file server will follow any symlinks in a file server mount, including links to files that agent nodes should not access (like SSL keys).
+>
+> When following symlinks, the file server can access any files readable by Puppet Server's user account.
 
 ## Format
 
-A `fileserver.conf` file consists of a collection of mount-point stanzas, and looks like a hybrid of `puppet.conf` and `auth.conf`. Each stanza should consist of:
+`fileserver.conf` uses a one-off format that resembles an INI file without the equals (`=`) signs. It is a series of mount-point stanzas, where each stanza consists of:
 
-* A `[mount_point_name]`, surrounded by square brackets. This will become the name used in `puppet:///` URLs for files in this mount point.
-* A `path` directive, pointing to an absolute path on disk. This is where the mount point's files are stored.
-* Any number of `allow` or `deny` directives. In this version of Puppet, we recommend using only a `allow *` directive in `fileserver.conf`.
+* A `[mount_point_name]` surrounded by square brackets. This will become the name used in `puppet:///` URLs for files in this mount point.
+* A `path <PATH>` directive, where `<PATH>` is an absolute path on disk. This is where the mount point's files are stored.
+* An `allow *` directive.
 
-### Security directives
+### Deprecated security directives
 
-The `allow` and `deny` directives in a mount point stanza can be used to control which nodes may access the files in it. However, this feature predates the `auth.conf` file used in this version of Puppet, and **we recommend against using it.** If possible, you should keep all authorization rules centralized in `auth.conf`. To do this, put a single `allow *` rule in each custom mount point.
+Before [`auth.conf`][auth_conf] existed, `fileserver.conf` could use `allow` and `deny` directives to control which nodes can access various files. This feature is now deprecated, and will be removed in Puppet 5.0.
 
-By default, `auth.conf` will allow all agent nodes with valid certificates to access files, and will block access for any client that doesn't have a certificate. For most use cases, this is good enough. However, if you are serving sensitive credentials via custom mount points, you may wish to add more restrictive rules to `auth.conf`. To do this, add a rule to `auth.conf` for each mount point. These rules should begin with:
+Instead, you can use `auth.conf` to control access to mount points. [The page on setting up mount points has details and examples.][mount_auth_examples]
 
-    path ~ ^/file_(metadata|content)s?/NAME_OF_MOUNT_POINT/
-
-You can then [configure `auth.conf` restrictions as per normal.][auth_conf]
-
-For more information on how the old `allow` and `deny` directives in `fileserver.conf` work, see the [file serving documentation](/guides/file_serving.html).
-
+The only security directive that should be present in `fileserver.conf` is an `allow *` directive for every mount point.
