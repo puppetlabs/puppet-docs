@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet upgraders reference"
+title: "Puppet upgrade reference"
 canonical: "/upgrade/index.html"
 ---
 
@@ -23,6 +23,7 @@ Right out of the box, Puppet 4 scales better than ever. There are two big innova
 There's more —- much more -- on this topic below, but the Puppet language received a huge overhaul for Puppet 4. A completely rewritten parser, new constructs like iterators and lambdas, and an opt-in data type system all make for modules that do more with less work. There are improved error messages to reduce the amount of time you spend head-scratching, structured facts to allow you to access inventory data like network interfaces more intuitively, resources that apply in top-down order so your manifests work the way you expect them to, and much more. It all adds up to a system with a better combination of power and usability than anything else on the market —- including earlier versions of Puppet.
 
 ### All-in-one packaging
+
 Managing your agent software is a lot easier with Puppet 4's all-in-one packaging. There's now a single, unified package for open source Puppet and Puppet Enterprise. And not only are the underlying components bundled and tested together, the component stack is consistent across all the operating systems Puppet runs on: Linux, network devices, commercial Unixes like Solaris and AIX, Windows, and Mac OS X. There are some great updates tucked inside the bundle, too: a super-fast Facter rewritten in C++, an updated Ruby, and the latest Augeas. There's a great module on the Forge (`puppetlabs/puppet_agent`) to help you update while preserving your certificates and custom settings.
 
 ### Puppet Enterprise
@@ -46,6 +47,8 @@ PE now includes new supported modules and workflows to automate Day One provisio
 #### RBAC
 
 Finally, PE includes powerful role-based access control (RBAC) to enable you to safely delegate work to the right individuals and teams. You can assign permissions and control who has access to what, and set guard rails so your teams can work together safely.
+
+### Awesome for all
 
 Regardless of whether you're running open source Puppet or Puppet Enterprise, you'll find a Puppet 4 based infrastructure scales better, takes less work to manage, and unlocks powerful new capabilities for modules.
 
