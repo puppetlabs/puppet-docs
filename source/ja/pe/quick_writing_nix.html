@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "モジュールの記述"
-canonical: "/ja/pe/quick_writing_nix_ja.html"
+canonical: "/ja/pe/quick_writing_nix.html"
 ---
 
 <div>
@@ -13,13 +13,13 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
   <li>独自のPuppetモジュールの記述</li>
 </ul>
 <blockquote>
-  <p> この演習をはじめる前に、<a href="./quick_start_ja.html">初級クイックスタートガイド</a>にある前段階の演習を完了してください。 ここでも、rootまたは管理者としてノードにログインする必要があります。
+  <p> この演習をはじめる前に、<a href="./quick_start.html">初級クイックスタートガイド</a>にある前段階の演習を完了してください。 ここでも、rootまたは管理者としてノードにログインする必要があります。
 </p>
 </blockquote>
 
 <h2 id="getting-started">はじめに</h2>
 
-<p> <a href="./quick_start_module_install_nix_ja.html">ApacheモジュールインストールQSG</a>では、最新バージョンのpuppetlabs-apacheモジュールをインストールしました。
+<p> <a href="./quick_start_module_install_nix.html">ApacheモジュールインストールQSG</a>では、最新バージョンのpuppetlabs-apacheモジュールをインストールしました。
 </p>
 
 <p> まだインストールしていない場合は、<code>puppet module install puppetlabs-apache</code>を実行し、インストールしてください。
@@ -117,7 +117,7 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 </code></pre>
   </li>
   <li>
-<strong>コンソールで</strong>、利用可能なクラスに<code>apache</code>を追加し、そのクラスをagentノードに追加します。この手順のヘルプが必要な場合は、<a href="./quick_start_adding_class_nix_ja.html">クラス追加に関するクイックスタートガイド</a> を参照してください。</li>
+<strong>コンソールで</strong>、利用可能なクラスに<code>apache</code>を追加し、そのクラスをagentノードに追加します。この手順のヘルプが必要な場合は、<a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a> を参照してください。</li>
   <li>
     <p> Puppetの動作時に、apacheが設定され、httpdサービスが開始されます。 その際、<code>_file_header.erb</code>の内容をもとに、デフォルトのapache仮想ホストが作成されます。
 </p>
