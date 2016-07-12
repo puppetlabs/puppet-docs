@@ -6,7 +6,7 @@ canonical: "/ja/pe/install_basic.html"
 
 <div>
 <blockquote>
-  <p> <img src="/pe/2015.2/images/windows-logo-small.jpg" alt="windows logo"> このセクションでは、*nixオペレーティングシステムについて取り上げます。 WindowsへのPuppet Enterpriseのインストールについては、「<a href="/pe/2016.2/install_windows.html">Windows agentのインストール</a>」を参照してください。
+  <p> <img src="/pe/2015.2/images/windows-logo-small.jpg" alt="windows logo"> このセクションでは、*nixオペレーティングシステムについて取り上げます。 WindowsへのPuppet Enterpriseのインストールについては、「<a href="./install_windows.html">Windows agentのインストール</a>」を参照してください。
 </p>
 </blockquote>
 
@@ -105,7 +105,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 <p> 以下では、Puppet Enterpriseをスムーズにインストールするために知っておくべきことを説明します。 Puppet Enterpriseの機能は複数のコンポーネントにより構成されています。インストーラを実行すると、これらすべてのコンポーネントがインストールされ、設定されます。 複数のコンポーネントを1つのノードにインストール（モノシックインストール）、もしくは複数のノードにコンポーネントを分散してインストール（分割インストール）することができます。ただしagentコンポーネントについては、すべてのノードにインストールされます。
 </p>
 
-<p> インストールを始める前に、デプロイするものを決めておきましょう。 Puppet Enterpriseコンポーネントをインストールするすべてのノードにアクセスできるよう、各ノードの完全修飾ドメイン名を把握し、ファイアウォールのルールが<a href="/pe/2016.2/install_system_requirements.html#firewall-configuration">必要なポート</a>にアクセスできるよう設定されているか確認する必要があります。
+<p> インストールを始める前に、デプロイするものを決めておきましょう。 Puppet Enterpriseコンポーネントをインストールするすべてのノードにアクセスできるよう、各ノードの完全修飾ドメイン名を把握し、ファイアウォールのルールが<a href="./install_system_requirements.html#firewall-configuration">必要なポート</a>にアクセスできるよう設定されているか確認する必要があります。
 </p>
 
 <p> これらの情報を確認した後、次の<strong>三つの手順</strong>でインストールを実行します。
@@ -121,7 +121,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 </p>
   </li>
   <li>
-    <p> Puppet Enterpriseによる管理を行うすべてのノードに、Puppet agentをインストールします。 「<a href="/pe/2016.2/install_agents.html">agentのインストール手順</a>」を参照してください。
+    <p> Puppet Enterpriseによる管理を行うすべてのノードに、Puppet agentをインストールします。 「<a href="./install_agents.html">agentのインストール手順</a>」を参照してください。
 </p>
   </li>
 </ol>
@@ -132,7 +132,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 
 <ul>
 <li>
-    <p> Webベースのインターフェイスで、画面に表示される手順に従ってインストールします。 これについてはインストール時の質問に答えることで、正しいインストール方法を選択できると思います。 <a href="/pe/2016.2/install_pe_mono.html#ssh-prerequisites-and-notes">SSH証明書</a>を使えるのならば、この方法で素早くインストールして運用を開始できます。 以下のどちらのインストールを行うか選択します。
+    <p> Webベースのインターフェイスで、画面に表示される手順に従ってインストールします。 これについてはインストール時の質問に答えることで、正しいインストール方法を選択できると思います。 <a href="./install_pe_mono.html#ssh-prerequisites-and-notes">SSH証明書</a>を使えるのならば、この方法で素早くインストールして運用を開始できます。 以下のどちらのインストールを行うか選択します。
 </p>
 
     <ul>
@@ -155,7 +155,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 </p>
   </li>
 </ul>
-<p> 「<a href="/pe/2015.2/install_system_requirements.html">システム要件</a>」で、ハードウェア関連の仕様を確認します。
+<p> 「<a href="./install_system_requirements.html">システム要件</a>」で、ハードウェア関連の仕様を確認します。
 </p>
 
 <blockquote>
@@ -170,7 +170,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 
 <h3 id="the-puppet-agent">Puppet agent</h3>
 
-<p> Puppet agentは、パッケージマネージャを使ってインストールするのがもっとも簡単です(「<a href="/pe/2016.2/install_agents.html">agentのインストール」</a>を参照)。 リモートリポジトリから直接パッケージをインストールできないプラットフォーム(Windows)の場合は、インストーラスクリプトを使用してください。
+<p> Puppet agentは、パッケージマネージャを使ってインストールするのがもっとも簡単です(「<a href="./install_agents.html">agentのインストール」</a>を参照)。 リモートリポジトリから直接パッケージをインストールできないプラットフォーム(Windows)の場合は、インストーラスクリプトを使用してください。
 </p>
 
 <p> このコンポーネントは、デプロイ環境の<strong>すべてのノード</strong>にインストールする必要があります。 Puppet master、PuppetDB、コンソールコンポーネントがインストールされたサーバーには、Puppet agentコンポーネントも自動的にインストールされます。
@@ -198,7 +198,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
   <li> <code>peadmin</code> ユーザーとしてログインした管理者が) 有効なMCollective関連のコマンドを発行する。</li>
 </ul>
 <blockquote>
-  <p> <strong>注意</strong>: デフォルトでは<code>pe-puppetserver</code>が再起動する度に、利用可能なアップデートの有無を確認します。 正確なアップデート情報を取得するため、masterはいくつかの基本的な情報を匿名でPuppet Labsのサーバーに対して送信します。 この動作は無効にできます。 収集されるデータ、アップグレードチェックを無効にする方法について、詳しくは「<a href="./config_puppetserver.html#disabling-update-checking">Puppet Server configuration</a>」ページを参照してください。 利用可能なアップデートがある場合は、メッセージが表示されます。
+  <p> <strong>注意</strong>: デフォルトでは<code>pe-puppetserver</code>が再起動する度に、利用可能なアップデートの有無を確認します。 正確なアップデート情報を取得するため、masterはいくつかの基本的な情報を匿名でPuppet Labsのサーバーに対して送信します。 この動作は無効にできます。 収集されるデータ、アップグレードチェックを無効にする方法について、詳しくは「<a href="/pe/2016.2/config_puppetserver.html#disabling-update-checking">Puppet Server configuration</a>」ページを参照してください。 利用可能なアップデートがある場合は、メッセージが表示されます。
 </p>
 </blockquote>
 
@@ -288,6 +288,6 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 
 <h2 id="installing-agents">Agentのインストール</h2>
 
-<p> Agentのインストール方法については、「<a href="/pe/2016.2/install_agents.html">PE Agentのインストール</a>」を参照してください。
+<p> Agentのインストール方法については、「<a href="./install_agents.html">PE Agentのインストール</a>」を参照してください。
 </p>
 </div>
