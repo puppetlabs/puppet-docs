@@ -1,12 +1,12 @@
 ---
 layout: default
 title: "PEインストールの概要"
-canonical: "/ja/pe/install_basic_ja.html"
+canonical: "/ja/pe/install_basic.html"
 ---
 
 <div>
 <blockquote>
-  <p> <img src="/pe/2015.2/images/windows-logo-small.jpg" alt="windows logo"> このセクションでは、*nixオペレーティングシステムについて取り上げます。 WindowsへのPuppet Enterpriseのインストールについては、「<a href="/pe/2016.1/install_windows.html">Windows agentのインストール</a>」を参照してください。
+  <p> <img src="/pe/2015.2/images/windows-logo-small.jpg" alt="windows logo"> このセクションでは、*nixオペレーティングシステムについて取り上げます。 WindowsへのPuppet Enterpriseのインストールについては、「<a href="/pe/2016.2/install_windows.html">Windows agentのインストール</a>」を参照してください。
 </p>
 </blockquote>
 
@@ -105,7 +105,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 <p> 以下では、Puppet Enterpriseをスムーズにインストールするために知っておくべきことを説明します。 Puppet Enterpriseの機能は複数のコンポーネントにより構成されています。インストーラを実行すると、これらすべてのコンポーネントがインストールされ、設定されます。 複数のコンポーネントを1つのノードにインストール（モノシックインストール）、もしくは複数のノードにコンポーネントを分散してインストール（分割インストール）することができます。ただしagentコンポーネントについては、すべてのノードにインストールされます。
 </p>
 
-<p> インストールを始める前に、デプロイするものを決めておきましょう。 Puppet Enterpriseコンポーネントをインストールするすべてのノードにアクセスできるよう、各ノードの完全修飾ドメイン名を把握し、ファイアウォールのルールが<a href="/pe/2015.2/install_system_requirements.html#firewall-configuration">必要なポート</a>にアクセスできるよう設定されているか確認する必要があります。
+<p> インストールを始める前に、デプロイするものを決めておきましょう。 Puppet Enterpriseコンポーネントをインストールするすべてのノードにアクセスできるよう、各ノードの完全修飾ドメイン名を把握し、ファイアウォールのルールが<a href="/pe/2016.2/install_system_requirements.html#firewall-configuration">必要なポート</a>にアクセスできるよう設定されているか確認する必要があります。
 </p>
 
 <p> これらの情報を確認した後、次の<strong>三つの手順</strong>でインストールを実行します。
@@ -121,7 +121,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 </p>
   </li>
   <li>
-    <p> Puppet Enterpriseによる管理を行うすべてのノードに、Puppet agentをインストールします。 「<a href="/pe/2015.2/install_agents.html">agentのインストール手順</a>」を参照してください。
+    <p> Puppet Enterpriseによる管理を行うすべてのノードに、Puppet agentをインストールします。 「<a href="/pe/2016.2/install_agents.html">agentのインストール手順</a>」を参照してください。
 </p>
   </li>
 </ol>
@@ -132,26 +132,26 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 
 <ul>
 <li>
-    <p> Webベースのインターフェイスで、画面に表示される手順に従ってインストールします。 これについてはインストール時の質問に答えることで、正しいインストール方法を選択できると思います。 <a href="/pe/2016.1/install_pe_mono.html#ssh-prerequisites-and-notes">SSH証明書</a>を使えるのならば、この方法で素早くインストールして運用を開始できます。 以下のどちらのインストールを行うか選択します。
+    <p> Webベースのインターフェイスで、画面に表示される手順に従ってインストールします。 これについてはインストール時の質問に答えることで、正しいインストール方法を選択できると思います。 <a href="/pe/2016.2/install_pe_mono.html#ssh-prerequisites-and-notes">SSH証明書</a>を使えるのならば、この方法で素早くインストールして運用を開始できます。 以下のどちらのインストールを行うか選択します。
 </p>
 
     <ul>
 <li>
-        <p> <a href="./install_pe_mono.html">モノリシックインストール</a>：<a href="./install_system_requirements.html#monolithic-installation">標準モノリシックインストール</a>または<a href="/install_system_requirements.html#monolithic-plus-compile-masters-installation">モノリシックインストールにコンパイルmasterを追加する場合</a>の土台となるインストール方法。
+        <p> <a href="./install_pe_mono.html">モノリシックインストール</a>：<a href="./install_system_requirements.html#monolithic-installation">標準モノリシックインストール</a>または<a href="./install_system_requirements.html#monolithic-plus-compile-masters-installation">モノリシックインストールにコンパイルmasterを追加する場合</a>の土台となるインストール方法。
 </p>
       </li>
       <li>
-        <p> <a href="./install_pe_split.html">分割インストール</a>：<a href="/install_system_requirements.html#large-environment-installation">大規模インストール</a>の土台となるインストール方法。
+        <p> <a href="./install_pe_split.html">分割インストール</a>：<a href="./install_system_requirements.html#large-environment-installation">大規模インストール</a>の土台となるインストール方法。
 </p>
       </li>
     </ul>
 </li>
   <li>
-    <p> Webベースのインターフェイスで応答ファイルを作成した後、インストーラのスクリプトに引数を追加して、インストールを実行します(例: <code>sudo ./puppet-enterprise-installer -a ~/my_answers.txt</code>)。 応答ファイルを使用してPuppet Enterpriseをインストールする方法の概要については、「<a href="/pe/2016.1/install_automated.html">応答ファイルを用いたインストール</a>」を参照してください。
+    <p> Webベースのインターフェイスで応答ファイルを作成した後、インストーラのスクリプトに引数を追加して、インストールを実行します(例: <code>sudo ./puppet-enterprise-installer -a ~/my_answers.txt</code>)。 応答ファイルを使用してPuppet Enterpriseをインストールする方法の概要については、「<a href="/pe/2016.2/install_automated.html">応答ファイルを用いたインストール</a>」を参照してください。
 </p>
   </li>
   <li>
-    <p> PEのインストール用tarballで提供される応答ファイルを編集します。 手順については、「<a href="/pe/2016.1/install_automated.html">応答ファイルを用いたインストール</a> 」を参照してください。
+    <p> PEのインストール用tarballで提供される応答ファイルを編集します。 手順については、「<a href="/pe/2016.2/install_automated.html">応答ファイルを用いたインストール</a> 」を参照してください。
 </p>
   </li>
 </ul>
@@ -170,7 +170,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 
 <h3 id="the-puppet-agent">Puppet agent</h3>
 
-<p> Puppet agentは、パッケージマネージャを使ってインストールするのがもっとも簡単です(「<a href="/pe/2015.2/install_agents.html">agentのインストール」</a>を参照)。 リモートリポジトリから直接パッケージをインストールできないプラットフォーム(Windows)の場合は、インストーラスクリプトを使用してください。
+<p> Puppet agentは、パッケージマネージャを使ってインストールするのがもっとも簡単です(「<a href="/pe/2016.2/install_agents.html">agentのインストール」</a>を参照)。 リモートリポジトリから直接パッケージをインストールできないプラットフォーム(Windows)の場合は、インストーラスクリプトを使用してください。
 </p>
 
 <p> このコンポーネントは、デプロイ環境の<strong>すべてのノード</strong>にインストールする必要があります。 Puppet master、PuppetDB、コンソールコンポーネントがインストールされたサーバーには、Puppet agentコンポーネントも自動的にインストールされます。
@@ -186,7 +186,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 </ul>
 <h3 id="the-puppet-master">Puppet master</h3>
 
-<p> ほとんどのデプロイ環境では、このコンポーネントは<strong>1つのノード</strong>にインストールすることを推奨します(複数のPuppet masterをインストールするには追加設定が必要ですが、このガイドでは取り上げません)。 Puppet masterには、堅牢な専用サーバーを使用する必要があります。 詳しくは「<a href="./install_system_requirements_ja.html">システム要件</a>」を参照してください。
+<p> ほとんどのデプロイ環境では、このコンポーネントは<strong>1つのノード</strong>にインストールすることを推奨します(複数のPuppet masterをインストールするには追加設定が必要ですが、このガイドでは取り上げません)。 Puppet masterには、堅牢な専用サーバーを使用する必要があります。 詳しくは「<a href="./install_system_requirements.html">システム要件</a>」を参照してください。
 </p>
 
 <p> Puppet masterでは、以下を実行することができます。
@@ -221,7 +221,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
   <li>すべてのノードの最新カタログ</li>
   <li>すべてのノードに関する(構成可能なオプション)の14日分(設定可能)のイベントレポート</li>
 </ul>
-<p> PuppetDBデータベースを手動で設定する場合は、「<a href="/puppetdb/4.0/configure.html#using-postgresql">PuppetDBの設定マニュアル</a>」で詳しい手順を確認してください。
+<p> PuppetDBデータベースを手動で設定する場合は、「<a href="/puppetdb/4.1/configure.html#using-postgresql">PuppetDBの設定マニュアル</a>」で詳しい手順を確認してください。
 </p>
 
 <blockquote>
@@ -246,7 +246,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 <p> RBACによってPEノードはセグメント化されますので、適切なユーザーに対してタスクを安全に委任することができます。 たとえば、アプリケーションチーム全体でインフラをセグメント化し、ほかのアプリケーションに影響を与えることなく、自身のサーバーを管理できます。 さらに、RBACはMicrosoft Active DirectoryやOpenLDAPなどの標準ディレクトリサービスに直接接続できるため、ユーザーや認証を簡単に管理できます。
 </p>
 
-<p> RBACの詳しい使い方については、「<a href="/pe/2016.1/rbac_intro.html">PEユーザーガイド</a>」を参照してください。
+<p> RBACの詳しい使い方については、「<a href="/pe/2016.2/rbac_intro.html">PEユーザーガイド</a>」を参照してください。
 </p>
 
 <h4 id="node-classifier-nc">Node Classifier (NC)</h4>
@@ -254,7 +254,7 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 <p> Node Classifier(ノードにクラスをアサインするサービス)を活用すれば、これまでにないパワフルで柔軟な方法でノードを整理して設定できます。 API駆動型のバックエンドサービスにより、直感的に操作できる新しいWeb UIを通じて、インフラを統合管理できる最新のアプローチが実現します。 グループレベルでクラスを割り当てたり、ユーザーが定義したルールに基づいてノードを動的にグループへマッチングさせることができます。
 </p>
 
-<p> 新しいノード分類子については、「<a href="/pe/2016.1/console_classes_groups.html">PEユーザーガイド</a>」を参照してください。
+<p> 新しいノード分類子については、「<a href="/pe/2016.2/console_classes_groups.html">PEユーザーガイド</a>」を参照してください。
 </p>
 
 <blockquote>
@@ -288,6 +288,6 @@ gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
 
 <h2 id="installing-agents">Agentのインストール</h2>
 
-<p> Agentのインストール方法については、「<a href="/pe/2016.1/install_agents.html">PE Agentのインストール</a>」を参照してください。
+<p> Agentのインストール方法については、「<a href="/pe/2016.2/install_agents.html">PE Agentのインストール</a>」を参照してください。
 </p>
 </div>
