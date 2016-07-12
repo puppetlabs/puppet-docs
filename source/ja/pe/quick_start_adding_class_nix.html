@@ -1,17 +1,17 @@
 ---
 layout: default
 title: "クラスを追加するクイックスタートガイド"
-canonical: "/ja/pe/quick_start_adding_class_nix_ja.html"
+canonical: "/ja/pe/quick_start_adding_class_nix.html"
 ---
  
 <div>
 <h2 id="overview">概要</h2>
 
-<p> すべてのモジュールには、1つまたは複数の<strong>クラス</strong>が含まれています。 <a href="/puppet/4.5/reference/lang_classes.html">クラス</a>とは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <a href="./quick_start_module_install_nix_ja.html">モージュールインストールクイックスタートガイド</a>でインストールした puppetlabs-apacheモジュールには、<code>apache</code>と呼ばれるクラスが含まれています。 この演習では、<code>apache</code>クラスを使ってデフォルトのApache仮想ホストを立ち上げます。 「<strong>apache_example</strong>」というグループを作成し、<code>apache</code>クラスを追加します。
+<p> すべてのモジュールには、1つまたは複数の<strong>クラス</strong>が含まれています。 <a href="/puppet/4.5/reference/lang_classes.html">クラス</a>とは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <a href="./quick_start_module_install_nix.html">モージュールインストールクイックスタートガイド</a>でインストールした puppetlabs-apacheモジュールには、<code>apache</code>と呼ばれるクラスが含まれています。 この演習では、<code>apache</code>クラスを使ってデフォルトのApache仮想ホストを立ち上げます。 「<strong>apache_example</strong>」というグループを作成し、<code>apache</code>クラスを追加します。
 </p>
 
 <blockquote>
-  <p> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono_ja.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix_ja.html">*nix agentノード</a>と<a href="./quick_start_module_install_nix_ja.html">puppetlabs-apacheモジュール</a>がインストールされているものと想定します。
+  <p> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>と<a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a>がインストールされているものと想定します。
 </p>
 </blockquote>
 
@@ -42,7 +42,7 @@ canonical: "/ja/pe/quick_start_adding_class_nix_ja.html"
   <li>ほかのノードも追加したい場合は、ステップ5～7を繰り返します。</li>
 </ol>
 <blockquote>
-  <p> <strong>ヒント</strong>: 各ノードをピン止めしてノードをグループに追加する方法は、「静的な」ノード追加と表現されます。このQSGの範囲からは外れますが、さらに複雑なデプロイの場合はノードのfactsをもとにルールを設定し、<a href="/pe/2015.2/console_classes_groups.html#adding-nodes-dynamically">ノードを「動的に」追加</a>することもできます。
+  <p> <strong>ヒント</strong>: 各ノードをピン止めしてノードをグループに追加する方法は、「静的な」ノード追加と表現されます。このQSGの範囲からは外れますが、さらに複雑なデプロイの場合はノードのfactsをもとにルールを設定し、<a href="/pe/2016.2/console_classes_groups.html#adding-nodes-dynamically">ノードを「動的に」追加</a>することもできます。
 </p>
 </blockquote>
 
@@ -94,7 +94,7 @@ canonical: "/ja/pe/quick_start_adding_class_nix_ja.html"
   </li>
 </ol>
 <blockquote>
-  <p> これで、Puppet EnterpriseがagentノードでデフォルトのApache仮想ホストを管理するようになっています。 Apacheインスタンス管理のオプションについては、ForgeのApache ReadMeを参照してください。 <a href="./quick_writing_nix_ja.html">*Nixモジュール記述クイックスタートガイド</a>では、Apache仮想ホスト上で動作するWebアプリを管理する独自のクラスの記述方法について説明しています。
+  <p> これで、Puppet EnterpriseがagentノードでデフォルトのApache仮想ホストを管理するようになっています。 Apacheインスタンス管理のオプションについては、ForgeのApache ReadMeを参照してください。 <a href="./quick_writing_nix.html">*Nixモジュール記述クイックスタートガイド</a>では、Apache仮想ホスト上で動作するWebアプリを管理する独自のクラスの記述方法について説明しています。
 </p>
 </blockquote>
 
@@ -139,6 +139,6 @@ canonical: "/ja/pe/quick_start_adding_class_nix_ja.html"
 </p>
 
 <hr>
-<p> 次の手順: <a href="./quick_start_nc_rbac_ja.html">ノードの分類とユーザー許可の割り当て</a>
+<p> 次の手順: <a href="./quick_start_nc_rbac.html">ノードの分類とユーザー許可の割り当て</a>
 </p>
 </div>
