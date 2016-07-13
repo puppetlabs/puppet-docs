@@ -18,7 +18,7 @@ defaultnav:
   /forge: /_includes/forge.html
   /guides/deployment_guide: /_includes/deploy_guide.html
   /guides/install_puppet: /_includes/puppet_general.html
-  /de: /_includes/de_pe2015.2.html
+  /de: /_includes/de_pe.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
