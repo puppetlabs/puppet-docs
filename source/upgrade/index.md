@@ -51,4 +51,3 @@ Finally, PE includes powerful role-based access control (RBAC) to enable you to 
 ### Awesome for all
 
 Regardless of whether you're running open source Puppet or Puppet Enterprise, you'll find a Puppet 4 based infrastructure scales better, takes less work to manage, and unlocks powerful new capabilities for modules.
-
