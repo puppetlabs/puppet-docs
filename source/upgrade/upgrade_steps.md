@@ -23,7 +23,7 @@ One of the biggest changes in Puppet 4 is the new parser. It has been available 
 * **Branch your code repo:** If you're not already using version control on your Puppet code, now's the time to start. If you are (please, please say you are!), you should make a new branch from your production branch, so you can test the code and commit fixes without affecting your business critical systems. 
 
   * [Code workflow](/upgrade/upgrade_code_workflow.html)
-  * [Updating 3.x manifests for 4.x]()
+  * [Updating 3.x manifests for 4.x](/upgrade/updating_manifests.html)
 
 
 * **Use catalog preview:** Now it's time to dig into the `puppetlabs-catalog_preview` module. This module contains a command-line application which compiles two catalogs for nodes you specify: one using the 3.x parser and one using the new, rewritten parser. It then analyzes the differences between the catalogs and produces a report to show you the file and line number that caused each difference. After working through the output from the catalog preview module, you should have a Puppet 4 compliant branch of code that will produce predictable, consistent results.
@@ -38,7 +38,7 @@ If you're feeling extra motivated, this is a great opportunity to implement r10k
 
 You've got a fork in the road at this point. You can either *upgrade* your existing server infrastructure to the latest version of its components, or you can *migrate* to new servers, putting your configuration and data onto a clean installation. We strongly recommend migration because it gives you a fresh start. There's less to go awry during the setup phase and if something does go wrong, it's easy to recycle the servers and try again. Migration also offers you the chance to refresh your operating system's installation.
 
->*Puppet Enterprise 3.x installations _must_ migrate*; all of our testing and documentation is geared towards migration. In fact, we're reluctant to suggest that upgrading is an option at all, but it is technically possible, so for completeness' sake it seemed worthy of a mention; open source sites are free to try it... and power users might even make it work.
+>*Puppet Enterprise 3.x installations _must_ migrate*; all of our testing and documentation is geared towards migration. Open source users are free to try it... and power users might even make it work.
 
 Assuming you're going to go down the migration route, there's a wealth of documentation to help you:
 
