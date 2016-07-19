@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Facter 3.1: Custom facts walkthrough"
+title: "Custom facts walkthrough"
 ---
 
 [Facter 3.0.2 release notes]: /facter/3.0/release_notes.html#facter--p-restored

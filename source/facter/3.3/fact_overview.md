@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Facter 3.1: Overview of custom facts with examples"
+title: "Overview of custom facts with examples"
 ---
 
 
