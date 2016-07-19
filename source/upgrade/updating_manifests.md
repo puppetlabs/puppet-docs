@@ -25,7 +25,7 @@ Several breaking changes were introduced in Puppet 4.0. If you previously used P
     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Double-check to make sure it's safe before purging `cron` resources</a>
 </div>
 <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-  Previously, using <code>resources {'cron': purge => true}</code> to purge <code>cron</code> resources would only purge jobs belonging to the current user performing the Puppet run (usually <code>root</code>`). In Puppet 4, this action is more aggressive and causes <em>all</em> unmanaged cron jobs to be purged.
+  Previously, using <code>resources {'cron': purge => true}</code> to purge <code>cron</code> resources would only purge jobs belonging to the current user performing the Puppet run (usually <code>root</code>). In Puppet 4, this action is more aggressive and causes <em>all</em> unmanaged cron jobs to be purged.
   <br><br>
   Make sure this is what you want. You might want to set <code>noop => true</code> on the purge resource to keep an eye on it.
 </div>

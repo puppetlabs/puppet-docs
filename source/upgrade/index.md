@@ -30,13 +30,15 @@ Managing your agent software is a lot easier with Puppet 4's all-in-one packagin
 
 If you haven't looked at Puppet Enterprise lately, be prepared to be impressed. In 2015, Puppet Enterprise moved to a quarterly release cadence with a numbering scheme that represents the year/number/patch, like Puppet Enterprise 2016.1.2, to decouple their numbers from the Puppet codebase. Since the first of these (Puppet Enterprise 2015.2), each release has built killer features on the open source platform: orchestration, visualization and reporting, and role-based access control are just some of the highlights.
 
+#### Orchestration
+
 In 2016, we debuted new orchestration capabilities in Puppet Enterprise that make it easier to deploy changes rapidly with confidence and run ordered deployments across your infrastructure and applications. You can orchestrate change on demand and run phased deployments, with full and direct control, real-time visibility and feedback, and built-in intelligence to account for dependencies across your infrastructure.
 
-#### The graph
+#### Interactive Dependency Visualization
 
 Puppet Enterprise now includes new ways to visualize your infrastructure model as a graph, making it easy to see the upstream and downstream dependencies across all the configurations you define and enforce on each node. This makes it easier than ever to collaborate, troubleshoot issues, and understand which configuration resources depend on each other so you can deploy more confidently.
 
-#### r10k improvements
+#### Code Manager and r10k Workflows
 
 Building on the popular r10k tool, Puppet Enterprise now includes automated workflows to review, test, promote and deploy Puppet code across your development, testing and production environments. You can check your code into common version control systems, automatically sync code across multiple compile masters, and more easily ensure consistency across your environments.
 
@@ -48,6 +50,6 @@ PE now includes new supported modules and workflows to automate Day One provisio
 
 Finally, PE includes powerful role-based access control (RBAC) to enable you to safely delegate work to the right individuals and teams. You can assign permissions and control who has access to what, and set guard rails so your teams can work together safely.
 
-### Awesome for all
+### Awesomeness for all
 
 Regardless of whether you're running open source Puppet or Puppet Enterprise, you'll find a Puppet 4 based infrastructure scales better, takes less work to manage, and unlocks powerful new capabilities for modules.
