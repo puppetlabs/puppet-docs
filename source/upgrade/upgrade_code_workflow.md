@@ -4,7 +4,7 @@ title: "Workflow for updating Puppet code"
 canonical: "/upgrade/upgrade_code_workflow.html"
 ---
 
-This guide is intended for anyone that needs to update their Puppet code in preparation for an upgrade from Puppet 3 to Puppet 4. An opinionated workflow will be shown that uses Git to make changes in a controlled and testable manner. This workflow should be used in conjunction with an automated catalog diffing tool or static analysis tool. 
+This guide is intended for anyone who needs to update their Puppet code in preparation for an upgrade from Puppet 3 to Puppet 4. It provides an opinionated workflow that uses Git to make changes in a controlled and testable manner. This workflow should be used in conjunction with an automated catalog diffing tool or static analysis tool.
 
 For purposes of this guide we'll use the `catalog_preview` module to produce difference data and the `preview_report` tool to present it in an easier to read format.
 
@@ -16,7 +16,7 @@ This workflow assumes that you are currently running at least Puppet 3.8, have c
 
 ### 1. Create your working branch
 
-Start by creating a branch off of the `production` branch in your control repository. Name the new branch something along the lines of `future_production` (This is what the catalog preview tool assumes). This will be the main working branch in which you will do most of your work.
+Start by creating a branch off of the `production` branch in your control repository. Name the new branch something along the lines of `future_production` (This is what the catalog preview tool assumes). This will be the branch in which you will do most of your work.
 
 ```
 git checkout production
@@ -72,7 +72,7 @@ Notice: Installing -- do not interrupt ...
 
 The Catalog Preview tool accepts a list of nodes to compile a catalog for. This list can be created to include all currently "active" nodes in a couple of ways.
 
-I recommend also generating a list of nodes that is a representative cross-section of all the nodes and that includes as many of the roles or profiles without too much duplication. This shortened list will give you a smaller number of catalogs to compare thus taking less time and getting you feedback on your code updates faster.
+Instead of trying to cover every single node individually, generate a list of nodes that is a representative cross-section of all the nodes and that includes as many of the roles or profiles without too much duplication. This shortened list will give you a smaller number of catalogs to compare thus taking less time and getting you feedback on your code updates faster.
 
 ###### PuppetDB Query
 
@@ -86,7 +86,7 @@ puppet query nodes "(is_pe=true or is_pe=false)" > nodes.txt
 
 ###### No PuppetDB query
 
-If PuppetDB isn't available (because they're on open-source or something), you can scrape the YAML cache and collect them together.
+If PuppetDB isn't available, you can scrape the YAML cache and collect the results together.
 
 `ls -1 $(puppet config print yamldir)/node | awk -F\. 'sub(FS $NF,x)' > nodes.txt`
 
@@ -100,7 +100,7 @@ You can find all yaml file that were accessed in the last hour, for instance, wi
 
 The Catalog Preview tool works by compiling catalogs for nodes and inspecting the resultant catalog. It compiles a catalog by using the existing node objects and their facts to simulate a Puppet run against that node. This means interacting with PuppetDB where all that data is stored.
 
-Its probably going to be the case where your Catalog Preview server doesn't have access to PuppetDB data. We can get around that by using the cached facts and node data that is stored as YAML on the real Puppet Masters.
+It's probably going to be the case that your Catalog Preview server doesn't have access to PuppetDB data. We can get around that by using the cached facts and node data that are stored as YAML on the real Puppet Masters.
 
 > stub: Stage the node and facts YAML files on the diff rig.
 >
@@ -117,9 +117,9 @@ Install the Catalog Preview Report generator and its requirements onto the PE 3.
 
 ### 3. Generate a baseline report
 
-Run the Catalog Preview tool against the `production` branch and the `future_production` branch. The idea with the first run is to generate a hit list of issues to solve. I'd recommend that you start with fixing the issues that are most common or the ones that affect the most nodes. This will likely be issues that cause a catalog compilation error. It is important to solve compilation errors first because there could be issues hiding behind a failed catalog.
+Run the Catalog Preview tool against the `production` branch and the `future_production` branch. The idea with the first run is to generate a hit list of issues to solve. Start by fixing the issues that are most common or the ones that affect the most nodes. This will likely be issues that cause a catalog compilation error. It is important to solve compilation errors first because there could be issues hiding behind a failed catalog.
 
-Think of this entire process as peeling back an onion. You'll need to go through layer by layer, and you can't be sure what the next layer will reveal.
+Think of this entire process as peeling back an onion. You'll need to go through layer by layer until you get to the delicious oniony center.
 
 #### Running a Catalog Preview
 
@@ -177,9 +177,11 @@ sudo ./preview_report.rb -f ~/catalog_preview_overview-baseline.json -w /var/www
 
 > NOTE: Save this first report! It will act as the starting metric that you will compare your progress against.
 >
-> NOTE: It would be a good idea to automate the Catalog Preview run and the Report processor run in a cron job or via a webhook on your control repository :)
+> NOTE: For maximum awesomeness, automate the Catalog Preview run and the Report processor run in a cron job or via a webhook on your control repository!
 
 ## Start fixing issues
+
+Assuming you've got all of your work in some sort of ticketing system. That way you'll have somewhere to attach reports and you can make your fix branches named after the ticket.
 
 ### 1. Start with the issue that is causing the most catalog compilation failures
 
@@ -190,7 +192,6 @@ sudo ./preview_report.rb -f ~/catalog_preview_overview-baseline.json -w /var/www
   if $foo =~ 'bar' { do something } # This works in Puppet 3, but not Puppet 4.
   ```
 
-  I'd recommend tracking all of your work in some sort of ticketing system. That way you'll have somewhere to attach reports and you can make your fix branches named after the ticket.
 
 ### 2. Create a new branch off of `future_production` that is named after the issue being fixed
 
@@ -255,13 +256,13 @@ Once the issue is solved, generate a catalog report that shows the issue is not 
 
 ### 6. Merge your fix into the `future_production` branch
 
-The `future_production` branch should be the place in which all the finished fixes are stored. This means that when you solve an issue on a fix branch, you should merge it into the `future_production` branch. I'd recommend using a mixture of squashing, rebasing, and merging to have a clean history from which you can create pull requests more easily when it comes time to incorporate your changes into production.
+The `future_production` branch should be the place in which all the finished fixes are stored. This means that when you solve an issue on a fix branch, you should merge it into the `future_production` branch. Use a mixture of squashing, rebasing, and merging to have a clean history from which you can create pull requests when it comes time to incorporate your changes into production.
 
 #### Squash your fix branch into a single commit
 
 If it took you more than 1 commit to solve the issue, you should squash those multiple commits together so that the fix is packaged as a single atomic patch.
 
-For example, lets say it took you 3 commits until you landed on the fix. Let's squash those 3 commits down to one:
+For example, if it took you 3 commits until you landed on the fix, you can squash those 3 commits down to one:
 
 ```
 [control-repo]$ git checkout issue123_undef_regex_match
@@ -273,7 +274,7 @@ For example, lets say it took you 3 commits until you landed on the fix. Let's s
 * 115b3f7 (production, future_production) Initial commit
 ```
 
-Perform an interactive rebase of the last 3 commits. I'd recommend using `fixup` for the commits you want to squash and `reword` on the top commit. This'll allow you to squash the commits together and re-write the commit message into a coherent message. If there were valuable comments in any of the commits being squashed, use the `squash` command rather than `fixup` as you'll be able to preserve the message.
+Perform an interactive rebase of the last 3 commits. Use `fixup` for the commits you want to squash and `reword` on the top commit. This will allow you to squash the commits together and re-write the commit message into a coherent message. If there were valuable comments in any of the commits being squashed, use the `squash` command rather than `fixup` as you'll be able to preserve the message.
 
 ```
 [control-repo]$ git rebase -i HEAD~3
@@ -295,7 +296,7 @@ Perform an interactive rebase of the last 3 commits. I'd recommend using `fixup`
 
 #### Avoid merge commits
 
-Use rebase and merge so that when you merge your fix branch into `future_production` there are no merge commits. There will be no merge commits because you are essentially creating a scenario where a fast-forward merge is able to be performed.
+Use rebase and merge so that when you merge your fix branch into `future_production` there are no merge commits. There will be no merge commits because your clean git history will permit a fast-forward.
 
 ```
 [control-repo]$ git checkout issue123_undef_regex_match
@@ -314,7 +315,7 @@ Decide when and how to promote solved issues from the `future_production` to the
 
 ### Cherry-pick individual fixes and make a PR
 
-The organization you're working with may want to merge in changes one fix at a time. In that case, you'll need to create a new branch off of production and cherry-pick in the commit from your topic branch that fixed the issue.
+You may want to merge in changes one fix at a time. In that case, you'll need to create a new branch off of production and cherry-pick in the commit from your topic branch that fixed the issue.
 
 ```
 [control-repo]$ git checkout production
@@ -355,8 +356,6 @@ Documentation on most known Puppet 3 to 4 changes is also available here: <https
 
 For some real-word examples of common types of issues you may encounter, and examples for how to fix them, refer to the following sections.
 
-For the most part, it seems like the breaking changes cause a complete catalog compilation failure.  So, it may take a bunch of work getting catalogs to compile at all, before you can get down to the more insidious situations where it compiles, but the two catalogs are different.
-
 ### Example: Unquoted File modes (MIGRATE4_AMBIGUOUS_NUMBER)
 
 File modes need to go in quotes in Puppet 4.  Actually, puppet-lint, run with the --fix flag, will automatically update these for you.
@@ -382,19 +381,19 @@ Switch to using Puppet's built-in versioncmp function, which is also more flexib
 
 ### Example: Empty strings are not false (MIGRATE4_EMPTY_STRING_TRUE)
 
-I think everyone knows this one.  Empty strings used to evaluate to false, and now they don't.  (Done to match Ruby behavior or something.)  If you can't change whatever's returning the empty string to return a real boolean, you can just wrap the string in str2bool() from puppetlabs-stdlib and it'll return false on an empty string.
+I think everyone knows this one.  Empty strings used to evaluate to false, and now they don't.  If you can't change whatever's returning the empty string to return a real boolean, you can just wrap the string in str2bool() from puppetlabs-stdlib and it'll return false on an empty string.
 
 ### Example: Variables must start with lower case letter
 
 Puppet 4 thinks a capital letter refers to a constant.  Lowercase it.
 
-This will make catalog compilation fail entirely.
+Upper-cased variable names will make catalog compilation fail entirely.
 
 ### Example: Ineffectual conditional cases
 
-A conditional that would do nothing is no longer allowed, unless it's the last case in a case statement.  (Makes sense, plenty of empty default cases out there.)  This creeps in to code when someone has commented out some things in a conditional while debugging.
+A conditional that would do nothing is no longer allowed, unless it's the last case in a case statement.  (Makes sense, plenty of empty default cases out there.)  This creeps into code when someone has commented out some things in a conditional while debugging.
 
-Note that declaring an anchor resource counts as a conditional having an effect -- so at worst you can just throw one inside the conditional block so that it "does something" but nothing of consequence.  Maybe better ideas?
+Note that declaring an anchor resource counts as a conditional having an effect -- so at worst you can just throw one inside the conditional block so that it "does something" but nothing of consequence.
 
 ````puppet
 if ( $starfish == 'marine' ) {
@@ -416,12 +415,12 @@ else {
 
 ### Example: Class names can't have hyphens
 
-Not everyone is a devotee of the underscore.
+In Puppet 2.7, the acceptability of hyphenated class names changed a few times. The root problem is that hyphens are not distinguishable from arithmetic subtraction operations in Puppet's syntax. Throughout the 3.x series, class names with hyphens were deprecated but not completely removed. Now they are completely illegal since arithmetical expressions can appear in more places.
 
-This will fail the whole catalog compilation.
+They will fail the whole catalog compilation.
 
 ### Example: Import no longer works
 
-Usually this is an old-school site.pp that does something like 'import nodes/*.pp'.  You don't fix this in code, so much as show the customer that the 'manifest' configuration in puppet.conf can take a whole directory and that it searches subdirectories.
+Usually this is an old-school site.pp that does something like `import nodes/*.pp`.  You don't fix this in code, because the `manifestdir` setting in puppet.conf can take a whole directory and that it searches subdirectories.
 
 This will fail the whole catalog compilation.
