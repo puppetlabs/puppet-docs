@@ -1,0 +1,158 @@
+---
+layout: default
+title: "Windowsでの一般的なタスク"
+canonical: "/ja/pe/windows_installing.html"
+---
+
+<div>
+<p> このガイドでは、Puppet Enterprise masterおよびagentのインストールプロセスを説明します。 masterは、設定情報を制御するノードです。 agentはmasterが制御するノードで、Windowsマシンなどがそれにあたります。 この2つのノードは、クライアント認証有りのHTTPSで通信します。 masterおよびagentアーキテクチャの詳細については、 <a href="/puppet/4.5/reference/architecture.html">Puppetアーキテクチャ文書</a>を参照してください。
+</p>
+
+<p> Puppet masterは*nixマシンでのみ稼働可能ですが、WindowsマシンはPuppet agentとして稼働できます。 そのため、このガイドでは、Windowsマシンを用いてLinuxサーバー上にPuppet masterをインストールしたのち、Windowsマシン上にPuppet agentをインストールする方法を説明します。 全体としては、以下の手順を実施します。
+</p>
+
+<ul>
+<li>ステップ1：システムの準備</li>
+  <li>ステップ2：Puppet Enterprise Masterパッケージのダウンロード</li>
+  <li>ステップ3：Linuxマシン上でのPuppet Masterのインストール</li>
+  <li>ステップ4：Windowsマシン上でのPuppet Agentのインストール</li>
+</ul>
+<h2 id="before-you-begin">インストールを始める前に</h2>
+
+<p> これらの手順を実施するには、WindowsマシンとLinuxサーバーが必要になります。 以下の例では、Red Hat Enterprise Linux (RHEL) 6を運用するLinuxサーバーを使用しています。
+</p>
+
+<p> Linuxマシン(すなわちPuppet master)では、以下を指定する必要があります。
+</p>
+
+<ul>
+<li>指定されたホスト名</li>
+  <li>完全修飾ドメイン名(FQDN)</li>
+  <li>RAM 6GBおよび4コア。<a href="./install_system_requirements.html">PEシステム要件</a>を参照してください。</li>
+  <li>ポート3000にアクセスできること</li>
+  <li>rootユーザー、またはsudo権限を持つユーザーとしてログインできること</li>
+</ul>
+<h2 id="step-1-prep-your-windows-system">ステップ1：Windowsシステムの準備</h2>
+
+<p> お使いのWindowsマシンで以下を実行します。
+</p>
+
+<ol>
+<li>SSHクライアントをまだインストールしていない場合は、インストールします。以下の例では、<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">Putty</a>を使用しています。</li>
+  <li>SFTPクライアントをまだインストールしていない場合は、インストールします。一般的なクライアントとしては、FileZillaとWinSCPがあります。</li>
+</ol>
+<h2 id="step-2-download-the-puppet-enterprise-master-package">ステップ2：Puppet Enterprise masterパッケージのダウンロード</h2>
+
+<p> Windowsオペレーティングシステムを搭載するマシンを管理できるようにするためには、まずLinuxサーバー上にPuppet masterをインストールする必要があります。これは、Puppet masterがWindows上では動作できないためです。
+</p>
+
+<p> Puppet masterをインストールした後、WindowsマシンにPEをインストールします。
+</p>
+
+<ul>
+<li>まず、お使いのWindowsマシン上で、<a href="https://puppetlabs.com/download-puppet-enterprise">Puppet Enterpriseダウンロードページ</a>から<strong>EL (RHEL、CentOS、Scientific Linux、Oracle Linux)</strong>用PE Masterインストーラパッケージのバージョン6をダウンロードします。</li>
+</ul>
+<h2 id="step-3-install-the-puppet-master-on-your-linux-machine">ステップ3：Linuxマシン上でのPuppet masterのインストール</h2>
+
+<ol>
+<li>WindowsマシンでSFTPクライアントを使って、Puppet masterとして指定したLinuxマシンにPE Masterインストーラパッケージをコピーします。</li>
+  <li>Windowsマシン上でSSHクライアントを使ってsshでLinuxマシンにログインし、以下の例に示すように、ホスト名またはIPアドレスとポートを入力します。
+  <img src="images/windows/putty_config.png" alt="putty config">
+</li>
+  <li>ターミナルでプロンプトが表示されたら、<code>root</code>ユーザー、またはsudo権限を持つユーザーとしてLinuxマシンにログインします。
+  <img src="images/windows/login_as_root.png" alt="login as root">
+</li>
+  <li>Linuxマシンには指定されたホスト名があるはずです。ホスト名を確認するには、 <code>hostname -f</code>を実行します。</li>
+  <li>PEで使用するWebベースのインストーラにアクセスするためには、ポート3000へのアクセスを確保する必要があります。
+ &gt;<strong>ヒント</strong>：アクセスを確保するための方法はお使いのOSおよびクラウド／仮想化プラットフォームによって異なりますが、以下の例で示すように、<code>iptables</code>を無効化することで、このポートを確実に開けることができます。<br><img src="images/windows/disable_iptables.png" alt="disable iptables">
+</li>
+  <li>
+<code>tar -xvf puppet-enterprise-2015.2.0-*</code>を実行し、PEインストーラtarballを展開します。</li>
+  <li>
+<code>cd puppet-enterprise-2015.2.0-el-6-x86_64</code>を実行し、インストーラのディレクトリに移ります。
+  <img src="images/windows/cd_tarball.png" alt="cd to tarball">
+</li>
+  <li>Puppet Enterpriseインストールのスクリプトを開始します。<code>./puppet-enterprise-installer</code>を実行します。</li>
+  <li>ガイド付きのインストール情報が表示されます。プロンプトが表示されたら、<code>y</code>と回答し、ガイド付きインストールを実行するために必要なパッケージをインストールします。「Installing setup packages (セットアップパッケージをインストールしています)」というメッセージが表示され、その後、お使いのブラウザで特定のURL(https://master.inf.puppetlabs.demo:3000など)を開くよう指示するメッセージが表示されます。</li>
+  <li>インストーラに表示されたURLをコピーし、ブラウザにペーストします。プロンプトが表示されたら、[<strong>Let’s get started!</strong>]をクリックします。
+  <img src="images/windows/get_started.png" alt="get started">
+</li>
+  <li>デプロイアーキテクチャを選択します。この手順説明では、モノリシックインストールを行う場合について解説します。詳細については、「<a href="./install_basic.html#choose-an-installation-method">インストールの概要</a>」を参照してください。
+  &gt;<strong>注意</strong>：以降の例では、LinuxマシンをPuppet masterと呼びます。</li>
+  <li>対応するフィールドに、以下のようにPuppet masterのFQDNとエイリアスを入力します。  <img src="images/windows/master_install.png" alt="master install">
+  次に、コンソールの管理者パスワードを入力します。
+  <img src="images/windows/master_install_two.png" alt="second install image">
+  &gt;<strong>重要</strong>：Puppet agentはエイリアスによりPuppet masterを認識するため、エイリアスは正確に指定する必要があります。デフォルトでは「puppet」と表示されています。</li>
+  <li>[<strong>Submit</strong>]をクリックします。</li>
+  <li>[<strong>Confirm the plan</strong>]画面で、選択内容が正しいことを確認し、[<strong>Continue</strong>]をクリックします。
+  <img src="images/windows/confirm_plan.png" alt="confirm plan">
+</li>
+  <li>お使いのシステムがすべての必要条件を満たしているかどうかをPuppet Enterpriseが検証します。条件が満たされていない場合は、[<strong>Log View</strong>]トグルを使って、ログをチェックすることができます。終了したら、[<strong>Deploy now</strong>]をクリックします。
+  &gt;<strong>注意</strong>：インストーラが手順を完了するまでに数分かかります。</li>
+  <li>[<strong>Start using Puppet Enterprise</strong>]をクリックします。</li>
+  <li>インストール中に使用したコンソールの管理者パスワードを使ってログインします。ユーザー名は「admin」です。</li>
+</ol>
+<p> 以上で完了です。 これでPuppet Enterprise masterがインストールされました！
+</p>
+
+<h3 id="see-your-node-in-the-web-ui">Web UIでノードを見る</h3>
+
+<p> Web UIにログインすると、[<strong>Overview</strong>]ページが開きます。 このページには、PE agentがインストールされPuppet masterと通信しているすべてのマシンのリストが表示されます。 Puppetの設定を適切な状態に保つため、Puppet master自体にもagentがインストールされています。このリストにPuppet masterが表示されるのは、そのためです。
+</p>
+
+<p> 次の例にあるように、Puppet agentをインストールするとagentからPuppet masterへのチェックインが行われます。agentとPuppet masterが通信できるよう許可すると、そのagentが稼働しているマシンも[<strong>Overview</strong>]リストに表示されます。
+</p>
+
+<h2 id="step-4-install-a-puppet-agent-on-your-windows-machine">ステップ4：Windowsマシン上でのPuppet agentのインストール</h2>
+
+<p> 以下の手順では、Windowsマシン上にPuppet agentをインストールします。 ただし、agentをインストールする前に、agentインストーラがお使いのシステムに合った状態になるようにPuppet masterを設定する必要があります。
+</p>
+
+<p> この設定は、Puppet Enterprise Webコンソールを使用して実行します。
+</p>
+
+<ol>
+<li>メニューバーを右クリックし、[<strong>Nodes</strong>]をクリックします。</li>
+  <li>[<strong>Classification</strong>]をクリックします。</li>
+  <li>[<strong>Classification</strong>]ページで[<strong>PE_Master</strong>]グループをクリックします。 
+  <img src="images/windows/classification.png" alt="classification page">
+</li>
+  <li>[<strong>Classes</strong>]タブをクリックします。</li>
+  <li>[<strong>Add new class</strong>]フィールドに「windows」と入力し、お使いのWindowsマシンに合わせてアーキテクチャを選択します。
+  <img src="images/windows/add_class.png" alt="add class">
+</li>
+  <li>[<strong>Add class</strong>]をクリックし、[<strong>Commit</strong>]ボタンをクリックします。この時点で、Puppet master上で稼働するagentの分類が変更されます。次に、masterを「異なる状態」にする必要があります。puppetにこの変更を認識させるには、puppetがagentを立ち上げるまで30分ほど待ちます。または、master上で手動操作によってpuppetを稼働させる方法もあります。その手順を以下で説明します。</li>
+</ol>
+<h4 id="optional-manually-run-puppet">オプション：手動によるPuppetの稼働</h4>
+
+<ol>
+<li>SSHクライアントを使って、Puppet masterにログインします。</li>
+  <li>
+<code>puppet agent -t</code>により、Puppetの稼働を開始します。
+  <img src="images/windows/puppet_agentt.png" alt="puppet run">
+ このPuppet稼働により、Windows用のagentがPuppet masterにダウンロードされます。</li>
+  <li>
+<strong>Windowsマシン上で</strong>、ブラウザに次のURLを入力します：<code>https://&lt;YOUR PUPPET MASTER HOSTNAME&gt;:8140/packages/current/windows-x86_64/puppet-agent-x64.msi</code>。
+ これにより、WindowsマシンにPuppet agentをインストールするために必要な.msiパッケージがダウンロードされます。</li>
+  <li>以下の例のようにWindowsマシンにPuppet agent msiをインストールします。 
+  <img src="images/windows/install_puppetagent.png" alt="run puppet two">
+</li>
+  <li>ファイルのセキュリティに関するプロンプトが表示されたら、[<strong>Run</strong>]をクリックします。</li>
+  <li>設定ウィザードが起動したら、[<strong>Next</strong>]をクリックします。</li>
+  <li>ライセンス契約を承諾し、[<strong>Next</strong>]をクリックします。</li>
+  <li>Puppet masterのFQDNを入力し、[<strong>Next</strong>]をクリックします。</li>
+  <li>インストールの準備ができたら、[<strong>Install</strong>]をクリックします。</li>
+  <li>設定ウィザードが完了したら、[<strong>Finish</strong>]をクリックします。</li>
+  <li>管理者としてPowerShellを実行します。</li>
+  <li>PowerShellコマンドライン上で<code>puppet agent -t</code>を用いてPuppetの稼働を開始します。</li>
+</ol>
+<h2 id="imperative-sign-your-node-certificate">必須：ノード証明書への署名</h2>
+<p> Puppetを手動で稼働させる場合でも、通常どおり30分待って稼働させる場合でも、agentを最初にインストールする際に、証明書署名リクエスト (CSR) が作成されます。 インストールを完了し、ノードを管理できるようにするためには、agentの証明書に署名する必要があります。 1. ブラウザでPEコンソールに戻り、[<strong>Nodes</strong>]をクリックします。 2. [<strong>Nodes</strong>]ページで[<strong>Unsigned certificates</strong>]タブをクリックします。
+3. ノード名のリストから該当するWindowsマシンを探し、[<strong>Accept</strong>]をクリックします。
+</p>
+
+<h3 id="whats-next">次のステップ</h3>
+
+<p> これで、Puppet EnterpriseとWindows agentのインストールが完了し、Puppetの機能を実際に使う準備が整いました。 「<a href="./windows_config_mgmnt.html">Windows設定の管理</a>」では、サービス管理の自動化、タスクのスケジューリング、ユーザーとグループの管理方法などについて説明しています。 既存のモジュール(主にPuppetコードソリューション)を利用してその他の自動タスクを迅速に開始する方法については、「<a href="./windows_modules.html">Windowsモジュールのインストールと使用</a>」を参照してください。
+</p>
+</div>

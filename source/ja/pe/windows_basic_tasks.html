@@ -1,0 +1,171 @@
+---
+layout: default
+title: "Windowsでの一般的なタスク"
+canonical: "/ja/pe/windows_basic_tasks.html"
+---
+
+<div>
+<p> このページは、Puppet EnterpriseとWindows agentで使用される一般的なタスクに関する理解を深めることを目的とし、このようなタスクを実行する際のベースとなるコンセプトや理由について説明します。 ドキュメント内の他のガイドや手順説明のなかでも、タスクの手順としてこのようなコンセプトに触れていますが、詳しい解説はありません。
+</p>
+
+<h2 id="developing-puppet-manifests">Puppetマニフェストの開発</h2>
+
+<p> Puppetコードはドメイン固有言語(DSL)で、ファイル、ユーザ、パッケージなどのシステム上のリソースのあるべき状態を定義します。 Puppetマニフェストファイルは一意のタイトルと名前の付いた一連の属性を持つリソースリストで、リソースのあるべき状態を記述しています。 Puppetはこのようなテキストベースのマニフェストをカタログにまとめ、それらを用いて設定の変更を適用します。
+</p>
+
+<p> Puppetマニフェストファイルは、テキストエディタを使って作成します。 <a href="https://atom.io/">Atom</a>、<a href="https://code.visualstudio.com/">Visual Studio Code</a>、<a href="http://www.sublimetext.com/">Sublime Text</a>は、Puppet言語のシンタックスハイライトをサポートしています。  <a href="https://notepad-plus-plus.org/">Notepad++</a>やNotepadなどのエディタではPuppetシンタックスはハイライトされませんが、マニフェストの作成に使用することはできます。
+</p>
+
+<h3 id="task-1-write-a-simple-manifest">タスク1：簡単なマニフェストを記述する</h3>
+
+<ol>
+<li>
+<code>file.pp</code>という名前のファイルを作成し、<code>c:\myfiles\</code>に保存します。</li>
+  <li>任意のテキストエディタでファイルを開き、以下のテキストを追加します。</li>
+</ol>
+<pre><code class="language-ruby">file { 'c:\\Temp\\foo.txt':
+  ensure   =&gt; present,
+  content  =&gt; 'This is some text in my file'
+}
+</code></pre>
+
+<p> このファイルリソース例では、以下の点に留意してください。
+</p>
+
+<ul>
+<li>Puppetでは、<code>type { title: }</code>という基本シンタックスを使用します。<code>type</code>にはリソースタイプを指定します。この例では<code>file</code>です。</li>
+  <li>リソースタイトル (<code>:</code>の前の値) は<code>C:\\Temp\\foo.txt</code>です。ファイルリソースはこのタイトルを用いて、ディスク上のどこにファイルを作成するかを決定します。1つのマニフェスト内では、リソースタイトルは必ず一意であることが必要です。</li>
+  <li>
+<code>ensure</code>を<code>present</code>に設定し、ディスク上にファイルを作成します (まだ存在しない場合)。ファイルタイプのリソースに関しては、<code>absent</code>の値もサポートされています。この値は、ファイルが存在する場合に、ディスクからファイルを削除します。 </li>
+  <li>
+<code>content</code>に設定した値(<code>This is some text in my file</code>)がファイルに記述されます。</li>
+</ul>
+<p> Puppetの全リソースタイプの詳細については、<a href="/puppet/4.5/reference/type.html">リソースタイプリファレンス</a>を参照してください。
+</p>
+
+<h2 id="launching-the-puppet-command-prompt">Puppetコマンドプロンプトの起動</h2>
+
+<p> 次に、Puppetのコマンドラインツールにアクセスします。 これらのツールのコマンドラインインタフェースを開くには、[<strong>Start Menu</strong>]で<code>Command Prompt Puppet</code>と入力し、[<strong>Start Command Prompt with Puppet</strong>]をクリックします。
+</p>
+
+<p> <img src="images/windows/start_commandprompt.png" alt="Start command prompt with Puppet">
+</p>
+
+<p> コマンドプロンプトの注意点は以下の通りです。
+</p>
+
+<ul>
+<li>現在稼働しているディレクトリ、<code>C:\Program Files\Puppet Labs\Puppet\bin</code>には、いくつかの重要なバッチファイルがあります。このバッチファイルのなかでもっとも重要なものが<code>puppet.bat</code>です。PuppetはRubyコードベースのアプリケーションであり、 <code>puppet.bat</code>はruby.exeからPuppetコードを実行するためのラッパーです。</li>
+  <li>Puppetコマンドプロンプトの実行により、ディレクトリを変更した場合でも、すべてのPuppetツールが確実に<code>PATH</code>に置かれます。</li>
+</ul>
+<h2 id="applying-manifests">マニフェストの適用</h2>
+
+<p> 次に、<code>puppet apply</code>コマンドラインツールを使って、マニフェストで記述された状態<code>c:\myfiles\file.pp</code>を適用する方法を説明します。ただし、Puppetでこの変更を適用する前に、マニフェストに関するその他の役立つ操作を2つほど説明します。
+</p>
+
+<h3 id="task-2-validate-your-manifest-with-puppet-parser-validate">タスク2：<code>puppet parser validate</code>を使ってマニフェストを検証する</h3>
+
+<p> コマンドライン<code>parser validate</code>を使用すると、マニフェストのシンタックスが正しいかどうかを検証することができます。
+</p>
+
+<ol>
+<li>
+    <p> Puppetコマンドプロンプトに<code>puppet parser validate c:\myfiles\file.pp</code>と入力し、シンタックスをチェックします。 マニフェストにシンタックスエラーがない場合は、何も表示されません。
+</p>
+  </li>
+  <li>
+    <p> エラーがある場合にどのように表示されるか確認するために、マニフェストを一時的に編集し、リソースタイトルの後ろの<code>:</code>を削除してみます。 もう一度<code>puppet parser validate c:\myfiles\file.pp</code>を実行すると、以下のように表示されます。
+</p>
+  </li>
+</ol>
+<pre><code>Error: Could not parse for environment production: Syntax error at 'ensure' at c:/myfiles/file.pp:2:3
+</code></pre>
+
+<h3 id="task-3-simulate-a-puppet-run-with---noop">タスク3：<code>--noop</code>でPuppet動作をシミュレーションする</h3>
+
+<p> 次に、このマニフェストを適用した場合にPuppetで実行される変更をシミュレーションしてみます。 Puppetには、マニフェストによって行われる変更が意図した通りのものかどうかをテストできるスイッチが備わっています。 これは非適用またはno-opモードと呼ばれます。
+</p>
+
+<p> 変更をシミュレーションするには、コマンドプロンプトで<code>puppet apply c:\myfiles\file.pp --noop</code>を実行します。
+</p>
+
+<pre><code>C:\Program Files\Puppet Labs\Puppet\bin&gt;puppet apply c:\myfiles\file.pp --noop
+Notice: Compiled catalog for win-User.localdomain in environment production in 0.45 seconds
+Notice: /Stage[main]/MainFile[C:\Temp\foo.txt]/ensure: current value absent, should be present (noop)
+Notice: Class[Main]: Would have triggered 'refresh' from 1 events
+Notice: Stage[main]: Would have triggered 'refresh' from 1 events
+Notice: Applied catalog in 0.03 seconds
+</code></pre>
+
+<p> 実行した場合に適用される<em>はずの</em>変更が表示されます。ただし実際にはこの変更は適用されません。 <code>C:\Temp\foo.txt</code>に新しいファイルが作成される<em>はず</em>ですが、<code>--noop</code>を使用しているため、実際には作成されません。
+</p>
+
+<h3 id="task-4-enforce-the-desired-state-with-puppet-apply">タスク4：<code>puppet apply</code>で指定した状態を適用する</h3>
+
+<p> シミュレーションの結果、意図した通りの変更が加えられることを確認したら、<code>puppet apply</code>コマンドで変更を適用できます。
+</p>
+
+<p> <code>puppet apply c:\myfiles\file.pp</code>を実行します。 Puppetによって<code>file.pp</code>で記述されたリソース状態が適用されます。この例では、<code>This is some text in my file</code>というコンテンツが含まれたファイル(<code>c:\Temp\foo.txt</code>)が存在するという状態になります。
+</p>
+
+<p> <code>--trace</code>、<code>--debug</code>、<code>--verbose</code>などの追加のオプションを指定すると、Puppetの実行内容をさらに詳しく確認することができます。これらのオプションは、問題のあるPuppetコードを診断する場合に役立ちます。  <code>puppet apply</code>が失敗した場合、Puppetのアウトプットとして完全なスタックトレースが表示されます。
+</p>
+
+<h2 id="understanding-idempotency">べき等性について</h2>
+
+<p> <em>べき等性</em>はPuppetの重要な特徴です。これは、マニフェストを繰り返し適用して毎回同じ結果を生成し、指定した通りのリソース状態をシステム上に確実に設定できることを意味します。 与えられたリソースがすでに指定した通りの状態になっている場合は、Puppetは何のアクションも起こしません。 与えられたリソースが指定した通りの状態になっていない場合、Puppetはリソースを指定された状態にするために必要なあらゆるアクションを起こします。 このべき等性により、リソースに変更を加える前に変更をシミュレーションしたり、一時的にconfigファイルを設定して設定のずれを修正したりすることができます。Puppetを動作させるたびにリソースをはじめから作り直す必要はありません。
+</p>
+
+<p> Puppetでマニフェストを繰り返し適用し、毎回同じ結果が得られることを実証するために、 <code>c:\myfiles\file.pp</code>でマニフェストを以下のように変更してみます。
+</p>
+
+<pre><code>file { 'C:\\Temp\\foo.txt':
+  ensure   =&gt; present,
+  content  =&gt; 'I have changed my file content.'
+}
+</code></pre>
+
+<p> <code>puppet apply c:\myfiles\file.pp</code>を実行して、このマニフェストを適用します。 <code>c:\Temp\foo.txt</code>を開きます。Puppetによってファイルのコンテンツが変更されているはずです。
+</p>
+
+<p> <code>puppet apply c:\myfiles\file.pp</code>を用いてもう一度このマニフェストを適用しても、システムに変化は生じません。このことは、Puppetの挙動にべき等性があることを証明しています。
+</p>
+
+<p> Puppetドキュメンテーション内のサンプルの多くは、マニフェストファイルの作成と編集、<code>puppet apply</code>を使った適用に関するこのような基本的事項を、ユーザが理解していることを前提としています。
+</p>
+
+<h2 id="additional-command-line-tools">その他のコマンドラインツール</h2>
+
+<h3 id="puppet-agent"><code>puppet agent</code></h3>
+
+<p> <code>puppet apply</code>と同様、<code>puppet agent</code>コマンドラインツールも、設定の変更をシステムに適用します。 ただし、<code>puppet agent</code>はPuppetサーバーからコンパイルされたカタログを検索し、それをローカルシステムに適用します。  PuppetはWindowsサービスとしてインストールされており、デフォルト設定では、30分ごとに<code>puppet agent</code>を実行してmasterと通信し、新たなカタログの検索およびローカルでの適用を試みます。
+</p>
+
+<h3 id="puppet-resource"><code>puppet resource</code></h3>
+
+<p> <code>puppet resource</code>を実行すると、システム上の特定のタイプのリソースの状態を調べることができます。 たとえば、 <code>puppet resource user</code>コマンドを実行すると、システム上の全ユーザがリスト表示されます。
+</p>
+
+<p> <img src="images/windows/puppet_resource_user_output.png" alt="Puppet resource user">
+</p>
+
+<p> この例で使用したコンピュータには、Administrator、Guest、vagrantという3つのユーザアカウントがあります。 アウトプットはマニフェストと同じフォーマットです。したがって、これをコピーしてマニフェストに直接ペーストすることができます。
+</p>
+
+<h3 id="puppet-module-install"><code>puppet module install</code></h3>
+
+<p> Puppetには多くのコアリソースタイプがあります。Puppetモジュールをインストールして、さらにPuppetを拡張することができます。 Puppetモジュールには、様々なリソースの定義と、システムを修正してこれらのリソースを作成・読み込み・修正・削除する場合に必要なコードが含まれています。  <a href="https://forge.puppetlabs.com/">Puppet Forge</a>にはPuppetとコミュニティメンバーが開発したモジュールがあり、誰でも使用することができます。
+</p>
+
+<p> Puppetは<code>puppet agent</code>の実行の際に、masterのモジュールをagentノードと同期します。  または、Puppetインストールに含まれるスタンドアロンのPuppetモジュールツールを用いて、モジュールの管理や表示、テストを実施することもできます。
+</p>
+
+<p> <code>puppet module list</code>を実行 すると、システムにインストールされているモジュールのリストが表示されます。
+</p>
+
+<p> モジュールをインストールするには、Puppetモジュールツールでシンタックス<code>puppet module install NAMESPACE/MODULENAME</code>を使用します。 モジュールの<code>NAMESPACE</code>を記入し、<code>MODULE</code>に具体的なモジュール名を指定します。  Windowsにインストールされるごく一般的なモジュールに、<code>puppetlabs</code>ネームスペースの<code>registry</code>があります。 したがって、<code>registry</code>モジュールをインストールするには、<code>puppet module install puppetlabs/registry</code>を実行します。
+</p>
+
+<p> 詳細な手順については、<a href="./windows_modules.html">Windowsモジュールのインストールと使用</a>に関するドキュメンテーションを参照してください。
+</p>
+</div>
