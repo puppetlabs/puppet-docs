@@ -46,7 +46,7 @@ Building on the popular r10k tool, Puppet Enterprise now includes automated work
 
 PE now includes new supported modules and workflows to automate Day One provisioning across your bare metal, virtual, cloud, and containerized infrastructure. You’ll find supported modules to install and launch AWS, Docker, Microsoft Azure, and vSphere, plus fully supported Razor for bare metal provisioning.
 
-#### RBAC
+#### Role-based access control
 
 Finally, PE includes powerful role-based access control (RBAC) to enable you to safely delegate work to the right individuals and teams. You can assign permissions and control who has access to what, and set guard rails so your teams can work together safely.
 
