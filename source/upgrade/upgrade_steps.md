@@ -12,23 +12,23 @@ Node classification means determining which classes are applied to a given node,
 
 * For PE 3.3 users, you'll need to [migrate to the new node classifier](https://docs.puppet.com/pe/3.8/install_upgrade_migration_tool.html).
 
-* [Read more about roles and profiles](https://docs.puppet.com/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules)  (TODO: replace with link to new content)
+* [Read more about roles and profiles](https://docs.puppet.com/pe/latest/puppet_assign_configurations.html#assigning-configuration-data-with-role-and-profile-modules)
 
 * Import is deprecated, but the same functionality happens automatically if you [use the `manifestdir` setting](https://docs.puppet.com/puppet/latest/reference/dirs_manifest.html#directory-behavior-vs-single-file).
 
 ### 2. Prepare your code
 
-One of the biggest changes in Puppet 4 is the new parser. It has been available through an option called `future parser` since 2013, but it's not the "future" anymore -- it's here. Most Puppet 3 code works just fine, but there are enough changes under the hood that you should test your codebase out. Here's how:
+One of the biggest changes in Puppet 4 is the new parser. It has been available through an option called `--parser future` since late 2013, but it's not the "future" anymore -- it's here. Most Puppet 3 code works just fine, but there are enough changes under the hood that you should test your codebase out. Here's how:
 
-* **Branch your code repo:** If you're not already using version control on your Puppet code, now's the time to start. If you are (please, please say you are!), you should make a new branch from your production branch, so you can test the code and commit fixes without affecting your business critical systems. 
+* **Set up revision control:** If you're not already using version control on your Puppet code, now's the time to start. If you are (please, please say you are!), you should make a new branch from your production branch, so you can test the code and commit fixes without affecting your business critical systems.
 
-  * [Code workflow](/upgrade/upgrade_code_workflow.html)
+* **Find and resolve problems:** Now it's time to dig into the `puppetlabs-catalog_preview` module. This module contains a command-line application which compiles two catalogs for nodes you specify: one using the 3.x parser and one using the new, rewritten parser. It then analyzes the differences between the catalogs and produces a report to show you the file and line number that caused each difference. After working through the output from the catalog preview module, you should have a Puppet 4 compliant branch of code that will produce predictable, consistent results.
+
+We've got a detailed, step-by-step upgrade workflow document to walk you through using the catalog preview module, plus technical docs enumerating each of the changes between the 3.x and 4.x language.
+
+  * [Code upgrade workflow walkthrough](/upgrade/upgrade_code_workflow.html)
   * [Updating 3.x manifests for 4.x](/upgrade/updating_manifests.html)
-
-
-* **Use catalog preview:** Now it's time to dig into the `puppetlabs-catalog_preview` module. This module contains a command-line application which compiles two catalogs for nodes you specify: one using the 3.x parser and one using the new, rewritten parser. It then analyzes the differences between the catalogs and produces a report to show you the file and line number that caused each difference. After working through the output from the catalog preview module, you should have a Puppet 4 compliant branch of code that will produce predictable, consistent results.
-
-  * [`catalog_preview` module walkthrough](https://docs.puppet.com/pe/latest/migrate_pe_catalog_preview.html)
+  * [A PE-centric `catalog_preview` module walkthrough](https://docs.puppet.com/pe/latest/migrate_pe_catalog_preview.html)
 
 If you're feeling extra motivated, this is a great opportunity to implement r10k and its branch-per-environment workflow, but that's completely optional. One thing at a time.
 
@@ -43,7 +43,7 @@ You've got a fork in the road at this point. You can either *upgrade* your exist
 Assuming you're going to go down the migration route, there's a wealth of documentation to help you:
 
 * [Open source major upgrade documentation](https://docs.puppet.com/puppet/latest/reference/upgrade_major_pre.html)
-* [PE monolithic migration documentation](https://docs.puppet.com/pe/latest/migrate_monolithic.html) 
+* [PE monolithic migration documentation](https://docs.puppet.com/pe/latest/migrate_monolithic.html)
 
 ### 4. Upgrade your agents
 

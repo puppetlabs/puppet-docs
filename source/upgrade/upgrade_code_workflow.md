@@ -181,8 +181,6 @@ sudo ./preview_report.rb -f ~/catalog_preview_overview-baseline.json -w /var/www
 
 ## Start fixing issues
 
-Assuming you've got all of your work in some sort of ticketing system. That way you'll have somewhere to attach reports and you can make your fix branches named after the ticket.
-
 ### 1. Start with the issue that is causing the most catalog compilation failures
 
  For example, in Puppet 3, the `=~` operator works if the left item is `undef`, in Puppet 4 it will cause a compilation failure.
@@ -191,7 +189,6 @@ Assuming you've got all of your work in some sort of ticketing system. That way 
   $foo = undef
   if $foo =~ 'bar' { do something } # This works in Puppet 3, but not Puppet 4.
   ```
-
 
 ### 2. Create a new branch off of `future_production` that is named after the issue being fixed
 
