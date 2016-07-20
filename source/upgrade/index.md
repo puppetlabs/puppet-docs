@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet upgrade reference"
+title: "Why upgrade?"
 canonical: "/upgrade/index.html"
 ---
 

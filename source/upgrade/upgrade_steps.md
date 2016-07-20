@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Upgrade steps"
+title: "Summary of upgrade steps"
 canonical: "/upgrade/upgrade_steps.html"
 ---
 
