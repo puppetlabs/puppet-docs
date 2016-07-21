@@ -1,100 +1,118 @@
 ---
-layout: default
 title: Plugins in Modules
 ---
 
-Plugins in Modules
-==================
-
-Learn how to distribute custom facts and types from the server
-to managed clients automatically.
-
-* * *
-
-Details
--------
-
-This page describes the deployment of custom facts and types for
-use by the client via modules.
-
-Custom types and facts are stored in modules. These custom types and facts are
-then gathered together and distributed via a file mount on your
-Puppet master called plugins.
-
-This technique can also be used to bundle functions for use by the
-server when the manifest is being compiled. Doing so is a two step
-process which is described further on in this document.
-
-To enable module distribution you need to make changes on both the
-Puppet master and the clients.
-
-## Module structure
-
-Plugins are stored in the `lib` directory of a module, using an internal directory structure that mirrors that of the Puppet code:
-
-    {modulepath}
-    └── {module}
-        └── lib
-            |── augeas
-            │   └── lenses
-            ├── facter
-            └── puppet
-                ├── parser
-                │   └── functions
-                ├── provider
-                |   ├── exec
-                |   ├── package
-                |   └── etc... (any resource type)
-                └── type
+[modules]: ./modules_fundamentals.html
+[environment]: ./environments.html
+[modulepath]: ./dirs_modulepath.html
+[external facts]: {{facter}}/custom_facts.html#external-facts
+[vardir]: ./dirs_vardir.html
+[custom facts]: {{facter}}/custom_facts.html
+[custom resource types and providers]: /guides/custom_types.html
+[ruby_functions]: /guides/custom_functions.html
+[puppet_functions]: ./lang_write_functions_in_puppet.html
+[custom augeas lenses]: https://github.com/hercules-team/augeas/wiki/Create-a-lens-from-bottom-to-top
 
 
-As the directory tree suggests, custom facts should go in `lib/facter/`, custom types should go in `lib/puppet/type/`, custom providers should go in `lib/puppet/provider/{type}/`, and custom functions should go in `lib/puppet/parser/functions/`.
+Puppet supports several kinds of **plugins,** which can be distributed in [modules][].
 
-For example:
+These plugins enable new features for managing your nodes. Plugins are often included in modules downloaded from the Puppet Forge, and you can also develop your own.
 
-A custom user provider:
+## Installing plugins
 
-    {modulepath}/{module}/lib/puppet/provider/user/custom_user.rb
+Plugins are automatically enabled when you install the module that contains them. You don't have to do anything else: once a module is installed in an [environment][]'s [modulepath][], its plugins are available when managing nodes in that environment.
 
-A custom package provider:
+### Auto-download of agent-side plugins (pluginsync)
 
-    {modulepath}/{module}/lib/puppet/provider/package/custom_pkg.rb
+Some plugins are used by Puppet Server, which can load them directly from modules. But other plugins (facts, custom resource types and providers) are used by Puppet agent, which doesn't have direct access to the server's modules.
 
-A custom type for bare Git repositories:
+To enable this, Puppet agent automatically downloads plugins from the server at the start of each agent run. Those plugins are then available during the run.
 
-    {modulepath}/{module}/lib/puppet/type/gitrepo.rb
+Puppet agent syncs plugin files from _every_ module in its environment's [modulepath][], regardless of whether that node uses any classes from a given module. (In other words: even if you don't declare any classes from the `stdlib` module, nodes will still use `stdlib`'s custom facts.)
 
-A custom fact for the root of all home directories (that is, `/home` on Linux, `/Users` on Mac OS X, etc.):
+#### Technical details of pluginsync
 
-    {modulepath}/{module}/lib/facter/homeroot.rb
+Pluginsync takes advantage of the same file serving features used by the `file` resource type.
 
-A custom Augeas lens:
+Puppet Server creates two special file server mount points for pluginsync, and populates them with the aggregate contents of certain subdirectories of modules. Before doing an agent run, Puppet agent recursively manages the contents of those mount points into two cache directories on disk. This uses the same machinery as the `source` attribute in classic (non-static-catalog) recursive `file` resources: the agent does a GET request to `/puppet/v3/file_metadatas/<MOUNT POINT>`, compares the resulting checksums and ownership info to local files, deletes any unmanaged files, retrieves content data for any missing or out-of-date files, and sets permissions as needed.
 
-    {modulepath}/{module}/lib/augeas/lenses/custom.aug
+The following table shows the corresponding module subdirectories, mount points, and agent-side directories for each kind of plugin:
 
-> Note: Support for syncing Augeas lenses was added in Puppet 2.7.18.
+Plugin type        | Module subdirectory | Mount point   | Agent directory
+-------------------|---------------------|---------------|----------------------------------------
+[External facts][] | `<MODULE>/facts.d`  | `pluginfacts` | `<VARDIR>/facts.d`
+Ruby plugins       | `<MODULE>/lib`      | `plugins`     | `<VARDIR>/lib`
 
-And so on.
+(`<VARDIR>` is Puppet agent's [cache directory][vardir], which is located at `/var/opt/puppetlabs/puppet/cache`, `%PROGRAMDATA%\PuppetLabs\puppet\cache`, or `~/.puppetlabs/opt/puppet/cache`.)
 
-Most types and facts should be stored in which ever module they are related to;
-for example, a Bind fact might be distributed in your Bind module.  If you wish to centrally
-deploy types and facts you could create a separate module just for this purpose, for example
-one called `custom`.
 
-So, if we are using our custom module and our modulepath is
-/etc/puppet/modules then types and facts would be stored in the
-following directories:
+## Types of plugins
 
-    /etc/puppet/modules/custom/lib/puppet/type
-    /etc/puppet/modules/custom/lib/puppet/provider
-    /etc/puppet/modules/custom/lib/puppet/parser/functions
-    /etc/puppet/modules/custom/lib/facter
+Puppet supports several kinds of plugins:
 
-## Note on Usage for Server Custom Functions
+* [Custom facts][] (written in Ruby).
+* [External facts][] (executable scripts or static data).
+* [Custom resource types and providers][] (written in Ruby).
+* [Custom functions written in Ruby][ruby_functions].
+* [Custom functions written in the Puppet language][puppet_functions].
+* [Custom Augeas lenses][].
+* Miscellaneous utility Ruby code used by other plugins.
 
-Functions are executed on the server while compiling the manifest.
-A module defined in the manifest can invoke functions from the
-plugins directory. The custom function will need to be placed in
-the proper location within the module first:
+Facts and Augeas lenses are used solely by Puppet agent. Functions are used solely by Puppet Server. Resource types and providers are used by both. (Note that Puppet apply acts as both agent and server.)
 
-    {modulepath}/{module}/lib/puppet/parser/functions
+## Adding plugins to a module
+
+To add plugins to a module, put them in the following directories:
+
+Type of plugin                                           | Module subdirectory
+---------------------------------------------------------|------------------------------
+Facts                                                    | `lib/facter`
+Functions (Ruby, modern `Puppet::Functions` API)         | `lib/puppet/functions`
+Functions (Ruby, legacy `Puppet::Parser::Functions` API) | `lib/puppet/parser/functions`
+Functions (Puppet language)                              | `functions`
+Resource types                                           | `lib/puppet/type`
+Resource providers                                       | `lib/puppet/provider`
+External facts                                           | `facts.d`
+Augeas lenses                                            | `lib/augeas/lenses`
+
+In all cases, you must name files and additional subdirectories according to the plugin type's loading requirements.
+
+To illustrate, a module that included every type of plugin would have a directory structure like this:
+
+* `mymodule` (the module's top-level directory; this module is named `mymodule`.)
+    * `lib`
+        * `facter`
+            * `my_custom_fact.rb`
+        * `puppet`
+            * `functions`
+                * `modern_function.rb`
+            * `parser`
+                * `functions`
+                    * `classic_function.rb`
+            * `type`
+                * `mymodule_instance.rb`
+            * `provider`
+                * `exec`
+                    * `powershell.rb`
+        * `augeas`
+            * `lenses`
+                * `custom.lns`
+    * `functions`
+        * `convertdata.pp` (contains a function named `mymodule::convertdata`.)
+    * `facts.d`
+        * `datacenter.py` (an executable script that returns fact data.)
+
+
+## Issues with server-side plugins
+
+Puppet Server currently has problems with conflicting versions of the same plugin in different environments.
+
+In short, environments aren't completely isolated for certain kinds of plugins. If a plugin of the same name exists in different versions in multiple environments, Puppet won't strictly load each version for its appropriate environment. Instead, a given JRuby instance will load the plugin from the first environment to use that plugin, then continue to use that version of the plugin for requests from all subsequent environments, even though it might be incorrect for those environments.
+
+The following plugin types are affected:
+
+* Custom resource types.
+* Custom functions (legacy `Puppet::Parser::Functions` API only --- the modern API is not affected).
+
+We are tracking this issue as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
+

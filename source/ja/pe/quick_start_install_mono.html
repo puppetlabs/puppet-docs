@@ -7,13 +7,16 @@ canonical: "/ja/pe/quick_start_install_mono.html"
 <div>
 <h2 id="overview">概要</h2>
 
-<p> このガイドでは、モノリシックインストール手順について説明します。この手順にそって操作すれば、Puppet Enterprise (PE)を簡単に効率よく使い始めることができます。 モノリシック環境は、Puppet Enterpriseを評価する場合や、管理対象のPuppet agentノードが500台以下の場合に最適です。 大規模なインストールの場合は、<a href="./install_pe_split.html">分割インストール</a>を実施します。
+<p> このガイドでは、モノリシックインストール手順について説明します。この手順にそって操作すれば、Puppet Enterprise (PE)を簡単に効率よく使い始めることができます。 モノリシック環境は、Puppet Enterpriseを評価する場合や、管理対象のPuppet agentノードが500台以下の場合に最適です。 大規模なインストールの場合は、<a href="/pe/2016.2/install_pe_split.html">分割インストール</a>を実施します。
 </p>
 
-<p> モノリシックPuppet Enterprise環境では、1台のノードにPuppet master、Puppet Enterprise Webコンソール、PuppetDBをインストールします。 Puppet agentは、後の過程でインストールします。「<a href="./quick_start_install_agents_nix.html">agentのインストールクイックスタートガイド(*nix)</a>」または「<a href="./quick_start_install_agents_windows.html">agentのインストールクイックスタートガイド(Windows)</a>」を参照してください。
+<p> モノリシックPuppet Enterprise環境では、1台のノードにPuppet master、Puppet Enterprise Webコンソール、PuppetDBをインストールします。 Puppet agentは、後の過程でインストールします。「<a href="./quick_start_install_agents_nix_ja.html">agentのインストールクイックスタートガイド(*nix)</a>」または「<a href="/pe/2016.2/quick_start_install_agents_windows.html">agentのインストールクイックスタートガイド(Windows)</a>」を参照してください。
 </p>
 
-<p> Puppet Enterprise環境のコンポーネントについて、詳しくはPEマニュアルの「<a href="./install_basic.html">インストールの概要</a>」を参照してください。
+<p> Puppet masterをインストールできるのは*nixマシンのみである点に注意してください。 Windowsマシンから作業する場合は、「<a href="/pe/2016.2/windows_installing.html">Windows PEインストールページ</a>」を参照してください。
+</p>
+
+<p> Puppet Enterprise環境のコンポーネントについて、詳しくはPEマニュアルの「<a href="./install_basic_ja.html">インストールの概要</a>」を参照してください。
 </p>
 
 <p> 注意: このガイドでは、<code>root</code>としてモノリシックPuppet Enterprise環境をインストールする手順について説明します。
@@ -29,7 +32,7 @@ canonical: "/ja/pe/quick_start_install_mono.html"
 
   <ul>
 <li>
-      <p> 「<a href="./install_system_requirements.html#monolithic-all-in-one-installation">システム要件</a>」を参照し、ハードウェアの必要条件が満たされていることを確認してください。
+      <p> 「<a href="./install_system_requirements_ja.html#monolithic-all-in-one-installation">システム要件</a>」を参照し、ハードウェアの必要条件が満たされていることを確認してください。
 </p>
     </li>
     <li>
@@ -45,11 +48,11 @@ canonical: "/ja/pe/quick_start_install_mono.html"
 
 <ol>
 <li>
-    <p> <a href="./install_basic.html#downloading-puppet-enterprise">適切なPE tarballをダウンロードし、検証します</a>。必要に応じて、Puppet Enterpriseのインストール先マシンにtarballをコピーします。
+    <p> <a href="./install_basic_ja.html#downloading-puppet-enterprise">適切なPE tarballをダウンロードし、検証します</a>。必要に応じて、Puppet Enterpriseのインストール先マシンにtarballをコピーします。
 </p>
 
     <blockquote>
-      <p> <strong>ヒント</strong>: agentのみのtarballではなく、完全なPuppet Enterprise tarballをダウンロードしてください。 agentのみのtarballは、<a href="./install_agents.html">パッケージ管理によってagentをインストール</a>する際に使用します。 このインストール方法については、このガイドでは取り上げません。
+      <p> <strong>ヒント</strong>: agentのみのtarballではなく、完全なPuppet Enterprise tarballをダウンロードしてください。 agentのみのtarballは、<a href="/pe/2016.2/install_agents.html">パッケージ管理によってagentをインストール</a>する際に使用します。 このインストール方法については、このガイドでは取り上げません。
 </p>
     </blockquote>
   </li>
@@ -57,10 +60,10 @@ canonical: "/ja/pe/quick_start_install_mono.html"
 <code>tar -xf &lt;tarball&gt;</code>を実行してtarballを展開します。</li>
   <li>Puppet Enterpriseインストーラのディレクトリから、<code>sudo ./puppet-enterprise-installer</code>を実行します。</li>
   <li>
-    <p> メッセージ画面で[<strong>Yes</strong>]を選択し、設定パッケージをインストールします。 [<strong>No</strong>]を選択すると、インストーラが終了します。
+    <p> プロンプトが表示されたら、「Guided（ガイド付き）」インストールオプションを選択します。
 </p>
 
-    <p> この段階で、Puppet EnterpriseインストーラによってWebサーバーが起動され、Webアドレス<code>https://&lt;install platform hostname&gt;:3000</code>が提供されます。 ポート3000にアクセスできることを確認します。 ポート3000は、必要に応じて、インストールの完了後、閉じることができます。 必ず<code>https</code>を使用してください。
+    <p> この段階で、PEインストーラによってWebサーバーが起動され、Webアドレス<code>https://&lt;install platform hostname&gt;:3000</code>が提供されます。 ポート3000にアクセスできることを確認します。 ポート3000は、必要に応じて、インストールの完了後、閉じることができます。 必ず<code>https</code>を使用してください。
 </p>
 
     <blockquote>
@@ -139,6 +142,6 @@ canonical: "/ja/pe/quick_start_install_mono.html"
 </p>
   </li>
 </ol>
-<p> 次の手順: Agentのインストール — <a href="./quick_start_install_agents_windows.html">Windows</a>または<a href="./quick_start_install_agents_nix.html">*nix</a>
+<p> 次の手順: Agentのインストール — <a href="/pe/2016.2/quick_start_install_agents_windows.html">Windows</a>または<a href="./quick_start_install_agents_nix_ja.html">*nix</a>
 </p>
 </div>
