@@ -98,9 +98,9 @@ You can find all YAML files that were accessed in the last hour, for instance, w
 
 #### Node data: YAML facts
 
-The Catalog Preview tool works by compiling catalogs for nodes and inspecting the resultant catalog. It compiles a catalog by using the existing node objects and their facts to simulate a Puppet run against that node. This means interacting with PuppetDB where all that data is stored.
+The catalog preview module works by compiling catalogs for nodes and inspecting the resultant catalog. It compiles a catalog by using the existing node objects and their facts to simulate a Puppet run against that node. This means interacting with PuppetDB where all the data is stored.
 
-It's probably going to be the case where your Catalog Preview server doesn't have access to PuppetDB data. We can get around that by using the cached facts and node data that is stored as YAML on the real Puppet Masters.
+It's likely your catalog preview server doesn't have access to PuppetDB data. You can get around that by using the cached facts and node data that are stored as YAML on the real Puppet masters.
 
 First, collect the cached yaml fact files off of the production master.  If there's just one master, you should be able to copy them over wholesale with something like this, executed from the diff master:
 
