@@ -9,11 +9,11 @@ This page documents the history of the Facter 3.3 series. If you're upgrading fr
 
 ## Facter 3.3.0
 
-Released July 19, 2016.
+Released July 20, 2016.
 
 Shipped in [puppet-agent 1.5.3][puppet-agent 1.5.x].
 
-Although Facter's previous released version number was Facter 3.1.8, Facter 3.3.0 is a minor bug fix release. Facter 3.2.0 was skipped intentionally to avoid confusion, as Facter 3.1.7 and Facter 3.1.8 incorrectly self identified as Facter 3.2.0  ([FACT-1425](https://tickets.puppetlabs.com/browse/FACT-1425)) when using `facter --version` as well as `facter facterversion`. For more information, 
+Although Facter's previous released version number was Facter 3.1.8, Facter 3.3.0 is a minor bug fix release. Facter 3.2.0 was skipped intentionally to avoid confusion, as Facter 3.1.7 and Facter 3.1.8 incorrectly self identified as Facter 3.2.0  ([FACT-1425](https://tickets.puppetlabs.com/browse/FACT-1425)) when using `facter --version` as well as `facter facterversion`.
 
 * [Introduced in Facter 3.3.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27FACT%203.3.0%27)
 * [Fixed in Facter 3.3.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.3.0%27)
