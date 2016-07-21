@@ -98,13 +98,33 @@ You can find all YAML files that were accessed in the last hour, for instance, w
 
 #### Node data: YAML facts
 
-The catalog preview module works by compiling catalogs for nodes and inspecting the resultant catalog. It compiles a catalog by using the existing node objects and their facts to simulate a Puppet run against that node. This means interacting with PuppetDB where all the data is stored.
+The Catalog Preview tool works by compiling catalogs for nodes and inspecting the resultant catalog. It compiles a catalog by using the existing node objects and their facts to simulate a Puppet run against that node. This means interacting with PuppetDB where all that data is stored.
 
-It's likely your catalog preview server doesn't have access to PuppetDB data. You can get around that by using the cached facts and node data that are stored as YAML on the real Puppet masters.
+It's probably going to be the case where your Catalog Preview server doesn't have access to PuppetDB data. We can get around that by using the cached facts and node data that is stored as YAML on the real Puppet Masters.
 
-> stub: Stage the node and facts YAML files on the diff rig.
->
-> stub: Set routes.yaml to use YAML (puppet_enterprise::profile::master::facts_terminus).
+First, collect the cached yaml fact files off of the production master.  If there's just one master, you should be able to copy them over wholesale with something like this, executed from the diff master:
+
+```
+scp -r production-master:/var/opt/lib/pe-puppet/yaml/facts/* \
+  /var/opt/lib/pe-puppet/yaml/facts
+```
+
+Next, tell the diff master to use the yaml terminus when looking for nodes' facts.  If your diff master can still do a puppet agent run against itself -- and now that the customer's code is on it, it's entirely likely it can't -- you can just set the puppet_enterprise::profile::master::facts_terminus parameter in the console to "yaml".  It's in the PE Master node group.
+
+Or you can edit the /etc/puppetlabs/puppet/routes.yaml file directly on the diff master, to look something like this:
+
+```
+master:
+  facts:
+    terminus: yaml
+    cache: yaml
+```
+
+If you change the routes.yaml file by hand, restart pe-puppetserver afterwards.
+
+```
+systemctl restart pe-puppetserver
+```
 
 ### Preview report generator
 
