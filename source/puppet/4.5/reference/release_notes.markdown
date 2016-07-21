@@ -21,7 +21,7 @@ Also of interest: the [Puppet 4.4 release notes](/puppet/4.4/reference/release_n
 
 ## Puppet 4.5.3
 
-Released July 19, 2016.
+Released July 20, 2016.
 
 A minor bug fix release in the Puppet 4.5 series.
 
