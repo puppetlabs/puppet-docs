@@ -315,10 +315,10 @@ documents:
     nav: /_includes/puppet_0_24.html
     hide: true
 
-  /facter/3.3:
+  /facter/3.1:
     doc: facter
-    version: 3.3
-    nav:./_facter_toc.html
+    version: 3.1
+    nav: ./_facter_toc.html
   /facter/3.1:
     doc: facter
     version: 3.1
