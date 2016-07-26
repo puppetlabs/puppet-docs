@@ -20,7 +20,7 @@ Right out of the box, Puppet 4 scales better than ever. There are two big innova
 
 ### Language
 
-There's more -- much more -- on this topic below, but the Puppet language received a huge overhaul for Puppet 4. A completely rewritten parser, new constructs like iterators and lambdas, and an opt-in data type system all make for modules that do more with less work. There are improved error messages to reduce the amount of time you spend head-scratching, structured facts to allow you to access inventory data like network interfaces more intuitively, resources that apply in top-down order so your manifests work the way you expect them to, and much more. It all adds up to a system with a better combination of power and usability than anything else on the market -- including earlier versions of Puppet.
+There's more --- much more --- on this topic below, but the Puppet language received a huge overhaul for Puppet 4. A completely rewritten parser, new constructs like iterators and lambdas, and an opt-in data type system all make for modules that do more with less work. There are improved error messages to reduce the amount of time you spend head-scratching, structured facts to allow you to access inventory data like network interfaces more intuitively, resources that apply in top-down order so your manifests work the way you expect them to, and much more. It all adds up to a system with a better combination of power and usability than anything else on the market --- including earlier versions of Puppet.
 
 ### All-in-one packaging
 
