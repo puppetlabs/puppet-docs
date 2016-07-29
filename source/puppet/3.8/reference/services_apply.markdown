@@ -14,7 +14,7 @@ canonical: "/puppet/latest/reference/services_apply.html"
 [modules]: ./modules_fundamentals.html
 [enc]: /guides/external_nodes.html
 [http_report]: ./report.html#http
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}
 [report handlers]: ./report.html
 [reports_setting]: ./configuration.html#reports
 [reports_guide]: /guides/reporting.html

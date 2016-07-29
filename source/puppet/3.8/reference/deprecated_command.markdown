@@ -8,11 +8,11 @@ title: "Deprecated Command Line Features"
 [mcollective]: /mcollective/
 [pe_mco_puppet]: /pe/latest/orchestration_puppet.html
 [pssh]: https://code.google.com/p/parallel-ssh/
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}
 [inventory service]: https://github.com/puppetlabs/puppet-docs/blob/0db89cbafa112be256aab67c42b913501200cdca/source/guides/inventory_service.markdown
-[puppetdb_curl]: /puppetdb/latest/api/query/curl.html
-[puppetdb_facts_wire]: /puppetdb/latest/api/wire_format/facts_format_v3.html
-[puppetdb_facts_replace]: /puppetdb/latest/api/commands.html#replace-facts-version-3
+[puppetdb_curl]: {{puppetdb}}/api/query/curl.html
+[puppetdb_facts_wire]: {{puppetdb}}/api/wire_format/facts_format_v3.html
+[puppetdb_facts_replace]: {{puppetdb}}/api/commands.html#replace-facts-version-3
 
 The following features of Puppet's command line interface are deprecated, and will be removed in Puppet 4.0.
 
@@ -68,7 +68,7 @@ The inventory service is gone and this command no longer works.
 
 If you or your scripts use `puppet facts find --terminus rest`, you should change your workflow and speak directly to [PuppetDB][]. Write a small script that hits [PuppetDB's `facts` API][puppetdb_facts] and does something with the resulting JSON, or just [use `curl` to get raw JSON.][puppetdb_curl]
 
-[puppetdb_facts]: /puppetdb/latest/api/query/v4/facts.html
+[puppetdb_facts]: {{puppetdb}}/api/query/v4/facts.html
 
 ### Context
 

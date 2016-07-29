@@ -8,8 +8,8 @@ canonical: "/puppet/latest/reference/lang_collectors.html"
 [realize]: ./future_lang_virtual.html#syntax
 [exported]: ./future_lang_exported.html
 [puppetdb]: /puppetdb/
-[puppetdb_install]: /puppetdb/latest/install_via_module.html
-[puppetdb_connect]: /puppetdb/latest/connect_puppet_master.html
+[puppetdb_install]: {{puppetdb}}/install_via_module.html
+[puppetdb_connect]: {{puppetdb}}/connect_puppet_master.html
 [chaining]: ./future_lang_relationships.html#chaining-arrows
 [attribute]: ./future_lang_resources.html#attributes
 [expressions]: ./future_lang_expressions.html

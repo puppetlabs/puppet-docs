@@ -11,7 +11,7 @@ title: "Deprecated Settings"
 [cli_settings]: ./config_about_settings.html#settings-can-be-set-on-the-command-line
 [config file environments]: ./environments_classic.html
 [directory environments]: ./environments.html
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}
 [inventory service]: https://github.com/puppetlabs/puppet-docs/blob/0db89cbafa112be256aab67c42b913501200cdca/source/guides/inventory_service.markdown
 
 The following Puppet settings are deprecated and will be removed in Puppet 4.0. Many of them are related to other deprecated features.

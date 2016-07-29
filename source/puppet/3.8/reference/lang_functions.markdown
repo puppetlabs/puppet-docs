@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_functions.html"
 [custom]: /guides/custom_functions.html
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
 [resource]: ./lang_resources.html
-[custom_facts]: /facter/latest/custom_facts.html
+[custom_facts]: {{facter}}/custom_facts.html
 [datatype]: ./lang_datatypes.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
