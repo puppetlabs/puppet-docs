@@ -1,0 +1,50 @@
+---
+layout: default
+title: "Puppet Enterprise Schnellen Einstieg in *nix"
+canonical: "/de/pe/index.html"
+---
+
+<div>
+<p> Herzlich willkommen zur Anleitung für den schnellen Einstieg in Puppet Enterprise (QSG). Die folgenden Anleitungen helfen bei Installation und Inbetriebnahme, egal, ob man Puppet Enterprise zum managen der aktuellen Plattform oder zum Kennenlernen der Grundlagen von Puppet Konfigurationmanagement verwenden möchte.  Schritt für Schritt wird die Installation einer monolithischen Installation beschreiben (eines einzelnen PuppetMasters) und wie man grundlegende Aufgaben von Systemadministratoren automatisiert.
+</p>
+
+<p> Die in dieser Anleitung aufgelisteten Schritte entsprechen der Reihenfolge, in der man normalerweise Puppet in Betrieb nimmt. Im Bereich "Vorbedingungen" werden die jeweiligen Anforderungen an das Setup beschrieben.
+</p>
+
+<h3 id="install-a-monolithic-puppet-enterprise-deployment">1. Installation einer monolithischen Puppet Enterprise Umgebung</h3>
+<p> Um eine monolitische Puppet Enterprise Installation auf einem Linux System durchzuführen, bitte den <a href="/pe/2016.2/quick_start_install_mono.html">Anweisungen</a> folgen. Bei einer monolithischen Puppet Enterprise Umgebung werden der Puppet Master, die Puppet Enterprise Web Konsole und die PuppetDB auf einem einzelnen System installiert. Hinweis: bitte die Voraussetzungen prüfen.
+</p>
+
+<h3 id="install-the-puppet-agent">2. Installation des Puppet Agenten</h3>
+<p> Zur schnellen Installation eines Puppet Agent bitte den Anweisungen folgen. Ein Computer, auf dem der Puppet Agent läuft, wird als "agent node" bezeichnet. Der Puppet Agent fragt regelmäßig den Puppet Master nach einem Konfigurations Katalog und wendet diesen lokal an.
+</p>
+
+<p> Es sind Anleitungen für <a href="/pe/2016.2/quick_start_install_agents_windows.html">Windows</a> und <a href="/pe/2016.2/quick_start_install_agents_nix.html">*nix</a> verfügbar. Diese Anleitungen beinhalten den Hinwies, wie Zertifikat Signaturanfagen (CSR) der Puppet Agents in der Konsole signiert werden.
+</p>
+
+<h3 id="hello-world">3. Hallo Welt!</h3>
+<p> Grundlagen der Entwicklung von Puppet Modulen findet man in der folgenden <a href="/pe/2016.2/quick_start_helloworld.html">Anleitung</a>. Es wird ein sehr einfaches Modul erstellt, das eine Klasse enthält, mit der die motd (message of the day) Datei mit dem Inhalt Hello, World! verwaltet wird. Benachrichtigung auf der Kommandozeile.
+</p>
+
+<h3 id="install-a-module">4. Installation eines Moduls</h3>
+<p> Folge der Anleitung, um ein Puppet Labs Modul zu installieren. Module bestehen aus <a href="./puppet/4.5/reference/lang_classes.html">Klassen</a>, welche aus Puppet Code bestehen und primäre Grundlage für Puppet Enterprise für die Node Konfiguration und des Managements darstellen.
+</p>
+
+<p> Es sind Anleitungen für <a href="/pe/2016.2/quick_start_module_install_windows.html">Windows</a> und <a href="/pe/2016.2/quick_start_module_install_nix.html">*nix</a> verfügbar.
+</p>
+
+<h3 id="add-classes-from-the-console">5. Hinzufügen einer Klasse in der Console</h3>
+<p> Die folgende Anleitung erklärt, wie man eine Klasse zu einem Puppet Agenten hinzufügt,  Es sind Anleitungen für <a href="/pe/2016.2/quick_start_adding_class_windows.html">Windows</a> und <a href="/pe/2016.2/quick_start_adding_class_nix.html">*nix</a> verfügbar. Die Klasse, die installiert wird, ist Bestandteil des Modules, welches in der Anleitung zur Installation von Modulen innerhalb der Schnellanleitung (QSG) bereits installiert wurde.
+</p>
+
+<h3 id="classifying-nodes-and-managing-users">6. Klassifizierung von Nodes und Verwaltung von Usern</h3>
+<p> <a href="/pe/2016.2/quick_start_nc_rbac.html">Unter diesem Link</a> findet man die Einführung in Node Klassifizierung und dem Rollenbasierten Zugriffssystem. Zuerst wird eine Node Gruppe erstellt; danach kann ein Node zu dieser neuen Gruppe hinzugefügt werden. Zu einem Node werden Klassen hinzugefügt; diesen Vorgang nennt man Node Klassifizierung. Damit ein User mit der Nodegruppe arbeiten kann, muss der User angelegt werden und eine entsprechendeZugriffsberechtigung bekommen.
+</p>
+
+<h3 id="module-writing-quick-start-guide">7. Kurzanleitung für das Erstellen von Modulen</h3>
+<p> Die Anleitung und die Übungen zum Schreiben von Modulen helfen dabei, die Puppet Modulstruktur und die Entwicklung von Modulen besser zu verstehen.
+</p>
+
+<p> Es sind Anleitungen für <a href="/pe/2016.2/quick_writing_windows.html">Windows</a> und <a href="/pe/2016.2/quick_writing_nix.html">*nix</a> verfügbar.
+</p>
+</div>

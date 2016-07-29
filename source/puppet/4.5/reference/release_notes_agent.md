@@ -7,9 +7,11 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 [Puppet 4.5.0]: /puppet/4.5/reference/release_notes.html#puppet-450
 [Puppet 4.5.1]: /puppet/4.5/reference/release_notes.html#puppet-451
 [Puppet 4.5.2]: /puppet/4.5/reference/release_notes.html#puppet-452
+[Puppet 4.5.3]: /puppet/4.5/reference/release_notes.html#puppet-453
 
 [Facter 3.1.7]: /facter/3.1/release_notes.html#facter-317
 [Facter 3.1.8]: /facter/3.1/release_notes.html#facter-318
+[Facter 3.3.0]: /facter/3.3/release_notes.html#facter-330
 
 [Hiera 3.2.0]: /hiera/3.2/release_notes.html#hiera-320
 
@@ -32,6 +34,21 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.5 release notes](./release_notes.html).
+
+
+## Puppet agent 1.5.3
+
+Released July 20, 2016.
+
+### Component updates
+
+This was a minor release which included releases of [Puppet 4.5.3][], [Facter 3.3.0][], and pxp-agent 1.1.4.
+
+>**Note:** Despite the jump in y-version number from 3.1.8, Facter 3.3.0 is a minor bug fix release. Facter 3.2.0 was skipped intentionally to avoid confusion, as Facter 3.1.7 and Facter 3.1.8 incorrectly self identified as Facter 3.2.0 ([FACT-1425](https://tickets.puppetlabs.com/browse/FACT-1425)) when using `facter --version` as well as `facter facterversion`.
+
+### New platform
+
+Packages of Puppet agent are now available for Fedora 24.
 
 ## Puppet agent 1.5.2
 

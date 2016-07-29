@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "システム要件"
-canonical: "/ja/pe/install_system_requirements_ja.html"
+canonical: "/ja/pe/install_system_requirements.html"
 ---
 
 <div>
@@ -10,9 +10,9 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 
 <ul>
 <li>お使いのノードで、対応するオペレーティングシステムが実行されていることを確認してください。</li>
-  <li>Puppet masterサーバーとコンソールサーバーが必要な要件を満たしていることを確認してください (以下の「<a href="#hardware-recommendations">ハードウェア</a>」セクションを参照)。</li>
+  <li>Puppet masterサーバーとコンソールサーバーが必要な要件を満たしていることを確認してください(以下の「<a href="#hardware-recommendations">ハードウェア</a>」セクションを参照)。</li>
   <li>ネットワーク、ファイアウォール、名前解決が正しく設定されており、すべてのターゲットサーバーが正常に通信していることを確認してください。</li>
-  <li>agentノード、コンソールサーバー、Puppet masterサーバーの順にインストールします。コンポーネントを分割する場合は、以下の順にインストールします。<ol>
+  <li>Puppet masterサーバー、コンソールサーバー、agentノードの順にインストールします。コンポーネントを分割する場合は、以下の順にインストールします。<ol>
 <li>Puppet Master</li>
       <li>PuppetDB、PostgreSQL</li>
       <li>コンソール</li>
@@ -28,122 +28,163 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <h3 id="puppet-master-platforms">Puppet masterプラットフォーム</h3>
 
 <table>
-<thead><tr>
+<tr>
 <th>オペレーティングシステム</th>
-      <th>バージョン</th>
-      <th>アーキテクチャ </th>
-    </tr></thead>
-<tbody>
+    <th>バージョン</th>
+    <th>アーキテクチャ</th>
+  </tr>
 <tr>
 <td>Red Hat Enterprise Linux</td>
-      <td>6、7</td>
-      <td>x86_64</td>
-    </tr>
+    <td>6、7</td>
+    <td>x86_64</td>
+  </tr>
 <tr>
 <td>CentOS</td>
-      <td>6、7</td>
-      <td>x86_64</td>
-    </tr>
+    <td>6、7</td>
+    <td>x86_64</td>
+   </tr>
 <tr>
 <td>Oracle Linux</td>
-      <td>6、7</td>
-      <td>x86_64</td>
-    </tr>
+    <td>6、7</td>
+    <td>x86_64</td>
+   </tr>
 <tr>
 <td>Scientific Linux</td>
-      <td>6、7</td>
-      <td>x86_64</td>
-    </tr>
+    <td>6、7</td>
+    <td>x86_64</td>
+   </tr>
 <tr>
 <td>SUSE Linux Enterprise Server</td>
-      <td>11、12</td>
-      <td>x86_64</td>
-    </tr>
+    <td>11、12</td>
+    <td>x86_64</td>
+   </tr>
 <tr>
 <td>Ubuntu</td>
-      <td>12.04、14.04</td>
-      <td>x86_64</td>
-    </tr>
-</tbody>
+    <td>12.04、14.04、16.04</td>
+    <td>x86_64</td>
+   </tr>
 </table>
 <h3 id="puppet-agent-platforms">Puppet agent プラットフォーム</h3>
 
 <table>
-<thead><tr>
+<tr>
 <th>オペレーティングシステム</th>
-      <th>バージョン</th>
-      <th>アーキテクチャ </th>
-    </tr></thead>
-<tbody>
+    <th>バージョン</th>
+    <th>アーキテクチャ</th>
+  </tr>
 <tr>
 <td>Red Hat Enterprise Linux</td>
-      <td>4、5、6、7</td>
-      <td>x86_64 (i386の場合は4、5、6)</td>
-    </tr>
+    <td>4、5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+     </ul>
+</td>
+  </tr>
 <tr>
 <td>CentOS</td>
-      <td>5、6、7</td>
-      <td>x86_64 (i386の場合は4、5、6)</td>
-    </tr>
+    <td>5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+     </ul>
+</td>
+   </tr>
 <tr>
 <td>Oracle Linux</td>
-      <td>5、6、7</td>
-      <td>x86_64 (i386の場合は5、6)</td>
-    </tr>
+    <td>5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+     </ul>
+</td>
+   </tr>
 <tr>
 <td>Scientific Linux</td>
-      <td>5、6、7</td>
-      <td>x86_64 (i386の場合は5、6)</td>
-    </tr>
+    <td>5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+     </ul>
+</td>
+   </tr>
 <tr>
 <td>SUSE Linux Enterprise Server</td>
-      <td>10、11、12</td>
-      <td>x86_64 (i386の場合は10、11)</td>
-    </tr>
+    <td>10、11、12</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は10、11</li>
+     </ul>
+</td>
+   </tr>
 <tr>
 <td>Solaris</td>
-      <td>10、11</td>
-      <td>SPARC &amp; i386</td>
-    </tr>
+    <td>10、11</td>
+    <td>
+      <ul>
+<li>SPARC</li>
+        <li>i386</li>
+       </ul>
+</td>   
+   </tr>
 <tr>
 <td>Ubuntu</td>
-      <td>10.04、12.04、14.04、15.10</td>
-      <td>amd64、i386</td>
-    </tr>
+    <td>10.04、12.04、14.04、16.04</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>   
+   </tr>
 <tr>
 <td>Fedora</td>
-      <td>22、23</td>
-      <td>x86_64、i386</td>
-    </tr>
+    <td>22、23</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>   
+   </tr>
 <tr>
 <td>Debian</td>
-      <td>Squeeze (6)、Wheezy (7)、Jessie (8)</td>
-      <td>x86_64、i386</td>
-    </tr>
+    <td>Wheezy (7)、Jessie (8)</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>  
+   </tr>
 <tr>
-<td>Microsoft Windows (Server OS)</td>
-      <td>2008, 2008R2, 2012, 2012R2, 2012R2コア</td>
-      <td>x86_64</td>
-    </tr>
+<td>Microsoft Windows (サーバーOS)</td>
+    <td>2008, 2008R2, 2012, 2012R2, 2012R2コア</td>
+    <td style="text-align:center">x86_64</td>
+   </tr>
 <tr>
-<td>Microsoft Windows (Consumer OS)</td>
-      <td>Vista、7、8、8.1、10</td>
-      <td>x86_64</td>
-    </tr>
+<td>Microsoft Windows (コンシューマOS)</td>
+    <td>Vista、7、8、8.1、10</td>
+    <td style="text-align:center">x86_64</td>
+   </tr>
 <tr>
 <td>Mac OS X</td>
-      <td>10.9、10.10、10.11</td>
-      <td>x86_64</td>
-    </tr>
+    <td>10.9、10.10、10.11</td>
+    <td style="text-align:center">x86_64</td>
+   </tr>
 <tr>
 <td>AIX</td>
-      <td>5.3、6.1、7.1</td>
-      <td>Power</td>
-    </tr>
-</tbody>
+    <td>5.3、6.1、7.1</td>
+    <td style="text-align:center">Power</td>
+   </tr>
 </table>
 <blockquote>
-  <p> <strong>注意</strong>：オペレーティングシステムによっては、依存関係をインストールするには、ベンダーのパッケージ管理システム (Red Hat Networkなど) への登録が必要な場合があります。
+  <p> <strong>注意</strong>：オペレーティングシステムによっては、依存関係をインストールするには、ベンダーのパッケージ管理システム(Red Hat Networkなど)への登録が必要な場合があります。
 </p>
 </blockquote>
 
@@ -158,9 +199,11 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
   <li>
 <strong>Cumulus Linux</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppetlabs.com/cumuluslinux/">Cumulus Linux</a>」ページを参照してください。</li>
   <li>
-<strong>Cisco NS-OX EOS</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppetlabs.com/ciscopuppet/">Cisco Puppet</a>」ページを参照してください。</li>
+<strong>Cisco NS-OX EOS</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppet.com/puppetlabs/ciscopuppet/readme">Cisco Puppet</a>」ページを参照してください。</li>
   <li>
-<strong>Cisco IOS-XR</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppetlabs.com/ciscopuppet/">Cisco Puppet </a>」ページを参照してください。</li>
+<strong>Cisco IOS-XR</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppet.com/puppetlabs/ciscopuppet">Cisco Puppet</a>」ページを参照してください。</li>
+  <li>
+<strong>Huawei CloudEngine</strong>：インストールの説明については、「<a href="./install_huawei_ce.html">Installing Huawei CloudEngine Agents</a>」を参照してください。</li>
 </ul>
 <h2 id="puppet-agent-and-operating-system-support-life-cycles">Puppet Agentとオペレーティングシステムのサポート期間</h2>
 
@@ -169,10 +212,10 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 
 <h4 id="community-supported-operating-systems">コミュニティサポート型のオペレーティングシステム</h4>
 
-<p> コミュニティサポート型オペレーティングシステムの場合、Puppet agentのサポートは、OSのライフサイクルに準じます。 agentのサポートは、プラットフォームのサポート終了日 (EOL) から30日以内に終了します。 たとえば、Fedora 20は、2015年6月23日をもってサポートが終了します。 Puppet Labsは、6月23日当日またはその前後に、Fedora 20向けagentのPuppet Enterpriseバージョンまたはオープンソースバージョンに対する修正、更新、サポートを終了します。
+<p> コミュニティサポート型オペレーティングシステムの場合、Puppet agentのサポートは、OSのライフサイクルに準じます。 agentのサポートは、プラットフォームのサポート終了日 (EOL) から30日以内に終了します。 たとえば、Fedora 20は、2015年6月23日をもってサポートが終了しました。 Puppet Labsは、7月23日当日またはその前後に、Fedora 20向けagentのPuppet Enterpriseバージョンまたはオープンソースバージョンに対する修正、更新、サポートを終了します。
 </p>
 
-<p> 上記のガイドラインは、以下のコミュニティサポート型オペレーティングシステムにあてはまります。
+<p> 上記のガイドラインは、以下のコミュニティサポート型オペレーティングシステムにもあてはまります。
 </p>
 
 <ul>
@@ -182,23 +225,23 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 </ul>
 <h4 id="enterprise-class-operating-systems">エンタープライズクラスのオペレーティングシステム</h4>
 
-<p> エンタープライズクラスのオペレーティングシステムの場合、OSのライフサイクル期間中はPuppet agentがサポートされます。<em></em>  一部のエンタープライズクラスのオペレーティングシステムについては、オペレーティングシステムのサポート期間終了後も、Puppet Enterpriseのagentプラットフォームがサポートされます。 サポート期間が終了したOSに対するサポート期間については、Puppet Labsが自由裁量で決定します。
+<p> エンタープライズクラスのオペレーティングシステムの場合、<em>最低でも</em>OSのライフサイクル期間中はPuppet agentがサポートされます。  一部のエンタープライズクラスのオペレーティングシステムについては、オペレーティングシステムのサポート期間終了後も、Puppet Enterpriseのagentプラットフォームがサポートされます。ただし、サポートの継続はPuppet Labsの判断でのみ決定されます。
 </p>
 
 <p> 上記のガイドラインは、以下のエンタープライズクラスのオペレーティングシステムにあてはまります。
 </p>
 
 <ul>
-<li>CentOS</li>
-  <li>Mac OS X</li>
+<li>AIX*</li>
+  <li>CentOS</li>
+  <li>Microsoft Windows Server</li>
+  <li>OS X</li>
   <li>Oracle Enterprise Linux</li>
   <li>Red Hat Enterprise Linux</li>
   <li>Scientific Linux</li>
-  <li>Suse Linux Enterprise Server*</li>
   <li>Solaris*</li>
-  <li>AIX*</li>
+  <li>Suse Linux Enterprise Server*</li>
   <li>Ubuntu LTS</li>
-  <li>Microsoft Windows Server</li>
 </ul>
 <p> (*はPE専用プラットフォームです。これらのプラットフォームについては、オープンソースのagentパッケージは提供されていません。 )
 </p>
@@ -212,25 +255,25 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 </p>
 
 <ol>
-<li>データベース、およびほかのPuppet Enterpriseファイルを<a href="/pe/2016.1/maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files">バックアップ</a>します。</li>
-  <li>完全 <a href="/pe/2016.1/install_uninstalling.html">アンインストール</a>を実行します (-p -d uninstallerオプションを含む)。</li>
+<li>データベース、およびほかのPuppet Enterpriseファイルを<a href="./maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files">バックアップ</a>します。</li>
+  <li>完全 <a href="./install_uninstalling.html">アンインストール</a>を実行します (-p -d uninstallerオプションを含む)。</li>
   <li>OSをアップグレードします。</li>
   <li>
-<a href="/pe/2016.1/install_basic.html">Puppet Enterpriseをインストール</a>します。</li>
-  <li>バックアップを<a href="/pe/2016.1/maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files">復元</a>します。</li>
+<a href="/pe/latest/install_basic.html">Puppet Enterpriseをインストール</a>します。</li>
+  <li>バックアップを<a href="./maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files">復元</a>します。</li>
 </ol>
 <h2 id="choosing-a-pe-architecture">Puppet Enterpriseアーキテクチャ の選択</h2>
 
-<p> Puppet Enterpriseは、次の2つのインストール方法があります。
+<p> Puppet Enterpriseには、次の2つのインストール方法があります。
 </p>
 
 <ul>
 <li>
-<a href="/pe/2016.1/install_pe_mono_ja.html">モノリシックインストール</a>：Puppet master、Puppet Enterprise Webコンソール、PuppetDB (PostgreSQLを含む) をすべて1台のノードにインストールします。コンパイルmasterを追加して、インストールを拡大することができます。</li>
+<a href="./install_pe_mono.html">モノリシックインストール</a>：Puppet master、Puppet Enterpriseコンソール、PuppetDB (PostgreSQLを含む) をすべて1台のノードにインストールします。すべてのコンポーネントが1台のノード上にあるため、この方法ではインストールやアップグレード、トラブルシューティングが容易になります。コンパイルmasterを追加して、インストールを拡大することができます。</li>
   <li>
-<a href="/pe/2016.1/install_pe_split.html">分割インストール</a>： Puppet master、Puppet Enterprise Webコンソール、PuppetDB (PostgreSQLを含む) をそれぞれ別のノードにインストールします。</li>
+<a href="./install_pe_split.html">分割インストール</a>：Puppet master、Puppet Enterpriseコンソール、PuppetDB (PostgreSQLを含む) をそれぞれ別のノードにインストールします。このインストール方法は、お使いのサーバーあたりのコア数が限られている場合や、8000台以上のノードを使用する場合にのみ用いることをおすすめします。</li>
 </ul>
-<p> モノリシックインストールは、500台までのノードを管理する場合に適しています。 管理対象のノードが何百台もある場合は、<a href="/pe/2016.1/install_multimaster.html">コンパイルmasterを追加</a>して、インストールを拡大することができます。 コンパイルmasterを1つ追加すると、インフラストラクチャ内のノードをさらに約1500台管理できるようになります。コンパイルmasterは、PuppetDBやPuppet Enterprise Webコンソールのパフォーマンスに支障がない程度まで追加できます。 通常、ノード数が約4000台になると、このようなパフォーマンスの問題が発生します。
+<p> モノリシックインストールは、2000台までのノードを管理する場合に適しています。 管理対象のノードが何百台もある場合は、<a href="./install_multimaster.html">コンパイルmasterを追加</a>して、インストールを拡大することができます。 コンパイルmasterを1つ追加すると、インフラ内のノードをさらに約1500台管理できるようになります。コンパイルmasterは、PuppetDBやPuppet Enterprise Webコンソールのパフォーマンスに支障がない程度まで追加できます。 通常、ノード数が約8000台になると、そうしたパフォーマンスの問題が発生します。
 </p>
 
 <p> デプロイの規模を拡大する場合は、次のような経過をたどることが想定されます。
@@ -239,12 +282,15 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <ol>
 <li>1台のノードにモノリシックインストールを実行し、10～100台のノードを管理します。</li>
   <li>規模を拡大し、Puppet Enterpriseの管理対象ノードが増えるに伴い、 CPUとRAMを拡大して、モノリシックインストールに利用可能なリソースを拡大します。</li>
-  <li>管理対象のノード数が1000台を超えたら、コンパイルmasterを追加して、agentカタログのコンパイル負荷を分散します。ノード数が4000台に達するまで、この状態が維持されることが予測されます。</li>
+  <li>管理対象のノード数が1000台を超えたら、コンパイルmasterを追加して、agentカタログのコンパイル負荷を分散します。ノード数が8000台に達するまで、この状態が維持されることが予測されます。</li>
   <li>デプロイ規模がさらに拡大した場合は、モノリシックインストールから大規模インストールに変更します。</li>
 </ol>
 <h2 id="hardware-recommendations">ハードウェアに関する推奨事項</h2>
 
-<p> 以下は、Puppet Enterpriseのハードウェアに関する推奨事項です。推奨事項は、Puppet Enterpriseインフラストラクチャの規模や複雑さによって異なります。
+<p> 以下は、Puppet Enterpriseのハードウェアに関する推奨事項です。推奨事項は、Puppet Enterpriseインフラの規模や複雑さによって異なります。
+</p>
+
+<p> 「<a href="./config_monolithic.html">モノリシックインストールのチューニング(参照)</a>」では、さまざまなサイズのモノリシックインストールに関するチューニング情報を提供しています。 
 </p>
 
 <h3 id="monolithic-installation">モノリシックインストール</h3>
@@ -263,10 +309,10 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <td>2</td>
       <td>6 GB</td>
       <td>20 GB</td>
-      <td>m3.largeインスタンス</td>
+      <td>m3.xlargeインスタンス</td>
     </tr></tbody>
 </table>
-<p> 500～1000台のノードを管理する場合は、ハードウェアをアップグレードする必要があります。 Puppet Enterpriseでは、デフォルト構成で500台のノードをサポート可能であることがテストで実証されています。 この規模のノードを管理する場合、最小限の推奨ハードウェア構成は以下のとおりです。
+<p> さらに多くのノードを管理する場合は、ハードウェアをアップグレードする必要があります。 Puppet Enterpriseでは、デフォルト構成で2000台のノードをサポート可能であることがテストで実証されています。 この規模のノードを管理する場合、最小限の推奨ハードウェア構成は以下のとおりです。
 </p>
 
 <table>
@@ -278,14 +324,14 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
       <th>EC2</th>
     </tr></thead>
 <tbody><tr>
-<td>4 +</td>
-      <td>8 + GB</td>
+<td>16 +</td>
+      <td>32 + GB</td>
       <td>100 GB</td>
       <td>10 GB</td>
-      <td>m3.xlargeまたはm4.xlargeインスタンス</td>
+      <td>m3.xlargeまたはc4.4xlargeインスタンス</td>
     </tr></tbody>
 </table>
-<p> ハードウェアを徐々に拡張しながら最大限に活用するには、このリソースを利用できるようPuppet Enterpriseを設定する必要があります。詳しくは、「<a href="/pe/2016.1/config_intro.html">Puppet Enterpriseインフラストラクチャの設定とチューニング</a>」ページのガイドを参照してください。
+<p> ハードウェアを徐々に拡張しながら最大限に活用するには、このリソースを利用できるようPuppet Enterpriseを設定する必要があります。詳しくは、「<a href="./config_intro.html">Puppet Enterpriseインフラストラクチャの設定とチューニング</a>」ページのガイドを参照してください。
 </p>
 
 <h3 id="monolithic-plus-compile-masters-installation">コンパイルmasterを使用したモノリシックインストール</h3>
@@ -293,10 +339,10 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <p> <strong>注意：</strong>デプロイ規模を拡大してコンパイルmasterを使用する場合は、ロードバランサを使って負荷を分散する必要があります。 コンパイルmasterとロードバランサを追加するよりも、モノリシックインストールでハードウェアをアップグレードする方が簡単です。
 </p>
 
-<p> 管理対象のノードが500台を超えた場合は、負荷を分散したコンパイルmasterをモノリシックインストールのアーキテクチャ に追加すると、より多くのagentを管理できるようになります。 コンパイルmasterを1つ追加すると、PuppetDBまたはPEコンソールの容量上限まで、約1500台のノードを増設することができます。
+<p> 管理対象のノードが2000台を超えた場合は、負荷を分散したコンパイルmasterをモノリシックインストールのアーキテクチャ に追加すると、より多くのagentを管理できるようになります。 コンパイルmasterを1つ追加すると、PuppetDBまたはPEコンソールの容量上限まで、約1500台のノードを増設することができます。これはMoM上で動作します。ノード8000台前後でパフォーマンスに問題が出始めた場合は、ハードウェアを調整するか、より大規模なベースインフラに移行することができます。 
 </p>
 
-<p> 管理対象のノードが500台を上回る場合、最小限の推奨ハードウェア構成は以下のとおりです。 以下の推奨環境に、より処理能力の高いハードウェア (8コアプロセッサや16GB RAMなど) を採用すると、さらに最適化することができます。
+<p> 管理対象のノードが2000台を上回る場合に推奨される最小限のハードウェア構成は以下のとおりです。 以下の推奨環境に、より処理能力の高いハードウェア(8コアプロセッサや16GB RAMなど)を採用すると、さらに最適化することができます。
 </p>
 
 <table>
@@ -311,11 +357,11 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <tbody>
 <tr>
 <td>モノリシックノード</td>
-      <td>4</td>
-      <td>16 GB</td>
+      <td>16</td>
+      <td>32 GB</td>
       <td>100 GB</td>
       <td>10 GB</td>
-      <td>m3.xlarge</td>
+      <td>c4.4xlarge</td>
     </tr>
 <tr>
 <td>コンパイルmasterあたり</td>
@@ -327,12 +373,12 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
     </tr>
 </tbody>
 </table>
-<p> ハードウェアを徐々に拡張しながら最大限に活用するには、このリソースを利用できるようPuppet Enterpriseを設定する必要があります。詳しくは、「<a href="/pe/2016.1/config_intro.html">Puppet Enterpriseインフラストラクチャの設定とチューニング</a>」ページのガイドを参照してください。
+<p> ハードウェアを徐々に拡張しながら最大限に活用するには、このリソースを利用できるようPuppet Enterpriseを設定する必要があります。詳しくは、「<a href="./config_intro.html">Puppet Enterpriseインフラストラクチャの設定とチューニング</a>」ページのガイドを参照してください。
 </p>
 
 <h3 id="large-environment-installation">大規模インストール</h3>
 
-<p> 大規模インストールとは、大規模なPuppet Enterpriseインフラストラクチャを配備することです。 Puppet Enterpriseを分割インストールし、コンパイルmasterとActiveMQメッセージブローカリングを追加します。 このインストールは、7000台までのノードを管理する場合に適しています。 最小限の推奨ハードウェア構成は以下のとおりです。
+<p> 大規模インストールとは、大規模なPuppet Enterpriseインフラストラクチャを配備することです。 Puppet Enterpriseを分割インストールし、コンパイルmasterとActiveMQメッセージブローカリングを追加します。 このインストールは、8000台を超えるノードを管理する場合に適しています。 推奨される最小限のハードウェア構成は以下のとおりです。
 </p>
 
 <table>
@@ -355,8 +401,8 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
     </tr>
 <tr>
 <td>Puppet Enterprise Webコンソール</td>
-      <td>2</td>
-      <td>6 GB</td>
+      <td>4</td>
+      <td>8 GB</td>
       <td>10 GB</td>
       <td>22 GB</td>
       <td>m3.largeまたはm4.largeインスタンス</td>
@@ -395,6 +441,14 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
     </tr>
 </tbody>
 </table>
+<p> このインストール方法では、より多くのリソースをPuppetDBに追加し、コンパイルmasterの数を増やすことで、より多くのノードに対応することができます。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>：きわめて大規模なモノリシックmasterr (36コアおよび60 GB RAM) と10台のコンパイルmasterにより、最大2万台のノードを管理することができます。8000台を超えるノードを必要とする場合は、大規模インストールを設定する前に、Puppetサポートか販売チームにお問い合わせください。
+</p>
+</blockquote>
+
 <h2 id="supported-browsers">対応ブラウザ</h2>
 
 <p> Puppet Enterprise Webコンソールは、以下のブラウザで使用できます。
@@ -414,7 +468,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 
 <h3 id="timekeeping">時間管理</h3>
 
-<p> Puppet masterとPuppet agentノードの時間を確実に同期させるために、NTPまたは同等のサービスを利用することを推奨します。Puppet Enterpriseインフラストラクチャ間で時間が同期していないと、 コンソールのライブ管理にノードが表示されないなどの問題が発生する可能性があります。 NTP (<a href="https://forge.puppetlabs.com/puppetlabs/ntp">Puppet Labs対応のモジュールとして利用可能</a>) などのサービスを利用すると、正確な時間管理が可能になります。
+<p> Puppet masterとPuppet agentノードの時間を確実に同期させるために、NTPまたは同等のサービスを利用することを推奨します。Puppet Enterpriseインフラストラクチャ間で時間が同期していないと、 コンソールのライブ管理にノードが表示されないなどの問題が発生する可能性があります。 NTP(<a href="https://forge.puppetlabs.com/puppetlabs/ntp">Puppet Labs対応のモジュールとして利用可能</a>)などのサービスを利用すると、正確な時間管理が可能になります。
 </p>
 
 <h3 id="name-resolution">名前解決</h3>
@@ -433,7 +487,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 
 <h4 id="for-monolithic-installs">モノリシックインストールの場合</h4>
 
-<p> <a href="/pe/2016.1/images/mono_port_diagram.svg"><img src="/pe/2016.1/images/mono_port_diagram.svg" alt="Monolithic Port Diagram" title="Click to enlarge"> (クリックして拡大)</a>
+<p> <a href="./images/mono_port_diagram.png"><img src="./images/mono_port_diagram.png" alt="Monolithic Port Diagram" title="Click to enlarge">(クリックして拡大)</a>
 </p>
 
 <table>
@@ -448,6 +502,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <li>Puppet masterは、このポートを使用して、Puppet agentからインバウンドトラフィック／要求を受信します。</li>
       <li>Puppet Enterprise Webコンソールは、このポートを使用して、Puppet masterに要求を送信します。</li>
       <li>ca_portの設定が異なる場合を除き、証明書の要求は、このポートを介して渡されます。</li>
+      <li>Puppetサーバー<a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE Master」</li>
      </ul>
 </td>
@@ -476,7 +531,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <td>8142</td>
     <td>
      <ul>
-<li>オーケストレーションサービスと「Run Puppet」ボタンは、このポートを使用して、Puppet agentからインバウンドトラフィック／要求を受信します。</li>
+<li>オーケストレーションサービスと「Run Puppet」ボタンは、このポートを使用し、(PXP agent/PCPブローカを経由して)Puppet agentからインバウンドトラフィック／要求を受信します 。</li>
       <li>分類子グループ：「PEオーケストレータ」</li>
      </ul>
 </td>
@@ -484,7 +539,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 </table>
 <h4 id="for-monolithic-installs-with-compile-masters">コンパイルmasterを使用したモノリシックインストールの場合</h4>
 
-<p> <a href="/pe/2016.1/images/mono_port_compile.svg"><img src="/pe/2016.1/images/mono_port_compile.svg" alt="Monolithic with Compile Masters Port Diagram" title="Click to enlarge"> (クリックして拡大)</a>
+<p> <a href="./images/mono_compile_port_diagram.png"><img src="./images/mono_compile_port_diagram.png" alt="Monolithic with Compile Masters Port Diagram" title="Click to enlarge"> (クリックして拡大)</a>
 </p>
 
 <table>
@@ -499,6 +554,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <li>Puppet masterは、このポートを使用して、Puppet agentからインバウンドトラフィック／要求を受信します。</li>
       <li>Puppet Enterprise Webコンソールは、このポートを使用して、Puppet masterに要求を送信します。</li>
       <li>ca_portの設定が異なる場合を除き、証明書の要求は、このポートを介して渡されます。</li>
+      <li>Puppetサーバー<a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE Master」</li>
      </ul>
 </td>
@@ -538,6 +594,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
      <ul>
 <li>PuppetDBは、このポートを介して、トラフィック／要求を受信します。</li>
       <li>Puppet masterとPuppet Enterprise Webコンソールは、このポートを使用して、 PuppetDBにトラフィックを送信します。</li>
+      <li>PuppetDB <a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE PuppetDB」</li>
      </ul>
 </td>
@@ -546,7 +603,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <td>8142</td>
     <td>
      <ul>
-<li>オーケストレーションサービスと「Run Puppet」ボタンは、このポートを使用して、Puppet agentからインバウンドトラフィック／要求を受信します。</li>
+<li>オーケストレーションサービスと「Run Puppet」ボタンは、このポートを使用し、(PXP agent/PCPブローカを経由して)Puppet agentからインバウンドトラフィック／要求を受信します 。</li>
       <li>分類子グループ：「PEオーケストレータ」</li>
      </ul>
 </td>
@@ -554,7 +611,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 </table>
 <h4 id="for-split-installs">分割インストールの場合</h4>
 
-<p> <a href="/pe/2016.1/images/split_port_diagram.svg"><img src="/pe/2016.1/images/split_port_diagram.svg" alt="Split Port Diagram" title="Click to enlarge"> (クリックして拡大)</a>
+<p> <a href="./images/split_port_diagram.png"><img src="./images/split_port_diagram.png" alt="Split Port Diagram" title="Click to enlarge"> (クリックして拡大)</a>
 </p>
 
 <table>
@@ -569,6 +626,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <li>Puppet masterは、このポートを使用して、Puppet agentからインバウンドトラフィック／要求を受信します。</li>
       <li>Puppet Enterprise Webコンソールは、このポートを使用して、Puppet masterに要求を送信します。</li>
       <li>ca_portの設定が異なる場合を除き、証明書の要求は、このポートを介して渡されます。</li>
+      <li>Puppetサーバー<a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE Master」</li>
      </ul>
 </td>
@@ -589,6 +647,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
      <ul>
 <li>PuppetDBは、このポートを介して、トラフィック／要求を受信します。</li>
       <li>Puppet masterとPuppet Enterprise Webコンソールは、このポートを使用して、 PuppetDBにトラフィックを送信します。</li>
+      <li>PuppetDB <a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE PuppetDB」</li>
      </ul>
 </td>
@@ -636,7 +695,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <td>8142</td>
     <td>
      <ul>
-<li>オーケストレーションサービスと「Run Puppet」ボタンは、このポートを使用して、Puppet agentからインバウンドトラフィック／要求を受信します。</li>
+<li>オーケストレーションサービスと「Run Puppet」ボタンは、このポートを使用し、(PXP agent/PCPブローカを経由して)Puppet agentからインバウンドトラフィック／要求を受信します 。</li>
       <li>分類子グループ：「PEオーケストレータ」</li>
      </ul>
 </td>
@@ -647,7 +706,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <p> ポートと用途の説明については、分割インストールのポート／用途の表を参照してください。
 </p>
 
-<p> <a href="/pe/2016.1/images/lei_port_diagram.png"><img src="/pe/2016.1/images/lei_port_diagram.png" alt="LEI Port Diagram" title="Click to enlarge"> (クリックして拡大)</a>
+<p> <a href="./images/lei_port_diagram.png"><img src="./images/lei_port_diagram.png" alt="LEI Port Diagram" title="Click to enlarge"> (クリックして拡大)</a>
 </p>
 
 <blockquote>
@@ -655,11 +714,11 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 
   <ul>
 <li>
-      <p> <strong>ポート3000</strong>：Webベースのインストーラを使用してPEをインストールする場合は、ポート<strong>3000</strong>が開放されていることを確認してください。 インストールの完了後、このポートは閉じることができます。 必要に応じて、「インストール手順」ページの「<a href="/pe/2016.1/install_pe_mono.html#port-forwarding-to-the-installer">Webベースのインストーラへのポートフォワーディングに関する手順</a>」を参照してください。 (分割インストールおよびモノリシックインストールの場合) )
+      <p> <strong>ポート3000</strong>：Webベースのインストーラを使用してPEをインストールする場合は、ポート<strong>3000</strong>が開放されていることを確認してください。 インストールの完了後、このポートは閉じることができます。 必要に応じて、「インストール手順」ページの「<a href="./install_pe_mono.html#port-forwarding-to-the-installer">Webベースのインストーラへのポートフォワーディングに関する手順</a>」を参照してください。 (分割インストールおよびモノリシックインストールの場合) )
 </p>
     </li>
     <li>
-      <p> ポート<strong>8143</strong>：オーケストレータクライアントは、このポートを使用して、Puppet master上で実行されているオーケストレーションサービスと通信します。 <a href="/pe/2016.1/install_pe_client_tools.html#workstation-installation">ワークステーションにクライアントをインストール</a>するには、このポートを使用できることが必要です。
+      <p> ポート<strong>8143</strong>：オーケストレータクライアントは、このポートを使用して、Puppet master上で実行されているオーケストレーションサービスと通信します。 <a href="./install_pe_client_tools.html#installing-pe-client-tools">ワークステーションにクライアントをインストール</a>するには、このポートを使用できることが必要です。
 </p>
     </li>
     <li>
@@ -667,20 +726,93 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 </p>
     </li>
     <li>
-      <p> ポート<strong>8170</strong>：Code Managerサービスを使用する場合は、このポートが必要です。
+      <p> Port <strong>4432</strong>：ノード分類子、アクティビティサービス、RBACのローカル接続の<a href="./status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。  リモート接続ではポート<strong>4443</strong>を使う必要があります。
+</p>
+    </li>
+    <li>
+      <p> ポート<strong>8170</strong>：Code Managerを使用する場合は、このポートが必要です。 Code Manager <a href="./status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。
 </p>
     </li>
   </ul>
 </blockquote>
 
+<h2 id="external-postgresql-option-and-prep-notes">外部PostgreSQLオプションと準備に関する注記</h2>
+
+<p> PostgreSQLデータベースを提供するための要件はありませんが、 (PEがインストールおよび管理するインスタンスではなく) 独自のPostgreSQLのインスタンスを使用する場合は、以下の注記を参照してください。 外部PostgreSQLインスタンスはバージョン9.4を使用する必要があります。
+</p>
+
+<blockquote>
+  <p> <strong>注意：</strong> <a href="./install_pe_conf_param.html#external-postgresql-parameters"><code>pe.conf</code>パラメータリファレンス</a>には、外部PostgreSQLインスタンスを用いたインストールまたはアップグレードを実行する際に追加する必要のあるパラメータが記載されています。
+</p>
+</blockquote>
+
+<p> Puppet EnterpriseとPostgreSQLデータベースのSSLを正しく設定するために必要なその他の手順については、「<a href="./install_ssl_postgresql.html">Enabling SSL for PE and external PostgreSQL(PEと外部PostgreSQLのSSL有効化)</a>」を参照してください。
+</p>
+
+<ol>
+<li>
+    <p> インストールの前に、RBAC、アクティビティサービス、ノード分類子のデータベースを作成する必要があります。 データベースを作成するためのSQLコマンドは、<strong>おおむね</strong>以下のとおりです。
+</p>
+
+    <pre><code>CREATE TABLESPACE "pe-orchestrator" LOCATION '/opt/puppetlabs/server/data/postgresql/orchestrator';
+CREATE USER "pe-orchestrator" PASSWORD 'password';
+CREATE DATABASE "pe-orchestrator" OWNER "pe-orchestrator" TABLESPACE "pe-orchestrator" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+   
+CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppetlabs/server/data/postgresql/puppetdb';
+CREATE USER "pe-puppetdb" PASSWORD 'password';
+CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+CREATE TABLESPACE "pe-activity" LOCATION '/opt/puppetlabs/server/data/postgresql/activity';
+CREATE USER "pe-activity" PASSWORD 'password';
+CREATE DATABASE "pe-activity" OWNER "pe-activity" TABLESPACE "pe-activity" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+CREATE TABLESPACE "pe-classifier" LOCATION '/opt/puppetlabs/server/data/postgresql/classifier';
+CREATE USER "pe-classifier" PASSWORD 'password';
+CREATE DATABASE "pe-classifier" OWNER "pe-classifier" TABLESPACE "pe-classifier" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+CREATE TABLESPACE "pe-rbac" LOCATION '/opt/puppetlabs/server/data/postgresql/rbac';
+CREATE USER "pe-rbac" PASSWORD 'password';
+CREATE DATABASE "pe-rbac" OWNER "pe-rbac" TABLESPACE "pe-rbac" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+</code></pre>
+  </li>
+  <li>
+    <p> RBACデータベースで<a href="http://www.postgresql.org/docs/9.4/static/citext.html">citext拡張子</a>を有効化する必要があります。 これを実行するには、<code>postgresql-contrib</code>パッケージをインストールしてから、RBACデータベースの内部から以下のコマンドを実行します。 
+</p>
+
+    <pre><code>sudo -u postgres sh
+psql pe_rbac -c 'create extension citext'
+exit
+</code></pre>
+  </li>
+  <li>
+    <p> PuppetDBデータベース上で<a href="http://www.postgresql.org/docs/9.4/static/pgtrgm.html"><code>pg_trgm</code>拡張子</a>をインストールします。 お使いのディストリビューションによっては、この手順に<code>postgresql-contrib</code>(またはそれに相当する)パッケージが必要となることがあります。 拡張子をインストールするには、以下のコマンドを実行します。
+</p>
+
+    <pre><code>sudo -u postgres sh
+psql puppetdb -c 'create extension pg_trgm'
+exit
+</code></pre>
+  </li>
+  <li>
+    <p> PuppetDBデータベース上で<a href="http://www.postgresql.org/docs/9.4/static/pgcrypto.html"><code>pgcrypto</code>拡張子</a>をインストールします。 拡張子をインストールするには、以下のコマンドを実行します。
+</p>
+
+    <pre><code>sudo -u postgres sh
+psql puppetdb -c 'create extension pgcrypto'
+exit
+</code></pre>
+  </li>
+  <li>
+    <p> PostgreSQLの<code>max_connections</code>設定を200に設定します。
+</p>
+  </li>
+</ol>
+<p> 詳細については、<a href="http://www.postgresql.org/docs/">PostgreSQL文書</a>を参照してください。
+</p>
+
 <h2 id="dependencies-and-os-specific-details">依存関係とOS固有の詳細</h2>
 
 <p> このセクションでは、さまざまなOSリポジトリからインストールされるパッケージについて説明します。 インターネットに接続できない場合を除き、パッケージを手動でインストールする必要はありません。パッケージはPuppet Enterpriseのインストール中に自動的に設定されます。
-</p>
-
-<h3 id="postgresql-requirement">PostgreSQLの要件</h3>
-
-<p> コンソールとPuppetDBに (Puppet Enterpriseでインストールされるインスタンスとは異なる) 独自のPostgreSQLインスタンスを使用する場合は、バージョン9.4を使用する必要があります。
 </p>
 
 <h3 id="centos">Centos</h3>
@@ -1178,7 +1310,7 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
   <li>OpenSSL</li>
 </ul>
 <blockquote>
-  <p> <strong>警告</strong>：curlおよびOpenSSLの場合は、IBMサポートから入手可能な「AIX Toolbox Cryptographic Content」リポジトリで提供されるバージョンを使用する必要があります。 curlのバージョンは7.9.3でなければなりません。 AIXツールボックスパッケージのcurlバージョンはOpenSSLに対応していないため、Linuxアプリケーションには使用しないでください。
+  <p> <strong>警告</strong>：cURLおよびOpenSSLの場合は、IBMサポートから入手可能な「AIX Toolbox Cryptographic Content」リポジトリで提供されるバージョンを使用する必要があります。 cURLのバージョンは7.9.3でなければなりません。 AIXツールボックスパッケージのcURLバージョンはOpenSSLに対応していないため、Linuxアプリケーションには使用しないでください。
 </p>
 </blockquote>
 
@@ -1194,10 +1326,10 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 <p> ファイアウォールを使用していたり、httpプロキシを実行していたりする場合、上記のコマンドが正常に動作しないことがあります。 このような場合は、上記のパッケージではなく、IBMから<a href="http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html">AIXツールボックスパッケージ</a>をダウンロードして使用してください。
 </p>
 
-<p> AIX (7.1を含む) で使用されているRPMバージョンが古いため、AIXではGPG証明は無効になります。 AIXパッケージプロバイダは、パッケージのダウングレード (新しいバージョンのパッケージ上に古いパッケージをインストールすること) には対応していません。 AIXプロバイダのバージョン番号を指定する場合はゼロを省略 します ( <code>02.03.04</code>ではなく<code>2.3.4</code>とします)。
+<p> AIX(7.1を含む)で使用されているRPMバージョンが古いため、AIXではGPG証明は無効になります。 AIXパッケージプロバイダは、パッケージのダウングレード(新しいバージョンのパッケージ上に古いパッケージをインストールすること)には対応していません。 AIXプロバイダのバージョン番号を指定する場合はゼロを省略 します( <code>02.03.04</code>ではなく<code>2.3.4</code>とします)。
 </p>
 
-<p> PE AIXは、NIM、BFF、RPMパッケージのプロバイダに対応しています。 プロバイダの技術的な情報については、「<a href="/references/4.4.latest/type.html#package">Resource Type Reference</a>」を参照してください。
+<p> PE AIXは、NIM、BFF、RPMパッケージのプロバイダに対応しています。 プロバイダの技術的な情報については、<a href="/puppet/4.5/reference/type.html#package">タイプリファレンス</a>を参照してください。
 </p>
 
 <h3 id="solaris">Solaris</h3>
@@ -1229,8 +1361,8 @@ canonical: "/ja/pe/install_system_requirements_ja.html"
 </p>
 
 <ul>
-<li>Puppet Enterpriseを*nixノードにインストールする場合は、「<a href="./install_basic_ja.html">Puppet Enterpriseのインストール</a>」に進みます。</li>
-  <li>Puppet EnterpriseをWindowsノードにインストールする場合は、「<a href="/pe/2016.1/install_windows.html">Windows agentのインストール</a>」に進みます。</li>
-  <li>Puppet EnterpriseをOS Xにインストールする場合は、「<a href="/pe/2016.1/install_osx.html">Mac OS X agentのインストール</a>」に進みます。</li>
+<li>Puppet Enterpriseを*nixノードにインストールする場合は、「<a href="./install_basic.html">Puppet Enterpriseのインストール</a>」に進みます。</li>
+  <li>Puppet EnterpriseをWindowsノードにインストールする場合は、「<a href="./install_windows.html">Windows agentのインストール</a>」に進みます。</li>
+  <li>Puppet EnterpriseをOS Xにインストールする場合は、「<a href="./install_osx.html">Mac OS X agentのインストール</a>」に進みます。</li>
 </ul>
 </div>

@@ -1,0 +1,198 @@
+---
+layout: default
+title: "PEインストールの概要"
+canonical: "/ja/pe/install_basic.html"
+---
+
+<div>
+<blockquote>
+  <p> <img src="/pe/2015.2/images/windows-logo-small.jpg" alt="windows logo"> このセクションでは、*nixオペレーティングシステムについて取り上げます。 WindowsへのPuppet Enterpriseのインストールについては、「<a href="/pe/2016.1/install_windows.html">Windows agentのインストール</a>」を参照してください。
+</p>
+</blockquote>
+
+<h2 id="downloading-puppet-enterprise">Puppet Enterpriseをダウンロードする</h2>
+
+<p> まず、PuppetのWebサイトから、最新バージョンのPuppet EnterpriseのtarballとGPG署名(「.asc」ファイル)を<a href="http://info.puppetlabs.com/download-pe.html">ダウンロード</a>します。
+</p>
+
+<h3 id="choosing-an-installer-tarball">インストーラTarballを選択する</h3>
+
+<p> ご利用のOSバージョンとアーキテクチャに合ったPuppet Enterpriseのtarballを選択してください。
+</p>
+
+<h4 id="available-nix-tarballs">*nix向けtarball</h4>
+
+<table>
+<thead><tr>
+<th>ファイル名の末尾</th>
+      <th>インストール対象の環境</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>-el-&lt;version and arch&gt;.tar.gz</code></td>
+      <td>RHEL、CentOS、Scientific Linux、またはOracle Linux</td>
+    </tr>
+<tr>
+<td><code>-ubuntu-&lt;version and arch&gt;.tar.gz</code></td>
+      <td>Ubuntu LTS</td>
+    </tr>
+<tr>
+<td><code>-sles-&lt;version and arch&gt;.tar.gz</code></td>
+      <td>SLES</td>
+    </tr>
+</tbody>
+</table>
+<p> <em>注意:</em> RHEL 5、6および7ではSELinuxのバインドを利用できます。 これらはデフォルトではインストールされませんが、puppet-agentパッケージには含まれています。
+</p>
+
+<h3 id="verifying-the-installer">インストーラを検証する</h3>
+
+<p> Puppet Enterpriseインストーラを検証するには、Puppetの公開鍵をインポートし、ダウンロードしたtarballの暗号検証を実行します。 Puppetの公開鍵は、Puppetによって証明されており、<code>pgp.mit.edu</code>などの公開鍵サーバー、およびPuppetから入手できます。 GnuPGをインストールし、PE tarballと共にGPG署名(「.asc」ファイル)をダウンロードする必要があります。
+</p>
+
+<p> Puppetの公開鍵をインポートするには、次のコマンドを実行します。
+</p>
+
+<pre><code>wget -O - https://downloads.puppetlabs.com/puppetlabs-gpg-signing-key.pub | gpg --import
+</code></pre>
+
+<p> 以下のような結果が表示されます。
+</p>
+
+<pre><code>gpg: key 4BD6EC30: public key "Puppet Labs Release Key (Puppet Labs Release Key) &lt;info@puppetlabs.com&gt;" imported
+gpg: Total number processed: 1
+gpg:               imported: 1  (RSA: 1)
+</code></pre>
+
+<p> 公開鍵のフィンガープリントを出力するには、次のコマンドを実行します。
+</p>
+
+<pre><code>gpg --fingerprint 0x1054b7a24bd6ec30
+</code></pre>
+
+<p> 検証の際に表示されるフィンガープリントと、ここで表示されるPuppetのフィンガープリントは完全に一致しなければなりません。
+</p>
+
+<pre><code>Primary key fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30
+</code></pre>
+
+<p> 次に、以下のコマンドを実行してtarballのリリース署名を検証します。
+</p>
+
+<pre><code>$ gpg --verify puppet-enterprise-&lt;version&gt;-&lt;platform&gt;.tar.gz.asc
+</code></pre>
+
+<p> 以下のような結果が表示されます。
+</p>
+
+<pre><code>gpg: Signature made Tue 18 Jun 2013 10:05:25 AM PDT using RSA key ID 4BD6EC30
+gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key)"
+</code></pre>
+
+<p> <strong>注意</strong>: 署名を検証する際、リリース鍵の署名の1つへの信頼できるパスがない場合は、以下のような警告メッセージが表示されます。
+</p>
+
+<pre><code>Could not find a valid trust path to the key.
+    gpg: WARNING: This key is not certified with a trusted signature!
+    gpg: There is no indication that the signature belongs to the owner.
+</code></pre>
+
+<p> これは、リリース鍵に署名したユーザーを証明できる信頼できるパスが作成されていないためです。この警告は無視してかまいません。
+</p>
+
+<h2 id="installing-puppet-enterprise">Puppet Enterpriseのインストール</h2>
+
+<p> 以下では、Puppet Enterpriseをスムーズにインストールするために知っておくべきことを説明します。 Puppet Enterpriseの機能は複数のコンポーネントにより構成されています。インストーラを実行すると、これらすべてのコンポーネントがインストールされ、設定されます。 複数のコンポーネントを1つのノードにインストール（モノシックインストール）、もしくは複数のノードにコンポーネントを分散してインストール（分割インストール）することができます。ただしagentコンポーネントについては、すべてのノードにインストールされます。
+</p>
+
+<p> インストールを始める前に、デプロイするものを決めておきましょう。 Puppet Enterpriseコンポーネントをインストールするすべてのノードにアクセスできるよう、各ノードの完全修飾ドメイン名を把握し、ファイアウォールのルールが<a href="/pe/2015.2/install_system_requirements.html#firewall-configuration">必要なポート</a>にアクセスできるよう設定されているか確認する必要があります。
+</p>
+
+<p> これらの情報を確認した後、次の<strong>三つの手順</strong>でインストールを実行します。
+</p>
+
+<ol>
+<li>
+    <p> インストール方法を選択します。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseの主要コンポーネント、すなわち、Puppet master、PuppetDB (およびデータベースサポート)、PEコンソールをインストールします。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseによる管理を行うすべてのノードに、Puppet agentをインストールします。 「<a href="/pe/2015.2/install_agents.html">agentのインストール手順</a>」を参照してください。
+</p>
+  </li>
+</ol>
+<h3 id="choose-an-installation-method">インストール方法の選択</h3>
+
+<p> 開始する前に、インストール方法を選択します。 インストール方法は、以下の手順で決定することができます。
+</p>
+
+<ul>
+<li>
+    <p> Webベースのインターフェイスで、画面に表示される手順に従ってインストールします。 これについてはインストール時の質問に答えることで、正しいインストール方法を選択できると思います。 <a href="./install_pe_mono.html#ssh-prerequisites-and-notes">SSH証明書</a>を使用できる場合や、ローカルサーバーでモノリシックインストールを実行する場合は、この方法で素早くインストールして運用を開始することができます。 以下のどちらのインストールを行うか選択します。
+</p>
+
+    <ul>
+<li>
+        <p> <a href="./install_pe_mono.html">モノリシックインストール</a>：<a href="./install_system_requirements_ja.html#monolithic-installation">標準モノリシックインストール</a>または<a href="/install_system_requirements_ja.html#monolithic-plus-compile-masters-installation">モノリシックインストールにコンパイルmasterを追加する場合</a>の土台となるインストール方法。
+</p>
+      </li>
+      <li>
+        <p> <a href="./install_pe_split.html">分割インストール</a>：<a href="/install_system_requirements_ja.html#large-environment-installation">大規模インストール</a>の土台となるインストール方法。
+</p>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> Webベースのインタフェースを用いて<code>pe.conf</code>ファイルを作成するか、PEインストールtarballで提供されているファイル例を使用します。 このインストール方法の詳細については、「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」を参照してください。 
+</p>
+  </li>
+</ul>
+<p> 「<a href="/pe/2015.2/install_system_requirements.html">システム要件</a>」で、ハードウェア関連の仕様を確認します。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>: インストールを開始する前に、「<a href="#about-puppet-enterprise-components">Enterpriseのコンポーネント</a>」を読んで、Puppet Enterpriseのインストールに関連する部分をよく理解しておくとよいでしょう。
+</p>
+</blockquote>
+
+<h2 id="about-puppet-enterprise-components">Puppet Enterpriseのコンポーネントについて</h2>
+
+<p> インストールを開始する前に、Puppet Enterpriseを構成するサービスとコンポーネントをよく理解しておく必要があります。
+</p>
+
+<p> 詳細については、「<a href="./pe_architecture_overview.html">PEアーキテクチャ概要</a>」を参照してください。
+</p>
+
+<h2 id="notes-warnings-and-tips">注意、警告メッセージ、およびヒント</h2>
+
+<h3 id="verifying-your-license">ライセンスを確認する</h3>
+
+<p> Puppet Enterpriseの購入時に受け取った<code>license.key</code>ファイルで、デプロイ可能なノードの台数を確認します。 Puppet Enterpriseの実行時にログインライセンスの警告メッセージが表示されないようにするには、このファイルを<code>/etc/puppetlabs/license.key</code>としてPuppet masterノードにコピーする必要があります。 ライセンスキーファイルがない場合は、<a href="mailto:sales@puppet.com">sales@puppet.com</a>宛てにメールで再送付を依頼してください。
+</p>
+
+<p> Puppet Enterpriseは最大10台のノードまで無料でご利用になれます。 ノード台数が10台までの場合、ライセンスキーは不要です。
+</p>
+
+<h3 id="puppet-enterprise-binaries-and-symlinks">Puppet Enterpriseのバイナリおよびシンボリックリンク</h3>
+
+<p> Puppet Enterpriseのバイナリは<code>/opt/puppetlabs/bin</code>にインストールされます。 すべてのユーザーが主要なPuppetツールを使えるよう、インストーラによって、<code>facter</code>、<code>puppet</code>、<code>pe-man</code>、<code>r10k</code>、<code>hiera</code>、および<code>mco</code>バイナリのシンボリックリンクが<code>/usr/local/bin</code>に自動的に作成されます。 シンボリックリンクは、<code>/usr/local/bin</code>が書き込み可能な場合にのみ作成されます。
+</p>
+
+<p> AIXおよびSolaris 10/11をお使いの場合は、デフォルトパスに<code>/usr/local/bin</code>を追加する必要があります。
+</p>
+
+<p> Mac OS X agentを実行している場合、agentのカタログを適用してPuppetが正常に実行されるまで、シンボルリンクは作成されません。
+</p>
+
+<p> Puppet EnterpriseがインストールされているPostgreSQLサーバー、PuppetDB、Rubyパッケージと通信するコンポーネントなど、上記以外のPuppet Enterpriseコンポーネントが提供するバイナリのシンボリックリンクは作成されません。 これらのバイナリをデフォルトの<code>$PATH</code>に追加するには、プロファイルに手動で追加するか、または<code>PATH=/opt/puppetlabs/puppet/bin:/opt/puppetlabs/server/bin:$PATH;export PATH</code>を実行します。
+</p>
+
+<h2 id="installing-agents">Agentのインストール</h2>
+
+<p> Agentのインストール方法については、「<a href="/pe/2016.1/install_agents.html">PE Agentのインストール</a>」を参照してください。
+</p>
+</div>

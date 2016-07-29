@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "モジュールの記述"
-canonical: "/ja/pe/quick_writing_nix_ja.html"
+canonical: "/ja/pe/quick_writing_nix.html"
 ---
 
 <div>
@@ -13,13 +13,13 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
   <li>独自のPuppetモジュールの記述</li>
 </ul>
 <blockquote>
-  <p> この演習をはじめる前に、<a href="./quick_start_ja.html">初級クイックスタートガイド</a>にある前段階の演習を完了してください。 ここでも、rootまたは管理者としてノードにログインする必要があります。
+  <p> この演習をはじめる前に、<a href="./quick_start.html">初級クイックスタートガイド</a>にある前段階の演習を完了してください。 ここでも、rootまたは管理者としてノードにログインする必要があります。
 </p>
 </blockquote>
 
 <h2 id="getting-started">はじめに</h2>
 
-<p> <a href="./quick_start_module_install_nix_ja.html">ApacheモジュールインストールQSG</a>では、最新バージョンのpuppetlabs-apacheモジュールをインストールしました。
+<p> <a href="./quick_start_module_install_nix.html">ApacheモジュールインストールQSG</a>では、最新バージョンのpuppetlabs-apacheモジュールをインストールしました。
 </p>
 
 <p> まだインストールしていない場合は、<code>puppet module install puppetlabs-apache</code>を実行し、インストールしてください。
@@ -32,7 +32,7 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 
 <h3 id="module-basics">モジュールの基礎</h3>
 
-<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 このパスは、<code>puppet.conf</code>の<a href="/references/4.4.latest/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。 )
+<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 このパスは、<code>puppet.conf</code>の<a href="/puppet/4.5/reference/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。 )
 </p>
 
 <p> モジュールはディレクトリツリー構造になっています。 ここでは、以下のファイルを使用します。
@@ -71,12 +71,12 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 </p>
 
 <ul>
-<li>モジュールの機能の詳細については、Puppetドキュメントの<a href="/puppet/4.4/reference/modules_fundamentals.html">モジュールの基本</a>をご覧ください。</li>
+<li>モジュールの機能の詳細については、Puppetドキュメントの<a href="/puppet/4.5/reference/modules_fundamentals.html">モジュールの基本</a>をご覧ください。</li>
   <li>モジュール記述のベストプラクティス、各種手法、アプローチの詳細については、<a href="/guides/module_guides/bgtm.html">モジュールに関するビギナーズガイド</a>をご覧ください。</li>
 </ul>
 <h3 id="editing-a-manifest">マニフェストを編集する</h3>
 
-<p> この簡単な演習では、Puppet Labs Apacheモジュールのテンプレート、具体的には<code>'vhost.conf.erb'</code>を、ノードに関するfact(PEのFacter実装を利用）が自動的に配置する変数を含むように修正します。
+<p> この簡単な演習では、Puppet Apacheモジュールのテンプレート、具体的には<code>vhost.conf.erb</code>を、ノードに関するfact(PEのFacter実装を利用）が自動的に配置する変数を含むように修正します。
 </p>
 
 <ol>
@@ -95,7 +95,7 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 </code></pre>
   </li>
   <li>agentノードに関する以下のfactを集めます。<ul>
-<li> <code>facter osfamily</code>実行 (agentノードのOSがわかります)</li>
+<li> <code>facter operatingsystem</code>実行 (agentノードのOSがわかります)</li>
       <li>
 <code>facter id</code>実行 (現在ログインしているユーザーのIDがわかります)</li>
     </ul>
@@ -110,14 +110,14 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
  #
  # This file is authorized for deployment by &lt;%= scope.lookupvar('::id') %&gt;.
  #
- # This file is authorized for deployment ONLY on &lt;%= scope.lookupvar('::osfamily') %&gt; &lt;%= scope.lookupvar('::operatingsystemmajrelease')     %&gt;.
+ # This file is authorized for deployment ONLY on &lt;%= scope.lookupvar('::operatingsystem') %&gt; &lt;%= scope.lookupvar('::operatingsystemmajrelease')     %&gt;.
  #
  # Deployment by any other user or on any other system is strictly prohibited.
  # ************************************
 </code></pre>
   </li>
   <li>
-<strong>コンソールで</strong>、利用可能なクラスに<code>apache</code>を追加し、そのクラスをagentノードに追加します。この手順のヘルプが必要な場合は、<a href="./quick_start_adding_class_nix_ja.html">クラス追加に関するクイックスタートガイド</a> を参照してください。</li>
+<strong>コンソールで</strong>、利用可能なクラスに<code>apache</code>を追加し、そのクラスをagentノードに追加します。この手順のヘルプが必要な場合は、<a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a> を参照してください。</li>
   <li>
     <p> Puppetの動作時に、apacheが設定され、httpdサービスが開始されます。 その際、<code>_file_header.erb</code>の内容をもとに、デフォルトのapache仮想ホストが作成されます。
 </p>
@@ -155,7 +155,7 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 
 <h2 id="writing-a-puppet-module">Puppetモジュールを記述する</h2>
 
-<p> Puppet Labsモジュールは時間の節約になりますが、場合によっては、独自のモジュールを記述する必要が生じるかもしれません。
+<p> Puppetモジュールは時間の節約になりますが、場合によっては、独自のモジュールを記述する必要が生じるかもしれません。
 </p>
 
 <h3 id="writing-a-class-in-a-module">モジュール内のクラスを記述する</h3>
@@ -218,8 +218,8 @@ canonical: "/ja/pe/quick_writing_nix_ja.html"
 </p>
 
 <ul>
-<li>ガイドツアー形式での<a href="/puppet/4.4/reference/lang_resources.html">リソース宣言文</a>、<a href="/puppet/4.4/reference/lang_conditional.html">条件文</a>、<a href="puppet/4.4/reference/lang_classes.html">クラス</a>の記述方法を含め、Puppet言語の構文に関する完璧かつ簡潔なガイドについては、<a href="/puppet/4.4/reference/lang_summary.html">Puppet 4.3言語リファレンス</a>を参照してください。</li>
-  <li>利用可能なリソース型に関するドキュメントの完全版については、<a href="/references/4.4.latest/type.html">型リファレンス</a>を参照してください。</li>
+<li>ガイドツアー形式での<a href="/puppet/4.5/reference/lang_resources.html">リソース宣言文</a>、<a href="/puppet/4.5/reference/lang_conditional.html">条件文</a>、<a href="puppet/4.5/reference/lang_classes.html">クラス</a>の記述方法を含め、Puppet言語の構文に関する完璧かつ簡潔なガイドについては、<a href="/puppet/4.5/reference/lang_summary.html">Puppet 4.5言語リファレンス</a>を参照してください。</li>
+  <li>利用可能なリソース型に関するドキュメントの完全版については、<a href="/puppet/4.5/reference/type.html">型リファレンス</a>を参照してください。</li>
   <li>短い印刷可能なリファレンスについては、<a href="/module_cheat_sheet.pdf">モジュールカンニングペーパー</a>と<a href="/puppet_core_types_cheatsheet.pdf">コアタイプカンニングペーパー</a>をご覧ください。</li>
 </ul>
 </div>

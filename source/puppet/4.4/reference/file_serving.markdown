@@ -56,6 +56,10 @@ Make sure that the `puppet` user can access that directory and its contents.
 
 Always include the `allow *` line, since the default behavior is to deny all access. If you need to control access to a custom mount point, do so in [`auth.conf`][auth.conf]. [Putting authorization rules in `fileserver.conf` is deprecated.][deprecated]
 
+> **Caution:** You should always restrict write access to mounted directories. The file server will follow any symlinks in a file server mount, including links to files that agent nodes should not access (like SSL keys).
+>
+> When following symlinks, the file server can access any files readable by Puppet Server's user account.
+
 ## Controlling access to a custom mount point in `auth.conf`
 
 By default, any node with a valid certificate can access the files in your new mount point --- if it can fetch a catalog, it can fetch files; if it can't, it can't. This is the same behavior as the special `modules` and `plugins` mount points.

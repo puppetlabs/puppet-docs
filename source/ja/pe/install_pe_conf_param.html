@@ -1,0 +1,215 @@
+---
+layout: default
+title: "pe.confパラメーターの参考"
+canonical: "/ja/pe/install_pe_conf_param.html"
+---
+
+<div>
+<p> <code>pe.conf</code>ファイルは、<a href="./config_hocon.html">HOCON</a>形式のファイルで、Puppet Enterpriseをインストールして構成する際に必要なパラメータと値を明示するものです。
+</p>
+
+<p> 「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」では、<code>pe.conf</code>を用いてテキストモードでPEインストーラを実行する方法を詳しく説明しています。 
+</p>
+
+<p> 以下のセクションでは、インストールまたはアップグレードの際に、<code>pe.conf</code>で必須またはオプションとなるパラメータの詳細を説明します。
+</p>
+
+<blockquote>
+  <p> <strong>ヒント：</strong>インストーラのディレクトリにパッケージされている<code>pe.conf</code>例には、モノリシックインストールまたは分割インストールに必要な必須パラメータが含まれています。 このファイル例を使えば、自身で作成する必要はありません。
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>警告：</strong>パラメータ値にシングルクォーテーションを使わないでください。 有効なブール値は<code>true</code>または<code>false</code>です(大文字と小文字を区別、クォーテーションマークなし)。 <strong>Yes (y)、No (n)、1、0を使用しないでください</strong>。
+</p>
+</blockquote>
+
+<h2 id="required-parameters-for-monolithic-installations">モノリシックインストールの必須パラメータ</h2>
+
+<p> 以下のパラメータは、<a href="./install_text_mode_mono.html">モノリシックインストール</a>の必須パラメータです。
+</p>
+
+<ul>
+<li>
+    <p> <code>"console_admin_password": "&lt;PASSWORD&gt;"</code>— PEコンソールのログインに用いられるパスワード。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::puppet_master_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN (この設定は<code>"%{::trusted.certname}"</code>値のままにすることもできます )。
+</p>
+  </li>
+</ul>
+<h2 id="required-parameters-for-split-installations">分割インストールの必須パラメータ</h2>
+
+<p> 以下のパラメータは、<a href="./install_text_mode_split.html">分割インストール</a>の必須パラメータです。
+</p>
+
+<ul>
+<li>
+    <p> <code>"console_admin_password": "&lt;PASSWORD&gt;"</code>— PEコンソールのログインに用いられるパスワード。
+</p>
+
+    <blockquote>
+      <p> <strong>警告</strong>：分割インストールでは、Puppet masterに<code>"%{::trusted.certname}"</code>値を使用しないでください。 各コンポーネントノードに、適切なFQDN(<code>"puppet_enterprise::puppet_master_host":</code>、<code>"puppet_enterprise::console_host":</code>、<code>puppet_enterprise::puppetdb_host":</code>)を設定してください。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::puppet_master_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::console_host": "&lt;FQDN&gt;"</code>— PEコンソールをホストするノードのFQDN。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::puppetdb_host": "&lt;FQDN&gt;"</code>— PuppetDBをホストするノードのFQDN。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::database_host": "&lt;FQDN&gt;"</code>— データベースコンポーネントをホストするノードのFQDN。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::pcp_broker_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::mcollective_middleware_hosts": ["&lt;FQDN&gt;"]</code>— Puppet masterをホストするノードのFQDN。
+</p>
+  </li>
+</ul>
+<h2 id="database-configuration-parameters">データベース設定パラメータ</h2>
+
+<p> 以下のパラメータは、Puppet Enterpriseの提供するデフォルトのパラメータです。 モノリシックインストールまたは分割インストールの際に、必要に応じてこれらのパラメータをカスタマイズすることができます。
+</p>
+
+<blockquote>
+  <p> <strong>注意：</strong>アップグレードに際して、デフォルトではないデータベース名およびユーザを使用している場合は、アップグレードの前に以下のパラメータを変更する必要があります。
+</p>
+</blockquote>
+
+<ul>
+<li>
+    <p> <code>"puppet_enterprise::activity_database_name": "pe-activity"</code>— アクティビティデータベースの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::activity_database_user": "pe-activity"</code>— アクティビティデータベースユーザの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::classifier_database_name": "pe-classifier"</code>— クラシファイアデータベースの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::classifier_database_user": "pe-classifier"</code>— クラシファイアデータベースユーザの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::orchestrator_database_name": "pe-orchestrator"</code>— オーケストレータデータベースの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::orchestrator_database_user": "pe-orchestrator"</code>— オーケストレータデータベースユーザの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::puppetdb_database_name": "pe-puppetdb"</code>— PuppetDBデータベースの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::puppetdb_database_user": "pe-puppetdb"</code>—PuppetDBデータベースユーザの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::rbac_database_name": "pe-rbac"</code>— RBACデータベースの名前。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::rbac_database_user": "pe-rbac"</code>— RBACデータベースユーザのパスワード。
+</p>
+  </li>
+</ul>
+<h3 id="external-postgresql-parameters">外部PostgreSQLパラメータ</h3>
+
+<p> 以下のパラメータは、外部postgreSQLをインストールする際に必要となるものです。 必要に応じて、パスワードパラメータを標準インストールに追加することができます。
+</p>
+
+<ul>
+<li>
+    <p> <code>"puppet_enterprise::database_ssl": false</code>
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::database_cert_auth": false</code>
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::puppetdb_database_password": "&lt;STRING&gt;"</code>— PuppetDBデータベースユーザのパスワード。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::classifier_database_password": "&lt;STRING&gt;"</code>— クラシファイアデータベースユーザのパスワード。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::activity_database_password": "&lt;STRING&gt;"</code>— アクティビティデータベースユーザのパスワード。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::rbac_database_password": "&lt;STRING&gt;"</code>— RBACデータベースユーザのパスワード。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::orchestrator_database_password": "&lt;STRING&gt;"</code>— オーケストレータデータベースユーザのパスワード。
+</p>
+  </li>
+</ul>
+<h2 id="additional-parameters-for-monolithic-and-split-installations">モノリシックインストールおよび分割インストールのその他のパラメータ</h2>
+
+<p> 必要に応じて、以下のその他のパラメータを使用できます。
+</p>
+
+<ul>
+<li>
+    <p> <code>"pe_install::puppet_master_dnsaltnames": ["&lt;STRING&gt;"]</code> — Puppet masterノード用に生成されるSSL証明書に追加されるDNSオルトネーム。 指定がない場合はデフォルトの<code>["puppet"]</code>が使われます。
+</p>
+  </li>
+  <li>
+    <p> <code> "puppet_enterprise::profile::master::code_manager_auto_configure": &lt;true or false&gt;</code>— コードマネージャサービスを自動設定するかどうか。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::profile::master::r10k_remote": "&lt;STRING&gt;"</code>— <code>r10k.yaml</code>ファイルに受け渡されるgit URL (たとえば、git@<your.git.server.com>:puppet/control.gitなど)。</your.git.server.com> r10k (および通常のgit) がサポートするURLなら、どのようなURLでも使用できます。 この指定が必要になるのは、PEインストール時にr10kを設定する場合のみです。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::profile::master::r10k_private_key": "&lt;STRING&gt;"</code>— r10kによりSSHプライベートキーを検索および使用できるPuppet master上のローカルファイルシステムパス (たとえば、/etc/puppetlabs/puppetserver/ssh/id-control_repo.rsaなど)。 この指定が必要になるのは、PEインストール時にr10kを設定する場合のみです。 これは<code>puppet_enterprise::profile::master::r10k_remote</code>と連動して指定する必要があります。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::use_application_services": &lt;true or false&gt;</code> — Puppetアプリケーションオーケストレーションを有効化するかどうか。 インストールの際に有効化しない選択をしても、後から有効化することができます。
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::puppetdb_port": "[INTEGER]"</code> — PuppetDBと通信するSSLポート。 
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::profile::master::check_for_updates": &lt;true or false&gt;</code> — pe-puppetserverサービスを再起動するたびにアップデートをチェックするかどうか。 デフォルトではアップデートチェックが有効化されます。 詳細については、「<a href="./config_puppetserver.html#disabling-update-checking">アップデートチェックの無効化 (Disabling update checking) </a>」を参照してください。 
+</p>
+  </li>
+  <li>
+    <p> <code>"puppet_enterprise::master::use_legacy_auth_conf": &lt;true or false&gt;</code> — レガシーauth.confファイルを使用するかどうか。 詳細については、「<a href="./install_upgrading_notes.html#changes-to-auth.conf-when-upgrading">アップグレード時に<code>auth.conf</code>に変更を加える (Changes to <code>auth.conf</code> when upgrading)</a>」を参照してください。
+</p>
+  </li>
+</ul>
+<h2 id="configuring-pe-settings-with-hiera-when-installing">インストール時のHieraによるPE設定</h2>
+
+<p> アップグレード時、<code>pe.conf</code>はデフォルトの<code>datadir</code>(<code>/etc/puppetlabs/code/environments/%{environment}/hieradata</code>)で<a href="./config_intro.html#configure-settings-with-hiera">Hieraを通じて指定した</a>すべてのPuppet Enterprise設定を引き継ぎます。
+</p>
+
+<p> Hiera <code>datadir</code>に<strong>デフォルトではないロケーション</strong>を使用している場合は、アップグレード時にそれらのHieraパラメータを追加するか、<code>pe.conf</code>にオーバーライドすることができますが、インストールの完了時にお使いの商用Hieraにそれらを追加する必要がある点に注意してください。そうしないと、Puppet実行時に上書きされます。
+</p>
+</div>

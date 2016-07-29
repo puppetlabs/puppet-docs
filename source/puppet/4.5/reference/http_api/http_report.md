@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
+built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: 'Puppet HTTP API: Report'
 canonical: /puppet/latest/reference/http_api/http_report.html
 ---
@@ -8,7 +8,7 @@ canonical: /puppet/latest/reference/http_api/http_report.html
 Report
 ======
 This document describes the Puppet master's report endpoint and the schema for
-Report Format 4 in technical term. Also see the
+Report Format 6 in technical term. Also see the
 [documentation](https://docs.puppetlabs.com/puppet/latest/reference/format_report.html).
 
 The `report` endpoint allows clients to send reports to the master via `http`
@@ -65,6 +65,7 @@ example is formatted for readability)
      "puppet_version"=>"3.3.0",
      "kind"=>"apply",
      "status"=>"unchanged",
+     "noop"=>false,
      "environment"=>"test_environment",
      "logs"=>
       [{"level"=>"warning",

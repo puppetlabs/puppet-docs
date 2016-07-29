@@ -76,11 +76,11 @@ Learn about different areas of Puppet, problem fixes, and design solutions.
 Get the latest version of Puppet up and running.
 
 * [An Introduction to Puppet](/guides/introduction.html)
-* [Installing Puppet 4 for Linux](/puppet/4.0/reference/install_linux.html)
-* [Installing Puppet 4 for Windows](/puppet/4.0/reference/install_windows.html)
+* [Installing Puppet 4 for Linux](/puppet/latest/reference/install_linux.html)
+* [Installing Puppet 4 for Windows](/puppet/latest/reference/install_windows.html)
 * Upgrading Puppet from 3.x to 4.x
-  * [Upgrading Puppet 3.x Agents](/puppet/4.0/reference/upgrade_agent.html)
-  * [Upgrading Puppet 3.x Servers](/puppet/4.0/reference/upgrade_server.html)
+  * [Upgrading Puppet 3.x Agents](/puppet/latest/reference/upgrade_agent.html)
+  * [Upgrading Puppet 3.x Servers](/puppet/latest/reference/upgrade_server.html)
 
 ### Previous install guides
 
@@ -94,21 +94,17 @@ Get the latest version of Puppet up and running.
 
 ### Help with writing Puppet code
 
-* [Visual index](/guides/techniques.html) --- A list of common syntax elements.
-* [Troubleshooting](/guides/troubleshooting.html) --- Avoid common problems and confusions.
-* [Style Guide](/guides/style_guide.html) --- Puppet community conventions.
-* [Exported Resources](/guides/exported_resources.html) --- Share data between hosts.
-* [Using the Augeas Resource Type](/guides/augeas.html) --- Safely edit many types of config files.
+* [Style Guide](/guides/style_guide.html) --- Puppet Language community conventions.
 
 ### Using optional features
 
-* [Puppet File Serving](/guides/file_serving.html) --- Files in modules are automatically served; this guide explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
+* [Puppet File Serving](/puppet/latest/reference/file_serving.html) --- Files in modules are automatically served; this explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
 
 ### Puppet on Windows
 
 You can manage Windows nodes side by side with your \*nix infrastructure, with Puppet 2.7 and higher (including Puppet Enterprise ≥ 2.5).
 
-* [Installing Puppet 4 for Windows](/puppet/4.0/reference/install_windows.html)
+* [Installing Puppet 4 for Windows](/puppet/latest/reference/install_windows.html)
 * [Basic tasks and concepts in Windows](/pe/latest/windows_basic_tasks.html)
 * [Troubleshooting Puppet on Windows](/pe/latest/troubleshooting_windows.html)
 
@@ -119,9 +115,6 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Running a Production-Grade Puppet Master Server With Passenger](/puppet/latest/reference/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
 * [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- A guide to deployments with multiple Puppet masters.
 
-### Hacking and extending: Using Puppet's data
-
-* [Reporting](/guides/reporting.html) --- Learn what your nodes are up to.
 
 ### Hacking and extending: APIs and interfaces
 

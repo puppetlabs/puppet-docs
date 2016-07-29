@@ -1,0 +1,52 @@
+---
+layout: default
+title: "モジュールインストールクイックスタートガイド"
+canonical: "/ja/pe/quick_start_module_install_nix.html"
+---
+
+<div>
+<h2 id="overview">概要</h2>
+
+<p> このガイドでは、puppetlabs-apacheモジュールをインストールします。このモジュールは、Puppet Enterpriseでの動作が保証されたモジュールです。 モジュールには<a href="/puppet/4.5/reference/lang_classes.html">クラス</a>が含まれています。クラスとは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 PEのお客様にはPuppet Forgeで提供される<a href="http://forge.puppet.com/supported">サポート付きモジュール</a>についてPuppet Labsからのサポートが提供されます。 これらのモジュールは、一般的なサービスをより簡単にするためのもので、Puppet社によりテストおよび維持されています。
+</p>
+
+<p> モジュール記述の基本QSGでは、<a href="./quick_writing_windows.html">Windows</a>または<a href="./quick_writing_nix.html">*nix</a>プラットフォーム上でのモジュールについて、モジュールのカスタマイズや独自に作成する方法も含めて説明します。
+</p>
+
+<blockquote>
+  <p> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>がインストールされているものと想定します。
+</p>
+</blockquote>
+
+<h2 id="installing-a-forge-module">Forgeモジュールをインストールする</h2>
+
+<p> Apacheモジュールをインストールするには、 <code>puppet module install puppetlabs-apache</code>を実行します。 結果が以下のように表示されます。
+</p>
+
+<pre><code> Preparing to install into /etc/puppetlabs/code/environments/production/modules ...
+ Notice: Downloading from http://forgeapi.puppetlabs.com ...
+ Notice: Installing -- do not interrupt ...
+ /etc/puppetlabs/code/environments/production/modules
+ └── puppetlabs-apache (v1.1.1)
+</code></pre>
+
+<p> モジュールの詳細情報は、<a href="http://forge.puppet.com/puppetlabs/apache">ForgeでのApacheモジュール</a>で見られます。
+</p>
+
+<p> <strong>これで、Puppetモジュールがインストールされました。</strong>モジュールのすべてのクラスをコンソールに追加し、ノードに割り当てられるようになりました。
+</p>
+
+<blockquote>
+  <h3 id="note-about-module-directories">モジュールディレクトリに関する注意</h3>
+
+  <p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これにはPEによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。
+</p>
+
+  <p> <strong>注意</strong>：PEによって、<code>/opt/puppetlabs/puppet/modules</code>のモジュールディレクトリも作成されます。  このディレクトリに内容を変更したり、モジュールを追加したりしないでください。
+</p>
+</blockquote>
+
+<hr>
+<p> 次の手順: <a href="./quick_start_adding_class_nix.html">Puppet agentノード(*nix)にクラスを追加する</a>
+</p>
+</div>

@@ -1,0 +1,133 @@
+---
+layout: default
+title: "テキストモードインストール: 分割"
+canonical: "/ja/pe/install_text_mode_split.html"
+---
+
+<div>
+<p> 以下では、Puppet Enterpriseのテキストモードの分割インストールを実施する方法を説明します。 このインストール方法では、Puppet master、PEコンソール、PuppetDBコンポーネントが3台の個別のマシンにインストールされます。各コンポーネントがそれぞれ1台のマシンにインストールされます。
+</p>
+
+<p> 各種のインストール方法の詳細については、「<a href="./install_system_requirements.html#choosing-a-pe-architecture">PEアーキテクチャの選択(Choosing a PE architecture)</a>」を参照してください。
+</p>
+
+<p> インストールを開始する前に、「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」をお読みください。
+</p>
+
+<h2 id="install-pe">PEのインストール</h2>
+
+<blockquote>
+  <p> <strong>重要：</strong>記載されている順序に従って、これらの手順を実行してください。 
+</p>
+</blockquote>
+
+<h3 id="step-1-install-the-puppet-master">ステップ1：Puppet masterのインストール</h3>
+
+<ol>
+<li>
+<a href="./install_basic.html#downloading-puppet-enterprise">適切なPE tarballをダウンロードし、検証します</a>。</li>
+  <li>
+<code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してtarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
+  <li>
+    <p> インストーラのディレクトリから、インストーラを実行します。 インストール手順は、どの方法を選択するかによって異なります。
+</p>
+
+    <ul>
+<li>
+        <p> 既存の<code>pe.conf</code>ファイルを使用する場合は、<code>pe.conf</code>ファイルを指す<strong><code>-c</code>フラグを用いて</strong>インストーラを実行します。
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+      </li>
+      <li>
+        <p> インストーラで<code>pe.conf</code>のコピーを開き、それを編集して使用する場合は、<strong><code>-c</code>フラグを用いずに</strong>インストーラを実行します。
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer
+</code></pre>
+
+        <p> プロンプトが表示されたら[text-mode]を選択します。 これにより、テキストエディタで<code>pe.conf</code>ファイルが開きます。このファイルをお使いのインフラに合わせて編集し、必要に応じて任意のテキストモードインストールのオプションを追加することができます。  ファイルを保存して閉じると、インストーラが実行されます。
+</p>
+      </li>
+    </ul>
+<blockquote>
+      <p> <strong>警告</strong>：分割インストールでは、Puppet masterに<code>"%{::trusted.certname}"</code>値を使用しないでください。 各コンポーネントノードに、適切なFQDN(<code>"puppet_enterprise::puppet_master_host":</code>、<code>"puppet_enterprise::console_host":</code>、<code>puppet_enterprise::puppetdb_host":</code>)を設定してください。
+</p>
+    </blockquote>
+  </li>
+</ol>
+<h3 id="step-2-install-puppetdb">ステップ2：PuppetDBのインストール</h3>
+
+<ol>
+<li>PEインストーラtarballと<code>pe.conf</code>ファイルをPuppetDBのノードに移動します。</li>
+  <li>
+<code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してtarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
+  <li>
+<code>pe.conf</code>パラメータ<code>puppet_enterprise::puppet_master_host</code>が<code>"%{::trusted.certname}"</code>に設定されている場合は、値をPuppet masterのFQDNに変更します。</li>
+  <li>インストーラのディレクトリから、<code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;</code>を実行します。</li>
+</ol>
+<h3 id="step-3-install-the-pe-console">ステップ3：PEコンソールのインストール</h3>
+
+<ol>
+<li>PEインストーラtarballと<code>pe.conf</code>ファイルをPEコンソールのノードに移動します。</li>
+  <li>
+<code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してtarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
+  <li>
+<code>pe.conf</code>パラメータ<code>puppet_enterprise::puppet_master_host</code>が<code>"%{::trusted.certname}"</code>に設定されている場合は、値をPuppet masterのFQDNに変更します。</li>
+  <li>インストーラのディレクトリから、<code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;</code>を実行します。</li>
+</ol>
+<h3 id="step-4-run-puppet">ステップ4：Puppetの実行</h3>
+
+<p> インストールを完了するには、以下の順序に従い、各PEノードで<code>puppet agent -t</code>を実行します。
+</p>
+
+<ol>
+<li>Puppet masterのノード</li>
+  <li>PuppetDBのノード</li>
+  <li>PEコンソールのノード</li>
+</ol>
+<p> インストール完了後は、更新された<code>pe.conf</code>ファイルを各コンポーネントノードの<code>/etc/puppetlabs/enterprise/conf.d</code>で見つけることができます。
+</p>
+
+<h3 id="mandatory-parameters-for-peconf">
+<code>pe.conf</code>の必須パラメータ</h3>
+
+<p> PEのインストールに必要な必須パラメータのリストについては、<a href="./install_pe_conf_param.html"><code>pe.conf</code>パラメータリファレンス</a>を参照してください。
+</p>
+
+<h3 id="text-mode-installation-options">テキストモードインストールのオプション</h3>
+
+<p> 上述したように、<code>pe.conf</code>ファイルを指定したテキストベースインストールのシンタックスは、次のようになります。
+</p>
+
+<pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+
+<p>  <code>-c</code>オプションを使用する場合、<code>pe.conf</code>ファイルをフルパスで指定する必要があります。 これを省略すると、コマンドが閉じてエラーメッセージが表示されます。
+</p>
+
+<p> <code>-c</code>オプションを使用する場合は、以下のオプションを用いることもできます。
+</p>
+
+<ul>
+<li>
+<code>-D</code>：インストーラによりデバッグ情報が表示されます。</li>
+  <li>
+<code>-l &lt;PATH to LOG FILE&gt;</code>：コマンドとその結果が、指定したログファイルに記録されます。</li>
+  <li>
+<code>-q</code>：インストーラがクワイエットモードで実行されます。インストールプロセスは表示されません。インストール中にエラーが生じた場合には、コマンドが終了してエラーメッセージが表示されます。</li>
+  <li>
+<code>-V</code>：きわめて詳細なデバッグ情報が表示されます。</li>
+</ul>
+<p> コマンドのヘルプ情報を見るには、以下を実行します。
+</p>
+
+<pre><code>sudo ./puppet-enterprise-installer -h
+</code></pre>
+
+<h2 id="rerunning-the-installer">インストーラの実行</h2>
+
+<p> PEインストーラは<em>べき等性</em>のインストーラです。つまり、結果に影響を与えずに、必要に応じて何度でも実行することができます。 インストール中にエラーが生じた場合は、修正してもう一度インストーラを実行することができます。
+</p>
+</div>

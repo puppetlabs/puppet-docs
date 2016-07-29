@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Module: Puppet
   
-    &mdash; Documentation by YARD 0.8.7.6
+    &mdash; Documentation by YARD 0.9.0
   
 </title>
 
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "Puppet";
   relpath = '';
-  framesUrl = "frames.html#!Puppet.html";
 </script>
 
 
@@ -28,63 +27,65 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="_index.html">Index (P)</a> &raquo;
     
     
     <span class="title">Puppet</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <iframe id="search_frame" src="class_list.html"></iframe>
 
-    <div id="content"><h1>Module: Puppet
+      <div id="content"><h1>Module: Puppet
   
   
   
 </h1>
+<div class="box_info">
+  
 
-<dl class="box">
-  
-  
-    
-  
-    
   
   
   
-    <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/puppet.rb<span class="defines">,<br />
-  lib/puppet/util.rb,<br /> lib/puppet/pops.rb,<br /> lib/puppet/type.rb,<br /> lib/puppet/error.rb,<br /> lib/puppet/vendor.rb,<br /> lib/puppet/version.rb,<br /> lib/puppet/loaders.rb,<br /> lib/puppet/type/zfs.rb,<br /> lib/puppet/defaults.rb,<br /> lib/puppet/type/user.rb,<br /> lib/puppet/type/host.rb,<br /> lib/puppet/type/exec.rb,<br /> lib/puppet/type/zpool.rb,<br /> lib/puppet/type/group.rb,<br /> lib/puppet/type/mount.rb,<br /> lib/puppet/application.rb,<br /> lib/puppet/type/sshkey.rb,<br /> lib/puppet/type/router.rb,<br /> lib/puppet/type/notify.rb,<br /> lib/puppet/module_tool.rb,<br /> lib/puppet/type/package.rb,<br /> lib/puppet/type/service.rb,<br /> lib/puppet/type/maillist.rb,<br /> lib/puppet/type/schedule.rb,<br /> lib/puppet/util/classgen.rb,<br /> lib/puppet/property/list.rb,<br /> lib/puppet/util/platform.rb,<br /> lib/puppet/util/run_mode.rb,<br /> lib/puppet/type/file/mode.rb,<br /> lib/puppet/util/execution.rb,<br /> lib/puppet/type/mailalias.rb,<br /> lib/puppet/type/file/type.rb,<br /> lib/puppet/type/filebucket.rb,<br /> lib/puppet/type/selboolean.rb,<br /> lib/puppet/type/file/ctime.rb,<br /> lib/puppet/type/file/owner.rb,<br /> lib/puppet/resource/status.rb,<br /> lib/puppet/type/file/mtime.rb,<br /> lib/puppet/type/file/group.rb,<br /> lib/puppet/type/file/ensure.rb,<br /> lib/puppet/type/file/source.rb,<br /> lib/puppet/type/file/target.rb,<br /> lib/puppet/property/keyvalue.rb,<br /> lib/puppet/ssl/configuration.rb,<br /> lib/puppet/type/file/content.rb,<br /> lib/puppet/util/command_line.rb,<br /> lib/puppet/network/authstore.rb,<br /> lib/puppet/network/authconfig.rb,<br /> lib/puppet/pops/parser/eparser.rb,<br /> lib/puppet/pops/parser/eparser.rb,<br /> lib/puppet/application_support.rb,<br /> lib/puppet/type/file/data_sync.rb,<br /> lib/puppet/type/file/selcontext.rb,<br /> lib/puppet/parser/parser_factory.rb,<br /> lib/puppet/property/ordered_list.rb,<br /> lib/puppet/util/symbolic_file_mode.rb,<br /> lib/puppet/util/constant_inflector.rb,<br /> lib/puppet/type/ssh_authorized_key.rb,<br /> lib/puppet/type/file/checksum_value.rb,<br /> lib/puppet/parser/e4_parser_adapter.rb,<br /> lib/puppet/util/command_line/trollop.rb,<br /> lib/puppet/module_tool/install_directory.rb,<br /> lib/puppet/ssl/certificate_authority/interface.rb,<br /> lib/puppet/util/command_line/puppet_option_parser.rb</span>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/puppet.rb<span class="defines">,<br />
+  lib/puppet/pops.rb,<br /> lib/puppet/util.rb,<br /> lib/puppet/type.rb,<br /> lib/puppet/error.rb,<br /> lib/puppet/vendor.rb,<br /> lib/puppet/version.rb,<br /> lib/puppet/loaders.rb,<br /> lib/puppet/defaults.rb,<br /> lib/puppet/type/zfs.rb,<br /> lib/puppet/type/host.rb,<br /> lib/puppet/type/user.rb,<br /> lib/puppet/type/exec.rb,<br /> lib/puppet/type/zpool.rb,<br /> lib/puppet/type/mount.rb,<br /> lib/puppet/type/group.rb,<br /> lib/puppet/module_tool.rb,<br /> lib/puppet/type/router.rb,<br /> lib/puppet/type/notify.rb,<br /> lib/puppet/application.rb,<br /> lib/puppet/type/sshkey.rb,<br /> lib/puppet/type/package.rb,<br /> lib/puppet/type/service.rb,<br /> lib/puppet/util/run_mode.rb,<br /> lib/puppet/util/platform.rb,<br /> lib/puppet/property/list.rb,<br /> lib/puppet/util/classgen.rb,<br /> lib/puppet/type/maillist.rb,<br /> lib/puppet/type/schedule.rb,<br /> lib/puppet/util/execution.rb,<br /> lib/puppet/type/mailalias.rb,<br /> lib/puppet/type/file/type.rb,<br /> lib/puppet/type/file/mode.rb,<br /> lib/puppet/type/file/owner.rb,<br /> lib/puppet/resource/status.rb,<br /> lib/puppet/type/file/mtime.rb,<br /> lib/puppet/type/filebucket.rb,<br /> lib/puppet/type/selboolean.rb,<br /> lib/puppet/type/file/ctime.rb,<br /> lib/puppet/type/file/group.rb,<br /> lib/puppet/type/file/ensure.rb,<br /> lib/puppet/type/file/target.rb,<br /> lib/puppet/type/file/source.rb,<br /> lib/puppet/util/command_line.rb,<br /> lib/puppet/type/file/content.rb,<br /> lib/puppet/network/authstore.rb,<br /> lib/puppet/property/keyvalue.rb,<br /> lib/puppet/ssl/configuration.rb,<br /> lib/puppet/network/authconfig.rb,<br /> lib/puppet/type/file/data_sync.rb,<br /> lib/puppet/pops/parser/eparser.rb,<br /> lib/puppet/pops/parser/eparser.rb,<br /> lib/puppet/application_support.rb,<br /> lib/puppet/type/file/selcontext.rb,<br /> lib/puppet/property/ordered_list.rb,<br /> lib/puppet/parser/parser_factory.rb,<br /> lib/puppet/type/ssh_authorized_key.rb,<br /> lib/puppet/util/symbolic_file_mode.rb,<br /> lib/puppet/util/constant_inflector.rb,<br /> lib/puppet/type/file/checksum_value.rb,<br /> lib/puppet/parser/e4_parser_adapter.rb,<br /> lib/puppet/util/command_line/trollop.rb,<br /> lib/puppet/module_tool/install_directory.rb,<br /> lib/puppet/ssl/certificate_authority/interface.rb,<br /> lib/puppet/util/command_line/puppet_option_parser.rb</span>
 </dd>
+  </dl>
   
-</dl>
-<div class="clear"></div>
+</div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
@@ -109,9 +110,6 @@
   
 </p>
 
-  <h2>Constant Summary</h2>
-  
-
 
 
 
@@ -121,7 +119,7 @@
   
     <h2>
       Class Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -130,7 +128,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#%5B%5D-class_method" title="[] (class method)">+ (Object) <strong>[]</strong>(param) </a>
+      <a href="#%5B%5D-class_method" title="[] (class method)">.<strong>[]</strong>(param)  &#x21d2; Object </a>
     
 
     
@@ -155,7 +153,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#base_context-class_method" title="base_context (class method)">+ (Object) <strong>base_context</strong>(settings) </a>
+      <a href="#base_context-class_method" title="base_context (class method)">.<strong>base_context</strong>(settings)  &#x21d2; Object </a>
     
 
     
@@ -180,7 +178,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#bootstrap_context-class_method" title="bootstrap_context (class method)">+ (Object) <strong>bootstrap_context</strong> </a>
+      <a href="#bootstrap_context-class_method" title="bootstrap_context (class method)">.<strong>bootstrap_context</strong>  &#x21d2; Object </a>
     
 
     
@@ -205,7 +203,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#ignore-class_method" title="ignore (class method)">+ (Object) <strong>ignore</strong>(name) </a>
+      <a href="#ignore-class_method" title="ignore (class method)">.<strong>ignore</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -229,7 +227,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize_settings-class_method" title="initialize_settings (class method)">+ <strong>initialize_settings</strong>(args = []) </a>
+      <a href="#initialize_settings-class_method" title="initialize_settings (class method)">.<strong>initialize_settings</strong>(args = [])  </a>
     
 
     
@@ -254,7 +252,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#lookup-class_method" title="lookup (class method)">+ (Object) <strong>lookup</strong>(name, &amp;block) </a>
+      <a href="#lookup-class_method" title="lookup (class method)">.<strong>lookup</strong>(name, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -279,7 +277,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#mark_context-class_method" title="mark_context (class method)">+ (Object) <strong>mark_context</strong>(name) </a>
+      <a href="#mark_context-class_method" title="mark_context (class method)">.<strong>mark_context</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -303,7 +301,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#override-class_method" title="override (class method)">+ (Object) <strong>override</strong>(bindings, description = &quot;&quot;) { ... }</a>
+      <a href="#override-class_method" title="override (class method)">.<strong>override</strong>(bindings, description = &quot;&quot;) { ... } &#x21d2; Object </a>
     
 
     
@@ -327,7 +325,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#pop_context-class_method" title="pop_context (class method)">+ (Object) <strong>pop_context</strong> </a>
+      <a href="#pop_context-class_method" title="pop_context (class method)">.<strong>pop_context</strong>  &#x21d2; Object </a>
     
 
     
@@ -352,7 +350,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#push_context-class_method" title="push_context (class method)">+ (Object) <strong>push_context</strong>(overrides, description = &quot;&quot;) </a>
+      <a href="#push_context-class_method" title="push_context (class method)">.<strong>push_context</strong>(overrides, description = &quot;&quot;)  &#x21d2; Object </a>
     
 
     
@@ -376,7 +374,7 @@
 <li class="private ">
   <span class="summary_signature">
     
-      <a href="#read_version_file-class_method" title="read_version_file (class method)">+ (String) <strong>read_version_file</strong>(path) </a>
+      <a href="#read_version_file-class_method" title="read_version_file (class method)">.<strong>read_version_file</strong>(path)  &#x21d2; String </a>
     
 
     
@@ -401,7 +399,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#restore-class_method" title="restore (class method)">+ (Object) <strong>restore</strong>(name) </a>
+      <a href="#restore-class_method" title="restore (class method)">.<strong>restore</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -425,7 +423,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#rollback_context-class_method" title="rollback_context (class method)">+ (Object) <strong>rollback_context</strong>(name) </a>
+      <a href="#rollback_context-class_method" title="rollback_context (class method)">.<strong>rollback_context</strong>(name)  &#x21d2; Object </a>
     
 
     
@@ -449,7 +447,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#version-class_method" title="version (class method)">+ (String) <strong>version</strong> </a>
+      <a href="#version-class_method" title="version (class method)">.<strong>version</strong>  &#x21d2; String </a>
     
 
     
@@ -511,7 +509,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="[]-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>[]</strong>(param) 
+    .<strong>[]</strong>(param)  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
   
 
   
@@ -578,7 +576,7 @@
       <div class="method_details ">
   <h3 class="signature " id="base_context-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>base_context</strong>(settings) &nbsp;<span class="private note title">private</span>
+    .<strong>base_context</strong>(settings)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -690,7 +688,7 @@ or a Hash of settings key/value pairs.</p>
       <div class="method_details ">
   <h3 class="signature " id="bootstrap_context-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>bootstrap_context</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>bootstrap_context</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -743,7 +741,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="ignore-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>ignore</strong>(name) &nbsp;<span class="private note title">private</span>
+    .<strong>ignore</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -805,7 +803,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="initialize_settings-class_method">
   
-    + <strong>initialize_settings</strong>(args = []) 
+    .<strong>initialize_settings</strong>(args = [])  
   
 
   
@@ -869,7 +867,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="lookup-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>lookup</strong>(name, &amp;block) &nbsp;<span class="private note title">private</span>
+    .<strong>lookup</strong>(name, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -913,7 +911,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="mark_context-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>mark_context</strong>(name) &nbsp;<span class="private note title">private</span>
+    .<strong>mark_context</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -956,7 +954,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="override-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>override</strong>(bindings, description = &quot;&quot;) { ... }&nbsp;<span class="private note title">private</span>
+    .<strong>override</strong>(bindings, description = &quot;&quot;) { ... } &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1052,7 +1050,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="pop_context-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>pop_context</strong> &nbsp;<span class="private note title">private</span>
+    .<strong>pop_context</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1113,7 +1111,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="push_context-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>push_context</strong>(overrides, description = &quot;&quot;) &nbsp;<span class="private note title">private</span>
+    .<strong>push_context</strong>(overrides, description = &quot;&quot;)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1192,7 +1190,7 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <div class="method_details ">
   <h3 class="signature " id="read_version_file-class_method">
   
-    + (<tt>String</tt>) <strong>read_version_file</strong>(path)  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+    .<strong>read_version_file</strong>(path)  &#x21d2; <tt>String</tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
   
 
   
@@ -1259,7 +1257,7 @@ file does not exist.</p>
       <div class="method_details ">
   <h3 class="signature " id="restore-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>restore</strong>(name) &nbsp;<span class="private note title">private</span>
+    .<strong>restore</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1321,7 +1319,7 @@ file does not exist.</p>
       <div class="method_details ">
   <h3 class="signature " id="rollback_context-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>rollback_context</strong>(name) &nbsp;<span class="private note title">private</span>
+    .<strong>rollback_context</strong>(name)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1364,7 +1362,7 @@ file does not exist.</p>
       <div class="method_details ">
   <h3 class="signature " id="version-class_method">
   
-    + (<tt>String</tt>) <strong>version</strong> 
+    .<strong>version</strong>  &#x21d2; <tt>String</tt> 
   
 
   
@@ -1480,11 +1478,12 @@ $ ruby -r puppet -e &#39;puts Puppet.version&#39;
 
 </div>
 
-    <div id="footer">
-  Generated on Mon May 16 22:13:32 2016 by
+      <div id="footer">
+  Generated on Thu Jul  7 12:40:29 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.0.0).
+  0.9.0 (ruby-2.0.0).
 </div>
 
+    </div>
   </body>
 </html>

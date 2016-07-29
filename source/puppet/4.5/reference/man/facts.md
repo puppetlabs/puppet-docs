@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: b380e05a9f0ddb6bcfdbb050a1ff45783922c454
+built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: 'Man Page: puppet facts'
 canonical: /puppet/latest/reference/man/facts.html
 ---

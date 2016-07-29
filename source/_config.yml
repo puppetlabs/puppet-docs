@@ -18,7 +18,7 @@ defaultnav:
   /forge: /_includes/forge.html
   /guides/deployment_guide: /_includes/deploy_guide.html
   /guides/install_puppet: /_includes/puppet_general.html
-  /de: /_includes/de_pe2015.2.html
+  /de: /_includes/de_pe.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
@@ -32,6 +32,7 @@ defaultnav:
   /learning: /_includes/learning_nav.html
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
+  /upgrade: /upgrade/_upgrade_toc.html
 
 #Anatomy of an external source:
 #  /puppetdb/2.2:                                   # The absolute URL where the source's contents should be mounted in the final site.
@@ -240,7 +241,7 @@ documents:
     version: 4.5
     nav: ./_puppet_toc.html
     my_versions:
-      facter: 3.1
+      facter: 3.3
       hiera: 3.2
       puppetserver: 2.4
   /puppet/4.4/reference:
@@ -329,6 +330,10 @@ documents:
     doc: facter
     version: 3.1
     nav: ./_facter_toc.html
+  /facter/3.1:
+    doc: facter
+    version: 3.1
+    nav: ./_facter_toc.html
   /facter/3.0:
     doc: facter
     version: 3.0
@@ -362,11 +367,14 @@ documents:
     version: 1.6
     nav: /_includes/facter16.html
 
+  /hiera/3.2:
+    doc: hiera
+    version: 3.2
+    nav: ./_hiera_toc.html
   /hiera/3.1:
     doc: hiera
     version: 3.1
     nav: ./_hiera_toc.html
-    # hide: true
   /hiera/3.0:
     doc: hiera
     version: 3.0

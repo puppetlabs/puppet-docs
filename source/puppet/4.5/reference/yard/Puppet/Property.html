@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
   Class: Puppet::Property
   
-    &mdash; Documentation by YARD 0.8.7.6
+    &mdash; Documentation by YARD 0.9.0
   
 </title>
 
@@ -15,9 +15,8 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  hasFrames = window.top.frames.main ? true : false;
+  pathId = "Puppet::Property";
   relpath = '../';
-  framesUrl = "../frames.html#!Puppet/Property.html";
 </script>
 
 
@@ -28,51 +27,50 @@
 
   </head>
   <body>
-    <div id="header">
-      <div id="menu">
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
   
     <a href="../_index.html">Index (P)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span>
      &raquo; 
     <span class="title">Property</span>
   
-
-  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
 </div>
 
-      <div id="search">
+        <div id="search">
   
     <a class="full_list_link" id="class_list_link"
         href="../class_list.html">
-      Class List
-    </a>
-  
-    <a class="full_list_link" id="method_list_link"
-        href="../method_list.html">
-      Method List
-    </a>
-  
-    <a class="full_list_link" id="file_list_link"
-        href="../file_list.html">
-      File List
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
     </a>
   
 </div>
-      <div class="clear"></div>
-    </div>
+        <div class="clear"></div>
+      </div>
 
-    <iframe id="search_frame"></iframe>
+      <iframe id="search_frame" src="../class_list.html"></iframe>
 
-    <div id="content"><h1>Class: Puppet::Property
+      <div id="content"><h1>Class: Puppet::Property
   <span class="abstract note title">Abstract</span>
   
   
 </h1>
-
-<dl class="box">
+<div class="box_info">
   
-    <dt class="r1">Inherits:</dt>
-    <dd class="r1">
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
       <span class="inheritName"><span class='object_link'><a href="Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span></span>
       
         <ul class="fullTree">
@@ -85,23 +83,27 @@
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
       
-      </dd>
-    
+    </dd>
+  </dl>
   
-  
-    
-  
-    
+
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/puppet/property.rb<span class="defines">,<br />
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/puppet/property.rb<span class="defines">,<br />
   lib/puppet/type/zpool.rb,<br /> lib/puppet/property/list.rb,<br /> lib/puppet/property/keyvalue.rb,<br /> lib/puppet/property/ordered_list.rb</span>
 </dd>
+  </dl>
   
-</dl>
-<div class="clear"></div>
+</div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
@@ -172,20 +174,17 @@ that is operated on.</p>
   
 </p>
 
-  <h2>Constant Summary</h2>
-  
 
 
 
-
-  <h2>Class Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <h2>Class Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
     
       
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#array_matching-class_method" title="array_matching (class method)">+ (Symbol) <strong>array_matching</strong> </a>
+      <a href="#array_matching-class_method" title="array_matching (class method)">.<strong>array_matching</strong>  &#x21d2; Symbol </a>
     
 
     
@@ -226,7 +225,7 @@ that is operated on.</p>
   
     <h2>
       Class Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -235,7 +234,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#method_added-class_method" title="method_added (class method)">+ (Object) <strong>method_added</strong>(sym) </a>
+      <a href="#method_added-class_method" title="method_added (class method)">.<strong>method_added</strong>(sym)  &#x21d2; Object </a>
     
 
     
@@ -260,7 +259,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#newvalue-class_method" title="newvalue (class method)">+ (Object) <strong>newvalue</strong>(name, options = {}, &amp;block) </a>
+      <a href="#newvalue-class_method" title="newvalue (class method)">.<strong>newvalue</strong>(name, options = {}, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -287,7 +286,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#value_name-class_method" title="value_name (class method)">+ (Symbol, Regexp) <strong>value_name</strong>(name) </a>
+      <a href="#value_name-class_method" title="value_name (class method)">.<strong>value_name</strong>(name)  &#x21d2; Symbol, Regexp </a>
     
 
     
@@ -312,7 +311,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#value_option-class_method" title="value_option (class method)">+ (Object) <strong>value_option</strong>(name, option) </a>
+      <a href="#value_option-class_method" title="value_option (class method)">.<strong>value_option</strong>(name, option)  &#x21d2; Object </a>
     
 
     
@@ -337,7 +336,7 @@ that is operated on.</p>
   
     <h2>
       Instance Method Summary
-      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+      <small><a href="#" class="summary_toggle">collapse</a></small>
     </h2>
 
     <ul class="summary">
@@ -346,7 +345,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#call_provider-instance_method" title="#call_provider (instance method)">- (Object) <strong>call_provider</strong>(value) </a>
+      <a href="#call_provider-instance_method" title="#call_provider (instance method)">#<strong>call_provider</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -371,7 +370,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#insync%3F-instance_method" title="#insync? (instance method)">- (Boolean) <strong>insync?</strong>(is) </a>
+      <a href="#insync%3F-instance_method" title="#insync? (instance method)">#<strong>insync?</strong>(is)  &#x21d2; Boolean </a>
     
 
     
@@ -396,7 +395,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#safe_insync%3F-instance_method" title="#safe_insync? (instance method)">- (Boolean) <strong>safe_insync?</strong>(is) </a>
+      <a href="#safe_insync%3F-instance_method" title="#safe_insync? (instance method)">#<strong>safe_insync?</strong>(is)  &#x21d2; Boolean </a>
     
 
     
@@ -421,7 +420,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#set-instance_method" title="#set (instance method)">- (Object) <strong>set</strong>(value) </a>
+      <a href="#set-instance_method" title="#set (instance method)">#<strong>set</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -446,7 +445,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#should-instance_method" title="#should (instance method)">- (Array&lt;Object&gt;, ...) <strong>should</strong> </a>
+      <a href="#should-instance_method" title="#should (instance method)">#<strong>should</strong>  &#x21d2; Array&lt;Object&gt;, ... </a>
     
 
     
@@ -471,7 +470,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#should%3D-instance_method" title="#should= (instance method)">- (Object) <strong>should=</strong>(values) </a>
+      <a href="#should%3D-instance_method" title="#should= (instance method)">#<strong>should=</strong>(values)  &#x21d2; Object </a>
     
 
     
@@ -496,7 +495,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#unsafe_validate-instance_method" title="#unsafe_validate (instance method)">- <strong>unsafe_validate</strong>(value) </a>
+      <a href="#unsafe_validate-instance_method" title="#unsafe_validate (instance method)">#<strong>unsafe_validate</strong>(value)  </a>
     
 
     
@@ -521,7 +520,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#validate_features_per_value-instance_method" title="#validate_features_per_value (instance method)">- <strong>validate_features_per_value</strong>(value) </a>
+      <a href="#validate_features_per_value-instance_method" title="#validate_features_per_value (instance method)">#<strong>validate_features_per_value</strong>(value)  </a>
     
 
     
@@ -546,7 +545,7 @@ that is operated on.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#value%3D-instance_method" title="#value= (instance method)">- (Object) <strong>value=</strong>(values) </a>
+      <a href="#value%3D-instance_method" title="#value= (instance method)">#<strong>value=</strong>(values)  &#x21d2; Object </a>
     
 
     
@@ -643,7 +642,7 @@ that is operated on.</p>
       <div class="method_details first">
   <h3 class="signature first" id="array_matching-class_method">
   
-    + (<tt><span class='object_link'>Symbol</span></tt>) <strong>array_matching</strong> &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>array_matching</strong>  &#x21d2; <tt><span class='object_link'>Symbol</span></tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -749,7 +748,7 @@ a value in <code>should</code>.</li>
       <div class="method_details first">
   <h3 class="signature first" id="method_added-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>method_added</strong>(sym) &nbsp;<span class="private note title">private</span>
+    .<strong>method_added</strong>(sym)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -810,7 +809,7 @@ a value in <code>should</code>.</li>
       <div class="method_details ">
   <h3 class="signature " id="newvalue-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>newvalue</strong>(name, options = {}, &amp;block) &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>newvalue</strong>(name, options = {}, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -993,7 +992,7 @@ argument).</p>
       <div class="method_details ">
   <h3 class="signature " id="value_name-class_method">
   
-    + (<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>) <strong>value_name</strong>(name) &nbsp;<span class="private note title">private</span>
+    .<strong>value_name</strong>(name)  &#x21d2; <tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1077,7 +1076,7 @@ argument).</p>
       <div class="method_details ">
   <h3 class="signature " id="value_option-class_method">
   
-    + (<tt><span class='object_link'>Object</span></tt>) <strong>value_option</strong>(name, option) &nbsp;<span class="private note title">private</span>
+    .<strong>value_option</strong>(name, option)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1206,7 +1205,7 @@ argument).</p>
       <div class="method_details first">
   <h3 class="signature first" id="call_provider-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>call_provider</strong>(value) &nbsp;<span class="private note title">private</span>
+    #<strong>call_provider</strong>(value)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1303,7 +1302,7 @@ argument).</p>
       <div class="method_details ">
   <h3 class="signature " id="insync?-instance_method">
   
-    - (<tt><span class='object_link'>Boolean</span></tt>) <strong>insync?</strong>(is) 
+    #<strong>insync?</strong>(is)  &#x21d2; <tt><span class='object_link'>Boolean</span></tt> 
   
 
   
@@ -1487,7 +1486,7 @@ override this method if there is a need to have more control over the array matc
       <div class="method_details ">
   <h3 class="signature " id="safe_insync?-instance_method">
   
-    - (<tt><span class='object_link'>Boolean</span></tt>) <strong>safe_insync?</strong>(is) &nbsp;<span class="private note title">private</span>
+    #<strong>safe_insync?</strong>(is)  &#x21d2; <tt><span class='object_link'>Boolean</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1570,7 +1569,7 @@ a state that can not be fixed and the property is reported to be in sync.</p>
       <div class="method_details ">
   <h3 class="signature " id="set-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>set</strong>(value) 
+    #<strong>set</strong>(value)  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
   
 
   
@@ -1719,7 +1718,7 @@ as a Puppet::Error. The original exception is wrapped and logged.</p>
       <div class="method_details ">
   <h3 class="signature " id="should-instance_method">
   
-    - (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Object</span>&gt;</tt>, ...) <strong>should</strong> 
+    #<strong>should</strong>  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Object</span>&gt;</tt>, ... 
   
 
   
@@ -1827,7 +1826,7 @@ wanted values.</p>
       <div class="method_details ">
   <h3 class="signature " id="should=-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>should=</strong>(values) 
+    #<strong>should=</strong>(values)  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
   
 
   
@@ -1915,7 +1914,7 @@ This method also sets the cached original <em>should</em> values returned by <sp
       <div class="method_details ">
   <h3 class="signature " id="unsafe_validate-instance_method">
   
-    - <strong>unsafe_validate</strong>(value) &nbsp;<span class="private note title">private</span>
+    #<strong>unsafe_validate</strong>(value)  &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1979,7 +1978,7 @@ If the developer uses a &#39;validate&#39; hook, this method will get overridden
       <div class="method_details ">
   <h3 class="signature " id="validate_features_per_value-instance_method">
   
-    - <strong>validate_features_per_value</strong>(value) &nbsp;<span class="private note title">private</span>
+    #<strong>validate_features_per_value</strong>(value)  &nbsp;<span class="private note title">private</span>
   
 
   
@@ -2048,7 +2047,7 @@ If the developer uses a &#39;validate&#39; hook, this method will get overridden
       <div class="method_details ">
   <h3 class="signature " id="value=-instance_method">
   
-    - (<tt><span class='object_link'>Object</span></tt>) <strong>value=</strong>(values) 
+    #<strong>value=</strong>(values)  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
   
 
   
@@ -2127,11 +2126,12 @@ This method also sets the cached original <em>should</em> values returned by <sp
 
 </div>
 
-    <div id="footer">
-  Generated on Mon May 16 22:13:34 2016 by
+      <div id="footer">
+  Generated on Thu Jul  7 12:40:34 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.0.0).
+  0.9.0 (ruby-2.0.0).
 </div>
 
+    </div>
   </body>
 </html>

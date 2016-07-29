@@ -19,16 +19,30 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), s
 
 Also of interest: the [Puppet 4.4 release notes](/puppet/4.4/reference/release_notes.html) and [Puppet 4.3 release notes](/puppet/4.3/reference/release_notes.html).
 
+## Puppet 4.5.3
+
+Released July 20, 2016.
+
+A minor bug fix release in the Puppet 4.5 series.
+
+* [Fixed in Puppet 4.5.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.5.3%27)
+* [Introduced in Puppet 4.5.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27PUP%204.5.3%27)
+
+### Bug fix
+
+* [PUP-4904](https://tickets.puppetlabs.com/browse/PUP-4904): Previously, the command `puppet describe -s ssh_authorized_key` produced garbage output because of long lines of text. This has been fixed.
+
 ## Puppet 4.5.2
 
 Released June 14, 2016.
 
 A bug fix release in the Puppet 4.5 series.
 
-* [Fixed in Puppet 4.5.1]()
-* [Introduced in Puppet 4.5.1]()
+* [Fixed in Puppet 4.5.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.5.2%27)
+* [Introduced in Puppet 4.5.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27PUP%204.5.2%27)
 
 ### Bug fixes
+
 * [PUP-6279](https://tickets.puppetlabs.com/browse/PUP-6279): It was not possible to call the type() function using postfix notation, for example `1.type()` would not work, but `type(1)` did. Now both work.
 
 
