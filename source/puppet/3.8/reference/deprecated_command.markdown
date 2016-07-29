@@ -6,7 +6,7 @@ title: "Deprecated Command Line Features"
 [puppet.conf]: ./config_file_main.html
 [auth.conf]: ./config_file_auth.html
 [mcollective]: /mcollective/
-[pe_mco_puppet]: /pe/latest/orchestration_puppet.html
+[pe_mco_puppet]: {{pe}}/orchestration_puppet.html
 [pssh]: https://code.google.com/p/parallel-ssh/
 [puppetdb]: {{puppetdb}}
 [inventory service]: https://github.com/puppetlabs/puppet-docs/blob/0db89cbafa112be256aab67c42b913501200cdca/source/guides/inventory_service.markdown

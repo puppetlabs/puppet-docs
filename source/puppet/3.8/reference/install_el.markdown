@@ -3,9 +3,9 @@ layout: default
 title: "Installing Puppet: Red Hat Enterprise Linux (and Derivatives)"
 ---
 
-[peinstall]: /pe/latest/install_basic.html
+[peinstall]: {{pe}}/install_basic.html
 [install-latest]: /puppet/latest/reference/install_pre.html
-[puppet enterprise]: /pe/latest/
+[puppet enterprise]: {{pe}}/
 
 > **Note:** This document covers open source releases of Puppet version 3.8 and lower. You might also want instructions for [installing Puppet Enterprise][peinstall] or [installing Puppet 4.0 or newer.][install-latest]
 

@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/services_master_windows.html"
 [puppet.conf]: ./config_file_main.html
 [runinterval]: ./configuration.html#runinterval
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
-[page on triggering puppet runs]: /pe/latest/orchestration_puppet.html
+[page on triggering puppet runs]: {{pe}}/orchestration_puppet.html
 [msiproperties]: install_windows.html#automated-installation
 [uac]: ./images/uac.png
 [rightclick]: ./images/run_as_admin.png

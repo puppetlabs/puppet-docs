@@ -3,7 +3,7 @@ layout: default
 title: "Installing Puppet: Post-Install Tasks"
 ---
 
-[peinstall]: /pe/latest/install_basic.html
+[peinstall]: {{pe}}/install_basic.html
 [hiera_include]: {{hiera}}/puppet.html#assigning-classes-to-nodes-with-hiera-hierainclude
 [hiera]: {{hiera}}/
 [puppet.conf]: ./config_file_main.html
