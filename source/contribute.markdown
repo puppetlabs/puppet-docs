@@ -16,7 +16,7 @@ In your ticket, provide as much information as possible about what's missing, wh
 
 ### Emailing us
 
-If you spot a typo or other minor error and don't want to go through the overhead of filing a ticket or editing the documentation, you can report it by email to <docs@puppetlabs.com>.
+If you spot a typo or other minor error and don't want to go through the overhead of filing a ticket or editing the documentation, you can report it by email to <docs@puppet.com>.
 
 ### Sending a Github pull request
 
@@ -28,7 +28,7 @@ Documentation source files for certain Puppet-related components, such as Puppet
 
 ### Source files
 
-Puppet documentation is written in [Markdown format](https://daringfireball.net/projects/markdown/syntax), and stored in the `source` directory of the [puppet-docs](http://github.com/puppetlabs/puppet-docs) Github repository. Our build converts it to HTML and publishes it to <https://docs.puppetlabs.com/puppet/>. 
+Puppet documentation is written in [Markdown format](https://daringfireball.net/projects/markdown/syntax), and stored in the `source` directory of the [puppet-docs](http://github.com/puppetlabs/puppet-docs) Github repository. Our build converts it to HTML and publishes it to <https://docs.puppet.com/puppet/>. 
 
 Each documentation `.markdown` or `.md` file starts with a (non-Markdown) header section, where you provide the topic title:
 

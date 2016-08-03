@@ -7,7 +7,7 @@ canonical: "/puppet/latest/reference/lang_reserved.html"
 [settings]: ./config_about_settings.html
 [tags]: ./future_lang_tags.html
 [built_in]: ./future_lang_variables.html#facts-and-built-in-variables
-[facts]: /facter/latest/core_facts.html
+[facts]: {{facter}}/core_facts.html
 [capture]: ./future_lang_data_regexp.html#regex-capture-variables
 [conditional]: ./future_lang_conditional.html
 [topscope]: ./future_lang_scope.html#top-scope

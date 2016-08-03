@@ -20,7 +20,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [report_reference]: ./report.html
 [write_reports]: /guides/reporting.html#writing-custom-reports
 [passenger_headers]: /guides/passenger.html#notes-on-ssl-verification
-[puppetdb_install]: /puppetdb/latest/connect_puppet_master.html
+[puppetdb_install]: {{puppetdb}}/connect_puppet_master.html
 [static_compiler]: ./indirection.html#staticcompiler-terminus
 [ssl_autosign]: ./ssl_autosign.html
 [structured_facts]: ./lang_facts_and_builtin_vars.html#data-types

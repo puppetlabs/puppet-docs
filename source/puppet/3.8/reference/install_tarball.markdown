@@ -3,7 +3,7 @@ layout: default
 title: "Installing Puppet: From Source Tarballs"
 ---
 
-[peinstall]: /pe/latest/install_basic.html
+[peinstall]: {{pe}}/install_basic.html
 [confdir]: /puppet/latest/reference/dirs_confdir.html
 [puppet.conf]: /puppet/latest/reference/config_file_main.html
 [auth.conf]: /puppet/latest/reference/config_file_auth.html

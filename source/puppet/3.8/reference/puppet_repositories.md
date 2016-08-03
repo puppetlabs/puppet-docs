@@ -10,7 +10,7 @@ Puppet packages software in repositories for *nix operating systems, and in exec
 > -   For a detailed walkthrough of installing open source Puppet 3.8, start with the [pre-install tasks](./pre_install.html).
 > -   For Puppet 4, see the [Puppet Collection documentation](/puppet/latest/reference/puppet_collections.html).
 > -   For Puppet Enterprise 3.8, start with its [system requirements](/pe/3.8/install_system_requirements.html).
-> -   For the latest version of Puppet Enterprise, start with its [system requirements](/pe/latest/install_system_requirements.html).
+> -   For the latest version of Puppet Enterprise, start with its [system requirements]({{pe}}/install_system_requirements.html).
 
 ## *nix package repositories
 

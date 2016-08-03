@@ -11,8 +11,8 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 
 [plugins]: ./plugins_in_modules.html
 
-[external facts]: /facter/latest/custom_facts.html#external-facts
-[custom facts]: /facter/latest/custom_facts.html
+[external facts]: {{facter}}/custom_facts.html#external-facts
+[custom facts]: {{facter}}/custom_facts.html
 [classes]: ./lang_classes.html
 [defined_types]: ./lang_defined_types.html
 [enc]: /guides/external_nodes.html
