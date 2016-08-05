@@ -93,7 +93,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/couch
+      commit: origin/pe2016.2.1
       subdirectory: source
     my_versions:
       puppet: 4.5
@@ -151,7 +151,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe3.8.5
+      commit: origin/pe3.8.6
       subdirectory: source
     my_versions:
       puppet: 3.8
