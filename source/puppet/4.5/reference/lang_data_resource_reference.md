@@ -19,7 +19,7 @@ Resource references identify a specific Puppet [resource][] by its type and titl
 
 ## Syntax
 
-``` ruby
+``` puppet
 # A reference to a file resource:
 subscribe => File['/etc/ntp.conf'],
 ...
@@ -40,7 +40,7 @@ Unlike variables, resource references are not evaluation-order dependent, and ca
 
 Class references work identically to resource references, but use the pseudo-resource type `Class` instead of some other resource type name.
 
-``` ruby
+``` puppet
 require => Class['ntp::install'],
 ```
 
@@ -49,7 +49,7 @@ require => Class['ntp::install'],
 
 Resource reference expressions with an **array of titles** or **comma-separated list of titles** refer to multiple resources of the same type. They evaluate to an array of single-title resource references.
 
-``` ruby
+``` puppet
 # A multi-resource reference:
 require => File['/etc/apache2/httpd.conf', '/etc/apache2/magic', '/etc/apache2/mime.types'],
 # An equivalent multi-resource reference:
@@ -64,7 +64,7 @@ They can be used wherever an array of references might be used. They can also go
 
 You can use a resource reference to access the values of a [resource][]'s attributes. To access a value, use square brackets and the name of an attribute (as a [string][]). This works much like [accessing hash values.][hash access]
 
-``` ruby
+``` puppet
 file { "/etc/first.conf":
   ensure => file,
   mode   => "0644",
@@ -102,19 +102,19 @@ If you just need to restrict values for a class or defined type parameter so tha
 
 To allow a resource reference of any resource type, use a data type of:
 
-``` ruby
+``` puppet
 Type[Resource]
 ```
 
 To allow resource references _and_ class references, use a data type of:
 
-``` ruby
+``` puppet
 Type[Catalogentry]
 ```
 
 To allow a resource reference of a _specific_ resource type --- in this example, `file` --- use one of the following:
 
-``` ruby
+``` puppet
 Type[File]              # Capitalized resource type name
 Type[Resource["file"]]  # `Resource` data type, with type name in parameter as a string
 Type[Resource[File]]    # `Resource` data type, with capitalized resource type name

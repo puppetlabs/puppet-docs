@@ -43,7 +43,7 @@ The most common use cases are monitoring and backups. A class that manages a ser
 
 Using exported resources requires two steps: declaring and collecting.
 
-``` ruby
+``` puppet
 class ssh {
   # Declare:
   @@sshkey { $hostname:
@@ -61,7 +61,7 @@ In the example above, every node with the `ssh` class will export its own SSH ho
 
 To declare an exported resource, prepend `@@` (a double "at" sign) to the **resource type** of a standard [resource declaration][resources]:
 
-``` ruby
+``` puppet
 @@nagios_service { "check_zfs${hostname}":
   use                 => 'generic-service',
   host_name           => "$fqdn",
@@ -76,7 +76,7 @@ To declare an exported resource, prepend `@@` (a double "at" sign) to the **reso
 
 To collect exported resources you must use an [exported resource collector][exported_collector]:
 
-``` ruby
+``` puppet
 Nagios_service <<| |>> # Collect all exported nagios_service resources
 
 #  Collect exported file fragments for building a Bacula config file:

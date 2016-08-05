@@ -63,7 +63,7 @@ Functions must always be called with their full names; you can't shorten a quali
 
 You can call a function by writing its name and providing a list of arguments in parentheses.
 
-``` ruby
+``` puppet
 file {"/etc/ntp.conf":
   ensure  => file,
   content => template("ntp/ntp.conf.erb"), # function call; resolves to a string
@@ -112,7 +112,7 @@ The general form of a prefix function call is:
 
 You can also call a function by writing its first argument, a period, and the name of the function.
 
-``` ruby
+``` puppet
 file {"/etc/ntp.conf":
   ensure  => file,
   content => "ntp/ntp.conf.erb".template, # function call; resolves to a string

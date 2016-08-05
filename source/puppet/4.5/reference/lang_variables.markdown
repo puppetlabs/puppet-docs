@@ -34,7 +34,7 @@ In the Puppet language, variables are actually constants, since they [can't be r
 
 ### Assignment
 
-``` ruby
+``` puppet
 $content = "some content\n"
 ```
 
@@ -77,7 +77,7 @@ There can be extra key/value pairs in the hash, but all variables to the left of
 
 ### Resolution
 
-``` ruby
+``` puppet
 file {'/tmp/testing':
   ensure  => file,
   content => $content,
@@ -92,7 +92,7 @@ By default, unassigned variables have a value of [`undef`][undef]; see [Unassign
 
 ### Interpolation
 
-``` ruby
+``` puppet
 $rule = "Allow * from $ipaddress"
 file { "${homedir}/.vim":
   ensure => directory,
@@ -117,7 +117,7 @@ See the [section on scope][scope] for complete details.
 
 You can access out-of-scope variables from named scopes by using their [qualified names](#naming):
 
-``` ruby
+``` puppet
 $vhostdir = $apache::params::vhostdir
 ```
 
@@ -135,7 +135,7 @@ If you'd rather have unassigned variable usage throw an error, so you can get wa
 
 Unlike most other languages, Puppet only allows a given variable to be assigned **once** within a given [scope][]. You may not change the value of a variable, although you may assign a different value to the same variable name in a new scope:
 
-``` ruby
+``` puppet
 # scope-example.pp
 # Run with puppet apply --certname www1.example.com scope-example.pp
 $myvar = "Top scope value"

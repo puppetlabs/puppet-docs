@@ -86,7 +86,7 @@ For more information, see [the reference page on catalog compilation][compilatio
 
 The following short manifest manages NTP. It uses [package][], [file][], and [service][] resources; a [case statement][case] based on a [fact][]; [variables][]; [ordering][] and [notification][] relationships; and [file contents being served from a module][fileserve].
 
-``` ruby
+``` puppet
 case $operatingsystem {
   centos, redhat: { $service_name = 'ntpd' }
   debian, ubuntu: { $service_name = 'ntp' }

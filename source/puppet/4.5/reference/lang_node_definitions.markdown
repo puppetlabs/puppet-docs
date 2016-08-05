@@ -37,7 +37,7 @@ Node definitions should go in [the main manifest][sitepp]. The main manifest can
 ## Syntax
 
 
-``` ruby
+``` puppet
 # /etc/puppetlabs/puppet/manifests/site.pp
 node 'www1.example.com' {
   include common
@@ -88,7 +88,7 @@ You may not create two node statements with the same name.
 
 You can use a comma-separated list of names to create a group of nodes with a single node statement:
 
-``` ruby
+``` puppet
 node 'www1.example.com', 'www2.example.com', 'www3.example.com' {
   include common
   include apache, squid
@@ -107,7 +107,7 @@ The name `default` (without quotes) is a special value for node names. If no nod
 
 > **Note:** Make sure all of your node regexes match non-overlapping sets of node names. If a node's name matches more than one regex, Puppet makes no guarantee about which matching definition it will get.
 
-``` ruby
+``` puppet
 node /^www\d+$/ {
   include common
 }
@@ -116,7 +116,7 @@ node /^www\d+$/ {
 The above example would match `www1`, `www13`, and any other node whose name consisted of `www` and one or more
 digits.
 
-``` ruby
+``` puppet
 node /^(foo|bar)\.example\.com$/ {
   include common
 }

@@ -21,11 +21,11 @@ Puppet can manage [services][service] on nearly all operating systems.
 
 If your OS has a good system for managing services, and all the services you care about have working init scripts or service configs, you can write small service resources with just the [`ensure`][ensure] and [`enable`][enable] attributes:
 
-``` ruby
-    service { 'apache2':
-      ensure => running,
-      enable => true,
-    }
+``` puppet
+service { 'apache2':
+  ensure => running,
+  enable => true,
+}
 ```
 
 (Note that some OSes don't support the `enable` attribute.)
@@ -40,12 +40,13 @@ In some rare cases --- such as virtual services like Red Hat's `network` --- a s
 
 ### No init script or service config
 
-``` ruby
-    service { "apache2":
-      ensure  => running,
-      start   => "/usr/sbin/apachectl start",
-      stop    => "/usr/sbin/apachectl stop",
-      pattern => "/usr/sbin/httpd",
+``` puppet
+service { "apache2":
+  ensure  => running,
+  start   => "/usr/sbin/apachectl start",
+  stop    => "/usr/sbin/apachectl stop",
+  pattern => "/usr/sbin/httpd",
+}
 ```
 
 If some of your services lack init scripts, Puppet can compensate.
@@ -96,10 +97,10 @@ When writing service resources for Windows, remember the following:
 
 A complete service resource is very simple:
 
-``` ruby
-    service { 'mysql':
-      ensure => 'running',
-      enable => true,
-    }
+``` puppet
+service { 'mysql':
+  ensure => 'running',
+  enable => true,
+}
 ```
 

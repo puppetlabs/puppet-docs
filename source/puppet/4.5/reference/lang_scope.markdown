@@ -48,7 +48,7 @@ In the diagram above:
 
 Code that is _outside_ any class definition, type definition, or node definition exists at **top scope.** Variables and defaults declared at top scope are available **everywhere.**
 
-``` ruby
+``` puppet
 # site.pp
 $variable = "Hi!"
 
@@ -72,7 +72,7 @@ Variables and defaults declared at node scope are available **everywhere except 
 
 > **Note:** Classes and resources declared at top scope **bypass node scope entirely,** and so cannot access variables or defaults from node scope.
 
-``` ruby
+``` puppet
 # site.pp
 $top_variable = "Available!"
 node 'puppet.example.com' {
@@ -98,7 +98,7 @@ Code inside a [class definition][class], [defined type][definedtype], or [lambda
 
 Variables and defaults declared in a local scope are only available in **that scope and its children.** There are two different sets of rules for when scopes are considered related; see "[scope lookup rules](#scope-lookup-rules)" below.
 
-``` ruby
+``` puppet
 # /etc/puppetlabs/code/modules/scope_example/manifests/init.pp
 class scope_example {
   $variable = "Hi!"
@@ -130,7 +130,7 @@ In this example, a local scope can see "out" into node and top scope, but outer 
 
 Variables and defaults declared at node scope can override those received from top scope. Those declared at local scope can override those received from node and top scope, as well as any parent scopes. That is: if multiple variables with the same name are available, **Puppet will use the "most local" one.**
 
-``` ruby
+``` puppet
 # /etc/puppetlabs/code/modules/scope_example/manifests/init.pp
 class scope_example {
   $variable = "Hi, I'm local!"
@@ -153,7 +153,7 @@ notice: Message from here: Hi, I'm local!
 
 Resource defaults are processed **by attribute** rather than as a block. Thus, defaults that declare different attributes will be merged, and only the attributes that conflict will be overridden.
 
-``` ruby
+``` puppet
 # /etc/puppetlabs/code/modules/scope_example/manifests/init.pp
 class scope_example {
   File { ensure => directory, }
@@ -197,7 +197,7 @@ Qualified variable names are formatted as follows, using the double-colon [names
 
 `$<NAME OF SCOPE>::<NAME OF VARIABLE>`
 
-``` ruby
+``` puppet
 include apache::params
 $local_copy = $apache::params::confdir
 ```

@@ -24,7 +24,7 @@ canonical: "/puppet/latest/reference/lang_namespaces.html"
 
 Puppet [class][classes] and [defined type][define] names may consist of any number of namespace segments separated by the `::` (double colon) namespace separator. (This separator is analogous to the `/` \[slash\] in a file path.)
 
-``` ruby
+``` puppet
 class apache { ... }
 class apache::mod { ... }
 class apache::mod::passenger { ... }
@@ -37,7 +37,7 @@ If a class/defined type is defined inside another class/defined type definition,
 
 This causes its real name to be something other than the name with which it was defined. For example:
 
-``` ruby
+``` puppet
 class first {
   class second {
     ...

@@ -178,7 +178,7 @@ Ruby's `if ... end` statement lets you write conditional text. You'll want to pu
 
 The general format of an `if` statement is:
 
-``` ruby
+``` puppet
 if <CONDITION>
   ... code ...
 elsif <CONDITION>

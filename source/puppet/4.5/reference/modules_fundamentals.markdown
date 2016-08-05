@@ -38,7 +38,7 @@ Every Puppet user should expect to write at least some of their own modules.
 
 Modules are how Puppet finds the classes and types it can use --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Any of these classes or defines can be declared by name within a manifest or from an [external node classifier (ENC)][enc].
 
-``` ruby
+``` puppet
 # /etc/puppetlabs/code/environments/production/manifests/site.pp
 
 node default {

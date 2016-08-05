@@ -29,7 +29,7 @@ Puppet supports "if" and "unless" statements, case statements, and selectors.
 
 An "if" statement:
 
-``` ruby
+``` puppet
 if $is_virtual {
   warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
 }
@@ -43,7 +43,7 @@ else {
 
 An "unless" statement:
 
-``` ruby
+``` puppet
 unless $memorysize > 1024 {
   $maxclient = 500
 }
@@ -51,7 +51,7 @@ unless $memorysize > 1024 {
 
 A case statement:
 
-``` ruby
+``` puppet
 case $operatingsystem {
   'Solaris':          { include role::solaris }
   'RedHat', 'CentOS': { include role::redhat  }
@@ -62,7 +62,7 @@ case $operatingsystem {
 
 A selector:
 
-``` ruby
+``` puppet
 $rootgroup = $osfamily ? {
     'Solaris'          => 'wheel',
     /(Darwin|FreeBSD)/ => 'wheel',
@@ -84,7 +84,7 @@ file { '/etc/passwd':
 
 ### Syntax
 
-``` ruby
+``` puppet
 if $is_virtual {
   # Our NTP module is not supported on virtual machines:
   warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
@@ -139,7 +139,7 @@ Static values may also be conditions, although doing this would be pointless.
 
 If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-``` ruby
+``` puppet
 if $hostname =~ /^www(\d+)\./ {
   notice("Welcome to web server number $1")
 }
@@ -159,7 +159,7 @@ These are not normal variables, and have some special behaviors:
 
 ### Syntax
 
-``` ruby
+``` puppet
 unless $memorysize > 1024 {
   $maxclient = 500
 }
@@ -209,7 +209,7 @@ Like "if" statements, **case statements** choose one of several blocks of arbitr
 
 ### Syntax
 
-``` ruby
+``` puppet
 case $operatingsystem {
   'Solaris':          { include role::solaris } # apply the solaris class
   'RedHat', 'CentOS': { include role::redhat  } # apply the redhat class
@@ -277,7 +277,7 @@ The value of a `case` expression is the value of the last expression in the exec
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-``` ruby
+``` puppet
 case $hostname {
   /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
   default:   { include role::generic }
@@ -324,7 +324,7 @@ Selectors can be used wherever a **value** is expected. This includes:
 
 Selectors resemble a cross between a case statement and the ternary operator found in other languages.
 
-``` ruby
+``` puppet
 $rootgroup = $osfamily ? {
     'Solaris'          => 'wheel',
     /(Darwin|FreeBSD)/ => 'wheel',
@@ -382,7 +382,7 @@ A case can be any expression that resolves to a value. (This includes literal va
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-``` ruby
+``` puppet
 $system = $operatingsystem ? {
   /(RedHat|Debian)/ => "our system is ${1}",
   default           => "our system is unknown",

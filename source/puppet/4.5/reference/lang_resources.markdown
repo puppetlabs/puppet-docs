@@ -52,7 +52,7 @@ You can also add new resource types to Puppet:
 
 Resource declarations have a lot of features, but beginners can accomplish a lot with just a subset of these. For more advanced syntax (including expressions that declare multiple resources at once), see [Resources (Advanced).][resource_advanced]
 
-``` ruby
+``` puppet
 # A resource declaration:
 file { '/etc/passwd':
   ensure => file,
@@ -64,7 +64,7 @@ file { '/etc/passwd':
 
 Every resource has a **resource type,** a **title,** and a set of **attributes:**
 
-``` ruby
+``` puppet
 <TYPE> { '<TITLE>':
   <ATTRIBUTE> => <VALUE>,
 }

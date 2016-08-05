@@ -61,7 +61,7 @@ Like [relationships][] and most metaparameters, tags are passed along by [contai
 
 You can use [the `tag` metaparameter][tagmeta] in a resource declaration to add any number of tags:
 
-``` ruby
+``` puppet
 apache::vhost {'docs.puppetlabs.com':
   port => 80,
   tag  => ['us_mirror1', 'us_mirror2'],
@@ -74,7 +74,7 @@ The `tag` metaparameter can accept a single tag or an array. These will be added
 
 You can use [the `tag` function][tagfunction] inside a class definition or defined type to assign tags to the surrounding container and all of the resources it contains:
 
-``` ruby
+``` puppet
 class role::public_web {
   tag 'us_mirror1', 'us_mirror2'
 

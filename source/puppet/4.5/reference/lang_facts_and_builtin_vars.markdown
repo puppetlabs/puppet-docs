@@ -54,7 +54,7 @@ If you're writing code that might be used with pre-4.0 versions of Puppet, you'l
 
 To handle this, you can use the `str2bool` function (from [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)) to prevent fake true values:
 
-``` ruby
+``` puppet
 if str2bool("$is_virtual") {
   ...
 }
@@ -75,7 +75,7 @@ All facts appear in Puppet as [top-scope variables][topscope]. They can be acces
 
 Example, with the osfamily fact:
 
-``` ruby
+``` puppet
 if $osfamily == 'redhat' {
   # ...
 }
@@ -106,7 +106,7 @@ Facts also appear in a `$facts` hash. They can be accessed in manifests as `$fac
 
 Example, with the osfamily fact:
 
-``` ruby
+``` puppet
 if $facts['osfamily'] == 'redhat' {
   # ...
 }
@@ -151,7 +151,7 @@ The available keys in the `$trusted` hash are:
 
 The `$trusted` hash generally looks something like this:
 
-``` ruby
+``` puppet
 {
   'authenticated' => 'remote',
   'certname'      => 'web01.example.com',
@@ -167,7 +167,7 @@ The `$trusted` hash generally looks something like this:
 
 Here's a snippet of example Puppet code using a [certificate extension][extensions]:
 
-``` ruby
+``` puppet
 if $trusted['extensions']['pp_image_name'] == 'storefront_production' {
   include private::storefront::private_keys
 }
@@ -187,7 +187,7 @@ In addition, a warning will be issued any time a node parameter is overwritten.
 
 The following is an example `$server_facts` hash.
 
-``` ruby
+``` puppet
 {
   serverversion => "4.1.0",
   servername    => "v85ix8blah.delivery.puppetlabs.net",

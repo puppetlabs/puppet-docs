@@ -49,7 +49,7 @@ They don't use very many parameters, but they demonstrate the sort of defaults-p
 
 ### Example with params.pp
 
-``` ruby
+``` puppet
 # ntp/manifests/params.pp
 class ntp::params {
   $autoupdate = false
@@ -71,7 +71,7 @@ class ntp::params {
 
 With the params.pp pattern, the main classes must inherit from the params class and explicitly set default values for the parameters.
 
-``` ruby
+``` puppet
 # ntp/manifests/init.pp
 class ntp (
   $autoupdate   = $ntp::params::autoupdate,
@@ -95,7 +95,7 @@ Instead of setting variables, our function needs to return a hash. Other than th
 
 The [hash merge operator][] is a convenient way to override default data using the results of a case statement.
 
-``` ruby
+``` puppet
 # ntp/functions/data.pp
 function ntp::data() {
   $base_params = {
@@ -122,8 +122,7 @@ function ntp::data() {
 
 Defaults set with Puppet lookup don't need to be explicitly set, and you no longer have to inherit from any particular class.
 
-``` ruby
-# ntp/manifests/init.pp
+``` puppet
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/functions/data.pp
@@ -176,8 +175,7 @@ ntp::service_name: ntp
 
 Defaults set with Puppet lookup don't need to be explicitly set, and you no longer have to inherit from any particular class.
 
-``` ruby
-# ntp/manifests/init.pp
+``` puppet
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/data

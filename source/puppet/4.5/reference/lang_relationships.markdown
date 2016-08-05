@@ -32,7 +32,7 @@ By default, Puppet applies resources in the order they're declared in their mani
 ## Syntax: Relationship metaparameters
 
 
-``` ruby
+``` puppet
 package { 'openssh-server':
   ensure => present,
   before => File['/etc/ssh/sshd_config'],
@@ -50,14 +50,14 @@ If two resources need to happen in order, you can either put a `before` attribut
 
 The two examples below create the same ordering relationship:
 
-``` ruby
+``` puppet
 package { 'openssh-server':
   ensure => present,
   before => File['/etc/ssh/sshd_config'],
 }
 ```
 
-``` ruby
+``` puppet
 file { '/etc/ssh/sshd_config':
   ensure  => file,
   mode    => '0600',
@@ -68,7 +68,7 @@ file { '/etc/ssh/sshd_config':
 
 The two examples below create the same notifying relationship:
 
-``` ruby
+``` puppet
 file { '/etc/ssh/sshd_config':
   ensure => file,
   mode   => '0600',
@@ -77,7 +77,7 @@ file { '/etc/ssh/sshd_config':
 }
 ```
 
-``` ruby
+``` puppet
 service { 'sshd':
   ensure    => running,
   enable    => true,
@@ -87,7 +87,7 @@ service { 'sshd':
 
 Since an array of resource references can contain resources of differing types, these two examples also create the same ordering relationship:
 
-``` ruby
+``` puppet
 service { 'sshd':
   ensure  => running,
   require => [
@@ -97,7 +97,7 @@ service { 'sshd':
 }
 ```
 
-``` ruby
+``` puppet
 package { 'openssh-server':
   ensure => present,
   before => Service['sshd'],
@@ -115,7 +115,7 @@ file { '/etc/ssh/sshd_config':
 ## Syntax: Chaining arrows
 
 
-``` ruby
+``` puppet
 # ntp.conf is applied first, and notifies the ntpd service if it changes:
 File['/etc/ntp.conf'] ~> Service['ntpd']
 ```
@@ -136,13 +136,13 @@ The chaining arrows accept the following kinds of operands on either side of the
 
 An operand can be shared between two chaining statements, which allows you to link them together into a "timeline":
 
-``` ruby
+``` puppet
 Package['ntp'] -> File['/etc/ntp.conf'] ~> Service['ntpd']
 ```
 
 Since resource declarations can be chained, you can use chaining arrows to make Puppet apply a section of code in the order that it is written:
 
-``` ruby
+``` puppet
 # first:
 package { 'openssh-server':
   ensure => present,
@@ -160,7 +160,7 @@ service { 'sshd':
 
 And since collectors can be chained, you can create many-to-many relationships:
 
-``` ruby
+``` puppet
 Yumrepo <| |> -> Package <| |>
 ```
 
@@ -203,7 +203,7 @@ Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their s
 
 [The `require` function][require_function] declares a [class][] and causes it to become a dependency of the surrounding container:
 
-``` ruby
+``` puppet
 class wordpress {
   require apache
   require mysql
@@ -215,7 +215,7 @@ The above example causes every resource in the `apache` and `mysql` classes to b
 
 Unlike the relationship metaparameters and chaining arrows, the `require` function does not have a reciprocal form or a notifying form. However, more complex behavior can be obtained by combining `include` and chaining arrows inside a class definition:
 
-``` ruby
+``` puppet
 class apache::ssl {
   include site::certificates
   # Restart every service in this class if any of our SSL certificates change on disk:

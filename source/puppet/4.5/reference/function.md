@@ -1273,21 +1273,21 @@ If the function doesn't find a match, it returns 'undef'.
 
 **Example**: Matching a regular expression in a string
 
-``` ruby
+``` puppet
 $matches = "abc123".match(/[a-z]+[1-9]+/)
 # $matches contains [abc123]
 ```
 
 **Example**: Matching a regular expressions with grouping captures in a string
 
-``` ruby
+``` puppet
 $matches = "abc123".match(/([a-z]+)([1-9]+)/)
 # $matches contains [abc123, abc, 123]
 ```
 
 **Example**: Matching a regular expression with grouping captures in an array of strings
 
-``` ruby
+``` puppet
 $matches = ["abc123","def456"].match(/([a-z]+)([1-9]+)/)
 # $matches contains [[abc123, abc, 123], [def456, def, 456]]
 ```

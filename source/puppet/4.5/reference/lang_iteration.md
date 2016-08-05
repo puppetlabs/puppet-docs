@@ -60,7 +60,7 @@ Hash            | `[<KEY>, <VALUE>]` (two-element array) | `<KEY>, <VALUE>`
 
 For example:
 
-``` ruby
+``` puppet
 ['a','b','c'].each |Integer $index, String $value| { notice("${index} = ${value}") }
 ```
 
@@ -80,7 +80,7 @@ The [`slice`][slice] and [`reduce`][reduce] functions handle parameters differen
 
 Since the focus of the Puppet language is declaring resources, most people will want to use iteration to declare many similar resources at once:
 
-``` ruby
+``` puppet
 $binaries = ["facter", "hiera", "mco", "puppet", "puppetserver"]
 
 # function call with lambda:
@@ -98,7 +98,7 @@ In this example, we have an array of command names that we want to use in each s
 
 In earlier versions of Puppet, when there were no iteration functions and lambdas weren't supported, you could achieve a clunkier form of iteration by writing [defined resource types][defined types] and [using arrays as resource titles.][array_titles] To do the same thing as the previous example:
 
-``` ruby
+``` puppet
 # one-off defined resource type, in
 # /etc/puppetlabs/code/environments/production/modules/puppet/manifests/binary/symlink.pp
 define puppet::binary::symlink ($binary = $title) {
@@ -125,7 +125,7 @@ In general, the modern style of iteration is much better, but you'll often see e
 
 You can also use iteration to transform data into more useful forms. For example:
 
-``` ruby
+``` puppet
 $filtered_array = [1,20,3].filter |$value| { $value < 10 }
 # returns [1,3]
 

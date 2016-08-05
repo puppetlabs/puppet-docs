@@ -138,7 +138,7 @@ The parameter tag is optional; if used, it **must** be the first content in a te
 
 The parameter tag's pair of pipe characters (`|`) should contain a comma-separated list of parameters. Each parameter follows this format:
 
-``` ruby
+``` puppet
 Boolean $keys_enable = false
 ```
 
@@ -193,7 +193,7 @@ This means templates can use short names to access global variables (like `$os` 
 
 You can pass parameters when you call a template, and they will become local variables inside the template. To do this, pass a [hash][] as the last argument of the [`epp`][epp] or [`inline_epp`][inline_epp] functions:
 
-``` ruby
+``` puppet
 epp('example/example.epp', { 'logfile' => "/var/log/ntp.log" })
 ```
 
@@ -337,7 +337,7 @@ leapfile <%= $ntp::leapfile %>
 
 To call this template from a manifest (presuming that the template file is located in the `templates` directory of the `puppetlabs-ntp` module), add the following code to the manifest:
 
-``` ruby
+``` puppet
 # epp(<FILE REFERENCE>, [<PARAMETER HASH>])
 file { '/etc/ntp.conf':
   ensure  => file,

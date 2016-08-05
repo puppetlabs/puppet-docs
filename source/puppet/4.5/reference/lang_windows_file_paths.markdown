@@ -118,7 +118,7 @@ Prior to 3.7.3, there's no easy way for Puppet manifests to detect whether `sysn
 
 One consideration for `exec` when you can't use `$system32` is to use `path =>` and set it appropriately, the first search path item first followed by others in the order you want them searched in. For instance, if you want to always use the 64-bit version of `cmd.exe` you can use:
 
-``` ruby
+``` puppet
 exec { '64_bit_cmd':
   path    => "c:\\windows\\sysnative;c:\\windows\\system32;$::path",
   command => 'cmd.exe /c echo process is %PROCESSOR_ARCHITECTURE%',
@@ -127,7 +127,7 @@ exec { '64_bit_cmd':
 
 If you always instead would rather always get a 32-bit process if it is available, you should set path more like the following:
 
-``` ruby
+``` puppet
 exec { '32_bit_cmd':
   path    => "c:\\windows\\sysWOW64;c:\\windows\\system32;$::path",
   command => 'cmd.exe /c echo process is %PROCESSOR_ARCHITECTURE%',

@@ -51,7 +51,7 @@ You can put template files in the `templates` directory of a [module][]. EPP fil
 
 To use a template file, evaluate it with the `template` (ERB) or `epp` function as follows:
 
-``` ruby
+``` puppet
 # epp(<FILE REFERENCE>, [<PARAMETER HASH>])
 file { '/etc/ntp.conf':
   ensure  => file,
@@ -98,7 +98,7 @@ The `template` function can take any number of additional template files, and wi
 
 If you have a [string][] value that contains template content, you can evaluate it with the `inline_template` (ERB) or `inline_epp` functions as follows:
 
-``` ruby
+``` puppet
 $ntp_conf_template = @(END)
 ...template content goes here...
 END

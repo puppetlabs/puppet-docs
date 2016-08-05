@@ -11,14 +11,14 @@ title: "Resource tips and examples: File on Windows"
 Puppet's built-in [`file`][file] resource type can manage files and directories on Windows, including ownership, group, permissions, and content. Symbolic links are supported in Puppet 3.4.0 / PE 3.2 and later on Windows 2008 / Vista and later; for details, [see the notes in the resource type reference under `file`'s `ensure` attribute](./type.html#file-attribute-ensure).
 
 
-``` ruby
-    file { 'c:/mysql/my.ini':
-      ensure => 'file',
-      mode   => '0660',
-      owner  => 'mysql',
-      group  => 'Administrators',
-      source => 'N:/software/mysql/my.ini',
-    }
+``` puppet
+file { 'c:/mysql/my.ini':
+  ensure => 'file',
+  mode   => '0660',
+  owner  => 'mysql',
+  group  => 'Administrators',
+  source => 'N:/software/mysql/my.ini',
+}
 ```
 
 Here's what you'll want to know before using the `file` resource type.

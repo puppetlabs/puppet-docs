@@ -29,7 +29,7 @@ Lambdas are not valid in any other place in the Puppet language, and cannot be a
 
 Lambdas are written as a list of parameters surrounded by pipe (`|`) characters, followed by a block of arbitrary Puppet code in curly braces. They must be used as part of a [function call.][functions]
 
-``` ruby
+``` puppet
 $binaries = ["facter", "hiera", "mco", "puppet", "puppetserver"]
 
 # function call with lambda:
@@ -118,7 +118,7 @@ If you use any [resource declarations][resources] in the body of a lambda, make 
 
 This means that if a function might call its lambda multiple times, any resource titles in the lambda should include a parameter whose value will change with every call. In the example above, we used the `$binary` parameter in the title of the lambda's `file` resource:
 
-``` ruby
+``` puppet
 file {"/usr/bin/$binary":
   ensure => link,
   target => "/opt/puppetlabs/bin/$binary",
