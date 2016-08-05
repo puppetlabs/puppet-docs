@@ -94,12 +94,12 @@ The following two values would be identical:
 
 The `alias()` function allows you to make one key in Hiera data act as an alias for another. This is different than just interpolating another key, since that results in a string.
 
-~~~ yaml
+``` yaml
 original:
   - 'a'
   - 'b'
 aliased: "%{alias('original')}"
-~~~
+```
 
 This returns an array with `['a', 'b']` for both the original and the aliased keys.
 
@@ -120,14 +120,14 @@ The only value you should pass to `literal()` is a single `%` sign.
 
 The main use for interpolation is in the [config file][config], where you can set dynamic data sources in the [hierarchy][]:
 
-~~~ yaml
+``` yaml
 ---
 :hierarchy:
   - "nodes/%{trusted.certname}"
   - "environment/%{server_facts.environment}"
   - "virtual/%{facts.is_virtual}"
   - common
-~~~
+```
 
 In this example, every data source except the final one will vary depending on the current values of `$trusted[certname], $server_facts[environment],` and `$facts[is_virtual]`.
 
@@ -144,17 +144,17 @@ This example would let you use completely separate data directories for your pro
 
 Within a data source, you can interpolate values into any string, whether it's a standalone value or part of a hash or array value. This can be useful for values that should be different for every node, but which differ **predictably:**
 
-~~~ yaml
+``` yaml
 # /etc/puppetlabs/code/environments/production/hieradata/common.yaml
 ---
 smtpserver: "mail.%{::domain}"
-~~~
+```
 
 In this example, instead of creating a `%{::domain}` hierarchy level and a data source for each domain, you can get a similar result with one line in the `common` data source.
 
 You can also interpolate values into hash keys:
 
-~~~ yaml
+``` yaml
 # /etc/puppetlabs/code/environments/production/hieradata/common.yaml
 ---
 bacula::jobs:
@@ -164,7 +164,7 @@ bacula::jobs:
   "%{::hostname}_LDAP":
     fileset: LDAP
     bacula_schedule: 'CycleStandard'
-~~~
+```
 
 This generally only useful when building something complicated with [the `create_resources` function](/puppet/latest/reference/function.html#createresources), as it lets you interpolate values into resource titles.
 
@@ -172,7 +172,7 @@ This generally only useful when building something complicated with [the `create
 
 **Note:** This _only works for keys that are part of a value;_ that is, you can't use interpolation to dynamically create new Hiera lookup keys at the root of a data source.
 
-~~~ yaml
+``` yaml
 # /etc/puppetlabs/code/environments/production/hieradata/common.yaml
 ---
 # This isn't legal:
@@ -180,7 +180,7 @@ This generally only useful when building something complicated with [the `create
   "%{::hostname}_Cyrus":
     fileset: MailServer
     bacula_schedule: 'CycleStandard'
-~~~
+```
 
 Passing Variables to Hiera
 -----
@@ -209,6 +209,6 @@ When called from the command line, Hiera defaults to having no variables availab
 
 When calling Hiera from Ruby code, you can pass in a complete "scope" of variables as the third argument to the `#lookup` method. The complete signature of `#lookup` is:
 
-~~~ ruby
+``` ruby
     hiera_object.lookup(key, default, scope, order_override=nil, resolution_type=:priority)
-~~~
+```

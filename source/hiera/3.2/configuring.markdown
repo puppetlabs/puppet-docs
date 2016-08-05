@@ -49,7 +49,7 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 
 [example]: #example-config-file
 
-~~~ yaml
+``` yaml
 ---
 :backends:
   - yaml
@@ -62,13 +62,13 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
   - "nodes/%{::trusted.certname}"
   - "virtual/%{::virtual}"
   - "common"
-~~~
+```
 
 ### Default config values
 
 If the config file exists but has no data, the default settings will be equivalent to the following:
 
-~~~ yaml
+``` yaml
 ---
 :backends: yaml
 :yaml:
@@ -82,7 +82,7 @@ If the config file exists but has no data, the default settings will be equivale
 :logger: console
 :merge_behavior: native
 :deep_merge_options: {}
-~~~
+```
 
 ## Global settings
 

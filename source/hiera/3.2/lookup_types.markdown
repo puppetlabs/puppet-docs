@@ -28,23 +28,23 @@ Qualified keys are composed of a top-level lookup key along with any number of a
 
 For example, to look up an element in a hash:
 
-~~~
+```
 $ hiera user
 {"name"=>"kim", "home"=>"/home/kim"}
 
 $ hiera user.name
 kim
-~~~
+```
 
 Or, to look up an element in an array:
 
-~~~
+```
 $ hiera ssh_users
 ["root", "jeff", "gary", "hunter"]
 
 $ hiera ssh_users.0
 root
-~~~
+```
 
 A subkey can be an integer if the value is an array, or a key name if the value is a hash. You can also chain subkeys together for deeply nested structures. Qualified keys can be used in interpolated values just like a normal key, so `%{hiera('user.name')}` is valid.
 
@@ -65,7 +65,7 @@ For example, given a hierarchy of:
 
 ...and the following data:
 
-~~~ yaml
+``` yaml
     # web01.example.com.yaml
     mykey: one
 
@@ -73,7 +73,7 @@ For example, given a hierarchy of:
     mykey:
       - two
       - three
-~~~
+```
 
 ...an array merge lookup would return a value of `[one, two, three]`.
 
@@ -99,7 +99,7 @@ For example, given a hierarchy of:
 
 ...and the following data:
 
-~~~ yaml
+``` yaml
     # web01.example.com.yaml
     mykey:
       z: "local value"
@@ -109,7 +109,7 @@ For example, given a hierarchy of:
       a: "common value"
       b: "other common value"
       z: "default local value"
-~~~
+```
 
 ...a native hash merge lookup would return a value of `{z => "local value", a => "common value", b => "other common value"}`. Note that in cases where two or more source hashes share some keys, higher priority data sources in the hierarchy override lower ones.
 
@@ -162,7 +162,7 @@ for hashes in Hiera is building a data structure which gets passed to the
 
 In hiera.yaml, we set a two-level hierarchy:
 
-~~~ yaml
+``` yaml
     # /etc/puppetlabs/puppet/hiera.yaml
     ---
     :backends:
@@ -175,11 +175,11 @@ In hiera.yaml, we set a two-level hierarchy:
       :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
     # options are native, deep, deeper
     :merge_behavior: deeper
-~~~
+```
 
 In common.yaml, we set up default users for all nodes:
 
-~~~ yaml
+``` yaml
     ---
     site_users:
       bob:
@@ -189,11 +189,11 @@ In common.yaml, we set up default users for all nodes:
         uid: 502
         shell: /bin/zsh
         group: common
-~~~
+```
 
 In deglitch.yaml, we set up node-specific user details for the deglitch.example.com:
 
-~~~ yaml
+``` yaml
     ---
     site_users:
       jen:
@@ -203,11 +203,11 @@ In deglitch.yaml, we set up node-specific user details for the deglitch.example.
       bob:
         uid: 1000
         group: deglitch
-~~~
+```
 
 With a standard `native` hash merge, we would end up with a hash like the following:
 
-~~~ ruby
+``` ruby
     {
       "bob"=>{
         group=>"deglitch",
@@ -224,13 +224,13 @@ With a standard `native` hash merge, we would end up with a hash like the follow
         shell=>"/bin/zsh"
       }
     }
-~~~
+```
 
 Notice that Bob is missing his shell --- this is because the value of the top-level `bob` key from common.yaml was replaced entirely.
 
 With a `deeper` hash merge, we would get a more intuitive behavior:
 
-~~~ ruby
+``` ruby
     {
       "bob"=>{
         group=>"deglitch",
@@ -248,13 +248,13 @@ With a `deeper` hash merge, we would get a more intuitive behavior:
         shell=>"/bin/zsh"
       }
     }
-~~~
+```
 
 In this case, Bob's shell persists from common.yaml, but deglitch.yaml is allowed to override his uid and group, reducing the amount of data you have to duplicate between files.
 
 With a `deep` merge, you would get:
 
-~~~ ruby
+``` ruby
     {
       "bob"=>{
         group=>"deglitch",
@@ -272,7 +272,7 @@ With a `deep` merge, you would get:
         shell=>"/bin/zsh"
       }
     }
-~~~
+```
 
 In this case, deglitch.yaml was able to set the group because common.yaml didn't have a value for it, but where there was a conflict, like the uid, common won. Most users don't want this.
 

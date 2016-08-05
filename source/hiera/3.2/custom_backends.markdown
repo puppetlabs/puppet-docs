@@ -24,7 +24,7 @@ Each Hiera backend must be a Ruby class under the `Hiera::Backend` namespace. Th
 
 You must choose a unique **short common name** for your backend, and derive a **class name** from that short name. The class name should be the backend name with a capitalized first letter and a `_backend` suffix. So a backend named `file` would have a class name of `File_backend`.
 
-~~~ ruby
+``` ruby
     class Hiera
       module Backend
         class File_backend
@@ -32,7 +32,7 @@ You must choose a unique **short common name** for your backend, and derive a **
         end
       end
     end
-~~~
+```
 
 ### Filename/path
 
@@ -46,7 +46,7 @@ A backend named `file` would be located in a lib directory at `hiera/backend/fil
 
 If you have any setup to do in your backend before you can look up data --- for example, loading a library necessary for interfacing with a database --- you should put it in an `initialize` method. From the crayfishx/hiera-mysql backend:
 
-~~~ ruby
+``` ruby
     def initialize
       begin
         require 'mysql'
@@ -57,7 +57,7 @@ If you have any setup to do in your backend before you can look up data --- for 
 
       Hiera.debug("mysql_backend initialized")
     end
-~~~
+```
 
 ### The `lookup` method
 
@@ -77,7 +77,7 @@ When Hiera calls the lookup method, it passes five pieces of data as arguments:
 * `resolution_type` is the requested [lookup type](./lookup_types.html). Values can be either a Symbol (`:priority`, `:array`, or `:hash`) or a Hash like `{:behavior => 'deeper', 'knockout_prefix' => 'xx'}`. If you pass a Hash, the configured values for `:merge_behavior` and `:deep_merge_options` will be ignored. Passing a Hash gives you the same `resolution_type` as `:hash`, but with the option to allow the deep_merge options on a per-call basis.
 * `context` is a hash that contains a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later if you make any calls to `Backend.parse_answer` or `Backend.parse_string`. This parameter helps Hiera correctly propagate the order_override and the recursion guard used for detecting endless lookup recursions in interpolated values.
 
-~~~ ruby
+``` ruby
     class Hiera
       module Backend
         class File_backend
@@ -89,7 +89,7 @@ When Hiera calls the lookup method, it passes five pieces of data as arguments:
         end
       end
     end
-~~~
+```
 
 
 ### Available helper methods
@@ -126,7 +126,7 @@ The **arguments** passed to this method are a scope, an order override (optional
 When doing a priority lookup, you should generally use a `break` statement in your block once you get a valid answer, in order to exit early and not overwrite the highest priority answer with a lower priority answer.
 
 
-~~~ ruby
+``` ruby
     class Hiera
       module Backend
         class File_backend
@@ -141,7 +141,7 @@ When doing a priority lookup, you should generally use a `break` statement in yo
         end
       end
     end
-~~~
+```
 
 
 #### `Backend.datafile(:<BACKEND NAME>, scope, source, "<EXTENSION>")`
@@ -157,7 +157,7 @@ It is optional, and is only useful when your backend is searching files on disk.
 
 The arguments you must provide are the **name of the backend** (as a symbol), the **scope** (usually just passed on from the lookup method's arguments), the **current hierarchy level** (usually passed to the current block by the `Backend.datasources` method), and the **file extension** to expect.
 
-~~~ ruby
+``` ruby
     class Hiera
       module Backend
         class File_backend
@@ -176,7 +176,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
         end
       end
     end
-~~~
+```
 
 
 #### `Backend.parse_answer(data, scope, extra_data={}, context={:recurse_guard => nil, :order_override => nil})`
@@ -185,7 +185,7 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
 
 The `Backend.parse_answer` method returns its first argument, but with any [interpolation tokens](./variables.html) replaced by variables from the scope passed as its second argument. Use it if you want to support interpolation of dynamic values into data with your backend. (This is optional.)
 
-~~~ ruby
+``` ruby
     class Hiera
       module Backend
         class File_backend
@@ -204,7 +204,7 @@ The `Backend.parse_answer` method returns its first argument, but with any [inte
         end
       end
     end
-~~~
+```
 
 You can also pass a hash of extra data as an optional third argument. This hash is used like the scope to provide variables for interpolation, but _only_ if the scope fails to produce a match for that variable. Your backend can use this to provide fallback data from some other source.
 
@@ -234,7 +234,7 @@ In passing `resolution_type` to `Backend.merge_answer`, you'll need to pass, ver
 
 From the json backend:
 
-~~~ ruby
+``` ruby
     new_answer = Backend.parse_answer(data[key], scope, extra_data{}, context[:recurse_guard])
     case resolution_type
     when :array
@@ -249,7 +249,7 @@ From the json backend:
       answer = new_answer
       break
     end
-~~~
+```
 
 #### `Hiera.debug(msg)` and `Hiera.warn(msg)`
 
@@ -257,11 +257,11 @@ From the json backend:
 
 These two methods log messages at the debug and warn loglevels, respectively.
 
-~~~ ruby
+``` ruby
     def initialize
       Hiera.debug("Hiera File backend starting")
     end
-~~~
+```
 
 Tips
 ----
@@ -301,7 +301,7 @@ This backend was written as an example by Reid Vandewiele. It only handles prior
 
 ### Terse version
 
-~~~ ruby
+``` ruby
 class Hiera
   module Backend
     class File_backend
@@ -330,11 +330,11 @@ class Hiera
     end
   end
 end
-~~~
+```
 
 ### Annotated version
 
-~~~ ruby
+``` ruby
 # This is an annotated walkthrough of a *very* simple custom backend for Hiera,
 # which uses a directory-based file lookup scheme.
 #
@@ -547,7 +547,7 @@ class Hiera
     end
   end
 end
-~~~
+```
 
 
 ## More examples
