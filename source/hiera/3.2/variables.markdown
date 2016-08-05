@@ -210,5 +210,5 @@ When called from the command line, Hiera defaults to having no variables availab
 When calling Hiera from Ruby code, you can pass in a complete "scope" of variables as the third argument to the `#lookup` method. The complete signature of `#lookup` is:
 
 ``` ruby
-    hiera_object.lookup(key, default, scope, order_override=nil, resolution_type=:priority)
+hiera_object.lookup(key, default, scope, order_override=nil, resolution_type=:priority)
 ```

@@ -25,13 +25,13 @@ Each Hiera backend must be a Ruby class under the `Hiera::Backend` namespace. Th
 You must choose a unique **short common name** for your backend, and derive a **class name** from that short name. The class name should be the backend name with a capitalized first letter and a `_backend` suffix. So a backend named `file` would have a class name of `File_backend`.
 
 ``` ruby
-    class Hiera
-      module Backend
-        class File_backend
-          # ...
-        end
-      end
+class Hiera
+  module Backend
+    class File_backend
+      # ...
     end
+  end
+end
 ```
 
 ### Filename/path
@@ -47,16 +47,16 @@ A backend named `file` would be located in a lib directory at `hiera/backend/fil
 If you have any setup to do in your backend before you can look up data --- for example, loading a library necessary for interfacing with a database --- you should put it in an `initialize` method. From the crayfishx/hiera-mysql backend:
 
 ``` ruby
-    def initialize
-      begin
-        require 'mysql'
-      rescue LoadError
-        require 'rubygems'
-        require 'mysql'
-      end
+def initialize
+  begin
+    require 'mysql'
+  rescue LoadError
+    require 'rubygems'
+    require 'mysql'
+  end
 
-      Hiera.debug("mysql_backend initialized")
-    end
+  Hiera.debug("mysql_backend initialized")
+end
 ```
 
 ### The `lookup` method
@@ -78,17 +78,17 @@ When Hiera calls the lookup method, it passes five pieces of data as arguments:
 * `context` is a hash that contains a key named `:recurse_guard`. You never need to call methods on this object, but you'll need to pass it along later if you make any calls to `Backend.parse_answer` or `Backend.parse_string`. This parameter helps Hiera correctly propagate the order_override and the recursion guard used for detecting endless lookup recursions in interpolated values.
 
 ``` ruby
-    class Hiera
-      module Backend
-        class File_backend
-          def lookup(key, scope, order_override, resolution_type, context)
-            answer = nil
-            # ...
-            return answer
-          end
-        end
+class Hiera
+  module Backend
+    class File_backend
+      def lookup(key, scope, order_override, resolution_type, context)
+        answer = nil
+        # ...
+        return answer
       end
     end
+  end
+end
 ```
 
 
@@ -127,20 +127,20 @@ When doing a priority lookup, you should generally use a `break` statement in yo
 
 
 ``` ruby
-    class Hiera
-      module Backend
-        class File_backend
-          def lookup(key, scope, order_override, resolution_type, context)
-            answer = nil
-            Backend.datasources(scope, order_override) do |source|
-              # ...
-              break if answer = ...
-            end
-            return answer
-          end
+class Hiera
+  module Backend
+    class File_backend
+      def lookup(key, scope, order_override, resolution_type, context)
+        answer = nil
+        Backend.datasources(scope, order_override) do |source|
+          # ...
+          break if answer = ...
         end
+        return answer
       end
     end
+  end
+end
 ```
 
 
@@ -158,24 +158,24 @@ It is optional, and is only useful when your backend is searching files on disk.
 The arguments you must provide are the **name of the backend** (as a symbol), the **scope** (usually just passed on from the lookup method's arguments), the **current hierarchy level** (usually passed to the current block by the `Backend.datasources` method), and the **file extension** to expect.
 
 ``` ruby
-    class Hiera
-      module Backend
-        class File_backend
-          def lookup(key, scope, order_override, resolution_type, context)
-            answer = nil
-            Backend.datasources(scope, order_override) do |source|
-              file = Backend.datafile(:file, scope, source, "d") or next
-              path = File.join(file, key)
-              next unless File.exist?(path)
-              data = File.read(path)
-              next unless data
-              break if answer = data
-            end
-            return answer
-          end
+class Hiera
+  module Backend
+    class File_backend
+      def lookup(key, scope, order_override, resolution_type, context)
+        answer = nil
+        Backend.datasources(scope, order_override) do |source|
+          file = Backend.datafile(:file, scope, source, "d") or next
+          path = File.join(file, key)
+          next unless File.exist?(path)
+          data = File.read(path)
+          next unless data
+          break if answer = data
         end
+        return answer
       end
     end
+  end
+end
 ```
 
 
@@ -186,24 +186,24 @@ The arguments you must provide are the **name of the backend** (as a symbol), th
 The `Backend.parse_answer` method returns its first argument, but with any [interpolation tokens](./variables.html) replaced by variables from the scope passed as its second argument. Use it if you want to support interpolation of dynamic values into data with your backend. (This is optional.)
 
 ``` ruby
-    class Hiera
-      module Backend
-        class File_backend
-          def lookup(key, scope, order_override, resolution_type, context)
-            answer = nil
-            Backend.datasources(scope, order_override) do |source|
-              file = Backend.datafile(:file, scope, source, "d") or next
-              path = File.join(file, key)
-              next unless File.exist?(path)
-              data = File.read(path)
-              next unless data
-              break if answer = Backend.parse_answer(data, scope, extra_data, context)
-            end
-            return answer
-          end
+class Hiera
+  module Backend
+    class File_backend
+      def lookup(key, scope, order_override, resolution_type, context)
+        answer = nil
+        Backend.datasources(scope, order_override) do |source|
+          file = Backend.datafile(:file, scope, source, "d") or next
+          path = File.join(file, key)
+          next unless File.exist?(path)
+          data = File.read(path)
+          next unless data
+          break if answer = Backend.parse_answer(data, scope, extra_data, context)
         end
+        return answer
       end
     end
+  end
+end
 ```
 
 You can also pass a hash of extra data as an optional third argument. This hash is used like the scope to provide variables for interpolation, but _only_ if the scope fails to produce a match for that variable. Your backend can use this to provide fallback data from some other source.
@@ -235,20 +235,20 @@ In passing `resolution_type` to `Backend.merge_answer`, you'll need to pass, ver
 From the json backend:
 
 ``` ruby
-    new_answer = Backend.parse_answer(data[key], scope, extra_data{}, context[:recurse_guard])
-    case resolution_type
-    when :array
-      raise Exception, "Hiera type mismatch: expected Array and got #{new_answer.class}" unless new_answer.kind_of? Array or new_answer.kind_of? String
-      answer ||= []
-      answer << new_answer
-    when :hash
-      raise Exception, "Hiera type mismatch: expected Hash and got #{new_answer.class}" unless new_answer.kind_of? Hash
-      answer ||= {}
-      answer = Backend.merge_answer(new_answer,answer, resolution_type=nil)
-    else
-      answer = new_answer
-      break
-    end
+new_answer = Backend.parse_answer(data[key], scope, extra_data{}, context[:recurse_guard])
+case resolution_type
+when :array
+  raise Exception, "Hiera type mismatch: expected Array and got #{new_answer.class}" unless new_answer.kind_of? Array or new_answer.kind_of? String
+  answer ||= []
+  answer << new_answer
+when :hash
+  raise Exception, "Hiera type mismatch: expected Hash and got #{new_answer.class}" unless new_answer.kind_of? Hash
+  answer ||= {}
+  answer = Backend.merge_answer(new_answer,answer, resolution_type=nil)
+else
+  answer = new_answer
+  break
+end
 ```
 
 #### `Hiera.debug(msg)` and `Hiera.warn(msg)`
@@ -258,9 +258,9 @@ From the json backend:
 These two methods log messages at the debug and warn loglevels, respectively.
 
 ``` ruby
-    def initialize
-      Hiera.debug("Hiera File backend starting")
-    end
+def initialize
+  Hiera.debug("Hiera File backend starting")
+end
 ```
 
 Tips

@@ -86,7 +86,7 @@ Puppet automatically retrieves class parameters from Hiera, using lookup keys li
 
 Puppet [classes][] can optionally include [parameters][] in their definition. This lets the class ask for data to be passed in at the time that it's declared, and it can use that data as normal variables throughout its definition.
 
-``` ruby
+``` puppet
 # In this example, $parameter's value gets set when `myclass` is eventually declared.
 # Class definition:
 class myclass ($parameter_one = "default text") {
@@ -180,14 +180,14 @@ proxies:
 
 
 
-``` ruby
+``` puppet
 # Get the structured data:
 $proxies = hiera('proxies')
 # Index into the structure:
 $use_ip = $proxies[1]['ipaddress'] # will be 192.168.22.28
 ```
 
-``` ruby
+``` puppet
 # get only what you need from Hiera
 $use_ip = hiera( 'proxies.1.ipaddress' )
 ```

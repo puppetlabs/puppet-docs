@@ -60,19 +60,21 @@ An **array merge lookup** assembles a value from **every** matching level of the
 
 For example, given a hierarchy of:
 
-    - web01.example.com
-    - common
+``` yaml
+- web01.example.com
+- common
+```
 
 ...and the following data:
 
 ``` yaml
-    # web01.example.com.yaml
-    mykey: one
+# web01.example.com.yaml
+mykey: one
 
-    # common.yaml
-    mykey:
-      - two
-      - three
+# common.yaml
+mykey:
+  - two
+  - three
 ```
 
 ...an array merge lookup would return a value of `[one, two, three]`.
@@ -94,21 +96,23 @@ In a native hash merge, Hiera merges only the **top-level keys and values** in e
 
 For example, given a hierarchy of:
 
-    - web01.example.com
-    - common
+``` yaml
+- web01.example.com
+- common
+```
 
 ...and the following data:
 
 ``` yaml
-    # web01.example.com.yaml
-    mykey:
-      z: "local value"
+# web01.example.com.yaml
+mykey:
+  z: "local value"
 
-    # common.yaml
-    mykey:
-      a: "common value"
-      b: "other common value"
-      z: "default local value"
+# common.yaml
+mykey:
+  a: "common value"
+  b: "other common value"
+  z: "default local value"
 ```
 
 ...a native hash merge lookup would return a value of `{z => "local value", a => "common value", b => "other common value"}`. Note that in cases where two or more source hashes share some keys, higher priority data sources in the hierarchy override lower ones.
@@ -163,115 +167,115 @@ for hashes in Hiera is building a data structure which gets passed to the
 In hiera.yaml, we set a two-level hierarchy:
 
 ``` yaml
-    # /etc/puppetlabs/puppet/hiera.yaml
-    ---
-    :backends:
-      - yaml
-    :logger: puppet
-    :hierarchy:
-      - "%{hostname}"
-      - common
-    :yaml:
-      :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
-    # options are native, deep, deeper
-    :merge_behavior: deeper
+# /etc/puppetlabs/puppet/hiera.yaml
+---
+:backends:
+  - yaml
+:logger: puppet
+:hierarchy:
+  - "%{hostname}"
+  - common
+:yaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+# options are native, deep, deeper
+:merge_behavior: deeper
 ```
 
 In common.yaml, we set up default users for all nodes:
 
 ``` yaml
-    ---
-    site_users:
-      bob:
-        uid: 501
-        shell: /bin/bash
-      ash:
-        uid: 502
-        shell: /bin/zsh
-        group: common
+---
+site_users:
+  bob:
+    uid: 501
+    shell: /bin/bash
+  ash:
+    uid: 502
+    shell: /bin/zsh
+    group: common
 ```
 
 In deglitch.yaml, we set up node-specific user details for the deglitch.example.com:
 
 ``` yaml
-    ---
-    site_users:
-      jen:
-        uid: 503
-        shell: /bin/zsh
-        group: deglitch
-      bob:
-        uid: 1000
-        group: deglitch
+---
+site_users:
+  jen:
+    uid: 503
+    shell: /bin/zsh
+    group: deglitch
+  bob:
+    uid: 1000
+    group: deglitch
 ```
 
 With a standard `native` hash merge, we would end up with a hash like the following:
 
-``` ruby
-    {
-      "bob"=>{
-        group=>"deglitch",
-        uid=>1000,
-      },
-      "jen"=>{
-        group=>"deglitch",
-        uid=>503
-        shell=>"/bin/zsh",
-      },
-      "ash"=>{
-        group=>"common",
-        uid=>502,
-        shell=>"/bin/zsh"
-      }
-    }
+``` puppet
+{
+  "bob"=>{
+    group=>"deglitch",
+    uid=>1000,
+  },
+  "jen"=>{
+    group=>"deglitch",
+    uid=>503
+    shell=>"/bin/zsh",
+  },
+  "ash"=>{
+    group=>"common",
+    uid=>502,
+    shell=>"/bin/zsh"
+  }
+}
 ```
 
 Notice that Bob is missing his shell --- this is because the value of the top-level `bob` key from common.yaml was replaced entirely.
 
 With a `deeper` hash merge, we would get a more intuitive behavior:
 
-``` ruby
-    {
-      "bob"=>{
-        group=>"deglitch",
-        uid=>1000,
-        shell=>"/bin/bash"
-      },
-      "jen"=>{
-        group=>"deglitch",
-        uid=>503
-        shell=>"/bin/zsh",
-      },
-      "ash"=>{
-        group=>"common",
-        uid=>502,
-        shell=>"/bin/zsh"
-      }
-    }
+``` puppet
+{
+  "bob"=>{
+    group=>"deglitch",
+    uid=>1000,
+    shell=>"/bin/bash"
+  },
+  "jen"=>{
+    group=>"deglitch",
+    uid=>503
+    shell=>"/bin/zsh",
+  },
+  "ash"=>{
+    group=>"common",
+    uid=>502,
+    shell=>"/bin/zsh"
+  }
+}
 ```
 
 In this case, Bob's shell persists from common.yaml, but deglitch.yaml is allowed to override his uid and group, reducing the amount of data you have to duplicate between files.
 
 With a `deep` merge, you would get:
 
-``` ruby
-    {
-      "bob"=>{
-        group=>"deglitch",
-        uid=>501,
-        shell=>"/bin/bash"
-      },
-      "jen"=>{
-        group=>"deglitch",
-        shell=>"/bin/zsh",
-        uid=>503
-      },
-      "ash"=>{
-        group=>"common",
-        uid=>502,
-        shell=>"/bin/zsh"
-      }
-    }
+``` puppet
+{
+  "bob"=>{
+    group=>"deglitch",
+    uid=>501,
+    shell=>"/bin/bash"
+  },
+  "jen"=>{
+    group=>"deglitch",
+    shell=>"/bin/zsh",
+    uid=>503
+  },
+  "ash"=>{
+    group=>"common",
+    uid=>502,
+    shell=>"/bin/zsh"
+  }
+}
 ```
 
 In this case, deglitch.yaml was able to set the group because common.yaml didn't have a value for it, but where there was a conflict, like the uid, common won. Most users don't want this.

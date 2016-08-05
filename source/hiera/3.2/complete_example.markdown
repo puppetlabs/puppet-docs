@@ -56,7 +56,7 @@ For purposes of this walkthrough, we'll assume a situation that looks something 
 
 How did things look before we decided to use Hiera? Classes are assigned to nodes via the Puppet site manifest (`/etc/puppetlabs/code/environments/production/manifests/sites.pp` for Puppet open source), so here's how our site manifest might have looked:
 
-``` ruby
+``` puppet
 node "kermit.example.com" {
   class { "ntp":
     servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
@@ -234,7 +234,7 @@ Now that everything has tested out from the command line, it's time to get a lit
 
 If you'll remember back to our pre-Hiera configuration, we were declaring a number of parameters for the `ntp` class in our `site.pp` manifest, like this:
 
-``` ruby
+``` puppet
 node "kermit.example.com" {
   class { "ntp":
     servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
@@ -247,7 +247,7 @@ node "kermit.example.com" {
 
 In fact, we had three separate stanzas of that length. But now that we've moved all of that parameter data into Hiera, we can significantly pare down `site.pp`:
 
-``` ruby
+``` puppet
 node "kermit.example.com", "grover.example.com", "snuffie.example.com" {
   include ntp
   # or:
@@ -273,7 +273,7 @@ In the first part of our example, we were concerned with how to use Hiera to pro
 
 Where last we left off, our `site.pp` manifest was looking somewhat spare. With the `hiera_include` function, we can pare things down even further by picking a key to use for classes (we recommend `classes`), then declaring it in our `site.pp` manifest:
 
-``` ruby
+``` puppet
 hiera_include('classes')
 ```
 
