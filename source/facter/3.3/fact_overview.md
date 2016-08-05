@@ -24,15 +24,15 @@ Both flat and structured facts can have simple resolutions.
 
 ### Example: Minimal fact that relies on a single shell command
 
-~~~ ruby
+``` ruby
 Facter.add(:rubypath) do
   setcode 'which ruby'
 end
-~~~
+```
 
 ### Example: Different resolutions for different operating systems
 
-~~~ ruby
+``` ruby
 Facter.add(:rubypath) do
   setcode 'which ruby'
 end
@@ -42,11 +42,11 @@ Facter.add(:rubypath) do
   # Windows uses 'where' instead of 'which'
   setcode 'where ruby'
 end
-~~~
+```
 
 ### Example: Slightly more complex fact, confined to Linux with a block
 
-~~~ ruby
+``` ruby
 Facter.add(:jruby_installed) do
   confine :kernel do |value|
     value == "Linux"
@@ -57,7 +57,7 @@ Facter.add(:jruby_installed) do
     Facter::Core::Execution.which('jruby') != nil
   end
 end
-~~~
+```
 
 ### Main components of simple resolutions
 
@@ -91,7 +91,7 @@ Facter 2.0 introduced **structured facts**, which can take the form of hashes or
 
 ### Example: Returning an array of network interfaces
 
-~~~ ruby
+``` ruby
 Facter.add(:interfaces_array) do
   setcode do
    interfaces = Facter.value(:interfaces)
@@ -100,11 +100,11 @@ Facter.add(:interfaces_array) do
    interfaces.split(',')
   end
 end
-~~~
+```
 
 ### Example: Returning a hash of network interfaces to IP addresses
 
-~~~ ruby
+``` ruby
 Facter.add(:interfaces_hash) do
   setcode do
     interfaces_hash = {}
@@ -119,7 +119,7 @@ Facter.add(:interfaces_hash) do
     interfaces_hash
   end
 end
-~~~
+```
 
 ## Writing facts with aggregate resolutions
 
@@ -159,7 +159,7 @@ Aggregate resolutions have two key differences compared to simple resolutions: t
 
 This example builds a new fact, `networking_primary_sha`, by progressively merging two chunks. One chunk encodes each networking interface's MAC address as an encoded base64 value, and the other determines if each interface is the system's primary interface.
 
-~~~ ruby
+``` ruby
 require 'digest'
 require 'base64'
 
@@ -191,11 +191,11 @@ Facter.add(:networking_primary_sha, :type => :aggregate) do
   # Facter will merge the return values for the two chunks
   # automatically, so there's no aggregate statement.
 end
-~~~
+```
 
 The fact's output is organized by network interface into hashes, each containing the two chunks:
 
-~~~ ruby
+``` ruby
 {
   bridge0 => {
     mac_sha256 => "bfgEFV7m1V04HYU6UqzoNoVmnPIEKWRSUOU650j0Wkk=",
@@ -207,11 +207,11 @@ The fact's output is organized by network interface into hashes, each containing
   },
   ...
 }
-~~~
+```
 
 ### Example: Building a flat fact progressively with addition
 
-~~~ ruby
+``` ruby
 Facter.add(:total_free_memory_mb, :type => :aggregate) do
   chunk(:physical_memory) do
     Facter.value(:memoryfree_mb)
@@ -231,5 +231,5 @@ Facter.add(:total_free_memory_mb, :type => :aggregate) do
     sum
   end
 end
-~~~
+```
 
