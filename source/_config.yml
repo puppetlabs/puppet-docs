@@ -58,6 +58,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
+  puppetdb: 4.1
  # puppet: 4.4
  # hiera: 3.1
 
@@ -447,13 +448,21 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/4.2:
+    doc: puppetdb
+    version: 4.2
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/stable
+      subdirectory: documentation
   /puppetdb/4.1:
     doc: puppetdb
     version: 4.1
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/stable
+      commit: origin/4.1.x
       subdirectory: documentation
   /puppetdb/4.0:
     doc: puppetdb
