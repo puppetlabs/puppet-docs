@@ -65,7 +65,7 @@ These are not normal variables, and have some special behaviors:
 
 The [data type][] of regular expressions is `Regexp`.
 
-By default, `Regexp` matches any regular expression value.
+By default, `Regexp` matches any regular expression value. If you are looking for a type that matches strings which match arbitrary regular expressions, see the [Pattern][] type.
 
 You can use parameters to restrict which values `Regexp` will match.
 
