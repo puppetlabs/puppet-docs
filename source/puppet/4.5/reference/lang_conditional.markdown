@@ -29,7 +29,7 @@ Puppet supports "if" and "unless" statements, case statements, and selectors.
 
 An "if" statement:
 
-~~~ ruby
+``` ruby
 if $is_virtual {
   warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
 }
@@ -39,30 +39,30 @@ elsif $operatingsystem == 'Darwin' {
 else {
   include ntp
 }
-~~~
+```
 
 An "unless" statement:
 
-~~~ ruby
+``` ruby
 unless $memorysize > 1024 {
   $maxclient = 500
 }
-~~~
+```
 
 A case statement:
 
-~~~ ruby
+``` ruby
 case $operatingsystem {
   'Solaris':          { include role::solaris }
   'RedHat', 'CentOS': { include role::redhat  }
   /^(Debian|Ubuntu)$/:{ include role::debian  }
   default:            { include role::generic }
 }
-~~~
+```
 
 A selector:
 
-~~~ ruby
+``` ruby
 $rootgroup = $osfamily ? {
     'Solaris'          => 'wheel',
     /(Darwin|FreeBSD)/ => 'wheel',
@@ -74,7 +74,7 @@ file { '/etc/passwd':
   owner  => 'root',
   group  => $rootgroup,
 }
-~~~
+```
 
 ## "If" statements
 
@@ -84,7 +84,7 @@ file { '/etc/passwd':
 
 ### Syntax
 
-~~~ ruby
+``` ruby
 if $is_virtual {
   # Our NTP module is not supported on virtual machines:
   warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
@@ -96,7 +96,7 @@ else {
   # Normal node, include the class.
   include ntp
 }
-~~~
+```
 
 The general form of an "if" statement is:
 
@@ -139,11 +139,11 @@ Static values may also be conditions, although doing this would be pointless.
 
 If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-~~~ ruby
+``` ruby
 if $hostname =~ /^www(\d+)\./ {
   notice("Welcome to web server number $1")
 }
-~~~
+```
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -159,11 +159,11 @@ These are not normal variables, and have some special behaviors:
 
 ### Syntax
 
-~~~ ruby
+``` ruby
 unless $memorysize > 1024 {
   $maxclient = 500
 }
-~~~
+```
 
 The general form of an "unless" statement is:
 
@@ -209,14 +209,14 @@ Like "if" statements, **case statements** choose one of several blocks of arbitr
 
 ### Syntax
 
-~~~ ruby
+``` ruby
 case $operatingsystem {
   'Solaris':          { include role::solaris } # apply the solaris class
   'RedHat', 'CentOS': { include role::redhat  } # apply the redhat class
   /^(Debian|Ubuntu)$/:{ include role::debian  } # apply the debian class
   default:            { include role::generic } # apply the generic class
 }
-~~~
+```
 
 The general form of a case statement is:
 
@@ -277,12 +277,12 @@ The value of a `case` expression is the value of the last expression in the exec
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-~~~ ruby
+``` ruby
 case $hostname {
   /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
   default:   { include role::generic }
 }
-~~~
+```
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -324,7 +324,7 @@ Selectors can be used wherever a **value** is expected. This includes:
 
 Selectors resemble a cross between a case statement and the ternary operator found in other languages.
 
-~~~ ruby
+``` ruby
 $rootgroup = $osfamily ? {
     'Solaris'          => 'wheel',
     /(Darwin|FreeBSD)/ => 'wheel',
@@ -336,7 +336,7 @@ file { '/etc/passwd':
   owner  => 'root',
   group  => $rootgroup,
 }
-~~~
+```
 
 In the example above, the value of `$rootgroup` is determined using the value of `$osfamily`.
 
@@ -382,12 +382,12 @@ A case can be any expression that resolves to a value. (This includes literal va
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-~~~ ruby
+``` ruby
 $system = $operatingsystem ? {
   /(RedHat|Debian)/ => "our system is ${1}",
   default           => "our system is unknown",
 }
-~~~
+```
 
 These are not normal variables, and have some special behaviors:
 

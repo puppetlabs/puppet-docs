@@ -92,11 +92,11 @@ If you have both a .pmtignore and a .gitignore file, the Puppet module tool will
 
 Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored). If you try to build a module with symlinks, you will recieve the following error:
 
-~~~
+```
 Warning: Symlinks in modules are unsupported. Please investigate symlink manifests/foo.pp->manifests/init.pp.
 Error: Found symlinks. Symlinks in modules are not allowed, please remove them.
 Error: Try 'puppet help module build' for usage
-~~~
+```
 
 ## Write a metadata.json file
 
@@ -128,11 +128,11 @@ To build your module:
 
 1. Run `# puppet module build <MODULE DIRECTORY>`. A .tar.gz package will be generated and saved in the module's pkg/ subdirectory. For example:
 
-~~~
+```
 # puppet module build /etc/puppetlabs/puppet/modules/mymodule
 Building /etc/puppetlabs/puppet/modules/mymodule for release
 /etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
-~~~
+```
 
 >**Note:**
 >

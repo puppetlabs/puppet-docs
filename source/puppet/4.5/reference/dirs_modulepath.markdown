@@ -45,10 +45,10 @@ The modulepath is set by the current node's [environment][environments]. By defa
 
 You can view the effective modulepath for any environment by specifying the environment when [requesting the setting value][config_print]:
 
-~~~ bash
+``` bash
 sudo puppet config print modulepath --section master --environment test
 /etc/puppetlabs/code/environments/test/modules:/etc/puppetlabs/code/modules:/usr/share/puppet/modules
-~~~
+```
 
 ## Configuration
 

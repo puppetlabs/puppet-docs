@@ -43,7 +43,7 @@ The most common use cases are monitoring and backups. A class that manages a ser
 
 Using exported resources requires two steps: declaring and collecting.
 
-~~~ ruby
+``` ruby
 class ssh {
   # Declare:
   @@sshkey { $hostname:
@@ -53,7 +53,7 @@ class ssh {
   # Collect:
   Sshkey <<| |>>
 }
-~~~
+```
 
 In the example above, every node with the `ssh` class will export its own SSH host key and then collect the SSH host key of every node (including its own). This will cause every node in the site to trust SSH connections from every other node.
 
@@ -61,7 +61,7 @@ In the example above, every node with the `ssh` class will export its own SSH ho
 
 To declare an exported resource, prepend `@@` (a double "at" sign) to the **resource type** of a standard [resource declaration][resources]:
 
-~~~ ruby
+``` ruby
 @@nagios_service { "check_zfs${hostname}":
   use                 => 'generic-service',
   host_name           => "$fqdn",
@@ -70,18 +70,18 @@ To declare an exported resource, prepend `@@` (a double "at" sign) to the **reso
   target              => '/etc/nagios3/conf.d/nagios_service.cfg',
   notify              => Service[$nagios::params::nagios_service],
 }
-~~~
+```
 
 ### Collecting exported resources
 
 To collect exported resources you must use an [exported resource collector][exported_collector]:
 
-~~~ ruby
+``` ruby
 Nagios_service <<| |>> # Collect all exported nagios_service resources
 
 #  Collect exported file fragments for building a Bacula config file:
 Concat::Fragment <<| tag == "bacula-storage-dir-${bacula_director}" |>>
-~~~
+```
 
 (The second example, taken from [puppetlabs-bacula][bacula], uses the [concat][] module.)
 

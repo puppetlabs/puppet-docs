@@ -65,10 +65,10 @@ The Puppet master Ruby processes should be run as a specific **non-root** user, 
 
 Note that you'll need to manually create the `puppet` user account, as the puppet-agent package does not create it. To create this account, run the following commands:
 
-~~~
+```
 puppet resource group puppet ensure=present
 puppet resource user puppet ensure=present gid=puppet
-~~~
+```
 
 The Rack web server sets the Puppet master process's user. By default, it will use the owner of the `config.ru` file. (See below.)
 

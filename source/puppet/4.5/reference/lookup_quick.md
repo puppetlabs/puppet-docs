@@ -132,7 +132,7 @@ These files have the same name, but they're different. Sorry. We couldn't fix so
 
 ### `hiera.yaml` (Version 4) in a nutshell
 
-~~~ yaml
+``` yaml
 # /etc/puppetlabs/code/environments/production/hiera.yaml
 ---
 version: 4
@@ -157,7 +157,7 @@ hierarchy:
 
   - name: "common"
     backend: yaml
-~~~
+```
 
 The `hiera.yaml` (version 4) file goes in the main directory of a module or environment, and is used when the `environment_data_provider` or `data_provider` setting is set to `hiera`.
 
@@ -203,11 +203,11 @@ The value of `lookup_options` should be a hash, where:
 
 So, for example:
 
-~~~ yaml
+``` yaml
 lookup_options:
   ntp::servers:
     merge: unique
-~~~
+```
 
 Whenever Puppet looks up a key, it also checks `lookup_options` to see if it contains any merge settings for that key. If it does, it will use that merge behavior unless the lookup request overrides it.
 

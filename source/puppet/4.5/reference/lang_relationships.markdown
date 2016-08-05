@@ -32,12 +32,12 @@ By default, Puppet applies resources in the order they're declared in their mani
 ## Syntax: Relationship metaparameters
 
 
-~~~ ruby
+``` ruby
 package { 'openssh-server':
   ensure => present,
   before => File['/etc/ssh/sshd_config'],
 }
-~~~
+```
 
 Puppet uses four [metaparameters][] to establish relationships, and you can set each of them as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources**.
 
@@ -50,44 +50,44 @@ If two resources need to happen in order, you can either put a `before` attribut
 
 The two examples below create the same ordering relationship:
 
-~~~ ruby
+``` ruby
 package { 'openssh-server':
   ensure => present,
   before => File['/etc/ssh/sshd_config'],
 }
-~~~
+```
 
-~~~ ruby
+``` ruby
 file { '/etc/ssh/sshd_config':
   ensure  => file,
   mode    => '0600',
   source  => 'puppet:///modules/sshd/sshd_config',
   require => Package['openssh-server'],
 }
-~~~
+```
 
 The two examples below create the same notifying relationship:
 
-~~~ ruby
+``` ruby
 file { '/etc/ssh/sshd_config':
   ensure => file,
   mode   => '0600',
   source => 'puppet:///modules/sshd/sshd_config',
   notify => Service['sshd'],
 }
-~~~
+```
 
-~~~ ruby
+``` ruby
 service { 'sshd':
   ensure    => running,
   enable    => true,
   subscribe => File['/etc/ssh/sshd_config'],
 }
-~~~
+```
 
 Since an array of resource references can contain resources of differing types, these two examples also create the same ordering relationship:
 
-~~~ ruby
+``` ruby
 service { 'sshd':
   ensure  => running,
   require => [
@@ -95,9 +95,9 @@ service { 'sshd':
     File['/etc/ssh/sshd_config'],
   ],
 }
-~~~
+```
 
-~~~ ruby
+``` ruby
 package { 'openssh-server':
   ensure => present,
   before => Service['sshd'],
@@ -109,16 +109,16 @@ file { '/etc/ssh/sshd_config':
   source => 'puppet:///modules/sshd/sshd_config',
   before => Service['sshd'],
 }
-~~~
+```
 
 
 ## Syntax: Chaining arrows
 
 
-~~~ ruby
+``` ruby
 # ntp.conf is applied first, and notifies the ntpd service if it changes:
 File['/etc/ntp.conf'] ~> Service['ntpd']
-~~~
+```
 
 You can create relationships between two resources or groups of resources using the `->` and `~>` operators.
 
@@ -136,13 +136,13 @@ The chaining arrows accept the following kinds of operands on either side of the
 
 An operand can be shared between two chaining statements, which allows you to link them together into a "timeline":
 
-~~~ ruby
+``` ruby
 Package['ntp'] -> File['/etc/ntp.conf'] ~> Service['ntpd']
-~~~
+```
 
 Since resource declarations can be chained, you can use chaining arrows to make Puppet apply a section of code in the order that it is written:
 
-~~~ ruby
+``` ruby
 # first:
 package { 'openssh-server':
   ensure => present,
@@ -156,13 +156,13 @@ service { 'sshd':
   ensure => running,
   enable => true,
 }
-~~~
+```
 
 And since collectors can be chained, you can create many-to-many relationships:
 
-~~~ ruby
+``` ruby
 Yumrepo <| |> -> Package <| |>
-~~~
+```
 
 This example applies all yum repository resources before applying any package resources, which protects any packages that rely on custom repositories.
 
@@ -203,25 +203,25 @@ Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their s
 
 [The `require` function][require_function] declares a [class][] and causes it to become a dependency of the surrounding container:
 
-~~~ ruby
+``` ruby
 class wordpress {
   require apache
   require mysql
   ...
 }
-~~~
+```
 
 The above example causes every resource in the `apache` and `mysql` classes to be applied before any of the resources in the `wordpress` class.
 
 Unlike the relationship metaparameters and chaining arrows, the `require` function does not have a reciprocal form or a notifying form. However, more complex behavior can be obtained by combining `include` and chaining arrows inside a class definition:
 
-~~~ ruby
+``` ruby
 class apache::ssl {
   include site::certificates
   # Restart every service in this class if any of our SSL certificates change on disk:
   Class['site::certificates'] ~> Class['apache::ssl']
 }
-~~~
+```
 
 
 ## Behavior
@@ -284,10 +284,10 @@ If one of the resources in a relationship is never declared, **compilation fails
 
 If Puppet fails to apply the prior resource in a relationship, it skips the subsequent resource and log the following messages:
 
-~~~
+```
 notice: <RESOURCE>: Dependency <OTHER RESOURCE> has failures: true
 warning: <RESOURCE>: Skipping because of failed dependencies
-~~~
+```
 
 It then continues to apply any unrelated resources. Any resources that depend on the skipped resource are also skipped.
 
@@ -299,10 +299,10 @@ This helps prevent inconsistent system state by causing a "clean" failure instea
 
 If two or more resources require each other in a loop, Puppet compiles the catalog but won't be able to apply it. Puppet logs an error like the following, and attempts to help  identify the cycle:
 
-~~~
+```
 err: Could not apply complete catalog: Found 1 dependency cycle:
 (<RESOURCE> => <OTHER RESOURCE> => <RESOURCE>)
 Try the '--graph' option and opening the resulting '.dot' file in OmniGraffle or GraphViz
-~~~
+```
 
 To locate the directory containing the graph files, run `puppet agent --configprint graphdir`.

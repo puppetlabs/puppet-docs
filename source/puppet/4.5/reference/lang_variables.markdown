@@ -34,9 +34,9 @@ In the Puppet language, variables are actually constants, since they [can't be r
 
 ### Assignment
 
-~~~ ruby
+``` ruby
 $content = "some content\n"
-~~~
+```
 
 Variable names are prefixed with a `$` (dollar sign). Values are assigned to them with the `=` (equal sign) assignment operator.
 
@@ -52,12 +52,12 @@ You can assign multiple vairiables at once from an array or hash.
 
 When assigning multiple variables from an array, there must be an equal number of variables and values. Nested arrays can also be used.
 
-~~~
+```
     [$a, $b, $c] = [1,2,3]      # $a = 1, $b = 2, $c = 3
     [$a, [$b, $c]] = [1,[2,3]]  # $a = 1, $b = 2, $c = 3
     [$a, $b] = [1, [2]]         # $a = 1, $b = [2]
     [$a, [$b]] = [1, [2]]       # $a = 1, $b = 2
-~~~
+```
 
 If the number of variables and values do not match, the operation will fail.
 
@@ -65,26 +65,26 @@ If the number of variables and values do not match, the operation will fail.
 
 When you assign multiple variables with a hash, the variables are listed in an array on the left side of the assignment operator, and the hash is on the right. Hash keys must match their corresponding variable name. 
 
-~~~
+```
     [$a, $b] = {a => 10, b => 20}           # $a = 10, $b = 20
-~~~
+```
 
 There can be extra key/value pairs in the hash, but all variables to the left of the operator must have a corresponding key in the hash. 
 
-~~~
+```
     [$a, $c] = {a => 5, b => 10, c => 15, d => 22}   # $a = 5, $c = 15
-~~~
+```
 
 ### Resolution
 
-~~~ ruby
+``` ruby
 file {'/tmp/testing':
   ensure  => file,
   content => $content,
 }
 
 $address_array = [$address1, $address2, $address3]
-~~~
+```
 
 The name of a variable can be used in any place where a value of its data type would be accepted, including [expressions][], [functions][], and [resource attributes][resource]. Puppet will replace the name of the variable with its value.
 
@@ -92,13 +92,13 @@ By default, unassigned variables have a value of [`undef`][undef]; see [Unassign
 
 ### Interpolation
 
-~~~ ruby
+``` ruby
 $rule = "Allow * from $ipaddress"
 file { "${homedir}/.vim":
   ensure => directory,
   ...
 }
-~~~
+```
 
 Puppet can resolve variables in [double-quoted strings][double_quote]; this is called "interpolation."
 
@@ -117,9 +117,9 @@ See the [section on scope][scope] for complete details.
 
 You can access out-of-scope variables from named scopes by using their [qualified names](#naming):
 
-~~~ ruby
+``` ruby
 $vhostdir = $apache::params::vhostdir
-~~~
+```
 
 Note that the top scope's name is the empty string --- thus, the qualified name of a top scope variable would be, e.g., `$::osfamily`. See [scope][] for details.
 
@@ -135,7 +135,7 @@ If you'd rather have unassigned variable usage throw an error, so you can get wa
 
 Unlike most other languages, Puppet only allows a given variable to be assigned **once** within a given [scope][]. You may not change the value of a variable, although you may assign a different value to the same variable name in a new scope:
 
-~~~ ruby
+``` ruby
 # scope-example.pp
 # Run with puppet apply --certname www1.example.com scope-example.pp
 $myvar = "Top scope value"
@@ -152,7 +152,7 @@ class myclass {
   $myvar = "Local scope value"
   notice( "from myclass: $myvar" )
 }
-~~~
+```
 
 In the example above, `$myvar` has several different values, but only one value will apply to any given scope.
 

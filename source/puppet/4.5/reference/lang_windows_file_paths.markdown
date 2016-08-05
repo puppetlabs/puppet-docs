@@ -118,25 +118,25 @@ Prior to 3.7.3, there's no easy way for Puppet manifests to detect whether `sysn
 
 One consideration for `exec` when you can't use `$system32` is to use `path =>` and set it appropriately, the first search path item first followed by others in the order you want them searched in. For instance, if you want to always use the 64-bit version of `cmd.exe` you can use:
 
-~~~ ruby
+``` ruby
 exec { '64_bit_cmd':
   path    => "c:\\windows\\sysnative;c:\\windows\\system32;$::path",
   command => 'cmd.exe /c echo process is %PROCESSOR_ARCHITECTURE%',
 }
-~~~
+```
 
 If you always instead would rather always get a 32-bit process if it is available, you should set path more like the following:
 
-~~~ ruby
+``` ruby
 exec { '32_bit_cmd':
   path    => "c:\\windows\\sysWOW64;c:\\windows\\system32;$::path",
   command => 'cmd.exe /c echo process is %PROCESSOR_ARCHITECTURE%',
 }
-~~~
+```
 
 Finally, it's possible to automatically detect which directory to use in Ruby plugin code. Do something like [this example from the puppetlabs/powershell module](https://github.com/puppetlabs/puppetlabs-powershell/blob/master/lib/puppet/provider/exec/powershell.rb#L6-L13):
 
-~~~ ruby
+``` ruby
 commands :powershell =>
   if File.exists?("#{ENV['SYSTEMROOT']}\\sysnative\\WindowsPowershell\\v1.0\\powershell.exe")
   "#{ENV['SYSTEMROOT']}\\sysnative\\WindowsPowershell\\v1.0\\powershell.exe"
@@ -145,4 +145,4 @@ commands :powershell =>
   else
   'powershell.exe'
   end
-~~~
+```

@@ -148,23 +148,23 @@ Then to verify an RPM you've downloaded, run the `rpm` tool with the `checksig` 
 
 This verifies the embedded signature, as signified by the `OK` results in the `rpm` output:
 
-~~~
+```
 puppetlabs-release-pc1-fedora-22.noarch.rpm:
     Header V4 RSA/SHA1 Signature, key ID 4bd6ec30: OK
     Header SHA1 digest: OK (403bb336706e52f1eca63424a55b7f123e644b2b)
     V4 RSA/SHA1 Signature, key ID 4bd6ec30: OK
     MD5 digest: OK (97a9c407a8a7ee9f8689c79bab97250e)
-~~~
+```
 
 If you don't import the Puppet public key, you can still verify the package's integrity using `rpm -vK`. However, you won't be able to validate the package's origin:
 
-~~~
+```
 puppetlabs-release-pc1-fedora-22.noarch.rpm:
     Header V4 RSA/SHA1 Signature, key ID 4bd6ec30: NOKEY
     Header SHA1 digest: OK (403bb336706e52f1eca63424a55b7f123e644b2b)
     V4 RSA/SHA1 Signature, key ID 4bd6ec30: NOKEY
     MD5 digest: OK (97a9c407a8a7ee9f8689c79bab97250e)
-~~~
+```
 
 #### Verify an OS X `puppet-agent` package
 
@@ -174,7 +174,7 @@ Puppet signs `puppet-agent` packages for OS X with a developer ID and certificat
 
 The tool confirms the signature and outputs fingerprints for each certificate in the chain:
 
-~~~
+```
 Package "puppet-agent-1.3.2-1-installer.pkg":
    Status: signed by a certificate trusted by Mac OS X
    Certificate Chain:
@@ -186,7 +186,7 @@ Package "puppet-agent-1.3.2-1-installer.pkg":
        -----------------------------------------------------------------------------
     3. Apple Root CA
        SHA1 fingerprint: 61 1E 5B 66 2C 59 3A 08 FF 58 D1 4A E2 24 52 D1 98 DF 6C 60
-~~~
+```
 
 You can also confirm the certificate when installing the package by clicking the lock icon in the top-right corner of the installer:
 

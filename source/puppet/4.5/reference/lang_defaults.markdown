@@ -15,14 +15,14 @@ Resource default statements let you set default attribute values for a given res
 ## Syntax
 
 
-~~~ ruby
+``` ruby
 Exec {
   path        => '/usr/bin:/bin:/usr/sbin:/sbin',
   environment => 'RUBYLIB=/opt/puppetlabs/puppet/lib/ruby/site_ruby/2.1.0/',
   logoutput   => true,
   timeout     => 180,
 }
-~~~
+```
 
 The general form of resource defaults is:
 

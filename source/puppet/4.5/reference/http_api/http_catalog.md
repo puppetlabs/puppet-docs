@@ -170,7 +170,7 @@ environment, which might differ from what the client believes is its current env
 
 #### Static Catalog found
 
-~~~
+```
 POST /puppet/v3/catalog/elmo.mydomain.com
 
 environment=env&configured_environment=canary_env&facts_format=pson&facts=%7B%22name%22%3A%22elmo.mydomain.com%22%2C%22values%22%3A%7B%22architecture%22%3A%22x86_64%22%7D&transaction_uuid=aff261a2-1a34-4647-8c20-ff662ec11c4c&static_catalog=true&checksum_type=sha256.md5
@@ -363,7 +363,7 @@ Content-Type: text/pson
     }
   }
 }
-~~~
+```
 
 Schema
 ------

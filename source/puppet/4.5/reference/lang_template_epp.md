@@ -25,7 +25,7 @@ This page covers how to write EPP templates. See [Templates](./lang_template.htm
 
 ## EPP structure and syntax
 
-~~~ erp
+``` erp
 <%- | Boolean $keys_enable,
       String  $keys_file,
       Array   $keys_trusted,
@@ -50,7 +50,7 @@ controlkey <%= $keys_controlkey %>
 <% } -%>
 
 <% } -%>
-~~~
+```
 
 An EPP template looks like a plain-text document interspersed with tags containing Puppet expressions. When evaluated, these tagged expressions can modify text in the template. You can use Puppet [variables][] in an EPP template to customize its output.
 
@@ -80,10 +80,10 @@ An expression-printing tag inserts the value of a single [Puppet expression](./l
 
 For example, to insert the value of the `$fqdn` and `$hostname` facts in an EPP template for an Apache config file, you could do something like:
 
-~~~ epp
+``` epp
 ServerName <%= $fqdn %>
 ServerAlias <%= $hostname %>
-~~~
+```
 
 #### Space trimming
 
@@ -101,21 +101,21 @@ Non-printing tags that contain [iterative](./lang_iteration.html) and [condition
 
 For example, to insert text only if a certain variable was set, you could do something like:
 
-~~~ erp
+``` erp
 <% if $broadcastclient == true { -%>
 broadcastclient
 <% } -%>
-~~~
+```
 
 Expressions in non-printing tags don't have to resolve to a value or be a complete statement, but the tag must close at a place where it would be legal to write another expression. For example, you couldn't write:
 
-~~~ erp
+``` erp
 <%# Syntax error: %>
 <% $servers.each -%>
 # some server
 <% |server| { %> server <%= server %>
 <% } -%>
-~~~
+```
 
 You must keep `|server| {` inside the first tag, because you can't insert an arbitrary statement between a function call and its required block.
 
@@ -138,9 +138,9 @@ The parameter tag is optional; if used, it **must** be the first content in a te
 
 The parameter tag's pair of pipe characters (`|`) should contain a comma-separated list of parameters. Each parameter follows this format:
 
-~~~ ruby
+``` ruby
 Boolean $keys_enable = false
-~~~
+```
 
 That is:
 
@@ -193,18 +193,18 @@ This means templates can use short names to access global variables (like `$os` 
 
 You can pass parameters when you call a template, and they will become local variables inside the template. To do this, pass a [hash][] as the last argument of the [`epp`][epp] or [`inline_epp`][inline_epp] functions:
 
-~~~ ruby
+``` ruby
 epp('example/example.epp', { 'logfile' => "/var/log/ntp.log" })
-~~~
+```
 
-~~~ epp
+``` epp
 <%- | Optional[String] $logfile = undef | -%>
 <%# (Declare the $logfile parameter as optional) -%>
 
 <% unless $logfile =~ Undef { -%>
 logfile <%= $logfile %>
 <% } -%>
-~~~
+```
 
 The keys of the hash should match the variable names you'll be using in the template, minus the leading `$` sign. Parameters must follow [the normal rules for local variable names.][variable_names]
 
@@ -240,7 +240,7 @@ If:
 
 The following example is an EPP translation of the `ntp.conf.erb` template from the [`puppetlabs-ntp`][ntp] module.
 
-~~~ epp
+``` epp
 # ntp.conf: Managed by puppet.
 #
 <% if $ntp::tinker == true and ($ntp::panic or $ntp::stepout) { -%>
@@ -333,15 +333,15 @@ fudge <%= $entry %>
 # Leapfile
 leapfile <%= $ntp::leapfile %>
 <% } -%>
-~~~
+```
 
 To call this template from a manifest (presuming that the template file is located in the `templates` directory of the `puppetlabs-ntp` module), add the following code to the manifest:
 
-~~~ ruby
+``` ruby
 # epp(<FILE REFERENCE>, [<PARAMETER HASH>])
 file { '/etc/ntp.conf':
   ensure  => file,
   content => epp('ntp/ntp.conf.epp'),
   # Loads /etc/puppetlabs/code/environments/production/modules/ntp/templates/ntp.conf.epp
 }
-~~~
+```

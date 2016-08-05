@@ -50,9 +50,9 @@ A bug fix release in the Puppet 4.5 series.
 
   The problem manifests itself as the error message: 
 
-  ~~~
+  ```
   No title provided and "" is not a valid resource reference 
-  ~~~
+  ```
 
   For more information, see [PUP-6385](https://tickets.puppetlabs.com/browse/PUP-6385).
 
@@ -117,9 +117,9 @@ SemVer and SemVerRange have been added to the Puppet Type System. This makes it 
 
 Instances of SemVer and SemVerRange are created with the `new` function support which also supports directly calling the type. As an example a new SemVer can be created like this: 
 
-~~~
+```
 SemVer('>=1.0.0 <2.0.0')
-~~~
+```
 
 * [PUP-6221](https://tickets.puppetlabs.com/browse/PUP-6221)
 
@@ -165,16 +165,16 @@ The `always_retry_plugins` setting also replaces the `always_cache_features` set
 
 It is now possible to assign to multiple variables at once from the corresponding variables in a class scope by using the syntax: 
 
-~~~
+```
 [ $var1, $var2 ] = Class['classfoo::params'] 
-~~~
+```
 
 Which has the same effect as: 
 
-~~~
+```
 $var1 = $clasfoo::params::var1 
 $var2 = $clasfoo::params::var2 
-~~~
+```
 
 An error is raised if the referenced variables do not exist as a variable or parameter in the referenced class.
 

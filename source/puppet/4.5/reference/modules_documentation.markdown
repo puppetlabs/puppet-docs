@@ -57,7 +57,7 @@ Assume **Module Description** is the first thing a user reads. First, it should 
 
 A second paragraph can go into more depth on the "How?" and "What?" of a module, giving a user more information about what to expect from the module so they can assess whether they would like to use it or not.
 
-~~~
+```
 ## Module description
 
 The cat module installs, configures, and maintains your cat in both
@@ -67,7 +67,7 @@ The cat module automates the installation of a cat to your apartment or
 house, and then provides options for configuring the cat to fit your
 environment's needs. Once installed and configured, the cat module
 automates maintenance of your cat through a series of resource types and providers.
-~~~
+```
 
 ## Setup
 
@@ -78,23 +78,23 @@ Overall, the **Setup** section should give a user the basic steps to successfull
 * the module alters, overwrites, or otherwise touches files, packages, services, or operations other than the named software; OR
 * the module's general performance may overwrite, purge, or otherwise remove entries, files, or directories in a user's environment.
 
-~~~
+```
 ## Setup
 
 ### What cat affects
 
 * Your dog door might be overwritten if not secured before installation.
-~~~
+```
 
 **Setup Requirements** is used only if the module requires additional software or some tweak to a user's environment. For instance, the firewall module uses Ruby-based providers which required pluginsync to be enabled.
 
 **Beginning with [modulename]** should cover the minimum steps required to get the module up and running in a user's environment. (Note: This does not necessarily mean it should be running in production. This step most often covers basic Proof of Concept use cases.) For very simple modules, this section is often just "Declare the main `::cat` class."
 
-~~~
+```
 ### Beginning with cat
 
 Declare the main `::cat` class.
-~~~
+```
 
 ## Usage
 
@@ -102,7 +102,7 @@ The **Usage** section should address how to solve some general problems with the
 
 How you structure this section depends on the structure of the module and how it works in the user's environment. Ask yourself questions such as, "What problems can users solve with this module?" or "What are a couple basic tasks a user can do to see how this module works in their environment?" to help get you started.
 
-~~~
+```
 ## Usage
 
 All interaction with your cat can be done through the main cat class. With
@@ -124,7 +124,7 @@ playtime at 3 a.m. local time.
         start_time => '0300',
       }
     }
-~~~
+```
 
 ## Reference
 
@@ -132,7 +132,7 @@ The **Reference** section should contain a complete list of classes, defines, ty
 
 Generally, unless your module is very small (only 1 - 4 classes or defines (defined resource types)), start with a small table of contents that first lists the classes, defines, and resource types of your module. If your module contains both public and private classes, defines, etc, list the public and the private separately. Include a brief description of what these items do in your module. It's especially helpful if you  provide a link to each listed item.
 
-~~~
+```
 ## Reference
 
 ### Classes
@@ -143,11 +143,11 @@ Generally, unless your module is very small (only 1 - 4 classes or defines (defi
 #### Private classes
 *[`pet::cat::install`]: Handles the cat packages.
 *[`pet::cat::configure`]: Handles the configuration file.
-~~~
+```
 
 After this mini-contents, list the parameters, providers, or features for each thing. Be sure to include valid or acceptable values and any defaults that apply.
 
-~~~
+```
 ### `pet::cat`
 
 #### Parameters
@@ -167,17 +167,17 @@ Valid options: A hash with the following keys:
 * `duration` - accepts an integer in seconds, defaults to '5'.
 * `frequency` - accepts an integer, defaults to 1.
 * `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
-~~~
+```
 
 ## Limitations and development
 
 The **Limitations** section is the place to call out surprise incompatibilities.
 
-~~~
+```
 ## Limitations
 
 This module cannot be used with the smallchild module.
-~~~
+```
 
 Since your module is awesome, other users will want to play with it. The **Development** section is where you let them know what the ground rules for contributing are.
 

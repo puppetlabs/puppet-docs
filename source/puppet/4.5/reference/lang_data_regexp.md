@@ -22,11 +22,11 @@ You can use regular expression values with the `=~` and `!~` match operators, ca
 
 Regular expressions are written as patterns bordered by forward slashes. (Unlike in Ruby, you cannot specify options or encodings after the final slash, like `/node .*/m`.)
 
-~~~ ruby
+``` ruby
 if $host =~ /^www(\d+)\./ {
   notify { "Welcome web server #$1": }
 }
-~~~
+```
 
 Puppet uses [Ruby's standard regular expression implementation][ruby_regexp] to match patterns.
 
@@ -38,12 +38,12 @@ Some places in the language accept both real regex values and stringified regexe
 
 Regexes in Puppet cannot have options or encodings appended after the final slash. However, you can turn options on or off for portions of the expression using the `(?<ENABLED OPTION>:<SUBPATTERN>)` and `(?-<DISABLED OPTION>:<SUBPATTERN>)` notation. The following example enables the `i` option while disabling the `m` and `x` options:
 
-~~~ ruby
+``` ruby
  $packages = $operatingsystem ? {
    /(?i-mx:ubuntu|debian)/        => 'apache2',
    /(?i-mx:centos|fedora|redhat)/ => 'httpd',
  }
-~~~
+```
 
 The following options are allowed:
 

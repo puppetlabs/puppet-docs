@@ -36,9 +36,9 @@ In Puppet 3, facts with boolean true/false values (like `$is_virtual`) were conv
 
 In Puppet 4, boolean facts are never turned into strings, and those `==` comparisons will always evaluate to `false`. This can cause serious problems. Check your manifests for any comparisons that treat boolean facts like strings; if you need a manifest to work with both Puppet 3 and Puppet 4, you can convert a boolean to a string and then pass it to [the stdlib module's `str2bool` function][str2bool]:
 
-~~~ ruby
+``` ruby
 if str2bool("$is_virtual") { ... }
-~~~
+```
 
 ### Numbers and strings are different in the DSL
 
@@ -46,29 +46,29 @@ For full details, [see the language page about numeric values.][numeric]
 
 Previously, Puppet would convert everything to strings, then attempt to convert those strings back into numbers when they were used in a numeric context. In Puppet 4, numbers in the DSL are parsed and maintained internally as numbers. The following examples would have been equivalent in Puppet 3, but are now different:
 
-~~~ ruby
+``` ruby
 $port_a = 80   # Parsed and maintained as a number, errors if NOT a number
 $port_b = '80' # Parsed and maintained as a string
-~~~
+```
 
 The difference now is that Puppet will STRICTLY enforce numerics and will throw errors if values that begin with a number are not valid numbers.
 
-~~~ ruby
+``` ruby
 node 1name {} # invalid because 1name is not a valid decimal number; you would need to quote this name
 notice(0xggg) # invalid because 0xggg is not a valid hexadecimal number
 $a = 1 + 0789 # invalid because 0789 is not a valid octal number
-~~~
+```
 
 ### Arithmetic expressions
 
 Mathematical expressions still convert strings to numeric values. If a value begins with 0 or 0x, it will be interpreted as an octal or hex number, respectively.  An error is raised if either side in an arithmetic expression is not a number or a string that can be converted to a number.  For example:
 
-~~~ ruby
+``` ruby
 $valid = 40 + 50       # valid because both values are numeric
 $valid = 25 + '30'     # valid because '30' can be cast numerically
 $invalid = 40 + 0789   # invalid because 0789 isn't a valid octal number
 $invalid = 40 + '0789' # invalid because '0789' can't be cast numerically
-~~~
+```
 
 ## Check your comparisons
 
@@ -78,7 +78,7 @@ Some comparison operations have changed in Puppet 4. Read about [expressions and
 
 Matching a value that is not a string with a regular expression now raises an error. In 3.x, other data types were converted to string form before matching (often with surprising and undefined results).
 
-~~~ ruby
+``` ruby
 $securitylevel = 2
 
 case $securitylevel {
@@ -86,7 +86,7 @@ case $securitylevel {
   /[4-7]/: { notify { 'security medium': } }
   default: { notify { 'security high': } }
 }
-~~~
+```
 
 Prior to Puppet 4.0, the first regex would match, and the notify { 'security low': } resource would be put into the catalog.
 
@@ -96,7 +96,7 @@ Now, in Puppet 4.0, neither of the regexes would match because the value of `$se
 
 In previous versions of Puppet, an empty string was evaluated as a `false` boolean value. You would see this in variable and parameter default values where conditional checks would be used to determine if someone passed in a value or left it blank.
 
-~~~ ruby
+``` ruby
 class empty_string_defaults (
   $parameter_to_check = ''
 ) {
@@ -106,7 +106,7 @@ class empty_string_defaults (
     $parameter_to_check_real = 'default value'
   }
 }
-~~~
+```
 
 Puppet's old behavior of evaluating the empty string as `false` would allow you to set the default based on a simple if-statement. In Puppet 4.x, this behavior is flipped and `$parameter_to_check_real` will be set to an empty string.
 
@@ -144,10 +144,10 @@ Puppet 4.0.0 validates logic that has no effect and flags such expressions as be
 
 An example of a non productive expression is:
 
-~~~ ruby
+``` ruby
 if true { } # non productive
 $a = 10
-~~~
+```
 
 The `if` expression produces a value of `undef`, which is then thrown away. Note that expressions are never considered non-productive when they are the last in a manifest or block of code, as that is also the value of the sequence.
 
@@ -164,15 +164,15 @@ The space between a value and a left bracket is significant, and Puppet will out
 
 Bad:
 
-~~~ ruby
+``` ruby
 $a [3]  # first the value of a, then a literal array with the single value 3 in it
-~~~
+```
 
 Good:
 
-~~~ ruby
+``` ruby
 $a[3]   # index 3 in the array referenced by $a
-~~~
+```
 
 ## Check for function calls without parentheses
 
@@ -210,7 +210,7 @@ Node inheritance has also been removed. It is no longer possible to have node de
 
 In Puppet 4.0, dynamic scoping has been removed for variables in ERB templates.
 
-~~~ ruby
+``` ruby
 class outer {
   $var = 'dynamic'
   include inner
@@ -221,7 +221,7 @@ class inner {
 }
 
 include outer
-~~~
+```
 
 Prior to Puppet 4.x, the value supplied to `notice()` will resolve to the string dynamic.
 

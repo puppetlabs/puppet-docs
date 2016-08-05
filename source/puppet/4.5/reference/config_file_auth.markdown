@@ -49,7 +49,7 @@ The location of the `confdir` depends on your OS. [See the confdir documentation
 
 ## Example
 
-~~~
+```
 path /puppet/v3/environments
 method find
 allow *
@@ -114,7 +114,7 @@ allow *
 # illustrates the default policy.
 path /
 auth any
-~~~
+```
 
 ## Access control behavior
 
@@ -143,11 +143,11 @@ The file can also include comments, which are lines starting with `#`. Comments 
 
 [inpage_acl]: #acl-syntax
 
-~~~
+```
 path ~ ^/puppet/v3/report/([^/]+)$
 method save
 allow $1
-~~~
+```
 
 An ACL is a series of adjacent lines, with one directive per line. It describes some set of requests, and says who is allowed to make those requests.
 

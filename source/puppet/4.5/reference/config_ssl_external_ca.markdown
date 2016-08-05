@@ -115,11 +115,11 @@ Configure the Puppet master in four steps:
 
 On the master, in [`puppet.conf`][conf], make sure the following settings are configured:
 
-~~~
+```
 [master]
 ca = false
 certname = <some static string, e.g. 'puppetmaster'>
-~~~
+```
 
 * The internal CA service must be disabled using `ca = false`.
 * The certname must be set to a static value. This can still be the machine's FQDN, but you must not leave the setting blank. (A static certname will keep Puppet from getting confused if the machine's hostname ever changes.)
@@ -143,7 +143,7 @@ With these files in place, the web server should be configured to:
 
 An example of this configuration for Apache:
 
-~~~ apache
+``` apache
 Listen 8140
 <VirtualHost *:8140>
     SSLEngine on
@@ -173,20 +173,20 @@ Listen 8140
     RackAutoDetect On
     RackBaseURI /
 </VirtualHost>
-~~~
+```
 
 {% capture master_config_ru %}
 
 The `config.ru` file for Rack has no special configuration when using an external CA. Please follow the standard Rack documentation for using Puppet with Rack. The following example will work with this version of Puppet:
 
-~~~ ruby
+``` ruby
 $0 = "master"
 ARGV << "--rack"
 ARGV << "--confdir=/etc/puppetlabs/puppet"
 ARGV << "--vardir=/opt/puppetlabs/server/data/puppetserver"
 require 'puppet/util/command_line'
 run Puppet::Util::CommandLine.new.execute
-~~~
+```
 {% endcapture %}
 
 {{ master_config_ru }}
@@ -239,9 +239,9 @@ The Root CA does not issue SSL certificates in this configuration. The intermedi
 
 You must also create a **CA bundle** for the web server. Append **the two CA certificates** together; the Root CA certificate must be located after the intermediate CA certificate within the file.
 
-~~~ bash
+``` bash
 cat intermediate_ca.pem root_ca.pem > ca_bundle.pem
-~~~
+```
 
 Put this file somewhere predictable. Puppet doesn't use it directly, but it can live alongside Puppet's copies of the certificates.
 
@@ -253,7 +253,7 @@ With these files in place, the web server should be configured to:
 
 An example of this configuration for Apache:
 
-~~~ apache
+``` apache
 Listen 8140
 <VirtualHost *:8140>
     SSLEngine on
@@ -291,7 +291,7 @@ Listen 8140
     RackAutoDetect On
     RackBaseURI /
 </VirtualHost>
-~~~
+```
 
 {{ master_config_ru }}
 
@@ -299,10 +299,10 @@ Listen 8140
 
 With an intermediate CA, Puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its [`puppet.conf`][conf]:
 
-~~~
+```
 [agent]
 ssl_client_ca_auth = $certdir/issuer.pem
-~~~
+```
 
 The value should point to somewhere in the `$certdir`.
 
@@ -354,9 +354,9 @@ In this configuration, Puppet agents are configured to only authenticate peer ce
 
 You must also create a **CA bundle** for the web server. Append the **Agent CA certificate and Root CA certificate** together; the Root CA certificate must be located after the Agent CA certificate within the file.
 
-~~~ bash
+``` bash
 cat agent_ca.pem root_ca.pem > ca_bundle_for_master.pem
-~~~
+```
 
 Put this file somewhere predictable. Puppet doesn't use it directly, but it can live alongside Puppet's copies of the certificates.
 
@@ -368,7 +368,7 @@ With these files in place, the web server should be configured to:
 
 An example of this configuration for Apache:
 
-~~~ apache
+``` apache
 Listen 8140
 <VirtualHost *:8140>
     SSLEngine on
@@ -406,7 +406,7 @@ Listen 8140
     RackAutoDetect On
     RackBaseURI /
 </VirtualHost>
-~~~
+```
 
 {{ master_config_ru }}
 
@@ -414,10 +414,10 @@ Listen 8140
 
 With split CAs, Puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its [`puppet.conf`][conf]:
 
-~~~
+```
 [agent]
 ssl_client_ca_auth = $certdir/ca_master.pem
-~~~
+```
 
 The value should point to somewhere in the `$certdir`.
 

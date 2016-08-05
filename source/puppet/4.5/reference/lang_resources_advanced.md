@@ -43,7 +43,7 @@ This page describes the full syntax of resource expressions. Please make sure yo
 
 ## Full syntax
 
-~~~ ruby
+``` ruby
 <TYPE> {
   default:
     *           => <HASH OF ATTRIBUTE/VALUE PAIRS>,
@@ -60,7 +60,7 @@ This page describes the full syntax of resource expressions. Please make sure yo
     ...
   ;
 }
-~~~
+```
 
 The full, generalized form of a resource declaration expression is:
 
@@ -115,7 +115,7 @@ Instead, every other resource in that expression will use attribute values from 
 
 This is useful because it lets you set many attributes at once (like with an array of titles), but also lets you override some of them.
 
-~~~ ruby
+``` ruby
 file {
   default:
     ensure => file,
@@ -131,7 +131,7 @@ file {
     mode => "0644",
   ;
 }
-~~~
+```
 
 The position of the `default` body in an expression doesn't matter; resources above and below it will all use the default attributes if applicable.
 
@@ -152,7 +152,7 @@ The value of the `*` attribute must be a [hash][], where:
 
 This will set values for that resource's attributes, using every attribute and value listed in the hash.
 
-~~~ ruby
+``` ruby
 $file_ownership = {
   "owner" => "root",
   "group" => "wheel",
@@ -163,7 +163,7 @@ file { "/etc/passwd":
   ensure => file,
   *      => $file_ownership,
 }
-~~~
+```
 
 You cannot set any attribute more than once for a given resource; if you try, Puppet will raise a compilation error. This means:
 
@@ -181,7 +181,7 @@ Since a resource expression can accept a [resource type data type][resource_data
 
 That is, all of the following are equivalent:
 
-~~~ ruby
+``` ruby
 file { "/tmp/foo": ensure => file, }
 File { "/tmp/foo": ensure => file, }
 Resource[File] { "/tmp/foo": ensure => file, }
@@ -191,7 +191,7 @@ Resource[$mytype] { "/tmp/foo": ensure => file, }
 
 $mytypename = "file"
 Resource[$mytypename] { "/tmp/foo": ensure => file, }
-~~~
+```
 
 This lets you declare resources without knowing in advance what type of resources they'll be, which can enable interesting transformations of data into resources. For a demonstration, see the `create_resources` example below.
 
@@ -200,7 +200,7 @@ This lets you declare resources without knowing in advance what type of resource
 
 If you specify an [array][] of [strings][string] as the title of a resource body, Puppet will create multiple resources with the same set of attributes. This is useful when you have many resources that are nearly identical.
 
-~~~ ruby
+``` ruby
 $rc_dirs = [
   '/etc/rc.d',       '/etc/rc.d/init.d','/etc/rc.d/rc0.d',
   '/etc/rc.d/rc1.d', '/etc/rc.d/rc2.d', '/etc/rc.d/rc3.d',
@@ -213,7 +213,7 @@ file { $rc_dirs:
   group  => 'root',
   mode   => '0755',
 }
-~~~
+```
 
 Note that if you do this, you _must_ let the [namevar][] attributes of these resources default to their titles. You can't specify an explicit value for the namevar, because it will apply to all of those resources.
 
@@ -224,7 +224,7 @@ Although you cannot declare the same resource twice, you can add attributes to a
 
 ### Amending attributes with a resource reference
 
-~~~ ruby
+``` ruby
 file {'/etc/passwd':
   ensure => file,
 }
@@ -234,7 +234,7 @@ File['/etc/passwd'] {
   group => 'root',
   mode  => '0640',
 }
-~~~
+```
 
 The general form of a resource reference attribute block is:
 
@@ -249,7 +249,7 @@ You can also use the special `*` attribute to amend attributes from a hash. See 
 
 ### Amending attributes with a collector
 
-~~~ ruby
+``` ruby
 class base::linux {
   file {'/etc/passwd':
     ensure => file,
@@ -264,7 +264,7 @@ File <| tag == 'base::linux' |> {
   group => 'root',
   mode  => '0640',
 }
-~~~
+```
 
 The general form of a collector attribute block is:
 
@@ -294,7 +294,7 @@ Since classic [resource default statements][resdefaults] are subject to dynamic 
 
 To control those effects, you can define your defaults in a variable and re-use them in multiple places, by combining [per-expression defaults][inpage_defaults] and [setting attributes from a hash][inpage_splat].
 
-~~~ ruby
+``` ruby
 class mymodule::params {
   $file_defaults = {
     mode  => "0644",
@@ -311,7 +311,7 @@ class mymodule inherits mymodule::params {
     ;
   }
 }
-~~~
+```
 
 ### Implementing the `create_resources` function
 
@@ -329,7 +329,7 @@ The `create_resources` function expects three arguments:
 
 If we assume we have those values in variables (`$type`, `$resources`, and `$defaults`):
 
-~~~ ruby
+``` ruby
 $type = "user"
 $resources = {
   'nick' => { uid    => '1330',
@@ -341,15 +341,15 @@ $defaults = { gid => 'allstaff',
               managehome => true,
               shell      => 'bash',
             }
-~~~
+```
 
 ...then we can create matching resources like this:
 
-~~~ ruby
+``` ruby
 $resources.each |String $resource, Hash $attributes| {
   Resource[$type] {
     $resource: * => $attributes;
     default:   * => $defaults;
   }
 }
-~~~
+```
