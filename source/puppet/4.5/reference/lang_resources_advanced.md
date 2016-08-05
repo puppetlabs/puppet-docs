@@ -96,7 +96,7 @@ Each resource in an expression is almost completely independent of the others, a
 * They can all draw from the same pool of default values, if a resource body with the special title `default` is present. (See below for details.)
 
 
-##Value of a resource expression
+## Value of a resource expression
 
 Resource declarations are [expressions][] in the Puppet language --- they always have a side effect (adding a resource to the catalog), but they also resolve to a value.
 
