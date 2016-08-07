@@ -87,7 +87,7 @@ To convert the URLs:
 
 The other examples in this section convert this Puppet 3 example `auth.conf` rule to be compatible with Puppet 4:
 
-~~~
+```
 # Puppet 3 auth.conf on the master
 path ~ ^/catalog/([^/]+).uuid$
 method find
@@ -97,11 +97,11 @@ allow /^$1\.uuid.*/
 path ~ ^/catalog/([^/]+)$
 method find
 allow $1
-~~~
+```
 
 To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is false, modify the rules to follow the new HOCON `auth.conf` format and place the new rules in `/etc/puppetlabs/puppetserver/conf.d/auth.conf`:
 
-~~~
+```
 authorization: {
     version: 1
     rules: [
@@ -131,11 +131,11 @@ authorization: {
         ...
     ]
 }
-~~~
+```
 
 To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is true, modify the rules to specify the v3 endpoints while following the legacy `auth.conf` format, then place the new rules in `/etc/puppetlabs/puppet/auth.conf`:
 
-~~~
+```
 # Puppet 3 & 4 compatible auth.conf with Puppet Server 2.1+
 path ~ ^/puppet/v3/catalog/([^/]+).uuid$
 method find
@@ -145,7 +145,7 @@ allow /^$1\.uuid.*/
 path ~ ^/puppet/v3/catalog/([^/]+)$
 method find
 allow $1
-~~~
+```
 
 ### Move other configuration files
 
@@ -189,9 +189,9 @@ If you use [Hiera][], move its configuration and data files:
 
 Puppet Server won't automatically start up on boot---you'll need to enable it. Use `puppet resource` to do this regardless of your operating system or distribution:
 
-~~~ bash
+``` bash
 /opt/puppetlabs/bin/puppet resource service puppetserver ensure=running enable=true
-~~~
+```
 
 Once Puppet Server has started, check `/var/log/puppetlabs/puppetserver/puppetserver.log` to confirm that your agents have checked in.
 

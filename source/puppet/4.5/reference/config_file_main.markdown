@@ -38,17 +38,17 @@ The location of the `confdir` depends on your OS. [See the confdir documentation
 
 ### Example agent config
 
-~~~
+```
 [main]
 certname = agent01.example.com
 server = puppet
 environment = production
 runinterval = 1h
-~~~
+```
 
 ### Example master config
 
-~~~
+```
 [main]
 certname = puppetmaster01.example.com
 server = puppet
@@ -62,7 +62,7 @@ reports = puppetdb
 storeconfigs_backend = puppetdb
 storeconfigs = true
 environment_timeout = unlimited
-~~~
+```
 
 ## Format
 

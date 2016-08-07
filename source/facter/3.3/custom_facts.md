@@ -125,7 +125,7 @@ fact. Start by giving the fact a name, in this case, `hardware_platform`,
 and create your new fact in a file, `hardware_platform.rb`, on the
 Puppet master server:
 
-~~~ ruby
+``` ruby
 # hardware_platform.rb
 
 Facter.add('hardware_platform') do
@@ -133,7 +133,7 @@ Facter.add('hardware_platform') do
     Facter::Core::Execution.exec('/bin/uname --hardware-platform')
   end
 end
-~~~
+```
 
 You can then use the instructions in the [Plugins in Modules][] page to copy
 the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
@@ -146,7 +146,7 @@ If the fact fails to resolve or is not present, Facter returns `nil`.
 
 For example:
 
-~~~ ruby
+``` ruby
 Facter.add(:osfamily) do
   setcode do
     distid = Facter.value(:lsbdistid)
@@ -160,7 +160,7 @@ Facter.add(:osfamily) do
     end
   end
 end
-~~~
+```
 
 ## Configuring facts
 
@@ -173,14 +173,14 @@ restricts the fact to only run on systems that matches another given fact.
 
 An example of the confine statement would be something like the following:
 
-~~~ ruby
+``` ruby
 Facter.add(:powerstates) do
   confine :kernel => 'Linux'
   setcode do
     Facter::Core::Execution.exec('cat /sys/power/states')
   end
 end
-~~~
+```
 
 This fact uses sysfs on linux to get a list of the power states that are
 available on the given system. Since this is only available on Linux systems,
@@ -205,7 +205,7 @@ Facter moves on to the next resolution (by descending weight) until it gets a va
 By default, the weight of a fact is the number of confines for that resolution, so
 that more specific resolutions takes priority over less specific resolutions.
 
-~~~ ruby
+``` ruby
 # Check to see if this server has been marked as a postgres server
 Facter.add(:role) do
   has_weight 100
@@ -232,7 +232,7 @@ Facter.add(:role) do
     'desktop'
   end
 end
-~~~
+```
 
 ### Execution timeouts
 
@@ -242,7 +242,7 @@ supports this option, and produces a warning if it's used.
 Although this version of Facter does not support overall timeouts on resolutions, you can pass a timeout
 to `Facter::Core::Execution#execute`:
 
-~~~ ruby
+``` ruby
 Facter.add(:sleep) do
   setcode do
     begin
@@ -253,7 +253,7 @@ Facter.add(:sleep) do
     end
   end
 end
-~~~
+```
 
 ## Structured facts
 
@@ -265,16 +265,16 @@ If your fact combines the output of multiple commands, it may make sense to use 
 
 Aggregate resolutions have several key differences compared to simple resolutions, beginning with the fact declaration. To introduce an aggregate resolution, you'll need to add the `:type => :aggregate` parameter:
 
-~~~ ruby
+``` ruby
 Facter.add(:fact_name, :type => :aggregate) do
     #chunks go here
     #aggregate block goes here
 end
-~~~
+```
 
 Each step in the resolution then gets its own named `chunk` statement:
 
-~~~ ruby
+``` ruby
 chunk(:one) do
     'Chunk one returns this. '
 end
@@ -282,11 +282,11 @@ end
 chunk(:two) do
     'Chunk two returns this.'
 end
-~~~
+```
 
 In a simple resolution, the code always includes a `setcode` statement that determines the fact's value. Aggregate resolutions *never* have a `setcode` statement. Instead, they have an optional `aggregate` block that combines the chunks. Whatever value the `aggregate` block returns will be the fact's value. Here's an example that just combines the strings from the two chunks above:
 
-~~~ ruby
+``` ruby
 aggregate do |chunks|
   result = ''
 
@@ -297,7 +297,7 @@ aggregate do |chunks|
   # Result will be "Chunk one returns this. Chunk two returns this."
   result
 end
-~~~
+```
 
 If the `chunk` blocks either all return arrays or all return hashes, you can omit the `aggregate` block. If you do, Facter automatically merges all of your data into one array or hash and use that as the fact's value.
 
@@ -356,13 +356,13 @@ will fail.
 
 An example external fact written in Python:
 
-~~~ python
+``` python
 #!/usr/bin/env python
 data = {"key1" : "value1", "key2" : "value2" }
 
 for k in data:
     print "%s=%s" % (k,data[k])
-~~~
+```
 
 You must ensure that the script has its execute bit set:
 
@@ -426,30 +426,30 @@ Structured data files must use one of the supported data types and must have the
 
 `.yaml`: YAML data, in the following format:
 
-~~~ yaml
+``` yaml
 ---
 key1: val1
 key2: val2
 key3: val3
-~~~
+```
 
 `.json`: JSON data, in the following format:
 
-~~~ javascript
+``` javascript
 {
     "key1": "val1",
     "key2": "val2",
     "key3": "val3"
 }
-~~~
+```
 
 `.txt`: Key value pairs, in the following format:
 
-~~~
+```
 key1=value1
 key2=value2
 key3=value3
-~~~
+```
 
 As with executable facts, structured data files can set multiple facts at once.
 

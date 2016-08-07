@@ -299,7 +299,7 @@ is identical to the above example, except for:
     * for "manage" the "type" field is "link"; for "follow" it's "file"
     * for "manage" the "mode", "owner" and "group" fields are the link's values; for "follow" the destination's values
 
-~~~
+```
 GET /puppet/v3/file_metadatas/modules/example?environment=env&recurse=true&ignore=sub*&links=follow
 
 HTTP 200 OK
@@ -349,7 +349,7 @@ Content-Type: text/pson
         "type": "file"
     }
 ]
-~~~
+```
 
 Schema
 ------

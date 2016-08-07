@@ -46,10 +46,10 @@ The Puppet master process should generally be started as the root user, via `sud
 
 Note that you'll need to manually create the `puppet` user account, as the puppet-agent package does not create it. To create this account, run the following commands:
 
-~~~
+```
 puppet resource group puppet ensure=present
 puppet resource user puppet ensure=present gid=puppet
-~~~
+```
 
 [user]: ./configuration.html#user
 

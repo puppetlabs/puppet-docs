@@ -70,16 +70,16 @@ A more complex use might be to embed an instance-specific ID and write a policy 
 
 You can check for custom attributes by using OpenSSL to dump a PEM-format CSR to text format. Do this by running:
 
-~~~ bash
+``` bash
 openssl req -noout -text -in <name>.pem
-~~~
+```
 
 In the output, look for a section called "Attributes," which generally appears below the "Subject Public Key Info" block:
 
-~~~
+```
 Attributes:
     challengePassword        :342thbjkt82094y0uthhor289jnqthpc2290
-~~~
+```
 
 ### Recommended OIDs for attributes
 
@@ -120,13 +120,13 @@ If you use [policy-based autosigning][autosign_policy], your policy executable r
 
 You can check for extension requests in a CSR by using OpenSSL to dump a PEM-format CSR to text format. Do this by running:
 
-~~~ bash
+``` bash
 openssl req -noout -text -in <name>.pem
-~~~
+```
 
 In the output, look for a section called "Requested Extensions," which generally appears below the "Subject Public Key Info" and "Attributes" blocks:
 
-~~~
+```
 Requested Extensions:
     pp_uuid:
     .$ED803750-E3C7-44F5-BB08-41A04433FE2E
@@ -134,7 +134,7 @@ Requested Extensions:
     ..my_ami_image
     1.3.6.1.4.1.34380.1.1.4:
     .$342thbjkt82094y0uthhor289jnqthpc2290
-~~~
+```
 
 Note that every extension is preceded by any combination of two characters (`.$` and `..` in the above example) that contain ASN.1 encoding information. Since OpenSSL is unaware of Puppet's custom extensions OIDs, it's unable to properly display the values.
 
@@ -142,7 +142,7 @@ Any Puppet-specific OIDs (see below) appear as numeric strings when using OpenSS
 
 You can check for extensions in a signed certificate by running `puppet cert print <name>`. In the output, look for the "X509v3 extensions" section. Any of the Puppet-specific registered OIDs (see below) appear as their descriptive names:
 
-~~~
+```
 X509v3 extensions:
     Netscape Comment:
         Puppet Ruby/OpenSSL Internal Certificate
@@ -160,7 +160,7 @@ X509v3 extensions:
         Digital Signature, Key Encipherment
     Puppet Node Image Name:
         my_ami_image
-~~~
+```
 
 ### Recommended OIDs for extensions
 
@@ -186,7 +186,7 @@ You can use an automated script (possibly using cloud-init or a similar tool) to
 
 As an example, you can enter the following script into the "Configure Instance Details —> Advanced Details" section when provisioning a new node from the AWS EC2 dashboard:
 
-~~~ bash
+``` bash
 #!/bin/sh
 if [ ! -d /etc/puppetlabs/puppet ]; then
    mkdir /etc/puppetlabs/puppet
@@ -198,7 +198,7 @@ extension_requests:
     pp_instance_id: $(curl -s http://169.254.169.254/latest/meta-data/instance-id)
     pp_image_name:  $(curl -s http://169.254.169.254/latest/meta-data/ami-id)
 YAML
-~~~
+```
 
 Assuming your image has the `erb` binary available, this populates the attributes file with the AWS instance ID, image name, and a pre-shared key to use with policy-based autosigning.
 

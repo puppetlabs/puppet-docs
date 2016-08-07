@@ -51,7 +51,7 @@ You can put template files in the `templates` directory of a [module][]. EPP fil
 
 To use a template file, evaluate it with the `template` (ERB) or `epp` function as follows:
 
-~~~ ruby
+``` puppet
 # epp(<FILE REFERENCE>, [<PARAMETER HASH>])
 file { '/etc/ntp.conf':
   ensure  => file,
@@ -65,7 +65,7 @@ file { '/etc/ntp.conf':
   content => template('ntp/ntp.conf.erb'),
   # Loads /etc/puppetlabs/code/environments/production/modules/ntp/templates/ntp.conf.erb
 }
-~~~
+```
 
 #### Referencing files
 
@@ -98,7 +98,7 @@ The `template` function can take any number of additional template files, and wi
 
 If you have a [string][] value that contains template content, you can evaluate it with the `inline_template` (ERB) or `inline_epp` functions as follows:
 
-~~~ ruby
+``` puppet
 $ntp_conf_template = @(END)
 ...template content goes here...
 END
@@ -114,7 +114,7 @@ file { '/etc/ntp.conf':
   ensure  => file,
   content => inline_template($ntp_conf_template),
 }
-~~~
+```
 
 In older versions of Puppet, `inline_template` was mostly used to get around limitations --- tiny Ruby fragments were useful for transforming and manipulating data before Puppet had [iteration functions][] like `map` or [puppetlabs/stdlib][stdlib] functions like `chomp` and `keys`.
 
@@ -166,11 +166,11 @@ You can use Ruby to check the syntax of ERB code by piping output from the `erb`
 
 If you need to validate many templates quickly, you can implement this command as a shell function in your shell's login script, such as `.bashrc`, `.zshrc`, or `.profile`:
 
-~~~ bash
+``` bash
 validate_erb() {
   erb -P -x -T '-' $1 | ruby -c
 }
-~~~
+```
 
 You can then use `validate_erb example.erb` to validate an ERB template.
 

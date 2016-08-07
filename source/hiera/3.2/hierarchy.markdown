@@ -24,7 +24,7 @@ The hierarchy should be an **array.** (Alternately, it may be a string; this wil
 
 Each element in the hierarchy must be a **string,** which may or may not include [interpolation tokens][variables]. Hiera will treat each element in the hierarchy as **the name of a [data source][data].**
 
-~~~ yaml
+``` yaml
 # /etc/puppetlabs/puppet/hiera.yaml
 ---
 :hierarchy:
@@ -32,7 +32,7 @@ Each element in the hierarchy must be a **string,** which may or may not include
   - "environment/%{server_facts.environment}"
   - "virtual/%{::is_virtual}"
   - common
-~~~
+```
 
 > ### Best practice: Use fully-qualified Puppet variables
 >
@@ -69,7 +69,7 @@ You can [specify multiple backends as an array in `hiera.yaml`][config]. If you 
 
 Hiera will give priority to the first backend, and will **check every level of the hierarchy** in it before moving on to the second backend. This means that, with the following `hiera.yaml`:
 
-~~~ yaml
+``` yaml
 ---
 :backends:
   - yaml
@@ -78,7 +78,7 @@ Hiera will give priority to the first backend, and will **check every level of t
   - one
   - two
   - three
-~~~
+```
 
 ...hiera would check the following data sources, in order:
 
@@ -94,7 +94,7 @@ Hiera will give priority to the first backend, and will **check every level of t
 
 Assume the following hierarchy:
 
-~~~ yaml
+``` yaml
 # /etc/puppetlabs/puppet/hiera.yaml
 ---
 :hierarchy:
@@ -102,7 +102,7 @@ Assume the following hierarchy:
   - "environment/%{server_facts.environment}"
   - "virtual/%{::is_virtual}"
   - common
-~~~
+```
 
 ...and the following set of data sources:
 

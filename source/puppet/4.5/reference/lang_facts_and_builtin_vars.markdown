@@ -54,11 +54,11 @@ If you're writing code that might be used with pre-4.0 versions of Puppet, you'l
 
 To handle this, you can use the `str2bool` function (from [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)) to prevent fake true values:
 
-~~~ ruby
+``` puppet
 if str2bool("$is_virtual") {
   ...
 }
-~~~
+```
 
 This pattern (quote the variable, then pass it to `str2bool`) will work with both stringified facts and full data type support.
 
@@ -75,11 +75,11 @@ All facts appear in Puppet as [top-scope variables][topscope]. They can be acces
 
 Example, with the osfamily fact:
 
-~~~ ruby
+``` puppet
 if $osfamily == 'redhat' {
   # ...
 }
-~~~
+```
 
 **Benefits:** Works in all versions of Puppet.
 
@@ -106,11 +106,11 @@ Facts also appear in a `$facts` hash. They can be accessed in manifests as `$fac
 
 Example, with the osfamily fact:
 
-~~~ ruby
+``` puppet
 if $facts['osfamily'] == 'redhat' {
   # ...
 }
-~~~
+```
 
 **Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
@@ -151,7 +151,7 @@ The available keys in the `$trusted` hash are:
 
 The `$trusted` hash generally looks something like this:
 
-~~~ ruby
+``` puppet
 {
   'authenticated' => 'remote',
   'certname'      => 'web01.example.com',
@@ -163,15 +163,15 @@ The `$trusted` hash generally looks something like this:
                    },
   'hostname'      => 'web01'
 }
-~~~
+```
 
 Here's a snippet of example Puppet code using a [certificate extension][extensions]:
 
-~~~ ruby
+``` puppet
 if $trusted['extensions']['pp_image_name'] == 'storefront_production' {
   include private::storefront::private_keys
 }
-~~~
+```
 
 ### `$server_facts` variable
 
@@ -187,14 +187,14 @@ In addition, a warning will be issued any time a node parameter is overwritten.
 
 The following is an example `$server_facts` hash.
 
-~~~ ruby
+``` puppet
 {
   serverversion => "4.1.0",
   servername    => "v85ix8blah.delivery.puppetlabs.net",
   serverip      => "10.32.115.182",
   environment   => "production",
 }
-~~~
+```
 
 ### Puppet agent facts
 

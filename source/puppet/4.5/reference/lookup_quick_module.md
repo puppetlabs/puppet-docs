@@ -49,7 +49,7 @@ They don't use very many parameters, but they demonstrate the sort of defaults-p
 
 ### Example with params.pp
 
-~~~ ruby
+``` puppet
 # ntp/manifests/params.pp
 class ntp::params {
   $autoupdate = false
@@ -67,11 +67,11 @@ class ntp::params {
     }
   }
 }
-~~~
+```
 
 With the params.pp pattern, the main classes must inherit from the params class and explicitly set default values for the parameters.
 
-~~~ ruby
+``` puppet
 # ntp/manifests/init.pp
 class ntp (
   $autoupdate   = $ntp::params::autoupdate,
@@ -79,23 +79,23 @@ class ntp (
 ) inherits ntp::params {
  ...
 }
-~~~
+```
 
 ### Example with function
 
-~~~ json
+``` json
 # ntp/metadata.json
 {
   ...
   "data_provider": "function"
 }
-~~~
+```
 
 Instead of setting variables, our function needs to return a hash. Other than that, it looks a lot like a params class.
 
 The [hash merge operator][] is a convenient way to override default data using the results of a case statement.
 
-~~~ ruby
+``` puppet
 # ntp/functions/data.pp
 function ntp::data() {
   $base_params = {
@@ -118,12 +118,11 @@ function ntp::data() {
   # Merge the hashes and return a single hash.
   $base_params + $os_params
 }
-~~~
+```
 
 Defaults set with Puppet lookup don't need to be explicitly set, and you no longer have to inherit from any particular class.
 
-~~~ ruby
-# ntp/manifests/init.pp
+``` puppet
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/functions/data.pp
@@ -132,19 +131,19 @@ class ntp (
 ) {
  ...
 }
-~~~
+```
 
 ### Example with Hiera
 
-~~~ json
+``` json
 # ntp/metadata.json
 {
   ...
   "data_provider": "hiera"
 }
-~~~
+```
 
-~~~ yaml
+``` yaml
 # ntp/hiera.yaml
 ---
 version: 4
@@ -156,11 +155,11 @@ hierarchy:
 
   - name: "common"
     backend: yaml
-~~~
+```
 
 In this case, the Hiera version of the defaults ends up being simpler than either params.pp or the function. However, there might be cases where Puppet or Ruby code could express the logic in a more succinct and maintainable way.
 
-~~~ yaml
+``` yaml
 # ntp/data/common.yaml
 ---
 ntp::autoupdate: false
@@ -172,12 +171,11 @@ ntp::service_name: xntpd
 
 # ntp/data/os/Debian.yaml
 ntp::service_name: ntp
-~~~
+```
 
 Defaults set with Puppet lookup don't need to be explicitly set, and you no longer have to inherit from any particular class.
 
-~~~ ruby
-# ntp/manifests/init.pp
+``` puppet
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/data
@@ -186,4 +184,4 @@ class ntp (
 ) {
  ...
 }
-~~~
+```

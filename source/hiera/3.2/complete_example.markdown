@@ -56,7 +56,7 @@ For purposes of this walkthrough, we'll assume a situation that looks something 
 
 How did things look before we decided to use Hiera? Classes are assigned to nodes via the Puppet site manifest (`/etc/puppetlabs/code/environments/production/manifests/sites.pp` for Puppet open source), so here's how our site manifest might have looked:
 
-~~~ ruby
+``` puppet
 node "kermit.example.com" {
   class { "ntp":
     servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
@@ -82,13 +82,13 @@ node "snuffie.example.com", "bigbird.example.com", "hooper.example.com" {
     enable     => true,
   }
 }
-~~~
+```
 
 ## Configuring Hiera and setting up the hierarchy
 
 All Hiera configuration begins with `hiera.yaml`. You can read a [full discussion of this file][hiera.yaml], including where you should put it depending on the version of Puppet you're using.  Here's the one we'll be using for this walkthrough:
 
-~~~ yaml
+``` yaml
 ---
 :backends:
   - yaml
@@ -97,7 +97,7 @@ All Hiera configuration begins with `hiera.yaml`. You can read a [full discussio
 :hierarchy:
   - "nodes/%{::trusted.certname}"
   - common
-~~~
+```
 
 Step-by-step:
 
@@ -152,7 +152,7 @@ Now that we know the parameters the `ntp` class expects, we can start making dec
 
 We want one of these two nodes, `kermit.example.com`, to act as the primary organizational time server. We want it to consult outside time servers, we won't want it to update its ntp server package by default, and we definitely want it to launch the ntp service at boot. So let's write that out in YAML, making sure to express our variables as part of the `ntp` namespace to insure Hiera will pick them up as part of its [automatic parameter lookup][].
 
-~~~ yaml
+``` yaml
 ---
 ntp::restrict:
   -
@@ -163,7 +163,7 @@ ntp::servers:
   - 1.us.pool.ntp.org iburst
   - 2.us.pool.ntp.org iburst
   - 3.us.pool.ntp.org iburst
-~~~
+```
 
 Since we want to provide this data for a specific node, and since we're using the certname to identify unique nodes in our hierarchy, we need to save this data in the `/etc/puppetlabs/code/environments/production/hieradata/nodes` directory as `kermit.example.com.yaml`.
 
@@ -192,7 +192,7 @@ Provided everything works and you get back that array of ntp servers, you're rea
 
 Our next ntp node, `grover.example.com`, is a little less critical to our infrastructure than kermit, so we can be a little more permissive with its configuration: It's o.k. if grover's ntp packages are automatically updated. We also want grover to use kermit as its primary ntp server. Let's express that as YAML:
 
-~~~ yaml
+``` yaml
 ---
 ntp::restrict:
   -
@@ -203,7 +203,7 @@ ntp::servers:
   - 0.us.pool.ntp.org iburst
   - 1.us.pool.ntp.org iburst
   - 2.us.pool.ntp.org iburst
-~~~
+```
 
 As with `kermit.example.com`, we want to save grover's Hiera data source in the `/etc/puppetlabs/code/environments/production/hieradata/nodes` directory using its certname for the file name: `grover.example.com.yaml`. We can once again test it with Puppet apply:
 
@@ -214,14 +214,14 @@ As with `kermit.example.com`, we want to save grover's Hiera data source in the 
 
 So, now we've configured the two nodes in our organization that we'll allow to update from outside ntp servers. However, we still have a few nodes to account for that also provide ntp services. They depend on kermit and grover to get the correct time, and we don't mind if they update themselves. Let's write that out in YAML:
 
-~~~ yaml
+``` yaml
 ---
 ntp::autoupdate: true
 ntp::enable: true
 ntp::servers:
   - grover.example.com iburst
   - kermit.example.com iburst
-~~~
+```
 
 Unlike kermit and grover, for which we had slightly different but node-specific configuration needs, we're comfortable letting any other node that uses the ntp class use this generic configuration data. Rather than creating a node-specific data source for every possible node on our network that might need to use the ntp module, we'll store this data in `/etc/puppetlabs/code/environments/production/hieradata/common.yaml`. With our very simple hierarchy, which so far only looks for the certnames, any node with a certname that doesn't match the nodes we have data sources for will get the data found in `common.yaml`. Let's test against one of those nodes:
 
@@ -234,7 +234,7 @@ Now that everything has tested out from the command line, it's time to get a lit
 
 If you'll remember back to our pre-Hiera configuration, we were declaring a number of parameters for the `ntp` class in our `site.pp` manifest, like this:
 
-~~~ ruby
+``` puppet
 node "kermit.example.com" {
   class { "ntp":
     servers    => [ '0.us.pool.ntp.org iburst','1.us.pool.ntp.org iburst','2.us.pool.ntp.org iburst','3.us.pool.ntp.org iburst'],
@@ -243,17 +243,17 @@ node "kermit.example.com" {
     enable     => true,
   }
 }
-~~~
+```
 
 In fact, we had three separate stanzas of that length. But now that we've moved all of that parameter data into Hiera, we can significantly pare down `site.pp`:
 
-~~~ ruby
+``` puppet
 node "kermit.example.com", "grover.example.com", "snuffie.example.com" {
   include ntp
   # or:
   # class { "ntp": }
 }
-~~~
+```
 
 That's it.
 
@@ -273,19 +273,19 @@ In the first part of our example, we were concerned with how to use Hiera to pro
 
 Where last we left off, our `site.pp` manifest was looking somewhat spare. With the `hiera_include` function, we can pare things down even further by picking a key to use for classes (we recommend `classes`), then declaring it in our `site.pp` manifest:
 
-~~~ ruby
+``` puppet
 hiera_include('classes')
-~~~
+```
 
 From this point on, you can add or modify an existing Hiera data source to add an array of classes you'd like to assign to matching nodes. In the simplest case, we can visit each of kermit, grover, and snuffie and add this to their YAML data sources in `/etc/puppetlabs/code/environments/production/hieradata/nodes`:
 
-~~~ yaml
+``` yaml
 "classes" : "ntp",
-~~~
+```
 
 modifying kermit's data source, for instance, to look like this:
 
-~~~ yaml
+``` yaml
 ---
 classes: ntp
 ntp::restrict:
@@ -297,11 +297,11 @@ ntp::servers:
   - 1.us.pool.ntp.org iburst
   - 2.us.pool.ntp.org iburst
   - 3.us.pool.ntp.org iburst
-~~~
+```
 
 `hiera_include` requires either a string with a single class, or an array of classes to apply to a given node. Take a look at the "classes" array at the top of our kermit data source to see how we might add three classes to kermit:
 
-~~~ yaml
+``` yaml
 ---
 classes:
   - ntp
@@ -316,7 +316,7 @@ ntp::servers:
   - 1.us.pool.ntp.org iburst
   - 2.us.pool.ntp.org iburst
   - 3.us.pool.ntp.org iburst
-~~~
+```
 
 We can test which classes we've assigned to a given node with the Hiera command line tool:
 
@@ -340,7 +340,7 @@ Two ways we might want to use Hiera to help us organize our use of the class thi
 
 So let's take a look at our `hiera.yaml` file and make provisions for two new data sources. We'll create one based on the `virtual` fact, which will return `vmware` when a node is a VMWare-based guest.  We'll create another based on the `osfamily` fact, which returns the general family to which a node's operating system belongs (e.g. "Debian" for Ubuntu and Debian systems, or "RedHat" for RHEL, CentOS, and Fedora systems):
 
-~~~ yaml
+``` yaml
 ---
 :backends:
   - yaml
@@ -351,7 +351,7 @@ So let's take a look at our `hiera.yaml` file and make provisions for two new da
   - "virtual/%{::virtual}"
   - "osfamily/%{::osfamily}"
   - common
-~~~
+```
 
 Next, we'll need to create directories for our two new data sources:
 
@@ -359,30 +359,30 @@ Next, we'll need to create directories for our two new data sources:
 
 In our `virtual` directory, we'll want to create the file `vmware.yaml`. In this data source, we'll be assigning the `vmwaretools` class, so the file will need to look like this:
 
-~~~ yaml
+``` yaml
 ---
 classes: vmwaretools
-~~~
+```
 
 Next, we need to provide the data for the `vmwaretools` class parameters. We'll assume we have a mix of Red Hat and Debian VMs in use in our organization, and that we want to install VMWare Tools in `/opt/vmware` in our Red Hat VMs, and `/usr/local/vmware` for our Debian VMs.  We'll need `RedHat.yaml` and `Debian.yaml` files in the `/etc/puppetlabs/code/environments/production/hieradata/osfamily` directory.
 
 `RedHat.yaml` should look like this:
 
-~~~ yaml
+``` yaml
 ---
 vmwaretools::working_dir: /opt/vmware
-~~~
+```
 
 `Debian.yaml` should look like this:
 
-~~~ yaml
+``` yaml
 ---
 vmwaretools::working_dir: /usr/local/vmware
-~~~
+```
 
 That leaves us with one parameter we haven't covered: the `version` parameter. Since we don't need to vary which version of VMWare Tools any of our VMs are using, we can put that in `common.yaml`, which should now look like this:
 
-~~~ yaml
+``` yaml
 ---
 vmwaretools::version: 8.6.5-621624
 ntp::autoupdate: true
@@ -390,7 +390,7 @@ ntp::enable: true
 ntp::servers:
   - grover.example.com iburst
   - kermit.example.com iburst
-~~~
+```
 
 Once you've got all that configured, go ahead and test with the Hiera command line tool:
 

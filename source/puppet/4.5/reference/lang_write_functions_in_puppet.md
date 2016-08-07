@@ -21,16 +21,16 @@ You can write your own functions in the Puppet language to transform data and co
 
 ## Syntax
 
-~~~ ruby
+``` puppet
 function <MODULE NAME>::<NAME>(<PARAMETER LIST>) {
   ... body of function ...
   final expression, which will be the returned value of the function
 }
-~~~
+```
 
 {% capture bool2httpexample %}
 
-~~~ ruby
+``` puppet
 function apache::bool2http($arg) {
   case $arg {
     false, undef, /(?i:false)/ : { 'Off' }
@@ -38,7 +38,7 @@ function apache::bool2http($arg) {
     default               : { "$arg" }
   }
 }
-~~~
+```
 {% endcapture %}
 
 {{ bool2httpexample }}
@@ -134,7 +134,7 @@ Once a function is written and available (in a module where the autoloader can f
 
 The below code is a re-written version of a Ruby function from the [`postgresql`](https://forge.puppetlabs.com/puppetlabs/postgresql) module into Puppet code. This function translates the IPv4 and IPv6 ACLs format into a resource suitable for `create_resources`. The writer of this function also left helpful inline comments for other people who use the it, or in case it needs to be altered in the future. In this case the filename would be `acls_to_resource_hash.pp`, and it would be saved in a folder named `functions` in the top-level directory of the `postgresql` module.
 
-~~~ ruby
+``` puppet
 function postgresql::acls_to_resource_hash(Array $acls, String $id, Integer $offset) {
 
   $func_name = "postgresql::acls_to_resources_hash()"
@@ -211,4 +211,4 @@ function postgresql::acls_to_resource_hash(Array $acls, String $id, Integer $off
   # Merge the individual resource hashes into one
   $resources.reduce({}) |$result, $resource| { $result + $resource }
 }
-~~~
+```

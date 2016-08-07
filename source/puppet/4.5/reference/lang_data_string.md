@@ -38,11 +38,11 @@ Each of these have slightly different behavior around syntax, interpolation feat
 
 ## Bare words
 
-~~~ ruby
+``` puppet
 service { "ntp":
   ensure => running, # bare word string
 }
-~~~
+```
 
 Puppet usually treats bare words --- that is, runs of word-like characters without surrounding quotation marks --- as single-word strings. Bare word strings are most commonly used with resource attributes that accept a limited number of one-word values.
 
@@ -57,11 +57,11 @@ Bare word strings can't interpolate values and can't use escape sequences.
 
 ## Single-quoted strings
 
-~~~ ruby
+``` puppet
 if $autoupdate {
   notice('autoupdate parameter has been deprecated and replaced with package_ensure.  Set this to latest for the same behavior as autoupdate => true.')
 }
-~~~
+```
 
 Multi-word strings can be surrounded by single quotes, `'like this'`. Line breaks within the string are interpreted as literal line breaks.
 
@@ -108,7 +108,7 @@ Sequence | Result
 
 ## Heredocs
 
-~~~ ruby
+``` puppet
 $gitconfig = @("GITCONFIG"/L)
     [user]
         name = ${displayname}
@@ -130,7 +130,7 @@ file { "${homedir}/.gitconfig":
   ensure  => file,
   content => $gitconfig,
 }
-~~~
+```
 
 
 Heredocs let you quote strings with more control over escaping, interpolation, and formatting. They're especially good for long strings with complicated content.
@@ -228,13 +228,13 @@ To make your files easier to read, you can indent the content of a heredoc to se
 
 To strip this indentation from the final string, put the same amount of indentation in front of the end marker and use a pipe character (`|`) to indicate the position of the first "real" character on each line.
 
-~~~
+```
 $mytext = @(EOT)
     This block of text is
     visibly separated from
     everything around it.
     | EOT
-~~~
+```
 
 * If a line has _less_ indentation than you've indicated, Puppet will strip any spaces it can without deleting non-space characters.
 * If a line has _more_ indentation than you've indicated, any excess will be included in the final string.
@@ -247,10 +247,10 @@ If you enable the `L` escape switch, you can end a line with a backslash (`\`) t
 
 For example, Puppet would read this as a single line:
 
-~~~
+```
 lg = "log --pretty=format:'%C(yellow)%h%C(reset) %s \
 %C(cyan)%cr%C(reset) %C(blue)%an%C(reset) %C(green)%d%C(reset)' --graph"
-~~~
+```
 
 
 #### Suppressing the final line break
@@ -259,11 +259,11 @@ By default, heredocs end with a trailing line break, but you can exclude this li
 
 For example, Puppet would read this as a string with no line breaks:
 
-~~~
+```
 $mytext = @(EOT)
     This's too inconvenient for ${double} or ${single} quotes, but needs to be one line.
     |-EOT
-~~~
+```
 
 This works even if you don't have the `L` escape switch enabled.
 
@@ -352,24 +352,24 @@ If the second number is omitted, it defaults to `1` (a single character).
 
 Examples:
 
-~~~ ruby
+``` puppet
 $foo = 'abcdef'
 notice( $foo[0] )    # resolves to 'a'
 notice( $foo[0,2] )  # resolves to 'ab'
 notice( $foo[1,2] )  # resolves to 'bc'
 notice( $foo[1,-2] ) # resolves to 'bcde'
 notice( $foo[-3,2] ) # resolves to 'de'
-~~~
+```
 
 Text outside the actual range of the string is treated as an infinite amount of empty string.
 
-~~~ ruby
+``` puppet
 $foo = 'abcdef'
 notice( $foo[10] )    # resolves to ''
 notice( $foo[3,10] )  # resolves to 'def'
 notice( $foo[-10,2] ) # resolves to ''
 notice( $foo[-10,6] ) # resolves to 'ab'
-~~~
+```
 
 ## The `String` data type
 

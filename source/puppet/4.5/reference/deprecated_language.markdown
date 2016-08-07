@@ -29,7 +29,7 @@ Puppet doesn't validate the value of the [`ensure` attribute in `file` resources
 
 For example, these resource declarations are equivalent:
 
-~~~ puppet
+``` puppet
 file { "/etc/inetd.conf":
   ensure => link,
   target => "/etc/inet/inetd.conf",
@@ -38,19 +38,19 @@ file { "/etc/inetd.conf":
 file { "/etc/inetd.conf":
   ensure => "/etc/inet/inetd.conf",
 }
-~~~
+```
 
 However, syntax errors in the `ensure` attribute's value can lead to unexpected behaviors. For instance, mistyping a value can lead Puppet to create a symbolic link that treats the typo as the link's target:
 
-~~~ puppet
+``` puppet
 file { "/etc/inetd.conf":
   ensure => filer,
 }
-~~~
+```
 
 The above example results in Puppet creating a symbolic link at `/etc/inetd.conf` that points to `filer`---it doesn't throw an error or produce a warning.
 
-~~~ bash
+``` bash
 $ sudo /opt/puppetlabs/bin/puppet apply -e 'file { "/etc/inetd.conf": ensure => filer}'
 Notice: Compiled catalog for master.example.com in environment production in 1.18 seconds
 Notice: /Stage[main]/Main/File[/etc/filer]/ensure: created
@@ -58,7 +58,7 @@ Notice: Applied catalog in 0.49 seconds
 
 $ sudo ls -la /etc/inetd.conf
 lrwxrwxrwx 1 root root 10 Nov  9 20:53 /etc/inetd.conf -> filer
-~~~
+```
 
 #### In Puppet 5.0
 

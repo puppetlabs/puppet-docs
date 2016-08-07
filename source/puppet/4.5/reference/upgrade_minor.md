@@ -30,16 +30,16 @@ The `puppetserver` package depends on the `puppet-agent` package, and your node'
 
 To upgrade the `puppetserver` package and its dependencies on masters that use `apt`, run:
 
-~~~ bash
+``` bash
 # apt-get update
 # apt-get install --only-upgrade puppetserver
-~~~
+```
 
 On masters that use `yum`, run:
 
-~~~ bash
+``` bash
 # yum update puppetserver
-~~~
+```
 
 > **Note**: If you pinned or held your Puppet packages to a specific version, remove the pins or holds before continuing. On systems that use `apt`, remove any special `.pref` files from `/etc/apt/preferences.d/` that pin Puppet packages, and use the `apt-mark unhold` command on each held package. For `yum` packages locked with the versionlock plugin, edit `/etc/yum/pluginconf.d/versionlock.list` and remove the Puppet lock.
 
@@ -49,16 +49,16 @@ You should regularly upgrade Puppet on agents, and in most cases you shouldn't n
 
 To upgrade \*nix agents that use `apt`, run:
 
-~~~ bash
+``` bash
 # apt-get update
 # apt-get install --only-upgrade puppet-agent
-~~~
+```
 
 On \*nix agents that use `yum`, run:
 
-~~~ bash
+``` bash
 # yum update puppet-agent
-~~~
+```
 
 On Windows agents, follow the [installation guide](./install_windows.html) to upgrade installed Puppet packages. You do not need to uninstall Puppet first unless you're changing from 64-bit Puppet to the 32-bit version or vice versa.
 
@@ -70,26 +70,26 @@ Upgrade PuppetDB nodes independently of masters and agents.
 
 You can automate PuppetDB upgrades using the `version` parameter of the [`puppetlabs/puppetdb`][] module's [`puppetdb::globals`](https://forge.puppetlabs.com/puppetlabs/puppetdb#usage) class. To manually upgrade the `puppetdb` package on nodes that use `apt`, run:
 
-~~~ bash
+``` bash
 # apt-get update
 # apt-get install --only-upgrade puppetdb
-~~~
+```
 
 On nodes that use `yum`, run:
 
-~~~ bash
+``` bash
 # yum update puppetdb
-~~~
+```
 
 When you upgrade PuppetDB, you must also upgrade the `puppetdb-termini` package on all Puppet masters. To upgrade it on masters that use `apt`, run:
 
-~~~ bash
+``` bash
 # apt-get update
 # apt-get install --only-upgrade puppetdb-termini
-~~~
+```
 
 On masters that use `yum`, run:
 
-~~~ bash
+``` bash
 # yum update puppetdb-termini
-~~~
+```

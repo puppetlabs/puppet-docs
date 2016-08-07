@@ -24,11 +24,11 @@ Many functions also take arrays, including the iteration functions.
 
 Arrays are written as comma-separated lists of values surrounded by square brackets. An optional trailing comma is allowed between the final value and the closing square bracket.
 
-~~~ ruby
+``` puppet
 [ 'one', 'two', 'three' ]
 # Equivalent:
 [ 'one', 'two', 'three', ]
-~~~
+```
 
 The values in an array can be any data type.
 
@@ -39,55 +39,55 @@ You can access items in an array by their numerical index (counting from zero). 
 
 Example:
 
-~~~ ruby
+``` puppet
 $foo = [ 'one', 'two', 'three' ]
 notice( $foo[1] )
-~~~
+```
 
 This manifest would log `two` as a notice. (`$foo[0]` would be `one`, since indexes count from zero.)
 
 Nested arrays and hashes can be accessed by chaining indexes:
 
-~~~ ruby
+``` puppet
 $foo = [ 'one', {'second' => 'two', 'third' => 'three'} ]
 notice( $foo[1]['third'] )
-~~~
+```
 
 This manifest would log `three` as a notice. (`$foo[1]` is a hash, and we access a key named `'third'`.)
 
 Arrays support negative indexes, with `-1` being the final element of the array:
 
-~~~ ruby
+``` puppet
 $foo = [ 'one', 'two', 'three', 'four', 'five' ]
 notice( $foo[2] )
 notice( $foo[-2] )
-~~~
+```
 
 The first notice would log `three`, and the second would log `four`.
 
 Note that the opening square bracket must not be preceded by a white space:
 
-~~~ ruby
+``` puppet
 $foo = [ 'one', 'two', 'three', 'four', 'five' ]
 notice( $foo[2] )  # ok
 notice( $foo [2] ) # syntax error
-~~~
+```
 
 If you try to access an element beyond the bounds of the array, its value will be [`undef`.][undef]
 
-~~~ ruby
+``` puppet
 $foo = [ 'one', 'two', 'three', 'four', 'five' ]
 $cool_value = $foo[6] # value is undef
-~~~
+```
 
 When testing with a [regular expression][regexp] whether an `Array[<TYPE>]` data type matches a given array, empty arrays will match as long as the type can accept zero-length arrays.
 
-~~~ ruby
+``` puppet
 $foo = []
 if $foo =~ Array[String] {
   notice( 'foo' )
 }
-~~~
+```
 
 This manifest would log `foo` as a notice, because the regex matches the empty array.
 
@@ -107,13 +107,13 @@ The second number of the index is the stop position.
 * Positive numbers are lengths, counting forward from the start position.
 * Negative numbers are absolute positions, counting back from the end of the array (starting at `-1`).
 
-~~~ ruby
+``` puppet
 $foo = [ 'one', 'two', 'three', 'four', 'five' ]
 notice( $foo[2,1] )  # evaluates to ['three']
 notice( $foo[2,2] )  # evaluates to ['three', 'four']
 notice( $foo[2,-1] ) # evaluates to ['three', 'four', 'five']
 notice( $foo[-2,1] ) # evaluates to ['four']
-~~~
+```
 
 ## Array Operators
 

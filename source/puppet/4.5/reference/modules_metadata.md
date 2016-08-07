@@ -21,7 +21,7 @@ Every module should contain a `metadata.json` file. It should be located in the 
 
 ## Example
 
-~~~ javascript
+``` javascript
     {
       "name": "examplecorp-mymodule",
       "version": "0.0.1",
@@ -48,7 +48,7 @@ Every module should contain a `metadata.json` file. It should be located in the 
       ],
       "data_provider": "hiera"
     }
-~~~
+```
 
 ## Format
 
@@ -92,14 +92,14 @@ If your module depends on functionality in another module, you can express this 
 
 The `dependencies` key accepts an array of hashes, where each hash contains `"name"` and `"version_requirement"` keys. Here's an example from the [puppetlabs-postgresql](https://forge.puppetlabs.com/puppetlabs/postgresql) module:
 
-~~~ javascript
+``` javascript
     "dependencies": [
       { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" },
       { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
       { "name": "puppetlabs/apt", "version_requirement": ">= 1.1.0 < 2.0.0" },
       { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 < 2.0.0" }
     ]
-~~~
+```
 
 **Note:** Once you've generated your module and gone through the metadata dialog, you must manually edit the `metadata.json` file to include the dependency information.
 
@@ -146,7 +146,7 @@ This key accepts an array of hashes, where each hash contains `operatingsystem` 
 * `operatingsystem` should be a string. The Puppet Forge uses this for search filters.
 * `operatingsystemrelease` should be an array of strings. The Puppet Forge displays these versions on module pages, and you can format them in whatever way makes sense for the OS in question.
 
-~~~ javascript
+``` javascript
 "operatingsystem_support": [
   {
   "operatingsystem":"RedHat",
@@ -160,7 +160,7 @@ This key accepts an array of hashes, where each hash contains `operatingsystem` 
     ]
   }
 ]
-~~~
+```
 
 
 ## A note on semantic versioning
@@ -169,8 +169,8 @@ When writing your metadata.json file, you're setting a version for your own modu
 
 Many other users already use semantic versioning, and you can take advantage of this in your modules' dependencies. For example, if you depend on puppetlabs-stdlib and want to allow updates while avoiding breaking changes, you could write the following line in your metadata.json (assuming a current stdlib version of 4.2.1):
 
-~~~ javascript
+``` javascript
 "dependencies": [
   { "name": "puppetlabs/stdlib", "version_requirement": "4.x" },
 ]
-~~~
+```

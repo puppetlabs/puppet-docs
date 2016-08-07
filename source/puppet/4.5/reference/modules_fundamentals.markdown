@@ -38,7 +38,7 @@ Every Puppet user should expect to write at least some of their own modules.
 
 Modules are how Puppet finds the classes and types it can use --- it automatically loads any [class][classes] or [defined type][defined_types] stored in its modules. Any of these classes or defines can be declared by name within a manifest or from an [external node classifier (ENC)][enc].
 
-~~~ ruby
+``` puppet
 # /etc/puppetlabs/code/environments/production/manifests/site.pp
 
 node default {
@@ -54,7 +54,7 @@ node default {
     options => 'Indexes MultiViews',
   }
 }
-~~~
+```
 
 Likewise, Puppet can automatically load plugins (like custom native resource types or custom facts) from modules; see ["Using Plugins"][plugins] for more details.
 
@@ -167,7 +167,7 @@ To write a module, we strongly suggest running `puppet module generate <USERNAME
 
 When you run the above command, the Puppet module tool (PMT) will ask a series of questions to gather metadata about your module, and creates a basic module structure for you.
 
-~~~
+```
 $ puppet module generate examplecorp-mymodule
 
 We need to create a metadata.json file for this module.  Please answer the
@@ -232,7 +232,7 @@ mymodule/spec/classes/init_spec.rb
 mymodule/spec/spec_helper.rb
 mymodule/tests
 mymodule/tests/init.pp
-~~~
+```
 
 > **Note:** The `tests` directory is deprecated in favor of `examples`. If you've just generated your module, rename the directory to `examples`.
 
