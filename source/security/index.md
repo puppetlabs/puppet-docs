@@ -14,7 +14,7 @@ This page contains information about security fixes from both Puppet and third-p
     
 - [CVE-2016-2788: Improper validation of fields in MCollective pings](https://puppet.com/security/cve/cve-2016-2788)
 
-    Resolved in Puppet Enterprise 3.8.6, Puppet Enterprise 2016.2.1, and MCollective 2.7.1 and 2.8.9
+    Resolved in Puppet Enterprise 3.8.6, Puppet Enterprise 2016.2.1, and MCollective 2.8.9
  
 - [CVE-2016-2785: Incorrect URL Decoding](https://puppet.com/security/cve/cve-2016-2785)
 
