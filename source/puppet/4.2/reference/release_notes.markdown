@@ -158,6 +158,20 @@ Shipped in [puppet-agent][] version 1.2.2.
 
 Puppet 4.2.1 is a bug fix release.
 
+### Known issue
+
+Running `puppet resource user` in US-ASCII on Mac OSX 10.10 results in an error, "Error: Could not run: invalid byte sequence".
+
+This is an offshoot of Puppet and Ruby's more strict UTF-8 handling. The solution is to set a high-bit-capable locale in your shell: 
+
+~~~
+export LANG=en_US.UTF-8 
+~~~
+
+To make this permanent, it needs to be in your shell initialization file (~/.profile or one of its kin).
+
+### Bug fixes
+
 * [PUP-4752](https://tickets.puppetlabs.com/browse/PUP-4752): Variable names were being checked for allowed characters, but not if they appeared as names of parameters.
 * [PUP-4770](https://tickets.puppetlabs.com/browse/PUP-4770): Solaris Zone's provider debug and error messages were changed to global, this has been reverted to so that it is prefixed with provider context.
 * [PUP-4777](https://tickets.puppetlabs.com/browse/PUP-4770): Puppet gem dependencies updated to use Hiera 3.
