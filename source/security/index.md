@@ -258,11 +258,11 @@ This page contains information about security fixes from both Puppet and third-p
 
    Resolved in Puppet Enterprise 2016.2.1 and Puppet agent 1.5.3
    
-- [Oracle Java July 2016 Security Fixes](https://puppet.com/security/cve/stomp-gem-jun-2016-security-fixes)
+- [Oracle Java July 2016 Security Fixes](https://puppet.com/security/cve/oracle-java-jul-2016-security-fixes)
   
    Resolved in Puppet Enterprise 3.8.6 and Puppet Enterprise 2016.2.1
    
-- [CVE-2011-4971: Memcached vulnerability](puppet.com/security/cve/cve-2011-4971)
+- [CVE-2011-4971: Memcached vulnerability](https://puppet.com/security/cve/cve-2011-4971)
 
    Resolved in Puppet Enterprise 3.8.6
 
