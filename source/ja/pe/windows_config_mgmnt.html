@@ -1,0 +1,299 @@
+---
+layout: default
+title: "Windows設定を管理する"
+canonical: "/ja/pe/windows_config_mgmnt.html"
+---
+
+<div>
+<h2 id="manage-windows-services">Windowsサービスの管理</h2>
+
+<p> Puppetを使ってWindowsサービスを管理することができます。具体的には、サービスの開始、停止、有効化、無効化、リスト作成、クエリ、設定を行うことが可能です。  これにより、特定のサービスを常に稼働させたり、必要に応じて無効化したりすることができます。
+</p>
+
+<p> サービスを管理するためのPuppetコードを Puppetマニフェストに記述します。 このマニフェストを適用すると、サービスに加えた変更が適用されます。
+</p>
+
+<h3 id="ensure-a-service-is-running">サービスの稼働を確定する</h3>
+
+<p> Puppetでサービスの稼働を確定するには、以下のコードを使用します。
+</p>
+
+<pre><code>service { '&lt;service name&gt;':
+   ensure =&gt; 'running'
+}
+</code></pre>
+
+<p> たとえば、以下のマニフェストコードを使えば、<strong>Windows Time</strong>サービスの稼働が確定します。
+</p>
+
+<pre><code>service { 'w32time':
+  ensure =&gt; 'running'
+}
+</code></pre>
+
+<h3 id="stop-a-service">サービスを停止する</h3>
+
+<p> サービスの無効化は、サービスの稼働と同じくらい簡単です。 サービスを無効化するPuppetコードは以下のとおりです。
+</p>
+
+<pre><code>service { '&lt;service name&gt;':
+   ensure =&gt; 'stopped',
+   enable =&gt; 'false'
+}
+</code></pre>
+
+<p> このコードは、ディスクデフラグサービスの無効化など、サービスパフォーマンスに悪影響を与える可能性があるケースで役立ちます。
+</p>
+
+<pre><code>service { 'defragsvc':
+  ensure =&gt; 'stopped',
+  enable =&gt; 'false'
+}
+</code></pre>
+
+<h4 id="an-alternate-way-to-apply-manifest-changes">マニフェストの変更を適用する別の方法</h4>
+
+<p> マニフェストを用いて設定の変更を適用する方法に加えて、Puppetでは、<code>puppet resource</code>コマンドラインツールを用いてシステム状態を調べる機能が提供されています。このプロセス中にPuppetコードが生成されます。
+</p>
+
+<h2 id="schedule-tasks">タスクのスケジューリング</h2>
+
+<p> Windowsでは多くの場合、ルーチンのシステムメンテナンスを実施するために、タスクの定期的なスケジューリングが必要となります。 たとえば、ネットワーク上の別のシステムとのファイルの同期、別のディスクへのバックアップの実施、SQLサーバーでのログまたはインデックスメンテナンスの実施などが必要となることがあります。 Puppetで定期的なタスクをスケジューリングしたり、実行したりすることができます。 以下の例では、ファイルを定期的に削除する方法を説明します。
+</p>
+
+<h3 id="delete-files-recursively">ファイルを再帰的に削除する</h3>
+
+<p> ファイルの再帰的な削除は、便利なタスクです。 以下の簡単なコードを使うと、毎日午前8時にすべてのファイルが<code>C:\Windows\Temp</code>から再帰的に削除されます。
+</p>
+
+<pre><code>scheduled_task { 'Purge global temp files':
+   ensure    =&gt; present,
+   enabled   =&gt; true,
+   command   =&gt; 'c:\\windows\\system32\\cmd.exe',
+   arguments =&gt; '/c "del c:\\windows\\temp\\*.* /F /S /Q"',
+   trigger   =&gt; {
+   schedule   =&gt; daily,
+   start_time =&gt; '08:00',
+  }
+}
+</code></pre>
+
+<p> Puppetでこのタスクを管理するように設定すると、指定したタスクがタスクスケジューラに追加されます。
+</p>
+
+<p> <img src="/pe/2016.2/images/windows/windows_task_scheduler.png" alt="windows task scheduler">
+</p>
+
+<p> 指定した時間に毎日実行するといったタスクのほか、スケジュール設定タスクリソースではさらに高度なスケジューリング機能も数多くサポートしているため、スケジュールをより細かく設定することも可能です。
+</p>
+
+<p> たとえば、上述のタスクを、2時間ごとにディスククリーンアップを実行するように変更するには、トリガーの定義を以下のように修正します。
+</p>
+
+<pre><code>scheduled_task { 'Purge global temp files every 2 hours':
+   ensure  =&gt; present,
+   enabled =&gt; true,
+   command   =&gt; 'c:\\windows\\system32\\cmd.exe',
+   arguments =&gt; '/c "del c:\\windows\\temp\\*.* /F /S /Q"',
+   trigger =&gt; [{
+      day_of_week =&gt; ['mon', 'tues', 'wed', 'thurs', 'fri'],
+      every =&gt; '1',
+      minutes_interval =&gt; '120',
+      minutes_duration =&gt; '1440',
+      schedule =&gt; 'weekly',
+      start_time =&gt; '07:30'
+   }],
+  user =&gt; 'system',
+}
+</code></pre>
+
+<p> タスクスケジューラのGUIに、このタスクに対応する定義が表示されます。
+</p>
+
+<p> <img src="/pe/2016.2/images/windows/task_scheduler_2.png" alt="scheduler edit window">
+</p>
+
+<h2 id="manage-administrator-accounts">管理者アカウントの管理</h2>
+
+<p> 多くの場合、Windows管理者パスワードをWindowsデプロイ全体で標準化する必要が生じます。 Puppetを使うと、これを簡単に行うことができます。
+</p>
+
+<pre><code>user { 'Administrator':
+   ensure =&gt; present,
+   password =&gt; 'yabbadabba'
+}
+</code></pre>
+
+<p> マニフェストに使用するパスワードを安全に保護する方法については、この入門レベルの内容では扱いませんが、一般的にこの問題の解決には、<a href="https://puppetlabs.com/blog/encrypt-your-data-using-hiera-eyaml">ここで述べる</a>キー／値参照ツールである<a href="/hiera/3.2/">Hiera</a>とeyamlが使用されます。 この解決策では、パスワード値を安全に保存できるだけでなく、パラメータ化して再利用することもできます。これによりWindowsマシンネットワーク全体でパスワードローテーションポリシーを簡単に導入することが可能になります。
+</p>
+
+<h2 id="managing-users-and-groups">ユーザとグループの管理</h2>
+
+<p> Puppetを使えば、ローカルグループおよびユーザアカウントを作成することができます。 個別に許可が必要なアプリケーションを切り離す際には、多くの場合、ローカルのユーザーアカウントが必要となります。
+</p>
+
+<h3 id="configure-an-app-to-use-a-different-account">異なるアカウントを使用するアプリを設定する</h3>
+
+<p> ASP.NETアプリの設定では、デフォルトの <code>Network Service</code>とは異なるアカウントを使用する設定が必要となることがあります。 以下の例では、架空のアカウント定義を示しています。
+</p>
+
+<pre><code>user { 'aspnet_banking_app':
+   ensure          =&gt; present,
+   managehome      =&gt; true,
+   comment         =&gt; 'ASP.NET Service account for Banking application',
+   password        =&gt; 'banking_app_password',
+   groups          =&gt; ['IIS_IUSRS', 'Users'],
+   auth_membership =&gt; 'minimum',
+   notify          =&gt; Exec['regiis_aspnet_banking_app']
+}
+
+exec { 'regiis_aspnet_banking_app':
+   path        =&gt; 'c:\\windows\\Microsoft.NET\\Framework\\v4.0.30319',
+   command     =&gt; 'aspnet_regiis.exe -ga aspnet_banking_app',
+   refreshonly =&gt; true
+}
+</code></pre>
+
+<p> この例では、適切なグループ内でユーザを作成しています。また、ユーザ作成後にASP.NET IIS登録コマンドを実行し、ファイルパーミッションが正しいことを確認しています。
+</p>
+
+<p> <img src="/pe/2016.2/images/windows/windows_iis_users.png" alt="iis users">
+</p>
+
+<p> ユーザリソースに関しては以下の点に注意が必要です。
+</p>
+
+<ul>
+<li>
+<code>managehome</code>は、ユーザのディスク上にホームディレクトリを作成するように設定されます。</li>
+  <li>
+<code>auth_membership</code>は<code>minimum</code>に設定します。このように設定すると、<code>aspnet_banking_app</code>ユーザは<code>IIS_IUSRS</code>および<code>Users</code>グループに確実に含まれますが、ユーザが含まれるその他のグループからそのユーザが削除されることはありません。</li>
+  <li>
+<code>notify</code>は当該ユーザについて設定し、<code>refreshonly</code>は<code>exec</code>について設定します。これにより、Puppetは<code>aspnet_banking_app</code>が作成または変更されたときにのみ<code>aspnet_regiis.exe</code>を実行します。</li>
+</ul>
+<h3 id="manage-local-groups">ローカルグループを管理する</h3>
+
+<p> ローカルグループの管理も可能です。 たとえば、ドメイン管理者グループに存在しないドメインユーザまたはグループをローカル管理者グループに追加する場合は、以下のPuppetコードを使用できます。
+</p>
+
+<pre><code>group { 'Administrators':
+   ensure  =&gt; 'present',
+   members =&gt; ['DOMAIN\\User'],
+   auth_membership =&gt; false
+}
+</code></pre>
+
+<p> このケースでは、<code>auth_membership</code>をfalseに設定しています。これにより、<code>DOMAIN\User</code>は管理者グループに確実に含まれますが、管理者に含まれる可能性のある他のアカウントが削除されることはありません。
+</p>
+
+<p> <code>user</code>の<code>groups</code>属性と<code>group</code>の<code>members</code>属性については、いずれもSID値を使用できる点に留意してください。たとえば、よく知られている管理者用SIDのS-1-5-32-544などを使用できます。
+</p>
+
+<h2 id="executing-arbitrary-powershell-code">任意のPowerShellコードの実行</h2>
+
+<p> 一部のWindowsメンテナンスタスクを実行するには、Windows Management Instrumentation(WMI)を使用する必要があります。WMIメソッドを利用するには、PowerShellがもっとも有効な方法となります。 Puppetには、任意のPowerShellコードを実行する場合に使用できる特別なモジュールがあります。
+</p>
+
+<h3 id="disable-windows-drive-indexing">Windowsドライブインデックスを無効にする</h3>
+
+<p> Windowsドライブインデックスはサーバーのディスクパフォーマンスに悪影響を与える可能性があるため、Windowsメンテナンスタスクでは、一般的に無効化されています。
+</p>
+
+<pre><code>$drive = 'C:'
+
+exec { 'disable-c-indexing':
+   provider  =&gt; powershell,
+   command   =&gt; "\$wmi_volume = Get-WmiObject -Class Win32_Volume -Filter 'DriveLetter=\"${drive}\"'; if (\$wmi_volume.IndexingEnabled -ne \$True) { return }; \$wmi_volume | Set-WmiInstance -Arguments @{IndexingEnabled = \$False}",
+   unless    =&gt; "if ((Get-WmiObject -Class Win32_Volume -Filter 'DriveLetter=\"${drive}\"').IndexingEnabled) { exit 1 }",
+}
+</code></pre>
+
+<p> オブジェクトエディタのウィンドウで結果を見ることができます。
+</p>
+
+<p> <img src="/pe/2016.2/images/windows/windows_maintain.png" alt="windows maintenance">
+</p>
+
+<p> Windows内蔵のWBEMTestツールを使ってこのマニフェストを実行すると、<code>IndexingEnabled</code>が<code>FALSE</code>に設定され、望ましい挙動が得られます。
+</p>
+
+<p> この<code>exec</code>がいくつかの重要な属性を決定する点に留意してください。
+</p>
+
+<ul>
+<li>プロバイダはPowerShellを使用するように設定されます(これはモジュールに依存します)。</li>
+  <li>commandにはインラインPowerShellが含まれるため、適切にエスケープする必要があります。たとえば、<code>$</code>が前に付くPowerShell変数は、 <code>\$</code>としてエスケープする必要があります。</li>
+  <li>
+<code>unless</code>属性は、Puppetのべき等性を確保するために設定します。べき等性は、Puppetを用いたリソース管理の鍵を握る特性です。リソースがすでにあるべき状態になっている場合は、Puppetはリソース状態を修正するコマンドを実行しません。</li>
+</ul>
+<h4 id="using-puppet-templates-to-better-manage-puppet-code">Puppetテンプレートを用いてPuppetコード管理を効率化する</h4>
+
+<p> 先のセクションで述べたように、インラインPowerShellコードは役に立ちますが、そうしたコードは読み取りやメンテナンスが難しいことがあります。特に、エスケープルールを扱う際には困難が伴います。 マルチラインスクリプトを実行する場合は、代わりにPuppetテンプレートを使用することを推奨します。 以下の例では、テンプレートを使って、Windowsドライブインデックスを無効化するコードを構成する方法を説明します。 詳細については、Puppet言語リファレンスの「<a href="/puppet/4.5/reference/lang_template.html">Puppetテンプレート</a>」を参照してください。
+</p>
+
+<pre><code>$drive = 'C:'
+
+exec { 'disable-c-indexing':
+  command   =&gt; template('Disable-Indexing.ps1.erb'),
+  provider  =&gt; powershell,
+
+
+  unless    =&gt; "if ((Get-WmiObject -Class Win32_Volume -Filter 'DriveLetter=\"${drive}\"').IndexingEnabled) { exit 1 }",
+}
+</code></pre>
+
+<p> Disable-Indexing.ps1.erbのPowerShellコードは、以下のようになります。
+</p>
+
+<pre><code>function Disable-Indexing($Drive)
+{
+  $drive = Get-WmiObject -Class Win32_Volume -Filter "DriveLetter='$Letter'"
+  if ($drive.IndexingEnabled -ne $True) { return }
+  $drive | Set-WmiInstance -Arguments @{IndexingEnabled=$False} | Out-Null
+}
+
+Disable-Indexing -Drive '&lt;%= @driveLetter %&gt;'
+</code></pre>
+
+<h2 id="installing-packages---nsclient-example">パッケージのインストール - NSClient++の例</h2>
+
+<p> Windows上でインストーラを実行してソフトウェアを設定するタスクも、Puppetで効率的に実施できる一般的なタスクの1つです。Puppetを使えば、MSIまたはEXEをベースにしたあらゆるパッケージのインストールに対応することができます。 Windowsホストをモニタリングする場合は、通常、NSClient++をインストールし、計測データをNagiosサーバーに報告できるようにWindowsサーバーを設定します。 NSClient++ 0.4.4.15のダウンロードとインストールには、以下のコードを使用します。
+</p>
+
+<pre><code>$file = 'NSCP-0.4.4.15-x64.msi'
+$url  = "https://github.com/mickem/nscp/releases/download/0.4.4.15/${file}"
+$temp = "C:\\Windows\\Temp\\${file}"
+
+exec { 'download_nsclient':
+  provider  =&gt; powershell,
+  # note that Start-BitsTransfer can't handle redirected URLs
+  command   =&gt; "(New-Object Net.WebClient).DownloadFile(\"${url}\", \"${temp}\")",
+  creates   =&gt; $temp
+}
+
+package { 'NSClient++ (x64)':
+  ensure  =&gt; '0.4.4.15',
+  source  =&gt; $temp,
+  notify  =&gt; Reboot['NSClient_install_reboot']
+}
+
+reboot { 'NSClient_install_reboot':
+  when =&gt; refreshed
+}
+</code></pre>
+
+<p> インストールしたアプリをコントロールパネルでチェックすると、予想どおり、インストール済みアプリとしてNSClient++ 0.4.4.15が表示されているはずです。
+</p>
+
+<p> このマニフェストについては、以下の点に注意が必要です。
+</p>
+
+<ul>
+<li>先ほどの例と同様、PowerShellプロバイダは、NSClient++インストーラをダウンロードするためにPuppetがPowerShellを呼び出しできるように設定されます。</li>
+  <li> <code>exec</code>で<code>creates</code>属性を使用して、Puppet ではインストーラのダウンロードとキャッシュが1回だけ行われるようにします。</li>
+  <li>パッケージリソースでは、<code>ensure</code>の値にパッケージの正確なバージョンを使用します。また、NSClient++ (x64) のリソース名が、インストーラの指定と正確に一致している必要があります。これにより、WindowsにインストールされたアプリをPuppetでチェックできるようになり、NSClient++インストーラが不必要に動作しないよう防ぐことができます。</li>
+  <li>NSClient++のインストール後に、マニュアルリブートが追加されています。これは、PuppetがMSIインストールを開始したときにだけ生じます。ソフトウェアをインストールするとWindowsのリブートが必要になることがあるため、この項目はデモンストレーションのみの目的でこの例に追加されています。Puppetはagent実行の途中でリブートするように指示されています。これにより、Puppetはシャットダウンし、リブート後は中断したところから処理を再開します。この手順では、リブートモジュールもインストールする必要がある点に注意してください。詳細な情報と<a href="https://forge.puppetlabs.com/puppetlabs/reboot">リブートモジュールは、Forgeで入手可能です</a>。</li>
+</ul>
+<p> 一般的な状況下では、インストール可能なパッケージは安全な内部ネットワークに保存され、<a href="https://chocolatey.org/">Chocolateyフィード</a>またはローカルSMBシェアからアクセスされます。 わかりやすく独立した例として、このマニフェストでは、NSClient++クライアントをダウンロードし、その後でインストールを実行しています。
+</p>
+</div>
