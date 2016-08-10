@@ -126,8 +126,8 @@ Defaults set with Puppet lookup don't need to be explicitly set, and you no long
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/functions/data.pp
-  $autoupdate
-  $service_name
+  $autoupdate,
+  $service_name,
 ) {
  ...
 }
@@ -151,7 +151,7 @@ datadir: data
 hierarchy:
   - name: "OS family"
     backend: yaml
-    path: "os/%{facts.os.family}
+    path: "os/%{facts.os.family}"
 
   - name: "common"
     backend: yaml
@@ -179,8 +179,8 @@ Defaults set with Puppet lookup don't need to be explicitly set, and you no long
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/data
-  $autoupdate
-  $service_name
+  $autoupdate,
+  $service_name,
 ) {
  ...
 }
