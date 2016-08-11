@@ -25,7 +25,7 @@ Released August 10, 2016.
 
 This release adds PhotonOS detection to the Facter `os` structured facts and related legacy flat facts. The OS name is "PhotonOS", and its family is "RedHat".
 
-*[FACT-1422](https://tickets.puppetlabs.com/browse/FACT-1422)
+* [FACT-1422](https://tickets.puppetlabs.com/browse/FACT-1422)
 
 ### New features
 
@@ -35,22 +35,22 @@ This release adds support for a HOCON config file for Facter, which has fields f
 
 There is now a command line flag for Facter (`--config`) which allows the user to specify the path to the config file.
 
-*[FACT-1458](https://tickets.puppetlabs.com/browse/FACT-1458)
-*[FACT-1459](https://tickets.puppetlabs.com/browse/FACT-1459)
+* [FACT-1458](https://tickets.puppetlabs.com/browse/FACT-1458)
+* [FACT-1459](https://tickets.puppetlabs.com/browse/FACT-1459)
 
 
 ### Bug fixes
 
-*[FACT-1406](https://tickets.puppetlabs.com/browse/FACT-1406): On 32-bit Linux or BSD, several individual fields within the `mountpoints` fact could be corrupt. This fixes that problem.
+* [FACT-1406](https://tickets.puppetlabs.com/browse/FACT-1406): On 32-bit Linux or BSD, several individual fields within the `mountpoints` fact could be corrupt. This fixes that problem.
 
-*[FACT-1448](https://tickets.puppetlabs.com/browse/FACT-1488): Previously, all Facter boolean values were returned true when JSON output was requested. This corrects the issue so that `false` is returned when the fact value is `false`.
+* [FACT-1448](https://tickets.puppetlabs.com/browse/FACT-1488): Previously, all Facter boolean values were returned true when JSON output was requested. This corrects the issue so that `false` is returned when the fact value is `false`.
 
-*[FACT-1405](https://tickets.puppetlabs.com/browse/FACT-1405): Facter now constructs IP route information correctly when there are additonal flags in the ip route.
+* [FACT-1405](https://tickets.puppetlabs.com/browse/FACT-1405): Facter now constructs IP route information correctly when there are additonal flags in the ip route.
 
-*[FACT-1449](https://tickets.puppetlabs.com/browse/FACT-1449): Facter treated quoted numeric and boolean values in YAML external fact files as numeric/boolean instead of respecting the quotes and treating the value as a string. Facter has been fixed to only perform the conversion for unquoted scalar values.
+* [FACT-1449](https://tickets.puppetlabs.com/browse/FACT-1449): Facter treated quoted numeric and boolean values in YAML external fact files as numeric/boolean instead of respecting the quotes and treating the value as a string. Facter has been fixed to only perform the conversion for unquoted scalar values.
 
-*[FACT-1434](https://tickets.puppetlabs.com/browse/FACT-1434): Facter now correctly reports the `wxallowed` mount flag on OpenBSD.
+* [FACT-1434](https://tickets.puppetlabs.com/browse/FACT-1434): Facter now correctly reports the `wxallowed` mount flag on OpenBSD.
 
-*[FACT-1454](https://tickets.puppetlabs.com/browse/FACT-1454): This updates the Ruby object collection process in Leatherman to fix a segfault issue when using libfacter with Ruby 2.3.1.
+* [FACT-1454](https://tickets.puppetlabs.com/browse/FACT-1454): This updates the Ruby object collection process in Leatherman to fix a segfault issue when using libfacter with Ruby 2.3.1.
 
-*[FACT-1432](https://tickets.puppetlabs.com/browse/FACT-1432): Facter now correctly reports the link address of a network interface on OpenBSD.
+* [FACT-1432](https://tickets.puppetlabs.com/browse/FACT-1432): Facter now correctly reports the link address of a network interface on OpenBSD.

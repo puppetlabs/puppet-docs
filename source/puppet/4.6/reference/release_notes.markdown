@@ -62,7 +62,7 @@ Along with flagging each event with the `corrective_change` field, we also flag 
 
 A new type `Sensitive[T]` has been added to the Puppet type system. New sensitive instances can be created with `Sensitive.new(value)`. Such an instance signals to the running system that the information contained in the Sensitive object should not be leaked in clear text.
 
-*[PUP-6434](https://tickets.puppetlabs.com/browse/PUP-6434)
+* [PUP-6434](https://tickets.puppetlabs.com/browse/PUP-6434)
 
 #### Specify multiple masters with `server_list` option
 
@@ -70,35 +70,35 @@ This change adds master failover functionality to the puppet agent. Using the ne
 
 The old `server` option can still be used to specify a single master, in which case failover will not be attempted and Puppet will behave as it always has. Specifying a single server with the `server_list` option has the same effect.
 
-*[PUP-6376](https://tickets.puppetlabs.com/browse/PUP-6376)
+* [PUP-6376](https://tickets.puppetlabs.com/browse/PUP-6376)
 
 ### Enhancements
 
-*[PUP-6391](https://tickets.puppetlabs.com/browse/PUP-6391): The default service provider for ubuntu 16.10 is now systemd.
+* [PUP-6391](https://tickets.puppetlabs.com/browse/PUP-6391): The default service provider for ubuntu 16.10 is now systemd.
 
-*[PUP-5604](https://tickets.puppetlabs.com/browse/PUP-5604): The systemd service provider now asks journalctl why something failed and reports it back to the user for aid in debugging.
+* [PUP-5604](https://tickets.puppetlabs.com/browse/PUP-5604): The systemd service provider now asks journalctl why something failed and reports it back to the user for aid in debugging.
 
-*[PUP-6042](https://tickets.puppetlabs.com/browse/PUP-6042): Now using the `--test` option with puppet agent overrides the `--use_cached_catalog` setting. Declaring these options in combination does not result in the use of a cached catalog.
+* [PUP-6042](https://tickets.puppetlabs.com/browse/PUP-6042): Now using the `--test` option with puppet agent overrides the `--use_cached_catalog` setting. Declaring these options in combination does not result in the use of a cached catalog.
 
-*[PUP-6378](https://tickets.puppetlabs.com/browse/PUP-6378): This adds a field to the report indicating which master was contacted during the run.
+* [PUP-6378](https://tickets.puppetlabs.com/browse/PUP-6378): This adds a field to the report indicating which master was contacted during the run.
 
-*[PUP-2802](https://tickets.puppetlabs.com/browse/PUP-2802): Gentoo supports 'slotting' packages which allows multiple different versions of the same package to live alongside one another. The portage package provider now understands and supports these slots.
+* [PUP-2802](https://tickets.puppetlabs.com/browse/PUP-2802): Gentoo supports 'slotting' packages which allows multiple different versions of the same package to live alongside one another. The portage package provider now understands and supports these slots.
 
-*[PUP-4617](https://tickets.puppetlabs.com/browse/PUP-4617): `puppet cert print` now displays long names for extensions.
+* [PUP-4617](https://tickets.puppetlabs.com/browse/PUP-4617): `puppet cert print` now displays long names for extensions.
 
 ### Deprecations
 
-*[PUP-6083](https://tickets.puppetlabs.com/browse/PUP-6083): The notation Class[Foo] where the name of the class is given with an upper case letter has been deprecated and will result in an error in the next major release of puppet. The deprecation warning (or optionally an error) is controlled by the `--strict`flag.
+* [PUP-6083](https://tickets.puppetlabs.com/browse/PUP-6083): The notation Class[Foo] where the name of the class is given with an upper case letter has been deprecated and will result in an error in the next major release of puppet. The deprecation warning (or optionally an error) is controlled by the `--strict`flag.
 
 ### Bug fixes
 
 #### Language
 
-*[PUP-6530](https://tickets.puppetlabs.com/browse/PUP-6530): When creating resources using the `create_resources` function there were no file and line information included in the resulting catalog for the resources created by the function. This is now fixed and this will improve downstream tooling that requires such information.
+* [PUP-6530](https://tickets.puppetlabs.com/browse/PUP-6530): When creating resources using the `create_resources` function there were no file and line information included in the resulting catalog for the resources created by the function. This is now fixed and this will improve downstream tooling that requires such information.
 
-*[PUP-5849](https://tickets.puppetlabs.com/browse/PUP-5849): When starting a new line with a `(` this would be interpreted as an attempt to continue the last expression on the preceding line as if it was the name of a function to call. This is now changed so that for a `(` to be recognized as a parenthesis opening an argument list it must be placed on the same line as the name of the function. Otherwise it will be taken as the end of the previous expression and starting a new parenthesized/grouping expression.
+* [PUP-5849](https://tickets.puppetlabs.com/browse/PUP-5849): When starting a new line with a `(` this would be interpreted as an attempt to continue the last expression on the preceding line as if it was the name of a function to call. This is now changed so that for a `(` to be recognized as a parenthesis opening an argument list it must be placed on the same line as the name of the function. Otherwise it will be taken as the end of the previous expression and starting a new parenthesized/grouping expression.
 
-*[PUP-6361](https://tickets.puppetlabs.com/browse/PUP-6361): Naming a class or a define with a leading :: (making the name absolute) lead to not being able to use that class/define. Now, such names are treated as illegal.
+* [PUP-6361](https://tickets.puppetlabs.com/browse/PUP-6361): Naming a class or a define with a leading :: (making the name absolute) lead to not being able to use that class/define. Now, such names are treated as illegal.
 
 
 #### Types and Providers
@@ -119,48 +119,48 @@ The old `server` option can still be used to specify a single master, in which c
 
 * [PUP-6370](https://tickets.puppetlabs.com/browse/PUP-6370): Previously, when checking whether a service was enabled, the systemd provider used hardcoded strings to compare to the output of `systemctl`. Now, Puppet uses the exit code from `systemctl`, which ensures that the provider's view of a service is in line with that of the system.
 
-*[PUP-6437](https://tickets.puppetlabs.com/browse/PUP-6437): This change fixes an issue with the directoryservice user provider in OSX, where Puppet would crash in certain circumstances while fetching bad ShadowHashData from the system. Puppet now handles this gracefully.
+* [PUP-6437](https://tickets.puppetlabs.com/browse/PUP-6437): This change fixes an issue with the directoryservice user provider in OSX, where Puppet would crash in certain circumstances while fetching bad ShadowHashData from the system. Puppet now handles this gracefully.
 
 
 #### Windows
 
-*[PUP-6115](https://tickets.puppetlabs.com/browse/PUP-6115): Fixed an erroneous command in instructions generated by Puppet to clean certs on Windows.
+* [PUP-6115](https://tickets.puppetlabs.com/browse/PUP-6115): Fixed an erroneous command in instructions generated by Puppet to clean certs on Windows.
 
-*[PUP-6459](https://tickets.puppetlabs.com/browse/PUP-6459): `puppet resource service` could fail on Windows when there were certain types of delayed auto start services. In particular, it would always fail on Windows 10 due to the `pvhdparser` service.
+* [PUP-6459](https://tickets.puppetlabs.com/browse/PUP-6459): `puppet resource service` could fail on Windows when there were certain types of delayed auto start services. In particular, it would always fail on Windows 10 due to the `pvhdparser` service.
 
-*[PUP-6499](https://tickets.puppetlabs.com/browse/PUP-6499): `puppet resource group` or `puppet resource user` could previously fail on non-English editions of Windows when there were users or groups present containing Unicode characters. This commonly occurred on the French localized edition of Windows where the "Guest" account is localized as "Invité".
+* [PUP-6499](https://tickets.puppetlabs.com/browse/PUP-6499): `puppet resource group` or `puppet resource user` could previously fail on non-English editions of Windows when there were users or groups present containing Unicode characters. This commonly occurred on the French localized edition of Windows where the "Guest" account is localized as "Invité".
 
-*[PUP-5938](https://tickets.puppetlabs.com/browse/PUP-5938): Fixed a minor performance issue when querying for Windows groups present on the host system.
+* [PUP-5938](https://tickets.puppetlabs.com/browse/PUP-5938): Fixed a minor performance issue when querying for Windows groups present on the host system.
 
 
 #### Puppet Server
 
-*[PUP-3827](https://tickets.puppetlabs.com/browse/PUP-3827): In Puppet 4.0 many errors returned by our API were moved to follow best practices with regards to HTTP error codes and a JSON format that follows our documented JSON schema. However one major subsystem of Puppet (the indirector) was not converted to follow this pattern. As of this release, API endpoints that hit this subsystem will return proper HTTP error codes and message bodies that conform to our documented JSON standard. The previous behavior was to return a 400 Server Error for all issues with this subsystem.
+* [PUP-3827](https://tickets.puppetlabs.com/browse/PUP-3827): In Puppet 4.0 many errors returned by our API were moved to follow best practices with regards to HTTP error codes and a JSON format that follows our documented JSON schema. However one major subsystem of Puppet (the indirector) was not converted to follow this pattern. As of this release, API endpoints that hit this subsystem will return proper HTTP error codes and message bodies that conform to our documented JSON standard. The previous behavior was to return a 400 Server Error for all issues with this subsystem.
 
 #### Misc bug fixes
 
-*[PUP-6413](https://tickets.puppetlabs.com/browse/PUP-6413): Puppet now correctly connects to Pypi when managing packages with pip.
+* [PUP-6413](https://tickets.puppetlabs.com/browse/PUP-6413): Puppet now correctly connects to Pypi when managing packages with pip.
 
-*[PUP-4904](https://tickets.puppetlabs.com/browse/PUP-4904): Running `puppet describe -s ssh_authorized_key` produced garbage output because of long lines of text.
+* [PUP-4904](https://tickets.puppetlabs.com/browse/PUP-4904): Running `puppet describe -s ssh_authorized_key` produced garbage output because of long lines of text.
 
-*[PUP-6125](https://tickets.puppetlabs.com/browse/PUP-6125): Running `puppet agent --verbose` used to generate log output to both console and syslog (or eventlog on Windows). When adding `--logdest syslog` option, log output was still sent to both the console and syslog (eventlog). Now adding `--logdest syslog` causes logging to be delivered only to syslog (eventlog) and not to the console.
+* [PUP-6125](https://tickets.puppetlabs.com/browse/PUP-6125): Running `puppet agent --verbose` used to generate log output to both console and syslog (or eventlog on Windows). When adding `--logdest syslog` option, log output was still sent to both the console and syslog (eventlog). Now adding `--logdest syslog` causes logging to be delivered only to syslog (eventlog) and not to the console.
 
-*[PUP-5887](https://tickets.puppetlabs.com/browse/PUP-5887): This fixes a lexer error that prevented nesting string interpolation not to be properly interpolated.
+* [PUP-5887](https://tickets.puppetlabs.com/browse/PUP-5887): This fixes a lexer error that prevented nesting string interpolation not to be properly interpolated.
 
-*[PUP-6094](https://tickets.puppetlabs.com/browse/PUP-6094): Fixed slight differences between the output of `puppet --help` and `puppet help`.
+* [PUP-6094](https://tickets.puppetlabs.com/browse/PUP-6094): Fixed slight differences between the output of `puppet --help` and `puppet help`.
 
-*[PUP-6341](https://tickets.puppetlabs.com/browse/PUP-6341): Semantic Puppet (support for semver) gem was updated with fixes for problems on Ruby >= 2.3.0.
+* [PUP-6341](https://tickets.puppetlabs.com/browse/PUP-6341): Semantic Puppet (support for semver) gem was updated with fixes for problems on Ruby >= 2.3.0.
 
-*[PUP-1796](https://tickets.puppetlabs.com/browse/PUP-1796): Puppet can now manage the root directory on unix-like systems.
+* [PUP-1796](https://tickets.puppetlabs.com/browse/PUP-1796): Puppet can now manage the root directory on unix-like systems.
 
-*[PUP-1512](https://tickets.puppetlabs.com/browse/PUP-1512): Fixed a problem where `puppet help` face-based application could silently fail when trying to display help for each installed application.
+* [PUP-1512](https://tickets.puppetlabs.com/browse/PUP-1512): Fixed a problem where `puppet help` face-based application could silently fail when trying to display help for each installed application.
 
-*[PUP-5463](https://tickets.puppetlabs.com/browse/PUP-5463): Using `undef` in a collector previously lead to an error. Literal `undef` can now be used in collector queries.
+* [PUP-5463](https://tickets.puppetlabs.com/browse/PUP-5463): Using `undef` in a collector previously lead to an error. Literal `undef` can now be used in collector queries.
 
-*[PUP-6233](https://tickets.puppetlabs.com/browse/PUP-6233): Solaris 11.2+ SMF service restarts were returning prior to the service restarting. They will now be synchronous
+* [PUP-6233](https://tickets.puppetlabs.com/browse/PUP-6233): Solaris 11.2+ SMF service restarts were returning prior to the service restarting. They will now be synchronous
 
-*[PUP-6425](https://tickets.puppetlabs.com/browse/PUP-6425): Fixed a regression which modified Puppet to not swallow errors silently, but it caused another regression when a puppet sub-application raises an error.
+* [PUP-6425](https://tickets.puppetlabs.com/browse/PUP-6425): Fixed a regression which modified Puppet to not swallow errors silently, but it caused another regression when a puppet sub-application raises an error.
 
-*[PUP-5948](https://tickets.puppetlabs.com/browse/PUP-5948): The feature in this ticket is part of a larger feature (environment isolation). However - the work on this changes `create_resources` slightly in that the created resources are not immediately evaluated - instead they follow the same rules as if the same resource had been created in the manifest at the point where the call to `create_resources` is made. This changes the order of evaluation between the created resources and what follows after the call to `create_resources` as the created resources are now lazily evaluated just like all other resources. Logic that depends on the order of evaluation between resources created in one call to `create_resources` and a manifest created resource created directly thereafter may need to be changed.
+* [PUP-5948](https://tickets.puppetlabs.com/browse/PUP-5948): The feature in this ticket is part of a larger feature (environment isolation). However - the work on this changes `create_resources` slightly in that the created resources are not immediately evaluated - instead they follow the same rules as if the same resource had been created in the manifest at the point where the call to `create_resources` is made. This changes the order of evaluation between the created resources and what follows after the call to `create_resources` as the created resources are now lazily evaluated just like all other resources. Logic that depends on the order of evaluation between resources created in one call to `create_resources` and a manifest created resource created directly thereafter may need to be changed.
 
 
