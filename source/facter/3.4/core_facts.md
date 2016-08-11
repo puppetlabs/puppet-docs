@@ -1,7 +1,7 @@
 ---
 layout: default
-built_from_commit: b7aadc67f3be3d76a92fb38dcab71ccf958f8252
-title: 'Core Facts'
+built_from_commit: f33803b6b3f2784e2a1d6c5a831b81d99247b1c7
+title: 'Facter: Core Facts'
 toc: columns
 canonical: /facter/latest/core_facts.html
 ---
@@ -17,6 +17,22 @@ You can access facts in your Puppet manifests as `$fact_name` or `$facts[fact_na
 * * *
 
 ## Modern Facts
+
+### `aio_agent_version`
+
+**Type:** string
+
+**Purpose:**
+
+Return the version of the puppet-agent package that installed facter.
+
+
+**Resolution:**
+
+* All platforms: use the compile-time enabled version definition.
+
+
+([↑ Back to top](#page-nav))
 
 ### `augeas`
 
@@ -245,12 +261,13 @@ Return the identity information of the user running facter.
 * `group` (string) --- The group name of the user running facter.
 * `uid` (integer) --- The user identifier of the user running facter.
 * `user` (string) --- The user name of the user running facter.
+* `privileged` (boolean) --- True if facter is running as a privileged process or false if not.
 
 
 **Resolution:**
 
-* POSIX platforms: use the `getegid`, `getpwuid_r`, `geteuid`, and `getgrgid_r` functions to retrieve the identity information.
-* Windows: use the `GetUserNameExW` function to retrieve the identity information.
+* POSIX platforms: use the `getegid`, `getpwuid_r`, `geteuid`, and `getgrgid_r` functions to retrieve the identity information; use the result of the `geteuid() == 0` test as the value of the privileged element
+* Windows: use the `GetUserNameExW` function to retrieve the identity information; use the `GetTokenInformation` to get the current process token elevation status and use it as the value of the privileged element on versions of Windows supporting the token elevation, on older versions of Windows use the `CheckTokenMembership` to test whether the well known local Administrators group SID is enabled in the current thread impersonation token and use the test result as the value of the privileged element
 
 
 ([↑ Back to top](#page-nav))
