@@ -226,6 +226,14 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
+  /puppet/4.6/reference:
+    doc: puppet
+    version: 4.6
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.3
+      hiera: 3.2
+      puppetserver: 2.5
   /puppet/4.5/reference:
     doc: puppet
     version: 4.5
@@ -316,6 +324,10 @@ documents:
     nav: /_includes/puppet_0_24.html
     hide: true
 
+  /facter/3.4:
+    doc: facter
+    version: 3.4
+    nav: ./_facter_toc.html
   /facter/3.3:
     doc: facter
     version: 3.3

@@ -6,6 +6,18 @@ title: "Hiera 3.2: Release Notes"
 [`puppet-agent`]: /puppet/4.4/reference/about_agent.html
 
 [1.5.0]: /puppet/4.5/reference/release_notes_agent.html#puppet-agent-150
+[1.6.0]: /puppet/4.6/reference/release_notes_agent.html#puppet-agent-160
+
+## Hiera 3.2.1
+
+Released August 10, 2016.
+
+Minor bug fix release shipped in [`puppet-agent`[] version [1.6.0][].
+
+### Bug fixes
+
+* [HI-528](https://tickets.puppetlabs.com/browse/HI-528): Hiera 3.2.x does not support Rubies < 1.9.3. The dependencies on 'json' and 'json_pure' has therefore been dropped from hiera's gemspec to make it easier to consume hiera as a gem.
+
 
 ## Hiera 3.2.0
 
