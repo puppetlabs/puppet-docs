@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Resource Type: tidy'
 canonical: /puppet/latest/reference/types/tidy.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
 
 tidy
 -----
@@ -93,7 +93,7 @@ bit of the file.
 Finally, note that you must now specify a non-zero/non-false value
 for recurse if matches is used, as matches only apply to files found
 by recursion (there's no reason to use static patterns match against
-a statically determined path).  Requiering explicit recursion clears
+a statically determined path).  Requiring explicit recursion clears
 up a common source of confusion.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
@@ -141,4 +141,4 @@ Valid values are `atime`, `mtime`, `ctime`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Man Page: puppet man'
 canonical: /puppet/latest/reference/man/man.html
 ---
@@ -19,7 +19,7 @@ canonical: /puppet/latest/reference/man/man.html
 
 <p>This subcommand displays manual pages for all Puppet subcommands. If the
 <code>ronn</code> gem (<a href="https://github.com/rtomayko/ronn/" data-bare-link="true">https://github.com/rtomayko/ronn/</a>) is installed on your
-system, puppet man will display fully-formated man pages. If <code>ronn</code> is not
+system, puppet man will display fully-formatted man pages. If <code>ronn</code> is not
 available, puppet man will display the raw (but human-readable) source text
 in a pager.</p>
 

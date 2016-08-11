@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: Puppet Man Pages
 canonical: /puppet/latest/reference/man/index.html
 ---
@@ -59,4 +59,11 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 - [puppet resource_type](./resource_type.html)
 - [puppet status](./status.html)
 
+
+Unknown or New Subcommands
+-----
+
+These subcommands have not yet been added to any of the categories above.
+
+- [puppet generate](./generate.html)
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Puppet HTTP API: File Metadata'
 canonical: /puppet/latest/reference/http_api/http_file_metadata.html
 ---
@@ -299,7 +299,7 @@ is identical to the above example, except for:
     * for "manage" the "type" field is "link"; for "follow" it's "file"
     * for "manage" the "mode", "owner" and "group" fields are the link's values; for "follow" the destination's values
 
-```
+~~~
 GET /puppet/v3/file_metadatas/modules/example?environment=env&recurse=true&ignore=sub*&links=follow
 
 HTTP 200 OK
@@ -349,7 +349,7 @@ Content-Type: text/pson
         "type": "file"
     }
 ]
-```
+~~~
 
 Schema
 ------

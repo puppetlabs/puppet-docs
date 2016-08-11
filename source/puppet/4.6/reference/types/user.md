@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Resource Type: user'
 canonical: /puppet/latest/reference/types/user.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
 
 user
 -----
@@ -309,6 +309,10 @@ encryption formats and requirements.
   well as the password.
 * Windows passwords can only be managed in cleartext, as there is no Windows API
   for setting the password hash.
+* Windows passwords shouldn't be specified as empty (zero-length) strings, even
+  if you've configured Windows to allow blank passwords. If you do specify a
+  blank password, Puppet will report a change on every run because there is no
+  way to verify that an existing password is blank.
 
 [stdlib]: https://github.com/puppetlabs/puppetlabs-stdlib/
 
@@ -522,7 +526,7 @@ User management for HP-UX. This provider uses the undocumented `-F`
 switch to HP-UX's special `usermod` binary to work around the fact that
 its standard `usermod` cannot make changes while the user is logged in.
 New functionality provides for changing trusted computing passwords and
-resetting password expirations under trusted computing
+resetting password expirations under trusted computing.
 
 * Required binaries: `/usr/sam/lbin/useradd.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/usermod.sam`.
 * Default for `operatingsystem` == `hp-ux`.
@@ -763,4 +767,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500

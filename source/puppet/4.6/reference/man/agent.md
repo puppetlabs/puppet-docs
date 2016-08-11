@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Man Page: puppet agent'
 canonical: /puppet/latest/reference/man/agent.html
 ---
@@ -165,7 +165,7 @@ conjunction with the --no-daemonize option.
 prefix for boolean settings on the command line.)</p></dd>
 <dt class="flush">--test</dt><dd><p>Enable the most common options used for testing. These are 'onetime',
 'verbose', 'no-daemonize', 'no-usecacheonfailure', 'detailed-exitcodes',
-'no-splay', and 'show_diff'.</p></dd>
+'no-splay', 'show_diff', and 'no-use_cached_catalog'.</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--version</dt><dd><p>Print the puppet version number and exit.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates

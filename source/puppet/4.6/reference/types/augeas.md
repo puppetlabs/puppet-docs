@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Resource Type: augeas'
 canonical: /puppet/latest/reference/types/augeas.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
 
 augeas
 -----
@@ -75,7 +75,7 @@ The name of this task. Used for uniqueness.
 The changes which should be applied to the filesystem. This
 can be a command or an array of commands. The following commands are supported:
 
-* `set <PATH> <VALUE>` --- Sets the value `VALUE` at loction `PATH`
+* `set <PATH> <VALUE>` --- Sets the value `VALUE` at location `PATH`
 * `setm <PATH> <SUB> <VALUE>` --- Sets multiple nodes (matching `SUB` relative to `PATH`) to `VALUE`
 * `rm <PATH>` --- Removes the node at location `PATH`
 * `remove <PATH>` --- Synonym for `rm`
@@ -105,7 +105,7 @@ defaults to `/files + incl`; otherwise, defaults to the empty string.
 <h4 id="augeas-attribute-force">force</h4>
 
 Optional command to force the augeas type to execute even if it thinks changes
-will not be made. This does not overide the `onlyif` parameter.
+will not be made. This does not override the `onlyif` parameter.
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -246,4 +246,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500

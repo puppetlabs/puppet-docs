@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Man Page: puppet epp'
 canonical: /puppet/latest/reference/man/epp.html
 ---
@@ -61,10 +61,10 @@ to templates in modules when given on the form <var>modulename</var>/<var>templa
 If no arguments are given, the stdin is read (unless it is attached to a terminal)</p>
 
 <p>If multiple templates are given, they are separated with a header indicating the
-name of the template. This can be surpressed with the option --no-header.
-The option --[no-]header has no effect whe a single template is dumped.</p>
+name of the template. This can be suppressed with the option --no-header.
+The option --[no-]header has no effect when a single template is dumped.</p>
 
-<p>When debugging the epp parser itself, it may be useful to surpress the valiation
+<p>When debugging the epp parser itself, it may be useful to suppress the validation
 step with the <code>--no-validate</code> option to observe what the parser produced from the
 given source.</p>
 
@@ -144,7 +144,7 @@ that template file.</p>
 
 <p>When designing EPP templates, it is strongly recommended to define all template arguments
 in the template, and to give them in a hash when calling <code>epp</code> or <code>inline_epp</code> and to use
-as few global variables as possible, preferrably only the $facts hash. This makes templates
+as few global variables as possible, preferably only the $facts hash. This makes templates
 more free standing and are easier to reuse, and to test.</p>
 
 <p><code>OPTIONS</code>

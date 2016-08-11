@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Man Page: puppet cert'
 canonical: /puppet/latest/reference/man/cert.html
 ---
@@ -49,14 +49,20 @@ be generated for each client named on the command line.</p></dd>
 <dt class="flush">list</dt><dd><p>List outstanding certificate requests. If '--all' is specified, signed
 certificates are also listed, prefixed by '+', and revoked or invalid
 certificates are prefixed by '-' (the verification outcome is printed
-in parenthesis).</p></dd>
+in parenthesis). If '--human-readable' or '-H' is specified,
+certificates are formatted in a way to improve human scan-ability. If
+'--machine-readable' or '-m' is specified, output is formatted concisely
+for consumption by a script.</p></dd>
 <dt class="flush">print</dt><dd><p>Print the full-text version of a host's certificate.</p></dd>
 <dt class="flush">revoke</dt><dd><p>Revoke the certificate of a client. The certificate can be specified either
 by its serial number (given as a hexadecimal number prefixed by '0x') or by its
 hostname. The certificate is revoked by adding it to the Certificate Revocation
 List given by the 'cacrl' configuration option. Note that the puppet master
 needs to be restarted after revoking certificates.</p></dd>
-<dt class="flush">sign</dt><dd><p>Sign an outstanding certificate request.</p></dd>
+<dt class="flush">sign</dt><dd><p>Sign an outstanding certificate request. If '--interactive' or '-i' is
+supplied the user will be prompted to confirm that they are signing the
+correct certificate (recommended). If '--assume-yes' or '-y' is supplied
+the interactive prompt will assume the answer of 'yes'.</p></dd>
 <dt class="flush">verify</dt><dd><p>Verify the named certificate against the local CA certificate.</p></dd>
 <dt>reinventory</dt><dd><p>Build an inventory of the issued certificates. This will destroy the current
 inventory file specified by 'cert_inventory' and recreate it from the
@@ -93,6 +99,9 @@ its rightful server.</p>
 setting 'dns_alt_names' in puppet.conf or specifying '--dns_alt_names' on the
 command line. The output of 'puppet cert list' shows any requested alt names
 for pending certificate requests.</p></dd>
+<dt>--allow-authorization-extensions</dt><dd><p>Enable the signing of a request with authorization extensions. Such requests
+are sensitive because they can be used to write access rules in Puppet Server.
+Currently, this is the only means by which such requests can be signed.</p></dd>
 <dt>--digest</dt><dd><p>Set the digest for fingerprinting (defaults to the digest used when
 signing the cert). Valid values depends on your openssl and openssl ruby
 extension version.</p></dd>

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Man Page: puppet lookup'
 canonical: /puppet/latest/reference/man/lookup.html
 ---
@@ -47,7 +47,7 @@ for the lookup function:</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
-<p>These options and their effects are decribed in more detail in
+<p>These options and their effects are described in more detail in
 the puppet lookup function linked to above.</p>
 
 <ul>
@@ -72,7 +72,7 @@ Can be used with the 'deep' merge strategy. When this flag is used arrays
 and hashes will be merged.</p></li>
 <li><p>--explain
 Print an explanation for the details of how the lookup performed rather
-than the value returned for the key. The explaination will describe how
+than the value returned for the key. The explanation will describe how
 the result was obtained or why lookup failed to obtain the result.</p></li>
 <li><p>--explain-options
 Explain if a lookup_options hash will be used and how it was assembled

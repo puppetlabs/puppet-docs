@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Resource Type: resources'
 canonical: /puppet/latest/reference/types/resources.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
 
 resources
 -----
@@ -16,7 +16,7 @@ resources
 
 This is a metatype that can manage other resource types.  Any
 metaparams specified here will be passed on to any generated resources,
-so you can purge umanaged resources but set `noop` to true so the
+so you can purge unmanaged resources but set `noop` to true so the
 purging is only logged and does not actually happen.
 
 <h3 id="resources-attributes">Attributes</h3>
@@ -71,4 +71,4 @@ To specify a range of uids, consider using the range() function from stdlib.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Man Page: puppet device'
 canonical: /puppet/latest/reference/man/device.html
 ---
@@ -63,7 +63,7 @@ parameter, so you can specify '--server <var>servername</var>' as an argument.</
 code of '1' means at least one device had a compile failure, an exit code of
 '2' means at least one device had resource changes, and an exit code of '4'
 means at least one device had resource failures. Exit codes of '3', '5', '6',
-or '7' means that a bitwise combination of the preceeding exit codes happened.</p></dd>
+or '7' means that a bitwise combination of the preceding exit codes happened.</p></dd>
 <dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
 <dt>--logdest</dt><dd><p>Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'console', or the path to a log file. If debugging or verbosity is

@@ -1,29 +1,19 @@
 ---
 layout: default
 built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
-title: 'Man Page: puppet plugin'
-canonical: /puppet/latest/reference/man/plugin.html
+title: 'Man Page: puppet generate'
+canonical: /puppet/latest/reference/man/generate.html
 ---
 
 <div class='mp'>
 <h2 id="NAME">NAME</h2>
 <p class="man-name">
-  <code>puppet-plugin</code> - <span class="man-whatis">Interact with the Puppet plugin system.</span>
+  <code>puppet-generate</code> - <span class="man-whatis">Generates Puppet code from Ruby definitions.</span>
 </p>
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>puppet plugin <var>action</var></p>
-
-<h2 id="DESCRIPTION">DESCRIPTION</h2>
-
-<p>This subcommand provides network access to the puppet master's store of
-plugins.</p>
-
-<p>The puppet master serves Ruby code collected from the <code>lib</code> directories
-of its modules. These plugins can be used on agent nodes to extend
-Facter and implement custom types and providers. Plugins are normally
-downloaded by puppet agent during the course of a run.</p>
+<p>puppet generate <var>action</var></p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
@@ -51,39 +41,43 @@ sometimes available.</dd>
 <h2 id="ACTIONS">ACTIONS</h2>
 
 <dl>
-<dt><code>download</code> - Download plugins from the puppet master.</dt><dd><p><code>SYNOPSIS</code></p>
+<dt><code>types</code> - Generates Puppet code for custom types</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet plugin download</p>
+<p>puppet generate types [--format <var>format</var>] [--force]</p>
 
 <p><code>DESCRIPTION</code></p>
 
-<p>Downloads plugins from the configured puppet master. Any plugins
-downloaded in this way will be used in all subsequent Puppet activity.
-This action modifies files on disk.</p>
+<p>Generates definitions for custom resource types using Puppet code.</p>
 
-<p><code>RETURNS</code></p>
+<p>Types defined in Puppet code can be used to isolate custom type definitions
+between different environments.</p>
 
-<p>A list of the files downloaded, or a confirmation that no files were
-downloaded. When used from the Ruby API, this action returns an array of
-the files downloaded, which will be empty if none were retrieved.</p></dd>
+<p><code>OPTIONS</code>
+<var>--force</var> -
+Forces the generation of output files (skips up-to-date checks).</p>
+
+<p><var>--format &lt;format</var>> -
+The generation output format to use. Supported formats: pcore.</p></dd>
 </dl>
 
 
 <h2 id="EXAMPLES">EXAMPLES</h2>
 
-<p><code>download</code></p>
+<p><code>types</code></p>
 
-<p>Retrieve plugins from the puppet master:</p>
+<p>Generate Puppet type definitions for all custom resource types in the current environment:</p>
 
-<p>$ puppet plugin download</p>
+<pre><code>$ puppet generate types
+</code></pre>
 
-<p>Retrieve plugins from the puppet master (API example):</p>
+<p>Generate Puppet type definitions for all custom resource types in the specified environment:</p>
 
-<p>$ Puppet::Face[:plugin, '0.0.1'].download</p>
+<pre><code>$ puppet generate types --environment development
+</code></pre>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2011 by Puppet Labs
+<p>Copyright 2016 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

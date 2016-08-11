@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Resource Type: yumrepo'
 canonical: /puppet/latest/reference/types/yumrepo.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
 
 yumrepo
 -----
@@ -25,7 +25,7 @@ in the `yum.conf(5)` man page.
 
 Continuation lines that yum supports (for the `baseurl`, for example)
 are not supported. This type does not attempt to read or verify the
-exinstence of files listed in the `include` attribute.
+existence of files listed in the `include` attribute.
 
 <h3 id="yumrepo-attributes">Attributes</h3>
 
@@ -98,10 +98,10 @@ Valid values are `present`, `absent`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Determines if yum prompts for confirmation of critical actions.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -183,10 +183,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether this repository is enabled.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -196,10 +196,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether yum will allow the use of package groups for this
 repository.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -242,10 +242,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether to check the GPG signature on packages installed
 from this repository.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -299,10 +299,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether HTTP/1.1 keepalive should be used with this repository.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -368,10 +368,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Enable or disable protection for this repository. Requires
 that the `protectbase` plugin is installed and enabled.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -425,10 +425,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether to check the GPG signature on repodata.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -450,10 +450,10 @@ Valid values are `absent`. Values can match `/^[0-9]+$/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Access the repository via S3.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -462,10 +462,10 @@ Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Should yum skip this repository if unable to reach it.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -508,10 +508,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Should yum verify SSL certificates/hosts at all.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -572,4 +572,4 @@ section will be created in '/etc/yum.conf'.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500

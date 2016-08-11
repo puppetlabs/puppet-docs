@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
 
 ## About Resource Types
 
@@ -151,7 +151,7 @@ The name of this task. Used for uniqueness.
 The changes which should be applied to the filesystem. This
 can be a command or an array of commands. The following commands are supported:
 
-* `set <PATH> <VALUE>` --- Sets the value `VALUE` at loction `PATH`
+* `set <PATH> <VALUE>` --- Sets the value `VALUE` at location `PATH`
 * `setm <PATH> <SUB> <VALUE>` --- Sets multiple nodes (matching `SUB` relative to `PATH`) to `VALUE`
 * `rm <PATH>` --- Removes the node at location `PATH`
 * `remove <PATH>` --- Synonym for `rm`
@@ -181,7 +181,7 @@ defaults to `/files + incl`; otherwise, defaults to the empty string.
 <h4 id="augeas-attribute-force">force</h4>
 
 Optional command to force the augeas type to execute even if it thinks changes
-will not be made. This does not overide the `onlyif` parameter.
+will not be made. This does not override the `onlyif` parameter.
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -7058,6 +7058,7 @@ Available providers are:
 * [`rug`](#package-provider-rug)
 * [`sun`](#package-provider-sun)
 * [`sunfreeware`](#package-provider-sunfreeware)
+* [`tdnf`](#package-provider-tdnf)
 * [`up2date`](#package-provider-up2date)
 * [`urpmi`](#package-provider-urpmi)
 * [`windows`](#package-provider-windows)
@@ -7379,7 +7380,7 @@ Package management which copies application bundles to a target.
 
 <h4 id="package-provider-apple">apple</h4>
 
-Package management based on OS X's builtin packaging system.  This is
+Package management based on OS X's built-in packaging system.  This is
 essentially the simplest and least functional package system in existence --
 it only supports installation; no deletion or upgrades.  The provider will
 automatically add the `.pkg` extension, so leave that off when specifying
@@ -7434,7 +7435,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`.
-* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23`.
+* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24`.
 * Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
@@ -7570,7 +7571,7 @@ or an array where each element is either a string or a hash.
 
 <h4 id="package-provider-pkg">pkg</h4>
 
-OpenSolaris image packaging system. See pkg(5) for more information
+OpenSolaris image packaging system. See pkg(5) for more information.
 
 * Required binaries: `/usr/bin/pkg`.
 * Default for `kernelrelease` == `5.11` and `osfamily` == `solaris`.
@@ -7700,6 +7701,18 @@ has not actually been tested.
 
 * Required binaries: `pkg-get`.
 * Supported features: `installable`, `uninstallable`, `upgradeable`.
+
+<h4 id="package-provider-tdnf">tdnf</h4>
+
+Support via `tdnf`.
+
+This provider supports the `install_options` attribute, which allows command-line flags to be passed to tdnf.
+These options should be spcified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}), or an
+array where each element is either a string or a hash.
+
+* Required binaries: `rpm`, `tdnf`.
+* Default for `operatingsystem` == `PhotonOS`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-up2date">up2date</h4>
 
@@ -8267,6 +8280,20 @@ Provider support:
       <td> </td>
     </tr>
     <tr>
+      <td>tdnf</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
       <td>up2date</td>
       <td> </td>
       <td> </td>
@@ -8352,7 +8379,7 @@ resources
 
 This is a metatype that can manage other resource types.  Any
 metaparams specified here will be passed on to any generated resources,
-so you can purge umanaged resources but set `noop` to true so the
+so you can purge unmanaged resources but set `noop` to true so the
 purging is only logged and does not actually happen.
 
 <h3 id="resources-attributes">Attributes</h3>
@@ -8759,7 +8786,7 @@ A trigger can contain the following keys:
     * `months` --- Which months the task should run, as an array. Defaults to
       all months. Each month must be an integer between 1 and 12.
     * `on` **(Required)** --- Which days of the month the task should run,
-      as an array. Each day must beeither an integer between 1 and 31,
+      as an array. Each day must be either an integer between 1 and 31,
       or the special value `last,` which is always the last day of the month.
 * For `monthly` (by weekday) triggers:
     * `months` --- Which months the task should run, as an array. Defaults to
@@ -9319,7 +9346,7 @@ The daemon directory should be in one of the following locations:
 * `/var/lib/service`
 * `/etc`
 
-...or this can be overriden in the resource's attributes:
+...or this can be overridden in the resource's attributes:
 
     service { 'myservice':
       provider => 'daemontools',
@@ -9351,7 +9378,7 @@ services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
 * Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`, `/usr/sbin/update-rc.d`.
-* Default for `operatingsystem` == `cumuluslinux`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `5, 6, 7`.
+* Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `1, 2`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `5, 6, 7`.
 * Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
@@ -9477,7 +9504,7 @@ The daemon directory should be in one of the following locations:
 * `/etc/sv`
 * `/var/lib/service`
 
-or this can be overriden in the service resource parameters::
+or this can be overridden in the service resource parameters:
 
     service { 'myservice':
       provider => 'runit',
@@ -9539,7 +9566,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -10151,7 +10178,7 @@ bit of the file.
 Finally, note that you must now specify a non-zero/non-false value
 for recurse if matches is used, as matches only apply to files found
 by recursion (there's no reason to use static patterns match against
-a statically determined path).  Requiering explicit recursion clears
+a statically determined path).  Requiring explicit recursion clears
 up a common source of confusion.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
@@ -10503,6 +10530,10 @@ encryption formats and requirements.
   well as the password.
 * Windows passwords can only be managed in cleartext, as there is no Windows API
   for setting the password hash.
+* Windows passwords shouldn't be specified as empty (zero-length) strings, even
+  if you've configured Windows to allow blank passwords. If you do specify a
+  blank password, Puppet will report a change on every run because there is no
+  way to verify that an existing password is blank.
 
 [stdlib]: https://github.com/puppetlabs/puppetlabs-stdlib/
 
@@ -10716,7 +10747,7 @@ User management for HP-UX. This provider uses the undocumented `-F`
 switch to HP-UX's special `usermod` binary to work around the fact that
 its standard `usermod` cannot make changes while the user is logged in.
 New functionality provides for changing trusted computing passwords and
-resetting password expirations under trusted computing
+resetting password expirations under trusted computing.
 
 * Required binaries: `/usr/sam/lbin/useradd.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/usermod.sam`.
 * Default for `operatingsystem` == `hp-ux`.
@@ -11056,7 +11087,7 @@ in the `yum.conf(5)` man page.
 
 Continuation lines that yum supports (for the `baseurl`, for example)
 are not supported. This type does not attempt to read or verify the
-exinstence of files listed in the `include` attribute.
+existence of files listed in the `include` attribute.
 
 <h3 id="yumrepo-attributes">Attributes</h3>
 
@@ -11129,10 +11160,10 @@ Valid values are `present`, `absent`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Determines if yum prompts for confirmation of critical actions.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11214,10 +11245,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether this repository is enabled.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11227,10 +11258,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether yum will allow the use of package groups for this
 repository.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11273,10 +11304,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether to check the GPG signature on packages installed
 from this repository.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11330,10 +11361,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether HTTP/1.1 keepalive should be used with this repository.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11399,10 +11430,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Enable or disable protection for this repository. Requires
 that the `protectbase` plugin is installed and enabled.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11456,10 +11487,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether to check the GPG signature on repodata.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11481,10 +11512,10 @@ Valid values are `absent`. Values can match `/^[0-9]+$/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Access the repository via S3.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11493,10 +11524,10 @@ Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Should yum skip this repository if unable to reach it.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11539,10 +11570,10 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Should yum verify SSL certificates/hosts at all.
-Valid values are: False/0/No or True/1/Yes.
+Valid values are: false/0/no or true/1/yes.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(True|False|0|1|No|Yes)$/i`.
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12310,4 +12341,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500

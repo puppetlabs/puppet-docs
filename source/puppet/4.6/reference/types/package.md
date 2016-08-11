@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Resource Type: package'
 canonical: /puppet/latest/reference/types/package.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
 
 package
 -----
@@ -109,6 +109,7 @@ Available providers are:
 * [`rug`](#package-provider-rug)
 * [`sun`](#package-provider-sun)
 * [`sunfreeware`](#package-provider-sunfreeware)
+* [`tdnf`](#package-provider-tdnf)
 * [`up2date`](#package-provider-up2date)
 * [`urpmi`](#package-provider-urpmi)
 * [`windows`](#package-provider-windows)
@@ -430,7 +431,7 @@ Package management which copies application bundles to a target.
 
 <h4 id="package-provider-apple">apple</h4>
 
-Package management based on OS X's builtin packaging system.  This is
+Package management based on OS X's built-in packaging system.  This is
 essentially the simplest and least functional package system in existence --
 it only supports installation; no deletion or upgrades.  The provider will
 automatically add the `.pkg` extension, so leave that off when specifying
@@ -485,7 +486,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`.
-* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23`.
+* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24`.
 * Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
@@ -621,7 +622,7 @@ or an array where each element is either a string or a hash.
 
 <h4 id="package-provider-pkg">pkg</h4>
 
-OpenSolaris image packaging system. See pkg(5) for more information
+OpenSolaris image packaging system. See pkg(5) for more information.
 
 * Required binaries: `/usr/bin/pkg`.
 * Default for `kernelrelease` == `5.11` and `osfamily` == `solaris`.
@@ -751,6 +752,18 @@ has not actually been tested.
 
 * Required binaries: `pkg-get`.
 * Supported features: `installable`, `uninstallable`, `upgradeable`.
+
+<h4 id="package-provider-tdnf">tdnf</h4>
+
+Support via `tdnf`.
+
+This provider supports the `install_options` attribute, which allows command-line flags to be passed to tdnf.
+These options should be spcified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}), or an
+array where each element is either a string or a hash.
+
+* Required binaries: `rpm`, `tdnf`.
+* Default for `operatingsystem` == `PhotonOS`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-up2date">up2date</h4>
 
@@ -1318,6 +1331,20 @@ Provider support:
       <td> </td>
     </tr>
     <tr>
+      <td>tdnf</td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+    </tr>
+    <tr>
       <td>up2date</td>
       <td> </td>
       <td> </td>
@@ -1392,4 +1419,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-07-07 12:39:53 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500

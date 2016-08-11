@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
+built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
 title: 'Puppet HTTP API: Report'
 canonical: /puppet/latest/reference/http_api/http_report.html
 ---
@@ -66,6 +66,7 @@ example is formatted for readability)
      "kind"=>"apply",
      "status"=>"unchanged",
      "noop"=>false,
+     "noop_pending"=>false,
      "environment"=>"test_environment",
      "logs"=>
       [{"level"=>"warning",
