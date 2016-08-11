@@ -8,6 +8,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2016-5713 - Environment Leakage in pxp-module-puppet](https://puppet.com/security/cve/cve-2016-5713)
+
+    Resolved in Puppet Agent 1.6.0
+
 - [CVE-2015-7331: Remote Code Execution in mcollective-puppet-agent plugin](https://puppet.com/security/cve/cve-2015-7331)
 
     Resolved in Puppet Enterprise 2016.2.1
