@@ -808,7 +808,7 @@ The group puppet master should run as.
 
 The hiera configuration file. Puppet only reads this file on startup, so you must restart the puppet master every time you edit it.
 
-- *Default*: /Users/jtappa/.puppetlabs/etc/puppet/hiera.yaml
+- *Default*: $confdir/hiera.yaml
 
 ### hostcert
 
