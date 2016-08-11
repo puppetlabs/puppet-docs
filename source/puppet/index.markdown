@@ -43,8 +43,6 @@ A concise reference to Puppet's usage and internals. Use the left sidebar of any
 
 * [Puppet 4.6](/puppet/4.6/reference)
 * [Puppet 4.5](/puppet/4.5/reference) is included with Puppet Enterprise 2016.2.
-* [Puppet 4.4](/puppet/4.4/reference) is included with Puppet Enterprise 2016.1.
-
 
 
 ### Older versions
