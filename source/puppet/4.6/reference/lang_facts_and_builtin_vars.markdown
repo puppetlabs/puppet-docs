@@ -24,12 +24,13 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [strings]: ./lang_data_string.html
 [datatypes]: ./lang_data.html
 [qualified_var_names]: ./lang_variables.html#accessing-out-of-scope-variables
+[hashaccess]: ./lang_data_hash.html#accessing-values
 
 Before requesting a [catalog][] (or compiling one with `puppet apply`), Puppet will collect system information with [Facter][]. Puppet receives this information as **facts,** which are **pre-set variables** you can use anywhere in your manifests.
 
 Puppet also pre-sets some **other special variables** which behave a lot like facts.
 
-This page describes how to use facts, and lists all of the special variables added by Puppet.
+This page describes how to use facts and lists all of the special variables added by Puppet.
 
 ## Which facts?
 
@@ -100,14 +101,14 @@ if $osfamily == 'redhat' {
 >
 > Since Puppet 3.0, `$::fact` has never been strictly necessary, but some people still use it to alert readers that they're using a top-scope variable, as described above.
 
-### The `$facts['fact_name']` hash
+### The `$facts[fact_name]` hash
 
-Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it.
+Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts[fact_name]`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess]. Due to ambiguity with function invocation, the dot-separated access syntax that is available at the Facter command line is not available in manifests.
 
-Example, with the osfamily fact:
+Example, with the `os.family` fact:
 
 ``` puppet
-if $facts['osfamily'] == 'redhat' {
+if $facts[os][family] == 'redhat' {
   # ...
 }
 ```
