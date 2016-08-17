@@ -101,14 +101,14 @@ if $osfamily == 'redhat' {
 >
 > Since Puppet 3.0, `$::fact` has never been strictly necessary, but some people still use it to alert readers that they're using a top-scope variable, as described above.
 
-### The `$facts[fact_name]` hash
+### The `$facts['fact_name']` hash
 
-Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts[fact_name]`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess]. Due to ambiguity with function invocation, the dot-separated access syntax that is available at the Facter command line is not available in manifests.
+Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess]. Due to ambiguity with function invocation, the dot-separated access syntax that is available at the Facter command line is not available in manifests.
 
 Example, with the `os.family` fact:
 
 ``` puppet
-if $facts[os][family] == 'redhat' {
+if $facts['os']['family'] == 'redhat' {
   # ...
 }
 ```
