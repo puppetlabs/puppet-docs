@@ -141,7 +141,7 @@ If you use the regular expression match operator in a condition, any captures fr
 
 ``` puppet
 if $trusted['certname'] =~ /^www(\d+)\./ {
-  notice('Welcome to web server number $1.')
+  notice("Welcome to web server number $1.")
 }
 ```
 
