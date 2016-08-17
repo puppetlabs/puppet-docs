@@ -30,10 +30,10 @@ Puppet supports "if" and "unless" statements, case statements, and selectors.
 An "if" statement:
 
 ``` puppet
-if $facts[is_virtual] {
+if $facts['is_virtual'] {
   warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
 }
-elsif $facts[os][family] == 'Darwin' {
+elsif $facts['os']['family'] == 'Darwin' {
   warning('This NTP module does not yet work on our Mac laptops.')
 }
 else {
@@ -44,7 +44,7 @@ else {
 An "unless" statement:
 
 ``` puppet
-unless $facts[memory][system][totalbytes] > 1073741824 {
+unless $facts['memory']['system']['totalbytes'] > 1073741824 {
   $maxclient = 500
 }
 ```
@@ -52,21 +52,21 @@ unless $facts[memory][system][totalbytes] > 1073741824 {
 A case statement:
 
 ``` puppet
-case $facts[os][name] {
-  'Solaris':          { include role::solaris }
-  'RedHat', 'CentOS': { include role::redhat  }
-  /^(Debian|Ubuntu)$/:{ include role::debian  }
-  default:            { include role::generic }
+case $facts['os']['name'] {
+  'Solaris':           { include role::solaris }
+  'RedHat', 'CentOS':  { include role::redhat  }
+  /^(Debian|Ubuntu)$/: { include role::debian  }
+  default:             { include role::generic }
 }
 ```
 
 A selector:
 
 ``` puppet
-$rootgroup = $facts[os][family] ? {
-    'Solaris'          => 'wheel',
-    /(Darwin|FreeBSD)/ => 'wheel',
-    default            => 'root',
+$rootgroup = $facts['os']['family'] ? {
+  'Solaris'          => 'wheel',
+  /(Darwin|FreeBSD)/ => 'wheel',
+  default            => 'root',
 }
 
 file { '/etc/passwd':
@@ -85,12 +85,12 @@ file { '/etc/passwd':
 ### Syntax
 
 ``` puppet
-if $facts[is_virtual] {
+if $facts['is_virtual'] {
   # Our NTP module is not supported on virtual machines:
-  warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
+  warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
 }
-elsif $facts[os][name] == 'Darwin' {
-  warning( 'This NTP module does not yet work on our Mac laptops.' )
+elsif $facts['os']['name'] == 'Darwin' {
+  warning('This NTP module does not yet work on our Mac laptops.')
 }
 else {
   # Normal node, include the class.
@@ -140,8 +140,8 @@ Static values may also be conditions, although doing this would be pointless.
 If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
 ``` puppet
-if $trusted[certname] =~ /^www(\d+)\./ {
-  notice("Welcome to web server number $1")
+if $trusted['certname'] =~ /^www(\d+)\./ {
+  notice('Welcome to web server number $1.')
 }
 ```
 
@@ -160,7 +160,7 @@ These are not normal variables, and have some special behaviors:
 ### Syntax
 
 ``` puppet
-unless $facts[memory][system][totalbytes] > 1073741824 {
+unless $facts['memory']['system']['totalbytes'] > 1073741824 {
   $maxclient = 500
 }
 ```
@@ -210,11 +210,11 @@ Like "if" statements, **case statements** choose one of several blocks of arbitr
 ### Syntax
 
 ``` puppet
-case $facts[os][name] {
-  'Solaris':          { include role::solaris } # apply the solaris class
-  'RedHat', 'CentOS': { include role::redhat  } # apply the redhat class
-  /^(Debian|Ubuntu)$/:{ include role::debian  } # apply the debian class
-  default:            { include role::generic } # apply the generic class
+case $facts['os']['name'] {
+  'Solaris':           { include role::solaris } # Apply the solaris class
+  'RedHat', 'CentOS':  { include role::redhat  } # Apply the redhat class
+  /^(Debian|Ubuntu)$/: { include role::debian  } # Apply the debian class
+  default:             { include role::generic } # Apply the generic class
 }
 ```
 
@@ -278,7 +278,7 @@ The value of a `case` expression is the value of the last expression in the exec
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
 ``` puppet
-case $trusted[hostname] {
+case $trusted['hostname'] {
   /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
   default:   { include role::generic }
 }
@@ -325,10 +325,10 @@ Selectors can be used wherever a **value** is expected. This includes:
 Selectors resemble a cross between a case statement and the ternary operator found in other languages.
 
 ``` puppet
-$rootgroup = $facts[os][family] ? {
-    'Solaris'          => 'wheel',
-    /(Darwin|FreeBSD)/ => 'wheel',
-    default            => 'root',
+$rootgroup = $facts['os']['family'] ? {
+  'Solaris'          => 'wheel',
+  /(Darwin|FreeBSD)/ => 'wheel',
+  default            => 'root',
 }
 
 file { '/etc/passwd':
@@ -338,7 +338,7 @@ file { '/etc/passwd':
 }
 ```
 
-In the example above, the value of `$rootgroup` is determined using the value of `$facts[os][family]`.
+In the example above, the value of `$rootgroup` is determined using the value of `$facts['os']['family']`.
 
 The general form of a selector is:
 
@@ -383,7 +383,7 @@ A case can be any expression that resolves to a value. (This includes literal va
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
 ``` puppet
-$system = $facts[os][name] ? {
+$system = $facts['os']['name'] ? {
   /(RedHat|Debian)/ => "our system is ${1}",
   default           => "our system is unknown",
 }
