@@ -7,14 +7,14 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [definedtype]: ./lang_defined_types.html
 [environment]: ./environments.html
 [topscope]: ./lang_scope.html#top-scope
-[core_facts]: /facter/latest/core_facts.html
-[facter]: /facter/latest
-[customfacts]: /facter/latest/custom_facts.html
-[external facts]: /facter/latest/custom_facts.html#external-facts
+[core_facts]: {{facter}}/core_facts.html
+[facter]: {{facter}}
+[customfacts]: {{facter}}/custom_facts.html
+[external facts]: {{facter}}/custom_facts.html#external-facts
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [noop]: ./configuration.html#noop
 [certname]: ./configuration.html#certname
-[puppetdb_facts]: /puppetdb/latest/api/index.html
+[puppetdb_facts]: {{puppetdb}}/api/index.html
 [localscope]: ./lang_scope.html#local-scopes
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 [scope]: ./lang_scope.html
@@ -23,14 +23,13 @@ canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
 [strings]: ./lang_data_string.html
 [datatypes]: ./lang_data.html
 [qualified_var_names]: ./lang_variables.html#accessing-out-of-scope-variables
-
+[hashaccess]: ./lang_data_hash.html#accessing-values
 
 Before requesting a [catalog][] (or compiling one with `puppet apply`), Puppet will collect system information with [Facter][]. Puppet receives this information as **facts,** which are **pre-set variables** you can use anywhere in your manifests.
 
 Puppet also pre-sets some **other special variables** which behave a lot like facts.
 
-This page describes how to use facts, and lists all of the special variables added by Puppet.
-
+This page describes how to use facts and lists all of the special variables added by Puppet.
 
 Which Facts?
 -----
@@ -51,17 +50,17 @@ This version of Puppet supports fact values of [any data type][datatypes]. It wi
 
 ### Handling Boolean Facts in Older Puppet Versions
 
-Puppet 3.x will sometimes convert all fact values to [strings][] (e.g. `"false"` instead of `false`), depending on the `stringify_facts` setting and the installed Facter version.
+Puppet 3.x sometimes converts all fact values to [strings][] (e.g. `"false"` instead of `false`), depending on the `stringify_facts` setting and the installed Facter version.
 
 If you're writing code that might be used with pre-4.0 versions of Puppet, you'll need to take extra care when dealing with boolean facts like `$is_virtual`, since the string `"false"` is actually true when used as the condition of an [`if` statement.](./lang_conditional.html#if-statements)
 
 To handle this, you can use the `str2bool` function (from [puppetlabs/stdlib](https://forge.puppetlabs.com/puppetlabs/stdlib)) to prevent fake true values:
 
-~~~ ruby
-    if str2bool("$is_virtual") {
-      ...
-    }
-~~~
+``` puppet
+if str2bool("$is_virtual") {
+  ...
+}
+```
 
 This pattern (quote the variable, then pass it to `str2bool`) will work with both stringified facts and full data type support.
 
@@ -79,11 +78,11 @@ All facts appear in Puppet as [top-scope variables][topscope]. They can be acces
 
 Example, with the osfamily fact:
 
-~~~ ruby
-    if $osfamily == 'redhat' {
-      # ...
-    }
-~~~
+``` puppet
+if $osfamily == 'redhat' {
+  # ...
+}
+```
 
 **Benefits:** Works in all versions of Puppet.
 
@@ -106,15 +105,15 @@ Example, with the osfamily fact:
 
 ### The `$facts['fact_name']` Hash
 
-Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it.
+Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess]. Due to ambiguity with function invocation, the dot-separated access syntax that is available at the Facter command line is not available in manifests.
 
-Example, with the osfamily fact:
+Example, with the `os.family` fact:
 
-~~~ ruby
-    if $facts['osfamily'] == 'redhat' {
-      # ...
-    }
-~~~
+``` puppet
+if $facts['os']['family'] == 'redhat' {
+  # ...
+}
+```
 
 **Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
@@ -156,25 +155,25 @@ The available keys in the `$trusted` hash are:
 
 The `$trusted` hash generally looks something like this:
 
-~~~ ruby
-    {
-      'authenticated' => 'remote',
-      'certname'      => 'web01.example.com',
-      'extensions'    => {
-                          'pp_uuid'                 => 'ED803750-E3C7-44F5-BB08-41A04433FE2E',
-                          'pp_image_name'           => 'storefront_production'
-                          '1.3.6.1.4.1.34380.1.2.1' => 'ssl-termination'
-                       }
-    }
-~~~
+``` puppet
+{
+  'authenticated' => 'remote',
+  'certname'      => 'web01.example.com',
+  'extensions'    => {
+                      'pp_uuid'                 => 'ED803750-E3C7-44F5-BB08-41A04433FE2E',
+                      'pp_image_name'           => 'storefront_production'
+                      '1.3.6.1.4.1.34380.1.2.1' => 'ssl-termination'
+                   }
+}
+```
 
 Here's a snippet of example Puppet code using a [certificate extension][extensions]:
 
-~~~ ruby
-    if $trusted['extensions']['pp_image_name'] == 'storefront_production' {
-      include private::storefront::private_keys
-    }
-~~~
+``` puppet
+if $trusted['extensions']['pp_image_name'] == 'storefront_production' {
+  include private::storefront::private_keys
+}
+```
 
 ### `$server_facts` Variable
 
@@ -190,7 +189,14 @@ In addition, a warning will be issued any time a node parameter is overwritten.
 
 The following is an example `$server_facts` hash.
 
-	{serverversion => 4.1.0, servername => v85ix8blah.delivery.puppetlabs.net, serverip => 10.32.115.182, environment => production}
+``` puppet
+{
+  serverversion => "4.1.0",
+  servername    => "v85ix8blah.delivery.puppetlabs.net",
+  serverip      => "10.32.115.182",
+  environment   => "production",
+}
+```
 
 ### Puppet Agent Facts
 
@@ -206,7 +212,7 @@ Several variables are set by the Puppet master. These are most useful when manag
 
 These are **not** available in the `$facts` hash.
 
-* `$environment` (also available to `puppet apply`) --- the agent node's [environment][].
+* `$environment` (also available to `puppet apply`) --- the agent node's [environment][]. Note that nodes can accidentally or purposefully override this with a custom fact; the `$server_facts['environment']` variable always contains the correct environment, and can't be overridden.
 * `$servername` --- the Puppet master's fully-qualified domain name. (Note that this information is gathered from the Puppet master by Facter, rather than read from the config files; even if the master's certname is set to something other than its fully-qualified domain name, this variable will still contain the server's fqdn.)
 * `$serverip` --- the Puppet master's IP address.
 * `$serverversion` --- the current version of Puppet on the Puppet master.
@@ -222,4 +228,3 @@ These variables are always defined (by the standards of the `strict_variables` s
 
 * `$module_name` --- the name of the module that contains the current class or defined type.
 * `$caller_module_name` --- the name of the module in which the **specific instance** of the surrounding defined type was declared. This is only useful when creating versatile defined types which will be re-used by several modules.
-
