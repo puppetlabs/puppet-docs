@@ -29,52 +29,52 @@ Puppet supports "if" and "unless" statements, case statements, and selectors.
 
 An "if" statement:
 
-~~~ ruby
-    if $is_virtual {
-      warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
-    }
-    elsif $operatingsystem == 'Darwin' {
-      warning('This NTP module does not yet work on our Mac laptops.')
-    }
-    else {
-      include ntp
-    }
-~~~
+``` puppet
+if $facts['is_virtual'] {
+  warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
+}
+elsif $facts['os']['family'] == 'Darwin' {
+  warning('This NTP module does not yet work on our Mac laptops.')
+}
+else {
+  include ntp
+}
+```
 
 An "unless" statement:
 
-~~~ ruby
-    unless $memorysize > 1024 {
-      $maxclient = 500
-    }
-~~~
+``` puppet
+unless $facts['memory']['system']['totalbytes'] > 1073741824 {
+  $maxclient = 500
+}
+```
 
 A case statement:
 
-~~~ ruby
-    case $operatingsystem {
-      'Solaris':          { include role::solaris }
-      'RedHat', 'CentOS': { include role::redhat  }
-      /^(Debian|Ubuntu)$/:{ include role::debian  }
-      default:            { include role::generic }
-    }
-~~~
+``` puppet
+case $facts['os']['name'] {
+  'Solaris':           { include role::solaris }
+  'RedHat', 'CentOS':  { include role::redhat  }
+  /^(Debian|Ubuntu)$/: { include role::debian  }
+  default:             { include role::generic }
+}
+```
 
 A selector:
 
-~~~ ruby
-    $rootgroup = $osfamily ? {
-        'Solaris'          => 'wheel',
-        /(Darwin|FreeBSD)/ => 'wheel',
-        default            => 'root',
-    }
+``` puppet
+$rootgroup = $facts['os']['family'] ? {
+  'Solaris'          => 'wheel',
+  /(Darwin|FreeBSD)/ => 'wheel',
+  default            => 'root',
+}
 
-    file { '/etc/passwd':
-      ensure => file,
-      owner  => 'root',
-      group  => $rootgroup,
-    }
-~~~
+file { '/etc/passwd':
+  ensure => file,
+  owner  => 'root',
+  group  => $rootgroup,
+}
+```
 
 "If" Statements
 -----
@@ -84,19 +84,19 @@ A selector:
 
 ### Syntax
 
-~~~ ruby
-    if $is_virtual {
-      # Our NTP module is not supported on virtual machines:
-      warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
-    }
-    elsif $operatingsystem == 'Darwin' {
-      warning( 'This NTP module does not yet work on our Mac laptops.' )
-    }
-    else {
-      # Normal node, include the class.
-      include ntp
-    }
-~~~
+``` puppet
+if $facts['is_virtual'] {
+  # Our NTP module is not supported on virtual machines:
+  warning('Tried to include class ntp on virtual machine; this node may be misclassified.')
+}
+elsif $facts['os']['name'] == 'Darwin' {
+  warning('This NTP module does not yet work on our Mac laptops.')
+}
+else {
+  # Normal node, include the class.
+  include ntp
+}
+```
 
 The general form of an "if" statement is:
 
@@ -139,11 +139,11 @@ Static values may also be conditions, although doing this would be pointless.
 
 If you use the regular expression match operator in a condition, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-~~~ ruby
-    if $hostname =~ /^www(\d+)\./ {
-      notice("Welcome to web server number $1")
-    }
-~~~
+``` puppet
+if $trusted['certname'] =~ /^www(\d+)\./ {
+  notice("Welcome to web server number $1.")
+}
+```
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -159,11 +159,11 @@ These are not normal variables, and have some special behaviors:
 
 ### Syntax
 
-~~~ ruby
-    unless $memorysize > 1024 {
-      $maxclient = 500
-    }
-~~~
+``` puppet
+unless $facts['memory']['system']['totalbytes'] > 1073741824 {
+  $maxclient = 500
+}
+```
 
 The general form of an "unless" statement is:
 
@@ -209,14 +209,14 @@ Like "if" statements, **case statements** choose one of several blocks of arbitr
 
 ### Syntax
 
-~~~ ruby
-    case $operatingsystem {
-      'Solaris':          { include role::solaris } # apply the solaris class
-      'RedHat', 'CentOS': { include role::redhat  } # apply the redhat class
-      /^(Debian|Ubuntu)$/:{ include role::debian  } # apply the debian class
-      default:            { include role::generic } # apply the generic class
-    }
-~~~
+``` puppet
+case $facts['os']['name'] {
+  'Solaris':           { include role::solaris } # Apply the solaris class
+  'RedHat', 'CentOS':  { include role::redhat  } # Apply the redhat class
+  /^(Debian|Ubuntu)$/: { include role::debian  } # Apply the debian class
+  default:             { include role::generic } # Apply the generic class
+}
+```
 
 The general form of a case statement is:
 
@@ -258,9 +258,9 @@ Depending on the [data type][datatypes] of a case's value, Puppet will use one o
 * **Most data types** (strings, booleans, etc.) are compared to the control value with [the `==` equality operator][equality], which is case-insensitive when comparing strings.
 * [**Regular expressions**][regex] are compared to the control value with [the `=~` matching operator][matching], which is case-sensitive. Regex cases _only_ match strings.
 * [**Data types**][literal_types] (like `Integer`) are compared to the control value with [the `=~` matching operator][matching]. This tests whether the control value is an instance of that data type.
-* Arrays are compared to the control value recursively. First, it checks whether the control and array are the same length, then each corresponding element is compared using these same case matching rules. 
-* Hashes compare each key/value pair. To match, the control value and the case have to have the same keys, and each corresponding value is compared using these same case matching rules. 
-* **The special value `default`** matches anything, and unless nested inside an array or hash is _always tested last,_ regardless of its position in the list.  
+* Arrays are compared to the control value recursively. First, it checks whether the control and array are the same length, then each corresponding element is compared using these same case matching rules.
+* Hashes compare each key/value pair. To match, the control value and the case have to have the same keys, and each corresponding value is compared using these same case matching rules.
+* **The special value `default`** matches anything, and unless nested inside an array or hash is _always tested last,_ regardless of its position in the list.
 
 {% endcapture %}
 
@@ -277,12 +277,12 @@ The value of a `case` expression is the value of the last expression in the exec
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated code block as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-~~~ ruby
-    case $hostname {
-      /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
-      default:   { include role::generic }
-    }
-~~~
+``` puppet
+case $trusted['hostname'] {
+  /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
+  default:   { include role::generic }
+}
+```
 
 This example would capture any digits from a hostname like `www01` and `www02` and store them in the `$1` variable.
 
@@ -294,7 +294,7 @@ These are not normal variables, and have some special behaviors:
 
 > #### Aside: Best Practices
 >
-> Case statements should usually have a default case.
+> Case statements should have a default case.
 >
 > * If the rest of your cases are meant to be comprehensive, putting a [`fail('message')`][fail] call in the default case makes your code more robust by protecting against mystery failures due to behavior changes elsewhere in your manifests.
 > * If your cases aren't comprehensive and nodes that match none should do nothing, write a default case with an empty code block (`default: {}`). This makes your intention obvious to the next person who has to maintain your code.
@@ -324,21 +324,21 @@ Selectors can be used wherever a **value** is expected. This includes:
 
 Selectors resemble a cross between a case statement and the ternary operator found in other languages.
 
-~~~ ruby
-    $rootgroup = $osfamily ? {
-        'Solaris'          => 'wheel',
-        /(Darwin|FreeBSD)/ => 'wheel',
-        default            => 'root',
-    }
+``` puppet
+$rootgroup = $facts['os']['family'] ? {
+  'Solaris'          => 'wheel',
+  /(Darwin|FreeBSD)/ => 'wheel',
+  default            => 'root',
+}
 
-    file { '/etc/passwd':
-      ensure => file,
-      owner  => 'root',
-      group  => $rootgroup,
-    }
-~~~
+file { '/etc/passwd':
+  ensure => file,
+  owner  => 'root',
+  group  => $rootgroup,
+}
+```
 
-In the example above, the value of `$rootgroup` is determined using the value of `$osfamily`.
+In the example above, the value of `$rootgroup` is determined using the value of `$facts['os']['family']`.
 
 The general form of a selector is:
 
@@ -358,7 +358,7 @@ The entire selector expression is **treated as a single value.**
 
 Puppet compares the control expression to each of the cases, in the order they are listed (except for the `default` case, which always goes last). When it finds a matching case, it will treat that value as the value of the expression and ignore the remainder of the expression.
 
-If none of the cases match, Puppet will **fail compilation with an error.** 
+If none of the cases match, Puppet will **fail compilation with an error.**
 
 See "Case Matching" below for details on how Puppet matches different kinds of cases.
 
@@ -382,15 +382,14 @@ A case can be any expression that resolves to a value. (This includes literal va
 
 If you use regular expression cases, any captures from parentheses in the pattern will be available inside the associated value as numbered variables (`$1, $2`, etc.), and the entire match will be available as `$0`:
 
-~~~ ruby
-    $system = $operatingsystem ? {
-      /(RedHat|Debian)/ => "our system is ${1}",
-      default           => "our system is unknown",
-    }
-~~~
+``` puppet
+$system = $facts['os']['name'] ? {
+  /(RedHat|Debian)/ => "our system is ${1}",
+  default           => "our system is unknown",
+}
+```
 
 These are not normal variables, and have some special behaviors:
 
 * The values of the numbered variables do not persist outside the value associated with the pattern that set them.
 * In nested conditionals, each conditional has its own set of values for the set of numbered variables. At the end of an interior statement, the numbered variables are reset to their previous values for the remainder of the outside statement. (This causes conditional statements to act like [local scopes][local], but only with regard to the numbered variables.)
-
