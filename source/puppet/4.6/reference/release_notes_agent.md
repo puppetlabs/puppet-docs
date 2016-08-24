@@ -35,7 +35,7 @@ Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.6 release 
 
 Released August 23, 2016.
 
-This is a critical bug fix release in the Puppet agent 1.6 serries.
+This release in the Puppet agent 1.6 series includes a critical bug fix for Puppet. 
 
 ### Component updates
 
