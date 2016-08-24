@@ -19,6 +19,45 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), s
 
 Also of interest: the [Puppet 4.5 release notes](/puppet/4.5/reference/release_notes.html) and [Puppet 4.4 release notes](/puppet/4.4/reference/release_notes.html).
 
+## Puppet 4.6.1
+
+Released August 23, 2016.
+
+A critical bug was reported affecting a significant number of users in the Puppet 4.6.0 release. 
+
+A regression in evaluation of resource-like class inclusion caused evaluation of the class to be lazy as opposed to the correct immediate evaluation. This led to problems with missing variables, which could lead to further problems. The order of evaluation is now restored. ([PUP-6608](https://tickets.puppetlabs.com/browse/PUP-6608))
+
+Other bug fixes and a new function are also included in this release in the Puppet 4.6 series. 
+
+* [Fixed in Puppet 4.6.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.6.1%27)
+* [Introduced in Puppet 4.6.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.6.1%27)
+
+### New function
+
+The function `unwrap` was added that allows `Sensitive` data to be obtained in clear text in a controlled way. Learn more about the `Sensitive` type in the [4.6.0 release notes](#sensitive-type-added).
+
+### Bug fixes
+
+* [PUP-6627](https://tickets.puppetlabs.com/browse/PUP-6627): Prior to this change, `--show_diff` for `puppet agent` and `puppet apply` could problematically show redacted data when a resource contained a Senstive data type.
+
+* [PUP-6597](https://tickets.puppetlabs.com/browse/PUP-6597): When the 'generate type' command reported that it generated output to a path the path was always wrong. This had no other consequences than misinforming the user watching the generate commands output.
+
+* [PUP-6621](https://tickets.puppetlabs.com/browse/PUP-6621): Corrective change would incorrectly fail a catalog application when a type or property was incompatible with it. It now logs this information at info level.
+
+* [PUP-6613](https://tickets.puppetlabs.com/browse/PUP-6613): A regression made it impossible to give an attribute as undef when there is no default value expression for a resource parameter and using `create_resources` to create the resource. There was no regression when doing the same from a manifest directly.
+
+* [PUP-6622](https://tickets.puppetlabs.com/browse/PUP-6622): Function loading and calling was hit by a performance regression that caused a 300% degradation in performance as observed by benchmarks. This is now fixed.
+
+* [PUP-6628](https://tickets.puppetlabs.com/browse/PUP-6628): Corrective change calculation is now more robust when properties have complex munge and validate methods.
+
+* [PUP-6574](https://tickets.puppetlabs.com/browse/PUP-6574): Camel-cased class names such as `myType` were allowed but could not be included in the catalog. Now they can.
+
+* [PUP-6397](https://tickets.puppetlabs.com/browse/PUP-6397): Overly aggressive auto relationships between mount and file types have been scaled back.
+
+* [PUP-6582](https://tickets.puppetlabs.com/browse/PUP-6582): Under certain circumstances, when `environment_timeout` was set to a value greater than 0 the top scope of the first used compilation request would become sticky and lookups of variables made by functions would get values from the first compilation in that environment. This also caused memory to leak and could in some situations lead to an `Out of Memory` error.
+
+* [PUP-2018](https://tickets.puppetlabs.com/browse/PUP-2018): This fixes a bug in the `puppet certificate generate` command where it attempted to generate a CSR for the FQDN for the host when the same FQDN was provided as the remote.
+
 
 ## Puppet 4.6.0
 
