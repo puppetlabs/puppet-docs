@@ -12,7 +12,10 @@ title: "Hiera 3.2: Release Notes"
 
 Released August 10, 2016.
 
-Minor bug fix release shipped in [`puppet-agent`[] version [1.6.0][].
+Minor bug fix release shipped in [`puppet-agent`][] version [1.6.0][].
+
+* [Fixed in Hiera 3.2.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.2.1%27)
+* [Introduced in Hiera 3.2.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.2.1%27)
 
 ### Bug fixes
 
@@ -25,8 +28,8 @@ Released May 17, 2016.
 
 Shipped in [`puppet-agent`][] version [1.5.0][].
 
-* [Fixed in Hiera 3.2.0]()
-* [Introduced in Hiera 3.2.0]()
+* [Fixed in Hiera 3.2.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.2.0%27)
+* [Introduced in Hiera 3.2.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.2.0%27)
 
 ### New default location for hiera.yaml
 
