@@ -67,7 +67,7 @@ To declare a virtual resource, prepend `@` (the "at" sign) to the **resource typ
 @user {'deploy':
   uid     => 2004,
   comment => 'Deployment User',
-  group   => www-data,
+  group   => 'www-data',
   groups  => ["enterprise"],
   tag     => [deploy, web],
 }
