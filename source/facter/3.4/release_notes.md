@@ -7,6 +7,21 @@ title: "Facter 3.4 Release notes"
 
 This page documents the history of the Facter 3.4 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
 
+## Facter 3.4.1
+
+Released August 23, 2016.
+
+Only one issue was addressed in this release of Facter. Shipped in a critical bug release of Puppet agent 1.6.1.
+
+* [Fixed in Facter 3.4.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.4.1%27)
+* [Introduced in Facter 3.4.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.4.1%27)
+
+### Improvement
+
+The Facter config file will now be loaded from its default location (/etc/puppetlabs/facter/facter.conf on Unix, C:\ProgramData\PuppetLabs\facter/facter.conf on Windows) when Facter is required from Ruby. Two settings will be respected: `external-dir` and `custom-dir`, which add paths to search for custom and external facts to those already specified by Puppet.
+
+* [FACT-1460](https://tickets.puppetlabs.com/browse/FACT-1460)
+
 ## Facter 3.4.0
 
 Released August 10, 2016.
