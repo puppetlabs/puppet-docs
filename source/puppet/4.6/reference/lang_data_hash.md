@@ -12,7 +12,6 @@ canonical: "/puppet/latest/reference/lang_data_hash.html"
 [data]: ./lang_data_abstract.html#data
 [scalar]: ./lang_data_abstract.html#scalar
 
-
 Hashes (sometimes called hash maps) are unordered structures that map keys to values.
 
 ## Syntax
