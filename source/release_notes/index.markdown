@@ -10,15 +10,17 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Releases
 
-- [Puppet 4.4][4.4]
-- [Puppet 3.8][3.8]
+- [Puppet 4.6][4.6]
+- [Puppet 4.5][4.5]
 
 ### Previous Releases
 
+- [Puppet 4.4][4.4]
 - [Puppet 4.3][4.3]
 - [Puppet 4.2][4.2]
 - [Puppet 4.1][4.1]
 - [Puppet 4.0][4.0]
+- [Puppet 3.8][3.8]
 - [Puppet 3.7][3.7]
 - [Puppet 3.6][3.6]
 - [Puppet 3.5][3.5]
@@ -78,6 +80,8 @@ The short version is that you should upgrade when you're ready to upgrade, skim 
 The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel) lists tickets closed for each release.
 
 [semver]: http://semver.org
+[4.6]: /puppet/4.6/reference/release_notes.html
+[4.5]: /puppet/4.5/reference/release_notes.html
 [4.4]: /puppet/4.4/reference/release_notes.html
 [4.3]: /puppet/4.3/reference/release_notes.html
 [4.2]: /puppet/4.2/reference/release_notes.html
