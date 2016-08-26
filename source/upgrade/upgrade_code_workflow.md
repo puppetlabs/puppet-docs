@@ -3,30 +3,30 @@ layout: default
 title: "Workflow for updating Puppet code"
 canonical: "/upgrade/upgrade_code_workflow.html"
 ---
-{>> General comment: H1s (with a single #) don't show up in the TOC at the top of the page, making the TOC hard to parse. I'm not sure if this is something we can customize for this topic (so that H1s do show up) or whether you want to n+1 all the Hn levels in the document.  <<}
 
-{++Preparing your Puppet code for an upgrade from Puppet 3 to Puppet 4 involves checking the code with the new parser to see if it breaks, and iteratively testing your changes to confirm they do what you want. You can do this any number of ways, but here's a step-by-step workflow for accomplishing the updates using Git and modules specifically built for this task, `catalog_preview` and `preview_report`. ++}{--This guide is intended for anyone who needs to update their Puppet code in preparation for an upgrade from Puppet 3 to Puppet 4. It provides an opinionated workflow that uses Git to make changes in a controlled and testable manner. This workflow should be used in conjunction with an automated catalog diffing tool or static analysis tool.--}
 
-{~~For purposes of this guide we'll use t~>T~~}he `catalog_preview` module {~~to produce difference data~>shows the differences between how your code is compiled in Puppet 3 and Puppet 4,~~} and the `preview_report` module {--to --}present{++s++} {~~it~>the data~~} in an easier to read format.
+Preparing your Puppet code for an upgrade from Puppet 3 to Puppet 4 involves checking the code with the new parser to see if it breaks, and iteratively testing your changes to confirm they do what you want. You can do this any number of ways, but here's a step-by-step workflow for accomplishing the updates using Git and modules specifically built for this task, `catalog_preview` and `preview_report`.
 
-# Prerequisites
+The `catalog_preview` module shows the differences between how your code is compiled in Puppet 3 and Puppet 4, and the `preview_report` module presents the data in an easier to read format.
 
-This workflow assumes you are currently running at least Puppet 3.8, have complete access to the Puppet code base, and have the ability to create {--new --}branches and deploy them as environments to a Puppet master on which you will run your tests.
+## Prerequisites
 
-# Preparation
+This workflow assumes you are currently running at least Puppet 3.8, have complete access to the Puppet code base, and have the ability to create branches and deploy them as environments to a Puppet master on which you will run your tests.
 
-## 1. Create your working branch
+## Preparation
 
-Start by creating a branch from the `production` branch in your control repository. Name the new branch {--something along the lines of --}`future_production` {--(This is what the catalog preview module assumes)--}. This will be the branch in which you will do most of your work.
+1. Create your working branch
+
+   Start by creating a branch from the `production` branch in your control repository. Name the new branch `future_production`. This will be the branch in which you will do most of your work.
 
 ```
 git checkout production
 git checkout -b future_production
 ```
 
-### Enable the future parser{>> I think this should be step 2, not a substep of step 1 <<}
+2. Enable the future parser
 
-In this new branch, turn the future parser on by adding `parser=future` to [`environment.conf`](https://docs.puppet.com/puppet/3.8/reference/config_file_environment.html). Create this file if it does not already exist.
+   In this new branch, turn the future parser on by adding `parser=future` to [`environment.conf`](https://docs.puppet.com/puppet/3.8/reference/config_file_environment.html). Create this file if it does not already exist.
 
 ```
 cd "$(git rev-parse --show-toplevel)"
@@ -35,30 +35,30 @@ git add environment.conf
 git commit -m "Enable the Puppet 4 parser in future_production"
 ```
 
-## 2. {~~T~>Set up the comparison t~~}ool{~~ing~>s~~}
+3. Set up a 3.8 master
 
-Set up the [catalog preview](https://forge.puppet.com/puppetlabs/catalog_preview) module and the [preview report](https://github.com/puppetlabs/prosvc-preview_report) generator on a PE 3.8 Puppet master.{>> At the start of this file, we called preview_report a module. Is it not a module? Fix either this place or that, accordingly. <<}
+   You need a PE 3.8 master as it uses a version of Puppet (3.8.x) that can run with the Puppet 3 or 4 parser.
 
-### {++Set up a ++}PE 3.8 master {>> Aha, this step is making me super nervous. Does everyone have to do this? Open source users install a PE? Seems weird. Can't they use their existing master? Is this setting up a test environment? I need more context here about why. Are there lots of ways of doing this, and this is just the easiest? Maybe we should be calling this section something like "Setting up a temporary compile master" or something. Hipchat me if you want to workshop this. <<}
+   A quick way to create the Puppet master is to use the [Puppet Debugging Kit and spin up its 3.8.5 master](https://github.com/Sharpie/puppet-debugging-kit/blob/83871b9afffa4ca14f011bfd4c2489725eb1bb31/config/vms.yaml.example#L31-L40) in Vagrant on your laptop:
 
-You will need a Puppet Enterprise 3.8 master as it uses a version of Puppet (3.8.x) that can run with the Puppet 3 or 4 parser.
+   ```
+   git clone https://github.com/Sharpie/puppet-debugging-kit.git
+   cd puppet-debugging-kit
+   cp config/vms.example.yaml config/vms.yaml
+   vagrant plugin install oscar
+   vagrant up pe-385-master
+   vagrant ssh pe-385-master
+   ```
 
-A quick way to create the Puppet master is to use the [Puppet Debugging Kit and spin up its 3.8.5 master](https://github.com/Sharpie/puppet-debugging-kit/blob/83871b9afffa4ca14f011bfd4c2489725eb1bb31/config/vms.yaml.example#L31-L40) in Vagrant on your laptop{~~ (as shown below).~>:~~} {--A better solution, if you have the capacity, is to create a VM or physical server on the network with access to your code base.--}
+   Alternatively, if you have the capacity, create a VM or physical server on your network, with access to your code base.
 
-```
-git clone https://github.com/Sharpie/puppet-debugging-kit.git
-cd puppet-debugging-kit
-cp config/vms.example.yaml config/vms.yaml
-vagrant plugin install oscar
-vagrant up pe-385-master
-vagrant ssh pe-385-master
-```
+   If you're using r10k, set up this master to be able to synchronize code from your control repo, using the [zack/r10k](https://forge.puppet.com/zack/r10k) module. You'll also need to [create and authorize SSH keys](https://forge.puppet.com/zack/r10k#setup-requirements) for this new 3.8 master.
 
-{++Alternatively, if you have the capacity, create a VM or physical server on your network, with access to your code base.++}
+### Set up the comparison tools
 
-If you're using r10k, set up this master to be able to synchronize code from your control{~~-~> ~~}repo{~~. U~>, u~~}sing the [zack/r10k](https://forge.puppet.com/zack/r10k) module{-- is likely the easiest way to do this--}. You'll also {--probably --}need to [create and authorize SSH keys](https://forge.puppet.com/zack/r10k#setup-requirements) for this new 3.8 master.
+Set up the [catalog preview](https://forge.puppet.com/puppetlabs/catalog_preview) module and the [preview report](https://github.com/puppetlabs/prosvc-preview_report) module on the master you just created.
 
-### {~~C~>Set up c~~}atalog preview{++ and its list of nodes++}
+#### 1. Install the catalog preview module
 
 Install the catalog preview module in the global modulepath:
 
@@ -71,17 +71,17 @@ Notice: Installing -- do not interrupt ...
 └── puppetlabs-catalog_preview (v2.1.0)
 ```
 
-#### Get a list of all active nodes
+#### 2. Get a list of all active nodes
 
-The catalog preview module {~~accepts~>takes as input~~} a list of nodes to compile a catalog for. {--This list can be created to include all currently "active" nodes in a couple of ways.--}
+The catalog preview module takes as input a list of nodes to compile a catalog for. 
 
-{~~Instead of trying to cover every single node individually, generate~>Create~~} a list of nodes that is a representative cross-section of all the nodes{++,++} and includes as many of the roles {~~or~>and~~} profiles without too much duplication. This shortened list gives you a smaller number of catalogs to compare thus taking less time and getting you feedback on your code updates faster.
+Create a list of nodes that is a representative cross-section of all the nodes, and includes as many of the roles and profiles without too much duplication. This shortened list gives you a smaller number of catalogs to compare thus taking less time and getting you feedback on your code updates faster.
 
-{++You can generate your list of currently active nodes a couple of different ways:++}
+You can generate your list of currently active nodes a couple of different ways:
 
-##### {++Use a ++}PuppetDB query
+##### Use a PuppetDB query
 
-On the production Puppet Master, install PuppetDB Query. Version 1.6.1 is the latest to support PuppetDB 2.x.{++ Then query the nodes to generate a the list in a text file:++}
+On the production Puppet master, install PuppetDB Query. Version 1.6.1 is the latest to support PuppetDB 2.x. Then query the nodes to generate a the list in a text file:
 
 ```
 puppet module install dalen-puppetdbquery --version 1.6.1 --modulepath /etc/puppetlabs/puppet/modules/
@@ -89,32 +89,32 @@ puppet plugin download
 puppet query nodes "(is_pe=true or is_pe=false)" > nodes.txt
 ```
 
-##### {~~No PuppetDB query~>Use the YAML cache~~}
+##### Use the YAML cache
 
 If PuppetDB isn't available, you can scrape the YAML cache and collect the results together.
 
 `ls -1 $(puppet config print yamldir)/node | awk -F\. 'sub(FS $NF,x)' > nodes.txt`
 
-{~~T~>Clean t~~}his list needs {--to be manually cleaned --}of nodes that are inactive{~~ or you could~>. Alternatively,~~} use {~~the below ~>a ~~}script {~~or something like it to~>that~~} looks at the time{-- --}stamp of the YAML files and filters based on last write date.
+Clean this list of nodes that are inactive. Alternatively, use a script that looks at the timestamp of the YAML files and filters based on last write date.
 
-{~~You can find~>For example, the following script finds~~} all YAML files that were accessed in the last hour{--, for instance, with--}:
+For example, the following script finds all YAML files that were accessed in the last hour:
 
 `find $(puppet config print yamldir)/node -maxdepth 1 -type f -mmin -60`
 
-#### {~~N~>Collect n~~}ode data{~~:~> by using~~} YAML facts
+##### Collect node data by using YAML facts
 
-The catalog preview module {~~works by compiling~>compiles and inspects~~} catalogs for nodes {~~and inspecting the resultant catalog. It compiles a catalog by using the existing node objects and their facts to simulate~>by simulating~~} a Puppet run against {~~that node~>the nodes~~}{>> please check the technical accuracy of my rewrite. I don't want to oversimplify, but this seemed excessive <<}. This means interacting with PuppetDB where all the data is stored.
+The catalog preview module compiles and inspects catalogs for nodes by simulating a Puppet run against the nodes. This means interacting with PuppetDB where all the data is stored.
 
-It's likely your catalog preview server doesn't have access to PuppetDB data. You can get around {~~that~>this~~} by using the cached facts and node data that are stored as YAML on the real Puppet masters.
+It's likely your catalog preview server doesn't have access to PuppetDB data. You can get around this by using the cached facts and node data that are stored as YAML on the real Puppet masters.
 
-First, collect the cached yaml fact files off of the production master.  If there's just one master, {--you should be able to --}copy them over {~~wholesale with something like this, executed~>by running a command like this~~} from the diff master:
+First, collect the cached yaml fact files off of the production master.  If there's just one master, copy them over by running a command like this from the diff master:
 
 ```
 scp -r production-master:/var/opt/lib/pe-puppet/yaml/facts/* \
   /var/opt/lib/pe-puppet/yaml/facts
 ```
 
-Next, tell the diff master to use the {~~yaml~>YAML~~} terminus when looking for nodes' facts.  If your diff master can still do a puppet agent run against itself -- and now that the customer's code is on it, it's entirely likely it can't -- you can just set the puppet_enterprise::profile::master::facts_terminus parameter in the console to "yaml".  It's in the PE Master node group.
+Next, tell the diff master to use the YAML terminus when looking for nodes' facts. If your diff master can still do a puppet agent run against itself, you can just set the puppet_enterprise::profile::master::facts_terminus parameter in the console to "yaml".  It's in the PE Master node group.
 
 Or you can edit the /etc/puppetlabs/puppet/routes.yaml file directly on the diff master, to look something like this:
 
@@ -125,28 +125,26 @@ master:
     cache: yaml
 ```
 
-If you change the routes.yaml file by hand, restart pe-puppetserver{-- afterwards--}{~~.~>:~~}
+If you change the routes.yaml file by hand, restart pe-puppetserver:
 
 ```
 systemctl restart pe-puppetserver
 ```
 
-### {~~P~>Install the p~~}review report generator
+#### 3. Install the preview report module
 
-Install the catalog preview report generator (`prosvc-preview_report` on the Forge) and its requirements onto the PE 3.8 master.
+Install the preview report module and its requirements onto the PE 3.8 master.
 
 ```
 [root@pe-385-master ~]# git clone https://github.com/puppetlabs/prosvc-preview_report.git
 [root@pe-385-master ~]# /opt/puppet/bin/gem install markaby
 ```
 
-## 3. Generate a baseline report
+## Generate a baseline report
 
-{--Run the catalog preview module against the `production` branch and the `future_production` branch. --}The first run is to generate a {--hit --}list of issues to solve. {--Start by fixing the issues that are most common or the ones that affect the most nodes, likely those that cause a catalog compilation error. It is important to solve compilation errors first because there could be issues hiding behind a failed catalog.--}{>> This belongs in the next section <<}
+The first run is to generate a list of issues to solve. 
 
-{--Think of this entire process as peeling back an onion. You'll need to go through layer by layer until you get to the delicious oniony center.--}
-
-### Run{--ning--} a catalog preview{++ to get a baseline++}
+### Run a catalog preview to get a baseline
 
 ```
 sudo puppet preview \
@@ -159,11 +157,11 @@ sudo puppet preview \
 
 > **Note:** Save this first report! It acts as the starting metric that you will compare your progress against.
 
-### {++Optional: ++}Exclud{~~ing~>e~~} resources from a catalog preview
+#### Optional: Exclude resources from a catalog preview
 
 The `puppet preview` command can also take an `--excludes <filename.json>` argument. It reads the file supplied as <filename.json> and looks for an array of resources to ignore. You can exclude whole types, types with a particular title, certain attributes of any resource of a given type, and selected attributes of a particular type and title.
 
-For example, the following {++`++}example.json{++`++} file {~~would ignore~>tells catalog preview to ignore~~} all Augeas resources, all attributes of {~~Service['~>the `~~}pe-mcollective{~~']~>` service~~}, any File resource's {~~'~>`~~}source{~~'~>`~~} attribute, and {--finally --}the {--Class['Puppet_enterprise::Mcollective::Server] --}attributes 'activemq_brokers' and 'collectives'{++ for the class `Puppet_enterprise::Mcollective::Server++}.
+For example, the following `example.json` file tells catalog preview to ignore all Augeas resources, all attributes of the `pe-mcollective` service, any File resource's `source` attribute, and the attributes 'activemq_brokers' and 'collectives' for the class `Puppet_enterprise::Mcollective::Server.
 
 ````json
 [
@@ -189,11 +187,11 @@ For example, the following {++`++}example.json{++`++} file {~~would ignore~>tell
 ]
 ````
 
->**Note:** Ignoring a particular Class resource {--only --}ignores {++only ++}the resource representing the Class, as it appears inside the catalog. It does not (as you might have hoped) exclude all resources declared inside that class. It just ignores the attributes (parameters) of the class itself.
+>**Note:** Ignoring a particular Class resource ignores only the resource representing the Class, as it appears inside the catalog. It does not (as you might have hoped) exclude all resources declared inside that class. It just ignores the attributes (parameters) of the class itself.
 
-### {~~Generate a~>View the generated~~} report
+### View the generated report
 
-Taking the overview JSON output from the catalog preview module, pass it through the Preview Report generator to get a nice HTML {~~report~>view~~} of the run. {~~It might be a good idea to run~>Consider setting up~~} a simple webserver with Apache or Nginx {~~to be able to~>so you can~~} view these reports remotely.
+Taking the overview JSON output from the catalog preview module, pass it through the preview report module to get a nice HTML view of the run. Consider setting up a simple webserver with Apache or Nginx so you can view these reports remotely.
 
 ```
 cd ~/prosvc-preview_report
@@ -202,33 +200,33 @@ sudo ./preview_report.rb -f ~/catalog_preview_overview-baseline.json -w /var/www
 
 > **Note:** Save this first report! It acts as the starting metric which you will compare your progress against.
 >
-> For maximum awesomeness, automate the catalog preview run and the Report processor run in a cron job or via a webhook on your control repository{~~!~>.~~}
+> For maximum awesomeness, automate the catalog preview run and the report processor run in a cron job or via a webhook on your control repository.
 
-# Start fixing issues
+## Start fixing issues
 
-{++Start by fixing the issues that are most common or the ones that affect the most nodes, likely those that cause a catalog compilation error. It is important to solve compilation errors first because there could be issues hiding behind a failed catalog. Think of this {--entire --}process as peeling back an onion. You'll need to go through layer by layer until you get to the delicious oniony center.++}{>> I want to make a joke about crying here  <<}
+Start by fixing the issues that are most common or the ones that affect the most nodes, likely those that cause a catalog compilation error. It is important to solve compilation errors first because there could be issues hiding behind a failed catalog. Think of this process as peeling back an onion. You'll need to go through layer by layer until you get to the delicious oniony center.
 
-## 1. {++Identify your biggest issue++}{--Start with the issue that is causing the most catalog compilation failures--}
+### 1. Identify your biggest issue
 
-{++Start with the issue that is causing the most catalog compilation failures. ++}For example, in Puppet 3, the `=~` operator works if the left item is `undef`, in Puppet 4 it causes a compilation failure.
+Start with the issue that is causing the most catalog compilation failures. For example, in Puppet 3, the `=~` operator works if the left item is `undef`, in Puppet 4 it causes a compilation failure.
 
-  ```puppet
-  $foo = undef
-  if $foo =~ 'bar' { do something } # This works in Puppet 3, but not Puppet 4.
-  ```
+```puppet
+$foo = undef
+if $foo =~ 'bar' { do something } # This works in Puppet 3, but not Puppet 4.
+```
 
-## 2. Create a {--new --}branch{-- from `future_production` that is named after the issue being fixed--}
+### 2. Create a branch
 
-{++Create a branch off `future_production` and name it after the issue being fixed:++}
+Create a branch from `future_production` and name it after the issue being fixed:
 
 ```shell
 git checkout future_production
 git checkout -b issue123_undef_regex_match
 ```
 
-## 3. {~~Try to s~>S~~}olve the problem
+### 3. Solve the problem
 
-{~~Hopefully this can be a simple fix~>Usually the fixes are simple, ~~} such as switching to a different operator or doing a pre-check{-- like--}:
+Usually the fixes are simple, such as switching to a different operator or doing a pre-check:
 
 ```puppet
 if $foo and ($foo =~ 'bar') {
@@ -236,9 +234,9 @@ if $foo and ($foo =~ 'bar') {
 }
 ```
 
-{--Either way, attempt to solve the issue in this branch. --}Keep the work being done in this branch strictly to the issue at hand. As tempting as it may be to fix style and other issues, leave that for a future iteration. Keep your work atomic and clear.
+Keep the work being done in this branch strictly to the issue at hand. As tempting as it may be to fix style and other issues, leave that for a future iteration. Keep your work atomic and clear.
 
-## 4. Commit your fix
+### 4. Commit your fix
 
 When you think you've found a fix for the issue, commit your work into the `issue123_undef_regex_match` branch.
 
@@ -262,15 +260,15 @@ is never undef, and in cases where that can't be guaranteed, we add additional
 logic to first check if the variable to be used has a value.
 ```
 
-## 5. Test your fix
+### 5. Test your fix
 
-After committing to your issue branch, deploy it to the {++diff ++}{--Puppet--} master{--s--} and run a new diff report against the `issue123_undef_regex_match` environment and the `production` environment.
+After committing to your issue branch, deploy it to the diff master and run a new diff report against the `issue123_undef_regex_match` environment and the `production` environment.
 
 It's helpful if you're able to limit your test run to just the nodes or a subset of the nodes that the issue was affecting. This speeds up the feedback loop of whether or not your fix worked.
 
 - **If the issue is solved:**
 
-    Save the catalog diff report{++ to mark your progress++}.
+    Save the catalog diff report to mark your progress.
 
 - **If the issue is not solved:**
 
@@ -278,19 +276,18 @@ It's helpful if you're able to limit your test run to just the nodes or a subset
 
 Repeat this process until the issue is solved.
 
-Once the issue is solved, generate a catalog report that shows the issue is not present. {~~Attach that report to your ticket that is tracking this issue.~>If you are using tickets to track your progress on upgrading issues, attach the report to the corresponding ticket.~~}{>> This is the first mention of ticketing. Do we really need this? If so, we should be mentioning ticketing issues earlier on in the process. <<}
+Once the issue is solved, generate a catalog report that shows the issue is not present.
 
-## 6. Merge your fix {--into the `future_production` branch--}
+### 6. Merge your fix
 
-The `future_production` branch {~~should be~>is~~} the place {~~in which~>where~~} all the finished fixes are stored. {~~This means that~>So,~~} {~~when~>after~~} you solve an issue on a fix branch, {--you should --}merge it into the `future_production` branch. Use a mixture of squashing, rebasing, and merging to have a clean history from which you can create pull requests when it comes time to incorporate your changes into production.
+The `future_production` branch is the place where all the finished fixes are stored. So, after you solve an issue on a fix branch, merge it into the `future_production` branch. Use a mixture of squashing, rebasing, and merging to have a clean history from which you can create pull requests when it comes time to incorporate your changes into production.
 
-{>> I think you should provide some links to Git documentation about squashing and rebasing here, instead of documenting git for them. And then just delete these two sections. If there are strong feelings otherwise from support, I'm okay with being overruled here, but this is messy and not really our product. <<}
 
-### Squash your fix branch into a single commit
+#### Squash your fix branch into a single commit
 
-If it took you more than {~~1~>one~~} commit to solve the issue, you should squash those multiple commits together so that the fix is packaged as a single atomic patch.
+If it took you more than one commit to solve the issue, you should squash those multiple commits together so that the fix is packaged as a single atomic patch.
 
-For example, if it took you {~~3~>three~~} commits until you landed on the fix, you can squash those {~~3~>three~~} commits down to one:
+For example, if it took you three commits until you landed on the fix, you can squash those three commits down to one:
 
 ```
 [control-repo]$ git checkout issue123_undef_regex_match
@@ -302,7 +299,7 @@ For example, if it took you {~~3~>three~~} commits until you landed on the fix, 
 * 115b3f7 (production, future_production) Initial commit
 ```
 
-Perform an interactive rebase of the last {~~3~>three~~} commits. Use `fixup` for the commits you want to squash and `reword` on the top commit. This allows you to squash the commits together and re{-----}write the commit message into a coherent message. If there were valuable comments in any of the commits being squashed, use the `squash` command rather than `fixup` as you'll be able to preserve the message.
+Perform an interactive rebase of the last three commits. Use `fixup` for the commits you want to squash and `reword` on the top commit. This allows you to squash the commits together and rewrite the commit message into a coherent message. If there were valuable comments in any of the commits being squashed, use the `squash` command rather than `fixup` as you'll be able to preserve the message.
 
 ```
 [control-repo]$ git rebase -i HEAD~3
@@ -322,9 +319,9 @@ Perform an interactive rebase of the last {~~3~>three~~} commits. Use `fixup` fo
   # d, drop = remove commit
 ```
 
-### Avoid merge commits
+#### Avoid merge commits
 
-Use rebase and merge so that when you merge your fix branch into `future_production` there are no merge commits. There will be no merge commits because your clean {~~g~>G~~}it history will permit a fast-forward.
+Use rebase and merge so that when you merge your fix branch into `future_production` there are no merge commits. There will be no merge commits because your clean Git history will permit a fast-forward.
 
 ```
 [control-repo]$ git checkout issue123_undef_regex_match
@@ -333,17 +330,17 @@ Use rebase and merge so that when you merge your fix branch into `future_product
 [control-repo]$ git merge issue123_undef_regex_match
 ```
 
-## 7. Repeat for the rest of the issues
+### 7. Repeat for the rest of the issues
 
-Take the next issue in the {--hit --}list and solve it by repeating the process. Create a tracking ticket, create a topic branch, run tests, merge into the {++`++}future_production{++`++} branch.
+Take the next issue in the list and solve it by repeating the process. Create a tracking ticket, create a topic branch, run tests, merge into the `future_production` branch.
 
-# Merg{~~ing~>e~~} fixes into production
+## Merge fixes into production
 
 Decide when and how to promote solved issues from the `future_production` to the `production` environment. There are two ways that this could go:
 
-## Cherry-pick individual fixes and make a {~~PR~>pull request~~}
+### Cherry-pick individual fixes and make a pull request
 
-It is safer to merge in changes one fix at a time. To do this, {--you'll need to --}create a {--new --}branch from production and cherry-pick in the commit from {~~your topic~>the issue~~} branch{-- that fixed the issue--}{~~.~>:~~}
+It is safer to merge in changes one fix at a time. To do this, create a branch from production and cherry-pick the commit from the issue branch:
 
 ```
 [control-repo]$ git checkout production
@@ -356,11 +353,11 @@ It is safer to merge in changes one fix at a time. To do this, {--you'll need to
 # Create a pull request from `solve_issue_123` into `production`
 ```
 
-This method involves more work {~~as a~>because you create a~~} {++pull request (++}PR{++)++} {--needs to be made --}and additional branches{-- also need to be made--}, but this is the cleanest method and the easiest to revert should something go wrong.
+This method involves more work because you create a pull request (PR)and additional branches, but this is the cleanest method and the easiest to revert should something go wrong.
 
-## Create a PR from `future_production` into `production`
+### Create a PR from `future_production` into `production`
 
-This method is faster, but there {~~are more places where~>is more opportunity for~~} merge conflicts{-- could pop up--}. If {~~using~>you use~~} this method, it is very important to {--have --}keep `future_production` up to date with `production` by frequently rebasing (maybe at the start of each day):
+This method is faster, but there is more opportunity for merge conflicts. If you use this method, it is very important to keep `future_production` up to date with `production` by frequently rebasing (maybe at the start of each day):
 
 ```
 [control-repo]$ git checkout future_production
@@ -376,19 +373,19 @@ From this point, you can push `future_production` to `origin` and create a PR th
 # Create a pull request from `future_production` into `production`
 ```
 
-# Example issues and their fixes {>> I feel like this is buried information that would be useful to people even if they aren't using the workflow. Could this be a separate page? And link to it from the "solving problems" section above? <<}
+## Example issues and their fixes
 
 The catalog preview module maintains [a list of common breaking changes](https://github.com/puppetlabs/puppetlabs-catalog_preview#migration-warnings) that you should be aware of when moving from Puppet 3 to Puppet 4.
 
 You should also run through the checklist on [updating 3.x manifests for 4.x](./updating_manifests.html).
 
-{~~For~>Here are~~} some real-{~~word~>world~~} examples of common types of issues you may encounter, and examples for how to fix them{~~, refer to the following sections.~>.~~}
+Here are some real-world examples of common types of issues you may encounter, and examples for how to fix them.
 
-## Example: Unquoted file modes ({++`++}MIGRATE4_AMBIGUOUS_NUMBER{++`++})
+### Example: Unquoted file modes (`MIGRATE4_AMBIGUOUS_NUMBER`)
 
 File modes need to go in quotes in Puppet 4. If you do a `puppet-lint` run with the `--fix` option, it automatically updates these for you.
 
-## Example: File "source" of a single-item array
+### Example: File "source" of a single-item array
 
 You can give the File resource an array for "source" and it uses whichever one it finds first. Sites that use this trick extensively will sometimes just always use an array, even if it's a single-item array. The migration tools kick out a warning that can be ignored. (Use the `--excludes` option detailed above.)
 
@@ -399,29 +396,29 @@ file { '/etc/flarghies.conf':
 }
 ````
 
-## Example: Regular expressions against numbers
+### Example: Regular expressions against numbers
 
-Sometimes{~~ existing~>,~~} code does a regular expression match against a number, for instance, to see if the {~~os~>OS~~} release begins with a particular digit, or a package is of at least some version. Trying to do a match against a number breaks in Puppet 4.
+Sometimes, code does a regular expression match against a number, for instance, to see if the OS release begins with a particular digit, or a package is of at least some version. Trying to do a match against a number breaks in Puppet 4.
 
-{~~This~>A regular expression against numbers~~} makes catalog compilation fail entirely.
+A regular expression against numbers makes catalog compilation fail entirely.
 
-Switch to using Puppet's built-in {++`++}versioncmp{++`++} function, which is also more flexible than a {~~regexp~>regular expression~~}. For OS checks, {--you might also --}try a more specific fact, such as {++`++}$operatingsystemmajrelease{++`++}, which {--just --}shows the first digit.
+Switch to using Puppet's built-in `versioncmp` function, which is also more flexible than a regular expression. For OS checks, try a more specific fact, such as `$operatingsystemmajrelease`, which shows the first digit.
 
-## Example: Empty strings are not false ({++`++}MIGRATE4_EMPTY_STRING_TRUE{++`++})
+### Example: Empty strings are not false (`MIGRATE4_EMPTY_STRING_TRUE`)
 
-Empty strings used to evaluate to false, and now they don't. If you can't change what's returning the empty string to return a real {~~b~>B~~}oolean, {--you can just --}wrap the string in `str2bool()` from `puppetlabs-stdlib` and it'll return false on an empty string.
+Empty strings used to evaluate to false, and now they don't. If you can't change what's returning the empty string to return a real Boolean, wrap the string in `str2bool()` from `puppetlabs-stdlib` and it'll return false on an empty string.
 
-## Example: Variables must start with lower case letter
+### Example: Variables must start with lower case letter
 
-Puppet 4 thinks a capital letter refers to a constant. Lowercase it.
+Puppet 4 thinks a capital letter refers to a constant. Lowercase your variables.
 
 Uppercased variable names make catalog compilation fail entirely.
 
-## Example: Ineffectual conditional cases
+### Example: Ineffectual conditional cases
 
-A conditional that {~~would do~>does~~} nothing is no longer allowed, unless it's the last case in a case statement. {--(Makes sense, plenty of empty default cases out there.) --}{~~This~>Ineffectual conditionals~~} creep{--s--} into code when someone has commented out {--some --}things in a conditional while debugging.
+A conditional that does nothing is no longer allowed, unless it's the last case in a case statement. Ineffectual conditionals creep into code when someone has commented out things in a conditional while debugging.
 
-Note that declaring an anchor resource counts as a conditional having an effect -- so at {~~worst~>least~~} you can {~~just throw one~>declare an anchor~~} inside the conditional block so that it "does something" but nothing of consequence.
+Note that declaring an anchor resource counts as a conditional having an effect -- so at least you can declare an anchor inside the conditional block so that it "does something" but nothing of consequence.
 
 ````puppet
 if ( $starfish == 'marine' ) {
@@ -441,14 +438,14 @@ else {
 }
 ````
 
-## Example: Class names can't have hyphens
+### Example: Class names can't have hyphens
 
-In Puppet 2.7, the acceptability of hyphenated class names changed a few times. The root problem is that hyphens are not distinguishable from arithmetic subtraction operations in Puppet's syntax. {~~Throughout the 3.x series~>In Puppet 3~~}, class names with hyphens were deprecated but not completely removed. {~~Now~>In Puppet 4,~~} they are completely illegal {~~since~>because~~} arithmetical expressions can appear in more places.
+In Puppet 2.7, the acceptability of hyphenated class names changed a few times. The root problem is that hyphens are not distinguishable from arithmetic subtraction operations in Puppet's syntax. In Puppet 3, class names with hyphens were deprecated but not completely removed. In Puppet 4, they are completely illegal because arithmetical expressions can appear in more places.
 
-{~~This~>A class name with a hyphen~~} makes catalog compilation fail entirely.
+A class name with a hyphen makes catalog compilation fail entirely.
 
-## Example: Import no longer works
+### Example: Import no longer works
 
-{~~Usually this is a~>Sometimes, a~~}n old-school {++`++}site.pp{++`++} {~~that does~>file would do~~} something like `import nodes/*.pp`. You don't fix this in code, but instead use the `manifestdir` setting in {++`++}puppet.conf{++`++} to import a whole directory and all subdirectories.
+Sometimes, an old-school `site.pp` file would do something like `import nodes/*.pp`. You don't fix this in code, but instead use the `manifestdir` setting in `puppet.conf` to import a whole directory and all subdirectories.
 
-{~~This~>An import statment~~} makes catalog compilation fail entirely.
+An import statement makes catalog compilation fail entirely.
