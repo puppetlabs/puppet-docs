@@ -3,7 +3,6 @@ layout: default
 title: "Deprecated extension points and APIs"
 ---
 
-
 The following APIs and extension points are deprecated, and will be removed in Puppet 5.0.
 
 ## Puppet Faces is a private API
@@ -19,14 +18,16 @@ The `Puppet::Face` and `Puppet::Indirector::Face` classes are private APIs, and 
 
 ## Resource type and provider APIs
 
+### `resource_types` endpoint
+
+As of Puppet 4.5, the [`resource_types` API endpoint](./http_api/http_resource_type.html) is deprecated in favor of Puppet Server's [`environment_classes` endpoint]({{puppetserver}}/puppet-api/v3/environment_classes.html) and will be removed in Puppet 5.0. Calls to the `resource_types` endpoint include a deprecation warning in the response.
+
 ### `Puppet.newtype`
 
 This method on the top-level `Puppet` module was just a proxy for `Puppet::Type.newtype`. It will be removed in Puppet 5.0. Update any custom resource types to use `Puppet::Type.newtype` instead.
-
 
 ## Miscellaneous APIs
 
 ### `Puppet::Node::Facts#strip_internal`
 
 This method currently does nothing, and will be removed in Puppet 5.0.
-

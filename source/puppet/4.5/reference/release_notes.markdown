@@ -46,12 +46,12 @@ A bug fix release in the Puppet 4.5 series.
 * [PUP-6279](https://tickets.puppetlabs.com/browse/PUP-6279): It was not possible to call the type() function using postfix notation, for example `1.type()` would not work, but `type(1)` did. Now both work.
 
 
-* Error handling for attempts to form relationships with undef resources was improved in [PUP-6028](https://tickets.puppetlabs.com/browse/PUP-6028). This led to a problem with code using `create_resources` and the stdlib functions `ensure_resource`, `ensure_resources`, and `ensure_packages`. This combination could feed an undef resource reference into the catalog, and is now always treated as an error. 
+* Error handling for attempts to form relationships with undef resources was improved in [PUP-6028](https://tickets.puppetlabs.com/browse/PUP-6028). This led to a problem with code using `create_resources` and the stdlib functions `ensure_resource`, `ensure_resources`, and `ensure_packages`. This combination could feed an undef resource reference into the catalog, and is now always treated as an error.
 
-  The problem manifests itself as the error message: 
+  The problem manifests itself as the error message:
 
   ```
-  No title provided and "" is not a valid resource reference 
+  No title provided and "" is not a valid resource reference
   ```
 
   For more information, see [PUP-6385](https://tickets.puppetlabs.com/browse/PUP-6385).
@@ -68,7 +68,7 @@ A bug fix release in the Puppet 4.5 series.
 
 ### Regression warning
 
-A regression was found that caused undef to be equal to a literal undef when running on JRuby. This in turn is caused in what appears to be a discrepancy in the implementations of String and Symbol in MRI vs. JRuby. 
+A regression was found that caused undef to be equal to a literal undef when running on JRuby. This in turn is caused in what appears to be a discrepancy in the implementations of String and Symbol in MRI vs. JRuby.
 
 Users writing Ruby code should be aware that `String == Symbol` is different than `Symbol == String` and that the safe way to make such comparisons until discrepancies are solved (or before Puppet 5.0.0) should compare symbols using `:undef.equal?(x)` rather than `:undef == x` (which will fail), and `x == :undef` (since that triggers a slower code path on JRuby).
 
@@ -107,15 +107,15 @@ Using `puppet module generate` now creates an examples directory instead of a te
 
 Accessing data in nested structures could be difficult and required conditional logic to test for missing or optional parts of a structure. Three functions have been added to make such tasks easier; 'dig', 'then' and 'lest', which also combine nicely with the existing 'with' and 'assert_type' functions.
 
-The functionality of the dig function is similar to the `.` notation used to access details in lookups. 
-* [PUP-6046](https://tickets.puppetlabs.com/browse/PUP-6046) 
+The functionality of the dig function is similar to the `.` notation used to access details in lookups.
+* [PUP-6046](https://tickets.puppetlabs.com/browse/PUP-6046)
 
 
 #### New types: SemVer and SemVerRange
 
-SemVer and SemVerRange have been added to the Puppet Type System. This makes it possible to directly work with version related values in the Puppet language. Given version strings are validated and comparison operators (<, >, <=, =>, ==, !=, =~, !~), as well as the in-operator and case expression option matching works with these objects. 
+SemVer and SemVerRange have been added to the Puppet Type System. This makes it possible to directly work with version related values in the Puppet language. Given version strings are validated and comparison operators (<, >, <=, =>, ==, !=, =~, !~), as well as the in-operator and case expression option matching works with these objects.
 
-Instances of SemVer and SemVerRange are created with the `new` function support which also supports directly calling the type. As an example a new SemVer can be created like this: 
+Instances of SemVer and SemVerRange are created with the `new` function support which also supports directly calling the type. As an example a new SemVer can be created like this:
 
 ```
 SemVer('>=1.0.0 <2.0.0')
@@ -141,7 +141,7 @@ Turning on `--strict` also turns on `--strict_variables`.
 
 This enables Puppet to be as picky as possible when parsing, validating and compiling a catalog. Additional strictness may be introduced in minor releases (x.y) but not in maintenance releases (x.y.z).
 
-The --strict option now also raises an error if a class is redefined. 
+The --strict option now also raises an error if a class is redefined.
 The existing behavior of two classes with the same name silently being merged is now deprecated and will be removed in the next major release. The result of the current (now deprecated) behavior depends on the order the definitions are loaded, and if the class was included before or after the merge.
 
 * [PUP-5937](https://tickets.puppetlabs.com/browse/PUP-5937)
@@ -163,22 +163,22 @@ The `always_retry_plugins` setting also replaces the `always_cache_features` set
 
 #### Assign multiple variables at once
 
-It is now possible to assign to multiple variables at once from the corresponding variables in a class scope by using the syntax: 
+It is now possible to assign to multiple variables at once from the corresponding variables in a class scope by using the syntax:
 
 ```
-[ $var1, $var2 ] = Class['classfoo::params'] 
+[ $var1, $var2 ] = Class['classfoo::params']
 ```
 
-Which has the same effect as: 
+Which has the same effect as:
 
 ```
-$var1 = $clasfoo::params::var1 
-$var2 = $clasfoo::params::var2 
+$var1 = $clasfoo::params::var1
+$var2 = $clasfoo::params::var2
 ```
 
 An error is raised if the referenced variables do not exist as a variable or parameter in the referenced class.
 
-*[PUP-6174](https://tickets.puppetlabs.com/browse/PUP-6174)
+* [PUP-6174](https://tickets.puppetlabs.com/browse/PUP-6174)
 
 
 ### Enhancements
@@ -193,7 +193,7 @@ Previously, all non data types were considered to be a resource type. The introd
 
 The default location of hiera.yaml has changed to the `$confdir`. Puppet now looks for hiera.yaml in `$codedir` first, then `$confdir`.
 
-* [PUP-6178](https://tickets.puppetlabs.com/browse/PUP-6178) 
+* [PUP-6178](https://tickets.puppetlabs.com/browse/PUP-6178)
 
 ### Misc Enhancements
 
@@ -203,7 +203,7 @@ The default location of hiera.yaml has changed to the `$confdir`. Puppet now loo
 
 ### Deprecations
 
-*[PUP-6122](https://tickets.puppetlabs.com/browse/PUP-6122) The `resource_types` feature has been deprecated in favor of the `environment_classes` endpoint in Puppet Server.
+* [PUP-6122](https://tickets.puppetlabs.com/browse/PUP-6122): The `resource_types` endpoint has been [deprecated](./deprecated_api.html) in favor of the [`environment_classes` endpoint]({{puppetserver}}/puppet-api/v3/environment_classes.html) in Puppet Server.
 
 ### Bug fixes
 
@@ -225,7 +225,7 @@ The default location of hiera.yaml has changed to the `$confdir`. Puppet now loo
 
 * [PUP-6120](https://tickets.puppetlabs.com/browse/PUP-6120): The Pip package provider's `ensure=latest` is now done with pip, so it can be done with custom PyPI repositories.
 
-* [PUP-6050](https://tickets.puppetlabs.com/browse/PUP-6050): The lookup command line tool did not handle the `--unpack-arrays` option correctly and it did not work at all because of this. There were also other minor problems with the documentation that are now fixed. 
+* [PUP-6050](https://tickets.puppetlabs.com/browse/PUP-6050): The lookup command line tool did not handle the `--unpack-arrays` option correctly and it did not work at all because of this. There were also other minor problems with the documentation that are now fixed.
 
 >**Note**: The `--unpack-arrays` option has strange behavior, even though it now "works" this experimental feature will be removed in the next maintenance release.
 
@@ -239,7 +239,7 @@ The default location of hiera.yaml has changed to the `$confdir`. Puppet now loo
 
 * [PUP-5616](https://tickets.puppetlabs.com/browse/PUP-5616): With puppet device, one could declare a resource which would never converge. In addition, some underlying errors were caught and not shown to the user. Both are fixed here.
 
-* [PUP-5353](https://tickets.puppetlabs.com/browse/PUP-5353): Previously, the Puppet service resource attempted to enable or disable static services on systemd. This resulted in erroneous change notifications. 
+* [PUP-5353](https://tickets.puppetlabs.com/browse/PUP-5353): Previously, the Puppet service resource attempted to enable or disable static services on systemd. This resulted in erroneous change notifications.
 
   This fix corrects the problem. Changing the `enable` parameter for a static service no longer triggers a change and a `debug` message is logged."
 
