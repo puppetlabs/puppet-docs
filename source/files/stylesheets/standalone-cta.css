@@ -3,6 +3,8 @@
 .block--type--promo-wide {
   background: #ffae1a;
   color: #ffffff;
+  margin-top: -24px;
+  margin-bottom: 24px;
 }
 
 .paragraph--type--promo-block .paragraph-page-width {
@@ -56,7 +58,7 @@
   height: 12px;
   position: absolute;
   right: -20px;
-  top: 2px;
+  top: 13px;
   width: 12px;
   background-image: url("small-arrow-white.svg");
 }
