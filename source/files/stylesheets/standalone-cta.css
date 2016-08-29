@@ -1,0 +1,99 @@
+.paragraph--type--promo-block,
+.block--type--promo-narrow,
+.block--type--promo-wide {
+  background: #ffae1a;
+  color: #ffffff;
+}
+
+.paragraph--type--promo-block .paragraph-page-width {
+  margin: 0 auto;
+  max-width: 1140px;
+  width: 100%;
+  overflow: auto;
+  display: table;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.paragraph--type--promo-block .paragraph-page-width .cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.paragraph--type--promo-block .paragraph-page-width .headline-promo {
+  font-family: "Calibre Web", Helvetica, Tahoma, Arial, sans-serif !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
+  min-width: 240px;
+}
+
+.paragraph--type--promo-block .paragraph-page-width .headline {
+  font-size: 1.1rem;
+  color: white;
+  font-family: "Calibre Web", Helvetica, Tahoma, Arial, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: normal !important;
+}
+
+.paragraph--type--promo-block .paragraph-page-width .links {
+  padding-right: 20px;
+  text-align: right;
+  min-width: 200px;
+}
+
+.paragraph--type--promo-block .paragraph-page-width .btn.arrow {
+  position: relative;
+  font-family: "Calibre Web", Helvetica, Tahoma, Arial, sans-serif !important;
+  font-weight: 600;
+}
+
+.paragraph--type--promo-block .paragraph-page-width .btn.arrow .text:after {
+  content: "";
+  display: block;
+  height: 12px;
+  position: absolute;
+  right: -20px;
+  top: 2px;
+  width: 12px;
+  background-image: url("small-arrow-white.svg");
+}
+
+.paragraph--type--promo-block .paragraph-page-width .links a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 1440px) {
+  .paragraph--type--promo-block .paragraph-page-width {
+    max-width: 1440px;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .paragraph--type--promo-block .paragraph-page-width .headline {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .paragraph--type--promo-block .paragraph-page-width .links {
+    margin-top: 20px;
+    text-align: left;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .paragraph--type--promo-block .paragraph-page-width.thin,
+  .block--type--promo-narrow .paragraph-page-width.thin {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .paragraph--type--promo-block .paragraph-page-width.thin .cell.links {
+    display: block;
+  }
+}
