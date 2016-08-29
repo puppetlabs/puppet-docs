@@ -119,7 +119,7 @@ The script's standard output becomes the file's `code_content`, provided the scr
 
 ### Enabling or disabling static catalogs
 
-Starting in Puppet 4.4 and Puppet Server 2.3.0, the global `static_catalog` setting is enabled by default, whether you upgrade Puppet or perform a clean installation. However, the default configuration doesn't include the `code-id-command` and `code-content-command` scripts or settings needed to produce static catalogs, and even when configured to produce static catalogs Puppet Server doesn't inline metadata for all types of file resources.
+Starting in Puppet 4.4 and Puppet Server 2.3.0, the global `static_catalogs` setting is enabled by default, whether you upgrade Puppet or perform a clean installation. However, the default configuration doesn't include the `code-id-command` and `code-content-command` scripts or settings needed to produce static catalogs, and even when configured to produce static catalogs Puppet Server doesn't inline metadata for all types of file resources.
 
 Static catalogs are produced only by Puppet Server. The Ruby Puppet master never produces static catalogs, even when served by WEBrick or Passenger.
 
