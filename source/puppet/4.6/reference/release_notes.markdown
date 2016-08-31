@@ -25,6 +25,9 @@ Release September 1, 2016.
 
 This release fixes a few more regressions relative to Puppet 4.5, as well as bugs in features introduced in 4.6.
 
+* [Fixed in Puppet 4.6.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.6.2%27)
+* [Introduced in Puppet 4.6.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.6.2%27)
+
 ### Bug fixes
 
 #### Regressions
