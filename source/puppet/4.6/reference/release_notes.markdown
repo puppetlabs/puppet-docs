@@ -19,15 +19,44 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), s
 
 Also of interest: the [Puppet 4.5 release notes](/puppet/4.5/reference/release_notes.html) and [Puppet 4.4 release notes](/puppet/4.4/reference/release_notes.html).
 
+## Puppet 4.6.2
+
+Release September 1, 2016.
+
+This release fixes a few more regressions relative to Puppet 4.5, as well as bugs in features introduced in 4.6.
+
+### Bug fixes
+
+#### Regressions
+
+* [PUP-6629](https://tickets.puppetlabs.com/browse/PUP-6629): Puppet 4.6 was causing hard failures in Puppet runs that worked fine in 4.5. These failures happened whenever certain resource types were used, most notably the `acl` type from the `puppetlabs-acl` module.
+
+    This was a side effect of corrective change reporting: if a resource type didn't handle deserialization well, Puppet couldn't cope with the error and the run would fail. With this fix, Puppet will still finish the run gracefully if it can't identify corrective changes for one resource type.
+
+    We plan to fix the ACL module's serialization handling in [MODULES-3766](https://tickets.puppetlabs.com/browse/MODULES-3766).
+
+* [PUP-6650](https://tickets.puppetlabs.com/browse/PUP-6650): The fix for [PUP-6608](https://tickets.puppetlabs.com/browse/PUP-6608) in Puppet 4.6.1 could disrupt regular (node) catalog compilation if the `hiera_include` function was in use. This is now fixed.
+
+#### Fixes for older bugs
+
+* [PUP-6647](https://tickets.puppetlabs.com/browse/PUP-6647): Functions that use the modern Ruby function API (`Puppet::Functions` or "4x functions") can do different things depending on how many arguments they're called with. Unfortunately, functions that can be called with _zero_ arguments would _always_ use their zero-argument behavior, regardless of how they were actually called. This is now fixed, and zero-argument dispatches are only be used when no arguments are provided.
+
+
+#### Bugs with new features
+
+* [PUP-6662](https://tickets.puppetlabs.com/browse/PUP-6662): Classes and defined types can specify a Sensitive data type for any of their parameters. But prior to this change, it was impossible to pass Sensitive values when declaring them: they would get erroneously transformed to plain strings.
+
+* [PUP-6653](https://tickets.puppetlabs.com/browse/PUP-6653): [Environment isolation](./environmental_isolation.html) for resource types wasn't working properly --- even if PCore resource type data was found, Puppet would load the Ruby implementation anyway. This is now fixed, and the presence of a PCore resource type will prevent the Ruby version from loading.
+
 ## Puppet 4.6.1
 
 Released August 23, 2016.
 
-A critical bug was reported affecting a significant number of users in the Puppet 4.6.0 release. 
+A critical bug was reported affecting a significant number of users in the Puppet 4.6.0 release.
 
 A regression in evaluation of resource-like class inclusion caused evaluation of the class to be lazy as opposed to the correct immediate evaluation. This led to problems with missing variables, which could lead to further problems. The order of evaluation is now restored. ([PUP-6608](https://tickets.puppetlabs.com/browse/PUP-6608))
 
-Other bug fixes and a new function are also included in this release in the Puppet 4.6 series. 
+Other bug fixes and a new function are also included in this release in the Puppet 4.6 series.
 
 * [Fixed in Puppet 4.6.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.6.1%27)
 * [Introduced in Puppet 4.6.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.6.1%27)
@@ -73,25 +102,25 @@ A feature and bug fix release for Puppet.
 
 #### Identify manual change corrected by Puppet
 
-This release adds a new report event field called `corrective_change` that is designed to detect manual change that has been corrected by a Puppet run. 
+This release adds a new report event field called `corrective_change` that is designed to detect manual change that has been corrected by a Puppet run.
 
-This feature should help users to detect when an unexpected change occurred outside of Puppet, allowing better auditing and understanding around changes. 
+This feature should help users to detect when an unexpected change occurred outside of Puppet, allowing better auditing and understanding around changes.
 
-This feature achieves this by storing the last best known value for each property that is applied by Puppet, and comparing that against the values in the next Puppet run. 
+This feature achieves this by storing the last best known value for each property that is applied by Puppet, and comparing that against the values in the next Puppet run.
 
-As part of the requirement to store values, this feature also introduces a new local storage mechanism, and introduces a new configuration option `transactionstorefile` which points at the YAML file used. This storage is queried for each run for old values during comparison, and persists the new values for next transaction to do its calculation. 
+As part of the requirement to store values, this feature also introduces a new local storage mechanism, and introduces a new configuration option `transactionstorefile` which points at the YAML file used. This storage is queried for each run for old values during comparison, and persists the new values for next transaction to do its calculation.
 
-While we’ve done our best to ensure this feature works well, this entire process is still in development and is quite new, and has some known points of interest: 
+While we’ve done our best to ensure this feature works well, this entire process is still in development and is quite new, and has some known points of interest:
 
-* For noop events in particular, these are treated especially. We will continue to return a positive `corrective_change` flag if there will be a corrective_change, if Puppet was to be ran in enforcement mode. 
+* For noop events in particular, these are treated especially. We will continue to return a positive `corrective_change` flag if there will be a corrective_change, if Puppet was to be ran in enforcement mode.
 
 * Today, idempotency issues are raised as a `corrective_change` because Puppet can’t tell the difference. An idempotency issue is when either a provider has a bug applying a change twice consistently, or when Puppet DSL code (or external dependences) is used that has idempotency issues (common in service, and exec resources for example). For properties that have known idempotency issues, we have introduced an `idempotent` flag for declaring that corrective_change calculation can be skipped. An example can be found in the notify type, as the message property on notify has been a long-standing and well known non-idempotent property: [notify type source code](https://github.com/puppetlabs/puppet/blob/4.6.0/lib/puppet/type/notify.rb#L9).
 
-* The API for comparison in Puppet for older arbitrary values is brittle, and some custom Puppet types may show the incorrect value for corrective_change as a consequence. We ask users to raise bugs when these cases are discovered. 
+* The API for comparison in Puppet for older arbitrary values is brittle, and some custom Puppet types may show the incorrect value for corrective_change as a consequence. We ask users to raise bugs when these cases are discovered.
 
-* For now, if there is any exception during value comparison Puppet still runs, but returns an error to the user so it can be debugged. Also, Puppet returns a `corrective_change` as nil instead, indicating an unknown state. Any cases where this occurs should be raised as bugs to the appropriate project. 
+* For now, if there is any exception during value comparison Puppet still runs, but returns an error to the user so it can be debugged. Also, Puppet returns a `corrective_change` as nil instead, indicating an unknown state. Any cases where this occurs should be raised as bugs to the appropriate project.
 
-* Comparison of secret values is currently out of scope. For us to ensure we could compare these values, we would have to store them in doing so leak secret information. We’ve decided we would step back from this problem, and for now secret properties are not supported for being flagged as corrective. 
+* Comparison of secret values is currently out of scope. For us to ensure we could compare these values, we would have to store them in doing so leak secret information. We’ve decided we would step back from this problem, and for now secret properties are not supported for being flagged as corrective.
 
 Along with flagging each event with the `corrective_change` field, we also flag a resource that has such events, and the entire report. Metrics have been included to allow report consumers to see a count of events that are marked as `corrective_change` also.
 
@@ -105,7 +134,7 @@ A new type `Sensitive[T]` has been added to the Puppet type system. New sensitiv
 
 #### Specify multiple masters with `server_list` option
 
-This change adds master failover functionality to the puppet agent. Using the new `server_list` option to specify multiple masters, an agent will now attempt to fall back to a functional master should a failure to download a catalog occur. The `server_list` setting can be either provided on the command line or configured in `puppet.conf`, and has the format `server_list = master1_hostname:port,master2_hostname:port,master3_hostname:port`. 
+This change adds master failover functionality to the puppet agent. Using the new `server_list` option to specify multiple masters, an agent will now attempt to fall back to a functional master should a failure to download a catalog occur. The `server_list` setting can be either provided on the command line or configured in `puppet.conf`, and has the format `server_list = master1_hostname:port,master2_hostname:port,master3_hostname:port`.
 
 The old `server` option can still be used to specify a single master, in which case failover will not be attempted and Puppet will behave as it always has. Specifying a single server with the `server_list` option has the same effect.
 
