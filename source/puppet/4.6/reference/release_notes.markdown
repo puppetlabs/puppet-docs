@@ -21,7 +21,7 @@ Also of interest: the [Puppet 4.5 release notes](/puppet/4.5/reference/release_n
 
 ## Puppet 4.6.2
 
-Release September 1, 2016.
+Released September 1, 2016.
 
 This release fixes a few more regressions relative to Puppet 4.5, as well as bugs in features introduced in 4.6.
 
