@@ -1,4 +1,11 @@
-Beginning in Puppet 4.6.0, there is a new experimental feature aiming to solve a problem with the isolation of multiple versions of the same ruby resource type implementation being used in different environments. This is a problem because the Ruby resource type implementations are constructed in a way that binds Ruby constructs to constants and these bindings are global in the Ruby runtime. Thus, the first loaded version of a resource type implementation will win and subsequent requests to compile in other environments will get the first loaded version.
+---
+layout: default
+title: "Environment Isolation"
+canonical: "/puppet/latest/reference/environments.html"
+---
+
+
+Beginning in Puppet 4.6.0, there is a new experimental feature aiming to solve a problem with the isolation of multiple versions of the same Ruby resource type implementation being used in different environments. This is a problem because the Ruby resource type implementations are constructed in a way that binds Ruby constructs to constants and these bindings are global in the Ruby runtime. Thus, the first loaded version of a resource type implementation will win and subsequent requests to compile in other environments will get the first loaded version.
 
 There are other environment isolation cases that this new experimental feature does not solve (external helper logic, different versions of required gems, and similar).
 
