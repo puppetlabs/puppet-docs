@@ -1,16 +1,24 @@
-{% if page.doc and page.doc.doc != "pe" and page.doc.my_versions.pe != "latest" %}
-<div id="version-note"><p class="noisy">Included in Puppet Enterprise {{page.doc.my_versions.pe}}.
-{% assign ver_note_open = "true" %}
+{% if page.doc %}
+
+{% if page.doc.doc != "pe" %}<div id="version-note"><p class="noisy">
+  {% if page.doc.my_versions.pe == "latest" %}{% comment %}...then no SPECIFIC PE version has claimed this version.{% endcomment %}
+    This version is not included in Puppet Enterprise.
+  {% else %}
+    Included in Puppet Enterprise {{page.doc.my_versions.pe}}.
+  {% endif %}
+  {% assign ver_note_open = "true" %}
 {% endif %}
 
-{% if page.doc and site.document_version_index[page.doc.doc]["latest"] != page.doc.base_url %}
-{% unless ver_note_open %}<div id="version-note"><p class="noisy">{% endunless %}A newer version is available; see the version menu above for details.
-{% assign ver_note_open = "true" %}
+{% if site.document_version_index[page.doc.doc]["latest"] != page.doc.base_url %}
+{% unless ver_note_open %}<div id="version-note"><p class="noisy">{% endunless %}{% assign ver_note_open = "true" %}
+A newer version is available; see the version menu above for details.
 {% endif %}
 
-{% if page.doc and page.doc.draft %}
-{% unless ver_note_open %}<div id="version-note"><p class="noisy">{% endunless %}<strong>Draft document:</strong> This is an unedited, potentially incomplete draft.
-{% assign ver_note_open = "true" %}
+{% if page.doc.draft %}
+{% unless ver_note_open %}<div id="version-note"><p class="noisy">{% endunless %}{% assign ver_note_open = "true" %}
+<strong>Draft document:</strong> This is an unedited, potentially incomplete draft.
 {% endif %}
 
 {% if ver_note_open %}</p></div>{% endif %}
+
+{% endif %}
