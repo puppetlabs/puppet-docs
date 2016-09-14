@@ -1,0 +1,963 @@
+---
+layout: default
+title: "Windowsモジュールのインストールと利用"
+canonical: "/ja/pe/windows_modules.html"
+---
+
+<div>
+<h2 id="windows-module-pack">Windowsモジュールパック</h2>
+
+<p> Puppet Forgeは、Puppetとコミュニティメンバーによるオンラインコミュニティで、さまざまなPuppetモジュールが提供されています。 Forgeを利用すると、Puppetをさらに容易に管理できるようになります。また、あらかじめ記述されたモジュールを使うことができるため、自分でモジュールを記述する時間を節約できます。 Forgeのモジュールは、コミュニティで評価済みであることに加えて、<a href="https://forge.puppetlabs.com/approved">Puppetにより承認 (Puppet Approved)</a>または、<a href="https://forge.puppetlabs.com/supported">Puppetによりサポート (Puppet Supported)</a>されています。 大きな違いは、Approvedモジュールは<a href="https://puppetlabs.com/services/customer-support">Puppet Enterpriseサポートサービス</a>には利用できませんが、テスト済みでスタイルや品質の基準に従っているという点です。
+</p>
+
+<p> <img src="/pe/2016.2/images/windows/puppetlabs_windows_modulepack.png" alt="Windows Module Pack">
+</p>
+
+<p> Windowsモジュールパックには、よくある具体的なタスクの実行に役立つ複数のWindows対応モジュールが含まれています。 Forgeを検索すると、さらに多くのWindowsモジュールを見つけることができます。  Puppet Enterpriseでサポートされているのは、Puppetのモジュールのみです。 それ以外のモジュールは、Puppetにより検証および承認されていますが、商用サポートの対象ではありません。
+</p>
+
+<p> Windowsモジュールパックによって、以下のことが可能になります。
+</p>
+
+<ul>
+<li>
+<a href="https://forge.puppetlabs.com/puppetlabs/registry"><code>registry</code></a>によってレジストリキーを読み取り、作成、記述する</li>
+  <li>
+<a href="https://forge.puppetlabs.com/puppetlabs/powershell"><code>powershell</code></a>によってPuppet DSLでPowerShellと通信する</li>
+  <li>
+<a href="https://forge.puppetlabs.com/puppetlabs/dsc"><code>dsc</code></a>を使ってWindows PowerShell DSC(Desired State Configuration)リソースを管理する</li>
+  <li>管理の一環として、<a href="https://forge.puppetlabs.com/puppetlabs/reboot"><code>reboot</code></a>を使って必要に応じてWindowsをリブートする</li>
+  <li>
+<a href="https://forge.puppetlabs.com/puppetlabs/acl"><code>acl</code></a>を使って詳細なアクセスコントロール許可を適用する</li>
+  <li>クライアントノード<a href="https://forge.puppetlabs.com/puppetlabs/wsus_client"><code>wsus_client</code></a>のWindowsサーバーアップデートサービス設定を管理する</li>
+  <li>
+<a href="https://forge.puppetlabs.com/puppet/windowsfeature"><code>windowsfeature</code></a>でWindowsの機能をインストールまたは削除する</li>
+  <li>
+<a href="https://forge.puppetlabs.com/puppet/download_file"><code>download_file</code></a>を使って管理に使用するファイルをダウンロードする</li>
+  <li>
+<a href="https://forge.puppetlabs.com/puppet/iis"><code>iis</code></a>によってIISサイトとバーチャルアプリケーションを構築する</li>
+  <li>
+<a href="https://forge.puppetlabs.com/chocolatey/chocolatey"><code>chocolatey</code></a>でパッケージをインストールする</li>
+  <li>
+<a href="https://forge.puppetlabs.com/badgerious/windows_env"><code>windows_env</code></a>で環境変数を管理する</li>
+</ul>
+<p> このガイドでは、<code>ACL</code>を使用した管理されたパーミッションの作成、<code>registry</code>を使用した管理されたレジストリキーと値の作成、<code>chocolatey</code>を使用した独自のパッケージのインストールと作成について説明します。
+</p>
+
+<h3 id="prerequisites">必要条件</h3>
+
+<p> Windowsモジュールパックをインストールして作業を開始する前に、<a href="./install_windows.html">Puppet Enterpriseをインストール</a>する必要があります。
+</p>
+
+<h2 id="install-the-windows-module-pack">Windowsモジュールパックのインストール</h2>
+
+<p> このステップでは、モジュールパックをローカルにインストールする方法を説明しますが、Puppet master上にインストールし、pluginsync(プラグイン同期)によりすべてのノードに当該モジュールパックを適用することも可能です。
+</p>
+
+<ol>
+<li>
+    <p> Windowsの[<strong>Start</strong>]ページで、[<strong>Start Command Prompt with Puppet</strong>]をクリックします。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/start_commandprompt.png" alt="Start command prompt with Puppet">
+</p>
+  </li>
+  <li>
+    <p> すでにインストール済みのモジュールをリスト表示するには、[<strong>Command Prompt</strong>]ウィンドウで<code>puppet module list</code>と入力します。 使い始めたばかりの場合は、インストール済みモジュールが1つもないこともあります。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/cli_list_empty_modules.png" alt="puppet module list empty output">
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>puppetlabs/windows</code>モジュールパックをインストールするために、<code>puppet module install puppetlabs/windows</code>と入力します。 インストール済みのものがすべて表示されるはずです。
+</p>
+
+    <pre><code class="language-puppet">C:\&gt;puppet module install puppetlabs/windows
+Notice: Preparing to install into
+C:/ProgramData/PuppetLabs/code/environments/production/modules ...
+Notice: Downloading from https://forgeapi.puppetlabs.com ...
+Notice: Installing -- do not interrupt ...
+C:/ProgramData/PuppetLabs/code/environments/production/modules
+└─┬ puppetlabs-windows (v2.1.0)
+├─┬ chocolatey-chocolatey (v1.2.0)
+│ └── badgerious-windows_env (v2.2.2)
+├── puppet-download_file (v1.2.1)
+├── puppet-iis (v1.4.1)
+├── puppet-windowsfeature (v1.1.0)
+├── puppetlabs-acl (v1.1.1)
+├── puppetlabs-powershell (v1.0.5)
+├── puppetlabs-reboot (v1.2.0)
+├─┬ puppetlabs-registry (v1.1.2)
+│ └── puppetlabs-stdlib (v4.9.0)
+└── puppetlabs-wsus_client (v1.0.0)
+</code></pre>
+  </li>
+</ol>
+<h2 id="task-1-manage-permissions-with-acl">タスク1：<code>acl</code>によるパーミッション管理</h2>
+
+<p> <img src="/pe/2016.2/images/windows/forge_acl.png" alt="Forge puppetlabs-acl">
+</p>
+
+<p> <a href="https://forge.puppetlabs.com/puppetlabs/acl"><code>puppetlabs-acl</code></a>モジュールは、Windowsファイルシステムのパーミッション設定に関するアクセスコントロールリスト(ACL)の管理に役立ちます。 このモジュールを使うと、<a href="https://msdn.microsoft.com/en-us/library/aa394063.aspx">アクセスマスク</a>、インヘリタンス、プロパゲーションといった方法で、SID(Security Identifier)を使って基本的なパーミッションからきわめて高度なパーミッションまで設定することができます。 まずは、既存のパーミッションを調べるところから始めます。
+</p>
+
+<h3 id="discovery">はじめに</h3>
+
+<p> ACLはカスタムの<a href="/puppet/4.5/reference/type.html">タイプ</a>および <a href="/puppet/4.5/reference/type.html#providers">プロバイダ</a>です。そのため、<code>puppet resource</code>を使って、既存のファイルとフォルダのパーミッションを調べることができます。 一部のタイプについては、<code>puppet resource &lt;TYPE NAME&gt;</code>コマンドを使って、そのタイプのすべてのインスタンスを調べることができます。 しかし、1つのWindowsシステム上には、何千ものACLが存在することもあります。そのため、タイプを調べる対象フォルダを指定するのが最善の策となります。 ここでは、<code>c:\Users</code>をチェックして、そこに含まれるパーミッションを確認します。
+</p>
+
+<p> コマンドプロンプトで<code>puppet resource acl c:\Users</code>と入力します。
+</p>
+
+<p> <img src="/pe/2016.2/images/windows/cli_resource_acl.png" alt="puppet resource acl c:\users output">
+</p>
+
+<p> アウトプットを少し整理すると以下のようになります。
+</p>
+
+<pre><code class="language-puppet">acl { 'c:\Users':
+  inherit_parent_permissions =&gt; 'false',
+  permissions                =&gt; [
+   {identity =&gt; 'SYSTEM', rights=&gt; ['full']},
+   {identity =&gt; 'Administrators', rights =&gt; ['full']},
+   {identity =&gt; 'Users', rights =&gt; ['read', 'execute'], affects =&gt; 'self_only'},
+   {identity =&gt; 'Users', rights =&gt; ['read', 'execute'], affects =&gt; 'children_only'},
+   {identity =&gt; 'Everyone', rights =&gt; ['read', 'execute'], affects =&gt; 'self_only'},
+   {identity =&gt; 'Everyone', rights =&gt; ['read', 'execute'], affects =&gt; 'children_only'}
+  ],
+}
+</code></pre>
+
+<p> この特定のフォルダは、親フォルダからパーミッションを継承していません。その代わりに、独自のパーミッションを設定し、子ファイルと子フォルダがここで設定されたパーミッションをどのように継承するかを決定しています。
+</p>
+
+<ul>
+<li>
+<code>{'identity' =&gt; 'SYSTEM', 'rights'=&gt; ['full']}</code>は、「SYSTEM」ユーザにこのフォルダのフルアクセス権があることを記述するものです。デフォルトでは、すべての子/孫ファイルとフォルダのフルアクセス権も有します(これらは、Windowsでパーミッションを作成する際に同じデフォルトが設定されるため)。</li>
+  <li>
+<code>{'identity' =&gt; 'Users', 'rights' =&gt; ['read', 'execute'], 'affects' =&gt; 'self_only'}</code>は、現在のディレクトリでのみ、User(ユーザ)に読み取りおよび実行のパーミッションを与えます。</li>
+  <li>
+<code>{'identity' =&gt; 'Everyone', 'rights' =&gt; ['read', 'execute'], 'affects' =&gt; 'children_only'}</code>は、サブフォルダおよびファイルでのみ、Everyone(すべての人)に読み取りおよび実行のパーミッションを与えます。</li>
+</ul>
+<blockquote>
+  <p> <strong>注意</strong>：1つのユーザ/グループに対して、同じパーミッションが2回与えられているように見えるかもしれませんが(上述の「Users」と「Everyone」)、一方はそのフォルダ自体にのみ影響するもので、他方は子フォルダのみに関するものです。 この2つは実際には異なるパーミッションです。
+</p>
+</blockquote>
+
+<h3 id="create-a-puppet-managed-permission">Puppetで管理されたパーミッションの作成 </h3>
+
+<ol>
+<li>
+    <p> 以下のコードを実行し、Puppetで管理された最初のパーミッションを作成します。 その後、<code>perms.pp</code>として保存します。
+</p>
+
+    <pre><code class="language-puppet">file{'c:/tempperms':
+ ensure =&gt; directory,
+}
+
+# By default, the acl will create an implicit relationship to any
+# file resources it finds that match the location.
+acl {'c:/tempperms':
+ permissions =&gt; [
+   {identity =&gt; 'Administrators', rights =&gt; ['full']},
+   {identity =&gt; 'Users', rights =&gt; ['read','execute']}
+ ],
+}
+</code></pre>
+
+    <p> <img src="/pe/2016.2/images/windows/perms_pp_manifest.png" alt="perms.pp file">
+</p>
+  </li>
+  <li>
+    <p> マニフェストを検証するために、コマンドプロンプトで<code>puppet parser validate c:\path\to\perms.pp</code>と入力します。 パーサーが何も返さなければ、検証に合格したことになります。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/cli_parser_validate.png" alt="puppet parser validate no issues">
+</p>
+  </li>
+  <li>
+    <p> マニフェストを適用するには、<code>puppet apply c:\path\to\perms.pp</code>と入力します。 おおむね以下のようなアウトプットになるはずです。
+</p>
+
+    <pre><code class="language-powershell">Notice: Compiled catalog for win2012r2x64 in environment production in 0.12 seconds
+Notice: /Stage[main]/Main/File[c:/tempperms]/ensure: created
+Notice: /Stage[main]/Main/Acl[c:/tempperms]/permissions: permissions changed [
+] to [
+ { identity =&gt; 'BUILTIN\Administrators', rights =&gt; ["full"] },
+ { identity =&gt; 'BUILTIN\Users', rights =&gt; ["read", "execute"] }
+]
+Notice: Applied catalog in 0.05 seconds
+</code></pre>
+  </li>
+  <li>
+    <p> Windows UIでパーミッションを確認します。 [<strong>Windows Explorer</strong>]で[<strong>tempperms</strong>]を右クリックし、[<strong>Properties</strong>]をクリックします。 その後、[<strong>Security</strong>]タブをクリックします。おおむね以下のイメージのようになるはずです。 
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/security_properties.png" alt="Security properties of c:\tempperms">
+</p>
+  </li>
+  <li>
+    <p> オプション：この段階では、想定よりもパーミッションの範囲が多くなっている場合があります。 これは、Windowsではデフォルトで親のパーミッションが継承されるためです。 このケースでは継承しないことが望ましいため、 <code>inherit_parent_permissions =&gt; false</code>を追加して<code>perms.pp</code>ファイルを以下のように変更し、親のパーミッションを継承しないように<code>acl</code>リソースを調整します。
+</p>
+
+    <pre><code class="language-puppet">acl {'c:/tempperms':
+  inherit_parent_permissions =&gt; false,
+  permissions                =&gt; [
+    {identity =&gt; 'Administrators', rights =&gt; ['full']},
+    {identity =&gt; 'Users', rights =&gt; ['read','execute']}
+  ],
+}
+</code></pre>
+  </li>
+  <li>
+    <p> ファイルを保存し、コマンドプロンプトに戻って<code>puppet parser validate c:\path\to\perms.pp</code>を再度実行します。
+</p>
+  </li>
+  <li>
+    <p> 検証の際には、<code>puppet apply c:\path\to\perms.pp</code>を実行します。
+</p>
+
+    <p> おおむね以下のようなアウトプットになるはずです。
+</p>
+
+    <pre><code class="language-powershell">C:\&gt;puppet apply c:\puppet_code\perms.pp
+Notice: Compiled catalog for win2012r2x64 in environment production in 0.08 seconds
+Notice: /Stage[main]/Main/Acl[c:/tempperms]/inherit_parent_permissions: inherit_
+parent_permissions changed 'true' to 'false'
+Notice: Applied catalog in 0.02 seconds
+</code></pre>
+  </li>
+  <li>
+    <p> パーミッションを再度チェックするには、<code>icacls c:\tempperms</code>と入力します。 <code>icacls</code>は、ACLの表示と修正を指定するためのコマンドです。アウトプットはおおむね以下のようになるはずです。
+</p>
+
+    <pre><code class="language-powershell">C:\&gt;icacls c:\tempperms
+c:\tempperms BUILTIN\Administrators:(OI)(CI)(F)
+             BUILTIN\Users:(OI)(CI)(RX)
+             NT AUTHORITY\SYSTEM:(OI)(CI)(F)
+             BUILTIN\Users:(CI)(AD)
+             CREATOR OWNER:(OI)(CI)(IO)(F)
+Successfully processed 1 files; Failed processing 0 files
+</code></pre>
+
+    <p> アウトプットでは、各パーミッションが示され、それに続く括弧内に具体的な権限が表示されています。 このアウトプットからは、パーミッションが<code>perms.pp</code>で指定したものよりも多くなっていることがわかります。 Puppetでは、管理されていないパーミッションや既存のパーミッションと並行してパーミッションを管理することができます。 継承したパーミッションを削除する場合、デフォルトではWindowsが既存の継承パーミッション(またはAccess Control Entries、ACE)を既存のACLの上にコピーするため、望ましい範囲よりもパーミッションが多くなっていることがあります。
+</p>
+  </li>
+  <li>
+    <p> 余分なパーミッションを削除し、指定したパーミッションのみがフォルダに残るようにします。 これを行うには、<code>perms.pp</code>で、以下のように<code>purge =&gt; true</code>と設定します。
+</p>
+
+    <pre><code class="language-puppet">acl {'c:/tempperms':
+  inherit_parent_permissions =&gt; false,
+  purge                      =&gt; true,
+  permissions                =&gt; [
+    {identity =&gt; 'Administrators', rights =&gt; ['full']},
+    {identity =&gt; 'Users', rights =&gt; ['read','execute']}
+  ],
+}
+</code></pre>
+  </li>
+  <li>
+    <p> 先ほどと同じようにパーサーコマンドを実行します。 エラーがなければ、変更を適用できます。
+</p>
+  </li>
+  <li>
+    <p> 変更を適用するには、<code>puppet apply c:\path\to\perms.pp</code>と入力します。 アウトプットはおおむね以下のようになるはずです。
+</p>
+
+    <pre><code class="language-powershell">C:\&gt;puppet apply c:\puppet_code\perms.pp
+Notice: Compiled catalog for win2012r2x64 in environment production in 0.08 seco
+nds
+Notice: /Stage[main]/Main/Acl[c:/tempperms]/permissions: permissions changed [
+{ identity =&gt; 'BUILTIN\Administrators', rights =&gt; ["full"] },
+{ identity =&gt; 'BUILTIN\Users', rights =&gt; ["read", "execute"] },
+{ identity =&gt; 'NT AUTHORITY\SYSTEM', rights =&gt; ["full"] },
+{ identity =&gt; 'BUILTIN\Users', rights =&gt; ["mask_specific"], mask =&gt; '4', child_types =&gt; 'containers' },
+{ identity =&gt; 'CREATOR OWNER', rights =&gt; ["full"], affects =&gt; 'children_only' }
+] to [
+{ identity =&gt; 'BUILTIN\Administrators', rights =&gt; ["full"] },
+{ identity =&gt; 'BUILTIN\Users', rights =&gt; ["read", "execute"] }
+]
+Notice: Applied catalog in 0.05 seconds
+</code></pre>
+
+    <p> 各パーミッションを削除する際には、Puppetによりnotice(注意)が表示されます。 
+</p>
+  </li>
+  <li>
+    <p> もう一度<code>icacls</code>のアウトプットを調べます。 <code>icacls c:\tempperms</code>と入力します。
+</p>
+
+    <pre><code class="language-powershell">c:\&gt;icacls c:\tempperms
+c:\tempperms BUILTIN\Administrators:(OI)(CI)(F)
+            BUILTIN\Users:(OI)(CI)(RX)
+Successfully processed 1 files; Failed processing 0 files
+</code></pre>
+
+    <p> これで、このディレクトリのパーミッションが設定されました。 Puppet Forgeにあるこのモジュールの<a href="https://forge.puppetlabs.com/puppetlabs/acl#usage">使用シナリオ</a>では、さらに高度なパーミッションのシナリオを詳しく参照できます。 また、Puppetブログでは、<a href="https://puppetlabs.com/blog/managing-permissions-windows-access-control-lists">ACLに関する詳細な記事</a>を読むこともできます。 
+</p>
+  </li>
+</ol>
+<h2 id="task-2-create-puppet-managed-registry-keys-with-registry">タスク2：<code>registry</code>を使用したPuppet管理レジストリキーの作成</h2>
+
+<p> <img src="/pe/2016.2/images/windows/forge_registry.png" alt="Forge puppetlabs-registry">
+</p>
+
+<p> 将来的に、可用性の高い設定を利用したり設定したりするなどの目的で、レジストリを使う必要性が生じる可能性もあります。 <a href="https://forge.puppetlabs.com/supported">Puppet Supportedモジュール</a>の<a href="https://forge.puppetlabs.com/puppetlabs/registry">puppetlabs-registry</a>モジュールを使えば、レジストリのキーと値の両方を設定することができます。
+</p>
+
+<h3 id="discovery-1">はじめに</h3>
+
+<p> <code>puppetlabs-registry</code>はカスタムの<a href="/puppet/4.5/reference/type.html">タイプ</a>および<a href="/puppet/4.5/reference/type.html#providers">プロバイダ</a>です。そのため、<code>puppet resource</code>を使って、既存のレジストリ設定を調べることができます。  また、制限付きのモジュールであり、<code>acl</code>モジュールと同じように、指定した対象にのみ適用されます。 <code>HKLM\Software\Microsoft\Windows</code>を指定して、どうなるか確認してみましょう。
+</p>
+
+<p> <code>puppet resource registry_key 'HKLM\Software\Microsoft\Windows'</code>と入力します。
+</p>
+
+<p> <img src="/pe/2016.2/images/windows/cli_resource_registry.png" alt="Output of puppet resource registry_key 'HKLM\Software\Microsoft\Windows'">
+</p>
+
+<p> それほど興味深い結果ではありません。次に、レジストリ値を見てみましょう。
+</p>
+
+<p> <code>puppet resource registry_value 'HKLM\SYSTEM\CurrentControlSet\Services\BITS\DisplayName'</code>と入力します。
+</p>
+
+<pre><code class="language-puppet">registry_value { 'HKLM\SYSTEM\CurrentControlSet\Services\BITS\DisplayName':
+  ensure =&gt; 'present',
+  data   =&gt; ['Background Intelligent Transfer Service'],
+  type   =&gt; 'string',
+}
+</code></pre>
+
+<p> こちらは、レジストリキーよりはやや興味深い結果です。 キーはファイルパス(ディレクトリ)のようなものです。一方、値はファイルのようなもので、データを有し、<a href="https://forge.puppetlabs.com/puppetlabs/registry#parameters">さまざまなタイプ</a>になりえます。
+</p>
+
+<h3 id="exercise">演習</h3>
+
+<ol>
+<li>
+    <p> Puppetで管理されたレジストリキーおよび値を作成します。 
+</p>
+
+    <pre><code class="language-puppet">registry_key { 'HKLM\Software\zTemporaryPuppet':
+     ensure =&gt; present,
+}
+
+# By default the registry creates an implicit relationship to any file
+# resources it finds that match the location.
+registry_value {'HKLM\Software\zTemporaryPuppet\StringValue':
+  ensure =&gt; 'present',
+  data   =&gt; 'This is a custom value.',
+  type   =&gt; 'string',
+}
+
+#forcing a 32-bit registry view; watch where this is created:
+registry_key { '32:HKLM\Software\zTemporaryPuppet':
+  ensure =&gt; present,
+}
+
+registry_value {'32:HKLM\Software\zTemporaryPuppet\StringValue':
+  ensure =&gt; 'present',
+  data   =&gt; 'This is a custom 32-bit value.',
+  type   =&gt; 'expand',
+}
+</code></pre>
+  </li>
+  <li>
+    <p> ファイルを<code>registry.pp</code>として保存します。
+</p>
+  </li>
+  <li>
+    <p> マニフェストを検証します。 コマンドプロンプトで<code>puppet parser validate c:\path\to\registry.pp</code>と入力します。 パーサーが何も返さなければ、検証に合格したことになります。
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>puppet apply c:\path\to\registry.pp</code>と入力して、マニフェストを適用します。 アウトプットはおおむね以下のようになるはずです。
+</p>
+
+    <pre><code class="language-powershell">Notice: Compiled catalog for win2012r2x64 in environment production in 0.11 seco
+nds
+Notice: /Stage[main]/Main/Registry_key[HKLM\Software\zTemporaryPuppet]/ensure: c
+reated
+Notice: /Stage[main]/Main/Registry_value[HKLM\Software\zTemporaryPuppet\StringVa
+lue]/ensure: created
+Notice: /Stage[main]/Main/Registry_key[32:HKLM\Software\zTemporaryPuppet]/ensure
+: created
+Notice: /Stage[main]/Main/Registry_value[32:HKLM\Software\zTemporaryPuppet\Strin
+gValue]/ensure: created
+Notice: Applied catalog in 0.03 seconds
+</code></pre>
+  </li>
+  <li>
+    <p> 次にレジストリを調べ、結果を確認します。 [<strong>Start + R</strong>]を押し、<code>regedit</code>と入力して[<strong>Enter</strong>]を押します。 レジストリエディタが開いたら、<code>HKEY_LOCAL_MACHINE</code>でキーを探します。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/regedit_HKLM.png" alt="Registry Editor display of keys">
+</p>
+
+    <p> ソフトウェアのWow6432Nodeの32ビットセクションに、32ビットキーが作成されたことがわかります。
+</p>
+  </li>
+  <li>
+    <p> <code>puppet apply c:\path\to\registry.pp</code>と入力し、マニフェストを再度適用します。
+</p>
+
+    <pre><code class="language-powershell">Notice: Compiled catalog for win2012r2x64 in environment production in 0.11 seconds
+Notice: Applied catalog in 0.02 seconds
+</code></pre>
+  </li>
+  <li>
+    <p> 何も変更していないため、Puppetでは何も実行されません。 <strong>レジストリエディタ</strong>でデータを変更します。 <code>HKLM\Sofware\zTemporaryPuppet</code>を選択し、右のボックスの[<code>StringValue</code>]をダブルクリックします。 値のデータを編集し、[<strong>OK</strong>]をクリックします。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/regedit_edit_value.png" alt="Edit StringValue of HKLM\Sofware\zTemporaryPuppet">
+</p>
+
+    <p> 今回は変更が加えられました。したがって、<code>puppet apply c:\path\to\registry.pp</code>と入力すると、アウトプットは異なるものになります。
+</p>
+
+    <pre><code class="language-powershell">Notice: Compiled catalog for win2012r2x64 in environment production
+in 0.11 seconds
+Notice: /Stage[main]/Main/Registry_value[HKLM\Software\zTemporaryPuppet\StringValue]/data:
+data changed 'This is a custom value. Edited' to 'This is a custom value.'
+Notice: Applied catalog in 0.03 seconds
+</code></pre>
+
+    <p> Puppetが自動的に設定のずれを修正します。 
+</p>
+  </li>
+  <li>
+    <p> 次に、キーと値をクリーンアップおよび削除します。 <code>registry.pp</code>ファイルを以下のようにします。
+</p>
+
+    <pre><code class="language-puppet">registry_key { 'HKLM\Software\zTemporaryPuppet':
+  ensure =&gt; absent,
+}
+
+#forcing a 32 bit registry view, watch where this is created
+registry_key { '32:HKLM\Software\zTemporaryPuppet':
+  ensure =&gt; absent,
+}
+</code></pre>
+  </li>
+  <li>
+    <p> <code>puppet parser validate c:\path\to\registry.pp</code>で検証し、<code>puppet apply c:\path\to\registry.pp</code>で再度適用します。
+</p>
+
+    <pre><code class="language-powershell">Notice: Compiled catalog for win2012r2x64 in environment production in 0.06 seconds
+Notice: /Stage[main]/Main/Registry_key[HKLM\Software\zTemporaryPuppet]/ensure: removed
+Notice: /Stage[main]/Main/Registry_key[32:HKLM\Software\zTemporaryPuppet]/ensure
+: removed
+Notice: Applied catalog in 0.02 seconds
+</code></pre>
+
+    <p> レジストリエディタの画面を更新します。 該当する値が消えているはずです。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/regedit_absent.png" alt="Removed items verification in Registry Editor">
+</p>
+  </li>
+</ol>
+<h3 id="real-world-usage">実際の使用例</h3>
+
+<p> ここでは、エラーレポート作成を無効にする実際の使用例を紹介します。
+</p>
+
+<pre><code class="language-puppet">class puppetconf::disable_error_reporting {
+  registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\ForceQueue':
+    type =&gt; dword,
+    data =&gt; '1',
+  }
+
+  registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\DontShowUI':
+    type =&gt; dword,
+    data =&gt; '1',
+  }
+
+  registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\DontSendAdditionalData':
+    type =&gt; dword,
+    data =&gt; '1',
+  }
+
+  registry_key { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\Consent':
+    ensure       =&gt; present,
+  }
+
+  registry_value { 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting\Consent\DefaultConsent':
+   type =&gt; dword,
+   data =&gt; '2',
+  }
+}
+</code></pre>
+
+<h3 id="want-more-info-about-the-registry-module">レジストリモジュールに関する詳細</h3>
+
+<p> <a href="https://puppetlabs.com/blog/re-introducing-puppetlabs-registry-module">レジストリモジュールの再導入</a>に関するブログ記事、<a href="https://puppetlabs.com/blog/puppet-works-on-windows">「Puppet works on Windows?」の記事</a>を参照してください。Josh CooperによるPuppetConf 2014の<a href="https://puppetlabs.com/presentations/getting-started-puppet-windows-josh-cooper-puppet-labs">「Getting Started with Puppet on Windows」</a>プレゼンテーション、およびEthan BrownによるPuppetConf 2014の<a href="https://puppetlabs.com/presentations/workshop-puppet-windows-users-ethan-brown-puppet-labs">「Workshop: Puppet for Windows Users」</a>も参照してください。 また、<a href="https://forge.puppetlabs.com/puppetlabs/registry/readme">Forge</a>のこのモジュールに関する文書では、リファレンスと例を紹介しています。
+</p>
+
+<h2 id="task-3-create-install-and-repackage-packages-with-chocolatey">タスク3：<code>chocolatey</code>を使用したパッケージの作成、インストール、再パッケージ</h2>
+
+<p> <img src="/pe/2016.2/images/windows/forge_chocolatey.png" alt="Forge chocolatey-chocolatey">
+</p>
+
+<p> <a href="https://chocolatey.org">Chocolatey</a>はWindows用のパッケージマネージャで、設計や実行という面ではWindows以外のシステムのパッケージマネージャと同様です。 <a href="https://forge.puppetlabs.com/chocolatey/chocolatey">chocolateyモジュール</a>は<a href="https://forge.puppetlabs.com/approved">Puppet Approvedモジュール</a>であるため、Puppet Enterpriseのサポートサービスの対象ではありません。 このモジュールを使うと、Chocolateyそのものをインストール・設定し、Chocolateyパッケージを使ってWindow上でソフトウェアを管理することができます。
+</p>
+
+<h3 id="discovery-2">はじめに</h3>
+
+<p> Chocolateyは、パッケージリソースタイプのカスタムプロバイダです。そのため、 <code>puppet resource</code>を使って既存のパッケージを表示することができます。 
+</p>
+
+<p> <code>puppet resource package --param provider | more</code>と入力します。 このコマンドに追加されているプロバイダパラメータは、複数のプロバイダにより検出されたあらゆるタイプのインストール済みパッケージをアウトプットするものです。
+</p>
+
+<h3 id="install-chocolatey">Chocolateyのインストール</h3>
+
+<p> Chocolatey(choco.exe)をインストールします。 <a href="https://chocolatey.org">Chocolateyのホームページ</a>の指示に従い、インストールします。またはこのモジュールを使ってChocolateyがインストールされていることを確認できます。
+</p>
+
+<ol>
+<li>
+    <p> <code>chocolatey</code>モジュールで、 <code>chocolatey.pp</code>という新しいマニフェストを作成し、以下のようなコンテンツにします。 
+</p>
+
+    <pre><code class="language-puppet">include chocolatey
+</code></pre>
+  </li>
+  <li>
+    <p> コマンドプロンプトで<code>puppet parser validate c:\path\to\chocolatey.pp</code>と入力し、マニフェストを検証します。 パーサーが何も返さなければ、検証に合格したことになります。
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>puppet apply c:\path\to\chocolatey.pp</code>によりマニフェストを適用します。アウトプットはおおむね以下のようになるはずです。
+</p>
+
+    <pre><code class="language-powershell">Notice: Compiled catalog for win2012r2x64 in environment production in 0.58 seconds
+Notice: /Stage[main]/Chocolatey::Install/Windows_env[chocolatey_PATH_env]/ensure
+: created
+Notice: /Stage[main]/Chocolatey::Install/Windows_env[chocolatey_ChocolateyInstal
+l_env]/ensure: created
+Notice: /Stage[main]/Chocolatey::Install/Exec[install_chocolatey_official]/retur
+ns: executed successfully
+Notice: /Stage[main]/Chocolatey::Install/Exec[install_chocolatey_official]: Trig
+gered 'refresh' from 2 events
+Notice: Finished catalog run in 13.22 seconds
+</code></pre>
+
+    <p> 商用ノードシナリオでは、Chocolatey.nupkgファイルが内部のどこかに存在する可能性もあります。 その場合、<a href="https://forge.puppetlabs.com/chocolatey/chocolatey#use-an-internal-chocolateynupkg-for-chocolatey-installation">内部にあるChocolateyのインストール用のnupkg</a>を使用できます。
+</p>
+
+    <pre><code class="language-puppet">class {'chocolatey':
+  chocolatey_download_url =&gt; 'https://internalurl/to/chocolatey.nupkg',
+  use_7zip                =&gt; false,
+  log_output              =&gt; true,
+}
+</code></pre>
+  </li>
+</ol>
+<h3 id="install-a-package">パッケージのインストール</h3>
+
+<p> 通常、パッケージをインストールするには、まずローカルでパッケージをコピーし、ダウンロードしたすべてのものを内部のロケーションに導入するために必要な変更を実行し、編集を加えてパッケージを再パッケージし、独自のパッケージを構築して内部のパッケージリポジトリ(フィード)でホストします。 しかし、この演習では、Chocolateyの<a href="https://chocolatey.org/packages">コミュニティフィード</a>からポータブルNotepad++を直接インストールします。  <a href="https://chocolatey.org/packages/notepadplusplus.commandline">Notepad++ Commandline</a>パッケージはポータブルパッケージで、既存のシステムに大きな影響を与えることはないはずです。
+</p>
+
+<ol>
+<li>
+    <p> マニフェスト(<code>chocolatey.pp</code>)を以下のコンテンツで更新します。
+</p>
+
+    <pre><code class="language-puppet">package {'notepadplusplus.commandline':
+  ensure   =&gt; installed,
+  provider =&gt; chocolatey,
+}
+</code></pre>
+  </li>
+  <li>
+    <p> コマンドプロンプトで<code>puppet parser validate c:\path\to\chocolatey.pp</code>と入力し、マニフェストを検証します。 パーサーが何も返さなければ、検証に合格したことになります。
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>puppet apply c:\path\to\chocolatey.pp</code>によりマニフェストを適用します。アウトプットはおおむね以下のようになるはずです。
+</p>
+
+    <pre><code>Notice: Compiled catalog for win2012r2x64 in environment production in 0.75 seconds
+Notice: /Stage[main]/Main/Package[notepadplusplus.commandline]/ensure: created
+Notice: Applied catalog in 15.51 seconds
+</code></pre>
+
+    <p> 商用ノードシナリオでこのパッケージを使用するには、内部のカスタムフィードが必要です。 これは<a href="https://forge.puppetlabs.com/chocolatey/chocolatey_server"><code>chocolatey_server</code>モジュール</a>を使って簡単に設定できます。 また、Windows以外のオプションでパッケージをホストする場合は、Sonatype Nexus、Artifactory、CIFSシェアも使用可能です。または、Windows上でNuGet ODataフィードを公開するものなら何でも使用できます(NugetはChocolateyが使用するパッケージインフラです)。 詳細については、<code>chocolatey</code> wikiの<a href="https://github.com/chocolatey/choco/wiki/How-To-Host-Feed">How To Host Feed</a>ページを参照してください。 また、Puppet master上にパッケージを保存し、ファイルリソースを使って特定のローカルディレクトリに存在することを確認してから、パッケージを確定することもできます。
+</p>
+  </li>
+</ol>
+<h4 id="copy-an-existing-package-and-make-it-internal-repackaging-packages">既存のパッケージをコピーして内部化する (パッケージの再パッケージ)</h4>
+
+<p> Chocolateyの<a href="https://chocolatey.org/packages">コミュニティフィード</a>にはかなりの数のパッケージがありますが、これらはコミュニティに合わせて調整されており、公式配信サイトからのダウンロードにはインターネットが使われます。 とはいえ、これらのパッケージは、ソフトウェアをマシン上にインストールするために必要なあらゆるものが備わった魅力的なパッケージでもあります。 再パッケージプロセスにより、コミュニティパッケージの内容を内部化したり、パッケージに埋め込んだりしてパッケージを完全に内部化し、内部Chocolatey/NuGetリポジトリ上でホストすることが可能です。これにより、パッケージを完全にコントロールし、前述した商用ノードの信頼性および制御上の問題を回避することができます。
+</p>
+
+<p> 既存のパッケージをローカルに適用するには、以下の手順を実施します。
+</p>
+
+<ol>
+<li>
+    <p> <a href="https://chocolatey.org/packages/notepadplusplus.commandline">パッケージページ</a>でダウンロードリンクをクリックし、Chocolateyのコミュニティフィードからパッケージをダウンロードします。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/choco_npp_download.png" alt="Download Link">
+</p>
+  </li>
+  <li>
+    <p> ダウンロードしたファイルの名前を変更して末尾に<code>.zip</code>を付け、通常のアーカイブとしてファイルを展開します。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/choco_rename_nupkg_zip.png" alt="Rename to append .zip suffix">
+</p>
+  </li>
+  <li>
+    <p>  <code>_rels</code>フォルダと<code>package</code>フォルダ、<code>[Content_Types].xml</code>ファイルを削除します。 これらは<code>choco pack</code>の際に再度作成されるため (また、存在すると問題が生じるため)、 含める必要はありません。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/choco_delete_pkg_files.png" alt="Remove _rels, package, and the xml file">
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>tools\chocolateyInstall.ps1</code>を開きます。
+</p>
+
+    <pre><code class="language-powershell">Install-ChocolateyZipPackage 'notepadplusplus.commandline' 'https://notepad-plus-plus.org/repository/6.x/6.8.7/npp.6.8.7.bin.zip' "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+</code></pre>
+  </li>
+  <li>
+    <p> zipファイルをダウンロードし、パッケージのツールフォルダに保存します。 
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/choco_download_zip.png" alt="Zip file embedding in package">
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>chocolateyInstall.ps1</code>を編集し、インターネットに接続する代わりにこの埋め込みファイルを指定するようにします(ファイルサイズが50MBを超える場合は、パフォーマンスを向上させるため共有環境にファイルを置いておくこともできます)。
+</p>
+
+    <pre><code class="language-powershell">$toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+Install-ChocolateyZipPackage 'notepadplusplus.commandline' "$toolsDir\npp.6.8.7.bin.zip" "$toolsDir"
+</code></pre>
+
+    <p> ダブルクォーテーションを使うと、文字列を補間できます (つまり、変数を文字どおり受けとるのではなく、解釈して受けとります)。
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>*.nuspec</code>ファイルを開いて内容を確認し、必要があれば変更します。
+</p>
+
+    <pre><code class="language-xml">&lt;?xml version="1.0"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"&gt;
+  &lt;metadata&gt;
+    &lt;id&gt;notepadplusplus.commandline&lt;/id&gt;
+    &lt;version&gt;6.8.7&lt;/version&gt;
+    &lt;title&gt;Notepad++ (Portable, CommandLine)&lt;/title&gt;
+    &lt;authors&gt;Don Ho&lt;/authors&gt;
+    &lt;owners&gt;Rob Reynolds&lt;/owners&gt;
+    &lt;projectUrl&gt;https://notepad-plus-plus.org/&lt;/projectUrl&gt;
+    &lt;iconUrl&gt;https://cdn.rawgit.com/ferventcoder/chocolatey-packages/02c21bebe5abb495a56747cbb9b4b5415c933fc0/icons/notepadplusplus.png&lt;/iconUrl&gt;
+    &lt;requireLicenseAcceptance&gt;false&lt;/requireLicenseAcceptance&gt;
+    &lt;description&gt;Notepad++ is a ... &lt;/description&gt;
+    &lt;summary&gt;Notepad++ is a free (as in "free speech" and also as in "free beer") source code editor and Notepad replacement that supports several languages. &lt;/summary&gt;
+    &lt;tags&gt;notepad notepadplusplus notepad-plus-plus&lt;/tags&gt;
+  &lt;/metadata&gt;
+&lt;/package&gt;
+</code></pre>
+
+    <p> 組織によっては、内部パッケージが編集済みであることを示すためにバージョンフィールドを変更することもあります。その場合はたとえば、<code>6.8.7</code>を<code>6.8.7.20151202</code>のように変更します。 今回はこの必要はありません。
+</p>
+
+    <p> これで、コマンドラインから<code>.nuspec</code>ファイルを含むフォルダにアクセスし(Windowsマシンで。ただし、Monoをインストールし、ソースからchoco.exeを構築している場合は除く )、<code>choco pack</code>を使用できるようになりました。 さらに具体的に、<code>choco pack path\to\notepadplusplus.commandline.nuspec</code>と入力することもできます。 アウトプットはおおむね以下のようになるはずです。
+</p>
+
+    <pre><code>Attempting to build package from 'notepadplusplus.commandline.nuspec'.
+Successfully created package 'notepadplusplus.commandline.6.8.7.nupkg'
+</code></pre>
+
+    <p> 通常は、パッケージ(*.nupkgのみ)を内部リポジトリに配備する前に、システムをテストして、構築したばかりのパッケージに問題がないかどうかを確認します。これを実施するには、テストシステムで<code>choco.exe</code>を用いて、インストール(<code>choco install notepadplusplus.commandline -source %cd%</code> - PowerShell.exeでは<code>%cd%</code>を<code>$pwd</code>に変更)とアンインストール (<code>choco uninstall notepadplusplus.commandline</code>)を実行してみます。 別の方法として、ローカルソースフォルダを指定するマニフェストを実行する方法もあります。ここではその方法でテストします。
+</p>
+  </li>
+  <li>
+    <p> <code>c:\packages</code>を作成し、先ほど構築したパッケージファイル (<code>notepadplusplus.commandline.6.8.7.nupkg</code>)をコピーします。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/choco_local_packages.png" alt="package in folder">
+</p>
+
+    <p> 先ほど同じバージョンをChocolateyのコミュニティフィードからインストールしているので、この手順では、実際にはシステムにインストールされません。 そのため、まず既存のパッケージを削除する必要があります。 削除するには、<code>chocolatey.pp</code>を編集し、パッケージをabsentに設定します。
+</p>
+
+    <pre><code class="language-puppet">package {'notepadplusplus.commandline':
+  ensure   =&gt; absent,
+  provider =&gt; chocolatey,
+}
+</code></pre>
+  </li>
+  <li>
+    <p> <code>puppet parser validate path\to\chocolatey.pp</code>でマニフェストを検証します。 マニフェストを適用し、<code>puppet apply c:\path\to\chocolatey.pp</code>の変更を確定します。
+</p>
+
+    <pre><code class="language-powershell">Notice: Compiled catalog for win2012r2x64 in environment production in 1.03 seconds
+Notice: /Stage[main]/Main/Package[notepadplusplus.commandline]/ensure: removed
+Notice: Applied catalog in 12.20 seconds
+</code></pre>
+
+    <p> パッケージのインストール場所をチェックするか、<code>choco list -lo</code>を使ってパッケージが削除されたことを確認します。
+</p>
+
+    <p> <img src="/pe/2016.2/images/windows/choco_list_local.png" alt="Package is uninstalled">
+</p>
+  </li>
+  <li>
+    <p> カスタムパッケージを使用するようにマニフェスト(<code>chocolatey.pp</code>)を更新します。
+</p>
+
+    <pre><code class="language-puppet">package {'notepadplusplus.commandline':
+  ensure   =&gt; latest,
+ provider =&gt; chocolatey,
+ source   =&gt; 'c:\packages',
+}
+</code></pre>
+  </li>
+  <li>
+    <p> パーサによりマニフェストを検証し、再度適用します。 Puppetのアウトプットで、新しいインストールが作成されていることがわかります。
+</p>
+
+    <pre><code>Notice: Compiled catalog for win2012r2x64 in environment production in 0.79 seconds
+Notice: /Stage[main]/Main/Package[notepadplusplus.commandline]/ensure: created
+Notice: Applied catalog in 14.78 seconds
+</code></pre>
+  </li>
+  <li>
+    <p> 先ほどのステップでパッケージに追加した<code>*.zip</code>ファイルを調べると、カスタムパッケージがインストールされたかどうかを確認できます。 <code>C:\ProgramData\chocolatey\lib\notepadplusplus.commandline\tools</code>(Chocolatey用のデフォルトのインストール場所がある場合)に<code>*.zip</code>ファイルがあるかどうかを確認します。
+</p>
+  </li>
+</ol>
+<p> <img src="/pe/2016.2/images/windows/choco_list_local_installed.png" alt="Package is installed">
+</p>
+
+<p> <code>chocolateyInstall.ps1</code>を開き、このファイルが変更されたカスタムファイルかどうかを確認して検証することもできます。
+</p>
+
+<h4 id="create-a-package">パッケージの作成</h4>
+
+<p> 独自のパッケージの作成は、一部のシステム管理者にとっては、他のパッケージ作成と比べると驚くほど簡単です。
+</p>
+
+<p> 以降のパートでは、Chocolatey CLI(choco.exe)バージョン<code>0.9.9.11</code>以上が必要です。
+</p>
+
+<ol>
+<li>
+    <p> コマンドプロンプトで<code>choco new -h</code>と入力し、ヘルプメニューで利用可能なオプションを確認します。
+</p>
+  </li>
+  <li>
+    <p> 次に、<code>choco new vagrant</code>を使って、「vagrant」という名前のパッケージを作成します。 アウトプットはおおむね以下のようになるはずです。
+</p>
+
+    <pre><code>Creating a new package specification at C:\temppackages\vagrant
+Generating template to a file
+ at 'C:\temppackages\vagrant\vagrant.nuspec'
+Generating template to a file
+ at 'C:\temppackages\vagrant\tools\chocolateyinstall.ps1'
+Generating template to a file
+ at 'C:\temppackages\vagrant\tools\chocolateyuninstall.ps1'
+Generating template to a file
+ at 'C:\temppackages\vagrant\tools\ReadMe.md'
+Successfully generated vagrant package specification files
+ at 'C:\temppackages\vagrant'
+</code></pre>
+
+    <p> 一部のファイルには、記述可能なテンプレートがすでに用意されています(独自のカスタムテンプレートを作成し、後で使用することもできます)。
+</p>
+  </li>
+  <li>
+    <p> <code>vagrant.nuspec</code>を開き、以下のように編集します。
+</p>
+
+    <pre><code class="language-xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd"&gt;
+  &lt;metadata&gt;
+    &lt;id&gt;vagrant&lt;/id&gt;
+    &lt;title&gt;Vagrant (Install)&lt;/title&gt;
+    &lt;version&gt;1.8.4&lt;/version&gt;
+    &lt;authors&gt;HashiCorp&lt;/authors&gt;
+    &lt;owners&gt;my company&lt;/owners&gt;
+    &lt;description&gt;Vagrant - Development environments made easy.&lt;/description&gt;
+  &lt;/metadata&gt;
+  &lt;files&gt;
+    &lt;file src="tools\**" target="tools" /&gt;
+  &lt;/files&gt;
+&lt;/package&gt;
+</code></pre>
+
+    <p> 全世界と共有するのでなければ、nuspecテンプレートファイル内にあるもののほとんどは必要ありません。そのため、上の例には必要な項目のみが含まれています。 重要な注意点として、パッケージの作成時には、nuspecファイルのパッケージのバージョンと、ベースとなるソフトウェアのバージョンをできるだけ一致させる必要があります。 ここで作成したパッケージには最新バージョンのVagrantをパッケージするため、nuspecファイルのパッケージのバージョンは一致するはずです。 この例では、Vagrant 1.8.4をパッケージします。 <a href="https://github.com/chocolatey/choco/wiki/CreatePackages#versioning-recommendations">バージョンについて詳しくはこちらを確認してください</a>。
+</p>
+  </li>
+  <li>
+    <p> <code>chocolateyInstall.ps1</code>を開き、以下のように編集します。
+</p>
+
+    <pre><code class="language-powershell">$ErrorActionPreference = 'Stop';
+
+$packageName= 'vagrant'
+$toolsDir   = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+$fileLocation = Join-Path $toolsDir 'vagrant_1.8.4.msi'
+
+$packageArgs = @{
+  packageName   = $packageName
+  fileType      = 'msi'
+  file         = $fileLocation
+
+  silentArgs    = "/qn /norestart"
+  validExitCodes= @(0, 3010, 1641)
+}
+
+Install-ChocolateyInstallPackage @packageArgs
+</code></pre>
+
+    <blockquote>
+      <p> <strong>注意</strong>：上の例は<a href="https://github.com/chocolatey/choco/wiki/HelpersInstallChocolateyInstallPackage"><code>Install-ChocolateyINSTALLPackage</code></a>です。<a href="https://github.com/chocolatey/choco/wiki/HelpersInstallChocolateyPackage"><code>Install-ChocolateyPackage</code></a>と混同しないでください。 名前はよく似ていますが、後者はURI(URL、ftp、ファイル)からもソフトウェアをダウンロードします。この例ではそれは必要ありません。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> <code>ReadMe.md</code>ファイルと<code>chocolateyUninstall.ps1</code>ファイルを削除します。 <a href="https://www.vagrantup.com/downloads.html">Vagrantをダウンロード</a>し、パッケージのツールフォルダに移動します。 
+</p>
+
+    <blockquote>
+      <p> <strong>注意</strong>：一般に、パッケージが100MBを超える場合は、ソフトウェアインストーラ/アーカイブを共有ドライブに移動し、代わりにそれを指定することが推奨されます。 この例では、そのままバンドルします。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> 次に、<code>choco pack</code>を使ってパッケージ化します。 新しい<code>vagrant.1.8.4.nupkg</code>ファイルを<code>c:\packages</code>にコピーします。
+</p>
+  </li>
+  <li>
+    <p> マニフェストを開き、作成したばかりの新しいパッケージを追加します。 <code>chocolatey.pp</code>ファイルは以下のようになります。
+</p>
+
+    <pre><code class="language-puppet">package {'vagrant':
+  ensure   =&gt; installed,
+  provider =&gt; chocolatey,
+  source   =&gt; 'c:\packages',
+}
+</code></pre>
+  </li>
+  <li>
+    <p> ファイルを保存し、Puppetパーサで検証します。
+</p>
+  </li>
+  <li>
+    <p> その後、<code>puppet apply path\to\chocolatey.pp</code>を使ってマニフェストを実行します。
+</p>
+
+    <pre><code>Notice: Compiled catalog for win2012r2x64 in environment production in 0.70 seconds
+Notice: /Stage[main]/Main/Package[vagrant]/ensure: created
+Notice: Applied catalog in 31.51 seconds
+</code></pre>
+  </li>
+  <li>
+    <p> コントロールパネルで[Programs and Features]を開き、確認します。Vagrantがインストールされています！ 
+</p>
+  </li>
+</ol>
+<p> <img src="/pe/2016.2/images/windows/choco_vagrant_installed.png" alt="Vagrant is installed!&lt;/p&gt; &lt;p class=" temp-sentence>"&gt;
+</p>
+
+<h4 id="uninstalling">アンインストール</h4>
+
+<p> chocoの<code>autoUninstaller</code>機能が有効になっているかどうかを確認するには、<code>choco feature</code>を使って機能と現在の状況を表示します。 <code>include chocolatey</code>または<code>class chocolatey</code>を使ってChocolateyをインストールしている場合は、設定は自動的に有効になっています(明示的に無効化した場合を除く)。 また、Chocolateyバージョン<code>0.9.10</code>からは、デフォルトで有効になります。
+</p>
+
+<ol>
+<li>
+    <p> <code>autoUninstaller - [Disabled]</code>と表示された場合は、有効にする必要があります。 有効にするには、コマンドプロンプトで<code>choco feature enable -n autoUninstaller</code>と入力します。 以下のような成功のメッセージが表示されるはずです。
+</p>
+
+    <pre><code>Enabled autoUninstaller
+</code></pre>
+  </li>
+  <li>
+    <p> Vagrantを削除するには、<code>chocolatey.pp</code>マニフェストを編集し、<code>ensure =&gt; absent</code>とします。 その後、ファイルを保存して検証します。
+</p>
+
+    <pre><code class="language-puppet">package {'vagrant':
+  ensure   =&gt; absent,
+  provider =&gt; chocolatey,
+  source   =&gt; 'c:\packages',
+}
+</code></pre>
+  </li>
+  <li>
+    <p> 次に、<code>puppet apply path\to\chocolatey.pp</code>を実行してマニフェストを適用します。
+</p>
+
+    <pre><code>Notice: Compiled catalog for win2012r2x64 in environment production in 0.75 seconds
+Notice: /Stage[main]/Main/Package[vagrant]/ensure: removed
+Notice: Applied catalog in 40.85 seconds
+</code></pre>
+
+    <p> <img src="/pe/2016.2/images/windows/choco_vagrant_uninstalled.png" alt="Vagrant is no longer installed">
+</p>
+
+    <p> これでアンインストールされました！
+</p>
+  </li>
+</ol>
+<h3 id="real-world-usage-1">実際の使用例</h3>
+
+<p> 以下の例では、Chocolatey、Chocolatey Simple Server(内部Chocolateyパッケージのリポジトリ)、いくつかのパッケージをインストールしています。 これには、<a href="https://forge.puppetlabs.com/chocolatey/chocolatey_server"><code>chocolatey/chocolatey_server</code>モジュール</a>が別途必要となります。
+</p>
+
+<p> <code>c:\packages</code>に、<a href="https://chocolatey.org/packages/chocolatey">Chocolatey</a>、<a href="https://chocolatey.org/packages/chocolatey.server">Chocolatey.Server</a>、<a href="https://chocolatey.org/packages/roundhouse">RoundhousE</a>、<a href="https://chocolatey.org/packages/launchy">Launchy</a>、<a href="https://chocolatey.org/packages/git">Git</a>のパッケージが存在する必要があります。それぞれのパッケージに従属するものがある場合は、それも必要です。
+</p>
+
+<pre><code class="language-puppet">case $operatingsystem {
+  'windows':    {
+    Package {
+      provider =&gt; chocolatey,
+      source   =&gt; 'C:\packages',
+    }
+  }
+}
+
+# include chocolatey
+class {'chocolatey':
+  chocolatey_download_url =&gt; 'file:///C:/packages/chocolatey.0.9.9.11.nupkg',
+  use_7zip                =&gt; false,
+  log_output              =&gt; true,
+}
+
+# This contains the bits to install the custom server.
+# include chocolatey_server
+class {'chocolatey_server':
+  server_package_source =&gt; 'C:/packages',
+}
+
+package {'roundhouse':
+  ensure   =&gt; '0.8.5.0',
+}
+
+
+package {'launchy':
+  ensure          =&gt; installed,
+  install_options =&gt; ['-override', '-installArgs','"', '/VERYSILENT','/NORESTART','"'],
+}
+
+package {'git':
+  ensure =&gt; latest,
+}
+
+</code></pre>
+
+<h3 id="want-more-chocolatey">Chocolateyの詳細</h3>
+
+<p> Chocolateyの詳細については、 <a href="https://chocolatey.org">Chocolatey.org</a>で<a href="https://github.com/chocolatey/choco/wiki">GitHubに関する文書</a>を参照してください。また、Rob ReynoldsによるPuppetConf 2015の「<a href="https://www.youtube.com/watch?v=NNM2H4GsWYA">Chocolatey and Puppet - Managing Your Windows Software Since 2011</a>」も視聴できます。 Chocolateyが提供しているものと、利用可能なリファレンスの詳細については、<a href="https://forge.puppetlabs.com/chocolatey/chocolatey">Puppet Forge</a>のモジュールおよび文書を参照してください。
+</p>
+</div>

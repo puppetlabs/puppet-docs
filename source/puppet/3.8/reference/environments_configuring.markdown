@@ -133,8 +133,8 @@ This requires `default_manifest` to be an absolute path.
 ### `environment_timeout`
 
 [inpage_timeout]: #environmenttimeout
-[puppetserver.conf]: /puppetserver/latest/configuration.html#puppetserverconf
-[environment-cache]: /puppetserver/latest/admin-api/v1/environment-cache.html
+[puppetserver.conf]: {{puppetserver}}/configuration.html#puppetserverconf
+[environment-cache]: {{puppetserver}}/admin-api/v1/environment-cache.html
 
 [(See also: Full description of `environment_timeout` setting.)](./configuration.html#environmenttimeout)
 

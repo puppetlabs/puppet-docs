@@ -138,4 +138,4 @@ Tricks, Notes, and Further Reading
 ----------------------------------
 
 * Although only the node name is directly passed to an ENC, it can make decisions based on other facts about the node by querying the [inventory service](./inventory_service.html) HTTP API or using the puppet facts subcommand shipped with Puppet 2.7.
-* Puppet's "exec" `node_terminus` is just one way for Puppet to build node objects, and it's optimized for flexibility and for the simplicity of its API. There are situations where it can make more sense to design a native node terminus instead of an ENC, one example being the "ldap" node terminus that ships with Puppet. See [the LDAP nodes documentation on the wiki](http://projects.puppetlabs.com/projects/puppet/wiki/LDAP_Nodes) for more info.
+* Puppet's "exec" `node_terminus` is just one way for Puppet to build node objects, and it's optimized for flexibility and for the simplicity of its API. There are situations where it can make more sense to design a native node terminus instead of an ENC, one example being the "ldap" node terminus that ships with Puppet. See [the LDAP nodes documentation](./ldap_nodes.html) for more info.

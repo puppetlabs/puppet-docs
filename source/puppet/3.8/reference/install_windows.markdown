@@ -4,7 +4,7 @@ title: "Installing Puppet: Microsoft Windows"
 ---
 
 [downloads]: https://downloads.puppetlabs.com/windows
-[peinstall]: /pe/latest/install_windows.html
+[peinstall]: {{pe}}/install_windows.html
 [pre_install]: ./pre_install.html
 [puppet.conf]: /puppet/latest/reference/config_file_main.html
 [environment]: /puppet/latest/reference/environments.html

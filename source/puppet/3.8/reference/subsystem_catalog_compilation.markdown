@@ -11,7 +11,7 @@ canonical: "/puppet/latest/reference/subsystem_catalog_compilation.html"
 [facts]: ./lang_facts_and_builtin_vars.html
 [enc]: /guides/external_nodes.html
 [exported resources]: ./lang_exported.html
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}
 [functions]: ./lang_functions.html
 [main manifest]: ./dirs_manifest.html
 [modules]: ./modules_fundamentals.html
@@ -47,7 +47,7 @@ Puppet manifests are concise because they can express variation between nodes wi
 * **Separate privileges:** Each individual node has little to no knowledge about other nodes. It only receives its own resources.
 * **Reduce the agent's resource consumption:** Since the agent doesn't have to compile, it can use less CPU and memory.
 * **Simulate changes:** Since the agent is just checking resources and not running arbitrary code, it has the option of simulating changes. If you do a Puppet run in _noop_ mode, the agent will check against its current state and report on what _would_ have changed without actually making any changes.
-* **Record and query configurations:** If you use PuppetDB, you can [query it for information about managed resources on any node](/puppetdb/latest/api/index.html).
+* **Record and query configurations:** If you use PuppetDB, you can [query it for information about managed resources on any node]({{puppetdb}}/api/index.html).
 
 ### What about Puppet apply?
 

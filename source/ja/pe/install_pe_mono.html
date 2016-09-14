@@ -1,0 +1,342 @@
+---
+layout: default
+title: "PEインストール：モノリシックインストール"
+canonical: "/ja/pe/install_pe_mono.html"
+---
+
+<div>
+<p> 以下では、Webベースのインタフェースを用いてモノリシックインストールを実施する方法を説明します。 PEのモノリシックインストールでは、master、コンソール、PuppetDBコンポーネントがすべて同じマシンにインストールされます。
+</p>
+
+<p> 各種のインストール方法の詳細については、「<a href="./install_system_requirements.html#choosing-a-pe-architecture">PEアーキテクチャの選択 (Choosing a PE architecture)</a>を参照してください。
+</p>
+
+<h2 id="before-beginning-your-installation">インストールを始める前に</h2>
+
+<p> 一般的およびSSHに関する前提条件と注意事項を確認してください。
+</p>
+
+<h3 id="general-prerequisites-and-notes">一般的な前提条件と注意事項</h3>
+
+<ul>
+<li>
+    <p> 以前PuppetまたはPEをインストールしたことがある場合は、これからPEをインストールするマシンに前回インストールのデータが残っていないことを確認してください。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseのインストール先マシンにDNSが正しく設定されていることを確認してください。 すべてのノードは<strong>自身のホスト名を認識していなければなりません</strong>。そのためには、ローカルDNSサーバーで逆引きDNSを正しく設定するか、ホスト名を明示的に設定する必要があります。 ホスト名の設定には、通常、<code>hostname</code>コマンドと1つ以上の構成ファイルを使用しますが、正確な方法はプラットフォームによって異なります。 さらに、すべてのノードが<strong>名前を使用して相互アクセスできる必要があります</strong>。そのためには、ローカルDNSサーバーを使用するか、各ノードの<code>/etc/hosts</code>ファイルを編集して、適切なIPアドレスを示す必要があります。 
+</p>
+  </li>
+  <li>
+    <p> PEデプロイに含まれるマシン、またはデプロイ外のマシンからインストーラを実行できます。 デプロイに含まれるマシンからインストールを実行する場合は、コンソールコンポーネント に割り当てられたものと同じノードから実行することを推奨します (分割インストールの場合)。
+</p>
+  </li>
+  <li>
+    <p> インストーラを実行するマシンは、PEデプロイと同じOS/アーキテクチャを搭載している必要があります。
+</p>
+  </li>
+  <li>
+    <p> ポート3000にアクセスできることを確認してください。Webベースのインストーラはこのポートを使用します。 インストールの完了後、このポートは閉じることができます。
+</p>
+  </li>
+  <li>
+    <p> Webベースのインストーラは<code>Defaults targetpw</code>または<code>Defaults rootpw</code>によるsudo設定をサポートしていません。 <code>/etc/sudoers</code>ファイルにこのようなラインが含まれないようにするか、このようなラインをコメントアウトします。 
+</p>
+  </li>
+  <li>
+    <p> <strong>Debianユーザーの場合</strong>：Debianインストールの際にrootアカウントにパスワードを付与した場合は、 sudoがインストールされていない可能性があります。 この場合、PEをrootとしてインストールするか、PEをインストールするノードのいずれかでsudoをインストールする必要があります。
+</p>
+  </li>
+  <li>
+    <p> <strong>パスワードに関する注記</strong>：一部のケースでは、インストールプロセス中にパスワードの提示を求められることがあります。 <code>'</code>(シングルクォーテーション)は、すべてのパスワードで使用することができません。
+</p>
+  </li>
+  <li>
+    <p> PEで管理されていない外部PostgreSQLインスタンスを使用している場合は、インストール前に「<a href="./install_system_requirements.html#external-postgresql-option-and-prep-notes">External PostgreSQL Option and Prep Notes(外部PostgreSQLオプションと準備に関する注記)</a>」を参照してください。
+</p>
+  </li>
+</ul>
+<h3 id="ssh-prerequisites-and-notes">SSHに関する前提条件と注意事項</h3>
+
+<blockquote>
+  <p> <strong>注意</strong>：インストールプロセスの際に<strong>このサーバーへのインストール</strong>を選択する予定の場合は、SSH設定に関して追加の手順を実施する必要はありません。
+</p>
+</blockquote>
+
+<ul>
+<li>
+    <p> 適切な設定のSSH agentがあり、agentフォワーディングが有効になっている場合は、追加のSSH設定を実施する必要はありません。 インストーラでは既存のSSH agentが使用されます。 
+</p>
+  </li>
+  <li>
+    <p> PEインストールの複数のノードでSSHキーによる認証を行う場合は、PEコンポーネントをインストールする各ノード(インストーラを実行するマシンを含む)において、インストールを行うユーザアカウントの<code>authorized_keys</code>ファイルに、そのユーザアカウントのパブリックキーを含める必要があります。 これはrootユーザにも非rootユーザにも適用されます。
+</p>
+  </li>
+  <li>
+    <p> Webベースのインストーラでは、PEコンポーネントをインストールする各ノードについて、ユーザアカウント名、SSHプライベートキーのロケーション、SSHパスフレーズを指定する必要があります。
+</p>
+  </li>
+  <li>
+    <p> 以下の認証オプションを確認してください。
+</p>
+
+    <ul>
+<li>
+<strong>rootとパスワードを使ってインストールする場合。</strong>インストール時にはPEコンポーネントをインストールする各ノードについて、ユーザ名とパスワードを指定する必要があります。<ul>
+<li>
+<strong>前提条件</strong>：インストーラを実行するノードを含む各ノードで、リモートroot SSHログインを有効にする必要があります。</li>
+        </ul>
+</li>
+      <li>
+<strong>非rootユーザとパスワードを使ってインストールする場合。</strong>インストール時にはPEコンポーネントをインストールする各ノードについて、ユーザ名とパスワードを指定する必要があります。<ul>
+<li>
+<strong>前提条件</strong>：PEコンポーネントをインストールする非rootユーザについて、Sudoを有効にする必要があります。</li>
+        </ul>
+</li>
+      <li>
+<strong>rootとSSHキーを使ってインストールする場合。</strong>インストール時にはPEコンポーネントをインストールする各ノードについて、ユーザ名、プライベートキーのパス、キーのパスフレーズ(必要な場合)を指定する必要があります。<ul>
+<li>
+<strong>前提条件</strong>：インストーラを実行するノードを含めた各ノードについて、リモートroot SSHログインを有効にする必要があります。また、PEコンポーネントをインストールする各ノードで、パブリックrootのSSHキーを<code>authorized_keys</code>に追加する必要があります。</li>
+        </ul>
+</li>
+      <li>
+<strong>非rootユーザとSSHキーを使ってインストールする場合。</strong>インストール時にはPEコンポーネントをインストールする各ノードについて、ユーザ名、プライベートキーのパス、キーのパスフレーズ(必要な場合)を指定する必要があります。<ul>
+<li>
+<strong>前提条件</strong>：PEコンポーネントをインストールする各ノードで、非rootユーザのSSHキーを<code>authorized_keys</code>に追加する必要があります。 また、各ボックスで非rootユーザにsudoアクセスを付与する必要があります。</li>
+        </ul>
+</li>
+    </ul>
+</li>
+</ul>
+<h2 id="monolithic-installation-step-1">モノリシックインストール：ステップ1</h2>
+
+<ol>
+<li>
+<a href="./install_basic.html#downloading-puppet-enterprise">適切なPE tarballをダウンロードし、検証します</a>。</li>
+  <li>tarballを展開し、<code>tar -xf &lt;tarball&gt;</code>を実行します(インストーラを展開するには、<code>/tmp</code>に約1 GBの空き容量が必要です)。</li>
+  <li>インストーラのディレクトリから、<code>sudo ./puppet-enterprise-installer</code>によりインストーラを実行します。</li>
+  <li>
+    <p> プロンプトが表示されたら、「Guided(ガイド付き)」インストールオプションを選択します。
+</p>
+
+    <p> この段階で、PEインストーラによってWebサーバーが起動され、Webアドレス<code>https://&lt;install platform hostname&gt;:3000</code>が提供されます。 ポート3000にアクセスできることを確認します。 ポート3000は、必要に応じて、インストールの完了後、閉じることができます。 必ず<code>https</code>を使用してください。
+</p>
+  </li>
+  <li>アドレスをブラウザにコピーし、「モノリシックインストール：パート2」に進みます。</li>
+</ol>
+<blockquote>
+  <p> <strong>警告</strong>: インストールが完了するまで、ターミナル接続を開いたままにしておいてください。接続を終了するとインストールに失敗します。
+</p>
+</blockquote>
+
+<h2 id="monolithic-installation-step-2">モノリシックインストール：ステップ2</h2>
+
+<ol>
+<li>
+    <p> メッセージ画面で、ブラウザのセキュリティ条件を承認します。
+</p>
+
+    <p> Webベースのインストールでは、デフォルトのSSL証明書を使用するため、Webベースのインストーラにアクセスするには、セキュリティの例外を追加する必要があります。 この例外を追加しても、セキュリティ上問題は起こりません。
+</p>
+
+    <p> インストーラの開始ページが表示されます。
+</p>
+  </li>
+  <li>最初のページで[<strong>Let’s get started</strong>]をクリックします。</li>
+  <li>デプロイ方法として[<strong>Monolithic</strong>]を選択します。</li>
+  <li>インストーラを実行しているサーバー上にPEをインストールするか、別のサーバー上にインストールするかを選択します。[<strong>Install on this server</strong>]または[<strong>Install on another server</strong>]のいずれかを選択します。</li>
+  <li>
+    <p> [<strong>Application Orchestration</strong>]を有効にするかどうかを選択します(デフォルトでは有効)。
+</p>
+
+    <p> この機能を有効にすると、Puppet Application Orchestrationサービスを利用できるようになります。このサービスには、コマンドラインツール(puppet jobおよびpuppet app)とアプリケーション言語拡張機能が含まれています。 Puppet DSLでモデル化したアプリケーションがある場合は、Puppetオーケストレータにより、アプリケーションモデルで指定した依存関係に従ってノードが実行されます。 また、Puppetオーケストレータを使えば、Puppet環境のすべてのノードでPuppetを実行することができます。
+</p>
+
+    <p> オーケストレータの使用とPuppet DSLでのアプリケーションのモデリングに関する詳細については、<a href="/pe/2016.2/app_orchestration_overview.html">Application Orchestration文書</a>を参照してください。
+</p>
+  </li>
+  <li>
+    <p> Puppet masterサーバーに関する以下の情報を入力します。
+</p>
+
+    <blockquote>
+      <p> [<strong>Install on this server</strong>]を選択した場合は、ステップa～bのみが求められます。
+</p>
+    </blockquote>
+
+    <p> a. <strong>Puppet master FQDN</strong>: PEのインストール先サーバーの完全修飾ドメイン名を入力します。 これはPuppet master証明書の名前になります。 このFQDNは、インストーラを実行するマシンから解読できる必要があります。
+</p>
+
+    <p> b. <strong>DNSエイリアス</strong>：agentからmasterへのアクセス時に使用する、信頼できる変化しない有効なDNS名(デフォルトでは「puppet」)のリストをカンマ区切りで列挙します。 この静的リストには、agentと通信する予定のDNS名またはエイリアスを必ず含めてください。
+</p>
+
+    <p> c. <strong>SSHユーザ名</strong>：Puppet masterへの接続時に使用するユーザ名を入力します。 このフィールドはデフォルトでは<code>root</code>です。 ユーザはrootユーザであるか、sudoアクセス権限を有している必要があります。
+</p>
+
+    <p> d. <strong>SSHパスワード</strong>：使用する場合には、先ほど入力したSSHユーザ名に対応するパスワードを入力します。 sudoアクセス時にパスワードを求められた場合、ユーザはこのパスワードを使うことができます。
+</p>
+
+    <p> e. <strong>SSHキーファイルパス</strong>：SSHパスワードを使用しない場合は、インストールを実施するマシン上のSSHキーへの絶対パスを入力します。 デフォルトではroot SSHキーパスになっています。
+</p>
+
+    <p> f. <strong>SSHキーのパスフレーズ</strong>：SSHキーがパスフレーズで保護されている場合に入力します。
+</p>
+  </li>
+  <li>
+    <p> データベースサポートに関する以下の情報を提示します(PuppetDBおよびPostgreSQL)。
+</p>
+
+    <p> a. <strong>Install PostgreSQL on the PuppetDB host for me(PuppetDBホストにPostgreSQLをインストールする)</strong>：(デフォルト)PEがデータベースのPostgreSQLインスタンスをインストールします。 これには、PEの生成したデータベースのデフォルト名とユーザ名が使用されます。 パスワードはインストール完了時に<code>/etc/puppetlabs/installer/database_info.install</code>から取得できます。
+</p>
+
+    <p> b. <strong>Use an Existing PostgreSQL instance(既存のPostgreSQLインスタンスを使用する)</strong>：使用するPostgreSQLインスタンスがすでに存在する場合は、以下のデータベース情報を入力する必要があります。 データベースの設定に関する詳細な説明は、「<a href="./install_system_requirements.html#external-postgresql-option-and-prep-notes">External PostgreSQL option and prep notes(外部PostgreSQLオプションと準備に関する注記)</a>」を参照してください。
+</p>
+
+    <blockquote>
+      <p> <strong>重要</strong>：PEインストール後に、<a href="/pe/2016.2/install_ssl_postgresql.html">SSL for PE and PostgreSQL (PEと外部PostgreSQLのSSL) 文書</a>を参照し、PEと外部PostgreSQLインスタンスのSSLを有効にしてください。
+</p>
+    </blockquote>
+
+    <ul>
+<li>
+        <p> PostgreSQLサーバのDNS名
+</p>
+      </li>
+      <li>
+        <p> PostgreSQLサーバが使用するポート番号 (デフォルトは5432)
+</p>
+      </li>
+      <li>
+        <p> PuppetDBデータベース名 (デフォルトは「pe-puppetdb」)
+</p>
+      </li>
+      <li>
+        <p> PuppetDBデータベースユーザ (デフォルトは「pe-puppetdb」)
+</p>
+      </li>
+      <li>
+        <p> PuppetDBデータベースのパスワード
+</p>
+      </li>
+      <li>
+        <p> ロールベースのアクセス制御データベース名 (デフォルトは「pe-rbac」)
+</p>
+      </li>
+      <li>
+        <p> ロールベースのアクセス制御データベースユーザ (デフォルトは「pe-rbac」)
+</p>
+      </li>
+      <li>
+        <p> ロールベースのアクセス制御データベースのパスワード
+</p>
+      </li>
+      <li>
+        <p> ノード分類子データベース名 (デフォルトは「pe-classifier」)
+</p>
+      </li>
+      <li>
+        <p> ノード分類子データベースユーザ (デフォルトは「pe-classifier」)
+</p>
+      </li>
+      <li>
+        <p> ノード分類子データベース名のパスワード
+</p>
+      </li>
+      <li>
+        <p> アクティビティデータベース名 (デフォルトは「pe-activity」)
+</p>
+      </li>
+      <li>
+        <p> アクティビティデータベースユーザ (デフォルトは「pe-activity」)
+</p>
+      </li>
+      <li>
+        <p> アクティビティデータベースのパスワード
+</p>
+      </li>
+      <li>
+        <p> オーケストレータデータベース名 (デフォルトは「pe-orchestrator」)
+</p>
+      </li>
+      <li>
+        <p> オーケストレータデータベースユーザ (デフォルトは「pe-orchestrator」)
+</p>
+      </li>
+      <li>
+        <p> オーケストレータデータベースのパスワード
+</p>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> PEコンソール管理ユーザに関する以下の情報を入力します。
+</p>
+
+    <p> <strong>Console superuser password (コンソールスーパーユーザのパスワード)</strong>: コンソールへのログインに使用するパスワードを8文字以上で作成します。
+</p>
+
+    <p> <strong>注意</strong>: コンソール管理ユーザのユーザ名は<strong>admin</strong>です。
+</p>
+  </li>
+  <li>
+    <p> [<strong>Submit</strong>]をクリックします。
+</p>
+  </li>
+  <li>
+    <p> 確認ページで、入力した情報を見直し、正しければ[<strong>Continue</strong>]をクリックします。
+</p>
+
+    <p> 変更が必要な場合は、[<strong>Go Back</strong>]をクリックして情報を変更します。
+</p>
+  </li>
+  <li>
+    <p> 確認ページで、インストーラが各種の設定項目 (SSH証明書が正しいか、ディスク空き容量は十分か、各コンポーネントのOSが同じかなど) を検証します。 問題がなければ、[<strong>Deploy now</strong>]をクリックします。
+</p>
+
+    <p> この段階で、PEはデプロイのインストールを開始します。[<strong>Log View</strong>]および[<strong>Summary View</strong>] (ページの右上)を切り替えて、インストールの進行状況をモニタリングすることができます。 インストール中にエラーが生じた場合は、インストーラを実行しているマシンで<code>/var/log/puppetlabs/installer/install_log.lastrun.&lt;hostname&gt;.log</code>をチェックしてください。
+</p>
+
+    <p> インストールが完了すると、ターミナルで実行されていたインストーラのスクリプトは自動的に終了します。
+</p>
+  </li>
+  <li>[<strong>Start using Puppet Enterprise</strong>]をクリックし、<a href="/pe/2016.2/console_accessing.html">コンソールにログイン</a>するか、「<a href="./install_agents.html">Installing Agents (agentのインストール)</a>」に進みます。</li>
+</ol>
+<h2 id="the-peconf-file">
+<code>pe.conf</code>ファイル</h2>
+
+<p> インストールの一環として、PEは<a href="./install_text_mode.html#the-peconf-file"><code>pe.conf</code>ファイル</a>を作成します。これは、PEのインストールおよび設定に必要な基本的な情報を提示するものです。 インストールの完了後は、<code>/opt/puppetlabs/puppet/share/installer/conf.d</code>でファイルを見つけることができます。 <code>pe.conf</code>ファイルを使えば、<a href="./install_text_mode.html">テキストモードインストール</a>を実施できます。
+</p>
+
+<h2 id="port-forwarding-to-the-installer">インストーラへのポートフォワーディング</h2>
+
+<p> インストーラ実行中のマシン上でポート3000に直接接続できない場合は、SSHによってインストーラにポートフォワーディング(「トンネリング」)する方法があります。
+</p>
+
+<p> <strong>Linuxマシンの場合</strong>：
+</p>
+
+<ol>
+<li>インストーラを実行しているマシンで、<code>ssh -L 3000:localhost:3000 jumphost.exmple.tld</code>を実行します。</li>
+  <li>以下の指示に従って、インストーラのスクリプトを実行します。</li>
+  <li>インストーラURLの入力を求められたら、代わりに<code>https://localhost:3000</code>を指定します。</li>
+</ol>
+<p> <strong>Windowsマシンの場合</strong>：
+</p>
+
+<ol>
+<li>PuTTYを開き、[<strong>Sessions</strong>]を選択します。</li>
+  <li>[<strong>Host Name</strong>]フィールドに、インストーラを実行するホストのFQDNを入力します。</li>
+  <li>[<strong>Tunnels</strong>]を選択します。</li>
+  <li>[<strong>Source Port</strong>]フィールドに、<code>3000</code>と入力します。</li>
+  <li>[<strong>Destination</strong>]フィールドに、<code>localhost:3000</code>と入力します。</li>
+  <li>[<strong>Local</strong>]を選択します。</li>
+  <li>[<strong>Add</strong>]をクリックします。</li>
+  <li>[<strong>Open</strong>]をクリックします。</li>
+</ol>
+<p> ブラウザを起動するように求められたら、<code>https://localhost:3000</code>を使用し、以下のインストールの指示に従って操作を続けます。
+</p>
+
+<hr>
+<p> 次の手順：<a href="./install_agents.html">PE agentのインストール</a>
+</p>
+</div>

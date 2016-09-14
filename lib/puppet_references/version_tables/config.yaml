@@ -2,6 +2,7 @@
 agent:
   include:
     # 1.9.9: fd674b8c8b8cf64e9d29f4e8aec198abbc69d127
+    1.5.3: 1.5.2 # temporary, until the 1.5.3 tag is public.
   exclude:
     - 1.3.3 # burned tag
     - 1.2.3 # burned tag

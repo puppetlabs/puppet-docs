@@ -1,0 +1,97 @@
+---
+layout: default
+title: "クラスを追加するクイックスタートガイド"
+canonical: "/ja/pe/quick_start_adding_class_windows.html"
+---
+
+<div>
+<h3 id="overview">概要</h3>
+
+<p> すべてのモジュールには、1つまたは複数の<strong>クラス</strong>が含まれています。 クラスとは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <a href="/pe/2016.2/quick_start_module_install_windows.html">Module Installation QSG(モジュールインストールQSG)</a>でインストールしたPuppet wsus_clientモジュールには、<code>wsus_client</code>と呼ばれるクラスが含まれています。 この例では、<code>wsus_client</code>クラスを用いて、WSUSサーバーとPuppetを用いたアップデートのスケジューリングに必要なタイプおよびプロバイダを提供します。
+</p>
+
+<p> この例では、<strong>windows_example</strong>というグループを作成し、そのグループに<code>wsus_client</code>クラスを追加します。
+</p>
+
+<blockquote>
+  <p> <strong>前提条件</strong>：このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、1つ以上の<a href="./quick_start_install_agents_windows.html">Windows agentノード</a>と<a href="/pe/2016.2/quick_start_module_install_windows.html">puppetlabs-wsus_clientモジュール</a>がインストールされているものと想定します。
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>注意</strong>：コンソールでクラスをagentノードに追加するプロセスは、Windowsオペレーティングシステムでも *nixオペレーティングシステムでも同じです。
+</p>
+</blockquote>
+
+<h3 id="create-the-windowsexample-group">windows_exampleグループを作成する</h3>
+
+<ol>
+<li>Puppet Enterprise Webコンソールで、[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、[<strong>Add group</strong>]をクリックします。</li>
+  <li>[<strong>Add group</strong>]をクリックします。</li>
+  <li>[<strong>Group name</strong>]フィールドで、グループ名を指定します(windows_exampleなど)。</li>
+  <li>[<strong>Add</strong>]をクリックします。</li>
+  <li>
+<strong>windows_example</strong>グループを選択します。</li>
+  <li>[<strong>Rules</strong>]タブの[<strong>Certname</strong>]フィールドで、PEで管理されているノードの中から、このグループに追加するノードの名前を入力します。</li>
+  <li>
+    <p> [<strong>Pin node</strong>]をクリックします。
+</p>
+
+    <ul>
+<li>
+<strong>Environment group</strong> – このオプションは選択しないでください。</li>
+    </ul>
+</li>
+  <li>[<strong>Add</strong>]をクリックします。</li>
+  <li>
+<em>windows_example</em>グループを選択します。<strong>注意</strong>：ノードをピンで固定すると、ノードグループに対して指定したルールに関係なく、そのノードがグループに追加されます。ピンで固定されたノードは、手動で削除するまでそのノードグループにとどまります。「<a href="/pe/2016.2/console_classes_groups.html#adding-nodes-dynamically">Adding nodes dynamically （ノードを動的に追加する)</a>」では、ルールを用いてノードをノードグループに追加する方法を説明しています。 </li>
+  <li>[<strong>Pin node</strong>]をクリックします。</li>
+  <li>
+    <p> [<strong>Commit 1 change</strong>]をクリックします。
+</p>
+
+    <p> <img src="/pe/2016.2/images/quick/windows_add_group.png" alt="adding node to windows group">
+</p>
+  </li>
+  <li>ほかにもノードを追加する場合は、ステップ5～7を繰り返します。</li>
+</ol>
+<h3 id="add-the-wsusclient-class-to-the-example-group">
+<code>wsus_client</code>クラスをexampleグループに追加する</h3>
+
+<ol>
+<li>
+    <p> コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックします。
+</p>
+  </li>
+  <li>
+    <p> <strong>windows_example</strong>グループを選択します。
+</p>
+  </li>
+  <li>
+    <p> [<strong>Classes</strong>]タブをクリックします。
+</p>
+  </li>
+  <li>
+    <p>  [<strong>Add new class</strong>]フィールドに<code>wsus</code>と途中まで入力し、オートコンプリートリストに表示される<strong>wsus_client</strong>を選択します。 <strong>wsus_client</strong>がリストに表示されない場合は、[<strong>Refresh</strong>]をクリックする必要があるかもしれません。
+</p>
+  </li>
+  <li>
+    <p> [<strong>Add class</strong>]をクリックします。
+</p>
+  </li>
+  <li>
+    <p> [<strong>Commit 1 change</strong>]をクリックします。
+</p>
+
+    <p> これで、<code>wsus_client</code>クラスがagentノードのクラスリストに表示されるはずです。
+</p>
+  </li>
+  <li>
+    <p> Puppetが稼働し、新たに割り当てられたクラスを用いて<strong>windows_ example</strong>グループを設定します。 1～2分待ちます。
+</p>
+  </li>
+</ol>
+<hr>
+<p> 次の手順：<a href="./quick_start_rbac_windows.html">クイックスタート：ユーザ許可の割り当て</a>
+</p>
+</div>

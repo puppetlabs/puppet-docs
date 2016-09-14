@@ -5,7 +5,7 @@ title: "Deprecated Extension Points and APIs"
 
 [inventory service]: https://github.com/puppetlabs/puppet-docs/blob/0db89cbafa112be256aab67c42b913501200cdca/source/guides/inventory_service.markdown
 [puppet.conf]: ./config_file_main.html
-[puppetdb]: /puppetdb/latest
+[puppetdb]: {{puppetdb}}
 [auth.conf]: ./config_file_auth.html
 [exported resources]: ./lang_exported.html
 

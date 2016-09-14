@@ -94,7 +94,7 @@ Other interpreters and versions of Ruby are not covered by our tests, and may or
 ### Mandatory Libraries
 
 -   [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 1.7.0 or later
--   [Hiera](/hiera/latest/) 1.0 or later
+-   [Hiera]({{hiera}}/) 1.0 or later
 -   The `json` gem (any modern version).
 
 ### Optional Libraries

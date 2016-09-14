@@ -5,9 +5,9 @@ canonical: "/puppet/latest/reference/ssl_regenerate.html"
 description: "This page describes the steps for regenerating certs under an open source Puppet deployment."
 ---
 
-[split]: /pe/latest/trouble_regenerate_certs_split.html
-[monolithic]: /pe/latest/trouble_regenerate_certs_monolithic.html
-[puppetdb]: /puppetdb/latest
+[split]: {{pe}}/trouble_regenerate_certs_split.html
+[monolithic]: {{pe}}/trouble_regenerate_certs_monolithic.html
+[puppetdb]: {{puppetdb}}
 [puppet dashboard]: /dashboard/1.2
 [mcollective]: /mcollective
 
@@ -67,7 +67,7 @@ For each extension like this, you'll need to regenerate the certificate(s) it us
 * [MCollective][] often uses SSL certificates from Puppet's CA. If you are replacing your Puppet CA and are using the same certs for MCollective, you should [go through the standard deployment guide][standard_mco] and re-do any steps involving security credentials. You'll generally need to replace client certificates, your server keypair, and the ActiveMQ server's keystore and truststore.
 
 [standard_mco]: /mcollective/deploy/standard.html
-[puppetdb_ssl]: /puppetdb/latest/install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
+[puppetdb_ssl]: {{puppetdb}}/install_from_source.html#step-3-option-a-run-the-ssl-configuration-script
 
 
 ## Step 3: Clear and Regenerate Certs for Puppet Agents

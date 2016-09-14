@@ -8,9 +8,21 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2016-5713 - Environment Leakage in pxp-module-puppet](https://puppet.com/security/cve/cve-2016-5713)
+
+    Resolved in Puppet Agent 1.6.0
+
+- [CVE-2015-7331: Remote Code Execution in mcollective-puppet-agent plugin](https://puppet.com/security/cve/cve-2015-7331)
+
+    Resolved in Puppet Enterprise 2016.2.1
+    
+- [CVE-2016-2788: Improper validation of fields in MCollective pings](https://puppet.com/security/cve/cve-2016-2788)
+
+    Resolved in Puppet Enterprise 3.8.6, Puppet Enterprise 2016.2.1, and MCollective 2.8.9
+ 
 - [CVE-2016-2785: Incorrect URL Decoding](https://puppet.com/security/cve/cve-2016-2785)
 
-    Resolved in Puppet Enterprise 2016.1.2, Puppet Server 2.3.2, Puppet 4.4.2, and Puppet agent 1.4.2.
+    Resolved in Puppet Enterprise 2016.1.2, Puppet Server 2.3.2, Puppet 4.4.2, and Puppet agent 1.4.2
 
 - [CVE-2016-2786: Incorrect Client Verification in Puppet Communications Protocol](https://puppet.com/security/cve/CVE-2016-2786)
 
@@ -237,6 +249,30 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in Puppet 0.25.2
 
 ## Third-party security announcements
+
+- [Nokogiri June 2016 Security Fixes](https://puppet.com/security/cve/nokogiri-jun-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.2.1 and Puppet agent 1.5.3
+   
+- [Libxml2 May 2016 Security Fixes](https://puppet.com/security/cve/libxml2-may-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.2.1 and Puppet agent 1.5.3
+   
+- [Stomp June 2016 Security Fixes](https://puppet.com/security/cve/stomp-gem-jun-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.2.1 and Puppet agent 1.5.3
+   
+- [Oracle Java July 2016 Security Fixes](https://puppet.com/security/cve/oracle-java-jul-2016-security-fixes)
+  
+   Resolved in Puppet Enterprise 3.8.6 and Puppet Enterprise 2016.2.1
+   
+- [CVE-2011-4971: Memcached vulnerability](https://puppet.com/security/cve/cve-2011-4971)
+
+   Resolved in Puppet Enterprise 3.8.6
+
+- [CVE-2015-7995: libxslt vulnerability](https://puppet.com/security/cve/cve-2015-7995)
+
+   Resolved in Puppet Enterprise 2016.2.1 and Puppet agent 1.5.3
 
 - [OpenSSL May 2016 Security Fixes](https://puppet.com/security/cve/openssl-may-2016-security-fixes)
 

@@ -37,10 +37,10 @@ canonical: "/puppet/latest/reference/lang_classes.html"
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
 [ldap_nodes]: http://projects.puppetlabs.com/projects/1/wiki/Ldap_Nodes
-[hiera]: /hiera/latest
-[external_data]: /hiera/latest/puppet.html
-[array_search]: /hiera/latest/lookup_types.html#array-merge
-[hiera_hierarchy]: /hiera/latest/hierarchy.html
+[hiera]: {{hiera}}
+[external_data]: {{hiera}}/puppet.html
+[array_search]: {{hiera}}/lookup_types.html#array-merge
+[hiera_hierarchy]: {{hiera}}/hierarchy.html
 
 
 

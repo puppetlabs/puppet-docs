@@ -194,7 +194,7 @@ README Style Notes
 ## Style and Formatting
 
 1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
-2. *Public* classes and defines are intended to be tweaked, changed, or otherwise interacted with by the user. *Private** classes and defines do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.
+2. *Public* classes and defines are intended to be tweaked, changed, or otherwise interacted with by the user. **Private** classes and defines do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.
 3. Every parameter should have a description that starts with an action verb if at all possible (such as, "Sets the...", "Enables...", "Determines...", "Specifies..."). The description should be followed, in the same paragraph, by valid options (such as, "Valid options: an array"). Valid options should be followed by any default, if applicable.
 
     For example:
