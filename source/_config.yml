@@ -101,7 +101,7 @@ documents:
   # Davis preview for old link compatibility:
   /pe/2016.3:
     doc: pe
-    version: 2016.3
+    version: "2016.3 (same as .4)"
     nav: ./_pe_toc.html
     draft: true
     external_source:
