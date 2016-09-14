@@ -87,7 +87,18 @@ document_names:
 #      puppetserver: 2.2
 #      puppetdb: 3.2
 documents:
-  # Davis preview
+  # "real" Davis preview URLs
+  /pe/2016.4:
+    doc: pe
+    version: 2016.4
+    nav: ./_pe_toc.html
+    draft: true
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/davis
+      subdirectory: source
+
+  # Davis preview for old link compatibility:
   /pe/2016.3:
     doc: pe
     version: 2016.3
