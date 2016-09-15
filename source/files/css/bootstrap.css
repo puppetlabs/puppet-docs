@@ -7030,10 +7030,12 @@ nav.main ul > li::before {
 }
 nav.main ul > li.hidden-nav::before {
   color: #777;
+  cursor: pointer;
   content: "+";
 }
 nav.main ul > li.expanded-nav::before {
   color: #777;
+  cursor: pointer;
   content: "–";
 }
 nav.main ul > li strong {
