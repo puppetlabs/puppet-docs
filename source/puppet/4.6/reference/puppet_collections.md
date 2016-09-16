@@ -115,11 +115,11 @@ Next, verify the tarball or gem by running the following, replacing `<VERSION>` 
 
 The output should confirm that the signature matches:
 
-{% include puppet-collection/_rsk_gpg_command_output.md %}
+{% include puppet-collection/_gpg_command_output.md %}
 
 If you have not taken the necessary steps to build a [trust path](https://www.gnupg.org/gph/en/manual/x334.html), through the web of trust, to one of the signatures on the release key, `gpg` produces a warning similar to the following when you verify the signature:
 
-{% include puppet-collection/_rsk_gpg_command_warning.md %}
+{% include puppet-collection/_gpg_command_warning.md %}
 
 This is normal if you do not have a trust path to the key. If you've verified the fingerprint of the key as described above, GPG has verified the archive's integrity; the warning only means that GPG can't automatically prove the key's ownership.
 
