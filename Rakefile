@@ -266,6 +266,21 @@ task :build_and_check_links do
   Rake::Task['build'].invoke
 end
 
+namespace :links do
+  desc 'Format a link report for latest versions of all projects'
+  task :report_latest_all do
+    prefixes = ['pe', 'puppet', 'puppetdb', 'puppetserver', 'facter', 'hiera'].map {|proj|
+      @config_data['document_version_index'][proj]['latest']
+    }.join(' ')
+    puts `#{top_dir}/util/link_report.rb #{prefixes}`
+  end
+
+  desc 'Format a link report for latest version of just PE'
+  task :report_latest_pe do
+    puts `#{top_dir}/util/link_report.rb #{@config_data['document_version_index']['pe']['latest']}`
+  end
+end
+
 desc "Instead of building real pages, build naked HTML fragments (with no nav, etc.)"
 task :build_html_fragments do
   Rake::Task['check_git_dirty_status'].invoke

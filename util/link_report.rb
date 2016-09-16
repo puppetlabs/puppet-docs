@@ -4,7 +4,9 @@ require 'yaml'
 if ARGV.empty?
   puts %Q{link_report.rb:
     Prints a report on broken links (in one or more path prefixes) to stdout.
-    Before using this, you must run the 'build_and_check_links' rake task.
+    Requires a `link_test_results.yaml' file in the top of the puppet-docs
+    directory; before using this, you must create that file with the
+    'build_and_check_links' rake task.
 
 Usage:
     ./link_report.rb <PREFIX> [<PREFIX>]
@@ -16,7 +18,7 @@ Example:
 end
 
 PREFIXES = "(#{ARGV.join('|')})"
-LINK_CHECK_YAML = File.join(File.dirname(__FILE__), 'link_test_results.yaml')
+LINK_CHECK_YAML = File.join(File.dirname(__FILE__), '..', 'link_test_results.yaml')
 USING_HOSTNAME_IS_OK = [
   %r{^/puppet/[^/]+/reference/(function\.|http_api/|indirection\.|configuration\.|man/|metaparameter\.|report\.|type\.|types/)}
 ]
