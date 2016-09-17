@@ -1,3 +1,4 @@
-    pub   4096R/4BD6EC30 2010-07-10 [expires: 2016-07-08]
-          Key fingerprint = 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30
-    uid                  Puppet Labs Release Key (Puppet Labs Release Key) <info@puppetlabs.com>
+		pub   4096R/EF8D349F 2016-08-18 [expires: 2021-08-17]
+					Key fingerprint = 6F6B 1550 9CF8 E59E 6E46  9F32 7F43 8280 EF8D 349F
+		uid                  Puppet, Inc. Release Key (Puppet, Inc. Release Key) <release@puppet.com>
+		sub   4096R/656674AE 2016-08-18 [expires: 2021-08-17]

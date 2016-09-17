@@ -1,4 +1,4 @@
-    Package "puppet-agent-1.3.2-1-installer.pkg":
+    Package "puppet-agent-<AGENT-VERSION>-1-installer.pkg":
        Status: signed by a certificate trusted by Mac OS X
        Certificate Chain:
         1. Developer ID Installer: PUPPET LABS, INC. (VKGLGN2B6Y)
