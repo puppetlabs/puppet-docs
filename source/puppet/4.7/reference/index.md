@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.6 reference manual"
+title: "Puppet 4.7 reference manual"
 canonical: "/puppet/latest/reference/index.html"
 toc: false
 ---
@@ -30,7 +30,7 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 
 ## Getting started
 
-Puppet 4.6 consists of:
+Puppet 4.7 consists of:
 
 * A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter 3][], [Hiera 3][], and supporting code.
 * A `puppetserver` package that installs [Puppet Server 2.4][].
