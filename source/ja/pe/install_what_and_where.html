@@ -1,0 +1,312 @@
+<div>
+<h2 id="license-file">ライセンスファイル</h2>
+
+<p> PEライセンスファイル(Puppet Enterprise購入時にEメールで送付されたもの)は、<code>/etc/puppetlabs/license.key</code>にあります。
+</p>
+
+<p> Puppet Enterpriseは、10ノードまでの無料ライセンスを利用できます。それ以上を使用する場合は、ノード1台ごとに商用ライセンスが 必要になります。 ライセンスキーファイルは、購入後にEメールで送付されます。 モノリシックインストールでは、Puppet masterは<code>/etc/puppetlabs/license.key</code>でライセンスキーを探します。 分割インストールでは、Puppet masterおよびPEコンソールノードの<code>/etc/puppetlabs/license.key</code>でライセンスキーを探します。 ライセンスの有効期限が切れている場合や超過している場合は、Puppetが警告を記録します。 Puppet masterのコマンドラインで<code>puppet license</code>を実行すると、ライセンスの状況を確認できます。
+</p>
+
+<p> ライセンスを購入するには、<a href="https://puppet.com/product/pricing">Puppet Enterprise料金ページ</a>を参照するか、Puppet(<a href="mailto:sales@puppet.com">sales@puppet.com</a>または(877) 575-9775)にお問い合わせください。 ライセンスキーが見つからない場合や受け取っていない場合は、<a href="mailto:sales@puppet.com">sales@puppet.com</a>にお問い合わせください。
+</p>
+
+<h3 id="license-files-in-the-console">コンソールのライセンスファイル</h3>
+
+<p> [<strong>Licenses</strong>]メニューには、現在アクティブになっているノードの数と、現在のライセンスで利用可能なノードの数が表示されます。 利用可能なライセンスの数を超過すると、警告が表示されます。 使用されるライセンスの数は、PuppetDBが把握しているアクティブなノードの数により決まります。 これは、以前の挙動から変更されています。以前は、CAの把握している無効ではない証明書の数により、使用されるライセンスの数が決まっていました。 メニュー項目では、購入および料金情報への便利なリンクが提供されています。
+</p>
+
+<p> 使用されていないノードは、アクティビティがない (facts、カタログ、レポートがない) まま7日が過ぎると自動的に非アクティブ化されます。<code>puppet node deactivate</code>ですぐに非アクティブ化することもできます。
+</p>
+
+<h2 id="puppet-enterprise-software-components">Puppet Enterpriseソフトウェアのコンポーネント</h2>
+
+<h3 id="what-is-installed">インストールされるもの</h3>
+
+<p> PEの機能コンポーネントは、puppet-agentとパッケージされたものと、サーバー側にパッケージされたもの(こちらもpuppet-agentを含みます)に区別されています。
+</p>
+
+<p> パッケージにはpe-clientツールに加えて、Puppet masterまたはワークステーションからのPuppet Enterpriseへのアクセス機能を拡張するCLIツールセットが含まれています。 詳細については、「<a href="/pe/2016.2/install_pe_client_tools.html">installing the PE client tools package(PEクライアントツールパッケージのインストール)</a>」を参照してください。
+</p>
+
+<p> PE 2016.2には、以下の主要なソフトウェアコンポーネントが含まれます。
+</p>
+
+<h3 id="agent-components-on-all-nodes">Agentコンポーネント(すべてのノード)</h3>
+
+<table>
+<thead><tr>
+<th>PEバージョン</th> <th>Puppet Agent</th> <th>Puppet</th> <th>Facter</th> <th>Hiera</th> <th>MCollective</th> <th>Ruby</th> <th>OpenSSL</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>2016.2.0</td> <td><a href="/puppet/4.5/reference/release_notes_agent.html#puppet-agent-152"><abbr title="ubuntu-12.04-amd64, ubuntu-14.04-i386, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-12.04-i386, ubuntu-16.04-amd64, ubuntu-16.04-i386">1.5.2</abbr></a></td> <td><a href="/puppet/4.5/reference/release_notes.html#puppet-452"><abbr title="ubuntu-12.04-amd64, ubuntu-14.04-i386, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-12.04-i386, ubuntu-16.04-amd64, ubuntu-16.04-i386">4.5.2</abbr></a></td> <td><a href="/facter/3.1/release_notes.html#facter-318"><abbr title="ubuntu-12.04-amd64, ubuntu-14.04-i386, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-12.04-i386, ubuntu-16.04-amd64, ubuntu-16.04-i386">3.1.8</abbr></a></td> <td><a href="/hiera/3.2/release_notes.html#hiera-320"><abbr title="ubuntu-12.04-amd64, ubuntu-14.04-i386, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-12.04-i386, ubuntu-16.04-amd64, ubuntu-16.04-i386">3.2.0</abbr></a></td> <td><a href="/mcollective/releasenotes.html"><abbr title="ubuntu-12.04-amd64, ubuntu-14.04-i386, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-12.04-i386, ubuntu-16.04-amd64, ubuntu-16.04-i386">2.8.8</abbr></a></td> <td><abbr title="ubuntu-12.04-amd64, ubuntu-14.04-i386, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-12.04-i386, ubuntu-16.04-amd64, ubuntu-16.04-i386">2.1.9</abbr></td> <td><abbr title="ubuntu-12.04-amd64, ubuntu-14.04-i386, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-12.04-i386, ubuntu-16.04-amd64, ubuntu-16.04-i386">1.0.2h</abbr></td>
+</tr>
+<tr>
+<td>2016.1.2</td> <td><a href="/puppet/4.4/reference/release_notes_agent.html#puppet-agent-142"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">1.4.2</abbr></a></td> <td><a href="/puppet/4.4/reference/release_notes.html#puppet-442"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">4.4.2</abbr></a></td> <td><a href="/facter/3.1/release_notes.html#facter-316"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">3.1.6</abbr></a></td> <td><a href="/hiera/3.1/release_notes.html#hiera-312"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">3.1.2</abbr></a></td> <td><a href="/mcollective/releasenotes.html"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">2.8.8</abbr></a></td> <td><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">2.1.9</abbr></td> <td><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">1.0.2g</abbr></td>
+</tr>
+<tr>
+<td>2016.1.1</td> <td><a href="/puppet/4.4/reference/release_notes_agent.html#puppet-agent-141"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">1.4.1</abbr></a></td> <td><a href="/puppet/4.4/reference/release_notes.html#puppet-441"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">4.4.1</abbr></a></td> <td><a href="/facter/3.1/release_notes.html#facter-315"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">3.1.5</abbr></a></td> <td><a href="/hiera/3.1/release_notes.html#hiera-311"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">3.1.1</abbr></a></td> <td><a href="/mcollective/releasenotes.html"><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">2.8.8</abbr></a></td> <td><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">2.1.8</abbr></td> <td><abbr title="el-6-x86_64, ubuntu-12.04-i386, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64, ubuntu-14.04-i386">1.0.2g</abbr></td>
+</tr>
+</tbody>
+</table>
+<h3 id="server-components">サーバーコンポーネント</h3>
+
+<table>
+<thead><tr>
+<th>PEバージョン</th> <th>Puppetサーバー</th> <th>PuppetDB</th> <th>r10k</th> <th>Razorサーバー</th> <th>Razor Libs</th> <th>PostgreSQL</th> <th>Java</th> <th>ActiveMQ</th> <th>Nginx</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>2016.2.0</td> <td><a href="/puppetserver/2.4/release_notes.html#puppet-server-240"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.4.0</abbr></a></td> <td><a href="/puppetdb/4.1/release_notes.html"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">4.1.2</abbr></a></td> <td><a href="https://github.com/puppetlabs/r10k/blob/master/CHANGELOG.mkd#230"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.3.0</abbr></a></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.3.0</abbr></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.0.1</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">9.4.7</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">1.8.0</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">5.13.2</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">1.8.1</abbr></td>
+</tr>
+<tr>
+<td>2016.1.2</td> <td><a href="/puppetserver/2.3/release_notes.html#puppet-server-232"><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">2.3.2</abbr></a></td> <td><a href="/puppetdb/4.0/release_notes.html"><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">4.0.1</abbr></a></td> <td><a href="https://github.com/puppetlabs/r10k/blob/master/CHANGELOG.mkd#222"><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">2.2.2</abbr></a></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.2.0</abbr></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.0.1</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">9.4.7</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">1.8.0</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">5.13.2</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">1.8.1</abbr></td>
+</tr>
+<tr>
+<td>2016.1.1</td> <td><a href="/puppetserver/2.3/release_notes.html#puppet-server-231"><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">2.3.1</abbr></a></td> <td><a href="/puppetdb/4.0/release_notes.html"><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">4.0.1</abbr></a></td> <td><a href="https://github.com/puppetlabs/r10k/blob/master/CHANGELOG.mkd#220"><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">2.2.0</abbr></a></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.2.0</abbr></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.0.1</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">9.4.6</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">1.8.0</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">5.13.0</abbr></td> <td><abbr title="el-6-x86_64, sles-11-x86_64, ubuntu-14.04-amd64, sles-12-x86_64, el-7-x86_64, ubuntu-12.04-amd64">1.8.0</abbr></td>
+</tr>
+</tbody>
+</table>
+<h3 id="where-is-it-installed">インストールされる場所</h3>
+
+<p> *nixノードでは、すべてのPEソフトウェア(configファイルと生成されたデータを除く)が<code>/opt/puppetlabs</code>にインストールされます。
+</p>
+
+<p> Windowsノードでは、すべてのPEソフトウェアが、 <a href="./install_windows.html#program-directory">標準32ビットアプリケーションディレクトリ</a>の「Puppet Enterprise」サブディレクトリにインストールされます。
+</p>
+
+<ul>
+<li>*nix上の実行可能なバイナリは、<code>/opt/puppetlabs/bin</code>および<code>/opt/puppetlabs/sbin</code>にあります。インストールの概要では、 <a href="./install_basic.html#puppet-enterprise-binaries-and-symlinks">PEバイナリおよびシムリンク</a>の詳細を提供しています。</li>
+  <li>PEに含まれるPuppetモジュールは、Puppet masterサーバーの<code>/opt/puppetlabs/puppet/modules</code>にインストールされます。このディレクトリにあるものに変更を加えたり、独自のモジュールを追加したりしないでください。独自のモジュールは、代わりに<code>/etc/puppetlabs/code/environments/&lt;environment&gt;/modules</code>にインストールしてください。</li>
+  <li>MCollectiveプラグインは、*nixでは<code>/opt/puppetlabs/mcollective/plugins/</code>、Windowsでは<a href="./install_windows.html#data-directory"><code>&lt;COMMON_APPDATA&gt;</code></a><code>\PuppetLabs\mcollective\etc\plugins\mcollective</code>にインストールされます。新しいプラグインをPE agentノードに追加する場合は、<a href="/pe/2016.2/orchestration_adding_actions.html">このマニュアルの「アクションの追加」ページの説明に従い、Puppetから配布してください</a>。</li>
+</ul>
+<h3 id="dependencies">依存関係</h3>
+
+<p> PostgreSQLおよびOpenSSL要件の詳細については、 <a href="./install_system_requirements.html#dependencies-and-os-specific-details">システム要件</a>を参照してください。
+</p>
+
+<h3 id="configuration-files">構成ファイル</h3>
+
+<p> *nixノードでは、Puppet Enterpriseの構成ファイルはすべて<code>/etc/puppetlabs/puppet</code>に置かれます。
+</p>
+
+<p> Windowsノードでは、Puppet Enterpriseの構成ファイルはすべて<code>&lt;COMMON_APPDATA&gt;\PuppetLabs</code>に置かれます。 このフォルダの場所は、<a href="./install_windows.html#data-directory">Windowsのバージョンによって異なります</a>。2008および2012では、デフォルトの場所は<code>C:\ProgramData\PuppetLabs\puppet\etc</code>です。
+</p>
+
+<p> Puppetの<code>confdir</code>は、<code>puppet</code>サブディレクトリにあります。 このディレクトリには、<a href="/guides/configuring.html"><code>puppet.conf</code></a>ファイル、<code>auth.conf</code>、SSLディレクトリが含まれます。
+</p>
+
+<h3 id="log-files">ログファイル</h3>
+
+<p> Puppet Enterpriseにより配信されるソフトウェアは、以下のログファイルを生成します。ログファイルは、次の場所に生成されます。
+</p>
+
+<h4 id="puppet-master-logs">Puppet masterログ</h4>
+
+<p> Puppet masterサービスのログは、2つのファイルに含まれます。
+</p>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/puppetserver/puppetserver.log</code>：Puppet masterアプリケーションのアクティビティが記録されます。複雑なエラーや廃止予定の機能に関する警告などが含まれます。</li>
+  <li>
+<code>/var/log/puppetlabs/puppetserver/puppetserver-daemon.log</code>：重大なエラーやクラッシュレポートが記録されています。</li>
+</ul>
+<h4 id="puppet-agent-logs">Puppet agentログ</h4>
+
+<p> *nixノードでは、Puppet agentサービスのアクティビティは syslogサービスに記録されます。 メッセージを保存する場所をsyslog設定で指定できますが、デフォルトの保存場所は、Linuxでは<code>/var/log/messages</code>、Mac OS Xでは<code>/var/log/system.log</code>、Solarisでは<code>/var/adm/messages</code>です。
+</p>
+
+<p> Windowsノードでは、Puppet agentサービスのアクティビティはWindows Event Logに記録されます。 Event Viewerをブラウズしてログを表示することができます。 ([Control Panel] → [System and Security] → [Administrative Tools] → [Event Viewer])
+</p>
+
+<h4 id="activemq-logs">ActiveMQログ</h4>
+
+<ul>
+<li><code>/var/log/puppetlabs/activemq/wrapper.log</code></li>
+  <li><code>/var/log/puppetlabs/activemq/activemq.log</code></li>
+  <li><code>/var/log/puppetlabs/activemq/data/audit.log</code></li>
+</ul>
+<h4 id="mcollective-service-logs">MCollectiveサービスログ</h4>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/mcollective.log</code>：すべてのノードにインストールされるMCollectiveサービスにより維持されます。</li>
+  <li>
+<code>/var/log/puppetlabs/mcollective-audit.log</code>：MCollectiveがインストールされているすべてのノードに存在します。ノードを呼び出したクライアントに関する情報を含め、ノードで実行されたすべてのMCollectiveアクションを記録します。</li>
+</ul>
+<h4 id="console-logs">コンソールログ</h4>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/nginx/error.log</code>：nginxに関するエラーが含まれます。ほかのファイルに記録されていないコンソールエラーは、このログで見つかります。Puppetのコンソールに問題がある場合は、このログが役に立ちます。</li>
+  <li><code>/var/log/puppetlabs/console-services.log</code></li>
+  <li><code>/var/log/puppetlabs/console-services-access.log</code></li>
+  <li>
+<code>/var/log/puppetlabs/console-services-daemon.log</code>：重大なエラーやクラッシュレポートがここで見つかります。</li>
+</ul>
+<h4 id="installer-logs">インストーラログ</h4>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/installer/http.log</code>：インストーラに送られたWeb要求が含まれます。Webベースのインストールを実施したマシンにのみ存在します。</li>
+  <li>
+<code>/var/log/puppetlabs/installer/installer-&lt;timestamp&gt;.log</code>：インストール中に実行された操作と発生したエラーが含まれます。</li>
+  <li>
+<code>/var/log/puppetlabs/installer/answers.install</code>：PEインストールに使われた応答ファイルのコンテンツが含まれます。このファイルからパスワードが作成されます。</li>
+  <li>
+<code>/var/log/puppetlabs/installer/install_log.lastrun.&lt;hostname&gt;.log</code>：直近のインストーラの実行内容が含まれます。</li>
+</ul>
+<h4 id="database-logs">データベースログ</h4>
+
+<ul>
+<li><code>/var/log/puppetlabs/puppetdb/puppetdb.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/pgstartup.log</code></li>
+</ul>
+<h4 id="orchestration-logs">オーケストレーションログ</h4>
+
+<ul>
+<li><code>/var/log/puppetlabs/orchestration-services.log</code></li>
+  <li>
+<code>/var/log/puppetlabs/orchestration-services-daemon.log</code>：重大なエラーやクラッシュレポートがここで見つかります。</li>
+</ul>
+<h3 id="tools-for-working-with-puppet-enterprise">Puppet Enterpriseと連動するツール</h3>
+
+<p> PEでは、ソフトウェアの主要コンポーネントを使いやすくするために、いくつかのツールセットがインストールされます。 ツールには以下のものがあります。
+</p>
+
+<ul>
+<li>
+<strong>Puppetツール</strong> — <code>puppet master</code>や<code>puppet cert.</code>といったPuppetの基本機能をコントロールするツール。詳細については<a href="/guides/tools.html">ツールセクション</a> を参照してください。</li>
+  <li>
+<strong>Puppetオーケストレータ</strong> — Puppetオーケストレータは、Puppetアプリケーションオーケストレーションサービスのインタフェースを提供するインタラクティブなコマンドラインツールのセットです。また、環境レベルで変更を適用する機能も提供します。これらのツールには、<code>puppet job</code>および<code>puppet app</code>などがあります。詳細については<a href="/pe/2016.2/orchestrator_intro.html">Puppetオーケストレータ文書</a>を参照してください。また、<a href="/pe/2016.2/code_mgr_cli.html">コードマネージャ文書</a>も参照してください。</li>
+  <li>
+<strong>Puppet Access</strong> — Puppet Enterpriseユーザが、特定のPEコマンドラインツールやAPIエンドポイントへのアクセスを認証するためのトークンを作成することができます。詳細については<a href="/pe/2016.2/rbac_token_auth.html">トークンを用いた認証に関する文書</a>を参照してください。</li>
+  <li>
+<strong>コードマネージャCLI</strong> — <code>puppet-code</code>コマンドラインを使えば、コマンドラインでコードマネージャを実行し、環境をデプロイすることができます。</li>
+  <li>
+<strong>MCollectiveツール</strong> — 多数のノードで同時アクションを実行するためのツール。これらのツールはMCollectiveフレームワークをもとに構築されており、<code>mco</code>コマンドでアクセスできます。詳細については<a href="/pe/2016.2/orchestration_overview.html">PE MCollective文書</a>を参照してください。</li>
+  <li>
+<strong>モジュールツール</strong> — モジュールツールは、Puppetモジュールの利用および作成に用いられるツールで、設定およびデプロイタスクの自動化のためにユーザが記述したPuppetコードをまとめた再利用可能なツールです。<a href="http://forge.puppetlabs.com/">Puppet Forge</a>では、詳細を確認し、モジュールを利用することができます。</li>
+  <li>
+<strong>コンソール</strong> — コンソールはPuppet EnterpriseのWeb UIです。ノード上のリソースの閲覧および編集、レポートおよびアクティビティグラフの閲覧などのためのツールを提供しています。詳細についてはPEマニュアルの<a href="/pe/2016.2/console_accessing.html">コンソールセクション</a>を参照してください。</li>
+</ul>
+<p> さらに詳しい情報については、任意のコマンドまたはサブコマンドのmanページも参照してください。
+</p>
+
+<h3 id="services">サービス</h3>
+
+<p> PEは以下のサービスを使用しています。
+</p>
+
+<ul>
+<li>
+<strong><code>pe-activemq</code></strong> — ActiveMQメッセージサーバー。agentノードでMCollectiveサーバーにメッセージを受け渡します。Puppet masterコンポーネントのあるサーバーで稼働します。</li>
+  <li>
+<strong><code>pe-console-services</code></strong> — PEコンソールを管理し、サービスを提供します。</li>
+  <li>
+<strong><code>pe-puppetserver</code></strong> — Puppet masterサーバー。Puppet masterコンポーネントを管理します。</li>
+  <li>
+<strong><code>pe-nginx</code></strong> — Nginx。PEコンソールのリバースプロキシとして機能します。</li>
+  <li>
+<strong><code>mcollective</code></strong> — MCollectiveデーモン。メッセージをリッスンし、アクションを起こします。すべての agentノードで稼働します。</li>
+  <li>
+<strong><code>puppet</code></strong>(ELおよびDebianベースのプラットフォーム) — Puppet agentデーモン。すべてのagentノードで稼働します。</li>
+  <li>
+<strong><code>pe-puppetdb</code></strong>および<strong><code>pe-postgresql</code></strong> — データベースコンポーネントを管理し、サービスを提供するデーモン。PostgreSQLをインストールおよび管理する場合のみ、pe-postgresqlが作成される点に注意してください。</li>
+  <li>
+<strong><code>pe-orchestration-services</code></strong> — Puppetオーケストレーションプロセスを実行します。</li>
+  <li>
+<strong><code>pxp-agent</code></strong> — Puppet agent PXPプロセスを実行します。</li>
+</ul>
+<h3 id="user-accounts">ユーザアカウント</h3>
+
+<p> PEは以下のユーザを作成します。
+</p>
+
+<ul>
+<li>
+<strong><code>peadmin</code></strong> — MCollective関連のアクションを実行可能な管理用アカウント。ログインシェルでの使用が意図されている唯一のPEユーザアカウントです。このユーザの詳細については<a href="/pe/2016.2/orchestration_invoke_cli.html">このマニュアルの「アクションの起動」のページ</a> を参照してください。このユーザは、Puppet masterコンポーネントのあるサーバーに存在します。</li>
+  <li>
+<strong><code>pe-puppet</code></strong>  — pe-puppetserverにより引き起こされるPuppet masterプロセスを実行するシステムユーザ。</li>
+  <li>
+<strong><code>pe-webserver</code></strong> — Nginx(<code>pe-nginx</code>)を実行するシステムユーザ。</li>
+  <li>
+<strong><code>pe-activemq</code></strong> — MCollectiveで使用されるActiveMQメッセージバスを実行するシステムユーザ。 </li>
+  <li>
+<strong><code>pe-puppetdb</code></strong> — データベースへのrootアクセス権を持つシステムユーザ。</li>
+  <li>
+<strong><code>pe-postgres</code></strong> — pe-postgreSQLインスタンスへのアクセス権を持つシステムユーザ。このユーザはPostgreSQLをインストールおよび管理する場合のみ作成される点に注意してください。</li>
+  <li>
+<strong><code>pe-console-services</code></strong> — コンソールプロセスを実行するシステムユーザ。</li>
+  <li>
+<strong><code>pe-orchestration-services</code></strong> — Puppetオーケストレーションプロセスを実行するシステムユーザ。</li>
+</ul>
+<h3 id="group-accounts">グループアカウント</h3>
+
+<p> PEは以下のグループを作成します。
+</p>
+
+<ul>
+<li>
+<strong><code>peadmin</code></strong> — MCollective関連アクションを興すことのできる管理用グループ。</li>
+  <li>
+<strong><code>pe-puppet</code></strong> — pe-puppetserverにより引き起こされるPuppet masterプロセスを実行するシステムグループ。</li>
+  <li>
+<strong><code>pe-webserver</code></strong> — Nginx (<code>pe-nginx</code>) を実行するシステムグループ。</li>
+  <li>
+<strong><code>pe-activemq</code></strong> — MCollectiveにより用いられるActiveMQメッセージバスを実行するシステムグループ。</li>
+  <li>
+<strong><code>pe-puppetdb</code></strong> — データベースへのrootアクセス権を持つシステムグループ。</li>
+  <li>
+<strong><code>pe-postgres</code></strong> — pe-postgreSQLインスタンスへのアクセス権を持つシステムグループ。このグループはPostgreSQLをインストールおよび管理する場合のみ作成される点に注意してください。</li>
+  <li>
+<strong><code>pe-console-services</code></strong> — コンソールプロセスを実行するシステムグループ。</li>
+  <li>
+<strong><code>pe-orchestration-services</code></strong> — Puppetオーケストレーションプロセスを実行するシステムグループ。</li>
+</ul>
+<h3 id="certificates">証明書</h3>
+
+<p> PEはインストールの際に以下の証明書を作成します (<code>/etc/puppetlabs/puppet/ssl/certs</code>にあります)。
+</p>
+
+<ul>
+<li>
+<strong><code>&lt;user-entered console certname&gt;</code></strong> —  PEコンソールの証明書。ユーザが分割コンポーネント構成でコンソールのインストールを選択した場合にのみ作成されます。</li>
+  <li>
+<strong><code>&lt;user entered PuppetDB certname&gt;</code></strong> —  データベースコンポーネントの証明書。ユーザが分割コンポーネント構成でデータベースのインストールを選択した場合にのみ作成されます。</li>
+  <li>
+<strong><code> &lt;user-entered master certname&gt; </code></strong> — この証明書は、Puppet masterとコンソールが同じマシンにある場合か、コンソールが別のマシンにありmasterにより署名された場合にのみ、インストール時に作成されます。</li>
+  <li>
+<strong><code>pe-internal-mcollective-servers</code></strong> — Puppet masterで作成される共通の証明書で、すべてのagentノードで共有されます。</li>
+  <li>
+<strong><code>pe-internal-peadmin-mcollective-client</code></strong> — Puppet masterのpeadminアカウントの証明書。</li>
+  <li>
+<strong><code>pe-internal-puppet-console-mcollective-client</code></strong> — PEコンソールのMCollective証明書。</li>
+  <li>
+<strong><code>pe-internal-orchestrator</code></strong> — オーケストレータサービスの証明書。</li>
+  <li>
+<strong><code>pe-internal-classifier</code></strong> — ノード分類子の証明書。</li>
+  <li>
+<strong><code>pe-internal-dashboard</code></strong> — PEコンソールの証明書。</li>
+</ul>
+<p> 従って、新規のPEインストールでは、以下に記載する証明書が与えられます。
+</p>
+
+<pre><code>root@master:~# puppet cert list --all
++ "master"                                        (40:D5:40:FA:E2:94:36:4D:C4:8C:CE:68:FB:77:73:AB) (alt names: "DNS:master", "DNS:puppet", "DNS:puppet.soupkitchen.internal")
++ "pe-internal-classifier"                        F3:57:28:CC:72:2A:8B:75:93:65:27:99:AC:72:B4:AF
++ "pe-internal-dashboard"                         F6:07:C7:E9:33:76:D4:3E:12:D7:77:6D:85:0B:2A:D1
++ "pe-internal-mcollective-servers"               C2:59:69:2E:A1:45:7D:BA:BC:63:71:74:83:03:BF:49
++ "pe-internal-peadmin-mcollective-client"        85:56:72:72:04:02:8E:61:8C:34:B8:53:34:0A:3E:8C
++ "pe-internal-puppet-console-mcollective-client" A1:16:FB:12:9B:3E:85:2A:BF:28:C7:46:A9:8C:E7:55
+</code></pre>
+
+<h3 id="documentation">マニュアル</h3>
+
+<p> Puppetサブコマンドのmanページはオンザフライで生成されます。 これらのページを表示するには、<code>puppet man &lt;SUBCOMMAND&gt;</code>を実行します。
+</p>
+
+<p> 旧バージョンのPuppet Enterpriseの<code>pe-man</code>コマンドは、現在は機能しません。 代わりに上述の手法を使用してください。
+</p>
+</div>

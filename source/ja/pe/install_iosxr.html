@@ -1,0 +1,100 @@
+<div>
+<p> Cisco IOS-XR agentのインストール
+</p>
+
+<p> Puppet Enterpriseは、Cisco IOS-XRのリリース6.0 以上をプラットフォームとしてサポートしており、Puppet agentはネットワークスイッチ上で動作します。 サポート対象のCiscoスイッチは以下のとおりです。 
+</p>
+
+<ul>
+<li>Cisco IOS-XR NCS5500 (IOS-XR 6.0)</li>
+  <li>Cisco IOS-XR XR9kv (IOS-XR 6.0)</li>
+</ul>
+<blockquote>
+  <p> <strong>重要：</strong>現時点で、Puppet agentはビルトインのパッケージ、ファイル、サービスリソースのみをサポートしています。
+</p>
+</blockquote>
+
+<p> この説明は、すでに<a href="./install_basic.html">installed Puppet Enterpriseをインストール</a>しており、IOS-XRのバージョンが最小要件を満たすサポート対象のCisco IOS-XR スイッチをインストールしていることを想定したものです。  Cisco agentをインストールするには、<a href="https://forge.puppetlabs.com/puppetlabs/ciscopuppet">puppet-ciscopuppetモジュール</a>をインストールする必要があります。このモジュールには、Cisco IOS-XRスイッチの設定に必要なタイプとプロバイダが含まれます。
+</p>
+
+<h2 id="step-1-install-the-puppetlabs-ciscopuppet-module">ステップ1：puppetlabs-ciscopuppetモジュールのインストール</h2>
+
+<p> Puppet master上で<code>puppet module install puppetlabs-ciscopuppet</code>を実行します。
+</p>
+
+<h2 id="step-2-install-the-puppet-agent">ステップ2：Puppet agentのインストール</h2>
+
+<p> この説明は、bash環境に応じてネットワークおよびDNSを設定していることを想定したものです。 詳しい説明は、ciscopuppet モジュールの<a href="https://forge.puppetlabs.com/puppetlabs/ciscopuppet">README-AGENT-INSTALL.md</a>にある「Puppet agent環境：bashシェル」セクションを参照してください。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>：Puppet agentをインストールするには、ブートフラッシュに400 MBのディスク空き容量があることを推奨します。
+</p>
+</blockquote>
+
+<p> <strong>bashでPuppet agentをインストールする方法</strong>：
+</p>
+
+<ol>
+<li>
+    <p> 有効なネットワークを用いてroot bashシェルを起動します。 ネットワークスイッチのコマンドラインで、以下のコマンドを実行します。
+</p>
+
+    <pre><code>run bash
+sudo ip netns exec management bash
+</code></pre>
+  </li>
+  <li>
+    <p> cisco_wrlinuxのPuppet Collections PC1リポジトリをインストールします。
+</p>
+
+    <pre><code>bash-4.2# yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-cisco-wrlinux-7.noarch.rpm
+</code></pre>
+
+    <blockquote>
+      <p> <strong>注意：</strong> 必ずファイル名に「cisco-wrlinux-7」とあるリポジトリをインストールしてください。 IOS-XRデバイスで動作するのはこのファイルです。 ファイル名に「cisco-wrlinux-5」とあるファイルは、Cisco NX-OSデバイスのためのもので、IOS-XRデバイスでは動作しません。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> Puppet agentをインストールします。
+</p>
+
+    <pre><code>yum install puppet-agent
+</code></pre>
+  </li>
+  <li>
+    <p> これでPuppet agentが<code>/opt/puppetlabs</code>にインストールされました。 <code>bin</code>および<code>lib</code>パスをログインシェルの<code>PATH</code>に追加します。
+</p>
+
+    <pre><code>export PATH=$PATH:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/puppet/lib
+</code></pre>
+  </li>
+</ol>
+<h2 id="uninstalling-puppet-agent-with-bash-or-guest-shell">bashまたは「ゲストシェル」でのPuppet agentのアンインストール</h2>
+
+<p> Puppet agentをアンインストールするコマンドは、Bash環境でも「ゲストシェル」環境でも同じです。
+</p>
+
+<ol>
+<li>
+    <p> Puppet agentを削除します。
+</p>
+
+    <pre><code>sudo su -
+yum remove puppet-agent
+</code></pre>
+  </li>
+  <li>
+    <p> Puppet Collections PC1リポジトリパッケージを削除します。
+</p>
+
+    <pre><code>yum remove puppetlabs-release-pc1
+</code></pre>
+  </li>
+</ol>
+<h2 id="additional-resources">その他のリソース</h2>
+
+<p> IOS-XR ネットワークスイッチ上でのモジュールの使用に関する詳細は、「<a href="https://forge.puppetlabs.com/puppetlabs/ciscopuppet/readme">puppet-ciscopuppetモジュール</a>」を参照してください。
+</p>
+</div>

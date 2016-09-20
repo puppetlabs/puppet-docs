@@ -1,0 +1,105 @@
+<div>
+<p> Puppet Enterpriseは、Arista EOSをプラットフォームとしてサポートしており、Puppet agentはArista EOSネットワークスイッチ上で動作します。 このガイドでは、Arista EOSネットワークスイッチ上にPuppet agentをインストールする方法について説明します。 この説明は、すでに<a href="./install_basic.html">Puppet Enterpriseをインストール</a>しており、Aristaの文書に従ってEOSインスタンスをインストールしていることを想定したものです。
+</p>
+
+<h2 id="install-the-puppet-agent-on-the-eos-instance">EOSインスタンス上でのPuppet agentのインストール</h2>
+
+<blockquote>
+  <p> <strong>注意</strong>：FQDNとは、ノードまたはインスタンスの完全修飾ドメイン名を指します。
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> Puppet masterで、netdev_stdlib_eosモジュールをインストールします。 <code>puppet module install aristanetworks-netdev_stdlib_eos</code>コマンドを実行します。 このモジュールには、ネットワークスイッチ上でPuppet agentを実行するのに必要なタイプとプロバイダが含まれています。
+</p>
+  </li>
+  <li>
+    <p> EOSインスタンス上にPuppet agentをインストールします。
+</p>
+
+    <p> a. 管理者ユーザ、またはPrivileged EXECモードにアクセスできるユーザとして、EOSインスタンスにアクセスします。
+</p>
+
+    <p> b. <code>enable</code>コマンドを実行し、Privileged EXECモードを有効にします。
+</p>
+
+    <p> c. <code>copy https://pm.puppetlabs.com/cgi-bin/download.cgi?ver=latest&amp;dist=eos&amp;arch=i386&amp;rel=4 extension:</code>コマンドを実行します。
+</p>
+
+    <blockquote>
+      <p> <strong>注意</strong>：EOSインスタンスから外部のインターネットにアクセスできない場合は、まずagentパッケージをダウンロードしてから、それをインスタンスに移動する必要があるかもしれません。
+</p>
+    </blockquote>
+
+    <p> d. <code>extension puppet-enterprise-&lt;VERSION NUMBER&gt;-eos-4-i386.swix</code>コマンドを実行します。 これでEOSインスタンス上にPuppet agentがインストールされます。
+</p>
+
+    <p> e. 管理者ユーザとしてログアウトし、<code>root</code>としてEOSインスタンスに再度ログインします。
+</p>
+
+    <p> f. <code>root</code>ユーザおよびグループとしてPuppetを実行するために、以下のコマンドを実行します。
+</p>
+
+    <pre><code>/opt/puppetlabs/bin/puppet config --confdir /persist/sys/etc/puppetlabs/puppet set user root
+/opt/puppetlabs/bin/puppet config --confdir /persist/sys/etc/puppetlabs/puppet set group root 
+</code></pre>
+
+    <p> g. <code>puppet config set server &lt;PUPPET MASTER FQDN&gt;</code>コマンドを実行します。 これでagentとPuppet masterの接続が設定されます。
+</p>
+
+    <p> h. <code>puppet agent --test</code>コマンドを実行します。 これでagentがPuppet masterに接続し、Puppet masterの証明書オーソリティ(CA)で新規agentの証明書署名要求(CSR)が作成されます。
+</p>
+  </li>
+  <li>
+    <p> Puppet master上で、EOSインスタンスの証明書に署名します。 <code>puppet cert sign &lt;EOS INSTANCE FQDN&gt;</code>コマンドを実行します。
+</p>
+  </li>
+  <li>
+    <p> EOSインスタンス上で<code>puppet agent -t</code>コマンドを実行します。
+</p>
+
+    <p> Puppet agentがカタログを取得し、全面的に機能するようになります。  以下のようなメッセージが表示されます。
+</p>
+
+    <pre><code>Info: Retrieving pluginfacts
+Info: Retrieving plugin
+Info: Loading facts
+Info: Caching catalog for &lt;EOS INSTANCE FQDN&gt;
+Info: Applying configuration version '1424214157'
+Notice: Finished catalog run in 0.46 seconds
+</code></pre>
+  </li>
+</ol>
+<h2 id="uninstall-the-puppet-agent-from-the-eos-instance">EOSインスタンスからのPuppet agentのアンインストール</h2>
+
+<p> テスト目的でPuppet agentをアンインストール/再インストールする場合は、再インストール時にSSLの衝突が起きないようにするために、以下の説明に従う必要があります。
+</p>
+
+<ol>
+<li>管理者ユーザとしてEOSインスタンスにアクセスします。</li>
+  <li>
+<code>enable</code>コマンドを実行し、Privileged EXECモードを有効にします。</li>
+  <li>
+    <p> 以下のコマンドを実行します。
+</p>
+
+    <pre><code> no extension puppet-enterprise-&lt;VERSION NUMBER&gt;-eos-4-i386.swix
+ delete extension:puppet-enterprise-&lt;VERSION NUMBER&gt;-eos-4-i386.swix
+</code></pre>
+  </li>
+  <li>EOSインスタンスからSSLキーを削除します。<code>bash sudo rm -rf /persist/sys/etc/puppetlabs/</code>コマンドを実行します。</li>
+  <li>
+    <p> Puppet master上で、EOSインスタンスのPuppet agentの証明書を無効にします。 <code>puppet cert clean &lt;EOS INSTANCE FQDN&gt;</code>コマンドを実行します。
+</p>
+
+    <p> これでagentの証明書が無効になり、Puppet master上の関連ファイルが削除されます。 以下のようなメッセージが表示されます。
+</p>
+
+    <pre><code>Notice: Revoked certificate with serial 10
+Notice: Removing file Puppet::SSL::Certificate &lt;EOS INSTANCE FQDN&gt; at '/etc/puppetlabs/puppet/ssl/ca/signed/&lt;EOS INSTANCE FQDN&gt;.pem'
+Notice: Removing file Puppet::SSL::Certificate &lt;EOS INSTANCE FQDN&gt; at '/etc/puppetlabs/puppet/ssl/certs/&lt;EOS INSTANCE FQDN&gt;.pem'
+</code></pre>
+  </li>
+</ol>
+</div>
