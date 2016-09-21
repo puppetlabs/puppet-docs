@@ -1,2 +1,2 @@
-    gpg: Signature made Mon Nov 30 10:47:39 2015 PST using RSA key ID 4BD6EC30
-    gpg: Good signature from "Puppet Labs Release Key (Puppet Labs Release Key) <info@puppetlabs.com>"
+gpg: Signature made Mon 19 Sep 2016 04:58:29 PM UTC using RSA key ID EF8D349F
+gpg: Good signature from "Puppet, Inc. Release Key (Puppet, Inc. Release Key) <release@puppet.com>"
