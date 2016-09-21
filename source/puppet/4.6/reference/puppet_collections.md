@@ -93,9 +93,7 @@ The `gpg` tool then requests and imports the key:
 
 #### Verify the fingerprint
 
-The fingerprint of the Puppet release signing key is:
-
-{% include puppet-collections/_rsk_fingerprint.md %}
+The fingerprint of the Puppet release signing key is `{% include puppet-collections/_rsk_fingerprint.md %}`.
 
 To check the key's fingerprint, run the following:
 
