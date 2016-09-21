@@ -19,6 +19,7 @@ group(:generate_references) do
   gem 'ronn'
   gem 'yard'
   gem 'rdoc'
+  gem 'puppet-strings', :git => 'https://github.com/puppetlabs/puppet-strings.git', :branch => 'master'
 end
 
 group(:unknown) do
