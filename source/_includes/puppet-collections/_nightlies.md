@@ -52,7 +52,7 @@ There are two kinds of nightly repository for each product:
     sudo wget https://nightlies.puppetlabs.com/puppet-agent/732e883733fe5e5989afe330e3c5cea00b678d1e/repo_configs/deb/pl-puppet-agent-732e883733fe5e5989afe330e3c5cea00b678d1e-xenial.list
     ```
 
-    Nightly packages are signed, but with a different key than official releases.
+    Nightly packages are signed, but with a [different key](http://nightlies.puppetlabs.com/07BB6C57) than official releases.
 
 5.  Run `sudo apt-get update`.
 
