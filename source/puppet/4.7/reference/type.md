@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
+built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
 
 ## About Resource Types
 
@@ -3181,8 +3181,7 @@ Puppet will try to unmount then remount that filesystem.
 
 **Autorequires:** If Puppet is managing any parents of a mount resource ---
 that is, other mount points higher up in the filesystem --- the child
-mount will autorequire them. If Puppet is managing the file path of a
-mount point, the mount resource will autorequire it.
+mount will autorequire them.
 
 **Autobefores:**  If Puppet is managing any child file paths of a mount
 point, the mount resource will autobefore them.
@@ -10530,10 +10529,6 @@ encryption formats and requirements.
   well as the password.
 * Windows passwords can only be managed in cleartext, as there is no Windows API
   for setting the password hash.
-* Windows passwords shouldn't be specified as empty (zero-length) strings, even
-  if you've configured Windows to allow blank passwords. If you do specify a
-  blank password, Puppet will report a change on every run because there is no
-  way to verify that an existing password is blank.
 
 [stdlib]: https://github.com/puppetlabs/puppetlabs-stdlib/
 
@@ -12341,4 +12336,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700

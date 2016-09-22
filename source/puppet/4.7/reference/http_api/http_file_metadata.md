@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
+built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
 title: 'Puppet HTTP API: File Metadata'
 canonical: /puppet/latest/reference/http_api/http_file_metadata.html
 ---

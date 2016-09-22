@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
+built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
 title: 'Resource Type: mount'
 canonical: /puppet/latest/reference/types/mount.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
 
 mount
 -----
@@ -27,8 +27,7 @@ Puppet will try to unmount then remount that filesystem.
 
 **Autorequires:** If Puppet is managing any parents of a mount resource ---
 that is, other mount points higher up in the filesystem --- the child
-mount will autorequire them. If Puppet is managing the file path of a
-mount point, the mount resource will autorequire it.
+mount will autorequire them.
 
 **Autobefores:**  If Puppet is managing any child file paths of a mount
 point, the mount resource will autobefore them.
@@ -207,4 +206,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700

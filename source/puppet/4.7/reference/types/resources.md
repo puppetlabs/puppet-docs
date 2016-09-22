@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
+built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
 title: 'Resource Type: resources'
 canonical: /puppet/latest/reference/types/resources.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
 
 resources
 -----
@@ -71,4 +71,4 @@ To specify a range of uids, consider using the range() function from stdlib.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700

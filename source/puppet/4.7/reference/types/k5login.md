@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 4e0b2b9b2c68e41c386308d71d23d9b26fbfa154
+built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
 title: 'Resource Type: k5login'
 canonical: /puppet/latest/reference/types/k5login.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
 
 k5login
 -----
@@ -87,4 +87,4 @@ type.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-08-10 20:10:55 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
