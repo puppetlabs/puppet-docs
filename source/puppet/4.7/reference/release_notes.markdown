@@ -17,7 +17,7 @@ Puppet's version numbers use the format X.Y.Z, where:
 
 Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover breaking changes since Puppet 3.8.
 
-Also of interest: the [Puppet 4.5 release notes](/puppet/4.5/reference/release_notes.html) and [Puppet 4.4 release notes](/puppet/4.4/reference/release_notes.html).
+Also of interest: the [Puppet 4.6 release notes](/puppet/4.6/reference/release_notes.html) and [Puppet 4.5 release notes](/puppet/4.5/reference/release_notes.html).
 
 ## Puppet 4.7.0
 
