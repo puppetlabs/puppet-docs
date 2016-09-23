@@ -225,12 +225,20 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
+  /puppet/4.7/reference:
+    doc: puppet
+    version: 4.7
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.4
+      hiera: 3.2
+      puppetserver: 2.6
   /puppet/4.6/reference:
     doc: puppet
     version: 4.6
     nav: ./_puppet_toc.html
     my_versions:
-      facter: 3.3
+      facter: 3.4
       hiera: 3.2
       puppetserver: 2.6
   /puppet/4.5/reference:
