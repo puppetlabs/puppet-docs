@@ -4,8 +4,7 @@ toc_levels: 1234
 title: "Puppet 4.7 Release Notes"
 ---
 
-
-This page lists the changes in Puppet 4.6 and its patch releases.
+This page lists the changes in Puppet 4.7 and its patch releases.
 
 Puppet's version numbers use the format X.Y.Z, where:
 

@@ -10,9 +10,8 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Releases
 
-- [Puppet 4.6][4.7]
+- [Puppet 4.7][4.7]
 - [Puppet 4.6][4.6]
-
 
 ### Previous Releases
 
@@ -59,7 +58,7 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ## About Version Numbers
 
-### Puppet Labs' Open Source Projects
+### Puppet's Open Source Projects
 
 All of our open source projects --- including Puppet, Puppet Server, PuppetDB, Facter, and Hiera --- use [semantic versioning ("semver")][semver] for their version numbers. This means that in an `x.y.z` version number, the "y" will increase if new features are introduced and the "x" will increase if existing features change or get removed.
 
