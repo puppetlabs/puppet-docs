@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/puppet_collections.html"
 
 {% include puppet-collections/_puppet_collections_intro.md %}
 
-## Puppet collection contents
+## Puppet collection contents 
 
 Puppet Collection 1 contains the following components:
 
