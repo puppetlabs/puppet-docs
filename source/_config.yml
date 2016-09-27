@@ -96,11 +96,11 @@ documents:
       commit: origin/davis
       subdirectory: source
     my_versions:
-      puppet: 4.5
-      facter: 3.1
+      puppet: 4.6
+      facter: 3.4
       hiera: 3.2
       puppetserver: 2.4
-      puppetdb: 4.1
+      puppetdb: 4.2
 
   /pe/2016.2:
     doc: pe
@@ -166,7 +166,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe3.8.6
+      commit: origin/pe3.8.7
       subdirectory: source
     my_versions:
       puppet: 3.8
