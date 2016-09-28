@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.5 System Requirements"
+title: "Puppet system requirements"
 canonical: "/puppet/latest/reference/system_requirements.html"
 ---
 
@@ -21,7 +21,7 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 ## Platforms with packages
 
-Puppet 4.5 and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./puppet_collections.html).
+Puppet and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./puppet_collections.html).
 
 ### Red Hat Enterprise Linux (and derivatives)
 
