@@ -11,7 +11,7 @@ The `catalog_preview` module shows the differences between how your code is comp
 
 ## Prerequisites
 
-This workflow assumes you are currently running at least Puppet Enterprise 3.8, have complete access to your Puppet code base, and have the ability to create branches and deploy them as environments to a Puppet master on which you will run your tests. These same steps can also be applied to open source Puppet upgrades, from Puppet 3.8.
+This workflow assumes you are currently running at least Puppet Enterprise 3.8, have complete access to your Puppet code base, and have the ability to create branches and deploy them as environments to a Puppet master on which you will run your tests. You can also use this workflow if you are upgrading an open source Puppet 3.8 installation.
 
 ## Preparation
 
