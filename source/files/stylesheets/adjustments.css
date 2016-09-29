@@ -98,6 +98,13 @@ img#search-icon {
 
 }
 
+@media screen and (max-width: 992px) {
+  /* Style wide nav options */
+  div#navbar-container div#navbar-top.row {
+    margin-left: 1.25rem;
+  }
+}
+
 @media screen and (max-width: 767px) {
   img#search-icon {
     position: absolute;

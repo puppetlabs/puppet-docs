@@ -1,0 +1,68 @@
+---
+layout: default
+title: "大規模インストール(LEI)のアップグレード"
+canonical: "/ja/pe/install_lei_upgrade.html"
+---
+
+<div>
+<p> 大規模インストール(LEI)のアップグレード手順は、複数の手順の組み合わせで構成され、コアPuppet Enterprise(PE)コンポーネント、コンパイルmaster、ActiveMQハブおよびスポークで実施する必要があります。
+</p>
+
+<p> このガイドでは、LEIをPE 3.8.xから2015.2にアップグレードする際に必要な手順を説明します。
+</p>
+
+<blockquote>
+  <h4 id="a-note-about-load-balancers">負荷バランサに関する注記</h4>
+
+  <p> この手順では、MASTER.EXAMPLE.COMがPuppet Master/CAサーバーを参照します。これはマスターオブマスターズ (MoM) とも呼ばれます。
+</p>
+
+  <p> ただし、一部のケースでは、LEIで負荷バランサを使用している可能性もあります。 その場合、適切なマシンを指定してagentインストールスクリプトを実行し、コンパイルmaster、ActiveMQハブおよびスポーク、Puppet agentノードでagentをアップグレードする必要があります。詳細は<a href="./install_multimaster.html#using-load-balancers-in-a-large-environment-installation">負荷バランサに関する文書</a>で説明しています。 この手順では、コンパイルmasterのアップグレードスクリプトでMASTER.EXAMPLE.COM(またはMoM)を指定し、それ以外のagentではLOADBALANCER.EXAMPLE.COM(PE Masterグループから継承した<code>pe_repo</code>クラスがあります) を指定します。 正確な手順は、設定によって異なります。
+</p>
+</blockquote>
+
+<p> <strong>大規模インストールをアップグレードする方法</strong>：
+</p>
+
+<h3 id="step-1-upgrade-pe">ステップ1：PEのアップグレード</h3>
+
+<p> <a href="./install_upgrading.html#upgrading-a-split-installation">アップグレードの説明</a>に従い、コアPEコンポーネント(メインのPuppet master、PuppetDB、PEコンソール)をアップグレードします。
+</p>
+
+<h3 id="step-2-upgrade-each-puppet-compile-master">ステップ2：各Puppetコンパイルmasterのアップグレード</h3>
+
+<p> SSHで各Puppetコンパイルmasterにログインし、以下のコマンドを実行します。
+</p>
+
+<p> <code>curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/upgrade.bash | sudo bash</code>
+</p>
+
+<h3 id="step-3-upgrade-each-activemq-hub">ステップ3：各ActiveMQハブのアップグレード</h3>
+
+<p> SSHで各ActiveMQハブにログインし、以下のコマンドを実行します。
+</p>
+
+<p> <code>curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/upgrade.bash | sudo bash</code>
+</p>
+
+<h3 id="step-4-upgrade-each-activemq-spoke">ステップ4：各ActiveMQスポークのアップグレード</h3>
+
+<p> SSHで各ActiveMQスポークにログインし、以下のコマンドを実行します。
+</p>
+
+<p> <code>curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/upgrade.bash | sudo bash</code>
+</p>
+
+<h3 id="step-5-upgrade-puppet-agent-nodes">ステップ5：Puppet agentノードのアップグレード</h3>
+
+<p> <a href="./install_upgrading_agents.html">agentアップグレードの説明</a>に従い、LEIのPuppet agentノードをアップグレードします。
+</p>
+
+<blockquote>
+  <p> <strong>重要</strong>：agentをアップグレードする前に、各コンパイルmaster上で<a href="https://forge.puppetlabs.com/puppetlabs/puppet_agent">puppetlabs-puppet_agent</a>アップグレードモジュールをインストールする必要があります。
+</p>
+
+  <p> インターネットにアクセスできないPEインフラでagentをアップグレードする場合は、各コンパイルmaster上で<a href="https://forge.puppetlabs.com/puppetlabs/puppet_agent">puppetlabs-puppet_agent</a>アップグレードモジュール、<a href="https://forge.puppetlabs.com/puppetlabs/inifile">puppetlabs-inifile</a>モジュール、<a href="https://forge.puppetlabs.com/puppetlabs/stdlib">puppetlabs-stdlib</a>モジュール、<a href="https://forge.puppetlabs.com/puppetlabs/apt">puppetlabs-apt</a>モジュールをインストールする必要があります。
+</p>
+</blockquote>
+</div>

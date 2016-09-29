@@ -19,7 +19,7 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 
 [code_mgr]: {{pe}}/code_mgr.html
 [r10k]: {{pe}}/r10k.html
-[puppetfile]: {{pe}}/codemgmt_puppetfile.html
+[puppetfile]: {{pe}}/cmgmt_puppetfile.html
 
 [approved]: https://forge.puppet.com/approved
 [supported]: https://forge.puppet.com/supported

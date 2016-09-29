@@ -1,4 +1,4 @@
-{% capture server_version %}2.5{% endcapture %}
+{% capture server_version %}2.6{% endcapture %}
 {% capture puppet_version %}4.6{% endcapture %}
 {% capture puppet_dir %}/puppet/{{ puppet_version }}/reference{% endcapture %}
 
@@ -205,6 +205,11 @@
         <ul>
           <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/environment_classes.html">Environment classes</a></li>
           <li><a href="/puppetserver/{{ server_version }}/puppet-api/v3/static_file_content.html">Static file content</a></li>
+        </ul>
+      </li>
+      <li><strong>Status API</strong>
+        <ul>
+          <li><a href="/puppetserver/{{ server_version }}/status-api/v1/services.html">Services</a></li>
         </ul>
       </li>
       <li><strong>Developer info</strong>
@@ -496,7 +501,7 @@
     <ul>
       <li><a href="{{ puppet_dir }}/experiments_overview.html">Overview</a></li>
       <li><a href="{{ puppet_dir }}/experiments_msgpack.html">Msgpack support</a></li>
-      <li><a href="{{ puppet_dir }}/environmental_isolation.html">Environmental isolation</a></li>
+      <li><a href="{{ puppet_dir }}/environment_isolation.html">Environment isolation</a></li>
     </ul>
   </li>
 </ul>

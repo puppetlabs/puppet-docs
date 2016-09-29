@@ -1,0 +1,185 @@
+---
+layout: default
+title: "コンパイルmasterのインストール"
+canonical: "/ja/pe/install_multimaster.html"
+---
+
+<div>
+<p> 以下のガイドでは、コンパイルmasterをPEインフラに追加する方法を説明します。
+</p>
+
+<h2 id="how-compile-masters-work">コンパイルmasterの仕組み</h2>
+
+<p> インフラで管理しているノードが2000台を超えると、1つのPuppet masterでPuppet agentの要求をすべて処理し、コードをすべてコンパイルすることはできなくなります。 コンパイルmasterを追加してインフラを拡張すれば、作業負荷を分散させ、コンパイル時間を短縮して効率化することができます。 コンパイルmasterの機能の多くは、Puppet masterと同じです。ファイル同期を実行し、Puppetサーバーを内包するほか、<code>pe_repo</code>をホストすることができます。 コンパイルmasterのデプロイにおいて、メインとなるPuppet masterはマスターオブマスターズ(MoM)と呼ばれます。
+</p>
+
+<p> 基本的なインストールタイプとそれぞれの推奨ハードウェアの指針については、<a href="./install_system_requirements.html#hardware-recommendations">PEハードウェアの推奨事項</a>を参照してください。
+</p>
+
+<h3 id="components-and-services-running-on-compile-masters">コンパイルmasterで稼働するコンポーネントとサービス</h3>
+
+<p> すべてのコンパイルmasterには、Puppetサーバーとファイル同期クライアントが含まれます。
+</p>
+
+<p> <strong>PE Master</strong>ノードグループを用いてコンパイルmasterを分類する場合(このガイドで説明)、コンパイルmasterには以下のものも含まれます。
+</p>
+
+<ul>
+<li>
+<code>peadmin</code> (MCollectiveクライアント)</li>
+  <li>
+<code>pe_repo</code> (agentインストール用のPEのリポジトリ)</li>
+  <li>コントローラプロファイル (PEクライアントツールと連動して使用)</li>
+</ul>
+<h3 id="compile-master-logs">コンパイルmasterログ</h3>
+
+<p> コンパイルmasterログは、<code>/var/log/puppetlabs/puppetserver/</code>に保存されます。
+</p>
+
+<h3 id="puppet-code-on-compile-masters">コンパイルmasterのPuppetコード</h3>
+
+<p> ファイル同期を使用する場合、MoMのコードディレクトリにあるすべてのPuppetコードがすべてのコンパイルmasterに配布されます。 デフォルトでは、コンパイルmasterは5秒おきにコードの更新をチェックします。
+</p>
+
+<h3 id="supported-os-platforms">サポート対象のOSプラットフォーム</h3>
+
+<p> コンパイルmasterでは、MoMと<a href="./install_system_requirements.html#puppet-master-platforms">同じOSプラットフォームおよびアーキテクチャ</a>を使用する必要があります。
+</p>
+
+<h3 id="compile-masters-and-the-puppet-certificate-authority">コンパイルmasterとPuppet証明書オーソリティ</h3>
+
+<p> CAサービスは、コンパイルmasterでは無効になっています。 コンパイルmasterのPuppetサーバーで稼働するプロキシサービスにより、デフォルトインストールでCAをホストするMoMにCA要求が送られます。
+</p>
+
+<h2 id="install-a-compile-master">コンパイルmasterのインストール</h2>
+
+<p> インストールを始める前に、以下の手順を確認してください。誤った順序で実行すると、設定に問題が生じるおそれがあります。
+</p>
+
+<p> また、これらの手順については、以下の点も注意してください。
+</p>
+
+<ul>
+<li>この手順は、すべてのサーバーが同じOSおよびアーキテクチャを使用することを前提としています。</li>
+  <li>この手順で使用している以下のホスト名は、お使いのインフラのホスト名に置き換える必要があります。<ul>
+<li>
+<strong>Puppet master/CAサーバー(MoM)</strong>： <code>&lt;MASTER.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>PEコンソール</strong>： <code>&lt;CONSOLE.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>PuppetDB</strong>：<code>&lt;PUPPETDB.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>コンパイルmaster</strong>：<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>
+</li>
+    </ul>
+</li>
+</ul>
+<blockquote>
+  <p> <strong>注意</strong>：このシナリオでは、<code>&lt;MASTER.EXAMPLE.COM&gt;</code>がこのデプロイのMoMおよびCAサーバーの両方として機能します。
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>必要条件</strong>；マシン間でホスト名を解読できるようにする必要があります。
+</p>
+</blockquote>
+
+<h2 id="step-1-install-puppet-enterprise">ステップ1：Puppet Enterpriseのインストール</h2>
+
+<p> このステップでは、PEをインストールし、<code>&lt;MASTER.EXAMPLE.COM&gt;</code>にMoMをインストールします。
+</p>
+
+<ol>
+<li>
+<a href="./install_pe_split.html">分割</a>または<a href="./install_pe_mono.html">モノリシック</a>インストールマニュアルに従い、PEをインストールします。 </li>
+  <li>コンソールにログインします。</li>
+</ol>
+<h2 id="step-2-install-compile-master-node">ステップ2：コンパイルmasterノードのインストール</h2>
+
+<p> このステップでは、<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>に追加のPuppet agentをインストールします。 このステップを実行し、新規コンパイルmasterノード上にPuppet agent をインストールする必要があります。
+</p>
+
+<p> <strong>警告</strong>：このマシン(すなわち、新規コンパイルmaster)には、まだPuppet agentがインストールされていないことが条件となります。
+</p>
+
+<p> <strong>追加のコンパイルmaster agentをインストールする方法</strong>：
+</p>
+
+<ol>
+<li>
+    <p> SSHで<code>add.master.example.com</code>にログインし、<code>curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/install.bash | sudo bash -s main:dns_alt_names=&lt;COMMA-SEPARATED LIST OF ALT NAMES FOR THE PUPPET MASTER&gt;</code>を実行します。
+</p>
+
+    <p> <strong>注意</strong>：<code>dns_alt_names</code>の値の設定では、Puppet agentがmasterとの接続に用いる可能性のある別名をカンマ区切りで列挙する必要があります。 インストールのデフォルトでは「puppet」が使用されます。
+</p>
+
+    <p> これにより、<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>にPE agentがインストールおよび設定されます。
+</p>
+  </li>
+  <li>
+    <p> <code>&lt;MASTER.EXAMPLE.COM&gt;</code>のコマンドラインで<code>puppet cert --allow-dns-alt-names sign add.master.example.com</code>を実行します。
+</p>
+
+    <p> <strong>注意</strong>：DNSオルトネームのあるノードの証明書の署名には、コンソールは使用できません。
+</p>
+  </li>
+  <li>
+    <p> <code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>のコマンドラインで<code>puppet agent -t</code>を実行します。
+</p>
+  </li>
+</ol>
+<h2 id="step-3-classify-the-new-compile-master-node">ステップ3：新規コンパイルmasterノードの分類</h2>
+
+<p> このステップでは、PEコンソールを用いて<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>を分類し、Puppet masterおよびPE証明書オーソリティへのプロキシ要求として機能するようにします。
+</p>
+
+<p> <strong>新規コンパイルmasterノードを分類する方法</strong>：
+</p>
+
+<ol>
+<li>コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックします。</li>
+  <li>[<strong>PE Master</strong>]グループを選択します。</li>
+  <li>[<strong>Certname</strong>]セクションの[<strong>Node name</strong>]フィールドに<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>と入力します。</li>
+  <li>[<strong>Pin node</strong>]をクリックします。</li>
+  <li>[<strong>Commit changes</strong>]をクリックします。</li>
+</ol>
+<h2 id="step-4-run-puppet-on-selected-nodes">ステップ4：選択したノードでのPuppetの実行</h2>
+
+<p> このステップでは、新規コンパイルmasterの証明書情報をPuppetDBの証明書ホワイトリストに追加するために、指定された順序でPuppetを実行する必要があります。 RBACホワイトリストに対応するPEコンソールノードでもPuppetを実行する必要があります。
+</p>
+
+<blockquote>
+  <p> <strong>重要</strong>：以下のPuppet実行は、<strong>必ず</strong>以下の手順で指定された順序で実施してください。 PuppetDBおよびコンソールノードでPuppetを実行する前に、新規コンパイルmaster(<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>)でPuppet実行を完了する必要があります。
+</p>
+</blockquote>
+
+<p> <strong>選択したノードでPuppetを実行する方法</strong>：
+</p>
+
+<ol>
+<li>SSHで<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>にログインし、<code>puppet agent -t</code>を実行します。</li>
+  <li>SSHで<code>&lt;PUPPETDB.EXAMPLE.COM&gt;</code>にログインし、<code>puppet agent -t</code>を実行します。</li>
+  <li>SSHで<code>&lt;CONSOLE.EXAMPLE.COM&gt;</code>にログインし、<code>puppet agent -t</code>を実行します。</li>
+  <li>SSHで<code>&lt;MASTER.EXAMPLE.COM&gt;</code>にログインし、<code>puppet agent -t</code>を実行します。</li>
+</ol>
+<blockquote>
+  <p> <strong>完了しました！</strong> <code>add.master.example.com</code>がコンパイルmasterノードになりました。 使用を開始するには、まず負荷バランサに追加する必要があります。
+</p>
+</blockquote>
+
+<h2 id="using-load-balancers-in-a-large-environment-installation">大規模インストールでの負荷バランサの使用</h2>
+
+<p> 詳細については「<a href="./install_lei_load.html">Using load balancers in an LEI(LEIでの負荷バランサの使用)</a>」を参照してください。
+</p>
+
+<h2 id="a-note-about-pe-file-sync">PEファイル同期に関する注記</h2>
+
+<p> File Sync(ファイル同期)は、複数のmaster間でPuppetコードの同期を保つためのものです。 Webエンドポイントからのトリガーにより、ファイル同期はマスターオブマスターズ(MoM)の作業ディレクトリから変更を取得し、そのコードをライブコードディレクトリにデプロイします。 その後、自動的にそのコードをすべてのコンパイルmasterにデプロイし、マルチmaster構成に存在するすべてのmasterの同期を確保します。
+</p>
+
+<p> PEファイル同期の詳細については、「<a href="/pe/2016.2/cmgmt_filesync.html">About File Sync(ファイル同期について)</a>」を参照してください。
+</p>
+</div>
