@@ -2,7 +2,7 @@
 
 {% if page.doc.doc != "pe" %}<div id="version-note"><p class="noisy">
   {% if page.doc.my_versions.pe == "latest" %}{% comment %}...then no SPECIFIC PE version has claimed this version.{% endcomment %}
-    This version is not included in Puppet Enterprise.
+    This version of {{site.document_names[page.doc.doc]}} is not included in Puppet Enterprise. The latest version of PE includes {{site.document_names[page.doc.doc]}} {{ site.document_list[site.document_version_index.pe.latest].my_versions[page.doc.doc] }}.
   {% else %}
     Included in Puppet Enterprise {{page.doc.my_versions.pe}}.
   {% endif %}
