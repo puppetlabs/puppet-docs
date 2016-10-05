@@ -10,11 +10,12 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Releases
 
+- [Puppet 4.7][4.7]
 - [Puppet 4.6][4.6]
-- [Puppet 4.5][4.5]
 
 ### Previous Releases
 
+- [Puppet 4.5][4.5]
 - [Puppet 4.4][4.4]
 - [Puppet 4.3][4.3]
 - [Puppet 4.2][4.2]
@@ -57,7 +58,7 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ## About Version Numbers
 
-### Puppet Labs' Open Source Projects
+### Puppet's Open Source Projects
 
 All of our open source projects --- including Puppet, Puppet Server, PuppetDB, Facter, and Hiera --- use [semantic versioning ("semver")][semver] for their version numbers. This means that in an `x.y.z` version number, the "y" will increase if new features are introduced and the "x" will increase if existing features change or get removed.
 
@@ -80,6 +81,7 @@ The short version is that you should upgrade when you're ready to upgrade, skim 
 The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel) lists tickets closed for each release.
 
 [semver]: http://semver.org
+[4.7]: /puppet/4.7/reference/release_notes.html
 [4.6]: /puppet/4.6/reference/release_notes.html
 [4.5]: /puppet/4.5/reference/release_notes.html
 [4.4]: /puppet/4.4/reference/release_notes.html
