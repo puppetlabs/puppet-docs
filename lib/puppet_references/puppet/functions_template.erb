@@ -1,0 +1,25 @@
+<% functions.each do |func| -%>
+## `<%= func['name'] %>`
+
+<% if func['signature'] -%>
+* `<%= func['signature'] %>`
+<% if func['docstring']['tags'].class == Array
+func['docstring']['tags'].select {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil}.each do |param| -%>
+    * `<%= param['name'] %>` --- <%= param['text'] %>
+<% end
+end -%>
+<% end -%>
+<% if func['docstring']['tags'].class == Array
+func['docstring']['tags'].select {|tag| tag['tag_name'] == 'overload'}.each do |overload| -%>
+* `<%= overload['signature'] %>`
+<% if overload['tags'].class == Array
+overload['tags'].select {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil}.each do |param| -%>
+    * `<%= param['name'] %>` --- <%= param['text'] %>
+<% end
+end-%>
+<% end
+end -%>
+
+<%= func['docstring']['text'] %>
+
+<% end -%>
