@@ -28,3 +28,4 @@ Gemfile.lock
 .byebug_history
 link_test_results.yaml
 link_report.txt
+.yardoc
