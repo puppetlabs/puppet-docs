@@ -19,6 +19,7 @@ module PuppetReferences
   require 'puppet_references/puppet/man'
   require 'puppet_references/puppet/yard'
   require 'puppet_references/puppet/type'
+  require 'puppet_references/puppet/functions'
   require 'puppet_references/puppet/http'
   require 'puppet_references/facter/core_facts'
   require 'puppet_references/version_tables/config'
@@ -38,6 +39,7 @@ module PuppetReferences
         PuppetReferences::Puppet::Man,
         PuppetReferences::Puppet::PuppetDoc,
         PuppetReferences::Puppet::Type,
+        PuppetReferences::Puppet::Functions,
         PuppetReferences::Puppet::Yard
     ]
     repo = PuppetReferences::Repo.new('puppet', PUPPET_DIR)

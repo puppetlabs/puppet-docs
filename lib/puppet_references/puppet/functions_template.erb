@@ -1,4 +1,4 @@
-<% functions.each do |func| -%>
+<% functions.sort{|a,b| a['name'] <=> b['name'] }.each do |func| -%>
 ## `<%= func['name'] %>`
 
 <% if func['signature'] -%>
