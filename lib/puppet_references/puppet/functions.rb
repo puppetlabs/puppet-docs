@@ -38,7 +38,7 @@ module PuppetReferences
         names = functions.map {|func| func['name']}
         duplicates = names.uniq.select {|name| names.count(name) > 1}
         # 2. Reject the unpreferred version of any dupes.
-        functions.delete_if {|func|
+        functions = functions.reject {|func|
           duplicates.include?(func['name']) && func['type'] != preferred_version
         }
 
