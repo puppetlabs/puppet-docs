@@ -44,8 +44,8 @@ define apache::vhost (
   String[1] $servername = $title,
   String $vhost_name = '*',
 ) {
-  include ::apache # contains package['httpd'] and service['httpd']
-  include ::apache::params # contains common config settings
+  include apache # contains package['httpd'] and service['httpd']
+  include apache::params # contains common config settings
 
   $vhost_dir = $apache::params::vhost_dir
 
@@ -129,7 +129,12 @@ Every defined type gets two "free" parameters, which are always available and do
 Unlike the other parameters, the values of `$title` and `$name` are already available **inside the parameter list.** This means you can use `$title` as the default value (or part of the default value) for another attribute:
 
 ``` puppet
-define apache::vhost (Integer $port, String[1] $docroot, String $servername = $title, String[1] $vhost_name = '*') { ...
+define apache::vhost (
+  Integer $port,
+  String[1] $docroot,
+  String $servername = $title,
+  String[1] $vhost_name = '*',
+) { # ...
 ```
 
 ### Resource uniqueness
