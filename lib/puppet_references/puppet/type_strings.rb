@@ -68,7 +68,7 @@ module PuppetReferences
                 end
                 memo[attribute['name']] = {
                     'description' => description,
-                    'kind' => 'parameter',
+                    'kind' => 'property',
                     'namevar' => false
                 }
                 memo
