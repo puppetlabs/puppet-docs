@@ -9,19 +9,20 @@ module PuppetReferences
       TYPEDOCS_SCRIPT = PuppetReferences::BASE_DIR + 'lib/puppet_references/quarantine/get_typedocs.rb'
       TEMPLATE_FILE = Pathname.new(File.expand_path(__FILE__)).dirname + 'type_template.erb'
       TEMPLATE = ERB.new(TEMPLATE_FILE.read, nil, '-')
-      OUTPUT_DIR_UNIFIED = PuppetReferences::OUTPUT_DIR + 'puppet'
-      OUTPUT_DIR_INDIVIDUAL = PuppetReferences::OUTPUT_DIR + 'puppet/types'
       PREAMBLE_FILE = Pathname.new(File.expand_path(__FILE__)).dirname + 'type_preamble.md'
       PREAMBLE = PREAMBLE_FILE.read
 
       def initialize(*args)
         @latest = '/puppet/latest/reference'
+        @output_dir_unified = PuppetReferences::OUTPUT_DIR + 'puppet'
+        @output_dir_individual = PuppetReferences::OUTPUT_DIR + 'puppet/types'
+        @base_filename = 'type'
         super(*args)
       end
 
       def build_all
-        OUTPUT_DIR_UNIFIED.mkpath
-        OUTPUT_DIR_INDIVIDUAL.mkpath
+        @output_dir_unified.mkpath
+        @output_dir_individual.mkpath
         puts 'Type ref: Building all...'
         type_json = get_type_json
         type_data = JSON.load(type_json)
@@ -42,7 +43,7 @@ module PuppetReferences
           "* [#{name}](./#{name}.html)"
         }
         content = make_header(header_data) + "## List of Resource Types\n\n" + links.join("\n") + "\n\n" + PREAMBLE
-        filename = OUTPUT_DIR_INDIVIDUAL + 'index.md'
+        filename = @output_dir_individual + 'index.md'
         filename.open('w') {|f| f.write(content)}
       end
 
@@ -65,13 +66,13 @@ module PuppetReferences
         }.join("\n\n---------\n\n")
 
         content = make_header(header_data) + generated_at + "\n\n" + PREAMBLE + all_type_docs + "\n\n" + generated_at
-        filename = OUTPUT_DIR_UNIFIED + 'type.md'
+        filename = @output_dir_unified + "#{@base_filename}.md"
         filename.open('w') {|f| f.write(content)}
       end
 
       def write_json_file(json)
         puts 'Type ref: Writing JSON as file'
-        filename = OUTPUT_DIR_UNIFIED + 'type.json'
+        filename = @output_dir_unified + "#{@base_filename}.json"
         filename.open('w') {|f| f.write(json)}
       end
 
@@ -81,7 +82,7 @@ module PuppetReferences
                        canonical: "#{@latest}/types/#{name}.html"}
         generated_at = "> **NOTE:** This page was generated from the Puppet source code on #{Time.now.to_s}"
         content = make_header(header_data) + generated_at + "\n\n" + text_for_type(name, data) + "\n\n" + generated_at
-        filename = OUTPUT_DIR_INDIVIDUAL + "#{name}.md"
+        filename = @output_dir_individual + "#{name}.md"
         filename.open('w') {|f| f.write(content)}
       end
 
