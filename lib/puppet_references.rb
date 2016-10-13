@@ -19,6 +19,7 @@ module PuppetReferences
   require 'puppet_references/puppet/man'
   require 'puppet_references/puppet/yard'
   require 'puppet_references/puppet/type'
+  require 'puppet_references/puppet/type_strings'
   require 'puppet_references/puppet/functions'
   require 'puppet_references/puppet/http'
   require 'puppet_references/facter/core_facts'
@@ -39,6 +40,7 @@ module PuppetReferences
         PuppetReferences::Puppet::Man,
         PuppetReferences::Puppet::PuppetDoc,
         PuppetReferences::Puppet::Type,
+        PuppetReferences::Puppet::TypeStrings,
         PuppetReferences::Puppet::Functions,
         PuppetReferences::Puppet::Yard
     ]
