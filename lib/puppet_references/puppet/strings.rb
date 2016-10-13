@@ -7,8 +7,11 @@ module PuppetReferences
       STRINGS_JSON_FILE = PuppetReferences::OUTPUT_DIR + 'puppet/strings.json'
       @@strings_data_cached = false
 
-      def initialize
+      def initialize(force_cached = false)
         super()
+        if force_cached
+          @@strings_data_cached = true
+        end
         unless @@strings_data_cached
           generate_strings_data
         end
