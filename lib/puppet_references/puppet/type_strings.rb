@@ -14,9 +14,8 @@ module PuppetReferences
         # Do whatever you need to get build a JSON object appropriate for the template.
         # BTW, thanks Past Nick for making this easy to swap out???
         strings_data = PuppetReferences::Puppet::Strings.new(true)
-        type_hash = {}
-        strings_data['resource_types'].each do |type|
-          type_hash[ type['name'] ] = {
+        type_hash = strings_data['resource_types'].reduce(Hash.new) do |memo, type|
+          memo[ type['name'] ] = {
               'description' => type['docstring']['text'],
               'features' => (type['features'] || []).reduce(Hash.new) {|memo, feature|
                 memo[feature['name']] = feature['description']
@@ -74,6 +73,7 @@ module PuppetReferences
                 memo
               } )
           }
+          memo
         end
         JSON.dump(type_hash)
       end
