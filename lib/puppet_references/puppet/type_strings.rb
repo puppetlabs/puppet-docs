@@ -11,9 +11,10 @@ module PuppetReferences
       end
 
       def get_type_json
-        # Do whatever you need to get build a JSON object appropriate for the template.
-        # BTW, thanks Past Nick for making this easy to swap out???
-        strings_data = PuppetReferences::Puppet::Strings.new(true)
+        # 1. Get Strings JSON.
+        # 2. Munge it to match the old format I threw together, which the template uses.
+        # 3. Dump result to JSON.
+        strings_data = PuppetReferences::Puppet::Strings.new
         type_hash = strings_data['resource_types'].reduce(Hash.new) do |memo, type|
           memo[ type['name'] ] = {
               'description' => type['docstring']['text'],
