@@ -12,7 +12,7 @@ title: "Installing Puppet: From Source Tarballs"
 [directory environments]: /puppet/latest/reference/environments.html
 [install-latest]: /puppet/latest/reference/install_pre.html
 
-> **Note:** This document covers open source releases of Puppet version 3.8 and lower. You might also want instructions for [installing Puppet Enterprise][peinstall] or [installing Puppet 4.0 or newer.][install-latest]
+> #### **Note:** This document covers *open source* releases of Puppet version 3.8 and lower. For current versions, you should see instructions for [installing the latest version of Puppet][install-latest] or [installing Puppet Enterprise][peinstall].
 
 On \*nix platforms without native packages available, you can install Puppet with a tarball of source code. This is even more unwieldy than using RubyGems and is almost never recommended, but it might be necessary in some cases.
 

@@ -126,7 +126,7 @@ Static catalogs are produced only by Puppet Server. The Ruby Puppet master never
 Puppet Server also won't produce static catalogs for an agent under the following circumstances:
 
 * If the Server's `code-id-command` and `code-content-command` settings and scripts are not configured, or if the `code-id-command` returns an empty string.
-* If the agent's `static_catalogs` setting is false, either globally in [`puppet.conf`][] or in the [`environment.conf`][] file for the environment under which the agent is requesting a catalog.
+* If the Server's `static_catalogs` setting is false, either globally in [`puppet.conf`][] or in the [`environment.conf`][] file for the environment under which the agent is requesting a catalog.
 * If the agent's version is older than 4.4.0.
 
 Additionally, Puppet Server only inlines metadata for [file resources][] if **all** of the following conditions are true:

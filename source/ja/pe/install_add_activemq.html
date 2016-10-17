@@ -1,0 +1,355 @@
+---
+layout: default
+title: "ActiveMQハブおよびスポーツの追加"
+canonical: "/ja/pe/install_add_activemq.html"
+---
+
+<div>
+<p> 以下のガイドでは、ActiveMQハブおよびスポークを大規模Puppet Enterpriseデプロイに追加する方法を説明します。 ActiveMQブローカを構築すると、PEインフラでMCollectiveメッセージを送信する際のネットワーク接続負荷を効果的に分散することができます。
+</p>
+
+<p> ActiveMQハブおよびスポーツの追加は、<a href="./install_multimaster.html">複数のPuppet master</a>のPEインフラへの追加とともに実施することも、独立して実施することもできます。 
+</p>
+
+<p> 大規模インストールの推奨ハードウェアに関する指針は、<a href="./install_system_requirements.html#large-environment-installation">PEハードウェア推奨事項</a>を参照してください。 
+</p>
+
+<p> MCollectiveの詳細については、<a href="/mcollective/index.html">MCollective文書</a>、具体的には「<a href="/integration/activemq_clusters.html#activemq-clustering">ActiveMQクラスタリング</a>」を参照してください。
+</p>
+
+<p> インストールを始める前に、以下の手順を確認してください。誤った順序で実行すると、設定に問題が生じるおそれがあります。
+</p>
+
+<p> また、このガイドについては、以下の点も注意してください。
+</p>
+
+<ul>
+<li>この説明は、分割インストールを扱っています。</li>
+  <li>この手順は、すべてのサーバーが同じOSおよびアーキテクチャを使用することを前提としています。</li>
+  <li>この手順で使用している以下のホスト名は、お使いのインフラのホスト名に置き換える必要があります。<ul>
+<li>
+<strong>Puppet master</strong>：<code>&lt;MASTER.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>PEコンソール</strong>： <code>&lt;CONSOLE.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>ActiveMQハブ</strong>：<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>ActiveMQブローカ1</strong>：<code>&lt;ACTVIEMQ.SYD.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>ActiveMQブローカ2</strong>：<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>PE agent</strong>：<code>&lt;AGENT.EXAMPLE.COM&gt;</code>
+</li>
+    </ul>
+</li>
+</ul>
+<blockquote>
+  <p> <strong>重要</strong>：すべてのノードで必ず時間を同期してください。
+</p>
+</blockquote>
+
+<p> ActiveMQハブとスポーク、およびPE agentは、適切な手順を繰り返すだけで、必要に応じていくつでも追加することができます。
+</p>
+
+<h2 id="step-1-install-puppet-enterprise">ステップ1：Puppet Enterpriseのインストール</h2>
+
+<ol>
+<li>
+<a href="./install_pe_split.html">PE分割インストールの説明</a>に従い、PEをインストールします。</li>
+  <li>コンソールにログインします。</li>
+  <li>「<a href="#step-2-install-puppet-agent-on-nodes">ステップ2：Puppet Agentのノードへのインストール</a>」に進みます。</li>
+</ol>
+<h2 id="step-2-install-puppet-agent-on-nodes">ステップ2：Puppet agentをノードにインストール</h2>
+
+<p> このステップでは、Puppet agentを<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>、<code>&lt;ACTIVEMQ.SYD.EXAMPLE.COM&gt;</code>、<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>、<code>agent.example.com</code>にインストールします。 このステップを実行し、各マシンにPuppet agentをインストールする必要があります。
+</p>
+
+<p> <strong>Puppet agentをインストールする方法</strong>：
+</p>
+
+<ol>
+<li>
+    <p> SSHで各ノードにログインし、<code>curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/install.bash | sudo bash -s agent:ca_server=&lt;MASTER.EXAMPLE.COM&gt;</code>を実行します。
+</p>
+
+    <p> これでノードにPuppet agentがインストールされ、設定されます。
+</p>
+  </li>
+  <li>
+    <p> コンソールで各ノードの証明書要求を検索して署名し、各ノードの要求に署名します。
+</p>
+  </li>
+</ol>
+<h2 id="step-3-create-the-activemq-hub-group">ステップ3：ActiveMQハブグループの作成</h2>
+
+<p> このステップでは、PEコンソールを使ってActiveMQハブグループを作成します。
+</p>
+
+<p> <strong>ActiveMQハブグループを作成する方法</strong>：
+</p>
+
+<ol>
+<li>コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックします。</li>
+  <li>[<strong>Classification</strong>]ページの[<strong>Node group name</strong>]フィールドで、ActiveMQハブグループに名前を付けます (<code>PE ActiveMQ Hub</code>など)。</li>
+  <li>[<strong>Parent name</strong>]ドロップダウンリストから[<strong>PE Infrastructure</strong>]を選択します。</li>
+  <li>[<strong>Add group</strong>]をクリックします。</li>
+  <li>[<strong>PE ActiveMQ Hub</strong>]グループを選択します。</li>
+  <li>[<strong>Node name</strong>]フィールドに<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>と入力します。</li>
+  <li>[<strong>Pin node</strong>]をクリックします。</li>
+  <li>[<strong>Classes</strong>]タブをクリックします。</li>
+  <li>[<strong>class name</strong>]フィールドに<code>puppet_enterprise::profile::amq::hub</code>を追加します。</li>
+  <li>[<strong>Add class</strong>]をクリックします。</li>
+  <li>[<strong>puppet_enterprise::profile::amq::hub</strong>]クラスの[<strong>Parameter</strong>]ドロップダウンリストから<code>network_connector_spoke_collect_tag</code>を選択し、[<strong>Value</strong>]フィールドに<code>pe-amq-network-connectors-for-&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>と入力します。</li>
+  <li>[<strong>Commit changes</strong>]をクリックします。</li>
+  <li>SSHで<code>activemq-hub.example.com</code>にログインし、<code>puppet agent -t</code>によりPuppetを実行します。</li>
+</ol>
+<h2 id="step-4-add-additional-spokes-to-activemq-broker-group">ステップ4：ActiveMQブローカグループへのスポークの追加</h2>
+
+<p> このステップでは、PEコンソールを使って<code>&lt;ACTIVEMQ.SYD.EXAMPLE.COM&gt;</code>と<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>を<strong>PE ActiveMQ Broker</strong>グループに追加します。このグループはPEインストールの際に設定されます。 
+</p>
+
+<p> <strong>PE ActiveMQブローカグループにスポークを追加する方法</strong>：
+</p>
+
+<ol>
+<li>[<strong>Classification</strong>]ページで[<strong>PE ActiveMQ Broker</strong>]グループをクリックします。</li>
+  <li>[<strong>Rules</strong>]タブが選択されていることを確認します。</li>
+  <li>[<strong>Node name</strong>]フィールドに<code>&lt;ACTIVEMQ.SYD.EXAMPLE.COM&gt;</code>および<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>と入力します。</li>
+  <li>[<strong>Pin node</strong>]をクリックします。</li>
+  <li>[<strong>Classes</strong>]タブをクリックします。</li>
+  <li>[<strong>puppet_enterprise::profile::amq::broker</strong>]クラスの[<strong>Parameter</strong>]ドロップダウンリストから<code>activemq_hubname</code>を選択します。ハブの完全修飾ドメイン名(<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>など)を入力します。</li>
+  <li>[<strong>Commit change</strong>]をクリックします。</li>
+  <li>
+    <p> <code>&lt;ACTIVEMQ.SYD.EXAMPLE.COM&gt;</code>および<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>でPuppetを実行します。
+</p>
+
+    <p> a. SSHで<code>&lt;ACTIVEMQ.SYD.EXAMPLE.COM&gt;</code>に入ります。
+</p>
+
+    <p> b. <code>puppet agent -t</code>を実行します。
+</p>
+
+    <p> c. 実行が完了したら、SSHで<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>に入り、<code>puppet agent -t</code>を実行します。
+</p>
+  </li>
+  <li>
+    <p> すべてのスポークノードでPuppetを実行したのち、各ハブノードでPuppetを実行します(このケースでは<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>)。
+</p>
+
+    <blockquote>
+      <p> <strong>注意</strong>：Puppet master(<code>&lt;MASTER.EXAMPLE.COM&gt;</code>など)はデフォルトではすでにMCollectiveブローカになっています。 必要な場合は、<strong>PE ActiveMQ Broker</strong>グループから外すこともできます。
+</p>
+    </blockquote>
+  </li>
+</ol>
+<h2 id="step-5-configure-mcollective-to-communicate-with-additional-spokes">ステップ5：MCollectiveと追加スポークとの通信の設定</h2>
+
+<p> 大規模環境や様々な地域にわたる環境でActiveMQハブとスポークによって多数のMCOサブスクライバ/サーバーを管理する場合は、以下のいずれかのオプションを使用してActiveMQノードを分類することを推奨します。
+</p>
+
+<p> この例では、オレゴン州ポートランドのデータセンターと、オーストラリアのシドニーのデータセンターの場合を想定しています。
+</p>
+
+<p> 最初にするべきことは、ポートランドとシドニーのMCOサブスクライバ/サーバーグループの物理的属性を特定するために使用するカスタムfactの作成です。 その後、インフラのニーズに応じて、以下のオプションのいずれかを選択してください。
+</p>
+
+<ul>
+<li>
+    <p> <strong>オプションA</strong>：ポートランドおよびシドニーの各スポークまたはスポークグループについて、新規ノードグループを作成します。 これらのグループは、PE MCollectiveグループを継承している必要があります。また、 <code>puppet_enterprise::profile::mcollective::agent</code>クラスが含まれ、<code>activemq_brokers</code>パラメータが目的のスポークの名前に設定されている必要があります。 カスタムfactは、各ノードグループの分類ルールとして使用できます。
+</p>
+  </li>
+  <li>
+    <p> <strong>オプションB</strong>：ノードグループを使いたくない場合は、代わりに Hieraと自動データ バインディングを使用できます。 その場合、PEインフラグループの<code>puppet_enterprise</code>クラスから<code>mcollective_middleware_hosts parameter</code>を削除し、Hiera内の適切なレベルにこのパラメータを配置して各スポークを区別する必要があります。
+</p>
+  </li>
+</ul>
+<h3 id="create-a-datacenter-custom-fact">
+<code>data_center</code>カスタムfactの作成</h3>
+
+<p> カスタムfactsの作成およびデプロイに関する詳細は、<a href="/facter/3.1/fact_overview.html">Facter 2.4文書</a>を参照してください。
+</p>
+
+<p> 簡単な例を示すために、シドニーのデータセンター<code>spoke.syd.example.com</code>のAMQスポークとバインドさせる<code>&lt;AGENT.EXAMPLE.COM&gt;</code>ノード上に、静的なカスタムfactを作成します。
+</p>
+
+<p> <strong><code>&lt;AGENT.EXAMPLE.COM&gt;</code>にカスタムfactファイルを作成する方法</strong>：
+</p>
+
+<ul>
+<li>
+    <p> <code>&lt;AGENT.EXAMPLE.COM&gt;</code>が*nixマシンの場合は、以下を実行します。
+</p>
+
+    <pre><code>puppet apply -e 'file { ["/etc/puppetlabs", "/etc/puppetlabs/facter", "/etc/puppetlabs/facter/facts.d"]: ensure =&gt; directory }'
+puppet apply -e 'file {"/etc/puppetlabs/facter/facts.d/data_center.txt": ensure =&gt; file, content =&gt; "data_center=syd"}'
+</code></pre>
+  </li>
+  <li>
+    <p> <code>&lt;AGENT.EXAMPLE.COM&gt;</code>がWindowsマシン (Windows Vista、7、8、2008、2012) の場合は、以下を実行します。
+</p>
+
+    <pre><code>puppet apply -e "file { ['C:/ProgramData/PuppetLabs', 'C:/ProgramData/PuppetLabs/facter', 'C:/ProgramData/PuppetLabs/facter/facts.d']: ensure =&gt; directory }"
+puppet apply -e "file {'C:/ProgramData/PuppetLabs/facter/facts.d/data_center.txt': ensure =&gt; file, content =&gt; 'data_center=syd'}"
+</code></pre>
+  </li>
+</ul>
+<h4 id="option-a-use-the-pe-console-to-create-new-node-groups-for-activemq-spokes-in-sydney-and-portland">
+<strong>オプションA</strong>：PEコンソールを用いて、シドニーおよびポートランドのActiveMQスポークについて新規ノードグループを作成する</h4>
+
+<blockquote>
+  <p> <strong>注意</strong>：ノードはPE MCollectiveノードグループに属している必要があります。
+</p>
+</blockquote>
+
+<ol>
+<li>PEコンソールで、[<strong>Classification</strong>]ページを開きます。</li>
+  <li>[<strong>Node group name</strong>]フィールドで、シドニーデータセンターに対応する名前を付けた新規グループを作成します (<strong>Sydney_datacenter</strong>など)。</li>
+  <li>[<strong>Parent name</strong>]ドロップダウンリストからPE MCollectiveを選択します。</li>
+  <li>[<strong>Add group</strong>]をクリックします。</li>
+  <li>
+    <p> [<strong>Sydney_datacenter</strong> ]グループを選択し、[strong&gt;Rules]タブでシドニーデータセンターのカスタムfactを設定します。
+</p>
+
+    <p> a. [<strong>Fact</strong>]フィールドに「data_center」と入力します (カッコやクォーテーションマークはなし)。
+</p>
+
+    <p> b. [<strong>Operator</strong>]ドロップダウンリストから [<strong>=</strong>] (is) を選択し、[<strong>Value</strong>]フィールドに「syd」と入力します (カッコやクォーテーションマークはなし)。
+</p>
+
+    <p> c. [<strong>Add rule</strong>]をクリックします。
+</p>
+  </li>
+  <li>[<strong>Classes</strong>]タブをクリックし、[<strong>Add new class</strong>]フィールドに<code>puppet_enterprise::profile::mcollective::agent</code>と入力し、[<strong>Add class</strong>]をクリックします。</li>
+  <li>[<strong>Parameter</strong>]ドロップダウンリストから <code>activemq_brokers</code>を選択します。</li>
+  <li>[<strong>Value</strong>]フィールドで、目的のスポークの名前を追加します ( [“spoke.syd.example.com”]など)。配列として入力する必要がある点に注意してください。</li>
+  <li>[<strong>Add parameter</strong>]をクリックし、[<strong>Commit change</strong>]ボタンをクリックします。</li>
+  <li>ポートランドのデータセンターについても、ステップ2～10を繰り返します。</li>
+  <li>ActiveMQハブとスポーク (Puppet masterを含む)、およびPE agentがある場合はPE agentで、Puppetを実行するか、予定された実行を待ちます。</li>
+  <li>「<a href="#step-6-verify-connections">ステップ6：接続の確認</a>」に進みます。</li>
+</ol>
+<h4 id="option-b-use-hiera-to-bind-data-for--activemq-spokes-in-sydney-and-portland">
+<strong>オプションB</strong>：Hieraを用いて、シドニーおよびポートランドのActiveMQスポークについてデータをバインドする</h4>
+
+<p> PEコンソールでActiveMQスポークの新規ノードグループを作成しない場合は、このオプションを選択する必要があります。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>：この場合でも、<a href="#step-3-create-the-activemq-hub-group">ステップ3</a>で作成したハブのノードグループは必要です。
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> <strong>Puppet master上で</strong>、Hiera configファイル (<code>/etc/puppetlabs/puppet/hiera.yaml</code>) を編集し、階層の一部に<code>data_center</code> factが含まれるようにします。
+</p>
+
+    <p> Hiera configファイルは、おおむね以下のようになるはずです。
+</p>
+
+    <pre><code>#hiera.yaml
+   ---
+    :backends:
+         -  eyaml
+         - yaml
+    :hierarchy:
+         - "%{clientcert}"
+         - "%{data_center}"
+         - global
+
+     :yaml:
+     :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+</code></pre>
+  </li>
+  <li>
+    <p> <strong>Puppet master上で</strong>、目的のActiveMQスポークをマッピングするHieraデータファイルを<code>data_center</code>カスタムfactsに追加します。
+</p>
+
+    <p> 以下のコマンド例は、<code>syd</code>および<code>pdx</code>データセンターに対応するもので、<code>production</code>環境を用いているものと想定しています。
+</p>
+
+    <blockquote>
+      <p> <strong>重要</strong>：このステップで作成するファイル名は、カスタムfactの値と一致している必要があります。
+</p>
+    </blockquote>
+
+    <p> a. <code>/etc/puppetlabs/code/environments/production/hieradata/</code>に<code>syd.yaml</code>という名前のファイルを作成します。
+</p>
+
+    <p> b. <code>syd.yaml</code>を編集し、以下のコンテンツが含まれるようにします。
+</p>
+
+    <pre><code>---
+puppet_enterprise::profile::mcollective::agent::activemq_brokers:
+   - 'spoke.syd.example.com'
+</code></pre>
+
+    <p> c. 引き続き<code>hieradata</code>ディレクトリで、 <code>pdx.yaml</code>という名前のファイルを作成します。
+</p>
+
+    <p> d. <code>pdx.yaml</code>を編集し、以下のコンテンツが含まれるようにします。
+</p>
+
+    <pre><code>---
+puppet_enterprise::profile::mcollective::agent::activemq_brokers:
+    - 'spoke.pdx.example.com'
+</code></pre>
+  </li>
+  <li>
+    <p> Hieraおよびカスタムfactが適切に設定されているかを確認します。 エンドノードでカスタムfactを確認します。 <code>&lt;AGENT.EXAMPLE.COM&gt;</code>で<code>facter data_center</code>を実行します。
+</p>
+
+    <p> これにより、この例の<code>syd</code>の予定値が返されるはずです。
+</p>
+  </li>
+  <li>
+    <p> 適切なパラメータを与えた場合に、HieraがActiveMQスポークの予定値を取得するかどうかを確認します。 Puppet master上で<code>hiera puppet_enterprise::profile::mcollective::agent::activemq_brokers data_center=syd environment=production</code>を実行します。
+</p>
+
+    <p> このコマンドにより、この例の<code>["spoke.syd.example.com"]</code>の予定値が返されるはずです。
+</p>
+  </li>
+  <li>
+    <p> <strong>Puppet master上で</strong>、pe-puppetserverサーバーを再起動します。
+</p>
+
+    <pre><code>puppet resource service pe-puppetserver ensure=stopped
+puppet resource service pe-puppetserver ensure=running
+</code></pre>
+
+    <p> Puppetサーバーで更新されたHiera階層を取得するには、このファイルの変更後にサービスを再起動する必要があります。
+</p>
+  </li>
+  <li>ActiveMQハブとスポーク (Puppet masterを含む)、およびPE agentがある場合はPE agentで、Puppetを実行するか、予定された実行を待ちます。</li>
+  <li>「<a href="#step-6-verify-connections">ステップ6：接続の確認</a>」に進みます。</li>
+</ol>
+<h2 id="step-6-verify-connections">ステップ6：接続の確認</h2>
+
+<p> これでほとんど終わりました！ 以下の手順を実行して、すべての接続が適切に確立されたかどうかを確認します。
+</p>
+
+<ol>
+<li>
+    <p> <strong>MCollective</strong>グループが適切に設定されたかどうかを確認するには、 <code>&lt;MASTER.EXAMPLE.COM&gt;</code>で<code>su peadmin</code>、<code>mco ping</code>の順に実行します。
+</p>
+
+    <p> ActiveMQハブとスポーク(Puppet masterを含む)、PE agentがある場合はPE agentもリスト表示されます。
+</p>
+  </li>
+  <li>
+    <p> ActiveMQハブの接続が適切に確立されたかどうかを確認するには、<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>で<code>netstat -an | grep '61616'</code>を実行します。
+</p>
+
+    <p> ActiveMQブローカノードの間で、ActiveMQハブの接続が設定されていることを確認できるはずです。
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> <strong>ヒント</strong>：<code>pe-activemq</code>ユーザが開く/処理することができるプロセスの数を増やす必要がある場合は、「<a href="/pe/2016.2/trouble_orchestration.html#increasing-the-ulimit-for-the-pe-activemq-user">Increasing the ulimit for the <code>pe-activemq</code> User(<code>pe-activemq</code> ユーザを無制限に増やす)</a>」の説明を参照してください。
+</p>
+</blockquote>
+</div>

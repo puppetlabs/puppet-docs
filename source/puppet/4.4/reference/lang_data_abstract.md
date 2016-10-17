@@ -263,7 +263,7 @@ Note that it doesn't match `default` or resource references.
 
 It takes no parameters.
 
-`Data` is esepecially useful because it represents the subset of types that can be directly represented in almost all serialization formats (e.g. JSON).
+`Data` is especially useful because it represents the subset of types that can be directly represented in almost all serialization formats (e.g. JSON).
 
 ### `Collection`
 

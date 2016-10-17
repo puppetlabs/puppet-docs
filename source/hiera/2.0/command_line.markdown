@@ -65,7 +65,7 @@ Descriptions of these choices are below.
 
 Hiera accepts facts from the command line in the form of `variable=value` pairs, e.g., `hiera ntp_server ::osfamily=Debian clientcert="web01.example.com"`. Variables on the command line must be specified in a way that matches how they appear in `hiera.yaml`, including the leading `::` for facts and other top-scope variables. Variable values must be strings and must be quoted if they contain spaces.
 
-This is useful if the values you're testing only rely on a few facts. It can become unweildy if your hierarchy is large or you need to test values for many nodes at once. In these cases, you should use one of the other options below.
+This is useful if the values you're testing only rely on a few facts. It can become unwieldy if your hierarchy is large or you need to test values for many nodes at once. In these cases, you should use one of the other options below.
 
 ### JSON and YAML Scopes
 

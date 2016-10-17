@@ -1,0 +1,66 @@
+---
+layout: default
+title: "Cumulus Linux Puppet agentのインストール"
+canonical: "/pe/latest/install_cumulus.html"
+---
+
+<div>
+<p> Puppet Enterpriseは、agentのみのプラットフォームとしてCumulus Linuxオペレーティングシステムをサポートしています。 この説明は、すでに<a href="http://cumulusnetworks.com/support/linux-hardware-compatibility-list/">Cumulus Linux</a>をサポートするデバイスをインストールしており、さらに<a href="./install_basic.html">Puppet Enterpriseをインストール</a>していることを想定したものです。
+</p>
+
+<p> Cumulus Linux Puppet agentをインストールするには、ネットワークデバイスのCumulusアカウントにアクセスできる必要があります。
+</p>
+
+<p> インストールを始める前に、以下の情報も入手しておく必要があります。
+</p>
+
+<ul>
+<li>Puppet masterサーバーのIPアドレスと完全修飾ドメイン名 (FQDN)</li>
+  <li>Cumulus LinuxをインストールするネットワークデバイスのFQDN</li>
+</ul>
+<h2 id="install-the-cumulus-linux-puppet-agent">Cumulus Linux Puppet agentのインストール</h2>
+
+<ol>
+<li>ネットワークスイッチで<code>wget http://apt.puppetlabs.com/puppetlabs-release-pc1-cumulus.deb</code>を実行します。</li>
+  <li>
+<code>sudo dpkg -i puppetlabs-release-pc1-cumulus.deb</code>により、agentパッケージをインストールします。</li>
+  <li>
+<code>sudo apt-get update</code>を実行します。</li>
+  <li> <code>sudo apt-get install puppet-agent</code>により、Puppet agentをインストールします。</li>
+  <li>
+<code>/etc/hosts</code>を編集し、Puppet masterのIPアドレスとFQDN、デフォルトのDNSオルトネームの<code>puppet</code>が含まれるようにします。</li>
+  <li>
+    <p> <code>sudo /opt/puppetlabs/bin/puppet agent -t</code>により、スイッチ上のPuppet agentを実行します。
+</p>
+
+    <p> これにより、Puppet agentの証明書署名要求(CSR)が作成されます。この証明書には、Puppet masterから署名する必要があります。
+</p>
+  </li>
+  <li>Puppet master上でPuppet agentのCSRに署名します。<code>puppet cert sign &lt;NETWORK DEVICE'S FQDN&gt;</code>を実行します。</li>
+  <li>
+    <p> ネットワークデバイス上で<code>sudo /opt/puppetlabs/bin/puppet agent -t</code>によりPuppetを実行し、インストールを完了します。
+</p>
+
+    <p> Puppet agentがカタログを取得し、全面的に機能するようになります。 
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> <strong>次の手順</strong>：次は、ネットワーク上のポート、ライセンス、インタフェースの管理を始めます。 モジュールの使用を始めるための詳細については、Puppet Forgeの<a href="https://forge.puppetlabs.com/cumuluslinux/">Cumulus Linuxのページ</a>を参照してください。
+</p>
+</blockquote>
+
+<h2 id="uninstall-the-cumulus-linux-puppet-agent">Cumulus Linux Puppet agentのアンインストール</h2>
+
+<ol>
+<li>
+<code>sudo apt-get remove puppet-agent puppetlabs-release-pc1</code>により、puppet agentとagentパッケージをアンインストールします。</li>
+  <li>
+    <p> Puppet master上で、<code>puppet cert clean &lt;NETWORK DEVICE'S FQDN&gt;</code>によりPuppet agentの証明書を無効にします。
+</p>
+
+    <p> これでagentの証明書が無効になり、Puppet master上の関連ファイルが削除されます。 これにより、Puppet agentを同じデバイスに再インストールする場合のSSLの衝突を防ぐことができます。
+</p>
+  </li>
+</ol>
+</div>

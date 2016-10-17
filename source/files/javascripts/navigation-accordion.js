@@ -24,6 +24,13 @@ $( document ).ready( function() {
     // Add custom events to nav sections. Since we can have sections within sections
     // with independent expansion state, we shouldn't let these events bubble up.
     navSections.on( {
+        // Allow nav sections to toggle their sublist if you click the ± sign or label
+        "click": function(e) {
+            if (e.target === this || e.target === $(this).children('strong')[0]) {
+                e.stopPropagation();
+                $(this).trigger('toggleNavSection');
+            }
+        },
         "toggleNavSection": function(e) {
             e.stopPropagation();
             // Toggle the list item bullet
@@ -47,11 +54,6 @@ $( document ).ready( function() {
     navSections.trigger("setHidden");
     // Expand any sections that contain the current page
     activeNavSections.trigger("setExpanded");
-
-    // Clicking section labels will toggle their section
-    navSectionLabels.on("click", function() {
-        $( this ).parent("li").trigger("toggleNavSection");
-    });
 
     // Add a "toggle all" button if there is at least one navSection
     if ( navSections.length > 0 ) {
