@@ -46,9 +46,9 @@ Using exported resources requires two steps: declaring and collecting.
 ``` puppet
 class ssh {
   # Declare:
-  @@sshkey { $hostname:
+  @@sshkey { $::hostname:
     type => dsa,
-    key  => $sshdsakey,
+    key  => $::sshdsakey,
   }
   # Collect:
   Sshkey <<| |>>
@@ -62,11 +62,11 @@ In the example above, every node with the `ssh` class will export its own SSH ho
 To declare an exported resource, prepend `@@` (a double "at" sign) to the **resource type** of a standard [resource declaration][resources]:
 
 ``` puppet
-@@nagios_service { "check_zfs${hostname}":
+@@nagios_service { "check_zfs${::hostname}":
   use                 => 'generic-service',
-  host_name           => "$fqdn",
+  host_name           => $::fqdn,
   check_command       => 'check_nrpe_1arg!check_zfs',
-  service_description => "check_zfs${hostname}",
+  service_description => "check_zfs${::hostname}",
   target              => '/etc/nagios3/conf.d/nagios_service.cfg',
   notify              => Service[$nagios::params::nagios_service],
 }
@@ -124,33 +124,35 @@ them. For example, you could create a class for something like
 Apache that adds a service definition on your Nagios host,
 automatically monitoring the web server:
 
-    # /etc/puppetlabs/puppet/modules/nagios/manifests/target/apache.pp
-    class nagios::target::apache {
-       @@nagios_host { $fqdn:
-            ensure  => present,
-            alias   => $hostname,
-            address => $ipaddress,
-            use     => "generic-host",
-       }
-       @@nagios_service { "check_ping_${hostname}":
-            check_command       => "check_ping!100.0,20%!500.0,60%",
-            use                 => "generic-service",
-            host_name           => "$fqdn",
-            notification_period => "24x7",
-            service_description => "${hostname}_check_ping"
-       }
-    }
+``` puppet
+# /etc/puppetlabs/puppet/modules/nagios/manifests/target/apache.pp
+class nagios::target::apache {
+  @@nagios_host { $::fqdn:
+    ensure  => present,
+    alias   => $::hostname,
+    address => $::ipaddress,
+    use     => 'generic-host',
+  }
+  @@nagios_service { "check_ping_${::hostname}":
+    check_command       => 'check_ping!100.0,20%!500.0,60%',
+    use                 => 'generic-service',
+    host_name           => $::fqdn,
+    notification_period => '24x7',
+    service_description => "${::hostname}_check_ping"
+  }
+}
 
-    # /etc/puppetlabs/puppet/modules/nagios/manifests/monitor.pp
-    class nagios::monitor {
-        package { [ nagios, nagios-plugins ]: ensure => installed, }
-        service { nagios:
-            ensure     => running,
-            enable     => true,
-            #subscribe => File[$nagios_cfgdir],
-            require    => Package[nagios],
-        }
-        # collect resources and populate /etc/nagios/nagios_*.cfg
-        Nagios_host <<||>>
-        Nagios_service <<||>>
-    }
+# /etc/puppetlabs/puppet/modules/nagios/manifests/monitor.pp
+class nagios::monitor {
+  package { [ 'nagios', 'nagios-plugins' ]: ensure => installed, }
+  service { 'nagios':
+    ensure     => running,
+    enable     => true,
+    #subscribe => File[$nagios_cfgdir],
+    require    => Package['nagios'],
+  }
+  # collect resources and populate /etc/nagios/nagios_*.cfg
+  Nagios_host <<||>>
+  Nagios_service <<||>>
+}
+```
