@@ -1,0 +1,173 @@
+<div>
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>注意</strong>：Mac OS Xはagentのみのプラットフォームです。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Mavericks (10.9)、Yosemite (10.10)、El Capitan (10.11) が必要です。
+</div>
+</div>
+</div>
+
+</blockquote>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Mac OS X agentでは、サーバーを管理する共通のPuppet Enterpriseインフラから、Apple製のノートパソコンおよびデスクトップを一貫して自動管理することができます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 利用できる機能としては、PEコア機能のほか、OS X固有の機能があります。
+</div>
+</div>
+</div>
+
+
+<ul>
+<li>DMGおよびPKGによるパッケージのインストール</li>
+  <li>LaunchDによるサービス管理</li>
+  <li>ローカルユーザ/グループ管理のためのディレクトリサービスの統合</li>
+  <li>System Profilerによるインベントリfacts</li>
+</ul>
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>警告</strong>：PE agentでは、certnameを小文字にする必要があります。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Mac OS X agentの場合、certnameはマシンの名前から派生します(My-Example-Mac&gt;など)。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールの問題を防ぐために、マシンの名前には必ず小文字を使うようにしてください。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> マシンの名前は、[<strong>System Preferences</strong>] &gt; [<strong>Sharing</strong>] &gt; [<strong>Computer Name</strong>] &gt; [<strong>Edit</strong>]で変更できます。
+</div>
+</div>
+</div>
+
+
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> コマンドラインでこの変更を行うには、以下のコマンドを実行します。
+</div>
+</div>
+</div>
+
+
+  <ol>
+<li><code>sudo scutil --set ComputerName &lt;newname&gt;</code></li>
+    <li><code>sudo scutil --set LocalHostName &lt;newname&gt;</code></li>
+    <li><code>sudo scutil --set HostName &lt;newname&gt;</code></li>
+  </ol>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> マシンの名前を変更しない場合は、インストーラで求められた際に、agentのcertnameをすべて小文字で入力するという方法もあります。
+</div>
+</div>
+</div>
+
+</blockquote>
+
+<h3 id="install-with-puppet-enterprise-package-management">Puppet Enterpriseパッケージ管理を用いたインストール</h3>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PEパッケージ管理ツールを用いて、Mac OS Xを使用するノード上にagentをインストールする方法については、「<a href="./install_agents.html#installing-puppet-agents-with-the-package-installation-script">Installing Agents Using PE Package Management(PEパッケージ管理を用いたagentのインストール)</a>」を参照してください。
+</div>
+</div>
+</div>
+
+
+<h3 id="install-from-finder">Finderを用いたインストール</h3>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Finderを用いて、Mac OS Xを使用するノード上にagentをインストールするには、以下の手順を実行します。
+</div>
+</div>
+</div>
+
+
+<ol>
+<li>
+<a href="http://puppetlabs.com/download-puppet-enterprise">OS X PE agentパッケージ</a>をダウンロードします。</li>
+  <li>PE .dmgを開き、installer .pkgをクリックします。</li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストーラのダイアログの指示に従います。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Puppet masterのホスト名とagentのcertnameが必要になります。
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストーラが自動的に証明書を作成し、masterに証明書の署名を要求します。 
+</div>
+</div>
+</div>
+
+  </li>
+</ol>
+<h3 id="install-from-command-line">コマンドラインを用いたインストール</h3>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> コマンドラインからMac OS Xを使用するノード上にagentをインストールするには、以下の手順を実施します。
+</div>
+</div>
+</div>
+
+
+<ol>
+<li>rootまたはsudoユーザとしてSSHでOS Xノードにログインします。<code>/var/root</code>に入ることになります。</li>
+  <li>
+<a href="http://puppetlabs.com/download-puppet-enterprise">OS X PE agentパッケージ</a>をダウンロードします。</li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>sudo hdiutil mount &lt;DMGFILE&gt;</code>を実行します。
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>/Volumes/puppet-agent-VERSION</code>で終わる行が表示されます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これは、ディスクイメージから作成された仮想ボリュームのマウントポイントです。
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+<code>cd /Volumes/puppet-agent-VERSION</code>を実行します。</li>
+  <li>
+<code>sudo installer -pkg puppet-agent-installer.pkg -target /</code>を実行します。</li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールを検証するには、<code>/opt/puppetlabs/bin/puppet --version</code>を実行します。
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>ヒント：</strong>: パスにPEバイナリを追加するには、<code>PATH=/opt/puppetlabs/bin:$PATH;export PATH</code>を実行します。
+</div>
+</div>
+</div>
+
+  </li>
+  <li>「<a href="./install_agents.html#configuring-agents">configuring agents(agentの設定)</a>」の説明に従い、適切なPuppet masterでOS X agentを指定しagentのcertnameを設定します。</li>
+  <li>
+<code>sudo puppet agent -t</code>を用いてPuppetを実行します。これにより、証明書署名要求が作成されます。これに<a href="./install_agents.html#signing-agent-certificates">署名</a>する必要があります。</li>
+</ol>
+<h2 id="a-note-about-binaries-and-symlinks">バイナリおよびシンボリックリンクに関する注記</h2>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> バイナリおよびシンボリックリンクPE設定の詳細については、「<a href="./install_basic.html#puppet-enterprise-binaries-and-symlinks">Puppet Enterpriseのバイナリおよびシンボリックリンク</a>」を参照してください。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> シンボリックリンクの無効化に関する説明も記載しています。
+</div>
+</div>
+</div>
+
+</div>
