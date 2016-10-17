@@ -1,0 +1,143 @@
+---
+layout: default
+title: "Cisco NX-OS agentのインストール"
+canonical: "/ja/pe/install_nxos.html"
+---
+
+<div>
+<p> Puppet Enterpriseは、Cisco NX-OSのリリース7.0以上をプラットフォームとしてサポートしており、Puppet agentはネットワークスイッチ上で動作します。 サポート対象のCiscoスイッチは以下のとおりです。 
+</p>
+
+<ul>
+<li>Cisco Nexus 95xxシリーズスイッチ</li>
+  <li>Cisco Nexus 93xxシリーズスイッチ</li>
+  <li>Cisco Nexus 31xxシリーズスイッチ</li>
+  <li>Cisco Nexus 30xxシリーズスイッチ</li>
+</ul>
+<p> この説明は、すでに<a href="./install_basic.html">installed Puppet Enterpriseをインストール</a>しており、NX-OSのバージョンが最小要件を満たすサポート対象のCisco Nexusスイッチをインストールしていることを想定したものです。  Cisco agentをインストールするには、<a href="https://forge.puppetlabs.com/puppetlabs/ciscopuppet">puppet-ciscopuppetモジュール</a>をインストールする必要があります。このモジュールには、Cisco Nexusスイッチの設定に必要なタイプとプロバイダが含まれます。
+</p>
+
+<h2 id="step-1-install-the-puppetlabs-ciscopuppet-module">ステップ1：puppetlabs-ciscopuppetモジュールのインストール</h2>
+
+<p> Puppet master上で<code>puppet module install puppetlabs-ciscopuppet</code>を実行します。
+</p>
+
+<h2 id="step-2-perform-a-bash-install-or-a-guest-shell-install">ステップ2：bashインストールまたはゲストシェルインストールの実行</h2>
+
+<p> NX-OSでは、サードパーティソフトウェアを bashシェルとゲストシェルという2種類の環境で実行することができます。 いずれかの環境を選んでPuppet agentを実行します。以下の該当する手順に従ってください。 (いずれかの環境でPuppetを実行できますが、両方の環境で同時に実行することはできません )。
+</p>
+
+<ul>
+<li>
+<strong>Bash</strong>：NX-OSの基盤となるネイティブのLinux環境です。デフォルトでは無効になっています。</li>
+  <li>
+<strong>ゲスト</strong>： CentOSを使用する安全なLinuxコンテナ環境です。ほとんどのNexusプラットフォームでは、デフォルトで有効になっています。</li>
+</ul>
+<blockquote>
+  <p> <strong>注意</strong>：Puppet agentをインストールするには、ブートフラッシュに400 MBのディスク空き容量があることを推奨します。
+</p>
+</blockquote>
+
+<h3 id="installing-the-puppet-agent-with-bash">bashでのPuppet agentのインストール</h3>
+
+<p> bash環境からPuppet agentを実行する場合にのみ、このセクションの手順を実行してください。
+</p>
+
+<blockquote>
+  <p> <strong>ヒント</strong>：bash環境はデフォルトでは無効になっています。 有効になっていない場合は、代わりに「ゲストシェル」環境を使うことを検討してください。
+</p>
+</blockquote>
+
+<p> この説明は、bash環境に応じてネットワークおよびDNSを設定していることを想定したものです。 詳しい説明は、<a href="https://forge.puppetlabs.com/puppetlabs/ciscopuppet">ciscopuppetモジュールのREADME-AGENT-INSTALL.mdにある「Puppet agent環境：bashシェル」</a>セクションを参照してください。
+</p>
+
+<p> <strong>bashでPuppet agentをインストールする方法</strong>：
+</p>
+
+<ol>
+<li>
+    <p> 有効なネットワークを用いてroot bashシェルを起動します。 ネットワークスイッチのコマンドラインで、以下のコマンドを実行します。
+</p>
+
+    <pre><code>run bash
+sudo ip netns exec management bash
+</code></pre>
+  </li>
+  <li>
+    <p> cisco_wrlinuxのPuppet Collections PC1リポジトリをインストールします。
+</p>
+
+    <pre><code>bash-4.2# yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-cisco-wrlinux-5.noarch.rpm
+</code></pre>
+  </li>
+  <li>
+    <p> Puppet agentをインストールします。
+</p>
+
+    <pre><code>yum install puppet-agent
+</code></pre>
+  </li>
+  <li>
+    <p> これでPuppet agentが<code>/opt/puppetlabs</code>にインストールされました。<code>bin</code>および<code>lib</code>パスをログインシェルの<code>PATH</code>に追加します。
+</p>
+
+    <pre><code>export PATH=$PATH:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/puppet/lib
+</code></pre>
+  </li>
+</ol>
+<h3 id="installing-the-puppet-agent-with-guest-shell">「ゲストシェル」でのPuppet agentのインストール</h3>
+
+<p> 「ゲストシェル」環境からPuppet agentを実行する場合にのみ、このセクションの手順を実施してください。
+</p>
+
+<ol>
+<li>
+    <p> rootゲストシェルを起動し、EL-7のPuppet Collections PC1リポジトリパッケージをインストールします。
+</p>
+
+    <pre><code>sudo su -
+yum install http://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+</code></pre>
+  </li>
+  <li>
+    <p> Puppet agentをインストールします。
+</p>
+
+    <pre><code>yum install puppet-agent
+</code></pre>
+  </li>
+  <li>
+    <p> これでPuppet agentが<code>/opt/puppetlabs</code>にインストールされました。<code>bin</code>および<code>lib</code>パスをログインシェルの<code>PATH</code>に追加します。
+</p>
+
+    <pre><code>export PATH=$PATH:/opt/puppetlabs/puppet/bin:/opt/puppetlabs/puppet/lib
+</code></pre>
+  </li>
+</ol>
+<h2 id="uninstalling-puppet-agent-with-bash-or-guest-shell">bashまたは「ゲストシェル」でのPuppet agentのアンインストール</h2>
+
+<p> Puppet agentをアンインストールするコマンドは、Bash環境でも「ゲストシェル」環境でも同じです。
+</p>
+
+<ol>
+<li>
+    <p> Puppet agentを削除します。
+</p>
+
+    <pre><code>sudo su -
+yum remove puppet-agent
+</code></pre>
+  </li>
+  <li>
+    <p> Puppet Collections PC1リポジトリパッケージを削除します。
+</p>
+
+    <pre><code>yum remove puppetlabs-release-pc1
+</code></pre>
+  </li>
+</ol>
+<h2 id="additional-resources">その他のリソース</h2>
+
+<p> ネットワークスイッチ上でのモジュールの使用に関する詳細は、「<a href="https://forge.puppetlabs.com/puppetlabs/ciscopuppet">puppet-ciscopuppetモジュール</a>」を参照してください。
+</p>
+</div>

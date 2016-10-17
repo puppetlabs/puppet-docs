@@ -1,0 +1,67 @@
+---
+layout: default
+title: "LEIでの負荷バランサ利用"
+canonical: "/ja/pe/install_lei_load.html"
+---
+
+<div>
+<p> LEIでは、環境全体のキャパシティを高めるため、agentの要求をコンパイルmaster全体に分散させます。 シンプルなTCP負荷バランサを設定すれば、ポート8140におけるagentとmasterのトラフィックをルーティングすることができます。
+</p>
+
+<p> 負荷バランサインフラの具体的な設定方法についてはこのガイドでは解説しませんが、<code>haproxy</code>を負荷分散の目的で利用する方法については、<a href="https://forge.puppetlabs.com/puppetlabs/haproxy">HAプロキシモジュール文書</a>で読むことができます。
+</p>
+
+<h2 id="considerations-when-using-load-balancers">負荷バランサを使う際の考慮事項</h2>
+
+<h3 id="using-health-checks">ヘルスチェックの使用</h3>
+
+<p> PuppetのREST APIが公開するステータスエンドポイントを負荷バランサのヘルスチェックに利用すると、問題のあるホストが負荷バランサからのagentの要求を受けとらないようにすることができます。
+</p>
+
+<p> Puppet masterサービスは、<code>/puppet/v3/status/:name?environment=:environment</code>に発行された認証されていないHTTP GET要求に応答します。この<code>:name</code>には英数字、<code>:environment</code>にはホストに存在するPuppet環境の名前が設定されます。 サービスに問題がない場合、HTTP 200ステータスコードによる応答が返されます。
+</p>
+
+<p> 負荷バランサがHTTPヘルスチェックをサポートしていない場合は、簡単な代替手法として、ホストがポート8140のTCP接続をリッスンしているかどうかをチェックする方法があります。 これにより、Puppet masterの到達不可能なインスタンスに要求が転送されないようにすることができます。ただし、ホストが正常でない場合や、ポート8140でリッスンしているサービスがPuppetに関連するサービスではない場合に、ホストをローテーションから外すことが保証されるわけではありません。
+</p>
+
+<h3 id="optimizing-workload-distribution">負荷分散の最適化</h3>
+
+<p> Puppet agentとPuppet master間のネットワーク通信は多様であるため、負荷分散アルゴリズムを導入し、開いている接続の数に応じてコンパイルmaster間のトラフィックを分散させることを推奨します。 負荷バランサでは、この戦略はしばしば「最小接続による分散」と表現されます。
+</p>
+
+<h2 id="installing-puppet-agents-with-a-load-balancer">負荷バランサを用いたPuppet agentのインストール</h2>
+
+<h3 id="configuring-perepo-for-puppet-agent-installation">Puppet agentインストールのための<code>pe_repo</code>の設定</h3>
+
+<p> 負荷分散したコンパイルmasterから新たなPuppet agentをインストールする場合、agentの設定では、負荷バランサそのものではなく、要求を処理するコンパイルが指定されます。 agentがmaster全体を活用できるようにするためには、この挙動をオーバーライドする必要があります。
+</p>
+
+<p> <strong>インストールするagentを負荷バランサに向ける方法</strong>：
+</p>
+
+<ol>
+<li>コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、[<strong>PE Master</strong>]グループを選択します。</li>
+  <li>[<strong>PE Master</strong>]グループで[<strong>Classes</strong>]タブをクリックし、[<strong>pe_repo</strong>]クラスを探します。</li>
+  <li>[<strong>Parameter</strong>]ドロップダウンリストから[<strong>master</strong>]を選択します。</li>
+  <li>[<strong>Value</strong>]フィールドに、負荷バランサを説明するアドレスを入力します (<code>loadbalancer.example.com</code>など)。</li>
+  <li>[<strong>Add parameter</strong>]をクリックし、[<strong>Commit change</strong>]ボタンをクリックします。</li>
+</ol>
+<h3 id="configuring-perepo-for-puppet-agent-installation-on-compile-masters">コンパイルmasterでPuppet agentをインストールするための<code>pe_repo</code>の設定</h3>
+
+<p> <code>pe_repo</code>を設定し、新たにインストールしたPuppet agentを負荷バランサに方向づけしたら、さらに分類を変更し、新たに 配備されたコンパイルmasterを、負荷分散したコンパイルmasterではなくMoMに向ける必要があります。
+</p>
+
+<p> <strong>新規コンパイルmasterをMoMに向ける方法</strong>：
+</p>
+
+<ol>
+<li>コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックします。</li>
+  <li>[<strong>Classification</strong>]ページの[<strong>Node group name</strong>]フィールドに、「PE CA pe_repo override」などの名前を入力します(注意：クォーテーションは使わないでください)。</li>
+  <li>[<strong>Parent name</strong>]ドロップダウンリストから[<strong>PE Master</strong>]グループを選択し、[<strong>Add group</strong>]をクリックします。</li>
+  <li>[<strong>PE CA pe_repo override</strong>]グループの[<strong>Rules</strong>]タブで、[<strong>Node name</strong>]フィールドにCAサーバーのcertnameを入力します。</li>
+  <li>[<strong>Classes</strong>]タブをクリックし、[<strong>Add new class</strong>]フィールドに「pe_repo」と入力し、[<strong>Add class</strong>]を選択します(注意：クォーテーションは使わないでください)。</li>
+  <li>[<strong>Parameter</strong>]ドロップダウンリストから[<strong>master</strong>]を選択します。</li>
+  <li>[<strong>Value</strong>]フィールドに、オリジナルのPuppet master/CAサーバーのFQDNを入力します (上の例では<code>master.example.com</code>)。</li>
+  <li>[<strong>Add parameter</strong>]をクリックし、[<strong>Commit change</strong>]ボタンをクリックします。</li>
+</ol>
+</div>

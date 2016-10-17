@@ -26,7 +26,7 @@ Notes:
 -   Obvious spammers are banned on first occurrence. If we don’t do this, we’ll have spam all over the place.
 -   Violations are forgiven after 6 months of good behavior, and we won’t hold a grudge.
 -   People who are committing minor formatting / style infractions will get some education, rather than hammering them in the 3 strikes process.
--   Contact conduct@puppet.com to report abuse or appeal violations. This email list goes to Kara Sowles (kara at puppet.com) and Nathan Rawlins (nathan.rawlins at puppet.com / 503-806-2992). In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
+-   Contact conduct@puppet.com to report abuse or appeal violations. This email list goes to Kara Sowles (kara at puppet.com) and Mike Guerchon (mikeg at puppet.com). In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
 
 Activity-specific guidelines
 -----
@@ -205,7 +205,7 @@ If a participant engages in harassing behavior, the event organizers may take an
 
 Event staff will be happy to help participants address concerns. All reports will be treated as confidential. We strongly encourage you to address your issues privately with any of our staff members who are organizing the event. We encourage you to avoid disclosing information about the incident until the staff have had sufficient time in which to address the situation. Please also keep in mind that public shaming can be counter-productive to building a strong community. We do not condone nor participate in such actions.
 
-We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact conduct@puppet.com, Kara Sowles (kara at puppet.com) or Nathan Rawlins (503-806-2992 or nathan.rawlins at puppet.com).
+We value your attendance. If you cannot find a member of the event staff or are not comfortable contacting one of the staff, you can alternatively contact conduct@puppet.com, Kara Sowles (802-238-3242 or kara at puppet.com) or Mike Guerchon (503-975-0623 or mikeg at puppet.com).
 
 We expect all participants to follow these rules at all event venues and related social events.
 

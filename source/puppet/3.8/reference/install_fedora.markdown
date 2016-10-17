@@ -7,7 +7,7 @@ title: "Installing Puppet: Fedora"
 [install-latest]: /puppet/latest/reference/install_pre.html
 [puppet enterprise]: {{pe}}/
 
-> **Note:** This document covers open source releases of Puppet version 3.8 and lower. You might also want instructions for [installing Puppet Enterprise][peinstall] or [installing Puppet 4.0 or newer.][install-latest]
+> #### **Note:** This document covers *open source* releases of Puppet version 3.8 and lower. For current versions, you should see instructions for [installing the latest version of Puppet][install-latest] or [installing Puppet Enterprise][peinstall].
 
 First
 -----

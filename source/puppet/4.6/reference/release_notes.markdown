@@ -49,7 +49,7 @@ This release fixes a few more regressions relative to Puppet 4.5, as well as bug
 
 * [PUP-6662](https://tickets.puppetlabs.com/browse/PUP-6662): Classes and defined types can specify a Sensitive data type for any of their parameters. But prior to this change, it was impossible to pass Sensitive values when declaring them: they would get erroneously transformed to plain strings.
 
-* [PUP-6653](https://tickets.puppetlabs.com/browse/PUP-6653): [Environment isolation](./environmental_isolation.html) for resource types wasn't working properly --- even if PCore resource type data was found, Puppet would load the Ruby implementation anyway. This is now fixed, and the presence of a PCore resource type will prevent the Ruby version from loading.
+* [PUP-6653](https://tickets.puppetlabs.com/browse/PUP-6653): [Environment isolation](./environment_isolation.html) for resource types wasn't working properly --- even if PCore resource type data was found, Puppet would load the Ruby implementation anyway. This is now fixed, and the presence of a PCore resource type will prevent the Ruby version from loading.
 
 ## Puppet 4.6.1
 
