@@ -111,9 +111,17 @@ ERROR: Uh, something weird went wrong. Probably one of two things:
             rescue Errno::ENOENT
               puts "
 ERROR: Building the version tables requires Leiningen, and I can't find it!
-Make sure the `lein` command is available in your PATH, then try again. You can
-find install instructions at http://leiningen.org/#install (although they assume
-you have a ~/bin directory; if you don't, you can just install to /usr/local/bin)"
+Make sure the `lein` command is present; run `which lein` to check for it.
+
+If you haven't installed lein yet... the install instructions at
+http://leiningen.org/#install are not written with us in mind, so follow these:
+
+* Install Java, if you haven't.
+* Run `curl -O https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein`.
+* Run `mv lein /usr/local/bin/lein` (you might have to sudo).
+* Run `chmod a+x /usr/local/bin/lein` (you might have to sudo).
+* Run `lein` and let it finish installing itself.
+"
               exit(1)
             end
           end
