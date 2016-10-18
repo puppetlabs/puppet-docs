@@ -41,6 +41,7 @@ A concise reference to Puppet's usage and internals. Use the left sidebar of any
 
 ### Current versions
 
+* [Puppet 4.7](/puppet/4.7/reference)
 * [Puppet 4.6](/puppet/4.6/reference)
 * [Puppet 4.5](/puppet/4.5/reference) is included with Puppet Enterprise 2016.2.
 

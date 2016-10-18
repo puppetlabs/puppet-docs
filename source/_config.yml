@@ -87,6 +87,21 @@ document_names:
 #      puppetserver: 2.2
 #      puppetdb: 3.2
 documents:
+  /pe/2016.4:
+    doc: pe
+    version: 2016.4
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/davis
+      subdirectory: source
+    my_versions:
+      puppet: 4.6
+      facter: 3.4
+      hiera: 3.2
+      puppetserver: 2.4
+      puppetdb: 4.2
+
   /pe/2016.2:
     doc: pe
     version: 2016.2
@@ -151,7 +166,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe3.8.6
+      commit: origin/pe3.8.7
       subdirectory: source
     my_versions:
       puppet: 3.8
@@ -225,14 +240,22 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
+  /puppet/4.7/reference:
+    doc: puppet
+    version: 4.7
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.4
+      hiera: 3.2
+      puppetserver: 2.6
   /puppet/4.6/reference:
     doc: puppet
     version: 4.6
     nav: ./_puppet_toc.html
     my_versions:
-      facter: 3.3
+      facter: 3.4
       hiera: 3.2
-      puppetserver: 2.5
+      puppetserver: 2.6
   /puppet/4.5/reference:
     doc: puppet
     version: 4.5
@@ -389,6 +412,18 @@ documents:
     version: 1
     nav: /_includes/hiera1.html
 
+  /puppetserver/2.6:
+    doc: puppetserver
+    version: 2.6
+    nav: /puppet/4.6/reference/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 2d3bc286bc5822f35ff04273156f8921e1603d19
+      subdirectory: documentation
+    my_versions:
+      puppet: 4.6
+      facter: 3.3
+      hiera: 3.2
   /puppetserver/2.5:
     doc: puppetserver
     version: 2.5
@@ -454,13 +489,21 @@ documents:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: 239776a
       subdirectory: documentation
+  /puppetserver/1.2:
+    doc: puppetserver
+    version: 1.2
+    nav: /_includes/puppet_3_8.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: origin/1.x
+      subdirectory: documentation
   /puppetserver/1.1:
     doc: puppetserver
     version: 1.1
     nav: /_includes/puppet_3_8.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: origin/1.x
+      commit: bbc73f6da0a17eac4fbf84758b477ec9dd4cebb2
       subdirectory: documentation
   /puppetserver/1.0:
     doc: puppetserver

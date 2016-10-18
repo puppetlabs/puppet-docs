@@ -35,7 +35,7 @@ Naïve autosigning causes the CA to autosign **all** CSRs.
 
 To enable naïve autosigning, set `autosign = true` in the `[master]` section of the CA Puppet master's puppet.conf.
 
-### Security implications of naïve cutosigning
+### Security implications of naïve autosigning
 
 **You should never do this in a production deployment.** Naïve autosigning is only suitable for temporary test deployments that are incapable of serving catalogs containing sensitive information.
 
