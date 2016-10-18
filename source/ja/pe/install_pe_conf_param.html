@@ -5,211 +5,868 @@ canonical: "/ja/pe/install_pe_conf_param.html"
 ---
 
 <div>
-<p> <code>pe.conf</code>ファイルは、<a href="./config_hocon.html">HOCON</a>形式のファイルで、Puppet Enterpriseをインストールして構成する際に必要なパラメータと値を明示するものです。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>pe.conf</code>ファイルは、<a href="/pe/2016.4/config_hocon.html">HOCON</a>形式のファイルで、Puppet Enterpriseをインストールして構成する際に必要なパラメータと値を明示するものです。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<p> 「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」では、<code>pe.conf</code>を用いてテキストモードでPEインストーラを実行する方法を詳しく説明しています。 
-</p>
 
-<p> 以下のセクションでは、インストールまたはアップグレードの際に、<code>pe.conf</code>で必須またはオプションとなるパラメータの詳細を説明します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」では、<code>pe.conf</code>を用いてテキストモードでPEインストーラを実行する方法を詳しく説明しています。 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下のセクションでは、インストールまたはアップグレードの際に、<code>pe.conf</code>で必須またはオプションとなるパラメータの詳細を説明します。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 <blockquote>
-  <p> <strong>ヒント：</strong>インストーラのディレクトリにパッケージされている<code>pe.conf</code>例には、モノリシックインストールまたは分割インストールに必要な必須パラメータが含まれています。 このファイル例を使えば、自身で作成する必要はありません。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>ヒント：</strong>インストーラのディレクトリにパッケージされている<code>pe.conf</code>例には、モノリシックインストールまたは分割インストールに必要な必須パラメータが含まれています。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> このファイル例を使えば、自身で作成する必要はありません。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </blockquote>
 
 <blockquote>
-  <p> <strong>警告：</strong>パラメータ値にシングルクォーテーションを使わないでください。 有効なブール値は<code>true</code>または<code>false</code>です(大文字と小文字を区別、クォーテーションマークなし)。 <strong>Yes (y)、No (n)、1、0を使用しないでください</strong>。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>警告：</strong>パラメータ値にシングルクォーテーションを使わないでください。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 有効なブール値は<code>true</code>または<code>false</code>です(大文字と小文字を区別、クォーテーションマークなし)。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>Yes (y)、No (n)、1、0を使用しないでください</strong>。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </blockquote>
 
 <h2 id="required-parameters-for-monolithic-installations">モノリシックインストールの必須パラメータ</h2>
 
-<p> 以下のパラメータは、<a href="./install_text_mode_mono.html">モノリシックインストール</a>の必須パラメータです。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下のパラメータは、<a href="./install_text_mode_mono.html">モノリシックインストール</a>の必須パラメータです。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 <ul>
 <li>
-    <p> <code>"console_admin_password": "&lt;PASSWORD&gt;"</code>— PEコンソールのログインに用いられるパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"console_admin_password": "&lt;PASSWORD&gt;"</code>— PEコンソールのログインに用いられるパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::puppet_master_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN (この設定は<code>"%{::trusted.certname}"</code>値のままにすることもできます )。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppet_master_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> (この設定は<code>"%{::trusted.certname}"</code>値のままにすることもできます
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> )。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
 </ul>
 <h2 id="required-parameters-for-split-installations">分割インストールの必須パラメータ</h2>
 
-<p> 以下のパラメータは、<a href="./install_text_mode_split.html">分割インストール</a>の必須パラメータです。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下のパラメータは、<a href="./install_text_mode_split.html">分割インストール</a>の必須パラメータです。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 <ul>
 <li>
-    <p> <code>"console_admin_password": "&lt;PASSWORD&gt;"</code>— PEコンソールのログインに用いられるパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"console_admin_password": "&lt;PASSWORD&gt;"</code>— PEコンソールのログインに用いられるパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
     <blockquote>
-      <p> <strong>警告</strong>：分割インストールでは、Puppet masterに<code>"%{::trusted.certname}"</code>値を使用しないでください。 各コンポーネントノードに、適切なFQDN(<code>"puppet_enterprise::puppet_master_host":</code>、<code>"puppet_enterprise::console_host":</code>、<code>puppet_enterprise::puppetdb_host":</code>)を設定してください。
-</p>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>警告</strong>：分割インストールでは、Puppet masterに<code>"%{::trusted.certname}"</code>値を使用しないでください。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 各コンポーネントノードに、適切なFQDN(<code>"puppet_enterprise::puppet_master_host":</code>、<code>"puppet_enterprise::console_host":</code>、<code>puppet_enterprise::puppetdb_host":</code>)を設定してください。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
     </blockquote>
   </li>
   <li>
-    <p> <code>"puppet_enterprise::puppet_master_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppet_master_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::console_host": "&lt;FQDN&gt;"</code>— PEコンソールをホストするノードのFQDN。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::console_host": "&lt;FQDN&gt;"</code>— PEコンソールをホストするノードのFQDN。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::puppetdb_host": "&lt;FQDN&gt;"</code>— PuppetDBをホストするノードのFQDN。
-</p>
-  </li>
-  <li>
-    <p> <code>"puppet_enterprise::database_host": "&lt;FQDN&gt;"</code>— データベースコンポーネントをホストするノードのFQDN。
-</p>
-  </li>
-  <li>
-    <p> <code>"puppet_enterprise::pcp_broker_host": "&lt;FQDN&gt;"</code>— Puppet masterをホストするノードのFQDN。
-</p>
-  </li>
-  <li>
-    <p> <code>"puppet_enterprise::mcollective_middleware_hosts": ["&lt;FQDN&gt;"]</code>— Puppet masterをホストするノードのFQDN。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppetdb_host": "&lt;FQDN&gt;"</code>— PuppetDBをホストするノードのFQDN。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
 </ul>
 <h2 id="database-configuration-parameters">データベース設定パラメータ</h2>
 
-<p> 以下のパラメータは、Puppet Enterpriseの提供するデフォルトのパラメータです。 モノリシックインストールまたは分割インストールの際に、必要に応じてこれらのパラメータをカスタマイズすることができます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下のパラメータは、Puppet Enterpriseの提供するデフォルトのパラメータです。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> モノリシックインストールまたは分割インストールの際に、必要に応じてこれらのパラメータをカスタマイズすることができます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 <blockquote>
-  <p> <strong>注意：</strong>アップグレードに際して、デフォルトではないデータベース名およびユーザを使用している場合は、アップグレードの前に以下のパラメータを変更する必要があります。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>注意：</strong>アップグレードに際して、デフォルトではないデータベース名およびユーザを使用している場合は、アップグレードの前に以下のパラメータを変更する必要があります。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 </blockquote>
 
 <ul>
 <li>
-    <p> <code>"puppet_enterprise::activity_database_name": "pe-activity"</code>— アクティビティデータベースの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::activity_database_name": "pe-activity"</code>— アクティビティデータベースの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::activity_database_user": "pe-activity"</code>— アクティビティデータベースユーザの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::activity_database_user": "pe-activity"</code>— アクティビティデータベースユーザの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::classifier_database_name": "pe-classifier"</code>— クラシファイアデータベースの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::classifier_database_name": "pe-classifier"</code>— クラシファイアデータベースの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::classifier_database_user": "pe-classifier"</code>— クラシファイアデータベースユーザの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::classifier_database_user": "pe-classifier"</code>— クラシファイアデータベースユーザの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::orchestrator_database_name": "pe-orchestrator"</code>— オーケストレータデータベースの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::orchestrator_database_name": "pe-orchestrator"</code>— オーケストレータデータベースの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::orchestrator_database_user": "pe-orchestrator"</code>— オーケストレータデータベースユーザの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::orchestrator_database_user": "pe-orchestrator"</code>— オーケストレータデータベースユーザの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::puppetdb_database_name": "pe-puppetdb"</code>— PuppetDBデータベースの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppetdb_database_name": "pe-puppetdb"</code>— PuppetDBデータベースの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::puppetdb_database_user": "pe-puppetdb"</code>—PuppetDBデータベースユーザの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppetdb_database_user": "pe-puppetdb"</code>—PuppetDBデータベースユーザの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::rbac_database_name": "pe-rbac"</code>— RBACデータベースの名前。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::rbac_database_name": "pe-rbac"</code>— RBACデータベースの名前。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::rbac_database_user": "pe-rbac"</code>— RBACデータベースユーザのパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::rbac_database_user": "pe-rbac"</code>— RBACデータベースユーザのパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
 </ul>
 <h3 id="external-postgresql-parameters">外部PostgreSQLパラメータ</h3>
 
-<p> 以下のパラメータは、外部postgreSQLをインストールする際に必要となるものです。 必要に応じて、パスワードパラメータを標準インストールに追加することができます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下のパラメータは、外部postgreSQLをインストールする際に必要となるものです。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 必要に応じて、パスワードパラメータを標準インストールに追加することができます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 <ul>
 <li>
-    <p> <code>"puppet_enterprise::database_ssl": false</code>
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::database_host": "&lt;FQDN&gt;"</code>— データベースコンポーネントをホストするノードのFQDN。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::database_cert_auth": false</code>
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::database_ssl": false</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::puppetdb_database_password": "&lt;STRING&gt;"</code>— PuppetDBデータベースユーザのパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::database_cert_auth": false</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::classifier_database_password": "&lt;STRING&gt;"</code>— クラシファイアデータベースユーザのパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppetdb_database_password": "&lt;STRING&gt;"</code>— PuppetDBデータベースユーザのパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::activity_database_password": "&lt;STRING&gt;"</code>— アクティビティデータベースユーザのパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::classifier_database_password": "&lt;STRING&gt;"</code>— クラシファイアデータベースユーザのパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::rbac_database_password": "&lt;STRING&gt;"</code>— RBACデータベースユーザのパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::activity_database_password": "&lt;STRING&gt;"</code>— アクティビティデータベースユーザのパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::orchestrator_database_password": "&lt;STRING&gt;"</code>— オーケストレータデータベースユーザのパスワード。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::rbac_database_password": "&lt;STRING&gt;"</code>— RBACデータベースユーザのパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::orchestrator_database_password": "&lt;STRING&gt;"</code>— オーケストレータデータベースユーザのパスワード。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
 </ul>
 <h2 id="additional-parameters-for-monolithic-and-split-installations">モノリシックインストールおよび分割インストールのその他のパラメータ</h2>
 
-<p> 必要に応じて、以下のその他のパラメータを使用できます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 必要に応じて、以下のその他のパラメータを使用できます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 
 <ul>
 <li>
-    <p> <code>"pe_install::puppet_master_dnsaltnames": ["&lt;STRING&gt;"]</code> — Puppet masterノード用に生成されるSSL証明書に追加されるDNSオルトネーム。 指定がない場合はデフォルトの<code>["puppet"]</code>が使われます。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"pe_install::puppet_master_dnsaltnames": ["&lt;STRING&gt;"]</code> — Puppet masterノード用に生成されるSSL証明書に追加されるDNSオルトネーム。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 指定がない場合はデフォルトの<code>["puppet"]</code>が使われます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code> "puppet_enterprise::profile::master::code_manager_auto_configure": &lt;true or false&gt;</code>— コードマネージャサービスを自動設定するかどうか。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code> "puppet_enterprise::profile::master::code_manager_auto_configure": &lt;true or false&gt;</code>— コードマネージャサービスを自動設定するかどうか。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::profile::master::r10k_remote": "&lt;STRING&gt;"</code>— <code>r10k.yaml</code>ファイルに受け渡されるgit URL (たとえば、git@<your.git.server.com>:puppet/control.gitなど)。</your.git.server.com> r10k (および通常のgit) がサポートするURLなら、どのようなURLでも使用できます。 この指定が必要になるのは、PEインストール時にr10kを設定する場合のみです。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::master::r10k_remote": "&lt;STRING&gt;"</code>— <code>r10k.yaml</code>ファイルに受け渡されるgit URL (たとえば、git@<your.git.server.com>:puppet/control.gitなど)。</your.git.server.com>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> r10k (および通常のgit) がサポートするURLなら、どのようなURLでも使用できます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> この指定が必要になるのは、PEインストール時にr10kを設定する場合のみです。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::profile::master::r10k_private_key": "&lt;STRING&gt;"</code>— r10kによりSSHプライベートキーを検索および使用できるPuppet master上のローカルファイルシステムパス (たとえば、/etc/puppetlabs/puppetserver/ssh/id-control_repo.rsaなど)。 この指定が必要になるのは、PEインストール時にr10kを設定する場合のみです。 これは<code>puppet_enterprise::profile::master::r10k_remote</code>と連動して指定する必要があります。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::master::r10k_private_key": "&lt;STRING&gt;"</code>— r10kによりSSHプライベートキーを検索および使用できるPuppet master上のローカルファイルシステムパス (たとえば、/etc/puppetlabs/puppetserver/ssh/id-control_repo.rsaなど)。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> この指定が必要になるのは、PEインストール時にr10kを設定する場合のみです。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これは<code>puppet_enterprise::profile::master::r10k_remote</code>と連動して指定する必要があります。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::use_application_services": &lt;true or false&gt;</code> — Puppetアプリケーションオーケストレーションを有効化するかどうか。 インストールの際に有効化しない選択をしても、後から有効化することができます。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::use_application_services": &lt;true or false&gt;</code> — Puppetアプリケーションオーケストレーションを有効化するかどうか。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールの際に有効化しない選択をしても、後から有効化することができます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>このパラメータは廃止予定で、今後のバージョンでは削除されます。</strong>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <a href="/pe/2016.4/config_orchestration.html#disabling-application-orchestration">アプリケーション管理の無効化</a>を参照するか、インストール時にpuppet_enterprise::profile::master::app_managementパラメータを`pe.confに追加してください。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::puppetdb_port": "[INTEGER]"</code> — PuppetDBと通信するSSLポート。 
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>puppet_enterprise::profile::master::app_management": false</code> — インストール時にアプリケーション管理を無効化。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> アプリケーション管理はデフォルトではオンになっています。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::profile::master::check_for_updates": &lt;true or false&gt;</code> — pe-puppetserverサービスを再起動するたびにアップデートをチェックするかどうか。 デフォルトではアップデートチェックが有効化されます。 詳細については、「<a href="./config_puppetserver.html#disabling-update-checking">アップデートチェックの無効化 (Disabling update checking) </a>」を参照してください。 
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppetdb_port": "[INTEGER]"</code> — PuppetDBと通信するSSLポート。 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <code>"puppet_enterprise::master::use_legacy_auth_conf": &lt;true or false&gt;</code> — レガシーauth.confファイルを使用するかどうか。 詳細については、「<a href="./install_upgrading_notes.html#changes-to-auth.conf-when-upgrading">アップグレード時に<code>auth.conf</code>に変更を加える (Changes to <code>auth.conf</code> when upgrading)</a>」を参照してください。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::master::check_for_updates": &lt;true or false&gt;</code> — pe-puppetserverサービスを再起動するたびにアップデートをチェックするかどうか。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> デフォルトではアップデートチェックが有効化されます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 詳細については、「<a href="/pe/2016.4/config_puppetserver.html#disabling-update-checking">アップデートチェックの無効化 (Disabling update checking) </a>」を参照してください。 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::master::use_legacy_auth_conf": &lt;true or false&gt;</code> — レガシーauth.confファイルを使用するかどうか。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 詳細については、「<a href="/pe/2016.4/upgrade_mono.html#changes-to-auth.conf-when-upgrading">アップグレード時に<code>auth.conf</code>に変更を加える (Changes to <code>auth.conf</code> when upgrading)</a>」を参照してください。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
   </li>
 </ul>
-<h2 id="configuring-pe-settings-with-hiera-when-installing">インストール時のHieraによるPE設定</h2>
+<h2 id="pe-settings-configured-with-hiera-or-the-console">HieraまたはコンソールによるPE設定</h2>
 
-<p> アップグレード時、<code>pe.conf</code>はデフォルトの<code>datadir</code>(<code>/etc/puppetlabs/code/environments/%{environment}/hieradata</code>)で<a href="./config_intro.html#configure-settings-with-hiera">Hieraを通じて指定した</a>すべてのPuppet Enterprise設定を引き継ぎます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> アップグレード時、<code>pe.conf</code>はデフォルトの<code>datadir</code>(<code>/etc/puppetlabs/code/environments/%{environment}/hieradata</code>)で<a href="/pe/2016.4/config_intro.html#configure-settings-with-hiera">Hieraを通じて指定した</a>すべてのPuppet Enterprise設定を引き継ぎます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-<p> Hiera <code>datadir</code>に<strong>デフォルトではないロケーション</strong>を使用している場合は、アップグレード時にそれらのHieraパラメータを追加するか、<code>pe.conf</code>にオーバーライドすることができますが、インストールの完了時にお使いの商用Hieraにそれらを追加する必要がある点に注意してください。そうしないと、Puppet実行時に上書きされます。
-</p>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Hiera <code>datadir</code>に<strong>デフォルトではないロケーション</strong>を使用している場合や、PEコンソールから何らかの設定を加えている場合は、アップグレード前にそれらの設定を<code>pe.conf</code>に追加する<strong>必要があります</strong>。そうしないと、Puppet実行時に上書きされます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <a href="#Parameters-for-configuring-and-tuning-puppet-enterprise">Puppet Enterpriseの設定およびチューニングのためのパラメータ</a>では、一般的なパラメータをまとめています。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<h3 id="parameters-for-configuring-and-tuning-puppet-enterprise">Puppet Enterpriseの設定およびチューニングのためのパラメータ</h3>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下のパラメータを使えば、必要に応じてPEを設定およびチューニングすることができます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これらの設定の詳細については、「<a href="/pe/2016.4/config_intro.html">Configuring and tuning your Puppet Enterprise infrastructure(Puppet Enterpriseインフラの設定およびチューニング)</a>」を参照してください。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<ul>
+<li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::amq::broker::heap_mb": &lt;INTEGER&gt;</code> — Puppet MasterがActiveMQサーバーを実行し、コマンドをルーティングします。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> デフォルトでは、このプロセスではJavaヒープサイズとして512 MBが割り当てられます。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::master::java_args": {"JSON HASH"}</code> — Puppet Serverサービスに割り当てられたJVM (Java Virtual Machine) メモリ。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 例: <code>"puppet_enterprise::profile::master::java_args": {"Xmx": "4096m", "Xms": "4096m"}</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::puppetdb::java_args": {"JSON HASH"}</code> — PuppetDBサービスに割り当てられたJVM (Java Virtual Machine) メモリ。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 例: <code>"puppet_enterprise::profile::master::java_args": {"Xmx": "512m", "Xms": "512m"}</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::console::java_args": {"JSON HASH"}</code> — コンソールサービスに割り当てられたJVM (Java Virtual Machine) メモリ。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 例: <code>"puppet_enterprise::profile::master::java_args": {"Xmx": "512m", "Xms": "512m"}</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::orchestrator::java_args": {"JSON HASH"}</code> — オーケストレーションサービスに割り当てられたJVM (Java Virtual Machine) メモリ。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 例: <code>"puppet_enterprise::profile::master::java_args": {"Xmx": "256m", "Xms": "256m"}</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::master::puppetserver::jruby_max_active_instances": &lt;INTEGER&gt;</code> — Puppet Server上で許可するJRubyインスタンスの最大数を制御。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::puppetdb::command_processing_threads": &lt;INTEGER&gt;</code> — PuppetDBが受信データの分類に用いるコマンド処理スレッドの数を定義。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::master::puppetdb::report_processor_ensure": "&lt;present or absent&gt;"</code> — Puppet実行のたびにPuppet masterがagent実行レポートを生成し、PuppetDBに送信するかどうかを決定。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> この設定はデフォルトで<code>present</code>(有効)になっています。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::profile::console::classifier_synchronization_period": &lt;INTEGER&gt;</code>— ノード分類子(NC)がPuppet masterからクラスを引き出す時間の長さを制御。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> デフォルトでは、この値は600秒(10分)に設定されています。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::master::puppetserver::jruby_max_requests_per_instance": &lt;INTEGER&gt;</code> — キルする前のJRubyインタプリタのインスタンスあたりの最大リクエスト数を設定。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>"puppet_enterprise::master::puppetserver::jruby_environment_class_cache_enabled": &lt;true or false&gt;</code> — コンソールでのクラス更新時にキャッシュデータを使用するかどうかを指定。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> この設定はデフォルトでは無効(<code>false</code>)になっています。
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+</ul>
 </div>

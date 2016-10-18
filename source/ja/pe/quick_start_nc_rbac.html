@@ -5,109 +5,55 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
 ---
  
 <div>
-<h2 id="overview">概要</h2>
+<p> </p>
+<div class="real-paragraph"> PEでは、<strong>ユーザ</strong>と<strong>ユーザグループ</strong>をコンソールから作成および管理することができます。
+</div> <div class="real-paragraph"> <strong>ユーザのロール(役割)</strong>を作成し、各ユーザをそれらのロールに割り当てることも可能です。
+</div> <div class="real-paragraph"> ノードグループの閲覧、コードのデプロイ、パスワードリセットトークンの生成などを許可するパーミッションは、ユーザに直接割り当てるのではなく、ユーザロールに割り当てます。
+</div> <div class="real-paragraph"> ユーザやユーザグループに対してロールを割り当てると、より組織的にパーミッションを付与できます。
+</div>
 
-<p> Puppet Enterprise (PE)コンソールでは、ノードグループやユーザを管理することができます。  ノードグループを作成し、それを通じて各ノードにクラスを割り当てることが可能です。 複数のロケーションでユーザやグループを作成して管理する代わりに、Active DirectoryやOpenLDAPといった外部のディレクトリと接続し、ユーザやグループをインポートすることができます。 ユーザのロール(役割)を作成し、各ユーザをそれらのロールに割り当てることも可能です。 各ロールには、ノードグループ上での動作のパーミッションなど、各種パーミッションが付与されます。 ユーザやユーザグループに対してロールを割り当てると、より組織的にパーミッションを付与できます。
-</p>
 
-<p> この演習では新しいノードグループを作成し、そのグループに含めるノードを定義するルールを適用します。またグループに対してクラスを追加します。 また、新規ユーザロールを作成し、作成したノードグループの閲覧権限を新規ロールに付与します。 最後に、新しいローカルユーザを作成し、そのユーザにユーザロールを割り当てます。 この演習では、OpenLDAPやActive Directoryとの接続は扱いません。 詳細については、「<a href="/pe/2016.2/rbac_ldap.html">Connecting PE with external directory services</a>」を参照してください。
-</p>
+<p> </p>
+<div class="real-paragraph"> このクイックスタートガイドでは、新しいユーザロールを作成し、「<a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a>」で作成したノードグループを閲覧するパーミッションを、そのロールに割り当てます。
+</div> <div class="real-paragraph"> また、新しいローカルユーザを作成し、そのユーザにユーザロールを割り当てます。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>と<a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a>がインストールされているものと想定します。
+</div>
+
 
 <blockquote>
-  <p> 注意：ロールはコンソールではなく、APIで削除可能です。 そのため、これらの手順については、仮想マシンで試してみることを推奨します。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <strong>注意</strong>：ロールはコンソールではなく、APIで削除可能です。
+</div> <div class="real-paragraph"> そのため、これらの手順については、仮想マシンで試してみることを推奨します。
+</div>
+
 </blockquote>
 
-<blockquote>
-  <p> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの <a href="./quick_start_install_agents_nix.html">*nix agentノード</a>または1つの<a href="./quick_start_install_agents_windows.html">Windowsノード</a>がインストールされているものと想定します。
-</p>
-
-  <p> また、<a href="./quick_start_module_install_nix.html">*nix</a>または<a href="./quick_start_module_install_windows.html">Windows</a>モジュールもインストールしているものと想定しています。 さらに、これらの手順にはロールへのユーザの割り当てが含まれるため、アドミンパーミッションを持っている必要があります。
-</p>
-</blockquote>
-
-<h2 id="create-a-new-node-group">新しいノードグループを作成する</h2>
-
-<ol>
-<li>PEコンソールで、[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、[<strong>Add group</strong>]をクリックします。</li>
-  <li>新規ノードグループのオプションを指定します。<ul>
-<li>
-<strong>Parent name</strong> – [<strong>All Nodes</strong>]を選択します。</li>
-      <li>
-<strong>Group name</strong> – <em>web_app_servers</em>などのように、この環境ノードグループの役割を説明した名前を入力します。</li>
-      <li>
-<strong>Environment</strong> – [<strong>production</strong>]を選択します。</li>
-      <li>
-<strong>Environment group</strong> – このオプションは選択しないでください。<em></em>
-</li>
-    </ul>
-</li>
-  <li>[<strong>Add</strong>]をクリックします。</li>
-</ol>
-<h2 id="add-nodes-to-the-new-node-group">新しいノードグループにノードを追加する</h2>
-
-<p> ノードグループにノードを追加するには、グループに含めるノードを定義するルールを作成します。
-</p>
-
-<ol>
-<li>
-<strong>Classification</strong>ページで、<strong>web_app_servers</strong>ノードグループをクリックして開きます。</li>
-  <li>
-<strong>Rules</strong>タブの<strong>Fact</strong>フィールドに、<strong>osfamily</strong>と入力するか選択します。</li>
-  <li>
-    <p> <strong>Operator</strong>ドロップダウンリストから<strong>=</strong> (is)を選択し、<strong>Value</strong>フィールドに、お使いのagentのOSに応じて<strong>RedHat</strong>または<strong>Windows</strong>と入力します。
-</p>
-
-    <p> ルールを入力すると、<strong>Node matches</strong>列の数字が変わり、そのルールが及ぶノードの数が示されます。 
-</p>
-
-    <p> <img src="/pe/2016.2/images/quick/assign_rule.png" alt="adding rule to node group">
-</p>
-  </li>
-  <li>
-<strong>Add rule</strong>をクリックし、Commitボタンをクリックします。</li>
-</ol>
-<h2 id="add-classes-to-the-node-group">ノードグループにクラスを追加する</h2>
-
-<p> ノードグループが作成されましたので、次にこのノードグループへ適切なクラスを追加します。
-</p>
-
-<ol>
-<li>
-<strong>web_app_servers</strong>ページで、<strong>Classes</strong>タブをクリックします。</li>
-  <li>
-<strong>Add new class</strong>フィールドで、*nixの場合は<code>apache</code>を選択します。Windowsの場合は<code>registry</code>を選択します。</li>
-  <li>
-<strong>Add class</strong>をクリックします。</li>
-  <li>
-    <p> [<strong>Parameter</strong>]ボックスで[<strong>Parameter name</strong>]をクリックし、 編集するパラメータを選択します。 この例では、<code>logroot</code>を使います。 <strong>Value</strong>フィールドに<code>/var/log</code>と入力します。
-</p>
-
-    <p> <strong>注意</strong>: 一部のパラメータについては、値がグレーのテキストで表示されますが、これはデフォルト値です。この値としては、リテラル値かPuppet変数のいずれかを使えます。 パラメータの追加後に<strong>Discard changes</strong>を選択すれば、この値を元に戻すことができます。
-</p>
-  </li>
-  <li>
-<strong>Add parameter</strong>をクリックし、Commitボタンをクリックします。</li>
-</ol>
-<p> <strong>Nodes</strong> &gt; <strong>Inventory</strong>の順にクリックし、ノードグループの任意のノードをクリックすれば、これらの変更を確認することができます。 <strong>Classification</strong>ページには、<strong>ソースグループ</strong>が<code>web_app_servers</code>の<code>apache</code>クラスが表示されます。
-</p>
-
-<h2 id="create-a-new-user-role">新しいユーザロールを作成する</h2>
-
-<p> 複数のユーザに対する許可を一度に管理できるようにするために、ユーザロールを追加します。
-</p>
+<h2 id="step-1-create-a-user-role">ステップ1：ユーザロールを作成する</h2>
 
 <ol>
 <li>コンソールで、<strong>Access control</strong>をクリックし、<strong>User Roles</strong>をクリックします。</li>
-  <li>
-<strong>Name</strong>に<strong>Web developers</strong>と入力し、<strong>Description</strong>には<strong>web developers(Web開発者)</strong>などのWeb開発者の役割の説明を入力します。</li>
+  <li>[<strong>Name</strong>]に<strong>Web developers(Web開発者)</strong>と入力し、[<strong>Description</strong>]には<strong>Members of the web development team(Web開発チームのメンバー)</strong>などのWeb開発者の役割の説明を入力します。</li>
   <li>
 <strong>Add role</strong>をクリックします。</li>
 </ol>
-<h2 id="create-a-new-user-and-add-the-user-to-your-new-role">新しいユーザを作成し、新しいロールにそのユーザを追加する</h2>
+<h2 id="step-2-give-the-user-role-access-to-a-node-group">ステップ2：ノードグループにユーザロールアクセスを追加する</h2>
 
-<p> この手順では、新しいローカルユーザを作成する方法を実践します。 ディレクトリサービスの既存ユーザの追加に関する情報は、「<a href="/pe/2016.2/rbac_user_roles.html#working-with-user-groups-and-users-from-an-external-directory-service">LDAPユーザをPEに追加する</a>」を参照してください。
-</p>
+<ol>
+<li>[<strong>User roles</strong>]ページで[<strong>Web developers</strong>]を選択し、[<strong>Permissions</strong>]タブをクリックします。</li>
+  <li>
+<strong>Type</strong>ボックスで<strong>Node groups</strong>を選択します。</li>
+  <li>
+<strong>Permission</strong>ボックスで<strong>View</strong>を選択します。</li>
+  <li>[<strong>Object</strong>]ボックスで[<strong>apache_example</strong>]を選択します。</li>
+  <li>
+<strong>Add permission</strong>をクリックし、Commitボタンをクリックします。
+これで、<code>Web developers</code>のメンバーに、<code>apache_example</code>ノードグループを閲覧する許可が与えられました。</li>
+</ol>
+<h2 id="step-3-create-a-new-user">ステップ3：新しいユーザを作成する</h2>
 
 <ol>
 <li>
@@ -117,20 +63,22 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
   <li>
 <strong>Login</strong>フィールドにユーザのログイン情報を入力します。 </li>
   <li>
-    <p> <strong>Add local user</strong>をクリックします。
-</p>
-
-    <p> <strong>注意</strong>：新しいユーザロールを作成する場合はログイントークンを送付する必要があります。<a href="./quick_start_nc_rbac.html#enable-a-user-to-log-in">次のセクション</a>を参照してください。
-</p>
-  </li>
-  <li>
-<strong>User Roles</strong>をクリックし、<strong>Web developers</strong>をクリックします。</li>
-  <li>
-<strong>Member users</strong>タブの<strong>User name</strong>リストで、作成した新しいユーザを選択したら、<strong>Add user</strong>をクリックしてCommitボタンをクリックします。</li>
+<strong>Add local user</strong>をクリックします。</li>
 </ol>
-<h2 id="enable-a-user-to-log-in">ユーザのログインを有効化する</h2>
-<p> 新しいローカルユーザを作成する際には、初回にログインするためのパスワードリセットトークンをユーザに送付する必要があります。
-</p>
+<blockquote>
+  <h4 id="faqs">FAQ</h4>
+
+  <ul>
+<li><a href="/pe/2016.4/rbac_ldap.html">ユーザを1人ずつ作成し直さずに済むように、外部ディレクトリからユーザやグループをインポートすることはできますか？</a></li>
+  </ul>
+</blockquote>
+
+<h2 id="step-4-enable-the-new-user-to-log-in">ステップ4：新規ユーザのログインを有効化する</h2>
+
+<p> </p>
+<div class="real-paragraph"> 新しいローカルユーザを作成する際には、初回にログインするためのパスワードリセットトークンをユーザに送付する必要があります。
+</div>
+
 
 <ol>
 <li>
@@ -138,20 +86,25 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
   <li>ページの右上の<strong>Generate password reset</strong>をクリックします。<strong>Password reset link</strong>メッセージボックスが開きます。 </li>
   <li>メッセージに表示されている<em>リンクをコピー</em>し、新しいユーザに送付します。その後、メッセージを閉じてもかまいません。</li>
 </ol>
-<h2 id="give-your-new-role-access-to-the-node-group-you-created">作成したノードグループに新しいロールアクセスを追加する</h2>
+<h2 id="step-5-assign-the-user-role-to-the-new-user">ステップ5：新規ユーザにユーザロールを割り当てる</h2>
 
 <ol>
-<li>[<strong>User roles</strong>]ページで[<strong>Web developers</strong>]を選択し、[<strong>Permissions</strong>]タブをクリックします。</li>
+<li>
+<strong>User Roles</strong>をクリックし、<strong>Web developers</strong>をクリックします。</li>
   <li>
-<strong>Type</strong>ボックスで<strong>Node groups</strong>を選択します。</li>
-  <li>
-<strong>Permission</strong>ボックスで<strong>View</strong>を選択します。</li>
-  <li>
-<strong>Object</strong>ボックスで<strong>web-app_servers</strong>を選択します。</li>
-  <li>
-<strong>Add permission</strong>をクリックし、Commitボタンをクリックします。これで、<code>Web developers</code>のメンバーに、<code>web_app_servers</code>ノードグループを閲覧する許可が与えられました。</li>
+<strong>Member users</strong>タブの<strong>User name</strong>リストで、作成した新しいユーザを選択したら、<strong>Add user</strong>をクリックしてCommitボタンをクリックします。</li>
 </ol>
-<hr>
-<p> 次の手順: <a href="./quick_start_module_install_windows.html">モジュールの記述(Windows)</a>または<a href="./quick_writing_nix.html">モジュールの記述(*nix)</a>
-</p>
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> これで、RBACでユーザを管理できるようになりました。
+</div> <div class="real-paragraph"> パーミッションとユーザロールを使えば、PEを使用する各ユーザやユーザグループに適切なレベルのアクセスや活動を付与することができます。
+</div>
+
+
+  <p> </p>
+<div class="real-paragraph"> 次は、独自モジュールの記述に関する基本を説明します。独自のモジュールを記述すれば、デプロイのカスタマイズなどの作業ができるようになります。
+</div> <div class="real-paragraph"> <a href="./quick_writing_nix.html">最初のモジュールを記述する準備ができたら、こちらをクリックしてください。</a>
+</div>
+
+</blockquote>
 </div>
