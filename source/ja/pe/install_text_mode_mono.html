@@ -1,18 +1,31 @@
----
-layout: default
-title: "テキストモードインストール: モノリシック"
-canonical: "/ja/pe/install_text_mode_mono.html"
----
-
 <div>
-<p> 以下では、Puppet Enterpriseのテキストモードのモノリシックインストールを実施する方法を説明します。 このインストール方法では、master、コンソール、PuppetDBコンポーネントがすべて同じマシンにインストールされます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下では、Puppet Enterpriseのテキストモードのモノリシックインストールを実施する方法を説明します。
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> このインストール方法では、master、コンソール、PuppetDBコンポーネントがすべて同じマシンにインストールされます。
+</div>
+</div>
+</div>
+</div>
 
-<p> 各種のインストール方法の詳細については、「<a href="./install_system_requirements.html#choosing-a-pe-architecture">PEアーキテクチャの選択(Choosing a PE architecture)</a>」を参照してください。
-</p>
 
-<p> インストールを開始する前に、「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」をお読みください。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 各種のインストール方法の詳細については、「<a href="./sys_req_hw.html#choosing-a-pe-architecture">PEアーキテクチャの選択</a>を参照してください。
+</div>
+</div>
+</div>
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールを開始する前に、「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」をお読みください。
+</div>
+</div>
+</div>
+</div>
+
 
 <h2 id="install-pe">PEのインストール</h2>
 
@@ -22,76 +35,230 @@ canonical: "/ja/pe/install_text_mode_mono.html"
   <li>
 <code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してtarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
   <li>
-    <p> インストーラのディレクトリから、インストーラを実行します。 インストール手順は、どの方法を選択するかによって異なります。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストーラのディレクトリから、インストーラを実行します。
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストール手順は、どの方法を選択するかによって異なります。
+</div>
+</div>
+</div>
+</div>
+
 
     <ul>
 <li>
-        <p> 既存の<code>pe.conf</code>ファイルを使用する場合は、<code>pe.conf</code>ファイルを指す<strong><code>-c</code>フラグを用いて</strong>インストーラを実行します。
-</p>
+        <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 既存の<code>pe.conf</code>ファイルを使用する場合は、<code>pe.conf</code>ファイルを指す<strong><code>-c</code>フラグを用いて</strong>インストーラを実行します。
+</div>
+</div>
+</div>
+</div>
+
 
         <pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
 </code></pre>
       </li>
       <li>
-        <p> インストーラで<code>pe.conf</code>のコピーを開き、それを編集して使用する場合は、<strong><code>-c</code>フラグを用いずに&lt;/strongインストーラを実行します。</strong>
-</p>
+        <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストーラで<code>pe.conf</code>のコピーを開き、それを編集して使用する場合は、<strong><code>-c</code>フラグを用いずに&lt;/strongインストーラを実行します。</strong>
+</div>
+</div>
+</div>
+</div>
+
 
         <pre><code>sudo ./puppet-enterprise-installer
 </code></pre>
 
-        <p> プロンプトが表示されたら[text-mode]を選択します。 これにより、テキストエディタで<code>pe.conf</code>ファイルが開きます。このファイルをお使いのインフラに合わせて編集し、必要に応じて任意のテキストモードインストールのオプションを追加することができます。  ファイルを保存して閉じると、インストーラが実行されます。
-</p>
+        <blockquote>
+          <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>警告：</strong> <code>pe.conf</code>でコンソール管理者パスワードを忘れずに設定してください。
+</div>
+</div>
+</div>
+</div>
+
+        </blockquote>
       </li>
     </ul>
-<blockquote>
-      <p> <strong>ヒント</strong>：モノリシックインストールでは、モノリシックサーバーのcertnameがFQDNとマッチする場合には、<code>"%{::trusted.certname}"</code>のデフォルト値を使用できます。
-</p>
+</li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> プロンプトが表示されたら[text-mode]を選択します。
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これにより、テキストエディタで<code>pe.conf</code>ファイルが開きます。このファイルをお使いのインフラに合わせて編集し、必要に応じて任意のテキストモードインストールのオプションを追加することができます。 
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> モノリシックインストールでは、以下のパラメータが必要になります。
+</div>
+</div>
+</div>
+</div>
+
+
+    <ul>
+<li>
+<code>"console_admin_password": "&lt;PASSWORD&gt;"</code>— PEコンソールのログインに用いられるパスワード。</li>
+    </ul>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> また、外部PostgreSQLノードがある場合や、インストールの際にデータベース名をカスタマイズした場合は、pe.confパラメータリファレンスの<a href="./install_pe_conf_param.html#external-postgresql-parameters">外部PostgreSQLパラメータ</a>を参照してください。
+</div>
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> ファイルを保存して閉じると、インストーラが実行されます。
+</div>
+</div>
+</div>
+</div>
+
+
+    <blockquote>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>ヒント</strong>：モノリシックインストールでは、モノリシックサーバーのcertnameがFQDNとマッチする場合には、<code>"%{::trusted.certname}"</code>のデフォルト値を使用できます。
+</div>
+</div>
+</div>
+</div>
+
     </blockquote>
   </li>
-  <li>インストールが完了したら、<code>puppet agent -t</code>を実行し、モノリシックPuppet masterでPuppetを実行します。</li>
-</ol>
-<p> インストールの完了後は、更新された<code>pe.conf</code>ファイルを<code>/etc/puppetlabs/enterprise/conf.d</code>で見つけることができます。
-</p>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールが完了したら、<code>puppet agent -t</code>を実行し、モノリシックPuppet masterでPuppetを実行します。
+</div>
+</div>
+</div>
+</div>
 
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールの完了後は、更新された<code>pe.conf</code>ファイルを<code>/etc/puppetlabs/enterprise/conf.d</code>で見つけることができます。
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+</ol>
 <h3 id="mandatory-parameters-for-peconf">
 <code>pe.conf</code>の必須パラメータ</h3>
 
-<p> PEのインストールに必要な必須パラメータのリストについては、<a href="./install_pe_conf_param.html"><code>pe.conf</code>パラメータリファレンス</a>を参照してください。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PEのインストールに必要な必須パラメータのリストについては、<a href="./install_pe_conf_param.html"><code>pe.conf</code>パラメータリファレンス</a>を参照してください。
+</div>
+</div>
+</div>
+</div>
+
 
 <h3 id="text-mode-installation-options">テキストモードインストールのオプション</h3>
 
-<p> 上述したように、<code>pe.conf</code>ファイルを指定したテキストベースインストールのシンタックスは、次のようになります。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 上述したように、<code>pe.conf</code>ファイルを指定したテキストベースインストールのシンタックスは、次のようになります。
+</div>
+</div>
+</div>
+</div>
+
 
 <pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
 </code></pre>
 
-<p>  <code>-c</code>オプションを使用する場合、<code>pe.conf</code>ファイルをフルパスで指定する必要があります。 これを省略すると、コマンドが終了してエラーメッセージが表示されます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph">  <code>-c</code>オプションを使用する場合、<code>pe.conf</code>ファイルをフルパスで指定する必要があります。
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これを省略すると、コマンドが終了してエラーメッセージが表示されます。
+</div>
+</div>
+</div>
+</div>
 
-<p> <code>-c</code>オプションを使用する場合は、以下のオプションを用いることもできます。
-</p>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>-c</code>オプションを使用する場合は、以下のオプションを用いることもできます。
+</div>
+</div>
+</div>
+</div>
+
 
 <ul>
 <li>
 <code>-D</code>：インストーラによりデバッグ情報が表示されます。</li>
   <li>
-<code>-l &lt;PATH to LOG FILE&gt;</code>：コマンドとその結果が、指定したログファイルに記録されます。</li>
-  <li>
 <code>-q</code>：インストーラがクワイエットモードで実行されます。インストールプロセスは表示されません。インストール中にエラーが生じた場合には、コマンドが終了してエラーメッセージが表示されます。</li>
   <li>
 <code>-V</code>：きわめて詳細なデバッグ情報が表示されます。</li>
+  <li>
+<code>-h</code>：インストーラによりヘルプ情報が表示されます。</li>
 </ul>
-<p> コマンドのヘルプ情報を見るには、以下を実行します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> コマンドのヘルプ情報を見るには、以下を実行します。
+</div>
+</div>
+</div>
+</div>
+
 
 <pre><code>sudo ./puppet-enterprise-installer -h
 </code></pre>
 
+<h3 id="install-the-license-file">ライセンスファイルをインストールします</h3>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Puppet Enterpriseの購入時に受け取った<code>license.key</code>ファイルで、デプロイ可能なノードの台数を確認します。
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下に従ってこのライセンスをインストールします。
+</div>
+</div>
+</div>
+</div>
+
+
+<ol>
+<li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> ライセンスファイルを<code>/etc/puppetlabs/license.key</code>としてPuppet masterノードにコピーします。
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 次の手順：<a href="./install_agents.html">PE agentのインストール</a>
+</div>
+</div>
+</div>
+</div>
+
+  </li>
+</ol>
 <h2 id="rerunning-the-installer">インストーラの実行</h2>
 
-<p> PEインストーラは<em>べき等性</em>のインストーラです。つまり、結果に影響を与えずに、必要に応じて何度でも実行することができます。 インストール中にエラーが生じた場合は、修正してもう一度インストーラを実行することができます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PEインストーラは<em>べき等性</em>のインストーラです。つまり、結果に影響を与えずに、必要に応じて何度でも実行することができます。
+</div>
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストール中にエラーが生じた場合は、修正してもう一度インストーラを実行することができます。
+</div>
+</div>
+</div>
+</div>
+
 </div>

@@ -1,16 +1,10 @@
----
-layout: default
-title: "Windows agentのインストール"
-canonical: "/ja/pe/install_windows.html"
----
-
 <div>
 <blockquote>
-  <p> &lt;img src="/pe/2016.2/images/windows-logo-small.jpg" alt="windows logo"このセクションでは、Windowsの機能について取り上げます。 Puppet Enterpriseを*nixノードにインストールする場合は、「<a href="./install_basic.html">Puppet Enterpriseのインストール</a>」を参照してください。
+  <p> &lt;img src="/pe/2016.4/images/windows-logo-small.jpg" alt="windows logo"このセクションでは、Windowsの機能について取り上げます。 Puppet Enterpriseを*nixノードにインストールする場合は、「<a href="./install_basic.html">Puppet Enterpriseのインストール</a>」を参照してください。
 </p>
 </blockquote>
 
-<p> サポート対象のWindowsバージョンについては、<a href="./install_system_requirements.html#operating-system">システム要件のページ</a>を参照してください。
+<p> サポート対象のWindowsバージョンについては、<a href="./sys_req_os.html">サポート対象のオペレーティングシステムに関するドキュメント</a>を参照してください。
 </p>
 
 <p> Puppet EnterpriseのWindowsノードについて： 
@@ -43,7 +37,7 @@ canonical: "/ja/pe/install_windows.html"
     <p> インストールダイアログで求められたら、Puppet masterサーバーのホスト名を入力します。
 </p>
 
-    <p> <img src="/pe/2016.2/images/windows/wizard_server.png" alt="Puppet master hostname selection">
+    <p> <img src="/pe/2016.4/images/windows/wizard_server.png" alt="Puppet master hostname selection">
 </p>
   </li>
   <li>
@@ -64,14 +58,14 @@ canonical: "/ja/pe/install_windows.html"
 
 <ul>
 <li>
-    <p> Puppet agentはWindowsサービスとして稼働します。デフォルトでは、30分ごとに設定が取得され適用されます。 以降は、通常どおりクラスをノードに割り当てることができます。詳細については、「<a href="/pe/2016.2/puppet_assign_configurations.html">Assigning configurations to nodes(ノードに設定を割り当てる)</a>」を参照してください。 Puppetの初回実行後にMCollectiveサービスが実行され、ノードをMCollectiveで制御できるようになります。 Puppet agentサービスとMCollectiveサービスは、サービスコントロールマネージャのUIか、コマンドライン<code>sc.exe</code>ユーティリティのいずれかを用いて、個別に起動および停止することができます。詳細については、「<a href="/puppet/4.5/reference/services_commands_windows.html">Running Puppet on Windows(WindowsでPuppetを実行する)</a>」を参照してください。
+    <p> Puppet agentはWindowsサービスとして稼働します。デフォルトでは、30分ごとに設定が取得され適用されます。 以降は、通常どおりクラスをノードに割り当てることができます。詳細については、「<a href="/pe/2016.4/console_classes_groups_getting_started.html">Getting started with classification(分類をはじめる)</a>」を参照してください。 Puppetの初回実行後にMCollectiveサービスが実行され、ノードをMCollectiveで制御できるようになります。 Puppet agentサービスとMCollectiveサービスは、サービスコントロールマネージャのUIか、コマンドライン<code>sc.exe</code>ユーティリティのいずれかを用いて、個別に起動および停止することができます。詳細については、「<a href="/puppet/4.6/reference/services_commands_windows.html">Running Puppet on Windows(WindowsでPuppetを実行する)</a>」を参照してください。
 </p>
   </li>
   <li>
-    <p> スタートメニューにPuppetフォルダが含まれます。このフォルダには、Puppet agentの手動実行、Facter実行、Puppetツールで使用するコマンドプロンプトの起動のショートカットが含まれています。 これらのツールの詳細については、「<a href="./windows_basic_concepts.html">Windowsの基本的なタスクとコンセプト</a>」を参照してください。
+    <p> スタートメニューにPuppetフォルダが含まれます。このフォルダには、Puppet agentの手動実行、Facter実行、Puppetツールで使用するコマンドプロンプトの起動のショートカットが含まれています。 これらのツールの詳細については、「<a href="./windows_basic_tasks.html">Windowsの基本的なタスクとコンセプト</a>」を参照してください。
 </p>
 
-    <p> <img src="/pe/2016.2/images/windows/start_menu.png" alt="Start Menu icons">
+    <p> <img src="/pe/2016.4/images/windows/start_menu.png" alt="Start Menu icons">
 </p>
   </li>
   <li>
@@ -110,24 +104,24 @@ canonical: "/ja/pe/install_windows.html"
     </tr>
 <tr>
 <td><a href="#puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></a></td>
-      <td><a href="/puppet/4.5/reference/configuration.html#server"><code>server</code></a></td>
+      <td><a href="/puppet/4.6/reference/configuration.html#server"><code>server</code></a></td>
       <td><code>puppet</code></td>
     </tr>
 <tr>
 <td><a href="#puppetcaserver"><code>PUPPET_CA_SERVER</code></a></td>
-      <td><a href="/puppet/4.5/reference/configuration.html#caserver"><code>ca_server</code></a></td>
+      <td><a href="/puppet/4.6/reference/configuration.html#caserver"><code>ca_server</code></a></td>
       <td>
 <code>PUPPET_MASTER_SERVER</code>の値</td>
     </tr>
 <tr>
 <td><a href="#puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></a></td>
-      <td><a href="/puppet/4.5/reference/configuration.html#certname"><code>certname</code></a></td>
+      <td><a href="/puppet/4.6/reference/configuration.html#certname"><code>certname</code></a></td>
       <td>
 <code>facter fdqn</code>の値(小文字を使用すること)</td>
     </tr>
 <tr>
 <td><a href="#puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></a></td>
-      <td><a href="/puppet/4.5/reference/configuration.html#environment"><code>environment</code></a></td>
+      <td><a href="/puppet/4.6/reference/configuration.html#environment"><code>environment</code></a></td>
       <td><code>production</code></td>
     </tr>
 <tr>
@@ -210,7 +204,7 @@ canonical: "/ja/pe/install_windows.html"
 
 <h4 id="puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></h4>
 
-<p> Puppet masterサーバーにアクセス可能なホスト名。 これにより、<a href="/puppet/4.5/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.5/reference/configuration.html#server"><code>server</code>設定</a>の値が設定されます。
+<p> Puppet masterサーバーにアクセス可能なホスト名。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.6/reference/configuration.html#server"><code>server</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>puppet</code>
@@ -221,7 +215,7 @@ canonical: "/ja/pe/install_windows.html"
 
 <h4 id="puppetcaserver"><code>PUPPET_CA_SERVER</code></h4>
 
-<p> CA Puppet masterサーバーにアクセス可能なホスト名。複数のmasterを使用している場合は、いずれか1つのみがCAとして機能します。 これにより、<a href="/puppet/4.5/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.5/reference/configuration.html#caserver"><code>ca_server</code>設定</a>の値が設定されます。
+<p> CA Puppet masterサーバーにアクセス可能なホスト名。複数のmasterを使用している場合は、いずれか1つのみがCAとして機能します。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.6/reference/configuration.html#caserver"><code>ca_server</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>PUPPET_MASTER_SERVER</code>プロパティの値
@@ -232,7 +226,7 @@ canonical: "/ja/pe/install_windows.html"
 
 <h4 id="puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></h4>
 
-<p> ノードの証明書名、およびカタログ要求の際に使用する名前。 これにより、<a href="/puppet/4.5/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの <a href="/puppet/4.5/reference/configuration.html#certname"><code>certname</code>設定</a>の値が設定されます。
+<p> ノードの証明書名、およびカタログ要求の際に使用する名前。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの <a href="/puppet/4.6/reference/configuration.html#certname"><code>certname</code>設定</a>の値が設定されます。
 </p>
 
 <p> 最良の互換性を得るために、<code>certname</code>の値については、小文字、数字、ピリオド、アンダースコア、ダッシュのみを使用してください。 (つまり、<code>/\A[a-z0-9._-]+\Z/</code>に相当します )。
@@ -246,7 +240,7 @@ canonical: "/ja/pe/install_windows.html"
 
 <h4 id="puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></h4>
 
-<p> ノードの<a href="/puppet/4.5/reference/environments.html">環境</a>。 これにより、<a href="/puppet/4.5/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.5/reference/configuration.html#environment"><code>environment</code>設定</a>の値が設定されます。
+<p> ノードの<a href="/puppet/4.6/reference/environments.html">環境</a>。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.6/reference/configuration.html#environment"><code>environment</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>production</code>
@@ -312,7 +306,7 @@ canonical: "/ja/pe/install_windows.html"
 </p>
 
 <blockquote>
-  <p> <strong>注意</strong>：Puppet Enterprise 3.8からアップグレードする場合は、<a href="https://forge.puppetlabs.com/puppetlabs/puppet_agent">Puppet agentアップグレード用のモジュール</a>を使用できます。 詳細については、「<a href="/pe/2016.2/install_upgrading.html#upgrade-agents">upgrading agents(agentのアップグレード)</a>」を参照してください。
+  <p> <strong>注意</strong>：Puppet Enterprise 3.8からアップグレードする場合は、<a href="https://forge.puppetlabs.com/puppetlabs/puppet_agent">Puppet agentアップグレード用のモジュール</a>を使用できます。 詳細については、「<a href="./install_upgrading_agents.html">upgrading agents(agentのアップグレード)</a>」を参照してください。
 </p>
 </blockquote>
 
