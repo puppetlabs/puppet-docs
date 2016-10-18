@@ -1,0 +1,943 @@
+<div>
+<h2 id="supported-operating-systems">対応するオペレーティングシステム</h2>
+
+<p> </p>
+<div class="real-paragraph"> Puppet Enterpriseは、以下のプラットフォームで動作します。
+</div>
+
+
+<h3 id="puppet-master-platforms">Puppet masterプラットフォーム</h3>
+
+<table>
+<tr>
+<th>オペレーティングシステム</th>
+    <th>バージョン</th>
+    <th>アーキテクチャ</th>
+  </tr>
+<tr>
+<td>Red Hat Enterprise Linux</td>
+    <td>6、7</td>
+    <td>x86_64</td>
+  </tr>
+<tr>
+<td>CentOS</td>
+    <td>6、7</td>
+    <td>x86_64</td>
+   </tr>
+<tr>
+<td>Oracle Linux</td>
+    <td>6、7</td>
+    <td>x86_64</td>
+   </tr>
+<tr>
+<td>Scientific Linux</td>
+    <td>6、7</td>
+    <td>x86_64</td>
+   </tr>
+<tr>
+<td>SUSE Linux Enterprise Server</td>
+    <td>11 (SP 1以降)、12</td>
+    <td>x86_64</td>
+   </tr>
+<tr>
+<td>Ubuntu</td>
+    <td>12.04、14.04、16.04</td>
+    <td>x86_64</td>
+   </tr>
+</table>
+<h3 id="puppet-agent-platforms">Puppet agent プラットフォーム</h3>
+
+<table>
+<tr>
+<th>オペレーティングシステム</th>
+    <th>バージョン</th>
+    <th>アーキテクチャ</th>
+  </tr>
+<tr>
+<td>Red Hat Enterprise Linux</td>
+    <td>4、5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+      <li>s390xの場合は6、7</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>CentOS</td>
+    <td>5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+     </ul>
+</td>
+   </tr>
+<tr>
+<td>Oracle Linux</td>
+    <td>5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+     </ul>
+</td>
+   </tr>
+<tr>
+<td>Scientific Linux</td>
+    <td>5、6、7</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は5、6</li>
+     </ul>
+</td>
+   </tr>
+<tr>
+<td>SUSE Linux Enterprise Server</td>
+    <td>10 (SP 4のみ)、11 (SP 1以降)、12</td>
+    <td>
+     <ul>
+<li>x86_64</li>
+      <li>i386の場合は10、11</li>
+      <li>s390xの場合は11、12</li>
+     </ul>
+</td>
+   </tr>
+<tr>
+<td>Solaris</td>
+    <td>10 (アップデート9以降)、11</td>
+    <td>
+      <ul>
+<li>SPARC</li>
+        <li>i386</li>
+       </ul>
+</td>   
+   </tr>
+<tr>
+<td>Ubuntu</td>
+    <td>10.04、12.04、14.04、16.04</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>   
+   </tr>
+<tr>
+<td>Fedora</td>
+    <td>22、23、24</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>   
+   </tr>
+<tr>
+<td>Debian</td>
+    <td>Wheezy (7)、Jessie (8)</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>  
+   </tr>
+<tr>
+<td>Microsoft Windows (サーバーOS)</td>
+    <td>2008, 2008R2, 2012, 2012R2, 2012R2コア</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>
+   </tr>
+<tr>
+<td>Microsoft Windows (コンシューマOS)</td>
+    <td>Vista、7、8.1、10</td>
+    <td>
+      <ul>
+<li>x86_64</li>
+        <li>i386</li>
+       </ul>
+</td>
+   </tr>
+<tr>
+<td>Mac OS X</td>
+    <td>10.9、10.10、10.11</td>
+    <td style="text-align:center">x86_64</td>
+   </tr>
+<tr>
+<td>AIX</td>
+    <td>5.3、6.1、7.1</td>
+    <td style="text-align:center">Power</td>
+   </tr>
+</table>
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> <strong>注意</strong>：オペレーティングシステムによっては、依存関係をインストールするには、ベンダーのパッケージ管理システム(Red Hat Networkなど)への登録が必要な場合があります。
+</div>
+
+</blockquote>
+
+<h3 id="supported-network-devices">対応するネットワークデバイス</h3>
+
+<p> </p>
+<div class="real-paragraph"> Puppet EnterpriseのPuppet agentは、以下のネットワークデバイス／オペレーティングシステムで動作します。
+</div>
+
+
+<ul>
+<li>
+<strong>Arista EOS</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppetlabs.com/aristanetworks/netdev_stdlib_eos#limitations">aristanetworks/netdev_stdlib_eos module</a>」を参照してください。</li>
+  <li>
+<strong>Cumulus Linux</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppetlabs.com/cumuluslinux/">Cumulus Linux</a>」ページを参照してください。</li>
+  <li>
+<strong>Cisco NS-OX EOS</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppet.com/puppetlabs/ciscopuppet/readme">Cisco Puppet</a>」ページを参照してください。</li>
+  <li>
+<strong>Cisco IOS-XR</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppet.com/puppetlabs/ciscopuppet">Cisco Puppet</a>」ページを参照してください。</li>
+  <li>
+<strong>Huawei CloudEngine</strong>：インストールの説明については、「<a href="/pe/2016.4/install_huawei_ce.html">Installing Huawei CloudEngine Agents</a>」を参照してください。</li>
+</ul>
+<h2 id="operating-system-support-life-cycles">オペレーティングシステムのサポート期間</h2>
+
+<h3 id="puppet-agent-and-operating-system-support-life-cycles">Puppet Agentとオペレーティングシステムのサポート期間</h3>
+
+<p> </p>
+<div class="real-paragraph"> 各プラットフォームに対するPuppet agentのサポートは、そのプラットフォームベンダーのサポート終了日(EOL)に終了します。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> たとえば、Fedora 20は、2015年6月23日をもってサポートが終了しました。
+</div> <div class="real-paragraph"> Puppetはその日付をもって、そのagentのPuppet EnterpriseおよびオープンソースのPuppetバージョンに関するテスト、修正、更新、サポートを終了します。 
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> ベンダーがEOLの日付を公開していないプラットフォームについては、当該プラットフォームの直近の2つのリリース(たとえば、Mac OS X 10.10と10.11)に対してPuppet agentのサポートを提供します。
+</div> <div class="real-paragraph"> (Mac OS 10.12のリリース時には、Mac OS X 10.10のサポート終了予定に関する通知を送付します)。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> 一部のagentオペレーティングシステムについては、プラットフォームのベンダーのEOL後もサポートを継続することがあります。ただし、サポートの継続はPuppet Labsの判断でのみ決定されます。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> いずれの場合も、Puppetは当該プラットフォームのサポートを終了する90日以上前に、Puppet agentプラットフォームのEOLを発表します。
+</div>
+
+
+<h3 id="pe-master-and-operating-system-support-life-cycles">Puppet Enterprise masterとオペレーティングシステムのサポート期間</h3>
+
+<p> </p>
+<div class="real-paragraph"> Puppet Enterprise masterプラットフォームのサポートは、<a href="https://puppet.com/misc/puppet-enterprise-lifecycle">PEバージョンのサポートライフサイクル</a>と一致します。
+</div> <div class="real-paragraph"> 一般に、Puppet Enterprise masterプラットフォームのサポートは、当該Puppet Enterpriseバージョンの<a href="https://puppet.com/misc/puppet-enterprise-lifecycle">EOL</a>までとなります。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> ただし、PE masterプラットフォームベンダーのEOLがPEバージョンのEOLよりも6カ月以上早い場合は、Puppet Labsの判断により、プラットフォームベンダーのEOL時点でそのmasterプラットフォームのサポートを終了することがあります。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> いずれの場合でも、Puppetは当該プラットフォームのサポートを終了する6カ月以上前に、PE masterプラットフォームのEOLを発表します。
+</div>
+
+
+<h3 id="upcoming-platform-end-of-life-eol">今後予定されているプラットフォームのサポート終了日(EOL)</h3>
+
+<p> </p>
+<div class="real-paragraph"> Puppet Labsのオペレーティングシステムの<a href="https://puppet.com/misc/puppet-enterprise-lifecycle">サポートライフサイクルポリシー</a>に基づき、各プラットフォームに対応したサポートは、以下のリストで指定されたEOL時点で終了します。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> EOLの時点をもって、Puppetは当該オペレーティングシステムに関するagent、master、パッチの提供、修正、セキュリティアップデートを終了します。
+</div>
+
+
+<table>
+<tr>
+<th>オペレーティングシステム</th>
+   <th>PE agentおよびmaster</th>
+   <th>OSバージョンのEOL</th>
+   <th>PuppetのEOL</th>
+  </tr>
+<tr>
+<td>Fedora 22</td>
+   <td>Agent</td>
+   <td>2016年7月19日</td>
+   <td>2016年11月30日</td>
+  </tr>
+<tr>
+<td>Mac OS X 10.9</td>
+   <td>Agent</td>
+   <td></td>
+   <td>2016年11月30日</td>
+  </tr>
+<tr>
+<td>Ubuntu 15.10 (Wily)</td>
+   <td>Agent</td>
+   <td>2016年7月28日</td>
+   <td>2016年11月30日</td>
+  </tr>
+<tr>
+<td>Ubuntu 10.04 (Lucid)</td>
+   <td>Agent</td>
+   <td>2015年4月30日</td>
+   <td>2016年12月31日</td>
+  </tr>
+<tr>
+<td>Ubuntu 12.04 (Precise)</td>
+   <td>Agent、Master</td>
+   <td>2017年4月</td>
+   <td>2017年4月30日</td>
+  </tr>
+<tr>
+<td>Windows Server 2003</td>
+   <td>3.8向けAgent (&gt;=2015.2は除く)</td>
+   <td>2015年7月14日</td>
+   <td>2016年12月31日</td>
+  </tr>
+<tr>
+<td>Debian 6 (Squeeze)</td>
+   <td>3.8向けAgentおよびMaster (&gt;=2015.2は除く)</td>
+   <td>2016年2月29日</td>
+   <td>2016年12月31日</td>
+  </tr>
+<tr>
+<td>SLES 10</td>
+   <td>Agent</td>
+   <td>2016年7月31日</td>
+   <td>2016年12月31日</td>
+  </tr>
+<tr>
+<td>EL (RHEL、CentOS、Scientific Linux、Oracle Linux) 4</td>
+   <td>Agent</td>
+   <td>2017年3月31日</td>
+   <td>2017年3月31日</td>
+  </tr>
+<tr>
+<td>AIX 5.3</td>
+   <td>Agent</td>
+   <td>2012年4月30日</td>
+   <td>2017年6月30日</td>
+  </tr>
+</table>
+<h2 id="performing-major-os-upgrades-when-puppet-enterprise-is-installed">Puppet EnterpriseがインストールされているOSをメジャーアップグレードする場合</h2>
+
+<p> </p>
+<div class="real-paragraph"> OSのメジャーアップグレードとは、CentOS 6.0からCentOS 7.0へのアップグレードのように、大幅に改訂されたバージョンへのアップグレードを意味します。CentOS 6.5からCentOS 6.6へのアップグレードのようなマイナーアップグレードは含まれません。
+</div> <div class="real-paragraph"> 通常、OSをメジャーアップグレードする場合は、 <a href="https://puppet.com/download-puppet-enterprise">新しいバージョンのPuppet Enterprise</a>が必要です。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> Puppet EnterpriseがインストールされているOSをメジャーアップグレードすると、Puppet Enterpriseに問題が発生する場合があります。
+</div> <div class="real-paragraph"> OSをアップグレードするには、以下の手順を実行する必要があります。
+</div>
+
+
+<ol>
+<li>データベース、およびほかのPuppet Enterpriseファイルを<a href="/pe/2016.4/maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files">バックアップ</a>します。</li>
+  <li>完全 <a href="/pe/2016.4/install_uninstalling.html">アンインストール</a>を実行します (-p -d uninstallerオプションを含む)。</li>
+  <li>OSをアップグレードします。</li>
+  <li>
+<a href="./install_basic.html">Puppet Enterpriseをインストール</a>します。</li>
+  <li>バックアップを<a href="/pe/2016.4/maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files">復元</a>します。</li>
+</ol>
+<h2 id="dependencies-and-os-specific-details">依存関係とOS固有の詳細</h2>
+
+<p> </p>
+<div class="real-paragraph"> このセクションでは、さまざまなOSリポジトリからインストールされるパッケージについて説明します。
+</div> <div class="real-paragraph"> インストールするマシンがインターネットに接続している場合は、PEインストール中に設定されます。
+</div> <div class="real-paragraph"> インターネットに接続していない場合は、手動でインストールする必要があります。
+</div>
+
+
+<h3 id="centos">Centos</h3>
+
+<table>
+<thead><tr>
+<th> </th>
+      <th style="text-align: center">すべてのノード</th>
+      <th style="text-align: center">Masterノード</th>
+      <th style="text-align: center">コンソールノード<br>
+</th>
+      <th style="text-align: center">コンソール／コンソールDBノード</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>pciutils</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>system-logos</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>which</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libxml2</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>dmidecode</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>net-tools</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>curl</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>mailcap</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libjpeg</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>libtool-ltdl</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>unixODBC</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libxslt</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>zlib</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+</tbody>
+</table>
+<h3 id="rhel">RHEL</h3>
+
+<table>
+<thead><tr>
+<th> </th>
+      <th style="text-align: center">すべてのノード</th>
+      <th style="text-align: center">Masterノード</th>
+      <th style="text-align: center">コンソールノード<br>
+</th>
+      <th style="text-align: center">コンソール／コンソールDBノード</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>pciutils</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>system-logos</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>which</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libxml2</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>dmidecode</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>net-tools</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>cronie (RHEL 6、7)</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>vixie-cron (RHEL 4、5)</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>curl</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>mailcap</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libjpeg</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>libtool-ltdl (RHEL 7)</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>unixODBC (RHEL 7)</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libxslt</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>zlib</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>gtk2</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+</tbody>
+</table>
+<h3 id="sles">SLES</h3>
+
+<table>
+<thead><tr>
+<th> </th>
+      <th style="text-align: center">すべてのノード</th>
+      <th style="text-align: center">Masterノード</th>
+      <th style="text-align: center">コンソールノード<br>
+</th>
+      <th style="text-align: center">コンソール／コンソールDBノード</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>pciutils</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>pmtools</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>cron</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libxml2</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>net-tools</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libxslt</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>curl</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libjpeg</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>db43</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>unixODBC</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>zlib</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+</tbody>
+</table>
+<h3 id="ubuntu">Ubuntu</h3>
+
+<table>
+<thead><tr>
+<th> </th>
+      <th style="text-align: center">すべてのノード</th>
+      <th style="text-align: center">Masterノード</th>
+      <th style="text-align: center">コンソールノード<br>
+</th>
+      <th style="text-align: center">コンソール／コンソールDBノード</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>pciutils</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>dmidecode</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>cron</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libxml2</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>hostname</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libldap-2.4-2</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libreadline5</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>file</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libmagic1</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libpcre3</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>curl</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>perl</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>mime-support</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libcap2</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+    </tr>
+<tr>
+<td>libjpeg62</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>libxslt1.1</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>libgtk2.0-0</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>ca-certificates-java</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>openjdk-7-jre-headless*</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>libossp-uuid16</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center">x</td>
+    </tr>
+<tr>
+<td>zlib</td>
+      <td style="text-align: center">x</td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+      <td style="text-align: center"> </td>
+    </tr>
+</tbody>
+</table>
+<p> </p>
+<div class="real-paragraph"> * Ubuntu 10.04およびDebian 6にはopenjdk-6-jre-headlessを使用します。
+</div>
+
+
+<h3 id="aix">AIX</h3>
+
+<p> </p>
+<div class="real-paragraph"> <strong>Puppet agentをAIXシステムにインストールする前に</strong>、以下のパッケージをAIXシステムにインストールしてください。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> これらのパッケージは、AIXシステム上でPuppet agentを<strong>インストールおよび使用</strong>するのに必要となるものです。
+</div>
+
+
+<ul>
+<li>bash</li>
+  <li>zlib</li>
+  <li>readline</li>
+  <li>curl</li>
+  <li>OpenSSL</li>
+</ul>
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> <strong>警告</strong>：cURLおよびOpenSSLの場合は、IBMサポートから入手可能な「AIX Toolbox Cryptographic Content」リポジトリで提供されるバージョンを使用する必要があります。
+</div> <div class="real-paragraph"> cURLのバージョンは7.9.3でなければなりません。
+</div> <div class="real-paragraph"> AIXツールボックスパッケージのcURLバージョンはOpenSSLに対応していないため、Linuxアプリケーションには使用しないでください。
+</div>
+
+</blockquote>
+
+<p> </p>
+<div class="real-paragraph"> 以下のURLを使用して<code>rpm -Uvh</code> を実行することで、選択したノードディレクトリにbash、zlib、readlineパッケージをインストールできます (AIX上のRPMパッケージプロバイダをrootとして実行する必要があることに注意してください)。
+</div>
+
+
+<ul>
+<li>ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/bash/bash-3.2-1.aix5.2.ppc.rpm</li>
+  <li>ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/zlib/zlib-1.2.3-4.aix5.2.ppc.rpm</li>
+  <li>ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-6.1-1.aix6.1.ppc.rpm (AIX 6.1および7.1のみ <em></em>)</li>
+  <li>ftp://ftp.software.ibm.com/aix/freeSoftware/aixtoolbox/RPMS/ppc/readline/readline-4.3-2.aix5.1.ppc.rpm (AIX 5.3のみ<em></em>)</li>
+</ul>
+<p> </p>
+<div class="real-paragraph"> ファイアウォールを使用していたり、httpプロキシを実行していたりする場合、上記のコマンドが正常に動作しないことがあります。
+</div> <div class="real-paragraph"> このような場合は、上記のパッケージではなく、IBMから<a href="http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html">AIXツールボックスパッケージ</a>をダウンロードして使用してください。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> AIX(7.1を含む)で使用されているRPMバージョンが古いため、AIXではGPG証明は無効になります。
+</div> <div class="real-paragraph"> AIXパッケージプロバイダは、パッケージのダウングレード(新しいバージョンのパッケージ上に古いパッケージをインストールすること)には対応していません。
+</div> <div class="real-paragraph"> AIXプロバイダのバージョン番号を指定する場合はゼロを省略 します( <code>02.03.04</code>ではなく<code>2.3.4</code>とします)。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> PE AIXは、NIM、BFF、RPMパッケージのプロバイダに対応しています。
+</div> <div class="real-paragraph"> プロバイダの技術的な情報については、<a href="/puppet/4.6/reference/type.html#package">型リファレンス</a>を参照してください。
+</div>
+
+
+<h3 id="solaris">Solaris</h3>
+
+<p> </p>
+<div class="real-paragraph"> Solarisはagentにのみ対応しています。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> Solaris 10には以下のパッケージが必要です。
+</div>
+
+
+<ul>
+<li>SUNWgccruntime</li>
+  <li>SUNWzlib</li>
+  <li>状況によっては、Solarisシステム上にbashがインストールされていない場合があります。このような場合は、Puppet Enterpriseインストーラを実行する前にbashをインストールする必要があります。 bashは、OSのインストールに使用したメディアからインストールするか、システム上にある場合はCSWからインストールします (CSWbashとSUNWbashはどちらもインストールできます)。</li>
+</ul>
+<p> </p>
+<div class="real-paragraph"> Solaris 11には以下のパッケージが必要です。
+</div>
+
+
+<ul>
+<li>system/readline</li>
+  <li>system/library/gcc-45-runtime</li>
+  <li>library/security/openssl</li>
+</ul>
+<p> </p>
+<div class="real-paragraph"> これらのパッケージは、Oracle Solarisリリースリポジトリ (Solaris 11ではデフォルトで有効) から入手できます。
+</div> <div class="real-paragraph"> Puppet Enterpriseインストーラによってパッケージが自動的にインストールされますが、リリースリポジトリが有効になっていない場合は、手動でパッケージをインストールする必要があります。
+</div>
+
+</div>

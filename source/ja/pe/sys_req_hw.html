@@ -1,0 +1,232 @@
+<div>
+<h2 id="choosing-a-pe-architecture">Puppet Enterpriseアーキテクチャ の選択</h2>
+
+<p> </p>
+<div class="real-paragraph"> Puppet Enterpriseには、次の2つのインストール方法があります。
+</div>
+
+
+<ul>
+<li>
+<a href="./install_pe_mono.html">モノリシックインストール</a>：Puppet master、Puppet Enterpriseコンソール、PuppetDB (PostgreSQLを含む) をすべて1台のノードにインストールします。すべてのコンポーネントが1台のノード上にあるため、この方法ではインストールやアップグレード、トラブルシューティングが容易になります。コンパイルmasterを追加して、インストールを拡大することができます。</li>
+  <li>
+<a href="./install_pe_split.html">分割インストール</a>：Puppet master、Puppet Enterpriseコンソール、PuppetDB (PostgreSQLを含む) をそれぞれ別のノードにインストールします。このインストール方法は、お使いのサーバーあたりのコア数が限られている場合や、8000台以上のノードを使用する場合にのみ用いることをおすすめします。</li>
+</ul>
+<p> </p>
+<div class="real-paragraph"> モノリシックインストールは、2000台までのノードを管理する場合に適しています。
+</div> <div class="real-paragraph"> 管理対象のノードが何百台もある場合は、<a href="/pe/2016.4/install_multimaster.html">コンパイルmasterを追加</a>して、インストールを拡大することができます。
+</div> <div class="real-paragraph"> コンパイルmasterを1つ追加すると、インフラ内のノードをさらに約1500台管理できるようになります。コンパイルmasterは、PuppetDBやPuppet Enterprise Webコンソールのパフォーマンスに支障がない程度まで追加できます。
+</div> <div class="real-paragraph"> 通常、ノード数が約8000台になると、そうしたパフォーマンスの問題が発生します。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> デプロイの規模を拡大する場合は、次のような経過をたどることが想定されます。
+</div>
+
+
+<ol>
+<li>1台のノードにモノリシックインストールを実行し、10～100台のノードを管理します。</li>
+  <li>規模を拡大し、Puppet Enterpriseの管理対象ノードが増えるに伴い、 CPUとRAMを拡大して、モノリシックインストールに利用可能なリソースを拡大します。</li>
+  <li>管理対象のノード数が1000台を超えたら、コンパイルmasterを追加して、agentカタログのコンパイル負荷を分散します。ノード数が8000台に達するまで、この状態が維持されることが予測されます。</li>
+  <li>デプロイ規模がさらに拡大した場合は、モノリシックインストールから大規模インストールに変更します。</li>
+</ol>
+<h2 id="hardware-requirements">ハードウェアに関する推奨事項</h2>
+
+<p> </p>
+<div class="real-paragraph"> 以下は、Puppet Enterpriseのハードウェアに関する推奨事項です。推奨事項は、Puppet Enterpriseインフラの規模や複雑さによって異なります。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> 「<a href="/pe/2016.4/config_monolithic.html">Tuning monolithic installations (reference)</a>」では、さまざまなサイズのモノリシックインストールに関するチューニング情報を提供しています。 
+</div>
+
+
+<h3 id="monolithic-installation">モノリシックインストール</h3>
+
+<p> </p>
+<div class="real-paragraph"> 管理対象のノードが10台以下の場合、最小限の推奨ハードウェア構成は以下のとおりです。
+</div>
+
+
+<table>
+<thead><tr>
+<th>ノードボリューム</th>
+      <th>コア数</th>
+      <th>RAM</th>
+      <th>/opt/</th>
+      <th>EC2</th>
+    </tr></thead>
+<tbody><tr>
+<td>10以下</td>
+      <td>2</td>
+      <td>6 GB</td>
+      <td>20 GB</td>
+      <td>m3.xlargeインスタンス</td>
+    </tr></tbody>
+</table>
+<p> </p>
+<div class="real-paragraph"> さらに多くのノードを管理する場合は、ハードウェアをアップグレードする必要があります。
+</div> <div class="real-paragraph"> Puppet Enterpriseでは、デフォルト構成で4000台以下のノードをサポート可能であることがテストで実証されています。
+</div> <div class="real-paragraph"> この規模のノードを管理する場合、最小限の推奨ハードウェア構成は以下のとおりです。
+</div>
+
+
+<table>
+<thead><tr>
+<th>ノードボリューム</th>
+      <th>コア数</th>
+      <th>RAM</th>
+      <th>/opt/</th>
+      <th>/var/</th>
+      <th>EC2</th>
+    </tr></thead>
+<tbody><tr>
+<td>10～4000</td>
+      <td>16 +</td>
+      <td>32 + GB</td>
+      <td>100 GB</td>
+      <td>10 GB</td>
+      <td>m3.xlargeまたはc4.4xlarge</td>
+    </tr></tbody>
+</table>
+<p> </p>
+<div class="real-paragraph"> ハードウェアを徐々に拡張しながら最大限に活用するには、このリソースを利用できるようPuppet Enterpriseを設定する必要があります。詳しくは、「<a href="/pe/2016.4/config_intro.html">Puppet Enterpriseインフラストラクチャの設定とチューニング</a>」ページのガイドを参照してください。
+</div>
+
+
+<h3 id="monolithic-plus-compile-masters-installation">コンパイルmasterを使用したモノリシックインストール</h3>
+
+<p> </p>
+<div class="real-paragraph"> <strong>注意：</strong>デプロイ規模を拡大してコンパイルmasterを使用する場合は、ロードバランサを使って負荷を分散する必要があります。
+</div> <div class="real-paragraph"> コンパイルmasterとロードバランサを追加するよりも、モノリシックインストールでハードウェアをアップグレードする方が簡単です。
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> 管理対象のノードが4000台を超えた場合は、負荷を分散したコンパイルmasterをモノリシックインストールのアーキテクチャ に追加すると、より多くのagentを管理できるようになります。
+</div> <div class="real-paragraph"> コンパイルmasterを1つ追加すると、PuppetDBまたはPEコンソールの容量上限まで、約1500～3000台のノードを増設することができます。これはMoM上で動作します。ノード8000台前後でパフォーマンスに問題が出始めた場合は、ハードウェアを調整するか、より大規模なベースインフラに移行することができます。 
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> 管理対象のノードが4000台を上回る場合に推奨される最小限のハードウェア構成は以下のとおりです。
+</div>
+
+
+<table>
+<tr>
+<th>ノードボリューム</th>
+    <th>ノード</th>
+    <th>コア数</th>
+    <th>RAM</th>
+    <th>/opt/</th>
+    <th>/var/</th>
+    <th>EC2</th>
+  </tr>
+<tr>
+<td rowspan="2">4000～20,000</td>
+    <td>モノリシックノード</td>
+    <td>16</td>
+    <td>32</td>
+    <td>150</td>
+    <td>10</td>
+    <td>c4.4xlarge</td>
+  </tr>
+<tr>
+<td>コンパイルmasterあたり(1500～3000ノード)</td>
+    <td>4</td>
+    <td>16</td>
+    <td>30</td>
+    <td>2</td>
+    <td>m3.xlarge</td>
+  </tr>
+</table>
+<p> </p>
+<div class="real-paragraph"> ハードウェアを徐々に拡張しながら最大限に活用するには、このリソースを利用できるようPuppet Enterpriseを設定する必要があります。詳しくは、「<a href="/pe/2016.4/config_intro.html">Puppet Enterpriseインフラストラクチャの設定とチューニング</a>」ページのガイドを参照してください。
+</div>
+
+
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> <strong>注意</strong>：20,000台を超えるノードを必要とする場合は、大規模インストールを設定する前に、Puppetサポートか販売チームにお問い合わせください。
+</div>
+
+</blockquote>
+
+<h3 id="large-environment-installation">大規模インストール</h3>
+
+<p> </p>
+<div class="real-paragraph"> 大規模インストールとは、大規模なPuppet Enterpriseインフラストラクチャを配備することです。
+</div> <div class="real-paragraph"> Puppet Enterpriseを分割インストールし、コンパイルmasterとActiveMQメッセージブローカリングを追加します。
+</div> <div class="real-paragraph"> このインストールは、20,000台を超えるノードを管理する場合に適しています。
+</div> <div class="real-paragraph"> 推奨される最小限のハードウェア構成は以下のとおりです。
+</div>
+
+
+<table>
+<tr>
+<th>ノードボリューム</th>
+    <th>ノード</th>
+    <th>コア数</th>
+    <th>RAM</th>
+    <th>/opt/</th>
+    <th>/var/</th>
+    <th>EC2</th>
+  </tr>
+<tr>
+<td rowspan="6">20,000以上</td>
+    <td>Puppet master</td>
+    <td>4</td>
+    <td>16</td>
+    <td>10</td>
+    <td>42</td>
+    <td>m3.xlargeまたはm4.xlarge</td>
+  </tr>
+<tr>
+<td>Puppet Enterprise Webコンソール</td>
+    <td>4</td>
+    <td>4</td>
+    <td>30</td>
+    <td>22</td>
+    <td>m3.xlargeまたはm4.xlarge</td>
+  </tr>
+<tr>
+<td>PuppetDB</td>
+    <td>32</td>
+    <td>48</td>
+    <td>200</td>
+    <td>70</td>
+    <td>m3.2xlarge</td>
+  </tr>
+<tr>
+<td>(3) コンパイルmaster</td>
+    <td>4</td>
+    <td>16</td>
+    <td>30</td>
+    <td>42</td>
+    <td>m3.xlargeまたはm4.xlarge</td>
+  </tr>
+<tr>
+<td>ActiveMQハブ</td>
+    <td>2</td>
+    <td>4</td>
+    <td>10</td>
+    <td>18</td>
+    <td>m3.largeインスタンス</td>
+  </tr>
+<tr>
+<td>ActiveMQ Spoke</td>
+    <td>2</td>
+    <td>4</td>
+    <td>10</td>
+    <td>18</td>
+    <td>m3.large</td>
+  </tr>
+</table>
+<p> </p>
+<div class="real-paragraph"> このインストール方法では、より多くのリソースをPuppetDBに追加し、コンパイルmasterの数を増やすことで、より多くのノードに対応することができます。
+</div>
+
+</div>

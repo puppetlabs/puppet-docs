@@ -1,177 +1,244 @@
----
-layout: default
-title: "Agent インストールのクイックスタートガイド"
-canonical: "/ja/pe/quick_start_install_agents_nix.html"
----
-
 <div>
-<h2 id="overview">概要</h2>
+<p> </p>
+<div class="real-paragraph"> Puppet agentアプリケーションが動作しているノード(言いかえれば、Puppetに管理されているノード)を「<strong>agent</strong>」と呼びます。
+</div> <div class="real-paragraph"> このクイックスタートガイドでは、*nixオペレーティングシステムを搭載するノードにPuppet agentをインストールします。
+</div>
 
-<p> ここでは、*nixオペレーティングシステムを搭載したノードにPuppet agentをインストールする手順について説明します。 Windows向けの手順については、「<a href="./quick_start_install_agents_windows.html">Windows agentのインストールクイックスタートガイド</a>」を参照してください。
-</p>
 
-<p> Puppet Enterprise agentを実行しているコンピュータを「agent」と呼びます。 Puppet agentは、Puppet masterから定期的に設定カタログを取得し、ローカルシステムに適用します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <strong>前提条件</strong>: このガイドでは、<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、1台のノード上でPuppet master、Puppet Enterprise Webコンソール、PuppetDBが動作していると想定します。
+</div>
 
-<p> Puppet agentおよびPuppet Enterprise環境のコンポーネントについて、詳しくは「<a href="./install_basic.html">インストールの概要（日本語）</a>」を参照してください。
-</p>
-
-<blockquote>
-  <p> <strong>ヒント</strong>: インターネットに接続していない場合は、「<a href="./install_agents.html#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">インターネットにアクセスせずにPuppet EnterpriseインフラにAgentをインストールする（英語）</a>」を参照して、適切な方法を選択してください。
-</p>
-</blockquote>
 
 <blockquote>
-  <p> <strong>前提条件</strong>: このガイドでは、<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、1台のノード上でPuppet master、Puppet Enterprise Webコンソール、PuppetDBが動作していると想定します。
-</p>
+  <h4 id="faqs">FAQ</h4>
+
+  <ul>
+<li><a href="/pe/2016.4/quick_start_install_agents_windows.html">WindowsマシンにPuppet agentをインストールするにはどうすればいいですか？</a></li>
+    <li><a href="./install_agents.html#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">インターネットに接続していない場合にPuppet agentをインストールするには、どうすればいいですか？</a></li>
+  </ul>
 </blockquote>
 
-<h2 id="installing-the-puppet-enterprise-agent">Puppet Enterprise agentのインストール</h2>
+<h2 id="how-does-a-puppet-agent-work">Puppet agentはどのように機能しますか？</h2>
 
-<p> 以下のいずれかのシナリオを選択してください。
-</p>
+<p> </p>
+<div class="real-paragraph"> Puppetのサービスについて
+</div> <div class="real-paragraph"> masterは複数の情報ソースを用いてカタログをコンパイルし、そのカタログをagentに返します。
+</div>
 
-<ul>
-<li>Puppet agentノードに、<a href="#installing-agents-with-the-same-os-and-architecture-as-the-puppet-master">Puppet masterと同じOSとアーキテクチャをインストールする</a>。</li>
-  <li>Puppet agentノードに<a href="#installing-agents-with-different-os-and-architecture-than-the-puppet-master">Puppet masterと異なるOSとアーキテクチャ をインストールする</a>。</li>
-</ul>
-<h3 id="installing-agents-with-the-same-os-and-architecture-as-the-puppet-master">Puppet Masterと同じOSとアーキテクチャのAgentをインストールする</h3>
 
-<p> Puppet agentノードのOSとアーキテクチャがPuppet masterと同じ場合は、agentノードにログインし、次のコマンドを実行します。
-<code>curl -k https://&lt;MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash</code>
-</p>
+<p> </p>
+<div class="real-paragraph"> カタログを受け取ると、Puppet agentはカタログに記述されているリソースをそれぞれ確認します。
+</div> <div class="real-paragraph"> もし“あるべき状態”ではないリソースを発見した時は、agentがそれらを正しい状態へと変更します
+</div> <div class="real-paragraph"> （no-opモードの場合は変更が必要である事をレポートします。
+</div> <div class="real-paragraph"> )。
+</div>
 
-<p> このスクリプトによって、agentが実行されているOSが検出され、Puppet masterを参照したapt、yum、またはzipper repoが設定された後、<code>puppet-agent</code>パッケージがダウンロードされ、インストールされます。
-</p>
 
-<blockquote>
-  <p> <strong>重要</strong>: インストールの完了後、「<a href="#approving-the-certificate-request">証明書要求の承認</a>」に進み、コンソールで新規agentの証明書要求を承認してください。
-</p>
-</blockquote>
+<p> </p>
+<div class="real-paragraph"> カタログの適用後、Puppet agentはレポートをmasterに送ります。
+</div> <div class="real-paragraph"> agentから送られたレポートは、すべてPuppetDBに保存され、PEコンソールからアクセスすることができます。
+</div>
 
-<h3 id="installing-agents-with-different-os-and-architecture-than-the-puppet-master">Puppet MasterとOSとアーキテクチャが異なるAgentをインストールする</h3>
 
-<p> agentのOSとアーキテクチャがPuppet masterとは異なる場合は、以下の例に従ってインストールします。オプションはお使いのagentのOSとアーキテクチャ に合わせて変更してください。 以下は、AMD64ハードウェアでDebian 6を実行するagentを追加する場合の例です。
-</p>
+<h2 id="step-1a-install-an-agent-with-the-same-os-and-architecture-as-the-puppet-master">ステップ1a：Puppet masterとOSとアーキテクチャが同じagentをインストールする</h2>
 
-<p> Puppet masterとOSが異なるagentをインストールするには、まず、agentパッケージが含まれているリポジトリに適切なクラスを追加します。 次に、PE Masterのノードグループを、そのクラスに分類します。 最後に、agentからmasterに対してcURLコマンドを実行し、agentのインストールに必要なパッケージを取得します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <em>agentノードとPuppet masterの使用しているOSとアーキテクチャが同じ場合は、このステップに従ってください。</em> そうでない場合は、<a href="./quick_start_install_agents_nix.html#step-1b-install-an-agent-with-a-different-os-and-architecture-than-the-puppet-master">ステップ1b</a>に進んでください。
+</div>
 
-<blockquote>
-  <p> <strong>注意</strong>: Puppet masterがプロキシサーバーを使用してインターネットに接続している場合は、<a href="/pe/2016.2/release_notes_known_issues_install.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy">こちら</a>を参照して、既知の問題を解決してください。
-</p>
-</blockquote>
 
 <ol>
 <li>
-    <p> コンソールで[<strong>Nodes</strong>]&gt;[<strong>Classification</strong>]とクリックします。
-</p>
-  </li>
-  <li>
-    <p> [<strong>Classification</strong>]ページで[<strong>PE Master</strong>]グループをクリックします。
-</p>
-  </li>
-  <li>
-    <p> [<strong>Classes</strong>]タブをクリックします。
-</p>
-  </li>
-  <li>
-    <p> [<strong>Add new class</strong>]フィールドの[<strong>Class name</strong>]ボックスに「<code>pe_repo</code>」と入力し、クラスの一覧から[<code>pe_repo::platform::debian_6_amd64</code>]クラス、またはagentに適切なクラスを選択します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> agentノードにログインし、以下を実行します。
+</div>
 
-    <blockquote>
-      <p> <strong>注意</strong>: リポジトリのクラスは「<code>pe_repo::platform::&lt;agent_os_version_architecture&gt;</code>」と表示されています。
-</p>
-    </blockquote>
+
+    <pre><code>curl -k https://&lt;MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash
+</code></pre>
+
+    <p> </p>
+<div class="real-paragraph"> このスクリプトによって、agentが実行されているOSが検出され、Puppet masterを参照したapt、yum、またはzipper repoが設定された後、<code>puppet-agent</code>パッケージがダウンロードされ、インストールされます。
+</div>
+
   </li>
   <li>
-    <p> [<strong>Add class</strong>]をクリックします。
-</p>
-  </li>
-  <li>
-    <p> [<strong>Commit 1 change</strong>]をクリックします。
-</p>
+    <p> </p>
+<div class="real-paragraph"> インストールの完了後、「<a href="./quick_start_install_agents_nix.html#step-2-approve-the-certificate-request">approve the certificate request(証明書要求の承認)</a>」に進み、コンソールで新規agentの証明書要求を承認してください。
+</div>
 
-    <p> <strong>注意</strong>: 選択したクラスが<strong>PE Master</strong>グループのクラスの一覧に表示されますが、この段階ではノードには設定されていません。 ノードに設定するには、Puppetを実行する必要があります。
-</p>
-  </li>
-  <li>
-    <p> Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。
-</p>
-
-    <p> これで、新たに割り当てたクラスがPuppet masterノードの設定に使用されます。
-</p>
-
-    <p> 「<code>/opt/puppetlabs/server/data/packages/public</code>」内に新規リポジトリが作成されます。
-</p>
-  </li>
-  <li>
-    <p> agentをインストールするノードでSSHを実行し、<code>curl -k https://&lt;master.example.com&gt;:8140/packages/current/install.bash | sudo bash</code>を実行します。
-</p>
-
-    <p> スクリプトの<code>current</code>は、特定のPEバージョン(<code>2015.x.x</code>)に置き換えることができます。
-</p>
   </li>
 </ol>
-<blockquote>
-  <p> <strong>注意</strong>: スクリプトのダウンロード方法は、プラットフォームによって異なる場合があります。
-</p>
-</blockquote>
+<h2 id="step-1b-install-an-agent-with-a-different-os-and-architecture-than-the-puppet-master">ステップ1b: Puppet MasterとOSとアーキテクチャが異なるAgentをインストールする</h2>
 
-<p> インストーラによって、Puppet Enterprise agentがインストールされ、設定されます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <em>agentノードとPuppet masterの使用しているOSとアーキテクチャが異なる場合は、このステップに従ってください。</em> そうでない場合は、<a href="./quick_start_install_agents_nix.html#step-1a-install-an-agent-with-the-same-os-and-architecture-as-the-puppet-master">ステップ1a</a>に進んでください。
+</div>
 
-<blockquote>
-  <p> <strong>重要</strong>: インストールの完了後、「<a href="#approving-the-certificate-request">証明書要求の承認</a>」に進み、コンソールで新規agentの証明書要求を承認してください。
-</p>
-</blockquote>
 
-<h2 id="approving-the-certificate-request">証明書要求の承認</h2>
+<p> </p>
+<div class="real-paragraph"> 以下は、AMD64ハードウェアでDebian 6を実行するagentを追加する場合の例です。
+</div> <div class="real-paragraph"> ステップが完了したら、コマンドを修正して、agentのOSとアーキテクチャと一致させます。
+</div>
 
-<p> インストール中、agentノードはPuppet masterに対して証明書要求を送信します。 ノードをコンソールに追加して設定を管理し始めるには、<strong>Puppet master上で要求を承認します</strong>。 これは以下の手順で、コンソールで行うのがもっとも簡単です。
-</p>
 
 <ol>
 <li>
-    <p> [<strong>Nodes</strong>]&gt;[<strong>Unsigned certificates</strong>]の順にクリックし、保留中のノード要求のリストを読み込みます。
-</p>
+    <p> </p>
+<div class="real-paragraph"> コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、<strong>PE Infrastructure</strong>ノードグループで<strong>PE Master</strong>グループを選択します。
+</div>
+
   </li>
   <li>
-    <p> [<strong>Accept All</strong>]ボタンをクリックして、すべての要求を承認し、ノードに追加します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <strong>Classes</strong>タブで、[<strong>Add new class</strong>]フィールドの[<strong>Class name</strong>]ボックスに「<code>pe_repo</code>」と入力し、クラスの一覧から[<code>pe_repo::platform::debian_6_amd64</code>]クラス、またはagentに適切なクラスを選択します。
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <strong>注意</strong>: リポジトリのクラスは「<code>pe_repo::platform::&lt;agent_os_version_architecture&gt;</code>」と表示されています。
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <strong>Add class</strong>をクリックし、Commitボタンをクリックします。
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> 選択したクラスが<strong>PE Master</strong>グループのクラスの一覧に表示されますが、この段階ではノードには設定されていません。
+</div> <div class="real-paragraph"> ノードに設定するには、Puppetを実行する必要があります。
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> これで、新たに割り当てたクラスがPuppet masterノードの設定に使用されます。
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> 「<code>/opt/puppetlabs/server/data/packages/public</code>」内に新規リポジトリが作成されます。
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> SSHでagentノードにログインし、以下を実行します。
+</div>
+
+
+    <pre><code>curl -k https://&lt;master.example.com&gt;:8140/packages/current/install.bash | sudo bash
+</code></pre>
+
+    <p> </p>
+<div class="real-paragraph"> 最新リリース以外のPEバージョンをインストールする場合は、スクリプト内の<code>current</code>を<code>2016.x.x</code>という形式で任意の<a href="/pe/2016.4/overview_version_table.html">PEバージョン番号</a>に置き換えます。
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> スクリプトのダウンロード方法は、プラットフォームによって異なる場合があります。
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> インストーラによって、Puppet Enterprise agentがインストールされ、設定されます。
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> インストールの完了後、「<a href="./quick_start_install_agents_nix.html#step-2-approve-the-certificate-request">approve the certificate request(証明書要求の承認)</a>」に進み、コンソールで新規agentの証明書要求を承認してください。
+</div>
+
   </li>
 </ol>
 <blockquote>
-  <p> これで、次回Puppetを実行した時に、Puppet agentがmasterから設定を取得できます。
-</p>
+  <h4 id="faqs-1">FAQ</h4>
+
+  <ul>
+<li><a href="/pe/2016.4/release_notes_known_issues_install.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy">Puppet masterがプロキシサーバーを使用してインターネットに接続している場合はどうすればいいですか？</a></li>
+  </ul>
 </blockquote>
 
-<h2 id="testing-the-agent-nodes">Agentノードのテスト</h2>
+<h2 id="step-2-approve-the-certificate-request">ステップ２: 証明書要求の承認</h2>
 
-<p> 以下の手順では、Puppet agentを手動で実行します。 デフォルトでは、agentはバックグラウンドで実行され、Puppet masterから30分おきに設定をフェッチします (この間隔は、「puppet.conf」の<code>runinterval</code>設定で変更できます )が、コマンドラインから手動でPuppetを実行することもできます。
-</p>
+<p> </p>
+<div class="real-paragraph"> インストール中、agentノードはPuppet masterに対して証明書要求を送信します。
+</div> <div class="real-paragraph"> ノードをコンソールに追加し、設定の管理を始めるには、<strong>証明書要求を承認します</strong>。
+</div> <div class="real-paragraph"> これは以下の手順で、コンソールで行うのがもっとも簡単です。
+</div>
+
 
 <ol>
 <li>
-    <p> <strong>agentに</strong>rootとしてログインし、コマンドラインで<code>puppet agent --test</code>を実行します。 これにより、agent上で単一のPuppetが実行され、詳細なログが出力されます。
-</p>
+    <p> </p>
+<div class="real-paragraph"> [<strong>Nodes</strong>]&gt;[<strong>Unsigned certificates</strong>]の順にクリックし、保留中のノード要求のリストを読み込みます。
+</div>
 
-    <blockquote>
-      <p> <strong>注意</strong>: <code>-bash: puppet: command not found</code>エラーが発生した場合は、Puppet Enterpriseがバイナリをインストールしたディレクトリ(<code>/opt/puppetlabs/bin</code>)がデフォルトの<code>$PATH</code>に含まれていません。 これらのバイナリをデフォルトの<code>$PATH</code>に追加するには、<code>PATH=/opt/puppetlabs/bin:$PATH;export PATH</code>を実行します。
-</p>
-    </blockquote>
   </li>
   <li>
-    <p> <code>Notice: Finished catalog run in [...] seconds</code>で終了する長いログメッセージを確認します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> [<strong>Accept All</strong>]ボタンをクリックして、要求を承認してノードを追加します。
+</div>
+
+  </li>
+</ol>
+<p> </p>
+<div class="real-paragraph"> これで、次回Puppetを実行した時に、Puppet agentがmasterから設定を取得できるようになります。
+</div>
+
+
+<h2 id="step-3-test-the-puppet-agent-node">ステップ3：Puppet agentノードのテスト</h2>
+
+<p> </p>
+<div class="real-paragraph"> デフォルトでは、agentはPuppet masterから30分おきに設定をフェッチします。
+</div> <div class="real-paragraph"> (<code>runinterval</code>設定を使うと、<a href="/puppet/4.6/reference/config_file_main.html">puppet.confファイルでこの間隔を設定</a>することができます。
+</div> <div class="real-paragraph"> ) ただし、Puppetはコマンドラインからいつでも手動で実行することができます。
+</div>
+
+
+<ol>
+<li>
+    <p> </p>
+<div class="real-paragraph"> <strong>agentから</strong>rootとしてログインし、<code>puppet agent --test</code>を実行します。
+</div> <div class="real-paragraph"> これにより、agent上で単一のPuppetが実行され、詳細なログが出力されます。
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <code>-bash: puppet: command not found</code>エラーが発生した場合は、Puppet Enterpriseがバイナリをインストールしたディレクトリ(<code>/opt/puppetlabs/bin</code>)がデフォルトの<code>$PATH</code>に含まれていません。
+</div> <div class="real-paragraph"> これらのバイナリをデフォルトの<code>$PATH</code>に追加するには、<code>PATH=/opt/puppetlabs/bin:$PATH;export PATH</code>を実行します。
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <code>Notice: Finished catalog run in [...] seconds</code>で終了する長いログメッセージを確認します。
+</div>
+
   </li>
 </ol>
 <blockquote>
-  <p> これで、agentノードを管理できるようになりました。 この段階で、agentがPuppet masterに初めてチェックインし、設定情報を取得しています。 これ以降、agentは30分おきにチェックインし、新規設定情報をフェッチします。 ノードはコンソールにも表示されます。このコンソールから、クラスを割り当てたり、クラスパラメータの値を変更したりして、設定を変更することができます。
-</p>
-</blockquote>
+  <p> </p>
+<div class="real-paragraph"> これで、agentノードを管理できるようになりました。
+</div> <div class="real-paragraph"> この段階で、agentがPuppet masterに初めてチェックインし、設定情報を取得しています。
+</div> <div class="real-paragraph"> これ以降、agentは30分おきにチェックインし、新規設定情報をフェッチします。
+</div>
 
-<hr>
-<p> 次の手順: <a href="./quick_start_helloworld.html">Hello, world!</a>
-</p>
+
+  <p> </p>
+<div class="real-paragraph"> 次は、Puppetコードを使用してagentを設定する方法を説明します。まずは、<strong>モジュール</strong>と呼ばれるビルド済みのPuppetコードから始めます。
+</div> <div class="real-paragraph"> <a href="./quick_start_module_install_nix.html">最初のモジュールをダウンロードしてインストールする準備ができたら、こちらをクリックしてください。</a>
+</div>
+
+</blockquote>
 </div>
