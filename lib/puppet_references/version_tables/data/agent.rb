@@ -7,7 +7,12 @@ module PuppetReferences
     module Data
       class Agent
         def initialize
-          @repo = PuppetReferences::Repo.new('puppet-agent', PuppetReferences::AGENT_DIR)
+          @repo = PuppetReferences::Repo.new(
+            'puppet-agent',
+            PuppetReferences::AGENT_DIR,
+            ['git@github.com:puppetlabs/puppet-agent.git',
+             'git@github.com:puppetlabs/puppet-agent-cve.git']
+          )
           @data = nil
           config = PuppetReferences::VersionTables::Config.read
           @includes = config['agent']['include'] || {}
