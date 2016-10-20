@@ -14,6 +14,8 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
+[security]: /security/index.html
+
 
 This page lists changes to the `puppet-agent` package. For details about changes to components in a `puppet-agent` release, follow the links to those components in the package release's notes.
 
@@ -28,6 +30,12 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.7 release notes](./release_notes.html).
+
+## Puppet agent 1.7.1
+
+Released October 20, 2016.
+
+This is a security release, addressing vulnerabilities in OpenSSL, curl, and [pxp-agent][]. You can read about the related CVEs in the [security section][security].
 
 ## Puppet agent 1.7.0
 
