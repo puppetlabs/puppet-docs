@@ -36,10 +36,11 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Release
 
-- [Puppet Enterprise 2016.2](/pe/latest/release_notes.html)
+- [Puppet Enterprise 2016.4](/pe/latest/release_notes.html)
 
 ### Previous Releases
 
+- [Puppet Enterprise 2016.2][pe2016.2]
 - [Puppet Enterprise 2016.1][pe2016.1]
 - [Puppet Enterprise 2015.3][pe2015.3]
 - [Puppet Enterprise 2015.2][pe2015.2]
