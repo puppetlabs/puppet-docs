@@ -6,21 +6,27 @@ module PuppetReferences
 
     attr_reader :name, :directory, :source, :repo
 
-    def initialize(name, directory, source = nil)
+    def initialize(name, directory, sources = nil)
       @name = name
       @directory = directory
-      if source
-        @source = source
+      if sources
+        @sources = [sources].flatten
       else
-        @source = "git@github.com:puppetlabs/#{@name}.git"
+        @sources = ["git@github.com:puppetlabs/#{@name}.git"]
       end
+      @main_source = @sources[0]
       unless Dir.exist?(@directory + '.git')
         puts "Cloning #{@name} repo..."
-        Git.clone(@source, @directory)
+        Git.clone(@main_source, @directory)
         puts 'done cloning.'
       end
       @repo = Git.open(@directory)
+      # fetch the main source
       @repo.fetch
+      # fetch tags from secondary sources
+      @sources[1..-1].each do |source|
+        @repo.fetch(source, {tags: true})
+      end
     end
 
     def checkout(commit)
