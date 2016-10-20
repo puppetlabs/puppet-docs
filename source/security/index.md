@@ -8,6 +8,26 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2016-5715 - Arbitrary URL Redirection in Puppet Enterprise Console](puppet.com/security/cve/cve-2016-5715)
+
+   Resolved in Puppet Enterprise 2016.4.0
+
+- [Puppet Execution Protocol (PXP) Command Whitelist Validation Vulnerability](puppet.com/security/cve/pxp-agent-oct-2016)
+
+   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
+
+- [Puppet Communications Protocol (PCP) Broker String Validation Vulnerability](puppet.com/security/cve/pcp-broker-oct-2016)
+
+   Resolved in Puppet Enterprise 2016.4.0
+
+- [Remote Code Execution in Puppet Enterprise Console](puppet.com/security/cve/pe-console-oct-2016)
+
+   Resolved in Puppet Enterprise 2016.4.0
+
+- [CVE-2016-5714 - Unprivileged Access to Environment Catalogs](puppet.com/security/cve/cve-2016-5714)
+
+   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.0
+
 - [CVE-2016-5713 - Environment Leakage in pxp-module-puppet](https://puppet.com/security/cve/cve-2016-5713)
 
     Resolved in Puppet Agent 1.6.0
@@ -249,6 +269,18 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in Puppet 0.25.2
 
 ## Third-party security announcements
+
+- [OpenSSL September 2016 Security Fixes](puppet.com/security/cve/openssl-sep-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
+
+- [PostgreSQL August 2016 Security Fixes](puppet.com/security/cve/postgresql-aug-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.4.0
+
+- [Curl 2016 Security Fixes](puppet.com/security/cve/curl-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
 
 - [Nokogiri June 2016 Security Fixes](https://puppet.com/security/cve/nokogiri-jun-2016-security-fixes)
 
