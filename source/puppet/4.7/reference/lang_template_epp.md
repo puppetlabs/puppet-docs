@@ -78,11 +78,11 @@ Text outside a tag becomes literal text, but it is subject to any tagged Puppet 
 
 An expression-printing tag inserts the value of a single [Puppet expression](./lang_expressions.html) into the output. It starts with an opening tag delimiter and equals sign (`<%=`) and ends with a closing tag delimiter (`%>`). It must contain any single Puppet expression that resolves to a value, including plain variables, [function calls](./lang_functions.html), and arithmetic expressions. If the value isn't a string, Puppet automatically converts it to a string based on the [rules for value interpolation in double-quoted strings](./lang_data_string.html#conversion-of-interpolated-values).
 
-For example, to insert the value of the `$fqdn` and `$hostname` facts in an EPP template for an Apache config file, you could do something like:
+For example, to insert the value of the `fqdn` and `hostname` facts in an EPP template for an Apache config file, you could do something like:
 
 ``` epp
-ServerName <%= $fqdn %>
-ServerAlias <%= $hostname %>
+ServerName <%= $facts[fqdn] %>
+ServerAlias <%= $facts[hostname] %>
 ```
 
 #### Space trimming

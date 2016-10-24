@@ -1,4 +1,4 @@
-<h3><a href="/ja/pe/quick_start.html">Puppet Enterprise 2016.2</a></h3>
+<h3><a href="/ja/pe/quick_start.html">Puppet Enterprise 2016.4</a></h3>
 <ul>
   <li><strong>概要</strong>
     <ul>
@@ -24,6 +24,8 @@
             <li><a href="{{pe}}/release_notes_known_issues_platforms.html">Supported platforms</a></li>
             <li><a href="{{pe}}/release_notes_known_issues_razor.html">Razor</a></li>
             <li><a href="{{pe}}/release_notes_known_issues_codemgmt.html">Code management</a></li>
+            <li><a href="./release_notes_known_issues_utf8.html">UTF-8</a></li>
+
           </ul>
          </li>
         <li><a href="{{pe}}/release_notes_resolved_issues.html">Resolved issues</a></li>
@@ -36,14 +38,13 @@
   			<ul>
   				<li><a href="/ja/pe/quick_start_install_mono.html">1: PEをインストール</a></li>
   				<li><a href="/ja/pe/quick_start_install_agents_nix.html">2: Unix Agentをインストール</a></li>
-  				<li><a href="/ja/pe/quick_start_helloworld.html">3: Hello, World!</a></li>
-  				<li><a href="/ja/pe/quick_start_module_install_nix.html">4: モジュールをインストール</a></li>
-  				<li><a href="/ja/pe/quick_start_adding_class_nix.html">5: ノードにクラスを追加</a></li>
-  				<li><a href="/ja/pe/quick_start_nc_rbac.html">6: ノードの分類とユーザー許可の割り当て</a></li>
-  				<li><a href="/ja/pe/quick_writing_nix.html">7: モジュールの記述</a></li>
+  				<li><a href="/ja/pe/quick_start_module_install_nix.html">3: モジュールをインストール</a></li>
+  				<li><a href="/ja/pe/quick_start_adding_class_nix.html">4: ノードにクラスを追加</a></li>
+  				<li><a href="/ja/pe/quick_start_nc_rbac.html">5: ノードの分類とユーザー許可の割り当て</a></li>
+  				<li><a href="/ja/pe/quick_writing_nix.html">6: モジュールの記述</a></li>
   			</ul>
   		</li>
-  		<li><strong><a href="/ja/pe/quick_start_windows_intro.html">Quick start guide for Windows users</a></strong>
+  		<li><strong><a href="/ja/pe/quick_start_windows_intro.html">Windows向けのクイックスタートガイド</a></strong>
           <ul>
             <li><a href="/ja/pe/quick_start_install_mono.html">1: Install PE</a></li>
             <li><a href="{{pe}}/quick_start_install_agents_windows.html">2: Install Agents</a></li>
@@ -75,7 +76,13 @@
   </li>
   	<li><strong>インストール</strong>
     		<ul>
-      			<li><a href="/ja/pe/install_system_requirements.html">システム要件</a></li>
+                <li><strong>システム要件</strong>
+                    <ul>
+                     <li><a href="/ja/pe/sys_req_hw.html">HW要件</a></li>
+                    <li><a href="/ja/pe/sys_req_os.html">対応するオペレーティングシステム</a></li>
+                    <li><a href="/ja/pe/sys_req_browsers.html">対応するブラウザ</a></li>
+                    <li><a href="/ja/pe/sys_req_sysconfig.html">システムとファイアウォールの設定</a></li>
+                    </ul> 
       			<li><a href="/ja/pe/install_basic.html">PEインストールの概要</a></li>
       			<li><strong>GUIによるインストール</strong>
            <ul>
@@ -114,8 +121,9 @@
           <li><a href="{{pe}}/install_pe_client_tools.html">Installing PE Client Tools</a></li>
           <li><a href="{{pe}}/install_uninstalling.html">Uninstalling</a></li>
           <li><a href="/ja/pe/install_what_and_where.html">何がどこでインストールされるか</a></li>
-          <li><strong>PE and external PostgreSQL</strong>
+          <li><strong>PEと外部PostgreSQL</strong>
              <ul>
+                <li><a href="/ja/pe/sys_req_extsql.html">外部PostgreSQLの準備</a></li>
                <li><a href="{{pe}}/install_ssl_postgresql.html">SSL for PE and external PostgreSQL</a></li>
                <li><a href="{{pe}}/install_external_postgresql.html">PE and external PostgreSQL without root access</a></li>
               </ul>
@@ -124,15 +132,15 @@
     </li>
     <li><strong>Upgrading</strong>
     <ul>
-      <li><a href="{{pe}}/install_upgrading.html">Upgrading PE components</a></li>
-      <li><a href="{{pe}}/install_upgrading_agents.html">Upgrading Puppet Agents</a></li>
-      <li><a href="{{pe}}/install_upgrading_notes.html">Upgrading: Important Notes</a></li>
+      <li><a href="{{pe}}/upgrade_mono.html">Upgrading PE: monolithic</a></li>
+      <li><a href="{{pe}}/upgrade_split.html">Upgrading PE: split</a></li>
+      <li><a href="{{pe}}/install_upgrading_agents.html">Upgrading Puppet agents</a></li>
     </ul>
    </li>
-   <li><strong>Migrating to PE 2016.2</strong>
+   <li><strong>Migrating</strong>
      <ul>
-       <li><a href="{{pe}}/migrate_pe_catalog_preview.html">Preparing for Migration to PE 2016.2</a></li>
-       <li><a href="{{pe}}/migrate_monolithic.html">Migrating from PE 3.8 to 2016.2: monolithic</a></li>
+       <li><a href="{{pe}}/migrate_pe_catalog_preview.html">Preparing for Migration to PE 2016.4</a></li>
+       <li><a href="{{pe}}/migrate_monolithic.html">Migrating from PE 3.8 to 2016.4: monolithic</a></li>
        <li><a href="{{pe}}/migrate_notes.html">Migrating: important notes</a></li>
        <li><a href="{{pe}}/install_upgrading_path_changes.html">Major path changes</a></li>
      </ul>
@@ -148,6 +156,7 @@
       <li><a href="{{pe}}/config_java_args.html">Java arguments For PE</a></li>
       <li><a href="{{pe}}/config_monolithic.html">Tuning mono installs (reference)</a></li>
       <li><a href="{{pe}}/config_hocon.html">Writing configuration files</a></li>
+        <li><a href="./analytics_opt_out.html">Opt out of Puppet data collection</a></li>
       <li><a href="{{pe}}/static_catalogs.html">Static Catalogs</a></li>
     </ul>
   </li>
@@ -167,7 +176,15 @@
                  <li><a href="{{pe}}/console_classes_groups_running_puppet.html">Running Puppet on an agent node</a></li>
                  <li><a href="{{pe}}/console_classes_groups_getting_started.html">Getting started with classification</a></li>
                  <li><a href="{{pe}}/console_classes_groups.html">Grouping and classifying nodes</a></li>
-                 <li><a href="{{pe}}/nodes_viewing.html">Viewing node-specific information</a></li>
+                <li><strong>Roles and profiles: Designing system configs</strong>
+                <ul>
+                    <li><a href="{{pe}}/r_n_p_intro.html">Introduction</a></li>
+                    <li><a href="{{pe}}/r_n_p_full_example.html">A complete example</a></li>
+                    <li><a href="{{pe}}/r_n_p_profiles.html">Designing advanced profiles</a></li>
+                    <li><a href="{{pe}}/r_n_p_roles.html">Designing convenient roles</a></li>
+                </ul>
+                </li>
+                   <li><a href="{{pe}}/nodes_viewing.html">Viewing node-specific information</a></li>
                  <li><a href="{{pe}}/console_classes_groups_making_changes.html">Making changes to node groups</a></li>
                  <li><a href="{{pe}}/node_deactivation.html">Removing nodes</a></li>
                  <li><a href="{{pe}}/console_classes_groups_preconfigured_groups.html">Preconfigured node groups</a></li>
@@ -185,11 +202,11 @@
                   <li><a href="{{pe}}/nc_classification.html">Classification</a></li>
                   <li><a href="{{pe}}/nc_commands.html">Commands</a></li>
                   <li><a href="{{pe}}/nc_environments.html">Environments</a></li>
-                  <li><a href="{{pe}}/nc_nodes.html">Nodes</a></li>
-                  <li><a href="{{pe}}/nc_rules.html">Rules</a></li>
+                    <li><a href="{{pe}}/nc_nodes.html">Node history</a></li>
+                    <li><a href="{{pe}}/nc_groups_children.html">Group children</a></li>
+                    <li><a href="{{pe}}/nc_rules.html">Rules</a></li>
                   <li><a href="{{pe}}/nc_import-hierarchy.html">Importing Node Classifier Hierarchy</a></li>
                   <li><a href="{{pe}}/nc_last_class_update.html">Last Class</a></li>
-                  <li><a href="{{pe}}/nc_nodes.html">Node History</a></li>
                   <li><a href="{{pe}}/nc_update_classes.html">Updating Node Classifier Classes</a></li>
                   <li><a href="{{pe}}/nc_validate.html">Validating Node Classifier Endpoints</a></li>
                   <li><a href="{{pe}}/nc_errors.html">Node Classifier Errors</a></li>
@@ -207,17 +224,17 @@
                   <li><a href="{{pe}}/deploy_nonroot-agent.html">Running Agents Without Root Privileges</a></li>
                   <li><strong>RBAC service API v1</strong>
                   <ul>
-                    <li><a href="{{pe}}/rbac_serviceindex.html">Endpoints</a></li>
-                    <li><a href="{{pe}}/rbac_forming_requests.html">Forming RBAC Requests</a></li>
-                    <li><a href="{{pe}}/rbac_users.html">Users</a></li>
-                    <li><a href="{{pe}}/rbac_usergroups.html">User Groups</a></li>
-                    <li><a href="{{pe}}/rbac_roles.html">Roles</a></li>
-                    <li><a href="{{pe}}/rbac_permissionsref.html">Permissions</a></li>
-                    <li><a href="{{pe}}/rbac_token.html">Authentication Tokens</a></li>
-                    <li><a href="{{pe}}/rbac_dsref.html">Directory Service</a></li>
-                    <li><a href="{{pe}}/rbac_passwords.html">Passwords</a></li>
-                    <li><a href="{{pe}}/rbac_serviceerrors.html">Errors</a></li>
-                    <li><a href="{{pe}}/rbac_config.html">Configuration Options</a></li>
+                    <li><a href="{{pe}}/rbac_serviceindex_v1.html">Endpoints</a></li>
+                    <li><a href="{{pe}}/rbac_forming_requests_v1.html">Forming RBAC Requests</a></li>
+                    <li><a href="{{pe}}/rbac_users_v1.html">Users</a></li>
+                    <li><a href="{{pe}}/rbac_usergroups_v1.html">User Groups</a></li>
+                    <li><a href="{{pe}}/rbac_roles_v1.html">Roles</a></li>
+                    <li><a href="{{pe}}/rbac_permissionsref_v1.html">Permissions</a></li>
+                    <li><a href="{{pe}}/rbac_token_v1.html">Authentication Tokens</a></li>
+                    <li><a href="{{pe}}/rbac_dsref_v1.html">Directory Service</a></li>
+                    <li><a href="{{pe}}/rbac_passwords_v1.html">Passwords</a></li>
+                    <li><a href="{{pe}}/rbac_serviceerrors_v1.html">Errors</a></li>
+                    <li><a href="{{pe}}/rbac_config_v1.html">Configuration Options</a></li>
                  </ul>
                  <li><strong>RBAC service API v2</strong>
                   <ul>
@@ -232,7 +249,7 @@
                </li>
                </ul>
   		</li>
-  <li><strong>Orchestrating applications</strong>
+  <li><strong>Managing applications</strong>
     <ul>
       <li><a href="{{pe}}/app_orchestration_overview.html">Application orchestration: Overview</a></li>
       <li><strong>Application orchestration: Key concepts and workflow</strong>
@@ -246,8 +263,9 @@
         </ul>
        </ul>
      </li>
-  <li><strong>Running orchestrator jobs</strong>
+  <li><strong>Enforcing change with Puppet orchestrator</strong>
        <ul>
+        <li><a href="{{pe}}/direct_puppet_workflow.html">Direct Puppet: a workflow</a></li>
         <li><a href="{{pe}}/orchestrator_intro.html">Puppet orchestrator introduction</a></li>
         <li><a href="{{pe}}/orchestrator_install.html">Installing Puppet orchestrator</a></li>
         <li><a href="{{pe}}/orchestrator_app.html">Reviewing applications</a></li>
@@ -271,7 +289,7 @@
       <ul>
        <li><a href="{{pe}}/cmgmt_managing_code.html">Managing and Deploying Puppet Code</a></li>
        <li><a href="{{pe}}/cmgmt_control_repo.html">Setting Up a Control Repository</a></li>
-       <li><a href="{{pe}}/cmgmt_puppetfile.html">Managing Modules with Puppetfiles</a></li>
+       <li><a href="{{pe}}/cmgmt_puppetfile.html">Managing environment content with Puppetfiles</a></li>
      <li><strong>Code Manager</strong>
         <ul>
          <li><a href="{{pe}}/code_mgr.html">Managing code with Code Manager</a></li>
@@ -342,11 +360,6 @@
      <li><a href="{{pe}}/custom_console_cert.html">Configuring the PE console to use a custom SSL certificate</a></li>
      <li><a href="{{pe}}/trouble_dh_generate.html">Custom Diffie-Hellman param file generation</a></li>
      <li><a href="{{pe}}/install_ssl_postgresql.html">SSL for PE and external PostgreSQL</a></li>
-    </ul>
-  </li>
-  <li><strong>Understanding Puppet core</strong>
-    <ul>
-      <li><a href="{{pe}}/puppet_assign_configurations.html">Assigning configurations to nodes</a></li>
     </ul>
   </li>
   <li><strong>APIs</strong>

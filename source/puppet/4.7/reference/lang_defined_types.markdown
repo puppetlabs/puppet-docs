@@ -36,18 +36,26 @@ Defines can be used as simple macros or as a lightweight way to develop fairly s
 
 You can use a `define` statement to create a new defined resource type.
 
-``` puppet
+```puppet
 # /etc/puppetlabs/puppet/modules/apache/manifests/vhost.pp
-define apache::vhost (Integer $port, String[1] $docroot, String[1] $servername = $title, String $vhost_name = '*') {
-  include apache # contains Package['httpd'] and Service['httpd']
+define apache::vhost (
+  Integer $port,
+  String[1] $docroot,
+  String[1] $servername = $title,
+  String $vhost_name = '*',
+) {
+  include apache # contains package['httpd'] and service['httpd']
   include apache::params # contains common config settings
+
   $vhost_dir = $apache::params::vhost_dir
+
+  # the template used below can access all of the parameters and variable from above.
   file { "${vhost_dir}/${servername}.conf":
-    content => template('apache/vhost-default.conf.erb'),
-      # This template can access all of the parameters and variables from above.
+    ensure  => file,
     owner   => 'www',
     group   => 'www',
-    mode    => '644',
+    mode    => '0644',
+    content => template('apache/vhost-default.conf.erb'),
     require => Package['httpd'],
     notify  => Service['httpd'],
   }
@@ -121,7 +129,12 @@ Every defined type gets two "free" parameters, which are always available and do
 Unlike the other parameters, the values of `$title` and `$name` are already available **inside the parameter list.** This means you can use `$title` as the default value (or part of the default value) for another attribute:
 
 ``` puppet
-define apache::vhost (Integer $port, String[1] $docroot, String $servername = $title, String[1] $vhost_name = '*') { ...
+define apache::vhost (
+  Integer $port,
+  String[1] $docroot,
+  String $servername = $title,
+  String[1] $vhost_name = '*',
+) { # ...
 ```
 
 ### Resource uniqueness

@@ -81,13 +81,13 @@ The [`slice`][slice] and [`reduce`][reduce] functions handle parameters differen
 Since the focus of the Puppet language is declaring resources, most people will want to use iteration to declare many similar resources at once:
 
 ``` puppet
-$binaries = ["facter", "hiera", "mco", "puppet", "puppetserver"]
+$binaries = ['facter', 'hiera', 'mco', 'puppet', 'puppetserver']
 
 # function call with lambda:
 $binaries.each |String $binary| {
-  file {"/usr/bin/$binary":
+  file {"/usr/bin/${binary}":
     ensure => link,
-    target => "/opt/puppetlabs/bin/$binary",
+    target => "/opt/puppetlabs/bin/${binary}",
   }
 }
 ```
@@ -102,14 +102,14 @@ In earlier versions of Puppet, when there were no iteration functions and lambda
 # one-off defined resource type, in
 # /etc/puppetlabs/code/environments/production/modules/puppet/manifests/binary/symlink.pp
 define puppet::binary::symlink ($binary = $title) {
-  file {"/usr/bin/$binary":
+  file {"/usr/bin/${binary}":
     ensure => link,
-    target => "/opt/puppetlabs/bin/$binary",
+    target => "/opt/puppetlabs/bin/${binary}",
   }
 }
 
 # using defined type for iteration, somewhere else in your manifests
-$binaries = ["facter", "hiera", "mco", "puppet", "puppetserver"]
+$binaries = ['facter', 'hiera', 'mco', 'puppet', 'puppetserver']
 
 puppet::binary::symlink { $binaries: }
 ```
