@@ -17,7 +17,7 @@ The Sensitive type can be written as `Sensitive.new(val)`, or the shortform `Sen
 
 ### Parameters
 
-The full signature for `Integer` is:
+The full signature for `Sensitive` is:
 
     Sensitive.new([<STRING VALUE>])
 
