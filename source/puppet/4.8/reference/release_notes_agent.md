@@ -31,18 +31,4 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.7 release notes](./release_notes.html).
 
-## Puppet agent 1.7.1
-
-Released October 20, 2016.
-
-This is a security release, addressing vulnerabilities in OpenSSL, curl, and [pxp-agent][]. You can read about the related CVEs in the [security section][security].
-
-## Puppet agent 1.7.0
-
-Released September 22, 2016.
-
-This release updates the puppet-agent package to a new GPG signing key.
-
-### Component updates
-
-A critical bug fix is included in [Puppet 4.7.0][].
+## Puppet agent 1.8.0
