@@ -21,6 +21,7 @@ canonical: "/puppet/latest/reference/modules_fundamentals.html"
 [forge]: http://forge.puppetlabs.com
 [file_function]: ./function.html#file
 [reserved names]: ./lang_reserved.html
+[data type alias]: ./lang_data_aliases.html
 
 **Modules** are self-contained bundles of code and data. You can download pre-built modules from [the Puppet Forge][forge] or you can write your own modules.
 
@@ -75,6 +76,7 @@ On disk, a module is simply a directory tree with a specific, predictable struct
     * `facts.d`
     * `examples`
     * `spec`
+    * `types`
 
 > Note: As of Puppet 4.5, using [`puppet module generate`](#writing-modules) to create your module skeleton creates an `examples` directory instead of the deprecated `tests` directory.
 
@@ -101,6 +103,9 @@ This example module, `my_module`, shows the standard module layout in more detai
         * `init.pp`
         * `other_example.pp` --- Major use cases should have an example.
     * `spec/` --- Contains spec tests for any plugins in the lib directory.
+    * `types/` --- Contains [data type alias][] definitions.
+        * `foo.pp` --- Contains an alias called `MyModule::Foo`
+        * `otherexample.pp` --- Contains an alias called `MyModule::OtherExample`
 
 Each of the module's subdirectories has a specific function, as follows.
 

@@ -45,3 +45,6 @@ For special abstract data types, which you can use to do more sophisticated or p
 
 * [Abstract Data Types](./lang_data_abstract.html)
 
+For data type aliases that can be defined by modules to refer to existing data types, see:
+
+* [Type Aliases](./lang_data_aliases.html)
