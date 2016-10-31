@@ -165,4 +165,3 @@ This displays details about the `puppet-agent` package's certificate:
 
 <!-- Keep information about nightlies on the latest version only. -->
 
-{% include puppet-collections/_nightlies.md %}

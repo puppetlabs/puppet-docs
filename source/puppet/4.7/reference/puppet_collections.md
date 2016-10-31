@@ -164,3 +164,5 @@ This displays details about the `puppet-agent` package's certificate:
 ![Details about the puppet-agent package's certificate displayed by the OS X package installer.](./images/os-x-signature-gui-2.png)
 
 <!-- Keep information about nightlies on the latest version only. -->
+
+{% include puppet-collections/_nightlies.md %}
