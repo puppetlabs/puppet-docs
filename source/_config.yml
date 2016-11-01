@@ -58,8 +58,8 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
- # puppet: 4.4
- # hiera: 3.1
+ # puppet: 4.7
+ # hiera: 3.4
 
 document_names:
   pe: Puppet Enterprise
@@ -240,7 +240,7 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
-/puppet/4.8/reference:
+  /puppet/4.8/reference:
     doc: puppet
     version: 4.8
     nav: ./_puppet_toc.html
