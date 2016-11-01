@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Property::Ensure
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -140,7 +140,7 @@ to the methods &#39;exists?&#39;, &#39;create&#39;, and &#39;destroy&#39;.</p>
   <h2>Method Summary</h2>
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../Property.html" title="Puppet::Property (class)">Puppet::Property</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Property.html#call_provider-instance_method" title="Puppet::Property#call_provider (method)">#call_provider</a></span>, <span class='object_link'><a href="../Property.html#insync%3F-instance_method" title="Puppet::Property#insync? (method)">#insync?</a></span>, <span class='object_link'><a href="../Property.html#method_added-class_method" title="Puppet::Property.method_added (method)">method_added</a></span>, <span class='object_link'><a href="../Property.html#newvalue-class_method" title="Puppet::Property.newvalue (method)">newvalue</a></span>, <span class='object_link'><a href="../Property.html#safe_insync%3F-instance_method" title="Puppet::Property#safe_insync? (method)">#safe_insync?</a></span>, <span class='object_link'><a href="../Property.html#set-instance_method" title="Puppet::Property#set (method)">#set</a></span>, <span class='object_link'><a href="../Property.html#should-instance_method" title="Puppet::Property#should (method)">#should</a></span>, <span class='object_link'><a href="../Property.html#should%3D-instance_method" title="Puppet::Property#should= (method)">#should=</a></span>, <span class='object_link'><a href="../Property.html#unsafe_validate-instance_method" title="Puppet::Property#unsafe_validate (method)">#unsafe_validate</a></span>, <span class='object_link'><a href="../Property.html#validate_features_per_value-instance_method" title="Puppet::Property#validate_features_per_value (method)">#validate_features_per_value</a></span>, <span class='object_link'><a href="../Property.html#value%3D-instance_method" title="Puppet::Property#value= (method)">#value=</a></span>, <span class='object_link'><a href="../Property.html#value_name-class_method" title="Puppet::Property.value_name (method)">value_name</a></span>, <span class='object_link'><a href="../Property.html#value_option-class_method" title="Puppet::Property.value_option (method)">value_option</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="../Property.html#call_provider-instance_method" title="Puppet::Property#call_provider (method)">#call_provider</a></span>, <span class='object_link'><a href="../Property.html#insync%3F-instance_method" title="Puppet::Property#insync? (method)">#insync?</a></span>, <span class='object_link'><a href="../Property.html#insync_values%3F-instance_method" title="Puppet::Property#insync_values? (method)">#insync_values?</a></span>, <span class='object_link'><a href="../Property.html#method_added-class_method" title="Puppet::Property.method_added (method)">method_added</a></span>, <span class='object_link'><a href="../Property.html#newvalue-class_method" title="Puppet::Property.newvalue (method)">newvalue</a></span>, <span class='object_link'><a href="../Property.html#safe_insync%3F-instance_method" title="Puppet::Property#safe_insync? (method)">#safe_insync?</a></span>, <span class='object_link'><a href="../Property.html#set-instance_method" title="Puppet::Property#set (method)">#set</a></span>, <span class='object_link'><a href="../Property.html#should-instance_method" title="Puppet::Property#should (method)">#should</a></span>, <span class='object_link'><a href="../Property.html#should%3D-instance_method" title="Puppet::Property#should= (method)">#should=</a></span>, <span class='object_link'><a href="../Property.html#unsafe_validate-instance_method" title="Puppet::Property#unsafe_validate (method)">#unsafe_validate</a></span>, <span class='object_link'><a href="../Property.html#validate_features_per_value-instance_method" title="Puppet::Property#validate_features_per_value (method)">#validate_features_per_value</a></span>, <span class='object_link'><a href="../Property.html#value%3D-instance_method" title="Puppet::Property#value= (method)">#value=</a></span>, <span class='object_link'><a href="../Property.html#value_name-class_method" title="Puppet::Property.value_name (method)">value_name</a></span>, <span class='object_link'><a href="../Property.html#value_option-class_method" title="Puppet::Property.value_option (method)">value_option</a></span></p>
 
   
   
@@ -165,11 +165,6 @@ to the methods &#39;exists?&#39;, &#39;create&#39;, and &#39;destroy&#39;.</p>
   
   
   
-  
-  
-  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Util.html#clear_environment-instance_method" title="Puppet::Util#clear_environment (method)">#clear_environment</a></span>, <span class='object_link'><a href="../Util.html#clear_environment-class_method" title="Puppet::Util.clear_environment (method)">clear_environment</a></span>, <span class='object_link'><a href="../Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">#exit_on_fail</a></span>, <span class='object_link'><a href="../Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="../Util.html#get_env-class_method" title="Puppet::Util.get_env (method)">get_env</a></span>, <span class='object_link'><a href="../Util.html#get_env-instance_method" title="Puppet::Util#get_env (method)">#get_env</a></span>, <span class='object_link'><a href="../Util.html#get_environment-instance_method" title="Puppet::Util#get_environment (method)">#get_environment</a></span>, <span class='object_link'><a href="../Util.html#get_environment-class_method" title="Puppet::Util.get_environment (method)">get_environment</a></span>, <span class='object_link'><a href="../Util.html#merge_environment-class_method" title="Puppet::Util.merge_environment (method)">merge_environment</a></span>, <span class='object_link'><a href="../Util.html#merge_environment-instance_method" title="Puppet::Util#merge_environment (method)">#merge_environment</a></span>, <span class='object_link'><a href="../Util.html#set_env-instance_method" title="Puppet::Util#set_env (method)">#set_env</a></span>, <span class='object_link'><a href="../Util.html#set_env-class_method" title="Puppet::Util.set_env (method)">set_env</a></span>, <span class='object_link'><a href="../Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="../Util.html#which-instance_method" title="Puppet::Util#which (method)">#which</a></span></p>
-
   
   
   
@@ -210,9 +205,9 @@ to the methods &#39;exists?&#39;, &#39;create&#39;, and &#39;destroy&#39;.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:36 2016 by
+  Generated on Tue Nov  1 14:17:39 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

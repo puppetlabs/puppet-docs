@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Functions::Dispatcher
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -302,7 +302,7 @@ instances to call the appropriate method on the
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Produces a CallableType for a single signature, and a Variant[] otherwise.</p>
+    <span class="summary_desc"><div class='inline'><p>Produces a CallableType for a single signature, and a Variant[<callables>] otherwise.</p>
 </div></span>
   
 </li>
@@ -394,12 +394,12 @@ instances to call the appropriate method on the
       <pre class="lines">
 
 
-54
-55
-56</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 56</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_a_dispatch'>a_dispatch</span><span class='rparen'>)</span>
   <span class='ivar'>@dispatchers</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_a_dispatch'>a_dispatch</span>
@@ -472,7 +472,7 @@ instances to call the appropriate method on the
         <span class='name'>names</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;String&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
       
       
       
@@ -493,12 +493,12 @@ instances to call the appropriate method on the
       <pre class="lines">
 
 
-48
-49
-50</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_dispatch'>add_dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_method_name'>method_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='comma'>,</span> <span class='id identifier rubyid_block_name'>block_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injections'>injections</span><span class='comma'>,</span> <span class='id identifier rubyid_weaving'>weaving</span><span class='comma'>,</span> <span class='id identifier rubyid_last_captures'>last_captures</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Functions</span><span class='op'>::</span><span class='const'>Dispatch</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_method_name'>method_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='comma'>,</span> <span class='id identifier rubyid_block_name'>block_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injections'>injections</span><span class='comma'>,</span> <span class='id identifier rubyid_weaving'>weaving</span><span class='comma'>,</span> <span class='id identifier rubyid_last_captures'>last_captures</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -571,7 +571,7 @@ instances to call the appropriate method on the
         <span class='name'>args</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Object</span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'>Object</span>&gt;</tt>)</span>
       
       
       
@@ -620,7 +620,9 @@ instances to call the appropriate method on the
 36
 37
 38
-39</pre>
+39
+40
+41</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 30</span>
@@ -630,7 +632,9 @@ instances to call the appropriate method on the
   <span class='id identifier rubyid_actual'>actual</span> <span class='op'>=</span> <span class='id identifier rubyid_tc'>tc</span><span class='period'>.</span><span class='id identifier rubyid_infer_set'>infer_set</span><span class='lparen'>(</span><span class='id identifier rubyid_block_given?'>block_given?</span> <span class='op'>?</span> <span class='id identifier rubyid_args'>args</span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='id identifier rubyid_block'>block</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='ivar'>@dispatchers</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_d'>d</span><span class='op'>|</span> <span class='id identifier rubyid_tc'>tc</span><span class='period'>.</span><span class='id identifier rubyid_callable?'>callable?</span><span class='lparen'>(</span><span class='id identifier rubyid_d'>d</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_actual'>actual</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_found'>found</span>
-    <span class='id identifier rubyid_found'>found</span><span class='period'>.</span><span class='id identifier rubyid_invoke'>invoke</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='comma'>,</span> <span class='id identifier rubyid_calling_scope'>calling_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_catch'>catch</span><span class='lparen'>(</span><span class='symbol'>:next</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_found'>found</span><span class='period'>.</span><span class='id identifier rubyid_invoke'>invoke</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='comma'>,</span> <span class='id identifier rubyid_calling_scope'>calling_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeMismatchDescriber</span><span class='period'>.</span><span class='id identifier rubyid_describe_signatures'>describe_signatures</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='ivar'>@dispatchers</span><span class='comma'>,</span> <span class='id identifier rubyid_actual'>actual</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -729,12 +733,12 @@ instances to call the appropriate method on the
       <pre class="lines">
 
 
-73
-74
-75</pre>
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_signatures'>signatures</span>
   <span class='ivar'>@dispatchers</span>
@@ -773,8 +777,6 @@ instances to call the appropriate method on the
       <pre class="lines">
 
 
-61
-62
 63
 64
 65
@@ -782,10 +784,12 @@ instances to call the appropriate method on the
 67
 68
 69
-70</pre>
+70
+71
+72</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatcher.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_type'>to_type</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='comment'># make a copy to make sure it can be contained by someone else (even if it is not contained here, it
@@ -807,9 +811,9 @@ instances to call the appropriate method on the
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:42 2016 by
+  Generated on Tue Nov  1 14:17:46 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

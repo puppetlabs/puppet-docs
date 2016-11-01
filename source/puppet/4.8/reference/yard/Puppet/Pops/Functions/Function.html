@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Functions::Function
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -316,12 +316,12 @@ constructed using <span class='object_link'><a href="../../Functions.html#create
       <pre class="lines">
 
 
-63
-64
-65</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span>
   <span class='ivar'>@dispatcher</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Functions</span><span class='op'>::</span><span class='const'>Dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -360,12 +360,12 @@ constructed using <span class='object_link'><a href="../../Functions.html#create
       <pre class="lines">
 
 
-70
-71
-72</pre>
+92
+93
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_signatures'>signatures</span>
   <span class='ivar'>@dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_signatures'>signatures</span>
@@ -429,13 +429,47 @@ is defined) is available via the method <code>closure_scope</code>).</p>
 
 43
 44
-45</pre>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_dispatch'>dispatch</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_catch'>catch</span><span class='lparen'>(</span><span class='symbol'>:return</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_dispatch'>dispatch</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>rescue</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Evaluator</span><span class='op'>::</span><span class='const'>Next</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_jumper'>jumper</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:next</span><span class='comma'>,</span> <span class='id identifier rubyid_jumper'>jumper</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>rescue</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Scope</span><span class='op'>::</span><span class='const'>UNCAUGHT_THROW_EXCEPTION</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_uncaught'>uncaught</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>next() from context where this is illegal</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_jumper'>jumper</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_jumper'>jumper</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Evaluator</span><span class='op'>::</span><span class='const'>Return</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_jumper'>jumper</span>
+    <span class='kw'>begin</span>
+      <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:return</span><span class='comma'>,</span> <span class='id identifier rubyid_jumper'>jumper</span>
+    <span class='kw'>rescue</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Scope</span><span class='op'>::</span><span class='const'>UNCAUGHT_THROW_EXCEPTION</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_uncaught'>uncaught</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>return() from context where this is illegal</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_jumper'>jumper</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_jumper'>jumper</span><span class='period'>.</span><span class='id identifier rubyid_line'>line</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -520,12 +554,12 @@ referenced function is called with the calling functions closure scope as the ca
       <pre class="lines">
 
 
-56
-57
-58</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call_function'>call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_closure_scope'>closure_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -592,7 +626,7 @@ scope. The callable functions are those visible to the same loader that loaded t
         <span class='name'>args</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span></tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -641,35 +675,35 @@ scope. The callable functions are those visible to the same loader that loaded t
       <pre class="lines">
 
 
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
 108
 109
 110
-111</pre>
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/function.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 
@@ -692,7 +726,7 @@ scope. The callable functions are those visible to the same loader that loaded t
   <span class='comment'># Call via 3x API
 </span>  <span class='comment'># Arguments must be mapped since functions are unaware of the new and magical creatures in 4x.
 </span>  <span class='comment'># NOTE: Passing an empty string last converts nil/:undef to empty string
-</span>  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_func_3x'>func_3x</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Evaluator</span><span class='op'>::</span><span class='const'>Runtime3Converter</span><span class='period'>.</span><span class='id identifier rubyid_map_args'>map_args</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_loader_scope'>loader_scope</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+</span>  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_func_3x'>func_3x</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Evaluator</span><span class='op'>::</span><span class='const'>Runtime3FunctionArgumentConverter</span><span class='period'>.</span><span class='id identifier rubyid_map_args'>map_args</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='id identifier rubyid_loader_scope'>loader_scope</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 
   <span class='comment'># Prevent non r-value functions from leaking their result (they are not written to care about this)
 </span>  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_rvalue?'>rvalue?</span><span class='lparen'>(</span><span class='id identifier rubyid_function_name'>function_name</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>:</span> <span class='kw'>nil</span>
@@ -707,9 +741,9 @@ scope. The callable functions are those visible to the same loader that loaded t
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:41 2016 by
+  Generated on Tue Nov  1 14:17:44 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

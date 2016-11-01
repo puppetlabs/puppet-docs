@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PTypeAliasType
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -218,6 +218,31 @@ is resolved since guarding against self recursive constructs is relatively expen
 </li>
 
       
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type_expr-instance_method" title="#type_expr (instance method)">#<strong>type_expr</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p><code>nil</code> to prevent serialization of the type_expr used when first initializing this instance.</p>
+</div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -233,6 +258,12 @@ is resolved since guarding against self recursive constructs is relatively expen
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#generalize-instance_method" title="Puppet::Pops::Types::PAnyType#generalize (method)">#generalize</a></span>, <span class='object_link'><a href="PAnyType.html#normalize-instance_method" title="Puppet::Pops::Types::PAnyType#normalize (method)">#normalize</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span></p>
 
+  
+  
+  
+  
+  
+  
   
   
   
@@ -282,14 +313,16 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-2788
-2789
-2790</pre>
+3177
+3178
+3179
+3180</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2788</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>super</span> <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='const'>PTypeReferenceType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -345,17 +378,17 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-2793
-2794
-2795
-2796
-2797
-2798
-2799
-2800</pre>
+3183
+3184
+3185
+3186
+3187
+3188
+3189
+3190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2793</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3183</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@self_recursion</span>
@@ -452,47 +485,47 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-2720
-2721
-2722
-2723
-2724
-2725
-2726
-2727
-2728
-2729
-2730
-2731
-2732
-2733
-2734
-2735
-2736
-2737
-2738
-2739
-2740
-2741
-2742
-2743
-2744
-2745
-2746
-2747
-2748
-2749
-2750
-2751
-2752
-2753
-2754
-2755
-2756
-2757</pre>
+3109
+3110
+3111
+3112
+3113
+3114
+3115
+3116
+3117
+3118
+3119
+3120
+3121
+3122
+3123
+3124
+3125
+3126
+3127
+3128
+3129
+3130
+3131
+3132
+3133
+3134
+3135
+3136
+3137
+3138
+3139
+3140
+3141
+3142
+3143
+3144
+3145
+3146</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2720</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -579,15 +612,76 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-2778
-2779
-2780</pre>
+3167
+3168
+3169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2778</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='const'>TypeFormatter</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_alias_expanded_string'>alias_expanded_string</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="type_expr-instance_method">
+  
+    #<strong>type_expr</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns <code>nil</code> to prevent serialization of the type_expr used when first initializing this instance</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p><code>nil</code> to prevent serialization of the type_expr used when first initializing this instance</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+3194
+3195
+3196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3194</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_type_expr'>type_expr</span>
+  <span class='kw'>nil</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -599,9 +693,9 @@ checks and remembers if the resolve type contains self recursion.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:38 2016 by
+  Generated on Tue Nov  1 14:17:41 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

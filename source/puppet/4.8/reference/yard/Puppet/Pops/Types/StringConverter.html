@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::StringConverter
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -230,6 +230,31 @@ Use from Puppet Language is via the function <code>new</code>.</p>
 <li class="public ">
   <span class="summary_signature">
     
+      <a href="#puppet_quote-instance_method" title="#puppet_quote (instance method)">#<strong>puppet_quote</strong>(str)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs a &#39;%p&#39; formatting of the given <em>str</em> such that the output conforms to Puppet syntax.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
       <a href="#string_PAnyType-instance_method" title="#string_PAnyType (instance method)">#<strong>string_PAnyType</strong>(val_type, val, format_map, _)  &#x21d2; Object </a>
     
 
@@ -247,6 +272,30 @@ Use from Puppet Language is via the function <code>new</code>.</p>
   
     <span class="summary_desc"><div class='inline'><p>Basically string_PAnyType converts the value to a String and then formats it according to the resulting type.</p>
 </div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PBinaryType-instance_method" title="#string_PBinaryType (instance method)">#<strong>string_PBinaryType</strong>(val_type, val, format_map, _)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -675,7 +724,141 @@ Use from Puppet Language is via the function <code>new</code>.</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="string_PAnyType-instance_method">
+  <h3 class="signature first" id="puppet_quote-instance_method">
+  
+    #<strong>puppet_quote</strong>(str)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Performs a &#39;%p&#39; formatting of the given <em>str</em> such that the output conforms to Puppet syntax. An ascii string
+without control characters, dollar, single-qoute, or backslash, will be quoted using single quotes. All other
+strings will be quoted using double quotes.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>str</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the string that should be formatted</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the formatted string</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 804</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_ascii_only?'>ascii_only?</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(?:&#39;|\$|\p{Cntrl}|\\)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_str'>str</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_bld'>bld</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_codepoints'>codepoints</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_codepoint'>codepoint</span><span class='op'>|</span>
+      <span class='kw'>case</span> <span class='id identifier rubyid_codepoint'>codepoint</span>
+      <span class='kw'>when</span> <span class='int'>0x09</span>
+        <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\t</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>when</span> <span class='int'>0x0a</span>
+        <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\n</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>when</span> <span class='int'>0x0d</span>
+        <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\r</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>when</span> <span class='int'>0x22</span>
+        <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\&quot;</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>when</span> <span class='int'>0x24</span>
+        <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\$</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>when</span> <span class='int'>0x5c</span>
+        <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\\\</span><span class='tstring_end'>&#39;</span></span>
+      <span class='kw'>else</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_codepoint'>codepoint</span> <span class='op'>&lt;</span> <span class='int'>0x20</span> <span class='op'>||</span> <span class='id identifier rubyid_codepoint'>codepoint</span> <span class='op'>&gt;</span> <span class='int'>0x7f</span>
+          <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_sprintf'>sprintf</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>\\u{%X}</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_codepoint'>codepoint</span><span class='rparen'>)</span>
+        <span class='kw'>else</span>
+          <span class='id identifier rubyid_bld'>bld</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_codepoint'>codepoint</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_bld'>bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;</span><span class='tstring_end'>&#39;</span></span>
+    <span class='id identifier rubyid_bld'>bld</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PAnyType-instance_method">
   
     #<strong>string_PAnyType</strong>(val_type, val, format_map, _)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
@@ -704,17 +887,142 @@ to the resulting type</p>
       <pre class="lines">
 
 
-553
-554
-555
-556</pre>
+569
+570
+571
+572</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 553</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 569</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PAnyType'>string_PAnyType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
   <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PBinaryType-instance_method">
+  
+    #<strong>string_PBinaryType</strong>(val_type, val, format_map, _)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 716</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_string_PBinaryType'>string_PBinaryType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_substitute'>substitute</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>p</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>case</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span>
+  <span class='kw'>when</span> <span class='symbol'>:s</span>
+    <span class='id identifier rubyid_val_to_convert'>val_to_convert</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_binary_buffer'>binary_buffer</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span>
+      <span class='comment'># Assume it is valid UTF-8
+</span>      <span class='id identifier rubyid_val_to_convert'>val_to_convert</span> <span class='op'>=</span> <span class='id identifier rubyid_val_to_convert'>val_to_convert</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span><span class='period'>.</span><span class='id identifier rubyid_force_encoding'>force_encoding</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UTF-8</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='comment'># If it isn&#39;t
+</span>      <span class='kw'>unless</span> <span class='id identifier rubyid_val_to_convert'>val_to_convert</span><span class='period'>.</span><span class='id identifier rubyid_valid_encoding?'>valid_encoding?</span>
+        <span class='comment'># try to convert and fail with details about what is wrong
+</span>        <span class='id identifier rubyid_val_to_convert'>val_to_convert</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_binary_buffer'>binary_buffer</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>UTF-8</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_val_to_convert'>val_to_convert</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_binary_buffer'>binary_buffer</span>
+    <span class='kw'>end</span>
+    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val_to_convert'>val_to_convert</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='symbol'>:p</span>
+    <span class='comment'># width &amp; precision applied to string, not the the name of the type
+</span>    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Binary(\&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>p</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>\&quot;)</span><span class='tstring_end'>&quot;</span></span>
+
+  <span class='kw'>when</span> <span class='symbol'>:b</span>
+    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>b</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_relaxed_to_s'>relaxed_to_s</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='symbol'>:B</span>
+    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>B</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='symbol'>:u</span>
+    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>u</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_urlsafe_to_s'>urlsafe_to_s</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='symbol'>:t</span>
+    <span class='comment'># Output as the type without any data
+</span>    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>t</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Binary</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='symbol'>:T</span>
+    <span class='comment'># Output as the type without any data in all caps
+</span>    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>T</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>BINARY</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>FormatError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Binary</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bButTsp</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -749,16 +1057,6 @@ to the resulting type</p>
       <pre class="lines">
 
 
-600
-601
-602
-603
-604
-605
-606
-607
-608
-609
 610
 611
 612
@@ -793,10 +1091,20 @@ to the resulting type</p>
 641
 642
 643
-644</pre>
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 600</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 610</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PBooleanType'>string_PBooleanType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
@@ -804,22 +1112,22 @@ to the resulting type</p>
   <span class='kw'>when</span> <span class='symbol'>:t</span>
     <span class='comment'># &#39;true&#39;/&#39;false&#39; or &#39;t&#39;/&#39;f&#39; if in alt mode
 </span>    <span class='id identifier rubyid_str_bool'>str_bool</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
-    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span>
+    <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:T</span>
     <span class='comment'># &#39;True&#39;/&#39;False&#39; or &#39;T&#39;/&#39;F&#39; if in alt mode
 </span>    <span class='id identifier rubyid_str_bool'>str_bool</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span>
-    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span>
+    <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:y</span>
     <span class='comment'># &#39;yes&#39;/&#39;no&#39; or &#39;y&#39;/&#39;n&#39; if in alt mode
 </span>    <span class='id identifier rubyid_str_bool'>str_bool</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>yes</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>no</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span>
+    <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:Y</span>
     <span class='comment'># &#39;Yes&#39;/&#39;No&#39; or &#39;Y&#39;/&#39;N&#39; if in alt mode
 </span>    <span class='id identifier rubyid_str_bool'>str_bool</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Yes</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>No</span><span class='tstring_end'>&#39;</span></span>
-    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span>
+    <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_str_bool'>str_bool</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:d</span><span class='comma'>,</span> <span class='symbol'>:x</span><span class='comma'>,</span> <span class='symbol'>:X</span><span class='comma'>,</span> <span class='symbol'>:o</span><span class='comma'>,</span> <span class='symbol'>:b</span><span class='comma'>,</span> <span class='symbol'>:B</span>
     <span class='comment'># Boolean in numeric form, formated by integer rule
@@ -834,10 +1142,10 @@ to the resulting type</p>
     <span class='id identifier rubyid__convert'>_convert</span><span class='lparen'>(</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_infer_set'>infer_set</span><span class='lparen'>(</span><span class='id identifier rubyid_numeric_bool'>numeric_bool</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_numeric_bool'>numeric_bool</span><span class='comma'>,</span> <span class='id identifier rubyid_string_formats'>string_formats</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:s</span>
-    <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+    <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:p</span>
-    <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span>
+    <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='rparen'>)</span>
 
   <span class='kw'>else</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>FormatError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Boolean</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>tTyYdxXobBeEfgGaAsp</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -876,26 +1184,26 @@ to the resulting type</p>
       <pre class="lines">
 
 
-672
-673
-674
-675
-676
-677
-678
-679
-680
-681
-682
-683
-684
-685
-686
-687
-688</pre>
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 672</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 697</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PFloatType'>string_PFloatType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
@@ -947,59 +1255,59 @@ to the resulting type</p>
       <pre class="lines">
 
 
-842
-843
-844
-845
-846
-847
-848
-849
-850
-851
-852
-853
-854
-855
-856
-857
-858
-859
-860
-861
-862
-863
-864
-865
-866
-867
-868
-869
-870
-871
-872
-873
-874
-875
-876
-877
-878
-879
-880
-881
-882
-883
-884
-885
-886
-887
-888
-889
-890
-891</pre>
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991
+992
+993
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 842</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 953</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PHashType'>string_PHashType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_format'>format</span>         <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
@@ -1084,32 +1392,32 @@ to the resulting type</p>
       <pre class="lines">
 
 
-647
-648
-649
-650
-651
-652
-653
-654
-655
-656
-657
-658
-659
-660
-661
-662
-663
-664
-665
-666
-667
-668
-669</pre>
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 647</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 672</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PIntegerType'>string_PIntegerType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
@@ -1167,13 +1475,13 @@ to the resulting type</p>
       <pre class="lines">
 
 
-836
-837
-838
-839</pre>
+947
+948
+949
+950</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 836</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 947</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PIteratorType'>string_PIteratorType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_to_a'>to_a</span>
@@ -1212,22 +1520,22 @@ to the resulting type</p>
       <pre class="lines">
 
 
-726
-727
-728
-729
-730
-731
-732
-733
-734
-735
-736
-737
-738</pre>
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 726</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 837</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PRegexpType'>string_PRegexpType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
@@ -1275,71 +1583,71 @@ to the resulting type</p>
       <pre class="lines">
 
 
-691
-692
-693
-694
-695
-696
-697
-698
-699
-700
-701
-702
-703
-704
-705
-706
-707
-708
-709
-710
-711
-712
-713
-714
-715
-716
-717
-718
-719
-720
-721
-722
-723</pre>
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 691</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 762</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PStringType'>string_PStringType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span>
-  <span class='kw'>when</span> <span class='symbol'>:s</span><span class='comma'>,</span> <span class='symbol'>:p</span>
+  <span class='kw'>when</span> <span class='symbol'>:s</span>
     <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
+
+  <span class='kw'>when</span> <span class='symbol'>:p</span>
+    <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:c</span>
     <span class='id identifier rubyid_c_val'>c_val</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span>
-    <span class='id identifier rubyid_substitute'>substitute</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>p</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span>
-    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>c</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>:</span>  <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>c</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:C</span>
     <span class='id identifier rubyid_c_val'>c_val</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span><span class='period'>.</span><span class='id identifier rubyid_capitalize'>capitalize</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_substitute'>substitute</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>p</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span>
-    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>C</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>:</span>  <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>C</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:u</span>
-    <span class='id identifier rubyid_substitute'>substitute</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>p</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span>
-    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>u</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
+    <span class='id identifier rubyid_c_val'>c_val</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_upcase'>upcase</span>
+    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>:</span>  <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>u</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:d</span>
-    <span class='id identifier rubyid_substitute'>substitute</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>p</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span>
-    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>d</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+    <span class='id identifier rubyid_c_val'>c_val</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>:</span>  <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>d</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
 
   <span class='kw'>when</span> <span class='symbol'>:t</span>  <span class='comment'># trim
 </span>    <span class='id identifier rubyid_c_val'>c_val</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
-    <span class='id identifier rubyid_substitute'>substitute</span> <span class='op'>=</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>p</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span>
-    <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>t</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_substitute'>substitute</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>:</span>  <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_orig_fmt'>orig_fmt</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>t</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>s</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_c_val'>c_val</span><span class='rparen'>)</span>
 
   <span class='kw'>else</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>FormatError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>cCudspt</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1378,12 +1686,12 @@ to the resulting type</p>
       <pre class="lines">
 
 
-894
-895
-896</pre>
+1005
+1006
+1007</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 894</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 1005</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PStructType'>string_PStructType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_string_PHashType'>string_PHashType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
@@ -1421,12 +1729,12 @@ to the resulting type</p>
       <pre class="lines">
 
 
-831
-832
-833</pre>
+942
+943
+944</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 831</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 942</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PTupleType'>string_PTupleType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_string_PArrayType'>string_PArrayType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid_indentation'>indentation</span><span class='rparen'>)</span>
@@ -1464,21 +1772,21 @@ to the resulting type</p>
       <pre class="lines">
 
 
-899
-900
-901
-902
-903
-904
-905
-906
-907
-908
-909
-910</pre>
+1010
+1011
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 899</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 1010</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PType'>string_PType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
@@ -1525,22 +1833,6 @@ to the resulting type</p>
       <pre class="lines">
 
 
-571
-572
-573
-574
-575
-576
-577
-578
-579
-580
-581
-582
-583
-584
-585
-586
 587
 588
 589
@@ -1551,15 +1843,24 @@ to the resulting type</p>
 594
 595
 596
-597</pre>
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 571</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/string_converter.rb', line 587</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PUndefType'>string_PUndefType</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_f'>f</span> <span class='op'>=</span> <span class='id identifier rubyid_get_format'>get_format</span><span class='lparen'>(</span><span class='id identifier rubyid_val_type'>val_type</span><span class='comma'>,</span> <span class='id identifier rubyid_format_map'>format_map</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_undef_str'>undef_str</span> <span class='op'>=</span>
-  <span class='kw'>case</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span>
+  <span class='id identifier rubyid_apply_string_flags'>apply_string_flags</span><span class='lparen'>(</span><span class='id identifier rubyid_f'>f</span><span class='comma'>,</span> <span class='kw'>case</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span>
   <span class='kw'>when</span> <span class='symbol'>:n</span>
     <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>null</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nil</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>when</span> <span class='symbol'>:u</span>
@@ -1576,12 +1877,7 @@ to the resulting type</p>
     <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_alt?'>alt?</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&quot;undef&quot;</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>undef</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>FormatError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Undef</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nudxXobBeEfgGaAvVsp</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-  <span class='id identifier rubyid_fmt'>fmt</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_left'>left</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-  <span class='id identifier rubyid_fmt'>fmt</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span>
-  <span class='id identifier rubyid_fmt'>fmt</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_prec'>prec</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_f'>f</span><span class='period'>.</span><span class='id identifier rubyid_prec'>prec</span>
-  <span class='id identifier rubyid_fmt'>fmt</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>s</span><span class='tstring_end'>&quot;</span></span>
-  <span class='const'>Kernel</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='lparen'>(</span><span class='id identifier rubyid_fmt'>fmt</span><span class='comma'>,</span><span class='id identifier rubyid_undef_str'>undef_str</span><span class='rparen'>)</span>
+  <span class='kw'>end</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1593,9 +1889,9 @@ to the resulting type</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:44 2016 by
+  Generated on Tue Nov  1 14:17:49 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

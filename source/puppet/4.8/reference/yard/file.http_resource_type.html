@@ -6,7 +6,7 @@
 <title>
   File: http_resource_type
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -60,6 +60,14 @@
       <iframe id="search_frame" src="file_list.html"></iframe>
 
       <div id="content"><div id='filecontents'><h1>Resource Type</h1>
+
+<blockquote>
+<p><strong>Deprecation note:</strong> This endpoint was
+<a href="https://docs.puppet.com/puppet/4.5/reference/deprecated_api.html">deprecated</a> in Puppet
+4.5.0 in favor of the
+<a href="https://docs.puppet.com/puppetserver/2.5/puppet-api/v3/environment_classes.html"><code>environment_classes</code></a>
+endpoint provided by Puppet Server 2.3.0 and later.</p>
+</blockquote>
 
 <p>The <code>resource_type</code> and <code>resource_types</code> endpoints return information about the
 following kinds of objects available to the puppet master:</p>
@@ -295,9 +303,9 @@ node default {}
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:29 2016 by
+  Generated on Tue Nov  1 14:17:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

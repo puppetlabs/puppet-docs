@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PVariantType
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -221,7 +221,7 @@
 <li class="protected ">
   <span class="summary_signature">
     
-      <a href="#merge_int_ranges-instance_method" title="#merge_int_ranges (instance method)">#<strong>merge_int_ranges</strong>(array)  &#x21d2; Object </a>
+      <a href="#merge_numbers-instance_method" title="#merge_numbers (instance method)">#<strong>merge_numbers</strong>(clazz, array)  &#x21d2; Object </a>
     
 
     
@@ -371,6 +371,12 @@
   
   
   
+  
+  
+  
+  
+  
+  
 
   <div id="class_method_details" class="method_details_list">
     <h2>Class Method Details</h2>
@@ -403,7 +409,7 @@ that type is instead returned.</p>
         <span class='name'>types</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span>&gt;</tt>)</span>
       
       
       
@@ -439,13 +445,13 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2189
-2190
-2191
-2192</pre>
+2532
+2533
+2534
+2535</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2189</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2532</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_maybe_create'>maybe_create</span><span class='lparen'>(</span><span class='id identifier rubyid_types'>types</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_types'>types</span> <span class='op'>=</span> <span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -503,29 +509,29 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2306
-2307
-2308
-2309
-2310
-2311
-2312
-2313
-2314
-2315
-2316
-2317
-2318
-2319
-2320
-2321
-2322
-2323
-2324
-2325</pre>
+2651
+2652
+2653
+2654
+2655
+2656
+2657
+2658
+2659
+2660
+2661
+2662
+2663
+2664
+2665
+2666
+2667
+2668
+2669
+2670</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2306</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2651</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='comment'># Data is a specific variant
@@ -580,21 +586,21 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2356
-2357
-2358
-2359
-2360
-2361
-2362
-2363
-2364
-2365
-2366
-2367</pre>
+2701
+2702
+2703
+2704
+2705
+2706
+2707
+2708
+2709
+2710
+2711
+2712</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2356</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2701</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_enums'>merge_enums</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -614,9 +620,9 @@ that type is instead returned.</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="merge_int_ranges-instance_method">
+  <h3 class="signature " id="merge_numbers-instance_method">
   
-    #<strong>merge_int_ranges</strong>(array)  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
+    #<strong>merge_numbers</strong>(clazz, array)  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(protected)</span>&nbsp;<span class="note title protected">protected</span><span class="private note title">private</span>
   
 
   
@@ -641,21 +647,21 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2384
-2385
-2386
-2387
-2388
-2389
-2390
-2391</pre>
+2729
+2730
+2731
+2732
+2733
+2734
+2735
+2736</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2384</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2729</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_merge_int_ranges'>merge_int_ranges</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_merge_numbers'>merge_numbers</span><span class='lparen'>(</span><span class='id identifier rubyid_clazz'>clazz</span><span class='comma'>,</span> <span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
-    <span class='id identifier rubyid_parts'>parts</span> <span class='op'>=</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_partition'>partition</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PIntegerType</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_parts'>parts</span> <span class='op'>=</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_partition'>partition</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='id identifier rubyid_clazz'>clazz</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_ranges'>ranges</span> <span class='op'>=</span> <span class='id identifier rubyid_parts'>parts</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_array'>array</span> <span class='op'>=</span> <span class='id identifier rubyid_merge_ranges'>merge_ranges</span><span class='lparen'>(</span><span class='id identifier rubyid_ranges'>ranges</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_parts'>parts</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>if</span> <span class='id identifier rubyid_ranges'>ranges</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
   <span class='kw'>end</span>
@@ -694,21 +700,21 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2370
-2371
-2372
-2373
-2374
-2375
-2376
-2377
-2378
-2379
-2380
-2381</pre>
+2715
+2716
+2717
+2718
+2719
+2720
+2721
+2722
+2723
+2724
+2725
+2726</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2370</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2715</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_patterns'>merge_patterns</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -755,27 +761,27 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2412
-2413
-2414
-2415
-2416
-2417
-2418
-2419
-2420
-2421
-2422
-2423
-2424
-2425
-2426
-2427
-2428
-2429</pre>
+2748
+2749
+2750
+2751
+2752
+2753
+2754
+2755
+2756
+2757
+2758
+2759
+2760
+2761
+2762
+2763
+2764
+2765</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2412</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2748</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_ranges'>merge_ranges</span><span class='lparen'>(</span><span class='id identifier rubyid_ranges'>ranges</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -828,21 +834,21 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2342
-2343
-2344
-2345
-2346
-2347
-2348
-2349
-2350
-2351
-2352
-2353</pre>
+2687
+2688
+2689
+2690
+2691
+2692
+2693
+2694
+2695
+2696
+2697
+2698</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2342</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2687</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_swap_not_undefs'>swap_not_undefs</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -889,21 +895,21 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2328
-2329
-2330
-2331
-2332
-2333
-2334
-2335
-2336
-2337
-2338
-2339</pre>
+2673
+2674
+2675
+2676
+2677
+2678
+2679
+2680
+2681
+2682
+2683
+2684</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2328</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2673</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_swap_optionals'>swap_optionals</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -927,9 +933,9 @@ that type is instead returned.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:37 2016 by
+  Generated on Tue Nov  1 14:17:41 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

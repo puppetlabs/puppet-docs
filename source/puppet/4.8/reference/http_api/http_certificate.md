@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
+built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: 'Puppet HTTP API: Certificate'
 canonical: /puppet/latest/reference/http_api/http_certificate.html
 ---

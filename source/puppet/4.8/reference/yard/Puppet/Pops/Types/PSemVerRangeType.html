@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PSemVerRangeType
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -221,6 +221,12 @@
   
   
   
+  
+  
+  
+  
+  
+  
 
   <div id="class_method_details" class="method_details_list">
     <h2>Class Method Details</h2>
@@ -252,7 +258,7 @@ a <code>Semantic::SemVer</code></p>
         <span class='name'>range</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Semantic::VersionRange</span></tt>)</span>
+        <span class='type'>(<tt>Semantic::VersionRange</tt>)</span>
       
       
       
@@ -267,7 +273,7 @@ a <code>Semantic::SemVer</code></p>
         <span class='name'>version</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Semantic::Version</span></tt>, <tt>String</tt>)</span>
+        <span class='type'>(<tt>Semantic::Version</tt>, <tt>String</tt>)</span>
       
       
       
@@ -303,10 +309,6 @@ a <code>Semantic::SemVer</code></p>
       <pre class="lines">
 
 
-16
-17
-18
-19
 20
 21
 22
@@ -316,10 +318,14 @@ a <code>Semantic::SemVer</code></p>
 26
 27
 28
-29</pre>
+29
+30
+31
+32
+33</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_sem_ver_range_type.rb', line 16</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_sem_ver_range_type.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_version'>version</span>
@@ -343,7 +349,7 @@ a <code>Semantic::SemVer</code></p>
       <div class="method_details ">
   <h3 class="signature " id="merge-class_method">
   
-    .<strong>merge</strong>(a, b)  &#x21d2; <tt><span class='object_link'>Semantic::VersionRange</span></tt><sup>?</sup> 
+    .<strong>merge</strong>(a, b)  &#x21d2; <tt>Semantic::VersionRange</tt><sup>?</sup> 
   
 
   
@@ -366,7 +372,7 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
         <span class='name'>a</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Semantic::VersionRange</span></tt>)</span>
+        <span class='type'>(<tt>Semantic::VersionRange</tt>)</span>
       
       
       
@@ -381,7 +387,7 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
         <span class='name'>b</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Semantic::VersionRange</span></tt>)</span>
+        <span class='type'>(<tt>Semantic::VersionRange</tt>)</span>
       
       
       
@@ -399,7 +405,7 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'>Semantic::VersionRange</span></tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>Semantic::VersionRange</tt>, <tt>nil</tt>)</span>
       
       
       
@@ -417,10 +423,6 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
       <pre class="lines">
 
 
-67
-68
-69
-70
 71
 72
 73
@@ -437,10 +439,14 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
 84
 85
 86
-87</pre>
+87
+88
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_sem_ver_range_type.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_sem_ver_range_type.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='rparen'>)</span>
@@ -473,9 +479,9 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:47 2016 by
+  Generated on Tue Nov  1 14:17:53 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

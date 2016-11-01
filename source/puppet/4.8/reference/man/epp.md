@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
+built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: 'Man Page: puppet epp'
 canonical: /puppet/latest/reference/man/epp.html
 ---
@@ -85,10 +85,11 @@ Whether or not to validate the parsed result, if no-validate only syntax errors 
 <p>A dump of the resulting AST model unless there are syntax or validation errors.</p></dd>
 <dt><code>render</code> - Renders an epp template as text</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet epp render [--e <var>source</var>]
+<p>puppet epp render [--node <var>node_name</var>]
+[--e <var>source</var>]
 [--values <var>values_hash</var>]
 [--values_file <var>pp_or_yaml_file</var>]
-[--facts <var>yaml_file</var>]
+[--facts <var>facts_file</var>]
 [--[no-]header]
 -e <var>source</var> | [<var>templates</var> ...]</p>
 
@@ -130,8 +131,12 @@ in the file.</p>
 showing the name of the template before the output. The header output can be turned off with
 <code>--no-header</code>. This also concatenates the template results without any added newline separators.</p>
 
-<p>Facts for the simulated node can be feed to the rendering process by referencing a .yaml file
-with facts using the --facts option. (Values can be obtained in yaml format directly from
+<p>Facts from the node where the command is being run are used by default.args Facts can be obtained
+for other nodes if they have called in, and reported their facts by using the <code>--node &lt;nodename></code>
+flag.</p>
+
+<p>Overriding node facts as well as additional facts can be given in a .yaml or .json file and referencing
+it with the --facts option. (Values can be obtained in yaml format directly from
 <code>facter</code>, or from puppet for a given node). Note that it is not possible to simulate the
 reserved variable name <code>$facts</code> in any other way.</p>
 
@@ -151,11 +156,14 @@ more free standing and are easier to reuse, and to test.</p>
 <var>--e &lt;source</var>> -
 Render one inline epp template given on the command line.</p>
 
-<p><var>--facts &lt;yaml_file</var>> -
-A .yaml file containing a hash of facts made available in $facts</p>
+<p><var>--facts &lt;facts_file</var>> -
+A .yaml or .json file containing a hash of facts made available in $facts and $trusted</p>
 
 <p><var>--[no-]header</var> -
 Whether or not to show a file name header between rendered results.</p>
+
+<p><var>--node &lt;node_name</var>> -
+The name of the node for which facts are obtained. Defaults to facts for the local node.</p>
 
 <p><var>--values &lt;values_hash</var>> -
 A Hash in Puppet DSL form given as arguments to the template being rendered.</p>

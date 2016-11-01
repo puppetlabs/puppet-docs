@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
+built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: 'Resource Type: yumrepo'
 canonical: /puppet/latest/reference/types/yumrepo.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
 
 yumrepo
 -----
@@ -572,4 +572,4 @@ section will be created in '/etc/yum.conf'.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500

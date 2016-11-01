@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::TimeFactory
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -63,8 +63,8 @@
 
       <div id="content"><h1>Class: Puppet::Pops::Serialization::TimeFactory
   
-  
-  
+  <span class="deprecated note title">Deprecated</span>
+  <span class="private note title">Private</span>
 </h1>
 <div class="box_info">
   
@@ -103,7 +103,13 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Implements all the constructors found in the Time class and ensures that
+    <p class="note private">
+  <strong>This class is part of a private API.</strong>
+  You should avoid using this class if possible, as it may be removed or be changed in the future.
+</p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>No longer in use. Functionality replaced by Timestamp</p>
+</div></div>
+<p>Implements all the constructors found in the Time class and ensures that
 the created Time object can be serialized and deserialized using its
 seconds and nanoseconds without loss of precision.</p>
 
@@ -125,9 +131,9 @@ seconds and nanoseconds without loss of precision.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Jul  6 14:05:00 2016 by
+  Generated on Tue Nov  1 14:17:50 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

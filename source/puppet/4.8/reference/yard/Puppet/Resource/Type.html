@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Resource::Type
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -242,8 +242,6 @@ resource_type indirection via rest and the resource_type face. See the
       <pre class="lines">
 
 
-325
-326
 327
 328
 329
@@ -253,10 +251,12 @@ resource_type indirection via rest and the resource_type face. See the
 333
 334
 335
-336</pre>
+336
+337
+338</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/type.rb', line 325</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/type.rb', line 327</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assign_parameter_values'>assign_parameter_values</span><span class='lparen'>(</span><span class='id identifier rubyid_parameters'>parameters</span><span class='comma'>,</span> <span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
   <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>The method Puppet::Resource::Type.assign_parameter_values is deprecated and will be removed in the next major release of Puppet.</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -340,8 +340,6 @@ resource_type indirection via rest and the resource_type face. See the
       <pre class="lines">
 
 
-353
-354
 355
 356
 357
@@ -372,10 +370,12 @@ resource_type indirection via rest and the resource_type face. See the
 382
 383
 384
-385</pre>
+385
+386
+387</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/type.rb', line 353</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/type.rb', line 355</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_resource_parameters'>set_resource_parameters</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='rparen'>)</span>
   <span class='comment'># Inject parameters from using external lookup
@@ -396,7 +396,7 @@ resource_type indirection via rest and the resource_type face. See the
   <span class='kw'>end</span>
   <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_class_set'>class_set</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_scope'>scope</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_hostclass?'>hostclass?</span> <span class='op'>||</span> <span class='id identifier rubyid_node?'>node?</span>
 
-  <span class='id identifier rubyid_param_hash'>param_hash</span> <span class='op'>=</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_with_parameter_scope'>with_parameter_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_arguments'>arguments</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_param_scope'>param_scope</span><span class='op'>|</span>
+  <span class='id identifier rubyid_param_hash'>param_hash</span> <span class='op'>=</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_with_parameter_scope'>with_parameter_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_arguments'>arguments</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_param_scope'>param_scope</span><span class='op'>|</span>
     <span class='comment'># Assign directly to the parameter scope to avoid scope parameter validation at this point. It
 </span>    <span class='comment'># will happen anyway when the values are assigned to the scope after the parameter scoped has
 </span>    <span class='comment'># been popped.
@@ -420,9 +420,9 @@ resource_type indirection via rest and the resource_type face. See the
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:35 2016 by
+  Generated on Tue Nov  1 14:17:38 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Context
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -241,7 +241,7 @@ delay expensive production of values until they are needed.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Mark a place on the context stack to later return to with rollback.</p>
+    <span class="summary_desc"><div class='inline'><p>Mark a place on the context stack to later return to with <span class='object_link'><a href="#rollback-instance_method" title="Puppet::Context#rollback (method)">#rollback</a></span>.</p>
 </div></span>
   
 </li>
@@ -362,7 +362,7 @@ delay expensive production of values until they are needed.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Roll back to a mark set by mark.</p>
+    <span class="summary_desc"><div class='inline'><p>Roll back to a mark set by <span class='object_link'><a href="#mark-instance_method" title="Puppet::Context#mark (method)">#mark</a></span>.</p>
 </div></span>
   
 </li>
@@ -550,7 +550,7 @@ delay expensive production of values until they are needed.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Mark a place on the context stack to later return to with rollback.</p>
+<p>Mark a place on the context stack to later return to with <span class='object_link'><a href="#rollback-instance_method" title="Puppet::Context#rollback (method)">#rollback</a></span>.</p>
 
 
   </div>
@@ -827,9 +827,9 @@ delay expensive production of values until they are needed.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Roll back to a mark set by mark.</p>
+<p>Roll back to a mark set by <span class='object_link'><a href="#mark-instance_method" title="Puppet::Context#mark (method)">#mark</a></span>.</p>
 
-<p>Rollbacks can only reach a mark accessible via pop. If the mark is not on
+<p>Rollbacks can only reach a mark accessible via <span class='object_link'><a href="#pop-instance_method" title="Puppet::Context#pop (method)">#pop</a></span>. If the mark is not on
 the current context stack the behavior of rollback is undefined.</p>
 
 
@@ -899,9 +899,9 @@ the current context stack the behavior of rollback is undefined.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:33 2016 by
+  Generated on Tue Nov  1 14:17:36 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

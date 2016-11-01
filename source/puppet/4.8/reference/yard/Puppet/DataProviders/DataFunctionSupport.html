@@ -4,9 +4,9 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Module: Puppet::Pops::Adaptable
+  Module: Puppet::DataProviders::DataFunctionSupport
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
-  pathId = "Puppet::Pops::Adaptable";
+  pathId = "Puppet::DataProviders::DataFunctionSupport";
   relpath = '../../';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../../_index.html">Index (A)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span>
+    <a href="../../_index.html">Index (D)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../DataProviders.html" title="Puppet::DataProviders (module)">DataProviders</a></span></span>
      &raquo; 
-    <span class="title">Adaptable</span>
+    <span class="title">DataFunctionSupport</span>
   
 </div>
 
@@ -61,7 +61,7 @@
 
       <iframe id="search_frame" src="../../class_list.html"></iframe>
 
-      <div id="content"><h1>Module: Puppet::Pops::Adaptable
+      <div id="content"><h1>Module: Puppet::DataProviders::DataFunctionSupport
   
   
   <span class="private note title">Private</span>
@@ -78,44 +78,24 @@
   
   <dl>
     <dt>Included in:</dt>
-    <dd><span class='object_link'><a href="Binder/Bindings/BindingsModelObject.html" title="Puppet::Pops::Binder::Bindings::BindingsModelObject (class)">Binder::Bindings::BindingsModelObject</a></span></dd>
+    <dd><span class='object_link'><a href="FunctionEnvDataProvider.html" title="Puppet::DataProviders::FunctionEnvDataProvider (class)">FunctionEnvDataProvider</a></span>, <span class='object_link'><a href="FunctionModuleDataProvider.html" title="Puppet::DataProviders::FunctionModuleDataProvider (class)">FunctionModuleDataProvider</a></span></dd>
   </dl>
   
 
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/puppet/pops/adaptable.rb</dd>
+    <dd>lib/puppet/data_providers/data_function_support.rb</dd>
   </dl>
   
 </div>
 
-<h2>Overview</h2><div class="docstring">
+<div class="docstring">
   <div class="discussion">
     <p class="note private">
   <strong>This module is part of a private API.</strong>
   You should avoid using this module if possible, as it may be removed or be changed in the future.
 </p>
-
-  <div class="note notetag">
-    <strong>Note:</strong>
-    <div class='inline'><p>the implementation details; the fact that an instance variable is used to keep the adapter
-instance data should not
-be exploited as the implementation of <em>being adaptable</em> may change in the future.</p>
-</div>
-  </div>
-
-<p>Adaptable is a mix-in module that adds adaptability to a class.
-This means that an adapter can
-associate itself with an instance of the class and store additional data/have behavior.</p>
-
-<p>This mechanism should be used when there is a desire to keep implementation concerns separate.
-In Ruby it is always possible to open and modify a class or instance to teach it new tricks, but it
-is however not possible to do this for two different versions of some service at the same time.
-The Adaptable pattern is also good when only a few of the objects of some class needs to have extra
-information (again possible in Ruby by adding instance variables dynamically). In fact, the implementation
-of Adaptable does just that; it adds an instance variable named after the adapter class and keeps an
-instance of this class in this slot.</p>
 
 
   </div>
@@ -135,9 +115,9 @@ instance of this class in this slot.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Jul  6 13:56:38 2016 by
+  Generated on Tue Nov  1 14:17:35 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

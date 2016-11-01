@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
+built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: 'Resource Type: ssh_authorized_key'
 canonical: /puppet/latest/reference/types/ssh_authorized_key.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
 
 ssh_authorized_key
 -----
@@ -17,18 +17,20 @@ ssh_authorized_key
 
 Manages SSH authorized keys. Currently only type 2 keys are supported.
 
-In their native habitat, SSH keys usually appear as a single long line. This
-resource type requires you to split that line into several attributes. Thus, a
-key that appears in your `~/.ssh/id_rsa.pub` file like this...
+In their native habitat, SSH keys usually appear as a single long line, in
+the format `<TYPE> <KEY> <NAME/COMMENT>`. This resource type requires you
+to split that line into several attributes. Thus, a key that appears in
+your `~/.ssh/id_rsa.pub` file like this...
 
-    ssh-rsa AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan
+    ssh-rsa AAAAB3Nza[...]qXfdaQ== nick@magpie.example.com
 
 ...would translate to the following resource:
 
-    ssh_authorized_key { 'nick@magpie.puppetlabs.lan':
-      user => 'nick',
-      type => 'ssh-rsa',
-      key  => 'AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan',
+    ssh_authorized_key { 'nick@magpie.example.com':
+      ensure => present,
+      user   => 'nick',
+      type   => 'ssh-rsa',
+      key    => 'AAAAB3Nza[...]qXfdaQ==',
     }
 
 To ensure that only the currently approved keys are present, you can purge
@@ -51,7 +53,7 @@ that user.
 <h3 id="ssh_authorized_key-attributes">Attributes</h3>
 
 <pre><code>ssh_authorized_key { 'resource title':
-  <a href="#ssh_authorized_key-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> The SSH key comment. This attribute is currently </em>
+  <a href="#ssh_authorized_key-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> The SSH key comment. This can be anything, and...</em>
   <a href="#ssh_authorized_key-attribute-ensure">ensure</a>   =&gt; <em># The basic property that the resource should be...</em>
   <a href="#ssh_authorized_key-attribute-key">key</a>      =&gt; <em># The public key itself; generally a long string...</em>
   <a href="#ssh_authorized_key-attribute-options">options</a>  =&gt; <em># Key options; see sshd(8) for possible values...</em>
@@ -66,8 +68,12 @@ that user.
 
 _(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
 
-The SSH key comment. This attribute is currently used as a
-system-wide primary key and therefore has to be unique.
+The SSH key comment. This can be anything, and doesn't need to match
+the original comment from the `.pub` file.
+
+Due to internal limitations, this must be unique across all user accounts;
+if you want to specify one key for multiple users, you must use a different
+comment for each instance.
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -158,4 +164,4 @@ Parse and generate authorized_keys files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500

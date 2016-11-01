@@ -6,7 +6,7 @@
 <title>
   Module: PuppetX
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -89,7 +89,13 @@
   <div class="discussion">
     <p>The Puppet Extensions Module.</p>
 
-<p>Submodules of this module should be named after the publisher (e.g. &#39;user&#39; part of a Puppet Module name).</p>
+<p>Submodules of this module should be named after the publisher (e.g.
+&#39;user&#39; part of a Puppet Module name). You should also add the module
+name to avoid further conflicts in the same namespace. So the
+structure should be
+<code>lib/puppet_x/&lt;namespace&gt;/&lt;module_name&gt;/&lt;extension.rb&gt;</code>.
+A Puppet Extension for &#39;puppetlabs-powershell&#39; would live at
+<code>lib/puppet_x/puppetlabs/powershell/&lt;extension.rb&gt;</code>.</p>
 
 
   </div>
@@ -109,9 +115,9 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:29 2016 by
+  Generated on Tue Nov  1 14:17:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

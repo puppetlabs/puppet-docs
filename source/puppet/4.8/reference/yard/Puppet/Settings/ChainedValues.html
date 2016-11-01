@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Settings::ChainedValues
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -235,7 +235,7 @@
   <p class="tag_title">See Also:</p>
   <ul class="see">
     
-      <li>Puppet::Settings.values</li>
+      <li><span class='object_link'><a href="../Settings.html#values-instance_method" title="Puppet::Settings#values (method)">Puppet::Settings#values</a></span></li>
     
   </ul>
 
@@ -245,15 +245,15 @@
       <pre class="lines">
 
 
-1241
-1242
 1243
 1244
 1245
-1246</pre>
+1246
+1247
+1248</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1241</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1243</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span> <span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='id identifier rubyid_value_sets'>value_sets</span><span class='comma'>,</span> <span class='id identifier rubyid_defaults'>defaults</span><span class='rparen'>)</span>
   <span class='ivar'>@mode</span> <span class='op'>=</span> <span class='id identifier rubyid_mode'>mode</span>
@@ -337,8 +337,6 @@ if the looked up value is a String.</p>
       <pre class="lines">
 
 
-1275
-1276
 1277
 1278
 1279
@@ -360,10 +358,12 @@ if the looked up value is a String.</p>
 1295
 1296
 1297
-1298</pre>
+1298
+1299
+1300</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1275</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1277</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_interpolate'>interpolate</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_setting'>setting</span> <span class='op'>=</span> <span class='ivar'>@defaults</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
@@ -455,8 +455,6 @@ if the looked up value is a String.</p>
       <pre class="lines">
 
 
-1253
-1254
 1255
 1256
 1257
@@ -467,10 +465,12 @@ if the looked up value is a String.</p>
 1262
 1263
 1264
-1265</pre>
+1265
+1266
+1267</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1253</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/settings.rb', line 1255</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set'>set</span> <span class='op'>=</span> <span class='ivar'>@value_sets</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value_set'>value_set</span><span class='op'>|</span>
@@ -495,9 +495,9 @@ if the looked up value is a String.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:33 2016 by
+  Generated on Tue Nov  1 14:17:37 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

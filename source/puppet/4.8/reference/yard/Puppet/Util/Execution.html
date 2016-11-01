@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Util::Execution
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -87,7 +87,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>This module defines methods for execution of system commands. It is intented for inclusion
+    <p>This module defines methods for execution of system commands. It is intended for inclusion
 in classes that needs to execute system commands.</p>
 
 
@@ -417,7 +417,7 @@ pipe.</p>
         <span class='name'>command</span>
       
       
-        <span class='type'>(<tt>String</tt>, <tt><span class='object_link'>Array</span>&lt;String&gt;</tt>)</span>
+        <span class='type'>(<tt>String</tt>, <tt>Array&lt;String&gt;</tt>)</span>
       
       
       
@@ -532,7 +532,7 @@ the given block</p>
       
       
         &mdash;
-        <div class='inline'><p>if the executed chiled process did not
+        <div class='inline'><p>if the executed child process did not
 exit with status == 0 and <code>failonfail</code> is <code>true</code>.</p>
 </div>
       
@@ -669,7 +669,7 @@ def execute(command, options)</p>
         <span class='name'>command</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;String&gt;</tt>, <tt>String</tt>)</span>
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>, <tt>String</tt>)</span>
       
       
       
@@ -686,7 +686,7 @@ elements should be the individual arguments to that executable.</p>
         <span class='name'>options</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>NoOptionsSpecified</tt>)</em>
@@ -816,7 +816,7 @@ Passing in a value of false for this option will allow the command to be execute
       
         <li>
           <span class="name">:custom_environment</span>
-          <span class="type">(<tt><span class='object_link'>Hash</span>&lt;{String =&gt; String}&gt;</tt>)</span>
+          <span class="type">(<tt>Hash&lt;{String =&gt; String}&gt;</tt>)</span>
           <span class="default">
             
               &mdash; default:
@@ -1419,9 +1419,9 @@ it&#39;s not in the PATH... so this is slightly safer than just using Puppet::Ut
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:30 2016 by
+  Generated on Tue Nov  1 14:17:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

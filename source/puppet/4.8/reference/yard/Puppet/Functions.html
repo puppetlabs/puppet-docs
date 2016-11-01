@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Functions
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -133,7 +133,7 @@ defined by using the same syntax for types as in the puppet language.</p>
 When the function is called, puppet searches the signatures for one that
 matches the supplied arguments. Each signature is part of a dispatch, which
 specifies the method that should be called for that signature. When a
-matching signature is found, the corrosponding method is called.</p>
+matching signature is found, the corresponding method is called.</p>
 
 <p>Documentation for the function should be placed as comments to the
 implementation method(s).</p>
@@ -465,8 +465,8 @@ call other functions visible from its loader.</p>
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_any_signature'>any_signature</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
   <span class='comment'># Construct the type for the signature
 </span>  <span class='comment'># Tuple[Object, from, to]
-</span>  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeFactory</span>
-  <span class='lbracket'>[</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_callable'>callable</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_any'>any</span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rbracket'>]</span>
+</span>  <span class='id identifier rubyid_param_types'>param_types</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PTupleType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PAnyType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PIntegerType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='lbracket'>[</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PCallableType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_param_types'>param_types</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -587,7 +587,7 @@ Function to create</p>
 </h3><div class="docstring">
   <div class="discussion">
     <p>Creates a function in, or in a local loader under the given loader.
-This method should only be used when manually creating functions 
+This method should only be used when manually creating functions
 for the sake of testing. Functions that are autoloaded should
 always use the <code>create_function</code> method and the autoloader will supply
 the correct loader.</p>
@@ -900,9 +900,9 @@ Function to create</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:29 2016 by
+  Generated on Tue Nov  1 14:17:33 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

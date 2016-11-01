@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PScalarType
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -117,7 +117,7 @@
 
 </div><div id="subclasses">
   <h2>Direct Known Subclasses</h2>
-  <p class="children"><span class='object_link'><a href="PBooleanType.html" title="Puppet::Pops::Types::PBooleanType (class)">PBooleanType</a></span>, <span class='object_link'><a href="PEnumType.html" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span>, <span class='object_link'><a href="PNumericType.html" title="Puppet::Pops::Types::PNumericType (class)">PNumericType</a></span>, <span class='object_link'><a href="PPatternType.html" title="Puppet::Pops::Types::PPatternType (class)">PPatternType</a></span>, <span class='object_link'><a href="PRegexpType.html" title="Puppet::Pops::Types::PRegexpType (class)">PRegexpType</a></span>, <span class='object_link'><a href="PSemVerRangeType.html" title="Puppet::Pops::Types::PSemVerRangeType (class)">PSemVerRangeType</a></span>, <span class='object_link'><a href="PSemVerType.html" title="Puppet::Pops::Types::PSemVerType (class)">PSemVerType</a></span>, <span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></p>
+  <p class="children"><span class='object_link'><a href="PAbstractRangeType.html" title="Puppet::Pops::Types::PAbstractRangeType (class)">PAbstractRangeType</a></span>, <span class='object_link'><a href="PBooleanType.html" title="Puppet::Pops::Types::PBooleanType (class)">PBooleanType</a></span>, <span class='object_link'><a href="PEnumType.html" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span>, <span class='object_link'><a href="PPatternType.html" title="Puppet::Pops::Types::PPatternType (class)">PPatternType</a></span>, <span class='object_link'><a href="PRegexpType.html" title="Puppet::Pops::Types::PRegexpType (class)">PRegexpType</a></span>, <span class='object_link'><a href="PSemVerRangeType.html" title="Puppet::Pops::Types::PSemVerRangeType (class)">PSemVerRangeType</a></span>, <span class='object_link'><a href="PSemVerType.html" title="Puppet::Pops::Types::PSemVerType (class)">PSemVerType</a></span>, <span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></p>
 </div>
 
 
@@ -191,6 +191,12 @@
   
   
   
+  
+  
+  
+  
+  
+  
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -237,12 +243,12 @@
       <pre class="lines">
 
 
-583
-584
-585</pre>
+678
+679
+680</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 583</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 678</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PScalarType</span><span class='rparen'>)</span>
@@ -257,9 +263,9 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:36 2016 by
+  Generated on Tue Nov  1 14:17:39 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::Deserializer
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -115,6 +115,41 @@ resolving tabulations and assembling complex objects. The type of the complex ob
 </div>
 
 
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reader-instance_method" title="#reader (instance method)">#<strong>reader</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Provides access to the reader.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
 
 
 
@@ -269,14 +304,14 @@ resolving tabulations and assembling complex objects. The type of the complex ob
       <pre class="lines">
 
 
-12
-13
-14
-15
-16</pre>
+16
+17
+18
+19
+20</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_reader'>reader</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='ivar'>@read</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -289,6 +324,57 @@ resolving tabulations and assembling complex objects. The type of the complex ob
 </div>
   
 </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="reader-instance_method">
+  
+    #<strong>reader</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Provides access to the reader.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_reader'>reader</span>
+  <span class='ivar'>@reader</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 
   <div id="instance_method_details" class="method_details_list">
@@ -337,10 +423,6 @@ resolving tabulations and assembling complex objects. The type of the complex ob
       <pre class="lines">
 
 
-22
-23
-24
-25
 26
 27
 28
@@ -362,10 +444,14 @@ resolving tabulations and assembling complex objects. The type of the complex ob
 44
 45
 46
-47</pre>
+47
+48
+49
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span>
   <span class='id identifier rubyid_val'>val</span> <span class='op'>=</span> <span class='ivar'>@reader</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span>
@@ -464,13 +550,13 @@ and that subsequent reads of a tabulation with that index should return the valu
       <pre class="lines">
 
 
-54
-55
-56
-57</pre>
+58
+59
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remember'>remember</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@read</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_value'>value</span>
@@ -486,9 +572,9 @@ and that subsequent reads of a tabulation with that index should return the valu
 </div>
 
       <div id="footer">
-  Generated on Wed Jul  6 14:04:58 2016 by
+  Generated on Tue Nov  1 14:17:50 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

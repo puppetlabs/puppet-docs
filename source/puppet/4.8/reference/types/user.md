@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
+built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: 'Resource Type: user'
 canonical: /puppet/latest/reference/types/user.html
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
 
 user
 -----
@@ -25,9 +25,10 @@ groups and generally uses POSIX APIs for retrieving information
 about them.  It does not directly modify `/etc/passwd` or anything.
 
 **Autorequires:** If Puppet is managing the user's primary group (as
-provided in the `gid` attribute), the user resource will autorequire
-that group. If Puppet is managing any role accounts corresponding to the
-user's roles, the user resource will autorequire those role accounts.
+provided in the `gid` attribute) or any group listed in the `groups`
+attribute then the user resource will autorequire that group. If Puppet
+is managing any role accounts corresponding to the user's roles, the
+user resource will autorequire those role accounts.
 
 <h3 id="user-attributes">Attributes</h3>
 
@@ -51,7 +52,7 @@ user's roles, the user resource will autorequire those role accounts.
   <a href="#user-attribute-keys">keys</a>                 =&gt; <em># Specify user attributes in an array of key ...</em>
   <a href="#user-attribute-loginclass">loginclass</a>           =&gt; <em># The name of login class to which the user...</em>
   <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when...</em>
-  <a href="#user-attribute-membership">membership</a>           =&gt; <em># Whether specified groups should be considered...</em>
+  <a href="#user-attribute-membership">membership</a>           =&gt; <em># If `minimum` is specified, Puppet will ensure...</em>
   <a href="#user-attribute-password">password</a>             =&gt; <em># The user's password, in whatever encrypted...</em>
   <a href="#user-attribute-password_max_age">password_max_age</a>     =&gt; <em># The maximum number of days a password may be...</em>
   <a href="#user-attribute-password_min_age">password_min_age</a>     =&gt; <em># The minimum number of days a password must be...</em>
@@ -282,9 +283,14 @@ Valid values are `true`, `false`, `yes`, `no`.
 
 <h4 id="user-attribute-membership">membership</h4>
 
-Whether specified groups should be considered the **complete list**
-(`inclusive`) or the **minimum list** (`minimum`) of groups to which
-the user belongs. Defaults to `minimum`.
+If `minimum` is specified, Puppet will ensure that the user is a
+member of all specified groups, but will not remove any other groups
+that the user is a part of.
+
+If `inclusive` is specified, Puppet will ensure that the user is a
+member of **only** specified groups.
+
+Defaults to `minimum`.
 
 Valid values are `inclusive`, `minimum`.
 
@@ -763,4 +769,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500

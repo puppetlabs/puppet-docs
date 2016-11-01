@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parameter
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -739,7 +739,7 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns an array of strings representing the containment heirarchy (types/classes) that make up the path to the resource from the root of the catalog.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns an array of strings representing the containment hierarchy (types/classes) that make up the path to the resource from the root of the catalog.</p>
 </div></span>
   
 </li>
@@ -838,11 +838,6 @@ one particular attribute data type; its valid value(s), and conversion to/from i
   
   
   
-  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
-  <p class="inherited"><span class='object_link'><a href="Util.html#clear_environment-instance_method" title="Puppet::Util#clear_environment (method)">clear_environment</a></span>, <span class='object_link'><a href="Util.html#clear_environment-class_method" title="Puppet::Util.clear_environment (method)">clear_environment</a></span>, <span class='object_link'><a href="Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Util.html#get_env-class_method" title="Puppet::Util.get_env (method)">get_env</a></span>, <span class='object_link'><a href="Util.html#get_env-instance_method" title="Puppet::Util#get_env (method)">get_env</a></span>, <span class='object_link'><a href="Util.html#get_environment-instance_method" title="Puppet::Util#get_environment (method)">get_environment</a></span>, <span class='object_link'><a href="Util.html#get_environment-class_method" title="Puppet::Util.get_environment (method)">get_environment</a></span>, <span class='object_link'><a href="Util.html#merge_environment-class_method" title="Puppet::Util.merge_environment (method)">merge_environment</a></span>, <span class='object_link'><a href="Util.html#merge_environment-instance_method" title="Puppet::Util#merge_environment (method)">merge_environment</a></span>, <span class='object_link'><a href="Util.html#set_env-instance_method" title="Puppet::Util#set_env (method)">set_env</a></span>, <span class='object_link'><a href="Util.html#set_env-class_method" title="Puppet::Util.set_env (method)">set_env</a></span>, <span class='object_link'><a href="Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="Util.html#which-instance_method" title="Puppet::Util#which (method)">which</a></span></p>
-
-  
-  
   
   
   
@@ -908,7 +903,7 @@ the name of the attribute to set, and the value as the value to set.</p>
         <span class='name'>options</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Hash</span>{<span class='object_link'>Symbol</span> =&gt; <span class='object_link'>Object</span>]</tt>)</span>
+        <span class='type'>(<tt>Hash{<span class='object_link'>Symbol</span> =&gt; <span class='object_link'>Object</span>]</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>{}</tt>)</em>
@@ -967,20 +962,20 @@ the name of the attribute to set, and the value as the value to set.</p>
       <pre class="lines">
 
 
-331
-332
-333
-334
 335
 336
 337
 338
 339
 340
-341</pre>
+341
+342
+343
+344
+345</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 331</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 335</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_symbolize_options'>symbolize_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -1009,9 +1004,9 @@ the name of the attribute to set, and the value as the value to set.</p>
   <h3 class="signature first" id="required_features-class_method">
   
     
-      <span class="overload">.<strong>required_features</strong>  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>required_features</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'>Symbol</span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span></span>
     
-      <span class="overload">.<strong>required_features=</strong>(*args)  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span></span>
+      <span class="overload">.<strong>required_features=</strong>(*args)  &#x21d2; <tt>Array&lt;<span class='object_link'>Symbol</span>&gt;</tt> &nbsp;<span class="note title readonly">DSL</span></span>
     
   
 
@@ -1033,7 +1028,7 @@ the returned names are always all lower case symbols.</p>
     
       
       <li class="overload_item">
-        <span class="signature">.<strong>required_features</strong>  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> </span>
+        <span class="signature">.<strong>required_features</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'>Symbol</span>&gt;</tt> </span>
         <div class="docstring">
   <div class="discussion">
     <p>Returns the required <em>provider features</em> as an array of lower case symbols</p>
@@ -1049,7 +1044,7 @@ the returned names are always all lower case symbols.</p>
     
       
       <li class="overload_item">
-        <span class="signature">.<strong>required_features=</strong>(*args)  &#x21d2; <tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt> </span>
+        <span class="signature">.<strong>required_features=</strong>(*args)  &#x21d2; <tt>Array&lt;<span class='object_link'>Symbol</span>&gt;</tt> </span>
         <div class="docstring">
   <div class="discussion">
     <p>Sets the required_provider_features_ from one or more values, or array. The given arguments
@@ -1091,7 +1086,7 @@ are flattened, and internalized.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Symbol</span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;<span class='object_link'>Symbol</span>&gt;</tt>)</span>
       
       
       
@@ -2314,7 +2309,7 @@ If an <code>unmunge</code> method is not defined, the internal form is used.</p>
   <div class="discussion">
     <p class="note returns_void">This method returns an undefined value.</p><p>Defines an optional method that is used to validate the parameter&#39;s DSL/string value.
 Validation should raise appropriate exceptions, the return value of the given block is ignored.
-The easiest way to raise an appropriate exception is to call the method Util::Errors.fail with
+The easiest way to raise an appropriate exception is to call the method <span class='object_link'>Util::Errors#fail</span> with
 the message as an argument.
 To validate the munged value instead, just munge the value (<code>munge(value)</code>).</p>
 
@@ -2401,12 +2396,12 @@ To validate the munged value instead, just munge the value (<code>munge(value)</
       <pre class="lines">
 
 
-348
-349
-350</pre>
+352
+353
+354</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 348</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 352</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_log'>log</span><span class='lparen'>(</span><span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_send_log'>send_log</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='lbracket'>[</span><span class='symbol'>:loglevel</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span><span class='rparen'>)</span>
@@ -2431,7 +2426,7 @@ To validate the munged value instead, just munge the value (<code>munge(value)</
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Returns an array of strings representing the containment heirarchy
+<p>Returns an array of strings representing the containment hierarchy
 (types/classes) that make up the path to the resource from the root
 of the catalog.  This is mostly used for logging purposes.</p>
 
@@ -2447,16 +2442,16 @@ of the catalog.  This is mostly used for logging purposes.</p>
       <pre class="lines">
 
 
-384
-385
-386
-387
 388
 389
-390</pre>
+390
+391
+392
+393
+394</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 384</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 388</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pathbuilder'>pathbuilder</span>
   <span class='kw'>if</span> <span class='ivar'>@resource</span>
@@ -2500,12 +2495,12 @@ The DSL method <span class='object_link'><a href="#munge-class_method" title="Pu
       <pre class="lines">
 
 
-397
-398
-399</pre>
+401
+402
+403</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 397</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 401</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unsafe_munge'>unsafe_munge</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_collection'>value_collection</span><span class='period'>.</span><span class='id identifier rubyid_munge'>munge</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -2582,12 +2577,12 @@ the literal values (enumerator) and/or patterns defined by calling <span class='
       <pre class="lines">
 
 
-438
-439
-440</pre>
+442
+443
+444</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 438</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 442</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unsafe_validate'>unsafe_validate</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_collection'>value_collection</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -2648,20 +2643,20 @@ A protected validation method that only ever raises useful exceptions.</p>
       <pre class="lines">
 
 
-450
-451
-452
-453
 454
 455
 456
 457
 458
 459
-460</pre>
+460
+461
+462
+463
+464</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 450</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parameter.rb', line 454</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
@@ -2684,9 +2679,9 @@ A protected validation method that only ever raises useful exceptions.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:35 2016 by
+  Generated on Tue Nov  1 14:17:37 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

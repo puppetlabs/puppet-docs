@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
+built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: 'Man Page: puppet status'
 canonical: /puppet/latest/reference/man/status.html
 ---

@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::SSL::Validator::DefaultValidator
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -185,7 +185,7 @@ If there is no CA information known, then no verification is performed</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(ssl_configuration = Puppet::SSL::Configuration.new(                                         Puppet[:localcacert], {                                           :ca_auth_file  =&gt; Puppet[:ssl_client_ca_auth]                                         }), ssl_host = Puppet::SSL::Host.localhost)  &#x21d2; DefaultValidator </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(ssl_configuration = Puppet::SSL::Configuration.new(                                         Puppet[:localcacert], {                                           :ca_auth_file  =&gt; Puppet[:ssl_client_ca_auth]                                         }), ssl_host = Puppet.lookup(:ssl_host))  &#x21d2; DefaultValidator </a>
     
 
     
@@ -319,7 +319,7 @@ If there is no CA information known, then no verification is performed</p>
     #<strong>initialize</strong>(ssl_configuration = Puppet::SSL::Configuration.new(
                                         Puppet[:localcacert], {
                                           :ca_auth_file  =&gt; Puppet[:ssl_client_ca_auth]
-                                        }), ssl_host = Puppet::SSL::Host.localhost)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::SSL::Validator::DefaultValidator (class)">DefaultValidator</a></span></tt> &nbsp;<span class="private note title">private</span>
+                                        }), ssl_host = Puppet.lookup(:ssl_host))  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::SSL::Validator::DefaultValidator (class)">DefaultValidator</a></span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -368,11 +368,11 @@ If there is no CA information known, then no verification is performed</p>
         <span class='type'>(<tt><span class='object_link'>Puppet::SSL::Host</span></tt>)</span>
       
       
-        <em class="default">(defaults to: <tt>Puppet::SSL::Host.localhost</tt>)</em>
+        <em class="default">(defaults to: <tt>Puppet.lookup(:ssl_host)</tt>)</em>
       
       
         &mdash;
-        <div class='inline'><p>(Puppet::SSL::Host.localhost) the SSL host to use</p>
+        <div class='inline'><p>The SSL host to use</p>
 </div>
       
     </li>
@@ -406,7 +406,7 @@ If there is no CA information known, then no verification is performed</p>
                                       <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:localcacert</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbrace'>{</span>
                                         <span class='symbol'>:ca_auth_file</span>  <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:ssl_client_ca_auth</span><span class='rbracket'>]</span>
                                       <span class='rbrace'>}</span><span class='rparen'>)</span><span class='comma'>,</span>
-    <span class='id identifier rubyid_ssl_host'>ssl_host</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Host</span><span class='period'>.</span><span class='id identifier rubyid_localhost'>localhost</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ssl_host'>ssl_host</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:ssl_host</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_reset!'>reset!</span>
   <span class='ivar'>@ssl_configuration</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_configuration'>ssl_configuration</span>
@@ -947,9 +947,9 @@ by a certificate listed in authz_certs</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:45 2016 by
+  Generated on Tue Nov  1 14:17:50 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

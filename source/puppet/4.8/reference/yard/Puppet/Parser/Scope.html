@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parser::Scope
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -202,6 +202,78 @@ None of its methods are API except those that are clearly marked as such.</p>
 <li class="public ">
   <span class="summary_signature">
     
+      <a href="#find_builtin_resource_type-instance_method" title="#find_builtin_resource_type (instance method)">#<strong>find_builtin_resource_type</strong>(type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_defined_resource_type-instance_method" title="#find_defined_resource_type (instance method)">#<strong>find_defined_resource_type</strong>(type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_resource_type-instance_method" title="#find_resource_type (instance method)">#<strong>find_resource_type</strong>(type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
       <a href="#lookupvar-instance_method" title="#lookupvar (instance method)">#<strong>lookupvar</strong>(name, options = {})  &#x21d2; Object </a>
     
 
@@ -268,6 +340,31 @@ None of its methods are API except those that are clearly marked as such.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Push ephemeral scopes onto the ephemeral scope stack.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resolve_type_and_titles-instance_method" title="#resolve_type_and_titles (instance method)">#<strong>resolve_type_and_titles</strong>(type, titles)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Called from two places: runtime3support when creating resources ast::resource - used by create resources ?.</p>
 </div></span>
   
 </li>
@@ -352,7 +449,7 @@ None of its methods are API except those that are clearly marked as such.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#with_parameter_scope-instance_method" title="#with_parameter_scope (instance method)">#<strong>with_parameter_scope</strong>(param_names)  &#x21d2; Object </a>
+      <a href="#with_parameter_scope-instance_method" title="#with_parameter_scope (instance method)">#<strong>with_parameter_scope</strong>(callee_name, param_names) {|param_scope| ... } &#x21d2; Object </a>
     
 
     
@@ -414,12 +511,6 @@ None of its methods are API except those that are clearly marked as such.</p>
   
   
   
-  
-  
-  
-  
-  
-  
   <div id="method_missing_details" class="method_details_list">
   <h2>Dynamic Method Handling</h2>
   <p class="notice this">
@@ -442,22 +533,22 @@ None of its methods are API except those that are clearly marked as such.</p>
       <pre class="lines">
 
 
-982
-983
-984
-985
-986
-987
-988
-989
-990
-991
-992
-993
-994</pre>
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 982</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 994</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^function_(.*)$</span><span class='regexp_end'>/</span></span>
@@ -526,7 +617,7 @@ or in a specific visible named scope.</p>
         <span class='name'>options</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>{}</tt>)</em>
@@ -571,12 +662,12 @@ or in a specific visible named scope.</p>
       <pre class="lines">
 
 
-545
-546
-547</pre>
+553
+554
+555</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 545</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 553</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_lookupvar'>lookupvar</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -644,7 +735,7 @@ scope/namespace than the scope passed to a method.</p>
         <span class='name'>options</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+        <span class='type'>(<tt>Hash</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>{}</tt>)</em>
@@ -665,15 +756,183 @@ scope/namespace than the scope passed to a method.</p>
       <pre class="lines">
 
 
-821
-822
-823</pre>
+829
+830
+831</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 821</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 829</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_setvar'>setvar</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_builtin_resource_type-instance_method">
+  
+    #<strong>find_builtin_resource_type</strong>(type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+984
+985
+986</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 984</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_builtin_resource_type'>find_builtin_resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#find_builtin_resource_type() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_defined_resource_type-instance_method">
+  
+    #<strong>find_defined_resource_type</strong>(type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+989
+990
+991</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 989</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_defined_resource_type'>find_defined_resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#find_defined_resource_type() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_resource_type-instance_method">
+  
+    #<strong>find_resource_type</strong>(type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+979
+980
+981</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 979</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_resource_type'>find_resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#find_resource_type() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -743,14 +1002,6 @@ manifest.</p>
       <pre class="lines">
 
 
-481
-482
-483
-484
-485
-486
-487
-488
 489
 490
 491
@@ -766,10 +1017,18 @@ manifest.</p>
 501
 502
 503
-504</pre>
+504
+505
+506
+507
+508
+509
+510
+511
+512</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 481</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 489</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookupvar'>lookupvar</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
@@ -803,7 +1062,7 @@ manifest.</p>
       <div class="method_details ">
   <h3 class="signature " id="pop_ephemerals-instance_method">
   
-    #<strong>pop_ephemerals</strong>(level)  &#x21d2; <tt><span class='object_link'>Array</span></tt> &nbsp;<span class="private note title">private</span>
+    #<strong>pop_ephemerals</strong>(level)  &#x21d2; <tt>Array</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -847,7 +1106,7 @@ manifest.</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span></tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -865,12 +1124,12 @@ manifest.</p>
       <pre class="lines">
 
 
-868
-869
-870</pre>
+876
+877
+878</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 868</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 876</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pop_ephemerals'>pop_ephemerals</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
   <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
@@ -909,7 +1168,7 @@ manifest.</p>
         <span class='name'>ephemeral_scopes</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Array</span></tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
@@ -924,16 +1183,117 @@ manifest.</p>
       <pre class="lines">
 
 
-875
-876
-877</pre>
+883
+884
+885</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 875</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 883</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_push_ephemerals'>push_ephemerals</span><span class='lparen'>(</span><span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ephemeral_scope'>ephemeral_scope</span><span class='op'>|</span> <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_ephemeral_scope'>ephemeral_scope</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
 <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="resolve_type_and_titles-instance_method">
+  
+    #<strong>resolve_type_and_titles</strong>(type, titles)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Called from two places:
+runtime3support when creating resources
+ast::resource - used by create resources ?</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 1012</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_resolve_type_and_titles'>resolve_type_and_titles</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_titles'>titles</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#resolve_type_and_title() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'>#    Puppet.deprecation_warning(&#39;Scope#resolve_type_and_titles is deprecated.&#39;)
+</span><span class='comment'>#
+</span><span class='comment'>#    raise ArgumentError, &quot;titles must be an array&quot; unless titles.is_a?(Array)
+</span><span class='comment'>#
+</span><span class='comment'>#    case type.downcase
+</span><span class='comment'>#    when &quot;class&quot;
+</span><span class='comment'>#      # resolve the titles
+</span><span class='comment'>#      titles = titles.collect do |a_title|
+</span><span class='comment'>#        hostclass = find_hostclass(a_title)
+</span><span class='comment'>#        hostclass ?  hostclass.name : a_title
+</span><span class='comment'>#      end
+</span><span class='comment'>#    when &quot;node&quot;
+</span><span class='comment'>#      # no-op
+</span><span class='comment'>#    else
+</span><span class='comment'>#      # resolve the type
+</span><span class='comment'>#      resource_type = find_resource_type(type)
+</span><span class='comment'>#      type = resource_type.name if resource_type
+</span><span class='comment'>#    end
+</span><span class='comment'>#
+</span><span class='comment'>#    return [type, titles]
+</span><span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -970,17 +1330,17 @@ manifest.</p>
       <pre class="lines">
 
 
-854
-855
-856
-857
-858
-859
-860
-861</pre>
+862
+863
+864
+865
+866
+867
+868
+869</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 854</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 862</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unset_ephemeral_var'>unset_ephemeral_var</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='op'>=</span><span class='symbol'>:all</span><span class='rparen'>)</span>
   <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Method Parser::Scope#unset_ephemeral_var() is deprecated</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1060,12 +1420,12 @@ manifest.</p>
       <pre class="lines">
 
 
-898
-899
-900</pre>
+906
+907
+908</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 898</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 906</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_global_scope'>with_global_scope</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_find_global_scope'>find_global_scope</span><span class='period'>.</span><span class='id identifier rubyid_without_ephemeral_scopes'>without_ephemeral_scopes</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1121,17 +1481,17 @@ manifest.</p>
       <pre class="lines">
 
 
-930
-931
-932
-933
-934
-935
-936
-937</pre>
+941
+942
+943
+944
+945
+946
+947
+948</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 930</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 941</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_with_guarded_scope'>with_guarded_scope</span>
   <span class='id identifier rubyid_elevel'>elevel</span> <span class='op'>=</span> <span class='id identifier rubyid_ephemeral_level'>ephemeral_level</span>
@@ -1149,7 +1509,7 @@ manifest.</p>
       <div class="method_details ">
   <h3 class="signature " id="with_parameter_scope-instance_method">
   
-    #<strong>with_parameter_scope</strong>(param_names)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+    #<strong>with_parameter_scope</strong>(callee_name, param_names) {|param_scope| ... } &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1167,7 +1527,60 @@ manifest.</p>
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>callee_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the function, template, or resource that defines the parameters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>param_names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of parameter names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>param_scope</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Scope/ParameterScope.html" title="Puppet::Parser::Scope::ParameterScope (class)">ParameterScope</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the nested scope</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -1175,19 +1588,19 @@ manifest.</p>
       <pre class="lines">
 
 
-917
-918
-919
-920
-921
-922
-923</pre>
+928
+929
+930
+931
+932
+933
+934</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 917</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 928</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_with_parameter_scope'>with_parameter_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_param_scope'>param_scope</span> <span class='op'>=</span> <span class='const'>ParameterScope</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_with_parameter_scope'>with_parameter_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_callee_name'>callee_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_param_scope'>param_scope</span> <span class='op'>=</span> <span class='const'>ParameterScope</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='id identifier rubyid_callee_name'>callee_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_with_guarded_scope'>with_guarded_scope</span> <span class='kw'>do</span>
     <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_param_scope'>param_scope</span><span class='rparen'>)</span>
     <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_param_scope'>param_scope</span><span class='rparen'>)</span>
@@ -1227,18 +1640,18 @@ manifest.</p>
       <pre class="lines">
 
 
-905
-906
-907
-908
-909
-910
-911
-912
-913</pre>
+913
+914
+915
+916
+917
+918
+919
+920
+921</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 905</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 913</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_without_ephemeral_scopes'>without_ephemeral_scopes</span>
   <span class='id identifier rubyid_save_ephemeral'>save_ephemeral</span> <span class='op'>=</span> <span class='ivar'>@ephemeral</span>
@@ -1259,9 +1672,9 @@ manifest.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:35 2016 by
+  Generated on Tue Nov  1 14:17:38 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

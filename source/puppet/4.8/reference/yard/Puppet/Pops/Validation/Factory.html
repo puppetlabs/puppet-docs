@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Validation::Factory
   
-    &mdash; Documentation by YARD 0.9.0
+    &mdash; Documentation by YARD 0.9.5
   
 </title>
 
@@ -116,7 +116,7 @@ for one and the same model; e.g. different semantics for different puppet versio
 validation configuration depending on the context/type of validation that should be performed (static, vs. runtime, etc.).</p>
 
 <p>This class is abstract and must be subclassed. The subclass must implement the methods
-<span class='object_link'><a href="#label_provider-instance_method" title="Puppet::Pops::Validation::Factory#label_provider (method)">#label_provider</a></span> and <span class='object_link'><a href="#checker-instance_method" title="Puppet::Pops::Validation::Factory#checker (method)">#checker</a></span>. It is also expected that the sublcass will override
+<span class='object_link'><a href="#label_provider-instance_method" title="Puppet::Pops::Validation::Factory#label_provider (method)">#label_provider</a></span> and <span class='object_link'><a href="#checker-instance_method" title="Puppet::Pops::Validation::Factory#checker (method)">#checker</a></span>. It is also expected that the subclass will override
 the severity_producer and configure the issues that should be reported as errors (i.e. if they should be ignored, produce
 a warning, or a deprecation warning).</p>
 
@@ -609,9 +609,9 @@ The acceptor is where detected issues are received (and typically collected).</p
 </div>
 
       <div id="footer">
-  Generated on Thu Jul  7 12:40:35 2016 by
+  Generated on Tue Nov  1 14:17:39 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.0 (ruby-2.0.0).
+  0.9.5 (ruby-2.0.0).
 </div>
 
     </div>

@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 569f28bea57644ed05719c92ecf19fcc532111aa
+built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: Resource Type Reference (Single-Page)
 canonical: /puppet/latest/reference/type.html
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
 
 ## About Resource Types
 
@@ -9793,18 +9793,20 @@ ssh_authorized_key
 
 Manages SSH authorized keys. Currently only type 2 keys are supported.
 
-In their native habitat, SSH keys usually appear as a single long line. This
-resource type requires you to split that line into several attributes. Thus, a
-key that appears in your `~/.ssh/id_rsa.pub` file like this...
+In their native habitat, SSH keys usually appear as a single long line, in
+the format `<TYPE> <KEY> <NAME/COMMENT>`. This resource type requires you
+to split that line into several attributes. Thus, a key that appears in
+your `~/.ssh/id_rsa.pub` file like this...
 
-    ssh-rsa AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan
+    ssh-rsa AAAAB3Nza[...]qXfdaQ== nick@magpie.example.com
 
 ...would translate to the following resource:
 
-    ssh_authorized_key { 'nick@magpie.puppetlabs.lan':
-      user => 'nick',
-      type => 'ssh-rsa',
-      key  => 'AAAAB3Nza[...]qXfdaQ== nick@magpie.puppetlabs.lan',
+    ssh_authorized_key { 'nick@magpie.example.com':
+      ensure => present,
+      user   => 'nick',
+      type   => 'ssh-rsa',
+      key    => 'AAAAB3Nza[...]qXfdaQ==',
     }
 
 To ensure that only the currently approved keys are present, you can purge
@@ -9827,7 +9829,7 @@ that user.
 <h3 id="ssh_authorized_key-attributes">Attributes</h3>
 
 <pre><code>ssh_authorized_key { 'resource title':
-  <a href="#ssh_authorized_key-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> The SSH key comment. This attribute is currently </em>
+  <a href="#ssh_authorized_key-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> The SSH key comment. This can be anything, and...</em>
   <a href="#ssh_authorized_key-attribute-ensure">ensure</a>   =&gt; <em># The basic property that the resource should be...</em>
   <a href="#ssh_authorized_key-attribute-key">key</a>      =&gt; <em># The public key itself; generally a long string...</em>
   <a href="#ssh_authorized_key-attribute-options">options</a>  =&gt; <em># Key options; see sshd(8) for possible values...</em>
@@ -9842,8 +9844,12 @@ that user.
 
 _(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
 
-The SSH key comment. This attribute is currently used as a
-system-wide primary key and therefore has to be unique.
+The SSH key comment. This can be anything, and doesn't need to match
+the original comment from the `.pub` file.
+
+Due to internal limitations, this must be unique across all user accounts;
+if you want to specify one key for multiple users, you must use a different
+comment for each instance.
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -10245,9 +10251,10 @@ groups and generally uses POSIX APIs for retrieving information
 about them.  It does not directly modify `/etc/passwd` or anything.
 
 **Autorequires:** If Puppet is managing the user's primary group (as
-provided in the `gid` attribute), the user resource will autorequire
-that group. If Puppet is managing any role accounts corresponding to the
-user's roles, the user resource will autorequire those role accounts.
+provided in the `gid` attribute) or any group listed in the `groups`
+attribute then the user resource will autorequire that group. If Puppet
+is managing any role accounts corresponding to the user's roles, the
+user resource will autorequire those role accounts.
 
 <h3 id="user-attributes">Attributes</h3>
 
@@ -10271,7 +10278,7 @@ user's roles, the user resource will autorequire those role accounts.
   <a href="#user-attribute-keys">keys</a>                 =&gt; <em># Specify user attributes in an array of key ...</em>
   <a href="#user-attribute-loginclass">loginclass</a>           =&gt; <em># The name of login class to which the user...</em>
   <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when...</em>
-  <a href="#user-attribute-membership">membership</a>           =&gt; <em># Whether specified groups should be considered...</em>
+  <a href="#user-attribute-membership">membership</a>           =&gt; <em># If `minimum` is specified, Puppet will ensure...</em>
   <a href="#user-attribute-password">password</a>             =&gt; <em># The user's password, in whatever encrypted...</em>
   <a href="#user-attribute-password_max_age">password_max_age</a>     =&gt; <em># The maximum number of days a password may be...</em>
   <a href="#user-attribute-password_min_age">password_min_age</a>     =&gt; <em># The minimum number of days a password must be...</em>
@@ -10502,9 +10509,14 @@ Valid values are `true`, `false`, `yes`, `no`.
 
 <h4 id="user-attribute-membership">membership</h4>
 
-Whether specified groups should be considered the **complete list**
-(`inclusive`) or the **minimum list** (`minimum`) of groups to which
-the user belongs. Defaults to `minimum`.
+If `minimum` is specified, Puppet will ensure that the user is a
+member of all specified groups, but will not remove any other groups
+that the user is a part of.
+
+If `inclusive` is specified, Puppet will ensure that the user is a
+member of **only** specified groups.
+
+Defaults to `minimum`.
 
 Valid values are `inclusive`, `minimum`.
 
@@ -12336,4 +12348,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-09-22 14:45:05 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
