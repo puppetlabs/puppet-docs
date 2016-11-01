@@ -4,13 +4,13 @@ title: "Puppet agent release notes"
 canonical: "/puppet/latest/reference/release_notes_agent.html"
 ---
 
-[Puppet 4.7.0]: /puppet/4.7/reference/release_notes.html#puppet-470
+[Puppet 4.8.0]: /puppet/4.8/reference/release_notes.html#puppet-480
 
-[Facter 3.4.1]: /facter/3.4/release_notes.html#facter-341
+[Facter 3.5.0]: /facter/3.5/release_notes.html#facter-341
 
 [Hiera 3.2.1]: /hiera/3.2/release_notes.html#hiera-321
 
-[MCollective 2.9.0]: /mcollective/releasenotes.html#2_9_0
+[MCollective 2.9.1]: /mcollective/releasenotes.html#2_9_1
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -29,10 +29,12 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
-Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.7 release notes](./release_notes.html).
+Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.8 release notes](./release_notes.html).
 
 ## Puppet agent 1.8.0
 
+Released November 1, 2016.
+
 ### Component updates
 
-### New platform
+Puppet agent 1.8.0 includes feature releases [Puppet 4.8.0][], and [Facter 3.5.0][], as well as Hiera 3.2.2, [MCollective 2.9.1][], and [pxp-agent][] 1.3.0.
