@@ -1,6 +1,7 @@
 require 'puppet_references'
 require 'pathname'
 require 'json'
+require 'versionomy'
 
 module PuppetReferences
   module VersionTables
@@ -36,6 +37,14 @@ module PuppetReferences
               'Hiera' => 'hiera.json',
               'MCollective' => 'marionette-collective.json'
           }
+          @component_name_patterns = {
+              'Ruby' => /^ruby(-[\d\.]+)?$/,
+              'OpenSSL' => /^openssl$/,
+              'Puppet' => /^puppet$/,
+              'Facter' => /^facter$/,
+              'Hiera' => /^hiera$/,
+              'MCollective' => /^marionette-collective$/
+          }
 
         end
 
@@ -47,17 +56,11 @@ module PuppetReferences
                 @versions_and_commits.map {|name, commit|
                   puts "#{name}..."
                   @repo.checkout(commit)
-                  components_hash = @component_files.reduce(Hash.new) {|result, (component, config)|
-                    component_file = PuppetReferences::AGENT_DIR + 'configs/components' + config
-                    if component_file.extname == '.json'
-                      result[component] = version_from_json(component_file)
-                    elsif component_file.extname == '.rb'
-                      result[component] = version_from_ruby(component_file)
-                    else
-                      raise("Unexpected file extension for #{component_file}")
-                    end
-                    result
-                  }
+                  if Versionomy.parse(name) < Versionomy.parse('1.8.0')
+                    components_hash = get_components_hash_pre_vanagon_0_7()
+                  else
+                    components_hash = get_components_hash()
+                  end
                   [name, components_hash]
                 }
             ]
@@ -65,9 +68,55 @@ module PuppetReferences
           @data
         end
 
+        # Before Vanagon 0.7, we have to actually just grep the component files. Boo.
+        def get_components_hash_pre_vanagon_0_7
+          @component_files.reduce(Hash.new) {|result, (component, config)|
+            component_file = PuppetReferences::AGENT_DIR + 'configs/components' + config
+            if component_file.extname == '.json'
+              result[component] = version_from_json(component_file)
+            elsif component_file.extname == '.rb'
+              result[component] = version_from_ruby(component_file)
+            else
+              raise("Unexpected file extension for #{component_file}")
+            end
+            result
+          }
+        end
+
+        def get_components_hash
+          # Make sure the bundle is fresh
+          @repo.update_bundle
+
+          # This might vary per-platform... but for now, we'll just take the most recent 64-bit EL version and hope.
+          platform = Dir.glob(PuppetReferences::AGENT_DIR.to_s + '/configs/platforms/*').map{|path| File.basename(path, '.rb')}.select{|path| path =~ /^el-\d+-x86_64/}.sort.last
+          puts "Using agent data for #{platform}"
+          inspect_command = PuppetReferences::PuppetCommand.new("inspect puppet-agent #{platform}", PuppetReferences::AGENT_DIR)
+          inspect_data = JSON.parse(inspect_command.get)
+
+          @component_name_patterns.reduce(Hash.new) {|result, (component, pattern)|
+            component_data = inspect_data.detect{|comp| comp['name'] =~ pattern}
+            if component_data.nil?
+              raise("Can't find #{component} on #{platform}! Possibly the name pattern (#{pattern.to_s}) changed (ugh why). Dumping ALL raw data for this version: \n#{inspect_data}")
+            end
+
+            if component_data['version']
+              result[component] = component_data['version']
+            elsif component_data['options']['ref']
+              result[component] = version_from_ref(component_data['options']['ref'])
+            else
+              raise("Can't figure out how to get version for #{component} on #{platform}. Dumping raw data: \n#{component_data}")
+            end
+            result
+          }
+        end
+
+        def version_from_ref(ref)
+          ref.split('/')[-1]
+        end
+
         def version_from_json(file)
           # We want the last component of a string like refs/tags/4.2.0.
-          JSON.load(File.read(file))['ref'].split('/')[-1]
+          version_from_ref(JSON.load(File.read(file))['ref'])
         end
 
         def version_from_ruby(file)
