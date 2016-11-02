@@ -270,13 +270,17 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party security announcements
 
+- [CVE-2016-6316: Rails (Action View) XSS Vulnerability](https://puppet.com/security/cve/cve-2016-6316)
+
+   Resolved in Puppet Enterprise 3.8.7
+
 - [OpenSSL September 2016 Security Fixes](https://puppet.com/security/cve/openssl-sep-2016-security-fixes)
 
-   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
+   Resolved in Puppet Enterprise 3.8.7 and Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
 
 - [PostgreSQL August 2016 Security Fixes](https://puppet.com/security/cve/postgresql-aug-2016-security-fixes)
 
-   Resolved in Puppet Enterprise 2016.4.0
+   Resolved in Puppet Enterprise 3.8.7 and Puppet Enterprise 2016.4.0
 
 - [Curl 2016 Security Fixes](https://puppet.com/security/cve/curl-2016-security-fixes)
 

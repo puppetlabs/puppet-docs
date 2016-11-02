@@ -166,7 +166,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe3.8.6
+      commit: origin/pe3.8.7
       subdirectory: source
     my_versions:
       puppet: 3.8
