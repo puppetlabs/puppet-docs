@@ -62,7 +62,7 @@ Required keys are labeled as such; the rest are optional.
 
 * `name` (required) --- The full name of your module, including the Puppet Forge username (like `"username-module"`).
 * `version` (required) --- The current version of your module. This should follow [semantic versioning](http://semver.org/).
-* `author` --- The person who gets credit for creating the module. If absent, this key will default to the username portion of `name`.
+* `author` (required) --- The person who gets credit for creating the module. If absent, this key will default to the username portion of `name`.
 * `license` (required) --- The license under which your module is made available. License metadata should match an identifier provided by [SPDX](http://spdx.org/licenses/).
 * `summary` (required) --- A one-line description of your module.
 * `source` (required) --- The source repository for your module.
