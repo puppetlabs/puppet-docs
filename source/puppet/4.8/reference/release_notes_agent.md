@@ -6,9 +6,9 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 
 [Puppet 4.8.0]: /puppet/4.8/reference/release_notes.html#puppet-480
 
-[Facter 3.5.0]: /facter/3.5/release_notes.html#facter-341
+[Facter 3.5.0]: /facter/3.5/release_notes.html#facter-350
 
-[Hiera 3.2.1]: /hiera/3.2/release_notes.html#hiera-321
+[Hiera 3.2.2]: /hiera/3.2/release_notes.html#hiera-322
 
 [MCollective 2.9.1]: /mcollective/releasenotes.html#2_9_1
 
@@ -37,4 +37,4 @@ Released November 1, 2016.
 
 ### Component updates
 
-Puppet agent 1.8.0 includes feature releases [Puppet 4.8.0][], and [Facter 3.5.0][], as well as Hiera 3.2.2, [MCollective 2.9.1][], and [pxp-agent][] 1.3.0.
+Puppet agent 1.8.0 includes feature releases [Puppet 4.8.0][], and [Facter 3.5.0][], as well as [Hiera 3.2.2][], [MCollective 2.9.1][], and [pxp-agent][] 1.3.0.
