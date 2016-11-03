@@ -103,7 +103,9 @@ MSI Property                                                   | Puppet Setting 
 
 Where Puppet and its dependencies should be installed.
 
-> **Note:** If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR` option when upgrading.
+> **Note:** By end of year 2016, running 32-bit Puppet agent on a 64-bit Windows system will be deprecated. Update your Puppet installation to the 64-bit platform by December 31, 2016.
+>
+> If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR` option when upgrading.
 >
 > If you are replacing 64-bit Puppet with a 32-bit version, you should **uninstall** Puppet before installing the new package. Be sure to re-specify any relevant MSI properties when re-installing.
 

@@ -93,7 +93,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/davis
+      commit: origin/pe2016.4.2
       subdirectory: source
     my_versions:
       puppet: 4.7
