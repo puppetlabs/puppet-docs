@@ -38,3 +38,10 @@ Released November 1, 2016.
 ### Component updates
 
 Puppet agent 1.8.0 includes feature releases [Puppet 4.8.0][], and [Facter 3.5.0][], as well as [Hiera 3.2.2][], [MCollective 2.9.1][], and [pxp-agent][] 1.3.0.
+
+### New platforms
+
+Packages now available for the following platforms:
+
+* Windows Server 2016
+* macOS Sierra
