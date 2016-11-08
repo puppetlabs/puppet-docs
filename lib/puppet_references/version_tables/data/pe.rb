@@ -95,7 +95,7 @@ module PuppetReferences
               lein_tree = `lein deps :tree`
               unless $?.success?
                 puts "
-ERROR: Uh, something weird went wrong. Probably one of two things:
+ERROR: Uh, something weird went wrong. Probably one of these things:
 
 * Are you not on the office wi-fi or the VPN?
   If not, Leiningen won't be able to get pe-puppetserver's dependencies,
@@ -105,7 +105,13 @@ ERROR: Uh, something weird went wrong. Probably one of two things:
 * Is Java uninstalled?
   Sometimes (when you upgrade your OS?) you can end up in a situation where
   Leiningen is installed, but Java no longer is. Try running `java -version` and
-  see what happens, then follow up if necessary."
+  see what happens, then follow up if necessary.
+
+* Is Lein outdated?
+  This doesn't happen very often, but it's possible our Clojure projects have
+  started using a new lein feature, and your outdated lein is exploding when
+  they try to call a new function. If you've already checked the first two, run
+  `lein upgrade` to be certain."
                 exit(1)
               end
             rescue Errno::ENOENT

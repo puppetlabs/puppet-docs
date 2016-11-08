@@ -1,0 +1,32 @@
+---
+# The system requirements page was split out into four pages in 2016.4. In old versions, redirect the new pages to the old one. (DOC-2891)
+- in_doc: pe
+  was: install_system_requirements.html
+  became:
+    - sys_req_hw.html
+    - sys_req_os.html
+    - sys_req_browsers.html
+    - sys_req_sysconfig.html
+  at_version: 2016.4
+
+# Redirect mcollective pages to pages with new pages with mco prefix (as /orchestration was colliding with orchestration re: the orchestrator)
+- in_doc: pe
+  was: orchestration_actions.html
+  became: mco_actions.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_adding_actions.html
+  became: mco_adding_actions.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_config.html
+  became: mco_config.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_invoke_cli.html
+  became: mco_invoke_cli.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_overview.html
+  became: mco_overview.html
+  at_version: 2016.2

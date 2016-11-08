@@ -156,7 +156,7 @@ We publish some premium modules exclusively for Puppet Enterprise users. To inst
 
 After you've run `puppet module install puppetlabs-<MODULE>` you can move the installed module to the directory, server, or version control system repository of your choice.
 
-If you need to install a PE-only module on a PE node that doesn't have internet access, download the package on a:
+If you need to install a PE-only module on a PE node that doesn't have internet access, move the package:
 
 1. Run `puppet module install puppetlabs-<MODULE>` on a licensed node with internet access.
 2. Run `puppet module build` to build the newly-installed module.

@@ -8,25 +8,25 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
-- [CVE-2016-5715 - Arbitrary URL Redirection in Puppet Enterprise Console](puppet.com/security/cve/cve-2016-5715)
+- [CVE-2016-5715 - Arbitrary URL Redirection in Puppet Enterprise Console](https://puppet.com/security/cve/cve-2016-5715)
 
    Resolved in Puppet Enterprise 2016.4.0
 
-- [Puppet Execution Protocol (PXP) Command Whitelist Validation Vulnerability](puppet.com/security/cve/pxp-agent-oct-2016)
+- [Puppet Execution Protocol (PXP) Command Whitelist Validation Vulnerability](https://puppet.com/security/cve/pxp-agent-oct-2016)
 
    Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
 
-- [Puppet Communications Protocol (PCP) Broker String Validation Vulnerability](puppet.com/security/cve/pcp-broker-oct-2016)
+- [Puppet Communications Protocol (PCP) Broker String Validation Vulnerability](https://puppet.com/security/cve/pcp-broker-oct-2016)
 
    Resolved in Puppet Enterprise 2016.4.0
 
-- [Remote Code Execution in Puppet Enterprise Console](puppet.com/security/cve/pe-console-oct-2016)
+- [Remote Code Execution in Puppet Enterprise Console](https://puppet.com/security/cve/pe-console-oct-2016)
 
    Resolved in Puppet Enterprise 2016.4.0
 
-- [CVE-2016-5714 - Unprivileged Access to Environment Catalogs](puppet.com/security/cve/cve-2016-5714)
+- [CVE-2016-5714 - Unprivileged Access to Environment Catalogs](https://puppet.com/security/cve/cve-2016-5714)
 
-   Resolved in Puppet Enterprise 2016.4.0
+   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.0
 
 - [CVE-2016-5713 - Environment Leakage in pxp-module-puppet](https://puppet.com/security/cve/cve-2016-5713)
 
@@ -270,15 +270,19 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party security announcements
 
-- [OpenSSL September 2016 Security Fixes](puppet.com/security/cve/openssl-sep-2016-security-fixes)
+- [CVE-2016-6316: Rails (Action View) XSS Vulnerability](https://puppet.com/security/cve/cve-2016-6316)
 
-   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
+   Resolved in Puppet Enterprise 3.8.7
 
-- [PostgreSQL August 2016 Security Fixes](puppet.com/security/cve/postgresql-aug-2016-security-fixes)
+- [OpenSSL September 2016 Security Fixes](https://puppet.com/security/cve/openssl-sep-2016-security-fixes)
 
-   Resolved in Puppet Enterprise 2016.4.0
+   Resolved in Puppet Enterprise 3.8.7 and Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
 
-- [Curl 2016 Security Fixes](puppet.com/security/cve/curl-2016-security-fixes)
+- [PostgreSQL August 2016 Security Fixes](https://puppet.com/security/cve/postgresql-aug-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 3.8.7 and Puppet Enterprise 2016.4.0
+
+- [Curl 2016 Security Fixes](https://puppet.com/security/cve/curl-2016-security-fixes)
 
    Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
 
