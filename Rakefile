@@ -205,6 +205,16 @@ task :symlink_latest_versions do
   end
 end
 
+desc "Generate bidirectional redirects using the source/_redirects.yaml file, and write them to the Nginx config file in the output dir"
+task :generate_redirects do
+  require 'puppet_docs/auto_redirects'
+  nginx_config = "#{OUTPUT_DIR}/nginx_rewrite.conf"
+  redirects_yaml = "#{SOURCE_DIR}/_redirects.yaml"
+  generated_lines = PuppetDocs::AutoRedirects.generate(@config_data, redirects_yaml)
+  File.open(nginx_config, 'a') {|f| f.write(generated_lines)}
+end
+
+
 desc "Serve generated output on port 9292"
 task :serve do
   system("rackup")
@@ -257,6 +267,7 @@ desc "Build the documentation site and prepare it for deployment"
 task :build do
   Rake::Task['check_git_dirty_status'].invoke
   Rake::Task['generate'].invoke
+  Rake::Task['generate_redirects'].invoke
   Rake::Task['write_version'].invoke
 end
 
