@@ -247,7 +247,7 @@ documents:
     my_versions:
       facter: 3.5
       hiera: 3.2
-      puppetserver: 2.6
+      puppetserver: 2.7
   /puppet/4.7/reference:
     doc: puppet
     version: 4.7
@@ -424,6 +424,18 @@ documents:
     version: 1
     nav: /_includes/hiera1.html
 
+  /puppetserver/2.7:
+    doc: puppetserver
+    version: 2.7
+    nav: /puppet/4.8/reference/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 4b9f214382e690a8c62317fab3a499d79694aae7
+      subdirectory: documentation
+    my_versions:
+      puppet: 4.8
+      facter: 3.5
+      hiera: 3.2
   /puppetserver/2.6:
     doc: puppetserver
     version: 2.6
