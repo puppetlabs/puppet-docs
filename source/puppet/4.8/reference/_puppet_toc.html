@@ -90,7 +90,7 @@
           <li><a href="{{puppet}}/config_file_routes.html">routes.yaml: Advanced plugin routing</a></li>
         </ul>
       </li>
-      <li><strong>Configuring Puppet Server</strong>
+      {% capture configuring_puppet_server %}<li><strong>Configuring Puppet Server</strong>
         <ul>
           <li><a href="{{puppetserver}}/configuration.html">Puppet Server's config files</a></li>
           <li><a href="{{puppetserver}}/config_file_puppetserver.html">puppetserver.conf: Main config file</a></li>
@@ -105,7 +105,7 @@
           <li><a href="{{puppetserver}}/config_logging_advanced.html">Advanced logging configuration</a></li>
           <li><a href="{{puppetserver}}/bootstrap_upgrade_notes.html">Bootstrap upgrade notes</a></li>
         </ul>
-      </li>
+      </li>{% endcapture %}{{ configuring_puppet_server }}
       <li><a href="{{puppet}}/config_print.html">Checking values of settings</a></li>
       <li><a href="{{puppet}}/config_set.html">Editing settings on the command line</a></li>
       <li><a href="{{puppet}}/configuration.html">Complete list of settings (configuration reference)</a></li>
@@ -170,18 +170,7 @@
       <li><a href="{{puppetserver}}/deprecated_features.html">Deprecated features</a></li>
       <li><a href="{{puppetserver}}/puppetserver_vs_passenger.html">Notable differences vs. the Apache/Passenger stack</a></li>
       <li><a href="{{puppetserver}}/install_from_packages.html">Installation</a></li>
-      <li><strong>Configuring Puppet Server</strong>
-        <ul>
-          <li><a href="{{puppetserver}}/configuration.html">Puppet Server's config files</a></li>
-          <li><a href="{{puppetserver}}/config_file_puppetserver.html">puppetserver.conf: Main config file</a></li>
-          <li><a href="{{puppetserver}}/config_file_auth.html">auth.conf: Access control</a></li>
-          <li><a href="{{puppetserver}}/config_file_webserver.html">webserver.conf: Jetty web server config</a></li>
-          <li><a href="{{puppetserver}}/config_file_web-routes.html">web-routes.conf: Mount points for component services</a></li>
-          <li><a href="{{puppetserver}}/config_file_global.html">global.conf: Trapperkeeper settings</a></li>
-          <li><a href="{{puppetserver}}/config_file_ca.html">ca.conf: CA service access control (deprecated)</a></li>
-          <li><a href="{{puppetserver}}/config_file_master.html">master.conf: Authorization by HTTP header (deprecated)</a></li>
-        </ul>
-      </li>
+      {{ configuring_puppet_server }}
       <li><a href="{{puppetserver}}/puppet_conf_setting_diffs.html">Differing behavior in puppet.conf</a></li>
       <li><a href="{{puppetserver}}/gems.html">Using Ruby gems</a></li>
       <li><a href="{{puppetserver}}/subcommands.html">Subcommands</a></li>
