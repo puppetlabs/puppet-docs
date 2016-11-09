@@ -1,6 +1,4 @@
 require 'yaml'
-require 'pathname'
-require 'versionomy'
 
 module PuppetDocs
   module AutoRedirects
