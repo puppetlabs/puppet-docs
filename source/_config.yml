@@ -106,7 +106,7 @@ documents:
     draft: true
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.2
+      commit: origin/pe2016.4.3
       subdirectory: source
     my_versions:
       puppet: 4.7
