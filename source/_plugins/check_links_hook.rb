@@ -1,5 +1,6 @@
 require 'pathname'
 require 'puppet_docs/versions'
+require 'puppet_docs/auto_redirects'
 require 'yaml'
 
 Jekyll::Hooks.register :site, :post_render do |site|
@@ -8,11 +9,12 @@ Jekyll::Hooks.register :site, :post_render do |site|
     puts 'Checking internal links! This can take upwards of 20m.'
     DOCS_HOSTNAME = 'docs.puppetlabs.com'
     PREVIEW_HOSTNAMES = %r{^(https?:)?//docspreview\d\.(puppetlabs\.lan|ops\.puppetlabs\.net)}
-    NGINX_CONFIG = "#{site.source}/nginx_rewrite.conf"
+    NGINX_CONFIG = File.read("#{site.source}/nginx_rewrite.conf")
+    GENERATED_REDIRECTS = PuppetDocs::AutoRedirects.generate(site.config, "#{site.source}/_redirects.yaml")
 
     link_test_results = {}
     link_regex = %r{<[^>]+(href|src)=(['"])([^'"]+)\2}i
-    redirections = File.read(NGINX_CONFIG).scan(%r{^rewrite\s+(\S+)}).map{|ary| Regexp.new(ary[0]) }
+    redirections = (NGINX_CONFIG + GENERATED_REDIRECTS).scan(%r{^rewrite\s+(\S+)}).map{|ary| Regexp.new(ary[0]) }
 
     site.pages.each do |page|
       puts "testing #{page.url}"
