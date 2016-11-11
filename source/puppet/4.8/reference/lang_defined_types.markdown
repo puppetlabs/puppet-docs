@@ -9,7 +9,7 @@ canonical: "/puppet/latest/reference/lang_defined_types.html"
 [namespaces]: ./lang_namespaces.html
 [collector]: ./lang_collectors.html
 [resource]: ./lang_resources.html
-[naming]: ./lang_reserved.html#classes-and-defined-types
+[naming]: ./lang_reserved.html#classes-and-defined-resource-types
 [resource_namevar]: ./lang_resources.html#namenamevar
 [relationships]: ./lang_relationships.html
 [resource_title]: ./lang_resources.html#title

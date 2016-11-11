@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/services_apply.html"
 [puppetdb]: {{puppetdb}}/
 [report handlers]: ./report.html
 [reports_setting]: ./configuration.html#reports
-[reports_guide]: /guides/reporting.html
+[report]: ./reporting_about.html
 [puppet.conf]: ./config_file_main.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 
@@ -98,7 +98,7 @@ When started with the `--logdest <FILE>` option, it logs to the file specified b
 
 ### Reporting
 
-In addition to local logging, Puppet apply will process a report using its configured [report handlers][], like a Puppet master does. You can enable different reports with [the `reports` setting][reports_setting]; see the [list of available reports][report handlers] for more info. For more about reporting, see [the guide to reporting][reports_guide].
+In addition to local logging, Puppet apply will process a report using its configured [report handlers][], like a Puppet master does. You can enable different reports with [the `reports` setting][reports_setting]; see the [list of available reports][report handlers] for more info. For more about reporting, see [the docs on reporting][report].
 
 To disable reporting and avoid taking up disk space with the `store` report handler, you can set [`report = false`](./configuration.html#report) in [puppet.conf][].
 
