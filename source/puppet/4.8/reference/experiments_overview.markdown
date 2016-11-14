@@ -16,7 +16,7 @@ By shipping these features early in disabled form, we hope to lower the bar for 
 
 ## Risks and Support
 
-Experimental features are **not officially supported** by Puppet Labs, and we do not recommend that you turn them on in a production environment. They are available for testing in relatively safe scratch environments, and are used **at your own risk.** Puppet employees and community members will do their best to help you in informal channels like IRC and the puppet-users and puppet-dev mailing lists, but we make no promises about experimental functionality.
+Experimental features are **not officially supported** by Puppet, and we do not recommend that you turn them on in a production environment. They are available for testing in relatively safe scratch environments, and are used **at your own risk.** Puppet employees and community members will do their best to help you in informal channels like IRC and the puppet-users and puppet-dev mailing lists, but we make no promises about experimental functionality.
 
 Enabling experimental features might degrade the performance of your Puppet infrastructure, interfere with the normal operation of your managed nodes, introduce unexpected security risks, or have other undesired effects.
 

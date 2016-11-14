@@ -28,7 +28,7 @@ This version of Puppet supports _some_ external CA configurations, but not every
     * The other intermediate CA issues SSL certificates for agent nodes.
     * Agent certificates can't act as servers, and master certificates can't act as clients.
 
-These are fully supported by Puppet Labs, which means:
+These are fully supported by Puppet, which means:
 
 * Issues that arise in one of these three arrangements are considered **bugs,** and we'll fix them ASAP.
 * Issues that arise in any _other_ external CA setup are considered **feature requests,** and we'll consider whether to expand our support.

@@ -68,4 +68,4 @@ For more examples using this API, see [the built-in reports' source](https://git
 * [Report failed runs to Jabber/XMPP](https://github.com/jamtur01/puppet-xmpp)
 * [Send metrics to a Ganglia server via gmetric](https://github.com/jamtur01/puppet-ganglia)
 
-These community reports aren't provided or guaranteed by Puppet Labs.
+These community reports aren't provided or guaranteed by Puppet.

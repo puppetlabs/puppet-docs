@@ -37,7 +37,7 @@ This guide will step you through the following tasks:
 
 ## Install the puppetlabs-ntp module
 
-The puppetlabs-ntp module is part of the [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet Labs. You can learn more about the puppetlabs-ntp module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp).
+The puppetlabs-ntp module is part of the [supported modules](http://forge.puppetlabs.com/supported) program; these modules are supported, tested, and maintained by Puppet. You can learn more about the puppetlabs-ntp module by visiting [http://forge.puppetlabs.com/puppetlabs/ntp](http://forge.puppetlabs.com/puppetlabs/ntp).
 
 **To install the puppetlabs-ntp module**:
 
