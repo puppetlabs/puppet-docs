@@ -6,13 +6,13 @@ canonical: "/upgrade/index.html"
 
 ## Your guide to modernizing your infrastructure
 
-Puppet 4.0 was an open source release in April 2015, and rolled into Puppet Enterprise 2015.2 a few months later. It was the first major version release of Puppet since 2012 and contained some great improvements, which subsequent releases have built upon and expanded. But as everyone who runs production systems knows, every change also contains an element of risk. Why fix what isn’t broken? As a result, our community is split fairly evenly between people who are staying current with the latest versions, and those who are still running a Puppet 3 based infrastructure.
+Puppet 4.0 released to the open-source community in April 2015, and rolled into Puppet Enterprise 2015.2 a few months later. It was the first major version release of Puppet since 2012 and contained some great improvements, which subsequent releases have built upon and expanded. But as everyone who runs production systems knows, every change also contains an element of risk. Why fix what isn’t broken? As a result, our community is split fairly evenly between people who are staying current with the latest versions, and those who are still running a Puppet 3 based infrastructure.
 
-However, support for Puppet 3 won't last forever. December 31, 2016 is our projected end of service date for Puppet 3. From then on, Puppet's energies to solely toward Puppet 4 and following. We want to bring the whole community forward onto the latest versions. This guide provides the information you need to upgrade to Puppet 4~, whether you're curious about the benefits of Puppet, you know you want to upgrade but aren't sure where to start, or you're a module author who wants to take advantage of the powerful features of the enhanced Puppet language.
+However, **December 31, 2016 is the end of life date for Puppet 3**. From then on, the company and community are going to focus on supporting Puppet 4 and following. We want to bring the whole ecosystem forward onto the latest versions. This guide provides the information you need to upgrade to Puppet 4, whether you're curious about the benefits of Puppet, you know you want to upgrade but aren't sure where to start, or you're a module author who wants to take advantage of the powerful features of the enhanced Puppet language.
 
 Follow the guide outlined on the [Upgrade steps page](/upgrade/upgrade_steps.html), or use the links to the left for upgrade resources.
 
-**Note:** If you are looking for information about upgrading from Puppet 4.x to the latest, see the [ minor upgrades section of the Puppet documentation](./puppet/4.6/reference/upgrade_minor.html). For upgrading PE to the latest from 2015.2 or newer, see [Upgrading PE: monolithic](.).
+**Note:** If you are looking for information about upgrading from Puppet 4.x to the latest feature release, see the [minor upgrades section of the Puppet documentation](./puppet/4.6/reference/upgrade_minor.html). For upgrading PE to the latest from 2015.2 or newer, see [Upgrading PE: monolithic](.).
 
 ## What's so awesome about Puppet 4, anyway?
 
