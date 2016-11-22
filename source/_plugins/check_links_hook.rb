@@ -1,18 +1,20 @@
 require 'pathname'
 require 'puppet_docs/versions'
+require 'puppet_docs/auto_redirects'
 require 'yaml'
 
 Jekyll::Hooks.register :site, :post_render do |site|
   if site.config['check_links']
 
     puts 'Checking internal links! This can take upwards of 20m.'
-    DOCS_HOSTNAME = 'docs.puppetlabs.com'
+    DOCS_HOSTNAME = /(docs.puppetlabs.com|docs.puppet.com)/
     PREVIEW_HOSTNAMES = %r{^(https?:)?//docspreview\d\.(puppetlabs\.lan|ops\.puppetlabs\.net)}
-    NGINX_CONFIG = "#{site.source}/nginx_rewrite.conf"
+    NGINX_CONFIG = File.read("#{site.source}/nginx_rewrite.conf")
+    GENERATED_REDIRECTS = PuppetDocs::AutoRedirects.generate(site.config, "#{site.source}/_redirects.yaml")
 
     link_test_results = {}
     link_regex = %r{<[^>]+(href|src)=(['"])([^'"]+)\2}i
-    redirections = File.read(NGINX_CONFIG).scan(%r{^rewrite\s+(\S+)}).map{|ary| Regexp.new(ary[0]) }
+    redirections = (NGINX_CONFIG + GENERATED_REDIRECTS).scan(%r{^rewrite\s+(\S+)}).map{|ary| Regexp.new(ary[0]) }
 
     site.pages.each do |page|
       puts "testing #{page.url}"
@@ -32,7 +34,7 @@ Jekyll::Hooks.register :site, :post_render do |site|
         if path =~ /^(mailto|ftp|&)/ # then we don't care, byeeeee
           next
         elsif path =~ %r{^(https?:)?//} # it's internal-with-hostname, external, or broken in an interesting way.
-          if path =~ /#{DOCS_HOSTNAME}/ # it's internal!
+          if path =~ DOCS_HOSTNAME # it's internal!
             link_test_results[page.relative_path][:internal_with_hostname] << link
             # continue and see if it actually resolves. Get the path portion.
             path = path.split(DOCS_HOSTNAME, 2)[1]

@@ -7,7 +7,7 @@ canonical: "/puppet/latest/lang_write_functions_in_puppet.html"
 [defined_types]: ./lang_defined_types.html
 [literal_types]: ./lang_data_type.html
 [modules]: ./modules_fundamentals.html
-[naming]: ./lang_reserved.html#classes-and-defined-types
+[naming]: ./lang_reserved.html#classes-and-defined-resource-types
 [namespace]: ./lang_namespaces.html
 [resource]: ./lang_resources.html
 [resource_defaults]: ./lang_defaults.html

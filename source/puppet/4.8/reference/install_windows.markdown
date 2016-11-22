@@ -31,7 +31,7 @@ To install on other operating systems, see the pages linked in the navigation si
 
 ## Download the Windows `puppet-agent` package
 
-[Puppet Labs' Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
+[Puppet's Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
 
 * 64-bit versions of Windows can use `puppet-agent-<VERSION>-x64.msi` (recommended) or `puppet-agent-<VERSION>-x86.msi`.
 * 32-bit versions of Windows _must_ use `puppet-agent-<VERSION>-x86.msi`.

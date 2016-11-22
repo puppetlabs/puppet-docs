@@ -20,7 +20,7 @@ canonical: "/puppet/latest/reference/services_master_unix.html"
 [auth.conf]: ./config_file_auth.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [page on triggering puppet runs]: {{pe}}/orchestration_puppet.html
-[report]: /guides/reporting.html
+[report]: ./reporting_about.html
 
 Puppet agent is the application that manages configurations on nodes. It requires a Puppet master server to fetch configuration [catalogs][] from. (For more info, see [Overview of Puppet's Architecture](./architecture.html).)
 

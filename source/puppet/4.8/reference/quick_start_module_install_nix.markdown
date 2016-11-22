@@ -46,7 +46,7 @@ The process for installing a module is the same on both Windows and *nix operati
 >
 >**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 
->`puppetlabs-apache` is a [PE-supported module](https://forge.puppetlabs.com/supported). It is tested and maintained by Puppet Labs, and Puppet Enterprise users are able to file support escalations on these modules.
+>`puppetlabs-apache` is a [PE-supported module](https://forge.puppetlabs.com/supported). It is tested and maintained by Puppet, and Puppet Enterprise users are able to file support escalations on these modules.
 
 --------
 

@@ -14,12 +14,12 @@ canonical: "/puppet/latest/reference/modules_installing.html"
 [fundamentals]: ./modules_fundamentals.html
 [plugins]: ./plugins_in_modules.html
 [documentation]: ./modules_documentation.html
-[errors]: /windows/troubleshooting.html#error-messages
+[errors]: {{pe}}/troubleshooting_windows.html#error-messages
 [metadata.json]: ./modules_metadata.html
 
 [code_mgr]: {{pe}}/code_mgr.html
 [r10k]: {{pe}}/r10k.html
-[puppetfile]: {{pe}}/codemgmt_puppetfile.html
+[puppetfile]: {{pe}}/cmgmt_puppetfile.html
 
 [approved]: https://forge.puppet.com/approved
 [supported]: https://forge.puppet.com/supported
@@ -150,7 +150,7 @@ sudo puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependenci
 We publish some premium modules exclusively for Puppet Enterprise users. To install a [Puppet Enterprise module](/forge/puppetenterprisemodules) you must:
 
 * Be logged in as the root user.
-* Use the [Puppet module tool](#using-the-module-tool) (unless you are using a [Puppetfile][puppetfile].
+* Use the [Puppet module tool](#about-puppet-module) (unless you are using a [Puppetfile][puppetfile].
 * Install the module on a properly licensed Puppet node.
 * Have internet access on the node you are using to download the module.
 
@@ -163,7 +163,7 @@ If you need to install a PE-only module on a PE node that doesn't have internet 
 3. Move the *.tar.gz wherever you choose.
 4. Run `puppet module install` against the tar.gz.
 
-As mentioned in the instructions for [installing from a tarball](#installing-from-a-release-tarball), when installing on a node without internet access, you must manually install any dependencies.
+As mentioned in the instructions for [installing from a tarball](#install-from-a-release-tarball), when installing on a node without internet access, you must manually install any dependencies.
 
 ## Managing modules
 
@@ -201,12 +201,12 @@ By default, the tool won't uninstall a module that other modules depend on, or w
 
 ### Managing Puppet Enterprise modules
 
-If you manage Puppet Enterprise modules with [librarian-puppet](https://github.com/rodjek/librarian-puppet), you must first [install the module](#installing-puppet-enterprise-modules), and then commit the module to your version control repository.
+If you manage Puppet Enterprise modules with [librarian-puppet](https://github.com/rodjek/librarian-puppet), you must first [install the module](#install-puppet-enterprise-modules), and then commit the module to your version control repository.
 
 To upgrade your Puppet Enterprise module, as with installation, you must:
 
 * Be logged in as the root user.
-* Use the [Puppet module tool](#using-the-module-tool).
+* Use the [Puppet module tool](#about-puppet-module).
 * Install the module on a properly licensed Puppet node.
 * Have internet access on the node you are using to download the module.
 

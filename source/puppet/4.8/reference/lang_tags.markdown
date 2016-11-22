@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/lang_tags.html"
 [classes]: ./lang_classes.html
 [defined]: ./lang_defined_types.html
 [collectors]: ./lang_collectors.html
-[reports]: /guides/reporting.html#make-masters-process-reports
+[reports]: ./reporting_about.html
 [report_format]: ./format_report.html
 [tagmail]: https://forge.puppetlabs.com/puppetlabs/tagmail
 [tagmeta]: ./metaparameter.html#tag

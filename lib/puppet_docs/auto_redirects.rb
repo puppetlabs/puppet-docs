@@ -1,6 +1,4 @@
 require 'yaml'
-require 'pathname'
-require 'versionomy'
 
 module PuppetDocs
   module AutoRedirects
@@ -21,8 +19,7 @@ module PuppetDocs
     #   became: mco_actions.html
     #   at_version: 2016.2
     #
-    # The "was" and "became" keys can be either strings or arrays, and you can
-    # use a small amount of regex syntax in them to match multiple files.
+    # The "was" and "became" keys can be either strings or arrays.
     def self.generate(config, redirects_yaml)
       redirects = YAML.load(File.read(redirects_yaml))
 

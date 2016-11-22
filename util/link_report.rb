@@ -22,6 +22,9 @@ LINK_CHECK_YAML = File.join(File.dirname(__FILE__), '..', 'link_test_results.yam
 USING_HOSTNAME_IS_OK = [
   %r{^/puppet/[^/]+/reference/(function\.|http_api/|indirection\.|configuration\.|man/|metaparameter\.|report\.|type\.|types/)}
 ]
+EXCEPTIONS = [
+  '#page-nav' # Outside the content area (and thus excluded from the page source), but present on every page.
+]
 
 all_info = YAML.load( File.read( LINK_CHECK_YAML ))
 
@@ -52,6 +55,9 @@ subset.each do |page, report|
     next unless kinds.include?(kind)
     puts "--#{kinds[kind]}"
     links.each do |link|
+      if EXCEPTIONS.include?(link)
+        next
+      end
       puts "    #{link}"
     end
     puts ""

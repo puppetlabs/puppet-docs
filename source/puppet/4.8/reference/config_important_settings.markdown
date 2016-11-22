@@ -16,7 +16,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [modulepath_dir]: ./dirs_modulepath.html
 [manifest_dir]: ./dirs_manifest.html
 [report_reference]: ./report.html
-[write_reports]: /guides/reporting.html#writing-custom-reports
+[write_reports]: ./reporting_write_processors.html
 [passenger_headers]: ./passenger.html#notes-on-ssl-verification
 [puppetdb_install]: {{puppetdb}}/connect_puppet_master.html
 [static_compiler]: ./indirection.html#staticcompiler-terminus
@@ -81,7 +81,7 @@ canonical: "/puppet/latest/reference/config_important_settings.html"
 [puppet_admin]: {{puppetserver}}/config_file_puppetserver.html
 [jruby_puppet]: {{puppetserver}}/tuning_guide.html#puppet-server-and-jruby
 [jvm_heap_config]: {{puppetserver}}/install_from_packages.html#memory-allocation
-[puppetserver_ca]: {{puppetserver}}/puppet_conf_setting_diffs.html#cahttpsdocspuppetlabscomreferenceslatestconfigurationhtmlca
+[puppetserver_ca]: {{puppetserver}}/puppet_conf_setting_diffs.html#cahttpsdocspuppetcompuppetlatestreferenceconfigurationhtmlca
 [service_bootstrap]: {{puppetserver}}/configuration.html#service-bootstrapping
 [trusted_server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
 

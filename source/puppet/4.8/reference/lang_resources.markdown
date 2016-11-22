@@ -8,7 +8,7 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [virtual]: ./lang_virtual.html
 [containment]: ./lang_containment.html
 [scope]: ./lang_scope.html
-[report]: /guides/reporting.html
+[report]: ./reporting_about.html
 [types]: ./type.html
 [string]: ./lang_data_string.html
 [array]: ./lang_data_array.html

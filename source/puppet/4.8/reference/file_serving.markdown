@@ -8,6 +8,7 @@ title: "Adding file server mount points"
 [auth.conf]: {{puppetserver}}/config_file_auth.html
 [auth_legacy]: ./config_file_auth.html
 [disable_legacy]: {{puppetserver}}/config_file_puppetserver.html
+[external facts]: {{facter}}/custom_facts.html#external-facts
 
 Puppet Server includes a file server for transferring static file content to agents; this is what's used whenever a `file` resource has a `source => puppet:///...` attribute specified.
 
@@ -34,6 +35,7 @@ Puppet URIs are constructed like this:
     * Custom mount points correspond to an arbitrary directory. The rest of this page is about these.
     * The special `modules` mount point serves files from the `files` directory of every module. It behaves as if someone had copied the `files` directory from every module into one big directory, renaming each of them with the name of their module. (So the files in `apache/files/...` are available at `puppet:///modules/apache/...`, etc.)
     * The special `plugins` mount point serves files from the `lib` directory of every module. It behaves as if someone had copied the _contents_ of every `lib` directory into one big directory, with no additional namespacing. Puppet agent uses this mount point when syncing plugins before a run, but there's no reason to use it in a `file` resource.
+    * The special `pluginfacts` mount point serves files from the `facts.d` directory of every module, to support [external facts][]. It behaves like the `plugins` mount point, but with a different source directory.
 * `<PATH>` is the remainder of the path to the file, starting from the directory (or imaginary directory) that corresponds to the mount point.
 
 ## Creating a new mount point in `fileserver.conf`
