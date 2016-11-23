@@ -5,6 +5,8 @@ canonical: "/puppet/latest/reference/release_notes_agent.html"
 ---
 
 [Puppet 4.8.0]: /puppet/4.8/reference/release_notes.html#puppet-480
+[Puppet 4.8.1]: /puppet/4.8/reference/release_notes.html#puppet-481
+
 
 [Facter 3.5.0]: /facter/3.5/release_notes.html#facter-350
 
@@ -30,6 +32,14 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.8 release notes](./release_notes.html).
+
+## Puppet agent 1.8.1
+
+Released November 22, 2016.
+
+### Component updates
+
+This is a minor release in the Puppet agent 1.8 series. It is primarily a maintenance and bug fix release, with an update to [Puppet 4.8.1][].
 
 ## Puppet agent 1.8.0
 

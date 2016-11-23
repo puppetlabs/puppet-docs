@@ -18,6 +18,21 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), s
 
 Also of interest: the [Puppet 4.7 release notes](/puppet/4.7/reference/release_notes.html) and [Puppet 4.6 release notes](/puppet/4.6/reference/release_notes.html).
 
+## Puppet 4.8.1
+
+Released November 22, 2016.
+
+* [Fixed in Puppet 4.8.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.8.1%27)
+* [Introduced in Puppet 4.8.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.8.1%27)
+
+This is a minor maintenance and bug fix release.
+
+### Bug fixes
+
+* [PUP-6876](https://tickets.puppetlabs.com/browse/PUP-6876): `puppet config set` and `puppet config print` now behave properly when using UTF-8 characters in the puppet.conf INI file.
+
+* [PUP-6861](https://tickets.puppetlabs.com/browse/PUP-6861): In Puppet 4.8.0, a new functionality was added to the mount provider intended to detect if a mounted filesystem did not match /etc/fstab. Unfortunately, there is not a reliable mechanism for doing this and the detection did not work as intended. It has been removed.
+
 ## Puppet 4.8.0
 
 Released November 1, 2016.
