@@ -1,15 +1,17 @@
 ---
-# The system requirements page was split out into four pages in 2016.4. In old versions, redirect the new pages to the old one. (DOC-2891)
-- in_doc: pe
-  was: install_system_requirements.html
+# Full documentation at https://confluence.puppetlabs.com/display/DOCS/Redirecting+pages. But basically, just follow the examples below.
+# Put a comment before each group of redirects. Like this:
+# The system requirements page was split out into four pages in 2016.4. (DOC-2891)
+- in_doc: pe    # One of our 5-or-so canonical "document IDs," as used in _config.yml. "pe", "puppet", "puppetdb", etc.
+  was: install_system_requirements.html   # Paths are always relative to the "base URL" of the document. So this refers to "https://docs.puppet.com/pe/<VERSION>/install_system_requirements.html".
   became:
-    - sys_req_hw.html
+    - sys_req_hw.html   # You can use a list of pages in "was" and/or "became". Put the most important/relevant one FIRST, since that's where you land if you use the version switcher.
     - sys_req_os.html
     - sys_req_browsers.html
     - sys_req_sysconfig.html
   at_version: 2016.4
 
-# Redirect mcollective pages to pages with new pages with mco prefix (as /orchestration was colliding with orchestration re: the orchestrator)
+# Redirect orchestration_* -> mco_* (old marketing terminology was colliding with new product terminology)
 - in_doc: pe
   was: orchestration_actions.html
   became: mco_actions.html
