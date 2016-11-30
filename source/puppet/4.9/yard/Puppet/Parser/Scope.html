@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Puppet::Parser::Scope
+  
+    &mdash; Documentation by YARD 0.9.5
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Puppet::Parser::Scope";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Parser</span></span>
+     &raquo; 
+    <span class="title">Scope</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
+
+      <div id="content"><h1>Class: Puppet::Parser::Scope
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Parser::Scope</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  <dl>
+      <dt>Extended by:</dt>
+      <dd>Forwardable</dd>
+  </dl>
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../Util/Errors.html" title="Puppet::Util::Errors (module)">Util::Errors</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/puppet/parser/scope.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>This class is part of the internal parser/evaluator/compiler functionality of Puppet.
+It is passed between the various classes that participate in evaluation.
+None of its methods are API except those that are clearly marked as such.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Scope/ParameterScope.html" title="Puppet::Parser::Scope::ParameterScope (class)">ParameterScope</a></span>
+    
+  
+</p>
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D-instance_method" title="#[] (instance method)">#<strong>[]</strong>(varname, options = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Retrieves the variable value assigned to the name given as an argument.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D%3D-instance_method" title="#[]= (instance method)">#<strong>[]=</strong>(varname, value, options = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Sets the variable value of the name given as an argument to the given value.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_builtin_resource_type-instance_method" title="#find_builtin_resource_type (instance method)">#<strong>find_builtin_resource_type</strong>(type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_defined_resource_type-instance_method" title="#find_defined_resource_type (instance method)">#<strong>find_defined_resource_type</strong>(type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#find_resource_type-instance_method" title="#find_resource_type (instance method)">#<strong>find_resource_type</strong>(type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#lookupvar-instance_method" title="#lookupvar (instance method)">#<strong>lookupvar</strong>(name, options = {})  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Lookup a variable within this scope using the Puppet language&#39;s scoping rules.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pop_ephemerals-instance_method" title="#pop_ephemerals (instance method)">#<strong>pop_ephemerals</strong>(level)  &#x21d2; Array </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Pop ephemeral scopes up to level and return them.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#push_ephemerals-instance_method" title="#push_ephemerals (instance method)">#<strong>push_ephemerals</strong>(ephemeral_scopes)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Push ephemeral scopes onto the ephemeral scope stack.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resolve_type_and_titles-instance_method" title="#resolve_type_and_titles (instance method)">#<strong>resolve_type_and_titles</strong>(type, titles)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Called from two places: runtime3support when creating resources ast::resource - used by create resources ?.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#unset_ephemeral_var-instance_method" title="#unset_ephemeral_var (instance method)">#<strong>unset_ephemeral_var</strong>(level = :all)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'><p>use #pop_epehemeral</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_global_scope-instance_method" title="#with_global_scope (instance method)">#<strong>with_global_scope</strong> {|global_scope| ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Execute given block in global scope with no ephemerals present.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_guarded_scope-instance_method" title="#with_guarded_scope (instance method)">#<strong>with_guarded_scope</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Execute given block and ensure that ephemeral level is restored.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#with_parameter_scope-instance_method" title="#with_parameter_scope (instance method)">#<strong>with_parameter_scope</strong>(callee_name, param_names) {|param_scope| ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Nests a parameter scope.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#without_ephemeral_scopes-instance_method" title="#without_ephemeral_scopes (instance method)">#<strong>without_ephemeral_scopes</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Execute given block with all ephemeral popped from the ephemeral stack.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice this">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+  </p>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="method_missing-instance_method">
+  
+    #<strong>method_missing</strong>(method, *args, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+994
+995
+996
+997
+998
+999
+1000
+1001
+1002
+1003
+1004
+1005
+1006</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 994</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_method'>method</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^function_(.*)$</span><span class='regexp_end'>/</span></span>
+  <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='backref'>$1</span>
+  <span class='kw'>super</span> <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='kw'>super</span> <span class='kw'>unless</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_function'>function</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='comment'># In odd circumstances, this might not end up defined by the previous
+</span>  <span class='comment'># method, so we might as well be certain.
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_respond_to?'>respond_to?</span> <span class='id identifier rubyid_method'>method</span>
+    <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Function </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> not defined despite being loaded!</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="[]-instance_method">
+  
+    #<strong>[]</strong>(varname, options = {})  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Retrieves the variable value assigned to the name given as an argument. The name must be a String,
+and namespace can be qualified with &#39;::&#39;. The value is looked up in this scope, its parent scopes,
+or in a specific visible named scope.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>varname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the variable (may be a qualified name using <code>(ns&#39;::&#39;)*varname</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Additional options, not part of api.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the value assigned to the given varname</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="#%5B%5D%3D-instance_method" title="Puppet::Parser::Scope#[]= (method)">#[]=</a></span></li>
+    
+  </ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+553
+554
+555</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 553</span>
+
+<span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_lookupvar'>lookupvar</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="[]=-instance_method">
+  
+    #<strong>[]=</strong>(varname, value, options = {})  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Sets the variable value of the name given as an argument to the given value. The value is
+set in the current scope and may shadow a variable with the same name in a visible outer scope.
+It is illegal to re-assign a variable in the same scope. It is illegal to set a variable in some other
+scope/namespace than the scope passed to a method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>varname</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The variable name to which the value is assigned. Must not contain <code>::</code></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>value</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The value to assign to the given variable name.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Additional options, not part of api.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+829
+830
+831</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 829</span>
+
+<span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_setvar'>setvar</span><span class='lparen'>(</span><span class='id identifier rubyid_varname'>varname</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_builtin_resource_type-instance_method">
+  
+    #<strong>find_builtin_resource_type</strong>(type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+984
+985
+986</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 984</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_builtin_resource_type'>find_builtin_resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#find_builtin_resource_type() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_defined_resource_type-instance_method">
+  
+    #<strong>find_defined_resource_type</strong>(type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+989
+990
+991</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 989</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_defined_resource_type'>find_defined_resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#find_defined_resource_type() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="find_resource_type-instance_method">
+  
+    #<strong>find_resource_type</strong>(type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+979
+980
+981</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 979</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_find_resource_type'>find_resource_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#find_resource_type() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="lookupvar-instance_method">
+  
+    #<strong>lookupvar</strong>(name, options = {})  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Lookup a variable within this scope using the Puppet language&#39;s
+scoping rules. Variables can be qualified using just as in a
+manifest.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the variable name to lookup</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'></span>
+      
+      
+      
+        
+        <div class='inline'><p>Object the value of the variable, or nil if it&#39;s not found</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 489</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_lookupvar'>lookupvar</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope variable name </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> is a </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>, not a string</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_table'>table</span> <span class='op'>=</span> <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span>
+
+  <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(.*)::(.+)$</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_class_name'>class_name</span> <span class='op'>=</span> <span class='backref'>$1</span>
+    <span class='id identifier rubyid_variable_name'>variable_name</span> <span class='op'>=</span> <span class='backref'>$2</span>
+    <span class='id identifier rubyid_lookup_qualified_variable'>lookup_qualified_variable</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='comma'>,</span> <span class='id identifier rubyid_variable_name'>variable_name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+
+  <span class='comment'># TODO: optimize with an assoc instead, this searches through scopes twice for a hit
+</span>  <span class='kw'>elsif</span> <span class='id identifier rubyid_table'>table</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_table'>table</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_next_scope'>next_scope</span> <span class='op'>=</span> <span class='id identifier rubyid_inherited_scope'>inherited_scope</span> <span class='op'>||</span> <span class='id identifier rubyid_enclosing_scope'>enclosing_scope</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_next_scope'>next_scope</span>
+      <span class='id identifier rubyid_next_scope'>next_scope</span><span class='period'>.</span><span class='id identifier rubyid_lookupvar'>lookupvar</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_variable_not_found'>variable_not_found</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pop_ephemerals-instance_method">
+  
+    #<strong>pop_ephemerals</strong>(level)  &#x21d2; <tt>Array</tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Pop ephemeral scopes up to level and return them</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>level</span>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>a positive integer</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the removed ephemeral scopes</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+876
+877
+878</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 876</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pop_ephemerals'>pop_ephemerals</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
+  <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="push_ephemerals-instance_method">
+  
+    #<strong>push_ephemerals</strong>(ephemeral_scopes)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Push ephemeral scopes onto the ephemeral scope stack</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>ephemeral_scopes</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+883
+884
+885</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 883</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_push_ephemerals'>push_ephemerals</span><span class='lparen'>(</span><span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ephemeral_scope'>ephemeral_scope</span><span class='op'>|</span> <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_ephemeral_scope'>ephemeral_scope</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_ephemeral_scopes'>ephemeral_scopes</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="resolve_type_and_titles-instance_method">
+  
+    #<strong>resolve_type_and_titles</strong>(type, titles)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Called from two places:
+runtime3support when creating resources
+ast::resource - used by create resources ?</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::DevError</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1012
+1013
+1014
+1015
+1016
+1017
+1018
+1019
+1020
+1021
+1022
+1023
+1024
+1025
+1026
+1027
+1028
+1029
+1030
+1031
+1032
+1033
+1034
+1035</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 1012</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_resolve_type_and_titles'>resolve_type_and_titles</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_titles'>titles</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Scope#resolve_type_and_title() is no longer supported, use Puppet::Pops::Evaluator::Runtime3ResourceSupport instead</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='comment'>#    Puppet.deprecation_warning(&#39;Scope#resolve_type_and_titles is deprecated.&#39;)
+</span><span class='comment'>#
+</span><span class='comment'>#    raise ArgumentError, &quot;titles must be an array&quot; unless titles.is_a?(Array)
+</span><span class='comment'>#
+</span><span class='comment'>#    case type.downcase
+</span><span class='comment'>#    when &quot;class&quot;
+</span><span class='comment'>#      # resolve the titles
+</span><span class='comment'>#      titles = titles.collect do |a_title|
+</span><span class='comment'>#        hostclass = find_hostclass(a_title)
+</span><span class='comment'>#        hostclass ?  hostclass.name : a_title
+</span><span class='comment'>#      end
+</span><span class='comment'>#    when &quot;node&quot;
+</span><span class='comment'>#      # no-op
+</span><span class='comment'>#    else
+</span><span class='comment'>#      # resolve the type
+</span><span class='comment'>#      resource_type = find_resource_type(type)
+</span><span class='comment'>#      type = resource_type.name if resource_type
+</span><span class='comment'>#    end
+</span><span class='comment'>#
+</span><span class='comment'>#    return [type, titles]
+</span><span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="unset_ephemeral_var-instance_method">
+  
+    #<strong>unset_ephemeral_var</strong>(level = :all)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="deprecated note title">deprecated</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'><p>use #pop_epehemeral</p>
+</div></div>
+<p>Pop ephemeral scopes up to level and return them</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+862
+863
+864
+865
+866
+867
+868
+869</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 862</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_unset_ephemeral_var'>unset_ephemeral_var</span><span class='lparen'>(</span><span class='id identifier rubyid_level'>level</span><span class='op'>=</span><span class='symbol'>:all</span><span class='rparen'>)</span>
+  <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Method Parser::Scope#unset_ephemeral_var() is deprecated</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_level'>level</span> <span class='op'>==</span> <span class='symbol'>:all</span>
+    <span class='ivar'>@ephemeral</span> <span class='op'>=</span> <span class='lbracket'>[</span> <span class='const'>MatchScope</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@symtable</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="with_global_scope-instance_method">
+  
+    #<strong>with_global_scope</strong> {|global_scope| ... } &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Execute given block in global scope with no ephemerals present</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>global_scope</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Puppet::Parser::Scope (class)">Scope</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the global and ephemeral less scope</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the return of the block</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+906
+907
+908</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 906</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_with_global_scope'>with_global_scope</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_find_global_scope'>find_global_scope</span><span class='period'>.</span><span class='id identifier rubyid_without_ephemeral_scopes'>without_ephemeral_scopes</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="with_guarded_scope-instance_method">
+  
+    #<strong>with_guarded_scope</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Execute given block and ensure that ephemeral level is restored</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Object</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the return of the block</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+941
+942
+943
+944
+945
+946
+947
+948</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 941</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_with_guarded_scope'>with_guarded_scope</span>
+  <span class='id identifier rubyid_elevel'>elevel</span> <span class='op'>=</span> <span class='id identifier rubyid_ephemeral_level'>ephemeral_level</span>
+  <span class='kw'>begin</span>
+    <span class='kw'>yield</span>
+  <span class='kw'>ensure</span>
+    <span class='id identifier rubyid_pop_ephemerals'>pop_ephemerals</span><span class='lparen'>(</span><span class='id identifier rubyid_elevel'>elevel</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="with_parameter_scope-instance_method">
+  
+    #<strong>with_parameter_scope</strong>(callee_name, param_names) {|param_scope| ... } &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Nests a parameter scope</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>callee_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the function, template, or resource that defines the parameters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>param_names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>list of parameter names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
+  
+    <li>
+      
+        <span class='name'>param_scope</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Scope/ParameterScope.html" title="Puppet::Parser::Scope::ParameterScope (class)">ParameterScope</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the nested scope</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+928
+929
+930
+931
+932
+933
+934</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 928</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_with_parameter_scope'>with_parameter_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_callee_name'>callee_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_param_scope'>param_scope</span> <span class='op'>=</span> <span class='const'>ParameterScope</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='comma'>,</span> <span class='id identifier rubyid_callee_name'>callee_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_with_guarded_scope'>with_guarded_scope</span> <span class='kw'>do</span>
+    <span class='ivar'>@ephemeral</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_param_scope'>param_scope</span><span class='rparen'>)</span>
+    <span class='kw'>yield</span><span class='lparen'>(</span><span class='id identifier rubyid_param_scope'>param_scope</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="without_ephemeral_scopes-instance_method">
+  
+    #<strong>without_ephemeral_scopes</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Execute given block with all ephemeral popped from the ephemeral stack</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+913
+914
+915
+916
+917
+918
+919
+920
+921</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/parser/scope.rb', line 913</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_without_ephemeral_scopes'>without_ephemeral_scopes</span>
+  <span class='id identifier rubyid_save_ephemeral'>save_ephemeral</span> <span class='op'>=</span> <span class='ivar'>@ephemeral</span>
+  <span class='kw'>begin</span>
+    <span class='ivar'>@ephemeral</span> <span class='op'>=</span> <span class='lbracket'>[</span> <span class='ivar'>@symtable</span> <span class='rbracket'>]</span>
+    <span class='kw'>yield</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='kw'>ensure</span>
+    <span class='ivar'>@ephemeral</span> <span class='op'>=</span> <span class='id identifier rubyid_save_ephemeral'>save_ephemeral</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Nov  1 14:17:38 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.5 (ruby-2.0.0).
+</div>
+
+    </div>
+  </body>
+</html>
