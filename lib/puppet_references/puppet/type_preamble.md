@@ -12,7 +12,7 @@ information on how to use its custom resource types.
 
 To manage resources on a target system, you should declare them in Puppet
 manifests. For more details, see
-[the resources page of the Puppet language reference.](/puppet/latest/reference/lang_resources.html)
+[the resources page of the Puppet language reference.](/puppet/latest/lang_resources.html)
 
 You can also browse and manage resources interactively using the
 `puppet resource` subcommand; run `puppet resource --help` for more information.
