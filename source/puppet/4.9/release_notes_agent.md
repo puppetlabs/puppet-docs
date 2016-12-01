@@ -33,25 +33,6 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.8 release notes](./release_notes.html).
 
-## Puppet agent 1.8.1
+## Puppet agent 1.9.0
 
-Released November 22, 2016.
-
-### Component updates
-
-This is a minor release in the Puppet agent 1.8 series. It is primarily a maintenance and bug fix release, with an update to [Puppet 4.8.1][].
-
-## Puppet agent 1.8.0
-
-Released November 1, 2016.
-
-### Component updates
-
-Puppet agent 1.8.0 includes feature releases [Puppet 4.8.0][], and [Facter 3.5.0][], as well as [Hiera 3.2.2][], [MCollective 2.9.1][], and [pxp-agent][] 1.3.0.
-
-### New platforms
-
-Packages now available for the following platforms:
-
-* Windows Server 2016
-* macOS Sierra
+TODO
