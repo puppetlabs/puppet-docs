@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet Lookup: Quick reference for Hiera users"
-canonical: "/puppet/latest/reference/lookup_quick.html"
 ---
 
 [lookup_function]: ./function.html#lookup

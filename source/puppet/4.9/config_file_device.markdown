@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Config files: device.conf"
-canonical: "/puppet/latest/reference/config_file_device.html"
 ---
 
 [deviceconfig]: ./configuration.html#deviceconfig

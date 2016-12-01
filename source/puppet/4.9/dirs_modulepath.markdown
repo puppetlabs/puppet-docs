@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Directories: The modulepath (default config)"
-canonical: "/puppet/latest/reference/dirs_modulepath.html"
 ---
 
 [module_fundamentals]: ./modules_fundamentals.html

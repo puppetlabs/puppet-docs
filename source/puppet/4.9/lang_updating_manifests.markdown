@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Updating 3.x Manifests for Puppet 4.x"
-canonical: "/puppet/latest/reference/lang_updating_manifests.html"
 ---
 
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool

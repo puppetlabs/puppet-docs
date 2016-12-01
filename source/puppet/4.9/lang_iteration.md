@@ -1,7 +1,6 @@
 ---
 title: "Language: Iteration and loops"
 layout: default
-canonical: "/puppet/latest/reference/lang_iteration.html"
 ---
 
 [functions]: ./lang_functions.html

@@ -2,7 +2,6 @@
 layout: default
 title: "Quick start » Module installation (*nix)"
 subtitle: "Module installation quick start guide"
-canonical: "/puppet/latest/quick_start_module_install_nix.html"
 ---
 
 ## Overview

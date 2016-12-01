@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "About reporting"
-canonical: "/puppet/latest/reference/reporting_about.html"
 ---
 
 [report]: /puppet/latest/reference/configuration.html#report

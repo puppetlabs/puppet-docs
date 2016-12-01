@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Handling file paths on Windows"
-canonical: "/puppet/latest/reference/lang_windows_file_paths.html"
 ---
 
 [template]: ./lang_template.html

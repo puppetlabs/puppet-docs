@@ -2,7 +2,6 @@
 layout: default
 title: "Quick Start » DNS"
 subtitle: "DNS Quick Start Guide"
-canonical: "/puppet/latest/quick_start_dns.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html

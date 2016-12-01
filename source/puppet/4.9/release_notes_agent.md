@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet agent release notes"
-canonical: "/puppet/latest/reference/release_notes_agent.html"
 ---
 
 [Puppet 4.8.0]: /puppet/4.8/reference/release_notes.html#puppet-480

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Scope"
-canonical: "/puppet/latest/reference/lang_scope.html"
 ---
 
 [resources]: ./lang_resources.html

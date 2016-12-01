@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Data types: Arrays"
-canonical: "/puppet/latest/reference/lang_data_array.html"
 ---
 
 [undef]: ./lang_data_undef.html

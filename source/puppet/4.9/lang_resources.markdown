@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Resources"
-canonical: "/puppet/latest/reference/lang_resources.html"
 ---
 
 [realize]: ./lang_virtual.html#syntax

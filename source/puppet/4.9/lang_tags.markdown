@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Tags"
-canonical: "/puppet/latest/reference/lang_tags.html"
 ---
 
 

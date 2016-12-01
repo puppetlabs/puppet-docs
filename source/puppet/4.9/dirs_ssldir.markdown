@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Directories: The SSLdir"
-canonical: "/puppet/latest/reference/dirs_ssldir.html"
 ---
 
 

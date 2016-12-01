@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x agent upgrades"
-canonical: "/puppet/latest/reference/upgrade_major_agent.html"
 ---
 
 [Hiera]: /hiera/

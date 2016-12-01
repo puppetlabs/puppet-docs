@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Resource collectors"
-canonical: "/puppet/latest/reference/lang_collectors.html"
 ---
 
 [virtual]: ./lang_virtual.html

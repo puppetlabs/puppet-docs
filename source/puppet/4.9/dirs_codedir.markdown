@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Code and data directory (codedir)"
-canonical: "/puppet/latest/reference/dirs_codedir.html"
 ---
 
 [codedir]: ./configuration.html#codedir

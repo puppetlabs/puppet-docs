@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Formats: Reports"
-canonical: "/puppet/latest/reference/format_report.html"
 ---
 
 

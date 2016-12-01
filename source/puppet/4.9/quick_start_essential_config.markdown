@@ -2,7 +2,6 @@
 layout: default
 title: "Quick Start » Essential configuration"
 subtitle: "Essential configuration tasks for open source Puppet users"
-canonical: "/puppet/latest/quick_start_essential_config.html"
 ---
 
 The following are common configuration tasks that you can manage with open source Puppet. These steps provide an excellent introduction to the capabilities of Puppet.

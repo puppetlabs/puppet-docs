@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Data types: Hashes"
-canonical: "/puppet/latest/reference/lang_data_hash.html"
 ---
 
 [undef]: ./lang_data_undef.html

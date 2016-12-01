@@ -2,7 +2,6 @@
 layout: default
 title: "Quick start » Puppet master/agent communication"
 subtitle: "Open source Puppet quick start guide series"
-canonical: "/puppet/latest/quick_start_master_agent_communication.html"
 ---
 
 ## Overview

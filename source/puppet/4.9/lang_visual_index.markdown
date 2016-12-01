@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Visual index"
-canonical: "/puppet/latest/reference/lang_visual_index.html"
 ---
 
 

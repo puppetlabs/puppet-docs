@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Documenting modules"
-canonical: "/puppet/latest/reference/modules_documentation.html"
 ---
 
 [installing]: ./modules_installing.html

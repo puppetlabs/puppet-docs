@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "SSL: Regenerating all Certificates in a Puppet deployment"
-canonical: "/puppet/latest/reference/ssl_regenerate.html"
 description: "This page describes the steps for regenerating certs under an open source Puppet deployment."
 ---
 

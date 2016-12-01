@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Writing functions in the Puppet language"
-canonical: "/puppet/latest/lang_write_functions_in_puppet.html"
 ---
 
 [defined_types]: ./lang_defined_types.html

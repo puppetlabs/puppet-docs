@@ -2,7 +2,6 @@
 layout: default
 title: "Quick start » Adding classes (*nix)"
 subtitle: "Adding Classes Quick Start Guide"
-canonical: "/puppet/latest/quick_start_adding_class_nix.html"
 ---
 
 

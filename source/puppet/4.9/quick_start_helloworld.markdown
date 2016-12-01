@@ -2,7 +2,6 @@
 layout: default
 title: "Quick start » Hello world!"
 subtitle: "Hello world! Quick start guide"
-canonical: "/puppet/latest/quick_start_helloworld.html"
 ---
 
 ## Overview

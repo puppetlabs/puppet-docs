@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Config files: environment.conf"
-canonical: "/puppet/latest/reference/config_file_environment.html"
 ---
 
 [environment]: ./environments.html

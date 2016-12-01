@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x: Upgrade Puppet Server and PuppetDB"
-canonical: "/puppet/latest/reference/upgrade_major_server.html"
 ---
 
 [moved]: ./whered_it_go.html

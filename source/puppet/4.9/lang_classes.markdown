@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Classes"
-canonical: "/puppet/latest/reference/lang_classes.html"
 ---
 
 [literal_types]: ./lang_data_type.html

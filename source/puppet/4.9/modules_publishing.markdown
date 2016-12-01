@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Publishing modules on the Puppet Forge"
-canonical: "/puppet/latest/reference/modules_publishing.html"
 ---
 
 

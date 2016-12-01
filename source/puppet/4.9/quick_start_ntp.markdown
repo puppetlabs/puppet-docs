@@ -2,7 +2,6 @@
 layout: default
 title: "Quick Start » NTP"
 subtitle: "NTP quick start guide"
-canonical: "/puppet/latest/quick_start_ntp.html"
 ---
 
 [downloads]: http://info.puppetlabs.com/download-pe.html

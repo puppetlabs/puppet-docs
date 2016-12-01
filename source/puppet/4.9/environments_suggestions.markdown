@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Environments: Suggestions for Use"
-canonical: "/puppet/latest/reference/environments_suggestions.html"
 ---
 
 [adrien_blog]: http://puppetlabs.com/blog/git-workflow-and-puppet-environments

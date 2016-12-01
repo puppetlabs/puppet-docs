@@ -1,7 +1,6 @@
 ---
 title: "Language: Expressions and operators"
 layout: default
-canonical: "/puppet/latest/reference/lang_expressions.html"
 ---
 
 [datatypes]: ./lang_data.html

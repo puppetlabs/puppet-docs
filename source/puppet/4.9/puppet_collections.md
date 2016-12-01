@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "About Puppet Collections and packages"
-canonical: "/puppet/latest/reference/puppet_collections.html"
 ---
 
 {% include puppet-collections/_puppet_collections_intro.md %}

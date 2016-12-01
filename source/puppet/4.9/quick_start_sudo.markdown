@@ -2,7 +2,6 @@
 layout: default
 title: "Quick Start » Sudo users"
 subtitle: "Sudo users quick start guide"
-canonical: "/puppet/latest/quick_start_sudo.html"
 ---
 
 [downloads]: https://puppetlabs.com/puppet/puppet-open-source

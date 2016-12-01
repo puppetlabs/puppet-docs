@@ -2,7 +2,6 @@
 layout: default
 title: "Quick Start » Creating users and groups"
 subtitle: "Users and groups quick start guide"
-canonical: "/puppet/latest/quick_start_user_group.html"
 ---
 
 ## Before you begin

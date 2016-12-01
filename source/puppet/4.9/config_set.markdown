@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Configuration: Editing settings on the command line"
-canonical: "/puppet/latest/reference/config_set.html"
 ---
 
 [config_sections]: ./config_file_main.html#config-sections

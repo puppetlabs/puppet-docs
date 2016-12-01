@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet's services: Puppet agent on Windows systems"
-canonical: "/puppet/latest/reference/services_master_windows.html"
 ---
 
 [catalogs]: ./subsystem_catalog_compilation.html

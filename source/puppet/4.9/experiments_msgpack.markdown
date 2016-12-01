@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Experimental features: Msgpack support"
-canonical: "/puppet/latest/reference/experiments_msgpack.html"
 ---
 
 ## Background on Msgpack

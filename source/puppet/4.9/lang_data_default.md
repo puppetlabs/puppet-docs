@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Data types: Default"
-canonical: "/puppet/latest/reference/lang_data_default.html"
 ---
 
 [case statements]: ./lang_conditional.html#case-statements

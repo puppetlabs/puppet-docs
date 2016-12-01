@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Writing custom report processors"
-canonical: "/puppet/latest/reference/reporting_write_processors.html"
 ---
 
 [format]: ./format_report.html

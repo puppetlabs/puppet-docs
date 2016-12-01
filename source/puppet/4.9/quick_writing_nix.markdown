@@ -2,7 +2,6 @@
 layout: default
 title: "Quick start » Writing modules (*nix)"
 subtitle: "Module writing basics for *nix"
-canonical: "/puppet/latest/quick_writing_nix.html"
 ---
 
 Welcome to the Module Writing section of the Quick Start Guide series. This walk-through will help you become more familiar with Puppet modules and module development. Follow along to learn how to:

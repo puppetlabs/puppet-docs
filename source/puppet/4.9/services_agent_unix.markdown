@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet's services: Puppet agent on *nix systems"
-canonical: "/puppet/latest/reference/services_master_unix.html"
 ---
 
 [catalogs]: ./subsystem_catalog_compilation.html

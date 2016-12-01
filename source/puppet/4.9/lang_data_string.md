@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Data types: Strings"
-canonical: "/puppet/latest/reference/lang_data_string.html"
 ---
 
 [variables]: ./lang_variables.html

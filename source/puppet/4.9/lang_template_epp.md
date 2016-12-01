@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Embedded Puppet (EPP) template syntax"
-canonical: "/puppet/latest/reference/lang_template_epp.html"
 ---
 
 [erb]: ./lang_template_erb.html

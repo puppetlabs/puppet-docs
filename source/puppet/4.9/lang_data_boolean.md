@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Data types: Booleans"
-canonical: "/puppet/latest/reference/lang_data_boolean.html"
 ---
 
 [if]: ./lang_conditional.html#if-statements

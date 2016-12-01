@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x: Post-upgrade clean-up"
-canonical: "/puppet/latest/reference/upgrade_major_post.html"
 ---
 
 [moved]: ./whered_it_go.html

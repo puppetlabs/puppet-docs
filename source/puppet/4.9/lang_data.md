@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: About values and data types"
-canonical: "/puppet/latest/reference/lang_data.html"
 ---
 
 

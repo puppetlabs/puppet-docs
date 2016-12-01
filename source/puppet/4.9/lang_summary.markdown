@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Basics"
-canonical: "/puppet/latest/reference/lang_summary.html"
 ---
 
 [site_manifest]: ./dirs_manifest.html

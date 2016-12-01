@@ -2,7 +2,6 @@
 layout: default
 built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
 title: 'Man Page: puppet report'
-canonical: /puppet/latest/reference/man/report.html
 ---
 
 <div class='mp'>

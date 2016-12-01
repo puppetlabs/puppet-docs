@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet's services: Puppet apply"
-canonical: "/puppet/latest/reference/services_apply.html"
 ---
 
 

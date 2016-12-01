@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "puppet-agent: What is it, and what's in it?"
-canonical: "/puppet/latest/reference/about_agent.html"
 ---
 
 [Facter]: {{facter}}/

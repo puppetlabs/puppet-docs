@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "SSL configuration: CSR attributes and certificate extensions"
-canonical: "/puppet/latest/reference/ssl_attributes_extensions.html"
 ---
 
 [cert_request]: ./subsystem_agent_master_comm.html#check-for-keys-and-certificates

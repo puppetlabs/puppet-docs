@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "SSL configuration: External CA support"
-canonical: "/puppet/latest/reference/config_ssl_external_ca.html"
 ---
 
 [conf]: ./config_file_main.html

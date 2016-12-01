@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Embedded Ruby (ERB) template syntax"
-canonical: "/puppet/latest/reference/lang_template_erb.html"
 ---
 
 [erb]: http://ruby-doc.org/stdlib/libdoc/erb/rdoc/ERB.html

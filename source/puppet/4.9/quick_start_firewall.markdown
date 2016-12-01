@@ -2,7 +2,6 @@
 layout: default
 title: "Quick Start » Firewall"
 subtitle: "Firewall quick start guide"
-canonical: "/puppet/latest/quick_start_firewall.html"
 ---
 
 [downloads]: https://puppetlabs.com/puppet/puppet-open-source

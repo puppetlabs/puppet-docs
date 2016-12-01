@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x: Get upgrade-ready"
-canonical: "/puppet/latest/reference/upgrade_major_pre.html"
 ---
 
 Puppet 4 is a major upgrade with lots of configuration and functionality changes. Since Puppet is likely managing your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:

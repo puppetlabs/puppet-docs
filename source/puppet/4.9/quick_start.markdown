@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Quick start » Intro for *nix users"
-canonical: "/puppet/latest/quick_start.html"
 ---
 
 Welcome to the Open Source Puppet Quick Start Guide. Whether you’re setting up a Puppet installation for a real deployment or simply want to learn some fundamentals of configuration management with Open Source Puppet, this series of guides provides the steps you need to get up and running relatively quickly. We’ll walk you through Puppet installation and show you how to automate some basic tasks that sysadmins regularly perform.

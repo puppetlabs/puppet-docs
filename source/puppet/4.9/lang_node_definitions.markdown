@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Node definitions"
-canonical: "/puppet/latest/reference/lang_node_definitions.html"
 ---
 
 [hiera]: {{hiera}}/

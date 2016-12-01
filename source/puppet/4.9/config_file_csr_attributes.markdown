@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Config files: csr_attributes.yaml"
-canonical: "/puppet/latest/reference/config_file_csr_attributes.html"
 ---
 
 [csr_attributes]: /puppet/3.8/reference/configuration.html#csrattributes

@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Minor upgrades: Within 4.x (Puppet Collection 1 / PC1)"
-canonical: "/puppet/latest/reference/upgrade_minor.html"
 ---
 
 [`puppetlabs/puppetdb`]: https://forge.puppetlabs.com/puppetlabs/puppetdb
