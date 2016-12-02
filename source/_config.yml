@@ -171,7 +171,7 @@ documents:
       puppet: 3.8
       facter: 2.4
       hiera: 1
-      puppetserver: 1.1
+      puppetserver: 1.2
       puppetdb: 2.3
   /pe/3.7:
     doc: pe
