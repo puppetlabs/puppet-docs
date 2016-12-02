@@ -243,6 +243,7 @@ documents:
     doc: puppet
     version: 4.9
     nav: ./_puppet_toc.html
+    hide: true
     my_versions:
 #      facter: 3.5
 #      hiera: 3.2
