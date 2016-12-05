@@ -39,28 +39,22 @@ Small documents for getting help fast.
 
 A concise reference to Puppet's usage and internals. Use the left sidebar of any reference manual page to navigate between pages.
 
-### Current versions
+<ul>
+{% assign this_doc = "puppet" %}
 
-* [Puppet 4.8](/puppet/4.8/reference)
-* [Puppet 4.7](/puppet/4.7/reference) is included with Puppet Enterprise 2016.4.
-* [Puppet 4.6](/puppet/4.6/reference)
+{% assign real_name = site.document_names[this_doc] %}
+{% for base_url in site.document_version_order[this_doc] %}
+{% if site.document_version_index[this_doc].latest == base_url %}{% assign past_latest = true %}{% endif %}
+<li>
+<a href="{{base_url}}">{{real_name}} {{site.document_list[base_url].version}}</a>
+{% unless past_latest %}(not yet released){% endunless %}
+{% if site.document_version_index[this_doc].latest == base_url %}(latest){% endif %}
+{% if site.document_list[base_url].my_versions.pe != "latest" %}(Included in Puppet Enterprise {{site.document_list[base_url].my_versions.pe}}){% endif %}
+</li>
+{% endfor %}
+</ul>
 
-
-
-### Older versions
-
-* [Puppet 4.5](/puppet/4.5/reference) is included with Puppet Enterprise 2016.2.
-* [Puppet 4.4](/puppet/4.4/reference) is included with Puppet Enterprise 2016.1.
-* [Puppet 4.3](/puppet/4.3/reference) is included with Puppet Enterprise 2015.3.
-* [Puppet 4.2](/puppet/4.2/reference) is included with Puppet Enterprise 2015.2.
-* [Puppet 4.1](/puppet/4.1/reference)
-* [Puppet 4.0](/puppet/4.0/reference)
-* [Puppet 3.8](/puppet/3.8/reference) is included with Puppet Enterprise 3.8.
-* [Puppet 3.7](/puppet/3.7/reference)
-* [Puppet 3.6](/puppet/3.6/reference)
-* [Puppet 3.5](/puppet/3.5/reference)
-* [Puppet 3.0 through 3.4](/puppet/3/reference)
-* [Puppet 2.7](/puppet/2.7/reference)
+> **Note:** The "Puppet 3" manual covers versions 3.0 through 3.4.
 
 ### Other reference material
 

@@ -6,12 +6,19 @@ toc: false
 
 Hiera is a key/value lookup tool for configuration data. Hiera makes Puppet better by keeping site-specific data out of your manifests. Puppet classes can request whatever data they need, and your Hiera data will act like a site-wide config file.
 
-## Current versions
+## Versions
 
-* [Hiera 3.0](/hiera/3.0/) is included with open source Puppet versions 4.2 and up.
-* [Hiera 1.0](/hiera/1/index.html) is compatible with Puppet 3.x and is included in Puppet Enterprise 3.x.
+<ul>
+{% assign this_doc = "hiera" %}
 
-
-## Older versions
-
-* [Hiera 2.0](/hiera/2.0/index.html) is included with open source Puppet versions 4.0 through 4.1.
+{% assign real_name = site.document_names[this_doc] %}
+{% for base_url in site.document_version_order[this_doc] %}
+{% if site.document_version_index[this_doc].latest == base_url %}{% assign past_latest = true %}{% endif %}
+<li>
+<a href="{{base_url}}">{{real_name}} {{site.document_list[base_url].version}}</a>
+{% unless past_latest %}(not yet released){% endunless %}
+{% if site.document_version_index[this_doc].latest == base_url %}(latest){% endif %}
+{% if site.document_list[base_url].my_versions.pe != "latest" %}(Included in Puppet Enterprise {{site.document_list[base_url].my_versions.pe}}){% endif %}
+</li>
+{% endfor %}
+</ul>

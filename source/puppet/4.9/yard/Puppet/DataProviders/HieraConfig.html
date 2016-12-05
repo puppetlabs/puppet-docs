@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Puppet::DataProviders::HieraConfig
+  
+    &mdash; Documentation by YARD 0.9.5
+  
+</title>
+
+  <link rel="stylesheet" href="../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  pathId = "Puppet::DataProviders::HieraConfig";
+  relpath = '../../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../../class_list.html"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../../_index.html">Index (H)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../DataProviders.html" title="Puppet::DataProviders (module)">DataProviders</a></span></span>
+     &raquo; 
+    <span class="title">HieraConfig</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <iframe id="search_frame" src="../../class_list.html"></iframe>
+
+      <div id="content"><h1>Class: Puppet::DataProviders::HieraConfig
+  
+  
+  <span class="private note title">Private</span>
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::DataProviders::HieraConfig</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  <dl>
+      <dt>Includes:</dt>
+      <dd><span class='object_link'><a href="../Plugins/DataProviders.html" title="Puppet::Plugins::DataProviders (module)">Plugins::DataProviders</a></span></dd>
+  </dl>
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>lib/puppet/data_providers/hiera_config.rb</dd>
+  </dl>
+  
+</div>
+
+<div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This class is part of a private API.</strong>
+  You should avoid using this class if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants included
+     from <span class='object_link'><a href="../Plugins/DataProviders.html" title="Puppet::Plugins::DataProviders (module)">Plugins::DataProviders</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../Plugins/DataProviders.html#ENV_DATA_PROVIDERS_KEY-constant" title="Puppet::Plugins::DataProviders::ENV_DATA_PROVIDERS_KEY (constant)">Plugins::DataProviders::ENV_DATA_PROVIDERS_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#ENV_DATA_PROVIDERS_TYPE-constant" title="Puppet::Plugins::DataProviders::ENV_DATA_PROVIDERS_TYPE (constant)">Plugins::DataProviders::ENV_DATA_PROVIDERS_TYPE</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#MODULE_DATA_PROVIDERS_KEY-constant" title="Puppet::Plugins::DataProviders::MODULE_DATA_PROVIDERS_KEY (constant)">Plugins::DataProviders::MODULE_DATA_PROVIDERS_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#MODULE_DATA_PROVIDERS_TYPE-constant" title="Puppet::Plugins::DataProviders::MODULE_DATA_PROVIDERS_TYPE (constant)">Plugins::DataProviders::MODULE_DATA_PROVIDERS_TYPE</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PATH_BASED_DATA_PROVIDER_FACTORIES_KEY-constant" title="Puppet::Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_KEY (constant)">Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PATH_BASED_DATA_PROVIDER_FACTORIES_TYPE-constant" title="Puppet::Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_TYPE (constant)">Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_TYPE</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PER_MODULE_DATA_PROVIDER_KEY-constant" title="Puppet::Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_KEY (constant)">Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PER_MODULE_DATA_PROVIDER_TYPE-constant" title="Puppet::Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_TYPE (constant)">Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_TYPE</a></span></p>
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#create_configured_data_providers-instance_method" title="#create_configured_data_providers (instance method)">#<strong>create_configured_data_providers</strong>(lookup_invocation, parent_data_provider)  &#x21d2; Array[DataProvider] </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates the data providers for this config.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(config_root)  &#x21d2; HieraConfig </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new HieraConfig from the given <em>config_root</em>.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(config_root)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::DataProviders::HieraConfig (class)">HieraConfig</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new HieraConfig from the given <em>config_root</em>. This is where the &#39;hiera.yaml&#39; is expected to be found
+and is also the base location used when resolving relative paths.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>config_root</span>
+      
+      
+        <span class='type'>(<tt>Pathname</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Absolute path to the configuration root</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/data_providers/hiera_config.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_config_root'>config_root</span><span class='rparen'>)</span>
+  <span class='ivar'>@config_root</span> <span class='op'>=</span> <span class='id identifier rubyid_config_root'>config_root</span>
+  <span class='ivar'>@config_path</span> <span class='op'>=</span> <span class='id identifier rubyid_config_root'>config_root</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hiera.yaml</span><span class='tstring_end'>&#39;</span></span>
+  <span class='kw'>if</span> <span class='ivar'>@config_path</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span>
+    <span class='ivar'>@config</span> <span class='op'>=</span> <span class='id identifier rubyid_validate_config'>validate_config</span><span class='lparen'>(</span><span class='const'>HieraConfig</span><span class='period'>.</span><span class='id identifier rubyid_symkeys_to_string'>symkeys_to_string</span><span class='lparen'>(</span><span class='const'>YAML</span><span class='period'>.</span><span class='id identifier rubyid_load_file'>load_file</span><span class='lparen'>(</span><span class='ivar'>@config_path</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hierarchy</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>DEFAULT_CONFIG</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hierarchy</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>datadir</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='const'>DEFAULT_CONFIG</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>datadir</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@config</span> <span class='op'>=</span> <span class='const'>DEFAULT_CONFIG</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@version</span> <span class='op'>=</span> <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>version</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="create_configured_data_providers-instance_method">
+  
+    #<strong>create_configured_data_providers</strong>(lookup_invocation, parent_data_provider)  &#x21d2; <tt>Array[<span class='object_link'><a href="../Plugins/DataProviders/DataProvider.html" title="Puppet::Plugins::DataProviders::DataProvider (module)">DataProvider</a></span>]</tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Creates the data providers for this config</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>lookup_invocation</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Puppet::Pops::Lookup::Invocation</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Invocation data containing scope, overrides, and defaults</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>parent_data_provider</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Plugins/DataProviders/DataProvider.html" title="Puppet::Plugins::DataProviders::DataProvider (module)">Puppet::Plugins::DataProviders::DataProvider</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The data provider that loaded this configuration</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array[<span class='object_link'><a href="../Plugins/DataProviders/DataProvider.html" title="Puppet::Plugins::DataProviders::DataProvider (module)">DataProvider</a></span>]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the created providers</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/data_providers/hiera_config.rb', line 85</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_create_configured_data_providers'>create_configured_data_providers</span><span class='lparen'>(</span><span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_data_provider'>parent_data_provider</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_service_type'>service_type</span> <span class='op'>=</span> <span class='const'>Registry</span><span class='period'>.</span><span class='id identifier rubyid_hash_of_path_based_data_provider_factories'>hash_of_path_based_data_provider_factories</span>
+  <span class='id identifier rubyid_default_datadir'>default_datadir</span> <span class='op'>=</span> <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>datadir</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+
+  <span class='comment'># Hashes enumerate their values in the order that the corresponding keys were inserted so it&#39;s safe to use
+</span>  <span class='comment'># a hash for the data_providers.
+</span>  <span class='id identifier rubyid_data_providers'>data_providers</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@config</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hierarchy</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_he'>he</span><span class='op'>|</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_he'>he</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DataBinding</span><span class='op'>::</span><span class='const'>LookupError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_path'>path</span><span class='embexpr_end'>}</span><span class='tstring_content'>: Name &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; defined more than once</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_data_providers'>data_providers</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_original_paths'>original_paths</span> <span class='op'>=</span> <span class='id identifier rubyid_he'>he</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>paths</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_original_paths'>original_paths</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_single_path'>single_path</span> <span class='op'>=</span> <span class='id identifier rubyid_he'>he</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>path</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_single_path'>single_path</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span> <span class='kw'>if</span> <span class='id identifier rubyid_single_path'>single_path</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_original_paths'>original_paths</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_single_path'>single_path</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_paths'>paths</span> <span class='op'>=</span> <span class='id identifier rubyid_original_paths'>original_paths</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span> <span class='id identifier rubyid_interpolate'>interpolate</span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+    <span class='id identifier rubyid_provider_name'>provider_name</span> <span class='op'>=</span> <span class='id identifier rubyid_he'>he</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>backend</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_provider_factory'>provider_factory</span> <span class='op'>=</span> <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_service_type'>service_type</span><span class='comma'>,</span> <span class='const'>PATH_BASED_DATA_PROVIDER_FACTORIES_KEY</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='id identifier rubyid_provider_name'>provider_name</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DataBinding</span><span class='op'>::</span><span class='const'>LookupError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@config_path</span><span class='embexpr_end'>}</span><span class='tstring_content'>: No data provider is registered for backend &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_provider_name'>provider_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; </span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_provider_factory'>provider_factory</span>
+
+    <span class='id identifier rubyid_datadir'>datadir</span> <span class='op'>=</span> <span class='ivar'>@config_root</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_he'>he</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>datadir</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_default_datadir'>default_datadir</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_data_providers'>data_providers</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_create_data_provider'>create_data_provider</span><span class='lparen'>(</span><span class='id identifier rubyid_parent_data_provider'>parent_data_provider</span><span class='comma'>,</span> <span class='id identifier rubyid_provider_factory'>provider_factory</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span>
+      <span class='id identifier rubyid_provider_factory'>provider_factory</span><span class='period'>.</span><span class='id identifier rubyid_resolve_paths'>resolve_paths</span><span class='lparen'>(</span><span class='id identifier rubyid_datadir'>datadir</span><span class='comma'>,</span> <span class='id identifier rubyid_original_paths'>original_paths</span><span class='comma'>,</span> <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_data_providers'>data_providers</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Tue Nov  1 14:17:49 2016 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.5 (ruby-2.0.0).
+</div>
+
+    </div>
+  </body>
+</html>

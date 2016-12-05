@@ -8,7 +8,7 @@ module PuppetReferences
       API_SOURCE = PuppetReferences::PUPPET_DIR + 'api'
 
       def initialize(*args)
-        @latest = '/puppet/latest/reference/http_api'
+        @latest = '/puppet/latest/http_api'
         super(*args)
       end
 

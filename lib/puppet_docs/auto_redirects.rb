@@ -29,12 +29,7 @@ module PuppetDocs
         at_version  = redirect['at_version'].to_s
         was         = normalize_paths(redirect['was'])
         became      = normalize_paths(redirect['became'])
-        if doc == 'puppet'
-          # shot myself in the foot here. -_-
-          latest = '/puppet/latest/reference'
-        else
-          latest = "/#{doc}/latest"
-        end
+        latest = "/#{doc}/latest"
 
         # First, bail out unless the doc exists and this is a valid version.
         if config['document_version_index'][doc].class != Hash || !( config['document_version_index'][doc].has_key?(at_version) )

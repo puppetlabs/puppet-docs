@@ -58,8 +58,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
- # puppet: 4.7
- # hiera: 3.4
+  puppet: 4.8
 
 document_names:
   pe: Puppet Enterprise
@@ -196,7 +195,7 @@ documents:
       puppet: 3.8
       facter: 2.4
       hiera: 1
-      puppetserver: 1.1
+      puppetserver: 1.2
       puppetdb: 2.3
   /pe/3.7:
     doc: pe
@@ -264,7 +263,16 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
-  /puppet/4.8/reference:
+  /puppet/4.9: # CHANGING THE URL FROM THIS POINT FORWARD.
+    doc: puppet
+    version: 4.9
+    nav: ./_puppet_toc.html
+    hide: true
+    my_versions:
+#      facter: 3.5
+#      hiera: 3.2
+#      puppetserver: 2.7
+  /puppet/4.8:
     doc: puppet
     version: 4.8
     nav: ./_puppet_toc.html
@@ -272,7 +280,7 @@ documents:
       facter: 3.5
       hiera: 3.2
       puppetserver: 2.7
-  /puppet/4.7/reference:
+  /puppet/4.7:
     doc: puppet
     version: 4.7
     nav: ./_puppet_toc.html
@@ -280,7 +288,7 @@ documents:
       facter: 3.4
       hiera: 3.2
       puppetserver: 2.6
-  /puppet/4.6/reference:
+  /puppet/4.6:
     doc: puppet
     version: 4.6
     nav: ./_puppet_toc.html
@@ -288,7 +296,7 @@ documents:
       facter: 3.4
       hiera: 3.2
       puppetserver: 2.6
-  /puppet/4.5/reference:
+  /puppet/4.5:
     doc: puppet
     version: 4.5
     nav: ./_puppet_toc.html
@@ -296,7 +304,7 @@ documents:
       facter: 3.3
       hiera: 3.2
       puppetserver: 2.4
-  /puppet/4.4/reference:
+  /puppet/4.4:
     doc: puppet
     version: 4.4
     nav: ./_puppet_toc.html
@@ -304,7 +312,7 @@ documents:
       facter: 3.1
       hiera: 3.1
       puppetserver: 2.3
-  /puppet/4.3/reference:
+  /puppet/4.3:
     doc: puppet
     version: 4.3
     nav: ./_puppet_toc.html
@@ -312,7 +320,7 @@ documents:
       facter: 3.1
       hiera: 3.0
       puppetserver: 2.2
-  /puppet/4.2/reference:
+  /puppet/4.2:
     doc: puppet
     version: 4.2
     nav: /_includes/puppet4.2.html
@@ -320,7 +328,7 @@ documents:
       facter: 3.1
       hiera: 3.0
       puppetserver: 2.1
-  /puppet/4.1/reference:
+  /puppet/4.1:
     doc: puppet
     version: 4.1
     nav: /_includes/puppet4.1.html
@@ -328,11 +336,11 @@ documents:
       facter: 2.4
       hiera: 2.0
       puppetserver: 2.1
-  /puppet/4.0/reference:
+  /puppet/4.0:
     doc: puppet
     version: 4.0
     nav: /_includes/puppet_4.html
-  /puppet/3.8/reference:
+  /puppet/3.8:
     doc: puppet
     version: 3.8
     nav: /_includes/puppet_3_8.html
@@ -340,39 +348,39 @@ documents:
       facter: 2.4
       hiera: 1
       puppetserver: 1.1
-  /puppet/3.7/reference:
+  /puppet/3.7:
     doc: puppet
     version: 3.7
     nav: /_includes/puppet_3_7.html
-  /puppet/3.6/reference:
+  /puppet/3.6:
     doc: puppet
     version: 3.6
     nav: /_includes/puppet_3_6.html
-  /puppet/3.5/reference:
+  /puppet/3.5:
     doc: puppet
     version: 3.5
     nav: /_includes/puppet_3_5.html
-  /puppet/3/reference:
+  /puppet/3:
     doc: puppet
     version: 3
     nav: /_includes/puppet_3.html
     hide: true
-  /puppet/2.7/reference:
+  /puppet/2.7:
     doc: puppet
     version: 2.7
     nav: /_includes/puppet_2_7.html
     hide: true
-  /puppet/2.6/reference:
+  /puppet/2.6:
     doc: puppet
     version: 2.6
     nav: /_includes/puppet_2_6.html
     hide: true
-  /puppet/0.25/reference:
+  /puppet/0.25:
     doc: puppet
     version: 0.25
     nav: /_includes/puppet_0_25.html
     hide: true
-  /puppet/0.24/reference:
+  /puppet/0.24:
     doc: puppet
     version: 0.24
     nav: /_includes/puppet_0_24.html
@@ -451,7 +459,7 @@ documents:
   /puppetserver/2.7:
     doc: puppetserver
     version: 2.7
-    nav: /puppet/4.8/reference/_puppet_toc.html
+    nav: /puppet/4.8/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: 4876d5f29d0b1088150b09454480f3037e53889b
@@ -463,7 +471,7 @@ documents:
   /puppetserver/2.6:
     doc: puppetserver
     version: 2.6
-    nav: /puppet/4.6/reference/_puppet_toc.html
+    nav: /puppet/4.6/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: 2d3bc286bc5822f35ff04273156f8921e1603d19
@@ -475,7 +483,7 @@ documents:
   /puppetserver/2.5:
     doc: puppetserver
     version: 2.5
-    nav: /puppet/4.6/reference/_puppet_toc.html
+    nav: /puppet/4.6/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: ba86848
@@ -487,7 +495,7 @@ documents:
   /puppetserver/2.4:
     doc: puppetserver
     version: 2.4
-    nav: /puppet/4.5/reference/_puppet_toc.html
+    nav: /puppet/4.5/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: 522083d
@@ -499,7 +507,7 @@ documents:
   /puppetserver/2.3:
     doc: puppetserver
     version: 2.3
-    nav: /puppet/4.4/reference/_puppet_toc.html
+    nav: /puppet/4.4/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: 585c701
@@ -511,7 +519,7 @@ documents:
   /puppetserver/2.2:
     doc: puppetserver
     version: 2.2
-    nav: /puppet/4.3/reference/_puppet_toc.html
+    nav: /puppet/4.3/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: puppet-server-2.2.1
