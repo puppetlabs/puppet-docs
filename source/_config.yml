@@ -86,7 +86,19 @@ document_names:
 #      puppetserver: 2.2
 #      puppetdb: 3.2
 documents:
-# Everett preview URLs
+
+  # Flanders preview URLs
+  /pe/2017.1:
+    doc: pe
+    version: 2017.1
+    nav: ./_pe_toc.html
+    draft: true
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/flanders
+      subdirectory: source
+      
+  # Everett preview URLs
   /pe/2016.5:
     doc: pe
     version: 2016.5
