@@ -1,18 +1,17 @@
-{% capture hiera_version %}3.2{% endcapture %}
+<h3 id="hiera-sidebar-nav">Hiera {{ page.doc.my_versions.hiera }}</h3>
 
-<h3 id="hiera-sidebar-nav">Hiera {{ hiera_version }}</h3>
+{% md %}
 
-<ul>
-  <li><a href="/hiera/{{ hiera_version }}/index.html">Overview</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/release_notes.html">Release notes</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/configuring.html">Configuration and hiera.yaml</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/hierarchy.html">Hierarchies</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/lookup_types.html">Lookup types</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/data_sources.html">Writing data sources</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/variables.html">Interpolation tokens, variables, and lookup functions</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/puppet.html">Usage with Puppet</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/complete_example.html">Complete example</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/command_line.html">Usage on the command line</a></li>
-  <li><a href="/hiera/{{ hiera_version }}/custom_backends.html">Writing new backends</a></li>
-</ul>
+* [Overview]({{hiera}}/index.html)
+* [Release notes]({{hiera}}/release_notes.html)
+* [Configuration and hiera.yaml]({{hiera}}/configuring.html)
+* [Hierarchies]({{hiera}}/hierarchy.html)
+* [Lookup types]({{hiera}}/lookup_types.html)
+* [Writing data sources]({{hiera}}/data_sources.html)
+* [Interpolation tokens, variables, and lookup functions]({{hiera}}/variables.html)
+* [Usage with Puppet]({{hiera}}/puppet.html)
+* [Complete example]({{hiera}}/complete_example.html)
+* [Usage on the command line]({{hiera}}/command_line.html)
+* [Writing new backends]({{hiera}}/custom_backends.html)
 
+{% endmd %}
