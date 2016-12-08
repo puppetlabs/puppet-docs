@@ -86,6 +86,21 @@ document_names:
 #      puppetserver: 2.2
 #      puppetdb: 3.2
 documents:
+  /pe/2016.5:
+    doc: pe
+    version: 2016.5
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/everett
+      subdirectory: source
+    my_versions:
+      puppet: 4.8
+      facter: 3.5
+      hiera: 3.2
+      puppetserver: 2.6
+      puppetdb: 4.2
+
   /pe/2016.4:
     doc: pe
     version: 2016.4
