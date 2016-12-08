@@ -133,8 +133,7 @@ You can also provide data types as both operands for the `==`, `!=`, `<`, `>`, `
 
 ### Obtaining data types
 
-[The `puppetlabs/stdlib` module][stdlib] includes a `type_of` function, which can return the type of any value. E.g. `type_of(3)` returns `Integer[3,3]`.
-
+The built-in `type` function returns the type of any value. For example, `type(3)` returns `Integer[3,3]`.
 
 ## Known data types
 
