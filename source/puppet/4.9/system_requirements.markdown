@@ -36,11 +36,11 @@ Puppet and all of its prerequisites run on the following platforms, and Puppet p
 
 ### Windows
 
-{% include pup45_platforms_windows.markdown %}
+{% include pup48_platforms_windows.markdown %}
 
 ### OS X
 
-{% include pup45_platforms_osx.markdown %}
+{% include pup48_platforms_osx.markdown %}
 
 ## Platforms without packages
 
