@@ -23,9 +23,7 @@ canonical: "/puppet/latest/reference/lang_data_string.html"
 [array]: ./lang_data_array.html
 [hash]: ./lang_data_hash.html
 
-Strings are unstructured text fragments of any length. They're probably the most common and useful data type.
-
-Strings can sometimes interpolate other values, and can sometimes use escape sequences to represent characters that are inconvenient or impossible to write literally. You can access substrings of a string by numerical index.
+Strings are unstructured text fragments of any length. They're probably the most common and useful data type. Some strings can interpolate other values and use escape sequences to represent characters that are inconvenient or impossible to write literally. You can access substrings of a string by numerical index.
 
 There are four ways to write literal strings in the Puppet language:
 
@@ -74,7 +72,7 @@ Sequence | Result
 `\\`     | Single backslash
 `\'`     | Literal single quote
 
-**Note:** If a backslash _isn't_ followed by a single quote or another backslash, Puppet treats it as a literal backslash.
+**Note:** In single quotes, if a backslash is followed by any character that _is not_ a single quote or another backslash, Puppet treats it as a literal backslash. A good rule of thumb is to always use two backslashes where you want the result to have one backslash.
 
 Some common things to watch out for:
 
@@ -104,7 +102,8 @@ Sequence | Result
 `\"`     | Literal double quote
 `\'`     | Literal single quote
 
-**Note:** If a backslash _isn't_ followed by a character that would make one of these escape sequences, Puppet logs a warning (`Warning: Unrecognized escape sequence`) and then treats it as a literal backslash.
+**Note**: In double quotes, if a backslash is followed by any character other than those listed above, (that is, a character that _is not_ a recognized escape sequence), Puppet logs a warning (`Warning: Unrecognized escape sequence`) and then treats it as a literal backslash. A good rule of thumb is to always use two backslashes where you want the result to have one backslash.
+
 
 ## Heredocs
 
