@@ -30,13 +30,24 @@ Catalog compilation results are exactly the same whether you use the metadata-ba
 
 With open source Puppet, enable environment isolation by running the `generate types` command:
 
-1. On the command line, run `generate types --environment <envname>` for each of your environments.
+1. On the command line, run `puppet generate types --environment <envname>` for each of your environments.
 
 For example, to generate metadata for your production environment, run:
 
-`generate types --environment production`
+`puppet generate types --environment production`
 
-Whenever you deploy a new version of Puppet, overwrite previously generated metadata with `generate types --environment <envname> --force`.
+Whenever you deploy a new version of Puppet, overwrite previously generated metadata with `puppet generate types --environment <envname> --force`.
+
+### Implement environment isolation with r10k
+
+To use environment isolation with open source Puppet and r10k, generate types for each environment every time r10k deploys new code.
+
+To generate types with r10k, either:
+
+* Modify your existing r10k hook to run the `generate types` command after code deployment.
+* Create and use a script that first runs r10k for an environment, and then runs `generate types` as a postrun command.
+
+If you have enabled environment level purging in r10k, whitelist the `resource_types` folder so that r10k doesn't purge it.
 
 ### Results of `generate types`
 
@@ -51,16 +62,29 @@ It also syncs the files in the `.resource_types` directory so that:
 
 The generated metadata files, which have a `.pp` extension, appear in the code directory. (If you are using Puppet Enterprise with Code Manager and file sync, these files appear in both the staging and live code directories.) These generated files are **read-only**: do not delete them, modify them, nor use expressions from them in regular manifests.
 
-### Environment isolation with r10k
+## Troubleshooting environment isolation
 
-To use environment isolation with open source Puppet and r10k, generate types for each environment every time r10k deploys new code.
+If `generate types` cannot generate certain types, if the type generated has missing or inaccurate information, or if the generation itself errors or fails, this can cause a catalog compilation error of "type not found" or "attribute not found". These issues can also be caused by manual changes in metadata files, incorrect permissions, or incorrectly implemented resource types.
 
-To generate types with r10k, either:
+To diagnose or repair issues:
 
-* Modify your existing r10k hook to run the `generate types` command after code deployment.
-* Create and use a script that first runs r10k for an environment, and then runs `generate types` as a postrun command.
+1. Ensure that your Puppet resource types are correctly implemented. Refactor any problematic resource types.
 
-If you have enabled environment level purging in r10k, whitelist the `resource_types` folder so that r10k doesn't purge it.
+1. Regenerate the metadata by removing the `<env>/.resource_types` directory and running `generate types` for each environment.
+
+1. If you continue to get catalog compilation errors, disable environment isolation to help you isolate the error.
+
+   * To disable environment isolation in open source Puppet:
+
+     1. Remove the `generate types` command from any r10k hooks.
+     1. Remove the `.resource_types` directory.
+
+  * To disable environment isolation in Puppet Enterprise:
+
+     1. In `/etc/puppetlabs/puppetserver/conf.d/pe-puppet-server.conf`, remove the `pre-commit-hook-commands` setting.
+     1. In [Hiera](./config_intro.html#configure-settings-with-hiera), set `puppet_enterprise::master::puppetserver::pre_commit_hook_commands: []`. 
+     1. On the command line, run `service pe-puppetserver reload`.
+     1. Delete the `.resource_types` directories from your staging code directory (`/etc/puppetlabs/code-staging`).
 
 ## Reference: `generate types`
 
