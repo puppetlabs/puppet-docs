@@ -13,7 +13,7 @@ module PuppetReferences
       PREAMBLE = PREAMBLE_FILE.read
 
       def initialize(*args)
-        @latest = '/puppet/latest/reference'
+        @latest = '/puppet/latest'
         @output_dir_unified = PuppetReferences::OUTPUT_DIR + 'puppet'
         @output_dir_individual = PuppetReferences::OUTPUT_DIR + 'puppet/types'
         @base_filename = 'type'

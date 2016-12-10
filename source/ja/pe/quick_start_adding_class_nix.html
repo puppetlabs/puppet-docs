@@ -3,27 +3,45 @@ layout: default
 title: "クラスを追加するクイックスタートガイド"
 canonical: "/ja/pe/quick_start_adding_class_nix.html"
 ---
- 
+
 <div>
-<h2 id="overview">概要</h2>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> すべてのモジュールには、1つまたは複数の<strong>クラス</strong>が含まれています。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <a href="/puppet/4.2/reference/lang_classes.html">クラス</a>とは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。
+</div>
+</div>
 
-<p> すべてのモジュールには、1つまたは複数の<strong>クラス</strong>が含まれています。 <a href="/puppet/4.5/reference/lang_classes.html">クラス</a>とは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <a href="./quick_start_module_install_nix.html">モージュールインストールクイックスタートガイド</a>でインストールした puppetlabs-apacheモジュールには、<code>apache</code>と呼ばれるクラスが含まれています。 この演習では、<code>apache</code>クラスを使ってデフォルトのApache仮想ホストを立ち上げます。 「<strong>apache_example</strong>」というグループを作成し、<code>apache</code>クラスを追加します。
-</p>
 
-<blockquote>
-  <p> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>と<a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a>がインストールされているものと想定します。
-</p>
-</blockquote>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <a href="./quick_start_module_install_nix.html">モージュールインストールクイックスタートガイド</a>でインストールした puppetlabs-apacheモジュールには、<code>apache</code>と呼ばれるクラスが含まれています。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> このクイックスタートガイドでは、<code>apache</code>クラスをagentノードに適用します。これにより、デフォルトのApache仮想ホストをagentノードで立ち上げられるようになります。 
+</div>
+</div>
 
-<h2 id="create-the-apacheexample-group">apache_exampleグループを作成する</h2>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>と<a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a>がインストールされているものと想定します。
+</div>
+</div>
+
+
+<h2 id="step-1-create-a-new-node-group">ステップ1:新しいノードグループを作成する</h2>
 
 <ol>
-<li>PEコンソールで、[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、[<strong>Add group</strong>]をクリックします。</li>
+<li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> PEコンソールで、[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、[<strong>Add group</strong>]をクリックします。
+</div>
+</div>
+
+  </li>
   <li>新規ノードグループのオプションを指定します。<ul>
 <li>
 <strong>Parent name</strong> – [<strong>All Nodes</strong>]を選択します。</li>
       <li>
-<strong>Group name</strong> – <em>apache_example</em>などのように、この環境ノードグループの役割を説明した名前を入力します。</li>
+<strong>Group name</strong> – <em>apache_example</em>などのように、このノードグループの役割を説明した名前を入力します。</li>
       <li>
 <strong>Environment</strong> – [<strong>production</strong>]を選択します。</li>
       <li>
@@ -31,114 +49,180 @@ canonical: "/ja/pe/quick_start_adding_class_nix.html"
     </ul>
 </li>
   <li>[<strong>Add</strong>]をクリックします。</li>
-  <li>
-<em>apache_example</em>グループをクリックします。</li>
-  <li>
-<strong>Rules</strong>タブの<strong>Certname</strong>エリアの<strong>Node name</strong>フィールドに、このグループに追加したいPEで管理されているノードの名前を入力します。</li>
-  <li>
-<strong>Pin node</strong>をクリックします。</li>
-  <li>
-<strong>Commit 1 change</strong>をクリックします。</li>
-  <li>ほかのノードも追加したい場合は、ステップ5～7を繰り返します。</li>
 </ol>
-<blockquote>
-  <p> <strong>ヒント</strong>: 各ノードをピン止めしてノードをグループに追加する方法は、「静的な」ノード追加と表現されます。このQSGの範囲からは外れますが、さらに複雑なデプロイの場合はノードのfactsをもとにルールを設定し、<a href="/pe/2016.2/console_classes_groups.html#adding-nodes-dynamically">ノードを「動的に」追加</a>することもできます。
-</p>
-</blockquote>
+<h2 id="step-2-add-nodes-to-the-node-group">ステップ2: 新しいノードグループにノードを追加する</h2>
 
-<h2 id="add-the-apache-class-to-the-example-group"> <code>apache</code>クラスをexampleグループに追加する</h2>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> ノードグループにノードを追加するには、グループに含めるノードを定義するルールを作成します。
+</div>
+</div>
 
-<p> コンソールで別の場所へナビゲートされていない限り、 <strong>Classification</strong>ページには、まだ<strong>apache example</strong>ノードグループが表示されているはずです。
-</p>
-
-<p> <strong><code>apache</code>クラスをexampleグループに追加する手順:</strong>
-</p>
 
 <ol>
 <li>
-    <p> <strong>Classes</strong>タブをクリックします。
-</p>
-  </li>
+<em>apache_example</em>グループをクリックします。</li>
   <li>
-    <p> <strong>Class name</strong>フィールドに「<code>apache</code>」と途中まで入力するだけでオートコンプリートリストに表示されますので、クリックして選択します。
-</p>
-  </li>
+<strong>Rules</strong>タブの<strong>Certname</strong>エリアの<strong>Node name</strong>フィールドに、PE agentノードの名前を入力します。</li>
   <li>
-    <p> <strong>Add class</strong>をクリックし、<strong>Commit 1 change</strong>をクリックします。
-</p>
-
-    <p> これで、<code>apache</code>クラスがagentのクラスリストに表示されます。 このリストは、<strong>Nodes</strong> &gt; <strong>Inventory</strong>の順にクリックし、<strong>Inventory</strong>リストのノードをクリックすることで見ることができます。 ノード詳細のページが表示されたら、[<strong>Classes</strong>]タブをクリックします。
-</p>
-  </li>
-  <li>
-    <p> agentのコマンドラインから、<code>puppet agent -t</code>を実行します。 次は、<code>/var/www/html/</code>ディレクトリに移動します。もしそこに<code>index.html</code>という名前のファイルが存在しない場合は、新規に作成してください。
-</p>
-  </li>
-  <li>
-    <p> 任意のテキストエディタで<code>index.html</code>を開き、なんらかの内容 (「Hello World」など)を入力するか、すでにあるものを編集します。
-</p>
-  </li>
-  <li>
-    <p> Puppet Enterpriseが管理している各ノードそれぞれのコマンドライン上で<code>puppet agent -t</code>を実行します。
-</p>
-
-    <p> これで、新たに割り当てたクラスが各ノードに対して反映されます。 1～2分待ちます。
-</p>
-  </li>
-  <li>
-    <p> ブラウザを開き、agentノードのIPアドレスを入力し、最後にport 80を付け足します(例：<code>http://myagentnodeIP:80/</code>)。
-</p>
-
-    <p> <code>/var/www/html/index.html</code>の内容が表示されます。
-</p>
-  </li>
+<strong>Pin node</strong>をクリックします。</li>
+  <li>[<strong>Commit changes</strong>]をクリックします。</li>
+  <li>ほかのノードも追加したい場合は、ステップ5～7を繰り返します。</li>
 </ol>
 <blockquote>
-  <p> これで、Puppet EnterpriseがagentノードでデフォルトのApache仮想ホストを管理するようになっています。 Apacheインスタンス管理のオプションについては、ForgeのApache ReadMeを参照してください。 <a href="./quick_writing_nix.html">*Nixモジュール記述クイックスタートガイド</a>では、Apache仮想ホスト上で動作するWebアプリを管理する独自のクラスの記述方法について説明しています。
-</p>
+  <h4 id="faqs">FAQ</h4>
+
+  <ul>
+<li><a href="/pe/2016.4/console_classes_groups.html#adding-nodes-dynamically">複数のノードを同時にグループに追加することはできますか？</a></li>
+  </ul>
 </blockquote>
 
-<h2 id="editing-class-parameters-in-the-console">コンソールでクラスパラメータを編集する</h2>
+<h2 id="step-3-add-the-apache-class-to-the-node-group">ステップ3: <code>apache</code>クラスをexampleグループに追加する</h2>
 
-<p> コンソールを使えば、モジュールコードを直接編集せずに、クラスパラメータの値を修正することができます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> ノードグループが作成されましたので、次にこのノードグループへ適切なクラスを追加します。
+</div>
+</div>
 
-<p> <code>apache</code><strong>クラスのパラメータを編集する手順</strong>:
-</p>
 
 <ol>
-<li>コンソールで<strong>Nodes</strong>&gt;<strong>Classification</strong>の順にクリックします。</li>
-  <li>
-<strong>apache_example</strong>グループをクリックします。</li>
-  <li>
-    <p> <strong>Classes</strong>タブをクリックし、クラスリストで<code>apache</code>を探します。
-</p>
+<li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> コンソールで別の場所へナビゲートされていない限り、 <strong>Classification</strong>ページには、まだ<strong>apache example</strong>ノードグループが表示されているはずです。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <strong>Class</strong>タブで、<strong>Class name</strong>フィールドに「<code>apache</code>」と途中まで入力するだけでオートコンプリートリストに表示されますので、クリックして選択します。
+</div>
+</div>
+
   </li>
   <li>
-    <p> <strong>Parameter Name</strong>ドロップダウンリストから、編集したいパラメータを選択します。 (例: <code>docroot</code>)。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <strong>Add class</strong>をクリックし、Commitボタンをクリックします。
+</div>
+</div>
 
-    <p> <strong>注意</strong>: 一部のパラメータについては、値がグレーのテキストで表示されますが、これはデフォルト値です。この値としては、リテラル値かPuppet変数のいずれかを使えます。 パラメータの追加後に<strong>Discard changes</strong>を選択すれば、この値を元に戻すことができます。
-</p>
+  </li>
+</ol>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> これで、<code>apache</code>クラスがagentのクラスリストに表示されます。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> このリストは、<strong>Nodes</strong> &gt; <strong>Inventory</strong>の順にクリックし、<strong>Inventory</strong>リストのノードをクリックすることで見ることができます。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> ノード詳細のページが表示されたら、[<strong>Classes</strong>]タブをクリックします。
+</div>
+</div>
+
+
+<h2 id="step-4-apply-changes-and-see-the-class-in-action">ステップ4：変更を適用し、実行中のクラスを確認する</h2>
+
+<ol>
+<li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> agentのコマンドラインから、<code>puppet agent -t</code>を実行します。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> 次に、<code>/var/www/html/</code>ディレクトリに移動し、<code>index.html</code>という名前のファイルを作成します。
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> 任意のテキストエディタで<code>index.html</code>を開き、なんらかの内容( 「Hello, World!」など)を追加します。
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> agentのコマンドラインから、<code>puppet agent -t</code>を実行します。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> これで、新たに割り当てたクラスが各ノードに対して反映されます。
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> 1～2分待ちます。
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> ブラウザを開き、agentノードのIPアドレスを入力し、最後にport 80を付け足します(例：<code>http://myagentnodeIP:80/</code>)。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <code>/var/www/html/index.html</code>の内容が表示されます。
+</div>
+</div>
+
+  </li>
+</ol>
+<h2 id="step-5-edit-class-parameters-in-the-console">ステップ5:コンソールでクラスパラメータを編集する</h2>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> コンソールを使えば、モジュールコードを直接編集せずに、クラスパラメータの値を修正することができます。
+</div>
+</div>
+
+
+<ol>
+<li>コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、<strong>apache_example</strong>グループを探して選択します。</li>
+  <li>
+<strong>Classes</strong>タブをクリックし、クラスリストで<code>apache</code>を探します。</li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <strong>Parameter Name</strong>ドロップダウンリストから、編集したいパラメータを選択します。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> この例では、<code>docroot</code>を選択します。
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <strong>注意</strong>: 一部のパラメータについては、値がグレーのテキストで表示されますが、これはデフォルト値です。この値としては、リテラル値かPuppet変数のいずれかを使えます。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> パラメータの追加後に<strong>Discard changes</strong>を選択すれば、この値を元に戻すことができます。
+</div>
+</div>
+
   </li>
   <li>
 <strong>Value</strong>フィールドに<code>/var/www</code>と入力します。</li>
   <li>
-<strong>Add parameter</strong>をクリックします。</li>
+<strong>Add parameter</strong>をクリックし、Commitボタンをクリックします。</li>
   <li>
-<strong>Commit 1 change</strong>をクリックします。</li>
-  <li>
-    <p> Puppet Enterpriseが管理している各ノードそれぞれのコマンドライン上で<code>puppet agent -t</code>を実行します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> Puppet Enterpriseが管理しているノードのコマンドライン上でも<code>puppet agent -t</code>を実行します。
+</div>
+</div>
 
-    <p> これで、Puppetが実行され、Puppet Enterpriseにより新しい設定が作成されます。
-</p>
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> これで、Puppetが実行され、Puppet Enterpriseにより新しい設定が作成されます。
+</div>
+</div>
+
   </li>
 </ol>
-<p> これで終了です！Apache Webサーバーのルートディレクトリが、デフォルトの<code>/var/www/html</code>に代わり、<code>/var/www/html</code>が設定されました。 Webブラウザで<code>http://myagentnodeIP:80/</code>を再読み込みすると、<code>/var/www</code>ディレクトリのファイルリストが表示されます。 <code>html</code>をクリックすると、ブラウザで<code>/var/www/html/index.html</code>の内容が再び表示されます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> Apache Webサーバーのルートディレクトリが、デフォルトの<code>/var/www/html</code>に代わり、<code>/var/www</code>が設定されました。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> Webブラウザで<code>http://myagentnodeIP:80/</code>を再読み込みすると、<code>/var/www</code>ディレクトリのファイルリストが表示されます。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <code>html</code>をクリックすると、ブラウザで<code>/var/www/html/index.html</code>の内容が再び表示されます。
+</div>
+</div>
 
-<hr>
-<p> 次の手順: <a href="./quick_start_nc_rbac.html">ノードの分類とユーザー許可の割り当て</a>
-</p>
+
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> これで、Puppet EnterpriseがagentノードでデフォルトのApache仮想ホストを管理するようになっています。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> 次は、PEでユーザーを管理する方法と、各ユーザーまたはユーザーグループのパーミッションを設定する方法を説明します。
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <a href="./quick_start_nc_rbac.html">準備ができたら、クリックして先へ進んでください。</a>
+</div>
+</div>
+
+</blockquote>
 </div>

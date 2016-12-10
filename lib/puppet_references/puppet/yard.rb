@@ -5,7 +5,7 @@ module PuppetReferences
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet/yard'
 
       def initialize(*args)
-        @latest = '/puppet/latest/reference/yard'
+        @latest = '/puppet/latest/yard'
         super(*args)
       end
 

@@ -7061,10 +7061,10 @@ a.disabled-nav-link:hover {
 /* ----------------------------- */
 /* The per-document version note div */
 div#version-note {
-  padding: .75625rem 1.5125rem;
+  padding: .75625rem .75625rem;
   margin: 0 0 1.5125rem;
   margin-top: 1rem;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   background-color: #fafafa;
   border-bottom: 1px solid #ccc;
   border-left: 5px solid #eee;

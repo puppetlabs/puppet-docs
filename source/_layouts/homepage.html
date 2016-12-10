@@ -31,8 +31,6 @@
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/homepage.css" />
     <!-- Localized styles, like sub-list numbering -->
     <link rel="stylesheet" type="text/css" href="/files/stylesheets/style_localized_{% if page.url contains "/ja/" %}ja{% else %}en{% endif %}.css" media="screen">
-    <!-- DELETE AFTER PUPPETCONF 2016 -->
-    <link rel="stylesheet" type="text/css" href="/files/stylesheets/standalone-cta.css">
 
     {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ content | truncate:300 | strip_html | strip_newlines | condense_spaces }}{% endif %}{% endcapture %}
     <meta name="description" content="{{ description }}" />
@@ -60,18 +58,6 @@
         {% include template/header_en.html %}
     {% endif %}
 
-    <!-- PuppetConf 2016 promo -->
-    <div class="paragraph paragraph--type--promo-block paragraph--view-mode--default style-thin thin">
-        <div class="paragraph-page-width thin">
-            <div class="cell headline-promo thin">PuppetConf 2016 is 19-21 October in San Diego</div>
-            <div class="cell headline">80+ education sessions, 1,700+ community members</div>
-            <div class="cell links">
-                <div class="field field--name-field-action-button-promo field--type-entity-reference-revisions field--label-hidden">
-                    <a class="btn arrow arrow-white " href="http://puppetconf.com"><span class="text">Learn more</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="doc-switchers" class="container">
       <div class="col-md-8">{% include template/doc_switcher.html %}</div>
@@ -97,7 +83,7 @@
       {% else %}
         {% include template/footer_en.html %}
       {% endif %}
-
+        
     </footer>
 
     {% include template/scripts.html %}

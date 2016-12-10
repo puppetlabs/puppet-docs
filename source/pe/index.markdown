@@ -6,27 +6,20 @@ toc: false
 
 Puppet Enterprise is the best-of-breed distribution for the Puppet family of systems automation tools.
 
-Current Version
------
+## Versions
 
-* [Puppet Enterprise 2016.2 User's Guide](./2016.2)
+> **Note:** We've skipped several version numbers in the course of PE's history (there was no 3.4, 3.5, 3.6, or 2016.3), and have changed version numbering schemes a few times. For information on the current versioning scheme, see [Puppet Enterprise Version Numbers](/pe/latest/pe_versioning.html).
 
-Previous Versions
------
+<ul>
+{% assign this_doc = "pe" %}
 
-> **Note:** We skipped from PE 3.3 to PE 3.7 to make the Puppet Enterprise version numbers consistent with Puppet version numbers. There was no PE 3.4, PE 3.5, or PE 3.6. For information on the new "x.y.z" versioning scheme, see [Puppet Enterprise Version Numbers](/pe/latest/pe_versioning.html).
-
-Please select your version of Puppet Enterprise:
-
-* [Puppet Enterprise 2016.1](./2016.1)
-* [Puppet Enterprise 2015.3](./2015.3)
-* [Puppet Enterprise 2015.2](./2015.2)
-* [Puppet Enterprise 3.8](./3.8)
-* [Puppet Enterprise 3.7](./3.7)
-* [Puppet Enterprise 3.3](./3.3)
-* [Puppet Enterprise 3.2](./3.2)
-* [Puppet Enterprise 3.1](./3.1)
-* [Puppet Enterprise 3.0](./3.0)
-* [Puppet Enterprise 2.8](./2.8)
-* [Puppet Enterprise 2.7](./2.7)
-
+{% assign real_name = site.document_names[this_doc] %}
+{% for base_url in site.document_version_order[this_doc] %}
+{% if site.document_version_index[this_doc].latest == base_url %}{% assign past_latest = true %}{% endif %}
+<li>
+<a href="{{base_url}}">{{real_name}} {{site.document_list[base_url].version}}</a>
+{% unless past_latest %}(not yet released){% endunless %}
+{% if site.document_version_index[this_doc].latest == base_url %}(latest){% endif %}
+</li>
+{% endfor %}
+</ul>

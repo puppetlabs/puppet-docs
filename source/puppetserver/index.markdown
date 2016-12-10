@@ -6,17 +6,24 @@ toc: false
 
 Puppet Server is the next-generation application for managing Puppet agents.
 
-For the most part, we've integrated the Puppet Server documentation into [the Puppet documentation](/puppet/latest/reference/). For a list of all documentation related to Puppet Server, or for information about an older version of Puppet Server, see one of the links below.
+For the most part, we've integrated the Puppet Server documentation into [the Puppet documentation](/puppet/latest/). For a list of all documentation related to Puppet Server, or for information about an older version of Puppet Server, see one of the links below.
 
-## Current versions
+## Versions
 
--   [Puppet Server 2.4](./2.4) requires Puppet 4.5 or newer.
--   [Puppet Server 2.3](./2.3) requires Puppet 4.4 or newer and is included with Puppet Enterprise 2016.1.
--   [Puppet Server 1.1](./1.1) is included with Puppet Enterprise 3.8 (starting with 3.8.1). It is compatible with Puppet 3.8.
+> **Note:** The Puppet Server 2.x series supports Puppet 4.x, and the 1.x series supports later versions of Puppet 3.x. See the release notes for each version for full compatibility details.
 
-## Older versions
+<ul>
+{% assign this_doc = "puppetserver" %}
 
--   [Puppet Server 2.2](./2.2) requires Puppet 4.3 or newer.
--   [Puppet Server 2.1](./2.1) is compatible with Puppet 4.x.
--   [Puppet Server 2.0](./2.0)
--   [Puppet Server 1.0](./1.0) is included with Puppet Enterprise 3.7 and 3.8.0. It is compatible with Puppet 3.7 and 3.8.
+{% assign real_name = site.document_names[this_doc] %}
+{% for base_url in site.document_version_order[this_doc] %}
+{% if site.document_version_index[this_doc].latest == base_url %}{% assign past_latest = true %}{% endif %}
+<li>
+<a href="{{base_url}}">{{real_name}} {{site.document_list[base_url].version}}</a>
+{% unless past_latest %}(not yet released){% endunless %}
+{% if site.document_version_index[this_doc].latest == base_url %}(latest){% endif %}
+{% if site.document_list[base_url].my_versions.pe != "latest" %}(Included in Puppet Enterprise {{site.document_list[base_url].my_versions.pe}}){% endif %}
+</li>
+{% endfor %}
+</ul>
+

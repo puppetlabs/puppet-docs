@@ -1,0 +1,134 @@
+---
+# Full documentation at https://confluence.puppetlabs.com/display/DOCS/Redirecting+pages. But basically, just follow the examples below.
+# Put a comment before each group of redirects. Like this:
+# The system requirements page was split out into four pages in 2016.4. (DOC-2891)
+- in_doc: pe    # One of our 5-or-so canonical "document IDs," as used in _config.yml. "pe", "puppet", "puppetdb", etc.
+  was: install_system_requirements.html   # Paths are always relative to the "base URL" of the document. So this refers to "https://docs.puppet.com/pe/<VERSION>/install_system_requirements.html".
+  became:
+    - sys_req_hw.html   # You can use a list of pages in "was" and/or "became". Put the most important/relevant one FIRST, since that's where you land if you use the version switcher.
+    - sys_req_os.html
+    - sys_req_browsers.html
+    - sys_req_sysconfig.html
+  at_version: 2016.4
+
+# Redirect orchestration_* -> mco_* (old marketing terminology was colliding with new product terminology)
+- in_doc: pe
+  was: orchestration_actions.html
+  became: mco_actions.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_adding_actions.html
+  became: mco_adding_actions.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_config.html
+  became: mco_config.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_invoke_cli.html
+  became: mco_invoke_cli.html
+  at_version: 2016.2
+- in_doc: pe
+  was: orchestration_overview.html
+  became: mco_overview.html
+  at_version: 2016.2
+
+# Split the upgrade page. Also, upgrade notes will be gathered on the upgrade page for the time being, so they get redirected too.
+- in_doc: pe
+  was:
+    - install_upgrading.html
+    - install_upgrading_notes.html
+  became:
+    - upgrade_mono.html
+    - upgrade_split.html
+  at_version: 2016.2
+
+# Delete the "assigning configurations" page and redirect it to roles and profiles. This isn't an exact correspondence, but it mostly makes sense.
+- in_doc: pe
+  was: puppet_assign_configurations.html
+  became:
+    - r_n_p_intro.html
+    - r_n_p_full_example.html
+    - r_n_p_profiles.html
+    - r_n_p_roles.html
+  at_version: 2016.2
+
+# redirect answer file reference pages to new text-mode pages for Couch and beyond
+- in_doc: pe
+  was: install_automated.html
+  became: install_text_mode.html
+  at_version: 2016.2
+- in_doc: pe
+  was: install_complete_answer_file_reference.html
+  became: install_pe_conf_param.html
+  at_version: 2016.2
+- in_doc: pe
+  was: install_mono_answers.html
+  became: install_text_mode_mono.html
+  at_version: 2016.2
+- in_doc: pe
+  was:
+    - install_split_console_answers.html
+    - install_split_master_answers.html
+    - install_split_puppetdb_answers.html
+  became: install_text_mode_split.html
+  at_version: 2016.2
+
+# code_mgr_upgrade now part of normal configuration
+- in_doc: pe
+  was: code_mgr_upgrade.html
+  became: code_mgr_config.html
+  at_version: 2016.1
+
+# RBAC API versioned in Burnside
+- in_doc: pe
+  was: rbac_serviceindex.html
+  became: rbac_serviceindex_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_forming_requests.html
+  became: rbac_forming_requests_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_users.html
+  became: rbac_users_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_usergroups.html
+  became: rbac_usergroups_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_roles.html
+  became: rbac_roles_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_permissionsref.html
+  became: rbac_permissionsref_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_token.html
+  became: rbac_token_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_dsref.html
+  became: rbac_dsref_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_passwords.html
+  became: rbac_passwords_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_serviceerrors.html
+  became: rbac_serviceerrors_v1.html
+  at_version: 2016.1
+- in_doc: pe
+  was: rbac_config.html
+  became: rbac_config_v1.html
+  at_version: 2016.1
+
+# Release notes rearranged in Burnside
+- in_doc: pe
+  was: release_notes_security.html
+  became: release_notes_resolved_issues.html
+  at_version: 2016.1
+

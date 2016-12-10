@@ -5,315 +5,622 @@ canonical: "/ja/pe/install_agents.html"
 ---
 
 <div>
-<p> リモートパッケージリポジトリ機能をサポートするOSを使用している場合は、標準的な*nixパッケージ管理ツールを使えば、PE agentをさらに簡単にインストールすることができます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> リモートパッケージリポジトリ機能をサポートするOSを使用している場合は、標準的な*nixパッケージ管理ツールを使えば、PE agentをさらに簡単にインストールすることができます。
+</div>
+</div>
+</div>
+
 
 <blockquote>
   <h3 id="installing-windows-agents">Windows agentをインストールするには？</h3>
 
-  <p> Windowsは、以下で説明するパッケージ管理方法ではインストールできません。 
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Windowsは、以下で説明するパッケージ管理方法ではインストールできません。 
+</div>
+</div>
+</div>
 
-  <p> Windows OSを使用するノード上でagentをインストールする方法については、「<a href="./install_windows.html">Windows agentのインストール</a>」を参照してください。
-</p>
+
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Windows OSを使用するノード上でagentをインストールする方法については、「<a href="./install_windows.html">Windows agentのインストール</a>」を参照してください。
+</div>
+</div>
+</div>
+
 </blockquote>
 
-<h2 id="about-pe-package-management">PEパッケージ管理について</h2>
+<h2 id="how-pe-package-management-works">PEパッケージ管理の仕組み</h2>
 
 <blockquote>
-  <p> <strong>警告</strong>：<code>pe_repo</code>クラスを用いたagentのインストールには、インターネット接続が必要です。  インターネットに接続していない場合は、「<a href="#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">インターネットにアクセスせずにPuppet Enterpriseインフラにagentをインストールする</a>」を参照してください。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>警告</strong>：<code>pe_repo</code>クラスを用いたagentのインストールには、インターネット接続が必要です。 
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インターネットに接続していない場合は、「<a href="#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">インターネットにアクセスせずにPuppet Enterpriseインフラにagentをインストールする</a>」を参照してください。
+</div>
+</div>
+</div>
+
 </blockquote>
 
-<p> PEは、Puppet masterノードのOSおよびアーキテクチャに対応するパッケージリポジトリをmaster上でホストします。 このリポジトリは、Puppet masterのインストール時に作成されます。 このリポジトリは、Puppet masterと同じポート(8140)を使って、HTTPSを介してパッケージにサービスを提供します。 つまり、agentでは、Puppet masterとの通信に必要とされているもの以外に、新たなポートを開く必要はないということです。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PEは、Puppet masterノードのOSおよびアーキテクチャに対応するパッケージリポジトリをPuppet master上でホストします。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> このリポジトリは、Puppet masterのインストール時に作成されます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> このリポジトリは、Puppet masterと同じポート(8140)を使って、HTTPSを介してパッケージにサービスを提供します。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> つまり、agentでは、Puppet masterとの通信に必要とされているもの以外に、新たなポートを開く必要はないということです。
+</div>
+</div>
+</div>
 
-<p> また、このプラットフォーム用に新たなリポジトリを作成して、PEのサポートするOSおよびアーキテクチャにリポジトリを追加することもできます。
-</p>
 
-<h3 id="how-the-platform-specific-install-script-works">プラットフォーム固有のインストールスクリプトの仕組み</h3>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> このインストールスクリプトを実行すると、agentが実行されているOSが検出され、Puppet masterを参照するapt、yum、またはzipper repoが設定された後、<code>puppet-agent</code>パッケージがダウンロードされ、インストールされます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> また、基本的な<code>puppet.conf</code>が作成され、Puppetが実行されます。
+</div>
+</div>
+</div>
 
-<p> <code>install.bash</code>スクリプトは、agentパッケージの稼働しているプラットフォームを検出すると、実際には第2のスクリプトを用いてagentパッケージリポジトリを取得およびインストールします。 この第2のスクリプトを使用して、agentパッケージのプラットフォームを手動で指定することができます。 また、このスクリプトを独自のカスタムスクリプトのサンプルまたはベースとすることもできます。
-</p>
 
-<p> スクリプトは、<code>https://&lt;master hostname&gt;:8140/packages/current/&lt;PLATFORM&gt;.bash</code>にあります。ここでは、<code>&lt;PLATFORM&gt;</code>はフォーム<code>el-6-x86_64</code>を使用しています。 プラットフォーム名は、PE tarballに使用しているものと同じです。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールスクリプトの実行時にagentのプラットフォームに対応するagentパッケージが見つからない場合は、エラーメッセージが表示され、masterに追加する必要のある<code>pe_repo</code>クラスが提示されます。
+</div>
+</div>
+</div>
 
-<pre><code> - el-{5, 6}-{i386, x86_64}
- - debian-{6, 7}-{i386, amd64}
- - ubuntu-{10.04, 12.04}-{i386, amd64}
- - sles-11-{i386, x86_64}
-</code></pre>
 
-<p> このインストールスクリプトを実行すると、agentが実行されているOSが検出され、Puppet masterを参照するapt、yum、またはzipper repoが設定された後、<code>puppet-agent</code>パッケージがダウンロードされ、インストールされます。 また、基本的な<code>puppet.conf</code>が作成され、Puppetが実行されます。
-</p>
-
-<p> インストールスクリプトの実行時にagentのプラットフォームに対応するagentパッケージが見つからない場合は、エラーメッセージが表示され、masterに追加する必要のある<code>pe_repo</code>クラスが提示されます。
-</p>
+<h2 id="installing-puppet-agents-with-pe-package-management">Puppet Enterpriseパッケージ管理を使ってPuppet Agentをインストールする</h2>
 
 <blockquote>
-  <p> <strong>警告</strong>：Puppet masterとagentのアーキテクチャおよびOSタイプ/バージョンが異なる場合は、スクリプトを実行する前に、適切なagentの<code>pe_repo</code>クラスをPuppet masterノードに割り当てる必要があります。 適切なagentクラスを追加せずにスクリプトを実行すると、 HTTP 404エラーメッセージが表示されます。 このエラーは無視しても問題ありませんが、スクリプトを再度実行する前に、適切なagentの<code>pe_repo</code>クラスをPuppet masterに追加する必要があります。 
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>以下の例に関する注意</strong>
+</div>
+</div>
+</div>
+
+
+  <ul>
+<li>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下の例に示すように、インストーラスクリプトの<code>&lt;PUPPET MASTER HOSTNAME&gt;</code>部は、Puppet masterのFQDNを参照します。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> すでにコンソールにログインしている場合は、コンソールの右上にある<strong>node requests</strong>をクリックすると、インストールに必要な正しいmasterホスト名を用いた正確なスクリプトを見つけることができます
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> (ノードリクエストを出していなくてもクリックできます
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> )。
+</div>
+</div>
+</div>
+
+    </li>
+    <li>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>-k</code>フラグは、<code>curl</code>にmasterを信用させるために必要です。PuppetとSSLインフラはまだノード上で設定されていないため、こうしないと<code>curl</code>はmasterを信用しません。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> AIX、curl、OpenSSLの詳細については、「<a href="./sys_req_os.html#aix">システム要件</a>」を参照してください。
+</div>
+</div>
+</div>
+
+
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> ただし、AIX 5.3、6.1、7.1では<code>-k</code>がサポートされていません。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>-k</code>フラグを<code>-tlsv1</code>または<code>-1</code>に置き換える必要があります。
+</div>
+</div>
+</div>
+
+    </li>
+    <li>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 一部のケースでは、<code>curl</code>の代わりに<code>wget</code>を使用できることもあります。必要に応じて適切なフラグを使用してください。
+</div>
+</div>
+</div>
+
+    </li>
+  </ul>
 </blockquote>
 
-<h2 id="installing-puppet-agents-with-the-package-installation-script">パッケージインストールスクリプトを使ってPuppet Agentをインストールする</h2>
-
-<blockquote>
-  <p> <strong>注意</strong>：以下の例に示すように、インストーラスクリプトの<code>&lt;MASTER HOSTNAME&gt;</code>部は、Puppet masterのFQDNを参照します。 モノリシックインストールの場合、これはPuppet master、コンソール、PuppetDBコンポーネントをインストールしたノードと同じです。分割インストールの場合、これはPuppet masterコンポーネントに割り当てたノードと一致します。 すでにコンソールにログインしている場合は、コンソールの右上にある<strong>node requests</strong>をクリックすると、インストールに必要な正しいmasterホスト名を用いた正確なスクリプトを見つけることができます (ノードリクエストを出していなくてもクリックできます )。
-</p>
-</blockquote>
-
-<h3 id="scenario-1-the-osarchitecture-of-the-puppet-master-and-the-agent-node-are-the-same">シナリオ1：Puppet masterとagentノードのOS/アーキテクチャが同じ場合</h3>
+<h3 id="scenario-1-the-puppet-master-and-agent-have-same-os-and-architecture">シナリオ1：Puppet masterとagentノードのOS/アーキテクチャが同じ場合</h3>
 
 <ol>
 <li>
-    <p> PE agentをインストールするノードにSSHでログインし、<code>curl -k https://&lt;MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash</code>を実行します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PE agentをインストールするノードにSSHでログインし、<code>curl -k https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash</code>を実行します。
+</div>
+</div>
+</div>
+
 
     <blockquote>
-      <p> <strong>ヒント</strong>：設定を指定するには、「<a href="#passing-configuration-parameters-to-the-install-script">インストールスクリプトへの設定パラメータの受け渡し</a>」を参照してください。たとえば、<code>puppet.conf</code>に追加されるcert nameなどを指定できます。
-</p>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>ヒント</strong>：設定を指定するには、「<a href="#passing-configuration-parameters-to-the-install-script">インストールスクリプトへの設定パラメータの受け渡し</a>」を参照してください。たとえば、<code>puppet.conf</code>に追加されるcert nameなどを指定できます。
+</div>
+</div>
+</div>
 
-      <p> スクリプト中の<code>current</code>は、<code>2016.x.x</code>という形で特定のPEバージョンに置き換えることができます。
-</p>
-    </blockquote>
-
-    <blockquote>
-      <p> <strong>注意</strong>：<code>-k</code>フラグは、<code>curl</code>にmasterを信用させるために必要です。PuppetとSSLインフラはまだノード上で設定されていないため、こうしないと<code>curl</code>はmasterを信用しません。 AIX、curl、OpenSSLの詳細については、「<a href="./install_system_requirements.html#aix">システム要件</a>」を参照してください。
-</p>
-
-      <p> ただし、AIX 5.3、6.1、7.1では<code>-k</code>がサポートされていないため、<code>-k</code>フラグを<code>-tlsv1</code>または<code>-1</code>に置き換える必要があります。
-</p>
-
-      <p> 一部のケースでは、<code>curl</code>の代わりに<code>wget</code>を使用できることもあります。必要に応じて適切なフラグを使用してください。
-</p>
     </blockquote>
   </li>
 </ol>
-<p> インストールが完了したら、「<a href="#signing-agent-certificates">agentの証明書に署名する</a>」に進みます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールが完了したら、「<a href="#signing-agent-certificates">agentの証明書に署名する</a>」に進みます。
+</div>
+</div>
+</div>
 
-<h3 id="scenario-2-the-osarchitecture-of-the-puppet-master-and-the-agent-node-are-different">シナリオ2：Puppet masterとagentノードのOS/アーキテクチャが異なる場合</h3>
 
-<p> Puppet masterとOSが異なるagentをインストールするには、まず、agentパッケージを含むリポジトリに適切なクラスを追加し、そのクラスによりPE Masterノードグループを分類します。 その後、agentからインストールスクリプトを実行し、インストールに必要なパッケージを取得します。
-</p>
+<h3 id="scenario-2-the-puppet-master-and-agent-have-different-os-and-architecture">シナリオ2：Puppet masterとagentノードのOS/アーキテクチャが異なる場合</h3>
 
-<p> たとえば、Puppet masterがEL6を使用するノード上にあり、AMD64ハードウェア上でDebian 6を使用するagentを追加したい場合は、以下の手順を実施します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Puppet masterとOSが異なるagentをインストールするには、まず、agentパッケージを含むリポジトリに適切なクラスを追加し、そのクラスによりPE Masterノードグループを分類します。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> その後、agentからインストールスクリプトを実行し、インストールに必要なパッケージを取得します。
+</div>
+</div>
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下の例では、Puppet masterはRHEL 6を使用するノード上に、agentはAMD64ハードウェア上でDebian 6を使用するノード上にあります。
+</div>
+</div>
+</div>
+
 
 <blockquote>
-  <p> <strong>注意</strong>: Puppet masterがプロキシサーバを使用してインターネットに接続している場合は、<a href="/pe/2016.2/release_notes_known_issues_install.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy">こちら</a>を参照して、既知の問題を解決してください。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>注意</strong>: Puppet masterがプロキシサーバを使用してインターネットに接続している場合は、<a href="/pe/2016.4/release_notes_known_issues_install.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy">こちら</a>を参照して、既知の問題を解決してください。
+</div>
+</div>
+</div>
+
 </blockquote>
 
 <ol>
 <li>
-    <p> コンソールで[<strong>Nodes</strong>]&gt;[<strong>Classification</strong>]の順にクリックします。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、<strong>PE Infrastructure</strong>グループで<strong>PE Masters</strong>グループを選択します。
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> [<strong>PE Masters</strong>]グループを選択します。
-</p>
-  </li>
-  <li>
-    <p> [<strong>Classes</strong>]タブをクリックします。
-</p>
-  </li>
-  <li>
-    <p> [<strong>Class name</strong>]フィールドに「<code>pe_repo</code>」と途中まで入力し、表示されるクラスのリストからリポジトリクラスを選択します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> [<strong>Class name</strong>]フィールドの[<strong>Classes</strong>]タブに<code>pe_repo</code>と入力し、表示されるクラスのリストからリポジトリクラスを選択します。
+</div>
+</div>
+</div>
+
 
     <blockquote>
-      <p> <strong>注意</strong>：リポジトリのクラスは「<code>pe_repo::platform::&lt;AGENT_OS_VERSION_ARCHITECTURE&gt;</code>」と表示されています。
-</p>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>注意</strong>：リポジトリのクラスは「<code>pe_repo::platform::&lt;AGENT_OS_VERSION_ARCHITECTURE&gt;</code>」と表示されています。
+</div>
+</div>
+</div>
+
     </blockquote>
   </li>
   <li>
-    <p> [<strong>Add class</strong>]をクリックします。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>Add class</strong>をクリックし、Commitボタンをクリックします。
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> [<strong>Commit 1 change</strong>]をクリックします。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>puppet agent -t</code>を実行し、新たに割り当てられたクラスを用いてPuppet masterノードを設定します。
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/&lt;PLATFORM&gt;/</code>に新規リポジトリが作成されます。
+</div>
+</div>
+</div>
+
+  </li>
+  <li>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PE agentをインストールするノードにSSHでログインし、<code>curl -k https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash</code>を実行します。
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> このスクリプトにより、PE agentパッケージがインストールされ、基本的な<code>puppet.conf</code>が作成され、Puppetが実行されます。
+</div>
+</div>
+</div>
+
 
     <blockquote>
-      <p> <strong>注意</strong>：<code>pe_repo::platform::debian_6_amd_64</code>クラスが<strong>PE Masters</strong>グループのクラスのリストに表示されますが、この段階ではまだノードに反映されていません。  ノードに設定するには、Puppetを実行する必要があります。
-</p>
+      <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>ヒント</strong>：設定を指定するには、「<a href="#passing-configuration-parameters-to-the-install-script">インストールスクリプトへの設定パラメータの受け渡し</a>」を参照してください。たとえば、<code>puppet.conf</code>に追加されるcert nameなどを指定できます。
+</div>
+</div>
+</div>
+
     </blockquote>
   </li>
   <li>
-    <p> <code>puppet agent -t</code>を実行し、新たに割り当てられたクラスを用いてPuppet masterノードを設定します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールが完了したら、「<a href="#signing-agent-certificates">agentの証明書に署名する</a>」に進みます。
+</div>
+</div>
+</div>
 
-    <p> <code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/&lt;PLATFORM&gt;/</code>に新規リポジトリが作成されます。
-</p>
-  </li>
-  <li>
-    <p> agentをインストールするDebianノードにSSHでログインし、<code>curl -k https://&lt;master.example.com&gt;:8140/packages/current/install.bash | sudo bash</code>を実行します。
-</p>
-
-    <p> このスクリプトにより、PE agentパッケージがインストールされ、基本的な<code>puppet.conf</code>が作成され、Puppetが実行されます。
-</p>
-
-    <blockquote>
-      <p> <strong>ヒント</strong>：設定を指定するには、「<a href="#passing-configuration-parameters-to-the-install-script">インストールスクリプトへの設定パラメータの受け渡し</a>」を参照してください。たとえば、<code>puppet.conf</code>に追加されるcert nameなどを指定できます。
-</p>
-    </blockquote>
-
-    <blockquote>
-      <p> <strong>注意</strong>：<code>-k</code>フラグは、<code>curl</code>にmasterを信用させるために必要です。PuppetとSSLインフラはまだノード上で設定されていないため、こうしないと<code>curl</code>はmasterを信用しません。
-</p>
-
-      <p> ただし、AIX 5.3、6.1、7.1では<code>-k</code>がサポートされていないため、<code>-k</code>フラグを<code>-tlsv1</code>または<code>-1</code>に置き換える必要があります。
-</p>
-
-      <p> 一部のケースでは、<code>curl</code>の代わりに<code>wget</code>を使用できることもあります。必要に応じて適切なフラグを使用してください。
-</p>
-    </blockquote>
-  </li>
-  <li>
-    <p> インストールが完了したら、「<a href="#signing-agent-certificates">agentの証明書に署名する</a>」に進みます。
-</p>
   </li>
 </ol>
 <h3 id="passing-configuration-parameters-to-the-install-script">インストールスクリプトへの設定パラメータの受け渡し</h3>
 
-<p> *nixベースのシステムでは、インストールスクリプトの末尾にパラメータを受け渡し、設定を指定することができます。たとえば、<code>puppet.conf</code>に追加されるcert nameなどを指定できます。 その場合、<code>curl -k https://master.example.com:8140/packages/current/install.bash | sudo bash -s agent:certname=&lt;certnameotherthanFQDN&gt;</code>を実行します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> *nixベースのシステムでは、インストールスクリプトの末尾にパラメータを受け渡し、<code>puppet.conf</code>に追加する設定を指定したり、<code>csr_attributes.yaml</code>の<code>custom_attributes</code>および<code>extension_requests</code>セクションに含める設定を指定したりすることができます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 例えば以下のようなものです。
+</div>
+</div>
+</div>
 
-<p> 必要な数のパラメータを受け渡すことができます。必ず<code>section:key=value</code>のパターンに従い、パラメータとパラメータの間にスペースを入れてください。 値のリストの完全版については、<a href="/puppet/4.5/reference/configuration.html">設定リファレンス</a>を参照してください。
-</p>
+
+<pre><code>curl -k https://master.example.com:8140/packages/current/install.bash | sudo bash -s agent:certname=&lt;certnameOtherThanFQDN&gt; custom_attributes:challengePassword=&lt;passwordForAutosignerScript&gt; extension_requests:pp_role=&lt;puppetNodeRole&gt;
+</code></pre>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 必要な数のパラメータを受け渡すことができます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 必ず<code>section:key=value</code>のパターンに従い、パラメータとパラメータの間にスペースを入れてください。
+</div>
+</div>
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 値のリストの完全版については、<a href="/puppet/4.6/reference/configuration.html">設定リファレンス</a>を参照してください。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <code>csr_attributes.yaml</code>の設定の詳細については、<a href="/puppet/4.6/reference/ssl_attributes_extensions.html">CSR特性と証明書のエクステンション</a>ページを参照してください。
+</div>
+</div>
+</div>
+
 
 <h2 id="installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">インターネットにアクセスせずにPuppet Enterpriseインフラにagentをインストールする</h2>
 
-<p> Puppet masterプラットフォームとは異なるプラットフォーム上でagentをインストールする場合、「<a href="#installing-puppet-agents-with-the-package-installation-script">PEパッケージ管理によるagentのインストール</a>」でも説明したように、agentのインストールスクリプトは、Puppet masterの分類後に適切なagentパッケージをダウンロードするために、インターネット接続を試みます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PEインフラから外部のインターネットにアクセスできない場合は、上で説明したagentインストール手順を一部実行することができません。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> この場合は、適切なagentパッケージをあらかじめ<a href="http://puppetlabs.com/misc/pe-files/agent-downloads">ダウンロード</a>し、それぞれのデプロイのニーズに応じて、以下のオプションを使用してください。
+</div>
+</div>
+</div>
 
-<p> PEインフラから外部のインターネットにアクセスできない場合は、上で説明したagentインストール手順を一部実行することができません。 この場合は、適切なagentパッケージをあらかじめ<a href="http://puppetlabs.com/misc/pe-files/agent-downloads">ダウンロード</a>し、それぞれのデプロイのニーズに応じて、以下のオプションを使用してください。
-</p>
 
 <ul>
 <li>
-    <p> <strong>オプション1</strong>
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>オプション1</strong>
+</div>
+</div>
+</div>
 
-    <p> PEの提供するリポジトリを使用する場合は、agentパッケージをmasterの<code>/opt/puppetlabs/server/data/staging/pe_repo-&lt;PUPPET-AGENT-VERSION&gt;</code>ディレクトリにコピーし、「<a href="#installing-puppet-agents-with-the-package-installation-script">パッケージインストールスクリプトを使ってPuppet agentをインストールする</a>」の手順に従ってプロセスを完了します。
-</p>
 
-    <p> サーバをアップグレードした時点で、新たなバージョンについてもこのタスクを再度実施する必要がある点に注意してください。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> PEの提供するリポジトリを使用する場合は、agentパッケージをmasterの<code>/opt/puppetlabs/server/data/staging/pe_repo-&lt;PUPPET AGENT VERSION&gt;</code>ディレクトリにコピーし、「<a href="#installing-puppet-agents-with-the-package-installation-script">パッケージインストールスクリプトを使ってPuppet agentをインストールする</a>」の手順に従ってプロセスを完了します。
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> サーバをアップグレードした時点で、新たなバージョンについてもこのタスクを再度実施する必要がある点に注意してください。
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <strong>オプション2</strong>
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>オプション2</strong>
+</div>
+</div>
+</div>
 
-    <p> すでにパッケージ管理/配信システムがある場合は、agentパッケージを独自のリポジトリに追加し、そのシステムを用いてagentをインストールすることができます。 その場合、masterから<code>pe_repo</code>クラスと、<code>pe_repo::</code>で始まるすべてのクラスを<a href="/pe/2016.2/console_classes_groups_making_changes.html#removing-classes-from-a-node-group">削除</a>すれば、PEのホストするリポジトリを無効にすることができます。
-</p>
 
-    <p> サーバをアップグレードした時点で、新たなバージョンについてもこのタスクを再度実施する必要がある点に注意してください。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> すでにパッケージ管理/配信システムがある場合は、agentパッケージを独自のリポジトリに追加し、そのシステムを用いてagentをインストールすることができます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> その場合、masterから<code>pe_repo</code>クラスと、<code>pe_repo::</code>で始まるすべてのクラスを<a href="/pe/2016.4/console_classes_groups_making_changes.html#removing-classes-from-a-node-group">削除</a>すれば、PEのホストするリポジトリを無効にすることができます。
+</div>
+</div>
+</div>
+
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> サーバをアップグレードした時点で、新たなバージョンについてもこのタスクを再度実施する必要がある点に注意してください。
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> <strong>オプション3</strong>
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>オプション3</strong>
+</div>
+</div>
+</div>
 
-    <p> デプロイに複数のmasterがあり、agentパッケージをそれぞれにコピーしたくない場合は、agentパッケージへのパスを指定することができます。 これを行うには、<a href="/pe/2016.2/console_classes_groups.html#defining-the-data-used-by-classes">コンソールを用いて</a>、<code>pe_repo</code>クラスの<code>base_path</code>パラメータを、agentパッケージを含むアクセス可能なサーバに設定します。
-</p>
+
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> デプロイに複数のmasterがあり、agentパッケージをそれぞれにコピーしたくない場合は、agentパッケージへのパスを指定することができます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これを行うには、<a href="/pe/2016.4/console_classes_groups.html#defining-the-data-used-by-classes">コンソールを用いて</a>、<code>pe_repo</code>クラスの<code>base_path</code>パラメータを、agentパッケージを含むアクセス可能なサーバに設定します。
+</div>
+</div>
+</div>
+
   </li>
 </ul>
 <h2 id="installing-agents-using-your-package-management-tools">パッケージ管理ツールを使ってagentをインストールする</h2>
 
-<p> 現在、ネイティブのパッケージ管理を使用している場合は、以下の手順を実行してください。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 現在、ネイティブのパッケージ管理を使用している場合は、以下の手順を実行してください。
+</div>
+</div>
+</div>
+
 
 <ol>
 <li>
-    <p> agentパッケージを適切なリポジトリに追加します。 
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> agentパッケージを適切なリポジトリに追加します。 
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> パッケージマネージャを設定し (yum、apt)、そのリポジトリを指定します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> パッケージマネージャを設定し (yum、apt)、そのリポジトリを指定します。
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> 他のパッケージと同じようにパッケージをインストールします。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 他のパッケージと同じようにパッケージをインストールします。
+</div>
+</div>
+</div>
+
   </li>
 </ol>
-<p> agentパッケージは、Puppet masterの<code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/</code>にあります。 このディレクトリには、agentパッケージのプラットフォーム固有のリポジトリファイル構造が含まれます。 デフォルトでは、これにはPuppet masterのOS/アーキテクチャと一致するリポジトリが含まれます。 たとえば、Puppet masterがCentOS 7で稼働している場合、<code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/</code>では、ディレクトリ<code>el-7-x86_64</code>が見つかります。これには、agentのインストールに必要なすべてのパッケージに関するディレクトリが含まれています。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> agentパッケージは、Puppet masterの<code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/</code>にあります。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> このディレクトリには、agentパッケージのプラットフォーム固有のリポジトリファイル構造が含まれます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> デフォルトでは、これにはPuppet masterのOS/アーキテクチャと一致するリポジトリが含まれます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> たとえば、Puppet masterがCentOS 7で稼働している場合、<code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/</code>では、ディレクトリ<code>el-7-x86_64</code>が見つかります。これには、agentのインストールに必要なすべてのパッケージに関するディレクトリが含まれています。
+</div>
+</div>
+</div>
 
-<p> ノードのOSがmasterとは異なるOS/アーキテクチャである場合、<a href="http://puppetlabs.com/misc/pe-files/agent-downloads">適切なagentパッケージをダウンロードし</a>、agentパッケージを適切なリポジトリに抽出したのち、他のパッケージ (<code>yum install puppet-agent</code>など) と同じようにノードにagentをインストールしてください。
-</p>
 
-<p> または、masterノードにインターネットでアクセスできる場合は、上述の指示に従い、<a href="#installing-puppet-agents-with-the-package-installation-script">コンソールを使って</a>、ビルトインの<code>pe_repo::platform::&lt;PLATFORM&gt;</code>クラスの1つによりmasterを分類することもできます。 Puppet masterを分類し、Puppetが実行されたら、適切なagentパッケージが作成され、<code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;</code>に保存されます。 Puppet masterでインターネットにアクセスできない場合は、 agentを手動でダウンロードし、「<a href="#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">インターネットにアクセスせずにPuppet EnterpriseインフラにAgentをインストールする</a>」からいずれかのオプションを選択してください。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> ノードのOSがmasterとは異なるOS/アーキテクチャである場合、<a href="http://puppetlabs.com/misc/pe-files/agent-downloads">適切なagentパッケージをダウンロードし</a>、agentパッケージを適切なリポジトリに抽出したのち、他のパッケージ (<code>yum install puppet-agent</code>など) と同じようにノードにagentをインストールしてください。
+</div>
+</div>
+</div>
 
-<p> 目的のノードにagentをインストールしたら、<code>puppet config set</code>を使ってagentを設定できます。 以下の「<a href="#configuring-agents">agentを設定する</a>」を参照してください。
-</p>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 目的のノードにagentをインストールしたら、<code>puppet config set</code>を使ってagentを設定できます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 以下の「<a href="#configuring-agents">agentを設定する</a>」を参照してください。
+</div>
+</div>
+</div>
+
 
 <h2 id="signing-agent-certificates">agentの証明書に署名する</h2>
 
-<p> Puppet agentコンポーネントを備えたノードで設定を取得したり、コンソールに表示したりするには、まず管理者がagentの証明書要求に署名する必要があります。 これにより、不正なノードによる重要な設定データの傍受が防止されます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> Puppet agentコンポーネントを備えたノードで設定を取得したり、コンソールに表示したりするには、まず管理者がagentの証明書要求に署名する必要があります。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これにより、不正なノードによる重要な設定データの傍受が防止されます。
+</div>
+</div>
+</div>
 
-<p> インストールの最後にインストーラにより実行される(または、<code>puppet agent -t</code>による手動での実行も可能です)最初のPuppet実行後、 agentは自動的に証明書要求をPuppet masterに提出します。 agentが設定を取得できるようにするためには、ユーザがこの証明書を承認する必要があります。
-</p>
 
-<p> ノードの要求は、コンソールから承認または拒絶することができます。 提出中のノードの要求は、メインナビゲーションバーに表示されます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> インストールの最後にインストーラにより実行される(または、<code>puppet agent -t</code>による手動での実行も可能です)最初のPuppet実行後、 agentは自動的に証明書要求をPuppet masterに提出します。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> agentが設定を取得できるようにするためには、ユーザがこの証明書を承認する必要があります。
+</div>
+</div>
+</div>
 
-<p> <strong>コンソールを用いて証明書に署名する方法</strong>：
-</p>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> ノードの要求は、コンソールから承認または拒絶することができます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 提出中のノードの要求は、メインナビゲーションバーに表示されます。
+</div>
+</div>
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>コンソールを用いて証明書に署名する方法</strong>：
+</div>
+</div>
+</div>
+
 
 <ol>
 <li>
-    <p> コンソールで[<strong>Nodes</strong>] &gt; [<strong>Unsigned Certificates</strong>]の順にクリックし、現在提出されているノードの要求リストをロードします。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> コンソールで[<strong>Nodes</strong>] &gt; [<strong>Unsigned Certificates</strong>]の順にクリックし、現在提出されているノードの要求リストをロードします。
+</div>
+</div>
+</div>
+
   </li>
   <li>
-    <p> [<strong>Accept All</strong>]ボタンをクリックして、すべての要求を承認し、ノードに追加します。
-</p>
+    <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> [<strong>Accept All</strong>]ボタンをクリックして、すべての要求を承認し、ノードに追加します。
+</div>
+</div>
+</div>
+
   </li>
 </ol>
-<p> コマンドラインインタフェース(CLI)を使用することもできますが、<strong>CLIを用いた証明書署名はPuppet masterノードで行われる</strong>点に注意してください。 提出されている証明書要求のリストを見るには、以下を実行します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> コマンドラインインタフェース(CLI)を使用することもできますが、<strong>CLIを用いた証明書署名はPuppet masterノードで行われる</strong>点に注意してください。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 提出されている証明書要求のリストを見るには、以下を実行します。
+</div>
+</div>
+</div>
+
 
 <pre><code>$ sudo puppet cert list
 </code></pre>
 
-<p> 提出されている要求のいずれかに署名するには、以下を実行します。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 提出されている要求のいずれかに署名するには、以下を実行します。
+</div>
+</div>
+</div>
+
 
 <pre><code>$ sudo puppet cert sign &lt;name&gt;
 </code></pre>
 
-<p> 新規ノードの証明書に署名してから、そのノードがコンソールに表示され、設定の取得が開始されるまでには、30分ほどかかることがあります。 すぐに表示するには、CLIを用いてノード上でPuppetを手動で実行することもできます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 新規ノードの証明書に署名してから、そのノードがコンソールに表示され、設定の取得が開始されるまでには、30分ほどかかることがあります。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> すぐに表示するには、CLIを用いてノード上でPuppetを手動で実行することもできます。
+</div>
+</div>
+</div>
 
-<p> 証明書を削除する必要がある場合 (ノードの再インストールの際など) は、<code>puppet cert clean &lt;node name&gt;</code>コマンドを使用できます。
-</p>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 証明書を削除する必要がある場合 (ノードの再インストールの際など) は、<code>puppet cert clean &lt;node name&gt;</code>コマンドを使用できます。
+</div>
+</div>
+</div>
+
 
 <h2 id="configuring-agents">agentを設定する</h2>
 
-<p> 証明書に署名すると、agentをPEで管理できるようになっているはずです。  ただし、追加の設定を実行する必要がある場合は、<code>/etc/puppetlabs/puppet/puppet.conf</code>を直接編集するか、<code>puppet.conf</code>を自動的に編集する<a href="/puppet/4.5/reference/config_set.html"><code>puppet config set</code>サブコマンド</a>を使えば、それを実行することができます。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 証明書に署名すると、agentをPEで管理できるようになっているはずです。 
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> ただし、追加の設定を実行する必要がある場合は、<code>/etc/puppetlabs/puppet/puppet.conf</code>を直接編集するか、<code>puppet.conf</code>を自動的に編集する<a href="/puppet/4.6/reference/config_set.html"><code>puppet config set</code>サブコマンド</a>を使えば、それを実行することができます。
+</div>
+</div>
+</div>
 
-<p> たとえば、「master.example.com」と呼ばれるPuppet masterのagentを指定する場合は、<code>puppet config set server master.example.com</code>を実行します。 これにより、<code>server = puppetmaster.example.com</code>設定が<code>puppet.conf</code>の<code>[main]</code>セクションに追加されます。 agentのcertnameを設定するには、<code>/opt/puppetlabs/bin/puppet config set certname agent.example.com</code>を実行します。 詳細については、<a href="/puppet/4.5/reference/config_set.html"><code>puppet config set</code>に関する文書</a>を参照してください。
-</p>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> たとえば、「master.example.com」と呼ばれるPuppet masterのagentを指定する場合は、<code>puppet config set server master.example.com</code>を実行します。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> これにより、<code>server = puppetmaster.example.com</code>設定が<code>puppet.conf</code>の<code>[main]</code>セクションに追加されます。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> agentのcertnameを設定するには、<code>/opt/puppetlabs/bin/puppet config set certname agent.example.com</code>を実行します。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 詳細については、<a href="/puppet/4.6/reference/config_set.html"><code>puppet config set</code>に関する文書</a>を参照してください。
+</div>
+</div>
+</div>
+
 
 <blockquote>
-  <p> <strong>Mac OS Xユーザへの警告</strong>：OS Xシステムでagentのコマンドラインインストールを実施する場合、agentを適切に機能させるためには、<code>/opt/puppetlabs/bin/puppet config set server</code>および<code>/opt/puppetlabs/bin/puppet config set certname</code>を実行する必要があります。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>Mac OS Xユーザへの警告</strong>：OS Xシステムでagentのコマンドラインインストールを実施する場合、agentを適切に機能させるためには、<code>/opt/puppetlabs/bin/puppet config set server</code>および<code>/opt/puppetlabs/bin/puppet config set certname</code>を実行する必要があります。
+</div>
+</div>
+</div>
+
 </blockquote>
+
+<h2 id="a-note-about-binaries-and-symlinks">バイナリおよびシンボリックリンクに関する注記</h2>
+
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> バイナリおよびシンボリックリンクPE設定の詳細については、<a href="./install_basic.html#puppet-enterprise-binaries-and-symlinks">Puppet Enterpriseのバイナリおよびシンボリックリンク</a>を参照してください。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> シンボリックリンクの無効化に関する説明も記載しています。
+</div>
+</div>
+</div>
+
 
 <h2 id="preparing-agents-for-orchestration-services">オーケストレーションサービスに向けたagentの準備</h2>
 
-<p> オーケストレーションサービスに参加するagentが存在する場合は、追加の設定手順を実施する必要があります。 詳しい説明は、「<a href="/pe/2016.2/orchestrator_install.html#prepare-your-agents-for-orchestration-services">prepare your agents for orchestration services(オーケストレーションサービスに向けてagentの準備を整える)</a>」を参照してください。
-</p>
+<p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> オーケストレーションサービスに参加するagentが存在する場合は、追加の設定手順を実施する必要があります。
+</div>
+</div>
+</div> <div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> 詳しい説明は、「<a href="./orchestrator_install.html#enable-cache-catalogs-for-orchestration-services">Enable cache catalogs for orchestration services(オーケストレーションサービスに向けてキャッシュカタログを有効にする)</a>」を参照してください。
+</div>
+</div>
+</div>
+
 
 <blockquote>
-  <p> <strong>ヒント</strong>：agentのインストールの完了後、「<a href="/pe/2016.2/quick_start_ntp.html">NTPクイックスタートガイド</a>」の指示に従い、デプロイ全体でPEの時間を同期 してください。
-</p>
+  <p> </p>
+<div class="real-paragraph"> <div class="real-paragraph"> <div class="real-paragraph"> <strong>ヒント</strong>：agentのインストールの完了後、「<a href="/pe/2016.4/quick_start_ntp.html">NTPクイックスタートガイド</a>」の指示に従い、デプロイ全体でPEの時間を同期 してください。
+</div>
+</div>
+</div>
+
 </blockquote>
 </div>
