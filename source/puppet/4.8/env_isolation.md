@@ -8,13 +8,13 @@ description: "Generating metadata to isolate resources in environments in Puppet
 [code_mgr_env]: {{pe}}/code_mgr.html#environment-isolation-metadata
 
 
-If you have multiple environments, environment isolation prevents module resource types from leaking between your various environments. To use environment isolation, you'll generate metadata files that Puppet can use in place of the normal Ruby resource type implementations.
+If you have multiple environments, environment isolation prevents resource types from leaking between your various environments. To use environment isolation, you'll generate metadata files that Puppet can use in place of the normal Ruby resource type implementations.
 
 In open source Puppet, enable environment isolation with the `generate types` command. In Puppet Enterprise, environment isolation is automatically provided by [Code Manager][code_mgr_env]. Environment isolation is not supported for r10k with Puppet Enterprise.
 
 ## Preventing resource types leaks in multiple environments
 
-If you use multiple environments with Puppet, you might encounter issues with multiple versions of the same resource type leaking between your various environments. This happens with custom resource types in modules, not with Puppet's built-in resource types.
+If you use multiple environments with Puppet, you might encounter issues with multiple versions of the same resource type leaking between your various environments. This doesn't happen with Puppet's built-in resource types, but it can happen with any other resource types.
 
 This problem occurs because Ruby resource type bindings are global in the Ruby runtime. Thus, the first loaded version of a Ruby resource type takes priority, and then subsequent requests to compile in other environments get that first loaded version.
 
