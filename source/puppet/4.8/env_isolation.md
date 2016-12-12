@@ -8,25 +8,25 @@ description: "Generating metadata to isolate resources in environments in Puppet
 [code_mgr_env]: {{pe}}/code_mgr.html#environment-isolation-metadata
 
 
-If you have multiple environments, environment isolation prevents resource types from leaking between your various environments. To use environment isolation, you'll generate metadata files that Puppet can use in place of the normal Ruby resource type implementations.
+If you have multiple environments, environment isolation prevents module resource types from leaking between your various environments. To use environment isolation, you'll generate metadata files that Puppet can use in place of the normal Ruby resource type implementations.
 
 In open source Puppet, enable environment isolation with the `generate types` command. In Puppet Enterprise, environment isolation is automatically provided by [Code Manager][code_mgr_env]. Environment isolation is not supported for r10k with Puppet Enterprise.
 
 ## Preventing resource types leaks in multiple environments
 
-If you use multiple environments with Puppet, you might encounter issues with multiple versions of the same resource type leaking between your various environments. 
+If you use multiple environments with Puppet, you might encounter issues with multiple versions of the same resource type leaking between your various environments. This happens with custom resource types in modules, not with Puppet's built-in resource types.
 
 This problem occurs because Ruby resource type bindings are global in the Ruby runtime. Thus, the first loaded version of a Ruby resource type takes priority, and then subsequent requests to compile in other environments get that first loaded version.
 
 Environment isolation solves this issue by generating and using metadata that describes the resource type implementation, instead of using the Ruby resource type implementation when compiling catalogs. 
 
-> **Note**: Other environment isolation cases, such as external helper logic issues or varying versions of required gems, are not solved with the `generate type` command.
+> **Note**: Other environment isolation cases, such as external helper logic issues or varying versions of required gems, are not solved with the `generate types` command.
 
 ### Agent logic is unchanged
 
 Catalog compilation results are exactly the same whether you use the metadata-based version of the resource type or the Ruby implementation. The agent acting on the catalog continues to use the Ruby-based implementation. Because the agent uses one, and only one, version of the logic, isolation is not a problem for the agent.
 
-## Enable environment isolation in Puppet
+## Enable environment isolation in open source Puppet
 
 With open source Puppet, enable environment isolation by running the `generate types` command:
 
@@ -38,9 +38,9 @@ For example, to generate metadata for your production environment, run:
 
 Whenever you deploy a new version of Puppet, overwrite previously generated metadata with `puppet generate types --environment <envname> --force`.
 
-### Implement environment isolation with r10k
+### Enable environment isolation with r10k
 
-To use environment isolation with open source Puppet and r10k, generate types for each environment every time r10k deploys new code.
+To use environment isolation with open source Puppet and r10k, generate types for each environment every time r10k deploys new code. (Environment isolation is not supported with r10k in Puppet Enterprise.)
 
 To generate types with r10k, either:
 
@@ -85,6 +85,7 @@ To diagnose or repair issues:
      1. In [Hiera](./config_intro.html#configure-settings-with-hiera), set `puppet_enterprise::master::puppetserver::pre_commit_hook_commands: []`. 
      1. On the command line, run `service pe-puppetserver reload`.
      1. Delete the `.resource_types` directories from your staging code directory (`/etc/puppetlabs/code-staging`).
+     1. Deploy environments.
 
 ## Reference: `generate types`
 
