@@ -1,5 +1,6 @@
 We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Fedora:
 
+* Fedora 24
 * Fedora 23
 * Fedora 22
 

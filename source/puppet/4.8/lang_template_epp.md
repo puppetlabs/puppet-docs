@@ -208,7 +208,7 @@ logfile <%= $logfile %>
 
 The keys of the hash should match the variable names you'll be using in the template, minus the leading `$` sign. Parameters must follow [the normal rules for local variable names.][variable_names]
 
-If the template has a [parameter tag][inpage_paramtag], you can _only_ pass the parameters it declares. Passing any additional parameters is a syntax error. However, if a template omits the parameter tag, you can pass it any parameters.
+If the template has a [parameter tag][inpage_paramtag], it **must** be the first content in a template and you can _only_ pass the parameters it declares. Passing any additional parameters is a syntax error. However, if a template omits the parameter tag, you can pass it any parameters.
 
 If a template's parameter tag includes any parameters without default values, they are mandatory. You must pass values for them when calling the template.
 
