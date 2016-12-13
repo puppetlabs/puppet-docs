@@ -10,6 +10,12 @@
     - sys_req_browsers.html
     - sys_req_sysconfig.html
   at_version: 2016.4
+  
+# Split install is removed from higgs. need to redirect that page to tex-based split install for everett and onwards; should also be backported to 2016.4 when 2016.4.3 is released.
+- in_doc: pe
+  was: install_pe_split.html
+  became: install_text_mode_split.html
+  at version: 2016.5  
 
 # Redirect orchestration_* -> mco_* (old marketing terminology was colliding with new product terminology)
 - in_doc: pe
