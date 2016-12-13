@@ -15,7 +15,7 @@
 - in_doc: pe
   was: install_pe_split.html
   became: install_text_mode_split.html
-  at version: 2016.5
+  at_version: 2016.5
 
 # Redirect orchestration_* -> mco_* (old marketing terminology was colliding with new product terminology)
 - in_doc: pe
