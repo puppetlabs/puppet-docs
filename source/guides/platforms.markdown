@@ -41,7 +41,7 @@ For more information about about the most recent Puppet 4 packages and platforms
 
 ## Other Unix
 
-- OS X, version 10.7 (Leopard) and higher
+- OS X, version 10.9 (Mavericks) and higher
 - Oracle Solaris, version 10 and higher
 - AIX, version 5.3 and higher
 - HP-UX
