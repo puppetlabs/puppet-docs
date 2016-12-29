@@ -209,7 +209,7 @@ Where can others go to file issues about this module?
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_range": ">= 1.0.0"
+      "version_requirement": ">= 1.0.0"
     }
   ]
 }
