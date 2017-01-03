@@ -52,8 +52,8 @@ They don't use very many parameters, but they demonstrate the sort of defaults-p
 ``` puppet
 # ntp/manifests/params.pp
 class ntp::params {
-  $autoupdate = false
-  $default_service_name = 'ntpd'
+  $autoupdate = false,
+  $default_service_name = 'ntpd',
 
   case $::osfamily {
     'AIX': {
@@ -126,8 +126,8 @@ Defaults set with Puppet lookup don't need to be explicitly set, and you no long
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/functions/data.pp
-  $autoupdate
-  $service_name
+  $autoupdate,
+  $service_name,
 ) {
  ...
 }
@@ -179,8 +179,8 @@ Defaults set with Puppet lookup don't need to be explicitly set, and you no long
 # ntp/manifests/init.pp
 class ntp (
   # default values are in ntp/data
-  $autoupdate
-  $service_name
+  $autoupdate,
+  $service_name,
 ) {
  ...
 }
