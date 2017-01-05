@@ -130,8 +130,8 @@ documents:
       hiera: 3.2
       puppetserver: 2.4
       puppetdb: 4.1
-      
-        /pe/2016.1:
+
+  /pe/2016.1:
     doc: pe
     version: 2016.1
     nav: ./_pe_toc.html
