@@ -130,6 +130,129 @@ documents:
       hiera: 3.2
       puppetserver: 2.4
       puppetdb: 4.1
+      
+        /pe/2016.1:
+    doc: pe
+    version: 2016.1
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/pe2016.1.2
+      subdirectory: source
+    my_versions:
+      puppet: 4.4
+      facter: 3.1
+      hiera: 3.1
+      puppetserver: 2.3
+      puppetdb: 4.0
+
+  /pe/2015.3:
+    doc: pe
+    version: 2015.3
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/pe2015.3.3
+      subdirectory: source
+    my_versions:
+      puppet: 4.3
+      facter: 3.1
+      hiera: 3.0
+      puppetserver: 2.2
+      puppetdb: 3.2
+  /pe/2015.2:
+    doc: pe
+    version: 2015.2
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/pe2015.2.3
+      subdirectory: source
+    my_versions:
+      puppet: 4.2
+      facter: 3.1
+      hiera: 3.0
+      puppetserver: 2.1
+      puppetdb: 3.1
+  /pe/3.8:
+    doc: pe
+    version: 3.8
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/pe3.8.7
+      subdirectory: source
+    my_versions:
+      puppet: 3.8
+      facter: 2.4
+      hiera: 1
+      puppetserver: 1.2
+      puppetdb: 2.3
+  /pe/3.7:
+    doc: pe
+    version: 3.7
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/pe3.7
+      subdirectory: source
+    my_versions:
+      puppet: 3.7
+      facter: 2.3
+      hiera: 1
+      puppetserver: 1.0
+      puppetdb: 2.2
+  /pe/3.3:
+    doc: pe
+    version: 3.3
+    nav: /_includes/pe33.html
+    my_versions:
+      puppet: 3.6
+      facter: 1.7
+      hiera: 1
+      puppetdb: 1.6
+  /pe/3.2:
+    doc: pe
+    version: 3.2
+    nav: /_includes/pe32.html
+    my_versions:
+      puppet: 3
+      facter: 1.7
+      hiera: 1
+      puppetdb: 1.5
+  /pe/3.1:
+    doc: pe
+    version: 3.1
+    nav: /_includes/pe31.html
+  /pe/3.0:
+    doc: pe
+    version: 3.0
+    nav: /_includes/pe30.html
+  /pe/2.8:
+    doc: pe
+    version: 2.8
+    nav: /_includes/pe28.html
+    hide: true
+  /pe/2.7:
+    doc: pe
+    version: 2.7
+    nav: /_includes/pe27.html
+    hide: true
+  /pe/2.6:
+    doc: pe
+    version: 2.6
+    nav: /_includes/pe26.html
+    hide: true
+  /pe/2.5:
+    doc: pe
+    version: 2.5
+    nav: /_includes/pe25.html
+    hide: true
+  /pe/2.0:
+    doc: pe
+    version: 2.0
+    nav: /_includes/pe_2.0_nav.markdown
+    hide: true
 
   /puppet/4.9: # CHANGING THE URL FROM THIS POINT FORWARD.
     doc: puppet
