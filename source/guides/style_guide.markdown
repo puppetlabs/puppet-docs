@@ -8,7 +8,7 @@ The Puppet Language Style Guide
 
 #### Metadata
 
-Puppet Language Style Guide: Version 2.0.1
+Puppet Language Style Guide: Version 2.0.2
 
 Puppet: Version 3.7+
 
@@ -55,9 +55,10 @@ This style guide is versioned using SemVer.
 
 Module manifests:
 
-* Must use two-space soft tabs,
-* Must not use literal tab characters,
-* Must not contain trailing whitespace,
+* Should use two-space soft tabs,
+* Should not use literal tab characters,
+* Must not mix spaces and tabs,
+* Should not contain trailing whitespace,
 * Must have trailing commas after all resource attributes and parameter definitions,
 * Should not exceed a 140-character line width,
 * Should leave one empty line between resources, except when using dependency chains, and
