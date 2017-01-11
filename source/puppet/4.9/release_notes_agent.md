@@ -30,8 +30,18 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
-Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.8 release notes](./release_notes.html).
+Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.9 release notes](./release_notes.html).
 
 ## Puppet agent 1.9.0
 
-TODO
+Released January  , 2017.
+
+### Component updates
+
+
+### New platforms
+
+We now have `puppet-agent` packages available for the following platforms:
+
+* Fedora 25
+* Ubuntu 16.10
