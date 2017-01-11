@@ -40,6 +40,14 @@ These packages bundle all of Puppet's prerequisites, so you don't need to downlo
 
 The list of Windows packages might include release candidates, whose filenames have something like `-rc1` after the version number. Use these only if you want to test upcoming Puppet versions.
 
+>**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You may see a warning from your browser saying the signature is corrupt or invalid.
+>
+> ![invalid or corrupt](./images/windows_invalid_signature.jpg)
+>
+> If you want to verify the package is dual-signed, right-click on the MSI, and select **Properties**. Navigate to the **Digital Signatures** tab and you should see the following:
+>
+> ![Puppet Package Properties](./images/windows_package_signatures.png)
+
 ## Install Puppet
 
 You can install Puppet [with a graphical wizard](#graphical-installation) or [on the command line](#automated-installation). The command-line installer provides more configuration options.
