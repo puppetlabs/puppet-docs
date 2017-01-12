@@ -807,7 +807,7 @@ We recommend that you split your module into public and private classes and defi
 
 You should help indicate to the user which classes are which by making sure all public classes have complete [comments](#comments) and denoting public and private classes in your documentation. Use the documentation tags "@api private" and "@api public" to make this clear.
 
-### 10.4. Chaining Arrow Syntax
+### 10.4. Chaining arrow syntax
 
 Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
 
@@ -1193,7 +1193,7 @@ Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG
 * List bugfixes and features included in the release. 
 * Specifically call out backwards-incompatible changes
 
-### 18. Verification and testing
+## 18. Verification and testing
 
 We recommend [puppet-lint](http://puppet-lint.com/) and [metadata-json-lint](https://github.com/voxpupuli/metadata-json-lint) for checking your module's style compliance. For testing your module, we recommend rspec. See [rspec-puppet](https://github.com/rodjek/rspec-puppet/#rspec-tests-for-your-puppet-manifests--modules) for information on writing rspec tests for Puppet.
 
