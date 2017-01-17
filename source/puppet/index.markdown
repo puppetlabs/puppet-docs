@@ -15,7 +15,7 @@ Practically speaking, Puppet is a collection of several projects. Here's the doc
 
 Component     | Latest                             | Other versions
 --------------|------------------------------------|--------------------------------------------
-Puppet        | [Latest](/puppet/latest/reference) | [Other versions](#puppet-reference-manuals)
+Puppet        | [Latest](/puppet/latest)           | [Other versions](#puppet-reference-manuals)
 Puppet Server | [Latest](/puppetserver/latest)     | [Other versions](/puppetserver)
 Facter        | [Latest](/facter/latest)           | [Other versions](/facter)
 Hiera         | [Latest](/hiera/latest)            | [Other versions](/hiera)
