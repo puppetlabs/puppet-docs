@@ -1,11 +1,11 @@
 ---
 layout: default
 title: "Puppet agent release notes"
-canonical: "/puppet/latest/reference/release_notes_agent.html"
+canonical: "/puppet/latest/release_notes_agent.html"
 ---
 
-[Puppet 4.7.0]: /puppet/4.7/reference/release_notes.html#puppet-470
-[Puppet 4.7.1]: /puppet/4.7/reference/release_notes.html#puppet-471
+[Puppet 4.7.0]: /puppet/4.7/release_notes.html#puppet-470
+[Puppet 4.7.1]: /puppet/4.7/release_notes.html#puppet-471
 
 [Facter 3.4.1]: /facter/3.4/release_notes.html#facter-341
 [Facter 3.4.2]: /facter/3.4/release_notes.html#facter-342
@@ -40,7 +40,7 @@ Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.7 release 
 
 Released January 17, 2017.
 
-This is a maintenance release in the puppet-agent 1.7 series. Many components in the `puppet-agent` package have been updated.
+This is a maintenance release. Many components in the `puppet-agent` package have been updated, you can find more information on their individual release notes pages.
 
 ### Component updates
 

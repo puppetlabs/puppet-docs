@@ -22,7 +22,6 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), s
 
 Also of interest: the [Puppet 4.6 release notes](/puppet/4.6/reference/release_notes.html) and [Puppet 4.5 release notes](/puppet/4.5/reference/release_notes.html).
 
-## Long term support
 
 >**Note**: This version of Puppet is included in the Long Term Support release [Puppet Enterprise 2016.4][], so while there may be [newer versions of Puppet](/puppet/latest) available (and sometimes referenced in these release notes), we will continue updating this version until Puppet Enterprise 2016.4 reaches end of life.
 
@@ -30,20 +29,22 @@ Also of interest: the [Puppet 4.6 release notes](/puppet/4.6/reference/release_n
 
 Released January 17, 2017.
 
-Shipped with `puppet-agent` 1.7.2.
+Shipped with [`puppet-agent` 1.7.2](/puppet/4.7/release_notes_agent.html).
 
 * [Fixed in Puppet 4.7.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.7.1%27)
 * [Introduced in Puppet 4.7.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.7.1%27)
 
-### Deprecation warning
+### Deprecation
 
 In Puppet 4.8.0, the stacktrace property was removed from Puppet's HTTP error response API. This was an unintentional backwards-incompatible change, and in Puppet 4.8.2, the stacktrace property was returned to the response object, but instead of containing the stack trace message, now contains a deprecation warning. Users consuming the stack trace property of the Puppet HTTP error response API should instead review the Puppet log for this information.
 
 * [PUP-7066](https://tickets.puppetlabs.com/browse/PUP-7066)
 
-### Puppet tag validation
+### Bug fix
 
-Tags containing newlines caused problems in PuppetDB because they were silently accepted when compiling a catalog. Now an error will be raised when compiling.
+#### Puppet tag validation
+
+Tags containing new lines caused problems in PuppetDB because they were silently accepted when compiling a catalog. Now an error will be raised when compiling.
 
 * [PUP-6670](https://tickets.puppetlabs.com/browse/PUP-6670)
 
