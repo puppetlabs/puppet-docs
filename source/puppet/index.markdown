@@ -72,22 +72,22 @@ Learn about different areas of Puppet, problem fixes, and design solutions.
 
 Get the latest version of Puppet up and running.
 
-* [An Introduction to Puppet](/guides/introduction.html)
-* [Installing Puppet 4 for Linux](/puppet/latest/reference/install_linux.html)
-* [Installing Puppet 4 for Windows](/puppet/latest/reference/install_windows.html)
+* [Overview of Puppet's architecture](/puppet/latest/architecture.html)
+* [Installing Puppet 4 for Linux](/puppet/latest/install_linux.html)
+* [Installing Puppet 4 for Windows](/puppet/latest/install_windows.html)
 * Upgrading Puppet from 3.x to 4.x
-  * [Upgrading Puppet 3.x Agents](/puppet/latest/reference/upgrade_agent.html)
-  * [Upgrading Puppet 3.x Servers](/puppet/latest/reference/upgrade_server.html)
+  * [Upgrading Puppet 3.x Agents](/puppet/latest/upgrade_agent.html)
+  * [Upgrading Puppet 3.x Servers](/puppet/latest/upgrade_server.html)
 
 ### Previous install guides
 
-* [The Puppet 3.8 Installation Guide](puppet/3.8/reference/pre_install.html)
+* [The Puppet 3.8 Installation Guide](puppet/3.8/pre_install.html)
 
 ### Building and using modules
 
-* [Module Fundamentals](/puppet/latest/reference/modules_fundamentals.html) --- Nearly all of your Puppet code should be in modules.
-* [Installing Modules from the Puppet Forge](/puppet/latest/reference/modules_installing.html) --- Save time by using pre-existing modules.
-* [Publishing Modules on the Puppet Forge](/puppet/latest/reference/modules_publishing.html) --- Preparing your best modules to go public.
+* [Module Fundamentals](/puppet/latest/modules_fundamentals.html) --- Nearly all of your Puppet code should be in modules.
+* [Installing Modules from the Puppet Forge](/puppet/latest/modules_installing.html) --- Save time by using pre-existing modules.
+* [Publishing Modules on the Puppet Forge](/puppet/latest/modules_publishing.html) --- Preparing your best modules to go public.
 
 ### Help with writing Puppet code
 
@@ -95,13 +95,13 @@ Get the latest version of Puppet up and running.
 
 ### Using optional features
 
-* [Puppet File Serving](/puppet/latest/reference/file_serving.html) --- Files in modules are automatically served; this explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
+* [Puppet File Serving](/puppet/latest/file_serving.html) --- Files in modules are automatically served; this explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
 
 ### Puppet on Windows
 
 You can manage Windows nodes side by side with your \*nix infrastructure, with Puppet 2.7 and higher (including Puppet Enterprise ≥ 2.5).
 
-* [Installing Puppet 4 for Windows](/puppet/latest/reference/install_windows.html)
+* [Installing Puppet 4 for Windows](/puppet/latest/install_windows.html)
 * [Basic tasks and concepts in Windows](/pe/latest/windows_basic_tasks.html)
 * [Troubleshooting Puppet on Windows](/pe/latest/troubleshooting_windows.html)
 
@@ -109,7 +109,7 @@ You can manage Windows nodes side by side with your \*nix infrastructure, with P
 
 Puppet's default configuration is meant for prototyping and designing a site. Once you're ready for production deployment, learn how to adjust Puppet for peak performance.
 
-* [Running a Production-Grade Puppet Master Server With Passenger](/puppet/latest/reference/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
+* [Running a Production-Grade Puppet Master Server With Passenger](/puppet/latest/passenger.html) --- This should be one of your earliest steps in scaling out Puppet.
 * [Using Multiple Puppet Masters](/guides/scaling_multiple_masters.html) --- A guide to deployments with multiple Puppet masters.
 
 
