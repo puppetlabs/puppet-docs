@@ -18,12 +18,36 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), s
 
 Also of interest: the [Puppet 4.7 release notes](/puppet/4.7/reference/release_notes.html) and [Puppet 4.6 release notes](/puppet/4.6/reference/release_notes.html).
 
+## Puppet 4.8.2
+
+Released January 19, 2017.
+
+* [Fixed in Puppet 4.8.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.8.2%27)
+* [Issues Introduced in 4.8.2]()
+
+This is a bug fix release in the Puppet 4.8 series.
+
+### Deprecation
+
+In Puppet 4.8.0, the stacktrace property was removed from Puppet's HTTP error response API. This was an unintentional backwards-incompatible change, and in Puppet 4.8.2, the stacktrace property has been returned to the response object, but instead of containing the stack trace message, it now contains a deprecation warning. Users consuming the stack trace property of the Puppet HTTP error response API should instead review the Puppet log for this information.
+
+
+### Bug fixes
+
+Previously, it was not possible to interpolate a Boolean `false` value in a hiera configuration because it ended up being a blank string. Now the value interpolates to the string `"false"`. ([PUP-6974](https://tickets.puppetlabs.com/browse/PUP-6974))
+
+#### Regression fix
+
+A regression introduced in Puppet 4.8.0 caused an attempt to lookup a string containing more than one interpolation that iself used interpolation function Hiera (for example, `%{hiera('some_key')}`) to fail when running with trace level set to debug. This regression ([PUP-7061](https://tickets.puppetlabs.com/browse/PUP-7061)) is now fixed. 
+
+
+
 ## Puppet 4.8.1
 
 Released November 22, 2016.
 
 * [Fixed in Puppet 4.8.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.8.1%27)
-* [Introduced in Puppet 4.8.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.8.1%27)
+* [Issues Introduced in Puppet 4.8.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.8.1%27)
 
 This is a minor maintenance and bug fix release.
 
@@ -38,7 +62,7 @@ This is a minor maintenance and bug fix release.
 Released November 1, 2016.
 
 * [Fixed in Puppet 4.8.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.8.0%27)
-* [Introduced in Puppet 4.8.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.8.0%27)
+* [Issues Introduced in Puppet 4.8.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.8.0%27)
 
 
 ### New features
