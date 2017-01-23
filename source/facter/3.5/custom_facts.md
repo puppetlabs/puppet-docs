@@ -6,46 +6,32 @@ title: "Custom facts walkthrough"
 [Facter 3.0.2 release notes]: /facter/3.0/release_notes.html#facter--p-restored
 [Plugins in Modules]: /guides/plugins_in_modules.html
 
-## Custom facts
 
-Extend Facter by writing your own custom facts to provide information to Puppet.
+You can add custom facts by writing snippets of Ruby code on the Puppet master. Puppet then uses [Plugins in Modules][] to distribute the facts to the client.
 
 ## Adding custom facts to Facter
 
-Sometimes you need to be able to write conditional expressions
-based on site-specific data that just isn't available via Facter,
-or perhaps you'd like to include it in a template.
+Sometimes you need to be able to write conditional expressions based on site-specific data that just isn't available via Facter, or perhaps you'd like to include it in a template.
 
-Since you can't include arbitrary Ruby code in your manifests,
-the best solution is to add a new fact to Facter. These additional facts
-can then be distributed to Puppet clients and are available for use
-in manifests and templates, just like any other fact would be.
+Since you can't include arbitrary Ruby code in your manifests, the best solution is to add a new fact to Facter. These additional facts can then be distributed to Puppet clients and are available for use in manifests and templates, just like any other fact would be.
 
-> **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` will fail with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
-
-## The concept
-
-You can add new facts by writing snippets of Ruby code on the
-Puppet master. Puppet then uses [Plugins in Modules][]
-to distribute the facts to the client.
+> **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` fails with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
 
 ## Loading custom facts
 
-Facter offers a few methods of loading facts:
+Facter offers multiple methods of loading facts:
 
 * `$LOAD\_PATH`, or the Ruby library load path
-* The `--custom-dir` command line option.
+* The `--custom-dir` command line option
 * The environment variable 'FACTERLIB'
 
-You can use these methods of loading facts to do things like test files locally
-before distributing them, or you can arrange to have a specific set of facts available on certain
-machines.
+You can use these methods to do things like test files locally before distributing them, or you can arrange to have a specific set of facts available on certain machines.
 
 ### Using the Ruby load path
 
-Facter searches all directories in the Ruby $LOAD\_PATH variable for
+Facter searches all directories in the Ruby `$LOAD_PATH` variable for
 subdirectories named 'facter', and loads all Ruby files in those directories.
-If you had some directory in your $LOAD\_PATH like `~/lib/ruby`, set up like
+If you had some directory in your `$LOAD_PATH` like `~/lib/ruby`, set up like
 this:
 
     #~/lib/ruby
@@ -54,8 +40,8 @@ this:
         ├── system_load.rb
         └── users.rb
 
-Facter would try to load 'facter/system\_load.rb', 'facter/users.rb', and
-'facter/rackspace.rb'.
+Facter loads `facter/system\_load.rb`, `facter/users.rb`, and
+`facter/rackspace.rb`.
 
 ### Using the `--custom-dir` command line option
 
@@ -95,9 +81,9 @@ This allows you to do something like this:
 
 ## Two parts of every fact
 
-Setting aside external facts for now, most facts have at least two elements:
+Most facts have at least two elements:
 
-1. A call to `Facter.add('fact_name')`, which determines the name of the fact
+1. A call to `Facter.add('fact_name')`, which determines the name of the fact.
 2. A `setcode` statement for simple resolutions, which is evaluated to determine the fact's value.
 
 Facts *can* get a lot more complicated than that, but those two together are the most common implementation of a custom fact.
@@ -109,35 +95,31 @@ get that information is by executing shell commands. You can then parse and mani
 output from those commands using standard Ruby code. The Facter API gives you a few ways to
 execute shell commands:
 
-* If all you want to do is run the command and use the output, verbatim, as your fact's value,
+* If all you want to do is run the command and use the output verbatim, as your fact's value,
 you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
-* If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')`
-from within the `setcode do`...`end` block. As always, whatever the `setcode` statement returns is used as the fact's value.
+* If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')` from within the `setcode do`...`end` block. Whatever the `setcode` statement returns is used as the fact's value.
 * In any case, remember that your shell command is also a Ruby string, so you'll need to escape special characters if you want to pass them through.
 
-It's important to note that *not everything that works in the terminal will work in a fact*. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements will not work. The best way to handle this limitation is to write your conditional logic in Ruby.
+It's important to note that *not everything that works in the terminal works in a fact*. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements do not work. The best way to handle this limitation is to write your conditional logic in Ruby.
 
 ### Example
 
-Let's say you need to get the output of `uname --hardware-platform` to single out a
-specific type of workstation. To do this, you would create a new custom
-fact. Start by giving the fact a name, in this case, `hardware_platform`,
-and create your new fact in a file, `hardware_platform.rb`, on the
-Puppet master server:
+To get the output of `uname --hardware-platform` to single out a specific type of workstation, you would create a new custom fact.
 
-``` ruby
-# hardware_platform.rb
+1. Start by giving the fact a name, in this case, `hardware_platform`.
+2. Create your new fact in a file, `hardware_platform.rb` on the Puppet master server:
 
-Facter.add('hardware_platform') do
-  setcode do
-    Facter::Core::Execution.exec('/bin/uname --hardware-platform')
-  end
-end
-```
+    ``` ruby
+    # hardware_platform.rb
 
-You can then use the instructions in the [Plugins in Modules][] page to copy
-the new fact to a module and distribute it. During your next Puppet run, the value of the new fact
-will be available to use in your manifests and templates.
+    Facter.add('hardware_platform') do
+      setcode do
+        Facter::Core::Execution.exec('/bin/uname --hardware-platform')
+      end
+    end
+    ```
+
+3. Use the instructions in the [Plugins in Modules][] page to copy the new fact to a module and distribute it. During your next Puppet run, the value of the new fact will be available to use in your manifests and templates.
 
 ## Using other facts
 
@@ -197,13 +179,13 @@ a new resolution to a fact, you simply add the fact again, only with a different
 `setcode` statement.
 
 When a fact has more than one resolution, the first resolution that returns a value other
-than `nil` will set the fact's value. The way that Facter decides the issue of resolution precedence is the
+than `nil` sets the fact's value. The way that Facter decides the issue of resolution precedence is the
 weight property. Once Facter rules out any resolutions that are excluded because of `confine` statements,
 the resolution with the highest weight is evaluated first. If that resolution returns `nil`,
 Facter moves on to the next resolution (by descending weight) until it gets a value for the fact.
 
 By default, the weight of a fact is the number of confines for that resolution, so
-that more specific resolutions takes priority over less specific resolutions.
+that more specific resolutions take priority over less specific resolutions.
 
 ``` ruby
 # Check to see if this server has been marked as a postgres server
@@ -257,7 +239,9 @@ end
 
 ## Structured facts
 
-While the norm is for a fact to return a single string, Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement. You can see some relevant examples in the [writing structured facts](fact_overview.html#writing-structured-facts) section of the [Fact Overview](fact_overview.html).
+Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement.
+
+You can see some relevant examples in the [writing structured facts](fact_overview.html#writing-structured-facts) section of the [Fact Overview](fact_overview.html).
 
 ## Aggregate resolutions
 
@@ -284,7 +268,7 @@ chunk(:two) do
 end
 ```
 
-In a simple resolution, the code always includes a `setcode` statement that determines the fact's value. Aggregate resolutions *never* have a `setcode` statement. Instead, they have an optional `aggregate` block that combines the chunks. Whatever value the `aggregate` block returns will be the fact's value. Here's an example that just combines the strings from the two chunks above:
+Aggregate resolutions *never* have a `setcode` statement. Instead, they have an optional `aggregate` block that combines the chunks. Whatever value the `aggregate` block returns is the fact's value. Here's an example that just combines the strings from the two chunks above:
 
 ``` ruby
 aggregate do |chunks|
@@ -294,12 +278,12 @@ aggregate do |chunks|
     result += str
   end
 
-  # Result will be "Chunk one returns this. Chunk two returns this."
+  # Result: "Chunk one returns this. Chunk two returns this."
   result
 end
 ```
 
-If the `chunk` blocks either all return arrays or all return hashes, you can omit the `aggregate` block. If you do, Facter automatically merges all of your data into one array or hash and use that as the fact's value.
+If the `chunk` blocks all return arrays or hashes, you can omit the `aggregate` block. If you do, Facter automatically merges all of your data into one array or hash and uses that as the fact's value.
 
 For more examples of aggregate resolutions, see the [aggregate resolutions](fact_overview.html#writing-facts-with-aggregate-resolutions) section of the [Fact Overview](fact_overview.html) page.
 
@@ -307,10 +291,9 @@ For more examples of aggregate resolutions, see the [aggregate resolutions](fact
 
 [puppetdb]: /puppetdb/latest
 
-If your Puppet master(s) are configured to use [PuppetDB][puppetdb], you can view and search all of the facts for any node, including custom facts. See [the PuppetDB docs][puppetdb] for more info.
+If your Puppet masters are configured to use [PuppetDB][puppetdb], you can view and search all of the facts for any node, including custom facts. See [the PuppetDB docs][puppetdb] for more info.
 
 ## External facts
-
 
 ### What are external facts?
 
@@ -322,8 +305,7 @@ The best way to distribute external facts is with pluginsync, which added suppor
 
 If you're not using pluginsync, then external facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator. When calling facter from the command line, you can specify the external facts directory with the `--external-dir` option.
 
-> **Note:** These directories don't necessarily exist by default; you may need to create them. If you create the directory, make sure
-to restrict access so that only Administrators can write to the directory.
+> **Note:** These directories don't necessarily exist by default; you may need to create them. If you create the directory, make sure to restrict access so that only Administrators can write to the directory.
 
 In a module (recommended):
 
@@ -351,8 +333,7 @@ When running as a non-root / non-Administrator user:
 
 Executable facts on Unix work by dropping an executable file into the standard
 external fact path above. A [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) is
-always required for executable facts on Unix. If the shebang is missing, the execution of the fact
-will fail.
+always required for executable facts on Unix. If the shebang is missing, the execution of the fact fails.
 
 An example external fact written in Python:
 
@@ -452,6 +433,22 @@ key3=value3
 ```
 
 As with executable facts, structured data files can set multiple facts at once.
+
+``` javascript
+{
+  "datacenter":
+  {
+    "location": "bfs",
+    "workload": "Web Development Pipeline",
+    "contact": "Blackbird"
+  },
+  "provision":
+  {
+    "birth": "2017-01-01 14:23:34",
+    "user": "alex"
+  }
+}
+```
 
 #### Structured data facts on Windows
 
