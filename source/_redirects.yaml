@@ -11,6 +11,12 @@
     - sys_req_sysconfig.html
   at_version: 2016.4
 
+# I've removed the LEI upgrade page and instead have included optional steps for upgrading compile masters and activemq hubs/spokes in the standard split install docs. 
+- in_doc: pe
+  was: install_lei_upgrade.html
+  became: upgrade_split.html
+  at_version: 2017.1
+
 # Split install is removed from higgs. need to redirect that page to tex-based split install for everett; and onwards should also be backported to 2016.4 when 2016.4.3 is released
 - in_doc: pe
   was: install_pe_split.html
