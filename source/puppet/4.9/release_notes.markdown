@@ -22,6 +22,12 @@ Also of interest: the [Puppet 4.7 release notes](/puppet/4.7/reference/release_n
 
 ### New features
 
+#### Puppet lookup and Hiera 5
+
+
+
+
+
 ### Enhancements
 
 #### Ruby API for `String` and `Enum`
@@ -32,7 +38,7 @@ The internal Ruby API for `String` and `Enum` types has been slightly modified b
 
 Puppet will now send a useful User-Agent header when making HTTP requests (of the form "User-Agent: Puppet/4.8.2 Ruby/2.1.9-p353 (x86_64-linux)"). Previously it just sent "Ruby" which wasn't very helpful. ([PUP-1476](https://tickets.puppetlabs.com/browse/PUP-1476))
 
-### Known issues
+#### Localization
 
 Locale and translation files will be installed to `/opt/puppetlabs/puppet/share/locale` on Unix systems and `C:\Program Files\Puppet Labs\Puppet\puppet\share\locale` on Windows. ([PUP-6934](https://tickets.puppetlabs.com/browse/PUP-6934))
 
