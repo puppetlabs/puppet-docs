@@ -1,16 +1,24 @@
-Function names usually look something like this:
+Function names generally resemble these examples:
 
 * `num2bool` (a function that could come from anywhere)
 * `postgresql::acls_to_resource_hash` (a function in the `postgresql` module)
 * `environment::hash_from_api_call` (a function in an environment)
 
-Function names are almost the same as [class names][]. They consist of one or more segments; each segment must start with a lowercase letter, and can include:
+Function names are almost the same as [class names](./lang_reserved.html#classes-and-defined-resource-types). They consist of one or more segments; each segment must start with a lowercase letter, and can include:
 
 * Lowercase letters.
 * Numbers.
 * Underscores.
 
 If a name has multiple segments, they are separated by the double-colon (`::`) namespace separator.
+
+In other words, each segment should match the following regular expression:
+
+    \A[a-z][a-z0-9_]*\Z
+
+...and the full name should match the following regular expression:
+
+    \A([a-z][a-z0-9_]*)(::[a-z][a-z0-9_]*)*\Z
 
 Function names can be either _global_ or _namespaced._
 

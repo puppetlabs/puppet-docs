@@ -46,7 +46,7 @@ In summary, with the pieces labled:
 ``` ruby
 Puppet::Functions.create_function(:<FUNCTION NAME>) do
   dispatch :<METHOD NAME> do
-    param '<DATA TYPE>', :<ARGUMENT NAME (for display in docs and errors)>
+    param '<DATA TYPE>', :<ARGUMENT NAME (displayed in docs/errors)>
     ...
   end
 
@@ -60,22 +60,22 @@ end
 
 A Ruby function must be placed in its own file, in the `lib/puppet/functions` directory of either a [module][] or an [environment][].
 
-The filename must match the name of the function, and have the `.rb` extension. For namespaced function names, each segment prior to the final one must be a subdirectory of `functions`, and the final segment must be the filename.
+The filename must match the name of the function, and have the `.rb` extension. For namespaced functions, each segment prior to the final one must be a subdirectory of `functions`, and the final segment must be the filename.
 
 Examples:
 
-Function name      | File location
--------------------|--------------
-`upcase`           | `<MODULES DIR>/mymodule/lib/puppet/functions/upcase.rb`
-`upcase`           | `/etc/puppetlabs/code/environments/production/lib/puppet/functions/upcase.rb`
-`mymodule::upcase` | `<MODULES DIR>/mymodule/lib/puppet/functions/mymodule/upcase.rb`
-
+Function name         | File location
+----------------------|--------------
+`upcase`              | `<MODULES DIR>/mymodule/lib/puppet/functions/upcase.rb`
+`upcase`              | `/etc/puppetlabs/code/environments/production/lib/puppet/functions/upcase.rb`
+`mymodule::upcase`    | `<MODULES DIR>/mymodule/lib/puppet/functions/mymodule/upcase.rb`
+`environment::upcase` | `/etc/puppetlabs/code/environments/production/lib/puppet/functions/environment/upcase.rb`
 
 ## Function names
 
 {% partial ./_naming_functions.md %}
 
-### Passing names to `create_function`
+### Pass names to `create_function` as symbols
 
 When you call the `Puppet::Functions.create_function` method, you should pass the function's name to it as a Ruby [symbol][]. (Although it can accept a string, we recommend always using a symbol.)
 
@@ -94,7 +94,7 @@ If none of the function's signatures match the provided arguments, Puppet fails 
 
 ### Conversion of Puppet and Ruby data types
 
-When function arguments are passed to a Ruby method, they're converted to Ruby classes. Similarly, the method's return value is converted to a Puppet data type when the Puppet manifest regains control.
+When function arguments are passed to a Ruby method, they're converted to Ruby objects. Similarly, the method's return value is converted to a Puppet data type when the Puppet manifest regains control.
 
 Puppet converts data types between the Puppet language and Ruby as follows:
 
@@ -106,5 +106,5 @@ Puppet converts data types between the Puppet language and Ruby as follows:
 To make this API reference easier to use, we've split some of its larger topics into separate pages. Please read the following pages to learn the remainder of the Ruby functions API:
 
 * [Defining function signatures][signatures]. This page describes the `dispatch` method and the parameter methods.
-* [Using special features in implementation methods][implementation]. For the most part, implementation methods are basic Ruby. However, there are some special features available for accessing Puppet variables, working with provided blocks of Puppet code, calling other functions, and setting local data type aliases.
+* [Using special features in implementation methods][implementation]. For the most part, implementation methods are basic Ruby. However, there are some special features available for accessing Puppet variables, working with provided blocks of Puppet code, and calling other functions.
 * [Documenting Ruby functions][documenting]. Puppet Strings, a free documentation tool for Puppet, can extract documentation from functions and display it to your module's users. This page describes how to format your code comments to work well with Strings.
