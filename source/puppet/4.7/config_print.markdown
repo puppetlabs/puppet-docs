@@ -85,11 +85,11 @@ To see the effective [modulepath][] used in the `dev` environment:
     $ sudo puppet config print modulepath --section master --environment dev
     /etc/puppetlabs/code/environments/dev/modules:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules
 
-To see whether the [`$facts` and `$trusted` variables][facts_and_trusted] are enabled:
+To see whether PuppetDB is configured for exported resources:
 
-    $ sudo puppet config print trusted_node_data immutable_node_data --section master
-    trusted_node_data = true
-    immutable_node_data = true
+    $ sudo puppet config print storeconfigs storeconfigs_backend --section master
+    storeconfigs = true
+    storeconfigs_backend = puppetdb
 
 Imitating Puppet Agent
 -----
