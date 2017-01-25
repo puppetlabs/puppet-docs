@@ -12,7 +12,7 @@ title: "Writing functions in Ruby: Documenting Ruby functions"
 
 ## Examples
 
-Full content for this page is coming soon. In the meantime, the following examples demonstrate how to format comments in two situations: a function with two explicit signatures, and a function with an automatic signature.
+Full content for this page is coming soon. In the meantime, the following examples show how to format comments in two situations: a function with two explicit signatures, and a function with an automatic signature.
 
 ``` ruby
 # Subtracts two things.

@@ -1,5 +1,5 @@
 ---
-title: "Language: Functions"
+title: "Language: Function calls"
 layout: default
 ---
 

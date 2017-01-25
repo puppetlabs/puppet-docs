@@ -1,5 +1,5 @@
 ---
-title: "Writing custom functions: Basics"
+title: "Writing custom functions: Introduction"
 ---
 
 [catalog]: ./lang_summary.html#compilation-and-catalogs
