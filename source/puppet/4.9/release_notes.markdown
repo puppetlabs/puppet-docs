@@ -48,7 +48,6 @@ It is now possible to have Puppet lookup produce values other than the restricte
 
 The Puppet agent now emits a warning if it had previously submitted a CSR to a master, does not have a signed CSR, and the local CSR does not match what was previously submitted to the master. (PUP-6918)
 
-
 #### Localization
 
 Puppet now ships with the `gettext-setup` gem. This provides a useful interface for Ruby's gettext tooling, which allows extraction of strings for translation and runtime insertion of translated strings based on the user's locale. (PUP-6474)
@@ -75,6 +74,11 @@ Puppet will now send a useful User-Agent header when making HTTP requests (of th
 ### Deprecations
 
 These deprecations are effective as of Puppet 4.9.0. This means their related features and components are planned for complete removal in a future Puppet release.
+
+#### Experimental Puppet lookup features
+
+The use of the experimental lookup features has been deprecated in favor of the finished lookup support in Hiera 5. Switch to using the new 'hiera.yaml' (version 5) format and data providing functions, and then replace the version 4 format 'hiera.yaml' in environments and modules with the new format. The version 4 format will continue to work until the next major release where it will be removed. ([PUP-6514](https://tickets.puppetlabs.com/browse/PUP-6514))
+
 
 #### Hiera family functions
 
