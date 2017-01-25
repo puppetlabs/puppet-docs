@@ -20,23 +20,31 @@ Also of interest: the [Puppet 4.7 release notes](/puppet/4.7/reference/release_n
 
 ## Puppet 4.9.0
 
+Released January , 2017.
+
 ### New features
 
 #### Hiera 5
 
-The Hiera 5 implementation is four times as fast as the previous version for both automatic parameter lookup and direct calls to lookup. It is about 40% faster than direct calls to a classic Hiera instance. There is no noticeable difference between a lookup in the global layer, and in the environment layer. (PUP-7087)
+Hiera 5 is built into Puppet 4.9, and uses the Hiera 3.3 codebase. 
 
-It is now possible to specify `lookup_options` using a regular expression for the keys the options apply to. The regular expression must start with a `^` to be recognized as a regular expression. (PUP-6982)
+The Hiera 5 implementation is four times as fast as the previous version for both automatic parameter lookup and direct calls to Puppet lookup. It is about 40% faster than direct calls to a classic Hiera instance. There is no noticeable difference between a lookup in the global layer, and in the environment layer. (PUP-7087)
+
+In Hiera 5, you can use 'hiera.yaml' to configure data lookups in modules and environments. We have also deprecated older hiera function uses and warn on conflicting configurations. (See [Hiera family functions](#Hiera-family-functions) below.) (PUP-6942)
 
 Calls to Hiera functions now takes environment and module data configurations into account if you have opted in with a Hiera 5 'hiera.yaml' file in an environment. (PUP-6981)
 
+Data in HOCON data format can now be used with 'hiera.yaml' versions 3, 4, or 5. (PUP-6476)
+
 Any changes to Hiera 5 configurations via interpolation of Puppet variables will be found for each lookup. (PUP-6973)
 
-Data in HOCON data format can now be used with 'hiera.yaml' versions 3, 4, or 5. (PUP-6476)
+#### Puppet lookup 
+
+It is now possible to specify `lookup_options` using a regular expression for the keys the options apply to. The regular expression must start with a `^` to be recognized as a regular expression. (PUP-6982)
 
 It is now possible to have Puppet lookup produce values other than the restricted set of data types. For example, `Sensitive` type values can be returned directly. This is of value when a defined resource type or class has declared that it requires a `Sensitive` type. Earlier it was impossible to deliver such a value via data binding. To return such a value, it must be returned by a function, and it cannot be directly produced with a Hiera compatible YAML or JSON data file. (PUP-6926)
 
-In Hiera 5, you can use 'hiera.yaml' to configure data lookups in modules and environments. We have also deprecated older hiera function uses and warn on conflicting configurations. (See [Hiera family functions](#Hiera-family-functions) below.) (PUP-6942)
+#### CSR warnings from Puppet agent
 
 The Puppet agent now emits a warning if it had previously submitted a CSR to a master, does not have a signed CSR, and the local CSR does not match what was previously submitted to the master. (PUP-6918)
 
