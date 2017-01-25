@@ -7,15 +7,15 @@ title: "Environments: Limitations of environments"
 
 Environments solve a lot of problems in a convenient way, but they still have some limitations. Some of these are just features Puppet doesn't have yet, and some of them are outside Puppet's control. We want to fix all of them, but some may take a lot longer than others.
 
-## Plugins running on the Puppet master are weird
+## Some plugins running on the Puppet master are weird
 
-Puppet modules can contain Puppet code, templates, file sources, and Ruby plugin code (in the `lib` directory). Environments work perfectly with most of those, but there's a lingering problem with plugins.
+Puppet modules can contain Puppet code, templates, file sources, and Ruby plugin code (in the `lib` directory). Environments work perfectly with most of those, but some plugins do not.
 
-The short version is: any plugins destined for the _agent node_ (e.g. custom facts and custom resource providers) will work fine, but plugins to be used by the _Puppet master_ (functions, resource types, report processers, indirector termini) can get mixed up, and you won't be able to control which version the Puppet master is using. So if you need to do testing while developing custom resource types or functions, you may need to spin up a second Puppet master, since environments won't be reliable.
+Plugins used by the Puppet master (resource types, report processors, indirector termini) can get mixed up, so that the Puppet master is using the wrong versions of plugins. This issue occurs because of the way Ruby loads code. This environment leakage issue does not affect the agent.
 
-This has to do with the way Ruby loads code, and we're not sure if it can be fixed given Puppet's current architecture. (Some of us think this would require separate Ruby Puppet master processes for each environment, which isn't currently practical with the way Rack manages Puppet.)
-
-If you're interested in the issue, it's being tracked as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
+* For **resource types**, you can avoid environment leaks with the the `puppet generate types` command as described in [environment isolation](./environment_isolation.html) documentation.
+* For **functions**, this issue occurs only with the legacy `Puppet::Parser::Functions` API. To fix this, rewrite functions with the modern API, which is not affected by environment leakage.
+* Report processors and indirector termini are still affected by this problem, and they should probably be in your global Ruby directories rather than in your environments.
 
 ## For best performance, you might have to change your deploy process
 
