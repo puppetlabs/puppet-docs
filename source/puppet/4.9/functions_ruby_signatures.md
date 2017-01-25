@@ -2,16 +2,16 @@
 title: "Writing functions in Ruby: Defining function signatures"
 ---
 
-[overview]: todo
-[symbol]: todo
-[ruby_string]: todo
-[data type]: todo
-[lambda]: todo
-[functions with lambdas]: todo
-[callable]: todo
-[variant]: todo
-[implementation]: todo
-[documenting]: todo
+[overview]: ./functions_ruby_overview.html
+[symbol]: https://ruby-doc.org/core/Symbol.html
+[ruby_string]: https://ruby-doc.org/core/String.html
+[data type]: ./lang_data_type.html
+[lambda]: ./lang_lambdas.html
+[call]: ./lang_functions.html
+[callable]: ./lang_data_abstract.html#callable
+[variant]: lang_data_abstract.html#variant
+[implementation]: ./functions_ruby_implementation.html
+[documenting]: ./functions_ruby_documenting.html
 
 
 Functions can specify how many arguments they expect, and can specify a data type for each argument. The rule set for a function's arguments is called a **signature.**
@@ -102,7 +102,7 @@ When specifying a repeatable argument, note that:
 
 ### More about blocks of code
 
-Functions can receive blocks of Puppet code, as described in [the docs on calling functions with lambdas.][functions with lambdas]
+Functions can receive blocks of Puppet code, as described in [the docs on calling functions.][call]
 
 The data type for a block argument should always be [`Callable`][callable], or a [`Variant`][variant] that only contains `Callable`s.
 

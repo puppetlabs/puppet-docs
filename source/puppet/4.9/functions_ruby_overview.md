@@ -2,15 +2,15 @@
 title: "Writing functions in Ruby: Overview and examples"
 ---
 
-[func_puppet]: todo
-[func_legacy]: todo
-[signatures]: todo
-[module]: todo
-[environment]: todo
-[symbol]: todo
-[data types]: todo
-[implementation]: todo
-[documenting]: todo
+[signatures]: ./functions_ruby_signatures.html
+[implementation]: ./functions_ruby_implementation.html
+[documenting]: ./functions_ruby_documenting.html
+[func_puppet]: ./lang_write_functions_in_puppet.html
+[func_legacy]: ./functions_legacy.html
+[module]: ./modules_fundamentals.html
+[environment]: ./environments.html
+[symbol]: https://ruby-doc.org/core/Symbol.html
+[data types]: ./lang_data_type.html
 
 Puppet includes two Ruby APIs for writing custom functions. This page is about the modern API, which uses the `Puppet::Functions` namespace.
 

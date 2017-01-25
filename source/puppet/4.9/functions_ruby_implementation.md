@@ -2,18 +2,16 @@
 title: "Writing functions in Ruby: Using special features in implementation methods"
 ---
 
+[overview]: ./functions_ruby_overview.html
+[signatures]: ./functions_ruby_signatures.html
+[documenting]: ./functions_ruby_documenting.html
 [parser scope]: ./yard/Puppet/Parser/Scope.html
-[overview]: todo
-[signatures]: todo
-[variables]: todo
-[facts]: todo
-[trusted data]: todo
-[server data]: todo
-['networking']: todo
-[lambdas]: todo
-[proc]: todo
-[lambda]: todo
-[documenting]: todo
+[variables]: ./lang_variables.html
+[facts]: ./lang_facts_and_builtin_vars.html
+[trusted data]: ./lang_facts_and_builtin_vars.html#trusted-facts
+[server data]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
+[lambdas]: ./lang_lambdas.html
+[proc]: https://ruby-doc.org/core/Proc.html
 
 For the most part, implementation methods are normal Ruby. However, there are some special features available for accessing Puppet variables, working with provided blocks of Puppet code, and calling other functions.
 
@@ -90,7 +88,7 @@ end
 
 * The first argument must be the name of the function to call, as a string.
 * The second argument must be an array containing any arguments to the function.
-* The third argument can be a Ruby Proc, or a Puppet [lambda][] previously captured as a Proc (see above). You can also provide a block of Ruby code using the normal block syntax.
+* The third argument can be a Ruby Proc, or a Puppet [lambda][lambdas] previously captured as a Proc (see above). You can also provide a block of Ruby code using the normal block syntax.
 
 ``` ruby
 def my_function1(a, b, &block)

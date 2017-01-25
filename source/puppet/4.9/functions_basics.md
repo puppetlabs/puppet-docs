@@ -2,20 +2,21 @@
 title: "Writing custom functions: Basics"
 ---
 
-[catalog]: todo
-[manifest]: todo
-[call]: todo
-[forge]: todo
-[stdlib]: todo
-[built-in]: todo
-[functions]: todo
-[module]: todo
-[environment]: todo
-[func_puppet]: todo
-[lambda]: todo
-[func_modern]: todo
-[func_legacy]: todo
-[future parser]: todo
+[catalog]: ./lang_summary.html#compilation-and-catalogs
+[manifest]: ./lang_summary.html
+[call]: ./lang_functions.html
+[forge]: https://forge.puppetlabs.com/
+[stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
+[built-in]: ./function.html
+[module]: ./modules_fundamentals.html
+[environment]: ./environments.html
+
+[func_puppet]: ./lang_write_functions_in_puppet.html
+[func_legacy]: ./functions_legacy.html
+[func_modern]: ./functions_ruby_overview.html
+
+[lambda]: ./lang_lambdas.html
+[future parser]: /puppet/3.8/experiments_future.html
 
 ## What are functions?
 
@@ -36,7 +37,7 @@ You can also write your own custom functions.
 
 ## Custom functions
 
-If you need to manipulate data or talk to third-party services during [catalog compilation][catalog], and if the [built-in functions][built-in] (or functions from Forge modules) aren't sufficient, you can write new [functions][] for Puppet.
+If you need to manipulate data or talk to third-party services during [catalog compilation][catalog], and if the [built-in functions][built-in] (or functions from Forge modules) aren't sufficient, you can write new functions for Puppet.
 
 Custom functions work just like Puppet's built-in functions: you can call them during catalog compilation to produce a value (and sometimes cause side effects). You can use your custom functions locally, and you can also share them with other users.
 
