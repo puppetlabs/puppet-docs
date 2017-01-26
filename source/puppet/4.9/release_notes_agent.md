@@ -41,7 +41,16 @@ Released January  , 2017.
 
 ### New platforms
 
-We now have `puppet-agent` packages available for the following platforms:
+We now have `puppet-agent` packages available for the following platform:
 
 * Fedora 25
-* Ubuntu 16.10
+
+### Platforms end of life
+
+We will no longer be providing packages for the following platforms:
+
+* Fedora 22
+* Mac OS X 10.9
+* Ubuntu 15.10 (Wily)
+* Ubuntu 10.04 (Lucid)
+* SLES 10
