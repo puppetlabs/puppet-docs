@@ -331,12 +331,12 @@ When using the special attribute `*` (asterisk or splat character) in addition t
 
 ```
 $file_ownership = {
-  "owner" => "root",
-  "group" => "wheel",
-  "mode"  => "0644",
+  'owner' => 'root',
+  'group' => 'wheel',
+  'mode'  => '0644',
 }
 
-file { "/etc/passwd":
+file { '/etc/passwd':
   ensure => file,
   *      => $file_ownership,
 }
@@ -398,7 +398,7 @@ file {
     * => $defaults ;
 
   '/tmp/foo' :
-   content => "foos content"
+   content => 'foos content'
 }
 ```
 
@@ -412,10 +412,10 @@ file {
     * => $defaults ;
 
   '/tmp/motd' :
-   content => "message of the day" ;
+   content => 'message of the day' ;
 
   '/tmp/motd_tomorrow' :
-   content => "tomorrows message of the day" ;
+   content => 'tomorrows message of the day' ;
 }
 ```
 
@@ -502,15 +502,15 @@ file {
     mode   => '0666' ;
  
   '/foo' :
-    user => root;
+    user => 'root';
  
   '/bar' :
-    user => staff;
+    user => 'staff';
 }
  
 # Give the defaults a name if used several times
 $our_default_file_attributes = { 
-  'mode' => '0666', 
+  'mode'   => '0666', 
   'ensure' => 'file', 
 }
  
@@ -519,10 +519,10 @@ file {
     * => $our_default_file_attributes ;
  
   '/foo' :
-    user => root;
+    user => 'root';
  
   '/bar' :
-    user => staff;
+    user => 'staff';
 }
   
  
@@ -741,7 +741,7 @@ class myservice (
     fail("Module ${module_name} does not support ${facts['os']['name']} as the list of packages is of type ${actual}"
   }
  
-  package { $package_list :
+  package { $package_list  :
     ensure => present
   }
  
@@ -774,10 +774,10 @@ defaults:
 # If not, use 'default_hierarchy' instead of 'hierarchy'
 #
 hierarchy:
-  - name: "Per Operating System"
+  - name: 'Per Operating System'
     path: "os/%{os.name}.yaml"
-  - name: "Common"
-    path: "common.yaml"
+  - name: 'Common'
+    path: 'common.yaml'
 ```
  
 In module `data/common.yaml`:
@@ -860,7 +860,7 @@ class dhcp (
   $dnsdomain,
   $nameservers,
   $default_lease_time = 3600,
-  $max_lease_time     = 86400
+  $max_lease_time     = 86400,
 ) {}
 
 ```
@@ -871,7 +871,7 @@ class dhcp (
     class ntp (
       $options   = "iburst",
       $servers,
-      $multicast = false
+      $multicast = false,
     ) {}
 ```
 
@@ -898,8 +898,8 @@ with a `hiera.yaml` in the root of the module:
 ---
 version: 5
 default_hierarchy: 
-  - name: "defaults"
-    path:   "defaults.yaml"
+  - name: 'defaults'
+    path: 'defaults.yaml'
     data_hash: yaml_data
 ```
 
@@ -917,7 +917,7 @@ This places the values in the defaults hierarchy, which means that the defaults 
 ```
 # using params.pp pattern < Puppet 4.9.0
 class my_module(
-  String $source = $mymodule::params::source,
+  String $source  = $mymodule::params::source,
   String $config  = $mymodule::params::config)  {
   # body of class
 }
@@ -1090,7 +1090,7 @@ We recommend not mixing conditionals with resource declarations. When you use co
 
     file { '/tmp/readme.txt':
       ensure  => file,
-      content => "Hello World\n",
+      content => 'Hello World\n',
       mode    => $file_mode,
     }
 ```
