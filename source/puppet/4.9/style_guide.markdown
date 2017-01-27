@@ -57,24 +57,24 @@ Module manifests:
 * Must end the last line with a new line,
 * Must use one space between the resource type and opening brace, one space between the opening brace and the title, and no spaces between the title and colon.
 
-  **Good**:
+**Good**:
 
-  ```
+```puppet
 file { '/tmp/foo':
-  ```
+```
 
-  **Bad**:
+**Bad**:
 
-  ```
-  # space between title and colon
-  file { '/tmp/foo' :
-  
-  # no spaces
-  file{'/tmp/foo':
+```puppet
+# space between title and colon
+file { '/tmp/foo' :
 
-  # too many spaces
-  file     { '/tmp/foo':
-  ```
+# no spaces
+file{'/tmp/foo':
+
+# too many spaces
+file     { '/tmp/foo':
+```
 
 * Should not exceed a 140-character line width, except where such a limit would be impractical,
 * Should leave one empty line between resources, except when using dependency chains, and
@@ -90,7 +90,7 @@ To increase readability of arrays and hashes, it is almost always beneficial to 
 
 **Good**:
 
-```
+```puppet
 # array with multiple elements on multiple lines
 service { 'foo':
   require => [
@@ -108,7 +108,7 @@ $myhash = {
 
 **Bad**:
 
-```
+```puppet
 # array with multiple elements on same line
 service { 'foo':
   require => [ File['foo_config'], File['foo_sysconfig'], ],
@@ -149,29 +149,29 @@ service { 'foo':
 
   **Good:**
 
-  ```
-    "/etc/${file}.conf"
-    "${::operatingsystem} is not supported by ${module_name}"
+  ```puppet
+"/etc/${file}.conf"
+"${::operatingsystem} is not supported by ${module_name}"
   ```
 
   **Bad:**
 
-  ```
-    "/etc/$file.conf"
-    "$::operatingsystem is not supported by $module_name"
+  ```puppet
+"/etc/$file.conf"
+"$::operatingsystem is not supported by $module_name"
   ```
 
 * Double quotes should be used rather than escaping when a string contains single quotes, unless that would require an inconvenient amount of additional escaping.
 
   **Good:**  
 
-  ```
+  ```puppet
 warning("Class['apache'] parameter purge_vdir is deprecated in favor of purge_configs")
   ```
 
   **Bad:**
 
-  ```
+  ```puppet
 warning('Class[\'apache\'] parameter purge_vdir is deprecated in favor of purge_configs')
   ```
 
@@ -189,16 +189,16 @@ Comments must be hash comments (`# This is a comment`), not `/* */` comments. Co
 
 **Good:**
 
-```
+```puppet
 # Configures NTP
-file { '/etc/ntp.conf': … }
+file { '/etc/ntp.conf': ... }
 ```
 
 **Bad:**
 
-```
+```puppet
 /* Creates file /etc/ntp.conf */
-file { '/etc/ntp.conf': … }
+file { '/etc/ntp.conf': ... }
 ```
 
 ### 7.1 Documentation comments
@@ -209,38 +209,38 @@ Documentation comments for Puppet Strings should be included for each of your cl
 
 Every module must have metadata defined in the metadata.json file.  Your metadata should follow the below format:
 
-```
+```json
+{
+  "name": "examplecorp-mymodule",
+  "version": "0.1.0",
+  "author": "Pat",
+  "license": "Apache-2.0",
+  "summary": "A module for a thing",
+  "source": "https://github.com/examplecorp/examplecorp-mymodule",
+  "project_page": "https://github.com/examplecorp/examplecorp-mymodule",
+  "issues_url": "https://github.com/examplecorp/examplecorp-mymodules/issues",
+  "tags": ["things", "stuff"],
+  "operatingsystem_support": [
     {
-      "name": "examplecorp-mymodule",
-      "version": "0.1.0",
-      "author": "Pat",
-      "license": "Apache-2.0",
-      "summary": "A module for a thing",
-      "source": "https://github.com/examplecorp/examplecorp-mymodule",
-      "project_page": "https://github.com/examplecorp/examplecorp-mymodule",
-      "issues_url": "https://github.com/examplecorp/examplecorp-mymodules/issues",
-      "tags": ["things", "stuff"],
-      "operatingsystem_support": [
-        {
-          "operatingsystem":"RedHat",
-          "operatingsystemrelease": [
-            "5.0",
-            "6.0"
-          ]
-        },
-        {
-          "operatingsystem": "Ubuntu",
-          "operatingsystemrelease": [ 
-            "12.04",
-            "10.04"
-         ]
-        }
-      ],
-      "dependencies": [
-        { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 <5.0.0" },
-        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.4.0 <5.0.0" },
+      "operatingsystem":"RedHat",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0"
       ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ 
+        "12.04",
+        "10.04"
+     ]
     }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 <5.0.0" },
+    { "name": "puppetlabs/firewall", "version_requirement": ">= 0.4.0 <5.0.0" },
+  ]
+}
 ```
 
 A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/reference/modules_publishing.html#write-a-metadatajson-file).
@@ -259,14 +259,14 @@ All resource names or titles must be quoted. If you are using an array of titles
 
 **Good:**
 
-```
-    package { 'openssh': ensure => present }
+```puppet
+package { 'openssh': ensure => present }
 ```
 
 **Bad:**
 
 ```
-    package { openssh: ensure => present }
+package { openssh: ensure => present }
 ```
 
 These quoting requirements do not apply to expressions that evaluate to strings.
@@ -280,33 +280,33 @@ attribute name. Nested blocks must be indented by two spaces, and hash rockets w
 
 **Good:**
 
-```
-    exec { 'hambone':
-      path => '/usr/bin',
-      cwd  => '/tmp',
-    }
+```puppet
+exec { 'hambone':
+  path => '/usr/bin',
+  cwd  => '/tmp',
+}
 
-    exec { 'test':
-      subscribe   => File['/etc/test'],
-      refreshonly => true,
-    }
+exec { 'test':
+  subscribe   => File['/etc/test'],
+  refreshonly => true,
+}
 
-    myresource { 'test':
-      ensure => present,
-      myhash => {
-        'myhash_key1' => 'value1',
-        'key2'        => 'value2',
-      },
-    }
+myresource { 'test':
+  ensure => present,
+  myhash => {
+    'myhash_key1' => 'value1',
+    'key2'        => 'value2',
+  },
+}
 ```
 
 **Bad:**
 
-```
-    exec { 'hambone':
-    path  => '/usr/bin',
-    cwd => '/tmp',
-    }
+```puppet
+exec { 'hambone':
+path  => '/usr/bin',
+cwd => '/tmp',
+}
 ```
 
 ### 9.3. Attribute ordering
@@ -316,20 +316,20 @@ first attribute specified so that a user can quickly see if the resource is bein
 
 **Good:**
 
-```
-    file { '/tmp/readme.txt':
-      ensure => file,
-      owner  => '0',
-      group  => '0',
-      mode   => '0644',
-    }
+```puppet
+file { '/tmp/readme.txt':
+  ensure => file,
+  owner  => '0',
+  group  => '0',
+  mode   => '0644',
+}
 ```
 
 When using the special attribute `*` (asterisk or splat character) in addition to other attributes, splat should be ordered last so that it is easy to see. You may not include multiple splats in the same body.
 
 **Good**:
 
-```
+```puppet
 $file_ownership = {
   'owner' => 'root',
   'group' => 'wheel',
@@ -348,92 +348,93 @@ Within a manifest, resources should be grouped by logical relationship to each o
 
 **Good:**
 
-```
-    file { '/tmp/dir':
-      ensure => directory,
-    }
+```puppet
+file { '/tmp/dir':
+  ensure => directory,
+}
 
-    file { '/tmp/dir/a':
-      content => 'a',
-    }
+file { '/tmp/dir/a':
+  content => 'a',
+}
 
-    file { '/tmp/dir2':
-      ensure => directory,
-    }
+file { '/tmp/dir2':
+  ensure => directory,
+}
 
-    file { '/tmp/dir2/b':
-      content => 'b',
-    }
+file { '/tmp/dir2/b':
+  content => 'b',
+}
 ```
 
 **Bad:**
 
-```
-    file { '/tmp/dir':
-      ensure => directory,
-    }
+```puppet
+file { '/tmp/dir':
+  ensure => directory,
+}
 
-    file { '/tmp/dir2':
-      ensure => directory,
-    }
-    
-    file { '/tmp/dir/a':
-      content => 'a',
-    }
+file { '/tmp/dir2':
+  ensure => directory,
+}
 
-    file { '/tmp/dir2/b':
-      content => 'b',
-    }
+file { '/tmp/dir/a':
+  content => 'a',
+}
+
+file { '/tmp/dir2/b':
+  content => 'b',
+}
 ```
 
 Semicolon-separated multiple resource bodies should be used only in conjunction with a local default body.
 
 **Good:**
 
-```
+```puppet
 $defaults = { < hash of defaults > }
 
 file {
-  default : 
-    * => $defaults ;
+  default: 
+    * => $defaults,;
 
-  '/tmp/foo' :
-   content => 'foos content'
+  '/tmp/foo':
+    content => 'foos content',
 }
 ```
 
 **Good: Repeated pattern with defaults:**
 
-```
+```puppet
 $defaults = { < hash of defaults > }
 
 file {
-  default : 
-    * => $defaults ;
+  default: 
+    * => $defaults,;
 
-  '/tmp/motd' :
-   content => 'message of the day' ;
+  '/tmp/motd':
+    content => 'message of the day',;
 
-  '/tmp/motd_tomorrow' :
-   content => 'tomorrows message of the day' ;
+  '/tmp/motd_tomorrow':
+    content => 'tomorrows message of the day',;
 }
 ```
 
 **Bad: Unrelated resources grouped:**
 
-```
+```puppet
 file {
   '/tmp/foo':
-    owner => 'admin',
-    mode => '0644',
-    contents => 'this is the content';
+    owner    => 'admin',
+    mode     => '0644',
+    contents => 'this is the content',;
 
   '/opt/myapp:
-    owner => 'myapp-admin',
-    mode => '0644'
-    source => 'puppet://<someurl>';
-  
-# etc
+    owner  => 'myapp-admin',
+    mode   => '0644'
+    source => 'puppet://<someurl>',;
+
+  # etc
+}
 ```
 
 You cannot set any attribute more than once for a given resource; if you try, Puppet raises a compilation error. This means:
@@ -448,19 +449,19 @@ Symbolic links must be declared with an ensure value of `ensure => link` and exp
 
 **Good:**
 
-```
-    file { '/var/log/syslog':
-      ensure => link,
-      target => '/var/log/messages',
-    }
+```puppet
+file { '/var/log/syslog':
+  ensure => link,
+  target => '/var/log/messages',
+}
 ```
 
 **Bad:**
 
-```
-    file { '/var/log/syslog':
-      ensure => '/var/log/messages',
-    }
+```puppet
+file { '/var/log/syslog':
+  ensure => '/var/log/messages',
+}
 ```
 
 ### 9.6. File modes
@@ -473,20 +474,20 @@ Symbolic links must be declared with an ensure value of `ensure => link` and exp
 
 **Good:**
 
-```
+```puppet
 file { '/var/log/syslog':
-      ensure => file,
-      mode   => '0644',
-  }
+  ensure => file,
+  mode   => '0644',
+}
 ```
 
 **Bad:**
 
-```
-    file { '/var/log/syslog':
-      ensure => present,
-      mode   => 644,
-    }
+```puppet
+file { '/var/log/syslog':
+  ensure => present,
+  mode   => 644,
+}
 ```
 
 #### 9.6.5 Multiple resources
@@ -495,49 +496,47 @@ Multiple resources declared in a single block should be used only when there is 
 
 **Good**:
 
-```
+```puppet
 file {
-  default :
-    ensure => 'file'
-    mode   => '0666' ;
- 
-  '/foo' :
-    user => 'root';
- 
-  '/bar' :
-    user => 'staff';
+  default:
+    ensure => 'file',
+    mode   => '0666',;
+
+  '/foo':
+    user => 'root',;
+
+  '/bar':
+    user => 'staff',;
 }
- 
+
 # Give the defaults a name if used several times
 $our_default_file_attributes = { 
-  'mode'   => '0666', 
   'ensure' => 'file', 
+  'mode'   => '0666', 
 }
  
 file {
-  default :
-    * => $our_default_file_attributes ;
- 
-  '/foo' :
-    user => 'root';
- 
-  '/bar' :
-    user => 'staff';
+  default:
+    * => $our_default_file_attributes,;
+
+  '/foo':
+    user => 'root',;
+
+  '/bar':
+    user => 'staff',;
 }
-  
- 
+
+
 # spell out "magic" iteration
-[ '/foo', '/bar' ].each | $path | {
- 
-  file { $path :
+['/foo', '/bar'].each |$path| {
+  file { $path:
     ensure => 'file',
   }
 }
- 
+
 # spell out "magic" iteration
-$array_of_paths.each | $path |  {
- 
-  file { $path :
+$array_of_paths.each |$path| {
+  file { $path:
     ensure => 'file',
   }
 }
@@ -545,25 +544,24 @@ $array_of_paths.each | $path |  {
 
 **Bad**:
 
-```
-
+```puppet
 file {
   '/foo':
-    user     => root,
     ensure => 'file',
-    mode => '0666' ;
- 
+    user   => root,
+    mode   => '0666',;
+
   '/bar':
-    user     => staff,
     ensure => 'file',
-    mode => '0774' ;
+    user   => staff,
+    mode   => '0774',;
 }
- 
+
 file { ['/foo', '/bar']:
   ensure => 'file',
 }
  
-file { $array_of_paths :
+file { $array_of_paths:
   ensure => 'file',
 }
 ```
@@ -574,7 +572,7 @@ Avoid legacy style defaults. If you do use them, they should occur only at top s
 
 **Acceptable**:
 
-```
+```puppet
 # site.pp:
  
 Package {
@@ -584,7 +582,7 @@ Package {
 
 **Bad**:
 
-```
+```puppet
 # /etc/puppetlabs/puppet/modules/apache/manifests/init.pp
 File {
   owner => 'nobody',
@@ -604,7 +602,7 @@ Resource attributes must be uniformly indented in one stop from the title.
 
 **Good**:
 
-```
+```puppet
 file { '/foo':
   ensure => 'file',
   owner  => 'root',
@@ -613,7 +611,7 @@ file { '/foo':
 
 **Bad**:
 
-```
+```puppet
 # too many levels of indentation
 file { '/foo':
     ensure => 'file',
@@ -641,14 +639,14 @@ owner  => 'root',
 
 For multiple bodies, each title should be on its own line, and be indented. You may align all arrows across the bodies, but arrow alignment is not required if alignment per body is more readable.
 
-```
+```puppet
 file {
   default:
-    * => $local_defaults;
+    * => $local_defaults,;
  
   '/foo':
-    ensure => 'file'
-    owner  => root
+    ensure => 'file',
+    owner  => 'root',
 }
 ```
 
@@ -660,15 +658,15 @@ All classes and resource type definitions (defined types) must be separate files
 
 **Good:**
 
-```
-    # /etc/puppetlabs/puppet/modules/apache/manifests
+```puppet
+# /etc/puppetlabs/puppet/modules/apache/manifests
 
-    # init.pp
-      class apache { }
-    # ssl.pp
-      class apache::ssl { }
-    # virtual_host.pp
-      define apache::virtual_host () { }
+# init.pp
+class apache { }
+# ssl.pp
+class apache::ssl { }
+# virtual_host.pp
+define apache::virtual_host () { }
 ```
 
 Separating classes and defined types into separate files is functionally identical to declaring them in init.pp, but has the benefit of highlighting the structure of the module and making the function and structure more legible.
@@ -677,7 +675,7 @@ When a resource or include statement is placed outside of a class, node definiti
 
 **Good:**
 
-```
+```puppet
 #manifests/init.pp:
 class { 'foo':
   include bar
@@ -686,10 +684,10 @@ class { 'foo':
 
 **Bad:**
 
-```
+```puppet
 #manifests/init.pp:
 class { 'foo':
-...
+  #...
 }
 include bar
 ```
@@ -713,7 +711,7 @@ The following examples follows the recommended style:
 
 In init.pp:
 
-```
+```puppet
 # The `myservice` class installs packages, ensures the state of 'myservice', and creates 
 # a tempfile with given content. If the tempfile contents contains digits,
 # they are filtered out.
@@ -729,7 +727,6 @@ class myservice (
   String                     $tempfile_contents,
   Optional[Array[String[1]]] $package_list = undef,
 ) {
- 
   # Example of additional assertion with a better error message than just saying that
   # there was a type mismatch for $package_list.
   #
@@ -737,14 +734,14 @@ class myservice (
   # Here an assertion is made that the list is an Array of at least one String, and that 
   # the String is at least one character long.
   #
-  assert_type(Array[String[1], 1], $package_list) | $expected, $actual | {
-    fail("Module ${module_name} does not support ${facts['os']['name']} as the list of packages is of type ${actual}"
+  assert_type(Array[String[1], 1], $package_list) |$expected, $actual| {
+    fail("Module ${module_name} does not support ${facts['os']['name']} as the list of packages is of type ${actual}")
   }
- 
-  package { $package_list  :
-    ensure => present
+
+  package { $package_list:
+    ensure => present,
   }
- 
+
   file { "/tmp/${variable}":
     ensure   => present,
     contents => regsubst($tempfile_contents, '\d', '', 'G'),
@@ -752,7 +749,7 @@ class myservice (
     group    => '0',
     mode     => '0644',
   }
- 
+
   service { 'myservice':
     ensure    => $service_ensure,
     hasstatus => true,
@@ -764,7 +761,7 @@ class myservice (
  
 In module's `hiera.yaml`:
  
-```
+```yaml
 ---
 version: 5
 defaults:
@@ -774,31 +771,31 @@ defaults:
 # If not, use 'default_hierarchy' instead of 'hierarchy'
 #
 hierarchy:
-  - name: 'Per Operating System'
-    path: "os/%{os.name}.yaml"
-  - name: 'Common'
-    path: 'common.yaml'
+- name: 'Per Operating System'
+  path: "os/%{os.name}.yaml"
+- name: 'Common'
+  path: 'common.yaml'
 ```
  
 In module `data/common.yaml`:
 
-```
+```yaml
 myservice::service_ensure: running
 ```
  
 In module `data/os/centos.yaml`:
 
-```
+```yaml
 myservice::package_list:
-  - 'myservice-centos-package'
+- 'myservice-centos-package'
 ```
  
 In module `data/os/solaris.yaml`:
 
-```
+```yaml
 myservice::package_list:
-  - 'myservice-solaris-package1'
-  - 'myservice-solaris-package2'
+- 'myservice-solaris-package1'
+- 'myservice-solaris-package2'
 ```
 
 ### 10.3. Public and private
@@ -813,19 +810,26 @@ Most of the time, use [relationship metaparameters](https://docs.puppet.com/pupp
 
 **Good:** 
 
-```
+```puppet
+# Points left to right
 Package['httpd'] -> Service['httpd']
+```
+
+```puppet
+# On the line of the right-hand operand
+Package['httpd']
+-> Service['httpd']
 ```
 
 **Bad:**
 
-```
+```puppet
 # arrows are not all pointing to the right
 Service['httpd'] <- Package['httpd']
  
-# must be all on one line
-Service['httpd'] <-
-Package['httpd']
+# Must be on the right-hand operand's line
+Package['httpd'] ->
+Service['httpd']
 ```
 
 ### 10.5. Nested classes or defined types
@@ -835,18 +839,18 @@ Classes and defined resource types must not be defined within other classes or d
 
 **Very Bad:**
 
-```
-    class apache {
-      class ssl { ... }
-    }
+```puppet
+class apache {
+  class ssl { ... }
+}
 ```
 
 **Also Very Bad:**
 
-```
-    class apache {
-      define config() { ... }
-    }
+```puppet
+class apache {
+  define config() { ... }
+}
 ```
 
 ### 10.6. Display order of parameters
@@ -855,7 +859,7 @@ In parameterized class and defined type declarations, required parameters must b
 
 **Good:**
 
-```
+```puppet
 class dhcp (
   $dnsdomain,
   $nameservers,
@@ -867,12 +871,12 @@ class dhcp (
 
 **Bad:**
 
-```
-    class ntp (
-      $options   = "iburst",
-      $servers,
-      $multicast = false,
-    ) {}
+```puppet
+class ntp (
+  $options   = "iburst",
+  $servers,
+  $multicast = false,
+) {}
 ```
 
 ### 10.7 Parameter defaults
@@ -883,29 +887,30 @@ Take care to declare the data type of parameters, as this provides automatic typ
 
 **Good:**
 
-```
+```puppet
 # parameter defaults provided via APL > puppet 4.9.0
-class my_module(
+class my_module (
   String $source,
-  String $config )  {
+  String $config,
+) {
   # body of class
 }
 ```
 
 with a `hiera.yaml` in the root of the module:
 
-```
+```yaml
 ---
 version: 5
 default_hierarchy: 
-  - name: 'defaults'
-    path: 'defaults.yaml'
-    data_hash: yaml_data
+- name: 'defaults'
+  path: 'defaults.yaml'
+  data_hash: yaml_data
 ```
 
 and with the file `data/defaults.yaml`:
 
-```
+```yaml
 mymodule::source: 'default source value'
 mymodule::config: 'default config value'
 ```
@@ -914,11 +919,12 @@ This places the values in the defaults hierarchy, which means that the defaults 
 
 **Puppet 4.8 and earlier**:
 
-```
+```puppet
 # using params.pp pattern < Puppet 4.9.0
-class my_module(
-  String $source  = $mymodule::params::source,
-  String $config  = $mymodule::params::config)  {
+class my_module (
+  String $source = $mymodule::params::source,
+  String $config = $mymodule::params::config,
+) {
   # body of class
 }
 ```
@@ -931,7 +937,7 @@ Exported resources should be exported and collected selectively using a [search 
 
 **Good:**
 
-```
+```puppet
 define haproxy::frontend (
   $ports            = undef,
   $ipaddress        = [$::ipaddress],
@@ -939,11 +945,13 @@ define haproxy::frontend (
   $mode             = undef,
   $collect_exported = false,
   $options          = {
-    'option'  => [
+    'option' => [
       'tcplog',
     ],
   },
-) { … }
+) {
+  # body of define
+}
 ```
 
 ## 11. Classes
@@ -958,22 +966,22 @@ namespaces. Cross-module dependencies should be satisfied in a more portable way
 
 **Good:**
 
-```
-    class ssh { ... }
+```puppet
+class ssh { ... }
 
-    class ssh::client inherits ssh { ... }
+class ssh::client inherits ssh { ... }
 
-    class ssh::server inherits ssh { ... }
+class ssh::server inherits ssh { ... }
 ```
 
 **Bad:**
 
-```
-    class ssh inherits server { ... }
+```puppet
+class ssh inherits server { ... }
 
-    class ssh::client inherits workstation { ... }
+class ssh::client inherits workstation { ... }
 
-    class wordpress inherits apache { ... }
+class wordpress inherits apache { ... }
 ```
 
 
@@ -1004,7 +1012,7 @@ define apache::listen {
 
 **Bad:**
 
-```
+```puppet
 define apache::listen {
   # Template uses: $name
   concat::fragment { 'Listen port':
@@ -1035,20 +1043,20 @@ These special variable names are protected; because you cannot create local vari
 
 **Good:**
 
-```
-    $facts[::operatingsystem]
+```puppet
+$facts[::operatingsystem]
 ```
 
 **Bad:**
 
-```
-    $::operatingsystem
+```puppet
+$::operatingsystem
 ```
 
 **Very Bad**
 
-```
-    $operatingsystem
+```puppet
+$operatingsystem
 ```
 
 ### 13.3. Variable format
@@ -1057,7 +1065,7 @@ When defining variables you must only use numbers, lowercase letters, and unders
 
 **Good:**
 
-```
+```puppet
 $foo_bar
 $some_long_variable
 $foo_bar123
@@ -1065,7 +1073,7 @@ $foo_bar123
 
 **Bad:**
 
-```
+```puppet
 $fooBar
 $someLongVariable
 $foo-bar123
@@ -1081,32 +1089,32 @@ We recommend not mixing conditionals with resource declarations. When you use co
 
 **Good:**
 
-```
-    $file_mode = $::operatingsystem ? {
-      'debian' => '0007',
-      'redhat' => '0776',
-       default => '0700',
-    }
+```puppet
+$file_mode = $::operatingsystem ? {
+  'debian' => '0007',
+  'redhat' => '0776',
+   default => '0700',
+}
 
-    file { '/tmp/readme.txt':
-      ensure  => file,
-      content => 'Hello World\n',
-      mode    => $file_mode,
-    }
+file { '/tmp/readme.txt':
+  ensure  => file,
+  content => "Hello World\n",
+  mode    => $file_mode,
+}
 ```
 
 **Bad:**
 
-```
-    file { '/tmp/readme.txt':
-      ensure  => file,
-      content => "Hello World\n",
-      mode    => $::operatingsystem ? {
-        'debian' => '0777',
-        'redhat' => '0776',
-        default  => '0700',
-      }
-    }
+```puppet
+file { '/tmp/readme.txt':
+  ensure  => file,
+  content => "Hello World\n",
+  mode    => $::operatingsystem ? {
+    'debian' => '0777',
+    'redhat' => '0776',
+    default  => '0700',
+  }
+}
 ```
 
 ### 14.2. Defaults for case statements and selectors
@@ -1121,17 +1129,17 @@ Selectors should omit default selections only if you explicitly want catalog com
 **Good:**
 
 ```
-    case $::operatingsystem {
-      'centos': {
-        $version = '1.2.3'
-      }
-      'solaris': {
-        $version = '3.2.1'
-      }
-      default: {
-        fail("Module ${module_name} is not supported on ${::operatingsystem}")
-      }
-    }
+case $::operatingsystem {
+  'centos': {
+    $version = '1.2.3'
+  }
+  'solaris': {
+    $version = '3.2.1'
+  }
+  default: {
+    fail("Module ${module_name} is not supported on ${::operatingsystem}")
+  }
+}
 ```
 
 When setting the default case, keep in mind that the default case should cause the catalog compilation to fail if the resulting behavior cannot be predicted on the platforms the module was built to be used on.
@@ -1176,7 +1184,7 @@ Include comments for each element (classes, functions, defined types, parameters
 
 For example:
 
-```
+```puppet
 # @param config_epp Specifies a file to act as a EPP template for the config file. Valid 
 # options: a path (absolute, or relative to the module path). Example value: 
 # 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and**
