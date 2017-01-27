@@ -123,3 +123,54 @@ Instead of containing the stack trace message, it now contains a deprecation war
 
 
 ### Bug fixes
+
+* [PUP-6992](https://tickets.puppetlabs.com/browse/PUP-6992):
+
+* [PUP-7061](https://tickets.puppetlabs.com/browse/PUP-7061):
+
+* [PUP-7030](https://tickets.puppetlabs.com/browse/PUP-7030):
+
+* [PUP-7029](https://tickets.puppetlabs.com/browse/PUP-7029):
+
+* [PUP-7013](https://tickets.puppetlabs.com/browse/PUP-7013):
+
+* [PUP-7012](https://tickets.puppetlabs.com/browse/PUP-7012):
+
+* [PUP-7003](https://tickets.puppetlabs.com/browse/PUP-7003):
+
+* [PUP-6963](https://tickets.puppetlabs.com/browse/PUP-6963):
+
+* [PUP-5777](https://tickets.puppetlabs.com/browse/PUP-5777):
+
+* [PUP-6797](https://tickets.puppetlabs.com/browse/PUP-6797):
+
+* [PUP-6834](https://tickets.puppetlabs.com/browse/PUP-6834):
+
+* [PUP-6741](https://tickets.puppetlabs.com/browse/PUP-6741):
+
+* [PUP-7031](https://tickets.puppetlabs.com/browse/PUP-7031):
+
+* [PUP-4742](https://tickets.puppetlabs.com/browse/PUP-4742):
+
+* [PUP-6758](https://tickets.puppetlabs.com/browse/PUP-6758):
+
+* [PUP-6856](https://tickets.puppetlabs.com/browse/PUP-6856):
+
+* [PUP-6864](https://tickets.puppetlabs.com/browse/PUP-6864):
+
+* [PUP-6821](https://tickets.puppetlabs.com/browse/PUP-6821):
+
+* [PUP-6663](https://tickets.puppetlabs.com/browse/PUP-6663):
+
+* [PUP-6882](https://tickets.puppetlabs.com/browse/PUP-6882):
+
+* [PUP-6448](https://tickets.puppetlabs.com/browse/PUP-6448):
+
+* [PUP-6792](https://tickets.puppetlabs.com/browse/PUP-6792):
+
+* [PUP-6793](https://tickets.puppetlabs.com/browse/PUP-6793):
+
+* [PUP-6917](https://tickets.puppetlabs.com/browse/PUP-6917):
+
+* [PUP-6795](https://tickets.puppetlabs.com/browse/PUP-6795):
+
