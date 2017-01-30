@@ -138,3 +138,8 @@
   became: release_notes_resolved_issues.html
   at_version: 2016.1
 
+# Move Puppet Server file configuration into Puppet Server configuration in Flanders
+- in_doc: pe
+  was: puppet_server_config_files.html
+  became: config_puppetserver.html
+  at_version: 2017.1
