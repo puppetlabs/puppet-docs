@@ -151,14 +151,14 @@ service { 'foo':
 
   ```puppet
 "/etc/${file}.conf"
-"${::operatingsystem} is not supported by ${module_name}"
+"${facts['operatingsystem']} is not supported by ${module_name}"
   ```
 
   **Bad:**
 
   ```puppet
 "/etc/$file.conf"
-"$::operatingsystem is not supported by $module_name"
+"$facts['operatingsystem'] is not supported by $module_name"
   ```
 
 * Double quotes should be used rather than escaping when a string contains single quotes, unless that would require an inconvenient amount of additional escaping.
