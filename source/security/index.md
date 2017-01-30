@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Security and vulnerability announcements"
-toc_levels: h1, h2, test
+toc_levels: h1, h2
 ---
 
 This page contains information about security fixes from both Puppet and third-party software vendors used in Puppet products. For information about our security policies and instructions on how to report findings, refer to the [vulnerability submission process](./vulnerability_submission_process.html).
