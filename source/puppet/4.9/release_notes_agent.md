@@ -3,7 +3,7 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 4.9.0]: /puppet/4.9/reference/release_notes.html#puppet-490
+[Puppet 4.9.0]: /puppet/4.9/release_notes.html#puppet-490
 
 
 [Facter 3.6.0]: /facter/3.6/release_notes.html#facter-360
