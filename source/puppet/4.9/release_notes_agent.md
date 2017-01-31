@@ -33,7 +33,7 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.9 release
 
 ## Puppet agent 1.9.0
 
-Released January  31, 2017. 
+Released February 1, 2017. 
 
 ### Component updates
 

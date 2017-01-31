@@ -7,7 +7,7 @@ This page documents the history of the Facter 3.6 series. If you're upgrading fr
 
 ## Facter 3.6.0
 
-Released January 31, 2017.
+Released February 1, 2017.
 
 Ships with Puppet agent 1.9.0.
 

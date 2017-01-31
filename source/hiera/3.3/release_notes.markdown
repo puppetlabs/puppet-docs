@@ -10,7 +10,7 @@ title: "Hiera 3.3: Release Notes"
 
 ## Hiera 3.3
 
-Released January 31, 2017.
+Released February 1, 2017.
 
 This version of Hiera ships with [Puppet agent 1.9.0][]. Hiera 5, a successor of the experimental Puppet lookup feature is built into Puppet 4.9, and uses the classic Hiera 3.3 codebase. You can learn more about Hiera 5 in the [Puppet 4.9 release notes][].
 
