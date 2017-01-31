@@ -22,6 +22,9 @@ Also of interest: the [Puppet 4.8 release notes](/puppet/4.8/reference/release_n
 
 Released January 31, 2017.
 
+* [Fixed in Puppet 4.9.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.9.0%27)
+* [Introduced in Puppet 4.9.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.9.0%27)
+
 ### New features
 
 #### Hiera 5
