@@ -39,9 +39,7 @@ Released January  31, 2017.
 
 This release includes updates to multiple components: [Puppet 4.9.0][], [Facter 3.6.0][], [Hiera 3.3.0][], [MCollective 2.10.0][], and [pxp-agent][] 1.4.0. Many of these components have new or enhanced features.
 
-#### pxp-agent 1.4.0
-
-##### New features
+#### pxp-agent 1.4.0 new features
 
 You can now configure `pxp-agent` to write an access log of messages received by the agent. See [https://github.com/puppetlabs/pxp-agent#pcp-access-logging][] for details. ([PCP-387](https://tickets.puppetlabs.com/browse/PCP-387))
 
