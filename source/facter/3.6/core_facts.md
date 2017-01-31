@@ -1,9 +1,9 @@
 ---
 layout: default
-built_from_commit: eca5deb5bd3e5c3094873327838f7ed0b42ab3eb
+built_from_commit: 5c929d1c6d626834bad672cb576ebe30c32a5a30
 title: 'Facter: Core Facts'
 toc: columns
-canonical: /facter/latest/core_facts.html
+canonical: "/facter/latest/core_facts.html"
 ---
 
 This is a list of all of the built-in facts that ship with Facter, which includes both legacy facts and newer structured facts.
@@ -54,6 +54,23 @@ Return information about augeas.
 
 ([↑ Back to top](#page-nav))
 
+### `cloud`
+
+**Type:** map
+
+**Purpose:**
+
+Information about the cloud instance of the node. This is currently only populated on Linux nodes running in Microsoft Azure.
+
+**Elements:**
+
+* `provider` (string) --- The cloud provider for the node.
+
+
+
+
+([↑ Back to top](#page-nav))
+
 ### `disks`
 
 **Type:** map
@@ -74,6 +91,7 @@ Return the disk (block) devices attached to the system.
 
 **Resolution:**
 
+* AIX: query the ODM for all disk devices
 * Linux: parse the contents of `/sys/block/<device>/`.
 * Solaris: use the `kstat` function to query disk information.
 
@@ -215,6 +233,7 @@ Return the usable file systems for block or disk devices.
 
 **Resolution:**
 
+* AIX: parse the contents of `/etc/vfs` to retrieve the usable file systems.
 * Linux: parse the contents of `/proc/filesystems` to retrieve the usable file systems.
 * Mac OSX: use the `getfsstat` function to retrieve the usable file systems.
 * Solaris: use the `sysdef` utility to retrieve the usable file systems.
@@ -461,6 +480,7 @@ Return the current mount points of the system.
 
 **Resolution:**
 
+* AIX: use the `mntctl` function to retrieve the mount points.
 * Linux: use the `setmntent` function to retrieve the mount points.
 * Mac OSX: use the `getfsstat` function to retrieve the mount points.
 * Solaris: parse the contents of `/etc/mnttab` to retrieve the mount points.
@@ -598,6 +618,7 @@ Return the disk partitions of the system.
 
 **Resolution:**
 
+* AIX: use the ODM to retrieve list of logical volumes; use `lvm_querylv` function to get details
 * Linux: use `libblkid` to retrieve the disk partitions.
 
 **Caveats:**
