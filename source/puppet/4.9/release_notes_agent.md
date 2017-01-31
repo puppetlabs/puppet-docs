@@ -39,9 +39,17 @@ Released January  31, 2017.
 
 This release includes updates to multiple components: [Puppet 4.9.0][], [Facter 3.6.0][], [Hiera 3.3.0][], [MCollective 2.10.0][], and [pxp-agent][] 1.4.0. Many of these components have new or enhanced features.
 
+#### pxp-agent 1.4.0
+
+##### New features
+
+You can now configure `pxp-agent` to write an access log of messages received by the agent. See [https://github.com/puppetlabs/pxp-agent#pcp-access-logging][] for details. ([PCP-387](https://tickets.puppetlabs.com/browse/PCP-387))
+
+This release supports PCP version 2, an update that changes to a simpler text-based protocol that only supports immediate delivery (no message expiration) to a single target. It can be enabled by setting the `pcp-version` option to `2` and connecting it to a version of pcp-broker supporting PCP v2. ([PCP-647](https://tickets.puppetlabs.com/browse/PCP-647))
+
 ### New platform
 
-We now have `puppet-agent` packages available for Fedora 25.
+We now publish `puppet-agent` packages for Fedora 25.
 
 ### Platforms end of life
 
