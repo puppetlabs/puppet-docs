@@ -58,9 +58,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
-  puppet: 4.8
-  facter: 3.5
-  hiera: 3.2
+
 
 document_names:
   pe: Puppet Enterprise
@@ -263,7 +261,7 @@ documents:
     hide: true
     my_versions:
       facter: 3.6
-      hiera: 3.6
+      hiera: 3.3
       puppetserver: 2.7
   /puppet/4.8:
     doc: puppet
@@ -383,7 +381,6 @@ documents:
     doc: facter
     version: 3.6
     nav: ./_facter_toc.html
-    hide: true
   /facter/3.5:
     doc: facter
     version: 3.5
@@ -437,7 +434,6 @@ documents:
     doc: hiera
     version: 3.3
     nav: ./_hiera_toc.html
-    hide: true
   /hiera/3.2:
     doc: hiera
     version: 3.2
