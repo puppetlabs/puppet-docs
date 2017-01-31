@@ -383,6 +383,7 @@ documents:
     doc: facter
     version: 3.6
     nav: ./_facter_toc.html
+    hide: true
   /facter/3.5:
     doc: facter
     version: 3.5
@@ -436,6 +437,7 @@ documents:
     doc: hiera
     version: 3.3
     nav: ./_hiera_toc.html
+    hide: true
   /hiera/3.2:
     doc: hiera
     version: 3.2
