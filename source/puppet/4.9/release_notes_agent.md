@@ -3,8 +3,7 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 4.8.0]: /puppet/4.8/reference/release_notes.html#puppet-480
-[Puppet 4.8.1]: /puppet/4.8/reference/release_notes.html#puppet-481
+[Puppet 4.9.0]: /puppet/4.8/reference/release_notes.html#puppet-490
 
 
 [Facter 3.5.0]: /facter/3.5/release_notes.html#facter-350
@@ -34,20 +33,19 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.9 release
 
 ## Puppet agent 1.9.0
 
-Released January  , 2017.
+Released January  31, 2017. 
 
 ### Component updates
 
+This release includes updates to multiple components: [Puppet 4.9.0][], [Facter 3.6.0][], [Hiera 3.3.0][], [MCollective 2.10.0][], and [pxp-agent][] 1.4.0. Many of these components have new or enhanced features.
 
-### New platforms
+### New platform
 
-We now have `puppet-agent` packages available for the following platform:
-
-* Fedora 25
+We now have `puppet-agent` packages available for Fedora 25.
 
 ### Platforms end of life
 
-We will no longer be providing packages for the following platforms:
+As of this release of `puppet-agent`, we are no longer be providing packages for the following platforms:
 
 * Fedora 22
 * Mac OS X 10.9
