@@ -27,15 +27,12 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_f23.md %}
 
-{% include puppet-collections/_puppet_collection_1_f22.md %}
 
 ### Apt-based systems
 
 {% include puppet-collections/_puppet_collection_1_apt.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1604.md %}
-
-{% include puppet-collections/_puppet_collection_1_u1510.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1404.md %}
 
@@ -53,7 +50,6 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_osx1010.md %}
 
-{% include puppet-collections/_puppet_collection_1_osx1009.md %}
 
 ## Verifying Puppet packages
 
