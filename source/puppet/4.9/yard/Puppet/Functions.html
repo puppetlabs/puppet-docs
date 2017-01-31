@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Functions
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../class_list.html"></iframe>
+      <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../class_list.html"></iframe>
 
       <div id="content"><h1>Module: Puppet::Functions
   
@@ -201,7 +199,7 @@ call other functions visible from its loader.</p>
         <p class="example_title"><div class='inline'><p>A simple function</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>math::min</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'><span class='object_link'><a href="#create_function-class_method" title="Puppet::Functions.create_function (method)">create_function</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>math::min</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='kw'>def</span> <span class='id identifier rubyid_min'>min</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_a'>a</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_b'>b</span> <span class='op'>?</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>:</span> <span class='id identifier rubyid_b'>b</span>
   <span class='kw'>end</span>
@@ -211,7 +209,7 @@ call other functions visible from its loader.</p>
         <p class="example_title"><div class='inline'><p>Dispatching to different methods by type</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>math::min</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'><span class='object_link'><a href="#create_function-class_method" title="Puppet::Functions.create_function (method)">create_function</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>math::min</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_dispatch'>dispatch</span> <span class='symbol'>:numeric_min</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:a</span>
     <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:b</span>
@@ -235,7 +233,7 @@ call other functions visible from its loader.</p>
         <p class="example_title"><div class='inline'><p>Variable number of arguments</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'><span class='object_link'><a href="#create_function-class_method" title="Puppet::Functions.create_function (method)">create_function</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_dispatch'>dispatch</span> <span class='symbol'>:foo</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:first</span>
     <span class='id identifier rubyid_repeated_param'>repeated_param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:values</span>
@@ -250,7 +248,7 @@ call other functions visible from its loader.</p>
         <p class="example_title"><div class='inline'><p>Inexact mapping or parameters</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'><span class='object_link'><a href="#create_function-class_method" title="Puppet::Functions.create_function (method)">create_function</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_dispatch'>dispatch</span> <span class='symbol'>:foo</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:first</span>
     <span class='id identifier rubyid_repeated_param'>repeated_param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:values</span>
@@ -465,8 +463,8 @@ call other functions visible from its loader.</p>
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_any_signature'>any_signature</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
   <span class='comment'># Construct the type for the signature
 </span>  <span class='comment'># Tuple[Object, from, to]
-</span>  <span class='id identifier rubyid_param_types'>param_types</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PTupleType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PAnyType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PIntegerType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span><span class='rparen'>)</span>
-  <span class='lbracket'>[</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PCallableType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_param_types'>param_types</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rbracket'>]</span>
+</span>  <span class='id identifier rubyid_param_types'>param_types</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Types/PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Types/PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Types/PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_param_types'>param_types</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -562,7 +560,7 @@ Function to create</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 155</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'>Function</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Functions/Function.html" title="Puppet::Functions::Function (class)">Function</a></span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='comment'># Ruby &lt; 2.1.0 does not have method on Binding, can only do eval
 </span>  <span class='comment'># and it will fail unless protected with an if defined? if the local
 </span>  <span class='comment'># variable does not exist in the block&#39;s binder.
@@ -731,8 +729,8 @@ Function to create</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 177</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'>create_loaded_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'>Function</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_function_base'>function_base</span><span class='period'>.</span><span class='id identifier rubyid_ancestors'>ancestors</span><span class='period'>.</span><span class='id identifier rubyid_none?'>none?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>==</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Functions</span><span class='op'>::</span><span class='const'>Function</span> <span class='rbrace'>}</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'>create_loaded_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Functions/Function.html" title="Puppet::Functions::Function (class)">Function</a></span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_function_base'>function_base</span><span class='period'>.</span><span class='id identifier rubyid_ancestors'>ancestors</span><span class='period'>.</span><span class='id identifier rubyid_none?'>none?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Functions/Function.html" title="Puppet::Pops::Functions::Function (class)">Function</a></span></span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Functions must be based on Puppet::Pops::Functions::Function. Got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_function_base'>function_base</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
@@ -900,9 +898,9 @@ Function to create</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:33 2016 by
+  Generated on Tue Jan 31 13:38:16 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

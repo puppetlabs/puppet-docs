@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::SSL::CertificateFactory
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Module: Puppet::SSL::CertificateFactory
   
@@ -585,7 +583,7 @@ defaults to Puppet[:ca_ttl]</p>
 </span>  <span class='comment'># clock fail, and better than having every cert we generate expire a day
 </span>  <span class='comment'># before the user expected it to when they asked for &quot;one year&quot;.
 </span>  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_before'>not_before</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>-</span> <span class='lparen'>(</span><span class='int'>60</span><span class='op'>*</span><span class='int'>60</span><span class='op'>*</span><span class='int'>24</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_after'>not_after</span>  <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_ttl'>ttl</span> <span class='op'>||</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:ca_ttl</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cert'>cert</span><span class='period'>.</span><span class='id identifier rubyid_not_after'>not_after</span>  <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_ttl'>ttl</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:ca_ttl</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_add_extensions_to'>add_extensions_to</span><span class='lparen'>(</span><span class='id identifier rubyid_cert'>cert</span><span class='comma'>,</span> <span class='id identifier rubyid_csr'>csr</span><span class='comma'>,</span> <span class='id identifier rubyid_issuer'>issuer</span><span class='comma'>,</span> <span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='id identifier rubyid_build_extensions'>build_extensions</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
@@ -743,7 +741,7 @@ to false.</p>
 </span>  <span class='comment'># always do. --daniel 2011-10-18
 </span>  <span class='id identifier rubyid_crit'>crit</span> <span class='op'>=</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_oid'>oid</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>subjectAltName</span><span class='tstring_end'>&quot;</span></span>
 
-  <span class='kw'>if</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Oids</span><span class='period'>.</span><span class='id identifier rubyid_subtree_of?'>subtree_of?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id-ce</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Oids</span><span class='period'>.</span><span class='id identifier rubyid_subtree_of?'>subtree_of?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id-pkix</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Oids.html" title="Puppet::SSL::Oids (module)">Oids</a></span></span><span class='period'>.</span><span class='id identifier rubyid_subtree_of?'>subtree_of?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id-ce</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Oids.html" title="Puppet::SSL::Oids (module)">Oids</a></span></span><span class='period'>.</span><span class='id identifier rubyid_subtree_of?'>subtree_of?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>id-pkix</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_oid'>oid</span><span class='rparen'>)</span>
     <span class='comment'># Attempt to create a X509v3 certificate extension. Standard certificate
 </span>    <span class='comment'># extensions may need access to the associated subject certificate and
 </span>    <span class='comment'># issuing certificate, so must be created by the OpenSSL::X509::ExtensionFactory
@@ -766,9 +764,9 @@ to false.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:34 2016 by
+  Generated on Tue Jan 31 13:38:18 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

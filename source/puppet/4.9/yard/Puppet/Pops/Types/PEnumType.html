@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PEnumType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PEnumType
   
@@ -175,7 +173,7 @@
   
   
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#generalize-instance_method" title="Puppet::Pops::Types::PAnyType#generalize (method)">#generalize</a></span>, <span class='object_link'><a href="PAnyType.html#instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#instance? (method)">#instance?</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#normalize-instance_method" title="Puppet::Pops::Types::PAnyType#normalize (method)">#normalize</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#instance? (method)">#instance?</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#normalize-instance_method" title="Puppet::Pops::Types::PAnyType#normalize (method)">#normalize</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span></p>
 
   
   
@@ -247,37 +245,39 @@
       <pre class="lines">
 
 
-726
-727
-728
-729
-730
-731
-732
-733
-734
-735
-736
-737
-738
-739
 740
-741</pre>
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 726</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 740</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='kw'>self</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span>
   <span class='id identifier rubyid_svalues'>svalues</span> <span class='op'>=</span> <span class='id identifier rubyid_values'>values</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_svalues'>svalues</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PStringType</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PEnumType</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PPatternType</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PPatternType.html" title="Puppet::Pops::Types::PPatternType (class)">PPatternType</a></span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
-    <span class='kw'>when</span> <span class='const'>PStringType</span>
-      <span class='comment'># if the set of strings are all found in the set of enums
-</span>      <span class='op'>!</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_svalues'>svalues</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>==</span> <span class='id identifier rubyid_s'>s</span> <span class='rbrace'>}</span><span class='rbrace'>}</span>
-    <span class='kw'>when</span> <span class='const'>PEnumType</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span>
+      <span class='comment'># if the contained string is found in the set of enums
+</span>      <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+      <span class='op'>!</span><span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_svalues'>svalues</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>==</span> <span class='id identifier rubyid_v'>v</span> <span class='rbrace'>}</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span></span>
       <span class='op'>!</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_svalues'>svalues</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_e'>e</span> <span class='op'>==</span> <span class='id identifier rubyid_s'>s</span> <span class='rbrace'>}</span><span class='rbrace'>}</span>
     <span class='kw'>else</span>
       <span class='kw'>false</span>
@@ -293,9 +293,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:40 2016 by
+  Generated on Tue Jan 31 13:38:25 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

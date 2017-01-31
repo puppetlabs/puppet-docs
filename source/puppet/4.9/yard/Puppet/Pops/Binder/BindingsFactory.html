@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Pops::Binder::BindingsFactory
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Module: Puppet::Pops::Binder::BindingsFactory
   
@@ -162,7 +160,7 @@ need to chain the methods calls, they can instead be made in sequence - e.g.</p>
 
 <p>The result from all methods is a builder object. Call the method <code>model</code> to unwrap the constructed bindings model object.</p>
 
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bindings'>bindings</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my named bindings</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bindings'>bindings</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'><span class='object_link'><a href="#named_bindings-class_method" title="Puppet::Pops::Binder::BindingsFactory.named_bindings (method)">named_bindings</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>my named bindings</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='comment'># bind things
 </span><span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span>
 </code></pre>
@@ -179,7 +177,7 @@ need to chain the methods calls, they can instead be made in sequence - e.g.</p>
         <p class="example_title"><div class='inline'><p>Create a NamedBinding with content</p>
 </div></p>
       
-      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mymodule::mybindings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'><span class='object_link'><a href="#named_bindings-class_method" title="Puppet::Pops::Binder::BindingsFactory.named_bindings (method)">named_bindings</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mymodule::mybindings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_bind'>bind</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>foo</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='int'>42</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_bind'>bind</span><span class='period'>.</span><span class='id identifier rubyid_string'>string</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>site url</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://www.example.com</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span>
@@ -657,7 +655,7 @@ as a puppet string. See methods <span class='object_link'><a href="#puppet_expre
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 754</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_evaluating_producer'>evaluating_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_expression'>expression</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>EvaluatingProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/EvaluatingProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::EvaluatingProducerDescriptor (class)">EvaluatingProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_expression'>expression</span> <span class='op'>=</span> <span class='id identifier rubyid_expression'>expression</span>
   <span class='id identifier rubyid_p'>p</span>
 <span class='kw'>end</span></pre>
@@ -738,7 +736,7 @@ value will be produced.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 736</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_first_found_producer'>first_found_producer</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_producers'>producers</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>FirstFoundProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/FirstFoundProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::FirstFoundProducerDescriptor (class)">FirstFoundProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_producers'>producers</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_p2'>p2</span><span class='op'>|</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_addProducers'>addProducers</span><span class='lparen'>(</span><span class='id identifier rubyid_p2'>p2</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='id identifier rubyid_p'>p</span>
 <span class='kw'>end</span></pre>
@@ -850,7 +848,7 @@ value will be produced.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 723</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_hash_lookup_producer'>hash_lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>HashLookupProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/HashLookupProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::HashLookupProducerDescriptor (class)">HashLookupProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span>
@@ -952,7 +950,7 @@ is called.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 696</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_producer'>instance_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_class_name'>class_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>InstanceProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/InstanceProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::InstanceProducerDescriptor (class)">InstanceProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_class_name'>class_name</span> <span class='op'>=</span> <span class='id identifier rubyid_class_name'>class_name</span>
   <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_addArguments'>addArguments</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='id identifier rubyid_p'>p</span>
@@ -1033,7 +1031,7 @@ is called.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 776</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_named_layers'>named_layers</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>LayeredBindings</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/LayeredBindings.html" title="Puppet::Pops::Binder::Bindings::LayeredBindings (class)">LayeredBindings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_named_layers'>named_layers</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_addLayers'>addLayers</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='id identifier rubyid_result'>result</span>
 <span class='kw'>end</span></pre>
@@ -1113,7 +1111,7 @@ is called.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 657</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_literal_producer'>literal_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_producer'>producer</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>ConstantProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_producer'>producer</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/ConstantProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::ConstantProducerDescriptor (class)">ConstantProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_producer'>producer</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
   <span class='id identifier rubyid_producer'>producer</span>
 <span class='kw'>end</span></pre>
@@ -1209,7 +1207,7 @@ is called.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 708</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer'>lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>LookupProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/LookupProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::LookupProducerDescriptor (class)">LookupProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
   <span class='id identifier rubyid_p'>p</span>
@@ -1260,9 +1258,9 @@ Unwrap the built result when done.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 620</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>NamedBindings</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/NamedBindings.html" title="Puppet::Pops::Binder::Bindings::NamedBindings (class)">NamedBindings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
-  <span class='id identifier rubyid_builder'>builder</span> <span class='op'>=</span> <span class='const'>BindingsContainerBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_builder'>builder</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="BindingsFactory/BindingsContainerBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsContainerBuilder (class)">BindingsContainerBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   <span class='id identifier rubyid_builder'>builder</span>
 <span class='kw'>end</span></pre>
@@ -1307,7 +1305,7 @@ Unwrap the built result when done.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 764</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_named_layer'>named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_bindings'>bindings</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>NamedLayer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/NamedLayer.html" title="Puppet::Pops::Binder::Bindings::NamedLayer (class)">NamedLayer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
   <span class='id identifier rubyid_bindings'>bindings</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_addBindings'>addBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='id identifier rubyid_result'>result</span>
@@ -1388,7 +1386,7 @@ Unwrap the built result when done.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 668</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_non_caching_producer'>non_caching_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_producer'>producer</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>NonCachingProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/NonCachingProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::NonCachingProducerDescriptor (class)">NonCachingProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span> <span class='op'>=</span> <span class='id identifier rubyid_producer'>producer</span>
   <span class='id identifier rubyid_p'>p</span>
 <span class='kw'>end</span></pre>
@@ -1468,7 +1466,7 @@ Unwrap the built result when done.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 679</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_producer_producer'>producer_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_producer'>producer</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>ProducerProducerDescriptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/ProducerProducerDescriptor.html" title="Puppet::Pops::Binder::Bindings::ProducerProducerDescriptor (class)">ProducerProducerDescriptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_producer'>producer</span> <span class='op'>=</span> <span class='id identifier rubyid_producer'>producer</span>
   <span class='id identifier rubyid_p'>p</span>
 <span class='kw'>end</span></pre>
@@ -1717,9 +1715,9 @@ the base class (BindingsContainerBuilder).</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 633</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_safe_named_bindings'>safe_named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>NamedBindings</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/NamedBindings.html" title="Puppet::Pops::Binder::Bindings::NamedBindings (class)">NamedBindings</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span>
-  <span class='id identifier rubyid_anon'>anon</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>BindingsContainerBuilder</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_anon'>anon</span> <span class='op'>=</span> <span class='const'>Class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="BindingsFactory/BindingsContainerBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsContainerBuilder (class)">BindingsContainerBuilder</a></span></span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
       <span class='kw'>super</span> <span class='id identifier rubyid_b'>b</span>
     <span class='kw'>end</span>
@@ -1744,9 +1742,9 @@ the base class (BindingsContainerBuilder).</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:35 2016 by
+  Generated on Tue Jan 31 13:38:19 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

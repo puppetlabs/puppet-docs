@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PPatternType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PPatternType
   
@@ -248,45 +246,69 @@ If specified without a pattern it is basically the same as the String type.</p>
       <pre class="lines">
 
 
-1574
-1575
-1576
-1577
-1578
-1579
-1580
-1581
-1582
-1583
-1584
-1585
-1586
-1587
-1588
-1589
-1590
-1591
-1592
-1593</pre>
+1603
+1604
+1605
+1606
+1607
+1608
+1609
+1610
+1611
+1612
+1613
+1614
+1615
+1616
+1617
+1618
+1619
+1620
+1621
+1622
+1623
+1624
+1625
+1626
+1627
+1628
+1629
+1630
+1631
+1632
+1633
+1634</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1574</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1603</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='kw'>self</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
-  <span class='kw'>when</span> <span class='const'>PStringType</span><span class='comma'>,</span> <span class='const'>PEnumType</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span>
+    <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='comment'># Strings cannot all match a pattern, but if there is no pattern it is ok
+</span>      <span class='comment'># (There should really always be a pattern, but better safe than sorry).
+</span>      <span class='ivar'>@patterns</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='kw'>else</span>
+      <span class='comment'># the string in String type must match one of the patterns in Pattern type,
+</span>      <span class='comment'># or Pattern represents all Patterns == all Strings
+</span>      <span class='id identifier rubyid_regexps'>regexps</span> <span class='op'>=</span> <span class='ivar'>@patterns</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_regexps'>regexps</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='id identifier rubyid_regexps'>regexps</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_re'>re</span><span class='op'>|</span> <span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PEnumType.html" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span></span>
     <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-      <span class='comment'># Strings / Enums (unknown which ones) cannot all match a pattern, but if there is no pattern it is ok
+      <span class='comment'># Enums (unknown which ones) cannot all match a pattern, but if there is no pattern it is ok
 </span>      <span class='comment'># (There should really always be a pattern, but better safe than sorry).
 </span>      <span class='ivar'>@patterns</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
     <span class='kw'>else</span>
       <span class='comment'># all strings in String/Enum type must match one of the patterns in Pattern type,
 </span>      <span class='comment'># or Pattern represents all Patterns == all Strings
 </span>      <span class='id identifier rubyid_regexps'>regexps</span> <span class='op'>=</span> <span class='ivar'>@patterns</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span> <span class='id identifier rubyid_p'>p</span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span> <span class='rbrace'>}</span>
-      <span class='id identifier rubyid_regexps'>regexps</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_regexps'>regexps</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_re'>re</span><span class='op'>|</span> <span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_regexps'>regexps</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_regexps'>regexps</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_re'>re</span><span class='op'>|</span> <span class='id identifier rubyid_re'>re</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_s'>s</span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
-  <span class='kw'>when</span> <span class='const'>PPatternType</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PPatternType (class)">PPatternType</a></span></span>
     <span class='ivar'>@patterns</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
   <span class='kw'>else</span>
     <span class='kw'>false</span>
@@ -302,9 +324,9 @@ If specified without a pattern it is basically the same as the String type.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:40 2016 by
+  Generated on Tue Jan 31 13:38:25 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

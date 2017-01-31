@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::Serializer
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Serialization::Serializer
   
@@ -268,7 +266,7 @@ tabulating and disassembling complex objects.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#start_object-instance_method" title="#start_object (instance method)">#<strong>start_object</strong>(type_ref, attr_count)  &#x21d2; Object </a>
+      <a href="#start_object-instance_method" title="#start_object (instance method)">#<strong>start_object</strong>(attr_count)  &#x21d2; Object </a>
     
 
     
@@ -284,6 +282,56 @@ tabulating and disassembling complex objects.</p>
 
   
     <span class="summary_desc"><div class='inline'><p>Write the start of a complex object.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_pcore_object-instance_method" title="#start_pcore_object (instance method)">#<strong>start_pcore_object</strong>(type_ref, attr_count)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Write the start of a complex pcore object.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_sensitive-instance_method" title="#start_sensitive (instance method)">#<strong>start_sensitive</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Write the start of a sensitive object.</p>
 </div></span>
   
 </li>
@@ -633,7 +681,7 @@ tabulating and disassembling complex objects.</p>
       <div class="method_details ">
   <h3 class="signature " id="start_object-instance_method">
   
-    #<strong>start_object</strong>(type_ref, attr_count)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+    #<strong>start_object</strong>(attr_count)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -646,6 +694,69 @@ tabulating and disassembling complex objects.</p>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
 <p>Write the start of a complex object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>attr_count</span>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the number of attributes in the object</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+70
+71
+72</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 70</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_object'>start_object</span><span class='lparen'>(</span><span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span>
+  <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_pcore_object-instance_method">
+  
+    #<strong>start_pcore_object</strong>(type_ref, attr_count)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Write the start of a complex pcore object</p>
 
 
   </div>
@@ -700,8 +811,52 @@ tabulating and disassembling complex objects.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 63</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_start_object'>start_object</span><span class='lparen'>(</span><span class='id identifier rubyid_type_ref'>type_ref</span><span class='comma'>,</span> <span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span>
-  <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type_ref'>type_ref</span><span class='comma'>,</span> <span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_start_pcore_object'>start_pcore_object</span><span class='lparen'>(</span><span class='id identifier rubyid_type_ref'>type_ref</span><span class='comma'>,</span> <span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span>
+  <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>PcoreObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type_ref'>type_ref</span><span class='comma'>,</span> <span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="start_sensitive-instance_method">
+  
+    #<strong>start_sensitive</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Write the start of a sensitive object</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+80
+81
+82</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 80</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_sensitive'>start_sensitive</span>
+  <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SensitiveStart</span><span class='op'>::</span><span class='const'>INSTANCE</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -773,7 +928,7 @@ tabulating and disassembling complex objects.</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>when</span> <span class='const'>Integer</span><span class='comma'>,</span> <span class='const'>Float</span><span class='comma'>,</span> <span class='const'>String</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'>Time</span>
+  <span class='kw'>when</span> <span class='const'>Integer</span><span class='comma'>,</span> <span class='const'>Float</span><span class='comma'>,</span> <span class='const'>String</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>nil</span>
     <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='symbol'>:default</span>
     <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>Default</span><span class='op'>::</span><span class='const'>INSTANCE</span><span class='rparen'>)</span>
@@ -782,7 +937,7 @@ tabulating and disassembling complex objects.</p>
     <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
       <span class='id identifier rubyid_write_tabulated_first_time'>write_tabulated_first_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='kw'>else</span>
-      <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>Tabulation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>Tabulation</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -840,51 +995,63 @@ of the same object will yield a write of a tabulation index instead.</p>
       <pre class="lines">
 
 
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
 88
 89
 90
 91
-92</pre>
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_tabulated_first_time'>write_tabulated_first_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='ivar'>@written</span><span class='lbracket'>[</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_object_id'>object_id</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@written</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_value'>value</span>
-  <span class='kw'>when</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='const'>Regexp</span><span class='comma'>,</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='comma'>,</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='comma'>,</span> <span class='const'>Time</span><span class='op'>::</span><span class='const'>Timestamp</span><span class='comma'>,</span> <span class='const'>Time</span><span class='op'>::</span><span class='const'>Timespan</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PSensitiveType</span><span class='op'>::</span><span class='const'>Sensitive</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PBinaryType</span><span class='op'>::</span><span class='const'>Binary</span>
+  <span class='kw'>when</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='const'>Regexp</span><span class='comma'>,</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='comma'>,</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='comma'>,</span> <span class='const'>Time</span><span class='op'>::</span><span class='const'>Timestamp</span><span class='comma'>,</span> <span class='const'>Time</span><span class='op'>::</span><span class='const'>Timespan</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType.html" title="Puppet::Pops::Types::PBinaryType (class)">PBinaryType</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span>
+    <span class='id identifier rubyid_push_written'>push_written</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='const'>Array</span>
+    <span class='id identifier rubyid_push_written'>push_written</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_start_array'>start_array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_elem'>elem</span><span class='op'>|</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_elem'>elem</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>when</span> <span class='const'>Hash</span>
+    <span class='id identifier rubyid_push_written'>push_written</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_start_map'>start_map</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_val'>val</span><span class='op'>|</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>when</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PSensitiveType.html" title="Puppet::Pops::Types::PSensitiveType (class)">PSensitiveType</a></span></span><span class='op'>::</span><span class='const'>Sensitive</span>
+    <span class='id identifier rubyid_start_sensitive'>start_sensitive</span>
+    <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_unwrap'>unwrap</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PTypeReferenceType</span>
+    <span class='id identifier rubyid_push_written'>push_written</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='kw'>when</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PuppetObject</span>
+  <span class='kw'>when</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PuppetObject.html" title="Puppet::Pops::Types::PuppetObject (module)">PuppetObject</a></span></span>
     <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid__ptype'>_ptype</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_impl_class'>impl_class</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span>
     <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'>Loaders</span><span class='period'>.</span><span class='id identifier rubyid_implementation_registry'>implementation_registry</span><span class='period'>.</span><span class='id identifier rubyid_type_for_module'>type_for_module</span><span class='lparen'>(</span><span class='id identifier rubyid_impl_class'>impl_class</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SerializationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No Puppet Type found for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_impl_class'>impl_class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PObjectType</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SerializationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No Puppet Type found for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_impl_class'>impl_class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PObjectType.html" title="Puppet::Pops::Types::PObjectType (class)">PObjectType</a></span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -898,9 +1065,9 @@ of the same object will yield a write of a tabulation index instead.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:50 2016 by
+  Generated on Tue Jan 31 13:38:38 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

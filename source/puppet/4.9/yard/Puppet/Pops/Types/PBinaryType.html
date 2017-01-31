@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PBinaryType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PBinaryType
   
@@ -310,7 +308,7 @@ The version type is parameterized with version ranges.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_binary_type.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new_function'>new_function</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
-  <span class='ivar'>@new_function</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'>create_loaded_function</span><span class='lparen'>(</span><span class='symbol'>:new_Binary</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='ivar'>@new_function</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Functions.html" title="Puppet::Functions (module)">Functions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'><span class='object_link'><a href="../../Functions.html#create_loaded_function-class_method" title="Puppet::Functions.create_loaded_function (method)">create_loaded_function</a></span></span><span class='lparen'>(</span><span class='symbol'>:new_Binary</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_local_types'>local_types</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ByteInteger = Integer[0,255]</span><span class='tstring_end'>&#39;</span></span>
       <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Base64Format = Enum[&quot;%b&quot;, &quot;%u&quot;, &quot;%B&quot;, &quot;%s&quot;, &quot;%r&quot;]</span><span class='tstring_end'>&#39;</span></span>
@@ -342,19 +340,19 @@ The version type is parameterized with version ranges.</p>
       <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%b</span><span class='tstring_end'>&quot;</span></span>
         <span class='comment'># padding must be added for older rubies to avoid truncation
 </span>        <span class='id identifier rubyid_padding'>padding</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>=</span><span class='tstring_end'>&#39;</span></span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>%</span> <span class='int'>3</span><span class='rparen'>)</span>
-        <span class='const'>Binary</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_decode64'>decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>+</span> <span class='id identifier rubyid_padding'>padding</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="PBinaryType/Binary.html#initialize-instance_method" title="Puppet::Pops::Types::PBinaryType::Binary#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_decode64'>decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span> <span class='op'>+</span> <span class='id identifier rubyid_padding'>padding</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
       <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%u</span><span class='tstring_end'>&quot;</span></span>
-        <span class='const'>Binary</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_urlsafe_decode64'>urlsafe_decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="PBinaryType/Binary.html#initialize-instance_method" title="Puppet::Pops::Types::PBinaryType::Binary#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_urlsafe_decode64'>urlsafe_decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
       <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%B</span><span class='tstring_end'>&quot;</span></span>
-        <span class='const'>Binary</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_strict_decode64'>strict_decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="PBinaryType/Binary.html#initialize-instance_method" title="Puppet::Pops::Types::PBinaryType::Binary#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_strict_decode64'>strict_decode64</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
       <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%s</span><span class='tstring_end'>&quot;</span></span>
-        <span class='const'>Binary</span><span class='period'>.</span><span class='id identifier rubyid_from_string'>from_string</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_string'><span class='object_link'><a href="PBinaryType/Binary.html#from_string-class_method" title="Puppet::Pops::Types::PBinaryType::Binary.from_string (method)">from_string</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
 
       <span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%r</span><span class='tstring_end'>&quot;</span></span>
-        <span class='const'>Binary</span><span class='period'>.</span><span class='id identifier rubyid_from_binary_string'>from_binary_string</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+        <span class='const'><span class='object_link'><a href="PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_binary_string'><span class='object_link'><a href="PBinaryType/Binary.html#from_binary_string-class_method" title="Puppet::Pops::Types::PBinaryType::Binary.from_binary_string (method)">from_binary_string</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
 
       <span class='kw'>else</span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unsupported Base64 format &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_format'>format</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
@@ -364,7 +362,7 @@ The version type is parameterized with version ranges.</p>
     <span class='kw'>def</span> <span class='id identifier rubyid_from_array'>from_array</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
       <span class='comment'># The array is already known to have bytes in the range 0-255, or it is in error
 </span>      <span class='comment'># Without this pack C would produce weird results
-</span>      <span class='const'>Binary</span><span class='period'>.</span><span class='id identifier rubyid_from_binary_string'>from_binary_string</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+</span>      <span class='const'><span class='object_link'><a href="PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_binary_string'><span class='object_link'><a href="PBinaryType/Binary.html#from_binary_string-class_method" title="Puppet::Pops::Types::PBinaryType::Binary.from_binary_string (method)">from_binary_string</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>C*</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
 
     <span class='kw'>def</span> <span class='id identifier rubyid_from_hash'>from_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
@@ -387,9 +385,9 @@ The version type is parameterized with version ranges.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:46 2016 by
+  Generated on Tue Jan 31 13:38:32 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

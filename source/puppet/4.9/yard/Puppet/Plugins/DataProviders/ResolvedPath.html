@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Plugins::DataProviders::ResolvedPath
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -59,11 +59,9 @@
         <div class="clear"></div>
       </div>
 
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
-
       <div id="content"><h1>Class: Puppet::Plugins::DataProviders::ResolvedPath
   
-  
+  <span class="deprecated note title">Deprecated</span>
   <span class="private note title">Private</span>
 </h1>
 <div class="box_info">
@@ -107,6 +105,7 @@
   <strong>This class is part of a private API.</strong>
   You should avoid using this class if possible, as it may be removed or be changed in the future.
 </p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
 <p>Class that keeps track of the original path (as it appears in the declaration, before interpolation),
 the fully resolved path, and whether or the resolved path exists.</p>
 
@@ -138,130 +137,14 @@ the fully resolved path, and whether or the resolved path exists.</p>
 
 
 
-  
-    <h2>
-      Instance Method Summary
-      <small><a href="#" class="summary_toggle">collapse</a></small>
-    </h2>
 
-    <ul class="summary">
-      
-        
-<li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#exists%3F-instance_method" title="#exists? (instance method)">#<strong>exists?</strong>  &#x21d2; Boolean </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'><p>Cached info if the path exists or not.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-
-
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="exists?-instance_method">
-  
-    #<strong>exists?</strong>  &#x21d2; <tt>Boolean</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p>Returns cached info if the path exists or not</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>cached info if the path exists or not</p>
-</div>
-      
-    </li>
-  
-</ul>
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'><p>Puppet 4.0.0</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-161
-162
-163
-164</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 161</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_exists?'>exists?</span>
-  <span class='ivar'>@exists</span> <span class='op'>=</span> <span class='ivar'>@path</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span> <span class='kw'>if</span> <span class='ivar'>@exists</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='ivar'>@exists</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:54 2016 by
+  Generated on Tue Jan 31 13:38:43 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

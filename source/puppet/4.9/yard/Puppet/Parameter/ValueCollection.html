@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parameter::ValueCollection
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Parameter::ValueCollection
   
@@ -556,7 +554,7 @@ in a given parameter.</p>
 <span class='kw'>def</span> <span class='id identifier rubyid_aliasvalue'>aliasvalue</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_other'>other</span> <span class='op'>=</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot alias nonexistent value </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_other'>other</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot alias nonexistent value </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_other'>other</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_alias'>alias</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1041,11 +1039,11 @@ argument).</p>
   <span class='id identifier rubyid_call_opt'>call_opt</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:call</span><span class='rbracket'>]</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_call_opt'>call_opt</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='id identifier rubyid_devfail'>devfail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot use obsolete :call value &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_call_opt'>call_opt</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; for property &#39;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_call_opt'>call_opt</span> <span class='op'>==</span> <span class='symbol'>:none</span> <span class='op'>||</span> <span class='id identifier rubyid_call_opt'>call_opt</span> <span class='op'>==</span> <span class='symbol'>:instead</span>
-    <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Property option :call is deprecated and no longer used. Please remove it.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Property option :call is deprecated and no longer used. Please remove it.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>==</span> <span class='symbol'>:call</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parameter</span><span class='op'>::</span><span class='const'>Value</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Value.html" title="Puppet::Parameter::Value (class)">Value</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Value.html#initialize-instance_method" title="Puppet::Parameter::Value#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@values</span><span class='lbracket'>[</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_regex?'>regex?</span>
     <span class='ivar'>@regexes</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_value'>value</span>
@@ -1411,9 +1409,9 @@ a regexp. What is the intention here? Marking as api private...</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:48 2016 by
+  Generated on Tue Jan 31 13:38:34 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

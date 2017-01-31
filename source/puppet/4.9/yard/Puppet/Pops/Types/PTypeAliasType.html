@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PTypeAliasType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PTypeAliasType
   
@@ -313,13 +311,13 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-3177
-3178
-3179
-3180</pre>
+3268
+3269
+3270
+3271</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3177</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3268</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>super</span> <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='const'>PTypeReferenceType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
@@ -378,25 +376,29 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-3183
-3184
-3185
-3186
-3187
-3188
-3189
-3190</pre>
+3274
+3275
+3276
+3277
+3278
+3279
+3280
+3281
+3282
+3283</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3183</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3274</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@self_recursion</span>
-    <span class='id identifier rubyid_guard'>guard</span> <span class='op'>||=</span> <span class='const'>RecursionGuard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_guard'>guard</span><span class='period'>.</span><span class='id identifier rubyid_add_that'>add_that</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>if</span> <span class='id identifier rubyid_guard'>guard</span><span class='period'>.</span><span class='id identifier rubyid_add_this'>add_this</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'>RecursionGuard</span><span class='op'>::</span><span class='const'>SELF_RECURSION_IN_BOTH</span>
+    <span class='id identifier rubyid_guard'>guard</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_guard'>guard</span><span class='period'>.</span><span class='id identifier rubyid_with_that'>with_that</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_guard'>guard</span><span class='period'>.</span><span class='id identifier rubyid_with_this'>with_this</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_state'>state</span><span class='op'>|</span> <span class='id identifier rubyid_state'>state</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='op'>::</span><span class='const'>SELF_RECURSION_IN_BOTH</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -485,47 +487,47 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3109
-3110
-3111
-3112
-3113
-3114
-3115
-3116
-3117
-3118
-3119
-3120
-3121
-3122
-3123
-3124
-3125
-3126
-3127
-3128
-3129
-3130
-3131
-3132
-3133
-3134
-3135
-3136
-3137
-3138
-3139
-3140
-3141
-3142
-3143
-3144
-3145
-3146</pre>
+3200
+3201
+3202
+3203
+3204
+3205
+3206
+3207
+3208
+3209
+3210
+3211
+3212
+3213
+3214
+3215
+3216
+3217
+3218
+3219
+3220
+3221
+3222
+3223
+3224
+3225
+3226
+3227
+3228
+3229
+3230
+3231
+3232
+3233
+3234
+3235
+3236
+3237</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3109</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -542,8 +544,8 @@ checks and remembers if the resolve type contains self recursion.</p>
       <span class='comment'># Find out if this type is recursive. A recursive type has performance implications
 </span>      <span class='comment'># on several methods and this knowledge is used to avoid that for non-recursive
 </span>      <span class='comment'># types.
-</span>      <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='const'>RecursionGuard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-      <span class='id identifier rubyid_real_type_asserter'>real_type_asserter</span> <span class='op'>=</span> <span class='const'>AssertOtherTypeAcceptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+</span>      <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+      <span class='id identifier rubyid_real_type_asserter'>real_type_asserter</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="PTypeAliasType/AssertOtherTypeAcceptor.html" title="Puppet::Pops::Types::PTypeAliasType::AssertOtherTypeAcceptor (class)">AssertOtherTypeAcceptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
       <span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='id identifier rubyid_real_type_asserter'>real_type_asserter</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
       <span class='kw'>unless</span> <span class='id identifier rubyid_real_type_asserter'>real_type_asserter</span><span class='period'>.</span><span class='id identifier rubyid_other_type_detected?'>other_type_detected?</span>
         <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Type alias &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; cannot be resolved to a real type</span><span class='tstring_end'>&quot;</span></span>
@@ -551,7 +553,7 @@ checks and remembers if the resolve type contains self recursion.</p>
       <span class='ivar'>@self_recursion</span> <span class='op'>=</span> <span class='id identifier rubyid_guard'>guard</span><span class='period'>.</span><span class='id identifier rubyid_recursive_this?'>recursive_this?</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
       <span class='comment'># All aliases involved must re-check status since this alias is now resolved
 </span>      <span class='kw'>if</span> <span class='ivar'>@self_recursion</span>
-        <span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'>AssertSelfRecursionStatusAcceptor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='comma'>,</span> <span class='const'>RecursionGuard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_accept'>accept</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PTypeAliasType/AssertSelfRecursionStatusAcceptor.html" title="Puppet::Pops::Types::PTypeAliasType::AssertSelfRecursionStatusAcceptor (class)">AssertSelfRecursionStatusAcceptor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_when_self_recursion_detected'>when_self_recursion_detected</span>
       <span class='kw'>end</span>
     <span class='kw'>rescue</span>
@@ -612,15 +614,15 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3167
-3168
-3169</pre>
+3258
+3259
+3260</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3167</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3258</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
-  <span class='const'>TypeFormatter</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_alias_expanded_string'>alias_expanded_string</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="TypeFormatter.html" title="Puppet::Pops::Types::TypeFormatter (class)">TypeFormatter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_singleton'><span class='object_link'><a href="TypeFormatter.html#singleton-class_method" title="Puppet::Pops::Types::TypeFormatter.singleton (method)">singleton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_alias_expanded_string'>alias_expanded_string</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -673,12 +675,12 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3194
-3195
-3196</pre>
+3287
+3288
+3289</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3194</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3287</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type_expr'>type_expr</span>
   <span class='kw'>nil</span>
@@ -693,9 +695,9 @@ checks and remembers if the resolve type contains self recursion.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:41 2016 by
+  Generated on Tue Jan 31 13:38:26 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

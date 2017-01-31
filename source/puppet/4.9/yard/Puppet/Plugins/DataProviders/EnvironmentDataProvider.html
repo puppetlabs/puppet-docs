@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Plugins::DataProviders::EnvironmentDataProvider
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -59,11 +59,9 @@
         <div class="clear"></div>
       </div>
 
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
-
       <div id="content"><h1>Class: Puppet::Plugins::DataProviders::EnvironmentDataProvider
   
-  
+  <span class="deprecated note title">Deprecated</span>
   <span class="private note title">Private</span>
 </h1>
 <div class="box_info">
@@ -89,11 +87,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="DataProvider.html" title="Puppet::Plugins::DataProviders::DataProvider (module)">DataProvider</a></span></dd>
-  </dl>
-  
   
 
   
@@ -112,6 +105,8 @@
   <strong>This class is part of a private API.</strong>
   You should avoid using this class if possible, as it may be removed or be changed in the future.
 </p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
+<p>TODO: API 5.0 Remove this class</p>
 
 
   </div>
@@ -145,6 +140,41 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#data_key-instance_method" title="#data_key (instance method)">#<strong>data_key</strong>(key, lookup_invocation)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -160,17 +190,93 @@
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../../Pops/Lookup/Interpolation.html" title="Puppet::Pops::Lookup::Interpolation (module)">Puppet::Pops::Lookup::Interpolation</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Pops/Lookup/Interpolation.html#interpolate-instance_method" title="Puppet::Pops::Lookup::Interpolation#interpolate (method)">#interpolate</a></span></p>
+
   
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="data_key-instance_method">
+  
+    #<strong>data_key</strong>(key, lookup_invocation)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="deprecated note title">deprecated</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+193
+194
+195</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 193</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_data_key'>data_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span>
+  <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>environment</span><span class='tstring_end'>&#39;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:54 2016 by
+  Generated on Tue Jan 31 13:38:43 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

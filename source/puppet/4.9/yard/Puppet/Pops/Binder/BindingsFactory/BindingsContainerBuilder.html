@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::BindingsFactory::BindingsContainerBuilder
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Binder::BindingsFactory::BindingsContainerBuilder
   
@@ -258,9 +256,9 @@ An optional block may be given which is evaluated using <code>instance_eval</cod
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>Binding</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Bindings/Binding.html" title="Puppet::Pops::Binder::Bindings::Binding (class)">Binding</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_addBindings'>addBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_builder'>builder</span> <span class='op'>=</span> <span class='const'>BindingsBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_builder'>builder</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="BindingsBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder (class)">BindingsBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="BindingsBuilder.html#initialize-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   <span class='id identifier rubyid_builder'>builder</span>
 <span class='kw'>end</span></pre>
@@ -344,10 +342,10 @@ contributions to this key. An optional block may be given which is evaluated usi
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/bindings_factory.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_multibind'>multibind</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'>Bindings</span><span class='op'>::</span><span class='const'>Multibinding</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_binding'>binding</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Bindings/Multibinding.html" title="Puppet::Pops::Binder::Bindings::Multibinding (class)">Multibinding</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_binding'>binding</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span> <span class='op'>=</span> <span class='id identifier rubyid_id'>id</span>
   <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_addBindings'>addBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_builder'>builder</span> <span class='op'>=</span> <span class='const'>MultibindingsBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_builder'>builder</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="MultibindingsBuilder.html" title="Puppet::Pops::Binder::BindingsFactory::MultibindingsBuilder (class)">MultibindingsBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="BindingsBuilder.html#initialize-instance_method" title="Puppet::Pops::Binder::BindingsFactory::BindingsBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
   <span class='id identifier rubyid_builder'>builder</span>
 <span class='kw'>end</span></pre>
@@ -361,9 +359,9 @@ contributions to this key. An optional block may be given which is evaluated usi
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:49 2016 by
+  Generated on Tue Jan 31 13:38:37 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

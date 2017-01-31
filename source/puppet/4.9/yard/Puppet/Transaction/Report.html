@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Transaction::Report
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Transaction::Report
   
@@ -171,7 +169,7 @@ as a source of data to report in such a registered report.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#%3C%3C-instance_method" title="#&lt;&lt; (instance method)">#<strong>&lt;&lt;</strong>(msg)  &#x21d2; Object </a>
+      <a href="#<<-instance_method" title="#&lt;&lt; (instance method)">#<strong>&lt;&lt;</strong>(msg)  &#x21d2; Object </a>
     
 
     
@@ -606,11 +604,11 @@ as a source of data to report in such a registered report.</p>
   <span class='ivar'>@logs</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@resource_statuses</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='ivar'>@external_times</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='ivar'>@host</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:node_name_value</span><span class='rbracket'>]</span>
+  <span class='ivar'>@host</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:node_name_value</span><span class='rbracket'>]</span>
   <span class='ivar'>@time</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
   <span class='ivar'>@kind</span> <span class='op'>=</span> <span class='id identifier rubyid_kind'>kind</span>
   <span class='ivar'>@report_format</span> <span class='op'>=</span> <span class='int'>6</span>
-  <span class='ivar'>@puppet_version</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>
+  <span class='ivar'>@puppet_version</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_version'><span class='object_link'><a href="../../Puppet.html#version-class_method" title="Puppet.version (method)">version</a></span></span>
   <span class='ivar'>@configuration_version</span> <span class='op'>=</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span>
   <span class='ivar'>@transaction_uuid</span> <span class='op'>=</span> <span class='id identifier rubyid_transaction_uuid'>transaction_uuid</span>
   <span class='ivar'>@code_id</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -619,7 +617,7 @@ as a source of data to report in such a registered report.</p>
   <span class='ivar'>@master_used</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@environment</span> <span class='op'>=</span> <span class='id identifier rubyid_environment'>environment</span>
   <span class='ivar'>@status</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>failed</span><span class='tstring_end'>&#39;</span></span> <span class='comment'># assume failed until the report is finalized
-</span>  <span class='ivar'>@noop</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:noop</span><span class='rbracket'>]</span>
+</span>  <span class='ivar'>@noop</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:noop</span><span class='rbracket'>]</span>
   <span class='ivar'>@noop_pending</span> <span class='op'>=</span> <span class='kw'>false</span>
   <span class='ivar'>@corrective_change</span> <span class='op'>=</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
@@ -723,7 +721,7 @@ as a source of data to report in such a registered report.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_metric'>add_metric</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_metric'>metric</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_metric'>metric</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_metric_name'>metric_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
     <span class='id identifier rubyid_metric'>metric</span><span class='period'>.</span><span class='id identifier rubyid_newvalue'>newvalue</span><span class='lparen'>(</span><span class='id identifier rubyid_metric_name'>metric_name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -1189,11 +1187,11 @@ individual bits represent the presence of different metrics.</p>
 
   <span class='ivar'>@metrics</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>metrics</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='op'>|</span>
-    <span class='ivar'>@metrics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
+    <span class='ivar'>@metrics</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@logs</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>logs</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_record'>record</span><span class='op'>|</span>
-    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Log</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@resource_statuses</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -1201,7 +1199,7 @@ individual bits represent the presence of different metrics.</p>
     <span class='kw'>if</span> <span class='id identifier rubyid_record'>record</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
       <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='kw'>nil</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Resource</span><span class='op'>::</span><span class='const'>Status</span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Resource.html" title="Puppet::Resource (class)">Resource</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Resource/Status.html" title="Puppet::Resource::Status (class)">Status</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_data_hash'>from_data_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_record'>record</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='ivar'>@resource_statuses</span><span class='lbracket'>[</span><span class='id identifier rubyid_record'>record</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
   <span class='kw'>end</span>
@@ -1372,7 +1370,7 @@ individual bits represent the presence of different metrics.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/transaction/report.rb', line 353</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_raw_summary'>raw_summary</span>
-  <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>version</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_version'>version</span>  <span class='rbrace'>}</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_report'>report</span> <span class='op'>=</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>version</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>config</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_configuration_version'>configuration_version</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_version'><span class='object_link'><a href="../../Puppet.html#version-class_method" title="Puppet.version (method)">version</a></span></span>  <span class='rbrace'>}</span> <span class='rbrace'>}</span>
 
   <span class='ivar'>@metrics</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_metric'>metric</span><span class='op'>|</span>
     <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_metric'>metric</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -1473,7 +1471,7 @@ individual bits represent the presence of different metrics.</p>
 
   <span class='id identifier rubyid_ret'>ret</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
   <span class='id identifier rubyid_report'>report</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_key'>key</span><span class='op'>|</span>
-    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_labelize'>labelize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>:\n</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_labelize'>labelize</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>:\n</span><span class='tstring_end'>&quot;</span></span>
 
     <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span>
       <span class='comment'># sort by label
@@ -1488,7 +1486,7 @@ individual bits represent the presence of different metrics.</p>
       <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='id identifier rubyid_report'>report</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_label'>label</span><span class='rbracket'>]</span>
       <span class='kw'>next</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>==</span> <span class='int'>0</span>
       <span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%0.2f</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='id identifier rubyid_value'>value</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Float</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_ret'>ret</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   %15s %s\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='lbracket'>[</span><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_labelize'>labelize</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_ret'>ret</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>   %15s %s\n</span><span class='tstring_end'>&quot;</span></span> <span class='op'>%</span> <span class='lbracket'>[</span><span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Metric</span><span class='period'>.</span><span class='id identifier rubyid_labelize'>labelize</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_ret'>ret</span>
@@ -1546,9 +1544,9 @@ individual bits represent the presence of different metrics.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:42 2016 by
+  Generated on Tue Jan 31 13:38:27 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

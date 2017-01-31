@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PSemVerType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PSemVerType
   
@@ -109,7 +107,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>A Puppet Language Type that exposes the {Semantic{Semantic::Version} and {Semantic{Semantic::VersionRange}.
+    <p>A Puppet Language Type that exposes the {SemanticPuppet{SemanticPuppet::Version} and {SemanticPuppet{SemanticPuppet::VersionRange}.
 The version type is parameterized with version ranges.</p>
 
 
@@ -317,7 +315,7 @@ The version type is parameterized with version ranges.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_sem_ver_type.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new_function'>new_function</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
-  <span class='cvar'>@@new_function</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'>create_loaded_function</span><span class='lparen'>(</span><span class='symbol'>:new_Version</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='cvar'>@@new_function</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Functions.html" title="Puppet::Functions (module)">Functions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'><span class='object_link'><a href="../../Functions.html#create_loaded_function-class_method" title="Puppet::Functions.create_loaded_function (method)">create_loaded_function</a></span></span><span class='lparen'>(</span><span class='symbol'>:new_Version</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_local_types'>local_types</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PositiveInteger = Integer[0,default]</span><span class='tstring_end'>&#39;</span></span>
       <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SemVerQualifier = Pattern[/\A(?&lt;part&gt;[0-9A-Za-z-]+)(?:\.\g&lt;part&gt;)*\Z/]</span><span class='tstring_end'>&#39;</span></span>
@@ -348,15 +346,15 @@ The version type is parameterized with version ranges.</p>
     <span class='kw'>end</span>
 
     <span class='kw'>def</span> <span class='id identifier rubyid_from_string'>from_string</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
-      <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
+      <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_str'>str</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
 
     <span class='kw'>def</span> <span class='id identifier rubyid_from_args'>from_args</span><span class='lparen'>(</span><span class='id identifier rubyid_major'>major</span><span class='comma'>,</span> <span class='id identifier rubyid_minor'>minor</span><span class='comma'>,</span> <span class='id identifier rubyid_patch'>patch</span><span class='comma'>,</span> <span class='id identifier rubyid_prerelease'>prerelease</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_build'>build</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-      <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_major'>major</span><span class='comma'>,</span> <span class='id identifier rubyid_minor'>minor</span><span class='comma'>,</span> <span class='id identifier rubyid_patch'>patch</span><span class='comma'>,</span> <span class='id identifier rubyid_prerelease'>prerelease</span><span class='comma'>,</span> <span class='id identifier rubyid_build'>build</span><span class='rparen'>)</span>
+      <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_major'>major</span><span class='comma'>,</span> <span class='id identifier rubyid_minor'>minor</span><span class='comma'>,</span> <span class='id identifier rubyid_patch'>patch</span><span class='comma'>,</span> <span class='id identifier rubyid_prerelease'>prerelease</span><span class='comma'>,</span> <span class='id identifier rubyid_build'>build</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
 
     <span class='kw'>def</span> <span class='id identifier rubyid_from_hash'>from_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
-      <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>major</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>minor</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patch</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prerelease</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>build</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>major</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>minor</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>patch</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>prerelease</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>build</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -427,7 +425,7 @@ The version type is parameterized with version ranges.</p>
     <span class='id identifier rubyid_unmerged'>unmerged</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='id identifier rubyid_ranges'>ranges</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_ranges'>ranges</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_memo'>memo</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='op'>|</span>
-      <span class='id identifier rubyid_merged'>merged</span> <span class='op'>=</span> <span class='const'>PSemVerRangeType</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_memo'>memo</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_merged'>merged</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="PSemVerRangeType.html" title="Puppet::Pops::Types::PSemVerRangeType (class)">PSemVerRangeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_merge'><span class='object_link'><a href="PSemVerRangeType.html#merge-class_method" title="Puppet::Pops::Types::PSemVerRangeType.merge (method)">merge</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_memo'>memo</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_merged'>merged</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
         <span class='id identifier rubyid_unmerged'>unmerged</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_y'>y</span>
       <span class='kw'>else</span>
@@ -449,9 +447,9 @@ The version type is parameterized with version ranges.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:46 2016 by
+  Generated on Tue Jan 31 13:38:34 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

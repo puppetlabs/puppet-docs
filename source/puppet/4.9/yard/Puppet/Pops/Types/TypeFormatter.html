@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::TypeFormatter
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::TypeFormatter
   
@@ -220,6 +218,30 @@
 <li class="public ">
   <span class="summary_signature">
     
+      <a href="#append_indented_string-instance_method" title="#append_indented_string (instance method)">#<strong>append_indented_string</strong>(t, indent = 0, indent_width = 2, skip_initial_indent = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
       <a href="#capitalize_segments-instance_method" title="#capitalize_segments (instance method)">#<strong>capitalize_segments</strong>(qualified_name)  &#x21d2; String </a>
     
 
@@ -262,6 +284,30 @@
   
     <span class="summary_desc"><div class='inline'><p>Produces a debug string representing the type (possibly with more information that the regular string format).</p>
 </div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#format_type_alias_type-instance_method" title="#format_type_alias_type (instance method)">#<strong>format_type_alias_type</strong>(t, expand)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
   
 </li>
 
@@ -1886,17 +1932,17 @@
       <pre class="lines">
 
 
-94
-95
-96
-97
-98
-99
-100
-101</pre>
+101
+102
+103
+104
+105
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alias_expanded_string'>alias_expanded_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='ivar'>@expanded</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -1904,6 +1950,71 @@
     <span class='id identifier rubyid_string'>string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='kw'>ensure</span>
     <span class='ivar'>@expanded</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="append_indented_string-instance_method">
+  
+    #<strong>append_indented_string</strong>(t, indent = 0, indent_width = 2, skip_initial_indent = false)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_append_indented_string'>append_indented_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_indent'>indent</span> <span class='op'>=</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_indent_width'>indent_width</span> <span class='op'>=</span> <span class='int'>2</span><span class='comma'>,</span> <span class='id identifier rubyid_skip_initial_indent'>skip_initial_indent</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_save_indent'>save_indent</span> <span class='op'>=</span> <span class='ivar'>@indent</span>
+  <span class='id identifier rubyid_save_indent_width'>save_indent_width</span> <span class='op'>=</span> <span class='ivar'>@indent_width</span>
+  <span class='ivar'>@indent</span> <span class='op'>=</span> <span class='id identifier rubyid_indent'>indent</span>
+  <span class='ivar'>@indent_width</span> <span class='op'>=</span> <span class='id identifier rubyid_indent_width'>indent_width</span>
+  <span class='kw'>begin</span>
+    <span class='lparen'>(</span><span class='ivar'>@indent</span> <span class='op'>*</span> <span class='ivar'>@indent_width</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_skip_initial_indent'>skip_initial_indent</span>
+    <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
+    <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>ensure</span>
+    <span class='ivar'>@indent</span> <span class='op'>=</span> <span class='id identifier rubyid_save_indent'>save_indent</span>
+    <span class='ivar'>@indent_width</span> <span class='op'>=</span> <span class='id identifier rubyid_save_indent_width'>save_indent_width</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1978,22 +2089,22 @@ that existing camel casing is lost.</p>
       <pre class="lines">
 
 
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541
-542
-543
-544</pre>
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 532</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 552</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_capitalize_segments'>capitalize_segments</span><span class='lparen'>(</span><span class='id identifier rubyid_qualified_name'>qualified_name</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_qualified_name'>qualified_name</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_qualified_name'>qualified_name</span> <span class='op'>=~</span> <span class='const'>STARTS_WITH_ASCII_CAPITAL</span>
@@ -2038,17 +2149,17 @@ that existing camel casing is lost.</p>
       <pre class="lines">
 
 
-106
-107
-108
-109
-110
-111
-112
-113</pre>
+113
+114
+115
+116
+117
+118
+119
+120</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_debug_string'>debug_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='ivar'>@debug</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -2056,6 +2167,73 @@ that existing camel casing is lost.</p>
     <span class='id identifier rubyid_string'>string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='kw'>ensure</span>
     <span class='ivar'>@debug</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="format_type_alias_type-instance_method">
+  
+    #<strong>format_type_alias_type</strong>(t, expand)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 464</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_format_type_alias_type'>format_type_alias_type</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_expand'>expand</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_expand'>expand</span>
+      <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> = </span><span class='tstring_end'>&#39;</span></span>
+      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_expand'>expand</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_defines_type?'>defines_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_name_for'>name_for</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2146,33 +2324,15 @@ type or literal <em>t</em>.</p>
 45
 46
 47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57</pre>
+48</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_indented_string'>indented_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_indent'>indent</span> <span class='op'>=</span> <span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_indent_width'>indent_width</span> <span class='op'>=</span> <span class='int'>2</span><span class='rparen'>)</span>
-  <span class='ivar'>@indent</span> <span class='op'>=</span> <span class='id identifier rubyid_indent'>indent</span>
-  <span class='ivar'>@indent_width</span> <span class='op'>=</span> <span class='id identifier rubyid_indent_width'>indent_width</span>
-  <span class='kw'>begin</span>
-    <span class='ivar'>@bld</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
-    <span class='lparen'>(</span><span class='ivar'>@indent</span> <span class='op'>*</span> <span class='ivar'>@indent_width</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> </span><span class='tstring_end'>&#39;</span></span> <span class='rbrace'>}</span>
-    <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
-    <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span>
-    <span class='ivar'>@bld</span>
-  <span class='kw'>ensure</span>
-    <span class='ivar'>@indent</span> <span class='op'>=</span> <span class='kw'>nil</span>
-    <span class='ivar'>@indent_width</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='kw'>end</span>
+  <span class='ivar'>@bld</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_append_indented_string'>append_indented_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_indent'>indent</span><span class='comma'>,</span> <span class='id identifier rubyid_indent_width'>indent_width</span><span class='rparen'>)</span>
+  <span class='ivar'>@bld</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2207,19 +2367,19 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-60
-61
-62
-63
-64
-65
-66
 67
 68
-69</pre>
+69
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ruby_string'>ruby_string</span><span class='lparen'>(</span><span class='id identifier rubyid_ref_ctor'>ref_ctor</span><span class='comma'>,</span> <span class='id identifier rubyid_indent'>indent</span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='ivar'>@ruby</span> <span class='op'>=</span> <span class='kw'>true</span>
@@ -2308,12 +2468,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-466
-467
-468</pre>
+486
+487
+488</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 466</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 486</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Array'>string_Array</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -2351,10 +2511,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-471</pre>
+491</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 471</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 491</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_FalseClass'>string_FalseClass</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>   <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>false</span><span class='tstring_end'>&#39;</span></span>       <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2390,12 +2550,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-474
-475
-476</pre>
+494
+495
+496</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 474</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 494</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Hash'>string_Hash</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_hash'>append_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
@@ -2433,15 +2593,15 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-479
-480
-481</pre>
+499
+500
+501</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 479</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 499</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Module'>string_Module</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_singleton'><span class='object_link'><a href="TypeCalculator.html#singleton-class_method" title="Puppet::Pops::Types::TypeCalculator.singleton (method)">singleton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_type'><span class='object_link'><a href="TypeCalculator.html#type-instance_method" title="Puppet::Pops::Types::TypeCalculator#type (method)">type</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -2476,10 +2636,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-484</pre>
+504</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 484</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 504</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_NilClass'>string_NilClass</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>     <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='ivar'>@ruby</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>nil</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>?</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2515,10 +2675,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-487</pre>
+507</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 487</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 507</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Numeric'>string_Numeric</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>      <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>    <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2554,17 +2714,17 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-368
-369
-370
-371
-372
-373
-374
-375</pre>
+382
+383
+384
+385
+386
+387
+388
+389</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 368</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 382</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PAnnotatedMember'>string_PAnnotatedMember</span><span class='lparen'>(</span><span class='id identifier rubyid_m'>m</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='id identifier rubyid_m'>m</span><span class='period'>.</span><span class='id identifier rubyid_i12n_hash'>i12n_hash</span>
@@ -2607,10 +2767,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-116</pre>
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 123</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PAnyType'>string_PAnyType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>     <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Any</span><span class='tstring_end'>&#39;</span></span>     <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2646,26 +2806,26 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-311
-312
-313
-314
-315
-316
-317
-318
-319
-320
-321</pre>
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 311</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 325</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PArrayType'>string_PArrayType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_has_empty_range?'>has_empty_range?</span>
     <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Array</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Array</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span> <span class='op'>==</span> <span class='const'>PArrayType</span><span class='op'>::</span><span class='const'>DATA</span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Array</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="PArrayType.html" title="Puppet::Pops::Types::PArrayType (class)">PArrayType</a></span></span><span class='op'>::</span><span class='const'>DATA</span><span class='rparen'>)</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_range_array_part'>range_array_part</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_chomp_list'>chomp_list</span>
@@ -2705,10 +2865,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-137</pre>
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 144</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PBinaryType'>string_PBinaryType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>  <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Binary</span><span class='tstring_end'>&#39;</span></span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2744,10 +2904,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-125</pre>
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PBooleanType'>string_PBooleanType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Boolean</span><span class='tstring_end'>&#39;</span></span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2783,12 +2943,6 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-239
-240
-241
-242
-243
-244
 245
 246
 247
@@ -2797,10 +2951,16 @@ type or literal <em>t</em>.</p>
 250
 251
 252
-253</pre>
+253
+254
+255
+256
+257
+258
+259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 239</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 245</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PCallableType'>string_PCallableType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_return_type'>return_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -2850,12 +3010,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-337
-338
-339</pre>
+351
+352
+353</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 337</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 351</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PCatalogEntryType'>string_PCatalogEntryType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>CatalogEntry</span><span class='tstring_end'>&#39;</span></span>
@@ -2893,13 +3053,13 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-295
-296
-297
-298</pre>
+301
+302
+303
+304</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 295</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 301</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PCollectionType'>string_PCollectionType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_range'>range</span> <span class='op'>=</span> <span class='id identifier rubyid_range_array_part'>range_array_part</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span><span class='rparen'>)</span>
@@ -2938,10 +3098,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-131</pre>
+138</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PDataType'>string_PDataType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>    <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Data</span><span class='tstring_end'>&#39;</span></span>    <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -2977,10 +3137,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-122</pre>
+129</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PDefaultType'>string_PDefaultType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Default</span><span class='tstring_end'>&#39;</span></span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3016,12 +3176,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-184
-185
-186</pre>
+190
+191
+192</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 190</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PEnumType'>string_PEnumType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Enum</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3059,12 +3219,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-160
-161
-162</pre>
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 160</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PFloatType'>string_PFloatType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Float</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_unbounded?'>unbounded?</span> <span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_range_array_part'>range_array_part</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3102,27 +3262,27 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334</pre>
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 324</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 338</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PHashType'>string_PHashType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_has_empty_range?'>has_empty_range?</span>
     <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hash</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hash</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span> <span class='op'>==</span> <span class='const'>PHashType</span><span class='op'>::</span><span class='const'>DATA</span><span class='rparen'>)</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_key_type'>key_type</span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Hash</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="PHashType.html" title="Puppet::Pops::Types::PHashType (class)">PHashType</a></span></span><span class='op'>::</span><span class='const'>DATA</span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_key_type'>key_type</span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_range_array_part'>range_array_part</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_chomp_list'>chomp_list</span>
     <span class='kw'>end</span>
@@ -3161,12 +3321,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-342
-343
-344</pre>
+356
+357
+358</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 342</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 356</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PHostClassType'>string_PHostClassType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Class</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_class_name'>class_name</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_class_name'>class_name</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3204,12 +3364,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-140
-141
-142</pre>
+147
+148
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 140</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PIntegerType'>string_PIntegerType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Integer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_unbounded?'>unbounded?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_range_array_part'>range_array_part</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3247,12 +3407,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-150
-151
-152</pre>
+157
+158
+159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PIterableType'>string_PIterableType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Iterable</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>  <span class='lbrace'>{</span> <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3290,12 +3450,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-155
-156
-157</pre>
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 162</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PIteratorType'>string_PIteratorType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Iterator</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3333,25 +3493,25 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-356
-357
-358
-359
-360
-361
-362
-363
-364
-365</pre>
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 356</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 370</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PNotUndefType'>string_PNotUndefType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_contained_type'>contained_type</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>
-  <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NotUndef</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'>PAnyType</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PStringType</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
-      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>NotUndef</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_contained_type'>contained_type</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_contained_type'>contained_type</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
@@ -3390,10 +3550,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-134</pre>
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 141</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PNumericType'>string_PNumericType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span> <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3429,22 +3589,22 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-413
-414
-415
-416
-417
-418
-419</pre>
+427
+428
+429
+430
+431
+432
+433</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 413</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 427</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PObjectType'>string_PObjectType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@expanded</span>
     <span class='id identifier rubyid_append_object_hash'>append_object_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='lparen'>(</span><span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='op'>!</span><span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_defines_type?'>defines_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='ivar'>@type_set</span> <span class='op'>?</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_name_for'>name_for</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span>
+    <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='lparen'>(</span><span class='ivar'>@type_set</span> <span class='op'>?</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_name_for'>name_for</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -3480,25 +3640,25 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-427
-428
-429
-430
-431
-432
-433
-434
-435
-436</pre>
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 427</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 441</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_POptionalType'>string_POptionalType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_optional_type'>optional_type</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_optional_type'>optional_type</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Optional</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_optional_type'>optional_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_optional_type'>optional_type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PStringType</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_optional_type'>optional_type</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span>
-      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_optional_type'>optional_type</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_optional_type'>optional_type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_optional_type'>optional_type</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_optional_type'>optional_type</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_optional_type'>optional_type</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
@@ -3537,12 +3697,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-290
-291
-292</pre>
+296
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 290</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PPatternType'>string_PPatternType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Pattern</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_patterns'>patterns</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_patterns'>patterns</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:regexp</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3580,12 +3740,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-165
-166
-167</pre>
+172
+173
+174</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 165</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PRegexpType'>string_PRegexpType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Regexp</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_pattern'>pattern</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_regexp'>regexp</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3623,16 +3783,16 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-347
-348
-349
-350
-351
-352
-353</pre>
+361
+362
+363
+364
+365
+366
+367</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 347</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 361</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PResourceType'>string_PResourceType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_type_name'>type_name</span>
@@ -3674,12 +3834,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-306
-307
-308</pre>
+320
+321
+322</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 306</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 320</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PRuntimeType'>string_PRuntimeType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Runtime</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_runtime'>runtime</span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name_or_pattern'>name_or_pattern</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3717,10 +3877,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-128</pre>
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 128</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PScalarType'>string_PScalarType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>  <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Scalar</span><span class='tstring_end'>&#39;</span></span>  <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -3756,12 +3916,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-199
-200
-201</pre>
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 199</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 205</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PSemVerRangeType'>string_PSemVerRangeType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SemVerRange</span><span class='tstring_end'>&#39;</span></span>
@@ -3799,12 +3959,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-194
-195
-196</pre>
+200
+201
+202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 194</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PSemVerType'>string_PSemVerType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SemVer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_ranges'>ranges</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_ranges'>ranges</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3842,12 +4002,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-422
-423
-424</pre>
+436
+437
+438</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 422</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 436</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PSensitiveType'>string_PSensitiveType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Sensitive</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3885,29 +4045,27 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-170
-171
-172
-173
-174
-175
-176
 177
 178
 179
 180
-181</pre>
+181
+182
+183
+184
+185
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 177</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PStringType'>string_PStringType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_range'>range</span> <span class='op'>=</span> <span class='id identifier rubyid_range_array_part'>range_array_part</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>String</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='lparen'>(</span><span class='ivar'>@debug</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='kw'>if</span> <span class='ivar'>@debug</span>
-      <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_chomp_list'>chomp_list</span>
+      <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='comma'>,</span> <span class='op'>!</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_append_elements'>append_elements</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
@@ -3946,12 +4104,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-272
-273
-274</pre>
+278
+279
+280</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 272</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 278</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PStructType'>string_PStructType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Struct</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_elements'>elements</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_hash'>append_hash</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_elements'>elements</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_e'>e</span><span class='op'>|</span> <span class='id identifier rubyid_struct_element_pair'>struct_element_pair</span><span class='lparen'>(</span><span class='id identifier rubyid_e'>e</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -3989,20 +4147,20 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-217
-218
-219
-220
-221
-222
 223
 224
 225
 226
-227</pre>
+227
+228
+229
+230
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 217</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 223</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PTimespanType'>string_PTimespanType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_from'>from</span>
@@ -4048,20 +4206,20 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-204
-205
-206
-207
-208
-209
 210
 211
 212
 213
-214</pre>
+214
+215
+216
+217
+218
+219
+220</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 204</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PTimestampType'>string_PTimestampType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_from'>from</span>
@@ -4107,16 +4265,16 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-230
-231
-232
-233
-234
-235
-236</pre>
+236
+237
+238
+239
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 230</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 236</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PTupleType'>string_PTupleType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Tuple</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -4158,12 +4316,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-145
-146
-147</pre>
+152
+153
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PType'>string_PType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Type</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -4201,48 +4359,26 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-439
-440
-441
-442
-443
-444
-445
-446
-447
-448
-449
-450
-451
-452
 453
 454
 455
 456
 457
-458</pre>
+458
+459
+460
+461</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 439</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 453</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PTypeAliasType'>string_PTypeAliasType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_expand'>expand</span> <span class='op'>=</span> <span class='ivar'>@expanded</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_expand'>expand</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_self_recursion?'>self_recursion?</span>
-    <span class='ivar'>@guard</span> <span class='op'>||=</span> <span class='const'>RecursionGuard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-    <span class='id identifier rubyid_expand'>expand</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='ivar'>@guard</span><span class='period'>.</span><span class='id identifier rubyid_add_this'>add_this</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span> <span class='op'>&amp;</span> <span class='const'>RecursionGuard</span><span class='op'>::</span><span class='const'>SELF_RECURSION_IN_THIS</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span>
-  <span class='kw'>end</span>
-  <span class='kw'>if</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_expand'>expand</span>
-      <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'> = </span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
+    <span class='ivar'>@guard</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@guard</span><span class='period'>.</span><span class='id identifier rubyid_with_this'>with_this</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_state'>state</span><span class='op'>|</span> <span class='id identifier rubyid_format_type_alias_type'>format_type_alias_type</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_state'>state</span> <span class='op'>&amp;</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='op'>::</span><span class='const'>SELF_RECURSION_IN_THIS</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>else</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_expand'>expand</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_defines_type?'>defines_type?</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='rparen'>)</span>
-    <span class='kw'>else</span>
-      <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='ivar'>@type_set</span><span class='period'>.</span><span class='id identifier rubyid_name_for'>name_for</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
+    <span class='id identifier rubyid_format_type_alias_type'>format_type_alias_type</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_expand'>expand</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -4278,12 +4414,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-461
-462
-463</pre>
+481
+482
+483</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 461</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 481</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PTypeReferenceType'>string_PTypeReferenceType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TypeReference</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_string'>append_string</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_type_string'>type_string</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -4321,20 +4457,6 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394
-395
-396
-397
-398
 399
 400
 401
@@ -4346,10 +4468,24 @@ type or literal <em>t</em>.</p>
 407
 408
 409
-410</pre>
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 385</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 399</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PTypeSetType'>string_PTypeSetType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>TypeSet</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -4410,10 +4546,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-119</pre>
+126</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 126</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PUndefType'>string_PUndefType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>   <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Undef</span><span class='tstring_end'>&#39;</span></span>   <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4449,12 +4585,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-301
-302
-303</pre>
+315
+316
+317</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 301</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 315</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PUnitType'>string_PUnitType</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='rparen'>)</span>
   <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Unit</span><span class='tstring_end'>&#39;</span></span>
@@ -4492,12 +4628,12 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-189
-190
-191</pre>
+195
+196
+197</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 189</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 195</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_PVariantType'>string_PVariantType</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_append_array'>append_array</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Variant</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_append_strings'>append_strings</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -4535,10 +4671,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-490</pre>
+510</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 490</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 510</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Regexp'>string_Regexp</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>       <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4574,17 +4710,17 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-493
-494
-495
-496</pre>
+513
+514
+515
+516</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 493</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 513</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_String'>string_String</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='comment'># Use single qoute on strings that does not contain single quotes, control characters, or backslashes.
-</span>  <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='const'>StringConverter</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
+</span>  <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="StringConverter.html" title="Puppet::Pops::Types::StringConverter (class)">StringConverter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_singleton'><span class='object_link'><a href="StringConverter.html#singleton-class_method" title="Puppet::Pops::Types::StringConverter.singleton (method)">singleton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_puppet_quote'>puppet_quote</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -4619,10 +4755,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-499</pre>
+519</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 499</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 519</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Symbol'>string_Symbol</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>       <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>    <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4658,10 +4794,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-511</pre>
+531</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 511</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 531</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Timespan'>string_Timespan</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>    <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>  <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4697,10 +4833,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-514</pre>
+534</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 514</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 534</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Timestamp'>string_Timestamp</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>    <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>  <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4736,10 +4872,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-502</pre>
+522</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 502</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 522</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_TrueClass'>string_TrueClass</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>    <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>true</span><span class='tstring_end'>&#39;</span></span>    <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4775,10 +4911,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-505</pre>
+525</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 505</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 525</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_Version'>string_Version</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>      <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>  <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4814,10 +4950,10 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-508</pre>
+528</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 508</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 528</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_string_VersionRange'>string_VersionRange</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span> <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_t'>t</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>  <span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -4853,25 +4989,25 @@ type or literal <em>t</em>.</p>
       <pre class="lines">
 
 
-277
-278
-279
-280
-281
-282
 283
 284
 285
 286
-287</pre>
+287
+288
+289
+290
+291
+292
+293</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 277</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 283</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_struct_element_pair'>struct_element_pair</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_k'>k</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_key_type'>key_type</span>
-  <span class='id identifier rubyid_value_optional'>value_optional</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'>PUndefType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>POptionalType</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_value_optional'>value_optional</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PUndefType.html" title="Puppet::Pops::Types::PUndefType (class)">PUndefType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_k'>k</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="POptionalType.html" title="Puppet::Pops::Types::POptionalType (class)">POptionalType</a></span></span><span class='rparen'>)</span>
     <span class='comment'># Output as literal String
 </span>    <span class='id identifier rubyid_k'>k</span> <span class='op'>=</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='kw'>if</span> <span class='id identifier rubyid_value_optional'>value_optional</span>
   <span class='kw'>else</span>
@@ -4914,12 +5050,12 @@ method to allow override.</p>
       <pre class="lines">
 
 
-380
-381
-382</pre>
+394
+395
+396</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 380</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 394</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_symbolic_key'>symbolic_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
   <span class='ivar'>@ruby</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_key'>key</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_key'>key</span>
@@ -4934,9 +5070,9 @@ method to allow override.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:47 2016 by
+  Generated on Tue Jan 31 13:38:34 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

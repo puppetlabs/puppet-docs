@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::Deserializer
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Serialization::Deserializer
   
@@ -118,6 +116,36 @@ resolving tabulations and assembling complex objects. The type of the complex ob
 
   <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
   <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#loader-instance_method" title="#loader (instance method)">#<strong>loader</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Provides access to the reader.</p>
+</div></span>
+  
+</li>
+
     
       
 <li class="public ">
@@ -331,7 +359,53 @@ resolving tabulations and assembling complex objects. The type of the complex ob
       
       <span id=""></span>
       <div class="method_details first">
-  <h3 class="signature first" id="reader-instance_method">
+  <h3 class="signature first" id="loader-instance_method">
+  
+    #<strong>loader</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Provides access to the reader.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_loader'>loader</span>
+  <span class='ivar'>@loader</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="reader-instance_method">
   
     #<strong>reader</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(readonly)</span>&nbsp;<span class="private note title">private</span>
   
@@ -448,7 +522,20 @@ resolving tabulations and assembling complex objects. The type of the complex ob
 48
 49
 50
-51</pre>
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 26</span>
@@ -468,12 +555,25 @@ resolving tabulations and assembling complex objects. The type of the complex ob
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_remember'>remember</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_read'>read</span><span class='semicolon'>;</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='id identifier rubyid_key'>key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_read'>read</span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_result'>result</span>
-  <span class='kw'>when</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span>
+  <span class='kw'>when</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>SensitiveStart</span>
+    <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PSensitiveType.html" title="Puppet::Pops::Types::PSensitiveType (class)">PSensitiveType</a></span></span><span class='op'>::</span><span class='const'>Sensitive</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>PcoreObjectStart</span>
     <span class='id identifier rubyid_type_name'>type_name</span> <span class='op'>=</span> <span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_type_name'>type_name</span>
     <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeParser</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='comma'>,</span> <span class='ivar'>@loader</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SerializationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No implementation mapping found for Puppet Type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type_name'>type_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PTypeReferenceType</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_attribute_count'>attribute_count</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
-  <span class='kw'>when</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='const'>String</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'>Time</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_attribute_count'>attribute_count</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PObjectType.html" title="Puppet::Pops::Types::PObjectType (class)">PObjectType</a></span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_existing_type'>existing_type</span> <span class='op'>=</span> <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:type</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+
+      <span class='comment'># Add result to the loader unless it is the exact same instance as the existing_type. The add
+</span>      <span class='comment'># will succeed when the existing_type is nil.
+</span>      <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_add_entry'>add_entry</span><span class='lparen'>(</span><span class='symbol'>:type</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_existing_type'>existing_type</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>when</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_read'>read</span>
+    <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_attribute_count'>attribute_count</span> <span class='op'>-</span> <span class='int'>1</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='const'>String</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>nil</span>
     <span class='id identifier rubyid_val'>val</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_remember'>remember</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='rparen'>)</span>
@@ -550,13 +650,13 @@ and that subsequent reads of a tabulation with that index should return the valu
       <pre class="lines">
 
 
-58
-59
-60
-61</pre>
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remember'>remember</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@read</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_value'>value</span>
@@ -572,9 +672,9 @@ and that subsequent reads of a tabulation with that index should return the valu
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:50 2016 by
+  Generated on Tue Jan 31 13:38:41 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

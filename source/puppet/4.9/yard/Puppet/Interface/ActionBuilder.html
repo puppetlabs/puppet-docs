@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Interface::ActionBuilder
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Interface::ActionBuilder
   
@@ -699,7 +697,7 @@ and in the example.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_option'>option</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_option'>option</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>OptionBuilder</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='ivar'>@action</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_option'>option</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="OptionBuilder.html" title="Puppet::Interface::OptionBuilder (class)">OptionBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_build'><span class='object_link'><a href="OptionBuilder.html#build-class_method" title="Puppet::Interface::OptionBuilder.build (method)">build</a></span></span><span class='lparen'>(</span><span class='ivar'>@action</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@action</span><span class='period'>.</span><span class='id identifier rubyid_add_option'>add_option</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -753,7 +751,7 @@ and in the example.</p>
 <span class='kw'>def</span> <span class='id identifier rubyid_render_as'>render_as</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You must give a rendering format to render_as</span><span class='tstring_end'>&quot;</span></span>
 
-  <span class='id identifier rubyid_formats'>formats</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Network</span><span class='op'>::</span><span class='const'>FormatHandler</span><span class='period'>.</span><span class='id identifier rubyid_formats'>formats</span>
+  <span class='id identifier rubyid_formats'>formats</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Network</span><span class='op'>::</span><span class='const'>FormatHandler</span><span class='period'>.</span><span class='id identifier rubyid_formats'>formats</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_formats'>formats</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_value'>value</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> is not a valid rendering format: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_formats'>formats</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
@@ -953,9 +951,9 @@ returning a more capable object.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:46 2016 by
+  Generated on Tue Jan 31 13:38:31 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

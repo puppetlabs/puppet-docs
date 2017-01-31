@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PAnyType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PAnyType
   
@@ -555,15 +553,15 @@
       <pre class="lines">
 
 
-319
-320
-321</pre>
+323
+324
+325</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 319</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 323</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PAnyType</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -688,10 +686,6 @@ the transformed array.</p>
       <pre class="lines">
 
 
-354
-355
-356
-357
 358
 359
 360
@@ -700,10 +694,14 @@ the transformed array.</p>
 363
 364
 365
-366</pre>
+366
+367
+368
+369
+370</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 354</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 358</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alter_type_array'>alter_type_array</span><span class='lparen'>(</span><span class='id identifier rubyid_types'>types</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_method_args'>method_args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_modified'>modified</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -853,14 +851,14 @@ to <code>self</code> since all checks up to that point were positive.</p>
   <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
   <span class='kw'>when</span> <span class='const'>Class</span>
     <span class='comment'># Safe to call _assignable directly since a Class never is a Unit or Variant
-</span>    <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-  <span class='kw'>when</span> <span class='const'>PUnitType</span>
+</span>    <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_singleton'><span class='object_link'><a href="TypeCalculator.html#singleton-class_method" title="Puppet::Pops::Types::TypeCalculator.singleton (method)">singleton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_type'><span class='object_link'><a href="TypeCalculator.html#type-instance_method" title="Puppet::Pops::Types::TypeCalculator#type (method)">type</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PUnitType.html" title="Puppet::Pops::Types::PUnitType (class)">PUnitType</a></span></span>
     <span class='kw'>true</span>
-  <span class='kw'>when</span> <span class='const'>PTypeAliasType</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PTypeAliasType.html" title="Puppet::Pops::Types::PTypeAliasType (class)">PTypeAliasType</a></span></span>
     <span class='comment'># An alias may contain self recursive constructs.
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_self_recursion?'>self_recursion?</span>
-      <span class='id identifier rubyid_guard'>guard</span> <span class='op'>||=</span> <span class='const'>RecursionGuard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_guard'>guard</span><span class='period'>.</span><span class='id identifier rubyid_add_that'>add_that</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'>RecursionGuard</span><span class='op'>::</span><span class='const'>SELF_RECURSION_IN_BOTH</span>
+      <span class='id identifier rubyid_guard'>guard</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_guard'>guard</span><span class='period'>.</span><span class='id identifier rubyid_add_that'>add_that</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="RecursionGuard.html" title="Puppet::Pops::Types::RecursionGuard (class)">RecursionGuard</a></span></span><span class='op'>::</span><span class='const'>SELF_RECURSION_IN_BOTH</span>
         <span class='comment'># Recursion detected both in self and other. This means that other is assignable
 </span>        <span class='comment'># to self. This point would not have been reached otherwise
 </span>        <span class='kw'>true</span>
@@ -870,11 +868,11 @@ to <code>self</code> since all checks up to that point were positive.</p>
     <span class='kw'>else</span>
       <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_resolved_type'>resolved_type</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-  <span class='kw'>when</span> <span class='const'>PVariantType</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PVariantType.html" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></span>
     <span class='comment'># Assignable if all contained types are assignable
 </span>    <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_vt'>vt</span><span class='op'>|</span> <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_vt'>vt</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>when</span> <span class='const'>PNotUndefType</span>
-    <span class='kw'>if</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'>PUndefType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PUndefType.html" title="Puppet::Pops::Types::PUndefType (class)">PUndefType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
     <span class='kw'>else</span>
       <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
@@ -1714,20 +1712,20 @@ from must be less than to, and from may not be less than 0</p>
       <pre class="lines">
 
 
-330
-331
-332
-333
 334
 335
 336
 337
 338
 339
-340</pre>
+340
+341
+342
+343
+344</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 330</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 334</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tuple_entry_at'>tuple_entry_at</span><span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_regular'>regular</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
@@ -1750,9 +1748,9 @@ from must be less than to, and from may not be less than 0</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:39 2016 by
+  Generated on Tue Jan 31 13:38:24 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

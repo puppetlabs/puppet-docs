@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parser::TemplateWrapper
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Parser::TemplateWrapper
   
@@ -210,7 +208,7 @@ the scope objects.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#file%3D-instance_method" title="#file= (instance method)">#<strong>file=</strong>(filename)  &#x21d2; Object </a>
+      <a href="#file=-instance_method" title="#file= (instance method)">#<strong>file=</strong>(filename)  &#x21d2; Object </a>
     
 
     
@@ -590,8 +588,8 @@ the scope objects.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/parser/templatewrapper.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_file='>file=</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='ivar'>@__file__</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Files</span><span class='period'>.</span><span class='id identifier rubyid_find_template'>find_template</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_compiler'>compiler</span><span class='period'>.</span><span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find template &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>unless</span> <span class='ivar'>@__file__</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Files</span><span class='period'>.</span><span class='id identifier rubyid_find_template'>find_template</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_compiler'>compiler</span><span class='period'>.</span><span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find template &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -715,7 +713,7 @@ the scope objects.</p>
   <span class='kw'>if</span> <span class='id identifier rubyid_string'>string</span>
     <span class='id identifier rubyid_template_source'>template_source</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>inline template</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_read_preserve_line_endings'>read_preserve_line_endings</span><span class='lparen'>(</span><span class='ivar'>@__file__</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_string'>string</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_read_preserve_line_endings'>read_preserve_line_endings</span><span class='lparen'>(</span><span class='ivar'>@__file__</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_template_source'>template_source</span> <span class='op'>=</span> <span class='ivar'>@__file__</span>
   <span class='kw'>end</span>
 
@@ -925,9 +923,9 @@ the scope objects.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:44 2016 by
+  Generated on Tue Jan 31 13:38:30 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

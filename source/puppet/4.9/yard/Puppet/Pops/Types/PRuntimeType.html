@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PRuntimeType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PRuntimeType
   
@@ -366,7 +364,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_runtime'>runtime</span><span class='comma'>,</span> <span class='id identifier rubyid_name_or_pattern'>name_or_pattern</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_runtime'>runtime</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_runtime'>runtime</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Symbol</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_runtime'>runtime</span> <span class='op'>=</span> <span class='const'>TypeAsserter</span><span class='period'>.</span><span class='id identifier rubyid_assert_instance_of'>assert_instance_of</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Runtime &#39;runtime&#39;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>PStringType</span><span class='op'>::</span><span class='const'>NON_EMPTY</span><span class='comma'>,</span> <span class='id identifier rubyid_runtime'>runtime</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
+    <span class='id identifier rubyid_runtime'>runtime</span> <span class='op'>=</span> <span class='const'>TypeAsserter</span><span class='period'>.</span><span class='id identifier rubyid_assert_instance_of'>assert_instance_of</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Runtime &#39;runtime&#39;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span><span class='op'>::</span><span class='const'>NON_EMPTY</span><span class='comma'>,</span> <span class='id identifier rubyid_runtime'>runtime</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
   <span class='kw'>end</span>
   <span class='ivar'>@runtime</span> <span class='op'>=</span> <span class='id identifier rubyid_runtime'>runtime</span>
   <span class='ivar'>@name_or_pattern</span> <span class='op'>=</span> <span class='const'>TypeAsserter</span><span class='period'>.</span><span class='id identifier rubyid_assert_instance_of'>assert_instance_of</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Runtime &#39;name_or_pattern&#39;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>TYPE_NAME_OR_PATTERN</span><span class='comma'>,</span> <span class='id identifier rubyid_name_or_pattern'>name_or_pattern</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -449,7 +447,7 @@ a class that is the same or subclass of t1&#39;s resolved runtime type name</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_runtime_type.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PRuntimeType</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span></span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='ivar'>@runtime</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_runtime'>runtime</span>
   <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='ivar'>@name_or_pattern</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='comment'># t1 is wider
 </span>
@@ -565,7 +563,7 @@ a class that is the same or subclass of t1&#39;s resolved runtime type name</p>
 <span class='kw'>def</span> <span class='id identifier rubyid_from_puppet_name'>from_puppet_name</span><span class='lparen'>(</span><span class='id identifier rubyid_puppet_name'>puppet_name</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@name_or_pattern</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_substituted'>substituted</span> <span class='op'>=</span> <span class='id identifier rubyid_puppet_name'>puppet_name</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='op'>*</span><span class='ivar'>@name_or_pattern</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_substituted'>substituted</span> <span class='op'>==</span> <span class='id identifier rubyid_puppet_name'>puppet_name</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='const'>PRuntimeType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@runtime</span><span class='comma'>,</span> <span class='id identifier rubyid_substituted'>substituted</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_substituted'>substituted</span> <span class='op'>==</span> <span class='id identifier rubyid_puppet_name'>puppet_name</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="#initialize-instance_method" title="Puppet::Pops::Types::PRuntimeType#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='ivar'>@runtime</span><span class='comma'>,</span> <span class='id identifier rubyid_substituted'>substituted</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='kw'>nil</span>
   <span class='kw'>end</span>
@@ -623,9 +621,9 @@ a class that is the same or subclass of t1&#39;s resolved runtime type name</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:46 2016 by
+  Generated on Tue Jan 31 13:38:34 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

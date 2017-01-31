@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Interface::ActionManager
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Module: Puppet::Interface::ActionManager
   
@@ -360,9 +358,9 @@ action</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_action'>action</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@actions</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
-  <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Redefining action </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> for </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_action?'>action?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Redefining action </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> for </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_action?'>action?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
 
-  <span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>ActionBuilder</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActionBuilder.html" title="Puppet::Interface::ActionBuilder (class)">ActionBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_build'><span class='object_link'><a href="ActionBuilder.html#build-class_method" title="Puppet::Interface::ActionBuilder.build (method)">build</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 
   <span class='comment'># REVISIT: (#18042) doesn&#39;t this mean we can&#39;t redefine the default action? -- josh
 </span>  <span class='kw'>if</span> <span class='id identifier rubyid_action'>action</span><span class='period'>.</span><span class='id identifier rubyid_default'>default</span> <span class='kw'>and</span> <span class='id identifier rubyid_current'>current</span> <span class='op'>=</span> <span class='id identifier rubyid_get_default_action'>get_default_action</span>
@@ -752,9 +750,9 @@ action</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:34 2016 by
+  Generated on Tue Jan 31 13:38:18 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

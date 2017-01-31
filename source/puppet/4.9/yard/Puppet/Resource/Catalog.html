@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Resource::Catalog
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Resource::Catalog
   
@@ -393,7 +391,7 @@ application</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply'>apply</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
+  <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
 
   <span class='id identifier rubyid_transaction'>transaction</span> <span class='op'>=</span> <span class='id identifier rubyid_create_transaction'>create_transaction</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 
@@ -404,7 +402,7 @@ application</p>
   <span class='kw'>ensure</span>
     <span class='comment'># Don&#39;t try to store state unless we&#39;re a host config
 </span>    <span class='comment'># too recursive.
-</span>    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_store'>store</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
+</span>    <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_store'>store</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
   <span class='kw'>end</span>
 
   <span class='kw'>yield</span> <span class='id identifier rubyid_transaction'>transaction</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
@@ -567,7 +565,7 @@ being determined by the <code>ordering</code> setting.</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_relationship_graph'>relationship_graph</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='ivar'>@relationship_graph</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Graph</span><span class='op'>::</span><span class='const'>RelationshipGraph</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>||</span> <span class='id identifier rubyid_prioritizer'>prioritizer</span><span class='rparen'>)</span>
+    <span class='ivar'>@relationship_graph</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Graph</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Graph/RelationshipGraph.html" title="Puppet::Graph::RelationshipGraph (class)">RelationshipGraph</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>||</span> <span class='id identifier rubyid_prioritizer'>prioritizer</span><span class='rparen'>)</span>
     <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_populate_from'>populate_from</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@relationship_graph</span>
@@ -582,9 +580,9 @@ being determined by the <code>ordering</code> setting.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:41 2016 by
+  Generated on Tue Jan 31 13:38:27 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

@@ -1,10 +1,11 @@
 ---
 layout: default
-built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
+built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
 title: 'Resource Type: mailalias'
+canonical: "/puppet/latest/types/mailalias.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600
 
 mailalias
 -----
@@ -96,4 +97,4 @@ those providers that write to disk.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600

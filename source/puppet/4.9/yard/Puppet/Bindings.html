@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Bindings
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../class_list.html"></iframe>
+      <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Bindings
   
@@ -135,7 +133,7 @@ For all details see <span class='object_link'><a href="Pops/Binder/BindingsFacto
         <p class="example_title"><div class='inline'><p>MyModule&#39;s lib/bindings/mymodule/default.rb</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_bind'>bind</span><span class='period'>.</span><span class='id identifier rubyid_integer'>integer</span><span class='period'>.</span><span class='id identifier rubyid_named'>named</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meaning of life</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='int'>42</span><span class='rparen'>)</span>
 <span class='kw'>end</span></code></pre>
     
@@ -143,7 +141,7 @@ For all details see <span class='object_link'><a href="Pops/Binder/BindingsFacto
         <p class="example_title"><div class='inline'><p>Using blocks</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_bind'>bind</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_integer'>integer</span>
     <span class='id identifier rubyid_name'>name</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meaning of life</span><span class='tstring_end'>&#39;</span></span>
@@ -155,7 +153,7 @@ For all details see <span class='object_link'><a href="Pops/Binder/BindingsFacto
         <p class="example_title"><div class='inline'><p>MyModule&#39;s lib/bindings/mymodule/default.rb with scope</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_scope'>scope</span><span class='op'>|</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_scope'>scope</span><span class='op'>|</span>
   <span class='id identifier rubyid_bind'>bind</span><span class='period'>.</span><span class='id identifier rubyid_integer'>integer</span><span class='period'>.</span><span class='id identifier rubyid_named'>named</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>meaning of life</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_scope'>scope</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::fqdn</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_content'> also think it is 42</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></code></pre>
     
@@ -171,7 +169,7 @@ end</code></pre>
         <p class="example_title"><div class='inline'><p>defining method to be used while creating bindings</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Bindings</span><span class='period'>.</span><span class='id identifier rubyid_newbindings'>newbindings</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mymodule::default</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='kw'>def</span> <span class='id identifier rubyid_square'>square</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_x'>x</span> <span class='op'>*</span> <span class='id identifier rubyid_x'>x</span>
   <span class='kw'>end</span>
@@ -326,7 +324,7 @@ end</code></pre>
       <pre class="code"><span class="info file"># File 'lib/puppet/bindings.rb', line 104</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_adapter'>adapter</span> <span class='op'>=</span> <span class='const'>NamedBindingsAdapter</span><span class='period'>.</span><span class='id identifier rubyid_adapt'>adapt</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_adapter'>adapter</span> <span class='op'>=</span> <span class='const'>NamedBindingsAdapter</span><span class='period'>.</span><span class='id identifier rubyid_adapt'>adapt</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_adapter'>adapter</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -387,7 +385,7 @@ end</code></pre>
       <pre class="code"><span class="info file"># File 'lib/puppet/bindings.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_adapter'>adapter</span> <span class='op'>=</span> <span class='const'>NamedBindingsAdapter</span><span class='period'>.</span><span class='id identifier rubyid_adapt'>adapt</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_adapter'>adapter</span> <span class='op'>=</span> <span class='const'>NamedBindingsAdapter</span><span class='period'>.</span><span class='id identifier rubyid_adapt'>adapt</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:current_environment</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_adapter'>adapter</span><span class='lbracket'>[</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_named_bindings'>named_bindings</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -400,9 +398,9 @@ end</code></pre>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:37 2016 by
+  Generated on Tue Jan 31 13:38:20 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

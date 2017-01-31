@@ -6,7 +6,7 @@
 <title>
   File: http_file_metadata
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="file_list.html"></iframe>
+      <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -57,8 +57,6 @@
         <div class="clear"></div>
       </div>
 
-      <iframe id="search_frame" src="file_list.html"></iframe>
-
       <div id="content"><div id='filecontents'><h1>File Metadata</h1>
 
 <p>The <code>file_metadata</code> endpoint returns select metadata for a single file or many files. There are find and search variants
@@ -73,12 +71,13 @@ the following three types:</p>
 <li>Symbolic link</li>
 </ul>
 
-<p>The endpoint path includes a <code>:mount</code> which can be one of three types:</p>
+<p>The endpoint path includes a <code>:mount</code> which can be one of the following types:</p>
 
 <ul>
-<li>custom file serving mounts as specified in fileserver.conf -- see <a href="https://docs.puppetlabs.com/guides/file_serving.html#serving-files-from-custom-mount-points">the puppet file serving guide</a></li>
-<li><code>modules/&lt;module&gt;</code> -- a semi-magical mount point which allows access to the <code>files</code> subdirectory of <code>module</code> -- see <a href="https://docs.puppetlabs.com/guides/file_serving.html#serving-module-files">the puppet file serving guide</a></li>
-<li><code>plugins</code> -- a highly magical mount point which merges many directories together: used for plugin sync, sub-paths can not be specified, not intended for general consumption</li>
+<li>Custom file serving mounts as specified in fileserver.conf --- see <a href="https://docs.puppet.com/puppet/latest/reference/file_serving.html">the docs on configuring mount points</a>.</li>
+<li><code>modules/&lt;MODULE&gt;</code> --- a semi-magical mount point which allows access to the <code>files</code> subdirectory of <code>&lt;MODULE&gt;</code> --- see <a href="https://docs.puppet.com/puppet/latest/reference/file_serving.html">the docs on file serving</a>.</li>
+<li><code>plugins</code> --- a highly magical mount point which merges the <code>lib</code>  directory of every module together. Used for syncing plugins; not intended for general consumption. Per-module sub-paths can not be specified.</li>
+<li><code>pluginfacts</code> --- a highly magical mount point which merges the <code>facts.d</code> directory of every module together. Used for syncing external facts; not intended for general consumption. Per-module sub-paths can not be specified.</li>
 </ul>
 
 <p>Note: PSON responses in the examples below are pretty-printed for readability.</p>
@@ -447,9 +446,9 @@ Content-Type: text/pson
 </div></div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:33 2016 by
+  Generated on Tue Jan 31 13:38:16 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

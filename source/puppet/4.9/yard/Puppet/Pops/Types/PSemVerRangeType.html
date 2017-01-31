@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PSemVerRangeType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PSemVerRangeType
   
@@ -161,7 +159,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#merge-class_method" title="merge (class method)">.<strong>merge</strong>(a, b)  &#x21d2; Semantic::VersionRange<sup>?</sup> </a>
+      <a href="#merge-class_method" title="merge (class method)">.<strong>merge</strong>(a, b)  &#x21d2; SemanticPuppet::VersionRange<sup>?</sup> </a>
     
 
     
@@ -244,7 +242,7 @@
 </h3><div class="docstring">
   <div class="discussion">
     <p>Check if a version is included in a version range. The version can be a string or
-a <code>Semantic::SemVer</code></p>
+a <code>SemanticPuppet::SemVer</code></p>
 
 
   </div>
@@ -258,7 +256,7 @@ a <code>Semantic::SemVer</code></p>
         <span class='name'>range</span>
       
       
-        <span class='type'>(<tt>Semantic::VersionRange</tt>)</span>
+        <span class='type'>(<tt>SemanticPuppet::VersionRange</tt>)</span>
       
       
       
@@ -273,7 +271,7 @@ a <code>Semantic::SemVer</code></p>
         <span class='name'>version</span>
       
       
-        <span class='type'>(<tt>Semantic::Version</tt>, <tt>String</tt>)</span>
+        <span class='type'>(<tt>SemanticPuppet::Version</tt>, <tt>String</tt>)</span>
       
       
       
@@ -329,12 +327,12 @@ a <code>Semantic::SemVer</code></p>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_range'>range</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_version'>version</span>
-  <span class='kw'>when</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span>
+  <span class='kw'>when</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span>
     <span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
   <span class='kw'>when</span> <span class='const'>String</span>
     <span class='kw'>begin</span>
-      <span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='kw'>rescue</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='op'>::</span><span class='const'>ValidationFailure</span>
+      <span class='id identifier rubyid_range'>range</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>rescue</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='op'>::</span><span class='const'>ValidationFailure</span>
       <span class='kw'>false</span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
@@ -349,7 +347,7 @@ a <code>Semantic::SemVer</code></p>
       <div class="method_details ">
   <h3 class="signature " id="merge-class_method">
   
-    .<strong>merge</strong>(a, b)  &#x21d2; <tt>Semantic::VersionRange</tt><sup>?</sup> 
+    .<strong>merge</strong>(a, b)  &#x21d2; <tt>SemanticPuppet::VersionRange</tt><sup>?</sup> 
   
 
   
@@ -372,7 +370,7 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
         <span class='name'>a</span>
       
       
-        <span class='type'>(<tt>Semantic::VersionRange</tt>)</span>
+        <span class='type'>(<tt>SemanticPuppet::VersionRange</tt>)</span>
       
       
       
@@ -387,7 +385,7 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
         <span class='name'>b</span>
       
       
-        <span class='type'>(<tt>Semantic::VersionRange</tt>)</span>
+        <span class='type'>(<tt>SemanticPuppet::VersionRange</tt>)</span>
       
       
       
@@ -405,7 +403,7 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
     <li>
       
       
-        <span class='type'>(<tt>Semantic::VersionRange</tt>, <tt>nil</tt>)</span>
+        <span class='type'>(<tt>SemanticPuppet::VersionRange</tt>, <tt>nil</tt>)</span>
       
       
       
@@ -457,13 +455,13 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span>
       <span class='id identifier rubyid_exclude_end'>exclude_end</span> <span class='op'>=</span> <span class='id identifier rubyid_max'>max</span> <span class='op'>==</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_max'>max</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span> <span class='op'>||</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-    <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='comma'>,</span> <span class='id identifier rubyid_exclude_end'>exclude_end</span><span class='rparen'>)</span>
+    <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='comma'>,</span> <span class='id identifier rubyid_exclude_end'>exclude_end</span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span> <span class='op'>==</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span>
     <span class='comment'># Adjacent, a before b
-</span>    <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span><span class='rparen'>)</span>
+</span>    <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span> <span class='op'>==</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span>
     <span class='comment'># Adjacent, b before a
-</span>    <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span><span class='rparen'>)</span>
+</span>    <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_begin'>begin</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_end'>end</span><span class='comma'>,</span> <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_exclude_end?'>exclude_end?</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='comment'># No overlap
 </span>    <span class='kw'>nil</span>
@@ -479,9 +477,9 @@ is only possible when the ranges are either adjacent or have an overlap.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:53 2016 by
+  Generated on Tue Jan 31 13:38:41 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

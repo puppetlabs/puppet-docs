@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Plugins::DataProviders::ModuleDataProvider
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -59,11 +59,9 @@
         <div class="clear"></div>
       </div>
 
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
-
       <div id="content"><h1>Class: Puppet::Plugins::DataProviders::ModuleDataProvider
   
-  
+  <span class="deprecated note title">Deprecated</span>
   <span class="private note title">Private</span>
 </h1>
 <div class="box_info">
@@ -89,11 +87,6 @@
   
   
   
-  <dl>
-      <dt>Includes:</dt>
-      <dd><span class='object_link'><a href="DataProvider.html" title="Puppet::Plugins::DataProviders::DataProvider (module)">DataProvider</a></span></dd>
-  </dl>
-  
   
 
   
@@ -112,6 +105,8 @@
   <strong>This class is part of a private API.</strong>
   You should avoid using this class if possible, as it may be removed or be changed in the future.
 </p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
+<p>TODO: API 5.0 Remove this class</p>
 
 
   </div>
@@ -152,6 +147,30 @@
     </h2>
 
     <ul class="summary">
+      
+        
+<li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#data_key-instance_method" title="#data_key (instance method)">#<strong>data_key</strong>(key, lookup_invocation)  &#x21d2; String </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'></div></span>
+  
+</li>
+
       
         
 <li class="public ">
@@ -196,6 +215,17 @@
   
   
   
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="../../Pops/Lookup/Interpolation.html" title="Puppet::Pops::Lookup::Interpolation (module)">Puppet::Pops::Lookup::Interpolation</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../Pops/Lookup/Interpolation.html#interpolate-instance_method" title="Puppet::Pops::Lookup::Interpolation#interpolate (method)">#interpolate</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
@@ -206,7 +236,110 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="validate_data-instance_method">
+  <h3 class="signature first" id="data_key-instance_method">
+  
+    #<strong>data_key</strong>(key, lookup_invocation)  &#x21d2; <tt>String</tt> &nbsp;<span class="deprecated note title">deprecated</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
+<p>Retrieve the first segment of the qualified name <em>key</em>. This method will throw
+:no_such_key unless the segment can be extracted.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>key</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The key</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The first segment of the given key</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Since:</p>
+<ul class="since">
+  
+    <li>
+      
+      
+      
+      
+        
+        <div class='inline'><p>Puppet 4.0.0</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_data_key'>data_key</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_module_name'>module_name</span> <span class='kw'>if</span> <span class='id identifier rubyid_key'>key</span> <span class='op'>==</span> <span class='const'>LOOKUP_OPTIONS</span>
+  <span class='id identifier rubyid_qual_index'>qual_index</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:no_such_key</span> <span class='kw'>if</span> <span class='id identifier rubyid_qual_index'>qual_index</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>..</span><span class='id identifier rubyid_qual_index'>qual_index</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="validate_data-instance_method">
   
     #<strong>validate_data</strong>(data, module_name)  &#x21d2; <tt>Hash</tt> 
   
@@ -297,24 +430,24 @@ that does not follow the convention and log a warning.</p>
       <pre class="lines">
 
 
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132</pre>
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/plugins/data_providers/data_provider.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_data'>validate_data</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_module_name'>module_name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_module_prefix'>module_prefix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_module_name'>module_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>::</span><span class='tstring_end'>&quot;</span></span>
@@ -327,7 +460,7 @@ that does not follow the convention and log a warning.</p>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_memo'>memo</span> <span class='op'>=</span> <span class='id identifier rubyid_memo'>memo</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span> <span class='kw'>if</span> <span class='id identifier rubyid_memo'>memo</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_memo'>memo</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span>
-    <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Module data for module &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_module_name'>module_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Module data for module &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_module_name'>module_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_msg'>msg</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_memo'>memo</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -341,9 +474,9 @@ that does not follow the convention and log a warning.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:54 2016 by
+  Generated on Tue Jan 31 13:38:43 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

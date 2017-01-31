@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Validation::SeverityProducer
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Validation::SeverityProducer
   
@@ -150,7 +148,7 @@ of an issue call <code>#severity=(issue, level)</code>.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#%5B%5D-instance_method" title="#[] (instance method)">#<strong>[]</strong>(issue)  &#x21d2; Object </a>
+      <a href="#[]-instance_method" title="#[] (instance method)">#<strong>[]</strong>(issue)  &#x21d2; Object </a>
     
 
     
@@ -174,7 +172,7 @@ of an issue call <code>#severity=(issue, level)</code>.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#%5B%5D%3D-instance_method" title="#[]= (instance method)">#<strong>[]=</strong>(issue, level)  &#x21d2; Object </a>
+      <a href="#[]=-instance_method" title="#[]= (instance method)">#<strong>[]=</strong>(issue, level)  &#x21d2; Object </a>
     
 
     
@@ -525,9 +523,9 @@ of an issue call <code>#severity=(issue, level)</code>.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/validation.rb', line 127</span>
 
 <span class='kw'>def</span> <span class='op'>[]=</span><span class='lparen'>(</span><span class='id identifier rubyid_issue'>issue</span><span class='comma'>,</span> <span class='id identifier rubyid_level'>level</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attempt to set validation severity for something that is not an Issue. (Got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Issues</span><span class='op'>::</span><span class='const'>Issue</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Illegal severity level: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'> for &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_issue_code'>issue_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='cvar'>@@severity_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_level'>level</span><span class='rbracket'>]</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attempt to demote the hard issue &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_issue_code'>issue_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_demotable?'>demotable?</span> <span class='op'>||</span> <span class='id identifier rubyid_level'>level</span> <span class='op'>==</span> <span class='symbol'>:error</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attempt to set validation severity for something that is not an Issue. (Got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Issues</span><span class='op'>::</span><span class='const'>Issue</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Illegal severity level: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_content'> for &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_issue_code'>issue_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='cvar'>@@severity_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_level'>level</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attempt to demote the hard issue &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_issue_code'>issue_code</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; to </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_level'>level</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_demotable?'>demotable?</span> <span class='op'>||</span> <span class='id identifier rubyid_level'>level</span> <span class='op'>==</span> <span class='symbol'>:error</span>
   <span class='ivar'>@severities</span><span class='lbracket'>[</span><span class='id identifier rubyid_issue'>issue</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_level'>level</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -585,7 +583,7 @@ of an issue call <code>#severity=(issue, level)</code>.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/validation.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assert_issue'>assert_issue</span> <span class='id identifier rubyid_issue'>issue</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attempt to get validation severity for something that is not an Issue. (Got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Issues</span><span class='op'>::</span><span class='const'>Issue</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Attempt to get validation severity for something that is not an Issue. (Got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_issue'>issue</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Issues</span><span class='op'>::</span><span class='const'>Issue</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -642,7 +640,7 @@ of an issue call <code>#severity=(issue, level)</code>.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/validation.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assert_severity'>assert_severity</span> <span class='id identifier rubyid_level'>level</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Illegal severity level: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='cvar'>@@severity_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_level'>level</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Illegal severity level: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='cvar'>@@severity_hash</span><span class='lbracket'>[</span><span class='id identifier rubyid_level'>level</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -772,9 +770,9 @@ of an issue call <code>#severity=(issue, level)</code>.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:39 2016 by
+  Generated on Tue Jan 31 13:38:24 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

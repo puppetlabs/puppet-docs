@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::TypeMismatchDescriber
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::TypeMismatchDescriber
   
@@ -241,12 +239,12 @@
       <pre class="lines">
 
 
-1075
 1076
-1077</pre>
+1077
+1078</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1075</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1076</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max'>max</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_a'>a</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_b'>b</span> <span class='op'>?</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>:</span> <span class='id identifier rubyid_b'>b</span>
@@ -284,13 +282,13 @@
       <pre class="lines">
 
 
-1080
 1081
 1082
-1083</pre>
+1083
+1084</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1080</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1081</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_optional'>optional</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_required_count'>required_count</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_count'>count</span> <span class='op'>=</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>+</span> <span class='int'>1</span>
@@ -330,7 +328,6 @@
       <pre class="lines">
 
 
-1022
 1023
 1024
 1025
@@ -379,10 +376,11 @@
 1068
 1069
 1070
-1071</pre>
+1071
+1072</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1022</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1023</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_signature_string'>signature_string</span><span class='lparen'>(</span><span class='id identifier rubyid_signature'>signature</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_param_types'>param_types</span> <span class='op'>=</span> <span class='id identifier rubyid_signature'>signature</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_param_types'>param_types</span>
@@ -397,9 +395,9 @@
   <span class='id identifier rubyid_required_count'>required_count</span> <span class='op'>=</span> <span class='id identifier rubyid_from'>from</span>
   <span class='id identifier rubyid_types'>types</span> <span class='op'>=</span>
     <span class='kw'>case</span> <span class='id identifier rubyid_param_types'>param_types</span>
-    <span class='kw'>when</span> <span class='const'>PTupleType</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span></span>
       <span class='id identifier rubyid_param_types'>param_types</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span>
-    <span class='kw'>when</span> <span class='const'>PArrayType</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PArrayType.html" title="Puppet::Pops::Types::PArrayType (class)">PArrayType</a></span></span>
       <span class='lbracket'>[</span><span class='id identifier rubyid_param_types'>param_types</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='rbracket'>]</span>
     <span class='kw'>end</span>
 
@@ -416,17 +414,17 @@
 </span>      <span class='id identifier rubyid_indicator'>indicator</span> <span class='op'>=</span> <span class='id identifier rubyid_from'>from</span> <span class='op'>==</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>+</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>*</span><span class='tstring_end'>&#39;</span></span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_optional'>optional</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_required_count'>required_count</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_indicator'>indicator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>?</span><span class='tstring_end'>&#39;</span></span>
-      <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_optional_type'>optional_type</span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>POptionalType</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_optional_type'>optional_type</span> <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="POptionalType.html" title="Puppet::Pops::Types::POptionalType (class)">POptionalType</a></span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_indicator'>indicator</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
   <span class='comment'># If there is a block, include it
 </span>  <span class='kw'>case</span> <span class='id identifier rubyid_signature'>signature</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_block_type'>block_type</span>
-  <span class='kw'>when</span> <span class='const'>POptionalType</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="POptionalType.html" title="Puppet::Pops::Types::POptionalType (class)">POptionalType</a></span></span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_signature'>signature</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_block_type'>block_type</span><span class='period'>.</span><span class='id identifier rubyid_optional_type'>optional_type</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_signature'>signature</span><span class='period'>.</span><span class='id identifier rubyid_block_name'>block_name</span><span class='embexpr_end'>}</span><span class='tstring_content'>?</span><span class='tstring_end'>&quot;</span></span>
-  <span class='kw'>when</span> <span class='const'>PCallableType</span>
+  <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span></span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, </span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_signature'>signature</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_block_type'>block_type</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_signature'>signature</span><span class='period'>.</span><span class='id identifier rubyid_block_name'>block_name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>when</span> <span class='const'>NilClass</span>
@@ -444,9 +442,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:53 2016 by
+  Generated on Tue Jan 31 13:38:43 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

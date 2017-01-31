@@ -1,7 +1,8 @@
 ---
 layout: default
-built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
+built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
 title: 'Puppet HTTP API: File Content'
+canonical: "/puppet/latest/http_api/http_file_content.html"
 ---
 
 File Content
@@ -16,9 +17,12 @@ Get a file.
 
     GET /puppet/v3/file_content/:mount_point/:name
 
-`:mount_point` is one of mounts configured in the `fileserver.conf`.
-See [the puppet file server guide](https://docs.puppetlabs.com/guides/file_serving.html)
-for more information about how mount points work.
+The endpoint path includes a `:mount_point` which can be one of the following types:
+
+* Custom file serving mounts as specified in fileserver.conf --- see [the docs on configuring mount points](https://docs.puppet.com/puppet/latest/reference/file_serving.html).
+* `modules/<MODULE>` --- a semi-magical mount point which allows access to the `files` subdirectory of `<MODULE>` --- see [the docs on file serving](https://docs.puppet.com/puppet/latest/reference/file_serving.html).
+* `plugins` --- a highly magical mount point which merges the `lib`  directory of every module together. Used for syncing plugins; not intended for general consumption. Per-module sub-paths can not be specified.
+* `pluginfacts` --- a highly magical mount point which merges the `facts.d` directory of every module together. Used for syncing external facts; not intended for general consumption. Per-module sub-paths can not be specified.
 
 `:name` is the path to the file within the `:mount_point` that is requested.
 

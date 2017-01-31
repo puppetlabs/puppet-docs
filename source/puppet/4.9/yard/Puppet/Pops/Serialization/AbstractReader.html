@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::AbstractReader
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Serialization::AbstractReader
   
@@ -944,7 +942,17 @@ and, by using extensions, also</li>
 160
 161
 162
-163</pre>
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_reader.rb', line 91</span>
@@ -966,8 +974,12 @@ and, by using extensions, also</li>
     <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>MapStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>PCORE_OBJECT_START</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
+    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_type_name'>type_name</span> <span class='op'>=</span> <span class='id identifier rubyid_read_tpl_qname'>read_tpl_qname</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>PcoreObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='comma'>,</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>OBJECT_START</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
-    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_type_name'>type_name</span> <span class='op'>=</span> <span class='id identifier rubyid_read_tpl_qname'>read_tpl_qname</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type_name'>type_name</span><span class='comma'>,</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
@@ -978,12 +990,16 @@ and, by using extensions, also</li>
     <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>Comment</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SENSITIVE_START</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
+    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>SensitiveStart</span><span class='op'>::</span><span class='const'>INSTANCE</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>REGEXP</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
     <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>TYPE_REFERENCE</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
-    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PTypeReferenceType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_read_tpl_qname'>read_tpl_qname</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PTypeReferenceType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SYMBOL</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
@@ -1007,19 +1023,21 @@ and, by using extensions, also</li>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>VERSION</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
-    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>VERSION_RANGE</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
-    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SENSITIVE</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
-    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PSensitiveType</span><span class='op'>::</span><span class='const'>Sensitive</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>BASE64</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
+    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType.html" title="Puppet::Pops::Types::PBinaryType (class)">PBinaryType</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_from_base64_strict'>from_base64_strict</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>BINARY</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_data'>data</span><span class='op'>|</span>
-    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PBinaryType</span><span class='op'>::</span><span class='const'>Binary</span><span class='period'>.</span><span class='id identifier rubyid_from_base64_strict'>from_base64_strict</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='comment'># The Ruby MessagePack implementation have special treatment for &quot;ASCII-8BIT&quot; strings. They
+</span>    <span class='comment'># are written as binary data.
+</span>    <span class='id identifier rubyid_read_payload'>read_payload</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType.html" title="Puppet::Pops::Types::PBinaryType (class)">PBinaryType</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Types/PBinaryType/Binary.html#initialize-instance_method" title="Puppet::Pops::Types::PBinaryType::Binary#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1032,9 +1050,9 @@ and, by using extensions, also</li>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:53 2016 by
+  Generated on Tue Jan 31 13:38:42 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

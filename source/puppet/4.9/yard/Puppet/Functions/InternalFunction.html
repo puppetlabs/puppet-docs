@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Functions::InternalFunction
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Functions::InternalFunction
   
@@ -149,7 +147,7 @@ accessor method calls.</p>
         <p class="example_title"><div class='inline'><p>using injected attributes</p>
 </div></p>
       
-      <pre class="example code"><code><span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>test</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Functions.html" title="Puppet::Functions (module)">Functions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_function'><span class='object_link'><a href="../Functions.html#create_function-class_method" title="Puppet::Functions.create_function (method)">create_function</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>test</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_attr_injected'>attr_injected</span> <span class='const'>String</span><span class='comma'>,</span> <span class='symbol'>:larger</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>message_larger</span><span class='tstring_end'>&#39;</span></span>
   <span class='id identifier rubyid_attr_injected'>attr_injected</span> <span class='const'>String</span><span class='comma'>,</span> <span class='symbol'>:smaller</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>message_smaller</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>def</span> <span class='id identifier rubyid_test'>test</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
@@ -361,7 +359,7 @@ accessor method calls.</p>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_ivar'>ivar</span> <span class='op'>=</span> <span class='symbol'>:@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>unless</span> <span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='comma'>,</span> <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_closure_scope'>closure_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
@@ -419,7 +417,7 @@ accessor method calls.</p>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_ivar'>ivar</span> <span class='op'>=</span> <span class='symbol'>:@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>unless</span> <span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='comma'>,</span> <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer'>lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_closure_scope'>closure_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
@@ -466,7 +464,7 @@ accessor method calls.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 603</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_builder'>builder</span>
-  <span class='const'>InternalDispatchBuilder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeParser</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PCallableType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="InternalDispatchBuilder.html" title="Puppet::Functions::InternalDispatchBuilder (class)">InternalDispatchBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="DispatcherBuilder.html#initialize-instance_method" title="Puppet::Functions::DispatcherBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeParser</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -592,9 +590,9 @@ scope. The callable functions are those visible to the same loader that loaded t
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:38 2016 by
+  Generated on Tue Jan 31 13:38:22 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>
