@@ -70,14 +70,28 @@ module PuppetReferences
 
   def self.build_version_tables
     require 'json'
-    pe_data = PuppetReferences::VersionTables::Data::Pe.new.data
-    agent_data = PuppetReferences::VersionTables::Data::Agent.new.data
 
-    # Write json to disk in case we need to investigate anything in it
     tables_dir = OUTPUT_DIR + 'version_tables'
     tables_dir.mkpath
-    File.open(tables_dir + 'pe.json', 'w') {|fh| fh.write(JSON.dump(pe_data))}
-    File.open(tables_dir + 'agent.json', 'w') {|fh| fh.write(JSON.dump(agent_data))}
+    agent_json = tables_dir + 'agent.json'
+    pe_json = tables_dir + 'pe.json'
+    if agent_json.file?
+      agent_cache = JSON.load(agent_json.read)
+    else
+      agent_cache = {}
+    end
+    if pe_json.file?
+      pe_cache = JSON.load(pe_json.read)
+    else
+      pe_cache = {}
+    end
+
+    pe_data = PuppetReferences::VersionTables::Data::Pe.new(pe_cache).data
+    agent_data = PuppetReferences::VersionTables::Data::Agent.new(agent_cache).data
+
+    # Write json to disk in case we need to investigate anything in it
+    File.open(pe_json, 'w') {|fh| fh.write(JSON.dump(pe_data))}
+    File.open(agent_json, 'w') {|fh| fh.write(JSON.dump(agent_data))}
 
     pe_classes = [
         PuppetReferences::VersionTables::Pe2016,

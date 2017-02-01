@@ -74,6 +74,8 @@ On disk, a module is simply a directory tree with a specific, predictable struct
     * `facts.d`
     * `examples`
     * `spec`
+    * `functions`
+    * `types`
 
 > Note: As of Puppet 4.5, using [`puppet module generate`](#writing-modules) to create your module skeleton creates an `examples` directory instead of the deprecated `tests` directory.
 
@@ -100,6 +102,8 @@ This example module, `my_module`, shows the standard module layout in more detai
         * `init.pp`
         * `other_example.pp` --- Major use cases should have an example.
     * `spec/` --- Contains spec tests for any plugins in the lib directory.
+    * `functions/` --- Contains custom functions written in the Puppet language.
+    * `types/` --- Contains type aliases.
 
 Each of the module's subdirectories has a specific function, as follows.
 
@@ -208,7 +212,7 @@ Where can others go to file issues about this module?
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_range": ">= 1.0.0"
+      "version_requirement": ">= 1.0.0"
     }
   ]
 }

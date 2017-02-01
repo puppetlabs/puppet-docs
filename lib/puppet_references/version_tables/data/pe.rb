@@ -6,10 +6,11 @@ module PuppetReferences
   module VersionTables
     module Data
       class Pe
-        def initialize
+        def initialize(cache = {})
           @repo = PuppetReferences::Repo.new('enterprise-dist', PuppetReferences::PE_DIR)
           @server_repo = PuppetReferences::Repo.new('pe-puppetserver', PuppetReferences::PE_SERVER_DIR)
           @data = nil
+          @cache = cache
           config = PuppetReferences::VersionTables::Config.read
           @includes = config['pe']['include'] || {}
           @excludes = config['pe']['exclude'] || []
@@ -71,7 +72,12 @@ module PuppetReferences
             puts 'Updating historical PE data by reading the enterprise-dist repo...'
             @data = @versions_and_commits.reduce( {} ) do |result, (name, commit)|
               puts "#{name}..."
-              result[name] = packages_json_to_versions_sorted_by_platform( load_package_json(commit) )
+              if @cache[name]
+                puts "  (using cached)"
+                result[name] = @cache[name]
+              else
+                result[name] = packages_json_to_versions_sorted_by_platform( load_package_json(commit) )
+              end
               result
             end
             # results in something like

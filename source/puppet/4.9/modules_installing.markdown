@@ -265,10 +265,6 @@ sudo puppet module upgrade puppetlabs-apache --version 0.0.3
 
 ## Common errors
 
-### Windows errors
-
-If you get SSL errors or cannot get the `puppet module` command to work, check our [Windows error messages][errors] documentation.
-
 ### Puppet Enterprise module errors
 
 When installing or upgrading a Puppet Enterprise module, you might receive an error like the following:

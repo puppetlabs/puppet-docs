@@ -4,8 +4,27 @@ title: "Facter 3.4 Release notes"
 ---
 
 [puppet-agent 1.5.x]: /puppet/4.5/reference/about_agent.html
+[Puppet Enterprise 2016.4]: /pe/2016.4
 
 This page documents the history of the Facter 3.4 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
+
+>**Note**: This version of Facter is included in the Long Term Support release [Puppet Enterprise 2016.4][], so while there may be [newer versions of Facter](/facter/latest) available (and sometimes referenced in these release notes), we will continue updating this version until Puppet Enterprise 2016.4 reaches end of life.
+
+## Facter 3.4.2
+
+Released January 17, 2016.
+
+A bug fix release shipped in [`puppet-agent`](puppet/4.7/about_agent.html) 1.7.2.
+
+* [Fixed in Facter 3.4.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.4.2%27)
+* [Introduced in Facter 3.4.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.4.2%27)
+
+### Bug fixes
+
+* [FACT-1551](https://tickets.puppetlabs.com/browse/FACT-1551): Custom Ruby facts running on Windows would fail to run if they made use of the Ruby network stack (such as Net::HTTP), this has been resolved.
+
+* [FACT-1413](https://tickets.puppetlabs.com/browse/FACT-1413): This change formalizes fact precedence and resolution order when there are multiple top-level facts with the same name, and fixes application of the `has_weight` field from custom facts.
+
 
 ## Facter 3.4.1
 

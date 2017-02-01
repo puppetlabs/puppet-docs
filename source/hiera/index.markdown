@@ -4,7 +4,7 @@ title: "Hiera documentation"
 toc: false
 ---
 
-Hiera is a key/value lookup tool for configuration data. Hiera makes Puppet better by keeping site-specific data out of your manifests. Puppet classes can request whatever data they need, and your Hiera data will act like a site-wide config file.
+Hiera is a key/value lookup tool for configuration data. Hiera makes Puppet better by keeping site-specific data out of your manifests. Puppet classes can request whatever data they need, and your Hiera data will act like a site-wide config file. Hiera 3 is compatible with Puppet 4; for Puppet 3.8 or earlier, use Hiera 1.
 
 ## Versions
 

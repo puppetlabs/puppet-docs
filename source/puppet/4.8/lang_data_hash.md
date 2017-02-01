@@ -12,7 +12,7 @@ canonical: "/puppet/latest/reference/lang_data_hash.html"
 [data]: ./lang_data_abstract.html#data
 [scalar]: ./lang_data_abstract.html#scalar
 
-Hashes (sometimes called hash maps) are unordered structures that map keys to values.
+Hashes map keys to values, maintaining the order of the entries according to insertion order. When hashes are merged (using the `+` operator), the keys in the constructed hash have the same order as in the original hashes, with the left hash keys ordered first, followed by any keys that appeared only in the hash on the right side of the merge.
 
 ## Syntax
 

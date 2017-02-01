@@ -54,7 +54,7 @@ Backslashes **MUST** be used in:
 
 * Any file paths included in the `command` of a [`scheduled_task`][scheduledtask] resource.
 * Any file paths included in the `install_options` of a [`package`][package] resource.
-
+* Any file paths used for Windows PowerShell DSC resources. Strings should also be single quoted when possible for these resources.
 
 ### Using backslashes in double-quoted strings
 

@@ -106,9 +106,9 @@ Assume the following hierarchy:
 
 ...and the following set of data sources:
 
-* `nodes/web01.example.com`
-* `nodes/web02.example.com`
-* `nodes/db01.example.com`
+* `nodes/web01.example.com.yaml`
+* `nodes/web02.example.com.yaml`
+* `nodes/db01.example.com.yaml`
 * `environment/production.yaml`
 * `environment/development.yaml`
 * `virtual/true.yaml`

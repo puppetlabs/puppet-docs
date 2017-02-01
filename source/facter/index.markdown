@@ -8,7 +8,7 @@ Facter is Puppet's cross-platform system profiling library. It discovers and rep
 
 ## Versions
 
-> *Note*: Facter versions prior to 3.0 will go end of life December 31, 2016. Please update if you haven't already.
+> **Note**: Facter versions prior to 3.0 will go end of life December 31, 2016. Please update if you haven't already.
 
 <ul>
 {% assign this_doc = "facter" %}

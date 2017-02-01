@@ -58,7 +58,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
-  puppet: 4.8
+
 
 document_names:
   pe: Puppet Enterprise
@@ -86,7 +86,6 @@ document_names:
 #      puppetserver: 2.2
 #      puppetdb: 3.2
 documents:
-
   # Flanders preview URLs
   /pe/2017.1:
     doc: pe
@@ -97,27 +96,29 @@ documents:
       repo: git@github.com:puppetlabs/pe-docs-private.git
       commit: origin/flanders
       subdirectory: source
-      
-  # Everett preview URLs
+
   /pe/2016.5:
     doc: pe
     version: 2016.5
     nav: ./_pe_toc.html
-    draft: true
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
       commit: origin/everett
       subdirectory: source
+    my_versions:
+      puppet: 4.8
+      facter: 3.5
+      hiera: 3.2
+      puppetserver: 2.6
+      puppetdb: 4.2
 
-  # "real" Davis preview URLs
   /pe/2016.4:
     doc: pe
     version: 2016.4
     nav: ./_pe_toc.html
-    draft: true
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.3
+      commit: origin/pe2016.4.2
       subdirectory: source
     my_versions:
       puppet: 4.7
@@ -125,17 +126,6 @@ documents:
       hiera: 3.2
       puppetserver: 2.6
       puppetdb: 4.2
-
-  # Davis preview for old link compatibility:
-  /pe/2016.3:
-    doc: pe
-    version: "2016.3 (same as .4)"
-    nav: ./_pe_toc.html
-    draft: true
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/davis
-      subdirectory: source
 
   /pe/2016.2:
     doc: pe
@@ -281,9 +271,9 @@ documents:
     nav: ./_puppet_toc.html
     hide: true
     my_versions:
-#      facter: 3.5
-#      hiera: 3.2
-#      puppetserver: 2.7
+      facter: 3.6
+      hiera: 3.3
+      puppetserver: 2.7
   /puppet/4.8:
     doc: puppet
     version: 4.8
@@ -398,6 +388,10 @@ documents:
     nav: /_includes/puppet_0_24.html
     hide: true
 
+  /facter/3.6:
+    doc: facter
+    version: 3.6
+    nav: ./_facter_toc.html
   /facter/3.5:
     doc: facter
     version: 3.5
@@ -447,6 +441,10 @@ documents:
     version: 1.6
     nav: /_includes/facter16.html
 
+  /hiera/3.3:
+    doc: hiera
+    version: 3.3
+    nav: ./_hiera_toc.html
   /hiera/3.2:
     doc: hiera
     version: 3.2
@@ -474,7 +472,7 @@ documents:
     nav: /puppet/4.8/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 44976b76e9dcd37d62af85521f75256f922a83af
+      commit: b4fbbf035287318694e4313d5d3d3a9eea2d707a
       subdirectory: documentation
     my_versions:
       puppet: 4.8
