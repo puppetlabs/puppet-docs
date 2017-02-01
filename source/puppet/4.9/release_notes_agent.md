@@ -3,14 +3,14 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 4.9.0]: /puppet/4.8/reference/release_notes.html#puppet-490
+[Puppet 4.9.0]: /puppet/4.9/reference/release_notes.html#puppet-490
 
 
-[Facter 3.5.0]: /facter/3.5/release_notes.html#facter-350
+[Facter 3.6.0]: /facter/3.6/release_notes.html#facter-360
 
-[Hiera 3.2.2]: /hiera/3.2/release_notes.html#hiera-322
+[Hiera 3.3.0]: /hiera/3.3/release_notes.html#hiera-330
 
-[MCollective 2.9.1]: /mcollective/releasenotes.html#2_9_1
+[MCollective 2.10.0]: /mcollective/releasenotes.html#2_10_0
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
