@@ -32,6 +32,12 @@ We publish and test official [`puppet-agent`](/puppet/latest/reference/about_age
 
 This information applies to RHEL itself, as well as any distributions that maintain binary compatibility with it, including but not limited to CentOS, Scientific Linux, and Oracle Linux.
 
+### SUSE Linux Enterprise Server
+
+* SUSE Linux Enterprise Server 11
+* SUSE Linux Enterprise Server 12
+
+
 ### Debian and Ubuntu
 
 We publish and test official `puppet-agent` packages for the following versions of Debian:
@@ -49,6 +55,7 @@ We also publish and test official `puppet-agent` packages for the following vers
 
 We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Fedora:
 
+* Fedora 25
 * Fedora 24
 * Fedora 23
 
@@ -102,7 +109,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-Puppet 4.5 has the following prerequisites:
+Puppet has the following prerequisites:
 
 ### Ruby
 
