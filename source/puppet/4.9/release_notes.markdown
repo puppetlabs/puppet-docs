@@ -27,9 +27,9 @@ Released February 1, 2017.
 
 ### Known issues
 
-In 4.9.0, Puppet fails with an error if there's a v3 hiera.yaml file in an environment. Although Puppet never used to _use_ an environment's Hiera v3 config, a number of people stored it in their control repo just to keep it near their code and data, and now that breaks Puppet.
+In 4.9.0, Puppet fails with an error if there's a "classic" hiera.yaml file in the root of an environment. Although Puppet never used to _use_ an environment's Hiera v3 config, a number of people stored it in their control repo just to keep it near their code and data, and now that breaks Puppet.
 
-We plan to fix this in 4.9.1 --- a v3 hiera.yaml will cause a warning, not an error.
+We plan to fix this in 4.9.1 --- a v3 hiera.yaml will cause a warning, not an error. In the meantime, you can avoid the error by moving hiera.yaml into a subdirectory where it will be ignored.
 
 ### New features
 
