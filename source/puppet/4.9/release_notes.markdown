@@ -25,11 +25,17 @@ Released February 1, 2017.
 * [Fixed in Puppet 4.9.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.9.0%27)
 * [Introduced in Puppet 4.9.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.9.0%27)
 
+### Known issues
+
+In 4.9.0, Puppet fails with an error if there's a v3 hiera.yaml file in an environment. Although Puppet never used to _use_ an environment's Hiera v3 config, a number of people stored it in their control repo just to keep it near their code and data, and now that breaks Puppet.
+
+We plan to fix this in 4.9.1 --- a v3 hiera.yaml will cause a warning, not an error.
+
 ### New features
 
 #### Hiera 5
 
-Hiera 5 is built into Puppet 4.9, and uses the Hiera 3.3 codebase. 
+Hiera 5 is built into Puppet 4.9, and uses the Hiera 3.3 codebase.
 
 The Hiera 5 implementation is four times as fast as the previous version for both automatic parameter lookup and direct calls to Puppet lookup. It is about 40% faster than direct calls to a classic Hiera instance. There is no noticeable difference between a lookup in the global layer, and in the environment layer. ([PUP-7087](https://tickets.puppetlabs.com/browse/PUP-7087))
 
@@ -41,7 +47,7 @@ Data in HOCON data format can now be used with 'hiera.yaml' versions 3, 4, or 5.
 
 Any changes to Hiera 5 configurations via interpolation of Puppet variables will be found for each lookup. ([PUP-6973](https://tickets.puppetlabs.com/browse/PUP-6973))
 
-#### Puppet lookup 
+#### Puppet lookup
 
 It is now possible to specify `lookup_options` using a regular expression for the keys the options apply to. The regular expression must start with a `^` to be recognized as a regular expression. ([PUP-6982](https://tickets.puppetlabs.com/browse/PUP-6982))
 
@@ -109,17 +115,17 @@ As of Puppet 4.9.0, the following Puppet faces have been deprecated:
 
 #### Caching methods
 
-The following methods are no longer used within Puppet and have been deprecated: 
+The following methods are no longer used within Puppet and have been deprecated:
 
 * `Puppet::SSL::CertificateAuthority#list_certificates `
 * `Puppet::SSL::CertificateAuthority#certificate_is_alive? `
-* `Puppet::SSL::CertificateAuthority#x509_store` (api private) 
+* `Puppet::SSL::CertificateAuthority#x509_store` (api private)
 
 * [PUP-3534](https://tickets.puppetlabs.com/browse/PUP-3534)
 
-#### `stacktrace` 
+#### `stacktrace`
 
-In Puppet 4.8.0, the `stacktrace` property was removed from Puppet's HTTP error response API. This was an unintentional backwards-incompatible change, and in Puppet 4.8.2, the `stacktrace` property was returned to the response object. 
+In Puppet 4.8.0, the `stacktrace` property was removed from Puppet's HTTP error response API. This was an unintentional backwards-incompatible change, and in Puppet 4.8.2, the `stacktrace` property was returned to the response object.
 
 Instead of containing the `stacktrace` message, it now contains a deprecation warning. Users consuming the `stacktrace` property of the Puppet HTTP error response API should instead review the Puppet log for this information. ([PUP-7066](https://tickets.puppetlabs.com/browse/PUP-7066))
 
@@ -130,7 +136,7 @@ The following bugs have been addressed and resolved:
 
 * [PUP-6992](https://tickets.puppetlabs.com/browse/PUP-6992): The feature that allows functions to be defined in an environment in the `environment::` namespace has been modified because the implementation was inconsistent between Ruby and Puppet based functions in this respect. Now, a file containing the definition of a function in an environment is always under a directory reflecting the namespace.
 
-* [PUP-7061](https://tickets.puppetlabs.com/browse/PUP-7061): A regression introduced in Puppet 4.8.0 caused attempts to lookup a string containing more than one interpolation that in turn used interpolation function Hiera (for example, `%{hiera('some_key')}`) to fail when running with trace level set to `debug`. This regression is now fixed. 
+* [PUP-7061](https://tickets.puppetlabs.com/browse/PUP-7061): A regression introduced in Puppet 4.8.0 caused attempts to lookup a string containing more than one interpolation that in turn used interpolation function Hiera (for example, `%{hiera('some_key')}`) to fail when running with trace level set to `debug`. This regression is now fixed.
 
 * [PUP-7030](https://tickets.puppetlabs.com/browse/PUP-7030): Previously a string with two adjacent unicode characters did not result in two unicode characters being placed in the string. Instead only the first was recognized as being a unicode character, and the second was taken as verbatim text.
 
@@ -152,11 +158,11 @@ The following bugs have been addressed and resolved:
 
 * [PUP-7031](https://tickets.puppetlabs.com/browse/PUP-7031): Prior to Puppet 4.9.0, if a Puppet agent was run in a non-UTF-8 locale, Puppet would fail to apply a change to a user comment on Linux and Windows if the change included UTF-8 comments.
 
-* [PUP-4742](https://tickets.puppetlabs.com/browse/PUP-4742): A dependency is added on the `semantic_puppet` gem >= 0.1.3', '< 2' because this is required for issues with semantic version comparison functions and types. 
+* [PUP-4742](https://tickets.puppetlabs.com/browse/PUP-4742): A dependency is added on the `semantic_puppet` gem >= 0.1.3', '< 2' because this is required for issues with semantic version comparison functions and types.
 
 * [PUP-6758](https://tickets.puppetlabs.com/browse/PUP-6758): Puppet now gracefully fails if the `pkg` fails to enumerate installed packages.
 
-* [PUP-6856](https://tickets.puppetlabs.com/browse/PUP-6856): When using certain types of Puppet variables, data in modules could fail to lookup values interpolated from these variables silently. 
+* [PUP-6856](https://tickets.puppetlabs.com/browse/PUP-6856): When using certain types of Puppet variables, data in modules could fail to lookup values interpolated from these variables silently.
 
 * [PUP-6864](https://tickets.puppetlabs.com/browse/PUP-6864): A node group configured to use an environment which didn't exist would sometimes fail with error "NoMethodError: undefined method `environment_data_provider` for nil:NilClass". The bug was caused by code in Puppet lookup (Hiera version 4), and was fixed as a part of the rewrite to version 5.
 
@@ -164,7 +170,7 @@ The following bugs have been addressed and resolved:
 
 * [PUP-6663](https://tickets.puppetlabs.com/browse/PUP-6663): Previously, Puppet did not appropriately quote the RPM query string when determining package state with the RPM provider. This caused stale locks to be left on the RPM database when large volumes of RPM queries were run. This change adds the necessary quotes to the query to prevent this from happening.
 
-* [PUP-6882](https://tickets.puppetlabs.com/browse/PUP-6882): It was not possible to escape a unicode character. The result of `"\\uFFFF"` 
+* [PUP-6882](https://tickets.puppetlabs.com/browse/PUP-6882): It was not possible to escape a unicode character. The result of `"\\uFFFF"`
 Ended up being a literal backslash followed by the uFFFF character.
 
 * [PUP-6448](https://tickets.puppetlabs.com/browse/PUP-6448): When using the file type to specify a source with a `puppet:///` style URI, errors could previously be generated if the source included non-ASCII characters. The `puppet:///` style URI should now completely support the usage of UTF-8 characters in paths to files.
