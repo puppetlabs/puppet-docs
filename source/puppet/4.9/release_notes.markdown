@@ -18,6 +18,13 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they 
 
 Also of interest: the [Puppet 4.8 release notes](/puppet/4.8/release_notes.html) and [Puppet 4.7 release notes](/puppet/4.7/release_notes.html).
 
+
+## Puppet 4.9.1
+
+Released February 3, 2017.
+
+This is a gem only release of Puppet, to fix a packaging issue. Puppet 4.9.2 will be the next official packaged release.
+
 ## Puppet 4.9.0
 
 Released February 1, 2017.
