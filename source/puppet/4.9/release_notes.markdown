@@ -23,7 +23,7 @@ Also of interest: the [Puppet 4.8 release notes](/puppet/4.8/release_notes.html)
 
 Released February 3, 2017.
 
-This is a gem-only release of Puppet, to fix a packaging issue. Puppet 4.9.2 will be the next official packaged release.
+This is a gem-only release of Puppet, to fix a packaging issue. You can read more about the details in [PUP-7156](https://tickets.puppetlabs.com/browse/PUP-7156).
 
 ## Puppet 4.9.0
 
