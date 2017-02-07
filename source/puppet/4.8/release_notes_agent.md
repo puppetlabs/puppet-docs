@@ -37,7 +37,7 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.8 release
 
 ## Puppet agent 1.8.3
 
-Released January 19, 2016.
+Released January 19, 2017.
 
 ## Component updates
 
