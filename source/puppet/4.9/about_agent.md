@@ -17,7 +17,16 @@ title: "puppet-agent: What is it, and what's in it?"
 
 See the table above for details about which components shipped in which `puppet-agent` release, and the [package-specific release notes][release notes] for more information about packaging and installation fixes and features.
 
->**Note:** Windows `puppet-agent` versions 1.4.2 through 1.5.2 shipped with Ruby 2.1.8.
+
+>**Note**:
+>
+>* Hiera 5 is a new version of the experimental Puppet lookup feature. It ships with Puppet 4.9, and uses the classic Hiera 3.3 codebase.
+>
+>* Puppet 4.9.1 does not appear on this table because it was a gem-only release and has not been packaged in `puppet-agent`.
+>
+>* Windows `puppet-agent` versions 1.4.2 through 1.5.2 shipped with Ruby 2.1.8.
+
+
 
 ## What are `puppet-agent` and Puppet Server?
 
