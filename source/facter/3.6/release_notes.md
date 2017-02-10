@@ -5,6 +5,18 @@ title: "Facter 3.6 Release notes"
 
 This page documents the history of the Facter 3.6 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
 
+
+## Facter 3.6.1
+
+Released February 10, 2017.
+
+Shipped with Puppet agent 1.9.1.
+
+* [Fixed in Facter 3.6.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.6.1%27)
+* [Introduced in Facter 3.6.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.6.1%27)
+
+This is a minor release that does not affect users. 
+
 ## Facter 3.6.0
 
 Released February 1, 2017.
