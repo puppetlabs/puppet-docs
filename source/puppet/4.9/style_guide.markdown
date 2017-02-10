@@ -1162,9 +1162,9 @@ All publicly available modules should include the documentation covered below.
 
 ### 17.1 README
 
-Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](https://docs.puppet.com/puppet/latest/reference/READMEtemplate.txt) offers a basic format you can use. If you create modules with `puppet module generate`, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
+Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](./latest/READMEtemplate.txt) offers a basic format you can use. If you create modules with `puppet module generate`, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
 
-There's an entire [guide](https://docs.puppet.com/puppet/latest/reference/modules_documentation.html) to writing a great README, but overall your README should:
+There's an entire [guide](./latest/modules_documentation.html) to writing a great README, but overall your README should:
 
 * Summarize what your module does.
 * Note any setup requirements or limitations (such as "This module requires the puppetlabs-apache module and only works on Ubuntu.").
@@ -1176,24 +1176,35 @@ There's an entire [guide](https://docs.puppet.com/puppet/latest/reference/module
 
 Use [Puppet Strings](https://github.com/puppetlabs/puppet-strings) code comments to document your Puppet classes, defined types, functions, and resource types and providers. Strings processes the README and comments from your code into HTML or JSON format documentation. This allows you and your users to generate detailed documentation for your module.
 
-Include comments for each element (classes, functions, defined types, parameters, and so on) in your module. If used, comments must precede the code for that element. See [Puppet Strings](https://github.com/puppetlabs/puppet-strings) documentation for details on usage, installation, and correctly writing documentation comments. Comments should contain the following information, arranged in this order:
+Include comments for each element (classes, functions, defined types, parameters, and so on) in your module. If used, comments must precede the code for that element. Comments should contain the following information, arranged in this order:
 
 * A description giving an overview of what the element does.
-* Any additional information about valid values that is not clear from the data type. (For example, if the data type is [String], but the value must be a path.)
+* Any additional information about valid values that is not clear from the data type. (For example, if the data type is [String], but the value must specifically be a path.)
 * The default value, if any for that element.
 
 For example:
 
 ```puppet
-# @param config_epp Specifies a file to act as a EPP template for the config file. Valid 
-# options: a path (absolute, or relative to the module path). Example value: 
-# 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and**
-# the `config_template` param.
+# @param config_epp Specifies a file to act as a EPP template for the config file. Valid options: a path (absolute, or relative to the module path). Example value: 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and** the `config_template` param.
 ```
 
-If you do not include Strings code comments, you should include a Reference section in your README with a complete list of all classes, types, providers, defined types, and parameters that the user can configure. Include a brief description, the valid options, and the default values (if any).
+If you use Strings to document your module, include information about Strings in the Reference section of your README so that your users will know how to generate the documentation. See [Puppet Strings](https://github.com/puppetlabs/puppet-strings) documentation for details on usage, installation, and correctly writing documentation comments. 
 
-### 17.2 CHANGELOG
+If you do not include Strings code comments, you should include a Reference section in your README with a complete list of all classes, types, providers, defined types, and parameters that the user can configure. Include a brief description, the valid options, and the default values (if any). For example, this is a parameter for the `ntp` module's `ntp` class:
+
+```
+#### `package_ensure`
+
+Data type: String.
+
+Whether to install the NTP package, and what version to install. Values: 'present', 'latest', or a specific version number.
+
+Default value: 'present'.
+```
+
+See our module documentation [guide](./latest/modules_documentation.html) for more details and examples.
+
+### 17.3 CHANGELOG
 
 Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG should: 
 

@@ -13,24 +13,30 @@ title: "Documenting modules"
 [metadata.json]: ./modules_metadata.html
 
 
-We strongly encourage you to document any module you write, whether you intend the module solely for internal use or for publication on the [Puppet Forge][forge] (Forge). Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it.
-
-There is a [README template][template] to assist you put together complete and clear documentation. We recommend using [Markdown][commonmark] and .md (or .markdown) files for READMEs. Below, we'll walk through the template and address best practices to help make your documentation efforts go more smoothly.
+We strongly encourage you to document any module you write, whether you intend the module solely for internal use or for publication on the [Puppet Forge][forge] (Forge). This guide details module documentation best practices and walks you through our module README template.
 
 * Continue reading to learn README best practices.
 * [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
 * [See "Publishing Modules"][publishing] for how to publish your modules to the Puppet Forge.
 * [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agents.
 
+Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it. We recommend using [Markdown][commonmark] and `.md` (or `.markdown`) files for your READMEs.
 
-## README Template
+We've constructed a [README template][template] that you can use for your own modules. This template helps you put together complete and clear documentation. Below, we'll walk through the template and go over some best practices to help with your documentation efforts.
 
+## The README template
 
-If you used the `puppet module generate` command to generate your module skeleton, you already have a copy of the README template in .md format. You can also use the standalone [template][template] to guide you. Again, we strongly recommend using .md format for your README.
+If you used the `puppet module generate` command to generate your module skeleton, you already have a copy of the README template in `.md` format. You can also use the standalone [template][template] to guide you.
 
-## Introduction
+## Create a table of contents
 
-Start with listing the module's name as a Level 1 Heading, followed by a table of contents as a Level 4 Heading.
+The table of contents is a best practice, particularly for large or complicated modules.
+
+The section headings for each top-level section (following the numbered sections in the TOC) should be Level 2 Headings, with each subsection decreasing from there. Subsections can be included in the ToC if needed, as shown in the Setup subsections above.
+
+1. List the module's name as a Level 1 Heading.
+2. Add **Table of Contents** as a Level 4 Heading.
+3. Add a numbered list of your module sections, as shown in the example below.
 
     # modulename
 
@@ -46,13 +52,12 @@ Start with listing the module's name as a Level 1 Heading, followed by a table o
     5. [Limitations - OS compatibility, etc.](#limitations)
     6. [Development - Guide for contributing to the module](#development)
 
-The table of contents is a best practice, particularly for large or complicated modules.
 
-The section headings for each top-level section (following the numbered sections in the TOC) should be Level 2 Headings, with each subsection decreasing from there. Subsections can be included in the ToC if needed, as shown in the Setup subsections above.
+## Write the module description
 
-## Module description
+Write a module description that tells users what software the module is working with and what it does with that software.
 
-Assume **Module Description** is the first thing a user reads. First, it should briefly address what software the module is working with and what it does with that software. Does it just install it? Does it install and configure it? Check the `summary` field in the module's [metadata.json][]. Your **Module Description** should be slightly longer and more informative than that.
+This description helps the user decide if your module is what they want. Does your module just install the software? Does it install and configure it? Check the `summary` field in the module's [metadata.json][]. Your **Module Description** should be slightly longer and more informative than that.
 
 A second paragraph can go into more depth on the "How?" and "What?" of a module, giving a user more information about what to expect from the module so they can assess whether they would like to use it or not.
 
@@ -127,9 +132,31 @@ playtime at 3 a.m. local time.
 
 ## Reference
 
-The **Reference** section should contain a complete list of classes, defines, types, functions, etc., along with their parameters.
+This section is where your users can find a complete list of your module's classes, types, defined types providers, facts, and functions, along with the parameters for each. Users refer to this section (hence the name "Reference") to find specific details; most users don't _read it_, per se. You can provide this list either via [Puppet Strings](#puppet-strings) or as a complete list in the README [**Reference**](#reference-list) section.
 
-Generally, unless your module is very small (only 1 - 4 classes or defines (defined resource types)), start with a small table of contents that first lists the classes, defines, and resource types of your module. If your module contains both public and private classes, defines, etc, list the public and the private separately. Include a brief description of what these items do in your module. It's especially helpful if you  provide a link to each listed item.
+### Puppet Strings
+
+Use [Puppet Strings](https://github.com/puppetlabs/puppet-strings) code comments to document your Puppet classes, defined types, functions, and resource types and providers. Strings processes both the README and comments from your code into HTML or JSON format documentation. This allows you and your users to generate detailed documentation for your module.
+
+Include comments for each element (classes, functions, defined types, parameters, and so on) in your module. These comments must precede the code for that element. Comments should contain the following information, arranged in this order:
+
+* A description giving an overview of what the element does.
+* Any additional information about valid values that is not clear from the data type. (For example, if the data type is [String], but the value specifically must be a path.)
+* The default value, if any for that element.
+
+For example:
+
+```puppet
+# @param config_epp Specifies a file to act as a EPP template for the config file. Valid options: a path (absolute, or relative to the module path). Example value: 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and** the `config_template` param.
+```
+
+If you use Strings to document your module, include information about it in your **Reference** section so that your users will know how to generate your module's documentation. See [Puppet Strings](https://github.com/puppetlabs/puppet-strings) documentation for details on usage, installation, and correctly writing documentation comments.
+
+### Reference list
+
+If you aren't using Puppet Strings code comments to document your module, then include a Reference list of each of your classes, defined types, types, functions, and so on, along with their parameters.
+
+Generally, unless your module is very small (only 1 -- 4 classes or defined resource types), start with a small table of contents that first lists the classes, defined types, and resource types of your module. If your module contains both public and private classes, defined types, etc, list the public and the private separately. Include a brief description of what these items do in your module. It's especially helpful if you provide a link to each listed item.
 
 ```
 ## Reference
@@ -137,14 +164,23 @@ Generally, unless your module is very small (only 1 - 4 classes or defines (defi
 ### Classes
 
 #### Public classes
+
 *[`pet::cat`](#petcat): Installs and configures a cat in your environment.
 
 #### Private classes
+
 *[`pet::cat::install`]: Handles the cat packages.
 *[`pet::cat::configure`]: Handles the configuration file.
 ```
 
 After this mini-contents, list the parameters, providers, or features for each thing. Be sure to include valid or acceptable values and any defaults that apply.
+
+Each element in this list should include:
+
+  * The data type, if applicable.
+  * A description of what the element does.
+  * Valid values, if the data type doesn't make it obvious.
+  * Default value, if any.
 
 ```
 ### `pet::cat`
@@ -152,13 +188,24 @@ After this mini-contents, list the parameters, providers, or features for each t
 #### Parameters
 
 ##### `purr`
-Enables purring in your cat. Valid options: 'true' or 'false'. Default: 'true'.
+
+Data type: Boolean.
+
+Enables purring in your cat. 
+
+Default: `true`.
 
 ##### `meow`
-Enables vocalization in your cat. Valid options: 'string'. Default: 'medium-loud'.
+
+Enables vocalization in your cat. Valid options: 'string'.
+
+Default: 'medium-loud'.
 
 #### `laser`
-Specifies the type, duration, and timing of your cat's laser show. Default: undef.
+
+Specifies the type, duration, and timing of your cat's laser show.
+
+Default: `undef`.
 
 Valid options: A hash with the following keys:
 
@@ -192,7 +239,7 @@ Since your module is awesome, other users will want to play with it. The **Devel
 ## Style and formatting
 
 1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
-2. *Public* classes and defines are intended to be tweaked, changed, or otherwise interacted with by the user. **Private** classes and defines do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.
+2. *Public* classes and defined types are intended to be tweaked, changed, or otherwise interacted with by the user. **Private** classes and defined types do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.
 3. Every parameter should have a description that starts with an action verb if at all possible (such as, "Sets the...", "Enables...", "Determines...", "Specifies..."). The description should be followed, in the same paragraph, by valid options (such as, "Valid options: an array"). Valid options should be followed by any default, if applicable.
 
     For example:
@@ -210,7 +257,7 @@ Since your module is awesome, other users will want to play with it. The **Devel
 6. Mark parameters as Required or Optional whenever possible
 7. < > do not render in Markdown. Ask us how we know.
 8. You don't need to comment out _ because neither GitHub nor the Forge's Markdown rendering hides _.
-9. The Forge's Markdown rendering is exactly GitHub's rendering.
+9. The Forge's Markdown rendering is exactly the same as GitHub's rendering.
 
 ## Documentation best practices
 
