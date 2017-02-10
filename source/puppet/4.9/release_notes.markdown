@@ -18,6 +18,37 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they 
 
 Also of interest: the [Puppet 4.8 release notes](/puppet/4.8/release_notes.html) and [Puppet 4.7 release notes](/puppet/4.7/release_notes.html).
 
+## Puppet 4.9.2
+
+Released February 10, 2017.
+
+This release resolves some regressions introduced in Puppet 4.9.0, and fixes several critical bugs.
+
+* [Fixed in Puppet 4.9.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.9.2%27)
+* [Introduced in Puppet 4.9.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.9.2%27)
+
+
+### Bug fixes
+
+The following have been resolved in this release:
+
+* [PUP-7164](https://tickets.puppetlabs.com/browse/PUP-7164): Hiera 5 introduced a regression that when a YAML data file was read, and it was empty this would lead to an error "Expected Hash, got Boolean".
+
+* [PUP-7178](https://tickets.puppetlabs.com/browse/PUP-7178): A regression was introduced by Hiera 5 where an interpolation using the functions `hiera`, `lookup`, or `alias` would only be able to find keys from the same kind of backend. This affected users with a mix of YAML, JSON and/or eyaml entries in their hierarchies.
+
+* [PUP-7179](https://tickets.puppetlabs.com/browse/PUP-7179): A loader delegation problem has been fixed that caused problems when a data type depended indirectly on data types not directly visible to the module, but being visible to the module of an intermediate type.
+
+* [PUP-7167](https://tickets.puppetlabs.com/browse/PUP-7167): The hiera 5 implementation in Puppet 4.9.0 introduced a regression that caused interpolation of keys in nested hashes to result in no interpolation taking place.
+
+* [PUP-7176](https://tickets.puppetlabs.com/browse/PUP-7176): A regression was introduced in Hiera 5 which caused problems when the default merge was specified in a hiera.yaml. The regression was that the merge logic refused to merge mismatched types, or non array and hash values. Now the behavior of hiera 3 is also the behavior of hiera 5 such that a merge of non mergeable values uses priority based selection.
+
+* [PUP-7165](https://tickets.puppetlabs.com/browse/PUP-7165): Having a hiera.yaml (version 3) in the root of an environment led to a hard error, because Hiera 5 requires that such the has format 5 for it to be used with the new features in Hiera. This has been changed so that a version 3 file is ignored and a warning is issued if `--strict=warning`, and an error is raised only if `--strict==error`.
+
+* [PUP-6588](https://tickets.puppetlabs.com/browse/PUP-6588): The path of a URL used in module install's `--module_repository` option is no longer ignored, and will be used when connecting to the repository.
+
+* [PUP-7169](https://tickets.puppetlabs.com/browse/PUP-7169): A regression in the handling of Hiera 3 custom backends led to error "Unrecognized value for request 'merge' parameter: 'unconstrained_deep'" for some users when using the eyaml Hiera 3 backend. The `unconstrained_deep` is a backend internal concern that was initially missing in the Hiera 5 implementation.
+
+* [PUP-7171](https://tickets.puppetlabs.com/browse/PUP-7171): A regression was introduced in the Hiera 5 implementation where an error such as "trusted.certname" is an undefined variable would be the outcome. This was caused by a bug in cache optimization logic and would occur the second time a lookup was performed.
 
 ## Puppet 4.9.1
 
