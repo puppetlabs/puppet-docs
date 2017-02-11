@@ -7,7 +7,7 @@ title: "Hiera: What is Hiera?"
 [facts]: todo
 [roles_and_profiles]: todo
 
-Hiera is Puppet's built-in data lookup system. By default, it uses simple YAML or JSON files, although you can extend it to work with almost any data source. Almost every successful Puppet user relies on it heavily, and you should too.
+Hiera is Puppet's built-in key/value data lookup system. By default, it uses simple YAML or JSON files, although you can extend it to work with almost any data source. Almost every successful Puppet user relies on it heavily, and you should too.
 
 
 ## Hiera is the config file for your Puppet code
