@@ -73,7 +73,7 @@ If you already keep Hiera's YAML or JSON data in your environments (probably wit
 
 * Change any `hiera`/`hiera_array`/`hiera_hash` calls in your manifests to use `lookup` instead.
 * Set `environment_data_provider = hiera` in `puppet.conf`. (Individual environments can override this in `environment.conf` if needed.)
-* Create a `hiera.yaml` (version 4) file in each environment, recreating your existing hierarchy. [See below for the file format.][inpage_config_4]
+* Create a `hiera.yaml` (version 5) file in each environment, recreating your existing hierarchy. [See below for the file format.][inpage_config_5]
 * Edit your classic `hiera.yaml` config to use a datadir outside your environments (like `/etc/puppetlabs/code/hieradata`), so that classic Hiera won't interfere with the new environment data provider.
 
 Once these steps are done, your Puppet infrastructure should work the same way it did before, but you'll have a lot more freedom the next time you want to make changes to your hierarchy.
@@ -89,7 +89,7 @@ To specify a data provider, set a value for the `environment_data_provider` sett
 {% capture dataproviders %}
 The default data provider is `none`, which doesn't provide any data. There are two other providers available:
 
-* `hiera` --- Hiera-like data lookup, which is configured with a local [`hiera.yaml` (version 4)][inpage_config_4] file.
+* `hiera` --- Hiera-like data lookup, which is configured with a local [`hiera.yaml` (version 5)][inpage_config_5] file.
 * `function` --- Function-based data lookup, which obtains a hash from a specially-named Puppet function.
 {% endcapture %}
 
@@ -122,51 +122,54 @@ Module data works almost exactly like environment data, but it supports a differ
 
 ## There are two `hiera.yaml` formats now
 
-[inpage_config_4]: #there-are-two-hierayaml-formats-now
+[inpage_config_5]: #there-are-two-hierayaml-formats-now
 
 These files have the same name, but they're different. Sorry. We couldn't fix some of Hiera's limitations without a new format, but we couldn't change classic Hiera's config format in a minor Puppet agent release, so you'll be using two different formats for a while.
 
 * [**Old `hiera.yaml`**][hiera_config] configures classic Hiera. It's [documented in the Hiera manual][hiera_config]. Puppet can only use one Hiera config file, and it is global across all environments.
-* [**`hiera.yaml` (version 4)**][inpage_config_4] configures environment and module data. Every environment or module has its own `hiera.yaml` (version 4) file, but there's no global one.
+* [**`hiera.yaml` (version 5)**][inpage_config_5] configures environment and module data. Every environment or module has its own `hiera.yaml` (version 5) file, but there's no global one.
 
-### `hiera.yaml` (Version 4) in a nutshell
+### `hiera.yaml` (Version 5) in a nutshell
 
 ``` yaml
 # /etc/puppetlabs/code/environments/production/hiera.yaml
 ---
-version: 4
-datadir: data
+version: 5
+
+defaults:
+  datadir: data
+  data_hash: yaml_data
+
 hierarchy:
   - name: "Nodes"
-    backend: yaml
-    path: "nodes/%{trusted.certname}"
+    path: "nodes/%{trusted.certname}.yaml"
 
   # Putting a JSON level between YAML levels like this
   # was impossible in the old format.
   - name: "Exported JSON nodes"
-    backend: json
+    data_hash: json_data
     paths:
       # Puppet checks these in order. Even though this is a single
       # item in the hierarchy, it acts like multiple hierarchy levels.
-      - "nodes/%{trusted.certname}"
-      - "insecure_nodes/%{facts.fqdn}"
+      - "nodes/%{trusted.certname}.json"
+      - "insecure_nodes/%{facts.fqdn}.json"
 
-  - name: "virtual/%{facts.virtual}"
-    backend: yaml
+  - name: "Virtualization platform"
+    path: "virtual/%{facts.virtual}.yaml"
 
-  - name: "common"
-    backend: yaml
+  - name: "Common defaults"
+    path: "common.yaml"
 ```
 
-The `hiera.yaml` (version 4) file goes in the main directory of a module or environment, and is used when the `environment_data_provider` or `data_provider` setting is set to `hiera`.
+The `hiera.yaml` (version 5) file goes in the main directory of a module or environment, and is used when the `environment_data_provider` or `data_provider` setting is set to `hiera`.
 
 It is a YAML hash that contains three keys:
 
-* `version` --- Required. Must always be `4`.
-* `datadir` --- Optional. The default datadir, for any hierarchy levels that omit it. It is a relative path, from the root of the environment or module. The default is `data`.
+* `version` --- Required. Must always be `5`.
+* `defaults` --- Optional. If the defaults entry is omitted, it does not force each hierarchy level to specify every key; instead, the following defaults take effect for levels that omit keys: `datadir: data` and `data_hash: yaml_data`
 * `hierarchy` --- Optional. A hierarchy of data sources to search, in the new format. If omitted, it defaults to a single source called `common` that uses the YAML backend.
 
-The `hierarchy` is an array of hashes. Unlike in classic Hiera, each hierarchy level must specify its own backend, and can optionally use a separate datadir.
+The `hierarchy` is an array of hashes. Unlike in classic Hiera, each hierarchy level can specify its own backend to override the default `data_hash` value, and optionally can use a separate datadir. 
 
 Each hierarchy level can contain the following keys:
 
@@ -180,7 +183,7 @@ Each hierarchy level can contain the following keys:
 
 #### Interpolation
 
-Variable interpolation in `hiera.yaml` (version 4) works the same way as it does in classic Hiera. See [the Hiera interpolation docs][hiera_interpolation] for details.
+Variable interpolation in `hiera.yaml` (version 5) works the same way as it does in classic Hiera. See [the Hiera interpolation docs][hiera_interpolation] for details.
 
 ## Specifying merge behavior
 
