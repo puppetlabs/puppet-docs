@@ -46,9 +46,9 @@ hierarchy:
 
 Each **level** of the hierarchy tells Hiera how to access some kind of data source. In this example, every level configures the path to a YAML file on disk. (For more about different kinds of data sources, see [Configuring the built-in data backends][builtins] and [Overview of the backend functions system][backends].)
 
-## Interpolate variables for power
+## Most hierarchies interpolate variables
 
-Notice that most levels of this hierarchy are [interpolating variables][interpolate] into their configuration:
+Notice that most levels of this hierarchy [interpolate variables][interpolate] into their configuration:
 
 ``` yaml
     path: "os/%{facts.os.family}.yaml"
@@ -57,6 +57,7 @@ Notice that most levels of this hierarchy are [interpolating variables][interpol
 * The percent-and-braces `%{variable}` syntax is a Hiera [interpolation token][interpolate]. It's similar to the Puppet language's `${expression}` interpolation tokens.
 * `facts.os.family` uses Hiera's special [key.subkey notation][subkey] for accessing elements of hashes and arrays. It's equivalent to `$facts['os']['family']` in the Puppet language.
 * This example, like most real-life hierarchies, uses [facts][] and [trusted data][].
+* You can only interpolate values into certain parts of the config file. For more info, see [the hiera.yaml format reference][hiera.yaml].
 
 This is the core of Hiera's power: with node-specific variables, each node gets its own customized version of the hierarchy.
 
@@ -92,7 +93,7 @@ It's normal for some of these files to not exist, and Hiera handles that just fi
 
 ## Hiera searches the hierarchy in order
 
-Once Hiera finishes interpolating variables and resolves each level of the hierarchy to a concrete data source, it checks those data sources in the order in which they're written. If a data source doesn't exist, or doesn't specify a value for the current key, Hiera skips it and moves on to the next source.
+Once Hiera replaces the variables to make a list of concrete data sources, it checks those data sources in the order they're written. If a data source doesn't exist, or doesn't specify a value for the current key, Hiera skips it and moves on to the next source.
 
 This means earlier data sources have priority over later ones. In the example above, the node-specific data has the highest priority, and can override data from any other level. Business group data is separated into local and global sources, with the local one overriding the global one. And the common data used by all nodes always goes last.
 
@@ -111,7 +112,7 @@ In a first-found lookup, higher-priority data sources completely override values
 
 Hiera uses three layers of data. (For more info, see [The three config layers][layers].)
 
-Each layer can configure its own independent hierarchy. When it's time to do a lookup, Hiera combines them, in order (global, then environment, then module), into a single super-hierarchy.
+Each layer can configure its own independent hierarchy. When it's time to do a lookup, Hiera combines them into a single super-hierarchy. (The order for this is global, then environment, then module.)
 
 Assume the example above is an environment hierarchy (in the `production` environment). If we also had the following global hierarchy:
 
