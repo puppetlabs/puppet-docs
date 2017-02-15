@@ -134,3 +134,11 @@ defaults:
 
 The combined hierarchy works the same way as a layer hierarchy: Hiera skips empty data sources, and either returns the first found value or merges all found values.
 
+## What makes a good hierarchy?
+
+That's very subjective. But here are some things to think about as you design your data:
+
+* A shorter hierarchy is easier to reason about, and makes your data files easier to work with.
+* Use the [roles and profiles method][roles and profiles] to _manage less data in Hiera._ Sorting thousands of fiddly class parameters is a nightmare; sorting hundreds of conscious decisions is quite a bit easier.
+* A hierarchy is a way of acknowledging the _differences_ in your infrastructure. Think hard about the differences that are most important to you! If the built-in [facts][] don't give you an easy way to represent those differences, consider making [custom facts][] --- for example, a `datacenter` fact that distils institutional knowledge about your network layout into a simple geographical signal.
+* Don't get ahead of yourself! In the days of Hiera 3, when changing a hierarchy was incredibly expensive and "dead" layers hung around forever, people made really large hierarchies in an effort to guess their future needs. But now that you can change hierarchies on an environment-by-environment basis, you can be a lot more agile about it. Start small, and iterate.
