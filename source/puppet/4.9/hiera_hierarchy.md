@@ -13,36 +13,14 @@ title: "Hiera: How hierarchies work"
 [confdir]: todo
 [builtins]: todo
 [backends]: todo
-
-
+[custom facts]: todo
+[roles and profiles]: todo
 
 Hiera looks up data with a **hierarchy,** which is an ordered list of data sources.
 
 Hierarchies are configured in a [hiera.yaml][] config file. A hierarchy usually looks something like this:
 
-``` yaml
-version: 5
-defaults:               # Used in any hierarchy level that omits these keys.
-  datadir: data         # This path is relative to the config file's directory.
-  data_hash: yaml_data  # Use the YAML data backend.
-
-hierarchy:
-  - name: "Per-node data"                   # Human-readable name.
-    path: "nodes/%{trusted.certname}.yaml"  # Path to data file,
-                                            # relative to datadir.
-
-  - name: "Per-datacenter business group data" # Uses custom facts.
-    path: "location/%{facts.whereami}/%{facts.group}.yaml"
-
-  - name: "Global business group data"
-    path: "groups/%{facts.group}.yaml"
-
-  - name: "Per-OS defaults"
-    path: "os/%{facts.os.family}.yaml"
-
-  - name: "Common data"
-    path: "common.yaml"
-```
+{% partial _hiera.yaml_v5.md %}
 
 Each **level** of the hierarchy tells Hiera how to access some kind of data source. In this example, every level configures the path to a YAML file on disk. (For more about different kinds of data sources, see [Configuring the built-in data backends][builtins] and [Overview of the backend functions system][backends].)
 
@@ -112,11 +90,12 @@ In a first-found lookup, higher-priority data sources completely override values
 
 Hiera uses three layers of data. (For more info, see [The three config layers][layers].)
 
-Each layer can configure its own independent hierarchy. When it's time to do a lookup, Hiera combines them into a single super-hierarchy. (The order for this is global, then environment, then module.)
+Each layer can configure its own independent hierarchy. When it's time to do a lookup, Hiera combines them into a single super-hierarchy. The order for this is **global → environment → module.**
 
 Assume the example above is an environment hierarchy (in the `production` environment). If we also had the following global hierarchy:
 
 ``` yaml
+---
 version: 5
 hierarchy:
   - name: "Data exported from our old self-service config tool"
@@ -128,6 +107,7 @@ hierarchy:
 ...and the NTP module had the following hierarchy for default data:
 
 ``` yaml
+---
 version: 5
 hierarchy:
   - name: "OS values"
