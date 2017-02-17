@@ -8,7 +8,7 @@ title: "Hiera: Accessing hash and array elements (key.subkey syntax)"
 [lookup_function]: todo
 [lookup_command]: todo
 [interpolation_functions]: todo
-
+[extensions]: ./ssl_attributes_extensions.html
 
 In Puppet and Hiera, you often need to work with structured data in [hashes][] and [arrays][].
 
@@ -24,6 +24,30 @@ To access a single member of an array or hash, use the name of the value followe
 To access values in nested data structures, you can chain subkeys together. For example, since the value of `facts.system_uptime` is a hash, you can access its `hours` key with `facts.system_uptime.hours`.
 
 Unlike the Puppet language's square bracket notation, Hiera's dotted notation doesn't support using arbitrary expressions as subkeys; only literal keys are valid.
+
+### Quoting subkeys
+
+It's possible for a hash to include literal dots in the text of a key. For example, the value of `$trusted['extensions']` is a hash containing any [certificate extensions][extensions] for a node, but some of its keys can raw OID strings like `'1.3.6.1.4.1.34380.1.2.1'`.
+
+You can access those values in Hiera with key.subkey notation, but you must put quotes around the affected subkey. For example:
+
+``` yaml
+hierarchy:
+  # ...
+  - name: "Machine role (custom certificate extension)"
+    path: "role/%{trusted.extensions.'1.3.6.1.4.1.34380.1.2.1'}.yaml"
+  # ...
+```
+
+You can use either single or double quotes.
+
+If the entire compound key is quoted (for example, as required by the `lookup` [interpolation function][interpolation_functions]), you must use the other kind of quote for the subkey, and you must also escape quotes (as needed by your data file format) to ensure that you don't prematurely terminate the whole string. For example:
+
+``` yaml
+aliased_key: "%{lookup('other_key.\"dotted.subkey\"')}"
+# Or:
+aliased_key: "%{lookup(\"other_key.'dotted.subkey'\")}"
+```
 
 ## Where can you access hash and array elements?
 
