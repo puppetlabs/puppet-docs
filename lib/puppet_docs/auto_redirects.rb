@@ -18,6 +18,11 @@ module PuppetDocs
     #   was: orchestration_actions.html
     #   became: mco_actions.html
     #   at_version: 2016.2
+    # - in_doc: pe
+    #   was: install_pe_split.html
+    #   became: install_text_mode_split.html
+    #   at_version: 2016.4
+    #   forward_only: true
     #
     # The "was" and "became" keys can be either strings or arrays.
     def self.generate(config, redirects_yaml)
@@ -29,6 +34,7 @@ module PuppetDocs
         at_version  = redirect['at_version'].to_s
         was         = normalize_paths(redirect['was'])
         became      = normalize_paths(redirect['became'])
+        forward_only = redirect['forward_only'] || false
         latest = "/#{doc}/latest"
 
         # First, bail out unless the doc exists and this is a valid version.
@@ -41,10 +47,16 @@ module PuppetDocs
           new_versions = [latest] + config['document_version_order'][doc][0..at_index]
           old_versions = config['document_version_order'][doc][at_index+1..-1]
 
-          generated_rewrites = [
-            build_rewrite_for_versions(new_versions, was, became),
-            build_rewrite_for_versions(old_versions, became, was)
-          ]
+          if forward_only
+            generated_rewrites = [
+              build_rewrite_for_versions(new_versions, was, became)
+            ]
+          else
+            generated_rewrites = [
+              build_rewrite_for_versions(new_versions, was, became),
+              build_rewrite_for_versions(old_versions, became, was)
+            ]
+          end
           memo + generated_rewrites
         end
       }
