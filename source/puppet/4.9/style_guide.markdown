@@ -1182,10 +1182,15 @@ Include comments for each element (classes, functions, defined types, parameters
 * Any additional information about valid values that is not clear from the data type. (For example, if the data type is [String], but the value must specifically be a path.)
 * The default value, if any for that element.
 
+Multiline descriptions must be uniformly indented by at least one space.
+
 For example:
 
 ```puppet
-# @param config_epp Specifies a file to act as a EPP template for the config file. Valid options: a path (absolute, or relative to the module path). Example value: 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and** the `config_template` param.
+# @param config_epp Specifies a file to act as a EPP template for the config file.
+#  Valid options: a path (absolute, or relative to the module path). Example value: 
+#  'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and**
+#  the `config_template` param.
 ```
 
 If you use Strings to document your module, include information about Strings in the Reference section of your README so that your users will know how to generate the documentation. See [Puppet Strings](https://github.com/puppetlabs/puppet-strings) documentation for details on usage, installation, and correctly writing documentation comments. 
