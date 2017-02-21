@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Functions::Dispatch
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Functions::Dispatch
   
@@ -721,10 +719,10 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
             <span class='comment'># currently only supports :scope injection
 </span>            <span class='id identifier rubyid_scope'>scope</span>
           <span class='kw'>when</span> <span class='symbol'>:producer</span>
-            <span class='id identifier rubyid_injector'>injector</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_injector'>injector</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../../../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
             <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer'>lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
           <span class='kw'>else</span>
-            <span class='id identifier rubyid_injector'>injector</span> <span class='op'>||=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_injector'>injector</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../../../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
             <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_data'>injection_data</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rparen'>)</span>
           <span class='kw'>end</span>
       <span class='kw'>else</span>
@@ -751,9 +749,9 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:44 2016 by
+  Generated on Tue Jan 31 13:38:30 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

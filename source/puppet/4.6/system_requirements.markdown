@@ -66,7 +66,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-Puppet 4.5 has the following prerequisites:
+Puppet has the following prerequisites:
 
 ### Ruby
 

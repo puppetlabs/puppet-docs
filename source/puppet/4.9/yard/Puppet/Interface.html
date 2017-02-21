@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Interface
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../class_list.html"></iframe>
+      <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Interface
   
@@ -223,7 +221,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#%5B%5D-class_method" title="[] (class method)">.<strong>[]</strong>(name, version)  &#x21d2; Puppet::Interface </a>
+      <a href="#[]-class_method" title="[] (class method)">.<strong>[]</strong>(name, version)  &#x21d2; Puppet::Interface </a>
     
 
     
@@ -532,7 +530,7 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="Interface/FullDocs.html" title="Puppet::Interface::FullDocs (module)">FullDocs</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Interface/FullDocs.html#author%3D-instance_method" title="Puppet::Interface::FullDocs#author= (method)">#author=</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#authors-instance_method" title="Puppet::Interface::FullDocs#authors (method)">#authors</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#copyright-instance_method" title="Puppet::Interface::FullDocs#copyright (method)">#copyright</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#munge_copyright_year-instance_method" title="Puppet::Interface::FullDocs#munge_copyright_year (method)">#munge_copyright_year</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Interface/FullDocs.html#author=-instance_method" title="Puppet::Interface::FullDocs#author= (method)">#author=</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#authors-instance_method" title="Puppet::Interface::FullDocs#authors (method)">#authors</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#copyright-instance_method" title="Puppet::Interface::FullDocs#copyright (method)">#copyright</a></span>, <span class='object_link'><a href="Interface/FullDocs.html#munge_copyright_year-instance_method" title="Puppet::Interface::FullDocs#munge_copyright_year (method)">#munge_copyright_year</a></span></p>
 
   
   
@@ -603,18 +601,24 @@
 164
 165
 166
-167</pre>
+167
+168
+169
+170</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='const'>SemVer</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot create face </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> with invalid version number &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;!</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
-  <span class='ivar'>@name</span>    <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_underscorize'>underscorize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'>SemVer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
+  <span class='ivar'>@name</span>    <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_underscorize'>underscorize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+
+  <span class='comment'># SemVer is deprecated but in 4.x we must use it here (the attr_reader is public api). The
+</span>  <span class='comment'># extra boolean argument suppresses the deprecation warning.
+</span>  <span class='ivar'>@version</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../SemVer.html" title="SemVer (class)">SemVer</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
 
   <span class='comment'># The few bits of documentation we actually demand.  The default license
 </span>  <span class='comment'># is a favour to our end users; if you happen to get that in a core face
@@ -622,7 +626,7 @@
 </span>  <span class='ivar'>@authors</span>  <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='ivar'>@license</span>  <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>All Rights Reserved</span><span class='tstring_end'>&#39;</span></span>
 
-  <span class='ivar'>@loader</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Autoload</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet/face/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='ivar'>@loader</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Autoload</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='ivar'>@name</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>puppet/face/</span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_instance_eval'>instance_eval</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -853,12 +857,12 @@
       <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
     <span class='comment'># REVISIT (#18042) no sense in rechecking if version == :current -- josh
-</span>    <span class='kw'>if</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='symbol'>:current</span><span class='rbracket'>]</span>
-      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find version </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'> of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+</span>    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='symbol'>:current</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find version </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_version'>version</span><span class='embexpr_end'>}</span><span class='tstring_content'> of </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find Puppet Face </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find Puppet Face </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -897,13 +901,13 @@
       <pre class="lines">
 
 
-224
-225
-226
-227</pre>
+236
+237
+238
+239</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 224</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 236</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
@@ -1034,10 +1038,10 @@ conform to <a href="http://semver.org/" target="_parent" title="Semantic Version
       <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_define'>define</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_face'>face</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>then</span>
     <span class='id identifier rubyid_face'>face</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
-    <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_face'>face</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_face'>face</span><span class='rparen'>)</span>
     <span class='comment'># REVISIT: Shouldn&#39;t this be delayed until *after* we evaluate the
 </span>    <span class='comment'># current block, not done before? --daniel 2011-04-07
 </span>    <span class='id identifier rubyid_face'>face</span><span class='period'>.</span><span class='id identifier rubyid_load_actions'>load_actions</span>
@@ -1137,7 +1141,7 @@ version to get the most recent available version.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_face?'>face?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rparen'>)</span>
-  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
+  <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_version'>version</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1200,7 +1204,7 @@ version to get the most recent available version.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
-  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'>FaceCollection</span><span class='period'>.</span><span class='id identifier rubyid_register'>register</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1241,13 +1245,13 @@ version to get the most recent available version.</p>
       <pre class="lines">
 
 
-217
-218
-219
-220</pre>
+229
+230
+231
+232</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 217</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 229</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_meta_def'>meta_def</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
@@ -1286,27 +1290,27 @@ version to get the most recent available version.</p>
       <pre class="lines">
 
 
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
 208
 209
 210
 211
 212
-213</pre>
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 196</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 208</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___invoke_decorations'>__invoke_decorations</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_action'>action</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_args'>passed_args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_options'>passed_options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='lbracket'>[</span><span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_member?'>member?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='id identifier rubyid_fail'>fail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unknown decoration type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -1360,12 +1364,12 @@ version to get the most recent available version.</p>
       <pre class="lines">
 
 
-173
-174
-175</pre>
+176
+177
+178</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 173</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_actions'>load_actions</span>
   <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_loadall'>loadall</span>
@@ -1442,9 +1446,9 @@ options.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:38 2016 by
+  Generated on Tue Jan 31 13:38:22 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

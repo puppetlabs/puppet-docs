@@ -8,6 +8,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2016-9686 - Denial of Service in Puppet Communications Protocol Broker](https://puppet.com/security/cve/cve-2016-9686)
+
+   Resolved in Puppet Enterprise 2016.5.2 and Puppet Enterprise 2016.4.3
+
 - [CVE-2016-5715 - Arbitrary URL Redirection in Puppet Enterprise Console](https://puppet.com/security/cve/cve-2016-5715)
 
    Resolved in Puppet Enterprise 2016.4.0
@@ -269,6 +273,15 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in Puppet 0.25.2
 
 ## Third-party security announcements
+
+- [Oracle Java January 2017 Security Fixes](https://puppet.com/security/cve/oracle-java-jan-2017-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.5.2 and Puppet Enterprise 2016.4.3
+
+- [curl November 2016 Security Fixes](https://puppet.com/security/cve/curl-nov-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.5.2, Puppet Enterprise 2016.4.3, Puppet Agent 1.7.2, Puppet Agent 1.8.3, PE Client Tools 16.4.1, and PE Client Tools 16.5.3
+
 
 - [CVE-2016-6316: Rails (Action View) XSS Vulnerability](https://puppet.com/security/cve/cve-2016-6316)
 

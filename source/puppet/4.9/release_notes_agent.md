@@ -3,15 +3,18 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 4.8.0]: /puppet/4.8/reference/release_notes.html#puppet-480
-[Puppet 4.8.1]: /puppet/4.8/reference/release_notes.html#puppet-481
+[Puppet 4.9.0]: /puppet/4.9/release_notes.html#puppet-490
+[Puppet 4.9.2]: /puppet/4.9/release_notes.html#puppet-492
 
 
-[Facter 3.5.0]: /facter/3.5/release_notes.html#facter-350
+[Facter 3.6.0]: /facter/3.6/release_notes.html#facter-360
+[Facter 3.6.1]: /facter/3.6/release_notes.html#facter-361
 
-[Hiera 3.2.2]: /hiera/3.2/release_notes.html#hiera-322
 
-[MCollective 2.9.1]: /mcollective/releasenotes.html#2_9_1
+[Hiera 3.3.0]: /hiera/3.3/release_notes.html#hiera-330
+
+[MCollective 2.10.0]: /mcollective/releasenotes.html#2_10_0
+[MCollective 2.10.1]: /mcollective/releasenotes.html#2_10_1
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -32,16 +35,38 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.9 release notes](./release_notes.html).
 
-## Puppet agent 1.9.0
+## Puppet agent 1.9.1 
 
-Released January  , 2017.
+Released February 10, 2017.
 
 ### Component updates
 
+This release includes bug and regression fixes in [Puppet 4.9.2][], [Facter 3.6.1][], and [MCollective 2.10.1][].
 
-### New platforms
+## Puppet agent 1.9.0
 
-We now have `puppet-agent` packages available for the following platforms:
+Released February 1, 2017. 
 
-* Fedora 25
-* Ubuntu 16.10
+### Component updates
+
+This release includes updates to multiple components: [Puppet 4.9.0][], [Facter 3.6.0][], [Hiera 3.3.0][], [MCollective 2.10.0][], and [pxp-agent][] 1.4.0. Many of these components have new or enhanced features.
+
+#### pxp-agent 1.4.0 new features
+
+You can now configure `pxp-agent` to write an access log of messages received by the agent. See [https://github.com/puppetlabs/pxp-agent#pcp-access-logging][] for details. ([PCP-387](https://tickets.puppetlabs.com/browse/PCP-387))
+
+This release supports PCP version 2, an update that changes to a simpler text-based protocol that only supports immediate delivery (no message expiration) to a single target. It can be enabled by setting the `pcp-version` option to `2` and connecting it to a version of pcp-broker supporting PCP v2. ([PCP-647](https://tickets.puppetlabs.com/browse/PCP-647))
+
+### New platform
+
+We now publish `puppet-agent` packages for Fedora 25.
+
+### Platforms end of life
+
+As of this release of `puppet-agent`, we are no longer be providing packages for the following platforms:
+
+* Fedora 22
+* Mac OS X 10.9
+* Ubuntu 15.10 (Wily)
+* Ubuntu 10.04 (Lucid)
+* SLES 10
