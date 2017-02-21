@@ -173,6 +173,22 @@ if $trusted['extensions']['pp_image_name'] == 'storefront_production' {
 }
 ```
 
+And an example [hiera.yaml file](./hiera_config_yaml_5.html) using certificate extensions in a hierarchy:
+
+``` yaml
+---
+version: 5
+hierarchy:
+  - name: "Certname"
+    path: "nodes/%{trusted.certname}.yaml"
+  - name: "Original VM image name"
+    path: "images/%{trusted.extensions.pp_image_name}.yaml"
+  - name: "Machine role (custom certificate extension)"
+    path: "role/%{trusted.extensions.'1.3.6.1.4.1.34380.1.2.1'}.yaml"
+  - name: "Common data"
+    path: "common.yaml"
+```
+
 ### `$server_facts` variable
 
 The `$server_facts` variable provides a hash of server-side facts that cannot be overwritten by client side facts. This is important because it enables you to get trusted server facts that could otherwise be overwritten by client-side facts.

@@ -158,12 +158,12 @@
     * [Defined resource types]({{puppet}}/lang_defined_types.html)
     * [Expressions and operators]({{puppet}}/lang_expressions.html)
     * [Conditional statements and expressions]({{puppet}}/lang_conditional.html)
-    * [Functions]({{puppet}}/lang_functions.html)
+    * [Function calls]({{puppet}}/lang_functions.html)
     * [Node definitions]({{puppet}}/lang_node_definitions.html)
     * [Comments]({{puppet}}/lang_comments.html)
     * [Facts and built-in variables]({{puppet}}/lang_facts_and_builtin_vars.html)
     * [Reserved words and acceptable names]({{puppet}}/lang_reserved.html)
-    * [Writing functions in the Puppet language]({{puppet}}/lang_write_functions_in_puppet.html)
+    * [Writing functions (Puppet language)]({{puppet}}/lang_write_functions_in_puppet.html)
     * **Values and data types**
         * [About values and data types]({{puppet}}/lang_data.html)
         * [Strings]({{puppet}}/lang_data_string.html)
@@ -196,6 +196,46 @@
         * [Containment of resources]({{puppet}}/lang_containment.html)
         * [Scope]({{puppet}}/lang_scope.html)
         * [Namespaces and autoloading]({{puppet}}/lang_namespaces.html)
+* **Writing custom functions**
+    * [Introduction to writing functions]({{puppet}}/functions_basics.html)
+    * [Writing functions (Puppet language)]({{puppet}}/lang_write_functions_in_puppet.html)
+    * **Writing functions (modern Ruby API)**
+        * [Overview and examples]({{puppet}}/functions_ruby_overview.html)
+        * [Defining signatures]({{puppet}}/functions_ruby_signatures.html)
+        * [Special features in implementation methods]({{puppet}}/functions_ruby_implementation.html)
+        * [Documenting Ruby functions]({{puppet}}/functions_ruby_documenting.html)
+    * [Writing functions (legacy Ruby API --- avoid)]({{puppet}}/functions_legacy.html)
+* **Hiera: using configuration data**
+    * [What is Hiera?]({{puppet}}/hiera_intro.html)
+    * [What's the deal with Hiera 5?]({{puppet}}/hiera_5_intro.html)
+    * Quick start guide
+    * [How hierarchies work]({{puppet}}/hiera_hierarchy.html)
+    * [How the three config layers work]({{puppet}}/hiera_layers.html)
+    * **Updating older Hiera data for Hiera 5**
+        * todo
+    * **Configuring Hiera (the hiera.yaml file)**
+        * [hiera.yaml v5 syntax]({{puppet}}/hiera_config_yaml_5.html)
+        * [Interpolating variables and functions]({{puppet}}/hiera_interpolation.html)
+        * Configuring the built-in data backends
+        * [hiera.yaml v3 syntax (deprecated)]({{puppet}}/hiera_config_yaml_3.html)
+        * [hiera.yaml v4 syntax (deprecated)]({{puppet}}/hiera_config_yaml_4.html)
+    * **Looking up data**
+        * Merging data from multiple sources
+        * [Automatic class parameter lookup]({{puppet}}/hiera_automatic.html)
+        * Using the `lookup` function
+        * Using the `puppet lookup` command
+        * [Accessing hash and array elements (key.subkey notation)]({{puppet}}/hiera_subkey.html)
+        * Explaining data results
+    * **Creating and editing data**
+        * Writing YAML, JSON, and HOCON data files
+        * Writing encrypted YAML data files
+        * Setting merge behavior with `lookup_options`
+        * [Interpolating variables and functions]({{puppet}}/hiera_interpolation.html)
+    * **Writing new data backends**
+        * How backend functions work
+        * Implementing a `data_hash` function
+        * Implementing a `lookup_key` function
+        * Implementing a `data_dig` function
 * **Puppet lookup**
     * [Quick reference for Hiera users]({{puppet}}/lookup_quick.html)
     * [Quick intro to module data]({{puppet}}/lookup_quick_module.html)
