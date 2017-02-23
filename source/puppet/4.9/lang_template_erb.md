@@ -128,7 +128,7 @@ You can trim line breaks after comment tags by adding a hyphen to the closing ta
 
 ### Literal tag delimiters
 
-If you need the template's final output to contain a literal `<%` or `%>`, you can escape them as `<%%` or `%%>`.
+If you need the template's final output to contain a literal `<%` or `%>`, you can escape them as `<%%` or `%%>`. The first literal tag is taken, and the rest of the line is treated as a literal. This means that `<%% Test %%>` in an ERB template would turn out as `<% Test %%>` not `<% Test %>`.
 
 ## Accessing Puppet variables
 
