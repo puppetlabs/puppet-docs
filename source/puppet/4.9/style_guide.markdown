@@ -276,7 +276,8 @@ These quoting requirements do not apply to expressions that evaluate to strings.
 Hash rockets (`=>`) in a resource's attribute/value list may
 be aligned. The hash rockets should be placed one space ahead of the longest
 attribute name. Nested blocks must be indented by two spaces, and hash rockets within a nested block may be aligned (one space ahead of the longest attribute name).
- 
+
+Each attribute should be placed on a separate line, with the exception that very short or single purpose resource declarations may be declared on a single line. 
 
 **Good:**
 
@@ -298,6 +299,8 @@ myresource { 'test':
     'key2'        => 'value2',
   },
 }
+
+notify { 'warning': message => 'This is an example warning' }
 ```
 
 **Bad:**
@@ -306,6 +309,11 @@ myresource { 'test':
 exec { 'hambone':
 path  => '/usr/bin',
 cwd => '/tmp',
+}
+
+file { "/path/to/my-filename.txt":
+  ensure => file, mode => $mode, owner => $owner, group => $group,
+  source => 'puppet:///modules/my-module/productions/my-filename.txt'
 }
 ```
 
