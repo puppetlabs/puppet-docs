@@ -18,6 +18,33 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they 
 
 Also of interest: the [Puppet 4.8 release notes](/puppet/4.8/release_notes.html) and [Puppet 4.7 release notes](/puppet/4.7/release_notes.html).
 
+## Puppet 4.9.3
+
+Released February 27, 2017.
+
+This is a bug fix release in the Puppet 4.9 series.
+
+* [Fixed in Puppet 4.9.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.9.3%27)
+* [Introduced in Puppet 4.9.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.9.3%27)
+
+### Enhancements 
+
+Puppet now integrates eyaml by adding explain support to existing 'hiera.yaml' version 3 use of the `eyaml` backend, and allows eyaml to be used in 'hiera.yaml' version 5 format with an entry on the form `lookup_key: eyaml_lookup_key`. This functionality requires that the eyaml gem is installed separately as it is not bundled with Puppet. ([PUP-7205](https://tickets.puppetlabs.com/browse/PUP-7205))
+
+
+### Bug fixes
+
+* [PUP-7006](https://tickets.puppetlabs.com/browse/PUP-7006): The documentation for the `puppet lookup` CLI stated that it could lookup several keys, one after another when it in reality only did one (the first). Now it can lookup several values in sequence.
+
+* [PUP-7216](https://tickets.puppetlabs.com/browse/PUP-7216): A regression in calls to the hiera_xxx family of functions made them not honor default merge behavior defined in 'hiera.yaml'.
+
+* [PUP-7215](https://tickets.puppetlabs.com/browse/PUP-7215): A regression in Puppet 4.9.0 and Hiera 5 meant that  "Error: Could not run: Hiera type mismatch: expected Hash and got String" could be raised when using eyaml and other Hiera 3 backends using the oldest version of the backend API.
+
+* [PUP-7232](https://tickets.puppetlabs.com/browse/PUP-7232): Deprecation messages for Puppet's own internal use of deprecated SemVer version were annoying because users could do nothing to stop them from being issued. These messages are now surpressed.
+
+* [PUP-7235](https://tickets.puppetlabs.com/browse/PUP-7235): The new Hiera 5 feature supporting path globs in 'hiera.yaml' did not work as expected.
+
+
 ## Puppet 4.9.2
 
 Released February 10, 2017.
