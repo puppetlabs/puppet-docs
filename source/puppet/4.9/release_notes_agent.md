@@ -5,6 +5,7 @@ title: "Puppet agent release notes"
 
 [Puppet 4.9.0]: /puppet/4.9/release_notes.html#puppet-490
 [Puppet 4.9.2]: /puppet/4.9/release_notes.html#puppet-492
+[Puppet 4.9.3]: /puppet/4.9/release_notes.html#puppet-493
 
 
 [Facter 3.6.0]: /facter/3.6/release_notes.html#facter-360
@@ -34,6 +35,14 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.9 release notes](./release_notes.html).
+
+## Puppet agent 1.9.2
+
+Release February 27, 2017.
+
+### Component updates
+
+This release of Puppet agent only includes changes to the Puppet component, with a [Puppet 4.9.3][] bug fix release. All other components remain unchanged.
 
 ## Puppet agent 1.9.1 
 
