@@ -159,6 +159,7 @@
     * [Expressions and operators]({{puppet}}/lang_expressions.html)
     * [Conditional statements and expressions]({{puppet}}/lang_conditional.html)
     * [Function calls]({{puppet}}/lang_functions.html)
+    * [Docs for built-in functions]({{puppet}}/function.html)
     * [Node definitions]({{puppet}}/lang_node_definitions.html)
     * [Comments]({{puppet}}/lang_comments.html)
     * [Facts and built-in variables]({{puppet}}/lang_facts_and_builtin_vars.html)
@@ -211,8 +212,12 @@
     * Quick start guide
     * [How hierarchies work]({{puppet}}/hiera_hierarchy.html)
     * [How the three config layers work]({{puppet}}/hiera_layers.html)
-    * **Updating older Hiera data for Hiera 5**
-        * todo
+    * **Upgrading to Hiera 5**
+        * [Overview: Migrating existing Hiera configurations to Hiera 5]({{puppet}}/hiera_migrate.html)
+        * [Enable the environment layer]({{puppet}}/hiera_migrate_environments.html)
+        * [Convert a v3 hiera.yaml to v5]({{puppet}}/hiera_migrate_v3_yaml.html)
+        * [Convert an experimental (v4) hiera.yaml to v5]({{puppet}}/hiera_migrate_v4_yaml.html)
+        * [Update classic Hiera function calls]({{puppet}}/hiera_migrate_functions.html)
     * **Configuring Hiera (the hiera.yaml file)**
         * [hiera.yaml v5 syntax]({{puppet}}/hiera_config_yaml_5.html)
         * [Interpolating variables and functions]({{puppet}}/hiera_interpolation.html)
@@ -223,6 +228,7 @@
         * Merging data from multiple sources
         * [Automatic class parameter lookup]({{puppet}}/hiera_automatic.html)
         * Using the `lookup` function
+        * Using the deprecated `hiera` functions
         * Using the `puppet lookup` command
         * [Accessing hash and array elements (key.subkey notation)]({{puppet}}/hiera_subkey.html)
         * Explaining data results
