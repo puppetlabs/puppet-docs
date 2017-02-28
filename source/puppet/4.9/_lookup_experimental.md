@@ -1,1 +1,0 @@
-> **IMPORTANT:** These docs are outdated, and replacement pages are coming soon. Puppet lookup is now called Hiera 5, and it works differently from what's described on this page.

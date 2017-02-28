@@ -7,6 +7,7 @@ title: "Hiera: Migrating existing Hiera configurations to Hiera 5"
 [migrate_v3]: todo
 [migrate_v4]: todo
 [migrate_functions]: todo
+[migrate_modules]: ./hiera_migrate_modules.html
 [legacy_backend]: todo
 [backends]: todo
 [puppet.conf]: todo
@@ -30,6 +31,7 @@ Task | Benefit
 [Convert your global hiera.yaml file to the version 5 format.][migrate_v3] | You can use new Hiera 5 backends at the global layer.
 [Convert any experimental (version 4) hiera.yaml files to version 5.][migrate_v4] | Future-proof any environments or modules where you used the experimental version of Puppet lookup.
 [In Puppet code, replace `hiera()`/`hiera_array()`/etc. with `lookup()`.][migrate_functions] | Future-proof your Puppet code.
+[Use Hiera for default data in modules.][migrate_modules] | Simplify your modules with an elegant alternative to the "params.pp" pattern.
 
 Enabling the environment layer takes the most work, and yields the biggest benefits. Focus on that first, then do the rest at your own pace.
 

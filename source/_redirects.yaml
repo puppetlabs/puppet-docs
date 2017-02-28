@@ -17,6 +17,10 @@
   was: lookup_quick.html
   became: hiera_intro.html
   at_version: 4.9
+- in_doc: puppet
+  was: lookup_quick_module.html
+  became: hiera_migrate_modules.html
+  at_version: 4.9
 
 # Split install is removed from higgs. need to redirect that page to tex-based split install for everett; and onwards should also be backported to 2016.4 when 2016.4.3 is released
 - in_doc: pe
