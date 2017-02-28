@@ -73,7 +73,19 @@ We plan to fix this in 4.9.1 --- a v3 hiera.yaml will cause a warning, not an er
 
 #### Hiera 5
 
-Hiera 5 is built into Puppet 4.9, and uses the Hiera 3.3 codebase.
+Hiera 5 is a backwards-compatible evolution of Hiera, incorporating everything we learned from the experimental "Puppet lookup" feature. Its features include:
+
+* True environment and module data! Any environment or module can include its own hiera.yaml file and its own data sources.
+* A new, simplified custom backend system, so it's easier than ever to integrate custom data sources with Puppet.
+* 40% faster than classic Hiera.
+* Easier debugging than ever before, with detailed debug messages and the `puppet lookup --explain` flag.
+* A new HOCON-based data backend, to accompany the existing YAML and JSON backends.
+
+If you're already a Hiera user, see [Migrating existing data to Hiera 5](./hiera_migrate.html) to learn how to start using these new features.
+
+Hiera 5 is now a part of Puppet's core code, although it uses the Hiera 3.3 codebase for some backwards-compatibility features.
+
+Associated tickets:
 
 The Hiera 5 implementation is four times as fast as the previous version for both automatic parameter lookup and direct calls to Puppet lookup. It is about 40% faster than direct calls to a classic Hiera instance. There is no noticeable difference between a lookup in the global layer, and in the environment layer. ([PUP-7087](https://tickets.puppetlabs.com/browse/PUP-7087))
 
