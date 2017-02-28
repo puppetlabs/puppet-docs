@@ -12,6 +12,12 @@
   at_version: 2016.4
   forward_only: false # This is optional, and should usually be omitted. Set it to true (and disable redirects in the older versions) if you delete a page and redirect it to an EXISTING page instead of a new one.
 
+# puppet lookup is dead, long live hiera 5
+- in_doc: puppet
+  was: lookup_quick.html
+  became: hiera_intro.html
+  at_version: 4.9
+
 # Split install is removed from higgs. need to redirect that page to tex-based split install for everett; and onwards should also be backported to 2016.4 when 2016.4.3 is released
 - in_doc: pe
   was: install_pe_split.html
