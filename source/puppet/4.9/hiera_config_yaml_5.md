@@ -175,7 +175,7 @@ Example:
 {% raw %}
 ``` yaml
   - name: "Domain or network segment"
-    glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.network}}.yaml"
+    glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"
 ```
 {% endraw %}
 

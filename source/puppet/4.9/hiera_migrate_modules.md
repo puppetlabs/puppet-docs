@@ -5,7 +5,7 @@ title: "Hiera: Add Hiera data to an existing module"
 [hash merge operator]: ./lang_expressions.html#merging
 [class inheritance]: todo
 [conditional logic]: todo
-['family']: todo
+[module layer]: todo
 [custom backend system]: todo
 [data_hash]: todo
 [functions_puppet]: todo
@@ -135,7 +135,7 @@ class ntp (
 
 ## Module data with YAML data files
 
-If your module's default values follow a simple defaults-with-overrides pattern, you can also use the built-in backends and set your data with YAML files.
+You can also manage your module's default data with basic Hiera YAML files.
 
 Set up a hierarchy in your [module-layer hiera.yaml][module layer]:
 

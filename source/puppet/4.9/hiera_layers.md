@@ -1,5 +1,5 @@
 ---
-title: "Hiera: The three config layers"
+title: "Hiera: How the three config layers work"
 ---
 
 
