@@ -12,6 +12,7 @@ title: "Hiera: What is Hiera?"
 [v4]: ./hiera_config_yaml_4.html
 [custom_backend]: ./hiera_custom_backends.html
 [merging]: ./hiera_merging.html
+[layers]: ./hiera_layers.html
 
 ## What is Hiera?
 
@@ -48,19 +49,28 @@ Now, Hiera is fully integrated into Puppet.
 
 ### Hiera 5 has environment and module data
 
-The
+The biggest new feature in Hiera 5 is independent hierarchy configurations for each environment and module. This means:
+
+* Your main Hiera data was already in your environments, but now its configuration lives right alongside it. So making changes to the hierarchy is as safe and testable as any other change to your code or data.
+* Module authors can use the power of Hiera to set default values for their modules, and users can override those defaults without having to worry about how they're implemented.
+
+Read about [Hiera's system of three layers][layers] for more info.
+
+### Building custom Hiera 5 backends is easy
+
+We've totally overhauled the interface for building custom backends, so it's easy to integrate Hiera with almost any data source. See [How custom backends work][custom_backend] for more info.
 
 ### What happened to Hiera 4? To "Puppet lookup?"
 
 The experimental "Puppet lookup" feature (from Puppet 4.3 through 4.8) was effectively Hiera 4 --- it used a "version: 4" hiera.yaml file, and included rough drafts of many features we completed for Hiera 5.
 
-Hiera 5 is backwards compatible with Puppet lookup, and supports v4 hiera.yaml files.
+Hiera 5 is backwards compatible with Puppet lookup, and supports v4 hiera.yaml files. Hiera still uses the `lookup` function and `puppet lookup` command.
 
 ### Am I going to have to change all my data and config files?
 
 No.
 
-Your data probably won't need any changes. But if you want to take full advantage of Hiera 5's new features, you'll need to make some configuration edits. See [the migration guide][] for details.
+Your data probably won't need any changes, and Hiera 5 is compatible with your old configuration. But if you want to take full advantage of Hiera 5's new features, you'll need to make some configuration edits to enable them. See [the migration guide][] for details.
 
 ### I use a custom Hiera 3 backend. Can I use Hiera 5?
 
