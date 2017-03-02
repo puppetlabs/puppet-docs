@@ -1182,13 +1182,15 @@ Include comments for each element (classes, functions, defined types, parameters
 * Any additional information about valid values that is not clear from the data type. (For example, if the data type is [String], but the value must be a path.)
 * The default value, if any for that element.
 
+Multiline descriptions must be uniformly indented by at least one space.
+
 For example:
 
 ```puppet
-# @param config_epp Specifies a file to act as a EPP template for the config file. Valid 
-# options: a path (absolute, or relative to the module path). Example value: 
-# 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and**
-# the `config_template` param.
+# @param config_epp Specifies a file to act as a EPP template for the config file.
+#  Valid options: a path (absolute, or relative to the module path). Example value: 
+#  'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and**
+#  the `config_template` param.
 ```
 
 If you do not include Strings code comments, you should include a Reference section in your README with a complete list of all classes, types, providers, defined types, and parameters that the user can configure. Include a brief description, the valid options, and the default values (if any).

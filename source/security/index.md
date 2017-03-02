@@ -8,6 +8,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2017-2290 - Privilege Escalation in mcollective-puppet-agent](https://puppet.com/security/cve/cve-2017-2290)
+
+   Resolved in mcollective-puppet-agent 1.12.1
+
 - [CVE-2016-9686 - Denial of Service in Puppet Communications Protocol Broker](https://puppet.com/security/cve/cve-2016-9686)
 
    Resolved in Puppet Enterprise 2016.5.2 and Puppet Enterprise 2016.4.3
