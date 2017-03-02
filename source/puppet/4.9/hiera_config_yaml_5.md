@@ -29,7 +29,7 @@ v5     | All three data layers         | The main version of hiera.yaml, which s
 
 ## Location
 
-You will have several different hiera.yaml files --- Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances.
+There are several hiera.yaml files in a normal deployment --- Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances.
 
 The config file locations for each layer are as follows:
 
@@ -150,9 +150,9 @@ There are four options for specifying a file path. You can only use _one_ of the
 Key     | Data type | Expected value
 --------|-----------|---------------
 `path`  | String    | One file path.
-`paths` | Array     | Any number of file paths. This acts like a sub-hierarchy: if multiple files exist, Hiera will search all of them, in the order in which they're written.
-`glob`  | String    | One shell-like glob pattern, which might match any number of files. If multiple files are found, Hiera will search all of them in alphanumerical order.
-`globs` | Array     | Any number of shell-like glob patterns. If multiple files are found, Hiera will search all of them in alphanumerical order (ignoring the order of the globs).{% endcapture %}
+`paths` | Array     | Any number of file paths. This acts like a sub-hierarchy: if multiple files exist, Hiera searches all of them, in the order in which they're written.
+`glob`  | String    | One shell-like glob pattern, which might match any number of files. If multiple files are found, Hiera searches all of them in alphanumerical order.
+`globs` | Array     | Any number of shell-like glob patterns. If multiple files are found, Hiera searches all of them in alphanumerical order (ignoring the order of the globs).{% endcapture %}
 
 {{path_and_glob}}
 
@@ -202,7 +202,7 @@ Each legacy hierarchy level needs the following keys:
     In the global layer, you can optionally set the datadir to an absolute path.
 * `options` --- A hash, with any backend-specific options (other than `datadir`) required by your backend. In the v3 config, this would have been in a top-level key named after the backend.
 
-    You can use normal strings as keys; Hiera will automatically convert them to symbols for the backend.
+    You can use normal strings as keys; Hiera automatically converts them to symbols for the backend.
 
 The following example shows roughly equivalent v3 and v5 hiera.yaml files using legacy backends:
 

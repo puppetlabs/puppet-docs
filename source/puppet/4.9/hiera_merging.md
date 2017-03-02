@@ -248,7 +248,7 @@ For more details about syntax, see [Using the lookup function][lookup_function] 
 
 ## Configuring merge behavior in Hiera data
 
-In any Hiera data source (including [module data][module layer]), you can use the special `lookup_options` key to configure merge behavior. Hiera will use a key's configured merge behavior in any lookup that doesn't explicitly override it.
+In any Hiera data source (including [module data][module layer]), you can use the special `lookup_options` key to configure merge behavior. Hiera uses a key's configured merge behavior in any lookup that doesn't explicitly override it.
 
 For example:
 
@@ -308,14 +308,14 @@ To use a regular expression in `lookup_options`:
 * Begin the pattern with the start-of-line metacharacter (`^`, also called a carat).
     * If `^` isn't the first character, Hiera treats it as a literal key name instead of a regexp.
 * If this data source is in a module, follow `^` with the module's namespace --- its full name, plus the `::` namespace separator.
-    * For example, all regexp lookup options in the `ntp` module must start with `^ntp::` --- starting with anything else will cause an error.
+    * For example, all regexp lookup options in the `ntp` module must start with `^ntp::` --- starting with anything else results in an error.
 
 The merge behavior you set for that pattern applies to all lookup keys that match it.
 
 In cases where multiple lookup options could apply to the same key, Hiera resolves the conflict as follows:
 
 * If there's a literal (non-regexp) option available, it always wins.
-    * For example, if you've configured merge options for both `profile::server::users` and `'^profile::(.*)::users$'`, lookups for `profile::server::users`, will use the former.
+    * For example, if you've configured merge options for both `profile::server::users` and `'^profile::(.*)::users$'`, lookups for `profile::server::users` will use the former.
 * Otherwise, Hiera uses the **first** regular expression that matches the lookup key, using the order in which they're written.
 
-  > **Note:** `lookup_options` are assembled with a [hash merge][hash], which puts keys from lower-priority data sources **before** those from higher-priority sources. This means that if you want to override a module's regexp-configured merge behavior, you must use the **exact same** regexp string in your environment data, so that it _replaces_ the module's value. If you use a slightly different regexp that would match most of the same keys, it won't work because the lower-priority regexp will go first.
+  > **Note:** `lookup_options` are assembled with a [hash merge][hash], which puts keys from lower-priority data sources **before** those from higher-priority sources. This means that if you want to override a module's regexp-configured merge behavior, you must use the **exact same** regexp string in your environment data, so that it _replaces_ the module's value. If you use a slightly different regexp that would match most of the same keys, it won't work because the lower-priority regexp goes first.

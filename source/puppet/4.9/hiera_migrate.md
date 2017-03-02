@@ -27,7 +27,7 @@ Since Hiera 5 uses the same built-in data formats as Hiera 3, you don't need to 
 
 Task | Benefit
 -----|--------
-[Enable the environment layer, by giving each environment its own hiera.yaml file.][migrate_environment] | Future hierarchy changes will be cheap and testable. The legacy `hiera()`, `hiera_array()`, etc. functions will gain full Hiera 5 powers in any migrated environment.
+[Enable the environment layer, by giving each environment its own hiera.yaml file.][migrate_environment] | Future hierarchy changes are cheap and testable. The legacy `hiera()`, `hiera_array()`, etc. functions gain full Hiera 5 powers in any migrated environment.
 [Convert your global hiera.yaml file to the version 5 format.][migrate_v3] | You can use new Hiera 5 backends at the global layer.
 [Convert any experimental (version 4) hiera.yaml files to version 5.][migrate_v4] | Future-proof any environments or modules where you used the experimental version of Puppet lookup.
 [In Puppet code, replace `hiera()`/`hiera_array()`/etc. with `lookup()`.][migrate_functions] | Future-proof your Puppet code.

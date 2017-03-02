@@ -16,7 +16,7 @@ title: "Hiera: Enable the environment layer for existing Hiera data"
 
 Hiera 5's headline feature is [per-environment hierarchy configuration][layers]. Since most people already store data in environments, local hiera.yaml files are much more logical and convenient than a single global hierarchy.
 
-You can enable the environment layer gradually. In migrated environments, the [legacy `hiera` functions][legacy_functions] will seamlessly switch to Hiera 5 mode, so they can access environment and module data without requiring any code changes.
+You can enable the environment layer gradually. In migrated environments, the [legacy `hiera` functions][legacy_functions] seamlessly switch to Hiera 5 mode, so they can access environment and module data without requiring any code changes.
 
 > **Note:** Before migrating environment data to Hiera 5, read the [introduction to migrating Hiera configurations][migrate]. In particular, be aware that:
 >
@@ -36,9 +36,9 @@ This process has no particular time limit and shouldn't involve any downtime. On
 >
 > Since un-migrated environments rely on the global hierarchy, it can't change until they're all migrated.
 >
-> That's a problem for _migrated_ environments, because Hiera always checks the [global layer][]  before the [environment layer][]. So if both layers use the same datadir, the global layer will get there first; the environment layer might be enabled, but it won't get a chance to do anything. That's fine if the global and environment hierarchies are identical, but it will cause problems the first time you edit an environment's hierarchy. Effectively, you wouldn't get the benefits of per-environment configuration until you'd migrated _every_ environment.
+> That's a problem for _migrated_ environments, because Hiera always checks the [global layer][]  before the [environment layer][]. So if both layers use the same datadir, the global layer gets there first; the environment layer might be enabled, but it won't get a chance to do anything. That's fine if the global and environment hierarchies are identical, but it causes problems the first time you edit an environment's hierarchy. Effectively, you wouldn't get the benefits of per-environment configuration until you'd migrated _every_ environment.
 >
-> Moving the datadir avoids that problem --- since the global datadir no longer exists in a migrated environment, Hiera will skip those data sources and proceed to the environment hierarchy.
+> Moving the datadir avoids that problem --- since the global datadir no longer exists in a migrated environment, Hiera skips those data sources and proceeds to the environment hierarchy.
 
 
 ## Step 1: Check for illegal hierarchy overrides

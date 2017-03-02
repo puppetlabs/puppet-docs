@@ -25,7 +25,7 @@ The "params.pp" pattern is an elegant little hack, which takes advantage of Pupp
 
 * One class in your module does nothing but set variables for the other classes. By tradition, this class is called `<MODULE>::params` (thus the pattern's nickname), but there's no special behavior based on that name.
 
-    This class can use normal Puppet code to construct these values; usually, it will use [conditional logic][] based on the target operating system.
+    This class can use normal Puppet code to construct these values; usually, it uses [conditional logic][] based on the target operating system.
 * The rest of the classes in the module inherits from the params class (or from another class that inherits from it). In their parameter lists, you can use the params class's variables as default values.
 
 An example params class:
@@ -79,7 +79,7 @@ function ntp::params(
     'ntp::autoupdate'   => false,
       # Keys have to start with the module's namespace, which in this case is `ntp::`.
     'ntp::service_name' => 'ntpd',
-      # Use key names that will work with automatic class parameter lookup. This
+      # Use key names that work with automatic class parameter lookup. This
       # key corresponds to the `ntp` class's `$service_name` parameter.
   }
 
@@ -114,7 +114,7 @@ hierarchy:
   # We only need one hierarchy level, since one function provides all the data.
 ```
 
-Now Hiera will use your module's own backend for [automatic class parameter lookup][] --- if a user doesn't set their own value for a parameter (either in Puppet code or in their own Hiera data), Puppet will use the default value from the `ntp::params` function.
+Now Hiera can use your module's own backend for [automatic class parameter lookup][] --- if a user doesn't set their own value for a parameter (either in Puppet code or in their own Hiera data), the `ntp::params` function can provide a default value.
 
 With Hiera-based defaults, you can simplify your module's main classes:
 

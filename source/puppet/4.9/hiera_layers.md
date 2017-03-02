@@ -25,7 +25,7 @@ The three layers always go in this order:
 2. Environment
 3. Module
 
-That is: Hiera will search every data source in the global layer's hierarchy before checking _any_ source in the environment layer.
+That is: Hiera searches every data source in the global layer's hierarchy before checking _any_ source in the environment layer.
 
 ### Why are there three layers now?
 
@@ -75,7 +75,7 @@ Lookup key      | Relevant module hierarchy
 `jenkins::port` | `jenkins`
 `secure_server` | (none)
 
-Hiera will use the `ntp` module's hierarchy when looking up `ntp::servers`, but will use the `jenkins` module's hierarchy when looking up `jenkins::port`. Hiera will never check the `ntp` module for a key beginning with `jenkins::`.
+Hiera uses the `ntp` module's hierarchy when looking up `ntp::servers`, but uses the `jenkins` module's hierarchy when looking up `jenkins::port`. Hiera never checks the `ntp` module for a key beginning with `jenkins::`.
 
 For lookup keys that don't have a namespace (for example, `secure_server`), or which don't correspond to an existing module, Hiera skips the module layer.
 

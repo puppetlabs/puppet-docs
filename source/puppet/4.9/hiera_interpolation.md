@@ -44,7 +44,7 @@ Hiera uses interpolation in two places: [hierarchies][hierarchy] and data.
 
 > **Note:** Unlike Puppet's interpolation tokens, you can't interpolate an arbitrary expression. Hiera's not a programming language, so its interpolation features are more limited.
 
-Hiera can interpolate values of any of [Puppet's data types][data types], but will convert them to strings if necessary. For arrays and hashes, this won't fully match [Puppet's rules for interpolating non-string values][interpolation_puppet], but it will be close.
+Hiera can interpolate values of any of [Puppet's data types][data types], and converts them to strings if necessary. For arrays and hashes, this doesn't fully match [Puppet's rules for interpolating non-string values][interpolation_puppet], but it's close.
 
 In YAML files, **any string containing an interpolation token must be quoted.** (YAML syntax allows you to be lazy with quoting for simple strings, but strings with interpolation aren't simple.)
 
@@ -137,7 +137,7 @@ This can be very powerful in Hiera's data sources. By storing a fragment of data
 wordpress::database_server: "%{lookup('instances::mysql::public_hostname')}"
 ```
 
-The value referenced by the `lookup` function might contain another call to `lookup`, and that's fine; if you accidentally make an infinite loop, Hiera will detect it and fail instead of hanging indefinitely.
+The value referenced by the `lookup` function might contain another call to `lookup`, and that's fine; if you accidentally make an infinite loop, Hiera detects it and fails instead of hanging indefinitely.
 
 Note that the `lookup` and `hiera` interpolation functions aren't the same as the Puppet functions of the same names. Most notably, they only take a single argument.
 
