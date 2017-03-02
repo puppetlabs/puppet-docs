@@ -4,16 +4,16 @@ toc_levels: 234
 ---
 
 
-[automatic]: todo
+[automatic]: ./hiera_automatic.html
 [first]: #first
 [unique]: #unique
 [hash]: #hash
 [deep]: #deep
-[lookup_function]: todo
-[lookup_command]: todo
-[module layer]: todo
-[regexp]: todo
-[ruby_regexp]: todo
+[lookup_function]: ./hiera_use_function.html
+[lookup_command]: ./man/lookup.html
+[module layer]: ./hiera_layers.html#the-module-layer
+[regexp]: ./lang_data_regexp.html
+[ruby_regexp]: http://ruby-doc.org/core/Regexp.html
 
 
 

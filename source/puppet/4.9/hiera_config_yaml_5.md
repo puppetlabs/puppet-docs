@@ -2,23 +2,22 @@
 title: "Hiera: Config file syntax (hiera.yaml v5)"
 ---
 
-[hierarchy]: todo
-[layer]: todo
-[v4]: todo
-[v3]: todo
-[confdir]: todo
-[environment]: todo
-[module]: todo
-[yaml]: todo
-[json]: todo
-[hocon]: todo
-[inpage_defaults]: todo
-[interpolation]: todo
-[dir.glob]: todo
-[custom puppet function]: todo
-[how backend functions work]: todo
+[hierarchy]: ./hiera_hierarchy.html
+[layers]: ./hiera_layers.html
+[v4]: ./hiera_config_yaml_4.html
+[v3]: ./hiera_config_yaml_3.html
+[confdir]: ./dirs_confdir.html
+[environment]: ./environments.html
+[module]: ./modules_fundamentals.html
+[yaml]: http://www.yaml.org/YAML_for_ruby.html
+[json]: https://www.w3schools.com/js/js_json_syntax.asp
+[hocon]: https://github.com/typesafehub/config/blob/master/HOCON.md
+[interpolation]: ./hiera_interpolation.html
+[dir.glob]: ruby-doc.org/core/Dir.html#method-c-glob
+[custom puppet function]: ./functions_basics.html
+[backends]: ./hiera_custom_backends.html
 
-Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][] of data.
+Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][layers] of data.
 
 This version of Puppet supports three formats for hiera.yaml --- you can use any of them, although [v4][] and [v3][] are deprecated. This page is about version 5, the newest version.
 
@@ -73,6 +72,8 @@ These defaults are only used if the file is present and specifies `version: 5`. 
 
 ## The `defaults` key
 
+[inpage_defaults]: #the-defaults-key
+
 The `defaults` key can set default values for the backend and `datadir` keys, which lets you omit those keys in your hierarchy levels.
 
 The value of `defaults` must be a hash, which can have up to two keys:
@@ -86,7 +87,7 @@ The value of `defaults` must be a hash, which can have up to two keys:
 
     For the built-in backends (YAML, JSON, and HOCON), the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. If you want to set a custom backend as the default, you'll need to check that backend's documentation.
 
-    Whichever key you use, the value must be the name of the [custom Puppet function][] that implements the backend. For more details, see [How backend functions work][].
+    Whichever key you use, the value must be the name of the [custom Puppet function][] that implements the backend. For more details, see [How custom backends work][backends].
 
 ## The `hierarchy` key
 

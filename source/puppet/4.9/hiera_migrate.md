@@ -2,16 +2,16 @@
 title: "Hiera: Migrating existing Hiera configurations to Hiera 5"
 ---
 
-[layers]: todo
-[migrate_environment]: todo
-[migrate_v3]: todo
-[migrate_v4]: todo
-[migrate_functions]: todo
+[layers]: ./hiera_layers.html
+[migrate_environment]: ./hiera_migrate_environments.html
+[migrate_v3]: ./hiera_migrate_v3_yaml.html
+[migrate_v4]: ./hiera_migrate_v4_yaml.html
+[migrate_functions]: ./hiera_migrate_functions.html
 [migrate_modules]: ./hiera_migrate_modules.html
-[legacy_backend]: todo
-[backends]: todo
-[puppet.conf]: todo
-[automatic]: todo
+[legacy_backend]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-legacy-hiera-3-backends
+[backends]: ./hiera_custom_backends.html
+[puppet.conf]: ./config_file_main.html
+[automatic]: ./hiera_automatic.html
 
 If you're already a Hiera user, **you don't have to migrate anything yet.** Hiera 5 is fully backwards-compatible with Hiera 3, and we won't remove any legacy features until Puppet 6. You can even start using some Hiera 5 features (like module data) without migrating anything.
 

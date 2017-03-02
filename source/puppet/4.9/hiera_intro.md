@@ -3,15 +3,15 @@ title: "Hiera: What is Hiera?"
 ---
 
 
-[auto_lookup]: todo
-[facts]: todo
-[roles_and_profiles]: todo
-[the migration guide]: todo
-[hiera_functions]: todo
-[v3]: todo
-[v4]: todo
-[custom_backend]: todo
-[merging]: todo
+[auto_lookup]: ./hiera_automatic.html
+[facts]: ./lang_facts_and_builtin_vars.html
+[roles_and_profiles]: {{pe}}/r_n_p_intro.html
+[the migration guide]: ./hiera_migrate.html
+[hiera_functions]: ./hiera_use_hiera_functions.html
+[v3]: ./hiera_config_yaml_3.html
+[v4]: ./hiera_config_yaml_4.html
+[custom_backend]: ./hiera_custom_backends.html
+[merging]: ./hiera_merging.html
 
 ## What is Hiera?
 

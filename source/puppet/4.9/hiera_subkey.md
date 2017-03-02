@@ -2,12 +2,12 @@
 title: "Hiera: Accessing hash and array elements (key.subkey syntax)"
 ---
 
-[hashes]: todo
-[arrays]: todo
-[interpolation]: todo
-[lookup_function]: todo
-[lookup_command]: todo
-[interpolation_functions]: todo
+[hashes]: ./lang_data_hash.html
+[arrays]: ./lang_data_array.html
+[interpolation]: ./hiera_interpolation.html
+[lookup_function]: ./hiera_use_function.html
+[lookup_command]: ./hiera_use_cli.html
+[interpolation_functions]: ./hiera_interpolation.html#using-interpolation-functions
 [extensions]: ./ssl_attributes_extensions.html
 
 In Puppet and Hiera, you often need to work with structured data in [hashes][] and [arrays][].

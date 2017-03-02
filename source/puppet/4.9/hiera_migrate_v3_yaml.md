@@ -3,17 +3,17 @@ title: "Hiera: Convert a version 3 hiera.yaml to version 5"
 ---
 
 
-[v3]: todo
-[v4]: todo
-[v5]: todo
-[global layer]: todo
-[migrate]: todo
-[migrate_environment]: todo
-[merging]: todo
-[v5_builtin]: todo
-[v5_legacy]: todo
-[backends]: todo
-[v5_backend]: todo
+[v3]: ./hiera_config_yaml_3.html
+[v4]: ./hiera_config_yaml_4.html
+[v5]: ./hiera_config_yaml_5.html
+[global layer]: ./hiera_layers.html#the-global-layer
+[migrate]: ./hiera_migrate.html
+[migrate_environment]: ./hiera_migrate_environments.html
+[merging]: ./hiera_merging.html
+[v5_builtin]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends
+[v5_legacy]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-legacy-hiera-3-backends
+[backends]: ./hiera_custom_backends.html
+[v5_defaults]: ./hiera_config_yaml_5.html#the-defaults-key
 
 Hiera 5 supports three versions of the hiera.yaml file: [version 3][v3], [version 4][v4], and [version 5][v5]. If you've been using Hiera 3, your existing configuration is a [version 3][v3] hiera.yaml file at the [global layer][].
 
@@ -87,7 +87,7 @@ hierarchy:
 
 Most people use one backend for the majority of their data, and it's usually one of the file-based backends like YAML or JSON.
 
-If that's how you use Hiera, set a `defaults` key, with values for `datadir` and [one of the backend keys][v5_backend]:
+If that's how you use Hiera, [set a `defaults` key][v5_defaults], with values for `datadir` and one of the backend keys:
 
 ``` yaml
 defaults:

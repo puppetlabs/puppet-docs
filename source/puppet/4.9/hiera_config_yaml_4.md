@@ -2,13 +2,13 @@
 title: "Hiera: Legacy config file syntax (hiera.yaml v4)"
 ---
 
-[hierarchy]: todo
-[layer]: todo
-[v3]: todo
-[v5]: todo
+[hierarchy]: ./hiera_hierarchy.html
+[layers]: ./hiera_layers.html
+[v3]: ./hiera_config_yaml_3.html
+[v5]: ./hiera_config_yaml_5.html
 
 
-Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][] of data.
+Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][layers] of data.
 
 This version of Puppet supports three formats for hiera.yaml --- you can use any of them, although v4 and [v3][] are deprecated. This page is about version 4, a transitional format used in Hiera 5's experimental predecessor (Puppet lookup).
 
@@ -66,7 +66,7 @@ Each hierarchy level can contain the following keys:
 
 * `name` --- Required. An arbitrary human-readable name, used for debugging and for `puppet lookup --explain`.
 
-    This is also used as the default `path` if you don't specify any paths. (If the name interpolates variables, Puppet will interpolate when finding data files but leave it uninterpolated when reporting the level's name.)
+    This is also used as the default `path` if you don't specify any paths. (If the name interpolates variables, Hiera will interpolate when finding data files but leave it uninterpolated when reporting the level's name.)
 * `backend` --- Required. Which backend to use. Currently only `yaml` and `json` are supported.
 * `path` --- Optional; mutually exclusive with `paths`. The path to a data file. Can interpolate variables, to use different files depending on a node's facts.
 * `paths` --- Optional; mutually exclusive with `path`. An array of paths to data files, which can interpolate variables. This acts like multiple hierarchy levels, and is shorthand for writing consecutive levels that use the same backend and datadir.

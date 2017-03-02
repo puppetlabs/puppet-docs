@@ -3,9 +3,9 @@ title: "Hiera: Update classic Hiera function calls"
 toc: false
 ---
 
-[lookup_function]: todo
-[automatic]: todo
-[lookup_options]: todo
+[lookup_function]: ./hiera_use_function.html
+[automatic]: ./hiera_automatic.html
+[lookup_options]: ./hiera_merging.html
 
 The `hiera`, `hiera_array`, `hiera_hash`, and `hiera_include` functions are all deprecated, and will be removed in Puppet 6.
 

@@ -3,13 +3,14 @@ title: "Hiera: How the three config layers work"
 ---
 
 
-[hierarchy]: todo
-[confdir]: todo
-[v5]: todo
-[v3]: todo
-[environment]: todo
-[v4]: todo
-[module]: todo
+[hierarchy]: ./hiera_hierarchy.html
+[confdir]: ./dirs_confdir.html
+[v3]: ./hiera_config_yaml_3.html
+[v5]: ./hiera_config_yaml_5.html
+[environment]: ./environments.html
+[v4]: ./hiera_config_yaml_4.html
+[module]: ./modules_fundamentals.html
+[params.pp]: ./hiera_migrate_modules.html
 
 Previous versions (Hiera 3 and earlier) used a single, global hiera.yaml file to configure the [hierarchy][]. This version uses three.
 
@@ -62,7 +63,7 @@ Every [environment][] has its own hierarchy configuration, which applies to node
 * **Supported config formats:** [hiera.yaml v5][v5], [hiera.yaml v4][v4] (deprecated).
 * Only used for namespaced lookup keys (e.g. `ntp::servers`).
 
-This layer can set default values and merge behavior for a [module][]'s class parameters. Think of it as a convenient alternative to the params.pp pattern.
+This layer can set default values and merge behavior for a [module][]'s class parameters. Think of it as a convenient alternative to [the params.pp pattern][params.pp].
 
 The module layer comes last, so environment data set by a user gets to override default data set by a module author.
 

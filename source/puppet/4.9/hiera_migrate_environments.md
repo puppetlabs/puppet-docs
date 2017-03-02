@@ -3,16 +3,16 @@ title: "Hiera: Enable the environment layer for existing Hiera data"
 ---
 
 
-[layers]: todo
-[legacy_functions]: todo
-[migrate]: todo
-[environment]: todo
-[v5]: todo
-[global layer]: todo
-[environment layer]: todo
-[control repo]: todo
-[migrate_v3]: todo
-[custom backends]: todo
+[layers]: ./hiera_layers.html
+[legacy_functions]: ./hiera_use_hiera_functions.html
+[migrate]: ./hiera_migrate.html
+[environment]: ./environments.html
+[v5]: ./hiera_config_yaml_5.html
+[global layer]: ./hiera_layers.html#the-global-layer
+[environment layer]: ./hiera_layers.html#the-environment-layer
+[control repo]: {{pe}}/cmgmt_control_repo.html
+[migrate_v3]: ./hiera_migrate_v3_yaml.html
+[custom backends]: ./hiera_custom_backends.html
 
 Hiera 5's headline feature is [per-environment hierarchy configuration][layers]. Since most people already store data in environments, local hiera.yaml files are much more logical and convenient than a single global hierarchy.
 

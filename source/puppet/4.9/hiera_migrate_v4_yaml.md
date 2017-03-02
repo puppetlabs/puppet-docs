@@ -3,11 +3,11 @@ title: "Hiera: Convert an experimental (version 4) hiera.yaml to version 5"
 toc: false
 ---
 
+[v4]: ./hiera_config_yaml_4.html
+[v5]: ./hiera_config_yaml_5.html
 
-[v4]: todo
-[v5]: todo
-[v5_defaults]: todo
-[custom_hash]: todo
+[v5_defaults]: ./hiera_config_yaml_5.html#the-defaults-key
+[custom_hash]: ./hiera_custom_data_hash.html
 
 If you used the experimental version of Puppet lookup (Hiera 5's predecessor), you might have some [version 4 hiera.yaml files][v4] in your environments and modules. Hiera 5 can use these as-is, and they'll keep working until Puppet 6. But you'll need to convert them eventually, especially if you want to use any backends other than YAML or JSON.
 

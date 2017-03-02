@@ -3,13 +3,13 @@ title: "Hiera: Add Hiera data to an existing module"
 ---
 
 [hash merge operator]: ./lang_expressions.html#merging
-[class inheritance]: todo
-[conditional logic]: todo
-[module layer]: todo
-[custom backend system]: todo
-[data_hash]: todo
-[functions_puppet]: todo
-[automatic class parameter lookup]: todo
+[class inheritance]: ./lang_classes.html#inheritance
+[conditional logic]: ./lang_conditional.html
+[module layer]: ./hiera_layers.html#the-module-layer
+[custom backend system]: ./hiera_custom_backends.html
+[data_hash]: ./hiera_custom_data_dash.html
+[functions_puppet]: ./lang_write_functions_in_puppet.html
+[automatic class parameter lookup]: ./hiera_automatic.html
 
 
 Almost every module needs default values for its class parameters. For many years, the preferred way to do this has been the "params.pp" pattern, but Hiera 5 offers some other approaches that you might find more convenient.

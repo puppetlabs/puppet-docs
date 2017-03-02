@@ -4,19 +4,18 @@ title: "Hiera: Interpolating variables and other values"
 
 
 [interpolation_puppet]: ./lang_data_string.html#interpolation
-[variables]: todo
-[hierarchy]: todo
-[hiera.yaml]: todo
-[facts]: todo
-[inpage_functions]: todo
-[data types]: todo
-[subkey]: todo
-[facts_hash]: todo
-[trusted]: todo
-[server_facts]: todo
-[v3]: todo
-[v5]: todo
-[environment]: todo
+[variables]: ./lang_variables.html
+[hierarchy]: ./hiera_hierarchy.html
+[hiera.yaml]: ./hiera_config_yaml_5.html
+[facts]: ./lang_facts_and_builtin_vars.html
+[data types]: ./lang_data.html
+[subkey]: ./hiera_subkey.html
+[facts_hash]: ./lang_facts_and_builtin_vars.html#the-factsfactname-hash
+[trusted]: ./lang_facts_and_builtin_vars.html#trusted-facts
+[server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
+[v3]: ./hiera_config_yaml_3.html
+[v5]: ./hiera_config_yaml_5.html
+[environment]: ./environments.html
 
 In several places in Hiera, you can interpolate the value of a [variable][variables] or a secondary Hiera lookup into a string.
 
@@ -97,6 +96,8 @@ Puppet used to set three extra variables (`calling_module`, `calling_class`, and
 These variables were a workaround for the lack of a module data layer. Since there's a real module layer now, you should no longer need them.
 
 ## Using interpolation functions
+
+[inpage_functions]: #using-interpolation-functions
 
 Hiera's interpolation tokens support a few special functions, which can insert non-variable values.
 
