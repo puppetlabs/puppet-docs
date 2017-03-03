@@ -16,6 +16,7 @@ title: "Hiera: Config file syntax (hiera.yaml v5)"
 [dir.glob]: ruby-doc.org/core/Dir.html#method-c-glob
 [custom puppet function]: ./functions_basics.html
 [backends]: ./hiera_custom_backends.html
+[eyaml]: https://github.com/voxpupuli/hiera-eyaml
 
 Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][layers] of data.
 
@@ -120,7 +121,7 @@ YAML has several ways to express an array of hashes. You can do whatever works, 
 
 ### Configuring a hierarchy level (built-in backends)
 
-Hiera has three built-in backends: [YAML][], [JSON][], and [HOCON][]. All of these use files as data sources.
+Hiera has three standard built-in backends: [YAML][], [JSON][], and [HOCON][]. All of these use files as data sources.
 
 You can use any combination of these backends in a hierarchy, and can also combine them with custom backends. But if most of your data is in one file format, be lazy: [set default values for the `datadir` and `data_hash` keys.][inpage_defaults]
 
@@ -146,15 +147,12 @@ The only key that supports [variable interpolation][interpolation] is the file p
 
 There are four options for specifying a file path. You can only use _one_ of these keys in a given hierarchy level.
 
-{% capture path_and_glob %}
 Key     | Data type | Expected value
 --------|-----------|---------------
 `path`  | String    | One file path.
 `paths` | Array     | Any number of file paths. This acts like a sub-hierarchy: if multiple files exist, Hiera searches all of them, in the order in which they're written.
 `glob`  | String    | One shell-like glob pattern, which might match any number of files. If multiple files are found, Hiera searches all of them in alphanumerical order.
-`globs` | Array     | Any number of shell-like glob patterns. If multiple files are found, Hiera searches all of them in alphanumerical order (ignoring the order of the globs).{% endcapture %}
-
-{{path_and_glob}}
+`globs` | Array     | Any number of shell-like glob patterns. If multiple files are found, Hiera searches all of them in alphanumerical order (ignoring the order of the globs).
 
 **Explicit file extensions are required** --- use something like `common.yaml`, not just `common`. (This is a change from prior versions of hiera.yaml, which magically guessed file extensions.)
 
@@ -179,6 +177,49 @@ Example:
     glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"
 ```
 {% endraw %}
+
+### Configuring a hierarchy level (hiera-eyaml)
+
+Hiera 5 (Puppet 4.9.3 and later) includes a native interface for the [Hiera eyaml][eyaml] extension, which keeps data encrypted on disk but lets Puppet read it during catalog compilation.
+
+To learn how to create keys and edit encrypted files, see [the Hiera eyaml documentation][eyaml].
+
+Within hiera.yaml, the eyaml backend mostly resembles the standard built-in backends, with a few differences. (It uses `lookup_key` instead of `data_hash`, and requires an `options` key to locate decryption keys.)
+
+> **Important:** To use the eyaml backend, you must have the `hiera-eyaml` gem installed where Puppet can use it. You'll need to install it twice:
+>
+> * To enable eyaml with Puppet Server, use `sudo /opt/puppetlabs/bin/puppetserver gem install hiera-eyaml`.
+> * To enable eyaml on the command line and with `puppet apply`, use `sudo /opt/puppetlabs/puppet/bin/gem install hiera-eyaml`.
+
+Each eyaml hierarchy level needs the following keys:
+
+* `name` --- A name for this level, shown to humans in debug messages and `--explain` output.
+* `lookup_key` --- The backend to use. The value must be `eyaml_lookup_key`. (This replaces the `data_hash` key used by the standard backends.)
+* `path`, `paths`, `glob`, or `globs` (choose one) --- The data file(s) to use for this hierarchy level.
+
+    These paths are relative to the datadir, they support [interpolation][], and they require a file extension. (In this case, you'll usually use `.eyaml`.) They work the same way they do for the standard backends.
+* `datadir` --- The directory where data files are kept; can be omitted if you set a default. Works the same way it does for the standard backends.
+* `options` --- A hash of options specific to `hiera-eyaml`, mostly used to configure decryption. For the default encryption method, this hash must have the following keys:
+    * `pkcs7_private_key` --- The location of the PKCS7 private key to use.
+    * `pkcs7_public_key` ---  The location of the PKCS7 public key to use.
+
+    If you use an alternate encryption plugin, its docs should specify which options to set. You'll usually set an `encrypt_method` option, plus some plugin-specific options to replace the `pkcs7_` ones.
+
+    Note that you can use normal strings as keys; you don't need to use :symbols.
+
+The file path and the options both support [variable interpolation][interpolation].
+
+An example hierarchy level:
+
+``` yaml
+hierarchy:
+  - name: "Per-datacenter secret data (encrypted)"
+    lookup_key: eyaml_lookup_key
+    path: "secrets/%{facts.whereami}.eyaml"
+    options:
+      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+```
 
 ### Configuring a hierarchy level (legacy Hiera 3 backends)
 
