@@ -10,9 +10,11 @@ title: "Hiera: What is Hiera?"
 [hiera_functions]: ./hiera_use_hiera_functions.html
 [v3]: ./hiera_config_yaml_3.html
 [v4]: ./hiera_config_yaml_4.html
+[v5]: ./hiera_config_yaml_5.html
 [custom_backend]: ./hiera_custom_backends.html
 [merging]: ./hiera_merging.html
 [layers]: ./hiera_layers.html
+[module layer]: ./hiera_layers.html#the-module-layer
 
 ## What is Hiera?
 
@@ -89,3 +91,9 @@ The current list of deprecated Hiera features includes:
 * Custom backends written for Hiera ≤ 3. They should be rewritten for the [new, simpler custom backend system][custom_backend].
 * Setting a global hash merge behavior in hiera.yaml. (Merge behavior is now [configured per-key and per-lookup][merging].)
 * The `data_binding_terminus` setting. If you use a custom terminus, convert it to a [Hiera 5 custom backend][custom_backend].
+* The following special pseudo-variables:
+    * `calling_module`
+    * `calling_class`
+    * `calling_class_path`
+
+    Hiera 3 could use these as a hacky predecessor of module data, but anything you were doing with them is better accomplished with [the module layer][module layer]. You can continue using these in a [version 3 hiera.yaml file][v3], but you'll need to remove them once you update your global config to [version 5][v5].
