@@ -3,14 +3,13 @@ title: "Hiera: Using the lookup function"
 ---
 
 
-lookup
-------
-Uses the Puppet lookup system to retrieve a value for a given key. By default,
+
+The `lookup` function uses Hiera to retrieve a value for a given key. By default,
 this returns the first value found (and fails compilation if no values are
 available), but you can configure it to merge multiple values into one, fail
 gracefully, and more.
 
-When looking up a key, Puppet will search up to three tiers of data, in the
+When looking up a key, Hiera will search up to three tiers of data, in the
 following order:
 
 1. Hiera.
@@ -18,7 +17,7 @@ following order:
 3. The indicated module's data provider, if the key is of the form
    `<MODULE NAME>::<SOMETHING>`.
 
-#### Arguments
+## Arguments
 
 You must provide the name of a key to look up, and can optionally provide other
 arguments. You can combine these arguments in the following ways:
@@ -32,22 +31,22 @@ Arguments in `[square brackets]` are optional.
 The arguments accepted by `lookup` are as follows:
 
 1. `<NAME>` (string or array) --- The name of the key to look up.
-    * This can also be an array of keys. If Puppet doesn't find anything for the
+    * This can also be an array of keys. If Hiera doesn't find anything for the
     first key, it will try again with the subsequent ones, only resorting to a
     default value if none of them succeed.
 2. `<VALUE TYPE>` (data type) --- A
-[data type](https://docs.puppetlabs.com/puppet/latest/reference/lang_data_type.html)
+[data type](./lang_data_type.html)
 that must match the retrieved value; if not, the lookup (and catalog
 compilation) will fail. Defaults to `Data` (accepts any normal value).
 3. `<MERGE BEHAVIOR>` (string or hash; see **"Merge Behaviors"** below) ---
 Whether (and how) to combine multiple values. If present, this overrides any
-merge behavior specified in the data sources. Defaults to no value; Puppet will
+merge behavior specified in the data sources. Defaults to no value; Hiera will
 use merge behavior from the data sources if present, and will otherwise do a
 first-found lookup.
 4. `<DEFAULT VALUE>` (any normal value) --- If present, `lookup` returns this
 when it can't find a normal value. Default values are never merged with found
 values. Like a normal value, the default must match the value type. Defaults to
-no value; if Puppet can't find a normal value, the lookup (and compilation) will
+no value; if Hiera can't find a normal value, the lookup (and compilation) will
 fail.
 5. `<OPTIONS HASH>` (hash) --- Alternate way to set the arguments above, plus
 some less-common extra options. If you pass an options hash, you can't combine
@@ -59,7 +58,7 @@ following keys:
     * `'merge'` --- Same as `<MERGE BEHAVIOR>` (argument 3).
     * `'default_value'` --- Same as `<DEFAULT VALUE>` (argument 4).
     * `'default_values_hash'` (hash) --- A hash of lookup keys and default
-    values. If Puppet can't find a normal value, it will check this hash for the
+    values. If Hiera can't find a normal value, it will check this hash for the
     requested key before giving up. You can combine this with `default_value` or
     a lambda, which will be used if the key isn't present in this hash. Defaults
     to an empty hash.
@@ -73,10 +72,10 @@ This is yet another way to set a default value for the lookup; if no results are
 found, Puppet will pass the requested key to the lambda and use its result as
 the default value.
 
-#### Merge Behaviors
+## Merge Behaviors
 
-Puppet lookup uses a hierarchy of data sources, and a given key might have
-values in multiple sources. By default, Puppet returns the first value it finds,
+Hiera uses a hierarchy of data sources, and a given key might have
+values in multiple sources. By default, Hiera returns the first value it finds,
 but it can also continue searching and merge all the values together.
 
 > **Note:** Data sources can use the special `lookup_options` metadata key to
@@ -85,17 +84,17 @@ requested behavior unless you explicitly specify one.
 
 The valid merge behaviors are:
 
-* `'first'` --- Returns the first value found, with no merging. Puppet lookup's
+* `'first'` --- Returns the first value found, with no merging. Hiera's
 default behavior.
 * `'unique'` (called "array merge" in classic Hiera) --- Combines any number of
 arrays and scalar values to return a merged, flattened array with all duplicate
 values removed. The lookup will fail if any hash values are found.
 * `'hash'` --- Combines the keys and values of any number of hashes to return a
-merged hash. If the same key exists in multiple source hashes, Puppet will use
+merged hash. If the same key exists in multiple source hashes, Hiera will use
 the value from the highest-priority data source; it won't recursively merge the
 values.
 * `'deep'` --- Combines the keys and values of any number of hashes to return a
-merged hash. If the same key exists in multiple source hashes, Puppet will
+merged hash. If the same key exists in multiple source hashes, Hiera will
 recursively merge hash or array values (with duplicate values removed from
 arrays). For conflicting scalar values, the highest-priority value will win.
 * `{'strategy' => 'first|unique|hash'}` --- Same as the string versions of these
@@ -110,7 +109,7 @@ but can adjust the merge with additional options. The available options are:
     * `'merge_hash_arrays'` (boolean) --- Whether to merge hashes within arrays.
     Defaults to `false`.
 
-#### Examples
+## Examples
 
 Look up a key and return the first value found:
 
