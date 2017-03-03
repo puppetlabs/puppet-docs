@@ -86,7 +86,7 @@ We publish and test official [`puppet-agent`](/puppet/latest/reference/about_age
 
 ## Platforms without packages
 
-Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [System Requirements]({{pe}}/sys_req_os.html).
+Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
 
 ### Other Linux
 
@@ -110,19 +110,14 @@ Puppet has the following prerequisites:
 
 ### Ruby
 
-Use one of the following versions of MRI (standard) Ruby:
-
-* 2.1.x
-
-
 > **Note:** We currently only test and package with 2.1.x versions of Ruby, therefore we recommend you only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
 ### Mandatory libraries
 
 * [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
 * [Hiera]({{hiera}}/) 2.0.0 or later
-* The `json` gem (any modern version).
-* The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html).
+* The `json` gem (any modern version)
+* The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html)
 
 ### Optional libraries
 
