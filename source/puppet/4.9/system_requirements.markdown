@@ -63,29 +63,26 @@ We publish and test official [`puppet-agent`](/puppet/latest/reference/about_age
 
 We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Windows:
 
+* Windows Server 2016 
 * Windows Server 2012 R2
 * Windows Server 2008 R2
 * Windows 10 Enterprise
 
 We also publish, but do not automatically test `puppet-agent` packages for the following versions of Windows:
 
-* Windows Server 2016 
 * Windows Server 2012 
 * Windows Server 2008
 * Windows 8.1
 * Windows 7, 8, and 10
 * Windows Vista (**Note:** Service Pack 2 end of life date is April 11,2017)
 
-### OS X
+### macOS
 
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following OS X versions:
-
-* 10.11 El Capitan
-* 10.10 Yosemite
-
-We also publish, but do not automatically test `puppet-agent` packages for the following versions of macOS:
+We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following macOS versions:
 
 * 10.12 Sierra
+* 10.11 El Capitan
+* 10.10 Yosemite
 
 ## Platforms without packages
 
