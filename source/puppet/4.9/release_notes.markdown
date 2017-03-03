@@ -27,7 +27,7 @@ This is a bug fix release in the Puppet 4.9 series.
 * [Fixed in Puppet 4.9.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.9.3%27)
 * [Introduced in Puppet 4.9.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.9.3%27)
 
-### Enhancements 
+### Enhancements
 
 Puppet now integrates eyaml by adding explain support to existing 'hiera.yaml' version 3 use of the `eyaml` backend, and allows eyaml to be used in 'hiera.yaml' version 5 format with an entry on the form `lookup_key: eyaml_lookup_key`. This functionality requires that the eyaml gem is installed separately as it is not bundled with Puppet. ([PUP-7205](https://tickets.puppetlabs.com/browse/PUP-7205))
 
@@ -114,7 +114,7 @@ Hiera 5 is now a part of Puppet's core code, although it uses the Hiera 3.3 code
 
 Associated tickets:
 
-The Hiera 5 implementation is four times as fast as the previous version for both automatic parameter lookup and direct calls to Puppet lookup. It is about 40% faster than direct calls to a classic Hiera instance. There is no noticeable difference between a lookup in the global layer, and in the environment layer. ([PUP-7087](https://tickets.puppetlabs.com/browse/PUP-7087))
+The Hiera 5 implementation is four times as fast as the previous version for both automatic parameter lookup and direct calls to the `lookup` function. It is about 40% faster than direct calls to a classic Hiera instance. There is no noticeable difference between a lookup in the global layer, and in the environment layer. ([PUP-7087](https://tickets.puppetlabs.com/browse/PUP-7087))
 
 In Hiera 5, you can use 'hiera.yaml' to configure data lookups in modules and environments. We have also deprecated older hiera function uses and warn on conflicting configurations. (See [Hiera family functions](#Hiera-family-functions) below.) (PUP-6942)
 
@@ -124,11 +124,9 @@ Data in HOCON data format can now be used with 'hiera.yaml' versions 3, 4, or 5.
 
 Any changes to Hiera 5 configurations via interpolation of Puppet variables will be found for each lookup. ([PUP-6973](https://tickets.puppetlabs.com/browse/PUP-6973))
 
-#### Puppet lookup
-
 It is now possible to specify `lookup_options` using a regular expression for the keys the options apply to. The regular expression must start with a `^` to be recognized as a regular expression. ([PUP-6982](https://tickets.puppetlabs.com/browse/PUP-6982))
 
-It is now possible to have Puppet lookup produce values other than the restricted set of data types. For example, `Sensitive` type values can be returned directly. This is of value when a defined resource type or class has declared that it requires a `Sensitive` type. Earlier it was impossible to deliver such a value via data binding. To return such a value, it must be returned by a function, and it cannot be directly produced with a Hiera compatible YAML or JSON data file. ([PUP-6926](https://tickets.puppetlabs.com/browse/PUP-6926))
+It is now possible to have Hiera produce values other than the restricted set of data types. For example, `Sensitive` type values can be returned directly. This is of value when a defined resource type or class has declared that it requires a `Sensitive` type. Earlier it was impossible to deliver such a value via Hiera. To return such a value, it must be returned by a function, and it cannot be directly produced with a Hiera compatible YAML or JSON data file. ([PUP-6926](https://tickets.puppetlabs.com/browse/PUP-6926))
 
 #### CSR warnings from Puppet agent
 
@@ -162,12 +160,16 @@ These deprecations are effective as of Puppet 4.9.0. This means their related fe
 
 #### Experimental Puppet lookup features
 
-The use of the experimental lookup features has been deprecated in favor of the finished lookup support in Hiera 5. Switch to using the new 'hiera.yaml' (version 5) format and data providing functions, and then replace the version 4 format 'hiera.yaml' in environments and modules with the new format. The version 4 format will continue to work until the next major release where it will be removed. ([PUP-6514](https://tickets.puppetlabs.com/browse/PUP-6514))
+The use of the experimental lookup features has been deprecated in favor of the finished lookup support in Hiera 5. Switch to using the new 'hiera.yaml' (version 5) format and data providing functions, and then replace the version 4 format 'hiera.yaml' in environments and modules with the new format. The version 4 format will continue to work until the next major release where it will be removed.
+
+For more information, see [What's the deal with Hiera 5](./hiera_intro.html#whats-the-deal-with-hiera-5).
+
+([PUP-6514](https://tickets.puppetlabs.com/browse/PUP-6514))
 
 
 #### Hiera family functions
 
-As a result of [Puppet lookup](./lookup_quick.html) being the preferred way to manage data, the hiera_xxx family of functions now issue deprecation warnings in favor of `lookup()`. ([PUP-6538](https://tickets.puppetlabs.com/browse/PUP-6538))
+As a result of [the `lookup` function](./hiera_use_function.html) being the preferred way to manage data, [the hiera_xxx family](./hiera_use_hiera_functions.html) of functions now issue deprecation warnings in favor of `lookup()`. ([PUP-6538](https://tickets.puppetlabs.com/browse/PUP-6538))
 
 #### `data_binding_terminus` settings
 
