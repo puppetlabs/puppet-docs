@@ -18,9 +18,9 @@ title: "puppet-agent: What is it, and what's in it?"
 See the table above for details about which components shipped in which `puppet-agent` release, and the [package-specific release notes][release notes] for more information about packaging and installation fixes and features.
 
 
->**Note**:
+>**Note:**
 >
->* Hiera 5 is a new version of the experimental Puppet lookup feature. It ships with Puppet 4.9, and uses the classic Hiera 3.3 codebase.
+>* [Hiera 5](./hiera_intro.html) is a backwards-compatible evolution of Hiera, which is built into Puppet. To provide some backwards-compatible features, it uses the classic Hiera 3 codebase. This means "Hiera" is still shown as version 3.x in the table above, even though this Puppet version uses Hiera 5.
 >
 >* Puppet 4.9.1 does not appear on this table because it was a gem-only release and has not been packaged in `puppet-agent`.
 >

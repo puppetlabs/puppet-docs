@@ -10,6 +10,8 @@ title: "Writing data sources"
 [datadir]: ./configuring.html#datadir
 [variables]: ./variables.html
 
+{% partial ./_hiera_deprecation.md %}
+
 Hiera can use several different data backends, including two built-in backends and various optional backends. Each backend uses a different document format for its data sources.
 
 This page describes the built-in `yaml` and `json` backends, as well as the `puppet` backend included with Hiera's Puppet integration. For optional backends, see the backend's documentation.

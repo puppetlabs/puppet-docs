@@ -74,7 +74,12 @@ These three hashes have all the information that's most useful to Hiera. They al
 
 Technically, Hiera can also access any Puppet variables that are visible _in the scope in which the lookup occurs._ This includes local variables, and namespaced variables from classes (as long as the class in question has already been evaluated at the time the lookup occurs).
 
-But don't do that! It's hard to predict how local variables interact with Hiera, and using them tends to entangle your code and data in an unhealthy, hard-to-maintain way. There might be rare cases where it's necessary, but you're going to have a much better time if you limit yourself to the three protected variables listed above.
+But don't do that!
+
+* It's hard to predict how local variables interact with Hiera, and using them tends to entangle your code and data in an unhealthy, hard-to-maintain way.
+* If you use local variables in the [hierarchy][], it can make Hiera lookups significantly slower.
+
+You will have a much better time if you limit yourself to the three protected variables listed above.
 
 #### What about classic `::fact_name` facts?
 
@@ -129,15 +134,26 @@ There are five interpolation functions:
 
 [inpage_lookup]: #lookup--hiera
 
-The `lookup` interpolation function does a Hiera lookup, using its input as the lookup key. The result of the lookup must be a string; any other result causes an error. The `hiera` interpolation function is an alias for `lookup`.
+The `lookup` interpolation function looks up a key with Hiera and returns the resulting value. The result of the lookup must be a string; any other result causes an error. The `hiera` interpolation function is an alias for `lookup`.
 
-This can be very powerful in Hiera's data sources. By storing a fragment of data in one place and then using sub-lookups elsewhere, you can avoid repetition and make it easier to change your data.
+This can be useful in Hiera's data sources. If you need to use the same value for multiple keys, you can assign the literal value to one key, then call `lookup` to re-use the value elsewhere. This way, you can edit the value once to change it everywhere it's used.
+
+For example, say your WordPress profile needs a database server, but you're already configuring that hostname in data because the MySQL profile needs it. You could write something like:
 
 ``` yaml
-wordpress::database_server: "%{lookup('instances::mysql::public_hostname')}"
+# in location/pdx.yaml:
+profile::mysql::public_hostname: db-server-01.pdx.example.com
+
+# in location/bfs.yaml:
+profile::mysql::public_hostname: db-server-06.belfast.example.com
+
+# in common.yaml:
+profile::wordpress::database_server: "%{lookup('profile::mysql::public_hostname')}"
 ```
 
-The value referenced by the `lookup` function might contain another call to `lookup`, and that's fine; if you accidentally make an infinite loop, Hiera detects it and fails instead of hanging indefinitely.
+This way, the value of `profile::wordpress::database_server` is always the same as `profile::mysql::public_hostname`. And even though you wrote the WordPress parameter in the `common.yaml` data, it's still location-specific, since the value it references was set in your per-location data files.
+
+The value referenced by the `lookup` function can contain another call to `lookup`; if you accidentally make an infinite loop, Hiera detects it and fails instead of hanging indefinitely.
 
 Note that the `lookup` and `hiera` interpolation functions aren't the same as the Puppet functions of the same names. Most notably, they only take a single argument.
 

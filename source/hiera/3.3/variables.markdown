@@ -12,6 +12,8 @@ title: "Interpolation tokens, variables, and lookup functions"
 [hierarchy]: ./hierarchy.html
 [puppet_interpolation]: /puppet/latest/reference/lang_data_string.html#conversion-of-interpolated-values
 
+{% partial ./_hiera_deprecation.md %}
+
 When writing Hiera's [settings][config] and [data][], you can instruct it to look up values at run-time and insert them into strings. This lets you make dynamic data sources in the [hierarchy][], and avoid repeating yourself when writing data.
 
 

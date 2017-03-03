@@ -7,6 +7,7 @@ title: "Hiera: Convert a version 3 hiera.yaml to version 5"
 [v4]: ./hiera_config_yaml_4.html
 [v5]: ./hiera_config_yaml_5.html
 [global layer]: ./hiera_layers.html#the-global-layer
+[module layer]: ./hiera_layers.html#the-module-layer
 [migrate]: ./hiera_migrate.html
 [migrate_environment]: ./hiera_migrate_environments.html
 [merging]: ./hiera_merging.html
@@ -120,6 +121,18 @@ In our example above, we had the following hierarchy:
 So we'll only need one Mongo hierarchy level, but we still want all five levels in YAML. This means we'll be consulting _both_ backends for per-node data. After thinking for a bit, we decided that we want the YAML version of per-node data to be authoritative, so we'll put it before the Mongo version.
 
 When you translate your hierarchy, you'll have to make the same kinds of investigations and decisions.
+
+### Remove hierarchy levels with `calling_module` and friends
+
+Hiera 3 could use three special pseudo-variables (which weren't available in Puppet code) in its hierarchy:
+
+* `calling_module`
+* `calling_class`
+* `calling_class_path`
+
+Hiera.yaml version 5 doesn't support these, so you must drop any hierarchy levels that interpolate them.
+
+These variables were added to support a hacky predecessor of module data; anything you were doing with them is better accomplished with [the module layer][module layer].
 
 ### Translating built-in backends
 

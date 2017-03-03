@@ -4,6 +4,8 @@ title: "Writing custom backends"
 ---
 
 
+{% partial ./_hiera_deprecation.md %}
+
 Custom Hiera backends must be written in Ruby, must conform to certain API requirements, and must be available in Ruby's load path; when using Hiera with Puppet, you can load backends from the `lib` directory of Puppet modules. Backends that retrieve data from multiple files on disk (similar to the default `yaml` and `json` backends) can take advantage of [extra helper methods](#available-helper-methods) provided by the `Backend` Ruby module.
 
 ## Backend API versions
