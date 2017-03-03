@@ -7,6 +7,7 @@ title: "Hiera 3.3: Release Notes"
 [Puppet agent 1.9.0]: /puppet/latest/release_notes_agent.html#puppet-agent-190
 [Puppet 4.9 release notes]: /puppet/4.9/release_notes.html#puppet-490
 
+{% partial ./_hiera_deprecation.md %}
 
 ## Hiera 3.3
 

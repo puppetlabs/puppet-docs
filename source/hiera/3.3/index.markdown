@@ -15,6 +15,8 @@ layout: default
 [windows]: /puppet/latest/reference/install_windows.html
 [os x]: /puppet/latest/reference/install_osx.html
 
+{% partial ./_hiera_deprecation.md %}
+
 Hiera is a key/value lookup tool for configuration data, built to **make [Puppet][] better** and let you **set node-specific data without repeating yourself.** See ["Why Hiera?" below](#why-hiera) for more information, or get started using it right away:
 
 ## Getting started with Hiera

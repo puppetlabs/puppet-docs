@@ -7,6 +7,8 @@ title: "Command line usage"
 [hash_lookup]: ./lookup_types.html#hash-merge
 [array_lookup]: ./lookup_types.html#array-merge
 
+{% partial ./_hiera_deprecation.md %}
+
 Hiera provides a command line tool that's useful for verifying that your hierarchy is constructed correctly and that your data sources are returning the values you expect. You'll typically run the Hiera command line tool on a Puppet master, making up the facts agents would normally provide the Puppet master using a variety of [fact sources](#fact-sources).
 
 > **Note:** Sometimes it's more convenient to use `puppet apply -e "notice(hiera('<KEY>'))"` instead. Running a tiny manifest like this will make all of Puppet's facts available for interpolation, and you can use external facts to override any fact values you need.
