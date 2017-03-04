@@ -11,7 +11,7 @@
     - sys_req_sysconfig.html
   at_version: 2016.4
 
-# I've removed the LEI upgrade page and instead have included optional steps for upgrading compile masters and activemq hubs/spokes in the standard split uupgrade docs. 
+# I've removed the LEI upgrade page and instead have included optional steps for upgrading compile masters and activemq hubs/spokes in the standard split uupgrade docs.
 - in_doc: pe
   was: install_lei_upgrade.html
   became: upgrade_split.html
@@ -148,4 +148,10 @@
 - in_doc: pe
   was: puppet_server_config_files.html
   became: config_puppetserver.html
+  at_version: 2017.1
+
+# Move overview_about_pe.html into index.html in Flanders
+- in_doc: pe
+  was: overview_about_pe.html
+  became: index.html
   at_version: 2017.1
