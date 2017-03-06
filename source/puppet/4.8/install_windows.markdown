@@ -17,17 +17,9 @@ canonical: "/puppet/latest/reference/install_windows.html"
 
 ## Make sure you're ready
 
-Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
+Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install]. Also make sure the version of Windows you're using is listed in the [system requirements](./system_requirements#windows).
 
 > **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
-
-## Review supported versions
-
-{% include pup43_platforms_windows.markdown %}
-
-> **Deprecation Note:** Puppet 4.2 deprecated Windows Server 2003 and 2003 R2. The Windows installation packages for `puppet-agent` 1.4.0 and above, which contain Puppet won't install on those versions of Windows Server.
-
-To install on other operating systems, see the pages linked in the navigation sidebar.
 
 ## Download the Windows `puppet-agent` package
 
