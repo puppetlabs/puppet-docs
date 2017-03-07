@@ -15,6 +15,7 @@ title: "Hiera: Convert a version 3 hiera.yaml to version 5"
 [v5_legacy]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-legacy-hiera-3-backends
 [backends]: ./hiera_custom_backends.html
 [v5_defaults]: ./hiera_config_yaml_5.html#the-defaults-key
+[eyaml_v5]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml
 
 Hiera 5 supports three versions of the hiera.yaml file: [version 3][v3], [version 4][v4], and [version 5][v5]. If you've been using Hiera 3, your existing configuration is a [version 3][v3] hiera.yaml file at the [global layer][].
 
@@ -32,6 +33,7 @@ To illustrate the conversion process, we'll use this example hiera.yaml (version
 ``` yaml
 :backends:
   - mongodb
+  - eyaml
   - yaml
 :yaml:
   :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
@@ -95,6 +97,14 @@ defaults:
   datadir: data
   data_hash: yaml_data
 ```
+
+Remember that the names of the backends have changed for Hiera 5, and the `backend` setting itself has been split into three settings:
+
+Hiera 3 backend | Hiera 5 backend setting
+----------------|------------------------
+`yaml`          | `data_hash: yaml_data`
+`json`          | `data_hash: json_data`
+`eyaml`         | `lookup_key: eyaml_lookup_key`
 
 ## Translate the hierarchy
 
@@ -165,6 +175,25 @@ hierarchy:
       - "common.yaml"
 ```
 
+### Translating hiera-eyaml
+
+The hiera-eyaml backend works mostly the same as the other built-in backends. The only differences are:
+
+* The `hiera-eyaml` gem has to be installed, and you need a keypair.
+* There's a different backend setting. Instead of `data_hash: yaml`, use `lookup_key: eyaml_lookup_key`.
+* Each hierarchy level needs an `options` key with paths to the public/private keys. You can't set a global default for this.
+
+``` yaml
+  - name: "Per-group secrets"
+    path: "groups/%{facts.group}.eyaml"
+    lookup_key: eyaml_lookup_key
+    options:
+      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+```
+
+For more info, see the [eyaml usage instructions in the hiera.yaml (v5) syntax reference][eyaml_v5].
+
 ### Translating custom Hiera 3 backends
 
 First, check to see if the backend's author has published a Hiera 5 update for it. If so, use that; see its documentation for details on how to configure hierarchy levels for it.
@@ -193,6 +222,13 @@ hierarchy:
         dbname: hdata
         collection: config
         host: localhost
+
+  - name: "Per-group secrets"
+    path: "groups/%{facts.group}.eyaml"
+    lookup_key: eyaml_lookup_key
+    options:
+      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
 
   - name: "Other YAML hierarchy levels"
     paths: # Can specify an array of paths instead of a single one.

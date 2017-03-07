@@ -12,6 +12,7 @@ title: "Hiera: Migrating existing Hiera configurations to Hiera 5"
 [backends]: ./hiera_custom_backends.html
 [puppet.conf]: ./config_file_main.html
 [automatic]: ./hiera_automatic.html
+[eyaml_v5]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml
 
 If you're already a Hiera user, **you don't have to migrate anything yet.** Hiera 5 is fully backwards-compatible with Hiera 3, and we won't remove any legacy features until Puppet 6. You can even start using some Hiera 5 features (like module data) without migrating anything.
 
@@ -40,11 +41,11 @@ Enabling the environment layer takes the most work, and yields the biggest benef
 
 Probably! But there are a few situations where you might want to delay upgrading.
 
-### `hiera-eyaml` users: maybe wait for Puppet 5
+### UPDATED: hiera-eyaml users: go for it
 
-Hiera 5 works with the existing `hiera-eyaml` backend --- you can [use it as a legacy backend][legacy_backend] in the global hierarchy. However, Puppet 5.0 will ship with a **built-in** backend for encrypted YAML files, fully compatible with data from the Hiera 3 backend. (We completed work on it, but not in time for Puppet 4.9.)
+In Puppet 4.9.3, we added a built-in hiera-eyaml backend for Hiera 5. (It still requires that the `hiera-eyaml` gem be installed.) See the [usage instructions in the hiera.yaml (v5) syntax reference][eyaml_v5].
 
-You can migrate the non-encrypted parts of your hierarchy now, and migrate the encrypted parts once Puppet 5 comes out. Or you can wait, and migrate everything at once. Your call.
+This means you can move your existing encrypted YAML data [into the environment layer][migrate_environment] at the same time you move your other data.
 
 ### Custom backend users: maybe wait for updated backends
 

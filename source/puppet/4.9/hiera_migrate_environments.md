@@ -13,15 +13,15 @@ title: "Hiera: Enable the environment layer for existing Hiera data"
 [control repo]: {{pe}}/cmgmt_control_repo.html
 [migrate_v3]: ./hiera_migrate_v3_yaml.html
 [custom backends]: ./hiera_custom_backends.html
+[eyaml_v5]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml
 
 Hiera 5's headline feature is [per-environment hierarchy configuration][layers]. Since most people already store data in environments, local hiera.yaml files are much more logical and convenient than a single global hierarchy.
 
 You can enable the environment layer gradually. In migrated environments, the [legacy `hiera` functions][legacy_functions] seamlessly switch to Hiera 5 mode, so they can access environment and module data without requiring any code changes.
 
-> **Note:** Before migrating environment data to Hiera 5, read the [introduction to migrating Hiera configurations][migrate]. In particular, be aware that:
+> **Note:** Before migrating environment data to Hiera 5, read the [introduction to migrating Hiera configurations][migrate]. In particular, be aware that if you rely on custom Hiera 3 backends, you should upgrade them for Hiera 5 or prepare for some extra work during migration.
 >
-> * If you rely on custom Hiera 3 backends, upgrade them for Hiera 5 or prepare for some extra work.
-> * If your only custom backend is hiera-eyaml, there's a native Hiera 5 version coming in Puppet 5. You might want to wait.
+> If your only custom backend is hiera-eyaml, you're good to go --- Puppet 4.9.3 and higher include a Hiera 5 eyaml backend. See the [usage instructions in the hiera.yaml (v5) syntax reference][eyaml_v5].
 
 ## Summary
 
