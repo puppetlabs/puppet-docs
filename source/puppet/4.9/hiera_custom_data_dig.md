@@ -2,10 +2,10 @@
 title: "Hiera: Implementing a data_dig backend"
 ---
 
-[lookup_key]: todo
-[subkey]: todo
-[lookup_options]: todo
-[interpolate]: todo
+[lookup_key]: ./hiera_custom_lookup_key.html
+[subkey]: ./hiera_subkey.html
+[lookup_options]: ./hiera_merging.html#configuring-merge-behavior-in-hiera-data
+[interpolate]: ./hiera_interpolation.html
 
 > **Note:** This page goes directly into the details of implementing one type of backend. For an intro to the custom backends system, see [How custom backends work](./hiera_custom_backends.html).
 

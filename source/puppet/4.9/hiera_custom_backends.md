@@ -3,12 +3,12 @@ title: "Hiera: How custom backends work"
 ---
 
 
-[custom_functions]: todo
-[ruby_functions]: todo
-[puppet_functions]: todo
-[hash]: todo
-[key]: todo
-[dig]: todo
+[custom_functions]: ./functions_basics.html
+[ruby_functions]: ./functions_ruby_overview.html
+[puppet_functions]: ./lang_write_functions_in_puppet.html
+[hash]: ./hiera_custom_data_hash.html
+[key]: ./hiera_custom_lookup_key.html
+[dig]: ./hiera_custom_data_dig.html
 
 You can extend Hiera to look up values in almost any kind of data store --- for example, a PostgreSQL database table, a custom web app, or a new kind of structured data file.
 

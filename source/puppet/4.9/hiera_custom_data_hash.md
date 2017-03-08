@@ -4,14 +4,14 @@ title: "Hiera: Implementing a data_hash backend"
 
 [struct]: ./lang_data_abstract.html#struct
 [lookup_options]: ./hiera_merging.html#configuring-merge-behavior-in-hiera-data
-[interpolate]: todo
-[hiera.yaml]: todo
-[ruby functions]: todo
-[puppet language functions]: todo
-[chained_call]: todo
-[yaml_data]: todo
-[json_data]: todo
-[hocon_data]: todo
+[interpolate]: ./hiera_interpolation.html
+[hiera.yaml]: ./hiera_config_yaml_5.html
+[ruby functions]: ./functions_ruby_overview.html
+[puppet language functions]: ./lang_write_functions_in_puppet.html
+[chained_call]: ./lang_functions.html#chained-function-calls
+[yaml_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/yaml_data.rb
+[json_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/json_data.rb
+[hocon_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/hocon_data.rb
 
 > **Note:** This page goes directly into the details of implementing one type of backend. For an intro to the custom backends system, see [How custom backends work](./hiera_custom_backends.html).
 
