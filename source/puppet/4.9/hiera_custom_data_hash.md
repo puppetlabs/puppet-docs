@@ -61,26 +61,22 @@ Variant[
 
 ### The options hash
 
-Hierarchy levels are configured in [hiera.yaml][]. When calling a backend function, Hiera trims this configuration a bit and passes it as a hash.
+Hierarchy levels are configured in [hiera.yaml][]. When calling a backend function, Hiera passes a modified version of that configuration as a hash.
 
 The options hash contains the following keys:
 
-* `path` --- The absolute path to a file on disk. A backend function only needs to deal with a single file at a time.
-
-    This key is only included if the user set one of the `path`, `paths`, `glob`, or `globs` settings. Hiera locates files before calling the function, and calls it at least once for each file that exists.
-* `uri` --- A URI that your function can use to locate a data source.
-
-    This key is only included if the user set either the `uri` or `uris` setting. Note that the URI settings are mutually exclusive with the file path settings. Unlike file paths, Hiera doesn't verify URIs before passing them.
+* `path` --- The absolute path to a file on disk. Only present if the user set one of the `path`, `paths`, `glob`, or `globs` settings. Hiera ensures the file exists before passing it to the function.
+* `uri` --- A URI that your function can use to locate a data source. Only present if the user set `uri` or `uris`. Hiera doesn't verify the URI before passing it to the function.
 * Every key from the hierarchy level's `options` setting. In your documentation, make sure to list any options your backend requires or accepts. Note that the `path` and `uri` keys are reserved.
 
-So a hierarchy level in hiera.yaml like this...
+For example: this hierarchy level in hiera.yaml...
 
 ``` yaml
   - name: "Secret data: per-node, per-datacenter, common"
     lookup_key: eyaml_lookup_key # eyaml backend
     datadir: data
     paths:
-      - "secrets/nodes/%{trusted.certname}.eyaml"  # Include explicit file extension
+      - "secrets/nodes/%{trusted.certname}.eyaml"
       - "secrets/location/%{facts.whereami}.eyaml"
       - "common.eyaml"
     options:
@@ -88,7 +84,7 @@ So a hierarchy level in hiera.yaml like this...
       pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
 ```
 
-...would result in several different options hashes, depending on the current node's facts, whether the files exist, etc., but they would all resemble the following:
+...would result in several different options hashes (depending on the current node's facts, whether the files exist, etc.), but they would all resemble the following:
 
 ``` ruby
 {
@@ -111,13 +107,13 @@ However, a given hierarchy level can refer to multiple data sources with the `pa
 * If the `uri(s)` settings are used, Hiera calls the function once per URI.
 * If none of those settings are used, Hiera calls the function once.
 
-Hiera can call a function again for a given data source, if the inputs have changed --- for example, if hiera.yaml interpolates a local variable in a file path, Hiera would have to call the function again for scopes where that variable has a different value. (This has a significant performance impact, and is why we tell users to only interpolate members of `facts`, `trusted`, and `server_facts`.)
+Hiera might call a function again for a given data source, if the inputs change --- for example, if hiera.yaml interpolates a local variable in a file path, Hiera would have to call the function again for scopes where that variable has a different value. (This has a significant performance impact, and is why we tell users to only interpolate `facts`, `trusted`, and `server_facts` in the hierarchy.)
 
 ## The `Puppet::LookupContext` object
 
 To support caching and other needs, Hiera provides backends a special `Puppet::LookupContext` object, which has several methods you can call for various effects.
 
-* In [Ruby functions][], this is a normal Ruby object of class `Puppet::LookupContext`, and you can call methods with standard Ruby syntax.
+* In [Ruby functions][], this is a normal Ruby object of class `Puppet::LookupContext`, and you can call methods with standard Ruby syntax (like `context.not_found`).
 * In [Puppet language functions][], the context object appears as a special data type (Object) that has methods attached. Right now, there isn't anything else in the Puppet language that acts like this.
 
     You can call its methods using Puppet's [chained function call syntax][chained_call] with the method name instead of a normal function --- for example, `$context.not_found`. For methods that take a block, use Puppet's lambda syntax (parameters outside block) instead of Ruby's block syntax (parameters inside block).
@@ -144,7 +140,7 @@ Tells Hiera to move on to the next data source. Call this method when your funct
 
 For `data_hash` backends, use this when the requested data source doesn't exist. (If it exists and is empty, return an empty hash.) Missing data sources aren't an issue when using `path(s)`/`glob(s)`, but are important for backends that locate their own data sources.
 
-For `lookup_key` and `data_dig` backends, use this when a requested key isn't present in the data source (or the data source doesn't exist. Don't return `undef`/`nil` for missing keys, since that's a legal value that can be set in data.
+For `lookup_key` and `data_dig` backends, use this when a requested key isn't present in the data source or the data source doesn't exist. Don't return `undef`/`nil` for missing keys, since that's a legal value that can be set in data.
 
 ### `explain() || { 'message' }`
 
@@ -209,17 +205,19 @@ Returns everything in the per-data-source cache, as an iterable object. Note tha
 
 [method_env]: #environmentname
 
-Returns the name of the environment whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global hiera.yaml or a module hiera.yaml.
+Returns the name of the environment whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global or module layer.
 
 ### `module_name()`
 
 [method_module]: #modulename
 
-Returns the name of the module whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global hiera.yaml or an environment hiera.yaml.
+Returns the name of the module whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global or environment layer.
 
 ### `interpolate(value)`
 
 [method_interpolate]: #interpolatevalue
+
+TODO does this take any kind of value, or just strings? Is it recursive, if it takes hashes etc.?
 
 Returns the provided value, but with any Hiera interpolation tokens (like `%{variable}` or `%{lookup('key')}`) replaced by their value. This lets you opt-in to allowing Hiera-style interpolation in your backend's data sources.
 
