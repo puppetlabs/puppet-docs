@@ -42,9 +42,9 @@ Values in the returned hash can include [Hiera interpolation tokens][interpolate
 
 ## Calling conventions for `data_hash` functions
 
-Since `data_hash` functions return an entire data source at once, Hiera generally calls them only once per data source.
+Since `data_hash` functions return an entire data source at once, Hiera generally calls them only _once per data source._
 
-However, a given hierarchy level can refer to multiple data sources with the `paths`, `uris`, and `glob(s)` settings. Hiera handles this as follows:
+However, a given hierarchy level can refer to multiple data sources with the `paths`, `uris`, and `glob(s)` settings. Hiera handles each hierarchy level as follows:
 
 * If the `path(s)` or `glob(s)` settings are used, Hiera figures out which files actually exist and calls the function once for each. If no files were found, the function won't be called at all.
 * If the `uri(s)` settings are used, Hiera calls the function once per URI.
