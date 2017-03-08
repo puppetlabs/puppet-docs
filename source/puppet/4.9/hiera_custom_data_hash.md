@@ -34,35 +34,27 @@ Hiera calls a `data_hash` function with two arguments:
 
 The function must either call the context object's `not_found` method, or return a hash of lookup keys and their associated values. That hash's keys must match the `Puppet::LookupKey` type, and its values must match the `Puppet::LookupValue` type. (The hash can also be empty.)
 
-Example signatures:
+> **Example signatures:**
+>
+> Puppet language:
+>
+> ``` puppet
+> function mymodule::hiera_backend(
+>   Hash                  $options,
+>   Puppet::LookupContext $context,
+> ) >> Hash[Puppet::LookupKey, Puppet::LookupValue]
+> ```
+>
+> Ruby:
+>
+> ``` ruby
+> dispatch :hiera_backend do
+>   param 'Hash', :options
+>   param 'Puppet::LookupContext', :context
+>   return_type 'Hash[Puppet::LookupKey, Puppet::LookupValue]'
+> end
+> ```
 
-<table>
-<tr><th>Puppet language</th><th>Ruby</th></tr>
-
-<tr>
-<td>
-{% md %}
-``` puppet
-function mymodule::hiera_backend(
-  Hash                  $options,
-  Puppet::LookupContext $context,
-) >> Hash[Puppet::LookupKey, Puppet::LookupValue]
-```
-{% endmd %}
-</td>
-<td>
-{% md %}
-``` ruby
-dispatch :hiera_backend do
-  param 'Hash', :options
-  param 'Puppet::LookupContext', :context
-  return_type 'Hash[Puppet::LookupKey, Puppet::LookupValue]'
-end
-```
-{% endmd %}
-</td>
-</tr>
-</table>
 
 Like other Hiera data sources, the returned hash can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 
