@@ -13,6 +13,8 @@ title: "Hiera: Implementing a data_hash backend"
 [json_data]: todo
 [hocon_data]: todo
 
+> **Note:** This page goes directly into the details of implementing one type of backend. For an intro to the custom backends system, see [How custom backends work](./hiera_custom_backends.html).
+
 A `data_hash` backend function reads an entire data source at once and returns its contents as a hash.
 
 ## Examples
@@ -31,6 +33,36 @@ Hiera calls a `data_hash` function with two arguments:
 2. A `Puppet::LookupContext` object. (More on this below.)
 
 The function must either call the context object's `not_found` method, or return a hash of lookup keys and their associated values. That hash's keys must match the `Puppet::LookupKey` type, and its values must match the `Puppet::LookupValue` type. (The hash can also be empty.)
+
+Example signatures:
+
+<table>
+<tr><th>Puppet language</th><th>Ruby</th></tr>
+
+<tr>
+<td>
+{% md %}
+``` puppet
+function mymodule::hiera_backend(
+  Hash                  $options,
+  Puppet::LookupContext $context,
+) >> Hash[Puppet::LookupKey, Puppet::LookupValue]
+```
+{% endmd %}
+</td>
+<td>
+{% md %}
+``` ruby
+dispatch :hiera_backend do
+  param 'Hash', :options
+  param 'Puppet::LookupContext', :context
+  return_type 'Hash[Puppet::LookupKey, Puppet::LookupValue]'
+end
+```
+{% endmd %}
+</td>
+</tr>
+</table>
 
 Like other Hiera data sources, the returned hash can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 

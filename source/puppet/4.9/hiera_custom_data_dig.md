@@ -7,6 +7,8 @@ title: "Hiera: Implementing a data_dig backend"
 [lookup_options]: todo
 [interpolate]: todo
 
+> **Note:** This page goes directly into the details of implementing one type of backend. For an intro to the custom backends system, see [How custom backends work](./hiera_custom_backends.html).
+
 A `data_dig` backend function is similar to [a `lookup_key` function][lookup_key]. But instead of looking up a single key, it looks up a single _sequence of keys and subkeys._
 
 Hiera lets you look up individual members of hash and array values using [key.subkey notation][subkey]. In cases where:
@@ -32,6 +34,38 @@ Hiera calls a `data_dig` function with three arguments:
 3. A `Puppet::LookupContext` object. (More on this below.)
 
 The function must either call the context object's `not_found` method, or return a value for the requested sequence of key segments. The returned value must match the `Puppet::LookupValue` type.
+
+Example signatures:
+
+<table>
+<tr><th>Puppet language</th><th>Ruby</th></tr>
+
+<tr>
+<td>
+{% md %}
+``` puppet
+function mymodule::hiera_backend(
+  Array[Puppet::LookupKey] $segments,
+  Hash                     $options,
+  Puppet::LookupContext    $context,
+) >> Puppet::LookupValue
+```
+{% endmd %}
+</td>
+<td>
+{% md %}
+``` ruby
+dispatch :hiera_backend do
+  param 'Array[Puppet::LookupKey]', :segments
+  param 'Hash', :options
+  param 'Puppet::LookupContext', :context
+  return_type 'Puppet::LookupValue'
+end
+```
+{% endmd %}
+</td>
+</tr>
+</table>
 
 Like other Hiera data sources, a `data_dig` function can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 
