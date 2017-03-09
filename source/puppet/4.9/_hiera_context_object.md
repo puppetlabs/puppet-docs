@@ -10,15 +10,15 @@ To support caching and other needs, Hiera provides backends a special `Puppet::L
 The following methods are available:
 
 * [`not_found()`][method_not], for bailing out of a lookup.
-* [`explain() || { 'message' }`][method_explain], for helpful debug messages.
+* [`interpolate(value)`][method_interpolate], for handing Hiera interpolation tokens in values.
+* [`environment_name()`][method_env], to find out which environment this is.
+* [`module_name()`][method_module], to find out which module this is.
 * [`cache(key, value)`][method_cache], for caching information between function runs.
 * [`cache_all(hash)`][method_cache_all], for caching several things at once.
-* [`cache_has_key(key)`][method_haskey], for checking the cache.
 * [`cached_value(key)`][method_cached], for retrieving cached values.
-* [`all_cached()`][method_allcached], for dumping the whole cache.
-* [`environment_name()`][method_env], to find out which environment's hiera.yaml this is.
-* [`module_name()`][method_module], to find out which module's hiera.yaml this is.
-* [`interpolate(value)`][method_interpolate], for handing Hiera interpolation tokens in values.
+* [`cache_has_key(key)`][method_haskey], for checking the cache.
+* [`cached_entries()`][method_allcached], for dumping the whole cache.
+* [`explain() || { 'message' }`][method_explain], for helpful debug messages.
 
 
 ### `not_found()`
@@ -31,17 +31,27 @@ For `data_hash` backends, use this when the requested data source doesn't exist.
 
 For `lookup_key` and `data_dig` backends, use this when a requested key isn't present in the data source or the data source doesn't exist. Don't return `undef`/`nil` for missing keys, since that's a legal value that can be set in data.
 
-### `explain() || { 'message' }`
+### `interpolate(value)`
 
-[method_explain]: #explain---message-
+[method_interpolate]: #interpolatevalue
 
-> **Note:** The header above uses the Puppet lambda syntax. To call this method in Ruby, you would use `explain() { 'message' }`. In either case, the provided block must take zero arguments.
+Returns the provided value, but with any Hiera interpolation tokens (like `%{variable}` or `%{lookup('key')}`) replaced by their value. This lets you opt-in to allowing Hiera-style interpolation in your backend's data sources. Works recursively on arrays and hashes; hashes can interpolate into both keys and values.
 
-Adds a message, which appears in debug messages or when using `puppet lookup --explain`.
+In `data_hash` backends, interpolation is automatically supported and you don't need to call this method.
 
-This is meant for complex lookups where a function tries several different things before arriving at the value. Note that the built-in backends don't use the `explain` method, and they still have relatively verbose explanations; this is for when you need to go above and beyond that.
+In `lookup_key` and `data_dig` backends, you **must** call this method if you want to support interpolation; if you don't, Hiera assumes you have your own thing going on.
 
-Feel free to not worry about performance when constructing your message; Hiera never executes the explain block unless debugging is enabled.
+### `environment_name()`
+
+[method_env]: #environmentname
+
+Returns the name of the environment whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global or module layer.
+
+### `module_name()`
+
+[method_module]: #modulename
+
+Returns the name of the module whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global or environment layer.
 
 ### `cache(key, value)`
 
@@ -70,48 +80,34 @@ If any inputs to a function change (for example, a path interpolates a local var
 
 Caches all the key/value pairs from a given hash; returns `undef` (in Puppet) or `nil` (in Ruby).
 
-### `cache_has_key(key)`
-
-[method_haskey]: #cachehaskeykey
-
-Checks whether the cache has a value for a given key yet. Returns `true` or `false`.
-
 ### `cached_value(key)`
 
 [method_cached]: #cachedvaluekey
 
 Returns a previously cached value from the per-data-source private cache. See [`cache(key, value)`][method_cache] above.
 
+### `cache_has_key(key)`
+
+[method_haskey]: #cachehaskeykey
+
+Checks whether the cache has a value for a given key yet. Returns `true` or `false`.
+
 ### `cached_entries()`
 
-[method_allcached]: #allcached
-
-TODO important! Check name of method with Henrik/Thomas! This was listed as `all_cached()` in the predocs.
+[method_allcached]: #cachedentries
 
 Returns everything in the per-data-source cache, as an iterable object. Note that this iterable object isn't a hash; if you want a hash, you can use `Hash($context.all_cached())` (in the Puppet language) or `Hash[context.all_cached()]` (in Ruby).
 
-### `environment_name()`
+### `explain() || { 'message' }`
 
-[method_env]: #environmentname
+[method_explain]: #explain---message-
 
-Returns the name of the environment whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global or module layer.
+> **Note:** The header above uses the Puppet lambda syntax. To call this method in Ruby, you would use `explain() { 'message' }`. In either case, the provided block must take zero arguments.
 
-### `module_name()`
+Adds a message, which appears in debug messages or when using `puppet lookup --explain`.
 
-[method_module]: #modulename
+This is meant for complex lookups where a function tries several different things before arriving at the value. Note that the built-in backends don't use the `explain` method, and they still have relatively verbose explanations; this is for when you need to go above and beyond that.
 
-Returns the name of the module whose hiera.yaml called the function. Returns `undef` (in Puppet) or `nil` (in Ruby) if the function was called by the global or environment layer.
-
-### `interpolate(value)`
-
-[method_interpolate]: #interpolatevalue
-
-TODO does this take any kind of value, or just strings? Is it recursive, if it takes hashes etc.?
-
-Returns the provided value, but with any Hiera interpolation tokens (like `%{variable}` or `%{lookup('key')}`) replaced by their value. This lets you opt-in to allowing Hiera-style interpolation in your backend's data sources.
-
-In `data_hash` backends, interpolation is automatically supported and you don't need to call this method.
-
-In `lookup_key` and `data_dig` backends, you **must** call this method if you want to support interpolation; if you don't, Hiera assumes you have your own thing going on.
+Feel free to not worry about performance when constructing your message; Hiera never executes the explain block unless debugging is enabled.
 
 

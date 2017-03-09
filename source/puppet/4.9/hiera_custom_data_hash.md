@@ -6,8 +6,6 @@ title: "Hiera: Implementing a data_hash backend"
 [lookup_options]: ./hiera_merging.html#configuring-merge-behavior-in-hiera-data
 [interpolate]: ./hiera_interpolation.html
 [hiera.yaml]: ./hiera_config_yaml_5.html
-[ruby functions]: ./functions_ruby_overview.html
-[puppet language functions]: ./lang_write_functions_in_puppet.html
 [chained_call]: ./lang_functions.html#chained-function-calls
 [yaml_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/yaml_data.rb
 [json_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/json_data.rb
@@ -32,7 +30,7 @@ Hiera calls a `data_hash` function with two arguments:
 1. A hash of options. (More on this below.)
 2. A `Puppet::LookupContext` object. (More on this below.)
 
-The function must either call the context object's `not_found` method, or return a hash of lookup keys and their associated values. That hash's keys must match the `Puppet::LookupKey` type, and its values must match the `Puppet::LookupValue` type. (The hash can also be empty.)
+The function must either call the context object's `not_found` method, or return a hash of lookup keys and their associated values. (The hash can be empty.)
 
 > **Example signatures:**
 >
@@ -42,7 +40,7 @@ The function must either call the context object's `not_found` method, or return
 > function mymodule::hiera_backend(
 >   Hash                  $options,
 >   Puppet::LookupContext $context,
-> ) >> Hash[Puppet::LookupKey, Puppet::LookupValue]
+> )
 > ```
 >
 > Ruby:
@@ -51,7 +49,6 @@ The function must either call the context object's `not_found` method, or return
 > dispatch :hiera_backend do
 >   param 'Hash', :options
 >   param 'Puppet::LookupContext', :context
->   return_type 'Hash[Puppet::LookupKey, Puppet::LookupValue]'
 > end
 > ```
 
@@ -59,8 +56,6 @@ The function must either call the context object's `not_found` method, or return
 Like other Hiera data sources, the returned hash can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 
 Values in the returned hash can include [Hiera interpolation tokens][interpolate] like `%{variable}` or `%{lookup('key')}`; Hiera interpolates values as needed. This is a significant difference between `data_hash` and the other two backend types; `lookup_key` and `data_dig` have to explicitly handle interpolation.
-
-{% partial ./_hiera_type_aliases.md %}
 
 {% partial ./_hiera_options_hash.md %}
 
