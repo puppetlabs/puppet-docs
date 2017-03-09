@@ -9,6 +9,18 @@ title: "Hiera 3.3: Release Notes"
 
 {% partial ./_hiera_deprecation.md %}
 
+## Hiera 3.3.1
+
+Released March 9, 2017. 
+
+This version of Hiera ships with Puppet agent 1.9.3. It is a small bug fix release.
+
+### Bug fixes
+
+Hiera now errors if it is given a 'hiera.yaml' configuration file that uses the version 4 format, because that format is only available in environments and modules. Previously, Hiera silently ignored its content and no keys were given values. Now there is a clear error if a 'hiera.yaml' version 4 configuration file ends up in the wrong place. ([HI-544](https://tickets.puppetlabs.com/browse/HI-544))
+
+Hiera did not read data files into cache using UTF-8, which could lead to encoding problems occurring much later. Now the data files (YAML, JSON) are read with UTF-8 encoding. ([HI-519](https://tickets.puppetlabs.com/browse/HI-519))
+
 ## Hiera 3.3
 
 Released February 1, 2017.
@@ -18,8 +30,3 @@ This version of Hiera ships with [Puppet agent 1.9.0][]. Hiera 5, a successor of
 * [Fixed in Hiera 3.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.3.0%27)
 * [Introduced in Hiera 3.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.3.0%27)
 
-### Bug fixes
-
-Hiera now errors if it is given a 'hiera.yaml' configuration file that uses the version 4 format, because that format is only available in environments and modules. Previously, Hiera silently ignored its content and no keys were given values. Now there is a clear error if a 'hiera.yaml' version 4 configuration file ends up in the wrong place. ([HI-544](https://tickets.puppetlabs.com/browse/HI-544))
-
-Hiera did not read data files into cache using UTF-8, which could lead to encoding problems occurring much later. Now the data files (YAML, JSON) are read with UTF-8 encoding. ([HI-519](https://tickets.puppetlabs.com/browse/HI-519))
