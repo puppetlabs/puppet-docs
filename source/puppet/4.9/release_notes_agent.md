@@ -6,16 +6,17 @@ title: "Puppet agent release notes"
 [Puppet 4.9.0]: /puppet/4.9/release_notes.html#puppet-490
 [Puppet 4.9.2]: /puppet/4.9/release_notes.html#puppet-492
 [Puppet 4.9.3]: /puppet/4.9/release_notes.html#puppet-493
-
+[Puppet 4.9.4]: /puppet/4.9/release_notes.html#puppet-494
 
 [Facter 3.6.0]: /facter/3.6/release_notes.html#facter-360
 [Facter 3.6.1]: /facter/3.6/release_notes.html#facter-361
-
+[Facter 3.6.2]: /facter/3.6/release_notes.html#facter-362
 
 [Hiera 3.3.0]: /hiera/3.3/release_notes.html#hiera-330
 
 [MCollective 2.10.0]: /mcollective/releasenotes.html#2_10_0
 [MCollective 2.10.1]: /mcollective/releasenotes.html#2_10_1
+[MCollective 2.10.2]: /mcollective/releasenotes.html#2_10_2
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -36,9 +37,17 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.9 release notes](./release_notes.html).
 
+## Puppet agent 1.9.3
+
+Released March 9, 2017.
+
+### Component updates
+
+This is a bug fix release that includes updated components [Puppet 4.9.4][], [Hiera 3.3.1][], [Facter 3.6.2][], and [MCollective 1.10.2][]. See their respective release note pages for individual bug fixes.
+
 ## Puppet agent 1.9.2
 
-Release February 27, 2017.
+Released February 27, 2017.
 
 ### Component updates
 
