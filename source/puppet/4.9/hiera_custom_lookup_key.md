@@ -51,7 +51,7 @@ The function must either call the context object's `not_found` method, or return
 
 Like other Hiera data sources, a `lookup_key` function can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 
-If you want to support [Hiera interpolation tokens][interpolate] like `%{variable}` or `%{lookup('key')}` in your data, you will need to call `context.interpolate` on your values before returning them.
+If you want to support [Hiera interpolation tokens][interpolate] like `%{variable}` or `%{lookup('key')}` in your data, you must call `context.interpolate` on your values before returning them.
 
 {% partial ./_hiera_type_aliases.md %}
 

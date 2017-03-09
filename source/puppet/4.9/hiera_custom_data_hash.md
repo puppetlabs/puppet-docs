@@ -58,7 +58,7 @@ The function must either call the context object's `not_found` method, or return
 
 Like other Hiera data sources, the returned hash can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 
-Values in the returned hash can include [Hiera interpolation tokens][interpolate] like `%{variable}` or `%{lookup('key')}`; Hiera will interpolate values as needed. This is a significant difference between `data_hash` and the other two backend types; `lookup_key` and `data_dig` have to explicitly handle interpolation.
+Values in the returned hash can include [Hiera interpolation tokens][interpolate] like `%{variable}` or `%{lookup('key')}`; Hiera interpolates values as needed. This is a significant difference between `data_hash` and the other two backend types; `lookup_key` and `data_dig` have to explicitly handle interpolation.
 
 {% partial ./_hiera_type_aliases.md %}
 
