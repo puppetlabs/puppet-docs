@@ -18,6 +18,43 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they 
 
 Also of interest: the [Puppet 4.8 release notes](/puppet/4.8/release_notes.html) and [Puppet 4.7 release notes](/puppet/4.7/release_notes.html).
 
+## Puppet 4.9.4
+
+Released March 9th, 2017. 
+
+This is a bug fix release in the Puppet 4.9 series, with some performance increases.
+
+* [Fixed in Puppet 4.9.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.9.4%27)
+* [Introduced in Puppet 4.9.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.9.4%27)
+
+### Enhancements
+
+* [PUP-7303](https://tickets.puppetlabs.com/browse/PUP-7303): Changed the Hiera configuration stability check, increasing performance.
+
+* [PUP-7301](https://tickets.puppetlabs.com/browse/PUP-7301): This change decreases the number of type inferences that are performed during normal execution. This increases performance on large Hiera datasets and hierarchies.
+
+
+### Bug fixes
+
+The following bugs and regressions have been resolved in this version:
+
+* [PUP-7293](https://tickets.puppetlabs.com/browse/PUP-7293): A regression in Hiera 5 caused interpolation of values into 'hiera.yaml' options to stop working and instead be delivered in clear text.
+
+* [PUP-7291](https://tickets.puppetlabs.com/browse/PUP-7291): The (very limited) debug output from Automatic Parameter Lookup (APL) was removed in Puppet 4.9.0 with the intention of replacing it with the full `lookup --explain` output, but the explain output ended up not being enabled for APL. This is now fixed making debugging of APL much easier.
+
+* [PUP-7287](https://tickets.puppetlabs.com/browse/PUP-7287): Unnecessary `--explain` output was generated for some internal checks in Hiera 5. This made explain output confusing in some situations. 
+
+* [PUP-7284](https://tickets.puppetlabs.com/browse/PUP-7284): A regression in Hiera version 5 caused the Hiera 3 'hiera.yaml' format's backend option 'extension' to stop working for 'eyaml'. Other backends were unaffected as they did not support this option.
+
+* [PUP-7305](https://tickets.puppetlabs.com/browse/PUP-7305): A regression in Hiera 5 was found where parsed Hiera data files were not cached.
+
+* [PUP-7296](https://tickets.puppetlabs.com/browse/PUP-7296): A regression in Hiera 5's support for eyaml caused interpolation in looked up hash values to stop working. This is now fixed and for looked up hashes both keys and values are now interpolated.
+
+* [PUP-7289](https://tickets.puppetlabs.com/browse/PUP-7289): A regression in the interpretation of a 'hiera.yaml' (all versions) caused interpolation in the datadir option to stop working.
+
+* [PUP-7286](https://tickets.puppetlabs.com/browse/PUP-7286): A regression in Puppet 4.9.0 caused the 'hiera.yaml' configured merge behavior to apply to all `hiera_xxx` functions when it should only apply to the `hiera_hash` function. Calls to `lookup` and Automatic Parameter Lookup were unaffected by this regression.
+
+
 ## Puppet 4.9.3
 
 Released February 27, 2017.
