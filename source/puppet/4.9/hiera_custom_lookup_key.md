@@ -20,11 +20,11 @@ The built-in hiera-eyaml backend is a `lookup_key` function. You can view its so
 
 Hiera calls a `lookup_key` function with three arguments:
 
-1. A key to look up. (Matches the `Puppet::LookupKey` type.)
+1. A key to look up.
 2. A hash of options. (More on this below.)
 3. A `Puppet::LookupContext` object. (More on this below.)
 
-The function must either call the context object's `not_found` method, or return a value for the requested key. The returned value must match the `Puppet::LookupValue` type.
+The function must either call the context object's `not_found` method, or return a value for the requested key.
 
 > **Example signatures:**
 >
@@ -32,28 +32,25 @@ The function must either call the context object's `not_found` method, or return
 >
 > ``` puppet
 > function mymodule::hiera_backend(
->   Puppet::LookupKey     $key,
->   Hash                  $options,
->   Puppet::LookupContext $context,
-> ) >> Puppet::LookupValue
+>   Variant[String, Numeric] $key,
+>   Hash                     $options,
+>   Puppet::LookupContext    $context,
+> )
 > ```
 >
 > Ruby:
 >
 > ``` ruby
 > dispatch :hiera_backend do
->   param 'Puppet::LookupKey', :key
+>   param 'Variant[String, Numeric]', :key
 >   param 'Hash', :options
 >   param 'Puppet::LookupContext', :context
->   return_type 'Puppet::LookupValue'
 > end
 > ```
 
 Like other Hiera data sources, a `lookup_key` function can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 
 If you want to support [Hiera interpolation tokens][interpolate] like `%{variable}` or `%{lookup('key')}` in your data, you must call `context.interpolate` on your values before returning them.
-
-{% partial ./_hiera_type_aliases.md %}
 
 {% partial ./_hiera_options_hash.md %}
 

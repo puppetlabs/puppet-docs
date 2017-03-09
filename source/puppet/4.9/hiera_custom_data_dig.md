@@ -27,13 +27,13 @@ We don't currently have any realistic examples of `data_dig` backends. Let us kn
 
 Hiera calls a `data_dig` function with three arguments:
 
-1. An array of key segments. (Each segment matches the `Puppet::LookupKey` type.)
+1. An array of lookup key segments.
 
     The array of key segments is made by splitting the requested lookup key on the dot (`.`) subkey separator. For example, a lookup for `users.dbadmin.uid` would result in `['users', 'dbadmin', 'uid']`. Positive base-10 integer subkeys (for accessing array members) are converted to Integer objects, but other number-like subkeys remain as strings.
 2. A hash of options. (More on this below.)
 3. A `Puppet::LookupContext` object. (More on this below.)
 
-The function must either call the context object's `not_found` method, or return a value for the requested sequence of key segments. The returned value must match the `Puppet::LookupValue` type.
+The function must either call the context object's `not_found` method, or return a value for the requested sequence of key segments.
 
 > **Example signatures:**
 >
@@ -41,28 +41,25 @@ The function must either call the context object's `not_found` method, or return
 >
 > ``` puppet
 > function mymodule::hiera_backend(
->   Array[Puppet::LookupKey] $segments,
->   Hash                     $options,
->   Puppet::LookupContext    $context,
-> ) >> Puppet::LookupValue
+>   Array[Variant[String, Numeric]] $segments,
+>   Hash                            $options,
+>   Puppet::LookupContext           $context,
+> )
 > ```
 >
 > Ruby:
 >
 > ``` ruby
 > dispatch :hiera_backend do
->   param 'Array[Puppet::LookupKey]', :segments
+>   param 'Array[Variant[String, Numeric]]', :segments
 >   param 'Hash', :options
 >   param 'Puppet::LookupContext', :context
->   return_type 'Puppet::LookupValue'
 > end
 > ```
 
 Like other Hiera data sources, a `data_dig` function can use the special `lookup_options` key to configure merge behavior for other keys. See [Configuring merge behavior in Hiera data][lookup_options] for more info.
 
 If you want to support [Hiera interpolation tokens][interpolate] like `%{variable}` or `%{lookup('key')}` in your data, you must call `context.interpolate` on your values before returning them.
-
-{% partial ./_hiera_type_aliases.md %}
 
 {% partial ./_hiera_options_hash.md %}
 
