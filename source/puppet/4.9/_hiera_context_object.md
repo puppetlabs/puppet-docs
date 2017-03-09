@@ -2,8 +2,8 @@
 
 To support caching and other needs, Hiera provides backends a special `Puppet::LookupContext` object, which has several methods you can call for various effects.
 
-* In [Ruby functions][], this is a normal Ruby object of class `Puppet::LookupContext`, and you can call methods with standard Ruby syntax (like `context.not_found`).
-* In [Puppet language functions][], the context object appears as a special data type (Object) that has methods attached. Right now, there isn't anything else in the Puppet language that acts like this.
+* In [Ruby functions](./functions_ruby_overview.html), this is a normal Ruby object of class `Puppet::LookupContext`, and you can call methods with standard Ruby syntax (like `context.not_found`).
+* In [Puppet language functions](./lang_write_functions_in_puppet.html), the context object appears as a special data type (Object) that has methods attached. Right now, there isn't anything else in the Puppet language that acts like this.
 
     You can call its methods using Puppet's [chained function call syntax][chained_call] with the method name instead of a normal function --- for example, `$context.not_found`. For methods that take a block, use Puppet's lambda syntax (parameters outside block) instead of Ruby's block syntax (parameters inside block).
 
