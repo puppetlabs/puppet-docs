@@ -104,7 +104,7 @@ MSI Property                                                   | Puppet Setting 
 
 Where Puppet and its dependencies should be installed.
 
-> **Note:** By end of year 2016, running 32-bit Puppet agent on a 64-bit Windows system will be deprecated. Update your Puppet installation to the 64-bit platform by December 31, 2016.
+> **Note:** As of year 2016, running 32-bit Puppet agent on a 64-bit Windows system is deprecated. Update your Puppet installation to the 64-bit platform.
 >
 > If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR` option when upgrading.
 >
