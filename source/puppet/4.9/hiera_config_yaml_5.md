@@ -194,7 +194,7 @@ Within hiera.yaml, the eyaml backend mostly resembles the standard built-in back
 Each eyaml hierarchy level needs the following keys:
 
 * `name` --- A name for this level, shown to humans in debug messages and `--explain` output.
-* `lookup_key` --- The backend to use. The value must be `eyaml_lookup_key`. (This replaces the `data_hash` key used by the standard backends.)
+* `lookup_key` --- Which backend to use. The value must be `eyaml_lookup_key`. (Use this instead of the `data_hash` setting.)
 * `path`, `paths`, `glob`, or `globs` (choose one) --- The data file(s) to use for this hierarchy level.
 
     These paths are relative to the datadir, they support [interpolation][], and they require a file extension. (In this case, you'll usually use `.eyaml`.) They work the same way they do for the standard backends.
@@ -319,7 +319,7 @@ Each hierarchy level is represented by a hash, which needs the following keys:
 
     The backend determines which key you must use, so you'll have to check its documentation. In general, file-based backends usually use `data_hash`, fast non-file backends usually use `lookup_key`, and slow non-file backends usually use `data_dig`.
 
-    Whichever key you use, the value must be the name of the [custom Puppet function][] that implements the backend. For more details, see [How backend functions work][].
+    Whichever key you use, the value must be the name of the [custom Puppet function][] that implements the backend. For more details, see [How custom backends work][backends].
 * A path or URI key (only if required by the backend). **These keys support [interpolation][].** The following path/URI keys are available:
     * `path`
     * `paths`
