@@ -134,7 +134,7 @@ There are five interpolation functions:
 
 [inpage_lookup]: #lookup--hiera
 
-The `lookup` interpolation function looks up a key with Hiera and returns the resulting value. The result of the lookup must be a string; any other result causes an error. The `hiera` interpolation function is an alias for `lookup`.
+The `lookup` and `hiera` interpolation functions do the same thing: they look up a key with Hiera and return the resulting value. The result of the lookup must be a string; any other result causes an error.
 
 This can be useful in Hiera's data sources. If you need to use the same value for multiple keys, you can assign the literal value to one key, then call `lookup` to re-use the value elsewhere. This way, you can edit the value once to change it everywhere it's used.
 
