@@ -20,12 +20,21 @@ Also of interest: the [Puppet 4.8 release notes](/puppet/4.8/release_notes.html)
 
 ## Puppet 4.9.4
 
-Released March 9th, 2017. 
+Released March 9th, 2017.
 
 This is a bug fix release in the Puppet 4.9 series, with some performance increases.
 
 * [Fixed in Puppet 4.9.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.9.4%27)
 * [Introduced in Puppet 4.9.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.9.4%27)
+
+### Known issues
+
+* [PUP-7336](https://tickets.puppetlabs.com/browse/PUP-7336): Regression from 4.9.3. [Version 5 hiera.yaml](./hiera_config_yaml_5.html) files sometimes ignore circularly-configured hierarchy levels. This only happens for hierarchy levels that:
+    * Interpolate a top-scope array or hash variable _whose value was itself set with a Hiera lookup_ (like `$attributes = lookup('attributes')`)...
+    * ..._and_ access a member of that variable with key.subkey notation...
+    * ..._and_ refer to that variable with the top-scope namespace (`%{::attributes.role}`).
+
+    You can remove the top-scope namespace (`%{attributes.role}`) to avoid this bug until it's fixed. But in general, we recommend against circular logic in your hierarchy. Limit yourself to the `$facts`, `$trusted`, and `$server_facts` variables and have a better time.
 
 ### Enhancements
 
@@ -42,7 +51,7 @@ The following bugs and regressions have been resolved in this version:
 
 * [PUP-7291](https://tickets.puppetlabs.com/browse/PUP-7291): The (very limited) debug output from Automatic Parameter Lookup (APL) was removed in Puppet 4.9.0 with the intention of replacing it with the full `lookup --explain` output, but the explain output ended up not being enabled for APL. This is now fixed making debugging of APL much easier.
 
-* [PUP-7287](https://tickets.puppetlabs.com/browse/PUP-7287): Unnecessary `--explain` output was generated for some internal checks in Hiera 5. This made explain output confusing in some situations. 
+* [PUP-7287](https://tickets.puppetlabs.com/browse/PUP-7287): Unnecessary `--explain` output was generated for some internal checks in Hiera 5. This made explain output confusing in some situations.
 
 * [PUP-7284](https://tickets.puppetlabs.com/browse/PUP-7284): A regression in Hiera version 5 caused the Hiera 3 'hiera.yaml' format's backend option 'extension' to stop working for 'eyaml'. Other backends were unaffected as they did not support this option.
 
