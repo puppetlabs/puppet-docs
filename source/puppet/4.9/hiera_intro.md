@@ -87,6 +87,7 @@ Probably in Puppet 6. You have some time.
 The current list of deprecated Hiera features includes:
 
 * The [classic `hiera_*` functions][hiera_functions]. (They're fully replaced by the `lookup` function.)
+* The `hiera` command line tool, which was used for testing and exploring data. (It's replaced by the `puppet lookup` command, which understands concepts like nodes and environments and can automatically get facts from PuppetDB.)
 * [Version 3][v3] and [version 4][v4] of the hiera.yaml file.
 * Custom backends written for Hiera ≤ 3. They should be rewritten for the [new, simpler custom backend system][custom_backend].
 * Setting a global hash merge behavior in hiera.yaml. (Merge behavior is now [configured per-key and per-lookup][merging].)
