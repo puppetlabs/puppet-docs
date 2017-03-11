@@ -26,9 +26,91 @@ canonical: "/ja/pe/install_windows.html"
 </p>
 </blockquote>
 
-<h2 id="installing-windows-puppet-enterprise-agents">Windows Puppet Enterprise agentのインストール</h2>
+<p> Windows agentのインストールには、Puppet Enterpriseパッケージ管理またはWindowsの.msiパッケージを使用できます。
+</p>
 
-<p> PE Windowsインストーラは標準的なWindows .msiパッケージで、グラフィカルウィザードとして動作します。
+<h2 id="installing-with-pe-package-management">
+Puppet Enterpriseパッケージ管理を用いたインストール</h2>
+
+<p> Puppet Enterpriseパッケージ管理を使用してWindows agentをインストールする場合、はじめに、Windows agentパッケージを含む適切なクラスを<code>pe_repo</code>に追加します。次に、このクラスをPuppet Enterprise Masterノードグループに分類します。 その後、agentからインストールスクリプトを実行し、インストールに必要なパッケージを取得します。
+</p>
+
+<blockquote>
+  <p> <strong>重要：</strong> このタスクを実行するには、PowerShell 3.0以降を使用する必要があります。
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>注：</strong> 以下の例で使用するインストーラスクリプトで、 <code>&lt;PUPPET MASTER FQDN&gt;</code>の部分はPuppet masterのFQDNを指します。 このFQDNは、agentをインストールするWindowsマシンから完全に解決可能でなければなりません。
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、<strong>PE Infrastructure</strong>グループで<strong>PE Masters</strong>グループを選択します。
+</p>
+  </li>
+  <li>
+    <p> [<strong>Class name</strong>]フィールドの[<strong>Classes</strong>]タブに<code>pe_repo</code>と入力し、表示されるクラスのリストからリポジトリクラスを選択します。
+</p>
+
+    <ul>
+<li>
+        <p> <strong>64ビット(x86_64) Windows agent</strong>の場合、<code>pe_repo::platform::windows_x86_64</code>を選択します。
+</p>
+      </li>
+      <li>
+        <p> <strong>32ビット(i386) Windows agent</strong>の場合、<code>pe_repo::platform::windows_i386</code>を選択します。
+</p>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> <strong>Add class</strong>をクリックし、Commitボタンをクリックします。
+</p>
+  </li>
+  <li>
+    <p> Puppet masterでPuppetを実行して、新しく割り当てたクラスを設定します。
+</p>
+
+    <p> 新しいリポジトリは、Puppet masterの<code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/&lt;PLATFORM&gt;/</code>に作成されています。
+</p>
+  </li>
+  <li>
+    <p> Windows agentで管理用のPowerShellウィンドウを開き、以下のコマンドを実行します。
+</p>
+
+    <pre><code>[Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; $webClient = New-Object System.Net.WebClient; $webClient.DownloadFile('https://&lt;PUPPET MASTER FQDN&gt;:8140/packages/current/install.ps1', 'install.ps1'); .\install.ps1
+</code></pre>
+  </li>
+</ol>
+<p> インストーラの実行後に以下の出力が表示された場合、agentが正しくインストールされています。
+</p>
+
+<pre><code class="language-Puppet">Notice: /Service[puppet]/ensure: ensure changed 'stopped' to 'running'
+service { 'puppet':
+  ensure =&gt; 'running',
+  enable =&gt; 'true',
+}
+</code></pre>
+
+<h3 id="passing-configuration-parameters-to-the-install-script">インストールスクリプトへの設定パラメータの受け渡し</h3>
+
+<p> インストールスクリプトの末尾にパラメータを受け渡し、<code>puppet.conf</code>に追加する設定を指定したり、<code>csr_attributes.yaml</code>の<code>custom_attributes</code>および<code>extension_requests</code>セクションに含める設定を指定したりすることができます。 例えば以下のようなものです。
+</p>
+
+<pre><code>[Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; $webClient = New-Object System.Net.WebClient; $webClient.DownloadFile('https://&lt;PUPPET MASTER FQDN&gt;:8140/packages/latest/install.ps1', 'install.ps1'); .\install.ps1 agent:certname=&lt;certnameOtherThanFQDN&gt; custom_attributes:challengePassword=&lt;passwordForAutosignerScript&gt; extension_requests:pp_role=&lt;puppetNodeRole&gt;
+</code></pre>
+
+<p> 必要な数のパラメータを受け渡すことができます。 必ず<code>section:key=value</code>のパターンに従い、パラメータとパラメータの間にスペースを入れてください。
+</p>
+
+<p> <code>puppet.conf</code>の値のリストの完全版については、<a href="/puppet/4.9/configuration.html">設定リファレンス</a>を参照してください。 <code>csr_attributes.yaml</code>の設定の詳細については、<a href="/puppet/4.9/ssl_attributes_extensions.html">CSR特性と証明書のエクステンション</a>ページを参照してください。
+</p>
+
+<h2 id="installing-with-the-msi-package">.msiパッケージを使用したインストール</h2>
+
+<p> PE Windowsインストーラは標準的なWindows .msiパッケージで、グラフィカルウィザードとして動作します。 インストール中にPuppet agentサービスのアカウントユーザ、アカウントパスワード、またはアカウントドメインを設定する場合、.msiインストーラパッケージを使用すると便利です。
 </p>
 
 <p> このインストーラは昇格した権限で実行する必要があります。 Puppetのインストールには、システムの再起動は<strong>必要ありません</strong>。
@@ -60,11 +142,11 @@ canonical: "/ja/pe/install_windows.html"
 </p>
 </blockquote>
 
-<h3 id="after-installation">インストール後</h3>
+<h2 id="after-installation">インストール後</h2>
 
 <ul>
 <li>
-    <p> Puppet agentはWindowsサービスとして稼働します。デフォルトでは、30分ごとに設定が取得され適用されます。 以降は、通常どおりクラスをノードに割り当てることができます。詳細については、「<a href="/pe/2016.4/console_classes_groups_getting_started.html">Getting started with classification(分類をはじめる)</a>」を参照してください。 Puppetの初回実行後にMCollectiveサービスが実行され、ノードをMCollectiveで制御できるようになります。 Puppet agentサービスとMCollectiveサービスは、サービスコントロールマネージャのUIか、コマンドライン<code>sc.exe</code>ユーティリティのいずれかを用いて、個別に起動および停止することができます。詳細については、「<a href="/puppet/4.6/reference/services_commands_windows.html">Running Puppet on Windows(WindowsでPuppetを実行する)</a>」を参照してください。
+    <p> Puppet agentはWindowsサービスとして稼働します。デフォルトでは、30分ごとに設定が取得され適用されます。 以降は、通常どおりクラスをノードに割り当てることができます。詳細については、「<a href="/pe/2017.1/console_classes_groups_getting_started.html">Getting started with classification(分類をはじめる)</a>」を参照してください。 Puppetの初回実行後にMCollectiveサービスが実行され、ノードをMCollectiveで制御できるようになります。 Puppet agentサービスとMCollectiveサービスは、サービスコントロールマネージャのUIか、コマンドライン<code>sc.exe</code>ユーティリティのいずれかを用いて、個別に起動および停止することができます。詳細については、「<a href="/puppet/4.9/reference/services_commands_windows.html">Running Puppet on Windows(WindowsでPuppetを実行する)</a>」を参照してください。
 </p>
   </li>
   <li>
@@ -110,24 +192,24 @@ canonical: "/ja/pe/install_windows.html"
     </tr>
 <tr>
 <td><a href="#puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></a></td>
-      <td><a href="/puppet/4.6/reference/configuration.html#server"><code>server</code></a></td>
+      <td><a href="/puppet/4.9/configuration.html#server"><code>server</code></a></td>
       <td><code>puppet</code></td>
     </tr>
 <tr>
 <td><a href="#puppetcaserver"><code>PUPPET_CA_SERVER</code></a></td>
-      <td><a href="/puppet/4.6/reference/configuration.html#caserver"><code>ca_server</code></a></td>
+      <td><a href="/puppet/4.9/configuration.html#caserver"><code>ca_server</code></a></td>
       <td>
 <code>PUPPET_MASTER_SERVER</code>の値</td>
     </tr>
 <tr>
 <td><a href="#puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></a></td>
-      <td><a href="/puppet/4.6/reference/configuration.html#certname"><code>certname</code></a></td>
+      <td><a href="/puppet/4.9/configuration.html#certname"><code>certname</code></a></td>
       <td>
 <code>facter fdqn</code>の値(小文字を使用すること)</td>
     </tr>
 <tr>
 <td><a href="#puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></a></td>
-      <td><a href="/puppet/4.6/reference/configuration.html#environment"><code>environment</code></a></td>
+      <td><a href="/puppet/4.9/configuration.html#environment"><code>environment</code></a></td>
       <td><code>production</code></td>
     </tr>
 <tr>
@@ -210,29 +292,29 @@ canonical: "/ja/pe/install_windows.html"
 
 <h4 id="puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></h4>
 
-<p> Puppet masterサーバーにアクセス可能なホスト名。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.6/reference/configuration.html#server"><code>server</code>設定</a>の値が設定されます。
+<p> Puppet masterサーバーにアクセス可能なホスト名。 これにより、<a href="/puppet/4.9/configuration.html#server">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.9/config_file_main.html"><code>server</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>puppet</code>
 </p>
 
-<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。そのため、このプロパティを使用したことがある場合は、puppet.confで<code>server</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
+<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。 そのため、このプロパティを使用したことがある場合は、puppet.confで<code>server</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
 </p>
 
 <h4 id="puppetcaserver"><code>PUPPET_CA_SERVER</code></h4>
 
-<p> CA Puppet masterサーバーにアクセス可能なホスト名。複数のmasterを使用している場合は、いずれか1つのみがCAとして機能します。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.6/reference/configuration.html#caserver"><code>ca_server</code>設定</a>の値が設定されます。
+<p> CA Puppet masterサーバーにアクセス可能なホスト名。複数のmasterを使用している場合は、いずれか1つのみがCAとして機能します。 これにより、<a href="/puppet/4.9/configuration.html#caserver">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.9/config_file_main.html"><code>ca_server</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>PUPPET_MASTER_SERVER</code>プロパティの値
 </p>
 
-<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。そのため、このプロパティを使用したことがある場合は、puppet.confで<code>ca_server</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
+<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。 そのため、このプロパティを使用したことがある場合は、puppet.confで<code>ca_server</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
 </p>
 
 <h4 id="puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></h4>
 
-<p> ノードの証明書名、およびカタログ要求の際に使用する名前。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの <a href="/puppet/4.6/reference/configuration.html#certname"><code>certname</code>設定</a>の値が設定されます。
+<p> ノードの証明書名、およびカタログ要求の際に使用する名前。 これにより、<a href="/puppet/4.9/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.9/configuration.html#certname"><code>certname</code>設定</a>の値が設定されます。
 </p>
 
 <p> 最良の互換性を得るために、<code>certname</code>の値については、小文字、数字、ピリオド、アンダースコア、ダッシュのみを使用してください。 (つまり、<code>/\A[a-z0-9._-]+\Z/</code>に相当します )。
@@ -241,18 +323,18 @@ canonical: "/ja/pe/install_windows.html"
 <p> <strong>デフォルト：</strong> ノードの完全修飾ドメイン名。<code>facter fqdn</code>で見つかります。
 </p>
 
-<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。そのため、このプロパティを使用したことがある場合は、puppet.confで<code>certname</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
+<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。 そのため、このプロパティを使用したことがある場合は、puppet.confで<code>certname</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
 </p>
 
 <h4 id="puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></h4>
 
-<p> ノードの<a href="/puppet/4.6/reference/environments.html">環境</a>。 これにより、<a href="/puppet/4.6/reference/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.6/reference/configuration.html#environment"><code>environment</code>設定</a>の値が設定されます。
+<p> ノードの<a href="/puppet/4.9/environments.html">環境</a>。 これにより、<a href="/puppet/4.9/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="/puppet/4.9/configuration.html#environment"><code>environment</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>production</code>
 </p>
 
-<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。そのため、このプロパティを使用したことがある場合は、puppet.confで<code>environment</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
+<p> <strong>注意：</strong>このプロパティを<em>デフォルトではない</em>値に設定すると、puppet.confに既存の値がある場合、インストーラはその値を<strong>置き換えます</strong>。また、次回のアップグレード時には、コマンドラインで新たな値を設定しない限り、このプロパティについては前回の値が再利用されます。 そのため、このプロパティを使用したことがある場合は、puppet.confで<code>environment</code>設定を直接変更しないでください。その代わりに、インストーラを再実行し、新たな値を設定してください。
 </p>
 
 <h4 id="puppetagentstartupmode"><code>PUPPET_AGENT_STARTUP_MODE</code></h4>
@@ -305,43 +387,9 @@ canonical: "/ja/pe/install_windows.html"
 
 <h2 id="upgrading">アップグレード</h2>
 
-<p> Puppetをアップグレードするには、新しいバージョンの.msiパッケージをダウンロードし、インストールします。 それ以外の手順は必要ありません。インストーラがPuppet agentサービスの停止と再起動を行います。
+<p> 詳しい手順は、「<a href="/pe/2017.1/upgrade_windows.html">Windows agentのアップグレード</a>」を参照してください。
 </p>
 
-<p> アップグレードの際には、メインのpuppet.conf設定ファイルにある設定がインストーラにより置き換えられることはありませんが、コマンドラインで提示すれば、それまで指定されていなかった設定を追加することができます。
-</p>
-
-<blockquote>
-  <p> <strong>注意</strong>：Puppet Enterprise 3.8からアップグレードする場合は、<a href="https://forge.puppetlabs.com/puppetlabs/puppet_agent">Puppet agentアップグレード用のモジュール</a>を使用できます。 詳細については、「<a href="./install_upgrading_agents.html">upgrading agents(agentのアップグレード)</a>」を参照してください。
-</p>
-</blockquote>
-
-<p> 以下のバージョンのアップグレードがサポートされています。
-</p>
-
-<ul>
-<li>32ビットからPE 2015.2 32ビットへのアップグレード。c:\programData\Puppet Labsなどのプログラムデータは同じです。</li>
-  <li>32ビットPEから64ビットPEへのアップグレード。これができるのは、PE 3.8からPE 2015.2へアップグレードする場合のみです。このアップグレードにより、デフォルトが変更され、以下のようになります。 </li>
-</ul>
-<p> c:\Program Files(86)\ to c:\Program Files \
-</p>
-
-<p> カスタムロケーションにインストールしている場合は、そのロケーションがリルートされることはありません。
-</p>
-
-<h2 id="switching-to-an-older-version-of-pe">旧バージョンのPEへの切り替え</h2>
-
-<p> PE 2015.2から旧バージョンへダウングレードする場合は、まずPE 2015.2をアンインストールしてから、任意のバージョンをインストールすることを推奨します。 これにより、クリーンなインストールが保証されます。
-</p>
-
-<p> また、Windows .msiを使ってバージョンを切り替える方法もあります。 この方法により、システムパスにPEを追加できます。ただし、以下の点に注意してください。
-</p>
-
-<ul>
-<li>すでに実行しているプロセスは、再起動するまで変更されません。</li>
-  <li>Puppetが変数を拡大します。これにより<code>PATH = %SystemRoot\System32</code>のようなパスを使用している場合に問題が生じます。Puppetはこのパスを<code>PATH = c:\Windows\System32</code>に変更します。この問題はすでに知られているものです。</li>
-  <li>一部のケースでは、新しいほうのバージョンのファイルがマシンに残されることがあります。</li>
-</ul>
 <h2 id="uninstalling">アンインストール</h2>
 
 <p> Puppetをアンインストールするには、Windowsの<em>Add or Remove Programs(プログラムの追加と削除)</em>インタフェースを使用します。または、コマンドラインでのアンインストールも可能です。

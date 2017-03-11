@@ -2,6 +2,7 @@
 layout: default
 title: "Windowsモジュールのインストールと利用"
 canonical: "/ja/pe/windows_modules.html"
+
 ---
 
 <div>
@@ -13,7 +14,7 @@ canonical: "/ja/pe/windows_modules.html"
 <p> <img src="/pe/2016.2/images/windows/puppetlabs_windows_modulepack.png" alt="Windows Module Pack">
 </p>
 
-<p> Windowsモジュールパックには、よくある具体的なタスクの実行に役立つ複数のWindows対応モジュールが含まれています。 Forgeを検索すると、さらに多くのWindowsモジュールを見つけることができます。  Puppet Enterpriseでサポートされているのは、Puppetのモジュールのみです。 それ以外のモジュールは、Puppetにより検証および承認されていますが、商用サポートの対象ではありません。
+<p> Windowsモジュールパックには、よくある具体的なタスクの実行に役立つ複数のWindows対応モジュールが含まれています。 Forgeを検索すると、さらに多くのWindowsモジュールを見つけることができます。  このモジュールパック自体はサポートされていませんが、パックに含まれるPuppet提供モジュールは、それぞれ個別にPuppet Enterpriseでサポートされています。 それ以外のモジュールは、Puppetにより検証および承認されていますが、商用サポートの対象ではありません。
 </p>
 
 <p> Windowsモジュールパックによって、以下のことが可能になります。
@@ -56,10 +57,7 @@ canonical: "/ja/pe/windows_modules.html"
 
 <ol>
 <li>
-    <p> Windowsの[<strong>Start</strong>]ページで、[<strong>Start Command Prompt with Puppet</strong>]をクリックします。
-</p>
-
-    <p> <img src="/pe/2016.2/images/windows/start_commandprompt.png" alt="Start command prompt with Puppet">
+    <p> Puppetのコマンドプロンプトを開きます。 コマンドラインインターフェイスを開いたことがない場合、 [<strong>Start Menu</strong>]で「<code>Command Prompt Puppet</code>」と入力し、[<strong>Start Command Prompt with Puppet</strong>]をクリックします。
 </p>
   </li>
   <li>
@@ -104,7 +102,7 @@ C:/ProgramData/PuppetLabs/code/environments/production/modules
 
 <h3 id="discovery">はじめに</h3>
 
-<p> ACLはカスタムの<a href="/puppet/4.5/reference/type.html">タイプ</a>および <a href="/puppet/4.5/reference/type.html#providers">プロバイダ</a>です。そのため、<code>puppet resource</code>を使って、既存のファイルとフォルダのパーミッションを調べることができます。 一部のタイプについては、<code>puppet resource &lt;TYPE NAME&gt;</code>コマンドを使って、そのタイプのすべてのインスタンスを調べることができます。 しかし、1つのWindowsシステム上には、何千ものACLが存在することもあります。そのため、タイプを調べる対象フォルダを指定するのが最善の策となります。 ここでは、<code>c:\Users</code>をチェックして、そこに含まれるパーミッションを確認します。
+<p> ACLはカスタムの<a href="/puppet/4.9/type.html">タイプ</a>および <a href="/puppet/4.9/type.html#providers">プロバイダ</a>です。そのため、<code>puppet resource</code>を使って、既存のファイルとフォルダのパーミッションを調べることができます。 一部のタイプについては、<code>puppet resource &lt;TYPE NAME&gt;</code>コマンドを使って、そのタイプのすべてのインスタンスを調べることができます。 しかし、1つのWindowsシステム上には、何千ものACLが存在することもあります。そのため、タイプを調べる対象フォルダを指定するのが最善の策となります。 ここでは、<code>c:\Users</code>をチェックして、そこに含まれるパーミッションを確認します。
 </p>
 
 <p> コマンドプロンプトで<code>puppet resource acl c:\Users</code>と入力します。
@@ -309,7 +307,7 @@ Successfully processed 1 files; Failed processing 0 files
 
 <h3 id="discovery-1">はじめに</h3>
 
-<p> <code>puppetlabs-registry</code>はカスタムの<a href="/puppet/4.5/reference/type.html">タイプ</a>および<a href="/puppet/4.5/reference/type.html#providers">プロバイダ</a>です。そのため、<code>puppet resource</code>を使って、既存のレジストリ設定を調べることができます。  また、制限付きのモジュールであり、<code>acl</code>モジュールと同じように、指定した対象にのみ適用されます。 <code>HKLM\Software\Microsoft\Windows</code>を指定して、どうなるか確認してみましょう。
+<p> <code>puppetlabs-registry</code>はカスタムの<a href="/puppet/4.9/type.html">タイプ</a>および<a href="/puppet/4.9/type.html#providers">プロバイダ</a>です。そのため、<code>puppet resource</code>を使って、既存のレジストリ設定を調べることができます。  また、制限付きのモジュールであり、<code>acl</code>モジュールと同じように、指定した対象にのみ適用されます。 <code>HKLM\Software\Microsoft\Windows</code>を指定して、どうなるか確認してみましょう。
 </p>
 
 <p> <code>puppet resource registry_key 'HKLM\Software\Microsoft\Windows'</code>と入力します。

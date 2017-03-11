@@ -3,36 +3,37 @@ layout: default
 title: "ノードの分類とユーザー許可の割り当て"
 canonical: "/ja/pe/quick_start_nc_rbac.html"
 ---
- 
+
 <div>
-<p> </p>
-<div class="real-paragraph"> PEでは、<strong>ユーザ</strong>と<strong>ユーザグループ</strong>をコンソールから作成および管理することができます。
-</div> <div class="real-paragraph"> <strong>ユーザのロール(役割)</strong>を作成し、各ユーザをそれらのロールに割り当てることも可能です。
-</div> <div class="real-paragraph"> ノードグループの閲覧、コードのデプロイ、パスワードリセットトークンの生成などを許可するパーミッションは、ユーザに直接割り当てるのではなく、ユーザロールに割り当てます。
-</div> <div class="real-paragraph"> ユーザやユーザグループに対してロールを割り当てると、より組織的にパーミッションを付与できます。
-</div>
+<p> このクイックスタートガイドでは、新しいユーザロールを作成し、「<a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a>」で作成したノードグループを閲覧するパーミッションを、そのロールに割り当てます。 また、新しいローカルユーザを作成し、そのユーザにユーザロールを割り当てます。
+</p>
 
+<p> PEでは、<strong>ユーザ</strong>と<strong>ユーザグループ</strong>をコンソールから作成および管理することができます。 <strong>ユーザのロール(役割)</strong>を作成し、各ユーザをそれらのロールに割り当てることも可能です。 ノードグループの閲覧、コードのデプロイ、パスワードリセットトークンの生成などを許可するパーミッションは、ユーザに直接割り当てるのではなく、ユーザロールに割り当てます。 ユーザやユーザグループに対してロールを割り当てると、より組織的にパーミッションを付与できます。
+</p>
 
-<p> </p>
-<div class="real-paragraph"> このクイックスタートガイドでは、新しいユーザロールを作成し、「<a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a>」で作成したノードグループを閲覧するパーミッションを、そのロールに割り当てます。
-</div> <div class="real-paragraph"> また、新しいローカルユーザを作成し、そのユーザにユーザロールを割り当てます。
-</div>
+<!--Multitask-->
+<h2 id="complete-a-basic-rbac-workflow">基本的なRBACワークフローの作成</h2>
 
+<p> Puppet Enterpriseでは、ロールベースのアクセス制御(RBAC)を使用してユーザパーミッションを管理します。 パーミッションは、指定されたオブジェクトに対してユーザが実行できるアクションを定義したものです。 RBACワークフローには複数のステップが含まれており、個別の要件に合わせて調整することができます。
+</p>
 
-<p> </p>
-<div class="real-paragraph"> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>と<a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a>がインストールされているものと想定します。
-</div>
-
-
+<p> 開始する前に、以下をインストールしていることを確認します。
+</p>
+<ul>
+<li><a href="./quick_start_install_mono.html">Puppet Enterpriseのモノリシックデプロイ</a></li>
+  <li>少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>
+</li>
+  <li><a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a></li>
+</ul>
 <blockquote>
-  <p> </p>
-<div class="real-paragraph"> <strong>注意</strong>：ロールはコンソールではなく、APIで削除可能です。
-</div> <div class="real-paragraph"> そのため、これらの手順については、仮想マシンで試してみることを推奨します。
-</div>
-
+  <p> <strong>注意</strong>：ロールはコンソールではなく、APIで削除可能です。 そのため、これらの手順については、仮想マシンで試してみることを推奨します。
+</p>
 </blockquote>
 
-<h2 id="step-1-create-a-user-role">ステップ1：ユーザロールを作成する</h2>
+<h3 id="step-1-create-a-user-role">ステップ1：ユーザロールを作成する</h3>
+
+<p> ユーザロールは、複数のユーザに適用できるパーミッションセットです。 Puppet Enterpriseでは、単一ユーザに対してパーミッションを割り当てることはできません。ユーザロールに対してのみ割り当て可能です。
+</p>
 
 <ol>
 <li>コンソールで、<strong>Access control</strong>をクリックし、<strong>User Roles</strong>をクリックします。</li>
@@ -40,7 +41,10 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
   <li>
 <strong>Add role</strong>をクリックします。</li>
 </ol>
-<h2 id="step-2-give-the-user-role-access-to-a-node-group">ステップ2：ノードグループにユーザロールアクセスを追加する</h2>
+<h3 id="step-2-give-the-user-role-access-to-a-node-group">ステップ2：ノードグループにユーザロールアクセスを追加する</h3>
+
+<p> ユーザロールに付与できるパーミッションの1つに、ノードグループへのアクセス(表示、作成、編集)権限があります。
+</p>
 
 <ol>
 <li>[<strong>User roles</strong>]ページで[<strong>Web developers</strong>]を選択し、[<strong>Permissions</strong>]タブをクリックします。</li>
@@ -50,10 +54,15 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
 <strong>Permission</strong>ボックスで<strong>View</strong>を選択します。</li>
   <li>[<strong>Object</strong>]ボックスで[<strong>apache_example</strong>]を選択します。</li>
   <li>
-<strong>Add permission</strong>をクリックし、Commitボタンをクリックします。
-これで、<code>Web developers</code>のメンバーに、<code>apache_example</code>ノードグループを閲覧する許可が与えられました。</li>
+<strong>Add permission</strong>をクリックし、Commitボタンをクリックします。</li>
 </ol>
-<h2 id="step-3-create-a-new-user">ステップ3：新しいユーザを作成する</h2>
+<p> これで、<code>Web developers</code>のメンバーに、<code>apache_example</code>ノードグループを閲覧する許可が与えられました。
+</p>
+
+<h3 id="step-3-create-a-new-user">ステップ3：新しいユーザを作成する</h3>
+
+<p> この手順では、新しいローカルユーザを作成する方法を実践します。 また、<a href="/pe/2017.1/rbac_ldap.html">外部ディレクトリからユーザおよびグループをインポート</a>すると、ユーザを1つずつ再作成する必要がなくなります。
+</p>
 
 <ol>
 <li>
@@ -65,20 +74,10 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
   <li>
 <strong>Add local user</strong>をクリックします。</li>
 </ol>
-<blockquote>
-  <h4 id="faqs">FAQ</h4>
+<h3 id="step-4-enable-the-new-user-to-log-in">ステップ4：新規ユーザのログインを有効化する</h3>
 
-  <ul>
-<li><a href="/pe/2016.4/rbac_ldap.html">ユーザを1人ずつ作成し直さずに済むように、外部ディレクトリからユーザやグループをインポートすることはできますか？</a></li>
-  </ul>
-</blockquote>
-
-<h2 id="step-4-enable-the-new-user-to-log-in">ステップ4：新規ユーザのログインを有効化する</h2>
-
-<p> </p>
-<div class="real-paragraph"> 新しいローカルユーザを作成する際には、初回にログインするためのパスワードリセットトークンをユーザに送付する必要があります。
-</div>
-
+<p> 新しいローカルユーザを作成する際には、初回にログインするためのパスワードリセットトークンをユーザに送付する必要があります。
+</p>
 
 <ol>
 <li>
@@ -86,7 +85,10 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
   <li>ページの右上の<strong>Generate password reset</strong>をクリックします。<strong>Password reset link</strong>メッセージボックスが開きます。 </li>
   <li>メッセージに表示されている<em>リンクをコピー</em>し、新しいユーザに送付します。その後、メッセージを閉じてもかまいません。</li>
 </ol>
-<h2 id="step-5-assign-the-user-role-to-the-new-user">ステップ5：新規ユーザにユーザロールを割り当てる</h2>
+<h3 id="step-5-assign-the-user-role-to-the-new-user">ステップ5：新規ユーザにユーザロールを割り当てる</h3>
+
+<p> ユーザがPuppet Enterpriseにログインして使用できるようにするには、1つ以上のロールを割り当てる必要があります。 ユーザにロールを追加すると、このロールに適用されているパーミッションがユーザに付与されます。
+</p>
 
 <ol>
 <li>
@@ -94,17 +96,11 @@ canonical: "/ja/pe/quick_start_nc_rbac.html"
   <li>
 <strong>Member users</strong>タブの<strong>User name</strong>リストで、作成した新しいユーザを選択したら、<strong>Add user</strong>をクリックしてCommitボタンをクリックします。</li>
 </ol>
+<p> これで、RBACでユーザを管理できるようになりました。 パーミッションとユーザロールを使えば、PEを使用する各ユーザやユーザグループに適切なレベルのアクセスや活動を付与することができます。
+</p>
+
 <blockquote>
-  <p> </p>
-<div class="real-paragraph"> これで、RBACでユーザを管理できるようになりました。
-</div> <div class="real-paragraph"> パーミッションとユーザロールを使えば、PEを使用する各ユーザやユーザグループに適切なレベルのアクセスや活動を付与することができます。
-</div>
-
-
-  <p> </p>
-<div class="real-paragraph"> 次は、独自モジュールの記述に関する基本を説明します。独自のモジュールを記述すれば、デプロイのカスタマイズなどの作業ができるようになります。
-</div> <div class="real-paragraph"> <a href="./quick_writing_nix.html">最初のモジュールを記述する準備ができたら、こちらをクリックしてください。</a>
-</div>
-
+  <p> 次は、独自モジュールの記述に関する基本を説明します。独自のモジュールを記述すれば、デプロイのカスタマイズなどの作業ができるようになります。 <a href="./quick_writing_nix.html">最初のモジュールを記述する準備ができたら、こちらをクリックしてください。</a>
+</p>
 </blockquote>
 </div>
