@@ -2,21 +2,20 @@
 title: "Hiera: Legacy config file syntax (hiera.yaml v3)"
 ---
 
-[hierarchy]: todo
-[layer]: todo
-[v4]: todo
-[v5]: todo
-[merge]: todo
-[layers]: todo
-[confdir]: todo
-[yaml]: todo
+[hierarchy]: ./hiera_hierarchy.html
+[layers]: ./hiera_layers.html
+[v4]: ./hiera_config_yaml_4.html
+[v5]: ./hiera_config_yaml_5.html
+[merge]: ./hiera_merging.html
+[confdir]: ./dirs_confdir.html
+[yaml]: http://www.yaml.org/YAML_for_ruby.html
 [custom_backends]: {{hiera}}/custom_backends.html
 [puppetserver_gem]: {{puppetserver}}/gems.html#installing-and-removing-gems
 [deep_merge_gem_docs]: https://github.com/danielsdeleo/deep_merge/blob/master/README.md
-[interpolate]: todo
+[interpolate]: ./hiera_interpolation.html
 
 
-Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][] of data.
+Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][layers] of data.
 
 This version of Puppet supports three formats for hiera.yaml --- you can use any of them, although [v4][] and v3 are deprecated. This page is about version 3, the legacy version.
 
@@ -74,7 +73,7 @@ Each top-level key in the hash **must be a Ruby symbol with a colon (`:`) prefix
 
 ### Default config values
 
-If the config file exists but has no data, the default settings will be equivalent to the following:
+If the config file exists but has no data, Hiera uses the following default settings:
 
 ``` yaml
 ---
@@ -95,7 +94,7 @@ If the config file exists but has no data, the default settings will be equivale
 ## Global settings
 
 
-hiera.yaml v3 can contain any the following settings. If absent, they will have default values. **Note that each setting must be a Ruby symbol with a colon (`:`) prefix.**
+hiera.yaml v3 can contain any the following settings. If absent, they use default values as shown above. **Note that each setting must be a Ruby symbol with a colon (`:`) prefix.**
 
 ### `:hierarchy`
 

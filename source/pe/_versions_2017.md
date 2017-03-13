@@ -1,0 +1,28 @@
+### Agent components (on all nodes)
+
+<table>
+  <thead>
+    <tr>
+      <th>PE Version</th> <th>Puppet Agent</th> <th>Puppet</th> <th>Facter</th> <th>Hiera</th> <th>MCollective</th> <th>Ruby</th> <th>OpenSSL</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr><td>2017.1.0</td> <td><a href="/puppet/4.9/release_notes_agent.html#puppet-agent-193"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">1.9.3</abbr></a><br><a href="/puppet/4.7/release_notes_agent.html#puppet-agent-170"><abbr title="ubuntu-14.04-i386, ubuntu-12.04-i386, ubuntu-16.04-i386">1.7.0</abbr></a></td> <td><a href="/puppet/4.9/release_notes.html#puppet-494"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">4.9.4</abbr></a><br><a href="/puppet/4.7/release_notes.html#puppet-470"><abbr title="ubuntu-14.04-i386, ubuntu-12.04-i386, ubuntu-16.04-i386">4.7.0</abbr></a></td> <td><a href="/facter/3.6/release_notes.html#facter-362"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">3.6.2</abbr></a><br><a href="/facter/3.4/release_notes.html#facter-341"><abbr title="ubuntu-14.04-i386, ubuntu-12.04-i386, ubuntu-16.04-i386">3.4.1</abbr></a></td> <td><a href="/hiera/3.3/release_notes.html#hiera-331"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">3.3.1</abbr></a><br><a href="/hiera/3.2/release_notes.html#hiera-321"><abbr title="ubuntu-14.04-i386, ubuntu-12.04-i386, ubuntu-16.04-i386">3.2.1</abbr></a></td> <td><a href="/mcollective/releasenotes.html"><abbr title="ubuntu-14.04-i386, ubuntu-12.04-i386, ubuntu-16.04-i386">2.9.0</abbr></a><br><a href="/mcollective/releasenotes.html"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.10.2</abbr></a></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64, ubuntu-14.04-i386, ubuntu-12.04-i386, ubuntu-16.04-i386">2.1.9</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">1.0.2j</abbr><br><abbr title="ubuntu-14.04-i386, ubuntu-12.04-i386, ubuntu-16.04-i386">1.0.2h</abbr></td></tr>
+  </tbody>
+</table>
+
+### Server components
+
+<table>
+  <thead>
+    <tr>
+      <th>PE Version</th> <th>Puppet Server</th> <th>PuppetDB</th> <th>r10k</th> <th>Razor Server</th> <th>Razor Libs</th> <th>PostgreSQL</th> <th>Java</th> <th>ActiveMQ</th> <th>Nginx</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr><td>2017.1.0</td> <td><a href="/puppetserver/2.7/release_notes.html#puppet-server-272"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.7.2</abbr></a></td> <td><a href="/puppetdb/4.3/release_notes.html"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">4.3.2</abbr></a></td> <td><a href="https://github.com/puppetlabs/r10k/blob/master/CHANGELOG.mkd#251"><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.5.1</abbr></a></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.5.0</abbr></td> <td><abbr title="sles-11-x86_64, el-6-x86_64, el-7-x86_64, sles-12-x86_64">2017.1.3</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.1.9</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.1.1</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.1.5</abbr></td> <td><abbr title="ubuntu-12.04-amd64, sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.1.1</abbr></td></tr>
+  </tbody>
+</table>
+

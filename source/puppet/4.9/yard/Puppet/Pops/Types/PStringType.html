@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PStringType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PStringType
   
@@ -155,6 +153,30 @@
 </li>
 
       
+        
+<li class="public deprecated">
+  <span class="summary_signature">
+    
+      <a href="#values-instance_method" title="#values (instance method)">#<strong>values</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  <span class="deprecated note title">deprecated</span>
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -246,31 +268,6 @@
       <pre class="lines">
 
 
-1452
-1453
-1454
-1455
-1456
-1457
-1458
-1459
-1460
-1461
-1462
-1463
-1464
-1465
-1466
-1467
-1468
-1469
-1470
-1471
-1472
-1473
-1474
-1475
-1476
 1477
 1478
 1479
@@ -286,51 +283,134 @@
 1489
 1490
 1491
-1492</pre>
+1492
+1493
+1494
+1495
+1496
+1497
+1498
+1499
+1500
+1501
+1502
+1503
+1504
+1505
+1506
+1507
+1508
+1509
+1510
+1511
+1512
+1513
+1514
+1515
+1516
+1517
+1518
+1519
+1520
+1521</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1452</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1477</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+  <span class='kw'>if</span> <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='rparen'>)</span>
     <span class='comment'># A general string is assignable by any other string or pattern restricted string
 </span>    <span class='comment'># if the string has a size constraint it does not match since there is no reasonable way
 </span>    <span class='comment'># to compute the min/max length a pattern will match. For enum, it is possible to test that
 </span>    <span class='comment'># each enumerator value is within range
 </span>    <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
-      <span class='kw'>when</span> <span class='const'>PStringType</span>
-        <span class='comment'># true if size compliant
-</span>        <span class='lparen'>(</span><span class='ivar'>@size_type</span> <span class='op'>||</span> <span class='const'>PCollectionType</span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span>
-          <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>||</span> <span class='const'>PCollectionType</span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span>
+      <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_derived_size_type'>derived_size_type</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
 
-      <span class='kw'>when</span> <span class='const'>PPatternType</span>
-        <span class='comment'># true if size constraint is at least 0 to +Infinity (which is the same as the default)
-</span>        <span class='ivar'>@size_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='ivar'>@size_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'>PCollectionType</span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-
-      <span class='kw'>when</span> <span class='const'>PEnumType</span>
-        <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-          <span class='comment'># enum represents all enums, and thus all strings, a sized constrained string can thus not
-</span>          <span class='comment'># be assigned any enum (unless it is max size).
-</span>          <span class='ivar'>@size_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='ivar'>@size_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'>PCollectionType</span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-        <span class='kw'>else</span>
-          <span class='comment'># true if all enum values are within range
-</span>          <span class='id identifier rubyid_orange'>orange</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:size</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_minmax'>minmax</span>
-          <span class='id identifier rubyid_srange'>srange</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='ivar'>@size_type</span> <span class='op'>||</span> <span class='const'>PCollectionType</span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span>
-          <span class='comment'># If o min and max are within the range of t
-</span>          <span class='id identifier rubyid_srange'>srange</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_orange'>orange</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_srange'>srange</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_orange'>orange</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
-        <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PEnumType.html" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span></span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+        <span class='comment'># enum represents all enums, and thus all strings, a sized constrained string can thus not
+</span>        <span class='comment'># be assigned any enum (unless it is max size).
+</span>        <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PCollectionType.html" title="Puppet::Pops::Types::PCollectionType (class)">PCollectionType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
       <span class='kw'>else</span>
-        <span class='comment'># no other type matches string
-</span>        <span class='kw'>false</span>
+        <span class='comment'># true if all enum values are within range
+</span>        <span class='id identifier rubyid_orange'>orange</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:size</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_minmax'>minmax</span>
+        <span class='id identifier rubyid_srange'>srange</span> <span class='op'>=</span> <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_range'>range</span>
+        <span class='comment'># If o min and max are within the range of t
+</span>        <span class='id identifier rubyid_srange'>srange</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_orange'>orange</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_srange'>srange</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_orange'>orange</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='kw'>end</span>
+
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PPatternType.html" title="Puppet::Pops::Types::PPatternType (class)">PPatternType</a></span></span>
+      <span class='comment'># true if size constraint is at least 0 to +Infinity (which is the same as the default)
+</span>      <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PCollectionType.html" title="Puppet::Pops::Types::PCollectionType (class)">PCollectionType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT_SIZE</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='comment'># no other type matches string
+</span>      <span class='kw'>false</span>
     <span class='kw'>end</span>
-  <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PStringType</span><span class='rparen'>)</span>
-    <span class='comment'># A specific string acts as a set of strings - must have exactly the same strings
-</span>    <span class='comment'># In this case, size does not matter since the definition is very precise anyway
-</span>    <span class='id identifier rubyid_values'>values</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
   <span class='kw'>else</span>
-    <span class='comment'># All others are false, since no other type describes the same set of specific strings
-</span>    <span class='kw'>false</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span>
+      <span class='comment'># Must match exactly when value is a string
+</span>      <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='ivar'>@size_type_or_value</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_type_or_value'>size_type_or_value</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PEnumType.html" title="Puppet::Pops::Types::PEnumType (class)">PEnumType</a></span></span>
+      <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>==</span> <span class='int'>1</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@size_type_or_value</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>when</span> <span class='const'><span class='object_link'><a href="PPatternType.html" title="Puppet::Pops::Types::PPatternType (class)">PPatternType</a></span></span>
+      <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='kw'>else</span>
+      <span class='comment'># All others are false, since no other type describes the same set of specific strings
+</span>      <span class='kw'>false</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="values-instance_method">
+  
+    #<strong>values</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="deprecated note title">deprecated</span><span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1416
+1417
+1418
+1419
+1420
+1421</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1416</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_values'>values</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:strict</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='symbol'>:off</span>
+    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn_once'>warn_once</span><span class='lparen'>(</span><span class='symbol'>:deprecatation</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PStringType#values</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Method PStringType#values is deprecated. Use #value instead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='ivar'>@value</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -342,9 +422,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:40 2016 by
+  Generated on Tue Jan 31 13:38:25 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

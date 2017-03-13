@@ -36,11 +36,9 @@ end
 
 ### Filename/path
 
-By standard Ruby code loading conventions, the file containing a backend should be located in a Ruby lib directory with a sub path of `hiera/backend/<LOWERCASED CLASS NAME>.rb`.
+By standard Ruby code loading conventions, the file containing a backend should be located in a Ruby lib directory with a sub path of `hiera/backend/<LOWERCASED CLASS NAME>.rb`. A backend named `file` would be located in a lib directory at `hiera/backend/file_backend.rb`.
 
-When using Hiera with Puppet, you can load backends from the `lib` directory of a Puppet module; however, these backends won't be loaded when you run Hiera from the command line unless you specify that directory in your `RUBYLIB` environment variable.
-
-A backend named `file` would be located in a lib directory at `hiera/backend/file_backend.rb`.
+When using Hiera with Puppet, you should install custom backends on the master as a gem.
 
 ### The `initialize` method
 

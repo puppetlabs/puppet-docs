@@ -3,15 +3,13 @@ layout: default
 title: "Module metadata and metadata.json"
 ---
 
-[puppet lookup]: ./lookup_quick.html
-[module data]: ./lookup_quick_module.html
-[hiera_yaml_4]: ./lookup_quick.html#hierayaml-version-4-in-a-nutshell
+[module data]: ./hiera_layers.html
+[hiera_yaml_4]: ./hiera_config_yaml_4.html
 
 Puppet modules should always contain a `metadata.json` file, which tracks important information about the module and can configure certain features. It's used by several Puppet subsystems:
 
 * The `puppet module` command uses this file to display module information and prepare modules for publishing.
 * The Puppet Forge requires this file and uses it to create the module's info page, provide dependency information to users installing the module, and more.
-* The [Puppet lookup system][puppet lookup] relies on the `data_provider` key in `metadata.json` to configure module data.
 
 
 ## Location
@@ -72,12 +70,14 @@ Required keys are labeled as such; the rest are optional.
 * `tags` --- An array of key words to help people find your module (not case sensitive). For example: `["msyql", "database", "monitoring"]`
 
     Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact (including but not limited to `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`). Use of prohibited tags will lower your module's quality score on the Forge.
-* `data_provider` --- The name of a [Puppet lookup][] data provider for your module, which it can use to set default values for class parameters. For more details, see the docs on [Puppet lookup][] and [module data][]. This can have the following values:
-    * `null` --- Same as if the key is absent. No data provider.
-    * `"none"` --- No data provider.
-    * `"hiera"` --- Uses Hiera-like data sources stored in your module, configured by a [`hiera.yaml` (version 4) file][hiera_yaml_4].
+* `data_provider` --- **Deprecated.** The experimental Puppet lookup feature used this key to enable module data. It's no longer necessary, since [Hiera 5's module layer][module data] is automatically enabled if a hiera.yaml file is present.
+
+    This can have the following values:
+
+    * `null` (or key is absent) --- In Puppet 4.9 and later, automatically configure module data if hiera.yaml is present. In Puppet 4.3 through 4.8, disable module data.
+    * `"none"` --- Disable module data.
+    * `"hiera"` --- In Puppet 4.9 and later, same as `null` or absent. In 4.3 through 4.8, enable module data using a [`hiera.yaml` (version 4) file][hiera_yaml_4].
     * `"function"` --- Uses a hash returned by a function named `<MODULE NAME>::data`.
-    * The name of a third-party data provider provided by a module.
 
 ### Deprecated keys
 

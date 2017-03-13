@@ -1,12 +1,13 @@
 ---
 layout: default
-built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
+built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
 title: Resource Type Reference (Single-Page)
+canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600
 
 ## About Resource Types
 
@@ -22,7 +23,7 @@ information on how to use its custom resource types.
 
 To manage resources on a target system, you should declare them in Puppet
 manifests. For more details, see
-[the resources page of the Puppet language reference.](/puppet/latest/reference/lang_resources.html)
+[the resources page of the Puppet language reference.](/puppet/latest/lang_resources.html)
 
 You can also browse and manage resources interactively using the
 `puppet resource` subcommand; run `puppet resource --help` for more information.
@@ -7433,7 +7434,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`.
-* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24`.
+* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24, 25`.
 * Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
@@ -7572,7 +7573,7 @@ or an array where each element is either a string or a hash.
 OpenSolaris image packaging system. See pkg(5) for more information.
 
 * Required binaries: `/usr/bin/pkg`.
-* Default for `kernelrelease` == `5.11` and `osfamily` == `solaris`.
+* Default for `kernelrelease` == `5.11, 5.12` and `osfamily` == `solaris`.
 * Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
@@ -9564,7 +9565,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -11621,7 +11622,7 @@ Valid values are `absent`. Values can match `/^\d+$/`.
 
 Manage yum repo configurations by parsing yum INI configuration files.
 
-## Fetching instances
+### Fetching instances
 
 When fetching repo instances, directory entries in '/etc/yum/repos.d',
 '/etc/yum.repos.d', and the directory optionally specified by the reposdir
@@ -11629,7 +11630,7 @@ key in '/etc/yum.conf' will be checked. If a given directory does not exist it
 will be ignored. In addition, all sections in '/etc/yum.conf' aside from
 'main' will be created as sections.
 
-## Storing instances
+### Storing instances
 
 When creating a new repository, a new section will be added in the first
 yum repo directory that exists. The custom directory specified by the
@@ -12347,4 +12348,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600

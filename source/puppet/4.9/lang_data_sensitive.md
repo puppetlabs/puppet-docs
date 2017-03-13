@@ -26,10 +26,10 @@ It is therefore not possible to have detailed data types and expect that the dat
 
 ## Example
 
-If you assign a value to a sensitive type, and call notice:
+If you assign a sensitive value, and call notice:
 
 ```puppet
-$secret = 'myPassword'
+$secret = Sensitive('myPassword')
 notice($secret)
 ```
 
@@ -38,7 +38,7 @@ This outputs `Notice: Scope(Class[main]): Sensitive [value redacted]`.
 However, you can still unwrap this with the `unwrap` function and gain access to the original data. 
 
 ```
-$secret = 'myPassword'
+$secret = Sensitive('myPassword')
 $processed = $secret.unwrap
 notice $processed
 ```

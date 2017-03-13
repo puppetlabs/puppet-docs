@@ -21,7 +21,7 @@ You can write your own functions in the Puppet language to transform data and co
 ## Syntax
 
 ``` puppet
-function <MODULE NAME>::<NAME>(<PARAMETER LIST>) {
+function <MODULE NAME>::<NAME>(<PARAMETER LIST>) >> <RETURN TYPE> {
   ... body of function ...
   final expression, which will be the returned value of the function
 }
@@ -30,7 +30,7 @@ function <MODULE NAME>::<NAME>(<PARAMETER LIST>) {
 {% capture bool2httpexample %}
 
 ``` puppet
-function apache::bool2http($arg) {
+function apache::bool2http(Variant[String, Boolean] $arg) >> String {
   case $arg {
     false, undef, /(?i:false)/ : { 'Off' }
     true, /(?i:true)/          : { 'On' }
@@ -56,6 +56,9 @@ The general form of a function written in Puppet language is:
         * An optional equals (`=`) sign and **default value** (which must match the data type, if one was specified).
     * An optional trailing comma after the last parameter.
     * A closing parenthesis.
+* An optional **return type**, which consists of:
+    * Two greater-than signs (`>>`).
+    * A [data type][literal_types] that matches every value the function could return.
 * An opening curly brace.
 * A block of Puppet code, ending with an expression whose value is returned.
 * A closing curly brace.
@@ -93,6 +96,24 @@ An extra arguments parameter can have a default value, which has some automatic 
 
 An extra arguments parameter can also have a [data type][literal_types]. Puppet will use this data type to validate _the elements_ of the array. That is, if you specify a data type of `String`, the real data type of the extra arguments parameter will be `Array[String]`.
 
+### Return types
+
+> **Note:** Return types only work with Puppet 4.7 and later. In earlier versions of Puppet, they cause an evaluation error.
+
+Between the parameter list and the function body, you can use `>>` and a [data type][literal_types] to specify the types of the values the function returns.
+
+For example, this function is guaranteed to only return strings:
+
+``` puppet
+function apache::bool2http(Variant[String, Boolean] $arg) >> String {
+  ...
+}
+```
+
+The return type serves two purposes: documentation, and insurance.
+
+* Puppet Strings can include information about the return value of a function.
+* If something goes wrong and your function returns the wrong type (like `undef` when a string is expected), it will fail early with an informative error instead of allowing compilation to continue with an incorrect value.
 
 ### The function body
 

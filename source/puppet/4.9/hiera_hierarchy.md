@@ -2,27 +2,25 @@
 title: "Hiera: How hierarchies work"
 ---
 
-[hiera.yaml]: todo
-[interpolate]: todo
-[subkey]: todo
-[facts]: todo
-[trusted data]: todo
-[merge]: todo
-[layers]: todo
-[codedir]: todo
-[confdir]: todo
-[builtins]: todo
-[backends]: todo
-[custom facts]: todo
-[roles and profiles]: todo
+[v5]: ./hiera_config_yaml_5.html
+[interpolate]: ./hiera_interpolation.html
+[subkey]: ./hiera_subkey.html
+[facts]: ./lang_facts_and_builtin_vars.html
+[trusted data]: ./lang_facts_and_builtin_vars.html#trusted-facts
+[merge]: ./hiera_merging.html
+[layers]: ./hiera_layers.html
+[codedir]: ./dirs_codedir.html
+[confdir]: ./dirs_confdir.html
+[custom facts]: {{facter}}/custom_facts.html
+[roles and profiles]: {{pe}}/r_n_p_intro.html
 
 Hiera looks up data with a **hierarchy,** which is an ordered list of data sources.
 
-Hierarchies are configured in a [hiera.yaml][] config file. A hierarchy usually looks something like this:
+Hierarchies are configured in a [hiera.yaml][v5] config file. A hierarchy usually looks something like this:
 
 {% partial _hiera.yaml_v5.md %}
 
-Each **level** of the hierarchy tells Hiera how to access some kind of data source. In this example, every level configures the path to a YAML file on disk. (For more about different kinds of data sources, see [Configuring the built-in data backends][builtins] and [Overview of the backend functions system][backends].)
+Each **level** of the hierarchy tells Hiera how to access some kind of data source. In this example, every level configures the path to a YAML file on disk.
 
 ## Most hierarchies interpolate variables
 
@@ -35,7 +33,7 @@ Notice that most levels of this hierarchy [interpolate variables][interpolate] i
 * The percent-and-braces `%{variable}` syntax is a Hiera [interpolation token][interpolate]. It's similar to the Puppet language's `${expression}` interpolation tokens.
 * `facts.os.family` uses Hiera's special [key.subkey notation][subkey] for accessing elements of hashes and arrays. It's equivalent to `$facts['os']['family']` in the Puppet language.
 * This example, like most real-life hierarchies, uses [facts][] and [trusted data][].
-* You can only interpolate values into certain parts of the config file. For more info, see [the hiera.yaml format reference][hiera.yaml].
+* You can only interpolate values into certain parts of the config file. For more info, see [the hiera.yaml format reference][v5].
 
 This is the core of Hiera's power: with node-specific variables, each node gets its own customized version of the hierarchy.
 

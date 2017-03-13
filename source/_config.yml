@@ -115,7 +115,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/everett
+      commit: origin/pe2016.5.2
       subdirectory: source
     my_versions:
       puppet: 4.8
@@ -130,7 +130,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.2
+      commit: origin/pe2016.4.3
       subdirectory: source
     my_versions:
       puppet: 4.7
@@ -281,7 +281,6 @@ documents:
     doc: puppet
     version: 4.9
     nav: ./_puppet_toc.html
-    hide: true
     my_versions:
       facter: 3.6
       hiera: 3.3

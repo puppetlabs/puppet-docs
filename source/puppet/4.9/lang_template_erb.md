@@ -128,7 +128,7 @@ You can trim line breaks after comment tags by adding a hyphen to the closing ta
 
 ### Literal tag delimiters
 
-If you need the template's final output to contain a literal `<%` or `%>`, you can escape them as `<%%` or `%%>`.
+If you need the template's final output to contain a literal `<%` or `%>`, you can escape them as `<%%` or `%%>`. The first literal tag is taken, and the rest of the line is treated as a literal. This means that `<%% Test %%>` in an ERB template would turn out as `<% Test %%>` not `<% Test %>`.
 
 ## Accessing Puppet variables
 
@@ -221,20 +221,24 @@ Also, note that Puppet's [special `undef` value][undef] becomes Ruby's special `
 
 ## Calling Puppet functions from templates
 
-You can use [Puppet functions][functions] inside templates, but their use is slightly different from their use in manifests:
+You can use [Puppet functions][functions] inside templates with the `scope.call_function(<NAME>, <ARGS>)` method. This method takes two arguments:
 
-* All functions are methods on the `scope` object.
-* You must prepend "`function_`" to the beginning of the function name.
-* The arguments of the function must be provided **as an array,** even if there is only one argument.
+* The name of the function, as a string.
+* All arguments to the function, as an array. (This must be an array even for one argument or zero arguments.)
 
 For example, to evaluate one template inside another:
 
-    <%= scope.function_template(["my_module/template2.erb"]) %>
+    <%= scope.call_function('template', ["my_module/template2.erb"]) %>
 
 To log a warning using Puppet's own logging system, so that it will appear in reports:
 
-    <%= scope.function_warning(["Template was missing some data; this config file may be malformed."]) %>
+    <%= scope.call_function('warning', ["Template was missing some data; this config file may be malformed."]) %>
 
+> **Note:** Previous versions of Puppet handled this by creating a `function_<NAME>` method on the `scope` object for each function; these could be called with an arguments array, like `<%= scope.function_template(["my_module/template2.erb"]) %>`
+>
+> That still works in this version of Puppet, but the `call_function` method is better. The auto-generated methods don't support the modern function APIs, which are now used by the majority of built-in functions.
+>
+> `scope.call_function` was added in Puppet 4.2.
 
 ## Example template
 

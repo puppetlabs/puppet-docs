@@ -6,7 +6,7 @@
 <title>
   File: CONTRIBUTING
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="file_list.html"></iframe>
+      <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -56,8 +56,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="file_list.html"></iframe>
 
       <div id="content"><div id='filecontents'><h1>How to contribute</h1>
 
@@ -180,6 +178,34 @@ and include a link to a YouTube recording of the hangout.</li>
 weeks we may close the pull request if it isn&#39;t showing any activity.</li>
 </ul>
 
+<h2>Revert Policy</h2>
+
+<p>By running tests in advance and by engaging with peer review for prospective
+changes, your contributions have a high probability of becoming long lived
+parts of the the project. After being merged, the code will run through a
+series of testing pipelines on a large number of operating system
+environments. These pipelines can reveal incompatibilities that are difficult
+to detect in advance.</p>
+
+<p>If the code change results in a test failure, we will make our best effort to
+correct the error. If a fix cannot be determined and committed within 24 hours
+of its discovery, the commit(s) responsible <em>may</em> be reverted, at the
+discretion of the committer and Puppet maintainers. This action would be taken
+to help maintain passing states in our testing pipelines.</p>
+
+<p>The original contributor will be notified of the revert in the Jira ticket
+associated with the change. A reference to the test(s) and operating system(s)
+that failed as a result of the code change will also be added to the Jira
+ticket. This test(s) should be used to check future submissions of the code to
+ensure the issue has been resolved.</p>
+
+<h3>Summary</h3>
+
+<ul>
+<li>Changes resulting in test pipeline failures will be reverted if they cannot
+be resolved within one business day.</li>
+</ul>
+
 <h1>Additional Resources</h1>
 
 <ul>
@@ -187,7 +213,7 @@ weeks we may close the pull request if it isn&#39;t showing any activity.</li>
 <li><a href="https://tickets.puppetlabs.com">Bug tracker (Jira)</a></li>
 <li><a href="http://links.puppet.com/cla">Contributor License Agreement</a></li>
 <li><a href="https://help.github.com/">General GitHub documentation</a></li>
-<li><a href="https://help.github.com/send-pull-requests/">GitHub pull request documentation</a></li>
+<li><a href="https://help.github.com/articles/creating-a-pull-request/">GitHub pull request documentation</a></li>
 <li>#puppet-dev IRC channel on freenode.org (<a href="https://botbot.me/freenode/puppet-dev/">Archive</a>)</li>
 <li><a href="https://groups.google.com/forum/#!forum/puppet-dev">puppet-dev mailing list</a></li>
 <li><a href="https://github.com/puppet-community/community-triage/tree/master/core/notes">Community PR Triage notes</a></li>
@@ -195,9 +221,9 @@ weeks we may close the pull request if it isn&#39;t showing any activity.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:33 2016 by
+  Generated on Tue Jan 31 13:38:16 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

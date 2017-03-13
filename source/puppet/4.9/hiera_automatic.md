@@ -3,12 +3,12 @@ title: "Hiera: Looking up data: Automatic class parameter lookup"
 toc: false
 ---
 
-[class parameters]: todo
-[classes]: todo
-[class_declare]: todo
-[resource_like]: todo
-[class_definition]: todo
-[r_n_p]: todo
+[class parameters]: ./lang_classes.html#class-parameters-and-variables
+[classes]: ./lang_classes.html
+[class_declare]: ./lang_classes.html#declaring-classes
+[resource_like]: ./lang_classes.html#resource-like-behavior
+[class_definition]: ./lang_classes.html#defining-classes
+[r_n_p]: {{pe}}/r_n_p_intro.html
 
 
 
@@ -19,14 +19,14 @@ When values for [class parameters][] aren't explicitly provided, Puppet automati
 
 Most [classes][] need some amount of configuration, and they can specify parameters to request the data they need.
 
-There are three ways to set values for class parameters, and Puppet tries each of them in order when the class is [declared][class_declare] or [assigned by an ENC][enc_assign]:
+There are three ways to set values for class parameters, and Puppet tries each of them in order when the class is [declared][class_declare] or assigned by an ENC:
 
 1. If it was a [resource-like declaration/assignment][resource_like], Puppet uses any parameters that were explicitly set. These always win if they exist.
 2. **Puppet automatically looks up the remaining parameters with Hiera, using `<CLASS NAME>::<PARAMETER NAME>` as the lookup key (for example, `ntp::servers` for the `ntp` class's `$servers` parameter).**
 3. For any parameters that still have no value, Puppet uses the default value from the class's [definition][class_definition].
 4. If any parameters have no value AND no default, Puppet fails compilation with an error.
 
-Thus, you could set servers for the NTP class like this:
+Thus, you can set servers for the NTP class like this:
 
 ``` yaml
 # /etc/puppetlabs/code/production/data/nodes/web01.example.com.yaml

@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::Injector
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Binder::Injector
   
@@ -676,9 +674,9 @@ of nil creates an injector that returns or yields nil on all lookup requests.</p
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_configured_binder'>configured_binder</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_injector'>parent_injector</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_configured_binder'>configured_binder</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='ivar'>@impl</span> <span class='op'>=</span> <span class='const'>Private</span><span class='op'>::</span><span class='const'>NullInjectorImpl</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
+    <span class='ivar'>@impl</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Injector/Private.html" title="Puppet::Pops::Binder::Injector::Private (module)">Private</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Injector/Private/NullInjectorImpl.html" title="Puppet::Pops::Binder::Injector::Private::NullInjectorImpl (class)">NullInjectorImpl</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='ivar'>@impl</span> <span class='op'>=</span> <span class='const'>Private</span><span class='op'>::</span><span class='const'>InjectorImpl</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_configured_binder'>configured_binder</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_injector'>parent_injector</span><span class='rparen'>)</span>
+    <span class='ivar'>@impl</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Injector/Private.html" title="Puppet::Pops::Binder::Injector::Private (module)">Private</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Injector/Private/InjectorImpl.html" title="Puppet::Pops::Binder::Injector::Private::InjectorImpl (class)">InjectorImpl</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_configured_binder'>configured_binder</span><span class='comma'>,</span> <span class='id identifier rubyid_parent_injector'>parent_injector</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -716,7 +714,7 @@ produced by the given block. The block is evaluated with self bound to a Binding
     <p class="tag_title">Examples:</p>
     
       
-      <pre class="example code"><code><span class='const'>Injector</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mysettings</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Binder::Injector (class)">Injector</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>mysettings</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
   <span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>name</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='int'>42</span><span class='rparen'>)</span>
 <span class='kw'>end</span></code></pre>
     
@@ -739,7 +737,7 @@ produced by the given block. The block is evaluated with self bound to a Binding
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span>
+  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="BindingsFactory.html" title="Puppet::Pops::Binder::BindingsFactory (module)">BindingsFactory</a></span></span>
   <span class='id identifier rubyid_layered_bindings'>layered_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_layer'>named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-layer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1919,7 +1917,7 @@ The block is evaluated with self bound to a BindingsContainerBuilder.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_override'>override</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span>
+  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="BindingsFactory.html" title="Puppet::Pops::Binder::BindingsFactory (module)">BindingsFactory</a></span></span>
   <span class='id identifier rubyid_layered_bindings'>layered_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_layer'>named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-layer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1965,7 +1963,7 @@ created with the given name, and the bindings given in the key_value_hash</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_override_with_hash'>override_with_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_key_value_hash'>key_value_hash</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'>BindingsFactory</span>
+  <span class='id identifier rubyid_factory'>factory</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="BindingsFactory.html" title="Puppet::Pops::Binder::BindingsFactory (module)">BindingsFactory</a></span></span>
   <span class='id identifier rubyid_named_bindings'>named_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_key_value_hash'>key_value_hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_bind'>bind</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lparen'>(</span><span class='id identifier rubyid_k'>k</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='rbrace'>}</span><span class='rbrace'>}</span>
   <span class='id identifier rubyid_layered_bindings'>layered_bindings</span> <span class='op'>=</span> <span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='lparen'>(</span><span class='id identifier rubyid_factory'>factory</span><span class='period'>.</span><span class='id identifier rubyid_named_layer'>named_layer</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-layer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span><span class='id identifier rubyid_named_bindings'>named_bindings</span><span class='period'>.</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -2012,7 +2010,7 @@ may consists of multiple layers of bindings.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/injector.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_override_with_model'>override_with_model</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='rparen'>)</span>
-  <span class='kw'>unless</span> <span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Bindings</span><span class='op'>::</span><span class='const'>LayeredBindings</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Bindings.html" title="Puppet::Pops::Binder::Bindings (module)">Bindings</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Bindings/LayeredBindings.html" title="Puppet::Pops::Binder::Bindings::LayeredBindings (class)">LayeredBindings</a></span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Expected a LayeredBindings model, got &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bindings_model'>bindings_model</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>Binder</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_layered_bindings'>layered_bindings</span><span class='comma'>,</span> <span class='ivar'>@impl</span><span class='period'>.</span><span class='id identifier rubyid_binder'>binder</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -2085,9 +2083,9 @@ to check type conformance, or infer the type of Ruby objects.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:42 2016 by
+  Generated on Tue Jan 31 13:38:28 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

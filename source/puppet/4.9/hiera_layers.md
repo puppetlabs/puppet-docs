@@ -1,15 +1,16 @@
 ---
-title: "Hiera: The three config layers"
+title: "Hiera: How the three config layers work"
 ---
 
 
-[hierarchy]: todo
-[confdir]: todo
-[v5]: todo
-[v3]: todo
-[environment]: todo
-[v4]: todo
-[module]: todo
+[hierarchy]: ./hiera_hierarchy.html
+[confdir]: ./dirs_confdir.html
+[v3]: ./hiera_config_yaml_3.html
+[v5]: ./hiera_config_yaml_5.html
+[environment]: ./environments.html
+[v4]: ./hiera_config_yaml_4.html
+[module]: ./modules_fundamentals.html
+[params.pp]: ./hiera_migrate_modules.html
 
 Previous versions (Hiera 3 and earlier) used a single, global hiera.yaml file to configure the [hierarchy][]. This version uses three.
 
@@ -24,7 +25,7 @@ The three layers always go in this order:
 2. Environment
 3. Module
 
-That is: Hiera will search every data source in the global layer's hierarchy before checking _any_ source in the environment layer.
+That is: Hiera searches every data source in the global layer's hierarchy before checking _any_ source in the environment layer.
 
 ### Why are there three layers now?
 
@@ -62,7 +63,7 @@ Every [environment][] has its own hierarchy configuration, which applies to node
 * **Supported config formats:** [hiera.yaml v5][v5], [hiera.yaml v4][v4] (deprecated).
 * Only used for namespaced lookup keys (e.g. `ntp::servers`).
 
-This layer can set default values and merge behavior for a [module][]'s class parameters. Think of it as a convenient alternative to the params.pp pattern.
+This layer can set default values and merge behavior for a [module][]'s class parameters. Think of it as a convenient alternative to [the params.pp pattern][params.pp].
 
 The module layer comes last, so environment data set by a user gets to override default data set by a module author.
 
@@ -74,7 +75,7 @@ Lookup key      | Relevant module hierarchy
 `jenkins::port` | `jenkins`
 `secure_server` | (none)
 
-Hiera will use the `ntp` module's hierarchy when looking up `ntp::servers`, but will use the `jenkins` module's hierarchy when looking up `jenkins::port`. Hiera will never check the `ntp` module for a key beginning with `jenkins::`.
+Hiera uses the `ntp` module's hierarchy when looking up `ntp::servers`, but uses the `jenkins` module's hierarchy when looking up `jenkins::port`. Hiera never checks the `ntp` module for a key beginning with `jenkins::`.
 
 For lookup keys that don't have a namespace (for example, `secure_server`), or which don't correspond to an existing module, Hiera skips the module layer.
 

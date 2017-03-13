@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::SSL::Validator::DefaultValidator
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::SSL::Validator::DefaultValidator
   
@@ -212,7 +210,7 @@ If there is no CA information known, then no verification is performed</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#reset%21-instance_method" title="#reset! (instance method)">#<strong>reset!</strong>  &#x21d2; Object </a>
+      <a href="#reset!-instance_method" title="#reset! (instance method)">#<strong>reset!</strong>  &#x21d2; Object </a>
     
 
     
@@ -402,11 +400,11 @@ If there is no CA information known, then no verification is performed</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span>
-    <span class='id identifier rubyid_ssl_configuration'>ssl_configuration</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
-                                      <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:localcacert</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbrace'>{</span>
-                                        <span class='symbol'>:ca_auth_file</span>  <span class='op'>=&gt;</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:ssl_client_ca_auth</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_ssl_configuration'>ssl_configuration</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Configuration</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+                                      <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:localcacert</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbrace'>{</span>
+                                        <span class='symbol'>:ca_auth_file</span>  <span class='op'>=&gt;</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:ssl_client_ca_auth</span><span class='rbracket'>]</span>
                                       <span class='rbrace'>}</span><span class='rparen'>)</span><span class='comma'>,</span>
-    <span class='id identifier rubyid_ssl_host'>ssl_host</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='symbol'>:ssl_host</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ssl_host'>ssl_host</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../../../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:ssl_host</span><span class='rparen'>)</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_reset!'>reset!</span>
   <span class='ivar'>@ssl_configuration</span> <span class='op'>=</span> <span class='id identifier rubyid_ssl_configuration'>ssl_configuration</span>
@@ -571,7 +569,7 @@ for the chain being verified.</p>
 </span>  <span class='comment'># across invocations of this method.
 </span>  <span class='kw'>if</span> <span class='id identifier rubyid_preverify_ok'>preverify_ok</span>
     <span class='id identifier rubyid_current_cert'>current_cert</span> <span class='op'>=</span> <span class='id identifier rubyid_store_context'>store_context</span><span class='period'>.</span><span class='id identifier rubyid_current_cert'>current_cert</span>
-    <span class='ivar'>@peer_certs</span> <span class='op'>&lt;&lt;</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Certificate</span><span class='period'>.</span><span class='id identifier rubyid_from_instance'>from_instance</span><span class='lparen'>(</span><span class='id identifier rubyid_current_cert'>current_cert</span><span class='rparen'>)</span>
+    <span class='ivar'>@peer_certs</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>SSL</span><span class='op'>::</span><span class='const'>Certificate</span><span class='period'>.</span><span class='id identifier rubyid_from_instance'>from_instance</span><span class='lparen'>(</span><span class='id identifier rubyid_current_cert'>current_cert</span><span class='rparen'>)</span>
 
     <span class='comment'># If we&#39;ve copied all of the certs in the chain out of the SSL library
 </span>    <span class='kw'>if</span> <span class='ivar'>@peer_certs</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span> <span class='op'>==</span> <span class='id identifier rubyid_store_context'>store_context</span><span class='period'>.</span><span class='id identifier rubyid_chain'>chain</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
@@ -589,7 +587,7 @@ for the chain being verified.</p>
 </span>      <span class='id identifier rubyid_crl'>crl</span> <span class='op'>=</span> <span class='id identifier rubyid_store_context'>store_context</span><span class='period'>.</span><span class='id identifier rubyid_current_crl'>current_crl</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_crl'>crl</span>
         <span class='kw'>if</span> <span class='id identifier rubyid_crl'>crl</span><span class='period'>.</span><span class='id identifier rubyid_last_update'>last_update</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_crl'>crl</span><span class='period'>.</span><span class='id identifier rubyid_last_update'>last_update</span> <span class='op'>&lt;</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span> <span class='op'>+</span> <span class='const'>FIVE_MINUTES_AS_SECONDS</span>
-          <span class='const'>Puppet</span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ignoring CRL not yet valid, current time </span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='embexpr_end'>}</span><span class='tstring_content'>, CRL last updated </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crl'>crl</span><span class='period'>.</span><span class='id identifier rubyid_last_update'>last_update</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_debug'>debug</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Ignoring CRL not yet valid, current time </span><span class='embexpr_beg'>#{</span><span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='embexpr_end'>}</span><span class='tstring_content'>, CRL last updated </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crl'>crl</span><span class='period'>.</span><span class='id identifier rubyid_last_update'>last_update</span><span class='period'>.</span><span class='id identifier rubyid_utc'>utc</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
           <span class='id identifier rubyid_preverify_ok'>preverify_ok</span> <span class='op'>=</span> <span class='kw'>true</span>
         <span class='kw'>else</span>
           <span class='ivar'>@verify_errors</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_error_string'>error_string</span><span class='embexpr_end'>}</span><span class='tstring_content'> for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_crl'>crl</span><span class='period'>.</span><span class='id identifier rubyid_issuer'>issuer</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -854,7 +852,7 @@ by a certificate listed in authz_certs</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/ssl/validator/default_validator.rb', line 171</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_ssl_certificates_are_present?'>ssl_certificates_are_present?</span>
-  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:hostcert</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='ivar'>@ssl_configuration</span><span class='period'>.</span><span class='id identifier rubyid_ca_auth_file'>ca_auth_file</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:hostcert</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='ivar'>@ssl_configuration</span><span class='period'>.</span><span class='id identifier rubyid_ca_auth_file'>ca_auth_file</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -947,9 +945,9 @@ by a certificate listed in authz_certs</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:50 2016 by
+  Generated on Tue Jan 31 13:38:41 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>
