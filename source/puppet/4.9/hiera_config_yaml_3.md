@@ -130,6 +130,8 @@ Loggers only control where warnings and debug messages are routed. You can use o
 
 ### `:merge_behavior`
 
+Which merge behavior the `hiera_hash` function should use. **Note that this does not affect automatic class parameter lookup, the `lookup` function, or the `puppet lookup` command.**
+
 Must be one of the following:
 
 * `native` (default) --- merge top-level keys only.
@@ -142,7 +144,9 @@ For more details about hash merge lookup strategies, see ["Hash Merge"](./lookup
 
 ### `:deep_merge_options`
 
-Must be a hash of options to pass to the `deep merge` gem, if `:merge_behavior` is set to `deeper` or `deep`. For example:
+A hash of deep merging options for `hiera_hash`, if `:merge_behavior` is set to `deeper` or `deep`. **Note that this does not affect automatic class parameter lookup, the `lookup` function, or the `puppet lookup` command.**
+
+For example:
 
     :merge_behavior: deeper
     :deep_merge_options:
