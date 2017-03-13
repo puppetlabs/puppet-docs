@@ -14,7 +14,7 @@ toc_levels: 234
 [module layer]: ./hiera_layers.html#the-module-layer
 [regexp]: ./lang_data_regexp.html
 [ruby_regexp]: http://ruby-doc.org/core/Regexp.html
-
+[hiera_functions]: ./hiera_use_hiera_functions.html
 
 
 When you look up a key in Hiera, it's common for multiple data sources to have different values for it. By default, Hiera returns the first value it finds, but it can also continue searching and merge all the found values together.
@@ -56,7 +56,7 @@ Specify this merge behavior with one of:
 
 ### Unique
 
-A unique merge (sometimes called "array merge") combines any number of array and scalar (string/number/boolean) values to return a merged, flattened array with all duplicate values removed. The lookup fails if any of the values are hashes.
+A unique merge (sometimes called "array merge") combines any number of array and scalar (string/number/boolean) values to return a merged, flattened array with all duplicate values removed. The lookup fails if any of the values are hashes. The result is ordered from highest-priority to lowest.
 
 For example:
 
@@ -128,8 +128,15 @@ Specify this merge behavior with one of:
 Like a hash merge, a deep merge combines the keys and values of any number of hashes to return a merged hash. But if the same key exists in multiple source hashes, Hiera **recursively merges them:**
 
 * Hash values are merged with another deep merge.
-* Array values are merged with a unique merge.
+* Array values are merged. This differs from the normal unique merge as follows:
+    * The result is ordered from lowest-priority to highest, which is the reverse of the unique merge's ordering.
+    * The result isn't flattened, so it can contain nested arrays.
+    * The `merge_hash_arrays` and `sort_merged_arrays` options can make further changes to the result.
 * Scalar (string/number/boolean) values use the highest-priority value, like in a first-found lookup.
+
+> **Note:** Unlike a hash merge, a deep merge can also accept arrays as the root values. It merges them with its normal array merging behavior, which differs from a unique merge as described above.
+>
+> This does not apply to the `hiera_hash` function, which can be configured to do deep merges but can't accept arrays.
 
 > **Note:** Hiera 5's deep merge is equivalent to Hiera 3's "deeper" merge.
 
@@ -224,7 +231,7 @@ Specify this merge behavior with one of:
 * `{'strategy' => 'deep', <OPTION> => <VALUE>, ...}` --- This form can adjust the merge behavior with some additional options:
     * `'knockout_prefix'` (string or undef) --- A string prefix to indicate a value should be _removed_ from the final result. Defaults to `undef`, which disables this feature.
     * `'sort_merged_arrays'` (boolean) --- Whether to sort all arrays that are merged together. Defaults to `false`.
-    * `'merge_hash_arrays'` (boolean) --- Whether to merge hashes within arrays. Defaults to `false`.
+    * `'merge_hash_arrays'` (boolean) --- Whether to deep-merge hashes within arrays, by position. For example, `[ {a => high}, {b => high} ]` and `[ {c => low}, {d => low} ]` would be merged as `[ {c => low, a => high}, {d => low, b => high} ]`. Defaults to `false`.
 
 
 ## Setting merge behavior at lookup time
@@ -246,9 +253,11 @@ $ puppet lookup classes --merge unique --environment production --explain
 
 For more details about syntax, see [Using the lookup function][lookup_function] and [Using the `puppet lookup` command][lookup_command].
 
+Note that each of [the `hiera_*` functions][hiera_functions] is locked to one particular merge behavior. (`hiera` only does first-found, `hiera_array` only does unique merge, etc.)
+
 ## Configuring merge behavior in Hiera data
 
-In any Hiera data source (including [module data][module layer]), you can use the special `lookup_options` key to configure merge behavior. Hiera uses a key's configured merge behavior in any lookup that doesn't explicitly override it.
+In any Hiera data source (including [module data][module layer]), you can use the special `lookup_options` key to configure merge behavior. Hiera uses a key's configured merge behavior in any lookup that doesn't explicitly override it. (Note that [the `hiera_*` functions][hiera_functions] always explicitly override configured merge behavior.)
 
 For example:
 
