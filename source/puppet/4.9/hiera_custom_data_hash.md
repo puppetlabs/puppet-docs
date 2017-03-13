@@ -6,7 +6,6 @@ title: "Hiera: Implementing a data_hash backend"
 [lookup_options]: ./hiera_merging.html#configuring-merge-behavior-in-hiera-data
 [interpolate]: ./hiera_interpolation.html
 [hiera.yaml]: ./hiera_config_yaml_5.html
-[chained_call]: ./lang_functions.html#chained-function-calls
 [yaml_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/yaml_data.rb
 [json_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/json_data.rb
 [hocon_data]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/functions/hocon_data.rb
