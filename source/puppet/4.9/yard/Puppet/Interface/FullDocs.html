@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Interface::FullDocs
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Module: Puppet::Interface::FullDocs
   
@@ -191,7 +189,7 @@ attributes. It is intended to be used for <span class='object_link'><a href="../
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#author%3D-instance_method" title="#author= (instance method)">#<strong>author=</strong>(value)  &#x21d2; Object </a>
+      <a href="#author=-instance_method" title="#author= (instance method)">#<strong>author=</strong>(value)  &#x21d2; Object </a>
     
 
     
@@ -537,7 +535,7 @@ copyright year or years.</p>
 </span>  <span class='kw'>if</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\n</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span> <span class='kw'>then</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>author should be a single line; use multiple statements</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>end</span>
-  <span class='ivar'>@authors</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Interface</span><span class='op'>::</span><span class='const'>DocGen</span><span class='period'>.</span><span class='id identifier rubyid_strip_whitespace'>strip_whitespace</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='ivar'>@authors</span> <span class='op'>=</span> <span class='const'>Array</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="DocGen.html" title="Puppet::Interface::DocGen (module)">DocGen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_strip_whitespace'><span class='object_link'><a href="DocGen.html#strip_whitespace-class_method" title="Puppet::Interface::DocGen.strip_whitespace (method)">strip_whitespace</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -874,9 +872,9 @@ integers.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:34 2016 by
+  Generated on Tue Jan 31 13:38:17 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

@@ -12,7 +12,6 @@ canonical: "/puppet/latest/reference/config_print.html"
 [confdir]: ./dirs_confdir.html
 [vardir]: ./dirs_vardir.html
 [modulepath]: ./dirs_modulepath.html
-[facts_and_trusted]: ./lang_facts_and_builtin_vars.html
 
 Puppet settings are highly dynamic, and their values can come from [several different places][setting_sources].
 
@@ -85,11 +84,11 @@ To see the effective [modulepath][] used in the `dev` environment:
     $ sudo puppet config print modulepath --section master --environment dev
     /etc/puppetlabs/code/environments/dev/modules:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules
 
-To see whether the [`$facts` and `$trusted` variables][facts_and_trusted] are enabled:
+To see whether PuppetDB is configured for exported resources:
 
-    $ sudo puppet config print trusted_node_data immutable_node_data --section master
-    trusted_node_data = true
-    immutable_node_data = true
+    $ sudo puppet config print storeconfigs storeconfigs_backend --section master
+    storeconfigs = true
+    storeconfigs_backend = puppetdb
 
 Imitating Puppet Agent
 -----

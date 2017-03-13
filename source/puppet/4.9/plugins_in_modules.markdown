@@ -105,14 +105,12 @@ To illustrate, a module that included every type of plugin would have a director
 
 ## Issues with server-side plugins
 
-Puppet Server currently has problems with conflicting versions of the same plugin in different environments.
+If you encounter problems with conflicting versions of the same plugin in different environments, you can fix these issues as described below.
 
-In short, environments aren't completely isolated for certain kinds of plugins. If a plugin of the same name exists in different versions in multiple environments, Puppet won't strictly load each version for its appropriate environment. Instead, a given JRuby instance will load the plugin from the first environment to use that plugin, then continue to use that version of the plugin for requests from all subsequent environments, even though it might be incorrect for those environments.
+Environments aren't completely isolated for certain kinds of plugins. If a plugin of the same name exists in different versions in multiple environments, Puppet loads the plugin from the first environment to use that plugin, then continues to use that version of the plugin for all subsequent environments.
 
-The following plugin types are affected:
+This issue can occur with the following plugin types:
 
-* Custom resource types.
-* Custom functions (legacy `Puppet::Parser::Functions` API only --- the modern API is not affected).
-
-We are tracking this issue as [PUP-731](https://tickets.puppetlabs.com/browse/PUP-731).
+* Custom resource types. To avoid resource type conflicts, use the `puppet generate types` command as described in [environment isolation](./environment_isolation.html) documentation.
+* Custom functions, only with the legacy `Puppet::Parser::Functions` API. To fix the issue, rewrite functions with the modern API, which is not affected by this issue.
 

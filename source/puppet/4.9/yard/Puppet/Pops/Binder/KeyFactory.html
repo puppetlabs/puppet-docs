@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::KeyFactory
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Binder::KeyFactory
   
@@ -447,7 +445,7 @@
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/key_factory.rb', line 19</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_data_key'>data_key</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='lbracket'>[</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PDataType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+  <span class='lbracket'>[</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -596,8 +594,8 @@
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/key_factory.rb', line 46</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_data?'>is_data?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PAnyType</span><span class='rparen'>)</span>
-  <span class='const'>Types</span><span class='op'>::</span><span class='const'>PDataType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>unless</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></span><span class='rparen'>)</span>
+  <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'><span class='object_link'><a href="../Types/PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">assignable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -701,7 +699,7 @@
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/key_factory.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_is_ruby?'>is_ruby?</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PRuntimeType</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_runtime'>runtime</span> <span class='op'>==</span> <span class='symbol'>:ruby</span>
+  <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PRuntimeType.html" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_key'>key</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_runtime'>runtime</span> <span class='op'>==</span> <span class='symbol'>:ruby</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -820,7 +818,7 @@
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/key_factory.rb', line 14</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_named_key'>named_key</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-  <span class='lbracket'>[</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PDataType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PDataType</span><span class='op'>::</span><span class='const'>DEFAULT</span> <span class='op'>:</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+  <span class='lbracket'>[</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'><span class='object_link'><a href="../Types/PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">assignable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span> <span class='op'>:</span> <span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -832,9 +830,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:44 2016 by
+  Generated on Tue Jan 31 13:38:30 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PDataType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PDataType
   
@@ -241,30 +239,30 @@
       <pre class="lines">
 
 
-648
-649
-650
-651
 652
 653
 654
 655
 656
 657
-658</pre>
+658
+659
+660
+661
+662</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 648</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 652</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='comment'># We cannot put the NotUndefType[Data] in the @data_variant_t since that causes an endless recursion
 </span>  <span class='kw'>case</span> <span class='id identifier rubyid_o'>o</span>
-  <span class='kw'>when</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PDataType</span>
+  <span class='kw'>when</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span></span>
     <span class='kw'>true</span>
   <span class='kw'>when</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PNotUndefType</span>
-    <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>||</span> <span class='const'>PUndefType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span> <span class='op'>||</span> <span class='const'><span class='object_link'><a href="PUndefType.html" title="Puppet::Pops::Types::PUndefType (class)">PUndefType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='const'>PVariantType</span><span class='op'>::</span><span class='const'>DATA</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="PVariantType.html" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></span><span class='op'>::</span><span class='const'>DATA</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'><span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">assignable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -277,9 +275,9 @@
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:39 2016 by
+  Generated on Tue Jan 31 13:38:25 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

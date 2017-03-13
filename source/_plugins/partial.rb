@@ -117,7 +117,15 @@ eos
       file = render_variable(context) || @file
 
       requested_path = Pathname.new(file)
-      cwd            = Pathname.new(context.environments.first["page"]["url"]).parent
+      url            = Pathname.new(context.environments.first["page"]["url"])
+      # Jekyll changes ".../index.html" URLs to ".../". So if you're referencing
+      # a relative path from an index.md file, this ensures we won't jump up a
+      # level.
+      if url.to_s =~ %r{/$}
+        cwd = url
+      else
+        cwd = url.parent
+      end
       sourcedir      = Pathname.new(context.registers[:site].source)
       root           = Pathname.new('/')
 

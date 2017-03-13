@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::DataProviders::LookupAdapter
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -37,7 +37,7 @@
         <div id="menu">
   
     <a href="../../_index.html">Index (L)</a> &raquo;
-    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../DataProviders.html" title="Puppet::DataProviders (module)">DataProviders</a></span></span>
+    <span class='title'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>DataProviders</span></span>
      &raquo; 
     <span class="title">LookupAdapter</span>
   
@@ -59,8 +59,6 @@
         <div class="clear"></div>
       </div>
 
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
-
       <div id="content"><h1>Class: Puppet::DataProviders::LookupAdapter
   
   
@@ -71,14 +69,14 @@
   <dl>
     <dt>Inherits:</dt>
     <dd>
-      <span class="inheritName"><span class='object_link'><a href="DataAdapter.html" title="Puppet::DataProviders::DataAdapter (class)">DataAdapter</a></span></span>
+      <span class="inheritName"><span class='object_link'>DataAdapter</span></span>
       
         <ul class="fullTree">
           <li><span class='object_link'>Object</span></li>
           
             <li class="next"><span class='object_link'>Pops::Adaptable::Adapter</span></li>
           
-            <li class="next"><span class='object_link'><a href="DataAdapter.html" title="Puppet::DataProviders::DataAdapter (class)">DataAdapter</a></span></li>
+            <li class="next"><span class='object_link'>DataAdapter</span></li>
           
             <li class="next">Puppet::DataProviders::LookupAdapter</li>
           
@@ -127,7 +125,7 @@ compiler&#39;s environment.</p>
   <h2>Constant Summary</h2>
   
   <h3 class="inherited">Constants included
-     from <span class='object_link'><a href="../Plugins/DataProviders.html" title="Puppet::Plugins::DataProviders (module)">Plugins::DataProviders</a></span></h3>
+     from <span class='object_link'>Plugins::DataProviders</span></h3>
   <p class="inherited"><span class='object_link'><a href="../Plugins/DataProviders.html#ENV_DATA_PROVIDERS_KEY-constant" title="Puppet::Plugins::DataProviders::ENV_DATA_PROVIDERS_KEY (constant)">Plugins::DataProviders::ENV_DATA_PROVIDERS_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#ENV_DATA_PROVIDERS_TYPE-constant" title="Puppet::Plugins::DataProviders::ENV_DATA_PROVIDERS_TYPE (constant)">Plugins::DataProviders::ENV_DATA_PROVIDERS_TYPE</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#MODULE_DATA_PROVIDERS_KEY-constant" title="Puppet::Plugins::DataProviders::MODULE_DATA_PROVIDERS_KEY (constant)">Plugins::DataProviders::MODULE_DATA_PROVIDERS_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#MODULE_DATA_PROVIDERS_TYPE-constant" title="Puppet::Plugins::DataProviders::MODULE_DATA_PROVIDERS_TYPE (constant)">Plugins::DataProviders::MODULE_DATA_PROVIDERS_TYPE</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PATH_BASED_DATA_PROVIDER_FACTORIES_KEY-constant" title="Puppet::Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_KEY (constant)">Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PATH_BASED_DATA_PROVIDER_FACTORIES_TYPE-constant" title="Puppet::Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_TYPE (constant)">Plugins::DataProviders::PATH_BASED_DATA_PROVIDER_FACTORIES_TYPE</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PER_MODULE_DATA_PROVIDER_KEY-constant" title="Puppet::Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_KEY (constant)">Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_KEY</a></span>, <span class='object_link'><a href="../Plugins/DataProviders.html#PER_MODULE_DATA_PROVIDER_TYPE-constant" title="Puppet::Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_TYPE (constant)">Plugins::DataProviders::PER_MODULE_DATA_PROVIDER_TYPE</a></span></p>
 
 
@@ -289,17 +287,17 @@ compiler&#39;s environment.</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/data_providers/lookup_adapter.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_global'>lookup_global</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='comma'>,</span> <span class='id identifier rubyid_merge_strategy'>merge_strategy</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_terminus'>terminus</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='lbracket'>[</span><span class='symbol'>:data_binding_terminus</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_terminus'>terminus</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:data_binding_terminus</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_with'>with</span><span class='lparen'>(</span><span class='symbol'>:global</span><span class='comma'>,</span> <span class='id identifier rubyid_terminus'>terminus</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_catch'>catch</span><span class='lparen'>(</span><span class='symbol'>:no_such_key</span><span class='rparen'>)</span> <span class='kw'>do</span>
-      <span class='kw'>return</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_found'>report_found</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DataBinding</span><span class='period'>.</span><span class='id identifier rubyid_indirection'>indirection</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_found'>report_found</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DataBinding</span><span class='period'>.</span><span class='id identifier rubyid_indirection'>indirection</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span>
           <span class='lbrace'>{</span> <span class='symbol'>:environment</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='symbol'>:variables</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='symbol'>:merge</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_merge_strategy'>merge_strategy</span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_report_not_found'>report_not_found</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_throw'>throw</span> <span class='symbol'>:no_such_key</span>
   <span class='kw'>end</span>
-<span class='kw'>rescue</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>DataBinding</span><span class='op'>::</span><span class='const'>LookupError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_detail'>detail</span>
-  <span class='id identifier rubyid_error'>error</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Error</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lookup of key &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_top_key'>top_key</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_detail'>detail</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+<span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DataBinding</span><span class='op'>::</span><span class='const'>LookupError</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_detail'>detail</span>
+  <span class='id identifier rubyid_error'>error</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Error</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Lookup of key &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_lookup_invocation'>lookup_invocation</span><span class='period'>.</span><span class='id identifier rubyid_top_key'>top_key</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; failed: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_detail'>detail</span><span class='period'>.</span><span class='id identifier rubyid_message'>message</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_set_backtrace'>set_backtrace</span><span class='lparen'>(</span><span class='id identifier rubyid_detail'>detail</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid_error'>error</span>
 <span class='kw'>end</span></pre>
@@ -421,9 +419,9 @@ compiler&#39;s environment.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:49 2016 by
+  Generated on Tue Jan 17 16:49:48 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

@@ -183,6 +183,10 @@ task :generate do
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
   Rake::Task['externalsources:clean'].reenable
+
+  if @config_data['preview'].class == Array && @config_data['preview'].length > 0
+    puts "THIS IS A PREVIEW VERSION, AND IT'S MISSING IMPORTANT STUFF. Do not deploy the site in this state; this is for local viewing only. To build a real version of the site, delete the `preview:` key from _config.yml."
+  end
 end
 
 desc "Symlink latest versions of several projects; see symlink_latest and lock_latest lists in _config.yml"
@@ -199,8 +203,17 @@ task :symlink_latest_versions do
 
     latest = @config_data['lock_latest'][project] || PuppetDocs::Versions.latest(versions)
 
-    Dir.chdir project_dir do
-      FileUtils.ln_sf latest, 'latest'
+    begin
+      Dir.chdir project_dir do
+        FileUtils.ln_sf latest, 'latest'
+      end
+    rescue Errno::ENOENT => err
+      if @config_data['preview'].class == Array && @config_data['preview'].length > 0
+        puts "WARNING: Couldn't symlink latest version of #{project}, but you're building a limited preview, so I'll let it slide."
+      else
+        puts "ERROR: Couldn't symlink latest version of #{project}. Something is probably horribly wrong. I'm bailing out."
+        raise Errno::ENOENT
+      end
     end
   end
 end

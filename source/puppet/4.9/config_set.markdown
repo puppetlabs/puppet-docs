@@ -61,7 +61,7 @@ If modifying the [system config file][confdir_sys], be sure to use `sudo` or run
 
 **Commands:**
 
-    $ sudo puppet config set trusted_node_data true --section master
+    $ sudo puppet config set reports puppetdb --section master
     $ sudo puppet config set ordering manifest
 
 **After:**
@@ -80,4 +80,4 @@ If modifying the [system config file][confdir_sys], be sure to use `sudo` or run
 
     [master]
     dns_alt_names = master,master.example.com,puppet,puppet.example.com
-    trusted_node_data = true
+    reports = puppetdb
