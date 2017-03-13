@@ -59,7 +59,7 @@ Returns the name of the module whose hiera.yaml called the function. Returns `un
 
 Caches a value, in a per-data-source private cache; also returns the cached value.
 
-On future lookups in this data source, you can retrive values with `cached_value(key)`. Cached values are immutable, but you can replace the value for an existing key. Cache keys can be anything valid as a key for a Ruby hash. (Notably, this means you can use `nil` as a key.)
+On future lookups in this data source, you can retrieve values with `cached_value(key)`. Cached values are immutable, but you can replace the value for an existing key. Cache keys can be anything valid as a key for a Ruby hash. (Notably, this means you can use `nil` as a key.)
 
 For example, on its first invocation for a given YAML file, the built-in `eyaml_lookup_key` backend reads the whole file and caches it, and then decrypts only the specific value that was requested. On subsequent lookups into that file, it gets the encrypted value from the cache instead of reading the file from disk again. It also caches decrypted values, so that it won't have to decrypt again if the same key is looked up repeatedly.
 
@@ -84,7 +84,7 @@ Caches all the key/value pairs from a given hash; returns `undef` (in Puppet) or
 
 [method_cached]: #cachedvaluekey
 
-Returns a previously cached value from the per-data-source private cache. See [`cache(key, value)`][method_cache] above.
+Returns a previously cached value from the per-data-source private cache. Returns `nil` or `undef` if no value with this name has been cached. See [`cache(key, value)`][method_cache] above for more info about how the cache works.
 
 ### `cache_has_key(key)`
 
