@@ -1,9 +1,9 @@
 ---
 layout: default
 title: "Windows上でのPuppetをトラブルシューティング"
-canonical: "/ja/pe/troubleshooting_windows.html"
----
+canonical: "/ja/pe/CM_graph.html"
 
+---
 <div>
 <h2 id="tips">ヒント</h2>
 
@@ -14,7 +14,7 @@ canonical: "/ja/pe/troubleshooting_windows.html"
 
 <h3 id="logging">ロギング</h3>
 
-<p> Puppet 2.7.xでは、<code>puppetd</code>ログファイルからのメッセージをWindows Event Viewer経由で利用できます([Windows Logs] &gt; [Application]を選択)。 デバッグを有効にするには、以下のようにPuppetサービスを停止して再起動します。
+<p> <code>puppetd</code>ログファイルからのメッセージをWindows Event Viewer経由で利用できます([Windows Logs] &gt; [Application]を選択)。 デバッグを有効にするには、以下のようにPuppetサービスを停止して再起動します。
 </p>
 
 <pre><code>c:\&gt;sc stop puppet &amp;&amp; sc start puppet --debug --trace
@@ -27,13 +27,13 @@ canonical: "/ja/pe/troubleshooting_windows.html"
 
 <h3 id="installation">インストール</h3>
 
-<p> Puppet MSIパッケージは、puppet.confファイルの既存エントリに上書きされます。  そのため、パッケージをアンインストールしてから、異なるPuppet masterホスト名を使って再インストールすると、Puppetは<a href="/puppet/latest/reference/dirs_confdir.html"><code>$confdir</code></a><code>\puppet.conf</code>で新しい値を適用します。 インストール/アップグレード時には、必ず同じmasterホスト名を使用してください。
+<p> Puppet MSIパッケージは、puppet.confファイルの既存エントリに上書きされます。  そのため、パッケージをアンインストールしてから、異なるPuppet masterホスト名を使って再インストールすると、Puppetは<a href="/puppet/4.9/dirs_confdir.html"><code>$confdir</code></a><code>\puppet.conf</code>で新しい値を適用します。 インストール/アップグレード時には、必ず同じmasterホスト名を使用してください。
 </p>
 
 <p> Pupettでは一般に、アップグレード、アンインストール、再インストールの実行時にはシステム上の設定データを保存するアプローチをとっています。
 </p>
 
-<p> システムを完全にクリーンアウトするには、必ず<a href="/puppet/latest/reference/dirs_confdir.html">confdir</a>および<a href="/puppet/latest/reference/dirs_vardir.html">vardir</a>を削除してください。
+<p> システムを完全にクリーンアウトするには、必ず<a href="/puppet/4.9/dirs_confdir.html">confdir</a>および<a href="/puppet/4.9/dirs_vardir.html">vardir</a>を削除してください。
 </p>
 
 <p> 同様に、MSIは<code>PuppetLabs\facter\facts.d</code>ディレクトリに書き込まれたカスタムフィードを上書きしません。
@@ -71,7 +71,7 @@ Info 1625.This installation is forbidden by system policy. Contact your system a
 
 <h3 id="file-separator">ファイルセパレータ</h3>
 
-<p> ほとんどのリソース属性については、Puppet言語でファイルセパレータとしてスラッシュまたはバックスラッシュを使用できます。 ただし一部には、必ずスラッシュを使わなければいけない属性や、必ずバックスラッシュを使わなければいけない属性もあります。 詳細については、<a href="./writing.html#file-paths-on-windows">「Writing Manifests for Windows(Windowsのマニフェスト記述)」の関連セクション</a>を参照してください。
+<p> ほとんどのリソース属性については、Puppet言語でファイルセパレータとしてスラッシュまたはバックスラッシュを使用できます。 ただし一部には、必ずスラッシュを使わなければいけない属性や、必ずバックスラッシュを使わなければいけない属性もあります。 
 </p>
 
 <h3 id="backslashes">バックスラッシュ</h3>
@@ -92,7 +92,7 @@ file { "c:\\path\\to\\file.txt": }
 
 <h3 id="unc-paths">UNCパス</h3>
 
-<p> Puppet 2.7.12の時点で、UNCパスはWindowsで<strong>パッケージリソース</strong>としてサポートされており、一般的な<code>\\servername\directory\package.msi</code>フォーマットが使用されます。 <strong>ファイルリソース</strong>としてのUNCパスのサポートは、Puppet 3.4.0で追加されました。
+<p> UNCパスはWindowsで<strong>パッケージリソース</strong>としてサポートされており、一般的な<code>\\servername\directory\package.msi</code>フォーマットが使用されます。 <strong>ファイルリソース</strong>としてのUNCパスのサポートは、Puppet 3.4.0で追加されました。
 </p>
 
 <h3 id="case-insensitivity">大文字と小文字の区別</h3>
@@ -148,7 +148,7 @@ err: /Stage[main]//Exec[echo foo]/returns: change from notrun to 0 failed: Could
 }
 </code></pre>
 
-<p> 32ビットバージョンのPuppetでは、ファイルシステムリダイレクト(system32がWindowsにより自動的にsysWOW64に切り替わる場所)の対象になる可能性がある点に留意してください。 <a href="/puppet/latest/reference/lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows">リダイレクト</a>については、いくつかの対処方法があります。
+<p> 32ビットバージョンのPuppetでは、ファイルシステムリダイレクト(system32がWindowsにより自動的にsysWOW64に切り替わる場所)の対象になる可能性がある点に留意してください。 <a href="/puppet/4.9/reference/lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows">リダイレクト</a>については、いくつかの対処方法があります。
 </p>
 
 <p> または、前述のヒントを使うとさらに良いでしょう。
@@ -250,34 +250,10 @@ err: /Stage[main]//Exec[echo foo]/returns: change from notrun to 0 failed: Could
 </p>
   </li>
   <li>
-    <p> “<code>err: /Stage[main]//Group[mygroup]/members: change from     to Administrators failed: Add OLE error code:8007056B in &lt;Unknown&gt; &lt;No Description&gt; HRESULT error code:0x80020009 Exception occurred.</code>”
-</p>
-
-    <p> このエラーは、別のローカルグループのメンバーとしてグループを追加しようとした場合、すなわちグループのネスティングを試みた場合に生じます。
-</p>
-
-    <p> これは3.4.0以前のバージョンのPuppetにのみ適用されます。 このエラーが生じる場合は、Puppetを新しいバージョンにアップグレードしてください。
-</p>
-  </li>
-  <li>
-    <p> “<code>err: /Stage[main]//Package[7zip]/ensure: change from absent to present failed: Execution of 'msiexec.exe /qn /norestart /i "c:\\7z920.exe"' returned 1620: T h i s   i n s t a l l a t i o n   p a c k a g e   c o u l d   n o t   b e   o p e n e d .</code> C o n t a c t   t h e   a p p l i c a t i o n   v e n d o r   t o   v e r i f y   t h a t   t h i s   i s  a   v a l i d   W i n d o w s   I n s t a l l e r   p a c k a g e .”
-</p>
-
-    <p> このエラーは、3.0以前のバージョンのPuppetにMSIではないパッケージをインストールしようとした際に生じます。 Puppet 2.7以前のバージョンは、MSIパッケージのみをサポートしています。 MSIではないパッケージをインストールするには、<code>onlyif</code>パラメータとともにexecリソースを使用するか、Puppet 3にアップグレードして、実行可能なインストーラをサポートする<code>windows</code>パッケージプロバイダを使用してください。
-</p>
-  </li>
-  <li>
     <p> “<code>err: Could not request certificate: The certificate retrieved from the master does not match the agent's private key.</code>”
 </p>
 
     <p> このエラーは通常、masterがすでに当該agentに対して証明書を発行していることを示すものです。 このエラーは、masterから証明書を回収したあとにagentのSSLディレクトリが削除された場合や、2つの異なるセキュリティコンテクストでagentを稼動した場合に生じます。 たとえば、Puppet agentをサービスとして稼働してから、非昇格セキュリティによりコマンドラインで<code>puppet agent</code>を実行しようとした場合などに生じます。 特に、<code>Start Command Prompt with Puppet</code>を選択しながら、<code>Run as Administrator</code>を使用して権限を昇格しなかった場合に生じます。
-</p>
-  </li>
-  <li>
-    <p> “<code>err: Could not evaluate: Could not retrieve information from environment production source(s) puppet://puppet.domain.com/plugins.</code>”
-</p>
-
-    <p> このエラーは、Windows agentがPuppet masterサーバーからpluginsync(プラグイン同期)を実行し、Puppet masterサーバーにプラグインが含まれていない場合に生じます。 pluginsyncはWindowsではデフォルトで有効化されています。  これは2.7.xの既知のバグです。<a href="https://projects.puppet.com/issues/2244">https://projects.puppet.com/issues/2244</a>を参照してください。
 </p>
   </li>
   <li>
@@ -294,52 +270,11 @@ err: /Stage[main]//Exec[echo foo]/returns: change from notrun to 0 failed: Could
 </code></pre>
   </li>
   <li>
-    <p> “<code>err: You cannot service a running 64-bit operating system with a 32-bit version of DISM.</code> Please use the version of DISM that corresponds to your computer's architecture.”
-</p>
-
-    <p> 64ビットバージョンのWindowsで32ビットバージョンのPuppetを稼働している場合、Windowsはすべてのファイルシステムアクセスを<code>%windir%\system32</code>から<code>%windir%\SysWOW64</code>へリダイレクトします。 これは、32ビットPuppetのみに対応しているWindows Server 2003を使用している場合か、3.7よりも古いバージョンのPuppetを使用している場合に生じます。
-</p>
-
-    <p> <code>dism.exe</code>を用いてWindowsの役割および機能を設定する際には、必ず64ビットバージョンを使用してください。 そのためには、<code>c:\windows\sysnative\dism.exe</code>を実行します。これにより、ファイルシステムのリダイレクトを防ぐことができます。 Windowsでのファイルシステムのリダイレクトに関する詳細については、「<a href="/puppet/latest/reference/lang_windows_file_paths.html">Language: Handling File Paths on Windows(言語：Windowsでのファイルパスの取り扱い)</a>」を参照してください。
-</p>
-  </li>
-  <li>
     <p> “Error: Could not parse for environment production: Syntax error at ‘=’; expected ‘}’”
 </p>
 
-    <p> このエラーは通常、コマンドラインで<code>puppet apply -e</code>を使用し、提示されたコマンドがシングルクォーテーション(‘)で囲まれている場合に生じます。この場合、<code>cmd.exe</code>は、コマンド内の<code>=&gt;</code>をリダイレクトとして解釈します。 この問題を解決するには、コマンドをダブルクォーテーション(“)で囲んでください。 <a href="https://projects.puppet.com/issues/20528">https://projects.puppet.com/issues/20528</a>を参照してください。
+    <p> このエラーは通常、コマンドラインで<code>puppet apply -e</code>を使用し、提示されたコマンドがシングルクォーテーション(‘)で囲まれている場合に生じます。この場合、<code>cmd.exe</code>は、コマンド内の<code>=&gt;</code>をリダイレクトとして解釈します。 この問題を解決するには、コマンドをダブルクォーテーション(“)で囲んでください。 
 </p>
   </li>
 </ul>
-<h3 id="file-pre-340">ファイル (3.4.0以前)</h3>
-
-<p> Windowsのファイルリソースでオーナーまたはグループを指定している場合、モードも指定する必要があります。 したがって、以下は問題ありません。
-</p>
-
-<pre><code>file { 'c:/path/to/file.bat':
-  ensure =&gt; present,
-  owner  =&gt; 'Administrator',
-  group  =&gt; 'Administrators',
-  mode   =&gt; 0770
-}
-</code></pre>
-
-<p> しかし、以下は問題があります。
-</p>
-
-<pre><code>file { 'c:/path/to/file.bat':
-  ensure =&gt; present,
-  owner  =&gt; 'Administrator',
-  group  =&gt; 'Adminstrators',
-}
-</code></pre>
-
-<p> 後者の場合、それまでにAdministratorsグループが当該ファイルに対して持っていた権限が削除され、0700の有効パーミッションにつながります。 Puppetは「Administrator」ではなく 「SYSTEM」アカウントのもとでサービスとして稼働するため、次の稼働時にPuppet本体がファイルを管理できなくなります。
-</p>
-
-<p> この状態を解消するには、Puppetに以下を実行させ(execリソースを使用)、ファイルパーミッションをリセットします。
-</p>
-
-<pre><code>takeown /f c:/path/to/file.bat &amp;&amp; icacls c:/path/to/file.bat /reset
-</code></pre>
 </div>
