@@ -28,6 +28,7 @@ module PuppetReferences
   require 'puppet_references/version_tables/pe_late3'
   require 'puppet_references/version_tables/pe_2015'
   require 'puppet_references/version_tables/pe_2016'
+  require 'puppet_references/version_tables/pe_2017'
   require 'puppet_references/version_tables/agent_tables'
   require 'puppet_references/version_tables/agent_1x'
 
@@ -94,6 +95,7 @@ module PuppetReferences
     File.open(agent_json, 'w') {|fh| fh.write(JSON.dump(agent_data))}
 
     pe_classes = [
+        PuppetReferences::VersionTables::Pe2017,
         PuppetReferences::VersionTables::Pe2016,
         PuppetReferences::VersionTables::Pe2015,
         PuppetReferences::VersionTables::PeLate3,
