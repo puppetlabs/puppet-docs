@@ -2,6 +2,7 @@
 layout: default
 title: "Windows設定を管理する"
 canonical: "/ja/pe/windows_config_mgmnt.html"
+
 ---
 
 <div>
@@ -124,7 +125,7 @@ canonical: "/ja/pe/windows_config_mgmnt.html"
 }
 </code></pre>
 
-<p> マニフェストに使用するパスワードを安全に保護する方法については、この入門レベルの内容では扱いませんが、一般的にこの問題の解決には、<a href="https://puppetlabs.com/blog/encrypt-your-data-using-hiera-eyaml">ここで述べる</a>キー／値参照ツールである<a href="/hiera/3.2/">Hiera</a>とeyamlが使用されます。 この解決策では、パスワード値を安全に保存できるだけでなく、パラメータ化して再利用することもできます。これによりWindowsマシンネットワーク全体でパスワードローテーションポリシーを簡単に導入することが可能になります。
+<p> マニフェストに使用するパスワードを安全に保護する方法については、この入門レベルの内容では扱いませんが、一般的にこの問題の解決には、<a href="https://puppet.com/blog/encrypt-your-data-using-hiera-eyaml">ここで述べる</a>キー／値参照ツールである<a href="/hiera/3.3/">Hiera</a>とeyamlが使用されます。 この解決策では、パスワード値を安全に保存できるだけでなく、パラメータ化して再利用することもできます。これによりWindowsマシンネットワーク全体でパスワードローテーションポリシーを簡単に導入することが可能になります。
 </p>
 
 <h2 id="managing-users-and-groups">ユーザとグループの管理</h2>
@@ -228,7 +229,7 @@ exec { 'disable-c-indexing':
 </ul>
 <h4 id="using-puppet-templates-to-better-manage-puppet-code">Puppetテンプレートを用いてPuppetコード管理を効率化する</h4>
 
-<p> 先のセクションで述べたように、インラインPowerShellコードは役に立ちますが、そうしたコードは読み取りやメンテナンスが難しいことがあります。特に、エスケープルールを扱う際には困難が伴います。 マルチラインスクリプトを実行する場合は、代わりにPuppetテンプレートを使用することを推奨します。 以下の例では、テンプレートを使って、Windowsドライブインデックスを無効化するコードを構成する方法を説明します。 詳細については、Puppet言語リファレンスの「<a href="/puppet/4.5/reference/lang_template.html">Puppetテンプレート</a>」を参照してください。
+<p> 先のセクションで述べたように、インラインPowerShellコードは役に立ちますが、そうしたコードは読み取りやメンテナンスが難しいことがあります。特に、エスケープルールを扱う際には困難が伴います。 マルチラインスクリプトを実行する場合は、代わりにPuppetテンプレートを使用することを推奨します。 以下の例では、テンプレートを使って、Windowsドライブインデックスを無効化するコードを構成する方法を説明します。 詳細については、Puppet言語リファレンスの「<a href="/puppet/4.9/lang_template.html">Puppetテンプレート</a>」を参照してください。
 </p>
 
 <pre><code>$drive = 'C:'

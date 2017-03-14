@@ -3,33 +3,27 @@ layout: default
 title: "モジュールの記述"
 canonical: "/ja/pe/quick_writing_nix.html"
 ---
- 
-<div>
-<p> <strong>モジュール</strong>は、繰り返し使用できるPuppetコードの集まりで、PEデプロイの基本的な構成要素になります。  <a href="https://forge.puppet.com">Puppet Forge</a>のモジュールのなかには、ニーズにぴったり合ったものもありますが、<em>ほぼ</em>ニーズを満たしているものの、完全ではないものも多くあるはずです。  PEユーザは、デプロイの要件に適した記述済みのモジュールを利用することができますが、 その一方で、独自のモジュールをゼロから記述する必要が生じることもあります。
-</p>
 
+<div>
 <p> このクイックスタートガイドでは、Forgeモジュールを修正し、シンプルな独自のモジュールを記述します。
 </p>
 
-<p> <strong>前提条件</strong>: このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>と<a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a>がインストールされているものと想定します。
+<p> <strong>モジュール</strong>は、繰り返し使用できるPuppetコードの集まりで、PEデプロイの基本的な構成要素になります。  <a href="https://forge.puppet.com">Puppet Forge</a>のモジュールのなかには、ニーズにぴったり合ったものもありますが、<em>ほぼ</em>ニーズを満たしているものの、完全ではないものも多くあるはずです。  PEユーザは、デプロイの要件に適した記述済みのモジュールを利用することができますが、 その一方で、独自のモジュールをゼロから記述する必要が生じることもあります。
 </p>
 
-<blockquote>
-  <p> <strong>注意</strong>：ここでも、ルートまたは管理者としてノードにログインする必要があります。
-</p>
-</blockquote>
-
+<!--Concept-->
 <h2 id="where-are-modules-kept">モジュールのある場所</h2>
 
-<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これにはPEによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。 このパスは、<code>puppet.conf</code>の<a href="/puppet/4.6/reference/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。
+<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これにはPEによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。 このパスは、<code>puppet.conf</code>の<a href="/puppet/4.9/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。
 </p>
 
 <p> PEによって、<code>/opt/puppetlabs/puppet/modules</code>のモジュールディレクトリも作成されます。  このディレクトリに内容を変更したり、モジュールを追加したりしないでください。
 </p>
 
-<h2 id="step-1-understand-a-modules-structure">ステップ1：モジュールの構造を理解する</h2>
+<!--Concept-->
+<h2 id="how-are-modules-structured">モジュールの構成</h2>
 
-<p> モジュールはディレクトリツリー構造になっています。 ここでは、puppetlabs-apacheモジュールの以下のファイルを使用します。
+<p> モジュールはディレクトリツリー構造になっています。 例えば、puppetlabs-apacheモジュールには以下のファイルが含まれています。
 </p>
 
 <ul>
@@ -68,14 +62,28 @@ canonical: "/ja/pe/quick_writing_nix.html"
   <h4 id="faqs">FAQ</h4>
 
   <ul>
-<li><a href="/puppet/4.6/reference/modules_fundamentals.html">モジュールの構造に関する詳細は、どこで学ぶことができますか？</a></li>
+<li><a href="/puppet/4.9/modules_fundamentals.html">モジュールの構造に関する詳細は、どこで学ぶことができますか？</a></li>
   </ul>
 </blockquote>
 
-<h2 id="step-2-edit-a-pre-existing-manifest">ステップ2：既存のマニフェストを編集する</h2>
+<!--Task-->
+<h3 id="edit-a-modules-manifest-and-use-the-edited-module">モジュールのマニフェストを編集して、編集済みのモジュールを使用する</h3>
 
 <p> この簡単な演習では、puppetlabs-apacheモジュールのテンプレート、具体的には<code>'vhost.conf.erb</code>を修正して、簡単な変数を追加します。この変数には、ノードに関するfactsが自動的に挿入されます。
 </p>
+
+<p> 開始する前に、以下をインストールしていることを確認します。
+</p>
+<ul>
+<li><a href="./quick_start_install_mono.html">Puppet Enterpriseのモノリシックデプロイ</a></li>
+  <li>少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>
+</li>
+  <li><a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a></li>
+</ul>
+<blockquote>
+  <p> <strong>注意</strong>：ここでも、ルートまたは管理者としてノードにログインする必要があります。
+</p>
+</blockquote>
 
 <ol>
 <li>
@@ -114,11 +122,7 @@ canonical: "/ja/pe/quick_writing_nix.html"
  # ************************************
 </code></pre>
   </li>
-</ol>
-<h2 id="step-3-use-an-edited-module">ステップ3：編集したモジュールを使用する</h2>
-
-<ol>
-<li>
+  <li>
     <p> <strong>コンソールで</strong>、利用可能なクラスに<code>apache</code>を追加し、そのクラスをagentノードに追加します。 この手順のヘルプが必要な場合は、<a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a> を参照してください。
 </p>
 
@@ -153,10 +157,24 @@ canonical: "/ja/pe/quick_writing_nix.html"
 <p> ご覧のように、PEがノードの主要なfactsをFacterから取得し、これらのfactsを仮想ホストテンプレートのヘッダに配置しています。
 </p>
 
-<h2 id="step-4-write-a-new-module">ステップ4：新しいモジュールを記述する</h2>
+<!--Task-->
+<h2 id="write-a-new-module">新しいモジュールを記述する</h2>
 
 <p> この演習では、<code>pe_quickstart_app</code>というクラスを作成します。これは、Apache仮想ホスト上で動作するPHPのWebアプリを管理するものです。
 </p>
+
+<p> 開始する前に、以下をインストールしていることを確認します。
+</p>
+<ul>
+<li><a href="./quick_start_install_mono.html">Puppet Enterpriseのモノリシックデプロイ</a></li>
+  <li>少なくとも1つの<a href="./quick_start_install_agents_nix.html">*nix agentノード</a>
+</li>
+  <li><a href="./quick_start_module_install_nix.html">puppetlabs-apacheモジュール</a></li>
+</ul>
+<blockquote>
+  <p> <strong>注意</strong>：ここでも、ルートまたは管理者としてノードにログインする必要があります。
+</p>
+</blockquote>
 
 <ol>
 <li>
@@ -205,23 +223,33 @@ canonical: "/ja/pe/quick_writing_nix.html"
       <li>
 <code>/var/pe_quickstart_app/index.php</code>ファイルには、<code>content</code>属性で指定されたあらゆるものが含まれます。この内容は、アプリを起動させた際に見られます。PEは<code>ensure</code>属性を用いて、クラスが最初に適用された際にこのファイルを作成します。</li>
     </ul>
-<p> クラス記述の詳細については、以下のドキュメントを参照してください。
-</p>
-
-    <ul>
-<li>ガイドツアー形式での<a href="/puppet/4.6/reference/lang_resources.html">リソース宣言文</a>、<a href="/puppet/4.6/reference/lang_conditional.html">条件文</a>、<a href="puppet/4.6/reference/lang_classes.html">クラス</a>の記述方法を含め、Puppet言語の構文に関する完璧かつ簡潔なガイドについては、<a href="/puppet/4.6/reference/lang_summary.html">Puppet 4.6言語リファレンス</a>を参照してください。</li>
-      <li>利用可能なリソース型に関するドキュメントの完全版については、<a href="/puppet/4.6/reference/type.html">型リファレンス</a>を参照してください。</li>
-      <li>短い印刷可能なリファレンスについては、<a href="/module_cheat_sheet.pdf">モジュールカンニングペーパー</a>と<a href="/puppet_core_types_cheatsheet.pdf">コアタイプカンニングペーパー</a>をご覧ください。</li>
-    </ul>
 </li>
   <li>
 <a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a>のワークフローを用いて、新しいクラスをコンソールに追加し、ノードに割り当てます。 </li>
 </ol>
-<blockquote>
-  <p> 以上で完了です。 初めてのモジュールが稼動しました。 モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 「<a href="/puppet/4.6/reference/modules_fundamentals.html">Puppet: Module fundamentals</a>」、「<a href="/puppet/4.6/reference/dirs_modulepath.html">Puppet: The modulepath</a>」、「<a href="/guides/module_guides/bgtm.html">Beginner’s guide to modules</a>」、「<a href="https://forge.puppetlabs.com/">Puppet Forge</a>」を参照してください。
+<p> 以上で完了です。 初めてのモジュールが稼動しました。 モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 「<a href="/puppet/4.9/modules_fundamentals.html">Puppet: Module fundamentals</a>」、「<a href="/puppet/4.9/dirs_modulepath.html">Puppet: The modulepath</a>」、「<a href="/puppet/4.9/bgtm.html">Beginner’s guide to modules</a>」、「<a href="https://forge.puppet.com">Puppet Forge</a>」を参照してください。
 </p>
 
-  <p> これで、PE *nixクイックスタートガイドシリーズは終了です。Puppetユーザの基本的なワークフローを実行できるようになりました。 次は、「<a href="/pe/2016.4/quick_start_essential_config.html">Essential configuration tasks for PE users(PEユーザの基本的な設定タスク)</a>」セクションのガイド付きチュートリアルへ進み、引き続きPuppetスキルを磨いてデプロイをパーソナライズしてみてください。 
+<!--Reference-->
+<h2 id="more-information-about-writing-classes">クラスの記述に関する詳細情報</h2>
+<p> クラス記述の詳細については、以下のドキュメントを参照してください。
 </p>
-</blockquote>
+
+<ul>
+<li>
+<a href="/puppet/4.9/lang_summary.html">Puppet言語リファレンス</a>では、<a href="/puppet/4.9/lang_resources.html">リソースの宣言</a>、<a href="/puppet/4.9/lang_conditional.html">条件文</a>、<a href="/puppet/4.9/lang_classes.html">クラス</a>の記述方法を紹介したヘルプを含む完全なPuppet言語のシンタックスが、簡潔なガイドツアー形式で提供されています。</li>
+  <li>使用できるリソース型をすべて記載したマニュアルについては、<a href="/puppet/4.9/type.html">型リファレンス</a>を参照してください。</li>
+  <li>短い印刷可能なリファレンスについては、<a href="/module_cheat_sheet.pdf">モジュールカンニングペーパー</a>と<a href="/puppet_core_types_cheatsheet.pdf">コアタイプカンニングペーパー</a>をご覧ください。</li>
+</ul>
+<h2 id="next-steps">次の手順</h2>
+
+<p> これで、PE *nixクイックスタートガイドシリーズは終了です。Puppetユーザの基本的なワークフローを実行できるようになりました。 次のステップとして、以下を推奨します。
+</p>
+
+<ul>
+<li><a href="/puppet/4.9/modules_fundamentals.html">Puppet Forgeを使用して必要なモジュールを見つける</a></li>
+  <li><a href="/pe/2017.1/r_n_p_intro.html">ロールおよびプロファイル手法を使用して完全なシステム設定を作成し、管理リポジトリに保存する</a></li>
+  <li><a href="/pe/2017.1/cmgmt_managing_code.html">Puppet Enterpriseビルトインツールと管理リポジトリを使用して、Puppetコードを管理する</a></li>
+  <li><a href="/pe/2017.1/console_classes_groups_getting_started.html">グループとルールを使用してノードを分類する</a></li>
+</ul>
 </div>

@@ -2,10 +2,11 @@
 layout: default
 title: "Windows環境でのPEインストール"
 canonical: "/ja/pe/windows_installing.html"
+
 ---
- 
+
 <div>
-<p> このガイドでは、Puppet Enterprise masterおよびagentのインストールプロセスを説明します。 masterは、設定情報を制御するノードです。 agentはmasterが制御するノードで、Windowsマシンなどがそれにあたります。 この2つのノードは、クライアント認証有りのHTTPSで通信します。 masterおよびagentアーキテクチャの詳細については、 <a href="/puppet/4.6/reference/architecture.html">Puppetアーキテクチャ文書</a>を参照してください。
+<p> このガイドでは、Puppet Enterprise masterおよびagentのインストールプロセスを説明します。 masterは、設定情報を制御するノードです。 agentはmasterが制御するノードで、Windowsマシンなどがそれにあたります。 この2つのノードは、クライアント認証有りのHTTPSで通信します。 masterおよびagentアーキテクチャの詳細については、 <a href="/puppet/4.9/architecture.html">Puppetアーキテクチャ文書</a>を参照してください。
 </p>
 
 <p> Puppet masterは*nixマシンでのみ稼働可能ですが、WindowsマシンはPuppet agentとして稼働できます。 そのため、このガイドでは、Windowsマシンを用いてLinuxサーバー上にPuppet masterをインストールしたのち、Windowsマシン上にPuppet agentをインストールする方法を説明します。 全体としては、以下の手順を実施します。
@@ -63,9 +64,12 @@ canonical: "/ja/pe/windows_installing.html"
   <img src="/pe/2016.4/images/windows/login_as_root.png" alt="login as root">
 </li>
   <li>Linuxマシンには指定されたホスト名があるはずです。ホスト名を確認するには、 <code>hostname -f</code>を実行します。</li>
-  <li>PEで使用するWebベースのインストーラにアクセスするためには、ポート3000へのアクセスを確保する必要があります。
- &gt;<strong>ヒント</strong>：アクセスを確保するための方法はお使いのOSおよびクラウド／仮想化プラットフォームによって異なりますが、以下の例で示すように、<code>iptables</code>を無効化することで、このポートを確実に開けることができます。<br><img src="/pe/2016.4/images/windows/disable_iptables.png" alt="disable iptables">
-</li>
+  <li>PEで使用するWebベースのインストーラにアクセスするためには、ポート3000へのアクセスを確保する必要があります。<blockquote>
+      <p> <strong>ヒント</strong>：アクセスを確保するための方法はお使いのOSおよびクラウド／仮想化プラットフォームによって異なりますが、以下の例で示すように、<code>iptables</code>を無効化することで、このポートを確実に開けることができます。
+<img src="images/windows/disable_iptables.png" alt="disable iptables">
+</p>
+    </blockquote>
+  </li>
   <li>
 <code>tar -xvf puppet-enterprise-2015.2.0-*</code>を実行し、PEインストーラtarballを展開します。</li>
   <li>
@@ -77,18 +81,28 @@ canonical: "/ja/pe/windows_installing.html"
   <li>インストーラに表示されたURLをコピーし、ブラウザにペーストします。プロンプトが表示されたら、[<strong>Let’s get started!</strong>]をクリックします。
   <img src="/pe/2016.4/images/windows/get_started.png" alt="get started">
 </li>
-  <li>デプロイアーキテクチャを選択します。この手順説明では、モノリシックインストールを行う場合について解説します。詳細については、「<a href="./install_basic.html#choose-an-installation-method">インストールの概要</a>」を参照してください。
-  &gt;<strong>注意</strong>：以降の例では、LinuxマシンをPuppet masterと呼びます。</li>
-  <li>対応するフィールドに、以下のようにPuppet masterのFQDNとエイリアスを入力します。  <img src="/pe/2016.4/images/windows/master_install.png" alt="master install">
-  次に、コンソールの管理者パスワードを入力します。
-  <img src="/pe/2016.4/images/windows/master_install_two.png" alt="second install image">
-  &gt;<strong>重要</strong>：Puppet agentはエイリアスによりPuppet masterを認識するため、エイリアスは正確に指定する必要があります。デフォルトでは「puppet」と表示されています。</li>
+  <li>デプロイアーキテクチャを選択します。この手順説明では、モノリシックインストールを行う場合について解説します。詳細については、「<a href="./install_basic.html#choose-an-installation-method">インストールの概要</a>」を参照してください。<blockquote>
+      <p> <strong>注意</strong>：以降の例では、LinuxマシンをPuppet masterと呼びます。
+</p>
+    </blockquote>
+  </li>
+  <li>対応するフィールドに、以下のようにPuppet masterのFQDNとエイリアスを入力します。
+ <img src="images/windows/master_install.png" alt="master install"> 
+次に、コンソールの管理者パスワードを入力します。 
+<img src="images/windows/master_install_two.png" alt="second install image"><blockquote>
+      <p> <strong>重要</strong>：Puppet agentはエイリアスによりPuppet masterを認識するため、エイリアスは正確に指定する必要があります。 デフォルトでは「puppet」と表示されています。
+</p>
+    </blockquote>
+  </li>
   <li>[<strong>Submit</strong>]をクリックします。</li>
   <li>[<strong>Confirm the plan</strong>]画面で、選択内容が正しいことを確認し、[<strong>Continue</strong>]をクリックします。
   <img src="/pe/2016.4/images/windows/confirm_plan.png" alt="confirm plan">
 </li>
-  <li>お使いのシステムがすべての必要条件を満たしているかどうかをPuppet Enterpriseが検証します。条件が満たされていない場合は、[<strong>Log View</strong>]トグルを使って、ログをチェックすることができます。終了したら、[<strong>Deploy now</strong>]をクリックします。
-  &gt;<strong>注意</strong>：インストーラが手順を完了するまでに数分かかります。</li>
+  <li>お使いのシステムがすべての必要条件を満たしているかどうかをPuppet Enterpriseが検証します。条件が満たされていない場合は、[<strong>Log View</strong>]トグルを使って、ログをチェックすることができます。終了したら、[<strong>Deploy now</strong>]をクリックします。<blockquote>
+      <p> <strong>注意</strong>：インストーラが手順を完了するまでに数分かかります。
+</p>
+    </blockquote>
+  </li>
   <li>[<strong>Start using Puppet Enterprise</strong>]をクリックします。</li>
   <li>インストール中に使用したコンソールの管理者パスワードを使ってログインします。ユーザー名は「admin」です。</li>
 </ol>
@@ -142,11 +156,15 @@ canonical: "/ja/pe/windows_installing.html"
   <li>PowerShellコマンドライン上で<code>puppet agent -t</code>を用いてPuppetの稼働を開始します。</li>
 </ol>
 <h2 id="imperative-sign-your-node-certificate">必須：ノード証明書への署名</h2>
-<p> Puppetを手動で稼働させる場合でも、通常どおり30分待って稼働させる場合でも、agentを最初にインストールする際に、証明書署名リクエスト (CSR) が作成されます。 インストールを完了し、ノードを管理できるようにするためには、agentの証明書に署名する必要があります。 1. ブラウザでPEコンソールに戻り、[<strong>Nodes</strong>]をクリックします。 2. [<strong>Nodes</strong>]ページで[<strong>Unsigned certificates</strong>]タブをクリックします。 3. ノード名のリストから該当するWindowsマシンを探し、[<strong>Accept</strong>]をクリックします。
+<p> Puppetを手動で稼働させる場合でも、通常どおり30分待って稼働させる場合でも、agentを最初にインストールする際に、証明書署名リクエスト (CSR) が作成されます。 インストールを完了し、ノードを管理できるようにするためには、agentの証明書に署名する必要があります。
 </p>
-
+<ol>
+<li>ブラウザでPEコンソールに戻り、[<strong>Nodes</strong>]をクリックします。</li>
+  <li>[<strong>Nodes</strong>]ページで[<strong>Unsigned certificates</strong>]タブをクリックします。</li>
+  <li>ノード名のリストから該当するWindowsマシンを探し、[<strong>Accept</strong>]をクリックします。</li>
+</ol>
 <h3 id="whats-next">次のステップ</h3>
 
-<p> これで、Puppet EnterpriseとWindows agentのインストールが完了し、Puppetの機能を実際に使う準備が整いました。 「<a href="./pe/2016.4/windows_config_mgmnt.html">Windows設定の管理</a>」では、サービス管理の自動化、タスクのスケジューリング、ユーザーとグループの管理方法などについて説明しています。 既存のモジュール(主にPuppetコードソリューション)を利用してその他の自動タスクを迅速に開始する方法については、「<a href="./pe/2016.4/windows_modules.html">Windowsモジュールのインストールと使用</a>」を参照してください。
+<p> これで、Puppet EnterpriseとWindows agentのインストールが完了し、Puppetの機能を実際に使う準備が整いました。 「<a href="./windows_config_mgmnt.html">Windows設定の管理</a>」では、サービス管理の自動化、タスクのスケジューリング、ユーザーとグループの管理方法などについて説明しています。 既存のモジュール(主にPuppetコードソリューション)を利用してその他の自動タスクを迅速に開始する方法については、「<a href="./windows_modules.html">Windowsモジュールのインストールと使用</a>」を参照してください。
 </p>
 </div>
