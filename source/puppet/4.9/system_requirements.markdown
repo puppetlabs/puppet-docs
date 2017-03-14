@@ -24,6 +24,8 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 We publish and test official `puppet-agent` packages for the following platforms. Less common and sometimes brand new platforms may not be automatically tested, but packages are still available for them.
 
+For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
+
 | Operating system                           | Tested                                         | Untested        |
 |--------------------------------------------|------------------------------------------------|-----------------|
 | Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                        |                 |
@@ -37,7 +39,7 @@ We publish and test official `puppet-agent` packages for the following platforms
 
 ## Platforms without packages
 
-Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
+Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing.
 
 ### Other Linux
 
@@ -61,11 +63,11 @@ Puppet has the following prerequisites:
 
 ### Ruby
 
-> **Note:** We currently only test and package with 2.1.x versions of Ruby, therefore we recommend you only use this version. Other interpreters and versions of Ruby are not covered by our tests.
+We currently only test and package with 2.1.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
 ### Mandatory libraries
 
-* [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
+* [Facter]({{facter}}/) 3.1 or later
 * [Hiera]({{hiera}}/) 2.0.0 or later
 * The `json` gem (any modern version)
 * The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html)
