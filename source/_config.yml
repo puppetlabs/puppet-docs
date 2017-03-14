@@ -85,7 +85,9 @@ document_names:
 #      hiera: 3.0
 #      puppetserver: 2.2
 #      puppetdb: 3.2
+
 documents:
+
   /pe/2017.1:
     doc: pe
     version: 2017.1
@@ -101,8 +103,6 @@ documents:
       puppetserver: 2.7
       puppetdb: 4.3
 
-
-documents:
   /pe/2016.5:
     doc: pe
     version: 2016.5
