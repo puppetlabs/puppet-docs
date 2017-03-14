@@ -3,6 +3,8 @@ layout: default
 title: "Puppet system requirements"
 ---
 
+Puppet's system requirements can vary depending on your deployment type and size. Before installing, ensure your hardware and operating systems are compatible with the `puppet-agent` packages we publish.
+
 > To install Puppet, first [view the pre-install tasks](./install_pre.html).
 
 ## Hardware
@@ -20,69 +22,55 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 ## Platforms with packages
 
-Puppet and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./puppet_collections.html).
+We publish and test official `puppet-agent` packages for the following platforms. Less common, and brand new platforms may not be automatically tested, but packages are still available for them.
 
-### Red Hat Enterprise Linux (and derivatives)
+<table>
+  <tr>
+    <th>Operating system</th>
+    <th>Tested</th>
+    <th>Untested</th>
+  </tr>
+  <tr>
+    <td>Red Hat Enterprise Linux (and derivatives)</td>
+    <td>5, 6, 7</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>SUSE Linux Enterprise Server</td>
+    <td>11,12</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Debian</td>
+    <td>Wheezy (7), Jessie (8)</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Ubuntu</td>
+    <td>12.04, 14.04, 16.04</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Fedora</td>
+    <td>23, 24, 25</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Microsoft Windows (Server OS)</td>
+    <td>2008R2, 2012R2, 2016</td>
+    <td>2008, 2012</td>
+  </tr>
+  <tr>
+    <td>Microsoft Windows (Consumer OS)</td>
+    <td>10 Enterprise</td>
+    <td>Vista, 7, 8, 10</td>
+  </tr>
+  <tr>
+    <td>macOS</td>
+    <td>10.10 Yosemite, 10.11 El Capitan, 10.12 Sierra</td>
+    <td></td>
+</table>
 
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Red Hat Enterprise Linux (RHEL):
-
-* Enterprise Linux 7
-* Enterprise Linux 6
-* Enterprise Linux 5
-
-This information applies to RHEL itself, as well as any distributions that maintain binary compatibility with it, including but not limited to CentOS, Scientific Linux, and Oracle Linux.
-
-### SUSE Linux Enterprise Server
-
-* SUSE Linux Enterprise Server 11
-* SUSE Linux Enterprise Server 12
-
-
-### Debian and Ubuntu
-
-We publish and test official `puppet-agent` packages for the following versions of Debian:
-
--   Debian 8 "Jessie" (current stable release)
--   Debian 7 "Wheezy" (previous stable release)
-
-We also publish and test official `puppet-agent` packages for the following versions of Ubuntu:
-
--   Ubuntu 16.04 LTS "Xenial Xerus"
--   Ubuntu 14.04 LTS "Trusty Tahr"
--   Ubuntu 12.04 LTS "Precise Pangolin"
-
-### Fedora
-
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Fedora:
-
-* Fedora 25
-* Fedora 24
-* Fedora 23
-
-### Windows
-
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Windows:
-
-* Windows Server 2016 
-* Windows Server 2012 R2
-* Windows Server 2008 R2
-* Windows 10 Enterprise
-
-We also publish, but do not automatically test `puppet-agent` packages for the following versions of Windows:
-
-* Windows Server 2012 
-* Windows Server 2008
-* Windows 8.1
-* Windows 7, 8, and 10
-* Windows Vista (**Note:** Service Pack 2 end of life date is April 11,2017)
-
-### macOS
-
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following macOS versions:
-
-* 10.12 Sierra
-* 10.11 El Capitan
-* 10.10 Yosemite
 
 ## Platforms without packages
 
@@ -102,9 +90,9 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 * OpenBSD 4.1 and later
 * HP-UX
 
-## Basic requirements
+## Prerequisites
 
-If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
+If you're installing Puppet via the official packages, you don't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
 Puppet has the following prerequisites:
 
