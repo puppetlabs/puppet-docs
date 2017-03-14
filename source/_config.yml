@@ -85,7 +85,24 @@ document_names:
 #      hiera: 3.0
 #      puppetserver: 2.2
 #      puppetdb: 3.2
+
 documents:
+
+  /pe/2017.1:
+    doc: pe
+    version: 2017.1
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/flanders
+      subdirectory: source
+    my_versions:
+      puppet: 4.9
+      facter: 3.6
+      hiera: 3.3
+      puppetserver: 2.7
+      puppetdb: 4.3
+
   /pe/2016.5:
     doc: pe
     version: 2016.5
