@@ -22,7 +22,7 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 ## Platforms with packages
 
-We publish and test official `puppet-agent` packages for the following platforms. Less common, and brand new platforms may not be automatically tested, but packages are still available for them.
+We publish and test official `puppet-agent` packages for the following platforms. Less common and sometimes brand new platforms may not be automatically tested, but packages are still available for them.
 
 | Operating system                           | Tested                                         | Untested        |
 |--------------------------------------------|------------------------------------------------|-----------------|
