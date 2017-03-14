@@ -24,53 +24,16 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 We publish and test official `puppet-agent` packages for the following platforms. Less common, and brand new platforms may not be automatically tested, but packages are still available for them.
 
-<table>
-  <tr>
-    <th>Operating system</th>
-    <th>Tested</th>
-    <th>Untested</th>
-  </tr>
-  <tr>
-    <td>Red Hat Enterprise Linux (and derivatives)</td>
-    <td>5, 6, 7</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>SUSE Linux Enterprise Server</td>
-    <td>11,12</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Debian</td>
-    <td>Wheezy (7), Jessie (8)</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Ubuntu</td>
-    <td>12.04, 14.04, 16.04</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Fedora</td>
-    <td>23, 24, 25</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Microsoft Windows (Server OS)</td>
-    <td>2008R2, 2012R2, 2016</td>
-    <td>2008, 2012</td>
-  </tr>
-  <tr>
-    <td>Microsoft Windows (Consumer OS)</td>
-    <td>10 Enterprise</td>
-    <td>Vista, 7, 8, 10</td>
-  </tr>
-  <tr>
-    <td>macOS</td>
-    <td>10.10 Yosemite, 10.11 El Capitan, 10.12 Sierra</td>
-    <td></td>
-</table>
-
+| Operating system                           | Tested                                         | Untested        |
+|--------------------------------------------|------------------------------------------------|-----------------|
+| Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                        |                 |
+| SUSE Linux Enterprise Server               | 11, 12                                         |                 |
+| Debian                                     | Wheezy (7), Jessie (8)                         |                 |
+| Ubuntu                                     | 12.04, 14.04, 16.04                            |                 |
+| Fedora                                     | 23, 24, 25                                     |                 |
+| Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016                           | 2008, 2012      |
+| Microsoft Windows (Consumer OS)            | 10 Enterprise                                  | Vista, 7, 8, 10 |
+| macOS                                      | 10.10 Yosemite, 10.11 El Capitan, 10.12 Sierra |                 |
 
 ## Platforms without packages
 
