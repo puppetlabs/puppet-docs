@@ -202,7 +202,32 @@ If there's no update and you only have the Hiera 3 version, you can use it in a 
 
 For full details on how to configure a legacy backend, see [Configuring a hierarchy level (legacy Hiera 3 backends)][v5_legacy] in the hiera.yaml (version 5) reference.
 
-When configuring a legacy backend, you'll need to use the previous value for its backend-specific settings.
+When configuring a legacy backend, you'll need to use the previous value for its backend-specific settings. In our case, the v3 config had the following settings for MongoDB:
+
+``` yaml
+:mongodb:
+  :connections:
+    :dbname: hdata
+    :collection: config
+    :host: localhost
+```
+
+So we would write the following for our per-node MongoDB hierarchy level:
+
+``` yaml
+  - name: "Per-node data (MongoDB version)"
+    path: "nodes/%{trusted.certname}"      # No file extension
+    hiera3_backend: mongodb
+    options:    # Use old backend-specific options, changing keys to plain strings
+      connections:
+        dbname: hdata
+        collection: config
+        host: localhost
+```
+
+## Final configuration
+
+After following these steps, we've translated our example configuration into the following v5 config:
 
 ``` yaml
 version: 5
