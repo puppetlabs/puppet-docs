@@ -3,6 +3,8 @@ layout: default
 title: "Puppet system requirements"
 ---
 
+Puppet's system requirements can vary depending on your deployment type and size. Before installing, ensure your hardware and operating systems are compatible with the `puppet-agent` packages we publish.
+
 > To install Puppet, first [view the pre-install tasks](./install_pre.html).
 
 ## Hardware
@@ -20,73 +22,24 @@ The demands on the Puppet master vary widely between deployments. The total need
 
 ## Platforms with packages
 
-Puppet and all of its prerequisites run on the following platforms, and Puppet provides official packages in [Puppet Collections](./puppet_collections.html).
+We publish and test official `puppet-agent` packages for the following platforms. Less common and sometimes brand new platforms may not be automatically tested, but packages are still available for them.
 
-### Red Hat Enterprise Linux (and derivatives)
+For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
 
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Red Hat Enterprise Linux (RHEL):
-
-* Enterprise Linux 7
-* Enterprise Linux 6
-* Enterprise Linux 5
-
-This information applies to RHEL itself, as well as any distributions that maintain binary compatibility with it, including but not limited to CentOS, Scientific Linux, and Oracle Linux.
-
-### SUSE Linux Enterprise Server
-
-* SUSE Linux Enterprise Server 11
-* SUSE Linux Enterprise Server 12
-
-
-### Debian and Ubuntu
-
-We publish and test official `puppet-agent` packages for the following versions of Debian:
-
--   Debian 8 "Jessie" (current stable release)
--   Debian 7 "Wheezy" (previous stable release)
-
-We also publish and test official `puppet-agent` packages for the following versions of Ubuntu:
-
--   Ubuntu 16.04 LTS "Xenial Xerus"
--   Ubuntu 14.04 LTS "Trusty Tahr"
--   Ubuntu 12.04 LTS "Precise Pangolin"
-
-### Fedora
-
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Fedora:
-
-* Fedora 25
-* Fedora 24
-* Fedora 23
-
-### Windows
-
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Windows:
-
-* Windows Server 2016 
-* Windows Server 2012 R2
-* Windows Server 2008 R2
-* Windows 10 Enterprise
-
-We also publish, but do not automatically test `puppet-agent` packages for the following versions of Windows:
-
-* Windows Server 2012 
-* Windows Server 2008
-* Windows 8.1
-* Windows 7, 8, and 10
-* Windows Vista (**Note:** Service Pack 2 end of life date is April 11,2017)
-
-### macOS
-
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following macOS versions:
-
-* 10.12 Sierra
-* 10.11 El Capitan
-* 10.10 Yosemite
+| Operating system                           | Tested                                         | Untested        |
+|--------------------------------------------|------------------------------------------------|-----------------|
+| Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                        |                 |
+| SUSE Linux Enterprise Server               | 11, 12                                         |                 |
+| Debian                                     | Wheezy (7), Jessie (8)                         |                 |
+| Ubuntu                                     | 12.04, 14.04, 16.04                            |                 |
+| Fedora                                     | 23, 24, 25                                     |                 |
+| Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016                           | 2008, 2012      |
+| Microsoft Windows (Consumer OS)            | 10 Enterprise                                  | Vista, 7, 8, 10 |
+| macOS                                      | 10.10 Yosemite, 10.11 El Capitan, 10.12 Sierra |                 |
 
 ## Platforms without packages
 
-Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing. For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
+Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing.
 
 ### Other Linux
 
@@ -102,19 +55,19 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 * OpenBSD 4.1 and later
 * HP-UX
 
-## Basic requirements
+## Prerequisites
 
-If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
+If you're installing Puppet via the official packages, you don't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
 Puppet has the following prerequisites:
 
 ### Ruby
 
-> **Note:** We currently only test and package with 2.1.x versions of Ruby, therefore we recommend you only use this version. Other interpreters and versions of Ruby are not covered by our tests.
+We currently only test and package with 2.1.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
 ### Mandatory libraries
 
-* [Facter](http://www.puppetlabs.com/puppet/related-projects/facter/) 2.4.3 or later
+* [Facter]({{facter}}/) 3.1 or later
 * [Hiera]({{hiera}}/) 2.0.0 or later
 * The `json` gem (any modern version)
 * The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html)

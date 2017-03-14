@@ -205,7 +205,7 @@ Each eyaml hierarchy level needs the following keys:
 
     If you use an alternate encryption plugin, its docs should specify which options to set. You'll usually set an `encrypt_method` option, plus some plugin-specific options to replace the `pkcs7_` ones.
 
-    Note that you can use normal strings as keys; you don't need to use :symbols.
+    Note that you can use normal strings as keys in this hash; you don't need to use :symbols.
 
 The file path and the options both support [variable interpolation][interpolation].
 

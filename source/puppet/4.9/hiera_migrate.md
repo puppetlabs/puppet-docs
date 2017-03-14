@@ -24,7 +24,7 @@ But there are major advantages to fully adopting Hiera 5:
 
 ## What do we mean by "migrate?"
 
-Since Hiera 5 uses the same built-in data formats as Hiera 3, you don't need to do mass edits of any data files. When we say "migrate to Hiera 5," we're talking about **updating configuration.** Specifically, we're talking about these four tasks:
+Since Hiera 5 uses the same built-in data formats as Hiera 3, you don't need to do mass edits of any data files. When we say "migrate to Hiera 5," we're talking about **updating configuration.** Specifically, we're talking about the following tasks:
 
 Task | Benefit
 -----|--------

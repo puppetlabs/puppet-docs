@@ -159,7 +159,7 @@ value is a hash, Puppet raises a type mismatch error.
 
 ## `hiera_hash`
 
-Normally does a [hash merge][hash] lookup. However, if the [global layer][] uses a [version 3 hiera.yaml][v3] file and its [`:merge_behavior`][v3_merge_behavior] setting is set to `deeper`, this function does a [deep merge][deep] lookup instead.
+Normally does a [hash merge][hash] lookup. However, if the [global layer][] uses a [version 3 hiera.yaml][v3] file and its [`:merge_behavior`][v3_merge_behavior] setting is set to `deeper`, this function does a [deep merge][deep] lookup instead. (Note that the `:merge_behavior` setting only affects `hiera_hash`; it does not affect automatic class parameter lookup, the `lookup` function, or the `puppet lookup` command.)
 
 The `hiera_hash` function takes up to three arguments, in this order:
 
