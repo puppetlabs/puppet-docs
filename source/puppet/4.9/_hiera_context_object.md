@@ -18,6 +18,7 @@ The following methods are available:
 * [`cached_value(key)`][method_cached], for retrieving cached values.
 * [`cache_has_key(key)`][method_haskey], for checking the cache.
 * [`cached_entries()`][method_allcached], for dumping the whole cache.
+* [`cached_file_data(path) {|content| ...}`][method_cached_file], for high-performance reading of data files.
 * [`explain() || { 'message' }`][method_explain], for helpful debug messages.
 
 
@@ -98,13 +99,40 @@ Checks whether the cache has a value for a given key yet. Returns `true` or `fal
 
 Returns everything in the per-data-source cache, as an iterable object. Note that this iterable object isn't a hash; if you want a hash, you can use `Hash($context.all_cached())` (in the Puppet language) or `Hash[context.all_cached()]` (in Ruby).
 
-### `explain() || { 'message' }`
+### `cached_file_data(path) {|content| ...}`
 
-[method_explain]: #explain---message-
+[method_cached_file]: #cachedfiledatapath-content-
 
-> **Note:** The header above uses the Puppet lambda syntax. To call this method in Ruby, you would use `explain() { 'message' }`. In either case, the provided block must take zero arguments.
+> **Note:** The header above uses Ruby's block syntax. To call this method in the Puppet language, you would use `cached_file_data(path) |content| { ... }`.
 
-Adds a message, which appears in debug messages or when using `puppet lookup --explain`.
+For best performance, use this method to read files in Hiera backends.
+
+Returns the content of the specified file, as a string. If an optional block is provided, it passes the content to the block and returns the block's return value. For example, the built-in JSON backend uses a block to parse JSON and return a hash:
+
+``` ruby
+    context.cached_file_data(path) do |content|
+      begin
+        JSON.parse(content)
+      rescue JSON::ParserError => ex
+        # Filename not included in message, so we add it here.
+        raise Puppet::DataBinding::LookupError, "Unable to parse (#{path}): #{ex.message}"
+      end
+    end
+```
+
+On repeated access to a given file, Hiera checks whether the file has changed on disk. If it hasn't, Hiera uses cached data instead of reading and parsing the file again.
+
+This method **does not** use the same per-data-source caches as `cache(key, value)` and friends. It uses a separate cache that lasts across multiple catalog compilations, and is tied to [Puppet Server's environment cache]({{puppetserver}}/admin-api/v1/environment-cache.html).
+
+Since the cache can outlive a given node's catalog compilation, do not do any node-specific pre-processing (like calling `context.interpolate`) in this method's block.
+
+### `explain() { 'message' }`
+
+[method_explain]: #explain--message-
+
+> **Note:** The header above uses Ruby's block syntax. To call this method in the Puppet language, you would use `explain() || { 'message' }`. In both cases, the provided block must take zero arguments.
+
+Adds a message, which appears in debug messages or when using `puppet lookup --explain`. The block provided to this function must return a string.
 
 This is meant for complex lookups where a function tries several different things before arriving at the value. Note that the built-in backends don't use the `explain` method, and they still have relatively verbose explanations; this is for when you need to go above and beyond that.
 
