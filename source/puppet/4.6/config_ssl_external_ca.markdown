@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "SSL configuration: External CA support"
-canonical: "/puppet/latest/reference/config_ssl_external_ca.html"
 ---
 
 [conf]: ./config_file_main.html
@@ -21,35 +20,14 @@ This page describes the supported and tested configurations for external CAs in 
 This version of Puppet supports _some_ external CA configurations, but not every possible arrangement. We fully support the following setups:
 
 1. [Single self-signed CA which directly issues SSL certificates.](#option-1-single-ca)
-2. [Single, intermediate CA issued by a root self-signed CA.](#option-2-single-intermediate-ca) The intermediate
-   CA directly issues SSL certificates; the root CA doesn't.
-3. [Two intermediate CAs, both issued by the same root self-signed CA.](#option-3-two-intermediate-cas-issued-by-one-root-ca)
-    * One intermediate CA issues SSL certificates for Puppet master servers.
-    * The other intermediate CA issues SSL certificates for agent nodes.
-    * Agent certificates can't act as servers, and master certificates can't act as clients.
+2. [Puppet master functioning as an intermediate CA of a root self-signed CA.](#option-2-intermediate-ca)
 
-These are fully supported by Puppet Labs, which means:
+These are fully supported by Puppet, which means:
 
 * Issues that arise in one of these three arrangements are considered **bugs,** and we'll fix them ASAP.
 * Issues that arise in any _other_ external CA setup are considered **feature requests,** and we'll consider whether to expand our support.
 
-These configurations are all-or-nothing rather than mix-and-match. When using an external CA, the built-in Puppet CA service **must** be disabled and cannot be used to issue SSL certificates.
-
-Additionally, Puppet cannot automatically distribute certificates in these configurations --- you must have your own complete system for issuing and distributing certificates.
-
 ## General notes and requirements
-
-### Rack web server is required
-
-The Puppet master must be running inside of a Rack-enabled web server, not the built-in Webrick server.
-
-In practice, this means Apache or Nginx. We fully support any web server that can:
-
-* Terminate SSL
-* Verify the authenticity of a client SSL certificate
-* Set two request headers for:
-    * Whether the client was verified
-    * The client's distinguished name
 
 ### PEM encoding of credentials is mandatory
 
@@ -58,31 +36,6 @@ Puppet always expects its SSL credentials to be in `.pem` format.
 ### Normal Puppet master certificate requirements still apply
 
 Any Puppet master certificate must contain the DNS name at which agent nodes will attempt to contact that master, either as the subject common name (CN) or as a Subject Alternative Name (DNS).
-
-### Format of X-Client-DN request header
-
-Rack web servers must set a client request header, which the Puppet master will check based on the [`ssl_client_header` setting][client_header].
-
-This header should conform to the following specifications:
-
-* The value of the client certificate's distinguished name (DN) should be in [RFC-2253](http://www.ietf.org/rfc/rfc2253.txt) format. The format of the `SSL_CLIENT_S_DN` environment variable (set by `mod_ssl` in Apache 2.2 and newer) is fully supported.
-* Alternatively, the value of this request header may be in "OpenSSL" format.
-
-### Revocation
-
-Certificate revocation list (CRL) checking works in all three supported configurations as long as the CRL file is distributed to the agents and masters using an "out of band" process. Puppet won't automatically update the CRL on any of the system's components.
-
-#### If unused:
-
-If revocation lists are **not** being used by the external CA, you must disable CRL checking on the agent. Set `certificate_revocation = false` in the `[agent]` section of [puppet.conf][conf] on **every agent node.**
-
-(If it's not set to false and the agent doesn't already have a CRL file, it will try to download one from the master. This will fail, because the master must have the CA service disabled.)
-
-#### If used:
-
-If revocation lists **are** being used by the external CA, then the CRL file must be manually distributed to **every agent node** as a Privacy Enhanced Mail (PEM) encoded bundle. Puppet will not automatically distribute this file.
-
-To determine where to put the CRL file, run `puppet agent --configprint hostcrl`.
 
 ## Option 1: Single CA
 
@@ -102,6 +55,10 @@ When Puppet uses its internal CA, it defaults to a single CA configuration. A si
       | Master SSL Cert |                | Agent SSL Cert |
       |                 |                |                |
       +-----------------+                +----------------+
+
+This configuration is all-or-nothing rather than mix-and-match. When using an external CA, the built-in Puppet CA service **must** be disabled and cannot be used to issue SSL certificates.
+
+Additionally, Puppet cannot automatically distribute certificates in this configurations --- you must have your own complete system for issuing and distributing certificates.
 
 ### Puppet master
 
@@ -135,61 +92,9 @@ Root CA certificate                | `puppet master --configprint localcacert`
 
 {{ master_basic }}
 
-With these files in place, the web server should be configured to:
+With these files in place, the puppetserver needs to be configured to use an external CA.  Follow the steps here ["Disable the Internal Puppet CA Service"][disablepuppetserverca]
 
-* Use the root CA certificate, the master's certificate, and the master's key.
-* Set the verification header (as specified in the master's [`ssl_client_verify_header` setting][verify_header]).
-* Set the client DN header (as specified in the master's [`ssl_client_header` setting][client_header]).
-
-An example of this configuration for Apache:
-
-``` apache
-Listen 8140
-<VirtualHost *:8140>
-    SSLEngine on
-    SSLProtocol ALL -SSLv2
-    SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP
-
-    # Replace with the value of `puppet master --configprint hostcert`
-    SSLCertificateFile "/path/to/master.pem"
-    # Replace with the value of `puppet master --configprint hostprivkey`
-    SSLCertificateKeyFile "/path/to/master.key"
-
-    # Replace with the value of `puppet master --configprint localcacert`
-    SSLCACertificateFile "/path/to/ca.pem"
-
-    SSLVerifyClient optional
-    SSLVerifyDepth 1
-    SSLOptions +StdEnvVars
-    RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
-    RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
-    RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
-
-    DocumentRoot "/etc/puppetlabs/puppet/public"
-
-    PassengerRoot /usr/share/gems/gems/passenger-3.0.17
-    PassengerRuby /usr/bin/ruby
-
-    RackAutoDetect On
-    RackBaseURI /
-</VirtualHost>
-```
-
-{% capture master_config_ru %}
-
-The `config.ru` file for Rack has no special configuration when using an external CA. Please follow the standard Rack documentation for using Puppet with Rack. The following example will work with this version of Puppet:
-
-``` ruby
-$0 = "master"
-ARGV << "--rack"
-ARGV << "--confdir=/etc/puppetlabs/puppet"
-ARGV << "--vardir=/opt/puppetlabs/server/data/puppetserver"
-require 'puppet/util/command_line'
-run Puppet::Util::CommandLine.new.execute
-```
-{% endcapture %}
-
-{{ master_config_ru }}
+[disablepuppetserverca]: https://docs.puppet.com/puppetserver/latest/external_ca_configuration.html#disabling-the-internal-puppet-ca-service
 
 ### Puppet agent
 
@@ -202,230 +107,70 @@ Credential                        | File location
 Agent SSL certificate             | `puppet agent --configprint hostcert`
 Agent SSL certificate private key | `puppet agent --configprint hostprivkey`
 Root CA certificate               | `puppet agent --configprint localcacert`
+Root CRL certificate              | `puppet agent --configprint hostcrl`
 
-## Option 2: Single intermediate CA
+## Option 2: Puppet master functioning as an intermediate CA
 
-The single intermediate CA configuration builds from the single self-signed CA
-configuration and introduces one additional intermediate CA.
+The puppet master can operate as an intermediate CA to an external Root CA.  The puppet master cannot be an intermediate to an intermediate.  In this mode the puppet master CA is left enabled and generation of agent certificates can remain automated, however there are some limitations:
 
-                   +------------------------+
-                   |                        |
-                   |  Root self-signed CA   |
-                   |                        |
-                   +-----------+------------+
-                               |
-                               |
-                               v
-                   +------------------------+
-                   |                        |
-                   |    Intermediate CA     |
-                   |                        |
-                   +------+----------+------+
-                          |          |
-               +----------+          +------------+
-               |                                  |
-               v                                  v
-      +-----------------+                +----------------+
-      |                 |                |                |
-      | Master SSL Cert |                | Agent SSL Cert |
-      |                 |                |                |
-      +-----------------+                +----------------+
-
-The Root CA does not issue SSL certificates in this configuration. The intermediate CA issues SSL certificates for clients and servers alike.
+* Agent-side CRL checking is not possible however CRL verification will still happen on the puppetserver
+* The CA certificate bundle (ie the external Root CA combined with the Intermediate CA certificate) must be distributed to the agents manually - ideally before puppet runs
 
 ### Puppet master
 
-{{ master_basic }}
+Before configuring the puppet master, you will need to obtain the intermediate CA certificate from your external Root CA.  Generating the Intermediate CA cert is outside the scope of the doc, since it will depend your external certificate authority solution.  This guide assumes you are either starting with a fresh installation or have removed all SSL files from your existing master and are starting over.  Also, you should stop all puppet related services on the master server before this process.
 
-You must also create a **CA bundle** for the web server. Append **the two CA certificates** together; the Root CA certificate must be located after the intermediate CA certificate within the file.
+In order to configure the puppet master you will need the following files placed:
 
-``` bash
-cat intermediate_ca.pem root_ca.pem > ca_bundle.pem
+Certificate     | Purpose                     | File Location
+----------------|--------------------------------------------
+ca_crt.pem      | Intermediate CA Certificate | /etc/puppetlabs/puppet/ssl/ca/ca_crt.pem
+ca_key.pem      | Intermediate CA Key         | /etc/puppetlabs/puppet/ssl/ca/ca_key.pem
+root_crt.pem    | Root CA Certificate         | /etc/puppetlabs/puppet/ssl/ca/root_crt.pem
+
+> Note: The root_crt.pem can actually be placed anywhere, however this doc assumes you placed it as shown
+
+> Note: The ca_key.pem needs to have any passphrase removed to match the expectations of the Puppet CA
+
+All of the files placed should have owner set to `puppet:puppet` and permissions of `0600`.
+
+Next, you have to generate the CA bundle to be placed on the master as well as any agents you create.  This is achieved by combining the Root CA and Intermediate CA certificates into one PEM file.
+
+```
+cd /etc/puppetlabs/puppet/ssl/ca
+cat ca_cert.pem root_crt.pem > ../certs/ca.pem
+```
+> Note: You also need to install a CRL file for the CA.  If you do not have one pre-generated from the Root CA you can easily create one by first executing `puppet cert generate fakehost` and then revoking this certificate with `puppet cert clean fakehost`.  If you do have a pre-generated CRL install it into `/etc/puppetlabs/puppet/ssl/ca/ca_crl.pem.
+
+You now need to generate a new certificate for the puppet master to use.  Remember to include the `dns_alt_names` that this puppet master will need to service.
+
+```
+puppet cert generate puppetserver.my.domain.net --dns_alt_names=puppetserver,puppet
 ```
 
-Put this file somewhere predictable. Puppet doesn't use it directly, but it can live alongside Puppet's copies of the certificates.
+You can now restart the puppetserver process and validate it successfully has started.  For other puppet services, please see ["Regenerating all Certificates for a Puppet deployment"][regen] for specific instructions.
 
-With these files in place, the web server should be configured to:
-
-* Use the intermediate+Root CA bundle, the master's certificate, and the master's key
-* Set the verification header (as specified in the master's [`ssl_client_verify_header` setting][verify_header])
-* Set the client DN header (as specified in the master's [`ssl_client_header` setting][client_header])
-
-An example of this configuration for Apache:
-
-``` apache
-Listen 8140
-<VirtualHost *:8140>
-    SSLEngine on
-    SSLProtocol ALL -SSLv2
-    SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP
-
-    # Replace with the value of `puppet master --configprint hostcert`
-    SSLCertificateFile "/path/to/master.pem"
-    # Replace with the value of `puppet master --configprint hostprivkey`
-    SSLCertificateKeyFile "/path/to/master.key"
-
-    # Replace with the value of `puppet master --configprint localcacert`
-    SSLCACertificateFile "/path/to/ca_bundle.pem"
-    SSLCertificateChainFile "/path/to/ca_bundle.pem"
-
-    # Allow only clients with a SSL certificate issued by the intermediate CA with
-    # common name "Puppet CA"  Replace "Puppet CA" with the CN of your
-    # intermediate CA certificate.
-    <Location />
-        SSLRequire %{SSL_CLIENT_I_DN_CN} eq "Puppet CA"
-    </Location>
-
-    SSLVerifyClient optional
-    SSLVerifyDepth 2
-    SSLOptions +StdEnvVars
-    RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
-    RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
-    RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
-
-    DocumentRoot "/etc/puppetlabs/puppet/public"
-
-    PassengerRoot /usr/share/gems/gems/passenger-3.0.17
-    PassengerRuby /usr/bin/ruby
-
-    RackAutoDetect On
-    RackBaseURI /
-</VirtualHost>
-```
-
-{{ master_config_ru }}
+[regen]: https://docs.puppet.com/puppet/latest/ssl_regenerate_certificates.html
 
 ### Puppet agent
 
-With an intermediate CA, Puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its [`puppet.conf`][conf]:
+In order for the puppet agent to work properly with this CA configuration you need to do two things:
+
+* Copy the CA bundle in place prior to a puppet run (ideally)
+* Disable certificate revocation validation
+
+The CA bundle needs to be copied to `/etc/puppetlabs/puppet/ssl/certs/ca.pem`.  If you copy this file in place prior to the first puppet execution you will not recieve any errors.  If you attempt to execute a puppet run prior to this file being present you will receive errors since the auto-distributed ca.pem file will not be the entire CA certificate chain. 
+
+Example error:
 
 ```
-[agent]
-ssl_client_ca_auth = $certdir/issuer.pem
+Error: Could not request certificate: SSL_connect returned=1 errno=0 state=error: certificate verify failed: [unable to get local issuer certificate for /CN=<master>]
 ```
 
-The value should point to somewhere in the `$certdir`.
-
-Put the external credentials into the correct filesystem locations. You can run the following commands to find the appropriate locations:
-
-Credential                        | File location
-----------------------------------|------------------------------------------------
-Agent SSL certificate             | `puppet agent --configprint hostcert`
-Agent SSL certificate private key | `puppet agent --configprint hostprivkey`
-Root CA certificate               | `puppet agent --configprint localcacert`
-Intermediate CA certificate       | `puppet agent --configprint ssl_client_ca_auth`
-
-## Option 3: Two intermediate CAs issued by one root CA
-
-This configuration uses different CAs to issue Puppet master certificates and Puppet agent
-certificates. This makes them easily distinguishable, and prevents any agent certificate from being
-usable for a Puppet master.
-
-                   +------------------------+
-                   |                        |
-                   |  Root self-signed CA   |
-                   |                        |
-                   +------+----------+------+
-                          |          |
-               +----------+          +------------+
-               |                                  |
-               v                                  v
-      +-----------------+                +----------------+
-      |                 |                |                |
-      |    Master CA    |                |    Agent CA    |
-      |                 |                |                |
-      +--------+--------+                +--------+-------+
-               |                                  |
-               |                                  |
-               v                                  v
-      +-----------------+                +----------------+
-      |                 |                |                |
-      | Master SSL Cert |                | Agent SSL Cert |
-      |                 |                |                |
-      +-----------------+                +----------------+
-
-In this configuration, Puppet agents are configured to only authenticate peer certificates issued by the Master CA. Puppet masters are configured to only authenticate peer certificates issued by the Agent CA.
-
-> **Note:** If you're using this configuration, you can't use the ActiveRecord inventory service backend with multiple Puppet master servers. Use [PuppetDB][] for the inventory service instead.
-
-### Puppet master
-
-{{ master_basic }}
-
-You must also create a **CA bundle** for the web server. Append the **Agent CA certificate and Root CA certificate** together; the Root CA certificate must be located after the Agent CA certificate within the file.
-
-``` bash
-cat agent_ca.pem root_ca.pem > ca_bundle_for_master.pem
-```
-
-Put this file somewhere predictable. Puppet doesn't use it directly, but it can live alongside Puppet's copies of the certificates.
-
-With these files in place, the web server should be configured to:
-
-* Use the Agent+Root CA bundle, the master's certificate, and the master's key.
-* Set the verification header (as specified in the master's [`ssl_client_verify_header` setting][verify_header]).
-* Set the client DN header (as specified in the master's [`ssl_client_header` setting][client_header]).
-
-An example of this configuration for Apache:
-
-``` apache
-Listen 8140
-<VirtualHost *:8140>
-    SSLEngine on
-    SSLProtocol ALL -SSLv2
-    SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP
-
-    # Replace with the value of `puppet master --configprint hostcert`
-    SSLCertificateFile "/path/to/master.pem"
-    # Replace with the value of `puppet master --configprint hostprivkey`
-    SSLCertificateKeyFile "/path/to/master.key"
-
-    # Replace with the value of `puppet master --configprint localcacert`
-    SSLCACertificateFile "/path/to/ca_bundle_for_master.pem"
-    SSLCertificateChainFile "/path/to/ca_bundle_for_master.pem"
-
-    # Allow only clients with a SSL certificate issued by the intermediate CA with
-    # common name "Puppet Agent CA"  Replace "Puppet Agent CA" with the CN of your
-    # Agent CA certificate.
-    <Location />
-        SSLRequire %{SSL_CLIENT_I_DN_CN} eq "Puppet Agent CA"
-    </Location>
-
-    SSLVerifyClient optional
-    SSLVerifyDepth 2
-    SSLOptions +StdEnvVars
-    RequestHeader set X-SSL-Subject %{SSL_CLIENT_S_DN}e
-    RequestHeader set X-Client-DN %{SSL_CLIENT_S_DN}e
-    RequestHeader set X-Client-Verify %{SSL_CLIENT_VERIFY}e
-
-    DocumentRoot "/etc/puppetlabs/puppet/public"
-
-    PassengerRoot /usr/share/gems/gems/passenger-3.0.17
-    PassengerRuby /usr/bin/ruby
-
-    RackAutoDetect On
-    RackBaseURI /
-</VirtualHost>
-```
-
-{{ master_config_ru }}
-
-### Puppet agent
-
-With split CAs, Puppet agent needs a modified value for [the `ssl_client_ca_auth` setting][ca_auth] in its [`puppet.conf`][conf]:
+Once the CA file is in place, disable certificate revocation validation by adding the following to the main section of puppet.conf:
 
 ```
-[agent]
-ssl_client_ca_auth = $certdir/ca_master.pem
+certificate_revocation = false
 ```
 
-The value should point to somewhere in the `$certdir`.
-
-Put the external credentials into the correct filesystem locations. You can run the following commands to find the appropriate locations:
-
-Credential                        | File location
-----------------------------------|------------------------------------------------
-Agent SSL certificate             | `puppet agent --configprint hostcert`
-Agent SSL certificate private key | `puppet agent --configprint hostprivkey`
-Root CA certificate               | `puppet agent --configprint localcacert`
-Master CA certificate             | `puppet agent --configprint ssl_client_ca_auth`
+Once you've completed both of these steps the agent will run successfully.
