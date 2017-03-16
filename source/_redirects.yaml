@@ -161,9 +161,11 @@
   was: puppet_server_config_files.html
   became: config_puppetserver.html
   at_version: 2017.1
+  forward_only: true
 
 # Move overview_about_pe.html into index.html in Flanders
 - in_doc: pe
   was: overview_about_pe.html
   became: index.html
   at_version: 2017.1
+  forward_only: true
