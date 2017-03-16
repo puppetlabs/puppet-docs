@@ -3,7 +3,7 @@ layout: default
 title: "Puppet system requirements"
 ---
 
-Puppet's system requirements can vary depending on your deployment type and size. Before installing, ensure your hardware and operating systems are compatible with the `puppet-agent` packages we publish.
+Puppet's system requirements can depend on your deployment type and size. Before installing, ensure your hardware and operating systems are compatible with the `puppet-agent` packages we publish.
 
 > To install Puppet, first [view the pre-install tasks](./install_pre.html).
 
@@ -41,13 +41,13 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 
 Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing.
 
-### Other Linux
+Other Linux:
 
 * Gentoo Linux
 * Mandriva Corporate Server 4
 * Arch Linux
 
-### Other Unix
+Other Unix:
 
 * Oracle Solaris, version 10 and higher (Puppet performs limited automated testing on Solaris 11)
 * AIX, version 5.3 and higher
