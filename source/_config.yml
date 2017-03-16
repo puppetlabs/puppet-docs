@@ -474,13 +474,13 @@ documents:
   /puppetserver/2.7:
     doc: puppetserver
     version: 2.7
-    nav: /puppet/4.8/_puppet_toc.html
+    nav: /puppet/4.9/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: b4fbbf035287318694e4313d5d3d3a9eea2d707a
       subdirectory: documentation
     my_versions:
-      puppet: 4.8
+      puppet: 4.9
       facter: 3.5
       hiera: 3.2
   /puppetserver/2.6:
