@@ -10,9 +10,11 @@ title: "Installing Puppet: Pre-install tasks"
 [puppetdb]: {{puppetdb}}/
 [server_setting]: ./configuration.html#server
 
-> **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
 
 Before you install Puppet, you should do the following tasks.
+
+
+> **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
 
 ## Decide on a deployment type
 
@@ -30,7 +32,7 @@ You should completely install and configure Puppet on any Puppet masters and Pup
 
 A Puppet master should be a dedicated machine. It must also be reachable at a reliable hostname. See the [system requirements](system_requirements.html) for minimum hardware requirements.
 
-> Note: Agent nodes will default to contacting the master at the hostname `puppet`. If you make sure this hostname resolves to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
+> **Note:** Agent nodes will default to contacting the master at the hostname `puppet`. If you make sure this hostname resolves to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
 
 
 ## Check OS versions and system requirements
@@ -39,14 +41,14 @@ See the [system requirements](system_requirements.html) for the version of Puppe
 
 * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
 * Systems we provide official packages for will have an easier install path.
-* Systems we don't provide packages for _might_ still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed. See the [list of supported Ruby versions and prerequisites.][ruby] You'll also need to follow a more complex install path.
+* Systems we don't provide packages for _might_ still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed. You'll also need to follow a more complex install path.
 
 ## Check your network configuration
 
 In an agent/master deployment, you must prepare your network for Puppet's traffic.
 
 * **Firewalls:** The Puppet master server must allow incoming connections on port 8140, and agent nodes must be able to connect to the master on that port.
-* **Name resolution:** Every node must have a unique hostname. **Forward and reverse DNS** must both be configured correctly. (Instructions for configuring DNS are beyond the scope of this guide. If your site lacks DNS, you must write an `/etc/hosts` file on each node.)
+* **Name resolution:** Every node must have a unique hostname. **Forward and reverse DNS** must both be configured correctly. (Instructions for configuring DNS are beyond the scope of these instructions. If your site lacks DNS, you must write an `/etc/hosts` file on each node.)
     * **Note:** The default Puppet master hostname is `puppet`. Your agent nodes can be ready sooner if this hostname resolves to your Puppet master.
 
 ## Check timekeeping on your Puppet master server
