@@ -17,7 +17,7 @@ title: "Hiera: Interpolating variables and other values"
 [v5]: ./hiera_config_yaml_5.html
 [environment]: ./environments.html
 
-In several places in Hiera, you can interpolate the value of a [variable][variables] or a secondary Hiera lookup into a string.
+In several places in Hiera, you can insert the value of a [variable][variables] into a string.
 
 This is a lot like [Puppet's expression interpolation][interpolation_puppet], but it uses a different syntax --- `%{variable}`, instead of `${expression}`.
 
@@ -25,7 +25,7 @@ This is a lot like [Puppet's expression interpolation][interpolation_puppet], bu
 
 Hiera uses interpolation in two places: [hierarchies][hierarchy] and data.
 
-* In a [hierarchy][], you can interpolate values into the `path(s)`, `glob(s)`, `uri(s)`, and `options` of a hierarchy level. This lets each node get a customized version of the hierarchy. For a deeper explanation, see [How hierarchies work][hierarchy] and the [hiera.yaml syntax reference][hiera.yaml].
+* In a [hierarchy][], you can interpolate variables into the `path(s)`, `glob(s)`, `uri(s)`, and `options` of a hierarchy level. This lets each node get a customized version of the hierarchy. For a deeper explanation, see [How hierarchies work][hierarchy] and the [hiera.yaml syntax reference][hiera.yaml].
 * In data sources, you can use interpolation to avoid repeating yourself. This usually takes one of two forms:
     * If some value always involves the value of a [fact][facts] (for example, if you need to specify a mail server and you have one predictably-named mail server per domain), you can reference the fact directly instead of manually transcribing it.
     * If multiple keys need to share the same value, you can write it out for one of them and re-use it for the rest with the `lookup` or `alias` interpolation functions. This can make it easier to keep data up to date, since you only need to change a given value in one place.
@@ -104,7 +104,9 @@ These variables were a workaround for the lack of a module data layer. Since the
 
 [inpage_functions]: #using-interpolation-functions
 
-Hiera's interpolation tokens support a few special functions, which can insert non-variable values.
+In Hiera's data sources, you can use several special functions to insert non-variable values. These aren't the same as Puppet functions; they're only available in Hiera's interpolation tokens.
+
+> **Important:** You cannot use interpolation functions in hiera.yaml. They're only for use in data sources.
 
 To use an interpolation function, write:
 
@@ -128,7 +130,7 @@ There are five interpolation functions:
 * [`hiera`][inpage_lookup] --- a synonym for `lookup`.
 * [`alias`][inpage_alias] --- looks up a key using Hiera, and uses the value as a _replacement_ for the enclosing string.
 * [`literal`][inpage_literal] --- a way to write a literal percent sign (`%`) without accidentally interpolating something.
-* [`scope`][inpage_scope] --- an alternate way to interpolate a variable. Most people don't need this.
+* [`scope`][inpage_scope] --- an alternate way to interpolate a variable. Not generally useful.
 
 ### `lookup` / `hiera`
 
