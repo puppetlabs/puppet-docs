@@ -42,6 +42,10 @@ To illustrate the conversion process, we'll use this example hiera.yaml (version
     :dbname: hdata
     :collection: config
     :host: localhost
+:eyaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+  :pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+  :pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
 :hierarchy:
   - "nodes/%{trusted.certname}"
   - "location/%{facts.whereami}/%{facts.group}"
@@ -126,9 +130,9 @@ In our example above, we had the following hierarchy:
   - "common"
 ```
 
-...and we used both the `yaml` and `mongodb` backends. But when we checked into it, we learned that our business only uses Mongo for per-node data, using the `nodes/%{trusted.certname}` hierarchy level. The rest of the hierarchy was irrelevant to the Mongo backend.
+...and we used the `yaml`, `eyaml`, and `mongodb` backends. But when we checked into it, we learned that our business only uses Mongo for per-node data, and only uses eyaml for per-group data. The rest of the hierarchy was irrelevant to these backends.
 
-So we'll only need one Mongo hierarchy level, but we still want all five levels in YAML. This means we'll be consulting _both_ backends for per-node data. After thinking for a bit, we decided that we want the YAML version of per-node data to be authoritative, so we'll put it before the Mongo version.
+So we only need one Mongo level and one eyaml level, but we still want all five levels in YAML. This means we'll consult multiple backends for per-node and per-group data. After thinking for a bit, we decided that we want the YAML version of per-node data to be authoritative, so we'll put it before the Mongo version. Our eyaml data doesn't overlap at all with the unencrypted per-group data, so it doesn't matter as much where we put it; we'll put it before the YAML levels, because why not.
 
 When you translate your hierarchy, you'll have to make the same kinds of investigations and decisions.
 
