@@ -10,6 +10,8 @@ title: "Hiera 3.2: Release Notes"
 [1.7.2]: /puppet/4.7/reference/release_notes_agent.html#puppet-agent-172
 [1.8.0]: /puppet/4.8/reference/release_notes_agent.html#puppet-agent-180
 
+{% partial /hiera/_hiera_update.md %}
+
 ## Hiera 3.2.2
 
 Released November 1, 2016.
@@ -35,7 +37,7 @@ Minor bug fix release shipped in [`puppet-agent`][] version [1.6.0][].
 
 ## Hiera 3.2.0
 
-Released May 17, 2016. 
+Released May 17, 2016.
 
 Shipped in [`puppet-agent`][] version [1.5.0][].
 

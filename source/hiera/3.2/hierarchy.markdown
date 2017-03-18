@@ -13,6 +13,8 @@ title: "Creating hierarchies"
 [hash]: ./lookup_types.html#hash-merge
 [qualified_var]: /puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables
 
+{% partial /hiera/_hiera_update.md %}
+
 Hiera uses an ordered hierarchy to look up data. This allows you to have a large amount of common data and override smaller amounts of it wherever necessary.
 
 ## Location and syntax

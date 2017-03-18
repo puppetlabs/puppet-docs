@@ -33,6 +33,7 @@ title: "Using Hiera with Puppet"
 [config_deep_merge]: ./lookup_types.html#deep-merging-in-hiera
 [lookup_keys]: ./lookup_types.html#lookup-keys
 
+{% partial /hiera/_hiera_update.md %}
 
 Puppet can use Hiera to look up data. This helps you disentangle site-specific data from Puppet code, for easier code reuse and easier management of data that needs to differ across your node population.
 

@@ -6,6 +6,7 @@ title: "Hiera 1: Installing"
 [repos]: /guides/puppetlabs_package_repositories.html
 [config]: ./configuring.html
 
+{% partial /hiera/_hiera_update.md %}
 
 > **Note:** If you are using Puppet 3 or later, you probably **already have Hiera installed.** You can skip these steps, and go directly to [configuring Hiera][config].
 
@@ -14,7 +15,7 @@ Prerequisites
 
 * Hiera works on \*nix and Windows systems.
 * It requires Ruby 1.8.5 or later.
-* To work with Puppet, it requires Puppet 2.7.x or later.  
+* To work with Puppet, it requires Puppet 2.7.x or later.
 * If used with Puppet 2.7.x, it also requires the additional `hiera-puppet` package; see below.
 
 
