@@ -3,7 +3,31 @@ layout: default
 title: "Deprecated language features"
 ---
 
-The following features of the Puppet language are deprecated, and will be removed in Puppet 5.0.
+The following features of the Puppet language are deprecated, and will be removed in a future Puppet version.
+
+## Several Hiera 3.x features
+
+[hiera_functions]: ./hiera_use_hiera_functions.html
+[v3]: ./hiera_config_yaml_3.html
+[v4]: ./hiera_config_yaml_4.html
+[v5]: ./hiera_config_yaml_5.html
+[custom_backend]: ./hiera_custom_backends.html
+[merging]: ./hiera_merging.html
+[module layer]: ./hiera_layers.html#the-module-layer
+[lookup_function]: ./hiera_migrate_functions.html
+[lookup_command]: ./man/lookup.html
+[backend_3]: {{hiera}}/custom_backends.html
+
+The following Hiera features are deprecated, since we replaced them with improved equivalents in [Hiera 5](./hiera_intro.html). They'll be removed in Puppet 6.
+
+Old feature | Replacement
+------------|------------
+The [classic `hiera_*` functions][hiera_functions].         | [The `lookup` function][lookup_function].
+The `hiera` command line tool.                              | [The `puppet lookup` command][lookup_command].
+[Version 3][v3] and [version 4][v4] of the hiera.yaml file. | [Version 5][v5].
+[Hiera 3 custom backends][backend_3].                       | [Hiera 5 custom backends][custom_backend].
+Setting a global hash merge behavior in hiera.yaml.         | [Per-key and per-lookup merge behavior][merging].
+The `calling_module`, `calling_class`, and `calling_class_path` pseudo-variables. | [The module data layer][module layer].
 
 ## Non-strict variables
 

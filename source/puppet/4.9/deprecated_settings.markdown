@@ -38,6 +38,17 @@ It has been replaced by two new settings:
 
 The old `configtimeout` setting now logs a deprecation warning if it's set, and will be removed in Puppet 5.0.
 
+## `data_binding_terminus`
+
+When [automatic class parameter lookup](./hiera_automatic.html) was still young, we included the option to replace Hiera with an alternate data backend, using the `data_binding_terminus` setting.
+
+But data binding termini were a really hairy extension point, and Hiera 5's [improved custom backend system][backend] makes them unnecessary. Setting `data_binding_terminus` to anything but `hiera` is now deprecated, and the setting will be removed in Puppet 6.
+
+* If you're using a custom `data_binding_terminus`, rewrite it as a [custom Hiera 5 backend][backend]. You're already an advanced Puppet hacker if you managed to build one of these in the first place, so you can probably write an equivalent Hiera 5 backend in an afternoon or two. We hope you enjoy this improved interface!
+* If you were disabling automatic class parameter lookup (`data_binding_terminus = none`), you can't do that anymore. Module authors are relying on it for default data these days.
+
+[backend]: ./hiera_custom_backends.html
+
 ## `ignorecache`
 
 The `ignorecache` setting has no effect, and has been dead code since Puppet 0.24.5.
