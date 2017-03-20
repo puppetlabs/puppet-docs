@@ -68,7 +68,7 @@ If necessary, you can restrict access to a custom mount point in [`auth.conf`][a
 
 ### New-style `auth.conf`
 
-If you've [disabled the legacy `auth.conf` file by setting `jruby-puppet.use-legacy-auth-conf: true`][disable_legacy], you'll be adding a rule to [Puppet Server's HOCON-format `auth.conf` file][auth.conf], located at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
+If you've [disabled the legacy `auth.conf` file by setting `jruby-puppet.use-legacy-auth-conf: false`][disable_legacy], you'll be adding a rule to [Puppet Server's HOCON-format `auth.conf` file][auth.conf], located at `/etc/puppetlabs/puppetserver/conf.d/auth.conf`.
 
 Your new auth rule must meet the following requirements:
 
