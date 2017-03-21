@@ -26,52 +26,46 @@ We publish and test official `puppet-agent` packages for the following platforms
 
 For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
 
-| Operating system                           | Tested                                         | Untested        |
-|--------------------------------------------|------------------------------------------------|-----------------|
-| Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                        |                 |
-| SUSE Linux Enterprise Server               | 11, 12                                         |                 |
-| Debian                                     | Wheezy (7), Jessie (8)                         |                 |
-| Ubuntu                                     | 12.04, 14.04, 16.04                            |                 |
-| Fedora                                     | 23, 24, 25                                     |                 |
-| Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016                           | 2008, 2012      |
-| Microsoft Windows (Consumer OS)            | 10 Enterprise                                  | Vista, 7, 8, 10 |
-| macOS                                      | 10.10 Yosemite, 10.11 El Capitan, 10.12 Sierra |                 |
+| Operating system                           | Tested Versions                                | Untested Versions       |
+|--------------------------------------------|------------------------------------------------|-------------------------|
+| Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                        |                         |
+| SUSE Linux Enterprise Server               | 11, 12                                         |                         |
+| Debian                                     | Wheezy (7), Jessie (8)                         |                         |
+| Ubuntu                                     | 12.04, 14.04, 16.04                            |                         |
+| Fedora                                     | 23, 24, 25                                     |                         |
+| Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016                           | 2008, 2012              |
+| Microsoft Windows (Consumer OS)            | 10 Enterprise                                  | Vista, 7, 8, 10         |
+| macOS                                      | 10.10 Yosemite, 10.11 El Capitan, 10.12 Sierra |                         |
 
 ## Platforms without packages
 
 Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing.
 
-Other Linux:
+* Other Linux:
+  * Gentoo Linux
+  * Mandriva Corporate Server 4
+  * Arch Linux
 
-* Gentoo Linux
-* Mandriva Corporate Server 4
-* Arch Linux
-
-Other Unix:
-
-* Oracle Solaris, version 10 and higher (Puppet performs limited automated testing on Solaris 11)
-* AIX, version 5.3 and higher
-* FreeBSD 4.7 and later
-* OpenBSD 4.1 and later
-* HP-UX
+* Other Unix:
+  * Oracle Solaris, version 10 and higher (Puppet performs limited automated testing on Solaris 11)
+  * AIX, version 5.3 and higher
+  * FreeBSD 4.7 and later
+  * OpenBSD 4.1 and later
+  * HP-UX
 
 ## Prerequisites
 
-If you're installing Puppet via the official packages, you don't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
+If you install Puppet via the official packages, you don't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
 Puppet has the following prerequisites:
 
-### Ruby
+* **Ruby:** We currently only test and package with 2.1.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
-We currently only test and package with 2.1.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
+* Mandatory libraries:
 
-### Mandatory libraries
+  * [Facter]({{facter}}/) 3.1 or later
+  * [Hiera]({{hiera}}/) 2.0.0 or later
+  * The `json` gem (any modern version)
+  * The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html)
 
-* [Facter]({{facter}}/) 3.1 or later
-* [Hiera]({{hiera}}/) 2.0.0 or later
-* The `json` gem (any modern version)
-* The [`rgen` gem](http://ruby-gen.org/downloads) version 0.6.6 or later is now required because Puppet [`parser = future` is enabled by default](./lang_updating_manifests.html)
-
-### Optional libraries
-
-* The `msgpack` gem is required if you are using [msgpack serialization](./experiments_msgpack.html).
+* Optional libraries: The `msgpack` gem is required if you are using [msgpack serialization](./experiments_msgpack.html).
