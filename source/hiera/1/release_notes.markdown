@@ -3,6 +3,7 @@ layout: default
 title: "Hiera 1: Release Notes"
 ---
 
+{% partial /hiera/_hiera_update.md %}
 
 Hiera 1.3.4
 -----

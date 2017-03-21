@@ -8,6 +8,8 @@ title: "Hiera 3.1: Release Notes"
 [1.4.2]: /puppet/4.4/reference/release_notes_agent.html#puppet-agent-142
 [1.4.1]: /puppet/4.4/reference/release_notes_agent.html#puppet-agent-141
 
+{% partial /hiera/_hiera_update.md %}
+
 ## Hiera 3.1.2
 
 Released April 26, 2016.
@@ -30,7 +32,7 @@ When looking up a key with a dot, such as 'foo.bar', if foo was bound to a strin
 
 Released March 24, 2016.
 
-This is a small one-feature release shipped in [`puppet-agent`][] version [1.4.1][]. 
+This is a small one-feature release shipped in [`puppet-agent`][] version [1.4.1][].
 
 * [Fixed in Hiera 3.1.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.1.1%27)
 * [Introduced in Hiera 3.1.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.1.1%27)
@@ -63,9 +65,9 @@ Support deep_merge compatibility mode.
 
 #### Hiera backend opt-in for producing subkeys
 
-This new feature is for implementers of Hiera backends. 
+This new feature is for implementers of Hiera backends.
 
-Hiera backends can now opt-in to a new feature in the backend API that allows the backend to be responsible for producing values from subkeys. This is beneficial for backends that would otherwise have to produce a very large hash (for example, from a database or LDAP) only to be reduced to a single value and the returned data. Now the backend can instead opt-in to do the required slicing. 
+Hiera backends can now opt-in to a new feature in the backend API that allows the backend to be responsible for producing values from subkeys. This is beneficial for backends that would otherwise have to produce a very large hash (for example, from a database or LDAP) only to be reduced to a single value and the returned data. Now the backend can instead opt-in to do the required slicing.
 
 * [HI-471](https://tickets.puppetlabs.com/browse/HI-471)
 

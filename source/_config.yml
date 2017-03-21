@@ -94,7 +94,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/flanders
+      commit: origin/pe2017.1.1
       subdirectory: source
     my_versions:
       puppet: 4.9
