@@ -11,7 +11,7 @@ title: "Installing Puppet: Pre-install tasks"
 [server_setting]: ./configuration.html#server
 
 
-Before you install Puppet, you should do the following tasks.
+Before you install Puppet, you should need to complete the following tasks.
 
 
 > **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
