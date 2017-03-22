@@ -857,7 +857,7 @@ class apache {
 
 In parameterized class and defined type declarations, required parameters must be listed before optional parameters (that is, parameters with defaults). Required parameters are parameters which are not set to anything, including undef. For example, parameters such as passwords or IP addresses might not have reasonable default values.
 
-The single exception is when you are treating a parameter like a namevar and defaulting it to `$title` or `$name`. In that case, it should be the first parameter listed.
+Note that treating a parameter like a namevar and defaulting it to `$title` or `$name` does not make it a required parameter. It should still be listed following the order recommended here.
 
 **Good:**
 
@@ -868,16 +868,6 @@ class dhcp (
   $default_lease_time = 3600,
   $max_lease_time     = 86400,
 ) {}
-
-define example (
-  String $somevar       = $name, # acts as a namevar, so listed first.
-  String $anothervar,
-  String $something     = 'an actual default value',
-  String $seomthingelse = 'another default value',
-) {
-# body of defined type
-}
-
 ```
 
 **Bad:**
