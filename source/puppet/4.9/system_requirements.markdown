@@ -18,11 +18,21 @@ However, the Puppet master service is fairly resource intensive, and should be i
 
 The demands on the Puppet master vary widely between deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.
 
-{% include agent_lifecycle.md %}
+## Puppet agent and operating system support life cycles
+
+In PE 2015.2 and open source Puppet 4.0 and onward, we use the same Puppet agent packages in our open source and Puppet Enterprise ecosystems. Because of this, we've set guidelines for how we manage Puppet agent life cycles.
+
+* Community-supported operating systems:
+
+  On community-supported operating systems, we support Puppet agent for the operating system's life cycle. Essentially, Puppet stops publishing packages for a platform 30 days after its end-of-life (EOL) date. For example, Fedora 20 reached its EOL on June 23, 2015. This means on or around July 23, Puppet stopped providing fixes, updates, or support for either the Puppet Enterprise or open source versions of that agent package.
+
+* Enterprise-class operating systems:
+
+  On enterprise-class operating systems, we support Puppet agent for _at least_ the operating system's life cycle. In Puppet Enterprise, Puppet continues to support certain enterprise-class agent platforms after their EOL, though we do so solely at our own discretion.
 
 ## Platforms with packages
 
-We publish and test official `puppet-agent` packages for the following platforms. Less common and sometimes brand new platforms may not be automatically tested, but packages are still available for them.
+We publish and test official `puppet-agent` packages for these platforms. Less common and sometimes brand new platforms may not be automatically tested, but packages are still available for them.
 
 For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
 
@@ -55,9 +65,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 ## Prerequisites
 
-If you install Puppet via the official packages, you don't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
-
-Puppet has the following prerequisites:
+If you install Puppet via the official packages, you don't need to worry about prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
 * **Ruby:** We currently only test and package with 2.1.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
