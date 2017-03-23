@@ -1,4 +1,6 @@
-## Puppet agent and operating system support life cycles
+<WARNING! THIS IS AN OLD FILE, ONLY USED IN PE2015 docs and OLDER, IF YOU WANT TO UPDATE THIS CONTENT, UPDATE IN APPROPRIATE OSP OR PE SECTIONS.>
+
+## Puppet agent and operating system support life cycles]
 
 In PE 2015.2 and open source Puppet 4.0 and onward, we use the same Puppet agent packages in our open source and Puppet Enterprise ecosystems. Because of this, we've set guidelines for how we manage Puppet agent life cycles.
 
