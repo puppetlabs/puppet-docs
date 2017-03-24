@@ -148,13 +148,13 @@ Links to other JIRA tickets and external web pages can be created using the "Lin
 * *Status*: _Needs Information_, *Assignee*: _Author_ -- Appropriate if the author needs to provide more information to make the issue reproducible.
 * *Status*: _Resolved_, *Resolution:* _Duplicate_, *Link Issues*: _Duplicates: (Original Bug)_ -- If the author did not find an earlier bug which describes their issue, but one exists, the newer bug should be closed as a duplicate by setting its status to _Resolved_ and choosing a resolution of _Duplicate_.
   A link to the earlier bug should be added.
-* *Status*: _Assessing_, *Assignee*: _Triager_ -- If you make some progress on the ticket but cannot come to immediate resolution, make yourself the *Assignee* and set the state to _Assessing_.
+* *Status*: _In Progress_, *Assignee*: _Community or Puppet Developer_ -- If you make some progress on the ticket but cannot come to immediate resolution, make yourself the *Assignee* and set the state to _In Progress_.
 * *Status*: _Needs Information_, *Assignee*: _Product Owner_ -- Often, the problem described in the ticket is not obviously a bug.
   It might be a request for a new feature or a change in existing behaviour.
   In this case the product owner for the project needs to make a decision about whether the change fits into the product direction or perform further investigation and discovery into what the right solution ought to be.
   Setting the *Status* to _Needs Information_ and *Assignee* to the product owner will ensure it gets to the right people (even if, as often happens, the product owner him- or herself is not the final decision-maker, part of the job is to make sure the right eyes see the issue).
 * *Status*: _Ready for Engineering_, *Assignee*: _Community or Puppet Developer_ -- Once a ticket is actively being worked on, but no code is ready to merge, it should go into _Ready for Engineering_ status and be assigned to the person working on it.
-  Tickets which are in status _Ready for Engineering_ but do not have a target release assigned by the product owner are not being actively worked on by Puppet Labs.
+  Tickets which are in status _Ready for Engineering_ but do not have a target release assigned by the product owner are not being actively worked on by Puppet, Inc.
 * *Status*: _Ready for Merge_, *Assignee*: _Puppet Developer_ -- Once there is code in a pull request, and a *Link* has been created pointing to the pull request, the developer responsible for community support will perform code review and take further action (comment, request further code or tests, merge).
 * *Status*: _Resolved_, *Resolution*: _Fixed_ -- This status is set when a fix for an issue has been merged, but is pending validation and release.
 * *Status*: _Closed_, *Assignee*: _Person who closed it_ -- Either been released or no further action can be taken on it. Closer should add a comment with the final resolution of the ticket ("Fixed", "Duplicate", "Cannot Reproduce", etc)
@@ -169,7 +169,7 @@ When the originator supplies the additional info, they should set *Assignee* bac
 
 #### Duplicate issue
 
-Hi, thanks for the bug report. This is a duplicate of #XXXX, so I am closing this ticket in favor of the older one. Please add yourself as a watcher on that ticket to track the progress of the fix.
+Thank you for reporting this. We believe this issue has already been reported in another ticket. Please see the linked duplicate issue.
 
 #### Related to open pull request
 
@@ -182,7 +182,55 @@ Please either (a) update it with the information I've requested and re-assign it
 
 #### Code Insufficient
 
-I've put this ticket's status into "Failed Review" and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I'll move things forward.
+I’ve put this ticket’s status into “Needs Information” and assigned it to you. Please either (a) update the ticket or pull request with a version of code which addresses the issues, or (b) assign it back to me if you are blocked on the problem and I’ll move things forward.
+
+#### Issue already fixed
+
+Thank you for reporting this. We believe this issue has already been addressed in a later release of Puppet. If you experience this issue against the current version of Puppet, please add a comment to this ticket with your reproduction scenario.
+
+For more info on getting the current version of Puppet Agent, see https://docs.puppet.com/puppet/latest/install_pre.html.
+
+#### Only affected operating system version is EOL
+
+Thank you for reporting this issue. However, we believe this issue only affects an operating system/version that is no longer supported by Puppet, and will not be addressing this in a future release of Puppet.
+
+For a list of current supported operating systems, please see https://docs.puppet.com/pe/latest/sys_req_os.html.
+
+#### Only affected software version is EOL
+
+Thank you for reporting this issue. However, we believe this issue only affects a version of Puppet that has reached its end of life or is no longer supported.
+
+For more info on getting the current version of Puppet Agent, see https://docs.puppet.com/puppet/latest/install_pre.html.
+
+#### Feature is deprecated
+
+Thank you for reporting this issue. However, we believe this issue only affects a feature in Puppet that is deprecated, and is no longer receiving further improvements.
+
+For documentation on the intended replacement workflow, please see `<docs>` (if applicable)
+
+#### Unable to reproduce
+
+Thanks for reporting this issue. However, we haven't been able to reproduce this against the current version of Puppet, and are closing this issue now as Cannot Reproduce. If you have additional information or reproduction scenarios that may be of use, please comment in this ticket with details.
+
+#### Nice to have. We may revisit at a later date.
+
+Thank you for filing this issue. We agree it is likely an improvement, but due to other issues demanding precedence, we don't anticipate being able to address this any time soon. As such we are closing this as "Won't Fix." We may revisit it at a later time, and if so will re-open this ticket.
+
+#### Nice to have. We would accept a PR.
+
+Thank you for filing this issue. We agree it is likely an improvement, but due to other issues demanding precedence, we don't anticipate being able to address this any time soon. If you are interested in submitting a patch to the repository for this project at https://github.com/puppetlabs, please open a pull request and re-open this ticket. Pending that, we are closing this as "Won't Fix." We may revisit it at a later time, and if so will re-open this ticket.
+
+#### No way short of substantial rearchitecture to address the issue
+
+Thank you for filing this issue. While we agree this is likely an improvement, addressing this issue would require a substantial architecture change that we do not anticipate being able to undertake due to other issues taking precedence. As such, this ticket will be closed as "Won't Fix". We may revisit this at a later time, and if so, will re-open this ticket.
+
+#### Inactivity - Issue’s “last updated” date was > N months ago.
+
+This ticket has not been updated in some time and is now being closed due to inactivity. This isn't necessarily a statement that this ticket isn't important - other issues may have demanded precedence since it was filed, or it may have simply slipped through the cracks. If any viewer/watcher feels closing this ticket is an error, please re-open it and add a comment explaining. Our apologies in advance for any mistake on this.
+
+#### Won't do - represents a technical direction we have decided not to follow
+
+Thank you for filing this issue. However, we believe this change represents a technical direction that we have decided not to follow in Puppet. As such, we are closing this as "Won't Do". If any watcher believes this is an error, please add a comment explaining.
 
 #### Contributor guidelines
 
