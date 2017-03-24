@@ -259,7 +259,7 @@ By default, heredocs end with a trailing line break, but you can exclude this li
 For example, Puppet would read this as a string with no line breaks:
 
 ```
-$mytext = @(EOT)
+$mytext = @("EOT")
     This's too inconvenient for ${double} or ${single} quotes, but needs to be one line.
     |-EOT
 ```

@@ -1,7 +1,8 @@
 ---
 layout: default
 title: "<# PAGE TITLE #>"
-canonical: "/<# PRODUCT URL #>/latest/<# PAGE URL #>.html"
+canonical: "/pe/latest/<# PAGE URL #>.html"
+
 ---
 
 <!--Overviews introduce the content of a page, telling users what they can expect to learn here. If the entire page describes a process, like installing or upgrading, use the overview to introduce users to the high-level steps. Overviews don’t have a title element, because the page title serves that purpose.-->

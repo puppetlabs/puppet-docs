@@ -14,5 +14,6 @@
 
 <# FIGURE (optional) -- Use illustrations, diagrams, or other graphics to visualize conceptual information. #>
 
+### <# SECTION (optional) -- Use subheads to break concepts into logical sections, rather than creating a separate topic, when you: a) expect users to view the information together, or b) the information doesn't make sense on its own. Sections must have a title and may contain paragraphs, notes, lists, or figures. #>
 
 * * *
