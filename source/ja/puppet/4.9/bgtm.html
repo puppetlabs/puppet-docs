@@ -1,0 +1,363 @@
+---
+layout: default
+title: モジュールを作成するためのビギナーズガイド
+---
+
+[structure]: ./images/bgtmclassstructure.png
+[anchor]: ./lang_containment.html#anchor-pattern-containment-for-compatibility-with-puppet--340
+
+<div>
+<p> このモジュールガイドでは、ベストプラクティスとなる <a href="./style_guide.html">標準とアーキテクチャ</a>を採用することで、優れたモジュールを作成する方法を紹介します。 このガイドの作成者は、長年にわたってPuppetモジュールを作成しており、あらゆる間違いやすい点につまずいた経験があります。 このガイドの目的は、同じ間違いをユーザが繰り返さないようにするために、理解しやすい方法でモジュールのベストプラクティスを紹介することです。
+</p>
+
+<h2 id="requirements">前提条件</h2>
+
+<p> このガイドを読む前に、Puppet<a href="/puppet/4.9/lang_summary.html">言語</a>の基礎を理解し、<a href="/puppet/4.9/lang_classes.html">クラス</a>構成を把握し、<a href="/puppet/4.9/modules_fundamentals.html">基本的なモジュール</a>の作成方法を学習して、Puppetになじんでおくことを推奨します。
+</p>
+
+<h2 id="giving-your-module-purpose">1. モジュールの目的の定義</h2>
+
+<p> モジュール作成を開始する前に、モジュールの機能を定義する必要があります。 モジュール機能の範囲を先に定義しておくと、知らず知らずのうちにモジュールが手に負えない大きさになって使いにくくなることを回避できます。 モジュールの役割は1つだけにすることを推奨します。 たとえば、適切なモジュールは、MySQLのインストールのみを扱い、MySQLを必要とするその他のプログラムやサービスのインストールには<strong>対応しません</strong>。
+</p>
+
+<p> モジュールを適切に計画するために、以下の内容について検討してください。
+</p>
+
+<ul>
+<li>モジュールで実行する必要のあるタスクは何か。</li>
+  <li>モジュールが対応する処理はどのようなものか。</li>
+  <li>Puppet環境内の上位レベルでモジュールが対応すべき機能は何か。</li>
+</ul>
+<blockquote>
+  <p> <strong>ヒント</strong>：モジュールの機能を記述するときに「および(and)」という言葉を使っている場合、その部分でモジュールを分割することを推奨します。
+</p>
+</blockquote>
+
+<p> 通常、Puppet環境では200個以上のモジュールが使用されます。 環境内の各モジュールには、動作の実行を可能にする関連リソースを含める必要がありますが、モジュールは単純であるほど使いやすくなります。 妥当な範囲で、できるだけ多くのモジュールを作成することを強く推奨します。 的を絞った小さいモジュールを多数作成すると、コードの再利用が促されて、全面的なソリューションではなく構成要素としてモジュールを利用できるようになります。
+</p>
+
+<p> 例として、<a href="http://forge.puppet.com/puppetlabs/puppetdb">puppetlabs/puppetdb</a>モジュールを確認してみましょう。 このモジュールが扱うのは、PuppetDBのセットアップ、設定、管理のみです。 PuppetDBはデータをPostgreSQLデータベースに格納しますが、 このモジュールでPostgreSQLを管理するのではなく、<a href="http://forge.puppet.com/puppetlabs/postgresql">puppetlabs/postgresql</a>モジュールを依存モジュールとして指定することで、postgresqlモジュールのクラスとリソースを利用して、PuppetDBの正しい設定を記述しています。 同様に、PuppetDBを操作するためには、puppetDBモジュールからpuppet.confを編集する必要があります。 puppetDBモジュールの内部でこれを処理する代わりに、<a href="http://forge.puppet.com/puppetlabs/inifile">puppetlabs/inifile</a>モジュールを利用して、puppetDBモジュールがpuppet.confの必要な部分のみを編集するようにしています。
+</p>
+
+<h2 id="structuring-your-module">2. モジュールの構成</h2>
+
+<p> 理想的なモジュールは、ソフトウェアの一部を、インストールからセットアップ、設定、サービス管理までの全段階で管理します。
+</p>
+
+<p> ただし、モジュールが管理できるソフトウェアには多数のバリエーションがあります。 大部分のモジュールは、ベストプラクティスに沿った構造に従うことを推奨しますが、 一部のモジュールにとってこの構造が適切ではない場合もあるでしょう。 このような不適合がある場合、その旨を明記し、できる限り代わりのベストプラクティスを推奨します。
+</p>
+
+<p> このセクションの内容は以下のとおりです。
+</p>
+
+<ul>
+<li><a href="#a-class-design">2a. モジュールクラスの設計方法</a></li>
+  <li><a href="#b-parameters">2b. 使いやすいパラメータの開発方法</a></li>
+  <li><a href="#c-ordering">2c. クラス(リソースではない)に基づく最適な順序付け</a></li>
+  <li><a href="#d-dependencies">2d. 依存関係の利用方法</a></li>
+</ul>
+<p> ベストプラクティスとなる実際の標準モジュールを示すため、<a href="http://forge.puppet.com/puppetlabs/ntp">puppetlabs/ntp</a>モジュールの内容を確認します。
+</p>
+
+<h3 id="a-class-design">2a. クラスの設計</h3>
+
+<p> モジュール開発は、ソフトウェア開発と同じように、「優れたソフトウェアは、小さくてテストしやすいコンポーネントで構成される」という原則に従います。 優れたモジュールも、1つのタスクのみを実行する、自己完結型の小さいクラスで構成されます。 モジュール内のクラスはプログラムにおける関数と似ており、パラメータを使用して関連するステップを実行し、全体として一貫性のある処理を実行します。
+</p>
+
+<p> 命名規則に関する一般的なベストプラクティスとして、ファイル名にはクラスまたはそこに含まれる定義と同じ名前を付け(<a href="#module">メインクラス</a>を除く)、クラス名にはその機能にちなんだ名前を付けます。
+</p>
+
+<p> クラス構造は以下のようにすることを推奨します(詳細は後述)。
+</p>
+
+<p> <img src="./images/bgtmclassstructure.png" alt="module class structure">
+</p>
+
+<h4 id="module"><code>module</code></h4>
+
+<p> モジュールのメインクラスにはモジュールと同じ名前を付けて、<code>init.pp</code>ファイル内に記述します。 メインモジュールクラスの名前および場所は、 <a href="/puppet/4.9/lang_namespaces.html#autoloader-behavior">自動ロード機能</a>で使用されるので、これらは極めて重要です。 メインクラスはモジュールのインターフェースポイントとして、可能な限り、唯一のパラメータ化クラスにします。 メインクラスだけをパラメータ化クラスにすると、1つのクラスをincludeするだけで、モジュール全体の使用を制御することができます。 ユーザが<code>モジュールのinclude</code>を使用しやすいように、このクラスには合理的なデフォルトを設定します。
+</p>
+
+<p> たとえば、<code>ntp</code>モジュール内のメインクラス<code>ntp</code>は次のようになります。
+</p>
+
+<pre><code class="language-ruby">class ntp (
+  Boolean $broadcastclient,
+  Stdlib::Absolutepath $config,
+  Optional[Stdlib::Absolutepath] $config_dir,
+  String $config_file_mode,
+  Optional[String] $config_epp,
+  Optional[String] $config_template,
+  Boolean $disable_auth,
+  Boolean $disable_dhclient,
+  Boolean $disable_kernel,
+  Boolean $disable_monitor,
+  Optional[Array[String]] $fudge,
+  Stdlib::Absolutepath $driftfile,
+ ...
+</code></pre>
+
+<h4 id="moduleinstall"><code>module::install</code></h4>
+
+<p> installクラスは<code>install.pp</code>ファイル内に記述します。 モジュールが管理するソフトウェアをノードにインストールするために必要なすべての関連リソースを含めます。
+</p>
+
+<p> installクラスには <code>モジュール名::install</code>という名前を付けます。次に、<code>ntp</code>モジュールの例を示します。
+</p>
+
+<pre><code class="language-ruby">class ntp::install inherits ntp {
+
+  if $ntp::package_manage {
+
+    package { $ntp::package_name:
+      ensure =&gt; $ntp::package_ensure,
+    }
+
+  }
+
+}
+</code></pre>
+
+<h4 id="moduleconfig"><code>module::config</code></h4>
+
+<p> インストールしたソフトウェアの設定に関連するリソースは、configクラス内に記述します。 configクラスには<code>module::config</code>という名前を付け、<code>config.pp</code>ファイル内に記述します。
+</p>
+
+<p> 次に、<code>ntp</code>モジュールの<code>module::config</code>クラスを示します。
+</p>
+
+<pre><code class="language-ruby">class ntp::config inherits ntp {
+
+  #The servers-netconfig file overrides NTP config on SLES 12, interfering with our configuration.
+  if $facts['operatingsystem'] == 'SLES' and $facts['operatingsystemmajrelease'] == '12' {
+    file { '/var/run/ntp/servers-netconfig':
+      ensure =&gt; 'absent'
+    }
+  }
+
+  if $ntp::keys_enable {
+    case $ntp::config_dir {
+      '/', '/etc', undef: {}
+      default: {
+        file { $ntp::config_dir:
+          ensure  =&gt; directory,
+          owner   =&gt; 0,
+          group   =&gt; 0,
+          mode    =&gt; '0775',
+          recurse =&gt; false,
+        }
+      }
+    }
+
+    file { $ntp::keys_file:
+      ensure  =&gt; file,
+      owner   =&gt; 0,
+      group   =&gt; 0,
+      mode    =&gt; '0644',
+      content =&gt; epp('ntp/keys.epp'),
+    }
+  }
+...
+</code></pre>
+
+<h4 id="moduleservice"><code>module::service</code></h4>
+
+<p> serviceクラスには、残りのサービスリソースと、ソフトウェアの実行状態に関するすべての要素を指定します。 serviceクラスには<code>module::service</code>という名前を付け、<code>service.pp</code>ファイル内に記述します。
+</p>
+
+<p> 以下に例を示します。
+</p>
+
+<pre><code class="language-ruby">class ntp::service inherits ntp {
+
+  if ! ($ntp::service_ensure in [ 'running', 'stopped' ]) {
+    fail('service_ensure parameter must be running or stopped')
+  }
+
+  if $ntp::service_manage == true {
+    service { 'ntp':
+      ensure     =&gt; $ntp::service_ensure,
+      enable     =&gt; $ntp::service_enable,
+      name       =&gt; $ntp::service_name,
+      provider   =&gt; $ntp::service_provider,
+      hasstatus  =&gt; true,
+      hasrestart =&gt; true,
+    }
+  }
+
+}
+</code></pre>
+
+<h3 id="b-parameters">2b. パラメータ</h3>
+
+<p> パラメータは、モジュールのパブリックAPIを構成します。 公開するインターフェースの中でもっとも重要なので、ユーザがモジュールとの相互作用をカスタマイズできるように、パラメータの数と種類のバランスに配慮する必要があります。 ここからは、パラメータの命名と開発に関するベストプラクティスについて説明します。
+</p>
+
+<h4 id="naming-parameters">パラメータの命名</h4>
+
+<p> コミュニティの理解を得て、トラブルシューティングと協業の容易なモジュール開発を可能にするためには、一貫性のある命名が不可欠です。 ベストプラクティスとして、<code>thing_property</code>パターンに従ったパラメータの命名を推奨します。
+</p>
+
+<p> 次に、<code>ntp</code>モジュールの例を示します。
+</p>
+
+<pre><code class="language-ruby">class ntp::install inherits ntp {
+
+  if $ntp::package_manage {
+
+    package { $ntp::package_name:
+      ensure =&gt; $ntp::package_ensure,
+    }
+
+  }
+
+}
+</code></pre>
+
+<p> パラメータで機能全体のオン/オフを切り替える場合、<code>thing_manage</code>という命名規則を使用できます。 これは特に、モジュールがインストール全体を管理する場合など、ブールを使用した切り替えに適用できます。 <code>thing_manage</code>という規則に従うことで、上の<code>ntp</code>の例のように、<code>if $package_manage {}</code>テスト内にすべてのリソースをラッピングすることができます。
+</p>
+
+<p> モジュール間で一貫性のある名前を使用すると、コードの読みやすさと再利用性が高くなります。
+</p>
+
+<h4 id="number-of-parameters">パラメータ数</h4>
+
+<p> モジュールを最大限に再利用しやすくするため、パラメータを追加して柔軟なモジュールにします。 パラメータを使用することで、ユーザはモジュールの使用法をカスタマイズすることができます。
+</p>
+
+<p> モジュール内にデータをハードコードする代わりに、できるだけ多くのパラメータを使用することを推奨します。 モジュール内にデータをハードコードするとモジュールの柔軟性が低くなり、わずかに状況が異なる場合も、マニフェストを変更する必要が生じます。
+</p>
+
+<p> テンプレートをオーバーライドするパラメータの追加は避けてください。 パラメータがテンプレートをオーバーライドする場合、ハードコードされた追加パラメータを含むカスタムテンプレートによって元のテンプレートがオーバーライドされる場合があります。 テンプレート内にハードコードされたパラメータがあると、将来的に柔軟性が妨げられます。 カスタマイズしたテンプレートで元のテンプレートをオーバーライドするよりも、パラメータの数を増やして元のテンプレートを変更するか、または任意のテキストをテンプレートに追加するパラメータを使用する方がずっと適切です。
+</p>
+
+<p> 多数のパラメータを利用したモジュールの例については、<a href="http://forge.puppet.com/puppetlabs/apache">puppetlabs/apache</a>を参照してください。
+</p>
+
+<h3 id="c-ordering">2c. 順序付け</h3>
+
+<p> ベストプラクティスとして、順序に関連するすべての依存関係(<code>require</code>や<code>before</code>など)を、リソースではなくクラスに基づいて指定します。 クラスに基づいて順序付けすると、各クラスの詳細な実装をその他のクラスから隠蔽することができます。 以下に例を示します。
+</p>
+
+<pre><code class="language-ruby">    file { 'configuration':
+      ensure  =&gt; present,
+      require =&gt; Class['module::install'],
+    }
+</code></pre>
+
+<p> 複数のパッケージに対して<code>require</code>を指定する代わりに、上記のような順序にすると、変更に合わせてその他のクラスのマニフェストを調整しなくても、<code>module::install</code>をリファクタリングして改善することができます。
+</p>
+
+<h4 id="containment-and-anchoring">包含とアンカリング</h4>
+
+<p> 作成するモジュールに対してその他のモジュールが順序関係を構築できるようにするには、メインクラスで宣言する下位クラスに対して明示的に<em>contain</em>を指定します。
+</p>
+
+<p> クラス内で宣言されたクラスが<em>自動的に</em>含まれるわけではありません。 なぜなら、クラスは、<code>include</code>などの関数を使用して複数の箇所で宣言できるからです。 クラスを含めるには、<a href="/puppet/4.9/function.html#contain"><code>contain</code>関数</a>を使用します。 包含についての詳しい情報は、<a href="/puppet/4.9/lang_containment.html">包含ドキュメント</a>を参照してください。
+</p>
+
+<p> 次に、<code>ntp</code>モジュールがメインクラス<code>ntp</code>内でcontainを使用している例を示します。
+</p>
+
+<pre><code>contain ntp::install
+  contain ntp::config
+  contain ntp::service
+  Class['::ntp::install'] -&gt;
+  Class['::ntp::config'] ~&gt;
+  Class['::ntp::service']
+</code></pre>
+
+<p> 包含がサポートされるのは、Puppet 3.4以降です。 Puppet 3.4 (またはPuppet Enterprise 3.2)より前のバージョンをサポートする場合、これらのクラスを所定の位置に保持するには、<a href="/puppet/4.9/lang_containment.html#anchor-pattern-containment-for-compatibility-with-puppet--340">anchorパターン</a>を使用します。 アンカリングを使用するには、<a href="http://forge.puppet.com/puppetlabs/stdlib">puppetlabs-stdlib</a>が必要です。
+</p>
+
+<h3 id="d-dependencies">2d. 依存関係</h3>
+
+<p> モジュールの機能が別のモジュールに依存している場合、これらの依存モジュールを直接包含する必要があります。
+</p>
+
+<p> つまり、メインクラス内で<code>include x</code>を使用して、依存モジュールがカタログに含まれるようにする必要があります。 また、モジュールの<a href="./style_guide.html#module-metadata">metadata.json</a>と<code>.fixtures.yml</code>に対して、この依存モジュールを追加します。 (<code>.fixtures.yml</code>はrspecだけが使用するファイルで、ユニットテストの正しい実行に必要な依存モジュールを抽出するために使用されます )
+</p>
+
+<h2 id="testing-your-module">モジュールのテスト</h2>
+
+<p> お疲れ様でした。 ここまでに、1つのタスクを実行するモジュールを作成し、適切な名前、クラス、パラメータを指定し、正しい順序で配置し、依存要素を記述しました。 次に、さまざまな条件下でモジュールが正しく動作し、モジュールに含まれるオプションとパラメータが適切な結果をもたらすことを確認します。 ユニットテストと受け入れテストの作成に使用できるテストフレームワークがいくつか提供されています。
+</p>
+
+<h3 id="rspec-puppet">rspec-puppet</h3>
+
+<p> RSpec-Puppetは、Puppet用のユニットテストフレームワークを提供します。 テスト専用フレームワークであるRSpecでPuppetカタログが認識されるように、このフレームワークを拡張したものです。 以下の例に従ってテストを作成すると、モジュールの各側面が期待どおりに動作することをテストできます。
+</p>
+
+<pre><code>it { should contain_file('configuration') }
+</code></pre>
+
+<p> RSpecでは、各種シナリオでモジュールをテストするために、<code>osfamily</code>などのfactsを指定できます。 典型的な使用法は、一連のオペレーティングシステムに対する繰り返し処理ですが、この場合、サポートされるすべてのオペレーティングシステムに対して、カタログ内にパッケージおよびサービスが存在することが前提となります。
+</p>
+
+<p> 詳しい情報は、<a href="http://rspec-puppet.com/">http://rspec-puppet.com/</a>を参照してください。
+</p>
+
+<h3 id="puppetlabs-spec-helper">puppetlabs-spec-helper</h3>
+
+<p> <a href="https://github.com/puppetlabs/puppetlabs_spec_helper">puppetlabs-spec-helper</a>は、モジュールのテストに必要なタスクの一部を自動化できるツールです。 これは特に、rspec-puppetと組み合わせて使用すると便利です。 Puppet-spec-helperはデフォルトのrakeタスクを提供して、モジュール間でテストを標準化するとともに、rspec-puppetと実際のモジュール間のグルーコードをいくつか提供します。 通常、必要な処理は、プロジェクトのGemfileへの追加と、Rakefileへの以下の追加だけです。
+</p>
+
+<pre><code>require 'puppetlabs_spec_helper/rake_tasks'
+</code></pre>
+
+<h3 id="beaker-rspec">Beaker-rspec</h3>
+
+<p> <a href="https://github.com/puppetlabs/beaker-rspec">Beaker-rspec</a>は受け入れ/統合テストフレームワークで、各種ハイパーバイザ(<a href="http://www.vagrantup.com/">Vagrant</a>など)上に仮想マシンを提供し、実際の環境にPuppetモジュールを適用した結果をチェックします。
+</p>
+
+<h4 id="serverspec">serverspec</h4>
+
+<p> <a href="http://serverspec.org/">Serverspec</a>は、beaker-rspec向けに追加のテスト用構造体(<code>be_running</code>や<code>be_installed</code>など)を提供します。 これにより、テスト時に、基盤となるディストリビューションの詳細を抽象化することができます。 以下のようにテストを記述します。
+</p>
+
+<pre><code>describe service('httpd') do
+  it { should be_running }
+end
+</code></pre>
+
+<p> 各種のディストリビューションに合わせて、<code>be_running</code>がシェルコマンドに変換されます。
+</p>
+
+<h2 id="versioning-your-module">モジュールのバージョン管理</h2>
+
+<p> その他のソフトウェアコンポーネントと同様に、モジュールにはバージョン管理と変更時のリリースが必要です。 Puppetでは、<a href="http://semver.org/spec/v1.0.0.html">SemVer 1.0.0</a>の使用を推奨しています。 SemVerでは、メジャーバージョンとマイナーバージョンをインクリメントするための具体的なルールが定められています。
+</p>
+
+<p> 新しいバージョン番号を決定したら、metadata.json内のバージョン番号を更新します。
+</p>
+
+<p> これにより、特定バージョンの依存モジュールとの依存関係リストをmetadata.json内に作成できるので、古い依存関係でモジュールが使用されて動作しなくなることを回避できます。 また、バージョン管理によって、環境ごとに使用するモジュールのバージョンを簡単に変更できるので、ワークフロー管理が可能になります。
+</p>
+
+<h2 id="documenting-your-module">モジュールのドキュメント化</h2>
+
+<p> READMEを使用してモジュールをドキュメント化することを推奨します。READMEには、モジュールの動作に加えて、モジュールのクラス、定義型、関数、リソース型、プロバイダに関する情報を記述したReferenceセクションを含めます。 詳しくは、モジュールのドキュメント化に関する<a href="/puppet/4.9/modules_documentation.html">ガイド</a>と、Puppet言語スタイルガイドの<a href="./style_guide.html#module-documentation">ドキュメント化</a>セクションを参照してください。
+</p>
+
+<h2 id="releasing-your-module">モジュールのリリース</h2>
+
+<p> <a href="http://forge.puppet.com">Puppet Forge</a>でモジュールを公開することを推奨しています。 モジュールを共有すると、公開されたモジュールに対する改善を別のユーザがフィードバックできるので、事実上、無償でモジュールの改善が提供されます。 また、モジュールをForgeで公開することで、Puppetユーザ間のコミュニティが育成され、別のPuppetコミュニティメンバーがこのモジュールをダウンロードして使用することができます。 Puppetコミュニティが定期的にForgeでモジュールをリリースして繰り返し改善すると、利用できるPuppetモジュールの品質が劇的に高くなり、ユーザがより多くのモジュールをダウンロードし、それぞれの目的に合わせて変更できるようになります。 Puppet Forgeでのモジュールの公開方法について、詳しくは<a href="/puppet/4.9/modules_publishing.html">こちら</a>を参照してください。
+</p>
+
+<h2 id="community-resources">コミュニティリソース</h2>
+
+<p> <a href="/puppet/4.9/modules_fundamentals.html">モジュールの基礎</a>
+</p>
+
+<p> <a href="./style_guide.html">Puppet言語スタイルガイド</a>
+</p>
+
+<p> <a href="http://forge.puppet.com">Puppet Forge</a>
+</p>
+
+<p> <a href="https://groups.google.com/forum/#!forum/puppet-users">puppet-usersメーリングリスト</a>
+</p>
+
+<p> IRCでの<code>#puppet</code>
+</p>
+</div>
