@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 4.9 reference manual"
+title: "Puppet 4.10 reference manual"
 toc: false
 ---
 
@@ -29,7 +29,7 @@ For an introduction to how Puppet manages systems, see the [Overview of Puppet's
 
 ## Getting started
 
-Puppet 4.9 consists of:
+Puppet 4.10 consists of:
 
 * A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter][], [Hiera][], and supporting code.
 * A `puppetserver` package that installs [Puppet Server][].
