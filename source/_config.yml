@@ -271,7 +271,15 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
-  /puppet/4.9: # CHANGING THE URL FROM THIS POINT FORWARD.
+  /puppet/4.10:
+    doc: puppet
+    version: 4.10
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.6
+      hiera: 3.3
+      puppetserver: 2.7
+  /puppet/4.9:
     doc: puppet
     version: 4.9
     nav: ./_puppet_toc.html
