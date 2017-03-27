@@ -273,7 +273,7 @@ documents:
 
   /puppet/4.10:
     doc: puppet
-    version: 4.10
+    version: "4.10"
     nav: ./_puppet_toc.html
     my_versions:
       facter: 3.6
