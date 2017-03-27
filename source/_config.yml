@@ -58,6 +58,7 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
+  puppet: 4.9
 
 
 document_names:
