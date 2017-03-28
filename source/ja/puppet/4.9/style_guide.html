@@ -1,0 +1,1293 @@
+---
+layout: default
+title: Puppet言語スタイルガイド
+---
+
+<div>
+<h1 id="the-puppet-language-style-guide">Puppet言語スタイルガイド</h1>
+
+<h4 id="metadata">メタデータ</h4>
+
+<p> Puppet：バージョン 4.0以降
+</p>
+
+<p> このスタイルガイドは、Puppet 4以降に適用されます。 Puppet 3のサポートは廃止されていますが、以前のコードを維持する必要がある場合のために、このスタイルガイドにはPuppet 3向けのガイドラインが含まれています。
+</p>
+
+<h2 id="terminology">1. 用語</h2>
+
+<p> このドキュメント内のキーワード、「する必要がある(MUST)」、「してはならない(MUST NOT)」、「要求される(REQUIRED)」、「することになる(SHALL)」、「することはない(SHALL NOT)」、「する必要がある(SHOULD)」、「しない方が良い(SHOULD NOT)」、「推奨される(RECOMMENDED)」、「しても良い(MAY)」、「任意で(OPTIONAL)」は、<a href="http://www.faqs.org/rfcs/rfc2119.html">RFC 2119</a>に記載されたとおりに解釈されるものとします。
+</p>
+
+<p> 明示的に記載のない限り、このドキュメント内の説明はすべて、明確にPuppet(Puppetモジュール、Puppetクラスなど)を対象としています。 すべてのトピック1つひとつに「Puppet」という名前を付記してはいません。
+</p>
+
+<h2 id="purpose">2. 目的</h2>
+
+<p> このスタイルガイドの目的は、Puppet言語(特にモジュール間)において一貫性のあるフォーマットを推進することで、Puppetモジュールのユーザおよび開発者に対して、参考になる共通のパターン、設計、スタイルを提供することです。 また、コードとモジュールの構造に一貫性があると、継続的な開発と貢献が容易になります。
+</p>
+
+<p> モジュール内で<a href="http://puppet-lint.com/">puppet-lint</a>と<a href="https://github.com/voxpupuli/metadata-json-lint">metadata-json-lint</a>を使用して、スタイルガイドに対する適合性をチェックすることを推奨します。
+</p>
+
+<h2 id="guiding-principles">3. 基本方針</h2>
+
+<p> このガイドで、Puppetコードの開発中に発生しうるすべての状況を網羅することはできません。 何らかの判断を下す必要がある場合は、以下の原則に留意してください。
+</p>
+
+<ol>
+<li>
+    <p> <strong>読みやすさが重要</strong>
+</p>
+
+    <p> 同じような選択肢から選ぶ必要がある場合は、より読みやすい方を選択します。 これは主観的な方法ですが、作成したコードが3か月後も判読可能であれば、非常に良いスタートと言えるでしょう。 特に推奨されるのは、読みやすい差分が生成されるコードです。
+</p>
+  </li>
+  <li>
+    <p> <strong>鍵となる範囲設定および単純性</strong>
+</p>
+
+    <p> 迷った場合は、より単純な書き方を選びます。 モジュールには、タスクを完了するために必要な関連リソースを含める必要があります。 モジュールの機能を記述するときに、「および(and)」という単語を使っている場合、モジュールの分割を検討してください。 すべてのクラスとパラメータは、1つの目標の達成だけに焦点を合わせることを推奨します。
+</p>
+  </li>
+  <li>
+    <p> <strong>ソフトウェアの一部としてのモジュール</strong>
+</p>
+
+    <p> 少なくとも、モジュールをソフトウェアとして扱う必要があります。 意思決定を下す場合、長期的に見て保守しやすい方法を選択します。
+</p>
+  </li>
+</ol>
+<h2 id="versioning">4. バージョン管理</h2>
+
+<p> モジュールにはバージョン管理が必要です。  Puppetでは、<a href="http://semver.org/spec/v1.0.0.html">セマンティックバージョニング(SemVer)</a>の使用を推奨します。SemVerにおいて、バージョンx.y.zのxが増加すると、下位互換性の無い変更または完全な書き換えを意味し、yの増加は下位互換性のある新機能追加を、zの増加は下位互換性のあるバグ修正を意味します。
+</p>
+
+<h2 id="spacing-indentation-and-whitespace">5. 間隔、インデント、ホワイトスペース</h2>
+
+<p> モジュールのマニフェストは以下の条件を満たす必要があります。
+</p>
+
+<ul>
+<li>2スペースのソフトタブを使用すること</li>
+  <li>「Tab」キーを使用しないこと</li>
+  <li>末尾にホワイトスペースを使用しないこと</li>
+  <li>すべてのリソース属性およびパラメータの定義の後に、カンマを付加すること</li>
+  <li>最後の行の末尾に改行を付加すること</li>
+  <li>
+    <p> リソース型と左中括弧の間にスペースを1つ、左中括弧とタイトルの間にスペースを1つ使用し、タイトルとコロンの間にはスペースを使用しないこと
+</p>
+
+    <p> <strong>適切な例</strong>：
+</p>
+
+    <pre><code>file { '/tmp/foo':
+</code></pre>
+
+    <p> <strong>不適切な例</strong>：
+</p>
+
+    <pre><code># space between title and colon
+file { '/tmp/foo' :
+  
+# no spaces
+file{'/tmp/foo':
+
+# too many spaces
+file     { '/tmp/foo':
+</code></pre>
+  </li>
+  <li>実用的でない場合を除いて、1行を140字以内にすること</li>
+  <li>依存チェインを使用する場合を除いて、リソース同士の間に空白行を1行入れること</li>
+  <li>属性ブロック内でハッシュロケット(<code>=&gt;</code>)を使用する場合、読みやすさを重視して、最も長いリソースキーの後にスペースを1つ入れてハッシュを揃えること</li>
+</ul>
+<h3 id="arrays-and-hashes">5.1 配列とハッシュ</h3>
+
+<p> 配列とハッシュを読みやすくするには、ほとんどの場合、各要素を別々の行に分けると良いでしょう。 非常に短いケースなどで構造体が全体的に読みやすくなる場合のみ、1行に複数の要素を記述します。 配列とハッシュを分割する場合、以下の要素を含む必要があります。
+</p>
+
+<ul>
+<li>それぞれを個別の行に記述した要素</li>
+  <li>1レベルインデントされた新しい要素行</li>
+  <li>そのデータ型の構文に対してのみ使用される最初の行と最後の行</li>
+</ul>
+<p> <strong>適切な例</strong>：
+</p>
+
+<pre><code># array with multiple elements on multiple lines
+service { 'foo':
+  require =&gt; [
+    File['foo_config'],
+    File['foo_sysconfig'],
+  ],
+}
+
+# hash with multiple elements on multiple lines
+$myhash = {
+  key       =&gt; 'some value',
+  other_key =&gt; 'some other value',
+}
+</code></pre>
+
+<p> <strong>不適切な例</strong>：
+</p>
+
+<pre><code># array with multiple elements on same line
+service { 'foo':
+  require =&gt; [ File['foo_config'], File['foo_sysconfig'], ],
+}
+
+# hash with multiple elements on same line
+$myhash = { key =&gt; 'some value', other_key =&gt; 'some other value', }
+
+# array with multiple elements on different lines, but syntax and element share a line
+service { 'foo':
+  require =&gt; [ File['foo_config'],
+    File['foo_sysconfig'],
+  ],
+}
+
+# hash with multiple elements on different lines, but syntax and element share a line
+$myhash = { key =&gt; 'some value',
+  other_key     =&gt; 'some other value',
+}
+
+# array with indention of elements past one stop
+service { 'foo':
+  require =&gt; [
+              File['foo_config'],
+              File['foo_sysconfig'],
+  ],
+}
+</code></pre>
+
+<h2 id="quoting">6. 引用符</h2>
+
+<ul>
+<li>すべての文字列は一重引用符で囲む必要があります。ただし、以下の場合を除きます。<ul>
+<li>文字列に変数が含まれる。</li>
+      <li>文字列に一重引用符が含まれる。</li>
+      <li>文字列に、一重引用符で囲まれた文字列ではサポートされていないエスケープ文字が含まれる。</li>
+      <li>文字列に、present/absentなどの列挙可能な一連のオプションが含まれる。この場合、一重引用符の使用は任意になります。</li>
+    </ul>
+</li>
+  <li>
+    <p> 変数を文字列の中に挿入する場合はすべて、中括弧で囲む必要があります。 以下に例を示します。
+</p>
+
+    <p> <strong>適切な例：</strong>
+</p>
+
+    <pre><code>  "/etc/${file}.conf"
+  "${::operatingsystem} is not supported by ${module_name}"
+</code></pre>
+
+    <p> <strong>不適切な例：</strong>
+</p>
+
+    <pre><code>  "/etc/$file.conf"
+  "$::operatingsystem is not supported by $module_name"
+</code></pre>
+  </li>
+  <li>
+    <p> 文字列に一重引用符が含まれる場合、エスケープ文字ではなく二重引用符を使用します。ただし、追加で不適切な量のエスケープ処理が必要になる場合を除きます。
+</p>
+
+    <p> <strong>適切な例：</strong>
+</p>
+
+    <pre><code>warning("Class['apache'] parameter purge_vdir is deprecated in favor of purge_configs")
+</code></pre>
+
+    <p> <strong>不適切な例：</strong>
+</p>
+
+    <pre><code>warning('Class[\'apache\'] parameter purge_vdir is deprecated in favor of purge_configs')
+</code></pre>
+  </li>
+</ul>
+<h3 id="escape-characters">6.1. エスケープ文字</h3>
+
+<p> Puppetでは、エスケープ文字としてバックスラッシュを使用します。 文字列が一重引用符またニ重引用符で囲まれている場合、バックスラッシュをエスケープ処理すると、この特別な意味が解除されます(<code>\\</code>)。つまり、結果の文字列に含めるバックスラッシュ1つに対して2つのバックスラッシュを使用します。 例を挙げると、2つのバックスラッシュをリテラルとして文字列に含めるには、合計4つのバックスラッシュを使用します。
+</p>
+
+<p> バックスラッシュなどの後続文字を含めるために、正式に認められていないエスケープ文字を使用することは避けてください。
+</p>
+
+<p> 4桁に満たない16進数(例：<code>\u040</code>)を使ってUnicode文字をエスケープ処理すると、バックスラッシュの後にその文字列(例：<code>u040</code>)が付加されます (同時に、認識されないエスケープ文字に対する警告が発生します)。 4以外の16進数を使用する場合は、長いフォーマットの<code>u{digits}</code>を使用します。
+</p>
+
+<h2 id="comments">7. コメント</h2>
+
+<p> コメントにはハッシュコメント(<code># This is a comment</code>)を使用し、<code>/* */</code>コメントは使用しません。コメントの内容は、そのコードの <strong>動作方法(how)</strong>ではなく、<strong>理由(why)</strong>を示すものにします。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code># Configures NTP
+file { '/etc/ntp.conf': … }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>/* Creates file /etc/ntp.conf */
+file { '/etc/ntp.conf': … }
+</code></pre>
+
+<h3 id="documentation-comments">7.1 ドキュメント化のためのコメント</h3>
+
+<p> それぞれのクラス、定義型、関数、リソース型およびプロバイダには、Puppet Strings向けのドキュメント化コメントを含める必要があります。 ドキュメント化に関する推奨事項の一覧については、このガイドの<a href="#documenting-puppet-code">ドキュメント化セクション</a>を参照してください。 ドキュメント化コメントを使用する場合、要素名の前にコメントを付加します。
+</p>
+
+<h2 id="module-metadata">8. モジュールメタデータ</h2>
+
+<p> すべてのモジュールに対して、メタデータをmetadata.jsonファイル内に定義する必要があります。 メタデータは以下のフォーマットに従います。
+</p>
+
+<pre><code>    {
+      "name": "examplecorp-mymodule",
+      "version": "0.1.0",
+      "author": "Pat",
+      "license": "Apache-2.0",
+      "summary": "A module for a thing",
+      "source": "https://github.com/examplecorp/examplecorp-mymodule",
+      "project_page": "https://github.com/examplecorp/examplecorp-mymodule",
+      "issues_url": "https://github.com/examplecorp/examplecorp-mymodules/issues",
+      "tags": ["things", "stuff"],
+      "operatingsystem_support": [
+        {
+          "operatingsystem":"RedHat",
+          "operatingsystemrelease": [
+            "5.0",
+            "6.0"
+          ]
+        },
+        {
+          "operatingsystem": "Ubuntu",
+          "operatingsystemrelease": [ 
+            "12.04",
+            "10.04"
+         ]
+        }
+      ],
+      "dependencies": [
+        { "name": "puppetlabs/stdlib", "version_requirement": "&gt;= 3.2.0 &lt;5.0.0" },
+        { "name": "puppetlabs/firewall", "version_requirement": "&gt;= 0.4.0 &lt;5.0.0" },
+      ]
+    }
+</code></pre>
+
+<p> metadata.jsonのフォーマットに関する詳細なガイドは、<a href="http://docs.puppet.com/puppet/latest/reference/modules_publishing.html#write-a-metadatajson-file">こちらのドキュメント</a>を参照してください。
+</p>
+
+<h3 id="dependencies">8.1 依存関係</h3>
+
+<p> ハード依存関係を、モジュールのmetadata.jsonファイル内に明示的に宣言する必要があります。 ソフト依存関係はREADME.mdファイルに記述し、metadata.jsonファイル内のハード要件としては適用しません。 ソフト依存関係とは、特定のユースケースでのみ要求される依存関係です (例：<a href="https://forge.puppet.com/puppetlabs/rabbitmq#module-dependencies">rabbitmqモジュール</a> )。
+</p>
+
+<p> ハード依存関係は、制限なしで宣言しないでください。
+</p>
+
+<h2 id="resources">9. リソース</h2>
+
+<h3 id="resource-names">9.1. リソース名</h3>
+
+<p> すべてのリソース名またはタイトルは、引用符で囲む必要があります。 タイトルが配列になっている場合、配列自体を囲むのではなく、配列内の各タイトルを引用符で囲みます。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    package { 'openssh': ensure =&gt; present }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    package { openssh: ensure =&gt; present }
+</code></pre>
+
+<p> 引用符に関するこの要件は、文字列として評価される式には適用されません。
+</p>
+
+<h3 id="arrow-alignment">9.2 矢印の位置合わせ</h3>
+
+<p> リソースの属性/値リスト内で、ハッシュロケット(<code>=&gt;</code>)の位置を揃えることができます。 ハッシュロケットは、もっとも長い属性名の後にスペースを1つ空けて配置します。 ネストしたブロックは2スペース分インデントしますが、ネストブロック内でハッシュロケットの位置を揃えることができます(もっとも長い属性名の後にスペースを1つ空けて配置)。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    exec { 'hambone':
+      path =&gt; '/usr/bin',
+      cwd  =&gt; '/tmp',
+    }
+
+    exec { 'test':
+      subscribe   =&gt; File['/etc/test'],
+      refreshonly =&gt; true,
+    }
+
+    myresource { 'test':
+      ensure =&gt; present,
+      myhash =&gt; {
+        'myhash_key1' =&gt; 'value1',
+        'key2'        =&gt; 'value2',
+      },
+    }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    exec { 'hambone':
+    path  =&gt; '/usr/bin',
+    cwd =&gt; '/tmp',
+    }
+</code></pre>
+
+<h3 id="attribute-ordering">9.3. 属性の順序</h3>
+
+<p> リソース宣言に<code>ensure</code>属性が含まれる場合、この属性を最初に指定する必要があります。こうすることで、ユーザは、リソースが作成されているのか、または削除されているのかを素早く特定できます。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    file { '/tmp/readme.txt':
+      ensure =&gt; file,
+      owner  =&gt; '0',
+      group  =&gt; '0',
+      mode   =&gt; '0644',
+    }
+</code></pre>
+
+<p> 特別な属性<code>*</code>(アスタリスク文字)をその他の属性と一緒に使用する場合、見やすいように最後に配置します。 同一ボディ内に複数のアスタリスクを含めることはできません。
+</p>
+
+<p> <strong>適切な例</strong>：
+</p>
+
+<pre><code>$file_ownership = {
+  "owner" =&gt; "root",
+  "group" =&gt; "wheel",
+  "mode"  =&gt; "0644",
+}
+
+file { "/etc/passwd":
+  ensure =&gt; file,
+  *      =&gt; $file_ownership,
+}
+</code></pre>
+
+<h3 id="resource-arrangement">9.4. リソースの配置</h3>
+
+<p> マニフェスト内では、リソース型ではなく、リソース同士の論理関係に基づいてリソースをグループ化します。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    file { '/tmp/dir':
+      ensure =&gt; directory,
+    }
+
+    file { '/tmp/dir/a':
+      content =&gt; 'a',
+    }
+
+    file { '/tmp/dir2':
+      ensure =&gt; directory,
+    }
+
+    file { '/tmp/dir2/b':
+      content =&gt; 'b',
+    }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    file { '/tmp/dir':
+      ensure =&gt; directory,
+    }
+
+    file { '/tmp/dir2':
+      ensure =&gt; directory,
+    }
+    
+    file { '/tmp/dir/a':
+      content =&gt; 'a',
+    }
+
+    file { '/tmp/dir2/b':
+      content =&gt; 'b',
+    }
+</code></pre>
+
+<p> セミコロンで区切られた複数のリソースボディを使用できるのは、ローカルのdefaultボディと組み合わせる場合のみです。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>$defaults = { &lt; hash of defaults &gt; }
+
+file {
+  default : 
+    * =&gt; $defaults ;
+
+  '/tmp/foo' :
+   content =&gt; "foos content"
+}
+</code></pre>
+
+<p> <strong>適切な例：defaultを含む繰り返しパターン：</strong>
+</p>
+
+<pre><code>$defaults = { &lt; hash of defaults &gt; }
+
+file {
+  default : 
+    * =&gt; $defaults ;
+
+  '/tmp/motd' :
+   content =&gt; "message of the day" ;
+
+  '/tmp/motd_tomorrow' :
+   content =&gt; "tomorrows message of the day" ;
+}
+</code></pre>
+
+<p> <strong>不適切な例：関係のないリソースのグループ化：</strong>
+</p>
+
+<pre><code>file {
+  '/tmp/foo':
+    owner =&gt; 'admin',
+    mode =&gt; '0644',
+    contents =&gt; 'this is the content';
+
+  '/opt/myapp:
+    owner =&gt; 'myapp-admin',
+    mode =&gt; '0644'
+    source =&gt; 'puppet://&lt;someurl&gt;';
+  
+# etc
+</code></pre>
+
+<p> 特定のリソースに対して同じ属性を2回以上設定することはできません。設定しようとすると、Puppetでコンパイルエラーが発生します。 以下に、具体的な説明を示します。
+</p>
+
+<ul>
+<li>ハッシュを使用してリソースの属性を設定する場合、これらの属性のいずれに対しても、別の明示的な値を設定することはできません(例：ハッシュ内にmodeが含まれる場合、このリソースボディ内でmode =&gt; “0644”を設定することはできません)。</li>
+  <li>
+<code>*</code>自体が属性としてふるまうので、1つのリソースボディ内で<code>*</code>属性を複数回使用することはできません。</li>
+  <li>ハッシュ内の一部の属性を使用し、残りをオーバーライドする場合、ハッシュを使用して式ごとにデフォルトを設定するか、または<code>+</code>(結合)演算子を使用して2つのハッシュの属性を組み合わせます(右側のハッシュが左側のハッシュをオーバーライドします)。</li>
+</ul>
+<h3 id="symbolic-links">9.5. シンボリックリンク</h3>
+
+<p> シンボリックリンクを宣言する場合、<code>ensure =&gt; link</code>というensure値を使用し、<code>target</code>属性に明示的に値を指定します。 こうすることで、リンクの作成がより明確に分かります。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    file { '/var/log/syslog':
+      ensure =&gt; link,
+      target =&gt; '/var/log/messages',
+    }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    file { '/var/log/syslog':
+      ensure =&gt; '/var/log/messages',
+    }
+</code></pre>
+
+<h3 id="file-modes">9.6. ファイルモード</h3>
+
+<ul>
+<li>POSIXの数字表記は4桁で指定します。</li>
+  <li>POSIXのシンボリック表記は文字列で指定します。</li>
+  <li>Windowsのファイルモードは使用しません。代わりに<a href="https://forge.puppet.com/puppetlabs/acl">aclモジュール</a>を使用します。</li>
+  <li>可能な限り、数字表記を使用します。</li>
+  <li>ファイルモード属性には、常に文字列を引用符で囲んで指定します。整数は使用しません。</li>
+</ul>
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>file { '/var/log/syslog':
+      ensure =&gt; file,
+      mode   =&gt; '0644',
+  }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    file { '/var/log/syslog':
+      ensure =&gt; present,
+      mode   =&gt; 644,
+    }
+</code></pre>
+
+<h4 id="multiple-resources">9.6.5. 複数のリソース</h4>
+
+<p> 同一ブロック内に複数のリソースを宣言できるのは、このリソース型に対するデフォルトのオプションセットがある場合のみです。
+</p>
+
+<p> <strong>適切な例</strong>：
+</p>
+
+<pre><code>file {
+  default :
+    ensure =&gt; 'file'
+    mode   =&gt; '0666' ;
+ 
+  '/foo' :
+    user =&gt; root;
+ 
+  '/bar' :
+    user =&gt; staff;
+}
+ 
+# Give the defaults a name if used several times
+$our_default_file_attributes = { 
+  'mode' =&gt; '0666', 
+  'ensure' =&gt; 'file', 
+}
+ 
+file {
+  default :
+    * =&gt; $our_default_file_attributes ;
+ 
+  '/foo' :
+    user =&gt; root;
+ 
+  '/bar' :
+    user =&gt; staff;
+}
+  
+ 
+# spell out "magic" iteration
+[ '/foo', '/bar' ].each | $path | {
+ 
+  file { $path :
+    ensure =&gt; 'file',
+  }
+}
+ 
+# spell out "magic" iteration
+$array_of_paths.each | $path |  {
+ 
+  file { $path :
+    ensure =&gt; 'file',
+  }
+}
+</code></pre>
+
+<p> <strong>不適切な例</strong>：
+</p>
+
+<pre><code>
+file {
+  '/foo':
+    user     =&gt; root,
+    ensure =&gt; 'file',
+    mode =&gt; '0666' ;
+ 
+  '/bar':
+    user     =&gt; staff,
+    ensure =&gt; 'file',
+    mode =&gt; '0774' ;
+}
+ 
+file { ['/foo', '/bar']:
+  ensure =&gt; 'file',
+}
+ 
+file { $array_of_paths :
+  ensure =&gt; 'file',
+}
+</code></pre>
+
+<h3 id="legacy-style-defaults">9.7. レガシースタイルのデフォルト</h3>
+
+<p> レガシースタイルのデフォルトは使用を避けてください。 どうしても使用する場合、サイトマニフェストのグローバルスコープでのみ指定します。 これは、リソースのデフォルトが動的スコープを介して適用されると、デフォルトの宣言箇所とは離れた場所で予測のつかない作用を及ぼす可能性があるためです。
+</p>
+
+<p> <strong>許容可能な例</strong>：
+</p>
+
+<pre><code># site.pp:
+ 
+Package {
+  provider =&gt; 'zypper',
+}
+</code></pre>
+
+<p> <strong>不適切な例</strong>：
+</p>
+
+<pre><code># /etc/puppetlabs/puppet/modules/apache/manifests/init.pp
+File {
+  owner =&gt; 'nobody',
+  group =&gt; 'nogroup',
+  mode  =&gt; '0600',
+}
+
+concat { $config_file_path:
+  notify  =&gt; Class['Apache::Service'],
+  require =&gt; Package['httpd'],
+}
+</code></pre>
+
+<h3 id="resource-attribute-indentation-and-alignment">9.8. リソース属性のインデントと位置合わせ</h3>
+
+<p> リソース属性はタイトルから均一に1段階インデントします。
+</p>
+
+<p> <strong>適切な例</strong>：
+</p>
+
+<pre><code>file { '/foo':
+  ensure =&gt; 'file',
+  owner  =&gt; 'root',
+}
+</code></pre>
+
+<p> <strong>不適切な例</strong>：
+</p>
+
+<pre><code># too many levels of indentation
+file { '/foo':
+    ensure =&gt; 'file',
+    owner  =&gt; 'root',
+}
+
+# no indentation
+file { '/foo':
+ensure =&gt; 'file',
+owner  =&gt; 'root',
+}
+
+# improper and non-uniform indentation
+file { '/foo':
+  ensure =&gt; 'file',
+   owner =&gt; 'root',
+}
+
+# indented the wrong direction
+  file { '/foo':
+ensure =&gt; 'file',
+owner  =&gt; 'root',
+  }
+</code></pre>
+
+<p> ボディが複数ある場合、タイトルごとに個別の行に記述してインデントします。 複数ボディ間ですべての矢印の位置を合わせても構いませんが、ボディごとに位置を合わせた方が読みやすい場合、全体で位置を揃える必要はありません。
+</p>
+
+<pre><code>file {
+  default:
+    * =&gt; $local_defaults;
+ 
+  '/foo':
+    ensure =&gt; 'file'
+    owner  =&gt; root
+}
+</code></pre>
+
+<h2 id="classes-and-defined-types">10. クラスと定義型</h2>
+
+<h3 id="separate-files">10.1. 個別ファイル</h3>
+
+<p> すべてのクラスとリソース型定義(定義型)を、モジュールの<code>manifests</code>ディレクトリ内の個別ファイルに指定します。 モジュールのmanifestディレクトリ内にある個々のファイルには、クラスまたはリソース型の定義以外は何も含めないでください。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    # /etc/puppetlabs/puppet/modules/apache/manifests
+
+    # init.pp
+      class apache { }
+    # ssl.pp
+      class apache::ssl { }
+    # virtual_host.pp
+      define apache::virtual_host () { }
+</code></pre>
+
+<p> クラスと定義型を別々のファイルに指定する場合、init.pp内での宣言と機能上はまったく同じ効果がありますが、モジュール構造がハイライトされ、関数と構造が読みやすくなるというメリットがあります。
+</p>
+
+<p> クラス、ノード定義、または定義型の外部に、リソースまたはincludeステートメントを配置した場合、これらはすべてのカタログに含まれます。 これには望ましくない影響が生じる可能性があり、必ずしも検出しやすいとは限りません。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>#manifests/init.pp:
+class { 'foo':
+  include bar
+}
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>#manifests/init.pp:
+class { 'foo':
+...
+}
+include bar
+</code></pre>
+
+<h3 id="internal-organization-of-classes-and-defined-types">10.2. クラスの内部構成と定義型</h3>
+
+<p> クラスと定義型は、1つのタスクを遂行するように構成する必要があります。 以下に、コード行の配置に関する一般的なレイアウトを、1行目から順番に1行ずつ示します。
+</p>
+
+<p> すべてのクラスと定義型には、Puppet Strings向けのドキュメント化<a href="#documentation-comments">コメント</a>を含める必要があります。 ドキュメント化に関する推奨事項の一覧については、このガイドの<a href="#documenting-puppet-code">ドキュメント化セクション</a>を参照してください。 ドキュメント化コメントを使用する場合、要素名の前にコメントを付加します。
+</p>
+
+<ol>
+<li>1行目：クラスまたは型の名前。</li>
+  <li>後続の行(該当する場合)：パラメータの定義。パラメータは<a href="https://docs.puppet.com/puppet/latest/lang_data_type.html#language:-data-types:-data-type-syntax">型付け</a>する必要があります。</li>
+  <li>後続の行：パラメータ定義の後にincludeとバリデーションを指定します。includeはバリデーションの前後どちらにも配置できますが、それぞれをグループ化する必要があります。すべてのincludeとrequireを1グループにまとめて、すべてのバリデーションを別のグループにまとめます。<ul>
+<li>バリデーションですべてのパラメータが検証され、無効なパラメータが見つかった場合はカタログコンパイルが失敗します(例：<a href="https://github.com/puppetlabs/puppetlabs-ntp/blob/3.3.0/manifests/init.pp#L28-L49">ntp</a> )。</li>
+    </ul>
+</li>
+  <li>後続の行(該当する場合)：ローカル変数を宣言して変数のマンジングを実行します。</li>
+  <li>後続の行：リソースのデフォルトを宣言します。</li>
+  <li>後続の行：必要に応じて、リソースをオーバーライドします。</li>
+</ol>
+<p> 推奨されたスタイルに従った例を以下に示します。
+</p>
+
+<p> init.pp内：
+</p>
+
+<pre><code># The `myservice` class installs packages, ensures the state of 'myservice', and creates 
+# a tempfile with given content. If the tempfile contents contains digits,
+# they are filtered out.
+#
+# @param service_ensure the wanted state of services
+# @param package_list the list of packages to install, at least one must be given, or an 
+# error of unsupported 'os' is raised
+# @param tempfile_contents the text to be included in the tempfile, all digits are 
+# filtered out if present
+#
+class myservice (
+  Enum['running', 'stopped'] $service_ensure,
+  String                     $tempfile_contents,
+  Optional[Array[String[1]]] $package_list = undef,
+) {
+ 
+  # Example of additional assertion with a better error message than just saying that
+  # there was a type mismatch for $package_list.
+  #
+  # The list can be "not given", or have an empty list of packages to install
+  # Here an assertion is made that the list is an Array of at least one String, and that 
+  # the String is at least one character long.
+  #
+  assert_type(Array[String[1], 1], $package_list) | $expected, $actual | {
+    fail("Module ${module_name} does not support ${facts['os']['name']} as the list of packages is of type ${actual}"
+  }
+ 
+  package { $package_list :
+    ensure =&gt; present
+  }
+ 
+  file { "/tmp/${variable}":
+    ensure   =&gt; present,
+    contents =&gt; regsubst($tempfile_contents, '\d', '', 'G'),
+    owner    =&gt; '0',
+    group    =&gt; '0',
+    mode     =&gt; '0644',
+  }
+ 
+  service { 'myservice':
+    ensure    =&gt; $service_ensure,
+    hasstatus =&gt; true,
+  }
+ 
+  Package[$package_list] -&gt; Service['myservice']
+}
+</code></pre>
+
+<p> モジュール<code>hiera.yaml</code>内：
+</p>
+
+<pre><code>---
+version: 5
+defaults:
+  data_hash: yaml_data
+ 
+# The default values can be merged if you want to extend with additional packages
+# If not, use 'default_hierarchy' instead of 'hierarchy'
+#
+hierarchy:
+  - name: "Per Operating System"
+    path: "os/%{os.name}.yaml"
+  - name: "Common"
+    path: "common.yaml"
+</code></pre>
+
+<p> モジュール<code>data/common.yaml</code>内：
+</p>
+
+<pre><code>myservice::service_ensure: running
+</code></pre>
+
+<p> モジュール<code>data/os/centos.yaml</code>内：
+</p>
+
+<pre><code>myservice::package_list:
+  - 'myservice-centos-package'
+</code></pre>
+
+<p> モジュール<code>data/os/solaris.yaml</code>内：
+</p>
+
+<pre><code>myservice::package_list:
+  - 'myservice-solaris-package1'
+  - 'myservice-solaris-package2'
+</code></pre>
+
+<h3 id="public-and-private">10.3. パブリックとプライベート</h3>
+
+<p> 可能な限り、モジュールのクラスと定義型をパブリックとプライベートに分割することを推奨します。 パブリッククラスとパブリック定義型には、ユーザによる設定やカスタマイズの対象となることを意図したモジュール部分を含めます。一方、プライベートクラスには、ユーザによるパラメータを介した変更を想定しない要素を含めます。 クラスおよび定義型をパブリックまたはプライベートとして区別することで、再利用可能で読みやすいコードを作成できます。
+</p>
+
+<p> ユーザがクラスの内容を把握しやすくなるように、すべてのパブリッククラスに必ず全面的な<a href="#comments">コメント</a>を記述し、ドキュメント内にパブリッククラスとプライベートクラスを明記します。 ドキュメント化タグ「@api private」および「@api public」を使用すると、より明確になります。
+</p>
+
+<h3 id="chaining-arrow-syntax">10.4. チェイニングアローの構文</h3>
+
+<p> ほとんどのケースで、<a href="https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#chaining-arrows">チェイニングアロー</a>ではなく、<a href="https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters">関係メタパラメータ</a>を使用します。 ただし、多数の<a href="https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72">相互依存項目または順序固定項目</a>がある場合、チェイニング構文を使用しても構いません。 チェイン演算子は右側にあるオペランドと同じ行に記述します。 チェイニングアローは左から右に向けて使用します。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>Package['httpd'] -&gt; Service['httpd']
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code># arrows are not all pointing to the right
+Service['httpd'] &lt;- Package['httpd']
+ 
+# must be all on one line
+Service['httpd'] &lt;-
+Package['httpd']
+</code></pre>
+
+<h3 id="nested-classes-or-defined-types">10.5. ネストしたクラスまたは定義型</h3>
+
+<p> クラスまたは定義リソース型を、別のクラスや定義型内に定義してはいけません。 クラスおよび定義型は、できるだけノードスコープの近くで宣言します。 クラスまたはユーザ定義のタイプが別のクラスまたはユーザ定義のタイプを必要とするときに、該当するクラスまたはタイプがない場合、モジュールに完全な失敗が発生しないよう確認してください。
+</p>
+
+<p> <strong>非常に不適切な例：</strong>
+</p>
+
+<pre><code>    class apache {
+      class ssl { ... }
+    }
+</code></pre>
+
+<p> <strong>非常に不適切な例：</strong>
+</p>
+
+<pre><code>    class apache {
+      define config() { ... }
+    }
+</code></pre>
+
+<h3 id="display-order-of-parameters">10.6. パラメータの表示順序</h3>
+
+<p> パラメータ化クラスと定義型の宣言では、必須パラメータをオプションパラメータ(デフォルト付きパラメータ)の前に配置する必要があります。 必須パラメータは、undefを含むいずれの値も設定されていないパラメータです。 たとえば、パスワードやIPアドレスなどのパラメータには妥当なデフォルト値がない場合があります。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>class dhcp (
+  $dnsdomain,
+  $nameservers,
+  $default_lease_time = 3600,
+  $max_lease_time     = 86400
+) {}
+
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    class ntp (
+      $options   = "iburst",
+      $servers,
+      $multicast = false
+    ) {}
+</code></pre>
+
+<h3 id="parameter-defaults">10.7. パラメータのデフォルト値</h3>
+
+<p> クラスおよび定義型のパラメータにデフォルト値を追加すると、モジュールが使いやすくなります。 Puppet 4.9.0では、Hieraデータをモジュールで使用して、クラスパラメータの自動探索を利用することができます。 Puppet 4.9.0より前のバージョンでは、「params.pp」パターンを使用します。 単純なケースでは、クラスまたは定義型内で直接デフォルト値を指定することもできます。
+</p>
+
+<p> パラメータのデータ型を宣言する場合、型の自動アサーションが提供されるので注意が必要です。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code># parameter defaults provided via APL &gt; puppet 4.9.0
+class my_module(
+  String $source,
+  String $config )  {
+  # body of class
+}
+</code></pre>
+
+<p> モジュールのルートで<code>hiera.yaml</code>を使用する例：
+</p>
+
+<pre><code>---
+version: 5
+default_hierarchy: 
+  - name: "defaults"
+    path:   "defaults.yaml"
+    data_hash: yaml_data
+</code></pre>
+
+<p> <code>data/defaults.yaml</code>ファイルを使用する例：
+</p>
+
+<pre><code>mymodule::source: 'default source value'
+mymodule::config: 'default config value'
+</code></pre>
+
+<p> この場合、デフォルト階層に値が指定されるので、デフォルト値はオーバーライド値に結合されません。 デフォルト値をオーバーライド値に結合するには、<code>default_hierarchy</code>を<code>hierarchy</code>に変更します。
+</p>
+
+<p> <strong>Puppet 4.8以前</strong>：
+</p>
+
+<pre><code># using params.pp pattern &lt; Puppet 4.9.0
+class my_module(
+  String $source = $mymodule::params::source,
+  String $config  = $mymodule::params::config)  {
+  # body of class
+}
+</code></pre>
+
+<h3 id="exported-resources">10.8. エクスポートリソース</h3>
+
+<p> エクスポートリソースは、オプトアウトではなくオプトインすることを推奨します。 明確に要求されない限り、エクスポートリソースの機能をデフォルトで使用するようにモジュールを作成するべきではありません。 エクスポートリソースを使用するときは、<code>collect_exported</code>プロパティを指定します。
+</p>
+
+<p> エクスポートリソースは、<a href="https://docs.puppet.com/puppet/3.7/reference/lang_collectors.html#search-expressions">検索式</a>を使用して、個別にエクスポートおよび収集することを推奨します。理想的には、ユーザ定義タグをパラメータとして使用すると、タグを使用した環境またはカスタムfactsによる個別の収集が可能になります。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>define haproxy::frontend (
+  $ports            = undef,
+  $ipaddress        = [$::ipaddress],
+  $bind             = undef,
+  $mode             = undef,
+  $collect_exported = false,
+  $options          = {
+    'option'  =&gt; [
+      'tcplog',
+    ],
+  },
+) { … }
+</code></pre>
+
+<h2 id="classes">11. クラス</h2>
+
+<h3 id="class-inheritance">11.1. クラスの継承</h3>
+
+<p> クラスの継承は使用しないでください。 params.ppパターンの代わりに、データバインディングを使用します。 継承の使用が適切なのはparams.ppに対してのみですが、これはPuppet 4では推奨されていません。
+</p>
+
+<p> 古いモジュールを維持するために継承を使用することはできますが、複数のモジュール名前空間をまたがって使用しないでください。 モジュール間の依存関係は、includeステートメントや関係の宣言など、より移植性の高い方法で満たすことを推奨します。 クラスの継承は、<code>myclass::params</code>パラメータのデフォルト値に対してのみ使用します。 その他のユースケースは、パラメータまたは条件付きロジックを追加することで実現できます。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    class ssh { ... }
+
+    class ssh::client inherits ssh { ... }
+
+    class ssh::server inherits ssh { ... }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    class ssh inherits server { ... }
+
+    class ssh::client inherits workstation { ... }
+
+    class wordpress inherits apache { ... }
+</code></pre>
+
+<h3 id="about-publicly-available-modules">11.2. パブリック公開されているモジュールについて</h3>
+
+<p> パブリック公開されているモジュール内のクラスを宣言する場合、クラスのリソース宣言ではなく、<code>include</code>、<code>contain</code>、<code>require</code>のいずれかを使用します。 こうすることで、クラス宣言の重複とベンダー固定を回避できます。
+</p>
+
+<h2 id="defined-resource-types">12. 定義リソース型</h2>
+
+<h3 id="uniqueness">12.1. ユニーク性</h3>
+
+<p> 同じ定義リソース型に対して複数のインスタンスを使用できるので、宣言の重複を避けるには、リソース名に一意の変数を使用する必要があります。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code class="language-puppet">define apache::listen {
+  $listen_addr_port = $name
+
+  # Template uses: $listen_addr_port
+  concat::fragment { "Listen ${listen_addr_port}":
+    ensure  =&gt; present,
+    target  =&gt; $::apache::ports_file,
+    content =&gt; template('apache/listen.erb'),
+  }
+}
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>define apache::listen {
+  # Template uses: $name
+  concat::fragment { 'Listen port':
+    ensure  =&gt; present,
+    target  =&gt; $::apache::ports_file,
+    content =&gt; template('apache/listen.erb'),
+  }
+}
+</code></pre>
+
+<h2 id="variables">13. 変数</h2>
+
+<h2 id="referencing-facts">13.1. factsの参照</h2>
+
+<p> factsを参照する場合、単純なグローバルスコープの変数(<code>$::operatingsystem</code>など)ではなく、<code>$facts</code>ハッシュを使用します。 単純なグローバルスコープ変数の方が記述は簡単ですが、<code>$facts</code>ハッシュの方が明白で読みやすく、factsをグローバルスコープ変数から区別できます。
+</p>
+
+<h3 id="namespacing-variables">13.2. 名前空間指定変数</h3>
+
+<p> factsではなくグローバルスコープ変数を参照する場合、明白で読みやすいようにするため、明示的に絶対名前空間を指定します。 これには、メインのマニフェスト内でノード分類子によって設定されたグローバルスコープ変数を含みます。
+</p>
+
+<p> ただし、以下のハッシュには必要ありません。
+</p>
+
+<ul>
+<li>
+<code>$facts</code>ハッシュ</li>
+  <li>
+<code>$trusted</code>ハッシュ</li>
+  <li>
+<code>$server_facts</code>ハッシュ</li>
+</ul>
+<p> これらの特別な変数名は保護されており、ローカル変数にこれらの名前を付けることはできないので、常にグローバルスコープ変数が参照されます。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    $facts[::operatingsystem]
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    $::operatingsystem
+</code></pre>
+
+<p> <strong>非常に不適切な例</strong>：
+</p>
+
+<pre><code>    $operatingsystem
+</code></pre>
+
+<h3 id="variable-format">13.3. 変数のフォーマット</h3>
+
+<p> 変数の定義で使用できるのは、数字、小文字、アンダースコアのみです。 「CamelCase」などのように単語内で大文字を使うと、スタイルの一貫性が損なわれるので、大文字は使用しないでください。 また、ダッシュは構文上無効なので、使用しないでください。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>$foo_bar
+$some_long_variable
+$foo_bar123
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>$fooBar
+$someLongVariable
+$foo-bar123
+</code></pre>
+
+<h2 id="conditionals">14. 条件文</h2>
+
+<h3 id="keep-resource-declarations-simple">14.1. リソース宣言をシンプルに</h3>
+
+<p> リソース宣言に条件文を組み合わせることは推奨しません。 条件文を使ってデータを割り当てる場合、条件付きのコードをリソース宣言から切り離す必要があります。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    $file_mode = $::operatingsystem ? {
+      'debian' =&gt; '0007',
+      'redhat' =&gt; '0776',
+       default =&gt; '0700',
+    }
+
+    file { '/tmp/readme.txt':
+      ensure  =&gt; file,
+      content =&gt; "Hello World\n",
+      mode    =&gt; $file_mode,
+    }
+</code></pre>
+
+<p> <strong>不適切な例：</strong>
+</p>
+
+<pre><code>    file { '/tmp/readme.txt':
+      ensure  =&gt; file,
+      content =&gt; "Hello World\n",
+      mode    =&gt; $::operatingsystem ? {
+        'debian' =&gt; '0777',
+        'redhat' =&gt; '0776',
+        default  =&gt; '0700',
+      }
+    }
+</code></pre>
+
+<h3 id="defaults-for-case-statements-and-selectors">14.2. caseステートメントとセレクタのデフォルト値</h3>
+
+<p> caseステートメントにはデフォルトケースを指定する必要があります。 デフォルトケースに何も設定しない場合も、はっきり分かるようにするため、<code>default: {}</code>と明示的に指定する必要があります。
+</p>
+
+<p> ケースおよびセレクタ値は引用符で囲みます。
+</p>
+
+<p> セレクタのデフォルト値を省略して良いのは、値がマッチしないときにカタログコンパイルを明示的に失敗させる場合だけです。
+</p>
+
+<p> <strong>適切な例：</strong>
+</p>
+
+<pre><code>    case $::operatingsystem {
+      'centos': {
+        $version = '1.2.3'
+      }
+      'solaris': {
+        $version = '3.2.1'
+      }
+      default: {
+        fail("Module ${module_name} is not supported on ${::operatingsystem}")
+      }
+    }
+</code></pre>
+
+<p> デフォルトケースを設定するときは、次の点に注意してください。デフォルトケースを設定すると、構築するモジュールが使用されるプラットフォームで結果の動作が予測できない場合、カタログコンパイルが失敗します。
+</p>
+
+<h2 id="hiera">15. Hiera</h2>
+
+<p> すべてのユーザがHieraを実装しているとは限らないので、公開使用を意図したモジュールでは、Hiera関数の呼び出しは使用しないでください。 その代わりに、Hieraでオーバーライドできるパラメータの使用を推奨します。
+</p>
+
+<h2 id="examples">16. サンプル</h2>
+
+<p> モジュールのおもなユースケースに対して、そのモジュールの/examplesディレクトリ内に対応するサンプルマニフェストが用意されています。
+</p>
+
+<pre><code>modulepath/apache/examples/{usecase}.pp
+</code></pre>
+
+<p> サンプルマニフェストは、クラスまたは定義リソース型の宣言方法を明確に示す例となります。 制約のあるスタンドアロン方式でも<code>puppet apply</code>が正しく実行されるようにするため、サンプルマニフェストには対応するクラスに必要なすべてのクラスの宣言が含まれています。
+</p>
+
+<h2 id="module-documentation">17. モジュールのドキュメント</h2>
+
+<p> 一般に公開されるモジュールには、以下に記載するドキュメントを含める必要があります。
+</p>
+
+<h3 id="readme">17.1 README</h3>
+
+<p> READMEファイルは、.md (または.markdown)フォーマットで記述します。 READMEを使用することで、モジュールのユーザは全体的なメリットを把握しやすくなります。 <a href="https://docs.puppet.com/puppet/latest/reference/READMEtemplate.txt">Puppet READMEテンプレート</a>に含まれる基本フォーマットを参考にできます。 <code>puppet module generate</code>を使用してモジュールを作成すると、生成されるREADMEにこのテンプレートが含まれています。 .md/.markdownフォーマットを使用すると、Puppet Strings、GitHub、およびPuppet ForgeでREADMEを解析して表示することができます。
+</p>
+
+<p> READMEの正しい記述方法については詳細な<a href="https://docs.puppet.com/puppet/latest/reference/modules_documentation.html">ガイド</a>が提供されていますが、全般的には以下の方針に従います。
+</p>
+
+<ul>
+<li>モジュールの動作をまとめたものであること</li>
+  <li>設定要件や制約事項がある場合は、これらをすべて記載すること(「このモジュールはpuppetlabs-apacheモジュールを必要とし、Ubuntu上でのみ実行できます」など)</li>
+  <li>ユーザのシステムにモジュールの影響を受ける部分がある場合、その内容を記載すること(「このモジュールは、animportantfile.confの内容をすべて上書きします」など)</li>
+  <li>モジュールのカスタマイズ方法と設定方法を説明すること</li>
+  <li>モジュールの一般的なユースケースの使用例とコードサンプルを含めること</li>
+</ul>
+<h3 id="documenting-puppet-code">17.2. Puppetコードのドキュメント化</h3>
+
+<p> <a href="https://github.com/puppetlabs/puppet-strings">Puppet Strings</a>のコードコメントを使用すると、Puppetクラス、定義型、関数、リソース型、プロバイダをドキュメント化することができます。 Puppet StringsはREADMEとコードのコメントを処理して、HTMLまたはJSONフォーマットのドキュメントを生成します。 これにより、モジュールの詳細なドキュメントを作成できます。
+</p>
+
+<p> モジュールに含まれる要素(クラス、関数、定義型、パラメータなど)ごとにコメントを記述します。 コメントを使用する場合は、その要素のコードの前にコメントを記述します。 使用法、インストール、正しいドキュメント化コメントの記述方法について、詳しくは<a href="https://github.com/puppetlabs/puppet-strings">Puppet Strings</a>ドキュメントを参照してください。コメントには、以下に記載する情報をその順序に従って含める必要があります。
+</p>
+
+<ul>
+<li>要素の動作をおおまかに示す説明</li>
+  <li>データ型からは明らかでない有効な値に関する追加情報(例：データ型は文字列であるが、値はパスでなければならない)</li>
+  <li>要素に対するデフォルト値がある場合はその値</li>
+</ul>
+<p> 以下に例を示します。
+</p>
+
+<pre><code># @param config_epp Specifies a file to act as a EPP template for the config file. Valid 
+# options: a path (absolute, or relative to the module path). Example value: 
+# 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and**
+# the `config_template` param.
+</code></pre>
+
+<p> Puppet Stringsのコードコメントを使用しない場合、READMEにReferenceセクションを含めて、設定できるすべてのクラス、型、プロバイダ、定義型、パラメータの一覧を記述する必要があります。 簡単な説明、有効な選択肢、デフォルト値(ある場合)も含めます。
+</p>
+
+<h3 id="changelog">17.2 CHANGELOG</h3>
+
+<p> CHANGELOGを.md (または.markdown)フォーマットで記述します。 CHANGELOGには以下の情報を含める必要があります。
+</p>
+
+<ul>
+<li>リリースごとのエントリ</li>
+  <li>このリリースに含まれるバグ修正と機能のリスト</li>
+  <li>下位互換性が無い変更がある場合は、これを明記</li>
+</ul>
+<h2 id="verification-and-testing">18. 検証とテスト</h2>
+
+<p> <a href="http://puppet-lint.com/">puppet-lint</a>と<a href="https://github.com/voxpupuli/metadata-json-lint">metadata-json-lint</a>を使用して、モジュールのスタイル適合性をチェックすることを推奨します。 モジュールのテストには、rspecの使用を推奨します。 Puppet用のrspecテストの作成方法については、<a href="https://github.com/rodjek/rspec-puppet/#rspec-tests-for-your-puppet-manifests--modules">rspec-puppet</a>を参照してください。
+</p>
+</div>
