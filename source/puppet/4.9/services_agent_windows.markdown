@@ -27,7 +27,7 @@ This page describes how Puppet agent behaves on Windows systems. For information
 
 > **Note:** Running 32-bit Puppet agent on a 64-bit Windows system is now deprecated. Update your Puppet installation to the 64-bit platform.
 
-Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
+Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others have OS-specific features. See the [resource type reference][] for details.
 
 ## Puppet agent's run environment
 

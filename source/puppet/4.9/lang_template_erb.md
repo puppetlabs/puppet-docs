@@ -232,7 +232,7 @@ For example, to evaluate one template inside another:
 
 To log a warning using Puppet's own logging system, so that it will appear in reports:
 
-    <%= scope.call_function('warning', ["Template was missing some data; this config file may be malformed."]) %>
+    <%= scope.call_function('warning', ["Template was missing some data; this config file might be malformed."]) %>
 
 > **Note:** Previous versions of Puppet handled this by creating a `function_<NAME>` method on the `scope` object for each function; these could be called with an arguments array, like `<%= scope.function_template(["my_module/template2.erb"]) %>`
 >

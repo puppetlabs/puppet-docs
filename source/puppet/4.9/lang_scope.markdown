@@ -178,7 +178,7 @@ In this example, `/tmp/example` would be a directory owned by the `puppet` user,
 * **Variables** provided by an [ENC][] are set at top scope.
 * However, all of the **classes** assigned by an ENC are declared at node scope.
 
-This gives approximately the best and most-expected behavior --- variables from an ENC are available everywhere, and classes may use node-specific variables.
+This gives approximately the best and most-expected behavior --- variables from an ENC are available everywhere, and classes can use node-specific variables.
 
 > **Note:** this means compilation will fail if the site manifest tries to set a variable that was already set at top scope by an ENC.
 
@@ -243,16 +243,16 @@ This version of Puppet uses static scope for looking up variables.
 
 In **dynamic scope,** parent scopes are assigned by both **inheritance** and **declaration,** with preference being given to inheritance. The full list of rules is:
 
-* Each scope has only one parent, but may have an unlimited chain of grandparents, and receives the merged contents of all of them (with nearer ancestors overriding more distant ones).
+* Each scope has only one parent, but can have an unlimited chain of grandparents, and receives the merged contents of all of them (with nearer ancestors overriding more distant ones).
 * The parent of a derived class is its base class.
 * The parent of any other class or defined resource is the **first** scope in which it was declared.
 * When you declare a derived class whose base class _hasn't_ already been declared, the base class is immediately declared in the current scope, and its parent assigned accordingly. This effectively "inserts" the base class between the derived class and the current scope. (If the base class _has_ already been declared elsewhere, its existing parent scope is not changed.)
 
 > Dynamic scope has the following characteristics:
 >
-> * A scope's parent cannot be identified by looking at the definition of a class --- you must examine every place where the class or resource may have been declared.
+> * A scope's parent cannot be identified by looking at the definition of a class --- you must examine every place where the class or resource might have been declared.
 > * In some cases, you can only determine a scope's contents by executing the code.
-> * Since classes may be declared multiple times with the `include` function, the contents of a given scope are evaluation-order dependent.
+> * Since classes can be declared multiple times with the `include` function, the contents of a given scope are evaluation-order dependent.
 
 This version of Puppet uses dynamic scope only for resource defaults.
 

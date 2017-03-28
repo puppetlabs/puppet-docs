@@ -24,7 +24,7 @@ title: "Language: Tags"
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 
 
-[Resources][], [classes][], and [defined type instances][defined] may have any number of **tags** associated with them, plus they receive some tags automatically. Tags are useful for:
+[Resources][], [classes][], and [defined type instances][defined] can have any number of **tags** associated with them, plus they receive some tags automatically. Tags are useful for:
 
 * [Collecting][collectors] resources
 * Analyzing [reports][]
@@ -38,7 +38,7 @@ title: "Language: Tags"
 ## Assigning tags to resources
 
 
-A resource may have any number of tags. There are several ways to assign a tag to a resource.
+A resource can have any number of tags. There are several ways to assign a tag to a resource.
 
 ### Automatic tagging
 

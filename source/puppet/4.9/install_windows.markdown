@@ -16,10 +16,10 @@ title: "Installing Puppet agent: Microsoft Windows"
 
 ## Make sure you're ready
 
-Before installing Puppet on any agent nodes: 
+Before installing Puppet on any agent nodes:
 
 * Make sure you've read the [pre-install tasks.](./install_pre.html)
-* [Install Puppet Server][server_install]. 
+* [Install Puppet Server][server_install].
 * Make sure the version of Windows you're using is listed in the [system requirements](./system_requirements#windows).
 * If you're using Puppet with a master/agent configuration, you'll need a \*nix node to act as your Puppet master.
 
@@ -33,13 +33,13 @@ Before installing Puppet on any agent nodes:
 * 64-bit versions of Windows can use `puppet-agent-<VERSION>-x64.msi` (recommended) or `puppet-agent-<VERSION>-x86.msi`.
 * 32-bit versions of Windows _must_ use `puppet-agent-<VERSION>-x86.msi`.
 
->**Note:** Running 32-bit versions of Windows on 64-bit versions of Puppet is now deprecated. 
+>**Note:** Running 32-bit versions of Windows on 64-bit versions of Puppet is now deprecated.
 
 These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
 The list of Windows packages might include release candidates, whose filenames have something like `-rc1` after the version number. Use these only if you want to test upcoming Puppet versions.
 
->**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You may see a warning from your browser saying the signature is corrupt or invalid.
+>**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You might see a warning from your browser saying the signature is corrupt or invalid.
 >
 > ![invalid or corrupt](./images/windows_invalid_signature.jpg)
 >
@@ -205,7 +205,7 @@ The domain of the Puppet agent's user account. See the notes under [`PUPPET_AGEN
 
 #### Downgrades
 
-If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package. 
+If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package.
 
 ### Uninstalling
 

@@ -76,7 +76,7 @@ Types are created by calling the `newtype` method on the `Puppet::Type` class:
 
 > #### Options
 >
-> When creating a type, you may also specify options after the name. There is currently only one option available.
+> When creating a type, you can also specify options after the name. There is currently only one option available.
 >
 > Options must be specified as a hash, although Ruby method arguments allow you to leave the curly braces off of hashes.
 >
@@ -92,7 +92,7 @@ The string should be in [Markdown][] format (avoiding dialect-specific features 
 ``` ruby
     Puppet::Type.newtype(:database) do
       @doc = %q{Creates a new database. Depending
-        on the provider, this may create relational
+        on the provider, this might create relational
         databases or NoSQL document stores.
 
         Example:
@@ -408,10 +408,10 @@ method would be named `force?`.
 
 ### Automatic Relationships
 
-Your type can specify automatic relationships it can have with 
-resources. You can use autorequire, autobefore, autonotify, and 
-autosubscribe, which all require a resource type as an argument, 
-and your code should return a list of resource names that your 
+Your type can specify automatic relationships it can have with
+resources. You can use autorequire, autobefore, autonotify, and
+autosubscribe, which all require a resource type as an argument,
+and your code should return a list of resource names that your
 resource could be related to.
 
 ``` ruby
@@ -428,7 +428,7 @@ requiring resource.
 
 ### Agent-Side Pre-Run Resource Validation (Puppet 3.7 and Later)
 
-A resource may have prerequisites on the target, without which it cannot be synced. In some cases, if the absence of these prerequisites would be catastrophic, you may want to abort the whole catalog run if you detect a missing prerequisite.
+A resource can have prerequisites on the target, without which it cannot be synced. In some cases, if the absence of these prerequisites would be catastrophic, you might want to abort the whole catalog run if you detect a missing prerequisite.
 
 In this situation, you can define a method in your type named `pre_run_check`. This method can do any check you want. It should take no arguments, and should raise a `Puppet::Error` if the catalog run should be aborted.
 

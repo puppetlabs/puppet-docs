@@ -32,7 +32,7 @@ In PE 2015.2 and open source Puppet 4.0 and onward, we use the same Puppet agent
 
 ## Platforms with packages
 
-We publish and test official `puppet-agent` packages for these platforms. Less common and sometimes brand new platforms may not be automatically tested, but packages are still available for them.
+We publish and test official `puppet-agent` packages for these platforms. Less common and sometimes brand new platforms might not be automatically tested, but packages are still available for them.
 
 For platforms supported in Puppet Enterprise, see its [system requirements]({{pe}}/sys_req_os.html).
 

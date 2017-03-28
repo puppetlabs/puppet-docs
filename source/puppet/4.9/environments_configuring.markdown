@@ -86,7 +86,7 @@ For best performance, you should:
 
 * Set `environment_timeout = unlimited` in puppet.conf.
 * Change your code deployment process to refresh the Puppet master whenever you deploy updated code. (For example, set a `postrun` command in your r10k config or add a step to your CI job.)
-    * With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You may need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
+    * With Puppet Server, refresh environments by [calling the `environment-cache` API endpoint.][environment-cache] You might need to allow access in [puppetserver.conf][]'s `puppet-admin` section.
     * With a Rack Puppet master, restart the web server or the
       application server. Passenger lets you touch a `restart.txt` file to
       refresh an application without restarting Apache; see the [Passenger docs](./passenger.html)

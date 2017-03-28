@@ -5,7 +5,7 @@ title: "Environments: Limitations of environments"
 
 [env_var]: ./environments.html#referencing-the-environment-in-manifests
 
-Environments solve a lot of problems in a convenient way, but they still have some limitations. Some of these are just features Puppet doesn't have yet, and some of them are outside Puppet's control. We want to fix all of them, but some may take a lot longer than others.
+Environments solve a lot of problems in a convenient way, but they still have some limitations. Some of these are just features Puppet doesn't have yet, and some of them are outside Puppet's control. We want to fix all of them, but some will take a lot longer than others.
 
 ## Some plugins running on the Puppet master are weird
 
