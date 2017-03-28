@@ -59,7 +59,7 @@ A concise reference to Puppet's usage and internals. Use the left sidebar of any
 ### Other reference material
 
 * [Versioned References](/references/) --- Inline reference docs from Puppet's past and present.
-* [History of the Puppet Language](/guides/language_history.html) --- A table showing which language features were added and removed in which Puppet versions.
+* [History of the Puppet Language](/puppet/latest/language_history.html) --- A table showing which language features were added and removed in which Puppet versions.
 
 
 * * *
@@ -124,7 +124,7 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 * [Writing Custom Facts](/facter/latest/custom_facts.html)
 * [Writing Custom Functions](/guides/custom_functions.html)
 * [Writing Custom Types & Providers](/guides/custom_types.html)
-* [Complete Resource Example](/guides/complete_resource_example.html) --- More information on custom types & providers
+* [Complete Resource Example](/puppet/latest/complete_resource_example.html) --- More information on custom types & providers
 * [Provider Development](/guides/provider_development.html) --- More about providers.
 
 
