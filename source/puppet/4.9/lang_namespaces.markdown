@@ -16,12 +16,12 @@ title: "Language: Namespaces and autoloading"
 [relative_below]: #aside-historical-context
 
 
-[Class][classes] and [defined type][define] names may be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module].
+[Class][classes] and [defined type][define] names can be broken up into segments called **namespaces.** Namespaces tell the autoloader how to find the class or defined type in your [modules][module].
 
 ## Syntax
 
 
-Puppet [class][classes] and [defined type][define] names may consist of any number of namespace segments separated by the `::` (double colon) namespace separator. (This separator is analogous to the `/` \[slash\] in a file path.)
+Puppet [class][classes] and [defined type][define] names can consist of any number of namespace segments separated by the `::` (double colon) namespace separator. (This separator is analogous to the `/` \[slash\] in a file path.)
 
 ``` puppet
 class apache { ... }

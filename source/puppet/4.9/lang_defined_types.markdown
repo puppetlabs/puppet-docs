@@ -184,9 +184,9 @@ A define statement isn't an expression, and can't be used where a value is expec
 >
 > You should usually only load defined types from modules. Although the additional options below this aside will work, they are not recommended.
 
-You can also put define statements in [the site manifest][sitedotpp]. If you do so, they may be placed anywhere in the file and are not evaluation-order dependent.
+You can also put define statements in [the main manifest][sitedotpp]. If you do so, they can be placed anywhere in the file and are not evaluation-order dependent.
 
-Define statements may also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet, but may become so in a future release.
+Define statements can also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet, but might become so in a future release.
 
 
 ## Naming

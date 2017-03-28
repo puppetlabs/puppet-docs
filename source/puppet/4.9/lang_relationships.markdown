@@ -290,9 +290,9 @@ warning: <RESOURCE>: Skipping because of failed dependencies
 
 It then continues to apply any unrelated resources. Any resources that depend on the skipped resource are also skipped.
 
-This helps prevent inconsistent system state by causing a "clean" failure instead of attempting to apply a resource whose prerequisites may be broken.
+This helps prevent inconsistent system state by causing a "clean" failure instead of attempting to apply a resource whose prerequisites might be broken.
 
-> **Note**: Although a resource won't be applied if a dependency fails, it can still receive and respond to refresh events from other, successful, dependencies. This is because refreshes are handled semi-independently of the normal resource sync process. It is an outstanding design issue, and may be tracked at [issue #7486](http://projects.puppetlabs.com/issues/7486).
+> **Note**: Although a resource won't be applied if a dependency fails, it can still receive and respond to refresh events from other, successful, dependencies. This is because refreshes are handled semi-independently of the normal resource sync process. It is an outstanding design issue, and can be tracked at [issue #7486](http://projects.puppetlabs.com/issues/7486).
 
 ### Dependency cycles
 

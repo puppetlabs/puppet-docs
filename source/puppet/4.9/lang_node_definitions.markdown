@@ -80,7 +80,7 @@ A node statement's **name** must be one of the following:
 * A [regular expression][regex].
 * The bare word `default`.
 
-You may not create two node statements with the same name.
+You cannot create two node statements with the same name.
 
 
 ### Multiple names
