@@ -81,13 +81,13 @@ title: Puppet言語スタイルガイド
     <p> <strong>適切な例</strong>：
 </p>
 
-    <pre><code>file { '/tmp/foo':
+    <pre><code class="language-puppet">file { '/tmp/foo':
 </code></pre>
 
     <p> <strong>不適切な例</strong>：
 </p>
 
-    <pre><code># space between title and colon
+    <pre><code class="language-puppet"># space between title and colon
 file { '/tmp/foo' :
   
 # no spaces
@@ -114,7 +114,7 @@ file     { '/tmp/foo':
 <p> <strong>適切な例</strong>：
 </p>
 
-<pre><code># array with multiple elements on multiple lines
+<pre><code class="language-puppet"># array with multiple elements on multiple lines
 service { 'foo':
   require =&gt; [
     File['foo_config'],
@@ -132,7 +132,7 @@ $myhash = {
 <p> <strong>不適切な例</strong>：
 </p>
 
-<pre><code># array with multiple elements on same line
+<pre><code class="language-puppet"># array with multiple elements on same line
 service { 'foo':
   require =&gt; [ File['foo_config'], File['foo_sysconfig'], ],
 }
@@ -178,14 +178,14 @@ service { 'foo':
     <p> <strong>適切な例：</strong>
 </p>
 
-    <pre><code>  "/etc/${file}.conf"
+    <pre><code class="language-puppet">  "/etc/${file}.conf"
   "${::operatingsystem} is not supported by ${module_name}"
 </code></pre>
 
     <p> <strong>不適切な例：</strong>
 </p>
 
-    <pre><code>  "/etc/$file.conf"
+    <pre><code class="language-puppet">  "/etc/$file.conf"
   "$::operatingsystem is not supported by $module_name"
 </code></pre>
   </li>
@@ -196,13 +196,13 @@ service { 'foo':
     <p> <strong>適切な例：</strong>
 </p>
 
-    <pre><code>warning("Class['apache'] parameter purge_vdir is deprecated in favor of purge_configs")
+    <pre><code class="language-puppet">warning("Class['apache'] parameter purge_vdir is deprecated in favor of purge_configs")
 </code></pre>
 
     <p> <strong>不適切な例：</strong>
 </p>
 
-    <pre><code>warning('Class[\'apache\'] parameter purge_vdir is deprecated in favor of purge_configs')
+    <pre><code class="language-puppet">warning('Class[\'apache\'] parameter purge_vdir is deprecated in favor of purge_configs')
 </code></pre>
   </li>
 </ul>
@@ -225,14 +225,14 @@ service { 'foo':
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code># Configures NTP
+<pre><code class="language-puppet"># Configures NTP
 file { '/etc/ntp.conf': … }
 </code></pre>
 
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>/* Creates file /etc/ntp.conf */
+<pre><code class="language-puppet">/* Creates file /etc/ntp.conf */
 file { '/etc/ntp.conf': … }
 </code></pre>
 
@@ -246,7 +246,7 @@ file { '/etc/ntp.conf': … }
 <p> すべてのモジュールに対して、メタデータをmetadata.jsonファイル内に定義する必要があります。 メタデータは以下のフォーマットに従います。
 </p>
 
-<pre><code>    {
+<pre><code class="language-puppet">    {
       "name": "examplecorp-mymodule",
       "version": "0.1.0",
       "author": "Pat",
@@ -300,13 +300,13 @@ file { '/etc/ntp.conf': … }
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    package { 'openssh': ensure =&gt; present }
+<pre><code class="language-puppet">    package { 'openssh': ensure =&gt; present }
 </code></pre>
 
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    package { openssh: ensure =&gt; present }
+<pre><code class="language-puppet">    package { openssh: ensure =&gt; present }
 </code></pre>
 
 <p> 引用符に関するこの要件は、文字列として評価される式には適用されません。
@@ -320,7 +320,7 @@ file { '/etc/ntp.conf': … }
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    exec { 'hambone':
+<pre><code class="language-puppet">    exec { 'hambone':
       path =&gt; '/usr/bin',
       cwd  =&gt; '/tmp',
     }
@@ -342,7 +342,7 @@ file { '/etc/ntp.conf': … }
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    exec { 'hambone':
+<pre><code class="language-puppet">    exec { 'hambone':
     path  =&gt; '/usr/bin',
     cwd =&gt; '/tmp',
     }
@@ -356,7 +356,7 @@ file { '/etc/ntp.conf': … }
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    file { '/tmp/readme.txt':
+<pre><code class="language-puppet">    file { '/tmp/readme.txt':
       ensure =&gt; file,
       owner  =&gt; '0',
       group  =&gt; '0',
@@ -370,7 +370,7 @@ file { '/etc/ntp.conf': … }
 <p> <strong>適切な例</strong>：
 </p>
 
-<pre><code>$file_ownership = {
+<pre><code class="language-puppet">$file_ownership = {
   "owner" =&gt; "root",
   "group" =&gt; "wheel",
   "mode"  =&gt; "0644",
@@ -390,7 +390,7 @@ file { "/etc/passwd":
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    file { '/tmp/dir':
+<pre><code class="language-puppet">    file { '/tmp/dir':
       ensure =&gt; directory,
     }
 
@@ -410,7 +410,7 @@ file { "/etc/passwd":
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    file { '/tmp/dir':
+<pre><code class="language-puppet">    file { '/tmp/dir':
       ensure =&gt; directory,
     }
 
@@ -433,7 +433,7 @@ file { "/etc/passwd":
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>$defaults = { &lt; hash of defaults &gt; }
+<pre><code class="language-puppet">$defaults = { &lt; hash of defaults &gt; }
 
 file {
   default : 
@@ -447,7 +447,7 @@ file {
 <p> <strong>適切な例：defaultを含む繰り返しパターン：</strong>
 </p>
 
-<pre><code>$defaults = { &lt; hash of defaults &gt; }
+<pre><code class="language-puppet">$defaults = { &lt; hash of defaults &gt; }
 
 file {
   default : 
@@ -464,7 +464,7 @@ file {
 <p> <strong>不適切な例：関係のないリソースのグループ化：</strong>
 </p>
 
-<pre><code>file {
+<pre><code class="language-puppet">file {
   '/tmp/foo':
     owner =&gt; 'admin',
     mode =&gt; '0644',
@@ -495,7 +495,7 @@ file {
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    file { '/var/log/syslog':
+<pre><code class="language-puppet">    file { '/var/log/syslog':
       ensure =&gt; link,
       target =&gt; '/var/log/messages',
     }
@@ -504,7 +504,7 @@ file {
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    file { '/var/log/syslog':
+<pre><code class="language-puppet">    file { '/var/log/syslog':
       ensure =&gt; '/var/log/messages',
     }
 </code></pre>
@@ -521,7 +521,7 @@ file {
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>file { '/var/log/syslog':
+<pre><code class="language-puppet">file { '/var/log/syslog':
       ensure =&gt; file,
       mode   =&gt; '0644',
   }
@@ -530,7 +530,7 @@ file {
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    file { '/var/log/syslog':
+<pre><code class="language-puppet">    file { '/var/log/syslog':
       ensure =&gt; present,
       mode   =&gt; 644,
     }
@@ -544,7 +544,7 @@ file {
 <p> <strong>適切な例</strong>：
 </p>
 
-<pre><code>file {
+<pre><code class="language-puppet">file {
   default :
     ensure =&gt; 'file'
     mode   =&gt; '0666' ;
@@ -594,7 +594,7 @@ $array_of_paths.each | $path |  {
 <p> <strong>不適切な例</strong>：
 </p>
 
-<pre><code>
+<pre><code class="language-puppet">
 file {
   '/foo':
     user     =&gt; root,
@@ -624,7 +624,7 @@ file { $array_of_paths :
 <p> <strong>許容可能な例</strong>：
 </p>
 
-<pre><code># site.pp:
+<pre><code class="language-puppet"># site.pp:
  
 Package {
   provider =&gt; 'zypper',
@@ -634,7 +634,7 @@ Package {
 <p> <strong>不適切な例</strong>：
 </p>
 
-<pre><code># /etc/puppetlabs/puppet/modules/apache/manifests/init.pp
+<pre><code class="language-puppet"># /etc/puppetlabs/puppet/modules/apache/manifests/init.pp
 File {
   owner =&gt; 'nobody',
   group =&gt; 'nogroup',
@@ -655,7 +655,7 @@ concat { $config_file_path:
 <p> <strong>適切な例</strong>：
 </p>
 
-<pre><code>file { '/foo':
+<pre><code class="language-puppet">file { '/foo':
   ensure =&gt; 'file',
   owner  =&gt; 'root',
 }
@@ -664,7 +664,7 @@ concat { $config_file_path:
 <p> <strong>不適切な例</strong>：
 </p>
 
-<pre><code># too many levels of indentation
+<pre><code class="language-puppet"># too many levels of indentation
 file { '/foo':
     ensure =&gt; 'file',
     owner  =&gt; 'root',
@@ -692,7 +692,7 @@ owner  =&gt; 'root',
 <p> ボディが複数ある場合、タイトルごとに個別の行に記述してインデントします。 複数ボディ間ですべての矢印の位置を合わせても構いませんが、ボディごとに位置を合わせた方が読みやすい場合、全体で位置を揃える必要はありません。
 </p>
 
-<pre><code>file {
+<pre><code class="language-puppet">file {
   default:
     * =&gt; $local_defaults;
  
@@ -712,7 +712,7 @@ owner  =&gt; 'root',
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    # /etc/puppetlabs/puppet/modules/apache/manifests
+<pre><code class="language-puppet">    # /etc/puppetlabs/puppet/modules/apache/manifests
 
     # init.pp
       class apache { }
@@ -731,7 +731,7 @@ owner  =&gt; 'root',
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>#manifests/init.pp:
+<pre><code class="language-puppet">#manifests/init.pp:
 class { 'foo':
   include bar
 }
@@ -740,7 +740,7 @@ class { 'foo':
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>#manifests/init.pp:
+<pre><code class="language-puppet">#manifests/init.pp:
 class { 'foo':
 ...
 }
@@ -772,7 +772,7 @@ include bar
 <p> init.pp内：
 </p>
 
-<pre><code># The `myservice` class installs packages, ensures the state of 'myservice', and creates 
+<pre><code class="language-puppet"># The `myservice` class installs packages, ensures the state of 'myservice', and creates 
 # a tempfile with given content. If the tempfile contents contains digits,
 # they are filtered out.
 #
@@ -823,7 +823,7 @@ class myservice (
 <p> モジュール<code>hiera.yaml</code>内：
 </p>
 
-<pre><code>---
+<pre><code class="language-puppet">---
 version: 5
 defaults:
   data_hash: yaml_data
@@ -841,20 +841,20 @@ hierarchy:
 <p> モジュール<code>data/common.yaml</code>内：
 </p>
 
-<pre><code>myservice::service_ensure: running
+<pre><code class="language-puppet">myservice::service_ensure: running
 </code></pre>
 
 <p> モジュール<code>data/os/centos.yaml</code>内：
 </p>
 
-<pre><code>myservice::package_list:
+<pre><code class="language-puppet">myservice::package_list:
   - 'myservice-centos-package'
 </code></pre>
 
 <p> モジュール<code>data/os/solaris.yaml</code>内：
 </p>
 
-<pre><code>myservice::package_list:
+<pre><code class="language-puppet">myservice::package_list:
   - 'myservice-solaris-package1'
   - 'myservice-solaris-package2'
 </code></pre>
@@ -875,13 +875,13 @@ hierarchy:
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>Package['httpd'] -&gt; Service['httpd']
+<pre><code class="language-puppet">Package['httpd'] -&gt; Service['httpd']
 </code></pre>
 
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code># arrows are not all pointing to the right
+<pre><code class="language-puppet"># arrows are not all pointing to the right
 Service['httpd'] &lt;- Package['httpd']
  
 # must be all on one line
@@ -897,7 +897,7 @@ Package['httpd']
 <p> <strong>非常に不適切な例：</strong>
 </p>
 
-<pre><code>    class apache {
+<pre><code class="language-puppet">    class apache {
       class ssl { ... }
     }
 </code></pre>
@@ -905,7 +905,7 @@ Package['httpd']
 <p> <strong>非常に不適切な例：</strong>
 </p>
 
-<pre><code>    class apache {
+<pre><code class="language-puppet">    class apache {
       define config() { ... }
     }
 </code></pre>
@@ -918,7 +918,7 @@ Package['httpd']
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>class dhcp (
+<pre><code class="language-puppet">class dhcp (
   $dnsdomain,
   $nameservers,
   $default_lease_time = 3600,
@@ -930,7 +930,7 @@ Package['httpd']
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    class ntp (
+<pre><code class="language-puppet">    class ntp (
       $options   = "iburst",
       $servers,
       $multicast = false
@@ -948,7 +948,7 @@ Package['httpd']
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code># parameter defaults provided via APL &gt; puppet 4.9.0
+<pre><code class="language-puppet"># parameter defaults provided via APL &gt; puppet 4.9.0
 class my_module(
   String $source,
   String $config )  {
@@ -959,7 +959,7 @@ class my_module(
 <p> モジュールのルートで<code>hiera.yaml</code>を使用する例：
 </p>
 
-<pre><code>---
+<pre><code class="language-puppet">---
 version: 5
 default_hierarchy: 
   - name: "defaults"
@@ -970,7 +970,7 @@ default_hierarchy:
 <p> <code>data/defaults.yaml</code>ファイルを使用する例：
 </p>
 
-<pre><code>mymodule::source: 'default source value'
+<pre><code class="language-puppet">mymodule::source: 'default source value'
 mymodule::config: 'default config value'
 </code></pre>
 
@@ -980,7 +980,7 @@ mymodule::config: 'default config value'
 <p> <strong>Puppet 4.8以前</strong>：
 </p>
 
-<pre><code># using params.pp pattern &lt; Puppet 4.9.0
+<pre><code class="language-puppet"># using params.pp pattern &lt; Puppet 4.9.0
 class my_module(
   String $source = $mymodule::params::source,
   String $config  = $mymodule::params::config)  {
@@ -999,7 +999,7 @@ class my_module(
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>define haproxy::frontend (
+<pre><code class="language-puppet">define haproxy::frontend (
   $ports            = undef,
   $ipaddress        = [$::ipaddress],
   $bind             = undef,
@@ -1026,7 +1026,7 @@ class my_module(
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    class ssh { ... }
+<pre><code class="language-puppet">    class ssh { ... }
 
     class ssh::client inherits ssh { ... }
 
@@ -1036,7 +1036,7 @@ class my_module(
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    class ssh inherits server { ... }
+<pre><code class="language-puppet">    class ssh inherits server { ... }
 
     class ssh::client inherits workstation { ... }
 
@@ -1073,7 +1073,7 @@ class my_module(
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>define apache::listen {
+<pre><code class="language-puppet">define apache::listen {
   # Template uses: $name
   concat::fragment { 'Listen port':
     ensure  =&gt; present,
@@ -1112,19 +1112,19 @@ class my_module(
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    $facts[::operatingsystem]
+<pre><code class="language-puppet">    $facts[::operatingsystem]
 </code></pre>
 
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    $::operatingsystem
+<pre><code class="language-puppet">    $::operatingsystem
 </code></pre>
 
 <p> <strong>非常に不適切な例</strong>：
 </p>
 
-<pre><code>    $operatingsystem
+<pre><code class="language-puppet">    $operatingsystem
 </code></pre>
 
 <h3 id="variable-format">13.3. 変数のフォーマット</h3>
@@ -1135,7 +1135,7 @@ class my_module(
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>$foo_bar
+<pre><code class="language-puppet">$foo_bar
 $some_long_variable
 $foo_bar123
 </code></pre>
@@ -1143,7 +1143,7 @@ $foo_bar123
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>$fooBar
+<pre><code class="language-puppet">$fooBar
 $someLongVariable
 $foo-bar123
 </code></pre>
@@ -1158,7 +1158,7 @@ $foo-bar123
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    $file_mode = $::operatingsystem ? {
+<pre><code class="language-puppet">    $file_mode = $::operatingsystem ? {
       'debian' =&gt; '0007',
       'redhat' =&gt; '0776',
        default =&gt; '0700',
@@ -1174,7 +1174,7 @@ $foo-bar123
 <p> <strong>不適切な例：</strong>
 </p>
 
-<pre><code>    file { '/tmp/readme.txt':
+<pre><code class="language-puppet">    file { '/tmp/readme.txt':
       ensure  =&gt; file,
       content =&gt; "Hello World\n",
       mode    =&gt; $::operatingsystem ? {
@@ -1199,7 +1199,7 @@ $foo-bar123
 <p> <strong>適切な例：</strong>
 </p>
 
-<pre><code>    case $::operatingsystem {
+<pre><code class="language-puppet">    case $::operatingsystem {
       'centos': {
         $version = '1.2.3'
       }
@@ -1225,7 +1225,7 @@ $foo-bar123
 <p> モジュールのおもなユースケースに対して、そのモジュールの/examplesディレクトリ内に対応するサンプルマニフェストが用意されています。
 </p>
 
-<pre><code>modulepath/apache/examples/{usecase}.pp
+<pre><code class="language-puppet">modulepath/apache/examples/{usecase}.pp
 </code></pre>
 
 <p> サンプルマニフェストは、クラスまたは定義リソース型の宣言方法を明確に示す例となります。 制約のあるスタンドアロン方式でも<code>puppet apply</code>が正しく実行されるようにするため、サンプルマニフェストには対応するクラスに必要なすべてのクラスの宣言が含まれています。
@@ -1267,7 +1267,7 @@ $foo-bar123
 <p> 以下に例を示します。
 </p>
 
-<pre><code># @param config_epp Specifies a file to act as a EPP template for the config file. Valid 
+<pre><code class="language-puppet"># @param config_epp Specifies a file to act as a EPP template for the config file. Valid 
 # options: a path (absolute, or relative to the module path). Example value: 
 # 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and**
 # the `config_template` param.
