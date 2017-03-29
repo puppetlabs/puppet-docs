@@ -9,7 +9,7 @@ title: "Language: Basics"
 [usecacheonfailure]: ./configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [classes]: ./lang_classes.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [resources]: ./lang_resources.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html
@@ -30,13 +30,13 @@ title: "Language: Basics"
 
 Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
 
-> To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](/guides/language_history.html).
+> To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](./language_history.html).
 
 ## Resources, classes, and nodes
 
 The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility and convenience to the way resources are declared.
 
-Groups of resources can be organized into **[classes][],** which are larger units of configuration. While a resource may describe a single file or package, a class may describe everything needed to configure an entire service or application (including any number of packages, config files, service daemons, and maintenance tasks). Smaller classes can then be combined into larger classes which describe entire custom system roles, such as "database server" or "web application worker."
+Groups of resources can be organized into **[classes][],** which are larger units of configuration. While a resource might describe a single file or package, a class can describe everything needed to configure an entire service or application (including any number of packages, config files, service daemons, and maintenance tasks). Smaller classes can then be combined into larger classes which describe entire custom system roles, such as "database server" or "web application worker."
 
 Nodes that serve different roles will generally get different sets of classes. The task of configuring which classes will be applied to a given node is called **node classification.**  Nodes can be classified in the Puppet language using [node definitions][node]; they can also be classified using node-specific data from outside your manifests, such as that from an [ENC][] or [Hiera][].
 
@@ -51,9 +51,9 @@ In the rest of this document, we try to call out areas where the order of statem
 Puppet language files are called **manifests,** and are named with the `.pp` file extension. Manifest files:
 
 * Must use UTF8 encoding
-* May use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline])
+* Can use Unix (LF) or Windows (CRLF) line breaks (note that the line break format also affects [literal line breaks in strings][string_newline])
 
-Puppet always begins compiling with a single manifest (which may be broken up into several pieces), called the "site manifest" or "main manifest." See [the reference page on the main manifest][site_manifest] for details about this special file/directory.
+Puppet always begins compiling with the **main manifest,** which can be either a single file or a directory containing several files. (Some documents also call this the "site manifest.") See [the reference page on the main manifest][site_manifest] for details about this special file/directory.
 
 Any [classes][] [declared][] in the main manifest can be [autoloaded][autoload] from manifest files in [modules][]. Puppet will also autoload any classes declared by an optional [external node classifier][enc]. See [the reference page on catalog compilation][compilation] for details.
 

@@ -39,7 +39,7 @@ Puppet's confdir contains several config files and the SSL data. Their locations
 
 Almost everything in the confdir has its own page of documentation.
 
-Items labeled "master only" below may also be present on standalone Puppet apply nodes, since they act as both masters and agents.
+Items labeled "master only" below can also be present on standalone Puppet apply nodes, since they act as both masters and agents.
 
 ### SSL Data
 

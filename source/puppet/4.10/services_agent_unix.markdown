@@ -29,7 +29,7 @@ For details about invoking the Puppet agent command, see [the puppet agent man p
 
 This page describes how Puppet agent behaves on \*nix systems. For information about Windows, see [Puppet Agent on Windows Systems][win_agent].
 
-Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
+Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others have OS-specific features. See the [resource type reference][] for details.
 
 ## Puppet agent's run environment
 
@@ -88,7 +88,7 @@ In a normal Puppet site, every node should periodically do configuration runs, t
 On \*nix nodes, there are three main ways to do this:
 
 * **Run Puppet agent as a service.** The easiest method. The Puppet agent daemon will do configuration runs at a set interval, which can be configured.
-* **Make a cron job that runs Puppet agent.** Requires more manual configuration, but a good choice if you want to reduce the number of persistent processes on your systems. (This was more important in the past, but some versions of Ruby may still have performance and memory use issues with long-lived daemons.)
+* **Make a cron job that runs Puppet agent.** Requires more manual configuration, but a good choice if you want to reduce the number of persistent processes on your systems. (This was more important in the past, but some versions of Ruby might still have performance and memory use issues with long-lived daemons.)
 * **Only run Puppet agent on demand.** To trigger runs on groups of systems, you can use Puppet Enterprise's built-in orchestration features. (Open source users can also deploy [MCollective][].)
 
 Choose whichever one works best for your infrastructure and culture.
@@ -133,7 +133,7 @@ If you don't need an aggressive schedule of configuration runs, a longer run int
 
 If [the `onetime` setting][onetime] is set to `true`, the Puppet agent command will do one configuration run and then quit. If [the `daemonize` setting][daemonize] is set to `false`, the command will stay in the foreground until the run is finished; if set to `true`, it will do the run in the background.
 
-This behavior is good for building a cron job that does configuration runs. You may also want to use the [`splay`][splay] and [`splaylimit`][splaylimit] settings to keep the Puppet master from getting overwhelmed, since the system time is probably synchronized on all of your agent nodes.
+This behavior is good for building a cron job that does configuration runs. You might also want to use the [`splay`][splay] and [`splaylimit`][splaylimit] settings to keep the Puppet master from getting overwhelmed, since the system time is probably synchronized on all of your agent nodes.
 
 You can use the Puppet resource command to set up this cron job. Below is an example that runs Puppet once an hour; adjust the path to the Puppet command if you are not using Puppet Enterprise.
 

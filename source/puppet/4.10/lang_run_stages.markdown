@@ -38,7 +38,7 @@ In the above example, all classes assigned to the `first` stage will be applied 
 
 ## Assigning classes to stages
 
-Once stages have been declared, a [class][] may be assigned to a custom stage with the `stage` metaparameter.
+Once stages have been declared, a [class][] can be assigned to a custom stage with the `stage` metaparameter.
 
 ``` puppet
 class { 'apt-keys':

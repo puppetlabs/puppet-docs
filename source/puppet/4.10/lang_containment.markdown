@@ -51,7 +51,7 @@ Resources of both native and defined resource types are automatically contained 
 
 Having classes contain other classes can be very useful, especially in larger modules where you want to improve code readability by moving chunks of implementation into separate files.
 
-However, unlike resources, Puppet does not _automatically_ contain classes when they are declared inside another class. This is because classes may be declared in several places via `include` and similar functions. Most of these places shouldn't contain the class, and trying to contain it everywhere would cause huge problems.
+However, unlike resources, Puppet does not _automatically_ contain classes when they are declared inside another class. This is because classes can be declared in several places via `include` and similar functions. Most of these places shouldn't contain the class, and trying to contain it everywhere would cause huge problems.
 
 Instead, you must _manually_ contain any classes that need to be contained.
 

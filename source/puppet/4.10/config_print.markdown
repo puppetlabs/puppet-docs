@@ -74,7 +74,7 @@ To see the settings the Puppet master service and the Puppet cert command would 
 * Specify `--section master`.
 * Use the `--environment` option to specify the environment you want settings for, or let it default to `production`.
 * Remember to use `sudo`.
-* If your Puppet master is managed as a rack application (e.g. with Passenger), check the `config.ru` file to make sure it's using the [confdir][] and [vardir][] that you expect. If it's using non-standard ones, you will need to specify them on the command line with the `--confdir` and `--vardir` options; otherwise you may not see the correct values for settings.
+* If your Puppet master is managed as a rack application (e.g. with Passenger), check the `config.ru` file to make sure it's using the [confdir][] and [vardir][] that you expect. If it's using non-standard ones, you will need to specify them on the command line with the `--confdir` and `--vardir` options; otherwise you might not see the correct values for settings.
 
 ### Examples
 
@@ -96,7 +96,7 @@ To see the settings the Puppet agent service would use:
 
 * Specify `--section agent`.
 * Remember to use `sudo`.
-* If you are seeing something unexpected, check your Puppet agent init script or cron job to make sure it is using the standard [confdir][] and [vardir][], is running as root, and isn't overriding other settings with command line options. If it's doing anything unusual, you may have to set more options for the config print command.
+* If you are seeing something unexpected, check your Puppet agent init script or cron job to make sure it is using the standard [confdir][] and [vardir][], is running as root, and isn't overriding other settings with command line options. If it's doing anything unusual, you might have to set more options for the config print command.
 
 ### Example
 
@@ -112,7 +112,7 @@ To see the settings the Puppet apply command would use:
 
 * Specify `--section user`.
 * Remember to use `sudo`.
-* If you are seeing something unexpected, check the cron job or script that is responsible for configuring the machine with Puppet apply. Make sure it is using the standard [confdir][] and [vardir][], is running as root, and isn't overriding other settings with command line options. If it's doing anything unusual, you may have to set more options for the config print command.
+* If you are seeing something unexpected, check the cron job or script that is responsible for configuring the machine with Puppet apply. Make sure it is using the standard [confdir][] and [vardir][], is running as root, and isn't overriding other settings with command line options. If it's doing anything unusual, you might have to set more options for the config print command.
 
 ### Example
 

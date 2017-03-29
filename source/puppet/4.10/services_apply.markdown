@@ -11,7 +11,7 @@ title: "Puppet's services: Puppet apply"
 [manifest_setting]: ./configuration.html#manifest
 [env_main_manifest]: ./environments_creating.html#the-main-manifest
 [modules]: ./modules_fundamentals.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [http_report]: ./report.html#http
 [puppetdb]: {{puppetdb}}/
 [report handlers]: ./report.html
@@ -28,7 +28,7 @@ For details about invoking the Puppet apply command, see [the puppet apply man p
 
 Puppet apply runs similarly on both \*nix and Windows systems.
 
-Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others may have OS-specific features. See the [resource type reference][] for details.
+Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others have OS-specific features. See the [resource type reference][] for details.
 
 ## Puppet apply's run environment
 
@@ -77,9 +77,9 @@ If you need to install packages into a directory controlled by a non-root user, 
 
 By default, Puppet apply does not communicate over the network. It uses its local collection of [modules][] for any file sources, and does not submit reports to a central server.
 
-Depending on your system and the resources you are managing, it may download packages from your configured package repositories or access files on UNC shares.
+Depending on your system and the resources you are managing, it might download packages from your configured package repositories or access files on UNC shares.
 
-If you have configured an [external node classifier (ENC)][enc], your ENC script might create an outbound HTTP connection. Additionally, if you've configured [the HTTP report processor][http_report], Puppet agent may send reports via HTTP or HTTPS.
+If you have configured an [external node classifier (ENC)][enc], your ENC script might create an outbound HTTP connection. Additionally, if you've configured [the HTTP report processor][http_report], Puppet agent sends reports via HTTP or HTTPS.
 
 If you have configured [PuppetDB][], Puppet apply will create outbound HTTPS connections to PuppetDB.
 

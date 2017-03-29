@@ -25,4 +25,4 @@ Once you're done with a temporary environment, you can delete it. Usually, the n
 
 ## Divided infrastructure
 
-If parts of your infrastructure are managed by different teams that don't need to coordinate their code, it may make sense to split them into environments.
+If parts of your infrastructure are managed by different teams that don't need to coordinate their code, it might make sense to split them into environments.

@@ -120,7 +120,7 @@ The following variable names are reserved. Unless otherwise noted, you can't ass
 
 Puppet limits the characters you can use when naming language constructs.
 
-> Note: In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and may cease to work at any time. Removal of these bug cases will not be limited to major releases.
+> Note: In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and might cease to work at any time. Removal of these bug cases will not be limited to major releases.
 
 ### Variables
 

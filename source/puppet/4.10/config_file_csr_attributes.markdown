@@ -41,7 +41,7 @@ The `csr_attributes` file must be a YAML hash containing one or both of the foll
 
 The value of each key must also be a hash, where:
 
-* Each key is a valid [object identifier (OID)](http://en.wikipedia.org/wiki/Object_identifier). Note that [Puppet-specific OIDs][puppet_oids] may optionally be referenced by short name instead of by numeric ID. (In the example above, `pp_uuid` is a short name for a Puppet-specific OID.)
+* Each key is a valid [object identifier (OID)](http://en.wikipedia.org/wiki/Object_identifier). Note that [Puppet-specific OIDs][puppet_oids] can optionally be referenced by short name instead of by numeric ID. (In the example above, `pp_uuid` is a short name for a Puppet-specific OID.)
 * Each value is an object that can be cast to a string (that is, numbers are allowed but arrays are not).
 
 ### Allowed OIDs for custom attributes

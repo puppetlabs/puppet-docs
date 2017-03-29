@@ -199,7 +199,7 @@ To maximize the usability of your module, make it flexible by adding parameters.
 
 You must not hardcode data in your modules, and having more parameters is the best alternative. Hardcoding data in your module makes it inflexible, and means your module requires manifest changes to be used in even slightly different circumstances.
 
-Avoid adding parameters that allow you to override templates. When your parameters allow  template overrides, users may override your template with a custom template that contains additional hardcoded parameters. Hardcoded parameters in templates inhibits flexibility over time. It is far better to create more parameters and then modify the original template, or have a parameter which accepts an arbitrary chunk of text added to the template, than it is to override the template with a customized one.
+Avoid adding parameters that allow you to override templates. When your parameters allow  template overrides, users can override your template with a custom template that contains additional hardcoded parameters. Hardcoded parameters in templates inhibits flexibility over time. It is far better to create more parameters and then modify the original template, or have a parameter which accepts an arbitrary chunk of text added to the template, than it is to override the template with a customized one.
 
 For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppet.com/puppetlabs/apache).
 

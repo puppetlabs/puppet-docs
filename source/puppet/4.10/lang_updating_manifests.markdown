@@ -153,7 +153,7 @@ The `if` expression produces a value of `undef`, which is then thrown away. Note
 If Puppet raises a non-productive expression error about your code, you should be able to remove the offending statements without changing the code's behavior.
 
 
-## Check for bare words that may now be reserved
+## Check for bare words that might now be reserved
 
 More reserved words were added in Puppet 4.0, so check your manifests for any un-quoted strings on [the reserved words list][reserved] and quote them as needed.
 
@@ -179,7 +179,7 @@ Only certain functions are allowed to be called without parentheses. Read the [d
 
 ## Check your regular expressions for correct syntax
 
-Puppet 4 bundles its own copy of Ruby 2.x, and the regex syntax is slightly different than Ruby 1.8.7, which you may have been running prior to upgrade. Because the two versions of Ruby use differing regex engines, your results may vary.
+Puppet 4 bundles its own copy of Ruby 2.x, and the regex syntax is slightly different than Ruby 1.8.7, which you might have been running prior to upgrade. Because the two versions of Ruby use differing regex engines, your results might vary.
 
 ## Check YAML files used by Hiera, etc. for correct syntax
 
