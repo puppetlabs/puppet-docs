@@ -11,7 +11,7 @@ title: "Language: Scope"
 [resourcedefaults]: ./lang_defaults.html
 [declare_class]: ./lang_classes.html#declaring-classes
 [lookup]: #scope-lookup-rules
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [inheritance]: ./lang_classes.html#inheritance
 [variables]: ./lang_variables.html
 [namespace]: ./lang_namespaces.html

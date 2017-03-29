@@ -15,7 +15,7 @@ title: "Language: Node definitions"
 [strings]: ./lang_data_string.html
 [inherit]: ./lang_classes.html#inheritance
 [modules]: ./modules_fundamentals.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [facts]: ./lang_variables.html#facts-and-built-in-variables
 [catalogs]: ./lang_summary.html#compilation-and-catalogs
 [strict]: ./configuration.html#stricthostnamechecking

@@ -8,7 +8,7 @@ title: "Configuration: Short list of important settings"
 [config_reference]: ./configuration.html
 [environments]: ./environments.html
 [multi_master]: /guides/scaling_multiple_masters.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [meta_noop]: ./metaparameter.html#noop
 [meta_schedule]: ./metaparameter.html#schedule
 [lang_tags]: ./lang_tags.html

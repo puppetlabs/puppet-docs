@@ -8,7 +8,7 @@ title: "Directories: The main manifest(s)"
 [confdir]: ./dirs_confdir.html
 [manifest_setting]: ./configuration.html#manifest
 [print_settings]: ./config_print.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [default_manifest]: ./configuration.html#defaultmanifest
 [disable_per_environment_manifest]: ./configuration.html#disableperenvironmentmanifest
 [environment.conf]: ./config_file_environment.html

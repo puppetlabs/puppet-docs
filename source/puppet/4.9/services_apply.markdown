@@ -11,7 +11,7 @@ title: "Puppet's services: Puppet apply"
 [manifest_setting]: ./configuration.html#manifest
 [env_main_manifest]: ./environments_creating.html#the-main-manifest
 [modules]: ./modules_fundamentals.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [http_report]: ./report.html#http
 [puppetdb]: {{puppetdb}}/
 [report handlers]: ./report.html

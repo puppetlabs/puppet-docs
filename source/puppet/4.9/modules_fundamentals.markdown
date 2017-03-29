@@ -14,7 +14,7 @@ title: "Module fundamentals"
 [custom facts]: {{facter}}/custom_facts.html
 [classes]: ./lang_classes.html
 [defined_types]: ./lang_defined_types.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [environment]: ./environments.html
 [templates]: ./lang_template.html
 [forge]: http://forge.puppetlabs.com

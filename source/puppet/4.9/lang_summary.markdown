@@ -9,7 +9,7 @@ title: "Language: Basics"
 [usecacheonfailure]: ./configuration.html#usecacheonfailure
 [fileserve]: ./modules_fundamentals.html#files
 [classes]: ./lang_classes.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [resources]: ./lang_resources.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html

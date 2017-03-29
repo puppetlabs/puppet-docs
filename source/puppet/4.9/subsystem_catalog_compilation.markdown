@@ -9,7 +9,7 @@ title: "Subsystems: Catalog compilation"
 [relationships]: ./lang_relationships.html
 [cert_extensions]: ./ssl_attributes_extensions.html
 [facts]: ./lang_facts_and_builtin_vars.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [exported resources]: ./lang_exported.html
 [puppetdb]: {{puppetdb}}/
 [functions]: ./lang_functions.html
