@@ -32,7 +32,7 @@ There are some benefits to storing node data in LDAP instead of using [node defi
 
 You can probably still use this effectively, but please consider the following:
 
-* With an antique interface like this, [he roles and profiles method][RP] is even more of a best practice that it is elsewhere. Since LDAP attributes can't configure class parameters, they're not suited for building full configurations out of component modules, so you should be hiding most of your complexity with wrapper classes, doing data lookup via Hiera, and only using LDAP to assign role classes.
+* With an antique interface like this, [the roles and profiles method][RP] is even more of a best practice than it is elsewhere. Since LDAP attributes can't configure class parameters, they're not suited for building full configurations out of component modules, so you should be hiding most of your complexity with wrapper classes, doing data lookup via Hiera, and only using LDAP to assign role classes.
 * Depending on where that LDAP data is coming from, it might make more sense to go right to the source and write a [custom Hiera backend][] that can access your business's configuration data. In fact, writing an LDAP-based Hiera backend might make more sense than using this rigid 0.2x-era interface.
 
 ## Prerequisites

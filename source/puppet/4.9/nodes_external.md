@@ -27,9 +27,9 @@ When compiling a node's catalog, Puppet includes **all** of the following:
 * Any classes specified in the node object it received from the node terminus
 * Any classes or resources which are in the site manifest but outside any node definitions
 * Any classes or resources in the most specific node definition in site.pp that matches the current node (if site.pp contains any node definitions)
-    * Note 1: If site.pp contains at least one node definition, it **must** have a node definition that matches the current node; compilation will fail if a match can't be found.
-    * Note 2: If the node name resembles a dot-separated fully qualified domain name, Puppet will make multiple attempts to match a node definition, removing the right-most part of the name each time. Thus, Puppet would first try `agent1.example.com`, then `agent1.example`, then `agent1`. This behavior isn't mimicked when calling an ENC, which is invoked only once with the agent's full node name.
-    * Note 3: If no matching node definition can be found with the node's name, Puppet will try one last time with a node name of `default`; most users include a `node default {}` statement in their site.pp file. This behavior isn't mimicked when calling an ENC.
+    * Note 1: If site.pp contains at least one node definition, it **must** have a node definition that matches the current node; compilation fails if a match can't be found.
+    * Note 2: If the node name resembles a dot-separated fully qualified domain name, Puppet makes multiple attempts to match a node definition, removing the right-most part of the name each time. Thus, Puppet would first try `agent1.example.com`, then `agent1.example`, then `agent1`. This behavior isn't mimicked when calling an ENC, which is invoked only once with the agent's full node name.
+    * Note 3: If no matching node definition can be found with the node's name, Puppet tries one last time with a node name of `default`; most users include a `node default {}` statement in their site.pp file. This behavior isn't mimicked when calling an ENC.
 
 
 ## Considerations and differences from node definitions
@@ -55,7 +55,7 @@ To tell Puppet Server to use an ENC, you need to set two [settings](./config_abo
 
 ENCs must return either a [YAML](http://www.yaml.org) hash or nothing. This hash can contain `classes`, `parameters`, and `environment` keys, and must contain at least either `classes` or `parameters`. ENCs should exit with an exit code of 0 when functioning normally, and can exit with a non-zero exit code if you want Puppet to behave as though the requested node was not found.
 
-If an ENC returns nothing or exits with a non-zero exit code, the catalog compilation will fail with a "could not find node" error, and the node will be unable to retrieve configurations.
+If an ENC returns nothing or exits with a non-zero exit code, the catalog compilation fails with a "could not find node" error, and the node is unable to retrieve configurations.
 
 ### Classes
 
@@ -87,7 +87,7 @@ Parameterized classes cannot be used with the array syntax. When using the hash 
 
 ### Parameters
 
-If present, the value of the `parameters` key must be a hash of valid variable names and associated values; these will be exposed to the compiler as top scope variables. Each value can be a string, number, array, or hash.
+If present, the value of the `parameters` key must be a hash of valid variable names and associated values; these are exposed to the compiler as top scope variables. Each value can be a string, number, array, or hash.
 
     parameters:
         ntp_servers:
@@ -99,7 +99,7 @@ If present, the value of the `parameters` key must be a hash of valid variable n
 
 ### Environment
 
-If present, the value of `environment` must be a string representing the desired [environment][] for this node. In Puppet 3 and later, this will become the only environment used by the node in its requests for catalogs and files. In Puppet 2.7 ENC-set environments are not reliable, [as noted above.][above]
+If present, the value of `environment` must be a string representing the desired [environment][] for this node. In Puppet 3 and later, this is the only environment used by the node in its requests for catalogs and files. In Puppet 2.7 ENC-set environments are not reliable, [as noted above.][above]
 
     environment: production
 
