@@ -3,9 +3,9 @@ layout: default
 title: "Assigning Nodes to Environments"
 ---
 
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [node terminus]: ./subsystem_catalog_compilation.html#step-1-retrieve-the-node-object
-[enc_environment]: /guides/external_nodes.html#environment
+[enc_environment]: ./nodes_external.html#environment
 [puppet.conf]: ./config_file_main.html
 [env_setting]: ./configuration.html#environment
 

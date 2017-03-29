@@ -28,7 +28,7 @@ An environment is just a directory that follows a few conventions:
 * It must be located on the Puppet master server(s) in one of the `environmentpath` directories, usually `$codedir/environments`. (See [the `environmentpath` section of the configuring environments page.][env_conf_path])
 * It should contain a `modules` directory. If present, it will become part of the environment's default `modulepath`.
 * It should contain a `manifests` directory, which will be the environment's default [main manifest.][manifest_dir]
-* It may contain [an `environment.conf` file][environment.conf], which can locally override several settings, including `modulepath` and `manifest`.
+* It can contain [an `environment.conf` file][environment.conf], which can locally override several settings, including `modulepath` and `manifest`.
 
 ![Diagram: A directory with four environments. Each environment contains a modules directory, a manifests directory, and an environment.conf file.](./images/environment_directories.svg)
 

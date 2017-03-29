@@ -103,7 +103,7 @@ For most content, this earliest-module-wins behavior is on an all-or-nothing, **
 >
 > - Plugins used by the Puppet master (custom resource types, custom functions)
 > - Plugins used by `puppet apply`
-> - Plugins that happen to be present in Puppet agent's modulepath (which should generally be empty, but may not be when running Puppet agent on a node that is also a Puppet master server)
+> - Plugins that happen to be present in Puppet agent's modulepath (which should generally be empty, but might not be when running Puppet agent on a node that is also a Puppet master server)
 >
 > With these plugins, the earlier module still wins, but the plugins are handled on a **per-file** basis instead of per-module. This means that if a duplicate module in a later directory has **additional** plugin files that don't exist in the winning module, those extra files will be loaded, and Puppet will use a mixture of files from the winning and duplicate modules.
 >

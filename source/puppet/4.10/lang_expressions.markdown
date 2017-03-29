@@ -152,7 +152,7 @@ Comparison operators have the following traits:
 * They take operands of **several data types**
 * They resolve to [**boolean**][boolean] values
 
-Comparisons of [numbers][numbers] automatically convert between floating point and integer values, such that `1.0 == 1` is true. Note that floating point values created by division are inexact, and mathematically equal values may be slightly unequal when turned into floating point values.
+Comparisons of [numbers][numbers] automatically convert between floating point and integer values, such that `1.0 == 1` is true. Note that floating point values created by division are inexact, and mathematically equal values might be slightly unequal when turned into floating point values.
 
 You can compare any two values with equals (`==`) or not equals (`!=`), but only strings, numbers, and data types can be compared with the less than or greater than operators that require values to have a defined order.
 
@@ -160,7 +160,7 @@ You can compare any two values with equals (`==`) or not equals (`!=`), but only
 
 Comparisons of [string][strings] values are case insensitive for characters in the US ASCII range. Characters outside this range are case sensitive.
 
-Characters are compared based on their encoding. This means that for characters in the US ASCII range, punctuation comes before digits, digits are in the order 0, 1, 2, ... 9, and letters are in alphabetical order. For characters outside US ASCII, ordering is defined by their UTF-8 character code, which may not always place them in alphabetical order for a given locale.
+Characters are compared based on their encoding. This means that for characters in the US ASCII range, punctuation comes before digits, digits are in the order 0, 1, 2, ... 9, and letters are in alphabetical order. For characters outside US ASCII, ordering is defined by their UTF-8 character code, which might not always place them in alphabetical order for a given locale.
 
 ### `==` (equality)
 

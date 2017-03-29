@@ -18,7 +18,7 @@ Note that [some variable names are reserved.](./lang_reserved.html#reserved-vari
 
 [Qualified variable][qualified_var] names are prefixed with the name of their scope and the `::` (double colon) namespace separator. (For example, the `$vhostdir` variable from the `apache::params` class would be `$apache::params::vhostdir`.)
 
-Optionally, the name of the very first namespace may be empty, representing the top namespace. In previous versions of the Puppet language, this was often used to work around bugs, but it's not necessary in this version. The main use is to indicate to readers that you're accessing a top-scope variable, e.g. `$::is_virtual`.
+Optionally, the name of the very first namespace can be empty, representing the top namespace. In previous versions of the Puppet language, this was often used to work around bugs, but it's not necessary in this version. The main use is to indicate to readers that you're accessing a top-scope variable, e.g. `$::is_virtual`.
 
 #### Regular Expressions For Variable Names
 

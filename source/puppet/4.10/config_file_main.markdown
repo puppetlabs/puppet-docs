@@ -17,7 +17,7 @@ title: "Config files: The main config file (puppet.conf)"
 
 The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet commands and services, including Puppet agent, Puppet master, Puppet apply, and Puppet cert. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.
 
-It resembles a standard INI file, with a few syntax extensions. Settings may go into application-specific sections, or into a `[main]` section that affects all applications.
+It resembles a standard INI file, with a few syntax extensions. Settings can go into application-specific sections, or into a `[main]` section that affects all applications.
 
 (Useful background info: [about settings][about], [short list of settings][short], [full list of settings][conf_ref].)
 
@@ -65,9 +65,9 @@ environment_timeout = unlimited
 
 ## Format
 
-The puppet.conf file consists of one or more **config sections,** each of which may contain any number of **settings.**
+The puppet.conf file consists of one or more **config sections,** each of which can contain any number of **settings.**
 
-The file may also include **comment lines** at any point.
+The file can also include **comment lines** at any point.
 
 ### Config sections
 
@@ -77,7 +77,7 @@ The file may also include **comment lines** at any point.
 A config section is a group of settings. It consists of:
 
 * Its **name**, enclosed in square brackets. The `[name]` of the config section must be on its own line, with no leading space.
-* Any number of **setting lines**, which may be indented for readability.
+* Any number of **setting lines**, which can be indented for readability.
 * Any number of empty lines or comment lines.
 
 As soon as a new config section `[name]` appears in the file, the former config section is closed and the new one begins. A given config section should only occur once in the file.
@@ -99,7 +99,7 @@ If you're using Puppet Server, you should note that it honors almost all setting
 
     # This is a comment.
 
-Comment lines start with a hash sign (`#`). They may be indented with any amount of leading space.
+Comment lines start with a hash sign (`#`). They can be indented with any amount of leading space.
 
 Partial-line comments (e.g. `report = true # this enables reporting`) are not allowed, and will be treated as part of the value of the setting. To be treated as a comment, the hash sign must be the first non-space character on the line.
 
@@ -111,7 +111,7 @@ A setting line consists of:
 
 * Any amount of leading space (optional).
 * The name of a **setting.**
-* An **equals sign** (`=`), which may optionally be surrounded by any number of spaces.
+* An **equals sign** (`=`), which can optionally be surrounded by any number of spaces.
 * A **value** for the setting.
 
 ### Special types of values for settings

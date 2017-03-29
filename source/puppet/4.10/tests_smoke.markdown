@@ -32,7 +32,7 @@ A test for a class is just a manifest that declares the class. Often, this is go
     }
 ~~~
 
-Tests for defined resource types may increase test coverage by declaring multiple instances of the type, with varying values for their attributes:
+Tests for defined resource types can increase test coverage by declaring multiple instances of the type, with varying values for their attributes:
 
 ~~~ ruby
     dotfiles::user {'root':
@@ -83,7 +83,7 @@ This doesn't get anyone off the hook for writing real documentation, but it's a 
 Exploring Further
 -----------------
 
-This form of testing is extremely basic, and still requires a human reader to determine whether the right RAL events are being generated or the right system configuration is being enforced. For more advanced testing, you may want to investigate [cucumber-puppet][cukepup] or [cucumber-nagios][cukenag].
+This form of testing is extremely basic, and still requires a human reader to determine whether the right RAL events are being generated or the right system configuration is being enforced. For more advanced testing, you might want to investigate [cucumber-puppet][cukepup] or [cucumber-nagios][cukenag].
 
 [cukepup]: https://github.com/nistude/cucumber-puppet
 [cukenag]: http://auxesis.github.com/cucumber-nagios/

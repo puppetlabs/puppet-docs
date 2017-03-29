@@ -27,7 +27,7 @@ Puppet will only cache verified HTTPS connections, so it excludes the unverified
 
 You can use [the `http_keepalive_timeout` setting][keepalive_setting] to configure the keepalive duration. It must be shorter than the maximum keepalive allowed by the Puppet master web server.
 
-An HTTP server may disable persistent connections ([Apache example](http://httpd.apache.org/docs/current/mod/core.html#keepalive)). If so, Puppet will request that the connection be kept open as usual, but the server will decline by sending `Connection: close` in the HTTP response and Puppet will start a new connection for its next request.
+An HTTP server can disable persistent connections ([Apache example](http://httpd.apache.org/docs/current/mod/core.html#keepalive)). If so, Puppet will request that the connection be kept open as usual, but the server will decline by sending `Connection: close` in the HTTP response and Puppet will start a new connection for its next request.
 
 
 ## Diagram
@@ -59,7 +59,7 @@ Note that if the agent has submitted a certificate signing request, an admin use
     * (If it gets one that doesn't match the private key, bail with an error.)
 2. Determine whether the agent has already requested a certificate signing: Look for `$ssldir/certificate_requests/<NAME>.pem`.
     * If this file exists, the agent will bail, assuming it needs user intervention on the master. If `waitforcert` is enabled, it will wait a few seconds and start this section over.
-3. Double-check with the master whether the agent has already requested a certificate signing; the agent may have just lost the local copy of the request. (Unverified GET request to `/puppet-ca/v1/certificate_request/<NAME>`.)
+3. Double-check with the master whether the agent has already requested a certificate signing; the agent might have just lost the local copy of the request. (Unverified GET request to `/puppet-ca/v1/certificate_request/<NAME>`.)
     * If this request doesn't 404, the agent will bail, assuming it needs user intervention on the master. If `waitforcert` is enabled, it will wait a few seconds and start this section over.
 4. If the agent has reached this step, it has never requested a certificate, so request one now. (Unverified PUT request to `/puppet-ca/v1/certificate_request/<NAME>`.)
 5. Return to the first step of this section, in case the master has autosign enabled; if it doesn't, the agent will end up bailing at step 2.
@@ -91,7 +91,7 @@ If `pluginsync` is enabled on the agent:
 
 ## Make file source requests while applying catalog
 
-[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and Puppet agent needs no additional data. Source attributes only put references into the catalog, and may require additional HTTPS requests.
+[File][] resources can specify file contents as either a `content` or `source` attribute. Content attributes go into the catalog, and Puppet agent needs no additional data. Source attributes only put references into the catalog, and might require additional HTTPS requests.
 
 If you are using the normal compiler, then for each file source, Puppet agent will:
 

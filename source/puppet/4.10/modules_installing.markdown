@@ -177,7 +177,7 @@ Use the module tool's `list` action to see which modules you have installed (and
 Use the module tool's `upgrade` action to upgrade an installed module to the latest version. You must identify the target module by its full name (username-modulename).
 
 * Use the `--version` option to specify a version.
-* Use the `--ignore-changes` option to upgrade the module while ignoring and overwriting any local changes that may have been made.
+* Use the `--ignore-changes` option to upgrade the module while ignoring and overwriting any local changes that might have been made.
 * Use the `--ignore-dependencies` option to skip upgrading any modules required by this module.
 
 ### Uninstall modules
@@ -196,7 +196,7 @@ Removed /etc/puppetlabs/code/modules/apache (v0.0.3)
 By default, the tool won't uninstall a module that other modules depend on, or whose files have been edited since it was installed.
 
 * Use the `--force` option to uninstall even if the module is depended upon or has been manually edited.
-* Use the `--ignore-changes` option to uninstall the module while ignoring and overwriting any local changes that may have been made.
+* Use the `--ignore-changes` option to uninstall the module while ignoring and overwriting any local changes that might have been made.
 
 ### Managing Puppet Enterprise modules
 

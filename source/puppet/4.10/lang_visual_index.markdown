@@ -187,7 +187,7 @@ node /^www\d+$/ {
 
 ``` puppet
 if $is_virtual {
-  warning( 'Tried to include class ntp on virtual machine; this node may be misclassified.' )
+  warning( 'Tried to include class ntp on virtual machine; this node might be misclassified.' )
 }
 elsif $operatingsystem == 'Darwin' {
   warning( 'This NTP module does not yet work on our Mac laptops.' )

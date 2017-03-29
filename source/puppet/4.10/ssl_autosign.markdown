@@ -65,7 +65,7 @@ Note that domain name globs do not function as normal globs: an asterisk can onl
 
 Since any host can provide any certname when requesting a certificate, basic autosigning should only be used in situations where you fully trust any computer able to connect to the Puppet master.
 
-With basic autosigning enabled, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the Puppet master. They would then be able to obtain a configuration catalog, which may or may not contain sensitive information (depending on your deployment's Puppet code and node classification).
+With basic autosigning enabled, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the Puppet master. They would then be able to obtain a configuration catalog, which might or might not contain sensitive information (depending on your deployment's Puppet code and node classification).
 
 
 ## Policy-based autosigning

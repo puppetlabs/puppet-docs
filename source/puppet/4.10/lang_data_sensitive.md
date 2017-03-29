@@ -35,7 +35,7 @@ notice($secret)
 
 This outputs `Notice: Scope(Class[main]): Sensitive [value redacted]`.
 
-However, you can still unwrap this with the `unwrap` function and gain access to the original data. 
+However, you can still unwrap this with the `unwrap` function and gain access to the original data.
 
 ```
 $secret = Sensitive('myPassword')
@@ -43,7 +43,7 @@ $processed = $secret.unwrap
 notice $processed
 ```
 
-In future implementations, this info may be encrypted, removing access to the original data with this method, but it currently is not and therefore you should only use it as an aid for logs and reports.
+In future implementations, this info might be encrypted, removing access to the original data with this method, but it currently is not and therefore you should only use it as an aid for logs and reports.
 
 
 

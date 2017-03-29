@@ -45,9 +45,9 @@ Variables can only be assigned using their [short name](#naming). That is, a giv
 
 ### Assigning multiple variables
 
-You can assign multiple vairiables at once from an array or hash. 
+You can assign multiple vairiables at once from an array or hash.
 
-#### Arrays 
+#### Arrays
 
 When assigning multiple variables from an array, there must be an equal number of variables and values. Nested arrays can also be used.
 
@@ -62,13 +62,13 @@ If the number of variables and values do not match, the operation will fail.
 
 #### Hashes
 
-When you assign multiple variables with a hash, the variables are listed in an array on the left side of the assignment operator, and the hash is on the right. Hash keys must match their corresponding variable name. 
+When you assign multiple variables with a hash, the variables are listed in an array on the left side of the assignment operator, and the hash is on the right. Hash keys must match their corresponding variable name.
 
 ```
     [$a, $b] = {a => 10, b => 20}           # $a = 10, $b = 20
 ```
 
-There can be extra key/value pairs in the hash, but all variables to the left of the operator must have a corresponding key in the hash. 
+There can be extra key/value pairs in the hash, but all variables to the left of the operator must have a corresponding key in the hash.
 
 ```
     [$a, $c] = {a => 5, b => 10, c => 15, d => 22}   # $a = 5, $c = 15
@@ -132,7 +132,7 @@ If you'd rather have unassigned variable usage throw an error, so you can get wa
 
 ### No reassignment
 
-Unlike most other languages, Puppet only allows a given variable to be assigned **once** within a given [scope][]. You may not change the value of a variable, although you may assign a different value to the same variable name in a new scope:
+Unlike most other languages, Puppet only allows a given variable to be assigned **once** within a given [scope][]. You cannot change the value of a variable, although you can assign a different value to the same variable name in a new scope:
 
 ``` puppet
 # scope-example.pp

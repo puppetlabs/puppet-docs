@@ -88,7 +88,7 @@ Since any node could be exporting a resource, it is difficult to predict what th
 
 See [Exported Resource Collectors][exported_collector] for more detail on the collector syntax and search expressions.
 
-    
+
 ## Behavior
 
 
@@ -100,10 +100,10 @@ Collecting an exported resource causes the Puppet master to send a search query 
 
 ### Timing
 
-An exported resource becomes available to other nodes as soon as PuppetDB finishes storing the catalog that contains it. This is a multi-step process and may not happen immediately:
+An exported resource becomes available to other nodes as soon as PuppetDB finishes storing the catalog that contains it. This is a multi-step process and might not happen immediately:
 
 * The Puppet master must have compiled a given node's catalog at least once before its resources become available.
-* When the Puppet master submits a catalog to PuppetDB, it is added to a queue and stored as soon as possible. Depending on the PuppetDB server's workload, there may be a slight delay between a node's catalog being compiled and its resources becoming available.
+* When the Puppet master submits a catalog to PuppetDB, it is added to a queue and stored as soon as possible. Depending on the PuppetDB server's workload, there might be a slight delay between a node's catalog being compiled and its resources becoming available.
 
 ### Uniqueness
 

@@ -7,7 +7,7 @@ title: "Language: Classes"
 [sitedotpp]: ./dirs_manifest.html
 [collector_override]: ./lang_resources_advanced.html#amending-attributes-with-a-collector
 [namespace]: ./lang_namespaces.html
-[enc]: /guides/external_nodes.html
+[enc]: ./nodes_external.html
 [tags]: ./lang_tags.html
 [allowed]: ./lang_reserved.html#classes-and-defined-resource-types
 [reserved]: ./lang_reserved.html#reserved-parameter-names

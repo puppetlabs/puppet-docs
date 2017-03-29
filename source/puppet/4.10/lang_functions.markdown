@@ -22,7 +22,7 @@ Functions are plugins written in Ruby, which you can call during [compilation][c
 
 Most functions take one or more values as arguments, then return some other, resulting value. The Ruby code in the function can do any number of things to produce the final value, including evaluating templates, doing math, and looking up values from an external source.
 
-Functions may also:
+Functions can also:
 
 * Cause side effects that modify the [catalog][]
 * Evaluate a provided block of Puppet code, possibly using the function's arguments to modify that code or control how it runs.
@@ -156,7 +156,7 @@ The general form of a chained function call is:
 
 An entire function call (including the name, arguments, and lambda) constitutes an [expression][]. It will resolve to a single value, and can be used anywhere a value of that type is accepted.
 
-A function call may also result in some side effect, in addition to returning a value.
+A function call might also result in some side effect, in addition to returning a value.
 
 All functions run during [compilation][catalog], which means they can only access code and data available on the Puppet master. To make changes to an agent node, you must use a [resource][]; to collect data from an agent node, you must use a [custom fact][custom_facts].
 
