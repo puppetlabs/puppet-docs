@@ -8,7 +8,7 @@ Open source Puppet ships `puppet-agent` packages for a variety of platforms, but
 
 Current deprecations:
 
-* Fedora 22 reached end of life (EOL) on July 19, 2016. We stopped shipping `puppet-agent` packages for Fedora 22 as of Puppet
+* Fedora 22 reached end of life (EOL) on July 19, 2016. We stopped shipping `puppet-agent` packages for Fedora 22 as of Puppet 4.8.
 
 * Running 64-bit Puppet on a 32-bit version of Windows was deprecated on December 31, 2016. 
 
