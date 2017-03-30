@@ -7,7 +7,7 @@ Puppet's system requirements can depend on your deployment type and size. Before
 
 > To install Puppet, first [view the pre-install tasks](./install_pre.html).
 
-## Hardware
+### Hardware
 
 The Puppet agent service has no particular hardware requirements and can run on nearly anything.
 
@@ -18,7 +18,7 @@ However, the Puppet master service is fairly resource intensive, and should be i
 
 The demands on the Puppet master vary widely between deployments. The total needs are affected by the number of agents being served, how frequently those agents check in, how many resources are being managed on each agent, and the complexity of the manifests and modules in use.
 
-## Puppet agent and operating system support life cycles
+### Puppet agent and operating system support life cycles
 
 In PE 2015.2 and open source Puppet 4.0 and onward, we use the same Puppet agent packages in our open source and Puppet Enterprise ecosystems. Because of this, we've set guidelines for how we manage Puppet agent life cycles.
 
@@ -30,7 +30,7 @@ In PE 2015.2 and open source Puppet 4.0 and onward, we use the same Puppet agent
 
   On enterprise-class operating systems, we support Puppet agent for _at least_ the operating system's life cycle. In Puppet Enterprise, Puppet continues to support certain enterprise-class agent platforms after their EOL, though we do so solely at our own discretion.
 
-## Platforms with packages
+### Platforms with packages
 
 We publish and test official `puppet-agent` packages for these platforms. Less common and sometimes brand new platforms might not be automatically tested, but packages are still available for them.
 
@@ -47,7 +47,7 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 | Microsoft Windows (Consumer OS)            | 10 Enterprise                                  | Vista, 7, 8, 10         |
 | macOS                                      | 10.10 Yosemite, 10.11 El Capitan, 10.12 Sierra |                         |
 
-## Platforms without packages
+### Platforms without packages
 
 Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing.
 
@@ -63,7 +63,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
   * OpenBSD 4.1 and later
   * HP-UX
 
-## Prerequisites
+### Prerequisites
 
 If you install Puppet via the official packages, you don't need to worry about prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
