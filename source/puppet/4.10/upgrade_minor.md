@@ -7,15 +7,7 @@ title: "Minor upgrades: Within 4.x (Puppet Collection 1 / PC1)"
 [Puppet Collection]: ./puppet_collections.md
 [major upgrades]: ./upgrade_major_pre.html
 
-A minor upgrade is an upgrade from one Puppet 4 release to another. If you are upgrading from Puppet 2 or 3, follow the instructions for [major upgrades][].
-
-## Puppet Collections and upgrading
-
-We deliver Puppet 4 (and all the stuff that works with it) in a group of packages called a **[Puppet Collection][]**. Puppet 4 is part of Puppet Collection 1 (PC1), which contains these packages:
-
-{% include puppet-collections/_puppet_collection_1_contents.md %}
-
-On \*nix systems, make sure the required PC1 repositories are installed and enabled before upgrading nodes.
+A minor upgrade is an upgrade from one Puppet 4 release to another.
 
 The order in which you upgrade packages is important. Always upgrade `puppetserver` on your masters _before_ you upgrade agents. You can upgrade PuppetDB before or after you upgrade other nodes.
 
@@ -59,7 +51,7 @@ On \*nix agents that use `yum`, run:
 # yum update puppet-agent
 ```
 
-On Windows agents, follow the [installation guide](./install_windows.html) to upgrade installed Puppet packages. You do not need to uninstall Puppet first unless you're changing from 64-bit Puppet to the 32-bit version or vice versa.
+On Windows agents, follow the [installation guide](./install_windows.html) to upgrade installed Puppet packages. You do not need to uninstall Puppet first unless you're changing from 32-bit Puppet to the 64-bit version. Running 32-bit Puppet on 64-bit Windows is now deprecated, so you should update your Puppet's architecture to match your system.
 
 > **Note**: If you installed Puppet into a custom directory and are moving from a 32-bit version to a 64-bit version, you must specify the INSTALLDIR option and any other relevant MSI properties when re-installing.
 
