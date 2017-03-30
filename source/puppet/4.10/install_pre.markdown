@@ -11,7 +11,7 @@ title: "Installing Puppet: Pre-install tasks"
 [server_setting]: ./configuration.html#server
 
 
-Complete these tasks before installing Puppet agent.
+To ease your Puppet installation, complete these tasks before installing Puppet agent.
 
 > **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
 
@@ -35,7 +35,7 @@ Complete these tasks before installing Puppet agent.
 
    * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
    * Systems we provide official packages for have an easier install path.
-   * Systems we don't provide packages for might still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed, but it means a more complex install path.
+   * Systems we don't provide packages for might still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed, but it means a more complex and often time consuming install path.
 
 4. Check your network configuration.
 
@@ -45,12 +45,12 @@ Complete these tasks before installing Puppet agent.
    * **Name resolution:** Every node must have a unique hostname. **Forward and reverse DNS** must both be configured correctly. If your site lacks DNS, you must write an `/etc/hosts` file on each node.
      * **Note:** The default Puppet master hostname is `puppet`. Your agent nodes can be ready sooner if this hostname resolves to your Puppet master.
 
-5. Check timekeeping on your Puppet master server.
+5. Set timekeeping on your Puppet master server.
 
-   The time must be set accurately on the Puppet master server that acts as the certificate authority. If the time is wrong, it can mistakenly issue agent certificates from the distant past or future, which other nodes treat as expired. 
+   The time must be set accurately on the Puppet master server that acts as the certificate authority. If the time is wrong, it can mistakenly issue agent certificates from the distant past or future, which other nodes treat as expired. There are modules in the forge, such as the ntp module that can help you with this.
 
 
-Install Puppet Server before installing Puppet on your agent nodes. If you're using PuppetDB, install it once Puppet server is up and running. Then you can install Puppet agent.
+Install Puppet Server before installing Puppet on your agent nodes. If you're using PuppetDB, install it once Puppet Server is up and running. Once you have completed these steps and configured your master, you can install Puppet agent.
 
 * [Installing Puppet agent on Linux](./install_linux.html)
 * [Installing Puppet agent on Windows](./install_windows.html)
