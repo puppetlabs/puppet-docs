@@ -16,73 +16,71 @@ title: "Installing Puppet agent: Linux"
 [Puppet Collection]: ./puppet_collections.html
 [`puppet-agent`]: ./about_agent.html
 
-## Make sure you're ready
+These instructions cover installing Puppet agent on Linux machines.
 
-Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
+1. Make sure you're ready
 
-> **Note:** Puppet 4 changed the locations for many of the most important files and directories. If you're familiar with Puppet 3 and earlier, read [a summary of the changes][where] and refer to the [full specification of Puppet directories](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md).
+   Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
 
-## Review supported versions and requirements
+   > **Note:** Puppet 4 changed the locations for many of the most important files and directories. If you're familiar with Puppet 3 and earlier, read [a summary of the changes][where] and refer to the [full specification of Puppet directories](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md).
 
-Most Linux systems (including CentOS, Redhat, Ubuntu, and Debian) have official Puppet agent packages. For a complete list of supported platforms, view the [system requirements page.](./system_requirements.html)
+2. Install a release package to enable Puppet Collection repositories
 
-## Install a release package to enable Puppet Collection repositories
+   Release packages configure your system to download and install appropriate versions of the `puppetserver` and [`puppet-agent`][] packages. These packages are grouped into a [Puppet Collection][] repository comprised of compatible versions of Puppet tools.
 
-Release packages configure your system to download and install appropriate versions of the `puppetserver` and [`puppet-agent`][] packages. These packages are grouped into a [Puppet Collection][] repository comprised of compatible versions of Puppet tools.
+   {% include puppet-collections/_puppet_collections_intro.md %}
 
-{% include puppet-collections/_puppet_collections_intro.md %}
+   {% include puppet-collections/_puppet_collection_1_contents.md %}
 
-{% include puppet-collections/_puppet_collection_1_contents.md %}
+   Yum-based systems:
 
-### Installing release packages on Yum-based systems
+   {% include puppet-collections/_puppet_collection_1_yum.md %}
 
-{% include puppet-collections/_puppet_collection_1_yum.md %}
+   > **Note:** We only provide the `puppet-agent` package for recent versions of Puppet on RHEL 5, and to install it you must first download the package as `rpm` on RHEL 5, as it doesn't support installing packages from a URL.
 
-> **Note:** We only provide the `puppet-agent` package for recent versions of Puppet on RHEL 5, and to install it you must first download the package as `rpm` on RHEL 5 doesn't support installing packages from a URL.
+   Apt-based systems:
 
-### Installing release packages on Apt-based systems
+   {% include puppet-collections/_puppet_collection_1_apt.md %}
 
-{% include puppet-collections/_puppet_collection_1_apt.md %}
+3. Confirm you can run Puppet executables
 
-## Confirm you can run Puppet executables
+   The location for Puppet's executables is `/opt/puppetlabs/bin/`, which is not in your `PATH` environment variable by default.
 
-The new location for Puppet's executables is `/opt/puppetlabs/bin/`, which is not in your `PATH` environment variable by default.
+   This doesn't matter for Puppet services --- for instance, `service puppet start` works regardless of the `PATH` --- but if you're running interactive `puppet` commands, you must either add their location to your `PATH` or execute them using their full path.
 
-This doesn't matter for Puppet services --- for instance, `service puppet start` works regardless of the `PATH` --- but if you're running interactive `puppet` commands, you must either add their location to your `PATH` or execute them using their full path.
+   To quickly add this location to your `PATH` for your current terminal session, use the command `export PATH=/opt/puppetlabs/bin:$PATH`. You can also add this location wherever you configure your `PATH`, such as your `.profile` or `.bashrc` configuration files.
 
-To quickly add this location to your `PATH` for your current terminal session, use the command `export PATH=/opt/puppetlabs/bin:$PATH`. You can also add this location wherever you configure your `PATH`, such as your `.profile` or `.bashrc` configuration files.
+   For more information, see [our page about files and directories moved in Puppet 4][where].
 
-For more information, see [our page about files and directories moved in Puppet 4][where].
+4. Install the `puppet-agent` package
 
-## Install the `puppet-agent` package
+   For Yum-based systems:
 
-### For Yum-based systems
+   On your Puppet agent nodes, run `sudo yum install puppet-agent`.
 
-On your Puppet agent nodes, run `sudo yum install puppet-agent`.
+   For Apt-based systems:
 
-### For Apt-based systems
+   On your Puppet agent nodes, run `sudo apt-get install puppet-agent`.
 
-On your Puppet agent nodes, run `sudo apt-get install puppet-agent`.
+   **Do not** start the `puppet` service yet.
 
-**Do not** start the `puppet` service yet.
+5. Configure critical agent settings
 
-## Configure critical agent settings
+   You probably want to set the `server` setting to your Puppet master's hostname. The default value is `server = puppet`, so if your master is reachable at that address, you can skip this.
 
-You probably want to set the `server` setting to your Puppet master's hostname. The default value is `server = puppet`, so if your master is reachable at that address, you can skip this.
+   For other settings you might want to change, see [the list of agent-related settings][agent_settings].
 
-For other settings you might want to change, see [the list of agent-related settings][agent_settings].
+6. Start the `puppet` service
 
-## Start the `puppet` service
+   To start the Puppet service, run `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
 
-To start the Puppet service, run `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
+   To manually launch and watch a Puppet run, run `sudo /opt/puppetlabs/bin/puppet agent --test`.
 
-To manually launch and watch a Puppet run, run `sudo /opt/puppetlabs/bin/puppet agent --test`.
+7. Sign certificates on the CA master
 
-## Sign certificates on the CA master
+   As each Puppet agent runs for the first time, it submits a certificate signing request (CSR) to the certificate authority (CA) Puppet master. You must log into that server to check for and sign certificates. On the Puppet master:
 
-As each Puppet agent runs for the first time, it submits a certificate signing request (CSR) to the certificate authority (CA) Puppet master. You must log into that server to check for and sign certificates. On the Puppet master:
+   1. Run `sudo /opt/puppetlabs/bin/puppet cert list` to see any outstanding requests.
+   2. Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
 
-1. Run `sudo /opt/puppetlabs/bin/puppet cert list` to see any outstanding requests.
-1. Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
-
-After an agent's certificate is signed, it regularly fetches and applies configuration catalogs from the Puppet master.
+   After an agent's certificate is signed, it regularly fetches and applies configuration catalogs from the Puppet master.
