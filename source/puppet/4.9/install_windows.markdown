@@ -30,10 +30,10 @@ Before installing Puppet on any agent nodes:
 
 [Puppet's Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
 
-* 64-bit versions of Windows can use `puppet-agent-<VERSION>-x64.msi` (recommended) or `puppet-agent-<VERSION>-x86.msi`.
-* 32-bit versions of Windows _must_ use `puppet-agent-<VERSION>-x86.msi`.
+* 64-bit versions of Windows must use `puppet-agent-<VERSION>-x64.msi`.
+* 32-bit versions of Windows must use `puppet-agent-<VERSION>-x86.msi`.
 
->**Note:** Running 32-bit versions of Windows on 64-bit versions of Puppet is now deprecated.
+>**Note:** Running 32-bit Puppet agent on a 64-bit Windows system was deprecated on December 31, 2016.
 
 These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 

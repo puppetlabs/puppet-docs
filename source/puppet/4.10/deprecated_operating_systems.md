@@ -10,7 +10,7 @@ Current deprecations:
 
 * Fedora 22 reached end of life (EOL) on July 19, 2016. We stopped shipping `puppet-agent` packages for Fedora 22 as of Puppet 4.8.
 
-* Running 64-bit Puppet on a 32-bit version of Windows was deprecated on December 31, 2016. 
+* Running 32-bit Puppet agent on a 64-bit Windows system was deprecated on December 31, 2016. 
 
 * Microsoft ended support for Windows Server 2003 and 2003 R2 on July 14, 2015. These operating system versions will not receive further security updates from Microsoft, and Puppet no longer supports them. For more information and help migrating from Windows Server 2003 and 2003 R2, see [Microsoft's end-of-life page.](https://www.microsoft.com/en-us/server-cloud/products/windows-server-2003/)
 
