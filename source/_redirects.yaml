@@ -12,6 +12,12 @@
   at_version: 2016.4
   forward_only: false # This is optional, and should usually be omitted. Set it to true (and disable redirects in the older versions) if you delete a page and redirect it to an EXISTING page instead of a new one.
 
+# the filename should reflect the content, so this was changed
+- in_doc: puppet
+  was: deprecated_win2003.html
+  became: deprecated_operating_systems.html
+  at_version: 4.10
+
 # puppet lookup is dead, long live hiera 5
 - in_doc: puppet
   was: lookup_quick.html
