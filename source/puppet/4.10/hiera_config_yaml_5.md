@@ -44,11 +44,12 @@ Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/et
 
 ## Syntax
 
-hiera.yaml is a [YAML][] file, containing a hash with up to three top-level keys:
+hiera.yaml is a [YAML][] file, containing a hash with up to four top-level keys:
 
 * `version` --- **Required.** Must be the number `5`, with no quotes.
 * `hierarchy` --- An array of hashes, which configures the levels of the hierarchy.
-* `defaults` --- A hash, which can set a default datadir and backend for hierarchy levels.
+* `default_hierarchy` ---  An array of hashes, which sets a default hierarchy to be used only if the normal hierarchy entries do not result in a value.
+* `defaults` --- A hash, which can set a default datadir, backend, and options for hierarchy levels.
 
 {% partial _hiera.yaml_v5.md %}
 
@@ -77,7 +78,7 @@ These defaults are only used if the file is present and specifies `version: 5`. 
 
 The `defaults` key can set default values for the backend and `datadir` keys, which lets you omit those keys in your hierarchy levels.
 
-The value of `defaults` must be a hash, which can have up to two keys:
+The value of `defaults` must be a hash, which can have up to three keys:
 
 * `datadir` --- A default value for `datadir`, used for any file-based hierarchy level that doesn't specify its own.
 * A backend key, used for any hierarchy level that doesn't specify its own. This must be one of:
@@ -85,6 +86,7 @@ The value of `defaults` must be a hash, which can have up to two keys:
     * `lookup_key`
     * `data_dig`
     * `hiera3_backend` (global layer only)
+* `options` --- A default value for `options`, used for any hierarchy level that doesn't specify its own.
 
     For the built-in backends (YAML, JSON, and HOCON), the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. If you want to set a custom backend as the default, you'll need to check that backend's documentation.
 
@@ -93,6 +95,9 @@ The value of `defaults` must be a hash, which can have up to two keys:
 ## The `hierarchy` key
 
 The `hierarchy` key configures the levels of the hierarchy.
+
+> The `default_hierarchy` key is a top-level key like the `hierarchy` key. It works exactly like the `hierarchy` key, but its values are used only if the normal hierarchy entries in the same module, or any of the higher precedence layers (environment or global) does not result in a value. Within this default hierarchy, the normal merging rules apply.
+However, the `default_hierarchy` is not permitted in environment or global layers.
 
 For an explanation of how hierarchies work, see [How hierarchies work][hierarchy]. This page focuses on the syntax.
 
@@ -128,7 +133,7 @@ You can use any combination of these backends in a hierarchy, and can also combi
 Each YAML/JSON/HOCON hierarchy level needs the following keys:
 
 * `name` --- A name for this level, shown to humans in debug messages and `--explain` output.
-* `path`, `paths`, `glob`, or `globs` (choose one) --- The data file(s) to use for this hierarchy level.
+* `path`, `paths`, `glob`, `globs`, or `mapped_paths` (choose one) --- The data file(s) to use for this hierarchy level.
 
     These paths are relative to the datadir, they support [variable interpolation][interpolation], and they require a file extension. See below for more details.
 * `data_hash` --- Which backend to use; can be omitted if you set a default. The value must be one of the following:
@@ -153,6 +158,7 @@ Key     | Data type | Expected value
 `paths` | Array     | Any number of file paths. This acts like a sub-hierarchy: if multiple files exist, Hiera searches all of them, in the order in which they're written.
 `glob`  | String    | One shell-like glob pattern, which might match any number of files. If multiple files are found, Hiera searches all of them in alphanumerical order.
 `globs` | Array     | Any number of shell-like glob patterns. If multiple files are found, Hiera searches all of them in alphanumerical order (ignoring the order of the globs).
+`mapped_paths` | Array or Hash     | A fact that is a collection (array or hash) of values. Hiera expands these values to produce an array of paths.
 
 **Explicit file extensions are required** --- use something like `common.yaml`, not just `common`. (This is a change from prior versions of hiera.yaml, which magically guessed file extensions.)
 
@@ -177,6 +183,21 @@ Example:
     glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"
 ```
 {% endraw %}
+
+The `mapped_paths` key must contain three string elements, in the following order:
+
+1. A scope variable that points to a collection of strings.
+2. The variable name that will be mapped to each element of the collection.
+3. A template where that variable can be used in interpolation expressions.
+
+For example, a fact named `$services` contains the array ["a", "b", "c"]. Then this configuration:
+
+``` yaml
+- name: Example
+  mapped_paths: [services, tmp, "service/%{tmp}/common.yaml"]
+```
+
+has the same results as if paths had been specified to be `[service/a/common.yaml, service/b/common.yaml, service/c/common.yaml]`.
 
 ### Configuring a hierarchy level (hiera-eyaml)
 
