@@ -53,6 +53,33 @@ Settings:
 
   * Cached facts are stored as JSON in `/opt/puppetlabs/facter/cache/cached_facts` on *nix and `C:\ProgramData\PuppetLabs\facter\cache\cached_facts` on Windows.
 
+#### Example
+
+To see a list of valid group names, from the command line, run `facter --list-block-groups` or `facter --list-cache-groups`. The output shows the fact group at the top level, with all facts in that group nested below.
+
+~~~ bash
+$ facter --list-block-groups
+EC2
+  - ec2_metadata
+  - ec2_userdata
+file system
+  - mountpoints
+  - filesystems
+  - partitions
+~~~
+
+If you want to block any of these groups, add the group name to the `facts` section of `facter.conf`, with the `blocklist` setting. 
+
+
+~~~
+facts : {
+    blocklist : [ "file system" ],
+}
+~~~
+
+Here, the "file system" group has been added, so the `mountpionts`, `filesystems`, and `partitions` facts will all be prevented from loading.
+
+
 ### `global`
 
 The `global` section of `facter.conf` contains settings to control how Facter interacts with its external elements on your system. 
