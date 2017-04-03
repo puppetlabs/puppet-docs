@@ -57,7 +57,7 @@ Settings:
 
 To see a list of valid group names, from the command line, run `facter --list-block-groups` or `facter --list-cache-groups`. The output shows the fact group at the top level, with all facts in that group nested below.
 
-~~~ bash
+~~~
 $ facter --list-block-groups
 EC2
   - ec2_metadata
@@ -77,7 +77,7 @@ facts : {
 }
 ~~~
 
-Here, the "file system" group has been added, so the `mountpionts`, `filesystems`, and `partitions` facts will all be prevented from loading.
+Here, the "file system" group has been added, so the `mountpoints`, `filesystems`, and `partitions` facts will all be prevented from loading.
 
 
 ### `global`
@@ -104,6 +104,6 @@ Setting         | Effect                                           | Default
 `debug`         | If true, Facter outputs debug messages.                                      | `false`
 `trace`         | If true, Facter prints stacktraces from errors arising in your custom facts. | `false`
 `verbose`       | If true, Facter outputs its most detailed messages.                          | `false`
-`log-level`     | Sets the minimum level of message severity that gets logged. Valid options: “none”, “fatal”, “error”, “warn”, “debug”, “info”, “trace”. | “warn”
+`log-level`     | Sets the minimum level of message severity that gets logged. Valid options: “none”, “fatal”, “error”, “warn”, “info”, “debug”, “trace”. | “warn”
 
 
