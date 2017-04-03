@@ -18,3 +18,24 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10
+
+Released April 4, 2017.
+
+* Fixed in Puppet 4.10
+* Introduced in Puppet 4.10
+
+
+### New Features
+
+
+#### Hiera 5
+
+
+### Enhancements
+
+
+### Bug Fixes
+
+
+#### Hiera 5
