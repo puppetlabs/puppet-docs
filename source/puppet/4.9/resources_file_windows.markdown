@@ -29,11 +29,9 @@ The issue of backslashes and forward-slashes in file paths can get complicated. 
 
 [win_paths]: ./lang_windows_file_paths.html
 
-## Watch for filesystem redirection when running 32-bit Puppet on 64-bit Windows
+## Running 32-bit Puppet on 64-bit Windows is now deprecated
 
-As of Puppet 3.7, Puppet can run as either a 32- or a 64-bit process. As long as you have installed an architecture-appropriate Puppet package, file system redirection is not an issue for you.
-
-However, if you have purposely installed a 32-bit package on a 64-bit version of Windows, or are writing code that must support older versions of Puppet, you will be affected by the Windows File System Redirector. This issue is covered in full detail in [Handling File Paths on Windows.][win_paths]
+As of December 31, 2016, running 32-bit Puppet on 64-bit Windows is deprecated. Update your Puppet installation to match the architecture of your operating system.
 
 ## Be consistent with case in file names
 
@@ -82,7 +80,7 @@ When you manage permissions with the `mode` attribute, it has the following side
 
 ## File sources
 
-The `source` attribute of a file can be a Puppet URL, a local path, or a path to a file on a mapped drive.
+The `source` attribute of a file can be a Puppet URL, a local path, a UNC path, or a path to a file on a mapped drive.
 
 ## Handling line endings
 

@@ -82,7 +82,7 @@ When you manage permissions with the `mode` attribute, it has the following side
 
 ## File Sources
 
-The `source` attribute of a file can be a Puppet URL, a local path, or a path to a file on a mapped drive.
+The `source` attribute of a file can be a Puppet URL, a local path, a UNC path, or a path to a file on a mapped drive.
 
 ## Handling Line Endings
 
