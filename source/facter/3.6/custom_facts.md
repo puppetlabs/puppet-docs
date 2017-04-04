@@ -13,7 +13,7 @@ You can add custom facts by writing snippets of Ruby code on the Puppet master. 
 
 Sometimes you need to be able to write conditional expressions based on site-specific data that just isn't available via Facter, or perhaps you'd like to include it in a template.
 
-Since you can't include arbitrary Ruby code in your manifests, the best solution is to add a new fact to Facter. These additional facts can then be distributed to Puppet clients and are available for use in manifests and templates, just like any other fact would be.
+Because you can't include arbitrary Ruby code in your manifests, the best solution is to add a new fact to Facter. These additional facts can then be distributed to Puppet clients and are available for use in manifests and templates, just like any other fact is.
 
 > **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` fails with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
 
@@ -30,8 +30,8 @@ You can use these methods to do things like test files locally before distributi
 ### Using the Ruby load path
 
 Facter searches all directories in the Ruby `$LOAD_PATH` variable for
-subdirectories named 'facter', and loads all Ruby files in those directories.
-If you had some directory in your `$LOAD_PATH` like `~/lib/ruby`, set up like
+subdirectories named `facter`, and loads all Ruby files in those directories.
+If you had a directory in your `$LOAD_PATH` like `~/lib/ruby`, set up like
 this:
 
     #~/lib/ruby
@@ -95,16 +95,15 @@ get that information is by executing shell commands. You can then parse and mani
 output from those commands using standard Ruby code. The Facter API gives you a few ways to
 execute shell commands:
 
-* If all you want to do is run the command and use the output verbatim, as your fact's value,
-you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
+* To run a command and use the output verbatim, as your fact's value, you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
 * If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')` from within the `setcode do`...`end` block. Whatever the `setcode` statement returns is used as the fact's value.
-* In any case, remember that your shell command is also a Ruby string, so you'll need to escape special characters if you want to pass them through.
+* Your shell command is also a Ruby string, so you need to escape special characters if you want to pass them through.
 
-It's important to note that *not everything that works in the terminal works in a fact*. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements do not work. The best way to handle this limitation is to write your conditional logic in Ruby.
+>**Note:** Not everything that works in the terminal works in a fact. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements do not work. The best way to handle this limitation is to write your conditional logic in Ruby.
 
 ### Example
 
-To get the output of `uname --hardware-platform` to single out a specific type of workstation, you would create a new custom fact.
+To get the output of `uname --hardware-platform` to single out a specific type of workstation, you create a new custom fact.
 
 1. Start by giving the fact a name, in this case, `hardware_platform`.
 2. Create your new fact in a file, `hardware_platform.rb` on the Puppet master server:
@@ -119,7 +118,7 @@ To get the output of `uname --hardware-platform` to single out a specific type o
     end
     ```
 
-3. Use the instructions in the [Plugins in Modules][] page to copy the new fact to a module and distribute it. During your next Puppet run, the value of the new fact will be available to use in your manifests and templates.
+3. Use the instructions in the [Plugins in Modules][] page to copy the new fact to a module and distribute it. During your next Puppet run, the value of the new fact is available to use in your manifests and templates.
 
 ## Using other facts
 
@@ -146,7 +145,7 @@ end
 
 ## Configuring facts
 
-Facts have a few properties that you can use to customize how facts are evaluated.
+Facts have a few properties that you can use to customize how they are evaluated.
 
 ### Confining facts
 
@@ -218,9 +217,6 @@ end
 
 ### Execution timeouts
 
-Facter 2.x supported a `:timeout` option to `Facter#add`. Facter no longer
-supports this option, and produces a warning if it's used.
-
 Although this version of Facter does not support overall timeouts on resolutions, you can pass a timeout
 to `Facter::Core::Execution#execute`:
 
@@ -239,15 +235,15 @@ end
 
 ## Structured facts
 
-Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement.
+Structured facts take the form of either a hash or an array. To create a structured fact, return a hash or an array from the `setcode` statement.
 
 You can see some relevant examples in the [writing structured facts](fact_overview.html#writing-structured-facts) section of the [Fact Overview](fact_overview.html).
 
 ## Aggregate resolutions
 
-If your fact combines the output of multiple commands, it may make sense to use **aggregate resolutions**. An aggregate resolution is split into "chunks", each one responsible for resolving one piece of the fact. After all of the chunks have been resolved separately, they're combined into a single flat or structured fact and returned.
+If your fact combines the output of multiple commands, it may make sense to use aggregate resolutions. An aggregate resolution is split into "chunks", each one responsible for resolving one piece of the fact. After all of the chunks have been resolved separately, they're combined into a single flat or structured fact and returned.
 
-Aggregate resolutions have several key differences compared to simple resolutions, beginning with the fact declaration. To introduce an aggregate resolution, you'll need to add the `:type => :aggregate` parameter:
+Aggregate resolutions have several key differences compared to simple resolutions, beginning with the fact declaration. To introduce an aggregate resolution, add the `:type => :aggregate` parameter:
 
 ``` ruby
 Facter.add(:fact_name, :type => :aggregate) do
@@ -321,10 +317,6 @@ On Windows:
 
     C:\ProgramData\PuppetLabs\facter\facts.d\
 
-On Windows 2003:
-
-    C:\Documents and Settings\All Users\Application Data\PuppetLabs\facter\facts.d\
-
 When running as a non-root / non-Administrator user:
 
     <HOME DIRECTORY>/.facter/facts.d/
@@ -332,8 +324,7 @@ When running as a non-root / non-Administrator user:
 ### Executable facts --- Unix
 
 Executable facts on Unix work by dropping an executable file into the standard
-external fact path above. A [shebang](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) is
-always required for executable facts on Unix. If the shebang is missing, the execution of the fact fails.
+external fact path. A shebang (`#!`) is always required for executable facts on Unix. If the shebang is missing, the execution of the fact fails.
 
 An example external fact written in Python:
 
@@ -360,7 +351,7 @@ Using this format, a single script can return multiple facts.
 
 ### Executable facts --- Windows
 
-Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
+Executable facts on Windows work by dropping an executable file into the external fact path. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. The following extensions are currently supported:
 
 - `.com` and `.exe`: binary executables
 - `.bat` and `.cmd`: batch scripts
@@ -403,7 +394,7 @@ You should be able to save and execute this PowerShell script on the command lin
 
 Facter can parse structured data files stored in the external facts directory and set facts based on their contents.
 
-Structured data files must use one of the supported data types and must have the correct file extension. At the moment, Facter supports the following extensions and data types:
+Structured data files must use one of the supported data types and must have the correct file extension. Facter supports the following extensions and data types:
 
 `.yaml`: YAML data, in the following format:
 
@@ -464,14 +455,14 @@ Facter in debug mode should give you a meaningful reason and tell you which file
 
     # puppet facts --debug
 
-One example of when this might happen is in cases where a fact returns invalid characters.
-Let say you used a hyphen instead of an equals sign in your script `test.sh`:
+One example of when this can happen is in cases where a fact returns invalid characters.
+For example if you used a hyphen instead of an equals sign in your script `test.sh`:
 
     #!/bin/bash
 
     echo "key1-value1"
 
-Running `puppet facts --debug` should yield a useful message:
+Running `puppet facts --debug` yields a useful message:
 
     ...
     Debug: Facter: resolving facts from executable file "/tmp/test.sh".
@@ -482,11 +473,11 @@ Running `puppet facts --debug` should yield a useful message:
     Debug: Facter: completed resolving facts from executable file "/tmp/test.sh".
     ...
 
-#### External facts and stdlib
+#### External facts and `stdlib`
 
 If you find that an external fact does not match what you have configured in your `facts.d`
 directory, make sure you have not defined the same fact using the external facts capabilities
-found in the stdlib module.
+found in the `stdlib` module.
 
 ### Drawbacks
 
@@ -494,4 +485,3 @@ While external facts provide a mostly-equal way to create variables for Puppet, 
 
 * An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
 * External executable facts are forked instead of executed within the same process.
-* Distributing executable facts through pluginsync requires Puppet 3.4.0 or greater.
