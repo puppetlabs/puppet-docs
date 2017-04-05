@@ -844,12 +844,12 @@ and should not be changed thereafter.</p>
       <pre class="lines">
 
 
-1730
-1731
-1732</pre>
+1742
+1743
+1744</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1730</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1742</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_providerloader'>providerloader</span>
   <span class='ivar'>@providerloader</span>
@@ -912,12 +912,12 @@ and should not be changed thereafter.</p>
       <pre class="lines">
 
 
-2340
-2341
-2342</pre>
+2352
+2353
+2354</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2340</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2352</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_original_parameters'>original_parameters</span>
   <span class='ivar'>@original_parameters</span>
@@ -1311,13 +1311,13 @@ requirement.</p>
       <pre class="lines">
 
 
-2043
-2044
-2045
-2046</pre>
+2055
+2056
+2057
+2058</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2043</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2055</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_autorequire'>autorequire</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@autorequires</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -2504,12 +2504,12 @@ the message as an argument.</p>
       <pre class="lines">
 
 
-2297
-2298
-2299</pre>
+2309
+2310
+2311</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2297</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2309</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_validate'>validate</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='symbol'>:validate</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -2572,12 +2572,12 @@ of hosts.</p>
       <pre class="lines">
 
 
-2647
-2648
-2649</pre>
+2659
+2660
+2661</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2647</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2659</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_appliable_to_device?'>appliable_to_device?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_can_apply_to'>can_apply_to</span><span class='lparen'>(</span><span class='symbol'>:device</span><span class='rparen'>)</span>
@@ -2633,12 +2633,12 @@ of hosts.</p>
       <pre class="lines">
 
 
-2654
-2655
-2656</pre>
+2666
+2667
+2668</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2654</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2666</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_appliable_to_host?'>appliable_to_host?</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_can_apply_to'>can_apply_to</span><span class='lparen'>(</span><span class='symbol'>:host</span><span class='rparen'>)</span>
@@ -2679,16 +2679,16 @@ of the catalog.  This is mostly used for logging purposes.</p>
       <pre class="lines">
 
 
-1233
-1234
-1235
-1236
 1237
 1238
-1239</pre>
+1239
+1240
+1241
+1242
+1243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1233</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 1237</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pathbuilder'>pathbuilder</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_p'>p</span> <span class='op'>=</span> <span class='id identifier rubyid_parent'>parent</span>
@@ -2836,23 +2836,23 @@ See <code>Puppet::Type.type(:file)#set_sensitive_parameters</code> for an exampl
       <pre class="lines">
 
 
-2426
-2427
-2428
-2429
-2430
-2431
-2432
-2433
-2434
-2435
-2436
-2437
 2438
-2439</pre>
+2439
+2440
+2441
+2442
+2443
+2444
+2445
+2446
+2447
+2448
+2449
+2450
+2451</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2426</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/type.rb', line 2438</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_sensitive_parameters'>set_sensitive_parameters</span><span class='lparen'>(</span><span class='id identifier rubyid_sensitive_parameters'>sensitive_parameters</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_sensitive_parameters'>sensitive_parameters</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
@@ -2878,9 +2878,9 @@ See <code>Puppet::Type.type(:file)#set_sensitive_parameters</code> for an exampl
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:20 2017 by
+  Generated on Wed Apr  5 16:22:17 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>

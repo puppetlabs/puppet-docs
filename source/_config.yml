@@ -58,7 +58,6 @@ symlink_latest:
   - facter
   - pe
 lock_latest:
-  puppet: 4.9
 
 
 document_names:
@@ -276,7 +275,6 @@ documents:
     doc: puppet
     version: "4.10"
     nav: ./_puppet_toc.html
-    hide: true
     my_versions:
       facter: 3.6
       hiera: 3.3

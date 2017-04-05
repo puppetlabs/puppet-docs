@@ -908,6 +908,8 @@ the hash expression is fully resolved, and then passed to the <span class='objec
       <pre class="lines">
 
 
+359
+360
 361
 362
 363
@@ -916,12 +918,10 @@ the hash expression is fully resolved, and then passed to the <span class='objec
 366
 367
 368
-369
-370
-371</pre>
+369</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 361</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 359</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='comma'>,</span> <span class='id identifier rubyid_i12n_hash_expression'>i12n_hash_expression</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@attributes</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_HASH-constant" title="Puppet::Pops::Types::EMPTY_HASH (constant)">EMPTY_HASH</a></span></span>
@@ -1010,12 +1010,12 @@ inherited attributes will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-746
-747
-748</pre>
+744
+745
+746</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 746</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 744</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attributes'>attributes</span>
   <span class='ivar'>@attributes</span>
@@ -1091,12 +1091,12 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-772
-773
-774</pre>
+770
+771
+772</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 772</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 770</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_functions'>functions</span>
   <span class='ivar'>@functions</span>
@@ -1141,16 +1141,16 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
+532
+533
 534
 535
 536
 537
-538
-539
-540</pre>
+538</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 534</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 532</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_attr_reader_name'>attr_reader_name</span><span class='lparen'>(</span><span class='id identifier rubyid_se'>se</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PBooleanType.html" title="Puppet::Pops::Types::PBooleanType (class)">PBooleanType</a></span></span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="POptionalType.html" title="Puppet::Pops::Types::POptionalType (class)">POptionalType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_value_type'>value_type</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PBooleanType.html" title="Puppet::Pops::Types::PBooleanType (class)">PBooleanType</a></span></span><span class='rparen'>)</span>
@@ -1193,15 +1193,15 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
+777
+778
 779
 780
 781
-782
-783
-784</pre>
+782</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 779</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 777</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_self_recursion'>check_self_recursion</span><span class='lparen'>(</span><span class='id identifier rubyid_originator'>originator</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1260,6 +1260,8 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
+668
+669
 670
 671
 672
@@ -1270,12 +1272,10 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
 677
 678
 679
-680
-681
-682</pre>
+680</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 670</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 668</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_i12n_type'>create_i12n_type</span>
   <span class='id identifier rubyid_struct_elems'>struct_elems</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -1323,6 +1323,8 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
+408
+409
 410
 411
 412
@@ -1369,12 +1371,10 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
 453
 454
 455
-456
-457
-458</pre>
+456</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 410</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 408</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_new_function'>create_new_function</span><span class='lparen'>(</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_impl_class'>impl_class</span> <span class='op'>=</span> <span class='id identifier rubyid_implementation_class'>implementation_class</span>
@@ -1405,7 +1405,7 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
 </span>    <span class='comment'># This method should accept a hash and assume that type assertion has been made already (it is made
 </span>    <span class='comment'># by the dispatch added here).
 </span>    <span class='kw'>if</span> <span class='id identifier rubyid_impl_class'>impl_class</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:from_asserted_hash</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add_dispatch'>add_dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_from_hash_type'>from_hash_type</span><span class='comma'>,</span> <span class='symbol'>:from_hash</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hash</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Functions/Dispatch.html" title="Puppet::Pops::Functions::Dispatch (class)">Dispatch</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Functions/Dispatch.html#initialize-instance_method" title="Puppet::Pops::Functions::Dispatch#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_from_hash_type'>from_hash_type</span><span class='comma'>,</span> <span class='symbol'>:from_hash</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hash</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='rparen'>)</span>
       <span class='kw'>def</span> <span class='id identifier rubyid_from_hash'>from_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
         <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_impl_class'>impl_class</span><span class='period'>.</span><span class='id identifier rubyid_from_asserted_hash'>from_asserted_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
@@ -1413,7 +1413,7 @@ inherited functions will be included in the returned <code>Hash</code>.</p>
 
     <span class='comment'># Add the dispatch that uses the standard #from_asserted_args or #new method on the class. It&#39;s assumed that the
 </span>    <span class='comment'># method performs no assertions.
-</span>    <span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add_dispatch'>add_dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_create_type'>create_type</span><span class='comma'>,</span> <span class='symbol'>:create</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+</span>    <span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Functions/Dispatch.html" title="Puppet::Pops::Functions::Dispatch (class)">Dispatch</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Functions/Dispatch.html#initialize-instance_method" title="Puppet::Pops::Functions::Dispatch#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_create_type'>create_type</span><span class='comma'>,</span> <span class='symbol'>:create</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_impl_class'>impl_class</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='symbol'>:from_asserted_args</span><span class='rparen'>)</span>
       <span class='kw'>def</span> <span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
         <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_impl_class'>impl_class</span><span class='period'>.</span><span class='id identifier rubyid_from_asserted_args'>from_asserted_args</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -1473,14 +1473,14 @@ are included.</p>
       <pre class="lines">
 
 
+752
+753
 754
 755
-756
-757
-758</pre>
+756</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 754</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 752</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_equality_attributes'>equality_attributes</span>
   <span class='id identifier rubyid_all'>all</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -1534,12 +1534,12 @@ are included.</p>
       <pre class="lines">
 
 
-762
-763
-764</pre>
+760
+761
+762</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 762</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 760</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_equality_include_type?'>equality_include_type?</span>
   <span class='ivar'>@equality_include_type</span>
@@ -1592,6 +1592,8 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
       <pre class="lines">
 
 
+687
+688
 689
 690
 691
@@ -1599,12 +1601,10 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
 693
 694
 695
-696
-697
-698</pre>
+696</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 689</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 687</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_include_name'>include_name</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -1663,12 +1663,12 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
       <pre class="lines">
 
 
-654
-655
-656</pre>
+652
+653
+654</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 654</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 652</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_i12n_type'>i12n_type</span>
   <span class='ivar'>@i12n_type</span> <span class='op'>||=</span> <span class='id identifier rubyid_create_i12n_type'>create_i12n_type</span>
@@ -1706,6 +1706,8 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
       <pre class="lines">
 
 
+459
+460
 461
 462
 463
@@ -1722,12 +1724,10 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
 474
 475
 476
-477
-478
-479</pre>
+477</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 461</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 459</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_implementation_class'>implementation_class</span>
   <span class='kw'>if</span> <span class='ivar'>@implementation_class</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1794,12 +1794,12 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
       <pre class="lines">
 
 
-543
-544
-545</pre>
+541
+542
+543</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 543</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 541</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_include_class_in_equality?'>include_class_in_equality?</span>
   <span class='ivar'>@equality_include_type</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='lparen'>(</span><span class='ivar'>@parent</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PObjectType (class)">PObjectType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_parent'>parent</span><span class='period'>.</span><span class='id identifier rubyid_include_class_in_equality?'>include_class_in_equality?</span><span class='rparen'>)</span>
@@ -1837,6 +1837,8 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
       <pre class="lines">
 
 
+546
+547
 548
 549
 550
@@ -1913,12 +1915,10 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
 621
 622
 623
-624
-625
-626</pre>
+624</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 548</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 546</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize_from_hash'>initialize_from_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='rparen'>)</span>
   <span class='const'>TypeAsserter</span><span class='period'>.</span><span class='id identifier rubyid_assert_instance_of'>assert_instance_of</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>object initializer</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='const'>TYPE_OBJECT_I12N</span><span class='comma'>,</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='rparen'>)</span>
@@ -2032,12 +2032,12 @@ suitable for passing to PObjectType#new(i12n_hash)</p>
       <pre class="lines">
 
 
-787
-788
-789</pre>
+785
+786
+787</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 787</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 785</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_label'>label</span>
   <span class='ivar'>@name</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>&lt;anonymous object type&gt;</span><span class='tstring_end'>&#39;</span></span>
@@ -2111,12 +2111,12 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-736
-737
-738</pre>
+734
+735
+736</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 736</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 734</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_members'>members</span><span class='lparen'>(</span><span class='id identifier rubyid_include_parent'>include_parent</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_get_members'>get_members</span><span class='lparen'>(</span><span class='id identifier rubyid_include_parent'>include_parent</span><span class='comma'>,</span> <span class='symbol'>:both</span><span class='rparen'>)</span>
@@ -2154,12 +2154,12 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-374
-375
-376</pre>
+372
+373
+374</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 374</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 372</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_new_function'>new_function</span><span class='lparen'>(</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='ivar'>@new_function</span> <span class='op'>||=</span> <span class='id identifier rubyid_create_new_function'>create_new_function</span><span class='lparen'>(</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
@@ -2215,6 +2215,8 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
+481
+482
 483
 484
 485
@@ -2261,12 +2263,10 @@ inherited members will be included in the returned <code>Hash</code>.</p>
 526
 527
 528
-529
-530
-531</pre>
+529</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 483</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 481</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parameter_info'>parameter_info</span><span class='lparen'>(</span><span class='id identifier rubyid_impl_class'>impl_class</span><span class='comma'>,</span> <span class='id identifier rubyid_attr_readers'>attr_readers</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='comment'># Create a types and a names array where optional entries ends up last
@@ -2402,12 +2402,12 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-397
-398
-399</pre>
+395
+396
+397</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 397</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 395</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_value_count'>value_count</span><span class='comma'>,</span> <span class='id identifier rubyid_deserializer'>deserializer</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_implementation_class'>implementation_class</span><span class='comma'>,</span> <span class='id identifier rubyid_value_count'>value_count</span><span class='comma'>,</span> <span class='id identifier rubyid_deserializer'>deserializer</span><span class='rparen'>)</span>
@@ -2465,12 +2465,12 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-381
-382
-383</pre>
+379
+380
+381</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 381</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 379</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reader='>reader=</span><span class='lparen'>(</span><span class='id identifier rubyid_reader'>reader</span><span class='rparen'>)</span>
   <span class='ivar'>@reader</span> <span class='op'>=</span> <span class='id identifier rubyid_reader'>reader</span>
@@ -2508,16 +2508,16 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
+790
+791
 792
 793
 794
 795
-796
-797
-798</pre>
+796</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 792</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 790</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resolved_parent'>resolved_parent</span>
   <span class='id identifier rubyid_parent'>parent</span> <span class='op'>=</span> <span class='ivar'>@parent</span>
@@ -2594,12 +2594,12 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-405
-406
-407</pre>
+403
+404
+405</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 405</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 403</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_serializer'>serializer</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_writer'>writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_serializer'>serializer</span><span class='rparen'>)</span>
@@ -2657,12 +2657,12 @@ inherited members will be included in the returned <code>Hash</code>.</p>
       <pre class="lines">
 
 
-388
-389
-390</pre>
+386
+387
+388</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 388</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 386</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_writer='>writer=</span><span class='lparen'>(</span><span class='id identifier rubyid_writer'>writer</span><span class='rparen'>)</span>
   <span class='ivar'>@writer</span> <span class='op'>=</span> <span class='id identifier rubyid_writer'>writer</span>
@@ -2677,9 +2677,9 @@ inherited members will be included in the returned <code>Hash</code>.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:33 2017 by
+  Generated on Wed Apr  5 16:22:24 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>

@@ -185,7 +185,7 @@ blocks declared in a Puppet::Function.create_function() call.</p>
 <li class="private ">
   <span class="summary_signature">
     
-      <a href="#dispatch-instance_method" title="#dispatch (instance method)">#<strong>dispatch</strong>(meth_name, &amp;block)  &#x21d2; Object </a>
+      <a href="#dispatch-instance_method" title="#dispatch (instance method)">#<strong>dispatch</strong>(meth_name, argument_mismatch_handler, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -445,15 +445,15 @@ blocks declared in a Puppet::Function.create_function() call.</p>
       <pre class="lines">
 
 
-348
-349
-350
-351
-352
-353</pre>
+392
+393
+394
+395
+396
+397</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 348</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 392</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='comma'>,</span> <span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_all_callables'>all_callables</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='ivar'>@type_parser</span> <span class='op'>=</span> <span class='id identifier rubyid_type_parser'>type_parser</span>
@@ -504,39 +504,39 @@ parameter is given, then that is the name and the type is &quot;Callable&quot;.<
       <pre class="lines">
 
 
-425
-426
-427
-428
-429
-430
-431
-432
-433
-434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446
-447
-448
-449
-450
-451
-452
-453
-454</pre>
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 425</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 469</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_block_param'>block_param</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_type_and_name'>type_and_name</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_type_and_name'>type_and_name</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
@@ -605,17 +605,17 @@ Optional[Callable], Callable, or nil.</p>
       <pre class="lines">
 
 
-528
-529
-530
-531
-532
-533
-534
-535</pre>
+573
+574
+575
+576
+577
+578
+579
+580</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 528</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 573</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_callable'>create_callable</span><span class='lparen'>(</span><span class='id identifier rubyid_types'>types</span><span class='comma'>,</span> <span class='id identifier rubyid_block_type'>block_type</span><span class='comma'>,</span> <span class='id identifier rubyid_return_type'>return_type</span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_mapped_types'>mapped_types</span> <span class='op'>=</span> <span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
@@ -633,7 +633,7 @@ Optional[Callable], Callable, or nil.</p>
       <div class="method_details ">
   <h3 class="signature " id="dispatch-instance_method">
   
-    #<strong>dispatch</strong>(meth_name, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+    #<strong>dispatch</strong>(meth_name, argument_mismatch_handler, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
   
 
   
@@ -658,29 +658,30 @@ Optional[Callable], Callable, or nil.</p>
       <pre class="lines">
 
 
-503
-504
-505
-506
-507
-508
-509
-510
-511
-512
-513
-514
-515
-516
-517
-518
-519
-520</pre>
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 503</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 547</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_dispatch'>dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_meth_name'>meth_name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_dispatch'>dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_meth_name'>meth_name</span><span class='comma'>,</span> <span class='id identifier rubyid_argument_mismatch_handler'>argument_mismatch_handler</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='comment'># an array of either an index into names/types, or an array with
 </span>  <span class='comment'># injection information [type, name, injection_name] used when the call
 </span>  <span class='comment'># is being made to weave injections into the given arguments.
@@ -694,9 +695,10 @@ Optional[Callable], Callable, or nil.</p>
   <span class='ivar'>@block_type</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@block_name</span> <span class='op'>=</span> <span class='kw'>nil</span>
   <span class='ivar'>@return_type</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='ivar'>@argument_mismatch_hander</span> <span class='op'>=</span> <span class='id identifier rubyid_argument_mismatch_handler'>argument_mismatch_handler</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance_eval'>instance_eval</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span>
   <span class='id identifier rubyid_callable_t'>callable_t</span> <span class='op'>=</span> <span class='id identifier rubyid_create_callable'>create_callable</span><span class='lparen'>(</span><span class='ivar'>@types</span><span class='comma'>,</span> <span class='ivar'>@block_type</span><span class='comma'>,</span> <span class='ivar'>@return_type</span><span class='comma'>,</span> <span class='ivar'>@min</span><span class='comma'>,</span> <span class='ivar'>@max</span><span class='rparen'>)</span>
-  <span class='ivar'>@dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add_dispatch'>add_dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_callable_t'>callable_t</span><span class='comma'>,</span> <span class='id identifier rubyid_meth_name'>meth_name</span><span class='comma'>,</span> <span class='ivar'>@names</span><span class='comma'>,</span> <span class='ivar'>@block_name</span><span class='comma'>,</span> <span class='ivar'>@injections</span><span class='comma'>,</span> <span class='ivar'>@weaving</span><span class='comma'>,</span> <span class='ivar'>@max</span> <span class='op'>==</span> <span class='symbol'>:default</span><span class='rparen'>)</span>
+  <span class='ivar'>@dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Functions/Dispatch.html" title="Puppet::Pops::Functions::Dispatch (class)">Dispatch</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Pops/Functions/Dispatch.html#initialize-instance_method" title="Puppet::Pops::Functions::Dispatch#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_callable_t'>callable_t</span><span class='comma'>,</span> <span class='id identifier rubyid_meth_name'>meth_name</span><span class='comma'>,</span> <span class='ivar'>@names</span><span class='comma'>,</span> <span class='ivar'>@max</span> <span class='op'>==</span> <span class='symbol'>:default</span><span class='comma'>,</span> <span class='ivar'>@block_name</span><span class='comma'>,</span> <span class='ivar'>@injections</span><span class='comma'>,</span> <span class='ivar'>@weaving</span><span class='comma'>,</span> <span class='ivar'>@argument_mismatch_hander</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -744,30 +746,30 @@ Optional[Callable], Callable, or nil.</p>
       <pre class="lines">
 
 
-480
-481
-482
-483
-484
-485
-486
-487
-488
-489
-490
-491
-492
-493
-494
-495
-496
-497
-498
-499
-500</pre>
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 480</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 524</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_internal_param'>internal_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_repeat'>repeat</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Parameters cannot be added after a block parameter</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>unless</span> <span class='ivar'>@block_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -822,14 +824,14 @@ must use block = nil when it is optional (or an error is raised when the call is
       <pre class="lines">
 
 
-462
-463
-464
-465
-466</pre>
+506
+507
+508
+509
+510</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 462</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 506</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_optional_block_param'>optional_block_param</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_type_and_name'>type_and_name</span><span class='rparen'>)</span>
   <span class='comment'># same as required, only wrap the result in an optional type
@@ -916,13 +918,13 @@ method parameter.</p>
       <pre class="lines">
 
 
-382
-383
-384
-385</pre>
+426
+427
+428
+429</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 382</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 426</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_optional_param'>optional_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_internal_param'>internal_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1024,15 +1026,15 @@ method parameter.</p>
       <pre class="lines">
 
 
-364
-365
-366
-367
-368
-369</pre>
+408
+409
+410
+411
+412
+413</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 364</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 408</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_param'>param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_internal_param'>internal_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1124,13 +1126,13 @@ method parameter.</p>
       <pre class="lines">
 
 
-397
-398
-399
-400</pre>
+441
+442
+443
+444</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 397</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 441</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_repeated_param'>repeated_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_internal_param'>internal_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1229,15 +1231,15 @@ method parameter.</p>
       <pre class="lines">
 
 
-413
-414
-415
-416
-417
-418</pre>
+457
+458
+459
+460
+461
+462</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 413</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 457</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_required_repeated_param'>required_repeated_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_internal_param'>internal_param</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1307,13 +1309,13 @@ method parameter.</p>
       <pre class="lines">
 
 
-472
-473
-474
-475</pre>
+516
+517
+518
+519</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 472</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 516</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_return_type'>return_type</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Argument to &#39;return_type&#39; must be a String reference to a Puppet Data Type. Got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
@@ -1329,9 +1331,9 @@ method parameter.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:22 2017 by
+  Generated on Wed Apr  5 16:22:18 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>

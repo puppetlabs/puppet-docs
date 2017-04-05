@@ -133,6 +133,14 @@ matches the supplied arguments. Each signature is part of a dispatch, which
 specifies the method that should be called for that signature. When a
 matching signature is found, the corresponding method is called.</p>
 
+<p>Special dispatches designed to create error messages for an argument mismatch
+can be added using the keyword <code>argument_mismatch</code> instead of <code>dispatch</code>. The
+method appointed by an <code>argument_mismatch</code> will be called with arguments
+just like a normal <code>dispatch</code> would, but the method must produce a string.
+The string is then used as the message in the <code>ArgumentError</code> that is raised
+when the method returns. A block parameter can be given, but it is not
+propagated in the method call.</p>
+
 <p>Documentation for the function should be placed as comments to the
 implementation method(s).</p>
 
@@ -226,6 +234,30 @@ call other functions visible from its loader.</p>
 
   <span class='kw'>def</span> <span class='id identifier rubyid_string_min'>string_min</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_b'>b</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span> <span class='op'>?</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>:</span> <span class='id identifier rubyid_b'>b</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></code></pre>
+    
+      
+        <p class="example_title"><div class='inline'><p>Using an argument mismatch handler</p>
+</div></p>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Functions</span><span class='period'>.</span><span class='id identifier rubyid_create_function'><span class='object_link'><a href="#create_function-class_method" title="Puppet::Functions.create_function (method)">create_function</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>math::min</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_dispatch'>dispatch</span> <span class='symbol'>:numeric_min</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:a</span>
+    <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Numeric</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:b</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_argument_mismatch'>argument_mismatch</span> <span class='symbol'>:on_error</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Any</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:a</span>
+    <span class='id identifier rubyid_param'>param</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Any</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='symbol'>:b</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_numeric_min'>numeric_min</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_a'>a</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_b'>b</span> <span class='op'>?</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>:</span> <span class='id identifier rubyid_b'>b</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_on_error'>on_error</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
+    <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>both arguments must be of type Numeric</span><span class='tstring_end'>&#39;</span></span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></code></pre>
     
@@ -450,15 +482,15 @@ call other functions visible from its loader.</p>
       <pre class="lines">
 
 
-258
-259
-260
-261
-262
-263</pre>
+287
+288
+289
+290
+291
+292</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 287</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_any_signature'>any_signature</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='rparen'>)</span>
   <span class='comment'># Construct the type for the signature
@@ -548,17 +580,17 @@ Function to create</p>
       <pre class="lines">
 
 
-155
-156
-157
-158
-159
-160
-161
-162</pre>
+184
+185
+186
+187
+188
+189
+190
+191</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 184</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_function'>create_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Functions/Function.html" title="Puppet::Functions::Function (class)">Function</a></span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='comment'># Ruby &lt; 2.1.0 does not have method on Binding, can only do eval
@@ -669,35 +701,6 @@ Function to create</p>
       <pre class="lines">
 
 
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
 206
 207
 208
@@ -724,10 +727,39 @@ Function to create</p>
 229
 230
 231
-232</pre>
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 177</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 206</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'>create_loaded_function</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='comma'>,</span> <span class='id identifier rubyid_function_base'>function_base</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Functions/Function.html" title="Puppet::Functions::Function (class)">Function</a></span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_function_base'>function_base</span><span class='period'>.</span><span class='id identifier rubyid_ancestors'>ancestors</span><span class='period'>.</span><span class='id identifier rubyid_none?'>none?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span> <span class='id identifier rubyid_s'>s</span> <span class='op'>==</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Functions/Function.html" title="Puppet::Pops::Functions::Function (class)">Function</a></span></span> <span class='rbrace'>}</span>
@@ -779,7 +811,7 @@ Function to create</p>
     <span class='id identifier rubyid_simple_name'>simple_name</span> <span class='op'>=</span> <span class='id identifier rubyid_func_name'>func_name</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>::</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span> <span class='op'>=</span> <span class='id identifier rubyid_default_dispatcher'>default_dispatcher</span><span class='lparen'>(</span><span class='id identifier rubyid_the_class'>the_class</span><span class='comma'>,</span> <span class='id identifier rubyid_simple_name'>simple_name</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_last_captures_rest'>last_captures_rest</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_size_range'>size_range</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='const'>Float</span><span class='op'>::</span><span class='const'>INFINITY</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_the_class'>the_class</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add_dispatch'>add_dispatch</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_simple_name'>simple_name</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_last_captures_rest'>last_captures_rest</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_the_class'>the_class</span><span class='period'>.</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='period'>.</span><span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Functions.html" title="Puppet::Pops::Functions (module)">Functions</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Pops/Functions/Dispatch.html" title="Puppet::Pops::Functions::Dispatch (class)">Dispatch</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Pops/Functions/Dispatch.html#initialize-instance_method" title="Puppet::Pops::Functions::Dispatch#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_simple_name'>simple_name</span><span class='comma'>,</span> <span class='id identifier rubyid_names'>names</span><span class='comma'>,</span> <span class='id identifier rubyid_last_captures_rest'>last_captures_rest</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='comment'># The function class is returned as the result of the create function method
@@ -819,15 +851,15 @@ Function to create</p>
       <pre class="lines">
 
 
-237
-238
-239
-240
-241
-242</pre>
+266
+267
+268
+269
+270
+271</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 237</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 266</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_default_dispatcher'>default_dispatcher</span><span class='lparen'>(</span><span class='id identifier rubyid_the_class'>the_class</span><span class='comma'>,</span> <span class='id identifier rubyid_func_name'>func_name</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_the_class'>the_class</span><span class='period'>.</span><span class='id identifier rubyid_method_defined?'>method_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_func_name'>func_name</span><span class='rparen'>)</span>
@@ -868,17 +900,17 @@ Function to create</p>
       <pre class="lines">
 
 
-245
-246
-247
-248
-249
-250
-251
-252</pre>
+274
+275
+276
+277
+278
+279
+280
+281</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 245</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 274</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_min_max_param'>min_max_param</span><span class='lparen'>(</span><span class='id identifier rubyid_method'>method</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='symbol'>:req</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:opt</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:rest</span> <span class='op'>=&gt;</span> <span class='int'>0</span> <span class='rbrace'>}</span>
@@ -898,9 +930,9 @@ Function to create</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:16 2017 by
+  Generated on Wed Apr  5 16:22:14 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>
