@@ -258,13 +258,13 @@ object is adapted with the correct loader.</p>
       <pre class="lines">
 
 
+186
 187
 188
-189
-190</pre>
+189</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_file'>find_file</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_source_pos'>source_pos</span> <span class='op'>=</span> <span class='const'>Utils</span><span class='period'>.</span><span class='id identifier rubyid_find_closest_positioned'>find_closest_positioned</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
@@ -303,6 +303,7 @@ object is adapted with the correct loader.</p>
       <pre class="lines">
 
 
+167
 168
 169
 170
@@ -318,11 +319,10 @@ object is adapted with the correct loader.</p>
 180
 181
 182
-183
-184</pre>
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 168</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 167</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_module_for_dir'>find_module_for_dir</span><span class='lparen'>(</span><span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_dir'>dir</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_dir'>dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -407,6 +407,7 @@ will then be adapted to the private loader for that module and that adapter is r
       <pre class="lines">
 
 
+151
 152
 153
 154
@@ -419,11 +420,10 @@ will then be adapted to the private loader for that module and that adapter is r
 161
 162
 163
-164
-165</pre>
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 152</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 151</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_loader_name_by_source'>loader_name_by_source</span><span class='lparen'>(</span><span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='id identifier rubyid_instance'>instance</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='id identifier rubyid_find_file'>find_file</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -449,9 +449,9 @@ will then be adapted to the private loader for that module and that adapter is r
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:23 2017 by
+  Generated on Wed Apr  5 16:22:19 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>

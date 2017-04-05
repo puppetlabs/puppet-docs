@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
+built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600
+> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
 
 ## About Resource Types
 
@@ -1944,13 +1944,13 @@ a group record.
   <a href="#group-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The group name. While naming limitations vary by </em>
   <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Valid values are...</em>
   <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs. Defaults to...</em>
-  <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># Whether specified attribute value pairs should...</em>
-  <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes in an array of...</em>
-  <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># Whether the provider is authoritative for group...</em>
+  <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># AIX only. Configures the behavior of the...</em>
+  <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes, as an array of...</em>
+  <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># Configures the behavior of the `members...</em>
   <a href="#group-attribute-forcelocal">forcelocal</a>           =&gt; <em># Forces the management of local accounts when...</em>
   <a href="#group-attribute-gid">gid</a>                  =&gt; <em># The group ID.  Must be specified numerically....</em>
   <a href="#group-attribute-ia_load_module">ia_load_module</a>       =&gt; <em># The name of the I&A module to use to manage this </em>
-  <a href="#group-attribute-members">members</a>              =&gt; <em># The members of the group. For directory services </em>
+  <a href="#group-attribute-members">members</a>              =&gt; <em># The members of the group. For platforms or...</em>
   <a href="#group-attribute-provider">provider</a>             =&gt; <em># The specific backend to use for this `group...</em>
   <a href="#group-attribute-system">system</a>               =&gt; <em># Whether the group is a system group with lower...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
@@ -1990,9 +1990,12 @@ Valid values are `true`, `false`, `yes`, `no`.
 
 <h4 id="group-attribute-attribute_membership">attribute_membership</h4>
 
-Whether specified attribute value pairs should be treated as the only attributes
-of the user or whether they should merely
-be treated as the minimum list.
+AIX only. Configures the behavior of the `attributes` parameter.
+
+* `minimum` (default) --- The provided list of attributes is partial, and Puppet
+  **ignores** any attributes that aren't listed there.
+* `inclusive` --- The provided list of attributes is comprehensive, and
+  Puppet **purges** any attributes that aren't listed there.
 
 Valid values are `inclusive`, `minimum`.
 
@@ -2002,7 +2005,8 @@ Valid values are `inclusive`, `minimum`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Specify group AIX attributes in an array of `key=value` pairs.
+Specify group AIX attributes, as an array of `'key=value'` strings. This
+parameter's behavior can be configured with `attribute_membership`.
 
 
 
@@ -2012,9 +2016,12 @@ Requires features manages_aix_lam.
 
 <h4 id="group-attribute-auth_membership">auth_membership</h4>
 
-Whether the provider is authoritative for group membership. This
-must be set to true to allow setting the group to no members with
-`members => [],`.
+Configures the behavior of the `members` parameter.
+
+* `false` (default) --- The provided list of group members is partial,
+  and Puppet **ignores** any members that aren't listed there.
+* `true` --- The provided list of of group members is comprehensive, and
+  Puppet **purges** any members that aren't listed there.
 
 Valid values are `true`, `false`, `yes`, `no`.
 
@@ -2060,10 +2067,9 @@ Requires features manages_aix_lam.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The members of the group. For directory services where group
-membership is stored in the group objects, not the users. Use
-with auth_membership to determine whether the specified members
-are inclusive or the minimum.
+The members of the group. For platforms or directory services where group
+membership is stored in the group objects, not the users. This parameter's
+behavior can be configured with `auth_membership`.
 
 
 
@@ -9565,7 +9571,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -12348,4 +12354,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600
+> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
