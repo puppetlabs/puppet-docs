@@ -22,8 +22,8 @@ Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html)
 
 Released April 4, 2017.
 
-* Fixed in Puppet 4.10
-* Introduced in Puppet 4.10
+* [Fixed in Puppet 4.10](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.0%27)
+* [Introduced in Puppet 4.10](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.0%27)
 
 
 ### New Features
@@ -43,8 +43,15 @@ Released April 4, 2017.
 ### Deprecation
 
 
-### Known Issues
+### Known Issue
 
+This is a regression from Puppet 4.9.3. 
+
+In some very rare cases, a v5 `hiera.yaml` file can ignore certain hierarchy levels. This only happens for hierarchy levels that interpolate a top-scope variable whose value was set after the _first_ Hiera lookup. Even then, it only occurs if the variable is an array or hash, the hierarchy level accesses one of its members with key.subkey notation, _and_ the variable is referenced with the top-scope namespace (`::attributes.role`). 
+
+If this affects you, you can remove the top-scope namespace (`attributes.role`) to work around it until this bug is fixed. However, we strongly recommend against making your hierarchy self-configuring like this. You should only interpolate the `$facts`, `$trusted`, and `$server_facts` variables in your hierarchy. 
+
+(Dirty details: In the lookup that initially sets the offending variable, that variable doesn't exist yet. Hiera remembers that it doesn't exist, so in subsequent lookups it won't use the new value. This is part of an optimization for top-scope variables that don't change, which is why removing the top namespace works around it.) ([PUP-7336](https://tickets.puppetlabs.com/browse/PUP-7336))
 
 ### Bug Fixes
 
