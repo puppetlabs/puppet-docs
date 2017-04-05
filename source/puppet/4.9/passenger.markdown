@@ -4,6 +4,11 @@ title: "Configuring a Puppet Master Server with Passenger and Apache"
 ---
 
 
+> ## Important: Deprecation warning
+>
+> [The Rack Puppet master server is deprecated](./deprecated_servers.html) and will be removed in a future Puppet release.
+
+
 Puppet includes a basic Puppet master web server based on Ruby's WEBrick library. (This is what Puppet uses if you run `puppet master` on the command line or use most `puppetmaster` init scripts.)
 
 You **cannot** use this default server for real-life loads, as it can't handle concurrent connections; it is only suitable for small tests with ten nodes or fewer. You must configure a production quality web server before you start managing your nodes with Puppet.
