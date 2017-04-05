@@ -59,7 +59,6 @@ symlink_latest:
   - pe
 lock_latest:
   puppet: 4.9
-  puppetdb: 4.3
 
 
 document_names:
