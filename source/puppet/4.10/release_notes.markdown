@@ -18,12 +18,12 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
-## Puppet 4.10
+## Puppet 4.10.0
 
 Released April 4, 2017.
 
-* [Fixed in Puppet 4.10](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.0%27)
-* [Introduced in Puppet 4.10](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.0%27)
+* [Fixed in Puppet 4.10.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.0%27)
+* [Introduced in Puppet 4.10.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.0%27)
 
 
 ### New Features
@@ -42,6 +42,7 @@ Released April 4, 2017.
 
 ### Deprecation
 
+The `puppet inspect` command is deprecated in Puppet 4.10, along with the related `audit` resource metaparameter. The command will be removed and the `audit` parameter will be ignored in manifests in a future release (planned for Puppet 5). ([PUP-893](https://tickets.puppetlabs.com/browse/PUP-893))
 
 ### Known Issue
 
