@@ -6,7 +6,7 @@ title: "Configuring a Puppet Master Server with Passenger and Apache"
 
 > ## Important: Deprecation warning
 >
-> [The Rack Puppet master server is deprecated][http://links.puppetlabs.com/deprecate-rack-webrick-servers] and will be removed in a future Puppet release.
+> [The Rack Puppet master server is deprecated](./deprecated_servers.html) and will be removed in a future Puppet release.
 
 
 Puppet includes a basic Puppet master web server based on Ruby's WEBrick library. (This is what Puppet uses if you run `puppet master` on the command line or use most `puppetmaster` init scripts.)
