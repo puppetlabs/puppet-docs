@@ -3,7 +3,7 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 4.10]: /puppet/4.10/release_notes.html#puppet-410
+[Puppet 4.10.0]: /puppet/4.10/release_notes.html#puppet-4100
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 
@@ -33,7 +33,7 @@ Released April 5, 2017.
 
 ### Component updates
 
-Components with updates in this release are [Puppet 4.10][], [Facter 3.6.3][], [MCollective 2.10.3][], and [`pxp-agent`][] 1.5.0.
+Components with updates in this release are [Puppet 4.10.0][], [Facter 3.6.3][], [MCollective 2.10.3][], and [`pxp-agent`][] 1.5.0.
 
 The largest updates in this release include improvements and bug fixes for Hiera 5, which ships with Puppet 4.10.
 
