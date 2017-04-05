@@ -20,7 +20,7 @@ Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html)
 
 ## Puppet 4.10.0
 
-Released April 4, 2017.
+Released April 5, 2017.
 
 * [Fixed in Puppet 4.10.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.0%27)
 * [Introduced in Puppet 4.10.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.0%27)
