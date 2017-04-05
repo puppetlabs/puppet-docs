@@ -50,6 +50,7 @@ properly redacted when the command fails. This supports using data from Puppet l
 
 * Error messages from Hiera 5 have been improved to better explain issues and to enable locating the source of the problem. ([PUP-7182](https://tickets.puppetlabs.com/browse/PUP-7182))
 
+* A small performance optimization was made in the time it takes to initialize the compiler. While there is a noticeable speedup in initializing the compiler itself - the user observable actions of `puppet apply` have so many other things going on that this is dwarfed and is therefore almost unnoticeable (in the 1-2% range), it does make a difference in benchmarks (finding the real code to optimize), and has a positive effect on running tests involving the compiler. ([PUP-7313](https://tickets.puppetlabs.com/browse/PUP-7313))
 
 ### Deprecation
 
@@ -67,9 +68,52 @@ If this affects you, you can remove the top-scope namespace (`attributes.role`) 
 
 ### Bug Fixes
 
-* [PUP-7359](https://tickets.puppetlabs.com/browse/PUP-7359) The Hiera 5 `eyaml_lookup_key` function did not evaluate interpolation expressions that were embedded in encrypted data. Now it does.
+* [PUP-7359](https://tickets.puppetlabs.com/browse/PUP-7359): The Hiera 5 `eyaml_lookup_key` function did not evaluate interpolation expressions that were embedded in encrypted data. Now it does.
 
-* [PUP-7330](https://tickets.puppetlabs.com/browse/PUP-7330) The data types `Puppet::LookupKey` and `Puppet::LookupValue` used to describe the values allowed as keys and values in Hiera 5 were not reachable from the Puppet language. This is now fixed.
+* [PUP-7330](https://tickets.puppetlabs.com/browse/PUP-7330): The data types `Puppet::LookupKey` and `Puppet::LookupValue` used to describe the values allowed as keys and values in Hiera 5 were not reachable from the Puppet language. This is now fixed.
 
-* [PUP-7273](https://tickets.puppetlabs.com/browse/PUP-7273) Hiera 5 threw a correct but confusing error message if `hiera.yaml` contained a `data_hash` function where no options resulting in a path were defined. The error message has been made more informative and now points out the actual problem.
+* [PUP-7273](https://tickets.puppetlabs.com/browse/PUP-7273): Hiera 5 threw a correct but confusing error message if `hiera.yaml` contained a `data_hash` function where no options resulting in a path were defined. The error message has been made more informative and now points out the actual problem.
 
+* [PUP-7391](https://tickets.puppetlabs.com/browse/PUP-7391): An error, "Attempt to redefine entity" could occur in some cases when a type alias was resolved. This occurred if a module's `init.pp` would also reference and resolve the same type and if that `init.pp` needed to be loaded to resolve the type in the first place. This problem is now fixed.
+
+* [PUP-7372](https://tickets.puppetlabs.com/browse/PUP-7372): When a data file was reached using a version 3 `hiera.yaml` and that in turn contained interpolation expressions that used the `hiera` or `lookup` function it could result in an error if there was a `hiera.yaml` in the environment or in the related modules. Interpolation from a version 3 data file now works as it should.
+
+* [PUP-7371](https://tickets.puppetlabs.com/browse/PUP-7371): The type mismatch describer that outputs an error message explaining the difference between the data types of given arguments and the expected data types could in some situations miss to include `Undef` in the generated description. Now `Undef` is included if it should.
+
+* [PUP-7366](https://tickets.puppetlabs.com/browse/PUP-7366): A regression in Hiera 5 caused an error to not be issued when calls to any of the `hiera_*` functions contained an unescaped period `.` in the requested key. There is no such restriction when the `lookup` function is used. The regression caused silent undefined behavior. This is now fixed and the earlier behavior of the `hiera_*` functions have been restored.
+
+* [PUP-7077](https://tickets.puppetlabs.com/browse/PUP-7077): Puppet can now manage files on UNC shares when the user has permission to create or modify the file, but the share permissions are not Full Control.
+
+* [PUP-7191](https://tickets.puppetlabs.com/browse/PUP-7191): Prior to Puppet 4.10.0, Puppet would report an error when ensuring a non-existent was not running on AIX. In Puppet 4.10.0, Puppet now considers this a no-op, in line with behavior on other *nix operating systems.
+
+* [PUP-6006](https://tickets.puppetlabs.com/browse/PUP-6006): The error message when the language validation finds multiple problems was hard to understand in terms of what the underlying cause could be. Now it points out it is language validation and states that more info is in the logs. It also suggests that `--max_errors=1` can be useful in this situation.	 
+
+* [PUP-7306](https://tickets.puppetlabs.com/browse/PUP-7306): Complex regular expressions output by Puppet generated types could be too complex for the Puppet language lexer. The lexer would then not recognize the token as a regular expression and would cause a syntax error on the opening `/`. This was caused by the Puppet language lexer not allowing new lines in the regular expression. They are now allowed.
+
+* [PUP-7328](https://tickets.puppetlabs.com/browse/PUP-7328): If `environment_timeout` was set to a value other than `0`, there would be a warning logged, "Puppet Class 'settings' is already defined" for all subsequent compilations in that environment. The `settings` class is now only created once for the lifetime of an environment.
+
+* [PUP-7327](https://tickets.puppetlabs.com/browse/PUP-7327): A regression from Puppet 4.8 was caused by the Hiera 5 implementation in Puppet 4.9.0 that resulted in the support for `hiera3_backends` using a feature to take over resolution of "dotted keys" stopped working. This behavior is now restored.
+
+* [PUP-7341](https://tickets.puppetlabs.com/browse/PUP-7341): If all keys specifying `lookup_options` in Hiera data files were based on regular expression patterns, Puppet would crash. This is now fixed. If you're not upgrading, a work around while waiting for the fix is to add a lookup options for a dummy fixed key.
+
+* [PUP-7360](https://tickets.puppetlabs.com/browse/PUP-7360): Hiera deprecation messages contained a URL to our documentation site that produced a 404 (not found). This was because the linked URL contained the ".z" version of Puppet, and it should only contain "x.y" part of version. This is now fixed.
+
+* [PUP-5027](https://tickets.puppetlabs.com/browse/PUP-5027): The `metadata.json` in each module was parsed multiple times and the logic involved an extra check for existance of the `metadata.json` file. This is now changed. This has a small positive impact on performance in large environments with many modules and in virtual environments because it reduces the number of calls to `stat`.
+
+* [PUP-1334](https://tickets.puppetlabs.com/browse/PUP-1334): Prior to Puppet 4.10.0, if Puppet failed to fully write a filebucket backup, resulting in a corrupt or empty backup file, subsequent attempts to back up the same file could result in a failure with the message, "Got passed new contents for sum (a check sum value)". The only way to correct this issue was to search for and delete the offending partial backup inside the filebucket backup directory. 
+
+  This was due to a false positive detection of a hash collision in the filebucket. Puppet would detect a duplicate backup file, and subsequently detect that its checksum value did not match the incoming backup, but would not verify that the existing backup matched the *expected* checksum value. 
+
+  As of 4.10.0, if Puppet detects a possible hash collision between an existing and incoming filebucket backup, it will first check if the existing backup has been corrupted (as in, if it does not match its expected contents or checksum value). If so, Puppet will issue a warning and overwrite the corrupted existing backup rather than failing with the previous error message. 
+
+  The previous error message: "Got passed new contents for sum (checksum value)" has also been revised to: 
+
+  (On a locally logged error message on the filebucket server): 
+
+  "Unable to verify existing FileBucket backup at (path to file)"
+
+  (The raised exception): 
+
+  "Existing backup and new file have different content but same checksum, (checksum value). Verify existing backup and remove if incorrect."
+
+* [PUP-7021](https://tickets.puppetlabs.com/browse/PUP-7021): Prior to Puppet 4.10.0, Puppet user management on some *nix platforms could experience various errors related to the handling of UTF-8 characters read in by the ruby `etc`module (which parses `/etc/passwd` and `/etc/group` for user and group information among other things). As of Puppet 4.10.0 and later, Puppet will attempt to convert values read in by the ruby `etc` module to UTF-8 if they are not already UTF-8. If the values cannot be cleanly converted to UTF-8, they are left as-is. These unconvertible values can still cause issues later during the lifecycle of a run, so it is important for Puppet to be run in UTF-8 environments.
