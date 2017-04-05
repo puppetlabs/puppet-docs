@@ -9,7 +9,7 @@ title: "Puppet agent release notes"
 
 [MCollective 2.10.3]: /mcollective/releasenotes.html#2_10_3
 
-[pxp-agent]: https://github.com/puppetlabs/pxp-agent
+[`pxp-agent`]: https://github.com/puppetlabs/pxp-agent
 
 
 This page lists changes to the `puppet-agent` package. For details about changes to components in a `puppet-agent` release, follow the links to those components in the package release's notes.
