@@ -1,5 +1,6 @@
 require 'puppet_references'
 require 'yaml'
+require 'versionomy'
 module PuppetReferences
   module Util
     # Given a hash of data, return YAML frontmatter suitable for the docs site.
@@ -50,18 +51,35 @@ EOT
     # This has to take the hash of agent info, but only because finding the agent release notes relies on hidden info.
     # If we ever move those to their own dir, it'll fix that.
     def self.release_notes_for_component_version(component, version, agent_info = {}) # returns string or nil.
-      x = version.split('.')[0]
-      x_dot_y = version.split('.')[0..1].join('.')
-      dotless = version.gsub(/\./, '')
+      begin
+        parsed_version = Versionomy.parse(version)
+        x = parsed_version.major.to_s
+        x_dot_y = "#{parsed_version.major}.#{parsed_version.minor}"
+        dotless = version.gsub(/\./, '')
+      rescue
+        x = version.split('.')[0]
+        x_dot_y = version.split('.')[0..1].join('.')
+        dotless = version.gsub(/\./, '')
+      end
       case component
         when 'Puppet'
-          if x == '3' and x_dot_y.to_f < 3.5
+          begin
+            mono_three = (x == '3' and Versonomy.parse(x_dot_y) < Versionomy.parse(3.5))
+          rescue
+            mono_three = false
+          end
+          if mono_three
             "/puppet/3/release_notes.html#puppet-#{dotless}"
           else
             "/puppet/#{x_dot_y}/release_notes.html#puppet-#{dotless}"
           end
         when 'Puppet Agent'
-          if x_dot_y.to_f < 1.2
+          begin
+            too_old = Versionomy.parse(version) < Versionomy.parse('1.2')
+          rescue
+            too_old = false
+          end
+          if too_old
             nil
           else
             puppet_docs = puppet_version_for_agent_version(version, agent_info).split('.')[0..1].join('.')

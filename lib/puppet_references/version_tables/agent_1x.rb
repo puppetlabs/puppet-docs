@@ -1,4 +1,5 @@
 require 'puppet_references'
+require 'puppet_docs/versions'
 
 module PuppetReferences
   module VersionTables
@@ -6,7 +7,9 @@ module PuppetReferences
       def initialize(agent_data)
         super
         @file = '_agent1.x.html'
-        @versions = @agent_data.keys.select{|v| v =~ /^1\./}.sort.reverse
+        @versions = PuppetDocs::Versions.sort_descending(
+          @agent_data.keys.select{|v| v =~ /^1\./}
+        )
       end
     end
   end
