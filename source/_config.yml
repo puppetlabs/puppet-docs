@@ -23,7 +23,7 @@ defaultnav:
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
   /es/pe/3.8: /_includes/es_pe38.html
-  /ja: /ja/pe/2017.1/_ja_docs_toc.html
+  /ja: /ja/pe/_ja_docs_toc.html
   /ja/guides/install_puppet: /_includes/ja_puppet_general.html
   /ja/learning: /_includes/ja_learning_nav.html
   /ja/pe: /ja/pe/_ja_docs_toc.html
