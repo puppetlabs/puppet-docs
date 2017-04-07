@@ -56,17 +56,11 @@ properly redacted when the command fails. This supports using data from Puppet l
 
 The `puppet inspect` command is deprecated in Puppet 4.10, along with the related `audit` resource metaparameter. The command will be removed and the `audit` parameter will be ignored in manifests in a future release (planned for Puppet 5). ([PUP-893](https://tickets.puppetlabs.com/browse/PUP-893))
 
-### Known Issue
-
-This is a regression from Puppet 4.9.3. 
-
-In some very rare cases, a v5 `hiera.yaml` file can ignore certain hierarchy levels. This only happens for hierarchy levels that interpolate a top-scope variable whose value was set after the _first_ Hiera lookup. Even then, it only occurs if the variable is an array or hash, the hierarchy level accesses one of its members with key.subkey notation, _and_ the variable is referenced with the top-scope namespace (`::attributes.role`). 
-
-If this affects you, you can remove the top-scope namespace (`attributes.role`) to work around it until this bug is fixed. However, we strongly recommend against making your hierarchy self-configuring like this. You should only interpolate the `$facts`, `$trusted`, and `$server_facts` variables in your hierarchy. 
-
-(Dirty details: In the lookup that initially sets the offending variable, that variable doesn't exist yet. Hiera remembers that it doesn't exist, so in subsequent lookups it won't use the new value. This is part of an optimization for top-scope variables that don't change, which is why removing the top namespace works around it.) ([PUP-7336](https://tickets.puppetlabs.com/browse/PUP-7336))
-
 ### Bug Fixes
+
+* [PUP-7336](https://tickets.puppetlabs.com/browse/PUP-7336): This was a regression in 4.9.4 from 4.9.3 that in some very rare cases could cause a version 5 `hiera.yaml` file to ignore certain hierarchy levels. This only happened for hierarchy levels that interpolated a top-scope variable whose value was set after the _first_ Hiera lookup. Even then, it only occurred if the variable was an array or hash, the hierarchy level accessed one of its members with key.subkey notation, _and_ the variable was referenced with the top-scope namespace (`::attributes.role`). 
+
+  This problem is now fixed. However, do not make your hierarchy self-configuring like this. You should only interpolate the `$facts`, `$trusted`, and `$server_facts` variables in your hierarchy.
 
 * [PUP-7359](https://tickets.puppetlabs.com/browse/PUP-7359): The Hiera 5 `eyaml_lookup_key` function did not evaluate interpolation expressions that were embedded in encrypted data. Now it does.
 
