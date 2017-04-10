@@ -129,7 +129,7 @@ $myhash = { key => 'some value',
   other_key     => 'some other value',
 }
 
-# array with indention of elements past one stop
+# array with indention of elements past two spaces
 service { 'foo':
   require => [
               File['foo_config'],
@@ -606,7 +606,7 @@ concat { $config_file_path:
 
 ### 9.8 Resource attribute indentation and alignment
 
-Resource attributes must be uniformly indented in one stop from the title.
+Resource attributes must be uniformly indented in two spaces from the title.
 
 **Good**:
 
@@ -965,8 +965,7 @@ define haproxy::frontend (
 
 ### 10.9 Parameter indentation and alignment
 
-Parameters to classes or defined types must be uniformly indented in one stop from the title.
-The equals sign should be aligned.
+Parameters to classes or defined types must be uniformly indented in two spaces from the title. The equals sign should be aligned.
 
 **Good**:
 
