@@ -963,6 +963,56 @@ define haproxy::frontend (
 }
 ```
 
+### 10.9 Parameter indentation and alignment
+
+Parameters to classes or defined types must be uniformly indented in one stop from the title.
+The equals sign should be aligned.
+
+**Good**:
+
+```puppet
+class profile::myclass (
+  $var1    = 'default',
+  $var2    = 'something else',
+  $another = 'another default value',
+) {
+# body of class
+}
+```
+
+**Bad**:
+
+```puppet
+# too many levels of indentation
+class profile::myclass (
+      $var1    = 'default',
+      $var2    = 'something else',
+      $another = 'another default value',
+) {
+# body of class
+}
+
+# no indentation
+class profile::myclass (
+$var1    = 'default',
+$var2    = 'something else',
+$another = 'another default value',
+) {
+# body of class
+}
+
+# misaligned equals sign
+class profile::myclass (
+  $var1 = 'default',
+  $var2  = 'something else',
+  $another = 'another default value',
+) {
+# body of class
+}
+
+```
+
+
 ## 11. Classes
 
 ### 11.1. Class inheritance
