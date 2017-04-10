@@ -865,6 +865,8 @@ class apache {
 
 In parameterized class and defined type declarations, required parameters must be listed before optional parameters (that is, parameters with defaults). Required parameters are parameters which are not set to anything, including undef. For example, parameters such as passwords or IP addresses might not have reasonable default values.
 
+Note that treating a parameter like a namevar and defaulting it to `$title` or `$name` does not make it a required parameter. It should still be listed following the order recommended here.
+
 **Good:**
 
 ```puppet
@@ -874,7 +876,6 @@ class dhcp (
   $default_lease_time = 3600,
   $max_lease_time     = 86400,
 ) {}
-
 ```
 
 **Bad:**
