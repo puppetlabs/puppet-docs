@@ -26,7 +26,7 @@ Notes:
 -   Obvious spammers are banned on first occurrence. If we don’t do this, we’ll have spam all over the place.
 -   Violations are forgiven after 6 months of good behavior, and we won’t hold a grudge.
 -   People who are committing minor formatting / style infractions will get some education, rather than hammering them in the 3 strikes process.
--   Contact conduct@puppet.com to report abuse or appeal violations. This email list goes to Kara Sowles (kara at puppet.com) and Mike Guerchon (mikeg at puppet.com). In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
+-   Contact conduct@puppet.com to report abuse or appeal violations. This email list goes to Kara Sowles (kara at puppet.com). In the case of appeals, we know that mistakes happen, and we’ll work with you to come up with a fair solution if there has been a misunderstanding.
 
 Activity-specific guidelines
 -----
