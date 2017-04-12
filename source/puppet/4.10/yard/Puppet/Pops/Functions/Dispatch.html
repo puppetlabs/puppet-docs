@@ -201,7 +201,7 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(type, method_name, param_names, block_name, injections, weaving, last_captures)  &#x21d2; Dispatch </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(type, method_name, param_names, last_captures = false, block_name = nil, injections = EMPTY_ARRAY, weaving = EMPTY_ARRAY, argument_mismatch_handler = false)  &#x21d2; Dispatch </a>
     
 
     
@@ -340,7 +340,7 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(type, method_name, param_names, block_name, injections, weaving, last_captures)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Functions::Dispatch (class)">Dispatch</a></span></tt> &nbsp;<span class="private note title">private</span>
+    #<strong>initialize</strong>(type, method_name, param_names, last_captures = false, block_name = nil, injections = EMPTY_ARRAY, weaving = EMPTY_ARRAY, argument_mismatch_handler = false)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Functions::Dispatch (class)">Dispatch</a></span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -358,7 +358,143 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>type</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../Types/PArrayType.html" title="Puppet::Pops::Types::PArrayType (class)">Puppet::Pops::Types::PArrayType</a></span></tt>, <tt><span class='object_link'><a href="../Types/PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">Puppet::Pops::Types::PTupleType</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><ul>
+<li>type describing signature</li>
+</ul>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>method_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the method that will be called when type matches given arguments</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>param_names</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>names matching the number of parameters specified by type (or empty array)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block_name</span>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>name of block parameter, no nil</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>injections</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Array&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>EMPTY_ARRAY</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>injection data for weaved parameters</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>weaving</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Integer,Array&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>EMPTY_ARRAY</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>weaving knits</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>last_captures</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>true if last parameter is captures rest</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>argument_mismatch_handler</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>true if this is a dispatch for an argument mismatch</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -366,27 +502,29 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
       <pre class="lines">
 
 
-25
-26
-27
-28
-29
-30
-31
-32
-33</pre>
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 33</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_method_name'>method_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='comma'>,</span> <span class='id identifier rubyid_block_name'>block_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injections'>injections</span><span class='comma'>,</span> <span class='id identifier rubyid_weaving'>weaving</span><span class='comma'>,</span> <span class='id identifier rubyid_last_captures'>last_captures</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_method_name'>method_name</span><span class='comma'>,</span> <span class='id identifier rubyid_param_names'>param_names</span><span class='comma'>,</span> <span class='id identifier rubyid_last_captures'>last_captures</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='id identifier rubyid_block_name'>block_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_injections'>injections</span> <span class='op'>=</span> <span class='const'>EMPTY_ARRAY</span><span class='comma'>,</span> <span class='id identifier rubyid_weaving'>weaving</span> <span class='op'>=</span> <span class='const'>EMPTY_ARRAY</span><span class='comma'>,</span> <span class='id identifier rubyid_argument_mismatch_handler'>argument_mismatch_handler</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='ivar'>@type</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span>
   <span class='ivar'>@method_name</span> <span class='op'>=</span> <span class='id identifier rubyid_method_name'>method_name</span>
-  <span class='ivar'>@param_names</span> <span class='op'>=</span> <span class='id identifier rubyid_param_names'>param_names</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='ivar'>@block_name</span> <span class='op'>=</span> <span class='id identifier rubyid_block_name'>block_name</span>
-  <span class='ivar'>@injections</span> <span class='op'>=</span> <span class='id identifier rubyid_injections'>injections</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
-  <span class='ivar'>@weaving</span> <span class='op'>=</span> <span class='id identifier rubyid_weaving'>weaving</span>
+  <span class='ivar'>@param_names</span> <span class='op'>=</span> <span class='id identifier rubyid_param_names'>param_names</span>
   <span class='ivar'>@last_captures</span> <span class='op'>=</span> <span class='id identifier rubyid_last_captures'>last_captures</span>
+  <span class='ivar'>@block_name</span> <span class='op'>=</span> <span class='id identifier rubyid_block_name'>block_name</span>
+  <span class='ivar'>@injections</span> <span class='op'>=</span> <span class='id identifier rubyid_injections'>injections</span>
+  <span class='ivar'>@weaving</span> <span class='op'>=</span> <span class='id identifier rubyid_weaving'>weaving</span>
+  <span class='ivar'>@argument_mismatch_handler</span> <span class='op'>=</span> <span class='id identifier rubyid_argument_mismatch_handler'>argument_mismatch_handler</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -515,15 +653,15 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
       <pre class="lines">
 
 
-46
-47
-48
-49
-50
-51</pre>
+59
+60
+61
+62
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_invoke'>invoke</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='comma'>,</span> <span class='id identifier rubyid_calling_scope'>calling_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='ivar'>@method_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_weave'>weave</span><span class='lparen'>(</span><span class='id identifier rubyid_calling_scope'>calling_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -577,15 +715,15 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
       <pre class="lines">
 
 
-41
-42
-43</pre>
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_last_captures_rest?'>last_captures_rest?</span>
-  <span class='op'>!</span><span class='op'>!</span> <span class='ivar'>@last_captures</span>
+  <span class='ivar'>@last_captures</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -620,12 +758,12 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
       <pre class="lines">
 
 
-36
-37
-38</pre>
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 45</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parameter_names'>parameter_names</span>
   <span class='ivar'>@param_names</span>
@@ -663,19 +801,6 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
       <pre class="lines">
 
 
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
 67
 68
 69
@@ -698,10 +823,23 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
 86
 87
 88
-89</pre>
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/functions/dispatch.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_weave'>weave</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='comment'># no need to weave if there are no injections
@@ -749,9 +887,9 @@ constructed using the DSL defined in <span class='object_link'><a href="../../Fu
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:30 2017 by
+  Generated on Wed Apr  5 16:22:23 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>

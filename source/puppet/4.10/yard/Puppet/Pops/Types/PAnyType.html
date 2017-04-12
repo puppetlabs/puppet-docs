@@ -553,12 +553,12 @@
       <pre class="lines">
 
 
-323
-324
-325</pre>
+332
+333
+334</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 323</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 332</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></span><span class='rparen'>)</span>
@@ -686,22 +686,22 @@ the transformed array.</p>
       <pre class="lines">
 
 
-358
-359
-360
-361
-362
-363
-364
-365
-366
 367
 368
 369
-370</pre>
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 358</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 367</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_alter_type_array'>alter_type_array</span><span class='lparen'>(</span><span class='id identifier rubyid_types'>types</span><span class='comma'>,</span> <span class='id identifier rubyid_method'>method</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_method_args'>method_args</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_modified'>modified</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -966,12 +966,12 @@ to <code>self</code> since all checks up to that point were positive.</p>
       <pre class="lines">
 
 
-155
-156
-157</pre>
+164
+165
+166</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 155</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callable_args?'>callable_args?</span><span class='lparen'>(</span><span class='id identifier rubyid_callable'>callable</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>false</span>
@@ -1047,11 +1047,11 @@ but some self recursive constructs are illegal such as when a <code>PObjectType<
       <pre class="lines">
 
 
-164
-165</pre>
+173
+174</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 164</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 173</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_check_self_recursion'>check_self_recursion</span><span class='lparen'>(</span><span class='id identifier rubyid_originator'>originator</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -1103,13 +1103,13 @@ the generalized type is returned.</p>
       <pre class="lines">
 
 
-172
-173
-174
-175</pre>
+181
+182
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 172</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generalize'>generalize</span>
   <span class='comment'># Applicable to all types that have no variables
@@ -1179,12 +1179,12 @@ the generalized type is returned.</p>
       <pre class="lines">
 
 
-244
-245
-246</pre>
+253
+254
+255</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 244</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 253</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_instance?'>instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>true</span>
@@ -1273,12 +1273,12 @@ A Type[T] is assignable to an Iterable[Type[T]] if T is an Integer or Enum</code
       <pre class="lines">
 
 
-232
-233
-234</pre>
+241
+242
+243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 232</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_iterable_type'>iterable_type</span><span class='lparen'>(</span><span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>nil</span>
@@ -1369,12 +1369,12 @@ false, all optional callables.</p>
       <pre class="lines">
 
 
-206
-207
-208</pre>
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 206</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_kind_of_callable?'>kind_of_callable?</span><span class='lparen'>(</span><span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>false</span>
@@ -1426,12 +1426,12 @@ false, all optional callables.</p>
       <pre class="lines">
 
 
-291
-292
-293</pre>
+300
+301
+302</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 291</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 300</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='id identifier rubyid_simple_name'>simple_name</span>
@@ -1506,12 +1506,12 @@ T are enums into an Enum.</p>
       <pre class="lines">
 
 
-184
-185
-186</pre>
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_normalize'>normalize</span><span class='lparen'>(</span><span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>self</span>
@@ -1568,12 +1568,12 @@ TypeAlias or a Variant responds true to a call to <span class='object_link'><a h
       <pre class="lines">
 
 
-253
-254
-255</pre>
+262
+263
+264</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 253</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 262</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_instance?'>instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='op'>-</span><span class='int'>1</span>
@@ -1665,12 +1665,12 @@ except the {PTypeAliasType}.</p>
       <pre class="lines">
 
 
-196
-197
-198</pre>
+205
+206
+207</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 196</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 205</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='kw'>self</span>
@@ -1712,20 +1712,20 @@ from must be less than to, and from may not be less than 0</p>
       <pre class="lines">
 
 
-334
-335
-336
-337
-338
-339
-340
-341
-342
 343
-344</pre>
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 343</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_tuple_entry_at'>tuple_entry_at</span><span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_regular'>regular</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_tuple_t'>tuple_t</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>-</span> <span class='int'>1</span><span class='rparen'>)</span>
@@ -1748,9 +1748,9 @@ from must be less than to, and from may not be less than 0</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:24 2017 by
+  Generated on Wed Apr  5 16:22:19 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>

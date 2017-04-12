@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
+built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
 title: 'Resource Type: host'
 canonical: "/puppet/latest/types/host.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600
+> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
 
 host
 -----
@@ -106,4 +106,4 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:40 -0600
+> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500

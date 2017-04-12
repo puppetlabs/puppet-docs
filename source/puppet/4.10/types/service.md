@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
+built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:41 -0600
+> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
 
 service
 -----
@@ -521,7 +521,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -737,4 +737,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:41 -0600
+> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500

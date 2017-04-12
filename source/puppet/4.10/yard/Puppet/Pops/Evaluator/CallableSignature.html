@@ -160,6 +160,31 @@ Different implementation of this class are used for different types of callables
 <li class="public ">
   <span class="summary_signature">
     
+      <a href="#argument_mismatch_handler%3F-instance_method" title="#argument_mismatch_handler? (instance method)">#<strong>argument_mismatch_handler?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>True if this signature represents an argument mismatch, false otherwise.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
       <a href="#block_name-instance_method" title="#block_name (instance method)">#<strong>block_name</strong>  &#x21d2; String </a>
     
 
@@ -369,6 +394,67 @@ end is given as Float::INFINITY. To test against infinity, use the infinity? met
 
 <span class='kw'>def</span> <span class='id identifier rubyid_args_range'>args_range</span>
   <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_size_range'>size_range</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="argument_mismatch_handler?-instance_method">
+  
+    #<strong>argument_mismatch_handler?</strong>  &#x21d2; <tt>Boolean</tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Returns true if this signature represents an argument mismatch, false otherwise</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if this signature represents an argument mismatch, false otherwise</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/evaluator/callable_signature.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_argument_mismatch_handler?'>argument_mismatch_handler?</span>
+  <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -788,9 +874,9 @@ an optional block.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jan 31 13:38:42 2017 by
+  Generated on Wed Apr  5 16:22:30 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.1.5).
+  0.9.8 (ruby-2.2.0).
 </div>
 
     </div>

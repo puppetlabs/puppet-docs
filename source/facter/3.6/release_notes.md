@@ -5,6 +5,21 @@ title: "Facter 3.6 Release notes"
 
 This page documents the history of the Facter 3.6 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
 
+## Facter 3.6.3
+
+Released April 5, 2017. 
+
+Shipped with Puppet agent 1.10.0. This minor release contains one bug fix, and the remaining issues do not affect users.
+
+
+* [Fixed in Facter 3.6.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.6.3%27)
+* [Introduced in Facter 3.6.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.6.3%27)
+
+### Bug fixes
+
+* [FACT-1585](): GCE metadata collection now works correctly when Google's DNS is not used.
+
+
 ## Facter 3.6.2
 
 Released March 9, 2017.
@@ -12,7 +27,7 @@ Released March 9, 2017.
 Shipped with Puppet agent 1.9.3.
 
 * [Fixed in Facter 3.6.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.6.2%27)
-* [Introduced in Facter 3.6.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.6.2%27)
+* [Introduced in Facter 3.6.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.6.2%27)
 
 This is a minor release that does not affect users.
 
