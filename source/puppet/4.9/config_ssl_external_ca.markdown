@@ -123,9 +123,9 @@ To configure Puppet Server:
    Intermediate CA Key         | `/etc/puppetlabs/puppet/ssl/ca/ca_key.pem`
    Root CA Certificate         | `/etc/puppetlabs/puppet/ssl/ca/root_crt.pem`
 
-   All of these files should have their ownership set to `puppet:puppet` and have permissions of `0600`.
+   All of these files should be owned by `puppet:puppet` and have permissions of `0600`.
 
-   > Note: Although root_crt.pem can be placed anywhere (since Puppet Server doesn't use it directly), the rest of this page assumes you placed it as shown.
+   > Note: Although root_crt.pem can be named anything (since Puppet Server doesn't use it directly), the file needs to be stored in the location shown.
 
    > Note: ca_key.pem must not have a passphrase, since the Puppet CA cannot provide one when using the key.
 
