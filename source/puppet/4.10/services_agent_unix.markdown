@@ -3,22 +3,16 @@ layout: default
 title: "Puppet's services: Puppet agent on *nix systems"
 ---
 
-[catalogs]: ./subsystem_catalog_compilation.html
-[win_agent]: ./services_agent_windows.html
 [resource type reference]: ./type.html
-[mcollective]: /mcollective
+[MCollective]: /mcollective
 [puppet.conf]: ./config_file_main.html
 [runinterval]: ./configuration.html#runinterval
 [onetime]: ./configuration.html#onetime
 [daemonize]: ./configuration.html#daemonize
 [splay]: ./configuration.html#splay
 [splaylimit]: ./configuration.html#splaylimit
-[listen]: ./configuration.html#listen
-[puppetport]: ./configuration.html#puppetport
 [pidfile]: ./configuration.html#pidfile
-[auth.conf]: ./config_file_auth.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
-[page on triggering puppet runs]: {{pe}}/orchestration_puppet.html
 [report]: ./reporting_about.html
 
 <!--Overview-->
@@ -30,8 +24,6 @@ You can manage systems with Puppet agent as a service, as a cron job, or on dema
 For details about invoking the Puppet agent command, see [the puppet agent man page](./man/agent.html).
 
 ## Puppet agent's run environment
-
-<!-- reference? should this be at the bottom? -->
 
 Puppet agent runs as a specific user, (usually `root`) and initiates outbound connections on port 8140.
 
@@ -51,11 +43,13 @@ If you need to install packages into a directory controlled by a non-root user, 
 
 When running without root permissions, most of Puppet's resource providers cannot use `sudo` to elevate permissions. This means Puppet can only manage resources that its user can modify without using `sudo`.
 
-Out of the core resource types listed in the [resource type reference][], only the following are available to non-root agents:
+Out of the core resource types listed in the [resource type reference][], only a few are available to non-root agents.
+
+#### Non-root agent resource types
 
 Resource type | Exception
 --------------|-----------
-`augeas`      | 
+`augeas`      |
 `cron`        | Only non-root cron jobs can be viewed or set.
 `exec`        | Cannot run as another user or group.
 `file`        | Only if the non-root user has read/write privileges.
@@ -77,11 +71,9 @@ On \*nix nodes, there are three main ways to do this:
 * **Make a cron job that runs Puppet agent.** Requires more manual configuration, but a good choice if you want to reduce the number of persistent processes on your systems.
 * **Only run Puppet agent on demand.** You can also deploy [MCollective][] to run on demand on many nodes.
 
-Choose whichever one works best for your infrastructure and culture.
+Choose whichever one works best for your infrastructure and culture. 
 
 ### Run Puppet agent as a service
-
-<!-- First child topic of the multi-task-->
 
 The Puppet agent command can start a long-lived daemon process, which does configuration runs at a set interval.
 
@@ -119,7 +111,6 @@ The Puppet agent command can start a long-lived daemon process, which does confi
 
 ### Run Puppet agent as a cron job
 
-<!-- child task topic 2 -->
 Run Puppet agent as a cron job when running as a non-root user.
 
 If [the `onetime` setting][onetime] is set to `true`, the Puppet agent command does one configuration run and then quits. If [the `daemonize` setting][daemonize] is set to `false`, the command stays in the foreground until the run is finished; if set to `true`, it does the run in the background.
@@ -135,8 +126,6 @@ This behavior is good for building a cron job that does configuration runs. You 
    ```
 
 ### Run Puppet agent on demand
-
-<!--child task topic 3 -->
 
 Some sites prefer to only run Puppet agent on demand; others use scheduled runs, but occasionally need to do an on-demand run.
 
@@ -158,19 +147,18 @@ Whether you're troubleshooting errors, working in a maintenance window, or simpl
 
 1. Run one of these commands, depending on whether you want to disable or re-enable the agent:
 
-* Disable -- `sudo puppet agent --disable "<MESSAGE>"`.
-* Enable -- `sudo puppet agent --enable`.
+   * Disable -- `sudo puppet agent --disable "<MESSAGE>"`.
+   * Enable -- `sudo puppet agent --enable`.
 
 
-## Configure Puppet agent
 
-<!-- concept? This stuff all exists in the configuration page as reference, so it's not super necessary here...but might be helpful for new users that aren't aware you *can* configure stuff? -->
+## Configuring Puppet agent
 
 The Puppet agent comes with a default configuration that may not be the most convenient for you.
 
 Configure Puppet agent with [puppet.conf][], using the `[agent]` and/or `[main]` section. For notes on which settings are most relevant to Puppet agent, see the [short list of important settings][short_settings].
 
-### Logging
+### Logging for Puppet agent on *nix systems
 
 When running as a service, Puppet agent logs messages to syslog. Your syslog configuration dictates where these messages are saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
 
@@ -180,6 +168,6 @@ When running in the foreground with the `--verbose`, `--debug`, or `--test` opti
 
 When started with the `--logdest <FILE>` option, Puppet agent logs to the file specified by `<FILE>`.
 
-### Reporting
+### Reporting for Puppet agent on *nix systems
 
 In addition to local logging, Puppet agent submits a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](./configuration.html#report) in [puppet.conf][].)
