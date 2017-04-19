@@ -39,7 +39,7 @@ Puppet can also run as a different user. You can change the user in the Service 
 
 You can also specify a different user when installing Puppet. To do this, install via the command line and [specify the required MSI properties][msiproperties] (`PUPPET_AGENT_ACCOUNT_USER`, `PUPPET_AGENT_ACCOUNT_PASSWORD`, and `PUPPET_AGENT_ACCOUNT_DOMAIN`).
 
-Puppet agent's user can be a local or domain user. If this user isn't already a local administrator, the Puppet installer will add it to the `Administrators` group. The installer will also grant [Logon as Service](http://msdn.microsoft.com/en-us/library/ms813948.aspx) to the user.
+Puppet agent's user can be a local or domain user. If this user isn't already a local administrator, the Puppet installer adds it to the `Administrators` group. The installer also grants [Logon as Service](http://msdn.microsoft.com/en-us/library/ms813948.aspx) to the user.
 
 ## Managing systems with Puppet agent
 
@@ -47,14 +47,14 @@ In a normal Puppet site, every node should periodically do configuration runs, t
 
 On Windows nodes, there are two main ways to do this:
 
-* **Run Puppet agent as a service.** The easiest method. The Puppet agent service will do configuration runs at a set interval, which can be configured.
+* **Run Puppet agent as a service.** The easiest method. The Puppet agent service does configuration runs at a set interval, which can be configured.
 * **Only run Puppet agent on demand.** To trigger runs on groups of systems, you can use Puppet Enterprise's built-in orchestration features.
 
-Since the Windows version of the Puppet agent service is much simpler than the \*nix version, there's no real performance to be gained by running Puppet as a scheduled task. All users who want scheduled configuration runs should run the Windows service.
+Since the Windows version of the Puppet agent service is much simpler than the \*nix version, there's no real performance to be gained by running Puppet as a scheduled task. If you want scheduled configuration runs, run the Windows service.
 
 ### Running Puppet agent as a service
 
-By default, the Puppet installer will configure Puppet agent to run as a Windows service and will automatically start it. No further action is needed. Puppet agent will do configuration runs at a set interval.
+By default, the Puppet installer configures Puppet agent to run as a Windows service and automatically starts it. No further action is needed. Puppet agent does configuration runs at a set interval.
 
 #### Configuring the run interval
 
@@ -64,9 +64,9 @@ The Puppet agent service defaults to doing a configuration run every 30 minutes.
     [agent]
       runinterval = 2h
 
-If you don't need an aggressive schedule of configuration runs, a longer run interval will let your Puppet master server(s) handle many more agent nodes.
+If you don't need an aggressive schedule of configuration runs, a longer run interval lets your Puppet master server(s) handle many more agent nodes.
 
-Once the run interval has been changed, the service will stick to the prior schedule for the next run and then switch to the new run interval for subsequent runs.
+Once the run interval has been changed, the service sticks to the prior schedule for the next run and then switches to the new run interval for subsequent runs.
 
 #### Configuring the service start up type
 
@@ -79,7 +79,7 @@ You can also configure agent service with the `sc.exe` command. To prevent the s
     C:\>sc config puppet start= demand
     [SC] ChangeServiceConfig SUCCESS
 
-(Note that the space after `start=` is mandatory! Also note that this must be run in cmd.exe; this command won't work from PowerShell.)
+>**Important:** The space after `start=` is mandatory! Also note that this must be run in cmd.exe; this command won't work from PowerShell.
 
 To restart the service:
 
@@ -99,9 +99,9 @@ Puppet agent runs can be started locally (while logged in to the target system),
 
 #### While logged in to the target system
 
-On Windows, you can start a configuration run with the "Run Puppet Agent" Start menu item. This will show the status of the run in a command prompt window.
+On Windows, you can start a configuration run with the "Run Puppet Agent" Start menu item. This shows the status of the run in a command prompt window.
 
-You **must be logged in as an administrator** to do this. On Windows 7/2008 and later, Windows will ask for User Account Control confirmation when you start a configuration run:
+You **must be logged in as an administrator** to do this. On Windows 7/2008 and later, Windows asks for User Account Control confirmation when you start a configuration run:
 
 ![UAC dialog][uac]
 
@@ -113,21 +113,21 @@ To do this, right-click the start menu item and choose "Run as administrator:"
 
 ![the right click menu, with run as administrator highlighted][rightclick]
 
-This will ask for UAC confirmation:
+This prompts it to ask for UAC confirmation:
 
 ![UAC dialog][uac]
 
 #### Remotely
 
-To run Puppet agent remotely on any number of systems, you should use Puppet Enterprise's orchestration tools. For info, see the Puppet Enterprise manual [page on triggering Puppet runs][].
-
 Open source Puppet users can install [MCollective][] and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent) to get similar capabilities, but Puppet doesn't provide standalone MCollective packages for Windows.
 
 ## Disabling and re-enabling Puppet runs
 
+Whether you're troubleshooting errors, working in a maintenance window, or simply developing in a sandbox environment, you may need to temporarily disable the Puppet agent from running.
+
 You can prevent Puppet agent from doing any Puppet runs by [starting a command prompt with elevated privileges][running] and running `puppet agent --disable "<MESSAGE>"`. You can re-enable it with `puppet agent --enable`.
 
-If Puppet agent attempts to do a configuration run while disabled --- either a scheduled run or a manually triggered one --- it will log a message like:
+If Puppet agent attempts to do a configuration run while disabled --- either a scheduled run or a manually triggered one --- it logs a message like:
 
     Notice: Skipping run of Puppet configuration client; administratively disabled
     (Reason: 'Investigating a problem 5/23/14 -NF'); Use 'puppet agent --enable' to re-enable.
