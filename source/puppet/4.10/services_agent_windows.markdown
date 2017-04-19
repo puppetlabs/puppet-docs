@@ -21,17 +21,15 @@ Puppet agent is the application that manages configurations on nodes. It require
 
 For details about invoking the Puppet agent command, see [the puppet agent man page](./man/agent.html).
 
-## Supported platforms
-
-This page describes how Puppet agent behaves on Windows systems. For information about Linux, OS X, and other Unix-like operating systems, see [Puppet Agent on \*nix Systems][unix_agent].
-
-> **Note:** Running 32-bit Puppet agent on a 64-bit Windows system is now deprecated. Update your Puppet installation to the 64-bit platform.
-
-Not all operating systems can manage the same resources with Puppet; some resource types are OS-specific, and others have OS-specific features. See the [resource type reference][] for details.
-
 ## Puppet agent's run environment
 
-Puppet agent runs as a specific user (defaulting to `LocalSystem`) and initiates outbound connections on port 8140.
+Puppet agent runs as a specific user, (defaulting to `LocalSystem`) and initiates outbound connections on port 8140.
+
+### Ports
+
+By default, Puppet's HTTPS traffic uses port 8140. Your operating system and firewall must allow Puppet agent to initiate outbound connections on this port.
+
+If you want to use a non-default port, you have to change [the `masterport` setting](./configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
 
 ### User
 
@@ -42,28 +40,6 @@ Puppet can also run as a different user. You can change the user in the Service 
 You can also specify a different user when installing Puppet. To do this, install via the command line and [specify the required MSI properties][msiproperties] (`PUPPET_AGENT_ACCOUNT_USER`, `PUPPET_AGENT_ACCOUNT_PASSWORD`, and `PUPPET_AGENT_ACCOUNT_DOMAIN`).
 
 Puppet agent's user can be a local or domain user. If this user isn't already a local administrator, the Puppet installer will add it to the `Administrators` group. The installer will also grant [Logon as Service](http://msdn.microsoft.com/en-us/library/ms813948.aspx) to the user.
-
-### Ports
-
-By default, Puppet's HTTPS traffic uses port 8140. Your OS and firewall must allow Puppet agent to initiate outbound connections on this port.
-
-If you want to use a non-default port, you'll have to change [the `masterport` setting](./configuration.html#masterport) on all agent nodes, and ensure that you've changed your Puppet master's port as well.
-
-### Logging
-
-When running as a service, Puppet agent logs messages to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
-
-You can adjust how verbose the logs are with [the `log_level` setting](./configuration.html#loglevel), which defaults to `notice`. Setting it to `info` is equivalent to running with the `--verbose` option, and setting it to `debug` is equivalent to `--debug`. You can also make logs quieter by dialing back to `warning` or lower.
-
-When running in the foreground with the `--verbose`, `--debug`, or `--test` options, Puppet agent logs directly to the terminal.
-
-When started with the `--logdest <FILE>` option, Puppet agent logs to the file specified by `<FILE>`.
-
-### Reporting
-
-In addition to local logging, Puppet agent will submit a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](./configuration.html#report) in [puppet.conf][].)
-
-In Puppet Enterprise, you can browse these reports in the PE console's node pages, and you can analyze correlated events with the PE event inspector.
 
 ## Managing systems with Puppet agent
 
@@ -156,7 +132,23 @@ If Puppet agent attempts to do a configuration run while disabled --- either a s
     Notice: Skipping run of Puppet configuration client; administratively disabled
     (Reason: 'Investigating a problem 5/23/14 -NF'); Use 'puppet agent --enable' to re-enable.
 
-## Configuring Puppet agent
+## Configuring Puppet agent on Windows
 
-Puppet agent should be configured with [puppet.conf][], using the `[agent]` and/or `[main]` section. For notes on which settings are most relevant to Puppet agent, see the [short list of important settings][short_settings].
+The Puppet agent comes with a default configuration that may not be the most convenient for you.
+
+Configure Puppet agent with [puppet.conf][], using the `[agent]` and/or `[main]` section. For notes on which settings are most relevant to Puppet agent, see the [short list of important settings][short_settings].
+
+### Logging for Puppet agent on Windows systems
+
+When running as a service, Puppet agent logs messages to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
+
+You can adjust how verbose the logs are with [the `log_level` setting](./configuration.html#loglevel), which defaults to `notice`.
+
+When running in the foreground with the `--verbose`, `--debug`, or `--test` options, Puppet agent logs directly to the terminal.
+
+When started with the `--logdest <FILE>` option, Puppet agent logs to the file specified by `<FILE>`.
+
+### Reporting for Puppet agent on Windows systems
+
+In addition to local logging, Puppet agent submits a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](./configuration.html#report) in [puppet.conf][].)
 
