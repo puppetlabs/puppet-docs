@@ -176,3 +176,9 @@
   became: index.html
   at_version: 2017.1
   forward_only: true
+
+# Delete an old hiera.yaml page, which I missed when doing the Hiera 5 docs
+- in_doc: puppet
+  was: config_file_hiera.html
+  became: hiera_config_yaml_5.html
+  at_version: 4.9

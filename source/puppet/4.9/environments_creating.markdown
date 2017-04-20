@@ -15,6 +15,7 @@ title: "Creating Environments"
 [basemodulepath]: ./configuration.html#basemodulepath
 [default_manifest]: ./configuration.html#defaultmanifest
 [disable_per_environment_manifest]: ./configuration.html#disableperenvironmentmanifest
+[hiera.yaml]: ./hiera_config_yaml_5.html
 
 For more info about what environments do, see [About Directory Environments.][about]
 
@@ -28,6 +29,7 @@ An environment is just a directory that follows a few conventions:
 * It must be located on the Puppet master server(s) in one of the `environmentpath` directories, usually `$codedir/environments`. (See [the `environmentpath` section of the configuring environments page.][env_conf_path])
 * It should contain a `modules` directory. If present, it will become part of the environment's default `modulepath`.
 * It should contain a `manifests` directory, which will be the environment's default [main manifest.][manifest_dir]
+* It can contain a [`hiera.yaml` (v5) file][hiera.yaml] to configure data lookup.
 * It can contain [an `environment.conf` file][environment.conf], which can locally override several settings, including `modulepath` and `manifest`.
 
 ![Diagram: A directory with four environments. Each environment contains a modules directory, a manifests directory, and an environment.conf file.](./images/environment_directories.svg)
@@ -45,9 +47,10 @@ Environment names can contain lowercase letters, numbers, and underscores. That 
 
 An environment can define three resources the Puppet master will use when compiling catalogs for agent nodes:
 
-* The modulepath
-* The main manifest
-* The config version script
+* The modulepath.
+* The main manifest.
+* Hiera data.
+* The config version script.
 
 
 ### The modulepath
@@ -102,6 +105,10 @@ As with the global `default_manifest` setting, you can specify a relative path (
 #### Locking the main manifest
 
 If you want to prevent any environment from setting its own main manifest, you can lock all environments to a single global manifest with [the `disable_per_environment_manifest` setting.][disable_per_environment_manifest] For details, see [the docs for this setting.][disable_per_environment_manifest]
+
+### Hiera data
+
+Each environment can use its own Hiera hierarchy and provide its own data. For more information, see the page about [Hiera's three config layers](./hiera_layers.html).
 
 ### The config version script
 

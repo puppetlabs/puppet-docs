@@ -16,8 +16,9 @@ This problem occurs when different versions of Ruby files, such as resource type
 This environment leakage issue does not affect the agent, as agents are only in one environment at any given time.
 
 * For **resource types**, you can avoid environment leaks with the the `puppet generate types` command as described in [environment isolation](./environment_isolation.html#enable-environment-isolation-in-open-source-puppet) documentation. This command generates resource type metadata files to ensure that each environment uses the right version of each type.
-* For **functions**, this issue occurs only with the legacy `Puppet::Parser::Functions` API. To fix this, rewrite functions with the modern API, which is not affected by environment leakage. You can include helper code in the function definition, but if helper code is more complex, it should be packaged as a gem and installed for all environments.
+* For **functions**, this issue occurs only with the legacy `Puppet::Parser::Functions` API. To fix this, rewrite functions with [the modern functions API](./functions_ruby_overview.html), which is not affected by environment leakage. You can include helper code in the function definition, but if helper code is more complex, it should be packaged as a gem and installed for all environments.
 * Report processors and indirector termini are still affected by this problem, and they should probably be in your global Ruby directories rather than in your environments. If they are in your environments, you must ensure they all have the same content.
+
 ## For best performance, you might have to change your deploy process
 
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
@@ -27,12 +28,6 @@ The default value of [the `environment_timeout` setting][configuring_timeout] ha
 For best performance, you should set `environment_timeout = unlimited`, but this requires a change to your code deployment process, because you'll need to refresh the Puppet master to make it notice the new code.
 
 For more info, see [the timeout section of the Configuring Environments page.][configuring_timeout]
-
-## Hiera configuration can't be specified per environment
-
-Puppet will only use a global [hiera.yaml](./config_file_hiera.html) file; you can't put per-environment configs in an environment directory.
-
-When using the built-in YAML or JSON backends, it _is_ possible to separate your Hiera data per environment; you will need to interpolate [the `$environment` variable][env_var] into [the `:datadir` setting.]({{hiera}}/configuring.html#yaml-and-json) (e.g. `:datadir: /etc/puppetlabs/code/environments/%{::environment}/hieradata`)
 
 ## Exported resources can conflict or cross over
 

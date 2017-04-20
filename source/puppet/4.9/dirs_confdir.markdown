@@ -47,11 +47,11 @@ Items labeled "master only" below can also be present on standalone Puppet apply
 
 ### Config files
 
-* [`puppet.conf`](./config_file_main.html) --- Puppet's main config file. (All nodes.)
-* [`auth.conf`](./config_file_auth.html) --- access control rules for the Puppet master's network services.
+* [`puppet.conf`](./config_file_main.html) --- Puppet's main config file. (Any node.)
+* [`auth.conf`](./config_file_auth.html) --- access control rules for the Puppet master's network services. (Master only.)
 * [`autosign.conf`](./config_file_autosign.html) --- a list of pre-approved certificate requests. (CA master only.)
-* [`csr_attributes.yaml`](./config_file_csr_attributes.html) --- optional data to be inserted into new certificate requests. (All nodes.)
-* [`device.conf`](./config_file_device.html) --- configuration for network devices managed by the `puppet device` command. (All nodes.)
+* [`csr_attributes.yaml`](./config_file_csr_attributes.html) --- optional data to be inserted into new certificate requests. (Any node.)
+* [`device.conf`](./config_file_device.html) --- configuration for network devices managed by the `puppet device` command. (Any node acting as an intermediary to configure network devices.)
 * [`fileserver.conf`](./config_file_fileserver.html) --- configuration for additional fileserver mount points. (Master only.)
-* [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system. (All nodes.)
+* [`hiera.yaml`](./hiera_config_yaml_5.html) --- global configuration for the Hiera data lookup system. Note that environments and modules can have their own hiera.yaml files. (Master, or standalone nodes running Puppet apply.)
 * [`routes.yaml`](./config_file_routes.html) --- advanced configuration of indirector behavior. (Master only.)
