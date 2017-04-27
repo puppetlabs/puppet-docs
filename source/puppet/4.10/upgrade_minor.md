@@ -1,17 +1,15 @@
 ---
 layout: default
-title: "Minor upgrades: Within 4.x (Puppet Collection 1 / PC1)"
+title: "Minor upgrades: Within Puppet 4.x"
 ---
 
 [`puppetlabs/puppetdb`]: https://forge.puppetlabs.com/puppetlabs/puppetdb
 [Puppet Collection]: ./puppet_collections.md
 [major upgrades]: ./upgrade_major_pre.html
 
-A minor upgrade is an upgrade from one Puppet 4 release to another.
+A minor upgrade is an upgrade from one Puppet 4 release to another. The order in which you upgrade packages is important. Always upgrade `puppetserver` on your masters _before_ you upgrade agents. You can upgrade PuppetDB before or after you upgrade other nodes.
 
-The order in which you upgrade packages is important. Always upgrade `puppetserver` on your masters _before_ you upgrade agents. You can upgrade PuppetDB before or after you upgrade other nodes.
-
-### Upgrading Puppet Server
+### Upgrade Puppet Server
 
 Upgrade Puppet Server on the masters before upgrading any agents. 
 
@@ -19,68 +17,74 @@ Upgrade Puppet Server on the masters before upgrading any agents.
 
 The `puppetserver` package depends on the `puppet-agent` package, and your node's package manager automatically upgrades `puppet-agent` if the new version of `puppetserver` requires it.
 
-To upgrade the `puppetserver` package and its dependencies on masters that use `apt`, run:
+1. To upgrade the `puppetserver` package and its dependencies on masters that use `apt`, run:
 
-``` bash
-# apt-get update
-# apt-get install --only-upgrade puppetserver
-```
+   ``` bash
+   # apt-get update
+   # apt-get install --only-upgrade puppetserver
+   ```
 
-On masters that use `yum`, run:
+   On masters that use `yum`, run:
 
-``` bash
-# yum update puppetserver
-```
+   ``` bash
+   # yum update puppetserver
+   ```
 
 > **Note**: If you pinned or held your Puppet packages to a specific version, remove the pins or holds before continuing. On systems that use `apt`, remove any special `.pref` files from `/etc/apt/preferences.d/` that pin Puppet packages, and use the `apt-mark unhold` command on each held package. For `yum` packages locked with the versionlock plugin, edit `/etc/yum/pluginconf.d/versionlock.list` and remove the Puppet lock.
 
-### Upgrading Puppet on agents
+### Upgrade Puppet on agents
 
-You should regularly upgrade Puppet on agents, and in most cases you shouldn't need to do anything to prepare for such upgrades. Read the [release notes](./release_notes.html) before upgrading to learn about changes that affect specific systems or workflows.
+You should regularly upgrade Puppet on agents, and in most cases you shouldn't need to do anything to prepare for such upgrades.
 
-To upgrade \*nix agents that use `apt`, run:
+Read the [release notes](./release_notes.html) before upgrading to learn about changes that affect specific systems or workflows.
 
-``` bash
-# apt-get update
-# apt-get install --only-upgrade puppet-agent
-```
+1. To upgrade \*nix agents that use `apt`, run:
 
-On \*nix agents that use `yum`, run:
+   ``` bash
+   # apt-get update
+   # apt-get install --only-upgrade puppet-agent
+   ```
 
-``` bash
-# yum update puppet-agent
-```
+   On \*nix agents that use `yum`, run:
+
+   ``` bash
+   # yum update puppet-agent
+   ```
 
 On Windows agents, follow the [installation guide](./install_windows.html) to upgrade installed Puppet packages. You do not need to uninstall Puppet first unless you're changing from 32-bit Puppet to the 64-bit version. Running 32-bit Puppet on 64-bit Windows is now deprecated, so you should update your Puppet's architecture to match your system.
 
 > **Note**: If you installed Puppet into a custom directory and are moving from a 32-bit version to a 64-bit version, you must specify the INSTALLDIR option and any other relevant MSI properties when re-installing.
 
-### Upgrading PuppetDB
+### Upgrade PuppetDB
 
 Upgrade PuppetDB nodes independently of masters and agents. 
 
-You can automate PuppetDB upgrades using the `version` parameter of the [`puppetlabs/puppetdb`][] module's [`puppetdb::globals`](https://forge.puppetlabs.com/puppetlabs/puppetdb#usage) class. To manually upgrade the `puppetdb` package on nodes that use `apt`, run:
+You can automate PuppetDB upgrades using the `version` parameter of the [`puppetlabs/puppetdb`][] module's [`puppetdb::globals`](https://forge.puppetlabs.com/puppetlabs/puppetdb#usage) class.
 
-``` bash
-# apt-get update
-# apt-get install --only-upgrade puppetdb
-```
+1. To manually upgrade the `puppetdb` package on nodes that use `apt`, run:
 
-On nodes that use `yum`, run:
+   ``` bash
+   # apt-get update
+   # apt-get install --only-upgrade puppetdb
+   ```
 
-``` bash
-# yum update puppetdb
-```
+   On nodes that use `yum`, run:
 
-When you upgrade PuppetDB, you must also upgrade the `puppetdb-termini` package on all Puppet masters. To upgrade it on masters that use `apt`, run:
+   ``` bash
+   # yum update puppetdb
+   ```
 
-``` bash
-# apt-get update
-# apt-get install --only-upgrade puppetdb-termini
-```
+2. When you upgrade PuppetDB, you must also upgrade the `puppetdb-termini` package on all Puppet masters.
 
-On masters that use `yum`, run:
+   To upgrade it on masters that use `apt`, run:
 
-``` bash
-# yum update puppetdb-termini
-```
+   ``` bash
+   # apt-get update
+   # apt-get install --only-upgrade puppetdb-termini
+   ```
+
+   On masters that use `yum`, run:
+
+   ``` bash
+   # yum update puppetdb-termini
+   ```
