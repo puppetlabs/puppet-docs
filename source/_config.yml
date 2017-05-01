@@ -23,7 +23,7 @@ defaultnav:
   /es/pe/3.8: /_includes/es_pe38.html
   /ja: /ja/_ja_sidebar_generic.html
   /es/puppet: /_includes/_es_fallback_nav.html
-  /es/puppet/4.9: /_includes/_es_puppet_toc.html
+  /es/puppet/4.9: /_includes/_es_puppet_toc_49.html
   /ja: /ja/_ja_sidebar_generic.html
   /ja/guides/install_puppet: /_includes/ja_puppet_general.html
   /ja/learning: /_includes/ja_learning_nav.html
