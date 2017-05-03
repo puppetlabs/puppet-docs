@@ -164,10 +164,16 @@ end
 desc "Clean up any crap left over from failed docs site builds"
 task :clean do
   # Get rid of external sources symlinks
+  pust "Deleting symlinks to external sources..."
   Rake::Task['externalsources:clean'].invoke
   Rake::Task['externalsources:clean'].reenable
   # Get rid of the amended config file we write for Jekyll
-  FileUtils.rm("#{SOURCE_DIR}/_config_amended.yml")
+  begin
+    puts "Deleting _config_amended.yml..."
+    FileUtils.rm("#{SOURCE_DIR}/_config_amended.yml")
+  rescue
+    puts "There was no _config_amended.yml file to delete."
+  end
 end
 
 desc "Generate the documentation"
