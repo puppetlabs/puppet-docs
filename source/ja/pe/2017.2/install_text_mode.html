@@ -1,0 +1,56 @@
+---
+layout: default
+title: "テキストモードインストールの概要"
+---
+
+<div>
+<h2 id="how-text-mode-installation-works">テキストモードインストールの仕組み</h2>
+
+<p> Puppet Enterpriseインストーラをテキストモードで実行する場合、構成ファイル(<code>pe.conf</code>)がインストーラに受け渡されます。構成ファイルには、PEのインストールに必要なパラメータの値が含まれています。
+</p>
+
+<p> テキストモードインストールでは、PEコンポーネントをインストールする各ノード上で<code>pe.conf</code>ファイルによりインストーラを実行する必要があります。 つまり、モノリシックインストールの場合は、1つのノード上で<code>pe.conf</code>によりインストーラを実行しますが、分割インストールの場合は、3つのノード上で<code>pe.conf</code>によりインストーラを実行します。 
+</p>
+
+<ul>
+<li><a href="./install_text_mode_mono.html">テキストモードのモノリシックインストールの説明</a></li>
+  <li><a href="./install_text_mode_split.html">テキストモードの分割インストールの説明</a></li>
+</ul>
+<p> インストールを開始する前に、「<a href="./sys_req_hw.html#choosing-a-pe-architecture">Puppet Enterpriseアーキテクチャ の選択</a>」を確認してください。
+</p>
+
+<h3 id="the-peconf-file">
+<code>pe.conf</code>ファイル</h3>
+
+<p> <code>pe.conf</code>ファイルは、<a href="/pe/latest/config_hocon.html">HOCON</a>形式のファイルで、Puppet Enterpriseをインストールして構成する際に必要なパラメータと値を明示するものです。 たとえば、モノリシックインストールでは、必要なのは2組のキー/値のみです。
+</p>
+
+<pre><code>"console_admin_password": "puppet"
+"puppet_enterprise::puppet_master_host": "%{::trusted.certname}"
+</code></pre>
+
+<p> <code>pe.conf</code>ファイルでのパラメータ設定の詳細と、必須およびオプションのパラメータの完全なリストについては、<a href="./install_pe_conf_param.html"><code>pe.conf</code>パラメータリファレンス</a>を参照してください。
+</p>
+
+<h3 id="obtaining-a-peconf-file">
+<code>pe.conf</code>ファイルの取得</h3>
+
+<p> インストール時に使用する<code>pe.conf</code>ファイルは、次の方法で作成または取得することができます。
+</p>
+
+<ul>
+<li>
+    <p> PEインストーラtarballの<code>conf.d</code>ディレクトリで提供されている<code>pe.conf</code>ファイル例を使用する方法。
+</p>
+
+    <blockquote>
+      <p> <strong>ヒント：</strong>モノリシックインストールの場合、ほとんどのケースでは、変更を一切加えずに<code>pe.conf</code>ファイル例を使用できます。
+</p>
+    </blockquote>
+  </li>
+  <li>インストーラでプロンプトが表示されたら、テキストモードインストールのオプションを選択する方法。これにより、デフォルトのエディタと<code>pe.conf</code>ファイル例が開き、ファイル例を編集することができます。エディタを閉じると、この<code>pe.conf</code>を使用してインストールが進められます。</li>
+  <li>Webベースのインストーラを使用して<code>pe.conf</code>ファイルを作成する方法。Webベースのインストーラを実行すると、<code>/etc/puppetlabs/enterprise/conf.d</code>でファイルが見つかります。また、Webベースのインストーラの確認ページに表示されるリンクからファイルをダウンロードすることもできます。</li>
+</ul>
+<p> 必須およびオプションのパラメータの完全なリストについては、<a href="./install_pe_conf_param.html"><code>pe.conf</code>パラメータリファレンス</a>を参照してください。
+</p>
+</div>
