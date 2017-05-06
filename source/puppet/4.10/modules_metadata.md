@@ -6,84 +6,155 @@ title: "Module metadata and metadata.json"
 [module data]: ./hiera_layers.html
 [hiera_yaml_4]: ./hiera_config_yaml_4.html
 
-Puppet modules should always contain a `metadata.json` file, which tracks important information about the module and can configure certain features. It's used by several Puppet subsystems:
+The Puppet modules you write should always contain a `metadata.json` file, which tracks important information about the module and can configure certain features.
+
+The `metadata.json` file is located in the module's main directory, outside any subdirectories. This file is used by several Puppet subsystems:
 
 * The `puppet module` command uses this file to display module information and prepare modules for publishing.
 * The Puppet Forge requires this file and uses it to create the module's info page, provide dependency information to users installing the module, and more.
 
+### metadata.json example {:.example}
 
-## Location
-
-Every module should contain a `metadata.json` file. It should be located in the module's main directory, outside any subdirectories.
-
-## Example
-
-``` javascript
+``` json
+{
+  "name": "puppetlabs-ntp",
+  "version": "6.1.0",
+  "author": "Puppet Inc",
+  "summary": "Installs, configures, and manages the NTP service.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/puppetlabs/puppetlabs-ntp",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-ntp",
+  "issues_url": "https://tickets.puppetlabs.com/browse/MODULES",
+  "dependencies": [
+    { "name":"puppetlabs/stdlib","version_requirement":">= 4.13.1 < 5.0.0" }
+  ],
+  "data_provider": "hiera",
+  "operatingsystem_support": [
     {
-      "name": "examplecorp-mymodule",
-      "version": "0.0.1",
-      "author": "Pat",
-      "license": "Apache-2.0",
-      "summary": "A module for a thing",
-      "source": "https://github.com/examplecorp/examplecorp-mymodule",
-      "project_page": "https://forge.puppetlabs.com/examplecorp/mymodule",
-      "issues_url": "https://github.com/examplecorp/examplecorp-mymodule/issues",
-      "tags": ["things", "stuff"],
-      "operatingsystem_support": [
-        {
-        "operatingsystem":"RedHat",
-        "operatingsystemrelease":[ "5.0", "6.0" ]
-        },
-        {
-        "operatingsystem": "Ubuntu",
-        "operatingsystemrelease": [ "12.04", "10.04" ]
-        }
-       ],
-      "dependencies": [
-        { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" },
-        { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4 < 2.0.0" }
-      ],
-      "data_provider": "hiera"
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.5.0 < 5.0.0"
     }
+  ],
+  "description": "NTP Module for Debian, Ubuntu, CentOS, RHEL, OEL, Fedora, FreeBSD, ArchLinux, Amazon Linux and Gentoo."
+}
 ```
 
-## Format
+[TODO: please check the above code sample carefully]
 
-A `metadata.json` file uses standard JSON syntax, and contains a single JSON object. (A JSON object is a map of keys to values; it's equivalent to a Ruby or Puppet hash. In the Puppet docs, we sometimes refer to a JSON object as a hash.)
+## Formatting `metadata.json` {:.concept}
 
-The main object can only contain certain keys, which are listed below.
+A `metadata.json` file uses standard JSON syntax, and contains a single JSON object. A JSON object is a map of keys to values; it's sometimes called a hash and is equivalent to a Ruby or Puppet hash.
 
-## Allowed keys in `metadata.json`
+## Available `metadata.json` keys {:.reference}
 
-Required keys are labeled as such; the rest are optional.
+The main JSON object in `metadata.json` can contain only certain keys.
 
-* `name` (required) --- The full name of your module, including the Puppet Forge username (like `"username-module"`).
-* `version` (required) --- The current version of your module. This should follow [semantic versioning](http://semver.org/).
-* `author` (required) --- The person who gets credit for creating the module. If absent, this key will default to the username portion of `name`.
-* `license` (required) --- The license under which your module is made available. License metadata should match an identifier provided by [SPDX](http://spdx.org/licenses/).
-* `summary` (required) --- A one-line description of your module.
-* `source` (required) --- The source repository for your module.
-* `dependencies` (required) --- An array of other modules that your module depends on to function. See [Specifying Dependencies][inpage_deps] below for more details.
-* `project_page` --- A link to your module's website that will be linked on the Forge.
-* `issues_url` --- A link to your module's issue tracker.
-* `operatingsystem_support` --- An array of operating systems your module is compatible with. See [Specifying Operating System Compatibility][inpage_os] below for more details.
-* `tags` --- An array of key words to help people find your module (not case sensitive). For example: `["msyql", "database", "monitoring"]`
+<table>
+  <tr>
+      <th>Key</th>
+      <th>Required?</th>
+      <th>Description</th>
+  </tr>
+  <tr>
+    <td>`name`</td>
+    <td>Required</td>
+    <td>The full name of your module, including the Puppet Forge username (`"username-module"`).</td>
+  </tr>
+  <tr>
+    <td>`version`</td>
+    <td>Required</td>
+    <td>The current version of your module. This should follow [semantic versioning](http://semver.org/).</td>
+  </tr>
+  <tr>
+    <td>`author`</td>
+    <td>Required</td>
+    <td>The person who gets credit for creating the module. If absent, this key will default to the username portion of `name`.</td>
+  </tr>
+  <tr>
+    <td>`license`</td>
+    <td>Required</td>
+    <td>The license under which your module is made available. License metadata should match an identifier provided by [SPDX](http://spdx.org/licenses/).</td>
+  </tr>
+  <tr>
+    <td>`summary`</td>
+    <td>Required</td>
+    <td>A one-line description of your module.</td>
+  </tr>
+  <tr>
+    <td>`source`</td>
+    <td>Required</td>
+    <td>The source repository for your module.</td>
+  </tr>
+  <tr>
+    <td>`dependencies`</td>
+    <td>Required</td>
+    <td>An array of other modules that your module depends on to function. See [Specifying Dependencies][inpage_deps] for more details.</td>
+  </tr>
+  <tr>
+    <td>`requirements`</td>
+    <td>Optional</td>
+    <td> <p>A list of external requirements for your module, given in the form:</p>
+    
+    <p>`"requirements": [ {"name": "puppet", "version_requirement": "4.x"}]`.</p>
+    
+    <p> For details, see the section about [specifying Puppet version requirements][inpage_require].</p>
+    </td>
+  </tr>
+  <tr>
+    <td>`project_page`</td>
+    <td>Optional</td>
+    <td>A link to your module's website to be included on the Forge.</td>
+  </tr>
+  <tr>
+    <td>`issues_url`</td>
+    <td>Optional</td>
+    <td>A link to your module's issue tracker.</td>
+  </tr>
+  <tr>
+    <td>`operatingsystem_support`</td>
+    <td>Optional</td>
+    <td>An array of operating systems your module is compatible with. See [Specifying Operating System Compatibility][inpage_os] for more details.</td>
+  </tr>
+  <tr>
+    <td>`tags`</td>
+    <td>Recommended: four to six tags</td>
+    <td> <p>An array of key words to help people find your module (not case sensitive). For example: `["msyql", "database", "monitoring"]`</p> <p>Tags cannot contain whitespace. Certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact (such as `redhat`, `rhel`, `debian`, `solaris`, `aix`, `windows`, or `osx`). Use of prohibited tags lowers your module's quality score on the Forge.</p>
+    </td>
+  </tr>
+</table>
 
-    Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact (including but not limited to `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`). Use of prohibited tags will lower your module's quality score on the Forge.
-* `data_provider` --- **Deprecated.** The experimental Puppet lookup feature used this key to enable module data. It's no longer necessary, since [Hiera 5's module layer][module data] is automatically enabled if a hiera.yaml file is present.
+### Deprecated keys {:.section}
 
-    This can have the following values:
+* `types` --- Resource type documentation generated by older versions of the Puppet module tool as part of `puppet module build`. **You should remove this key from your `metadata.json`.**
+
+* `data_provider` --- The experimental Puppet lookup feature used this key to enable module data. It's no longer necessary, since [Hiera 5's module layer][module data] is automatically enabled if a `hiera.yaml` file is present.
+
+  This can have the following values:
 
     * `null` (or key is absent) --- In Puppet 4.9 and later, automatically configure module data if hiera.yaml is present. In Puppet 4.3 through 4.8, disable module data.
     * `"none"` --- Disable module data.
     * `"hiera"` --- In Puppet 4.9 and later, same as `null` or absent. In 4.3 through 4.8, enable module data using a [`hiera.yaml` (version 4) file][hiera_yaml_4].
     * `"function"` --- Uses a hash returned by a function named `<MODULE NAME>::data`.
 
-### Deprecated keys
-
-* `types` --- Resource type documentation generated by older versions of the Puppet module tool as part of `puppet module build`. **You should remove this key from your `metadata.json`.**
-
-## Specifying dependencies
+## Specifying dependencies {:.concept}
 
 [inpage_deps]: #specifying-dependencies
 
@@ -100,11 +171,11 @@ The `dependencies` key accepts an array of hashes, where each hash contains `"na
     ]
 ```
 
-**Note:** Once you've generated your module and gone through the metadata dialog, you must manually edit the `metadata.json` file to include the dependency information.
+After you've generated your module and gone through the metadata dialog, you must manually edit the `metadata.json` file to include the dependency information.
 
 ### Version specifiers
 
-The version requirement in a dependency isn't limited to a single version; you can use several version specifiers that allow multiple versions. When installing your module, the Puppet module command will install the newest allowed version of a dependency that isn't installed yet, and won't touch any installed dependencies whose versions are OK.
+The version requirement in a dependency or requirementisn't limited to a single version; you can use several version specifiers that allow multiple versions. When installing your module, the Puppet module command will install the newest allowed version of a dependency that isn't installed yet, and won't touch any installed dependencies whose versions are OK.
 
 The version specifiers allowed in module dependencies are:
 
@@ -122,7 +193,7 @@ The version specifiers allowed in module dependencies are:
 * `>= 3.2.x`
 * `< 4.x`
 
-> ### Best practice: Set an upper bound for dependencies
+> ### Best practice: Set an upper bound for dependencies {:.section}
 >
 > When your module depends on other modules, make sure to set the upper version boundary in your version range; for example, `1.x` (any version of `1`, but less than `2.0.0`) or `>= 1.0.0 < 3.0.0` (greater than or equal to `1.0.0`, but less than `3.0.0`). If your module is compatible with the latest released versions of its dependencies, set the upper bound to exclude the next, unreleased major version.
 >
@@ -133,6 +204,25 @@ The version specifiers allowed in module dependencies are:
 >      { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" }
 >
 > In this example, the current version of stdlib is 4.8.0, and version 5.0.0 is not yet released. Under the rules of semantic versioning, 5.0.0 is likely to have incompatibilities, but every version of 4.x should be compatible. We don't know yet if the module will be compatible with 5.x. So we set the upper bound of the version dependency to less than the next known incompatible release (or major version).
+
+## Specifying Puppet version requirements
+
+[inpage_require]: #specifying-puppet-version-requirements
+
+The `requirements` key specifies a list of external requirements for the module, particularly the Puppet version required.
+
+Specify requirements in the following format:
+
+* "name": The name of the requirement.
+* "version_requirement": A semver version range similar to dependencies.
+
+```json
+"requirements": [ {"name": "pe”, “version_requirement”: “3.x”}]
+```
+
+Although you can express any requirement here, we support only the "puppet" requirement for Puppet version on the Forge search and on module pages.
+
+For Puppet Enterprise versions, specify the core Puppet version of that version of Puppet Enterprise. For example, Puppet Enterprise 2017.1 contained Puppet 4.9. We do not recommend expressing requirements for Puppet versions earlier than 3.0, because they do not follow semver.
 
 ## Specifying operating system compatibility
 
@@ -160,6 +250,7 @@ This key accepts an array of hashes, where each hash contains `operatingsystem` 
   }
 ]
 ```
+
 
 
 ## A note on semantic versioning

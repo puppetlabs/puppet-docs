@@ -7,7 +7,7 @@ title: "Publishing modules on the Puppet Forge"
 [installing]: ./modules_installing.html
 [fundamentals]: ./modules_fundamentals.html
 [plugins]: ./plugins_in_modules.html
-[forge]: https://forge.puppetlabs.com/
+[forge]: https://forge.puppet.com/
 [rspec]: http://rspec-puppet.com/
 [signup]: ./images/forge_signup.png
 [publishmodule]: ./images/forge_publish_module.png
@@ -29,20 +29,16 @@ title: "Publishing modules on the Puppet Forge"
 [metadata]: ./modules_metadata.html
 
 
+The Puppet Forge is a community repository of modules, written and contributed by open source Puppet and Puppet Enterprise users. Using the Puppet Forge is a great way to build on the work others have done and get updates and expansions on your own module work. You can publish your own modules to the Forge so that other users can [install][installing] them, as well as how to maintain your releases once published.
 
-The Puppet Forge is a community repository of modules, written and contributed by  Puppet Open Source and Puppet Enterprise users. Using the Puppet Forge (Forge) is a great way to build on the work others have done and get updates and expansions on your own module work. This document describes how to publish your own modules to the Forge so that other users can [install][installing] them, as well as how to maintain your releases once published.
+## Related topics
 
+* [Module fundamentals][fundamentals]: How to write and use your own Puppet modules.
+* [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
+* [Using plugins][plugins]: How to arrange plugins (such as custom facts and custom resource types) in modules and sync them to agent nodes.
+* [Documenting modules][documentation]: How to write good documentation for your modules.
 
-* Continue reading to learn how to publish your modules to the Puppet Forge.
-* [See "Module Fundamentals"][fundamentals] for how to write and use your own Puppet modules.
-* [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
-* [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
-* [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
-
-## Overview
-
-
-This guide assumes that you have already [written a useful Puppet module][fundamentals]. To publish your module, you will need to:
+Before you begin, you should already have [written a useful Puppet module][fundamentals]. To publish your module, you will need to:
 
 1. Create a Puppet Forge account, if you don't already have one.
 2. Prepare your module.
@@ -52,7 +48,7 @@ This guide assumes that you have already [written a useful Puppet module][fundam
 
 ### A note on module names
 
-Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
+Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires that module names have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
 
 However, your module's directory on disk must use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
 
@@ -71,7 +67,6 @@ Before you begin, you should create a user account on the Puppet Forge (Forge). 
 2. Fill in your details. After you finish, you will be asked to verify your email address via a verification email. Once you have done so, you can publish modules to the Forge.
 
 ## Prepare the module
-
 
 If you already have a Puppet module with the [correct directory layout][fundamentals], you can continue to the next step.
 
@@ -224,7 +219,7 @@ If you select the deleted release, a warning banner will appear on the page with
 
 If the only release of a module is deleted, or if all the releases of a module are deleted, the module will still show up in the Forge's search under some circumstances.
 
-For example, puppetlabs-appdirector has only one release. It is the only result when we search for the word 'appdirector'.
+For example, puppet-appdirector has only one release. It is the only result when we search for the word 'appdirector'.
 
    ![one module one release][onereleasesearch]
 
