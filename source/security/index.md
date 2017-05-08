@@ -278,6 +278,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party security announcements
 
+- [CVE-2016-10173: Directory Traversal in Minitar](https://puppet.com/security/cve/cve-2016-10173)
+
+   Resolved in Puppet 4.10.0 and Puppet Agent 1.10.0 
+    
 - [Oracle Java January 2017 Security Fixes](https://puppet.com/security/cve/oracle-java-jan-2017-security-fixes)
 
    Resolved in Puppet Enterprise 2016.5.2 and Puppet Enterprise 2016.4.3

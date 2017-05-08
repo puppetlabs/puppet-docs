@@ -16,7 +16,13 @@ title: "Installing Puppet agent: Microsoft Windows"
 
 ## Make sure you're ready
 
-Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install]. Also make sure the version of Windows you're using is listed in the [system requirements](./system_requirements#windows).
+Before installing Puppet on any agent nodes:
+
+* Make sure you've read the [pre-install tasks.](./install_pre.html)
+* [Install Puppet Server][server_install].
+* Make sure the version of Windows you're using is listed in the [system requirements](./system_requirements#windows).
+* If you're using Puppet with a master/agent configuration, you'll need a \*nix node to act as your Puppet master.
+
 
 > **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
 
@@ -24,14 +30,16 @@ Before installing Puppet on any agent nodes, make sure you've read the [pre-inst
 
 [Puppet's Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
 
-* 64-bit versions of Windows can use `puppet-agent-<VERSION>-x64.msi` (recommended) or `puppet-agent-<VERSION>-x86.msi`.
-* 32-bit versions of Windows _must_ use `puppet-agent-<VERSION>-x86.msi`.
+* 64-bit versions of Windows must use `puppet-agent-<VERSION>-x64.msi`.
+* 32-bit versions of Windows must use `puppet-agent-<VERSION>-x86.msi`.
+
+>**Note:** Running 32-bit Puppet agent on a 64-bit Windows system was deprecated on December 31, 2016.
 
 These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
 The list of Windows packages might include release candidates, whose filenames have something like `-rc1` after the version number. Use these only if you want to test upcoming Puppet versions.
 
->**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You may see a warning from your browser saying the signature is corrupt or invalid.
+>**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You might see a warning from your browser saying the signature is corrupt or invalid.
 >
 > ![invalid or corrupt](./images/windows_invalid_signature.jpg)
 >
@@ -49,7 +57,7 @@ You can install Puppet [with a graphical wizard](#graphical-installation) or [on
 
 Double-click the MSI package you downloaded, and follow the graphical wizard. The installer must be run with elevated privileges. Installing Puppet does not require a system reboot.
 
-During installation, you will be asked for the hostname of your Puppet master server. This must be a \*nix node configured to act as a Puppet master.
+During installation, you Puppet asks for the hostname of your Puppet master server. This must be a \*nix node configured to act as a Puppet master.
 
 For standalone Puppet nodes that won't connect to a master, use the default hostname (`puppet`). You might also want to install on the command line and set the agent startup mode to `Disabled`.
 
@@ -197,7 +205,7 @@ The domain of the Puppet agent's user account. See the notes under [`PUPPET_AGEN
 
 #### Downgrades
 
-If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package. 
+If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package.
 
 ### Uninstalling
 

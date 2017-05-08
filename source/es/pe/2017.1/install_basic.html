@@ -1,0 +1,165 @@
+---
+layout: default
+title: "Descargar e instalar Puppet Enterprise"
+canonical: "/es/pe/latest/install_basic.html"
+---
+
+<div>
+<p> Para empezar con Puppet Enterprise, descargue y verifique la instalación del paquete PE y entonces, seleccionaremos nuestro tipo de instalación.
+</p>
+
+<h2 id="download-and-verify-puppet-enterprise-installation-package">Descargue y verifique el paquete de instalación Puppet Enterprise</h2>
+
+<p> PE esta distribuido en paquetes específicos para soportar diferentes versiones de sistemas operativos y arquitecturas.
+</p>
+
+<p> La última versión de Puppet Entrerprise está disponible para su descarga en nuestra website. Las descargas incluyen el tarball de instalación completo de PE y un fichero de firmas GPG (.asc) para verificar la autenticidad.
+</p>
+
+<h3 id="download-puppet-enterprise">Descargar Puppet Enterprise</h3>
+
+<p> PE está disponible para su descarga en nuestra website.
+</p>
+
+<ol>
+<li>
+    <p> Seleccione el tarball apropiado para <a href="http://info.puppetlabs.com/download-pe.html">descargar</a> la version actual de Puppet Enterprise.
+</p>
+
+    <table>
+<thead><tr>
+<th>El nombre del fichero termina con...</th>
+          <th>Se instalará en...</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td><code>-el-&lt;version and arch&gt;.tar.gz</code></td>
+          <td>RHEL, CentOS, Scientific Linux o Oracle Linux</td>
+        </tr>
+<tr>
+<td><code>-ubuntu-&lt;version and arch&gt;.tar.gz</code></td>
+          <td>Ubuntu LTS</td>
+        </tr>
+<tr>
+<td><code>-sles-&lt;version and arch&gt;.tar.gz</code></td>
+          <td>SLES</td>
+        </tr>
+</tbody>
+</table>
+</li>
+  <li>
+    <p> Continue  con la siguiente tarea, verificar el paquete de instalación
+</p>
+  </li>
+</ol>
+<h3 id="verify-the-installation-package">Verificar el paquete de instalación</h3>
+
+<p> Antes de comenzar con la instalación de su PE, usted puede importar la clave pública de Puppet y ejecutar la verificación criptográfica del paquete de instalación PE descargado.
+</p>
+
+<p> Antes de comenzar:
+</p>
+
+<p> Usted necesita tener GnuPG instalado. Usted también necesita tener la firma GPG (fichero .asc) que ha descargado con el paquete de instalación de PE.
+</p>
+
+<ol>
+<li>
+    <p> Importe la clave pública de Puppet.
+</p>
+
+    <pre><code>wget -O - https://downloads.puppetlabs.com/puppet-gpg-signing-key.pub | gpg --import
+</code></pre>
+  </li>
+  <li>
+    <p> Imprima el fingerprint de la clave de Puppet.
+</p>
+
+    <pre><code>gpg --fingerprint 0x7F438280EF8D349F
+</code></pre>
+
+    <p> Usted debería observar que coinciden los fingerprint de ambas claves, las cuales se muestran en la verificación.
+</p>
+
+    <pre><code>Primary key fingerprint: 6F6B 1550 9CF8 E59E 6E46  9F32 7F43 8280 EF8D 349F
+</code></pre>
+  </li>
+  <li>
+    <p> Verifique la versión de la firma del paquete de instalación.
+</p>
+
+    <pre><code>$ gpg --verify puppet-enterprise-&lt;version&gt;-&lt;platform&gt;.tar.gz.asc
+</code></pre>
+
+    <p> El resultado debería ser similar al siguiente:
+</p>
+
+    <pre><code>gpg: Signature made Tue 18 Sep 2016 10:05:25 AM PDT using RSA key ID EF8D349F
+gpg: Good signature from "Puppet, Inc. Release Key (Puppet, Inc. Release Key)"
+</code></pre>
+
+    <p> <strong>Nota:</strong> Cuando verifica la firma pero no tienen un path  a una de las firmas de la clave de lanzamiento, usted recibirá un mensaje de warning similar al siguiente:
+</p>
+
+    <pre><code>Could not find a valid trust path to the key.
+     gpg: WARNING: This key is not certified with a trusted signature!
+     gpg:          There is no indication that the signature belongs to the owner.
+</code></pre>
+
+    <p> Este warning es generado porque no se ha creado un path válido que certifique quien ha firmado la firma emitida, por lo tanto puede ser ignorada.
+</p>
+  </li>
+</ol>
+<h2 id="installing-puppet-enterprise-overview">Cómo instalar Puppet Enterprise: resumen</h2>
+
+<p> Su instalación de PE será más sencilla, si conoce algunas técnicas por adelantado.
+</p>
+
+<p> Las funciones de Puppet Enterprise se distribuyen entre varios componentes diferentes que se instalan y configuran cuando se ejecuta la instalación. Puede seleccionar instalar múltiples componentes en un único nodo (una "instalación monolítica") o instalar los componentes entre múltiples nodos (una instalación fraccionada), pero usted debería confirmar que el componente "agent"  se encuentra en cada nodo.
+</p>
+
+<p> Debe decidir las necesidades del despliegue antes de iniciar el proceso de instalación. Para cada nodo donde instalará el componente PE, usted debe saber el FQDN de cada nodo accesible y asegurarse que las reglas del firewall permiten el acceso a los  <a href="/pe/2017.1/sys_req_sysconfig.html#firewall-configuration">puertos requeridos</a>.
+</p>
+
+<p> Con este conocimiento en su poder, el proceso de instalación sucederá en <strong>tres etapas</strong>:
+</p>
+
+<ol>
+<li>
+    <p> Usted seleccione un método de instalación.
+</p>
+  </li>
+  <li>
+    <p> Usted puede instalar los componentes principales de PE— el Puppet master, PuppetDB (soporte para BBDD), y la consola PE.
+</p>
+  </li>
+  <li>
+    <p> Instales el Puppet agent en todos los nodos que desee gestionar con PE. En lo referente a  las <a href="/pe/2017.1/install_agents.html">instrucciones de instalación de agent</a>.
+</p>
+  </li>
+</ol>
+<h3 id="choosing-an-installation-method">Cómo seleccionar un método de instalación</h3>
+
+<p> Antes de comenzar, seleccione un método de instalación. Hemos proporcionado algunos path para elegir y  enlaces a sus instrucciones de instalación correspondientes.
+</p>
+
+<ul>
+<li>
+    <p> <a href="/pe/2017.1/install_pe_mono.html">Instalación Web monolítica</a>: El base de instalación para el tipo de <a href="/pe/2017.1/sys_req_hw.html#monolithic-installation">instalación standard monolítica</a> o <a href="/pe/2017.1/sys_req_hw.html#monolithic-with-compile-masters-installation">monolítica más instalación master compilada</a>.
+</p>
+  </li>
+  <li>
+    <p> <a href="/pe/2017.1/install_text_mode.html">Instalación en modo texto</a>: Utilice el ejemplo del fichero  <code>pe.conf</code> del tarball de instalación de  PE installation o créelo usted para instalar PE. En modo texto, usted puede crear una instalación monolítica o fragmentada.
+</p>
+  </li>
+</ul>
+<p> Consulte los <a href="/pe/2017.1/sys_req_hw.html">requerimientos de sistema</a> para información adicional relativa al hardware.
+</p>
+
+<blockquote>
+  <p> <strong>Consejo:</strong> Antes de comenzar la instalación, usted debería familiarizarse con los componentes y servicios que constituyen PE. Consulte el  <a href="/pe/2017.1/pe_architecture_overview.html">resumen de arquitectura PE</a> para más información.
+</p>
+</blockquote>
+
+<hr>
+</div>

@@ -28,8 +28,8 @@ This page lists changes to the `puppet-agent` package. For details about changes
 The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 * X must increase for major backwards-incompatible changes
-* Y may increase for backwards-compatible new functionality
-* Z may increase for bug fixes
+* Y can increase for backwards-compatible new functionality
+* Z can increase for bug fixes
 
 ## If you're upgrading from Puppet 3.x
 
@@ -53,7 +53,7 @@ Released February 27, 2017.
 
 This release of Puppet agent only includes changes to the Puppet component, with a [Puppet 4.9.3][] bug fix release. All other components remain unchanged.
 
-## Puppet agent 1.9.1 
+## Puppet agent 1.9.1
 
 Released February 10, 2017.
 
@@ -63,7 +63,7 @@ This release includes bug and regression fixes in [Puppet 4.9.2][], [Facter 3.6.
 
 ## Puppet agent 1.9.0
 
-Released February 1, 2017. 
+Released February 1, 2017.
 
 ### Component updates
 

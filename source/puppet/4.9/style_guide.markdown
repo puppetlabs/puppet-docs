@@ -129,7 +129,7 @@ $myhash = { key => 'some value',
   other_key     => 'some other value',
 }
 
-# array with indention of elements past one stop
+# array with indention of elements past two spaces
 service { 'foo':
   require => [
               File['foo_config'],
@@ -606,7 +606,7 @@ concat { $config_file_path:
 
 ### 9.8 Resource attribute indentation and alignment
 
-Resource attributes must be uniformly indented in one stop from the title.
+Resource attributes must be uniformly indented in two spaces from the title.
 
 **Good**:
 
@@ -865,6 +865,8 @@ class apache {
 
 In parameterized class and defined type declarations, required parameters must be listed before optional parameters (that is, parameters with defaults). Required parameters are parameters which are not set to anything, including undef. For example, parameters such as passwords or IP addresses might not have reasonable default values.
 
+Note that treating a parameter like a namevar and defaulting it to `$title` or `$name` does not make it a required parameter. It should still be listed following the order recommended here.
+
 **Good:**
 
 ```puppet
@@ -874,7 +876,6 @@ class dhcp (
   $default_lease_time = 3600,
   $max_lease_time     = 86400,
 ) {}
-
 ```
 
 **Bad:**
@@ -961,6 +962,55 @@ define haproxy::frontend (
   # body of define
 }
 ```
+
+### 10.9 Parameter indentation and alignment
+
+Parameters to classes or defined types must be uniformly indented in two spaces from the title. The equals sign should be aligned.
+
+**Good**:
+
+```puppet
+class profile::myclass (
+  $var1    = 'default',
+  $var2    = 'something else',
+  $another = 'another default value',
+) {
+# body of class
+}
+```
+
+**Bad**:
+
+```puppet
+# too many levels of indentation
+class profile::myclass (
+      $var1    = 'default',
+      $var2    = 'something else',
+      $another = 'another default value',
+) {
+# body of class
+}
+
+# no indentation
+class profile::myclass (
+$var1    = 'default',
+$var2    = 'something else',
+$another = 'another default value',
+) {
+# body of class
+}
+
+# misaligned equals sign
+class profile::myclass (
+  $var1 = 'default',
+  $var2  = 'something else',
+  $another = 'another default value',
+) {
+# body of class
+}
+
+```
+
 
 ## 11. Classes
 

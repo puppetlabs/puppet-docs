@@ -130,7 +130,7 @@ Each YAML/JSON/HOCON hierarchy level needs the following keys:
 * `name` --- A name for this level, shown to humans in debug messages and `--explain` output.
 * `path`, `paths`, `glob`, or `globs` (choose one) --- The data file(s) to use for this hierarchy level.
 
-    These paths are relative to the datadir, they support [interpolation][], and they require a file extension. See below for more details.
+    These paths are relative to the datadir, they support [variable interpolation][interpolation], and they require a file extension. See below for more details.
 * `data_hash` --- Which backend to use; can be omitted if you set a default. The value must be one of the following:
     * `yaml_data` for YAML.
     * `json_data` for JSON.
@@ -197,7 +197,7 @@ Each eyaml hierarchy level needs the following keys:
 * `lookup_key` --- Which backend to use. The value must be `eyaml_lookup_key`. (Use this instead of the `data_hash` setting.)
 * `path`, `paths`, `glob`, or `globs` (choose one) --- The data file(s) to use for this hierarchy level.
 
-    These paths are relative to the datadir, they support [interpolation][], and they require a file extension. (In this case, you'll usually use `.eyaml`.) They work the same way they do for the standard backends.
+    These paths are relative to the datadir, they support [variable interpolation][interpolation], and they require a file extension. (In this case, you'll usually use `.eyaml`.) They work the same way they do for the standard backends.
 * `datadir` --- The directory where data files are kept; can be omitted if you set a default. Works the same way it does for the standard backends.
 * `options` --- A hash of options specific to `hiera-eyaml`, mostly used to configure decryption. For the default encryption method, this hash must have the following keys:
     * `pkcs7_private_key` --- The location of the PKCS7 private key to use.
@@ -320,7 +320,7 @@ Each hierarchy level is represented by a hash, which needs the following keys:
     The backend determines which key you must use, so you'll have to check its documentation. In general, file-based backends usually use `data_hash`, fast non-file backends usually use `lookup_key`, and slow non-file backends usually use `data_dig`.
 
     Whichever key you use, the value must be the name of the [custom Puppet function][] that implements the backend. For more details, see [How custom backends work][backends].
-* A path or URI key (only if required by the backend). **These keys support [interpolation][].** The following path/URI keys are available:
+* A path or URI key (only if required by the backend). **These keys support [variable interpolation][interpolation].** The following path/URI keys are available:
     * `path`
     * `paths`
     * `glob`
@@ -334,5 +334,5 @@ Each hierarchy level is represented by a hash, which needs the following keys:
 
     It's also possible for a backend to omit the path/URI key, and rely wholly on the `options` key to locate its data.
 * `datadir` --- The directory where data files are kept; the path is relative to hiera.yaml's directory. Only required if the backend uses the `path(s)` and `glob(s)` keys, and can be omitted if you set a default.
-* `options` --- A hash of arbitrary extra options for the backend; for example, database credentials or the location of a decryption key. See the backend's documentation for details. **All values in the `options` hash support [interpolation][].**
+* `options` --- A hash of arbitrary extra options for the backend; for example, database credentials or the location of a decryption key. See the backend's documentation for details. **All values in the `options` hash support [variable interpolation][interpolation].**
 

@@ -16,17 +16,18 @@ defaultnav:
   /security: /security/_security_toc.html
   /community: /_includes/community_nav.html
   /forge: /_includes/forge.html
-  /guides/deployment_guide: /_includes/deploy_guide.html
-  /guides/install_puppet: /_includes/puppet_general.html
   /de: /_includes/de_pe.html
   /es: /_includes/es_docs.html
   /es/hiera: /_includes/es_hiera1.html
   /es/learning: /_includes/es_learning_nav.html
   /es/pe/3.8: /_includes/es_pe38.html
-  /ja: /ja/pe/_ja_docs_toc.html
+  /ja: /ja/_ja_sidebar_generic.html
+  /es/puppet: /_includes/_es_fallback_nav.html
+  /es/puppet/4.9: /_includes/_es_puppet_toc_49.html
+  /es/puppet/4.10: /_includes/_es_puppet_toc_410.html
+  /ja: /ja/_ja_sidebar_generic.html
   /ja/guides/install_puppet: /_includes/ja_puppet_general.html
   /ja/learning: /_includes/ja_learning_nav.html
-  /ja/pe: /ja/pe/_ja_docs_toc.html
   /ja/puppet/3.7/reference: /_includes/ja_puppet_3_7.html
   /ja/puppet/4.2/reference: /_includes/ja_puppet4.2.html
   /learning: /_includes/learning_nav.html
@@ -57,6 +58,7 @@ symlink_latest:
   - hiera
   - facter
   - pe
+  - ja/pe
 lock_latest:
 
 
@@ -67,6 +69,7 @@ document_names:
   puppetdb: PuppetDB
   hiera: Hiera
   facter: Facter
+  pe_ja: "Puppet Enterprise (日本語)"
 
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
@@ -106,7 +109,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/flanders
+      commit: origin/pe2017.1.1
       subdirectory: source
     my_versions:
       puppet: 4.9
@@ -283,7 +286,27 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
-  /puppet/4.9: # CHANGING THE URL FROM THIS POINT FORWARD.
+  /ja/pe/2017.1:
+    doc: pe_ja
+    version: 2017.1
+    nav: ./_ja_docs_toc.html
+    my_versions:
+      pe: 2017.1
+      puppet: 4.9
+      facter: 3.6
+      hiera: 3.3
+      puppetserver: 2.7
+      puppetdb: 4.3
+
+  /puppet/4.10:
+    doc: puppet
+    version: "4.10"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.6
+      hiera: 3.3
+      puppetserver: 2.7
+  /puppet/4.9:
     doc: puppet
     version: 4.9
     nav: ./_puppet_toc.html
@@ -486,13 +509,13 @@ documents:
   /puppetserver/2.7:
     doc: puppetserver
     version: 2.7
-    nav: /puppet/4.8/_puppet_toc.html
+    nav: /puppet/4.9/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: b4fbbf035287318694e4313d5d3d3a9eea2d707a
       subdirectory: documentation
     my_versions:
-      puppet: 4.8
+      puppet: 4.9
       facter: 3.5
       hiera: 3.2
   /puppetserver/2.6:
@@ -597,13 +620,21 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/4.4:
+    doc: puppetdb
+    version: 4.4
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/stable
+      subdirectory: documentation
   /puppetdb/4.3:
     doc: puppetdb
     version: 4.3
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/stable
+      commit: origin/4.3.x
       subdirectory: documentation
   /puppetdb/4.2:
     doc: puppetdb

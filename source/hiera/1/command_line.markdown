@@ -7,6 +7,8 @@ title: "Hiera 1: Command Line Usage"
 [hash_lookup]: ./lookup_types.html#hash-merge
 [array_lookup]: ./lookup_types.html#array-merge
 
+{% partial /hiera/_hiera_update.md %}
+
 Hiera provides a command line tool that's useful for verifying that your hierarchy is constructed correctly and that your data sources are returning the values you expect. You'll typically run the Hiera command line tool on a puppet master, making up the facts agents would normally provide the puppet master using a variety of [fact sources](#fact-sources).
 
 ## Invocation

@@ -3,6 +3,7 @@ layout: default
 title: "Hiera 2: Writing Custom Backends"
 ---
 
+{% partial /hiera/_hiera_update.md %}
 
 Custom Hiera backends must be written in Ruby, must conform to certain API requirements, and must be available in Ruby's load path; when using Hiera with Puppet, you can load backends from the `lib` directory of Puppet modules. Backends that retrieve data from multiple files on disk (similar to the default `yaml` and `json` backends) can take advantage of [extra helper methods](#available-helper-methods) provided by the `Backend` Ruby module.
 
@@ -230,7 +231,7 @@ If you do need to explicitly call `Backend.parse_string` for some reason, you'll
 
 The `Backend.merge_answer` method expects three arguments, and returns a merged hash using the [configured hash merge behavior](./lookup_types.html#hash-merge). If your backend supports hash merge lookups, you should always use this helper method to do the merging.
 
-In passing `resolution_type` to `Backend.merge_answer`, you'll need to pass, verbatim, the `resolution_type` value you received in your `lookup` method. 
+In passing `resolution_type` to `Backend.merge_answer`, you'll need to pass, verbatim, the `resolution_type` value you received in your `lookup` method.
 
 From the json backend:
 

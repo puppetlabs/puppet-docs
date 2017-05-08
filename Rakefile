@@ -147,6 +147,12 @@ namespace :externalsources do
     Rake::Task['externalsources:clean'].reenable
     @config_data['externalsources'].each do |url, info|
       workdir = safe_dirname(url)
+      destination = "#{SOURCE_DIR}#{url}"
+      if File.exist?(destination)
+        puts "\n  WARNING: I need to symlink #{url} into place at #{destination}, but a file or directory already exists there. It's probably a glitch, so I'm deleting it. -NF"
+        # This usually happens when a directory like source/pe/3.8 contains a (usually hidden) file that Git won't automatically delete because it's listed in the .gitignore file. (For example, .DS_Store.) That leaves the containing directory hanging around, and if we try to run the FileUtils.ln_sf command below, it will link <PE REPO>/source into place at source/pe/3.8/source instead of source/pe/3.8, which then breaks the site.
+        FileUtils.remove_entry_secure(destination)
+      end
       # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy the url is (and thus how many ../..s it would need).
       FileUtils.ln_sf "#{top_dir}/externalsources/#{workdir}/#{info['subdirectory']}", "#{SOURCE_DIR}#{url}"
     end
@@ -164,10 +170,16 @@ end
 desc "Clean up any crap left over from failed docs site builds"
 task :clean do
   # Get rid of external sources symlinks
+  pust "Deleting symlinks to external sources..."
   Rake::Task['externalsources:clean'].invoke
   Rake::Task['externalsources:clean'].reenable
   # Get rid of the amended config file we write for Jekyll
-  FileUtils.rm("#{SOURCE_DIR}/_config_amended.yml")
+  begin
+    puts "Deleting _config_amended.yml..."
+    FileUtils.rm("#{SOURCE_DIR}/_config_amended.yml")
+  rescue
+    puts "There was no _config_amended.yml file to delete."
+  end
 end
 
 desc "Generate the documentation"

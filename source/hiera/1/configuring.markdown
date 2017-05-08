@@ -9,6 +9,7 @@ title: "Hiera 1: The hiera.yaml Config File"
 [interpolate]: ./variables.html
 [custom_backends]: ./custom_backends.html
 
+{% partial /hiera/_hiera_update.md %}
 
 Hiera's config file is usually referred to as `hiera.yaml`. Use this file to configure the [hierarchy][], which backend(s) to use, and settings for each backend.
 

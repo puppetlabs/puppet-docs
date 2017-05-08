@@ -186,6 +186,8 @@ A template works like a [defined type][]:
 * It has its own anonymous [local scope][].
 * The parent scope is set to node scope (or top scope if there's no [node definition][]).
 * When you call the template (with the [`epp`][epp] or [`inline_epp`][inline_epp] functions), you can use parameters to set variables in its local scope.
+* Unlike erb templates, epp templates cannot directly access variables in the calling class without namespacing. Fully qualify variables or pass them in as parameters.
+
 
 This means templates can use short names to access global variables (like `$os` or `$trusted`) and their own local variables, but must use qualified names (like `$ntp::tinker`) to access variables from any class. (With one exception for `inline_epp`; [see below](#special-scope-rule-for-inlineepp).)
 

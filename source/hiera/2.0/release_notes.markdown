@@ -3,6 +3,8 @@ layout: default
 title: "Hiera 2: Release Notes"
 ---
 
+{% partial /hiera/_hiera_update.md %}
+
 ## Hiera 2.0.1
 
 Released April 13, 2015
