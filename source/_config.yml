@@ -60,7 +60,7 @@ symlink_latest:
   - pe
   - ja/pe
 lock_latest:
-
+  puppet: "4.10"
 
 document_names:
   pe: Puppet Enterprise
@@ -286,6 +286,14 @@ documents:
       puppetserver: 2.7
       puppetdb: 4.3
 
+  /puppet/5.0:
+    doc: puppet
+    version: 5.0
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: 3.7
+      hiera: 3.4
+      puppetserver: 5.0
   /puppet/4.10:
     doc: puppet
     version: "4.10"
