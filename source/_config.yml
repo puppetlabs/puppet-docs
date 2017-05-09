@@ -91,6 +91,21 @@ document_names:
 
 documents:
 
+  /pe/2017.2:
+    doc: pe
+    version: 2017.2
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/glisan
+      subdirectory: source
+    my_versions:
+      puppet: 4.10
+      facter: 3.6
+      hiera: 3.3
+      puppetserver: 2.7
+      puppetdb: 4.4
+
   /pe/2017.1:
     doc: pe
     version: 2017.1
@@ -127,12 +142,12 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.3
+      commit: origin/pe2016.4.4
       subdirectory: source
     my_versions:
-      puppet: 4.7
-      facter: 3.4
-      hiera: 3.2
+      puppet: 4.10
+      facter: 3.6
+      hiera: 3.3
       puppetserver: 2.6
       puppetdb: 4.2
 
@@ -274,6 +289,18 @@ documents:
     nav: /_includes/pe_2.0_nav.markdown
     hide: true
 
+  /ja/pe/2017.2:
+    doc: pe_ja
+    version: 2017.2
+    nav: ./_ja_docs_toc.html
+    my_versions:
+      pe: 2017.2
+      puppet: 4.10
+      facter: 3.6
+      hiera: 3.3
+      puppetserver: 2.7
+      puppetdb: 4.4
+      
   /ja/pe/2017.1:
     doc: pe_ja
     version: 2017.1
