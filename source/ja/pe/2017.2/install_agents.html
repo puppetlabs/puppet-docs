@@ -184,7 +184,7 @@ wget -O - -q --no-check-certificate --secure-protocol=TLSv1 https://&lt;PUPPET M
 <p> 必要な数のパラメータを受け渡すことができます。 必ず<code>section:key=value</code>のパターンに従い、パラメータとパラメータの間にスペースを入れてください。
 </p>
 
-<p> <code>puppet.conf</code>の値のリストの完全版については、<a href="%7B%7Bpuppet%7D%7D/configuration.html">設定リファレンス</a>を参照してください。 <code>csr_attributes.yaml</code>の設定の詳細については、<a href="%7B%7Bpuppet%7D%7D/ssl_attributes_extensions.html">CSR特性と証明書のエクステンション</a>ページを参照してください。
+<p> <code>puppet.conf</code>の値のリストの完全版については、<a href="{{puppet}}/configuration.html">設定リファレンス</a>を参照してください。 <code>csr_attributes.yaml</code>の設定の詳細については、<a href="{{puppet}}/ssl_attributes_extensions.html">CSR特性と証明書のエクステンション</a>ページを参照してください。
 </p>
 
 <h2 id="install-agents-without-curl--k">
@@ -438,10 +438,10 @@ wget -O - -q --no-check-certificate --secure-protocol=TLSv1 https://&lt;PUPPET M
 <p> 証明書に署名すると、agentをPuppet Enterpriseで管理できるようになっているはずです。  この時点で、別の設定を<code>puppet.conf</code>ファイルに追加できます。
 </p>
 
-<p> ただし、追加の設定を実行する必要がある場合は、<code>/etc/puppetlabs/puppet/puppet.conf</code>を直接編集するか、<code>puppet.conf</code>を自動的に編集する<a href="%7B%7Bpuppet%7D%7D/config_set.html"><code>puppet config set</code>サブコマンド</a>を使えば、それを実行することができます。
+<p> ただし、追加の設定を実行する必要がある場合は、<code>/etc/puppetlabs/puppet/puppet.conf</code>を直接編集するか、<code>puppet.conf</code>を自動的に編集する<a href="{{puppet}}/config_set.html"><code>puppet config set</code>サブコマンド</a>を使えば、それを実行することができます。
 </p>
 
-<p> たとえば、「master.example.com」と呼ばれるPuppet masterのagentを指定する場合は、<code>puppet config set server master.example.com</code>を実行します。 これにより、<code>server = puppetmaster.example.com</code>設定が<code>puppet.conf</code>の<code>[main]</code>セクションに追加されます。 agentのcertnameを設定するには、<code>/opt/puppetlabs/bin/puppet config set certname agent.example.com</code>を実行します。 詳細については、<a href="%7B%7Bpuppet%7D%7D/config_set.html"><code>puppet config set</code>に関する文書</a>を参照してください。
+<p> たとえば、「master.example.com」と呼ばれるPuppet masterのagentを指定する場合は、<code>puppet config set server master.example.com</code>を実行します。 これにより、<code>server = puppetmaster.example.com</code>設定が<code>puppet.conf</code>の<code>[main]</code>セクションに追加されます。 agentのcertnameを設定するには、<code>/opt/puppetlabs/bin/puppet config set certname agent.example.com</code>を実行します。 詳細については、<a href="{{puppet}}/config_set.html"><code>puppet config set</code>に関する文書</a>を参照してください。
 </p>
 
 <blockquote>

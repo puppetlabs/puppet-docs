@@ -1,0 +1,304 @@
+---
+layout: default
+title: "Puppet Enterpriseクライアントツールパッケージのインストール"
+---
+
+<p> Puppet Enterpriseクライアントツールは、Puppet Enterpriseサービスにワークステーションからアクセスするためのコマンドラインツールのセットです。対象となるワークステーションには、Puppet Enterpriseで管理されているものと管理されていないものが含まれます。 これらのツールは安全にリモート実行できるので、コマンドを実行するためにPuppet masterにSSHでログインする必要がなくなります。 情報を表示して操作を実行するためのパーミッションは、Puppet Enterpriseのロールベースのアクセス制御(RBAC)で制御されます。 ユーザのアクティビティは、<code>root</code>ユーザや<code>pe-puppet</code>ユーザではなく、それぞれのユーザ名でロギングされます。
+</p>
+
+<p> このパッケージには以下のサービスに対応するクライアントが含まれます。
+</p>
+
+<ul>
+<li>
+<a href="/pe/latest/orchestrator_intro.html">Puppetオーケストレータ</a>: このツールを使用すると、インフラ内での変更の伝搬を制御することができます。また、Puppetアプリケーションオーケストレーションサービスのインターフェースとして使用できます。このツールには、<code>puppet-job</code>と<code>puppet-app</code>が含まれます。</li>
+  <li>
+<a href="/pe/latest/rbac_token_auth.html#working-with-puppet-access">Puppetアクセス</a>: このツールを使用すると、Puppet EnterpriseのRBACトークンベース認証サービスで認証を実行して、その他の機能やAPIを使用することができます。</li>
+  <li>
+<a href="/pe/latest/code_mgr_cli.html">コードマネージャ</a>: このツールは、コードマネージャサービスとファイル同期サービスのインターフェースとして使用でき、<code>puppet-code</code>を含みます。</li>
+  <li>
+<a href="%7B%7Bpuppetdb%7D%7D/pdb_client_tools.html">PuppetDB CLI</a>: このツールを使用すると、クエリの構築やエクスポートの処理など、PuppetDBの操作を実行できます。</li>
+</ul>
+<h2 id="supported-operating-systems">対応するオペレーティングシステム</h2>
+
+<p> Puppet Enterpriseクライアントツールパッケージは、以下のプラットフォームにインストールできます。
+</p>
+
+<table>
+<thead><tr>
+<th>オペレーティングシステム</th>
+      <th>バージョン</th>
+      <th>アーキテクチャ </th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>Red Hat Enterprise Linux</td>
+      <td>6、7</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>CentOS</td>
+      <td>6、7</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>Oracle Linux</td>
+      <td>6、7</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>Scientific Linux</td>
+      <td>6、7</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>SUSE Linux Enterprise Server</td>
+      <td>11、12</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>Ubuntu</td>
+      <td>14.04、16.04</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>Microsoft Windows (コンシューマOS)</td>
+      <td>7、8.1、10</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>Microsoft Windows (サーバーOS)</td>
+      <td>2012, 2012R2, 2012R2コア</td>
+      <td>x86_64</td>
+    </tr>
+<tr>
+<td>Mac OS X</td>
+      <td>10.10、10.11</td>
+      <td>x86_64</td>
+    </tr>
+</tbody>
+</table>
+<h3 id="matching-client-tools-and-pe-versions">クライアントツールのバージョンとPuppet Enterpriseバージョンの対応</h3>
+
+<p> Puppet Enterpriseクライアントツールのバージョンは、Puppet Enterpriseバージョンのリリース年とリリース整理番号(「x.y」)と同じものを使用してください。 たとえば、Puppet Enterprise 2017.2.0を実行している場合、2017.2.0のクライアントツールを使用します。
+</p>
+
+<p> Puppet Enterpriseまたはクライアントツールに対して、パッチリリース(「x.y.z」)が発行される場合がありますが、 このパッチ番号をPuppet Enterpriseとクライアントツール間で揃える必要はありません。 「x.y」の番号は一致させる必要があります。
+</p>
+
+<p> Puppet Enterpriseを新しい「x.y」バージョンにアップグレードしたら、該当する「x.y」バージョンのPuppet Enterpriseクライアントツールをインストールする必要があります。
+</p>
+
+<h2 id="puppet-master-installation-default">Puppet masterへのインストール(デフォルト)</h2>
+
+<p> Puppet Enterpriseのインストール用tarballには、<code>pe-client-tools</code>パッケージが含まれています。 Puppet Enterpriseをインストールすると、Puppet masterと同じノード上に、クライアントツールが自動でインストールされます。
+</p>
+
+<h2 id="pe-managed-workstation-installation">Puppet Enterpriseで管理されたワークステーションへのインストール</h2>
+
+<blockquote>
+  <p> <strong>注:</strong> Puppet agentノードに<code>pe-client-tools</code>パッケージをインストールする場合、このノードがPuppet masterと同じOSを<strong>実行していることが必須</strong>になります。
+</p>
+</blockquote>
+
+<ol>
+<li>Puppet agentのインストールマニュアル(<a href="./install_agents.html">*nix用</a>、<a href="tbd">Windows用</a>、<a href="./install_osx.html">OS X用</a>)に従って、コントローラマシンとして使用するPuppet agentをインストールします。</li>
+  <li>Puppet Enterprise Webコンソールで、<a href="/pe/latest/console_classes_groups.html#creating-classification-node-groups">コントローラ分類グループを作成</a>して名前(例: PE Controller)を付け、[<strong>親名</strong>]に<strong>All Nodes</strong>を設定します。</li>
+  <li>
+    <p> <strong>PE Controller</strong>グループを選択し、<code>puppet_enterprise::profile::controller</code>クラスを追加します。
+</p>
+
+    <p> Puppet Enterpriseは、<code>puppet_enterprise::profile::controller</code>クラスを使用してクライアントツールのグローバル設定ファイルを管理します。
+</p>
+  </li>
+  <li>
+    <p> <strong>PE Controller</strong>グループにコントローラマシンを追加します。
+</p>
+
+    <p> a. [<strong>ルール</strong>]タブで、ピン留めされたノードのセクションまで下にスクロールします。
+</p>
+
+    <p> b. [<strong>Certname</strong>]フィールドにノードの<a href="%7B%7Bpuppet%7D%7D/configuration.html#certname">certname</a>を入力します。
+</p>
+
+    <p> c. [<strong>ノードをピンして追加します</strong>]をクリックし、[変更を保存]ボタンをクリックします。
+</p>
+  </li>
+  <li>コントローラマシン上で<a href="/pe/latest/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行</a>します。</li>
+  <li>クライアントツールの設定が必要な場合、<a href="#global-configuration-file-management">グローバル設定ファイルの管理</a>を参照してください。</li>
+</ol>
+<h2 id="non-managed-workstation-installation">Puppet Enterpriseで管理されていないワークステーションへのインストール</h2>
+
+<blockquote>
+  <p> <strong>注:</strong> <a href="#supported-operating-system">サポート対象のOS</a>を実行していれば、どのワークステーションでも<code>pe-client-tools</code>パッケージをインストールできます。 Puppet masterと同じOSを実行している必要はありません。
+</p>
+</blockquote>
+
+<p> インストールを開始する前に、時間管理、名前解決、ファイアウォール設定について、<a href="./sys_req_sysconfig.html">システム設定要件</a>を確認してください。
+</p>
+
+<blockquote>
+  <p> <strong>重要</strong>: ワークステーション上で以下のポートを使用できることを確認します。
+</p>
+
+  <p> <strong>ポート8143</strong>：オーケストレータクライアントは、このポートを使用して、Puppet master上で実行されているオーケストレーションサービスと通信します。
+</p>
+
+  <p> <strong>ポート4433</strong>: Puppetアクセスクライアントは、このポートを使用して、Puppet master上で実行されているRBACサービスと通信します。
+</p>
+
+  <p> <strong>ポート8170</strong>：Code Managerサービスを使用する場合は、このポートが必要です。
+</p>
+</blockquote>
+
+<h3 id="install-on-a-linux-workstation">Linuxワークステーションへのインストール</h3>
+
+<h4 id="prepare-the-linux-workstation">Linuxワークステーションの準備</h4>
+
+<ol>
+<li>
+    <p> <strong>ワークステーションで</strong>、<code>/etc/puppetlabs/puppet/ssl/certs</code>ディレクトリを作成します。
+</p>
+
+    <p> たとえば、<code>mkdir /etc/puppetlabs/puppet/ssl/certs</code>を実行します。
+</p>
+  </li>
+  <li>
+<strong>Puppet masterで</strong><code>/etc/puppetlabs/puppet/ssl/certs/</code>に移動し、前のステップで作成したワークステーション上のディレクトリに<code>ca.pem</code>をコピーします。</li>
+  <li>
+<strong>ワークステーションで</strong><code>chmod 444 /etc/puppetlabs/puppet/ssl/certs/ca.pem</code>を実行して、ファイルパーミッションが正しいことを確認します。</li>
+  <li>ワークステーション上にある<code>ca.pem</code>のチェックサムが、Puppet master上にある同ファイルのチェックサムと一致することを確認します。</li>
+</ol>
+<h4 id="install-the-with-package-management-tools">パッケージ管理を用いたインストール</h4>
+
+<ol>
+<li>適切なサポート対象OS用の<a href="http://puppetlabs.com/download-puppet-enterprise">pe-client-toolsパッケージ</a>をワークステーションにダウンロードします。</li>
+  <li>tarballを展開し、<code>packages/&lt;PLATFORM&gt;</code>ディレクトリに移動します。</li>
+  <li>
+    <p> ワークステーションのパッケージ管理ツールを使用して、pe-client-toolsをインストールします (パッケージインストールツールは、プラットフォームによって異なります )。
+</p>
+
+    <p> たとえば、RHELプラットフォームでは以下のコマンドを実行します。
+</p>
+
+    <pre><code>rpm -Uvh pe-client-tools-&lt;VERSION-and-PLATFORM&gt;.rpm
+</code></pre>
+  </li>
+</ol>
+<h3 id="install-on-a-windows-workstation">Windowsワークステーションへのインストール</h3>
+
+<p> Windowsワークステーションでは、セットアップウィザードまたはコマンドラインを使用して、Puppet Enterpriseクライアントツールをインストールできます。
+</p>
+
+<h4 id="prepare-the-windows-workstation">Windowsワークステーションの準備</h4>
+
+<ol>
+<li>
+    <p> <strong>ワークステーションで</strong>、<code>C:\ProgramData\PuppetLabs\puppet\etc\ssl\certs</code>ディレクトリを作成します。
+</p>
+
+    <p> たとえば、<code>mkdir C:\ProgramData\PuppetLabs\puppet\etc\ssl\certs</code>を実行します。
+</p>
+  </li>
+  <li>
+<strong>Puppet masterで</strong><code>/etc/puppetlabs/puppet/ssl/certs/</code>に移動し、前のステップで作成したワークステーション上のディレクトリに<code>ca.pem</code>をコピーします。</li>
+  <li>
+<strong>ワークステーションで</strong>、<code>C:\ProgramData\PuppetLabs\puppet\etc\ssl\certs\ca.pem</code>のファイルパーミッションが読み取り専用に設定されていることを確認します。</li>
+  <li>ワークステーション上にある<code>ca.pem</code>のチェックサムが、Puppet master上にある同ファイルのチェックサムと一致することを確認します。</li>
+</ol>
+<h4 id="install-with-the-setup-wizard">セットアップウィザードを用いたインストール</h4>
+
+<ol>
+<li>
+<a href="http://puppetlabs.com/download-puppet-enterprise">Windows pe-client-toolsパッケージ</a>をダウンロードします。</li>
+  <li>pe-client-tools .msiファイルをダブルクリックします。</li>
+  <li>表示されるプロンプトに従ってライセンス契約に同意し、インストール先を選びます。</li>
+  <li>[<strong>Install</strong>]をクリックします。</li>
+</ol>
+<h4 id="install-from-the-command-line">コマンドラインを用いたインストール</h4>
+
+<ol>
+<li>
+<a href="http://puppetlabs.com/download-puppet-enterprise">Windows pe-client-toolsパッケージ</a>をダウンロードします。</li>
+  <li>
+    <p> コマンドラインで、<code>msiexec /i &lt;PATH TO PE-CLIENT-TOOLS.MSI&gt; TARGETDIR="&lt;INSTALLATION DIRECTORY&gt;"</code>を実行します。
+</p>
+
+    <p> <code>TARGETDIR</code>は省略可能です。
+</p>
+  </li>
+</ol>
+<p> Windowsワークステーションでクライアントツールを使用し始めるには、 [<strong>スタート</strong>]メニューから[<strong>PE ClientTools Console</strong>]を選択します。
+</p>
+
+<h3 id="install-on-an-os-x-workstation">OS Xワークステーションへのインストール</h3>
+
+<p> OS Xワークステーションでは、Finderまだはコマンドラインを使用して、Puppet Enterpriseクライアントツールをインストールできます。
+</p>
+
+<h4 id="prepare-the-os-x-workstation">OS Xワークステーションの準備</h4>
+
+<ol>
+<li>
+    <p> <strong>ワークステーションで</strong>、<code>/etc/puppetlabs/puppet/ssl/certs</code>ディレクトリを作成します。
+</p>
+
+    <p> たとえば、<code>mkdir -p /etc/puppetlabs/puppet/ssl/certs</code>を実行します。
+</p>
+  </li>
+  <li>
+<strong>Puppet masterで</strong><code>/etc/puppetlabs/puppet/ssl/certs/</code>に移動し、前のステップで作成したワークステーション上のディレクトリに<code>ca.pem</code>をコピーします。</li>
+  <li>
+<strong>ワークステーションで</strong><code>chmod 444 /etc/puppetlabs/puppet/ssl/certs/ca.pem</code>を実行して、ファイルパーミッションが正しいことを確認します。</li>
+  <li>ワークステーション上にある<code>ca.pem</code>のチェックサムが、Puppet master上にある同ファイルのチェックサムと一致することを確認します。</li>
+</ol>
+<h4 id="install-with-os-x-finder">OS X Finderを用いたインストール</h4>
+
+<ol>
+<li>
+<a href="http://puppetlabs.com/download-puppet-enterprise">OS X pe-client-tools package</a>をダウンロードします。</li>
+  <li>pe-client-tools .dmgを開いてinstaller .pkgをクリックします。</li>
+  <li>インストーラのダイアログの指示に従います。</li>
+</ol>
+<h4 id="install-from-the-command-line-1">コマンドラインを用いたインストール</h4>
+
+<ol>
+<li>
+<a href="http://puppetlabs.com/download-puppet-enterprise">OS X pe-client-tools package</a>をダウンロードします。</li>
+  <li>
+    <p> <code>sudo hdiutil mount &lt;DMGFILE&gt;</code>を実行します。 (<code>DMGFILE</code>は、ダウンロードしたパッケージで置き換えます) )。
+</p>
+
+    <p> <code>/Volumes/pe-client-tools-&lt;VERSION&gt;</code>で終わる行が表示されます。 これは、ディスクイメージから作成された仮想ボリュームのマウントポイントです。
+</p>
+  </li>
+  <li>
+<code>cd /Volumes/pe-client-tools-VERSION</code>を実行します。</li>
+  <li>
+<code>sudo installer -pkg pe-client-tools-&lt;VERSION&gt;-installer.pkg -target /</code>を実行します。</li>
+  <li>
+<code>cd ~</code>を実行してから、<code>sudo umount /Volumes/pe-client-tools-VERSION</code>を実行します。</li>
+</ol>
+<h2 id="configuring-and-using-client-tools">クライアントツールの設定と使用</h2>
+
+<p> ツールをインストールしたら、該当するマニュアルを参照し、クライアントツールを設定して使用を開始します。  Puppetアクセス、Puppetコード、Puppetオーケストレータの各クライアントでは、サービスごとにグローバル設定ファイルを使用することも、ユーザごとに各サービス用の設定ファイルを作成することもできます。 設定ファイルの作成方法については、対応するマニュアルを参照してください。
+</p>
+
+<h3 id="global-configuration-file-management">グローバル設定ファイルの管理</h3>
+
+<p> Puppet Enterpriseで管理されたマシンで、PuppetコードクライアントまたはPuppetオーケストレータクライアントを実行している場合、<code>puppet_enterprise::profile::controller</code>クラスを使用すると、Puppet Enterpriseによるグローバル設定ファイルの管理を利用できます。 このクラスは、<code>/etc/puppetlabs/client-tools/</code>内のグローバル設定ファイルを管理します。
+</p>
+
+<p> ワークステーションからクライアントを実行している場合、グローバルファイルを作成して、設定ファイル内に正しい設定を入力する必要があります。 ワークステーションがPuppet Enterpriseで管理されていない場合、Puppet Enterpriseはこのワークステーションから設定ファイルを管理することはできません。
+</p>
+
+<p> 設定ファイルの詳細については、該当するマニュアルを参照してください。
+</p>
+
+<ul>
+<li><a href="/pe/latest/orchestrator_install.html#puppet-orchestrator-configuration-files">Puppetオーケストレータクライアント</a></li>
+  <li><a href="/pe/latest/rbac_token_auth.html#working-with-puppet-access">Puppetアクセスクライアント</a></li>
+  <li><a href="/pe/latest/code_mgr_cli.html">Code Manager <code>puppet-code</code>クライアント</a></li>
+  <li><a href="%7B%7Bpuppetdb%7D%7D/pdb_client_tools.html">PuppetDB CLIクライアント</a></li>
+</ul>
+</div>
