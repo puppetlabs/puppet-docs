@@ -16,14 +16,16 @@ Deprecations in Puppet 4.x:
 
   [Puppet 4.2](/puppet/4.2/) is the final version compatible with Server 2003 and 2003 R2. As of Puppet 4.3, the Puppet agent package fails to install on Windows Server 2003 and 2003 R2.
 
-* Ubuntu 12.04 reached EOL April 2017, and Puppet 4.10 is the last version we will ship packages for it.
+* Ubuntu 12.04 reached EOL April 2017, and Puppet 4.10 is the last version we shipped packages for it.
 
 
-Upcoming deprecations:
+### Upcoming deprecations
+
+These systems have reached end of life, and Puppet will stop shipping packages for them in the near future:
 
 * Fedora 23 - Reached EOL by Fedora December 12, 2016.
 
-* Windows Vista - As of April 11, 2017, Microsoft's "Extended Support" ends.
+* Windows Vista - As of April 11, 2017, Microsoft's "Extended Support" ended.
 
 You can see Puppet's [system requirements](./system_requirements.html) to see systems we're currently publishing packages for.
 
