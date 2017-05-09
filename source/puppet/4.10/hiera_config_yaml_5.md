@@ -191,30 +191,37 @@ Example:
 The `mapped_paths` key must contain three string elements, in the following order:
 
 1. A variable whose value is an array or hash.
-2. A temporary variable name to represent each element of the array or hash. This variable name is used only in the path used in this function.
+2. A temporary variable name to represent each element of the array or hash. This variable name, shown as `tmp` in the examples, is used only in the path in this key.
 3. A path where that temporary variable can be used in interpolation expressions.
 
-If the variable is a hash, the temporary variable's value is always a [k,v] array. so tmp.0 for the key name (which you never want probably), and tmp.1 for the value
-
-For example, a fact named `$services` contains the array ["a", "b", "c"]. Then this configuration:
+If the first variable is an array of strings, interpolate the temporary variable without using key.subkey notation. For example, for a fact named `$services` that contains the array ["a", "b", "c"], the `mapped_paths` key looks like this:
 
 ``` yaml
 - name: Example
   mapped_paths: [services, tmp, "service/%{tmp}/common.yaml"]
 ```
 
-has the same results as if paths had been specified to be `[service/a/common.yaml, service/b/common.yaml, service/c/common.yaml]`.
+This gives the same results as if paths had been specified as:
 
+```yaml
+- service/a/common.yaml
+- service/b/common.yaml
+- service/c/common.yaml
+```
 
-For a hash:
+If the first variable is a hash, then the temporary variable's value is always a `[key,value]` array. When interpolating the temporary variable, use key.subkey notation to get the part you want: `tmp.0` for the key name or `tmp.1` for the value. If the value is a nested hash, also specify the key name for the values you want to retrieve, such as `tmp.1.keyname`.
+
+For example, to find the value of the `network` fact:
 
 ``` yaml
 - name: 
   mapped_paths: [facts.networking.interfaces, interface, "networks/%{interface.1.network}.yaml"]
 ```
+
 results in:
 
 ``` yaml
+…
         - "networks/.yaml"
         - "networks/.yaml"
         - "networks/10.0.24.0.yaml"
@@ -226,6 +233,7 @@ results in:
         - "networks/.yaml"
         - "networks/.yaml"
 ```
+
 
 
 ### Configuring a hierarchy level (hiera-eyaml)
