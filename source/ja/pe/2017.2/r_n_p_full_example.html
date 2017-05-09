@@ -24,7 +24,7 @@ title: "ロールとプロファイル: 詳細な例"
 
 <ol>
 <li>
-    <p> <a href="%7B%7Bpuppet%7D%7D/modules_fundamentals.html">モジュール</a>を2つ作成します。そのうち1つは<code>role</code>、もう1つは<code>profile</code>と名付けます。
+    <p> <a href="{{puppet}}/modules_fundamentals.html">モジュール</a>を2つ作成します。そのうち1つは<code>role</code>、もう1つは<code>profile</code>と名付けます。
 </p>
 
     <p> Puppet Enterpriseのコードマネージャやr10kを使用してコードをデプロイする場合、これら2つのモジュールをPuppetfileで宣言するのではなく、管理リポジトリに格納しておくことを推奨します。 コードマネージャとr10kは、<code>modules</code>ディレクトリを各自の用途のために予約しているため、それぞれ個別のディレクトリに格納する必要があります。
@@ -39,7 +39,7 @@ title: "ロールとプロファイル: 詳細な例"
     </ol>
 </li>
   <li>
-    <p> <a href="%7B%7Bhiera%7D%7D">Hiera</a>または<a href="%7B%7Bpuppet%7D%7D/lookup_quick.html">Puppetルックアップ</a>に、適切な階層が設定されていて動作していることを確認します。
+    <p> <a href="%7B%7Bhiera%7D%7D">Hiera</a>または<a href="{{puppet}}/lookup_quick.html">Puppetルックアップ</a>に、適切な階層が設定されていて動作していることを確認します。
 </p>
   </li>
 </ol>
@@ -60,7 +60,7 @@ title: "ロールとプロファイル: 詳細な例"
 <h3 id="the-rules-for-profile-classes">プロファイルクラスのルール</h3>
 
 <ol>
-<li>どのプロファイルも、何度でも安全に<a href="%7B%7Bpuppet%7D%7D/lang_classes.html#using-include"><code>include</code></a>できることを確認してください。プロファイルに<a href="%7B%7Bpuppet%7D%7D/lang_classes.html#include-like-vs-resource-like">リソースライクなクラス宣言</a>は使用しないでください。</li>
+<li>どのプロファイルも、何度でも安全に<a href="{{puppet}}/lang_classes.html#using-include"><code>include</code></a>できることを確認してください。プロファイルに<a href="{{puppet}}/lang_classes.html#include-like-vs-resource-like">リソースライクなクラス宣言</a>は使用しないでください。</li>
   <li>プロファイルには、他のプロファイルを<code>include</code>できます。</li>
   <li>プロファイルは、コンポーネントクラスの<em>すべて</em>のクラスパラメータを所有します。プロファイルでいずれかのクラスパラメータが省略されている場合、デフォルト値が確実に必要です。コンポーネントクラスはHieraデータの値を使用してはなりません。以前に省略されたクラスパラメータを設定する必要がある場合、プロファイルをリファクタリングします。</li>
   <li>コンポーネントクラスを設定するにあたり、プロファイルに必要な情報を入手するには3通りの方法があります。<ul>
@@ -229,7 +229,7 @@ profile::jenkins::master::java_version: '8u92'
 <li>
 <a href="/pe/latest/console_classes_groups_getting_started.html">PEコンソール</a>ノード分類子。factsに基づいてノードをグループ化し、それらのグループにクラスを割り当てます。</li>
   <li>
-<a href="%7B%7Bpuppet%7D%7D/dirs_manifest.html">mainマニフェスト</a>。<a href="%7B%7Bpuppet%7D%7D/lang_node_definitions.html">ノードステートメント</a>または条件分岐を使用してクラスを割り当てます。</li>
+<a href="{{puppet}}/dirs_manifest.html">mainマニフェスト</a>。<a href="{{puppet}}/lang_node_definitions.html">ノードステートメント</a>または条件分岐を使用してクラスを割り当てます。</li>
   <li>HieraまたはPuppetルックアップ - <code>lookup</code>関数を使用して特殊な<code>classes</code>キーに対して独自の配列マージを実行し、その結果として生成された配列を<code>include</code>関数に渡します。</li>
 </ul>
 <h2 id="next-steps">次の手順</h2>

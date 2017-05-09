@@ -53,7 +53,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <p> Puppet内部の<a href="%7B%7Bpuppetserver%7D%7D/services_master_puppetserver.html#certificate-authority-service">認証局(CA)サービス</a>は、ノードからの証明書署名リクエストを承認し、証明書と証明書取り消しリスト(CRL)をノードに提供し、必要に応じて、証明書の署名または取り消しコマンドを承認します。
 </p>
 
-<p> CAサービスは、標準Puppetの<a href="%7B%7Bpuppet%7D%7D/dirs_ssldir.html">ssldir</a>にある<code>.pem</code>ファイルを使用して、証明書を保存します。 標準の<code>puppet cert</code>コマンドを使用すると、これらの証明書の表示、署名、取り消しを含む操作を実行できます。
+<p> CAサービスは、標準Puppetの<a href="{{puppet}}/dirs_ssldir.html">ssldir</a>にある<code>.pem</code>ファイルを使用して、証明書を保存します。 標準の<code>puppet cert</code>コマンドを使用すると、これらの証明書の表示、署名、取り消しを含む操作を実行できます。
 </p>
 
 <blockquote>
@@ -90,8 +90,8 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 </p>
 
 <ul>
-<li><a href="%7B%7Bpuppet%7D%7D/services_agent_unix.html">*nixシステム上のPuppet agent</a></li>
-  <li><a href="%7B%7Bpuppet%7D%7D/services_agent_windows.html">Windowsシステム上のPuppet agent</a></li>
+<li><a href="{{puppet}}/services_agent_unix.html">*nixシステム上のPuppet agent</a></li>
+  <li><a href="{{puppet}}/services_agent_windows.html">Windowsシステム上のPuppet agent</a></li>
 </ul>
 <p> Puppet agentには、以下のコンポーネントが含まれます。
 </p>
@@ -217,7 +217,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 
 <h2 id="code-manager-and-r10k">コードマネージャとr10k</h2>
 
-<p> Puppet Enterpriseには、Puppetコードの管理およびデプロイ用ツールとしてコードマネージャとr10kが含まれています。 コードマネージャとr10kは、ユーザがgit内に保持するコードに基づいて、Puppetモジュールをインストールし、<a href="%7B%7Bpuppet%7D%7D/environments.html">環境</a>を作成して維持し、masterにコードをデプロイします。 両ツールによってmasterにコードが同期されるので、agentの実行を妨げることなく、すべてのサーバーが同時に新しいコードを使用し始めることができます。
+<p> Puppet Enterpriseには、Puppetコードの管理およびデプロイ用ツールとしてコードマネージャとr10kが含まれています。 コードマネージャとr10kは、ユーザがgit内に保持するコードに基づいて、Puppetモジュールをインストールし、<a href="{{puppet}}/environments.html">環境</a>を作成して維持し、masterにコードをデプロイします。 両ツールによってmasterにコードが同期されるので、agentの実行を妨げることなく、すべてのサーバーが同時に新しいコードを使用し始めることができます。
 </p>
 
 <p> コードマネージャとr10kはどちらもPuppet Enterpriseに組み込まれているので、インストールは不要ですが、gitに関する基本的な知識は必要です。 これらのコード管理ツールの詳細については、<a href="/pe/latest/cmgmt_managing_code.html">Puppetコードの管理とデプロイ</a>を参照してください。

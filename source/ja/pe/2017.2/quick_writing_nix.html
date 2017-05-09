@@ -13,7 +13,7 @@ title: "モジュールの記述クイックスタートガイド"
 <!--Concept-->
 <h2 id="where-are-modules-kept">モジュールのある場所</h2>
 
-<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これにはPEによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。 このパスは、<code>puppet.conf</code>の<a href="%7B%7Bpuppet%7D%7D/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。
+<p> デフォルトでは、モジュールは<code>/etc/puppetlabs/code/environments/production/modules</code>内に格納されています。 これにはPEによってインストールされたモジュール、Forgeからダウンロードしたモジュール、ユーザーが記述したモジュールが含まれます。 このパスは、<code>puppet.conf</code>の<a href="{{puppet}}/configuration.html#modulepath"><code>modulepath</code></a>で設定することができます。
 </p>
 
 <p> PEによって、<code>/opt/puppetlabs/puppet/modules</code>のモジュールディレクトリも作成されます。  このディレクトリに内容を変更したり、モジュールを追加したりしないでください。
@@ -61,7 +61,7 @@ title: "モジュールの記述クイックスタートガイド"
   <h4 id="faqs">FAQ</h4>
 
   <ul>
-<li><a href="%7B%7Bpuppet%7D%7D/modules_fundamentals.html">モジュールの構造に関する詳細は、どこで学ぶことができますか？</a></li>
+<li><a href="{{puppet}}/modules_fundamentals.html">モジュールの構造に関する詳細は、どこで学ぶことができますか？</a></li>
   </ul>
 </blockquote>
 
@@ -226,7 +226,7 @@ title: "モジュールの記述クイックスタートガイド"
   <li>
 <a href="./quick_start_adding_class_nix.html">クラス追加に関するクイックスタートガイド</a>のワークフローを用いて、新しいクラスをコンソールに追加し、ノードに割り当てます。 </li>
 </ol>
-<p> 以上で完了です。 初めてのモジュールが稼動しました。 モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 「<a href="%7B%7Bpuppet%7D%7D/modules_fundamentals.html">Puppet: Module fundamentals</a>」、「<a href="%7B%7Bpuppet%7D%7D/4.9/dirs_modulepath.html">Puppet: The modulepath</a>」、「<a href="/puppet/4.9/bgtm.html">Beginner’s guide to modules</a>」、「<a href="https://forge.puppet.com">Puppet Forge</a>」を参照してください。
+<p> 以上で完了です。 初めてのモジュールが稼動しました。 モジュールとモジュールの作成方法については、豊富なリソースが用意されています。 「<a href="{{puppet}}/modules_fundamentals.html">Puppet: Module fundamentals</a>」、「<a href="{{puppet}}/dirs_modulepath.html">Puppet: The modulepath</a>」、「<a href="../../puppet/4.9/bgtm.html">Beginner’s guide to modules</a>」、「<a href="https://forge.puppet.com">Puppet Forge</a>」を参照してください。
 </p>
 
 <!--Reference-->
@@ -236,8 +236,8 @@ title: "モジュールの記述クイックスタートガイド"
 
 <ul>
 <li>
-<a href="%7B%7Bpuppet%7D%7D/lang_summary.html">Puppet言語リファレンス</a>では、<a href="%7B%7Bpuppet%7D%7D/lang_resources.html">リソースの宣言</a>、<a href="%7B%7Bpuppet%7D%7D/lang_conditional.html">条件文</a>、<a href="%7B%7Bpuppet%7D%7D/lang_classes.html">クラス</a>の記述方法を紹介したヘルプを含む完全なPuppet言語のシンタックスが、簡潔なガイドツアー形式で提供されています。</li>
-  <li>使用できるリソース型をすべて記載したマニュアルについては、<a href="%7B%7Bpuppet%7D%7D/type.html">型リファレンス</a>を参照してください。</li>
+<a href="{{puppet}}/lang_summary.html">Puppet言語リファレンス</a>では、<a href="{{puppet}}/lang_resources.html">リソースの宣言</a>、<a href="{{puppet}}/lang_conditional.html">条件文</a>、<a href="{{puppet}}/lang_classes.html">クラス</a>の記述方法を紹介したヘルプを含む完全なPuppet言語のシンタックスが、簡潔なガイドツアー形式で提供されています。</li>
+  <li>使用できるリソース型をすべて記載したマニュアルについては、<a href="{{puppet}}/type.html">型リファレンス</a>を参照してください。</li>
   <li>短い印刷可能なリファレンスについては、<a href="/module_cheat_sheet.pdf">モジュールカンニングペーパー</a>と<a href="/puppet_core_types_cheatsheet.pdf">コアタイプカンニングペーパー</a>をご覧ください。</li>
 </ul>
 <h2 id="next-steps">次の手順</h2>
@@ -246,7 +246,7 @@ title: "モジュールの記述クイックスタートガイド"
 </p>
 
 <ul>
-<li><a href="%7B%7Bpuppet%7D%7D/modules_fundamentals.html">Puppet Forgeを使用して必要なモジュールを見つける</a></li>
+<li><a href="{{puppet}}/modules_fundamentals.html">Puppet Forgeを使用して必要なモジュールを見つける</a></li>
   <li><a href="./r_n_p_intro.html">ロールおよびプロファイル手法を使用して完全なシステム設定を作成し、管理リポジトリに保存する</a></li>
   <li><a href="/pe/latest/cmgmt_managing_code.html">Puppet Enterpriseビルトインツールと管理リポジトリを使用して、Puppetコードを管理する</a></li>
   <li><a href="/pe/latest/console_classes_groups_getting_started.html">グループとルールを使用してノードを分類する</a></li>

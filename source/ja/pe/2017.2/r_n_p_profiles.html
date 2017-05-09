@@ -51,7 +51,7 @@ class profile::jenkins::master (
 
 <ol>
 <li>
-<a href="%7B%7Bpuppet%7D%7D/lang_classes.html#using-include"><code>include</code>関数</a>を使用して、プロファイルを安全に動作するようにします。プロファイルに<a href="%7B%7Bpuppet%7D%7D/lang_classes.html#include-like-vs-resource-like">リソースライクな宣言</a>を使用しないでください。</li>
+<a href="{{puppet}}/lang_classes.html#using-include"><code>include</code>関数</a>を使用して、プロファイルを安全に動作するようにします。プロファイルに<a href="{{puppet}}/lang_classes.html#include-like-vs-resource-like">リソースライクな宣言</a>を使用しないでください。</li>
   <li>プロファイルには、他のプロファイルを<code>include</code>できます。</li>
   <li>プロファイルには、コンポーネントクラスの<em>すべて</em>のクラスパラメータがあります。プロファイルでいずれかのクラスパラメータが省略されている場合、必ずデフォルト値が必要です。コンポーネントクラスはHieraデータの値を使用してはなりません。以前に省略されたクラスパラメータを設定する必要がある場合、プロファイルをリファクタリングします。</li>
   <li>コンポーネントクラスを設定するにあたり、プロファイルに必要な情報を入手するには3通りの方法があります。<ul>
@@ -204,7 +204,7 @@ class profile::jenkins::usage::java8 {
 </code></pre>
 
 <blockquote>
-  <p> <strong>注意</strong>: ここでもルール4が適用されます。余分なメモリを必要とする小さいJenkins masterがあり、ハードコード化できないからです。 ただし、本稼働のmasterは必ずパワフルなマシンにあるため、マシンのメモリサイズに基づいてヒープを計算できます(<a href="%7B%7Bpuppet%7D%7D/lang_facts_and_builtin_vars.html">fact</a>としてアクセス可能)。 これにより、余分な設定を行わずに済みます。
+  <p> <strong>注意</strong>: ここでもルール4が適用されます。余分なメモリを必要とする小さいJenkins masterがあり、ハードコード化できないからです。 ただし、本稼働のmasterは必ずパワフルなマシンにあるため、マシンのメモリサイズに基づいてヒープを計算できます(<a href="{{puppet}}/lang_facts_and_builtin_vars.html">fact</a>としてアクセス可能)。 これにより、余分な設定を行わずに済みます。
 </p>
 </blockquote>
 
@@ -296,7 +296,7 @@ class profile::jenkins::usage::java8 {
 
 <h2 id="fourth-refactor-manually-manage-the-user-account">4回目のリファクタリング: ユーザアカウントを手動で管理する</h2>
 
-<p> インフラでは多数のユーザアカウントを管理するため、一元的に処理します。 <code>profile::server</code>クラスは<code>virtual::users</code>をプルします。ここには多数の<a href="%7B%7Bpuppet%7D%7D/lang_virtual.html">仮想リソース</a>が含まれており、ユーザが指定マシンにログインする場合は必要に応じて個別に提供できます。
+<p> インフラでは多数のユーザアカウントを管理するため、一元的に処理します。 <code>profile::server</code>クラスは<code>virtual::users</code>をプルします。ここには多数の<a href="{{puppet}}/lang_virtual.html">仮想リソース</a>が含まれており、ユーザが指定マシンにログインする場合は必要に応じて個別に提供できます。
 </p>
 
 <blockquote>
@@ -371,7 +371,7 @@ class profile::jenkins::usage::java8 {
 <ul>
 <li>ユーザは、自作のユーザ定義タイプ<code>account::user</code>で管理します。ここで<code>user</code>リソースの他にもいくつかの宣言を行います。</li>
   <li>
-<code>Account::User</code><a href="%7B%7Bpuppet%7D%7D/lang_collectors.html">リソースコレクタ</a>を使用してJenkinsユーザを作成します。これを行うには、<code>profile::server</code>を宣言する必要があります。</li>
+<code>Account::User</code><a href="{{puppet}}/lang_collectors.html">リソースコレクタ</a>を使用してJenkinsユーザを作成します。これを行うには、<code>profile::server</code>を宣言する必要があります。</li>
   <li>Jenkinsクラスの<code>manage_user</code>、<code>manage_group</code>、<code>manage_datadirs</code>パラメータをfalseに設定します。</li>
   <li>これで、<code>plugins</code>ディレクトリと<code>run</code>ディレクトリが明示的に管理されます。</li>
 </ul>
@@ -436,7 +436,7 @@ class profile::jenkins::usage::java8 {
   }
 </code></pre>
 
-<p> SSHキーは機密性の高いコンテンツなので、管理はやや困難です。 SSHキーは、他のPuppetコードとともにバージョン管理にチェックインできないため、特定のPuppetサーバーの<a href="%7B%7Bpuppet%7D%7D/file_serving.html">カスタムマウントポイント</a>に格納します。
+<p> SSHキーは機密性の高いコンテンツなので、管理はやや困難です。 SSHキーは、他のPuppetコードとともにバージョン管理にチェックインできないため、特定のPuppetサーバーの<a href="{{puppet}}/file_serving.html">カスタムマウントポイント</a>に格納します。
 </p>
 
 <p> このサーバーは通常のPuppetサーバーとは異なるため、アクセスのためのルールを定めます。ホスト名をハードコード化する代わりに、データからルックアップする必要があります。 これにより、セキュアサーバーが移動しても1か所で変更するだけで対応できます。
