@@ -57,9 +57,17 @@ module PuppetDocs
         graf.replace( '<p>' << graf.inner_html << '</p>' )
       end
 
-      # TODO: build yaml frontmatter by subbing in title from div.title
+      # build yaml frontmatter by subbing in title from div.title
+      title_div = parsed.at_css('div.title')
+      title = title_div.content
+      frontmatter = %Q{---
+title: "#{title}"
+---
 
-      parsed.to_html
+}
+      title_div.remove
+
+      frontmatter + parsed.to_html
     end
 
     def self.unmangle_file(filename)
