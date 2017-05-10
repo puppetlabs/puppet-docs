@@ -10,19 +10,23 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [CVE-2017-2292 - MCollective Remote Code Execution Via YAML Deserialization](https://puppet.com/security/cve/cve-2017-2292)
 
-   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.0, and Puppet Enterprise 2016.4.4
+   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
    
 - [CVE-2017-2293 - MCollective Server Allows Installing Arbitrary Packages On agents](https://puppet.com/security/cve/cve-2017-2293)
 
-   Resolved in Puppet Enterprise 2017.2.0 and Puppet Enterprise 2016.4.4
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
    
 - [CVE-2017-2294 - MCollective Private Keys Visible In PuppetDB](https://puppet.com/security/cve/cve-2017-2294)
 
-   Resolved in Puppet Enterprise 2017.2.0 and Puppet Enterprise 2016.4.4
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
    
 - [CVE-2017-2295 - Puppet Server Remote Code Execution Via YAML Deserialization](https://puppet.com/security/cve/cve-2017-2295)
 
-   Resolved in Puppet 4.10.1, Puppet agent 1.10.1, Puppet Enterprise 2017.2.0, and Puppet Enterprise 2016.4.4
+   Resolved in Puppet 4.10.1, Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
+   
+- [CVE-2017-2297 - Incorrect Credential Management with Labeled RBAC Tokens](https://puppet.com/security/cve/cve-2017-2297)
+
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
 
 - [CVE-2017-2290 - Privilege Escalation in mcollective-puppet-agent](https://puppet.com/security/cve/cve-2017-2290)
 
@@ -296,15 +300,15 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [OpenSSL January 2017 Security Fixes](https://puppet.com/security/cve/openssl-jan-2017-security-fixes)
 
-   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.0, Puppet Enterprise 2016.4.4, PE client tools 17.2.0, and PE client tools 16.4.2
+   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, Puppet Enterprise 2016.4.5, PE client tools 17.2.0, and PE client tools 16.4.2
 
 - [Oracle Java April 2017 Security Fixes](https://puppet.com/security/cve/oracle-java-apr-2017-security-fixes)
 
-   Resolved in Puppet Enterprise 2017.2.0 and Puppet Enterprise 2016.4.4
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
    
 - [Libxml2 March 2017 Security Fixes](https://puppet.com/security/cve/libxml2-mar-2017-security-fixes)
 
-   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.0, and Puppet Enterprise 2016.4.4
+   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
 
 - [CVE-2016-10173: Directory Traversal in Minitar](https://puppet.com/security/cve/cve-2016-10173)
 
