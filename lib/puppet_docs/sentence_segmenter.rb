@@ -1,6 +1,7 @@
-#!/usr/bin/env ruby
+require 'nokogiri'
+require 'punkt-segmenter'
 
-# > sentence_segmenter.rb ./file1.html ./file2.html ./file3.html
+
 
 # Sentence segmenter -- splits <p> elements into something like
 # <div class="real-paragraph">
@@ -8,42 +9,70 @@
 #    <p class="temp-sentence"> ... </p>
 # </div>
 
-# This script expects any number of HTML fragment files as its argument(s). It
-# will mangle the content and update it in-place, destroying the previous
-# content of the files.
+# The mangle and unmangle methods expect HTML fragment files, output by the
+# build process using the alternate fragment template. They transform the
+# content and update it in-place, destroying the previous content of the files.
 
-require 'nokogiri'
-require 'punkt-segmenter'
+module PuppetDocs
+  module SentenceSegmenter
 
-@tokenizer = nil
+    def self.segment_on_sentences(text)
+      parsed = Nokogiri::HTML::DocumentFragment.parse(text)
+      tokenizer = Punkt::SentenceTokenizer.new(text)
 
-def call_punkt_segmenter(text)
-  @tokenizer.sentences_from_text(text, :output => :sentences_text)
-end
+      all_paragraphs = parsed.css('p')
 
-def segment_on_sentences(text)
-  parsed = Nokogiri::HTML::DocumentFragment.parse(text)
-  @tokenizer = Punkt::SentenceTokenizer.new(text)
+      all_paragraphs.each do |graf|
+        sentences = tokenizer.sentences_from_text(graf.inner_html, :output => :sentences_text)
+        new_div = '<div class="real-paragraph"> <p class="temp-sentence">' << sentences.join('</p> <p class="temp-sentence">') << '</p></div>'
+        graf.replace(new_div)
+      end
 
-  all_paragraphs = parsed.css('p')
+      parsed.to_html
+    end
 
-  all_paragraphs.each do |graf|
-    sentences = call_punkt_segmenter(graf.inner_html)
-    new_div = '<div class="real-paragraph"> <p class="temp-sentence">' << sentences.join('</p> <p class="temp-sentence">') << '</p></div>'
-    graf.replace(new_div)
+    def self.mangle_file(filename)
+      full_path = File.expand_path(filename)
+      print "Mangling #{full_path}... "
+      mangled_html = segment_on_sentences( File.read(full_path, encoding: 'utf-8') )
+      File.open(full_path, 'w') do |f|
+        f.write(mangled_html)
+      end
+      print " done.\n"
+    end
+
+    def self.unsegment_paragraphs(text)
+      parsed = Nokogiri::HTML::DocumentFragment.parse(text)
+
+      all_sentences = parsed.css('p.temp-sentence')
+      all_real_paragraphs = parsed.css('div.real-paragraph')
+
+      # break internal bubbles
+      all_sentences.each do |sentence|
+        sentence.replace(sentence.inner_html)
+      end
+
+      # transform into paragraph
+      all_real_paragraphs.each do |graf|
+        graf.replace( '<p>' << graf.inner_html << '</p>' )
+      end
+
+      # TODO: build yaml frontmatter by subbing in title from div.title
+
+      parsed.to_html
+    end
+
+    def self.unmangle_file(filename)
+      full_path = File.expand_path(filename)
+      print "Un-mangling #{full_path}... "
+      fixed_html = unsegment_paragraphs( File.read(full_path, encoding: 'utf-8') )
+      File.open(full_path, 'w') do |f|
+        f.write(fixed_html)
+      end
+      print " done.\n"
+    end
+
+
   end
-
-  parsed.to_html
 end
-
-ARGV.each do |filename|
-  full_path = File.expand_path(filename)
-  print "Mangling #{full_path}... "
-  mangled_html = segment_on_sentences( File.read(full_path, encoding: 'utf-8') )
-  File.open(full_path, 'w') do |f|
-    f.write(mangled_html)
-  end
-  print " done.\n"
-end
-
 
