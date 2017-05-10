@@ -1,0 +1,534 @@
+---
+layout: default
+title: "Instalar Windows agents"
+---
+
+<blockquote>
+  <p> <img src="./images/windows-logo-small.jpg" alt="windows logo">Esta sección trata la funcionalidad en Windows. Para instalar PE en nodos *nix, consulte <a href="./install_basic.html">Cómo instalar Puppet Enterprise</a>.
+</p>
+</blockquote>
+
+<p> Para versiones de Windows soportadas, consulte la <a href="/pe/2017.2/sys_req_os.html">documentación de sistemas operativos soportados</a>.
+</p>
+
+<p> Nodos Windows en Puppet Enterprise:
+</p>
+
+<ul>
+<li>Puede obtener configuraciones de Puppet master y aplicar los manifiestos localmente.</li>
+  <li>Puede responder a los comandos de orquestación.</li>
+  <li>No puede ser un Puppet master, consola o BBDD de soporte.</li>
+</ul>
+<blockquote>
+  <p> <strong>Nota:</strong> Puppet <em>de</em> ejecutarse con privilegios (Seleccione <em>Run as administrator</em> al abrir el Command Prompt).
+</p>
+</blockquote>
+
+<p> El Windows agent puede ser instalado con paquetes de gestión PE o con paquetes .msi de Windows.
+</p>
+
+<h2 id="installing-with-pe-package-management">Cómo instalar con paquetes de gestión de PE</h2>
+
+<p> Para instalar Windows agent con paquetes de gestión de PE, Primero agregue la clase apropiada que contiene los paquetes de agente de Windows a <code>pe_repo</code>, y después clasifique el grupo del nodo en PE Master con esa clase. Entonces ejecute el script de instalación en el agent para recuperar los paquetes necesarios para la instalación.
+</p>
+
+<blockquote>
+  <p> <strong>Importanet:</strong> Esta tarea requiere que utilice PowerShell 2.0 o posterior.
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>Nota:</strong> En el siguiente ejemplo, la sección <code>&lt;PUPPET MASTER FQDN&gt;</code> del script de instalación se refiere al FQDN del Puppet master. Además, este FQDN debe ser accesible por la máquina Windows en la cual este instalando el agent.
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> En la consola, click sobre <strong>Classification</strong> y en el grupo <strong>PE Infrastructure</strong>, seleccione el grupo <strong>PE Masters</strong>.
+</p>
+  </li>
+  <li>
+    <p> Sobre la pestaña <strong>Classes</strong> en el campo <strong>Class name</strong>, escriba <code>pe_repo</code> y selecciona la clase repo de la lista de clases.
+</p>
+
+    <ul>
+<li>
+        <p> Para  <strong>64-bit (x86_64) Windows agents</strong>, seleccione <code>pe_repo::platform::windows_x86_64</code>.
+</p>
+      </li>
+      <li>
+        <p> Para <strong>32-bit (i386) Windows agents</strong>, seleccione<code>pe_repo::platform::windows_i386</code>.
+</p>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> Pulse <strong>Agregar class</strong>, y realice un commit.
+</p>
+  </li>
+  <li>
+    <p> En el Puppet master, ejecute Puppet para configurar la clase recientemente asignada.
+</p>
+
+    <p> El nuevo repo es creado en el Puppet master en<code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/&lt;PLATFORM&gt;/</code>.
+</p>
+  </li>
+  <li>
+    <p> En su agente Windows, ejecute una ventana PowerShell administrativa y ejecute el siguiente comando:
+</p>
+
+    <pre><code>[Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; $webClient = New-Object System.Net.WebClient; $webClient.DownloadFile('https://&lt;PUPPET MASTER FQDN&gt;:8140/packages/current/install.ps1', 'install.ps1'); .\install.ps1
+</code></pre>
+  </li>
+</ol>
+<p> Después de ejecutar la instalación, usted debería observar el siguiente mensaje de salida, indicando que el agent ha sido instalado con éxito.
+</p>
+
+<pre><code class="language-Puppet">Notice: /Service[puppet]/ensure: ensure changed 'stopped' to 'running'
+service { 'puppet':
+  ensure =&gt; 'running',
+  enable =&gt; 'true',
+}
+</code></pre>
+
+<h3 id="passing-configuration-parameters-to-the-install-script">Cómo introducir parámetros de configuración en el script de instalación</h3>
+
+<p> Puede pasar parámetros al final de la secuencia del script de instalación para especificar la configuración que se agregará a <code>puppet.conf</code> y especificar la configuración a incluir en <code>custom_attributes</code> y <code>extension_requests</code> sección de <code>csr_attributes.yaml</code>. Por ejemplo:
+</p>
+
+<pre><code>[Net.ServicePointManager]::ServerCertificateValidationCallback = {$true}; $webClient = New-Object System.Net.WebClient; $webClient.DownloadFile('https://&lt;PUPPET MASTER FQDN&gt;:8140/packages/latest/install.ps1', 'install.ps1'); .\install.ps1 agent:certname=&lt;certnameOtherThanFQDN&gt; custom_attributes:challengePassword=&lt;passwordForAutosignerScript&gt; extension_requests:pp_role=&lt;puppetNodeRole&gt;
+</code></pre>
+
+<p> Puede introducir tantos parámetros como usted necesite. Siga la pauta <code>section:key=value</code> y  deje un espacio entre los parámetros.
+</p>
+
+<p> Consulte el <a href="/puppet/4.10/configuration.html">Manual de Configuración</a> con una completa lista de valores para <code>puppet.conf</code>. Consulte la página<a href="/puppet/4.10/ssl_attributes_extensions.html">Atributos CSR y extensiones de certificado</a> para más información sobre configuración de <code>csr_attributes.yaml</code>.
+</p>
+
+<h2 id="installing-with-the-msi-package">Cómo instalar un paquete .msi</h2>
+
+<p> El instalador Windows de PE es un paquete .msi estándar  de Windows y se ejecuta junto a un asistente gráfico. El paquete instalador .msi es útil, si usted necesita configurar el servicio de cuenta de usuario, password o usuario de dominio de Puppet agent durante la instalación.
+</p>
+
+<p> El instalador debe ejecutarse con privilegios elevados. La instalación de Puppet <strong>no</strong> requiere reiniciar el sistema.
+</p>
+
+<ol>
+<li>
+    <p> <a href="http://info.puppetlabs.com/download-pe.html">Descarga</a> y ejecuta el  instalador.
+</p>
+  </li>
+  <li>
+    <p> Cuando el cuadro de diálogo lo indique, proporcione el hostname de su servidor Puppet master.
+</p>
+
+    <p> <img src="./images/windows/wizard_server.png" alt="selección del hostname de Puppet master">
+</p>
+  </li>
+  <li>
+    <p> Cargue una lista actualizada de nodos pendientes consultando con un click <strong>Unsigned Certs</strong>.
+</p>
+  </li>
+  <li>
+    <p> Click <strong>Accept All</strong> para aprobar las consultas y agregar el nodo.
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> EL Puppet agent puede ahora recuperar configuraciones del master la próxima ocasión que ejecute Puppet.
+</p>
+</blockquote>
+
+<h2 id="after-installation">Después de la instalación</h2>
+
+<ul>
+<li>
+    <p> El Puppet agent se ejecuta como servicio Windows, y por defecto descargará y aplicará configuraciones cada 30 minutos. Ahora puede asignar clases al nodo como normal; consulte <a href="/pe/2017.2/console_classes_groups_getting_started.html">Comenzar con la clasificación</a> para más detalles. Después de la primera ejecución de Puppet, el servicio MCollective también se ejecutará y el nodo ahora será controlado por MCollective. El servicio Puppet agent y el servicio MCollective pueden ser iniciados y detenidos independientemente  can be started and stopped independently tilizando la interfaz de usuario de control de servicios UI o el comando <code>sc.exe</code>; consulte <a href="/puppet/4.10/services_commands_windows.html">Cómo ejecutar Puppet en Windows</a> para más detalles.
+</p>
+  </li>
+  <li>
+    <p> El menú Inicio contendrá una carpeta Puppet, con los enlaces directos para ejecutar Puppet agent manualmente, ejecutando Facter y abriendo una  ventana de símbolo de sistema para el uso de herramientas de Puppet. Consulte <a href="/pe/2017.2/windows_basic_tasks.html">Tareas Básicas y conceptos en  Windows</a> para aprender sobre estas herramientas.
+</p>
+
+    <p> <img src="./images/windows/start_menu.png" alt="Iconos de Menú Inicio">
+</p>
+  </li>
+  <li>
+    <p> Puppet es agregado automáticamente a la variable de entorno PATH de la máquina. Esto significa que tu puedes abrir cualquier comando en línea y ejecutar <code>puppet</code>, <code>facter</code> y algunos otros archivos por lotes batch que están en el directorio <code>bin</code> de la <a href="./install_windows.html#program-directory">instalación de Puppet</a>. Esto también agregará los items necesarios del entorno Puppet en la shell, pero solo durante la ejecución de cada uno de los comandos.
+</p>
+  </li>
+</ul>
+<h2 id="unattended-installation">Instalación desatendida</h2>
+
+<p> Para instalar Puppet de forma desatendida via línea de comando, ejecute:
+</p>
+
+<pre><code>msiexec /qn /norestart /i puppet.msi
+</code></pre>
+
+<p> También puede especificar <code>/l*v install.txt</code> para realizar un log en un fichero sobre el progreso de la instalación.
+</p>
+
+<h3 id="msi-properties">Propiedades MSI</h3>
+
+<p> Hay opciones solo disponibles durante la instalación de Puppet desde la línea de comando.
+</p>
+
+<table>
+<thead><tr>
+<th>Propiedad MSI</th>
+      <th>Configuración Puppet</th>
+      <th>Valor por defecto</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><a href="#installdir"><code>INSTALLDIR</code></a></td>
+      <td>n/a</td>
+      <td>Version-dependent; <a href="#program-directory">consultar más abajo</a>
+</td>
+    </tr>
+<tr>
+<td><a href="#puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></a></td>
+      <td><a href="/puppet/4.10/configuration.html#server"><code>server</code></a></td>
+      <td><code>puppet</code></td>
+    </tr>
+<tr>
+<td><a href="#puppetcaserver"><code>PUPPET_CA_SERVER</code></a></td>
+      <td><a href="/puppet/4.10/configuration.html#caserver"><code>ca_server</code></a></td>
+      <td>Valor de <code>PUPPET_MASTER_SERVER</code>
+</td>
+    </tr>
+<tr>
+<td><a href="#puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></a></td>
+      <td><a href="/puppet/4.10/configuration.html#certname"><code>certname</code></a></td>
+      <td>Valor de <code>facter fdqn</code> (debe estar en minúsculas)</td>
+    </tr>
+<tr>
+<td><a href="#puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></a></td>
+      <td><a href="/puppet/4.10/configuration.html#environment"><code>environment</code></a></td>
+      <td><code>production</code></td>
+    </tr>
+<tr>
+<td><a href="#puppetagentstartupmode"><code>PUPPET_AGENT_STARTUP_MODE</code></a></td>
+      <td>n/a</td>
+      <td>
+<code>Automatic</code>; <a href="#agent-startup-mode">Consulte el modo de inicio</a>
+</td>
+    </tr>
+<tr>
+<td><a href="#puppetagentaccountuser"><code>PUPPET_AGENT_ACCOUNT_USER</code></a></td>
+      <td>n/a</td>
+      <td>
+<code>LocalSystem</code>; <a href="#agent-account">Consulte la cuenta agent</a>
+</td>
+    </tr>
+<tr>
+<td><a href="#puppetagentaccountpassword"><code>PUPPET_AGENT_ACCOUNT_PASSWORD</code></a></td>
+      <td>n/a</td>
+      <td>Sin valor; <a href="#agent-account">consulte la cuenta agent</a>
+</td>
+    </tr>
+<tr>
+<td><a href="#puppetagentaccountdomain"><code>PUPPET_AGENT_ACCOUNT_DOMAIN</code></a></td>
+      <td>n/a</td>
+      <td>
+<code>.</code>; <a href="#agent-account">Consulte la cuenta agente</a>
+</td>
+    </tr>
+</tbody>
+</table>
+<p> Por ejemplo:
+</p>
+
+<pre><code>msiexec /qn /norestart /i puppet.msi PUPPET_MASTER_SERVER=puppet.acme.com
+</code></pre>
+
+<p> <strong>Nota:</strong> Si el valor par la variable de <code>entorno</code> ya existe en puppet.conf, especificada durante la instalación NO sobreescribirá ese valor.
+</p>
+
+<h4 id="installdir"><code>INSTALLDIR</code></h4>
+
+<p> Donde Puppet y sus dependencias debería estar instaladas.
+</p>
+
+<blockquote>
+  <p> <strong>Nota</strong>: Si usted esta instalando sobre un SO de 32-bit, usted debe ejecutar la versión de 32-bit de Puppet. Si usted esta instalando sobre un So de 64-bits, usted debe elegir entre Puppet de 32 o 64-bit. De todas formas, si usted está instalado Puppet sobre Windows 2003, entonces, usted debe instalar Puppet 32-bit, incluse si es una versión de Windows de 64-bit.
+</p>
+</blockquote>
+
+<p> <strong>Por Defecto:</strong>
+</p>
+
+<table>
+<thead><tr>
+<th>Tipo de instalación Puppet</th>
+      <th>Tipo SO</th>
+      <th>PATH de instalación por defecto</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>32-bit</td>
+      <td>32-bit</td>
+      <td><code>C:\Program Files\Puppet Labs\Puppet</code></td>
+    </tr>
+<tr>
+<td>32-bit</td>
+      <td>64-bit</td>
+      <td><code>C:\Program Files (x86)\Puppet Labs\Puppet</code></td>
+    </tr>
+<tr>
+<td>64-bit</td>
+      <td>64-bit</td>
+      <td><code>C:\Program Files \Puppet Labs\Puppet</code></td>
+    </tr>
+</tbody>
+</table>
+<p> Consulte <strong>program directory</strong> en una sección más abajo para información relacionada con el directorio archivos de programa.
+</p>
+
+<h4 id="puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></h4>
+
+<p> El hostname donde el servidor Puppet master puede ser accesible. Esto establecerá un valor a <a href="/puppet/4.10/configuration.html#server">la configuración de <code>server</code></a> en la sección <code>[main]</code> de <a href="/puppet/4.10/config_file_main.html">puppet.conf</a>.
+</p>
+
+<p> <strong>Por defecto:</strong> <code>puppet</code>
+</p>
+
+<p> <strong>Nota:</strong> Si establece un valor <em>non-default</em> para esta propiedad, el instalador <strong>reemplazará</strong> cualquier valor existente en puppet.conf. También, en su próxima actualización, el instalador reutilizará su valor anterior para esta propiedad, a menos que establezca un nuevo valor por medio de la línea de comandos. Una vez has utilizado esta propiedad, usted no debería cambiar la configuración <code>server</code> directamente de puppet.conf. En cambio, usted debería ejecutar de nuevo el instalador y configurar un nuevo valor.
+</p>
+
+<h4 id="puppetcaserver"><code>PUPPET_CA_SERVER</code></h4>
+
+<p> El hostname donde el servidor de CA de Puppet master puede ser accesible, si usted está utilizando múltiples masters y solo uno de ello esta actuando como CA. Esto establecerá un valor para  <a href="/puppet/4.10/configuration.html#caserver">la configuración de  <code>ca_server</code></a> en la sección <code>[main]</code> de <a href="/puppet/4.10/config_file_main.html">puppet.conf</a>.
+</p>
+
+<p> <strong>Por defecto:</strong> el valor de la propiedad <code>PUPPET_MASTER_SERVER</code> 
+</p>
+
+<p> <strong>Nota:</strong> Si establece un valor <em>non-default</em> para esta propiedad, el instalador <strong>reemplazará</strong> cualquier valor existente en puppet.conf. También, en su próxima actualización, el instalador reutilizará su valor anterior para esta propiedad, a menos que establezca un nuevo valor por medio de la línea de comandos. Una vez has utilizado esta propiedad, usted no debería cambiar la configuración <code>ca_server</code> directamente en puppet.conf. En cambio, usted debería ejecutar de nuevo el instalador y configurar un nuevo valor. 
+</p>
+
+<h4 id="puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></h4>
+
+<p> El nombre del certificado del nodo y el nombre que utiliza al solicitar catálogos. Esto establecerá un valor para <a href="/puppet/4.10/configuration.html#certname"> la configuración <code>certname</code></a> en la sección <code>[main]</code> de <a href="/puppet/4.10/config_file_main.html">puppet.conf</a>.
+</p>
+
+<p> Para la mejor compatibilidad, usted debería limitar el valor de <code>certname</code> a únicamente el uso de letras minúsculas, números, puntos, guiones bajos y guiones. (Es decir, debe coincidir <code>/\A[a-z0-9._-]+\Z/</code>. )
+</p>
+
+<p> <strong>Por Defecto:</strong> tel FQDN del nodo, es descubierto por <code>facter fqdn</code>.
+</p>
+
+<p> <strong>Nota:</strong> Si establece un valor <em>non-default</em> para esta propiedad, el instalador <strong>reemplazará</strong> cualquier valor existente en puppet.conf. También, en su próxima actualización, el instalador reutilizará su valor anterior para esta propiedad, a menos que establezca un nuevo valor por medio de la línea de comandos. Una vez has utilizado esta propiedad, usted no debería cambiar la configuración <code>certname</code> directamente en puppet.conf. En cambio, usted debería ejecutar de nuevo el instalador y configurar un nuevo valor.
+</p>
+
+<h4 id="puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></h4>
+
+<p> EL <a href="/puppet/4.10/environments.html">entorno</a> del nodo. Esto establecerá un valor para  <a href="/puppet/4.10/configuration.html#environment"> la configuración  <code>environment</code></a> en la sección <code>[main]</code> de <a href="/puppet/4.10/config_file_main.html">puppet.conf</a>.
+</p>
+
+<p> <strong>Por defecto:</strong> <code>production</code>
+</p>
+
+<p> <strong>Nota:</strong> Si establece un valor <em>non-default</em> para esta propiedad, el instalador <strong>reemplazará</strong> cualquier valor existente en puppet.conf. También, en su próxima actualización, el instalador reutilizará su valor anterior para esta propiedad, a menos que establezca un nuevo valor por medio de la línea de comandos. Una vez has utilizado esta propiedad, usted no debería cambiar la configuración <code>environment</code> directamente en puppet.conf. En cambio, usted debería ejecutar de nuevo el instalador y configurar un nuevo valor.
+</p>
+
+<h4 id="puppetagentstartupmode"><code>PUPPET_AGENT_STARTUP_MODE</code></h4>
+
+<p> Si el servicio Puppet agent debe ejecutarse (o debe estar permitido ejecutar). Valores permitidos:
+</p>
+
+<ul>
+<li>
+<code>Automatic</code> (<strong>default</strong>) — Puppet agent iniciará con Windows y se mantendrá ejecutando en segundo plano.</li>
+  <li>
+<code>Manual</code> — Puppet agent no se ejecutará por defecto, pero puede ser ejecutado mediante la consola de servicios o con la línea de comando <code>net start</code>.</li>
+  <li>
+<code>Disabled</code> — Puppet agent se instalará, pero como deshabilitado. Usted tiene que cambiar este estado, en la consola de servicios, antes de poder arrancarlo.</li>
+</ul>
+<h4 id="puppetagentaccountuser"><code>PUPPET_AGENT_ACCOUNT_USER</code></h4>
+
+<p> Cual es la cuenta de usuario Windows que el servicio Puppet agent debería usar. Esto es importante, si Puppet agent necesitase acceso a ficheros en carpetas compartidas en formato UNC, desde la cuenta por defecto <code>LocalService</code> no podría acceder a estos recursos de la red.
+</p>
+
+<ul>
+<li>Esta cuenta de usuario <strong>debe existir con anterioridad,</strong> y puede ser un usuario local o del dominio. (El instalador permitirá usuarios del dominio, incluso si los usuarios no han accedido a esta máquina anteriormente.)</li>
+  <li>Si el usuario ya no es una cuenta de administrador local, el instalador lo agregará en el grupo <code>Administradores</code>.</li>
+  <li>El instalador también concederá <a href="http://msdn.microsoft.com/en-us/library/ms813948.aspx"><code>Inicio de sesión como servicio</code></a> para el usuario.</li>
+</ul>
+<p> Esta propiedad debería ser la combinación de <code>PUPPET_AGENT_ACCOUNT_PASSWORD</code> y <code>PUPPET_AGENT_ACCOUNT_DOMAIN</code>. Por ejemplo, para asignar el agent a un usuario de dominio <code>ExampleCorp\bob</code>, usted debería instalarlo con:
+</p>
+
+<pre><code>msiexec /qn /norestart /i puppet-&lt;VERSION&gt;.msi PUPPET_AGENT_ACCOUNT_DOMAIN=ExampleCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password
+</code></pre>
+
+<p> <strong>Por defecto:</strong> <code>LocalSystem</code>
+</p>
+
+<h4 id="puppetagentaccountpassword"><code>PUPPET_AGENT_ACCOUNT_PASSWORD</code></h4>
+
+<p> El password a usar por la cuenta de usuario de Puppet agent. Consulta las notas sobre usuarios incluidas más abajo.
+</p>
+
+<p> <strong>Por defecto:</strong> sin valor.
+</p>
+
+<h4 id="puppetagentaccountdomain"><code>PUPPET_AGENT_ACCOUNT_DOMAIN</code></h4>
+
+<p> El dominio de la cuenta de usuario de Puppet agent. Consulta las notas sobre usuarios incluidas más abajo.
+</p>
+
+<p> <strong>Por defecto:</strong> <code>.</code>
+</p>
+
+<h2 id="upgrading">Actualización</h2>
+
+<p> Consulte <a href="/pe/2017.2/upgrade_windows.html">Cómo actualizar Windows agents</a> para instrucciones.
+</p>
+
+<h2 id="uninstalling">Cómo desinstalar</h2>
+
+<p> Para desinstalar Puppet, utilice la interfaz de Windows <em>Agregar o Quitar Programas</em>, o lo puede desinstalar desde la línea de comando.
+</p>
+
+<p> Para desinstalar desde la línea de comando, debe tener el fichero originarl .msi file o  conocer el <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa370854(v=vs.85).aspx">ProductCode</a> del MSI instalado:
+</p>
+
+<pre><code>msiexec /qn /norestart /x [puppet.msi|product-code]
+</code></pre>
+
+<p> La desinstalación borrará el directorio Puppet de Archivos de programa, el servicio Puppet agent y todos las claves del registro relacionadas. Dejará el <a href="#data-directory">directorio data</a> intacto, incluyendo cualquier clave SSL. Para la eliminación completa de Puppet del sistema, el directorio data puede borrarse manualmente.
+</p>
+
+<h2 id="installation-details">Detalles de la instalación</h2>
+
+<h3 id="what-gets-installed">Qué se instala</h3>
+
+<p> Con el fin de proporcionar una instalación autónoma, el instalador de Puppet incluye todas las dependencias de Puppet, incluyendo Ruby, Gems and Facter. (Puppet redistribuye la aplicación de Ruby 32-bit desde <a href="http://rubyinstaller.org">rubyinstaller.org</a>. También distribuye Ruby 64-bit con Puppet 3.8.x y versiones posteriores. ) MCollective también es instalado.
+</p>
+
+<p> Estos prerrequisitos son utilizados únicamente por los componentes de Puppet Enterprise y no interferirá con otras copias locales de Ruby.
+</p>
+
+<h3 id="program-directory">Directorio de Archivos de Programa</h3>
+
+<p> A menos que se anulen durante la instalación, PE y sus dependencias son instaladas en los siguientes path de instalación por defecto:
+</p>
+
+<table>
+<thead><tr>
+<th>Tipo de instalación Puppet</th>
+      <th>Tipo SO</th>
+      <th>PATH de instalación por defecto</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>32-bit</td>
+      <td>32-bit</td>
+      <td><code>C:\Program Files\Puppet Labs\Puppet</code></td>
+    </tr>
+<tr>
+<td>32-bit</td>
+      <td>64-bit</td>
+      <td><code>C:\Program Files (x86)\Puppet Labs\Puppet</code></td>
+    </tr>
+<tr>
+<td>64-bit</td>
+      <td>64-bit</td>
+      <td><code>C:\Program Files \Puppet Labs\Puppet</code></td>
+    </tr>
+</tbody>
+</table>
+<p> Usted puede localizar el directorio Archivos de programa utilizando la variable <code>PROGRAMFILES</code> o la variable <code>PROGRAMFILES(X86)</code>. Consulte "path de instalación por defecto" en la tabla inferior para determinar que variable usar.
+</p>
+
+<blockquote>
+  <p> <strong>Nota</strong>: Como hemos mencionado, si usted está instalando sobre un SO de 32-bit, usted debe ejecutar Puppet 32-bit. Si usted esta instalando sobre un So de 64-bits, usted debe elegir entre Puppet de 32 o 64-bit.
+</p>
+</blockquote>
+
+<p> El directorio Puppet en Archivos de programas contiene los siguientes subdirectorios:
+</p>
+
+<table>
+<thead><tr>
+<th>Directorio</th>
+      <th>Descripción</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>bin</td>
+      <td>scripts para ejecutar Puppet y Facter</td>
+    </tr>
+<tr>
+<td>facter</td>
+      <td>Facter source</td>
+    </tr>
+<tr>
+<td>
+<strong>{\b hiera}</strong> </td>
+      <td>Hiera source</td>
+    </tr>
+<tr>
+<td>mcollective</td>
+      <td>MCollective source</td>
+    </tr>
+<tr>
+<td>misc</td>
+      <td>utilidades</td>
+    </tr>
+<tr>
+<td>puppet</td>
+      <td>Puppet source</td>
+    </tr>
+<tr>
+<td>service</td>
+      <td>código para ejecutar Puppet agent como un servicio</td>
+    </tr>
+<tr>
+<td>sys</td>
+      <td>Ruby y otras herramientas</td>
+    </tr>
+</tbody>
+</table>
+<h3 id="agent-startup-mode">modo de inicio de Agent</h3>
+
+<p> El agent esta establecido como iniciar <code>Automático</code> por defecto, pero le permite pasar a <code>Manual</code> o <code>Deshabilitado</code> también.
+</p>
+
+<ul>
+<li>
+<code>Automático</code> significa que Puppet agent arrancará con  Windows y se ejecutará todo el tiempo en segundo plano. Este es el motivo por el cual usted debería seleccionarlo cuando ejecute Puppet como master.</li>
+  <li>
+<code>Manual</code> significa que  el agent arracará solo cuando se solicite a través de la consola de servicios o por medio del comando <code>net start</code>. Típicamente esto se utiliza en usos avanzados de Puppet.</li>
+  <li>
+<code>Deshabilitado</code> significa que el agente será instalado pero en estado deshabilitado que no permitirá el inicio desde la consola de servicios (excepto si usted cambia antes el estado de inicio en la consola de servicios). Esto es deseable cuando usted quiere instalar Puppet pero no lo quiere invocarlo como usted especifica y no quiere utilizarlo como master.</li>
+</ul>
+<h3 id="agent-account">Cuenta Agent</h3>
+
+<p> Por defecto, Puppet instala el agent con la cuenta <code>SYSTEM</code>. Esta cuenta no tiene acceso a la red, por lo tanto, se sugiere especificar otra cuenta que tenga acceso a la red. La cuenta debe ser una cuenta existente. En caso de un usuario de dominio, la cuenta no necesita tener acceso. Si la cuenta no es un administrador local y esto es especificado como parte de la instalación, se agrega al grupo <code>Administradores</code> en este nodo en particular. Esta cuenta también permitirá <a href="http://msdn.microsoft.com/en-us/library/ms813948.aspx"><code>Inicio de sesión como servicio</code></a> como parte del proceso de instalación.
+</p>
+
+<p> Como ejemplo, si usted desea establecer la cuenta agente a un usuario de dominio  <code>AbcCorp\bob</code>, debería ejecutar el instalador desde la linea de comandos agregando los siguientes items: <code>PUPPET_AGENT_ACCOUNT_DOMAIN=AbcCorp PUPPET_AGENT_ACCOUNT_USER=bob PUPPET_AGENT_ACCOUNT_PASSWORD=password</code>.
+</p>
+
+<h3 id="data-directory">Directorio Data</h3>
+
+<p> Puppet Enterprise y sus componentes configurados (<code>puppet.conf</code>), manifiestos,  y los datos generados (así como logs y catálogos) en el <strong>directorio data.</strong> El directorio data de Puppet contiene 2 subdirectorio para distintos componentes (facter, MCollective, etc.):
+</p>
+
+<ul>
+<li>
+<code>etc</code> (el <code>$confdir</code>): Contiene ficheros de configuración, manifiestos, certificados, y otros ficheros importantes.</li>
+  <li>
+<code>var</code> (es <code>$vardir</code>): Contiene logs y datos generados.</li>
+</ul>
+<p> Cuando ejecute con permisos elevados — estado deseado de Puppet’s — el directorio data es localizado en la carpeta <a href="http://msdn.microsoft.com/en-us/library/aa367992(v=vs.85).aspx"><code>COMMON_APPDATA</code></a>. La carpeta esta localizada en <code>%PROGRAMDATA%\PuppetLabs\</code>, normalmente corresponde a <code>C:\ProgramData\PuppetLabs\</code>.
+</p>
+
+<p> Desde el directorio CommonAppData es un carpeta de sistema, está por defecto oculta. Consulte <a href="http://support.microsoft.com/kb/812003">http://support.microsoft.com/kb/812003</a> para seguir los pasos para visualizar ficheros de sistema, ficheros ocultos y carpetas.
+</p>
+
+<p> Si Puppet se ejecuta con permisos elevados, se utiliza un directorio <code>.puppet</code> en la carpeta principal del usuario como su directorio data. Esto puede producir en Puppet configuraciones inesperadas.
+</p>
+</div>

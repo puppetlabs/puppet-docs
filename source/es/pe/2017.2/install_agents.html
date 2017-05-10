@@ -1,0 +1,464 @@
+---
+layout: default
+title: "Cómo instalar Puppet Enterprise agents"
+---
+
+<p> Puppet Enterprise tiene herramientas de administración de paquetes para ayudarle a instalar y configurar fácilmente los Puppet agents. Usted también puede utilizar paquetes estándar de administración de paquete *.nix. 
+</p>
+
+<h2 id="how-pe-package-management-works">Cómo trabaja el administrador de paquetes PE</h2>
+
+<p> El Puppet master Alberga un repositorio de paquetes utilizado para instalar agents en su infraestructura de PE.
+</p>
+
+<p> El repositorio de administración de paquetes PE es creado durante la instalación de Puppet master y sirve paquetes sobre HTTPS utilizando el mismo puerto que Puppet Master (8140). Esto significa que los agents no necesitan que otro puerto sea abierto, el único que necesitan para comunicar con Puppet master, ya está abierto.
+</p>
+
+<p> Cuando usted ejecuta el script de instalación, este detecta el SO en el cual se encuentra corriendo, configurando un repositorio apt, yum o zipper que se refiere al Puppet master. Entonces, desinstala e instala los paquetes <code>puppet-agent</code> También crea un <code>puppet.conf</code> básico y arranca Puppet.
+</p>
+
+<p> Tenga en cuenta si el script de instalación no encuentra paquetes agent correspondientes a la plataforma de agents, éste fallará con un mensaje de error, el cual le dirá <code>pe_repo</code> class  usted necesita agregar al master.
+</p>
+
+<blockquote>
+  <p> <strong>Warning</strong>: Instalar agents utilizando la class <code>pe_repo</code> requiere conexión a Internet. Si no tiene acceso a Internet, consulte <a href="#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">Cómo instalar agents en una infraestructura Puppet Enterprise sin acceso a Internet</a>.
+</p>
+</blockquote>
+
+<h2 id="installing-puppet-agents-with-pe-package-management">Cómo instalar Puppet agents con administrador de paquetes PE</h2>
+
+<p> PE provee de su propio administrador de paquetes para ayudarle a instalar Puppet agents en su infraestructura PE.
+</p>
+
+<p> Los pasos exactos para la instalación del agent están determinados por lo siguiente:
+</p>
+
+<ul>
+<li>La máquina de destino tiene el mismo sistema operativo y la misma arquitectura que el Puppet master.</li>
+  <li>La máquina de destino tiene un sistema operativo y arquitectura diferente que el Puppet master.</li>
+</ul>
+<p> Antes de empezar, tenga en cuenta las siguientes instrucciones por favor:
+</p>
+
+<ul>
+<li>
+    <p> El <code>&lt;PUPPET MASTER HOSTNAME&gt;</code> parte del script de instalación—como se proporciona en los siguientes ejemplos—se refiere al FQDN del Puppet master. Si ya ha iniciado sesión en la consola, puede encontrar la secuencia de comandos exacta con el hostname de Puppet master correcto para su instalación haciendo clic en  <strong>node requests</strong> en la esquina derecha de la consola. (No es necesario tener las solicitudes de nodo pendientes para hacer clic. )
+</p>
+  </li>
+  <li>
+    <p> Los pasos para instalar Windows agents con administrador de paquetes de PE son diferentes a los de los agents de * nix. Consulte <a href="./install_windows.html#installing-with-pe-package-management">Cómo instalar las instrucciones Windows agent</a> para instalación de agents con administrador de paquetes PE específico para Windows. 
+</p>
+  </li>
+</ul>
+<h3 id="install-agents-with-same-os-and-architecture-as-the-puppet-master">Instalar agents con el mismo SO y arquitectura que el Puppet master</h3>
+
+<p> Si el Puppet master y el nodo en el que está instalando el agent tienen el mismo sistema operativo y arquitectura, puede instalar sus agents sin ninguna configuración adicional en su Puppet master.
+</p>
+
+<ol>
+<li>
+    <p> SSH en el nodo donde desea instalar el agente PE y ejecute el siguiente comando:
+</p>
+
+    <pre><code>curl -k https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash
+</code></pre>
+
+    <blockquote>
+      <p> <strong>Tip:</strong> Si el comando <code>curl</code> no soporta la opción <code>-k</code>, consulte <a href="#install-agents-without-curl-k">las instrucciones de uso <code>curl</code> contra el certificado CA de Puppet master</a>.
+</p>
+    </blockquote>
+
+    <p> Si usted utiliza <code>wget</code> en vez de <code>curl</code>, ejecute el siguiente comando:
+</p>
+
+    <pre><code>wget -O - -q --no-check-certificate --secure-protocol=TLSv1 https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash
+</code></pre>
+
+    <p> Si usted utiliza Solaris 10, utilice el siguiente comando <code>root</code>:
+</p>
+
+    <pre><code>export PATH=$PATH:/opt/sfw/bin
+wget -O - -q --no-check-certificate --secure-protocol=TLSv1 https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | bash
+</code></pre>
+
+    <blockquote>
+      <p> <strong>Truco</strong>: Consulte <a href="#passing-configuration-parameters-to-the-install-script">como transferir parámetros de configuración al script de instlación</a>Para especificar ajustes de configuración, como especificar un nombre de certificado, que se agrega a <code>puppet.conf</code>.
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> Después de completar la instalación <a href="#managing-agent-certificate-requests">firme el certificado del agent</a>.
+</p>
+  </li>
+</ol>
+<h3 id="install-agents-with-a-different-os-and-architecture-than-the-puppet-master">Instalar agents con un SO y arquitectura diferentes al Puppet master</h3>
+
+<p> Para instalar un agent con un SO distinto al Puppet master, agregue la class apropiada para el repositorio que contiene los paquetes de agent y, a continuación, clasifique el grupo de nodos de PE master con esa class. Entonces ejecute el script de instalación en el agent para recuperar los paquetes necesarios para la instalación.
+</p>
+
+<p> En los siguientes ejemplos, el  Puppet master corre sobre un nodo RHEL 6 y el agent en un nodo Debian 6 sobre una arquitectura AMD64.
+</p>
+
+<blockquote>
+  <p> <strong>Nota</strong>: Si el Puppet master utiliza un servidor proxy para acceder a Internet, consulte <a href="/pe/2017.2/release_notes_known_issues_install.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy">este problema reconocido</a> para obtener una solución.
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> En la consola, click sobre <strong>Classification</strong> y en el grupo <strong>PE Infrastructure</strong>, seleccione el grupo <strong>PE Masters</strong>.
+</p>
+  </li>
+  <li>
+    <p> En la etiqueta <strong>Classes</strong> en el campo <strong>Class name</strong>, introduzca <code>pe_repo</code> Y seleccione la class de repositorio de la lista de classes.
+</p>
+
+    <blockquote>
+      <p> <strong>Nota</strong>: el repositorio de classes está listado como <code>pe_repo::platform::&lt;AGENT_OS_VERSION_ARCHITECTURE&gt;</code>
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> Pulse <strong>Agregar class</strong>, y realice un commit.
+</p>
+  </li>
+  <li>
+    <p> Ejecute <code>puppet agent -t</code> para configurar el nodo Puppet master utilizando la nueva class.
+</p>
+
+    <p> El nuevo repositorio creado en <code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/&lt;PLATFORM&gt;/</code>.
+</p>
+  </li>
+  <li>
+    <p> SSH en el nodo donde desea instalar el agente y ejecute el siguiente comando:
+</p>
+
+    <pre><code>curl -k https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash
+</code></pre>
+
+    <blockquote>
+      <p> <strong>Tip:</strong> Si el comando <code>curl</code> no soporta la opción <code>-k</code>, consulte <a href="#install-agents-without-curl-k">las instrucciones de uso <code>curl</code> contra el certificado CA de Puppet master</a>.
+</p>
+    </blockquote>
+
+    <p> Si usted utiliza <code>wget</code> en vez de <code>curl</code>, ejecute el siguiente comando:
+</p>
+
+    <pre><code>wget -O - -q --no-check-certificate --secure-protocol=TLSv1 https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash
+</code></pre>
+
+    <p> Si usted utiliza Solaris 10, utilice el siguiente comando <code>root</code>:
+</p>
+
+    <pre><code>export PATH=$PATH:/opt/sfw/bin
+wget -O - -q --no-check-certificate --secure-protocol=TLSv1 https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | bash
+</code></pre>
+
+    <blockquote>
+      <p> <strong>Truco</strong>: Consulte <a href="#passing-configuration-parameters-to-the-install-script">como transferir parámetros de configuración al script de instlación</a>Para especificar ajustes de configuración, como especificar un nombre de certificado, que se agrega a <code>puppet.conf</code>.
+</p>
+    </blockquote>
+
+    <p> El script instala los paquetes del agente PE, crea <code>puppet.conf</code> y arranca Puppet.
+</p>
+  </li>
+  <li>
+    <p> Después de completar la instalación <a href="#managing-agent-certificate-requests">firme el certificado del agent</a>.
+</p>
+  </li>
+</ol>
+<h2 id="passing-configuration-parameters-to-the-install-script">Cómo introducir parámetros de configuración en el script de instalación</h2>
+
+<p> Al utilizar e administrador de paquetes de PE para instalar agents, puede pasar los valores de configuración al script de instalación del agent.
+</p>
+
+<p> En sistemas *nix, usted puede pasar los parámetros al final del script de instalación para especificar la configuración que será agregada a <code>puppet.conf</code> y especificar la configuración para su inclusión en  <code>custom_attributes</code> y <code>extension_requests</code> sección de <code>csr_attributes.yaml</code>.
+</p>
+
+<p> Por ejemplo:
+</p>
+
+<pre><code>curl -k https://master.example.com:8140/packages/current/install.bash | sudo bash -s agent:certname=&lt;certnameOtherThanFQDN&gt; custom_attributes:challengePassword=&lt;passwordForAutosignerScript&gt; extension_requests:pp_role=&lt;puppetNodeRole&gt;
+</code></pre>
+
+<p> Puede introducir tantos parámetros como usted necesite. Siga la pauta <code>section:key=value</code> y  deje un espacio entre los parámetros.
+</p>
+
+<p> Consulte <a href="/puppet/4.10/configuration.html">Manual de configuración</a> para una lista completa de valores de <code>puppet.conf</code>. Consulte la página<a href="/puppet/4.10/ssl_attributes_extensions.html">Atributos CSR y extensiones de certificado</a> para más información sobre configuración de <code>csr_attributes.yaml</code>.
+</p>
+
+<h2 id="install-agents-without-curl--k">Instalar agents sin <code>curl -k</code>
+</h2>
+
+<p> En las instrucciones para la instalación de agents con el administrador de paquetes, la opción <code>-k</code> es necesaria para que <code>curl</code> obtenga la confianza de Puppet master, que de otra manera no habría logrado porque Puppet y su infraestructura SSL aún no se han configurado en el nodo.
+</p>
+
+<p> Si tu elige no utilizar <code>curl -k</code>, usted puede transferir el certificado CA de Puppet master a cualquier maquina en laque usted quiera instalar agents  y ejecutar el script contra este certificado.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong> Usuarios de AIX 5.3, 6.1 y 7.1 debería tener en cuenta que <code>-k</code> no está soportado. Usted debería reemplazar el parámetro <code>-k</code> con <code>-tlsv1</code> o <code>-1</code>. Consulte los <a href="/pe/2017.2/sys_req_os.html#aix">requerimientos de sistema</a> para más información sobre AIX, curl y OpenSSL.
+</p>
+</blockquote>
+
+<ol>
+<li>En la máquina que se convertirá en el nodo del agent, cree el siguiente directorio <code>/etc/puppetlabs/puppet/ssl/certs</code>.</li>
+  <li>En el Puppet master, navegue a <code>/etc/puppetlabs/puppet/ssl/certs/</code> y transfiere <code>ca.pem</code>Al directorio en el nodo del agent que realizó en el paso anterior.</li>
+  <li>
+    <p> En el nodo agent asegúrese tener los permisos de fichero correctos.
+</p>
+
+    <pre><code>chmod 444 /etc/puppetlabs/puppet/ssl/certs/ca.pem
+</code></pre>
+  </li>
+  <li>
+    <p> Cuando siga las instrucciones de instalación de agent, utilice el parámetro -cacert para apuntar al CA de Puppet master.
+</p>
+
+    <pre><code>curl --cacert /etc/puppetlabs/puppet/ssl/certs/ca.pem https://&lt;PUPPET MASTER HOSTNAME&gt;:8140/packages/current/install.bash | sudo bash
+</code></pre>
+  </li>
+</ol>
+<h2 id="installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">Cómo instalar agents en un infraestructura Puppet Enterprise sin acceso a Internet</h2>
+
+<p> Si su infraestructura de PE no tiene acceso a Internet, no podrá utilizar completamente las instrucciones de instalación del agent, ya que su Puppet master no tiene acceso al repositorio de distribución de paquetes de agents de PE. En su lugar, puede descargar el paquete de agent adecuado y, a continuación, utilizar una de las opciones que mejor se adapte a sus necesidades de implementación.
+</p>
+
+<ul>
+<li>Utilice el administrador de paquetes PE sin acceso a internet.</li>
+  <li>Utilice su propio administrador de paquetes sin internet y opcionalmente y opcionalmente, establecer sus maestros de compilación para instalar agents de su propio repositorio de gestión.</li>
+</ul>
+<p> Antes de empezar, <a href="https://puppet.com/misc/pe-files/pe_repo">descarge el paquete agent apropiado</a>.
+</p>
+
+<h3 id="use-pe-package-management-without-internet-access">Utilice el administrador de paquetes sin acceso a internet</h3>
+
+<p> Las instrucciones siguientes son para usar el administrador de paquetes de PE en instalaciones de agentes cuando no tiene acceso a Internet en su infraestructura.
+</p>
+
+<ol>
+<li>
+    <p> Copie el paquete agent en el <code>/opt/puppetlabs/server/data/staging/pe_repo-&lt;PUPPET AGENT VERSION&gt;</code> directorio de su Puppet master.
+</p>
+  </li>
+  <li>
+    <p> Siga los pasos de <a href="#installing-puppet-agents-with-pe-package-management">Cómo instalar puppet agent con el administrador de paquetes PE</a> para completar el proceso.
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> <strong>Nota:</strong> Debe realizar estos pasos cada vez que actualice su Puppet master.
+</p>
+</blockquote>
+
+<h3 id="use-your-own-package-management-without-internet-access">Utilice el administrador de paquetes sin acceso a internet</h3>
+
+<p> Las siguientes instrucciones son para usar su propio administrador de paquetes para instalar agents cuando no tiene acceso a Internet en su infraestructura.
+</p>
+
+<ol>
+<li>Agregue el paquete agent a su propio sistema de administración/distribución de paquetes.</li>
+  <li>
+    <p> Utilice la consola PE para deshabilitar el repositorio PE-hosted.
+</p>
+
+    <p> a. En la consola, click sobre <strong>Classification</strong> y el grupo <strong>PE Infrastructure</strong>, seleccione el grupo <strong>PE Master</strong>.
+</p>
+
+    <p> b. En la pestaña <strong>Classes</strong>, encuentre la class <code>pe_repo</code> (así como cualquier cosa que comienze por <code>pe_repo::</code>), y pinche sobre <strong>Remove this class</strong>.
+</p>
+
+    <p> c. Acometer cambios.
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> <strong>Nota:</strong> Debe realizar estos pasos cada vez que actualice su Puppet master.
+</p>
+</blockquote>
+
+<h3 id="set-compile-masters-to-install-agents-from-your-own-package-management">Establecer maestros de compilación para instalar agents desde su propio administrador de paquetes</h3>
+
+<p> Si su infraestructura se basa en maestros de compilación para instalar agents, no tiene que copiar el paquete de agent en cada maestro de compilación. En su lugar, utilice la consola PE para especificar una ruta de acceso al paquete de agent en su servidor de administración de paquetes.
+</p>
+
+<ol>
+<li>Agregue el paquete agent a su propio sistema de administración/distribución de paquetes.</li>
+  <li>
+    <p> Establezca el parámetro <code>base_path</code> de la clase <code>pe_repo</code> para su servidor de administración de paquetes.
+</p>
+
+    <p> a. En la consola, click sobre <strong>Classification</strong> y el grupo <strong>PE Infrastructure</strong>, seleccione el grupo <strong>PE Master</strong>.
+</p>
+
+    <p> b. En la pestaña <strong>Classes</strong>, encuentre la class <code>pe_repo</code> y especifique el parámetro:
+</p>
+
+    <ul>
+<li>
+        <p> <strong>Parámetro</strong> – Seleccione <strong>base_path</strong>.
+</p>
+      </li>
+      <li>
+        <p> <strong>Value</strong> – Introduzca el FQDN de su servidor de administración de paquetes.
+</p>
+      </li>
+    </ul>
+<p> c. Click sobre <strong>Add parameter</strong> y realice los cambios.
+</p>
+  </li>
+</ol>
+<h2 id="installing-agents-with-your-own-package-management">Cómo instalar agentes con su propio administrador de paquetes</h2>
+
+<p> Si usted selecciona no utilizar el administrador de paquetes PE para instalar Puppet agents,  usted puede usar sus propias utilidades de administración de paquetes.
+</p>
+
+<p> Los paquetes agent pueden ser encontrados en el Puppet master en <code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/</code>. Este directorio contiene la estructura de archivos del repositorio específico de la plataforma para paquetes de agents. Por defecto, contendrá un repositorio que coincida con el OS/arquitectura del Puppet master. Por ejemplo, si su Puppet master se ejecuta sobre CentOS 7 en <code>/opt/puppetlabs/server/data/packages/public/&lt;PE VERSION&gt;/</code>, usted encontrará el directorio <code>el-7-x86_64</code>, el cual contiene todos los directorios, con todos los paquetes necesarios para instalar un agent.
+</p>
+
+<p> Si sus nodos ejecutan un sistema operativo y/o una arquitectura diferente del sistema maestro, descargue el paquete de agent adecuado, extraiga los paquetes de agents del repositorio apropiado y, a continuación, instale los agents en los nodos igual que cualquier otro paquete (e.g., <code>yum install puppet-agent</code>).
+</p>
+
+<p> Antes de empezar, <a href="https://puppet.com/misc/pe-files/pe_repo">Descargar el paquete de agent apropiado</a>.
+</p>
+
+<ol>
+<li>
+    <p> Agregue el paquete de agent a su repositorio de administración de paquetes.
+</p>
+  </li>
+  <li>
+    <p> Configure el administrador de paquetes de su nodo agent (Yum, Apt) para apuntar a este repositorio.
+</p>
+  </li>
+  <li>
+    <p> Instalar el Agente de Puppet
+</p>
+
+    <p> a. En sistemas YUM, ejecutar <code>sudo yum install puppet-agent</code>.
+</p>
+
+    <p> b. En sistemas Apt, ejecutar <code>sudo apt-get install puppet-agent</code>.
+</p>
+  </li>
+  <li>
+    <p> Configure el agent utilizando <code>puppet config set</code>. Consulte <a href="#configuring-agents">Configurar agents</a>.
+</p>
+  </li>
+</ol>
+<h2 id="managing-agent-certificate-requests">Administración de consultas de certificados agent</h2>
+
+<p> Cuando usted instale un nuevo agent PE, el agent enviará automáticamente un CSR al nuevo Puppet master. Antes de poder administrar completamente un nodo de agent, debe firmar la solicitud de certificado del agente.
+</p>
+
+<p> Las peticiones de certificado pueden ser firmadas de la consola PE o la línea de comandos
+</p>
+
+<p> Las solicitudes pendientes de nodos se indican en la barra de navegación principal y las solicitudes se pueden firmar desde la consola PE o la línea de comandos.
+</p>
+
+<h3 id="managing-agent-certificate-requests-from-the-pe-console">Cómo administrar las solicitudes de certificados agent desde la consola PE</h3>
+
+<p> Después de instalar un agent, puede aceptar su solicitud de certificado desde la consola PE.
+</p>
+
+<p> La consola PE, la página <strong>Unsigned Certificates</strong> muestra una lista de nodos que han enviado CSRs, así como los permisos y denegaciones de las solicitudes individualmente o en un lista.
+</p>
+
+<p> Para aceptar o rechazar un CSR, usted necesita estos 2 permisos:
+</p>
+
+<ul>
+<li>Consola: Ver</li>
+  <li>Solicitud de certificados: Aceptar o rechazar</li>
+</ul>
+<p> Para información sobre permisos de usuarios, lea<a href="/pe/2017.2/rbac_permissions.html">Sobre Permisos RBAC</a>.
+</p>
+
+<ol>
+<li>
+    <p> En la consola, click  sobre <strong>Unsigned Certificates</strong>para cargar una lista actual de solicitudes pendientes de nodos.
+</p>
+  </li>
+  <li>
+    <p> Click sobre <strong>Accept All</strong> o el botón <strong>Reject All</strong> para aprobar o declinar la petición de firmas.
+</p>
+
+    <blockquote>
+      <p> <strong>Nota:</strong> Utilizando<strong>Accept All</strong> o <strong>Reject All</strong>, los nodos se procesan en lotes. Si cierra la ventana del navegador o navega a otro sitio web mientras se está procesando, sólo procesa el lote actual.
+</p>
+    </blockquote>
+  </li>
+</ol>
+<p> Una vez la petición del nodo está aprobada, el nodo no se mostrará en la consola hasta que se ejecute el siguiente ejecución de Puppet tome su sitio. Esto debería durar 30 minutos Esto puede tomar 2 segundos por petición con <strong>Reject All</strong> o <strong>Accept All</strong> para terminar el proceso.
+</p>
+
+<h3 id="managing-agent-certificate-requests-from-the-command-line">Cómo administrar las peticiones de certificados de agents desde la línea de comando</h3>
+
+<p> Después de instalar un agente, puede aceptar su solicitud de certificado desde la línea de comandos.
+</p>
+
+<ol>
+<li>
+    <p> Ver la lista de solicitudes de certificados pendientes. En la línea de comando de Puppet master, ejecute el siguiente comando:
+</p>
+
+    <pre><code>sudo puppet cert list
+</code></pre>
+  </li>
+  <li>
+    <p> Para firmar una petición para un agent, ejecute uno de los siguientes comandos:
+</p>
+
+    <ul>
+<li>
+        <p> Si no utiliza DNS alt names:
+</p>
+
+        <pre><code>sudo puppet cert sign &lt;AGENT CERT NAME&gt;
+</code></pre>
+      </li>
+      <li>
+        <p> Si utiliza DNS alt names:
+</p>
+
+        <pre><code>sudo puppet cert sign (&lt;HOSTNAME&gt; or --all) --allow-dns-alt-names
+</code></pre>
+      </li>
+    </ul>
+</li>
+</ol>
+<p> Después de firmar un nuevo certificado de nodo, Puede tardar hasta 30 minutos antes de que el nodo aparezca en la consola y comience a recuperar las configuraciones. Usted puede usar CLI para activar a Puppet manualmente en el nodo, si usted quiere verlo inmediatamente.
+</p>
+
+<h2 id="configuring-agents">Cómo configurar agentes</h2>
+
+<p> Después de firmar el certificado, su agent estar listo para administrarlo con PE. En este punto usted puede agregar configuraciones adicionales al fichero <code>puppet.conf</code>.
+</p>
+
+<p> Usted puede agregar configuraciones agregando directamente en  <code>/etc/puppetlabs/puppet/puppet.conf</code> o mediante el uso <a href="/puppet/4.10/config_set.html">del subcomando <code>puppet config set</code></a>, el cual editará automáticamente <code>puppet.conf</code>.
+</p>
+
+<p> Por ejemplo, para señalar al agente en el Puppet master denominado “master.example.com,” ejecute <code>puppet config set server master.example.com</code>. Esto agregará la configuración <code>server = puppetmaster.example.com</code> a la sección <code>[main]</code> de <code>puppet.conf</code>. Para establecer el certname para el agent, ejecute <code>/opt/puppetlabs/bin/puppet config set certname agent.example.com</code>. Para más detalle consulte <a href="/puppet/4.10/config_set.html">la documentación de <code>puppet config set</code></a>
+</p>
+
+<blockquote>
+  <p> <strong>Warning para usuarios Mac OS X</strong>: Cuando se realiza una instalación en línea de comandos de un agente en un sistema OS X, debe ejecutar  <code>/opt/puppetlabs/bin/puppet config set server</code> y <code>/opt/puppetlabs/bin/puppet config set certname</code> para que el agente funcione correctamente.
+</p>
+</blockquote>
+
+<h2 id="a-note-about-binaries-and-symlinks">Una anotación sobre binarios y enlaces simbólicos</h2>
+
+<p> Consulte <a href="./install_pe_mono.html#puppet-enterprise-binaries-and-symlinks">Puppet Enterprise binarios y enlaces simbólicos</a> para información sobre binarios y enlaces simbólicos establecidos en PE. También puedes encontrar instrucciones de desmantelamiento de enlaces simbólicos.
+</p>
+
+<h2 id="preparing-agents-for-orchestration-services">Cómo preparar agents para servicios de orquestación</h2>
+
+<p> Si tiene agents que  participarán en servicios de Orquestación, existen algunos pasos de configuración adicionales que necesita realizar. Para instrucciones completas, consulte<a href="/pe/2017.2/orchestrator_install.html#enable-cache-catalogs-for-orchestration-services">activar catálogos de cache para servicios de orquestación</a>.
+</p>
+
+<blockquote>
+  <p> <strong>Truco</strong>: Después de terminar la instalación de agents, siga las instrucciones de <a href="/pe/2017.2/quick_start_ntp.html">Guía de Inicio Rápido NTP</a> Tener PE garantiza que el tiempo esté sincronizado en toda la implementación.
+</p>
+</blockquote>
+</div>

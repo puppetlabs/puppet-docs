@@ -1,0 +1,136 @@
+---
+layout: default
+title: "Guía de inicio rápido de asignación de permisos de usuarios"
+---
+
+<!--Overview-->
+<p> </p>
+<div class="real-paragraph"> En esta Guía rápida, usted creará un nuevo role de usuario y dará permisos a este role, para ver el grupo de nodos creado en <a href="./quick_start_adding_class_nix.html">Guía rápida para agregar classes</a>.
+</div> <div class="real-paragraph"> También creará un nuevo usuario local y asignará su nuevo role a este usuario.
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> PE le permite crear y administrar <strong>usuarios</strong> y  <strong>grupo de usuarios</strong> a través de la consola.
+</div> <div class="real-paragraph"> También puede crear <strong>roles</strong> y asignar usuarios a estos roles.
+</div> <div class="real-paragraph"> Permisos como la habilidad para ver grupos de nodo, código de despliegues o generar tokens de restablecimiento de password están asignado a los roles en lugar de a los usuarios.
+</div> <div class="real-paragraph"> Cuando asigne roles a usuarios o grupo de usuario, está concediendo permisos de una manera más organizada.
+</div>
+
+
+<!--Multitask-->
+<h2 id="complete-a-basic-rbac-workflow">Completar un flujo de trabajo RBAC básico</h2>
+
+<p> </p>
+<div class="real-paragraph"> Control de acceso basado en roles (RBAC) de Puppet Enterprise es utilizado para administrar los permisos de usuario.
+</div> <div class="real-paragraph"> Los permisos definen que acciones pueden realizar los usuarios sobre objetos designados.
+</div> <div class="real-paragraph"> Hay varios pasos implicados en un flujo de trabajo de RBAC, que se pueden adaptar para satisfacer sus necesidades.
+</div>
+
+
+<p> </p>
+<div class="real-paragraph"> Antes de empezar, asegúrese de haber instalado:
+</div>
+
+<ul>
+<li>Una <a href="/pe/2017.2/quick_start_install_mono.html">implementación monolítica de PE</a>
+</li>
+  <li>Al menos un <a href="/pe/2017.2/quick_start_install_agents_nix.html">nodo agent *nix</a>
+</li>
+  <li>El <a href="/pe/2017.2/quick_start_module_install_nix.html">puppetlabs-apache module</a>
+</li>
+</ul>
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> <strong>Nota:</strong> Los roles son borrables por la API, no por la consola.
+</div> <div class="real-paragraph"> Por lo tanto, lo mejor es probar estos pasos en una máquina virtual.
+</div>
+
+</blockquote>
+
+<h3 id="step-1-create-a-user-role">Paso 1: Crear un role de usuario</h3>
+
+<p> </p>
+<div class="real-paragraph"> Los roles de usuario son configuraciones de permisos que puedes aplicar a múltiples  usuarios.
+</div> <div class="real-paragraph"> No puede asignar permisos a usuarios individuales en PE, solo a funciones de usuario.
+</div>
+
+
+<ol>
+<li>En la consola, click sobre <strong>User Roles</strong>.</li>
+  <li>Para <strong>Name</strong>, escriba <strong>Web developers</strong>, y a continuación para <strong>Description</strong>, escriba una descripción para el rol de desarrolladores Web, como <strong>Members of the web development team</strong>.</li>
+  <li>Click sobre <strong>Add role</strong>.</li>
+</ol>
+<h3 id="step-2-give-the-user-role-access-to-a-node-group">Paso 2: Dar acceso al role de usuario a un grupo de nodos</h3>
+
+<p> </p>
+<div class="real-paragraph"> Uno de los permisos que puede otorgar a los roles de usuario es la capacidad de acceder (ver, crear y/o editar) grupos de nodos.
+</div>
+
+
+<ol>
+<li>En la página <strong>User Roles</strong>, seleccione <strong>Web developers</strong>y haga click en la pestaña <strong>Permissions</strong> tab.</li>
+  <li>En el cuadro <strong>Type</strong>, seleccione <strong>Node groups</strong>.</li>
+  <li>En el cuadro <strong>Permission</strong>, seleccione <strong>View</strong>.</li>
+  <li>En el cuadro <strong>Object</strong>,  seleccione <strong>apache_example</strong>.</li>
+  <li>Click sobre <strong>Add permission</strong>, y luego haga clic en el botón de confirmación.</li>
+</ol>
+<p> </p>
+<div class="real-paragraph"> Usted ha dado a los miembros del role <code>Web developers</code> permisos para visualizar el grupo de nodos to <code>apache_example</code>.
+</div>
+
+
+<h3 id="step-3-create-a-new-user">Step 3: Crear un nuevo usuario</h3>
+
+<p> </p>
+<div class="real-paragraph"> Estos pasos agregan a un usuario local.
+</div> <div class="real-paragraph"> Usted también puede <a href="/pe/2017.2/rbac_ldap.html">importar usuarios y grupos desde un directorio externo</a>, por lo que no tiene que volver a crear los usuarios de uno en uno.
+</div>
+
+
+<ol>
+<li>En la consola PE, click sobre <strong>Users</strong>.</li>
+  <li>En el campo <strong>Full name</strong>, escriba un nombre de usuario.</li>
+  <li>En el campo <strong>Login</strong>, escriba la información de inicio de sesión del usuario.</li>
+  <li>Click sobre <strong>Add local user</strong>.</li>
+</ol>
+<h3 id="step-4-enable-the-new-user-to-log-in">Paso 4: Habilitar al nuevo usuario para iniciar sesión</h3>
+
+<p> </p>
+<div class="real-paragraph"> Cuando cree nuevos usuarios locales, deberá enviarles un token de restablecimiento de contraseña para que puedan iniciar sesión por primera vez.
+</div>
+
+
+<ol>
+<li>Haga clic en el nuevo usuario local de la lista <strong>Users</strong>.
+Se abre la página del nuevo usuario.</li>
+  <li>En la parte superior-derecha de la página, click sobre <strong>Generate password reset</strong>. Se abre un cuadro de texto <strong>Password reset link</strong>.</li>
+  <li>
+<em>Copie el link</em> proporcionado en el mensaje y envíelo al nuevo usuario. A continuación, puede cerrar el mensaje.</li>
+</ol>
+<h3 id="step-5-assign-the-user-role-to-the-new-user">Paso 5: Asigne el nuevo role al nuevo usuario</h3>
+
+<p> </p>
+<div class="real-paragraph"> Cada usuario debe ser asignado a una o más roles antes de poder iniciar sesión y usar PE.
+</div> <div class="real-paragraph"> Cuando agrega usuarios a un role, el usuario obtiene los permisos que se aplican a ese role.
+</div>
+
+
+<ol>
+<li>Click sobre <strong>User Roles</strong> y a continuación click sobre <strong>Web developers</strong>.</li>
+  <li>En la etiqueta <strong>Member users</strong>, en la lista <strong>User name</strong>, seleccione el usuario creado, a continuación pulse click <strong>Add user</strong> y pulse sobre el botón de confirmación.</li>
+</ol>
+<p> </p>
+<div class="real-paragraph"> Ahora está administrando un usuario con RBAC.
+</div> <div class="real-paragraph"> Mediante el uso de permisos y role de usuario, proporciona el nivel adecuado de acceso y acción a cada usuario o grupo de usuarios que trabaja con PE.
+</div>
+
+
+<blockquote>
+  <p> </p>
+<div class="real-paragraph"> A continuación, aprenderá más sobre los conceptos básicos de los módulos de escritura propios, para que pueda comenzar a personalizar su implementación y obtener trabajo.
+</div> <div class="real-paragraph"> <a href="./quick_writing_nix.html">Haga clic aquí cuando esté listo para escribir su primer módulo.</a>
+</div>
+
+</blockquote>
+</div>
