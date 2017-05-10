@@ -103,7 +103,7 @@ service { 'puppet':
 <p> 必要な数のパラメータを受け渡すことができます。 必ず<code>section:key=value</code>のパターンに従い、パラメータとパラメータの間にスペースを入れてください。
 </p>
 
-<p> <code>puppet.conf</code>の値のリストの完全版については、<a href="%7B%7Bpuppet%7D%7D/configuration.html">設定リファレンス</a>を参照してください。 <code>csr_attributes.yaml</code>の設定の詳細については、<a href="%7B%7Bpuppet%7D%7D/ssl_attributes_extensions.html">CSR特性と証明書のエクステンション</a>ページを参照してください。
+<p> <code>puppet.conf</code>の値のリストの完全版については、<a href="{{puppet}}/configuration.html">設定リファレンス</a>を参照してください。 <code>csr_attributes.yaml</code>の設定の詳細については、<a href="{{puppet}}/ssl_attributes_extensions.html">CSR特性と証明書のエクステンション</a>ページを参照してください。
 </p>
 
 <h2 id="installing-with-the-msi-package">.msiパッケージを使用したインストール</h2>
@@ -144,7 +144,7 @@ service { 'puppet':
 
 <ul>
 <li>
-    <p> Puppet agentはWindowsサービスとして稼働します。デフォルトでは、30分ごとに設定が取得され適用されます。 以降は、通常どおりクラスをノードに割り当てることができます。詳細については、「<a href="/pe/latest/console_classes_groups_getting_started.html">Getting started with classification(分類をはじめる)</a>」を参照してください。 Puppetの初回実行後にMCollectiveサービスが実行され、ノードをMCollectiveで制御できるようになります。 Puppet agentサービスとMCollectiveサービスは、サービスコントロールマネージャのUIか、コマンドライン<code>sc.exe</code>ユーティリティのいずれかを用いて、個別に起動および停止することができます。詳細については、「<a href="%7B%7Bpuppet%7D%7D/reference/services_commands_windows.html">Running Puppet on Windows(WindowsでPuppetを実行する)</a>」を参照してください。
+    <p> Puppet agentはWindowsサービスとして稼働します。デフォルトでは、30分ごとに設定が取得され適用されます。 以降は、通常どおりクラスをノードに割り当てることができます。詳細については、「<a href="{{pe}}/console_classes_groups_getting_started.html">Getting started with classification(分類をはじめる)</a>」を参照してください。 Puppetの初回実行後にMCollectiveサービスが実行され、ノードをMCollectiveで制御できるようになります。 Puppet agentサービスとMCollectiveサービスは、サービスコントロールマネージャのUIか、コマンドライン<code>sc.exe</code>ユーティリティのいずれかを用いて、個別に起動および停止することができます。詳細については、「<a href="{{puppet}}/reference/services_commands_windows.html">Running Puppet on Windows(WindowsでPuppetを実行する)</a>」を参照してください。
 </p>
   </li>
   <li>
@@ -190,24 +190,24 @@ service { 'puppet':
     </tr>
 <tr>
 <td><a href="#puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></a></td>
-      <td><a href="%7B%7Bpuppet%7D%7D/configuration.html#server"><code>server</code></a></td>
+      <td><a href="{{puppet}}/configuration.html#server"><code>server</code></a></td>
       <td><code>puppet</code></td>
     </tr>
 <tr>
 <td><a href="#puppetcaserver"><code>PUPPET_CA_SERVER</code></a></td>
-      <td><a href="%7B%7Bpuppet%7D%7D/configuration.html#caserver"><code>ca_server</code></a></td>
+      <td><a href="{{puppet}}/configuration.html#caserver"><code>ca_server</code></a></td>
       <td>
 <code>PUPPET_MASTER_SERVER</code>の値</td>
     </tr>
 <tr>
 <td><a href="#puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></a></td>
-      <td><a href="%7B%7Bpuppet%7D%7D/configuration.html#certname"><code>certname</code></a></td>
+      <td><a href="{{puppet}}/configuration.html#certname"><code>certname</code></a></td>
       <td>
 <code>facter fdqn</code>の値(小文字を使用すること)</td>
     </tr>
 <tr>
 <td><a href="#puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></a></td>
-      <td><a href="%7B%7Bpuppet%7D%7D/configuration.html#environment"><code>environment</code></a></td>
+      <td><a href="{{puppet}}/configuration.html#environment"><code>environment</code></a></td>
       <td><code>production</code></td>
     </tr>
 <tr>
@@ -290,7 +290,7 @@ service { 'puppet':
 
 <h4 id="puppetmasterserver"><code>PUPPET_MASTER_SERVER</code></h4>
 
-<p> Puppet masterサーバーにアクセス可能なホスト名。 これにより、<a href="%7B%7Bpuppet%7D%7D/configuration.html#server">puppet.conf</a>の<code>[main]</code>セクションの<a href="%7B%7Bpuppet%7D%7D/config_file_main.html"><code>server</code>設定</a>の値が設定されます。
+<p> Puppet masterサーバーにアクセス可能なホスト名。 これにより、<a href="{{puppet}}/configuration.html#server">puppet.conf</a>の<code>[main]</code>セクションの<a href="{{puppet}}/config_file_main.html"><code>server</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>puppet</code>
@@ -301,7 +301,7 @@ service { 'puppet':
 
 <h4 id="puppetcaserver"><code>PUPPET_CA_SERVER</code></h4>
 
-<p> CA Puppet masterサーバーにアクセス可能なホスト名。複数のmasterを使用している場合は、いずれか1つのみがCAとして機能します。 これにより、<a href="%7B%7Bpuppet%7D%7D/configuration.html#caserver">puppet.conf</a>の<code>[main]</code>セクションの<a href="%7B%7Bpuppet%7D%7D/config_file_main.html"><code>ca_server</code>設定</a>の値が設定されます。
+<p> CA Puppet masterサーバーにアクセス可能なホスト名。複数のmasterを使用している場合は、いずれか1つのみがCAとして機能します。 これにより、<a href="{{puppet}}/configuration.html#caserver">puppet.conf</a>の<code>[main]</code>セクションの<a href="{{puppet}}/config_file_main.html"><code>ca_server</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>PUPPET_MASTER_SERVER</code>プロパティの値
@@ -312,7 +312,7 @@ service { 'puppet':
 
 <h4 id="puppetagentcertname"><code>PUPPET_AGENT_CERTNAME</code></h4>
 
-<p> ノードの証明書名、およびカタログ要求の際に使用する名前。 これにより、<a href="%7B%7Bpuppet%7D%7D/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="%7B%7Bpuppet%7D%7D/configuration.html#certname"><code>certname</code>設定</a>の値が設定されます。
+<p> ノードの証明書名、およびカタログ要求の際に使用する名前。 これにより、<a href="{{puppet}}/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="{{puppet}}/configuration.html#certname"><code>certname</code>設定</a>の値が設定されます。
 </p>
 
 <p> 最良の互換性を得るために、<code>certname</code>の値については、小文字、数字、ピリオド、アンダースコア、ダッシュのみを使用してください。 (つまり、<code>/\A[a-z0-9._-]+\Z/</code>に相当します )。
@@ -326,7 +326,7 @@ service { 'puppet':
 
 <h4 id="puppetagentenvironment"><code>PUPPET_AGENT_ENVIRONMENT</code></h4>
 
-<p> ノードの<a href="%7B%7Bpuppet%7D%7D/environments.html">環境</a>。 これにより、<a href="%7B%7Bpuppet%7D%7D/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="%7B%7Bpuppet%7D%7D/configuration.html#environment"><code>environment</code>設定</a>の値が設定されます。
+<p> ノードの<a href="{{puppet}}/environments.html">環境</a>。 これにより、<a href="{{puppet}}/config_file_main.html">puppet.conf</a>の<code>[main]</code>セクションの<a href="{{puppet}}/configuration.html#environment"><code>environment</code>設定</a>の値が設定されます。
 </p>
 
 <p> <strong>デフォルト：</strong> <code>production</code>
@@ -385,7 +385,7 @@ service { 'puppet':
 
 <h2 id="upgrading">アップグレード</h2>
 
-<p> 詳しい手順は、「<a href="/pe/latest/upgrade_windows.html">Windows agentのアップグレード</a>」を参照してください。
+<p> 詳しい手順は、「<a href="{{pe}}/upgrade_windows.html">Windows agentのアップグレード</a>」を参照してください。
 </p>
 
 <h2 id="uninstalling">アンインストール</h2>

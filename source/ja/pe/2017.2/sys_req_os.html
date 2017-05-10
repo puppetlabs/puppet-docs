@@ -212,7 +212,7 @@ title: "対応するオペレーティングシステム"
   <li>
 <strong>Cisco IOS-XR</strong>：システム要件と依存関係については、Puppet Forgeの「<a href="https://forge.puppet.com/puppetlabs/ciscopuppet">Cisco Puppet</a>」ページを参照してください。</li>
   <li>
-<strong>Huawei CloudEngine</strong>：インストールの説明については、「<a href="/pe/latest/install_huawei_ce.html">Installing Huawei CloudEngine Agents</a>」を参照してください。</li>
+<strong>Huawei CloudEngine</strong>：インストールの説明については、「<a href="{{pe}}/install_huawei_ce.html">Installing Huawei CloudEngine Agents</a>」を参照してください。</li>
 </ul>
 <h2 id="operating-system-support-life-cycles">オペレーティングシステムのサポート期間</h2>
 
@@ -238,7 +238,7 @@ title: "対応するオペレーティングシステム"
 
 <h3 id="puppet-master-and-operating-system-support-life-cycles">Puppet masterとオペレーティングシステムのサポート期間</h3>
 
-<p> Puppet Enterprise masterプラットフォームのサポートは、<a href="/pe/latest/overview_getting_support.html#puppet-enterprise-support-life-cycle">Puppet Enterpriseのサポートライフサイクル</a>と一致します。 一般に、Puppet Enterprise masterプラットフォームのサポートは、当該Puppet Enterpriseバージョンの<a href="https://puppet.com/misc/puppet-enterprise-lifecycle">EOL</a>までとなります。
+<p> Puppet Enterprise masterプラットフォームのサポートは、<a href="{{pe}}/overview_getting_support.html#puppet-enterprise-support-life-cycle">Puppet Enterpriseのサポートライフサイクル</a>と一致します。 一般に、Puppet Enterprise masterプラットフォームのサポートは、当該Puppet Enterpriseバージョンの<a href="https://puppet.com/misc/puppet-enterprise-lifecycle">EOL</a>までとなります。
 </p>
 
 <p> ただし、PE masterプラットフォームベンダーのEOLがPEバージョンのEOLよりも6カ月以上早い場合は、Puppetの判断により、プラットフォームベンダーのEOL時点でそのmasterプラットフォームのサポートを終了することがあります。
@@ -341,12 +341,12 @@ title: "対応するオペレーティングシステム"
 </p>
 
 <ol>
-<li>データベース、およびほかのPuppet Enterpriseファイルを<a href="/pe/latest/maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files">バックアップ</a>します。</li>
-  <li>完全 <a href="/pe/latest/install_uninstalling.html">アンインストール</a>を実行します (-p -d uninstallerオプションを含む)。</li>
+<li>データベース、およびほかのPuppet Enterpriseファイルを<a href="{{pe}}/maintain_backup_restore.html#back-up-your-database-and-puppet-enterprise-files">バックアップ</a>します。</li>
+  <li>完全 <a href="{{pe}}/install_uninstalling.html">アンインストール</a>を実行します (-p -d uninstallerオプションを含む)。</li>
   <li>OSをアップグレードします。</li>
   <li>
 <a href="./install_basic.html">Puppet Enterpriseをインストール</a>します。</li>
-  <li>バックアップを<a href="/pe/latest/maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files">復元</a>します。</li>
+  <li>バックアップを<a href="{{pe}}/maintain_backup_restore.html#restore-your-database-and-puppet-enterprise-files">復元</a>します。</li>
 </ol>
 <h2 id="dependencies-and-os-specific-details">依存関係とOS固有の詳細</h2>
 
@@ -877,7 +877,7 @@ title: "対応するオペレーティングシステム"
 <p> AIX(7.1を含む)で使用されているRPMバージョンが古いため、AIXではGPG証明は無効になります。 AIXパッケージプロバイダは、パッケージのダウングレード(新しいバージョンのパッケージ上に古いパッケージをインストールすること)には対応していません。 AIXプロバイダのバージョン番号を指定する場合はゼロを省略 します( <code>02.03.04</code>ではなく<code>2.3.4</code>とします)。
 </p>
 
-<p> PE AIXは、NIM、BFF、RPMパッケージのプロバイダに対応しています。 プロバイダの技術的な情報については、<a href="%7B%7Bpuppet%7D%7D/type.html#package">タイプリファレンス</a>を参照してください。
+<p> PE AIXは、NIM、BFF、RPMパッケージのプロバイダに対応しています。 プロバイダの技術的な情報については、<a href="{{puppet}}/type.html#package">タイプリファレンス</a>を参照してください。
 </p>
 
 <h3 id="solaris">Solaris</h3>

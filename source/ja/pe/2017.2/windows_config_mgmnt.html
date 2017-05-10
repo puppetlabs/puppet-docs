@@ -80,7 +80,7 @@ title: "Windows設定を管理する"
 <p> Puppetでこのタスクを管理するように設定すると、指定したタスクがタスクスケジューラに追加されます。
 </p>
 
-<p> <img src="/pe/latest/images/windows/windows_task_scheduler.png" alt="windows task scheduler">
+<p> <img src="{{pe}}/images/windows/windows_task_scheduler.png" alt="windows task scheduler">
 </p>
 
 <p> 指定した時間に毎日実行するといったタスクのほか、スケジュール設定タスクリソースではさらに高度なスケジューリング機能も数多くサポートしているため、スケジュールをより細かく設定することも可能です。
@@ -109,7 +109,7 @@ title: "Windows設定を管理する"
 <p> タスクスケジューラのGUIに、このタスクに対応する定義が表示されます。
 </p>
 
-<p> <img src="/pe/latest/images/windows/task_scheduler_2.png" alt="scheduler edit window">
+<p> <img src="{{pe}}/images/windows/task_scheduler_2.png" alt="scheduler edit window">
 </p>
 
 <h2 id="manage-administrator-accounts">管理者アカウントの管理</h2>
@@ -156,7 +156,7 @@ exec { 'regiis_aspnet_banking_app':
 <p> この例では、適切なグループ内でユーザを作成しています。また、ユーザ作成後にASP.NET IIS登録コマンドを実行し、ファイルパーミッションが正しいことを確認しています。
 </p>
 
-<p> <img src="/pe/latest/images/windows/windows_iis_users.png" alt="iis users">
+<p> <img src="{{pe}}/images/windows/windows_iis_users.png" alt="iis users">
 </p>
 
 <p> ユーザリソースに関しては以下の点に注意が必要です。
@@ -210,7 +210,7 @@ exec { 'disable-c-indexing':
 <p> オブジェクトエディタのウィンドウで結果を見ることができます。
 </p>
 
-<p> <img src="/pe/latest/images/windows/windows_maintain.png" alt="windows maintenance">
+<p> <img src="{{pe}}/images/windows/windows_maintain.png" alt="windows maintenance">
 </p>
 
 <p> Windows内蔵のWBEMTestツールを使ってこのマニフェストを実行すると、<code>IndexingEnabled</code>が<code>FALSE</code>に設定され、望ましい挙動が得られます。

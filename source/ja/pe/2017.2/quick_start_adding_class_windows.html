@@ -5,14 +5,14 @@ title: "クラスを追加するクイックスタートガイド"
 
 <h3 id="overview">概要</h3>
 
-<p> すべてのモジュールには、1つまたは複数の<strong>クラス</strong>が含まれています。 クラスとは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <a href="/pe/latest/quick_start_module_install_windows.html">Module installation quick start guide(モジュールインストールQSG)</a>でインストールしたPuppet wsus_clientモジュールには、<code>wsus_client</code>と呼ばれるクラスが含まれています。 この例では、<code>wsus_client</code>クラスを用いて、WSUSサーバーとPuppetを用いたアップデートのスケジューリングに必要なタイプおよびプロバイダを提供します。
+<p> すべてのモジュールには、1つまたは複数の<strong>クラス</strong>が含まれています。 クラスとは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <a href="{{pe}}/quick_start_module_install_windows.html">Module installation quick start guide(モジュールインストールQSG)</a>でインストールしたPuppet wsus_clientモジュールには、<code>wsus_client</code>と呼ばれるクラスが含まれています。 この例では、<code>wsus_client</code>クラスを用いて、WSUSサーバーとPuppetを用いたアップデートのスケジューリングに必要なタイプおよびプロバイダを提供します。
 </p>
 
 <p> この例では、<strong>windows_example</strong>というグループを作成し、そのグループに<code>wsus_client</code>クラスを追加します。
 </p>
 
 <blockquote>
-  <p> <strong>前提条件</strong>：このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、1つ以上の<a href="/pe/latest/quick_start_install_agents_windows.html">Windows agentノード</a>と<a href="/pe/latest/quick_start_module_install_windows.html">puppetlabs-wsus_clientモジュール</a>がインストールされているものと想定します。
+  <p> <strong>前提条件</strong>：このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、1つ以上の<a href="{{pe}}/quick_start_install_agents_windows.html">Windows agentノード</a>と<a href="{{pe}}/quick_start_module_install_windows.html">puppetlabs-wsus_clientモジュール</a>がインストールされているものと想定します。
 </p>
 </blockquote>
 
@@ -36,7 +36,7 @@ title: "クラスを追加するクイックスタートガイド"
 </p>
 
     <blockquote>
-      <p> <strong>注意</strong>：ノードをピンで固定すると、ノードグループに対して指定したルールに関係なく、グループにそのノードが追加されます。 ピンで固定されたノードは、手動で削除するまでそのノードグループにとどまります。「<a href="/pe/latest/console_classes_groups.html#adding-nodes-dynamically">Adding nodes dynamically(ノードを動的に追加する)</a>」では、ルールを用いてノードをノードグループに追加する方法を説明しています。
+      <p> <strong>注意</strong>：ノードをピンで固定すると、ノードグループに対して指定したルールに関係なく、グループにそのノードが追加されます。 ピンで固定されたノードは、手動で削除するまでそのノードグループにとどまります。「<a href="{{pe}}/console_classes_groups.html#adding-nodes-dynamically">Adding nodes dynamically(ノードを動的に追加する)</a>」では、ルールを用いてノードをノードグループに追加する方法を説明しています。
 </p>
     </blockquote>
   </li>

@@ -39,7 +39,7 @@ title: "ロールとプロファイル: 詳細な例"
     </ol>
 </li>
   <li>
-    <p> <a href="%7B%7Bhiera%7D%7D">Hiera</a>または<a href="{{puppet}}/lookup_quick.html">Puppetルックアップ</a>に、適切な階層が設定されていて動作していることを確認します。
+    <p> <a href="{{hiera}}">Hiera</a>または<a href="{{puppet}}/lookup_quick.html">Puppetルックアップ</a>に、適切な階層が設定されていて動作していることを確認します。
 </p>
   </li>
 </ol>
@@ -110,7 +110,7 @@ class profile::jenkins::master (
 <p> 通常、プロファイルには何らかの設定が必要で、その設定のためにデータルックアップを使用する必要があります。
 </p>
 
-<p> このプロファイルでは、<a href="%7B%7Bhiera%7D%7D/puppet.html#automatic-parameter-lookup">自動クラスパラメータルックアップ</a>を使用してデータをリクエストします。 しかし、パラメータを省略して<code>lookup</code>関数を使用することもできます。
+<p> このプロファイルでは、<a href="{{hiera}}/puppet.html#automatic-parameter-lookup">自動クラスパラメータルックアップ</a>を使用してデータをリクエストします。 しかし、パラメータを省略して<code>lookup</code>関数を使用することもできます。
 </p>
 
 <pre><code class="language-puppet">class profile::jenkins {
@@ -227,7 +227,7 @@ profile::jenkins::master::java_version: '8u92'
 
 <ul>
 <li>
-<a href="/pe/latest/console_classes_groups_getting_started.html">PEコンソール</a>ノード分類子。factsに基づいてノードをグループ化し、それらのグループにクラスを割り当てます。</li>
+<a href="{{pe}}/console_classes_groups_getting_started.html">PEコンソール</a>ノード分類子。factsに基づいてノードをグループ化し、それらのグループにクラスを割り当てます。</li>
   <li>
 <a href="{{puppet}}/dirs_manifest.html">mainマニフェスト</a>。<a href="{{puppet}}/lang_node_definitions.html">ノードステートメント</a>または条件分岐を使用してクラスを割り当てます。</li>
   <li>HieraまたはPuppetルックアップ - <code>lookup</code>関数を使用して特殊な<code>classes</code>キーに対して独自の配列マージを実行し、その結果として生成された配列を<code>include</code>関数に渡します。</li>

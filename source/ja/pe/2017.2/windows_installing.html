@@ -2,7 +2,7 @@
 layout: default
 title: "Windows環境へのPuppet Enterpriseのインストール"
 ---
-<p> このガイドでは、Puppet Enterprise masterおよびagentのインストールプロセスを説明します。 masterは、設定情報を制御するノードです。 agentはmasterが制御するノードで、Windowsマシンなどがそれにあたります。 この2つのノードは、クライアント認証有りのHTTPSで通信します。 masterおよびagentアーキテクチャの詳細については、 <a href="%7B%7Bpuppet%7D%7D/architecture.html">Puppetアーキテクチャ文書</a>を参照してください。
+<p> このガイドでは、Puppet Enterprise masterおよびagentのインストールプロセスを説明します。 masterは、設定情報を制御するノードです。 agentはmasterが制御するノードで、Windowsマシンなどがそれにあたります。 この2つのノードは、クライアント認証有りのHTTPSで通信します。 masterおよびagentアーキテクチャの詳細については、 <a href="{{puppet}}/architecture.html">Puppetアーキテクチャ文書</a>を参照してください。
 </p>
 
 <p> Puppet masterは*nixマシンでのみ稼働可能ですが、WindowsマシンはPuppet agentとして稼働できます。 そのため、このガイドでは、Windowsマシンを用いてLinuxサーバー上にPuppet masterをインストールしたのち、Windowsマシン上にPuppet agentをインストールする方法を説明します。 全体としては、以下の手順を実施します。
@@ -75,7 +75,7 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
   <li>Puppet Enterpriseインストールのスクリプトを開始します。<code>./puppet-enterprise-installer</code>を実行します。</li>
   <li>ガイド付きのインストール情報が表示されます。プロンプトが表示されたら、<code>y</code>と回答し、ガイド付きインストールを実行するために必要なパッケージをインストールします。「Installing setup packages (セットアップパッケージをインストールしています)」というメッセージが表示され、その後、お使いのブラウザで特定のURL(https://master.inf.puppetlabs.demo:3000など)を開くよう指示するメッセージが表示されます。</li>
   <li>インストーラに表示されたURLをコピーし、ブラウザにペーストします。プロンプトが表示されたら、[<strong>セットアップ開始</strong>]をクリックします。
-  <img src="/pe/latest/images/windows/get_started.png" alt="get started">
+  <img src="{{pe}}/images/windows/get_started.png" alt="get started">
 </li>
   <li>デプロイアーキテクチャを選択します。この手順説明では、モノリシックインストールを行う場合について解説します。詳細については、「<a href="./install_basic.html#choose-an-installation-method">インストールの概要</a>」を参照してください。<blockquote>
       <p> <strong>注意</strong>：以降の例では、LinuxマシンをPuppet masterと呼びます。
@@ -92,7 +92,7 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
   </li>
   <li>[<strong>次へ</strong>]をクリックします。</li>
   <li>[<strong>設定内容の確認</strong>]画面で、選択内容が正しいことを確認し、[<strong>次へ</strong>]をクリックします。
-  <img src="/pe/latest/images/windows/confirm_plan.png" alt="confirm plan">
+  <img src="{{pe}}/images/windows/confirm_plan.png" alt="confirm plan">
 </li>
   <li>お使いのシステムがすべての必要条件を満たしているかどうかをPuppet Enterpriseが検証します。条件が満たされていない場合は、[<strong>ログビュー</strong>]トグルを使って、ログをチェックすることができます。終了したら、[<strong>インストール</strong>]をクリックします。<blockquote>
       <p> <strong>注意</strong>：インストーラが手順を完了するまでに数分かかります。
@@ -123,7 +123,7 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
   <img src="images/windows/classification.png" alt="classification page">
 </li>
   <li>[<strong>クラス</strong>]タブをクリックし、[<strong>新しいクラスを追加</strong>]フィールドに<code>windows</code>と入力し、お使いのWindowsマシンに合わせてアーキテクチャを選択します。 
-<img src="/pe/latest/images/windows/add_class.png" alt="add class">
+<img src="{{pe}}/images/windows/add_class.png" alt="add class">
 </li>
   <li>[<strong>クラスを追加</strong>]をクリックし、[<strong>変更</strong>]ボタンをクリックします。
 この時点で、Puppet master上で稼働するagentの分類が変更されます。次に、masterを「異なる状態」にする必要があります。Puppetにこの変更を認識させるには、Puppetがagentを立ち上げるまで30分ほど待ちます。または、master上で手動操作によってPuppetを稼働させる方法もあります。その手順を以下で説明します。</li>
@@ -139,13 +139,13 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
 <li>SSHクライアントを使って、Puppet masterにログインします。</li>
   <li>
 <code>puppet agent -t</code>により、Puppetの稼働を開始します。
-  <img src="/pe/latest/images/windows/puppet_agentt.png" alt="puppet run">
+  <img src="{{pe}}/images/windows/puppet_agentt.png" alt="puppet run">
  このPuppet稼働により、Windows用のagentがPuppet masterにダウンロードされます。</li>
   <li>
 <strong>Windowsマシン上で</strong>、ブラウザに次のURLを入力します：<code>https://&lt;YOUR PUPPET MASTER HOSTNAME&gt;:8140/packages/current/windows-x86_64/puppet-agent-x64.msi</code>。
  これにより、WindowsマシンにPuppet agentをインストールするために必要な.msiパッケージがダウンロードされます。</li>
   <li>以下の例のようにWindowsマシンにPuppet agent msiをインストールします。 
-  <img src="/pe/latest/images/windows/install_puppetagent.png" alt="run puppet two">
+  <img src="{{pe}}/images/windows/install_puppetagent.png" alt="run puppet two">
 </li>
   <li>ファイルのセキュリティに関するプロンプトが表示されたら、[<strong>Run</strong>]をクリックします。</li>
   <li>設定ウィザードが起動したら、[<strong>Next</strong>]をクリックします。</li>

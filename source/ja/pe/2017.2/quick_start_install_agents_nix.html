@@ -13,7 +13,7 @@ title: "インストールされる要素とその場所"
   <h4 id="faqs">FAQ</h4>
 
   <ul>
-<li><a href="/pe/latest/quick_start_install_agents_windows.html">WindowsマシンにPuppet agentをインストールするにはどうすればいいですか？</a></li>
+<li><a href="{{pe}}/quick_start_install_agents_windows.html">WindowsマシンにPuppet agentをインストールするにはどうすればいいですか？</a></li>
     <li><a href="./install_agents.html#installing-agents-in-a-puppet-enterprise-infrastructure-without-internet-access">インターネットに接続していない場合にPuppet agentをインストールするには、どうすればいいですか？</a></li>
   </ul>
 </blockquote>
@@ -96,7 +96,7 @@ title: "インストールされる要素とその場所"
     <pre><code>curl -k https://&lt;master.example.com&gt;:8140/packages/current/install.bash | sudo bash
 </code></pre>
 
-    <p> 最新リリース以外のPEバージョンをインストールする場合は、スクリプト内の<code>current</code>を<code>2017.x.x</code>という形式で任意の<a href="/pe/latest/overview_version_table.html">PEバージョン番号</a>に置き換えます。
+    <p> 最新リリース以外のPEバージョンをインストールする場合は、スクリプト内の<code>current</code>を<code>2017.x.x</code>という形式で任意の<a href="{{pe}}/overview_version_table.html">PEバージョン番号</a>に置き換えます。
 </p>
 
     <p> スクリプトのダウンロード方法は、プラットフォームによって異なる場合があります。
@@ -115,7 +115,7 @@ title: "インストールされる要素とその場所"
   <h4 id="faqs-1">FAQ</h4>
 
   <ul>
-<li><a href="/pe/latest/release_notes_known_issues_install.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy">Puppet masterがプロキシサーバーを使用してインターネットに接続している場合はどうすればいいですか？</a></li>
+<li><a href="{{pe}}/release_notes_known_issues_install.html#install-agents-with-different-os-when-puppet-master-is-behind-a-proxy">Puppet masterがプロキシサーバーを使用してインターネットに接続している場合はどうすればいいですか？</a></li>
   </ul>
 </blockquote>
 
@@ -141,7 +141,7 @@ title: "インストールされる要素とその場所"
 <!--Task-->
 <h2 id="step-3-test-the-puppet-agent-node">ステップ3：Puppet agentノードのテスト</h2>
 
-<p> デフォルトでは、agentはPuppet masterから30分おきに設定をフェッチします。 (<code>runinterval</code>設定を使うと、<a href="%7B%7Bpuppet%7D%7D/config_file_main.html">puppet.confファイルでこの間隔を設定</a>することができます。 ) ただし、Puppetはコマンドラインからいつでも手動で実行することができます。
+<p> デフォルトでは、agentはPuppet masterから30分おきに設定をフェッチします。 (<code>runinterval</code>設定を使うと、<a href="{{puppet}}/config_file_main.html">puppet.confファイルでこの間隔を設定</a>することができます。 ) ただし、Puppetはコマンドラインからいつでも手動で実行することができます。
 </p>
 
 <ol>

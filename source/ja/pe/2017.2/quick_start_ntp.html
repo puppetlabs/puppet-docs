@@ -23,7 +23,7 @@ title: "NTPクイックスタートガイド"
 <p> <code>ntp</code>モジュールは、Puppetによって<a href="http://forge.puppetlabs.com/supported">サポート</a>、テスト、メンテナンスされています。 ntpモジュールの詳細については、<a href="http://forge.puppetlabs.com/puppetlabs/ntp">Puppet Forge</a>を参照してください。
 </p>
 
-<p> <code>ntp</code>モジュールには、いくつかの<strong>クラス</strong>が含まれています。 <a href="%7B%7Bpuppet%7D%7D/lang_classes.html">クラス</a>とは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <code>ntp</code>モジュールに含まれるクラスの中で、ユーザが使用するのは<code>ntp</code>クラスだけです。 ntpクラスにはいくつかのプライベートクラスが含まれていますが、これらはモジュールによる内部使用専用です。
+<p> <code>ntp</code>モジュールには、いくつかの<strong>クラス</strong>が含まれています。 <a href="{{puppet}}/lang_classes.html">クラス</a>とは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <code>ntp</code>モジュールに含まれるクラスの中で、ユーザが使用するのは<code>ntp</code>クラスだけです。 ntpクラスにはいくつかのプライベートクラスが含まれていますが、これらはモジュールによる内部使用専用です。
 </p>
 
 <p> このガイドでは、以下のタスクについて詳しく確認していきます。
@@ -94,7 +94,7 @@ Notice: Installing -- do not interrupt ...
     <p> [<strong>ルールを追加</strong>]をクリックします。
 </p>
 
-    <p> このルールによって、<strong>NTP</strong>グループに<a href="/pe/latest/console_classes_groups.html#adding-nodes-dynamically">すべてのノードが「動的に」ピン</a>されます。 このルールはテスト目的で作成されたものであり、本稼働環境にあるグループにノードをピンするかどうかの判断はユーザごとに異なります。
+    <p> このルールによって、<strong>NTP</strong>グループに<a href="{{pe}}/console_classes_groups.html#adding-nodes-dynamically">すべてのノードが「動的に」ピン</a>されます。 このルールはテスト目的で作成されたものであり、本稼働環境にあるグループにノードをピンするかどうかの判断はユーザごとに異なります。
 </p>
   </li>
 </ol>
@@ -160,10 +160,10 @@ Notice: Installing -- do not interrupt ...
 <p> このクラスの適用に問題があった場合、この情報に基づいてコードのどの部分を修正すればよいか正しく判断することができます。 ここでは、[<strong>イベント</strong>]ページで、Puppet EnterpriseがNTPを管理していることを確認できます。
 </p>
 
-<p> 詳細ウィンドウの右上にはレポート実行のリンクがあり、このレポートには、変更を加えたPuppet実行に関する情報(実行のログやメトリクスを含む)が記載されます。 詳細については、<a href="/pe/latest/CM_reports.html">インフラレポート</a>を参照してください。
+<p> 詳細ウィンドウの右上にはレポート実行のリンクがあり、このレポートには、変更を加えたPuppet実行に関する情報(実行のログやメトリクスを含む)が記載されます。 詳細については、<a href="{{pe}}/CM_reports.html">インフラレポート</a>を参照してください。
 </p>
 
-<p> [<strong>イベント</strong>]ページの使用の詳細については、<a href="/pe/latest/CM_events.html#working-with-the-events-page">Eventsページの使用</a>を参照してください。
+<p> [<strong>イベント</strong>]ページの使用の詳細については、<a href="{{pe}}/CM_events.html#working-with-the-events-page">Eventsページの使用</a>を参照してください。
 </p>
 
 <h2 id="edit-parameters-of-the-ntp-class">

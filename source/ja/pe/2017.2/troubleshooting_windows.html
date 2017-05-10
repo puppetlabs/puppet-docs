@@ -25,13 +25,13 @@ title: "Windows上でのPuppetをトラブルシューティング"
 
 <h3 id="installation">インストール</h3>
 
-<p> Puppet MSIパッケージは、puppet.confファイルの既存のエントリを上書きします。 そのため、パッケージをアンインストールしてから、異なるPuppet masterホスト名を使って再インストールすると、Puppetは<a href="%7B%7Bpuppet%7D%7D/dirs_confdir.html"><code>$confdir</code></a><code>\puppet.conf</code>で新しい値を適用します。 インストール/アップグレード時には、必ず同じmasterホスト名を使用してください。
+<p> Puppet MSIパッケージは、puppet.confファイルの既存のエントリを上書きします。 そのため、パッケージをアンインストールしてから、異なるPuppet masterホスト名を使って再インストールすると、Puppetは<a href="{{puppet}}/dirs_confdir.html"><code>$confdir</code></a><code>\puppet.conf</code>で新しい値を適用します。 インストール/アップグレード時には、必ず同じmasterホスト名を使用してください。
 </p>
 
 <p> 一般的に、アップグレード、アンインストール、再インストールの実行時には、システム上の設定データは保存されます。
 </p>
 
-<p> システムを完全にクリーンアウトするには、必ず<a href="%7B%7Bpuppet%7D%7D/dirs_confdir.html">confdir</a>および<a href="%7B%7Bpuppet%7D%7D/dirs_vardir.html">vardir</a>を削除してください。
+<p> システムを完全にクリーンアウトするには、必ず<a href="{{puppet}}/dirs_confdir.html">confdir</a>および<a href="{{puppet}}/dirs_vardir.html">vardir</a>を削除してください。
 </p>
 
 <p> 同様に、MSIは<code>PuppetLabs\facter\facts.d</code>ディレクトリに書き込まれたカスタムフィードを上書きしません。
@@ -86,7 +86,7 @@ file { "c:\\path\\to\\file.txt": }
 <pre><code>file { "c:\path\to\file.txt": }
 </code></pre>
 
-<p> 詳細については、<a href="%7B%7Bpuppet%7D%7D/lang_windows_file_paths.html">Windowsでのバックスラッシュに関する言語リファレンス</a>を参照してください。
+<p> 詳細については、<a href="{{puppet}}/lang_windows_file_paths.html">Windowsでのバックスラッシュに関する言語リファレンス</a>を参照してください。
 </p>
 
 <h3 id="unc-paths">UNCパス</h3>
@@ -112,7 +112,7 @@ err: /Stage[main]//File[c:\foo\bar]: Could not evaluate: Could not find user FOO
 
 <h3 id="diffs">Diff</h3>
 
-<p> サードパーティのdiffユーティリティ(msys、gnudiff、cygwinなど)がインストールされ、<a href="%7B%7Bpuppet%7D%7D/configuration.html#diff"><code>diff</code>設定</a>が適切に設定されていない場合、PuppetはWindowsでdiffを表示しません(<code>puppet agent --show_diff</code>など)。 
+<p> サードパーティのdiffユーティリティ(msys、gnudiff、cygwinなど)がインストールされ、<a href="{{puppet}}/configuration.html#diff"><code>diff</code>設定</a>が適切に設定されていない場合、PuppetはWindowsでdiffを表示しません(<code>puppet agent --show_diff</code>など)。 
 </p>
 
 <h2 id="resource-errors-and-quirks">リソースエラーおよび不具合</h2>
@@ -147,7 +147,7 @@ err: /Stage[main]//Exec[echo foo]/returns: change from notrun to 0 failed: Could
 }
 </code></pre>
 
-<p> 32ビットバージョンのPuppetでは、ファイルシステムリダイレクト(system32がWindowsにより自動的にsysWOW64に切り替わる場所)の対象になる可能性がある点に留意してください。 <a href="%7B%7Bpuppet%7D%7D/lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows">リダイレクト</a>については、いくつかの対処方法があります。
+<p> 32ビットバージョンのPuppetでは、ファイルシステムリダイレクト(system32がWindowsにより自動的にsysWOW64に切り替わる場所)の対象になる可能性がある点に留意してください。 <a href="{{puppet}}/lang_windows_file_paths.html#file-system-redirection-when-running-32-bit-puppet-on-64-bit-windows">リダイレクト</a>については、いくつかの対処方法があります。
 </p>
 
 <p> または、前述のヒントを使うとさらに良いでしょう。

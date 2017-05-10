@@ -50,7 +50,7 @@ title: "システム構成"
 <li>Puppet masterは、このポートを使用して、Puppet agentからインバウンドトラフィック／要求を受信します。</li>
       <li>Puppet Enterprise Webコンソールは、このポートを使用して、Puppet masterに要求を送信します。</li>
       <li>ca_portの設定が異なる場合を除き、証明書の要求は、このポートを介して渡されます。</li>
-      <li>Puppetサーバー<a href="/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
+      <li>Puppetサーバー<a href="{{pe}}/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE Master」</li>
      </ul>
 </td>
@@ -103,7 +103,7 @@ title: "システム構成"
       <li>Puppet masterはこのポートを使用して、コンパイルmasterにステータスチェックを送信します(Puppet Enterpriseの実行は不要です)。</li>
       <li>Puppet Enterprise Webコンソールは、このポートを使用して、Puppet masterに要求を送信します。</li>
       <li>ca_portの設定が異なる場合を除き、証明書の要求は、このポートを介して渡されます。</li>
-      <li>Puppetサーバー<a href="/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
+      <li>Puppetサーバー<a href="{{pe}}/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE Master」</li>
      </ul>
 </td>
@@ -144,7 +144,7 @@ title: "システム構成"
      <ul>
 <li>PuppetDBは、このポートを介して、トラフィック／要求を受信します。</li>
       <li>Puppet masterとPuppet Enterprise Webコンソールは、このポートを使用して、 PuppetDBにトラフィックを送信します。</li>
-      <li>PuppetDB <a href="/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
+      <li>PuppetDB <a href="{{pe}}/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE PuppetDB」</li>
      </ul>
 </td>
@@ -186,7 +186,7 @@ title: "システム構成"
       <li>Puppet Enterprise Webコンソールは、このポートを使用して、Puppet masterに要求を送信します。</li>
        <li>LEIでは、Puppet masterはこのポートを使用して、コンパイルmasterにステータスチェックを送信します(Puppet Enterpriseの実行は不要です)。</li>
       <li>ca_portの設定が異なる場合を除き、証明書の要求は、このポートを介して渡されます。</li>
-      <li>Puppetサーバー<a href="/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
+      <li>Puppetサーバー<a href="{{pe}}/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE Master」</li>
      </ul>
 </td>
@@ -207,7 +207,7 @@ title: "システム構成"
      <ul>
 <li>PuppetDBは、このポートを介して、トラフィック／要求を受信します。</li>
       <li>Puppet masterとPuppet Enterprise Webコンソールは、このポートを使用して、 PuppetDBにトラフィックを送信します。</li>
-      <li>PuppetDB <a href="/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
+      <li>PuppetDB <a href="{{pe}}/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。</li>
       <li>分類子グループ：「PE PuppetDB」</li>
      </ul>
 </td>
@@ -291,11 +291,11 @@ title: "システム構成"
 </p>
     </li>
     <li>
-      <p> Port <strong>4432</strong>：ノード分類子、アクティビティサービス、RBACのローカル接続の<a href="/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。  リモート接続ではポート<strong>4433</strong>を使う必要があります。
+      <p> Port <strong>4432</strong>：ノード分類子、アクティビティサービス、RBACのローカル接続の<a href="{{pe}}/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。  リモート接続ではポート<strong>4433</strong>を使う必要があります。
 </p>
     </li>
     <li>
-      <p> ポート<strong>8170</strong>：Code Managerを使用する場合は、このポートが必要です。 Code Manager <a href="/pe/latest/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。
+      <p> ポート<strong>8170</strong>：Code Managerを使用する場合は、このポートが必要です。 Code Manager <a href="{{pe}}/status_api.html#puppet-services-status-check">ステータスチェック</a>は、このポートを介して送信されます。
 </p>
     </li>
   </ul>
