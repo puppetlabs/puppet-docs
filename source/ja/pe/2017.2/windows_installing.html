@@ -54,10 +54,10 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
 <ol>
 <li>WindowsマシンでSFTPクライアントを使って、Puppet masterとして指定したLinuxマシンにPE Masterインストーラパッケージをコピーします。</li>
   <li>Windowsマシン上でSSHクライアントを使ってsshでLinuxマシンにログインし、以下の例に示すように、ホスト名またはIPアドレスとポートを入力します。
-  <img src="/pe/2016.4/images/windows/putty_config.png" alt="putty config">
+  <img src="/pe/latest/images/windows/putty_config.png" alt="putty config">
 </li>
   <li>ターミナルでプロンプトが表示されたら、<code>root</code>ユーザー、またはsudo権限を持つユーザーとしてLinuxマシンにログインします。
-  <img src="/pe/2016.4/images/windows/login_as_root.png" alt="login as root">
+  <img src="/pe/latest/images/windows/login_as_root.png" alt="login as root">
 </li>
   <li>Linuxマシンには指定されたホスト名があるはずです。ホスト名を確認するには、 <code>hostname -f</code>を実行します。</li>
   <li>PEで使用するWebベースのインストーラにアクセスするためには、ポート3000へのアクセスを確保する必要があります。<blockquote>
@@ -70,7 +70,7 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
 <code>tar -xvf puppet-enterprise-2015.2.0-*</code>を実行し、PEインストーラtarballを展開します。</li>
   <li>
 <code>cd puppet-enterprise-2015.2.0-el-6-x86_64</code>を実行し、インストーラのディレクトリに移ります。
-  <img src="/pe/2016.4/images/windows/cd_tarball.png" alt="cd to tarball">
+  <img src="/pe/latest/images/windows/cd_tarball.png" alt="cd to tarball">
 </li>
   <li>Puppet Enterpriseインストールのスクリプトを開始します。<code>./puppet-enterprise-installer</code>を実行します。</li>
   <li>ガイド付きのインストール情報が表示されます。プロンプトが表示されたら、<code>y</code>と回答し、ガイド付きインストールを実行するために必要なパッケージをインストールします。「Installing setup packages (セットアップパッケージをインストールしています)」というメッセージが表示され、その後、お使いのブラウザで特定のURL(https://master.inf.puppetlabs.demo:3000など)を開くよう指示するメッセージが表示されます。</li>
