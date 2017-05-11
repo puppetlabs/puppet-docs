@@ -4,10 +4,14 @@ title: "Puppet agent release notes"
 ---
 
 [Puppet 4.10.0]: /puppet/4.10/release_notes.html#puppet-4100
+[Puppet 4.10.1]: /puppet/4.10/release_notes.html#puppet-4101
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
+[Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
+
 
 [MCollective 2.10.3]: /mcollective/releasenotes.html#2_10_3
+[MCollective 2.10.4]: /mcollective/releasenotes.html#2_10_4
 
 [`pxp-agent`]: https://github.com/puppetlabs/pxp-agent
 
