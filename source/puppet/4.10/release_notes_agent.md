@@ -27,6 +27,20 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
 
 
+## Puppet agent 1.10.1
+
+Released May 11, 2017.
+
+### Component updates
+
+This is a security release with an update to OpenSSL 1.0.2k, and also includes bug fixes for [Puppet 4.10.1][], [MCollective 2.10.4][], and [Facter 3.6.4][].
+
+An authenticated agent could make a catalog request with facts encoded in YAML. The Puppet master did not properly validate and reject the request, resulting in the server loading arbitrary objects, which could lead to remote code execution. ([PUP-7483](https://tickets.puppetlabs.com/browse/PUP-7483))
+
+### End of life platforms
+
+As of the Puppet agent 1.10.1 release, we no longer ship packages for EL 4, Fedora 23, and Ubuntu 12.04.
+
 ## Puppet agent 1.10.0
 
 Released April 5, 2017.
