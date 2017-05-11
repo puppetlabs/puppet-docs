@@ -315,13 +315,13 @@ documents:
 
   /puppet/5.0:
     doc: puppet
-    version: 5.0
+    version: "5.0"
     nav: ./_puppet_toc.html
     hide: true                  # don't forget to REMOVE this at release
     my_versions:
-      facter: 3.7
-      hiera: 3.4
-      puppetserver: 5.0
+      facter: "3.7"
+      hiera: "3.4"
+      puppetserver: "5.0"
   /puppet/4.10:
     doc: puppet
     version: "4.10"
