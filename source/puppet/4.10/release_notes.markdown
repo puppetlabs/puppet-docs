@@ -18,6 +18,29 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+
+## Puppet 4.10.1
+
+Released May 11, 2017.
+
+* [Fixed in Puppet 4.10.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.1%27)
+* [Introduced in Puppet 4.10.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.1%27)
+
+This is a critical security release, that also includes several bug fixes. An authenticated agent could make a catalog request with facts encoded in YAML. The Puppet master did not properly validate and reject the request, resulting in the server loading arbitrary objects, which could lead to remote code execution. ([PUP-7483](https://tickets.puppetlabs.com/browse/PUP-7483))
+
+### Bug fixes
+
+These bug fixes have been resolved in this release.
+
+* [PUP-7418](https://tickets.puppetlabs.com/browse/PUP-7418): The combination of a deep merge lookup and the use of an interpolation function in Hiera data (`alias`, `lookup`, or `hiera`) could cause the deep merge to end without having performed a full search and silently produce a result where some values would be missing.
+
+* [PUP-7420](https://tickets.puppetlabs.com/browse/PUP-7420): Logging of Hiera lookups in debug mode would log every Automatic Parameter Lookup (APL) twice, once as a "regular lookup" and once as an APL.
+
+* [PUP-7429](https://tickets.puppetlabs.com/browse/PUP-7429): Fixed the default string format (the `%s` format) so that a formatted regular expression results in a string that isn't delimited with slashes. 
+  The reason for the change is that those slashes are language specific, and should be produced using the `%p` format (which they already are). The `%s` format should produce a language agnostic representation that is suitable to pass to the `Regexp` constructor.
+
+* [PUP-7390](https://tickets.puppetlabs.com/browse/PUP-7390): Puppet on all platforms now prefers the minitar gem. By default, the gem is only shipped on Windows, so there shouldn't be any functional change, but it enables us to move all platforms to using minitar in the future.
+
 ## Puppet 4.10.0
 
 Released April 5, 2017.
