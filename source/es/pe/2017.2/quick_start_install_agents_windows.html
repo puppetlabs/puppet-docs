@@ -1,0 +1,83 @@
+---
+layout: default
+title: "Guía de inicio rápido de la instalación de agents"
+---
+<div>
+<h3 id="overview">Resúmen</h3>
+
+<blockquote>
+  <p> <strong>Importante</strong>: Esta información describe como instalar Puppet agents en nodos Windows. El componente Puppet Master descrito en la "Guía Rápida de instalación de PE" debe ejecutarse en una máquina Linux soportada.
+</p>
+</blockquote>
+
+<p> Las siguientes instrucciones de instalación de agents Puppets para ejecutar en nodos  <a href="/pe/2017.2/install_system_requirements.html#puppet-agent-platforms">versiones soportadas</a> de sistemas operativos Windows. En lo referido <a href="/pe/2017.2/quick_start_install_agents_nix.html">Guía Rápida de instalación de agent *nix agent</a> para instrucciones sobre la instalación de agents Puppet en nodos ejecutados bajo un sistema operativo *nix.
+</p>
+
+<p> Para más información sobre Puppet agents, así como los componentes que componen el despliegue de PE, visite el <a href="./install_basic.html">resumen de la instalación</a> en la documentación PE.
+</p>
+
+<p> Para más información sobre Windows Puppet agents, incluyendo opciones de instalación adicionales, consultar  <a href="./install_windows.html">Instalación Windows Agents</a>.
+</p>
+
+<blockquote>
+  <p> <strong>Prerrequisitos</strong>: Esta guía asume que usted ha <a href="/pe/2017.2/quick_start_install_mono.html">instalado una implementación PE monolíticas</a> y tiene Puppet master, la consola PE y PuppetDB activado y ejecutándose en un único nodo.
+</p>
+</blockquote>
+
+<h3 id="installing-windows-puppet-enterprise-agents">Cómo instalar Windows Puppet Enterprise agents</h3>
+
+<p> El instalador PE Windows es un paquete Windows .msi estándar y  podrán  ejecutar como asistente gráfico.
+</p>
+
+<p> El instalador debe ejecutarse con privilegios elevados. La instalación de Puppet <strong>no</strong> requiere reiniciar el sistema.
+</p>
+
+<ol>
+<li>
+    <p> <a href="http://info.puppetlabs.com/download-pe.html">Descarga</a> y ejecuta el  instalador.
+</p>
+  </li>
+  <li>
+    <p> Cuando el cuadro de diálogo lo indique, proporcione el hostname de su servidor Puppet master.
+</p>
+
+    <p> <img src="./images/windows/wizard_server.png" alt="Puppet master hostname selection">
+</p>
+  </li>
+  <li>
+    <p> Cargue una lista actualizada de nodos pendientes consultando con un click <strong>Nodos</strong> &gt; <strong>Certificados sin firma</strong>.
+</p>
+  </li>
+  <li>
+    <p> Click <strong>Accept All</strong> para aprobar las consultas y agregar el nodo.
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> EL Puppet agent puede ahora recuperar configuraciones del master la próxima ocasión que ejecute Puppet.
+</p>
+</blockquote>
+
+<h3 id="after-installation">Después de la instalación</h3>
+
+<ul>
+<li>
+    <p> El agent de Puppet correrá como un servicio de WIndows; descarga y aplicará configuración cada 30 minutos (por defecto). Ahora puede asignar clases al nodo de forma normal. Ver<a href="/puppet/4.10/services_commands_windows.html">Asignación de configuraciones a nodos</a> para más detalles. Después de la primera ejecución de Puppet, el servicio MCollective también se ejecutará y el nodo ahora será controlado por MCollective. El servicio de  Puppet agent y el servicio MCollective puede ser iniciado y detenido independientemente del uso del administrador de servicios UI o la línea de comando <code>sc.exe</code>. Consulte <a href="/puppet/4.10/reference/services_commands_windows.html">Ejecutar Puppet en Windows</a> para más detalles.
+</p>
+  </li>
+  <li>
+    <p> El menú Inicio contendrá una carpeta Puppet, con los enlaces directos para ejecutar Puppet agent manualmente, ejecutando Facter y abriendo una  ventana de símbolo de sistema para el uso de Puppet tools. Vea [Ejecutando Puppet en Windows][running] para más detalles.
+</p>
+
+    <p> <img src="./images/windows/start_menu.png" alt="Iconos de Menú Inicio">
+</p>
+  </li>
+  <li>
+    <p> Puppet es agregado automáticamente a la variable de entorno PATH de la máquina. Esto significa que tu puedes abrir cualquier línea de comando y llamar <code>puppet</code>, <code>facter</code> Y los pocos archivos de lote que están en el directorio <code>bin</code> de la <a href="./install_windows.html#program-directory">instalación de Puppet</a>. Esto también agregará los items necesarios del entorno Puppet en la shell, pero solo durante la ejecución de cada uno de los comandos.
+</p>
+  </li>
+</ul>
+<hr>
+<p> Siguiente: <a href="/pe/2017.2/quick_start_module_install_windows.html">Instalar Module</a>
+</p>
+</div>

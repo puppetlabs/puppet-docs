@@ -1,0 +1,234 @@
+---
+layout: default
+title: "新機能、機能強化、サポート終了"
+---
+
+<p> このページでは、このPuppet Enterprise(PE)リリースの新機能、機能強化、サポート終了について説明します。
+</p>
+
+<p> 本リリースの詳細については、以下のページを参照してください。
+</p>
+
+<ul>
+<li><a href="{{pe}}/release_notes_known_issues.html">既知の問題</a></li>
+  <li><a href="{{pe}}/release_notes_resolved_issues.html">解決済みの問題</a></li>
+  <li><a href="/security">セキュリティ上の脆弱性に関する通知</a></li>
+</ul>
+<blockquote>
+  <p> <strong>ヒント</strong>: このPEリリースに含まれる複数のコンポーネントには、追加のリリースノートがあります。 詳しくは、<a href="#related-release-notes">関連リリースノート</a>を参照してください。
+</p>
+</blockquote>
+
+<h2 id="new-features-in-pe-20172">PE 2017.2の新機能</h2>
+
+<h3 id="orchestrator-in-the-console">コンソールのオーケストレータ</h3>
+
+<p> コンソールでオーケストレータのジョブを設定できるようになりました。 Puppetを実行するノードリスト(静的またはPuppet Query Language)を作成できます。
+</p>
+
+<p> オーケストレータがコンソールに統合されたことにより、ジョブを簡単に設定したり、コンソールのレポーティングおよびインフラ監視ツールを使用してジョブを見直したり、ノードの実行結果を詳しく掘り下げたりできます。
+</p>
+
+<p> 詳細については、<a href="{{pe}}/orchestrator_job_run_console.html">コンソールでジョブを実行する</a>を参照してください。
+</p>
+
+<h3 id="packages-inventory-in-the-console">コンソールのパッケージインベントリ</h3>
+
+<p> ノードにインストールされたすべてのパッケージのインベントリを表示し、メンテナンスアップデート、セキュリティパッチ、またはライセンス更新が必要なパッケージを持つノードをすばやく確認できます。 Puppet agentがインストールされたすべてのノード(Puppetがアクティブに管理していないシステムも含む)では、パッケージインベントリのレポーティングも使用できます。
+</p>
+
+<p> パッケージデータ収集は、デフォルトではオフになっています。 パッケージデータ収集をオンにし、この機能を使用する方法については、<a href="{{pe}}/CM_packages.html">使用中のすべてのパッケージを表示する</a>を参照してください。
+</p>
+
+<h3 id="pe-is-now-available-in-japanese">PEを日本語で提供</h3>
+
+<p> 日本のPEユーザに対する継続的なコミットメントの一環として、PE 2017.2では、Puppet Enterprise(日本語)のバージョン1をリリースします。
+</p>
+
+<p> Puppet Enterprise(日本語)バージョン1では、日本語のGUIに加え、以下のサービスとリソースが日本語にローカライズされています。
+</p>
+
+<ul>
+<li>Classifier、ロールベースのアクセス制御(RBAC)、アクティビティ、オーケストレータサービスのメッセージと応答。これらのメッセージは、各サービスのAPIエンドポイントにクエリを送信すると表示されます。</li>
+  <li>PEのWebベースのインストーラの手順とメッセージ</li>
+  <li>オーケストレータコマンドラインツールを使用すると表示されるメッセージ</li>
+  <li>
+<a href="https://forge.puppet.com">Puppet Forge</a>ホームページ</li>
+  <li><a href="/ja/puppet/4.9/bgtm.html">モジュールに関するビギナーズガイド</a></li>
+  <li><a href="/ja/puppet/4.9/style_guide.html">Puppet言語スタイルガイド</a></li>
+  <li>モジュールのREADMEと7つのPuppet対応モジュール(NTP、SQL Server、Stdlib、AWS、Tomcat、MySQL、Tagmail)の説明。Puppet Forgeで日本語のREADMEを表示するには、ブラウザの言語を日本語に設定します。また、モジュールのディレクトリにもあります。デフォルトの場所は、./readmes/README_ja_JP.mdです。</li>
+  <li>
+<a href="./r_n_p_intro.html">ロールとプロファイル</a>、<a href="./pe_architecture_overview.html">PE概要ページ</a>、<a href="./release_notes.html">PEリリースノート</a>のユーザマニュアル。</li>
+</ul>
+<p> Puppet Enterprise(日本語)は、PE英語バージョンと同じtarballに含まれています。 PEインストーラ、コンソール、Puppet Forgeを日本語で表示するには、Webブラウザの言語を日本語に設定します。 APIメッセージとコマンドラインツールのメッセージを日本語で表示するには、システムの国と地域を日本語に設定します。 ブラウザとシステムが日本語に設定されている場合は、自動的に日本語で表示されます。
+</p>
+
+<p> また、PEと、PEで使用されるPuppetコンポーネントおよびサービスのUTF-8文字エンコーディングのサポートも向上しました。
+</p>
+
+<h2 id="enhancements-in-pe-20172">PE 2017.2の機能強化</h2>
+
+<h3 id="console-and-console-services-enhancements">コンソールおよびコンソールサービスの機能拡張</h3>
+
+<ul>
+<li>
+    <p> HTTPで接続を試行すると、コンソールはHTTPSにリダイレクトされます。 pe-nginxはデフォルトでポート80でリッスンします。
+</p>
+
+    <p> HTTPSリダイレクトを無効にするには、<a href="{{pe}}/console_config.html">コンソール</a>で<code>puppet_enterprise::profile::console::proxy::http_redirect::enable_http_redirect</code>を<code>false</code>に設定します。
+</p>
+  </li>
+  <li>
+    <p> 以前は、ノード分類子サービスは、分類がリクエストされると各ノードのチェックインを保存していました。 チェックインには、ノードが分類された各グループのルールにどの程度合致しているかについても説明が含まれています。 この機能によって、多数のノードのデプロイを管理する際にパフォーマンス上の問題が生じていました。 チェックインストレージは引き続き使用可能ですが、デフォルトでは無効（<code>false</code>）に設定されています。
+</p>
+
+    <p> この設定を有効にするには、<a href="{{pe}}/console_config.html">コンソール</a>で<code>puppet_enterprise::profile::console::classifier_node_check_in_storage</code>を<code>true</code>に設定します。
+</p>
+  </li>
+  <li>
+    <p> このリリースでは、ノードが最後のレポートを送信してから、応答なしと判断されるまでの経過時間を指定できます。 値を秒単位の整数で設定してください。 デフォルトは3600秒(1時間)です。
+</p>
+
+    <p> <a href="{{pe}}/console_config.html">コンソール</a>の<code>puppet_enterprise::console_services::no_longer_reporting_cutoff</code>を調整します。
+</p>
+  </li>
+  <li>
+    <p> <code>ping_interval</code>設定は、PXP agentがPCPブローカにpingを送信する間隔を制御します。 agentが応答を受信しなかった場合、再接続を試みます。 デフォルトは120秒(2分)です。
+</p>
+
+    <p> <a href="{{pe}}/config_orchestration.html">コンソール</a>の<code>puppet_enterprise::pxp_agent::ping_interval</code>を調整します。
+</p>
+  </li>
+  <li>
+    <p> コンソールのナビゲーションウィンドウのデザインを刷新し、幅を半分にしました。
+</p>
+  </li>
+  <li>
+    <p> [<strong>イベント</strong>]詳細ページに表示される<strong>実行レポートを表示</strong>リンクを使用すると、特定のイベントに関連する実行レポートにすばやくアクセスできます。
+</p>
+  </li>
+  <li>
+    <p> [<strong>概要</strong>]ページと[<strong>レポート</strong>]ページのfact値フィルタで無効な正規表現、無効なストリング演算子、または空白のfact名を使用しようとすると、警告が表示されます。
+</p>
+  </li>
+</ul>
+<h3 id="puppet-orchestrator-enhancements">Puppetオーケストレータの機能強化</h3>
+
+<ul>
+<li>
+    <p> PuppetオーケストレータはコンパイルmasterのPCPブローカと通信し、ジョブ関連のメッセージをブローカに送信します。これらのメッセージは、PXP agentのブローカによってリレーされます。 コンパイルmasterを追加すると、agentにオーケストレーションメッセージを送信できるPCPブローカの数を増減できます。 手順については、<a href="./install_multimaster.html#configure-compile-masters-for-orchestration-scale">コンパイルmasterのオーケストレーション規模の構成</a>を参照してください。
+</p>
+
+    <p> 高可用性インストールの場合、新しい<code>pcp_broker_list</code>パラメータを使用して、マスタやレプリカだけではなく、コンパイルmasterと通信するようPXP agentを設定することができます。
+</p>
+  </li>
+  <li>
+    <p> PXP agentのログファイルを使用し、Puppetオーケストレータの問題をデバッグします。 必要に応じて、デフォルト設定から<a href="{{pe}}/config_orchestration.html#configuring-pxp-agent-logfile-location">場所を変更</a>することができます。
+</p>
+  </li>
+  <li>
+    <p> <code>pe-puppetserver</code>サービスは、PCPブローカのオーケストレータ規模をサポートするため、オープンファイル上限数がデフォルトで<code>12000</code>になりました。
+</p>
+  </li>
+</ul>
+<h3 id="code-manager-enhancements">コードマネージャの機能強化</h3>
+
+<ul>
+<li>
+<code>puppet-code</code>コマンドに新しいフラグ<a href="{{pe}}/code_mgr_cli.html#puppet-code-actions"><code>--dry-run</code></a>を追加しました。このフラグを使用して<code>puppet-code</code>を実行すると、制御リポジトリとの接続をテストし、制御リポジトリのすべての環境をまとめたリストが返されます。</li>
+</ul>
+<h3 id="analytics-enhancements">分析の機能強化</h3>
+
+<ul>
+<li>Puppet Enterpriseは、PEインストールに関するデータを収集してPuppetに送信します。弊社では、そのデータを製品の改善に役立てています。これまでのバージョンで収集されていたデータに加え、本リリースではPuppet Serverのパフォーマンスに関する基本的な情報、クラウドプラットフォームとハイパーバイザの使用状況、オールインワンの<code>puppet-agent</code>パッケージバージョン、MCollectiveおよびデフォルト以外のユーザロールの使用状況も収集します。収集されるデータとオプトアウトの方法については、<a href="{{pe}}/analytics_opt_out.html">Puppet Enterpriseの分析データの収集</a>を参照してください。</li>
+</ul>
+<h3 id="security-enhancements">セキュリティの機能強化</h3>
+
+<ul>
+<li>
+    <p> セキュリティコンプライアンスのニーズに応え、PEでは<a href="{{pe}}/disable_tlsv1.html">TLSv1の無効化</a>に対応しています。 PEのサービスは、TLSバージョン1、1.1、1.2をサポートしています。
+</p>
+  </li>
+  <li>
+    <p> MCollectiveパッケージagentプラグインは、任意のソース(URLを含む)からのパッケージのインストールを支援します。パッケージに署名は必要ありません。 これにより、<code>peadmin</code>ユーザはMCollectiveサーバーで任意のコードを実行できるようになります。
+</p>
+
+    <p> パッケージの<code>install</code>、<code>uninstall</code>、<code>purge</code>アクションの使用を禁止する、デフォルトのアクションポリシーが指定されました。 ポリシーの変更や追加は、<code>puppet_enterprise::profile::agent::allowed_actions</code>パラメータを使用して行います。このパラメータでは、アクションポリシーを適用するagentプラグインと、明示的に許可するアクションのリストを指定できます。
+</p>
+  </li>
+  <li>
+    <p> MCollectiveクライアントキーは機密としてラベル付けされ、PuppetDBには保存されません。
+</p>
+  </li>
+</ul>
+<h3 id="razor-enhancements">Razorの機能強化</h3>
+
+<ul>
+<li>このバージョンでは、SLES 11および12、およびWindows 2016用として、新しいPuppet対応タスクが追加されています。</li>
+</ul>
+<h3 id="other-enhancements">その他の機能強化</h3>
+
+<ul>
+<li>
+    <p> これまでのバージョンでは、コンパイルmasterがpuppet.comからagentパッケージをダウンロードし、agentインストールで使用できるようにしていました。つまり、パッケージを取得するにはインターネット接続が必要でした。 今回のリリースでは、コンパイルmasterがMoMからagentパッケージを直接取得できるようになりました。
+</p>
+  </li>
+  <li>
+    <p> Javaのガベージコレクションログを見ると、JVMベースのPEサービスで発生したパフォーマンス上の問題を診断できます。 ガベージコレクションログは、PEでデフォルトで有効になっており、結果はサポートスクリプトでキャプチャされますが、必要であれば<a href="{{pe}}/config_java_args.html#disable-java-garbage-collection-logging">無効化</a>できます。
+</p>
+  </li>
+  <li>
+    <p> トラブルシューティングをサポートするため、MCollectiveクライアントロギングレベルをコンソールや<code>pe.conf</code>でカスタマイズすることができます。その場合は、<code>puppet_enterprise::profile::mcollective::peadmin::mco_loglevel</code>をデフォルト設定である<code>info</code>ではなく、<code>debug</code>、<code>warning</code>、または<code>error</code>に設定します。
+</p>
+  </li>
+</ul>
+<h2 id="deprecations-and-removals-in-pe-20172">PE 2017.2のサポート終了と機能廃止</h2>
+
+<ul>
+<li>
+    <p> コードマネージャが有効のまま、ファイル同期を無効にするオプション(過去のバージョンではサポートされていない)を廃止しました。
+</p>
+  </li>
+  <li>
+    <p> 本リリースでは、コードマネージャの<code>file_sync_repo_id</code>パラメータと<code>file_sync_auto_commit</code>パラメータを廃止します。 PEはこれらのパラメータを無視し、設定された場合には警告を表示します。 <!--CODEMGMT-1020, PE-18299-->
+</p>
+  </li>
+</ul>
+<h3 id="platforms-reaching-end-of-support">サポート終了のプラットフォーム</h3>
+
+<ul>
+<li>
+    <p> RHEL 4、Fedora 23、Ubuntu 12.04はサポート終了(EOL)となります。
+</p>
+  </li>
+  <li>
+    <p> まもなくサポート終了となるプラットフォームのリストについては、<a href="./sys_req_os.html#upcoming-platform-end-of-life-eol">まもなくサポート終了となるプラットフォームのリスト</a>を参照してください。
+</p>
+  </li>
+  <li>
+    <p> 最新バージョンのサポート期間のリストについては、<a href="./overview_getting_support.html#puppet-enterprise-support-life-cycle">Puppet Enterpriseサポートライフサイクル</a>を参照してください。
+</p>
+  </li>
+</ul>
+<h2 id="related-release-notes">関連リリースノート</h2>
+
+<h3 id="puppet-release-notes">Puppetリリースノート</h3>
+
+<p> PEの本バージョンには、Puppetバージョン4.10.1が含まれています。詳細については、<a href="{{puppet}}/release_notes.html">Puppetリリースノート</a>を参照してください。
+</p>
+
+<h3 id="puppet-agent-release-notes">Puppet agentリリースノート</h3>
+
+<p> PEの本バージョンには、Puppet agentバージョン1.10.1が含まれています。詳細については、<a href="{{puppet}}/release_notes_agent.html#puppet-agent-1101">Puppet agentリリースノート</a>を参照してください。
+</p>
+
+<h3 id="puppetdb-release-notes">PuppetDBリリースノート</h3>
+
+<p> PEの本バージョンには、PuppetDBバージョン4.4.0が含まれています。詳細については、 <a href="{{puppetdb}}/release_notes.html">PuppetDBリリースノート</a>を参照してください。
+</p>
+
+<h3 id="puppet-server-release-notes">Puppet Serverリリースノート</h3>
+
+<p> PEの本バージョンには、Puppet Serverバージョン2.7.2が含まれています。詳細については、<a href="{{puppetserver}}/release_notes.html">Puppet Serverリリースノート</a>を参照してください。
+</p>
+</div>

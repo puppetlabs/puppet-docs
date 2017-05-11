@@ -1,0 +1,276 @@
+---
+layout: default
+title: "コンパイルmasterのインストール"
+---
+
+<p> インフラの規模が拡大してノードが4000台を超えた場合、負荷を分散したコンパイルmasterをモノリシックインストールのアーキテクチャに追加すると、より多くのagentを管理できるようになります。 マスターオブマスター(MoM)上で稼働するPuppetDBまたはコンソールの容量上限に達するまでは、コンパイルmasterを1つ追加すると、1500～3000台のノードを増設することができます。
+</p>
+
+<h2 id="how-compile-masters-work">コンパイルmasterの仕組み</h2>
+
+<p> 管理対象のノードが4000台を超えると、1つのPuppet masterでPuppet agentのすべての要求処理やコードのコンパイルを行うことはできなくなります。 コンパイルmasterを追加してインフラを拡張すると、作業負荷が分散され、カタログのコンパイルが迅速になります。 コンパイルmasterの機能の多くは、Puppet masterと同じです。ファイル同期を実行し、Puppetサーバーを内包するほか、<code>pe_repo</code>をホストすることができます。 コンパイルmasterのデプロイにおいて、メインとなるPuppet masterはマスターオブマスターズ(MoM)と呼ばれます。
+</p>
+
+<blockquote>
+  <p> <strong>ヒント</strong>: 基本的なインストールタイプとそれぞれの推奨ハードウェアの指針については、<a href="./sys_req_hw.html">Puppet Enterpriseハードウェアの推奨事項</a>を参照してください。
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>重要</strong>: コンパイルmasterでは、MoMと<a href="./sys_req_os.html#puppet-master-platforms">同じOSメジャーバージョン、プラットフォーム、アーキテクチャ</a>を使用する必要があります。
+</p>
+</blockquote>
+
+<h3 id="components-and-services-running-on-compile-masters">コンパイルmasterで稼働するコンポーネントとサービス</h3>
+
+<p> すべてのコンパイルmasterには、Puppetサーバーと<a href="{{pe}}/cmgmt_filesync.html">ファイル同期</a>クライアントが含まれます。 Webエンドポイントからのトリガーにより、ファイル同期はマスターオブマスターズ(MoM)の作業ディレクトリから変更を取得し、そのコードをライブコードディレクトリにデプロイします。 その後、そのコードをすべてのコンパイルmasterにデプロイし、マルチmaster構成に存在するすべてのmasterの同期を確保します。 デフォルトでは、コンパイルmasterは5秒おきにコードの更新をチェックします。
+</p>
+
+<p> 認証局(CA)サービスは、コンパイルmasterでは無効になっています。 コンパイルmasterのPuppetサーバーで稼働するプロキシサービスにより、デフォルトインストールでCAをホストするMoMにCA要求が送られます。
+</p>
+
+<p> コンパイルmasterには以下のものも含まれます。
+</p>
+
+<ul>
+<li>MCollectiveクライアント、<code>peadmin</code>
+</li>
+  <li>agentインストール用のPuppet Enterpriseリポジトリ、<code>pe_repo</code>
+</li>
+  <li>Puppet Enterpriseクライアントツールで使用されるコントローラプロファイル</li>
+  <li>オーケストレータを拡張するためのPCPブローカ</li>
+</ul>
+<p> コンパイルmasterのログは、<code>/var/log/puppetlabs/puppetserver/</code>にあります。
+</p>
+
+<p> コンパイルmaster上のPCPブローカのログは、<code>/var/log/puppetlabs/puppetserver/pcp-broker.log</code>にあります。
+</p>
+
+<h2 id="install-compile-masters">コンパイルmasterのインストール</h2>
+
+<p> コンパイルmasterをインストールするには、はじめにPuppet agentをインストールし、このagentをコンパイルmasterとして指定します。
+</p>
+
+<p> インストールを始める前に
+</p>
+
+<p> 作業の開始前に以下の手順を確認します。 誤った順序で実行すると、設定に問題が生じるおそれがあります。 また、これらの手順については、以下の点も注意してください。
+</p>
+
+<ul>
+<li>この手順は、Puppet Enterpriseデプロイの<a href="./install_pe_split.html">分割インストール</a>または<a href="./install_pe_mono.html">モノリシックインストール</a> をすでに実施していることを前提としています。</li>
+  <li>すべてのサーバーで、同じOSおよびアーキテクチャが使用されている必要があります。</li>
+  <li>この手順で使用している以下のホスト名は、お使いのインフラの対応するホスト名に置き換える必要があります。<ul>
+<li>
+<strong>Puppet master/CAサーバー(MoM)</strong>: <code>MASTER.EXAMPLE.COM</code>
+</li>
+      <li>
+<strong>Puppet Enterprise Webコンソール
+</strong>： <code>&lt;CONSOLE.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>PuppetDB</strong>: <code>PUPPETDB.EXAMPLE.COM</code>
+</li>
+      <li>
+<strong>コンパイルmaster</strong>: <code>COMPILE.MASTER.EXAMPLE.COM</code>
+</li>
+    </ul>
+</li>
+  <li>コンパイルmasterとして指定するマシンには、まだPuppet agentが<strong>インストールされていない</strong>ことが条件となります。</li>
+</ul>
+<ol>
+<li>
+    <p> Puppet agentを<code>COMPILE.MASTER.EXAMPLE.COM</code>にインストールするには、 SSHで<code>COMPILE.MASTER.EXAMPLE.COM</code>にログインし、以下のコマンドを実行します。
+</p>
+
+    <pre><code>`curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/install.bash | sudo bash -s main:dns_alt_names=&lt;COMMA-SEPARATED LIST OF ALT NAMES FOR THE COMPILE MASTER&gt;`
+</code></pre>
+
+    <blockquote>
+      <p> <strong>注意</strong>: <code>dns_alt_names</code>の値の設定では、Puppet agentがmasterとの接続に用いる可能性のある別名をカンマ区切りで列挙する必要があります。 インストールのデフォルトでは「puppet」が使用されます。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> <code>MASTER.EXAMPLE.COM</code>のコマンドラインで、以下のコマンドを実行します。
+</p>
+
+    <pre><code>puppet cert --allow-dns-alt-names sign COMPILE.MASTER.EXAMPLE.COM
+</code></pre>
+
+    <blockquote>
+      <p> <strong>注意</strong>：DNSオルトネームのあるノードの証明書の署名には、コンソールは使用できません。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> <code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>のコマンドラインで<code>puppet agent -t</code>を実行します。
+</p>
+  </li>
+  <li>
+    <p> <code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>がPuppet masterとして機能し、Puppet Enterprise認証局への要求をプロキシするように、コンソールで分類を実行します。
+</p>
+
+    <p> a. コンソールで[<strong>分類</strong>]をクリックし、<strong>PE Infrastructure</strong>ノードグループで<strong>PE Master</strong>ノードグループを選択します。
+</p>
+
+    <p> b. [<strong>Certname</strong>]セクションの[<strong>ノード名</strong>]フィールドに<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>と入力します。
+</p>
+
+    <p> c. <strong>ノードをピン留めする</strong>をクリックし、変更ボタンをクリックします。
+</p>
+  </li>
+  <li>
+    <p> <code>pe_repo</code>を設定して、負荷バランサに対してagentインストールリクエストを送信するようにします。
+</p>
+
+    <blockquote>
+      <p> <strong>注:</strong> 負荷バランサの詳しい設定方法は、このマニュアルでは扱っていません。考慮事項については、<a href="./install_lei_load.html">コンパイルmasterでの負荷バランサの使用</a>を参照してください。
+</p>
+    </blockquote>
+
+    <p> a. コンソールで[<strong>分類</strong>]をクリックし、<strong>PE Infrastructure</strong>ノードグループで<strong>PE Master</strong>グループを選択します。
+</p>
+
+    <p> b. [<strong>PE Master</strong>]グループで[<strong>クラス</strong>]タブをクリックし、[<strong>pe_repo</strong>]クラスを探します。
+</p>
+
+    <p> c. [<strong>パラメータ</strong>]ドロップダウンリストから[<strong>compile_master_pool_address</strong>]を選択します。
+</p>
+
+    <p> d. [<strong>値</strong>]フィールドに、負荷バランサを説明するアドレスを入力します (<code>&lt;LOADBALANCER.EXAMPLE.COM&gt;</code>など)。
+</p>
+
+    <p> e. [<strong>Add parameter</strong>]をクリックし、[<strong>変更をコミット</strong>]をクリックします。
+</p>
+  </li>
+  <li>
+    <p> 以下のノードで、記載する順序どおりに、<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行</a>します。
+</p>
+
+    <blockquote>
+      <p> <strong>重要</strong>：以下のPuppet実行は、<strong>必ず</strong>以下の手順で指定された順序で実施してください。 いずれのケースでも、最初のノードの実行が終わるまで待ってから、次に進むようにしてください。
+</p>
+    </blockquote>
+
+    <ul>
+<li>
+<strong>モノリシックインストールの場合</strong><ol>
+<li><code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;MASTER.EXAMPLE.COM&gt;</code></li>
+        </ol>
+</li>
+      <li>
+<strong>分割インストールの場合</strong><ol>
+<li><code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;PUPPETDB.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;CONSOLE.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;MASTER.EXAMPLE.COM&gt;</code></li>
+        </ol>
+</li>
+    </ul>
+</li>
+</ol>
+<h2 id="configure-compile-masters-for-orchestrator-scale">オーケストレータを拡張するためのコンパイルmasterの設定</h2>
+
+<p> Puppet Enterpriseのインストール規模が拡大した場合は、agent、負荷バランサ、コンパイルmasterの間に接続を設定することで、オーケストレータジョブを拡張できます。
+</p>
+
+<p> Puppetオーケストレータは、ポート8143を使用して<a href="{{pe}}/orchestrator_intro.html#puppet-orchestrator-technical-overview">コンパイルmaster上でPCPブローカと通信</a>し、ジョブ関連のメッセージをブローカに送信します。次にブローカが、このメッセージをPXP agentにリレーします。 コンパイルmasterを追加するときは、agentにオーケストレーションメッセージを送信するPCPブローカの数も増やします。
+</p>
+
+<p> コンパイルmasterの追加時に、コンパイルmaster上で実行されるPCPブローカへのPXP agentの接続を負荷分散する必要があります。 PXP agentは、ポート8142を介して、コンパイルmaster上で実行されるPCPブローカに接続します。
+</p>
+
+<p> PCPブローカはWebSocket上に構築され、多数の持続的な接続を必要とします。  <a href="#using-health-checks">HTTPヘルスチェックを使用</a>していない場合、ラウンドロビンまたはランダムの負荷分散アルゴリズムを使用して、PXP agentをPCPブローカに接続します。これは、PCPブローカの動作がオーケストレータから独立していないので、接続が切れると孤立するためです。  <a href="{{pe}}/status_api.html#get-statusv1simple"><code>/status/v1/simple</code></a> エンドポイントを使用すると、接続にエラー状態がないかどうかをチェックすることができます。 コンパイルmaster上のステータスチェックは、ポート8140に送信する必要があります。
+</p>
+
+<p> また、負荷バランサを設定して、トラフィックがほとんどない長時間実行接続を終了しないようにする必要があります。 PCPブローカでは15分以上活動のない接続が切断されるため、HAプロキシモジュールを使用している場合は<code>timeout tunnel</code> を<code>15m</code>に設定します。 コンパイルmaster上のステータスチェックは、ポート8140に送信する必要があります。
+</p>
+
+<blockquote>
+  <p> 前提条件: このタスクは、必要なコンパイルmasterと負荷バランサがすでにインストールされていることを前提としています。
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> <a href="{{pe}}/console_classes_groups_preconfigured_groups.html#the-pe-infrastructure-agent-node-group"><strong>PE Infrastructure Agent</strong></a>グループを設定して、このグループ内のノードがMoMに接続するようにします。
+</p>
+
+    <p> a. コンソールで[<strong>分類</strong>]をクリックし、<strong>PE Infrastructure</strong>グループで<strong>PE Agent</strong>グループを選択します。
+</p>
+
+    <p> b. Puppet agentを使用して負荷バランサを管理する場合、[<strong>ルール</strong>]タブで、このグループに負荷バランサをピン留めします。
+</p>
+
+    <p> c. [<strong>クラス</strong>]タブで<code>puppet_enterprise::profile::agent</code>クラスを見つけて、以下のパラメータと値を追加します。
+</p>
+
+    <table>
+<thead><tr>
+<th>パラメータ</th>
+          <th>値</th>
+        </tr></thead>
+<tbody><tr>
+<td><code>pcp_broker_list</code></td>
+          <td>MoMのホスト名を含むJSON形式のリスト。HAレプリカがある場合、MoMの後に配置する必要があります。<br>ホスト名にはポート<code>8142</code>を含めます。<br>例: <code>["MASTER.EXAMPLE.COM:8142"]</code>
+</td>
+        </tr></tbody>
+</table>
+<p> d. [<strong>パラメータを追加</strong>]をクリックします。
+</p>
+
+    <p> e. <code>puppet_enterprise::profile::agent::pcp_broker_ws_uris</code>に設定されている値がある場合は削除します。
+</p>
+
+    <p> f. [<strong>変更を保存</strong>]をクリックします。
+</p>
+
+    <p> g. PE Infrastructure Agentグループに属するすべてのagentで、Puppetを実行します。
+</p>
+
+    <p> このPuppet実行によって、PXP agentの設定が変わることはありません。 HAを設定済みで、<strong>PE Infrastructure Agent</strong>グループに対してまだ負荷バランサをピン留めしていない場合は、MoM上のカタログをコンパイルするように負荷バランサが設定されます。
+</p>
+  </li>
+  <li>
+    <p> <strong>PE Agent</strong>ノードが負荷バランサに接続するように設定します。
+</p>
+
+    <p> a. コンソールで[<strong>分類</strong>]をクリックし、<strong>PE Infrastructure</strong>グループで<strong>PE Agent</strong>グループを選択します。
+</p>
+
+    <p> b. [<strong>クラス</strong>]タブで<code>puppet_enterprise::profile::agent</code>クラスを見つけて、以下のパラメータと値を追加します。
+</p>
+
+    <table>
+<thead><tr>
+<th>パラメータ</th>
+          <th>値</th>
+        </tr></thead>
+<tbody><tr>
+<td><code>pcp_broker_list</code></td>
+          <td>負荷バランサのホスト名を含むJSON形式のリスト。<br>ホスト名にはポート<code>8142</code>を含めます。<br>例: <code>["LOADBALANCER1.EXAMPLE.COM:8142", "LOADBALANCER1.EXAMPLE.COM:8142"]</code>
+</td>
+        </tr></tbody>
+</table>
+<p> c. [<strong>パラメータを追加</strong>]をクリックします。
+</p>
+
+    <p> d. <code>puppet_enterprise::profile::agent::pcp_broker_ws_uris</code>に設定されている値がある場合は削除します。
+</p>
+
+    <p> e. [<strong>変更を保存</strong>]をクリックします。
+</p>
+
+    <p> f. master上でPuppetを実行します。
+</p>
+
+    <p> g. すべてのagentでPuppetを実行するか、または新しいagentをインストールします。
+</p>
+
+    <p> このPuppet実行によりPXP agentが負荷バランサに接続されるようになります。
+</p>
+  </li>
+</ol>
+</div>

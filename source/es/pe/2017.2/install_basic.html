@@ -1,10 +1,8 @@
 ---
 layout: default
-title: "Descargar e instalar Puppet Enterprise"
-canonical: "/es/pe/latest/install_basic.html"
+title: "Descarga e instalación de Puppet Enterprise"
 ---
 
-<div>
 <p> Para empezar con Puppet Enterprise, descargue y verifique la instalación del paquete PE y entonces, seleccionaremos nuestro tipo de instalación.
 </p>
 
@@ -118,7 +116,7 @@ gpg: Good signature from "Puppet, Inc. Release Key (Puppet, Inc. Release Key)"
 <p> Las funciones de Puppet Enterprise se distribuyen entre varios componentes diferentes que se instalan y configuran cuando se ejecuta la instalación. Puede seleccionar instalar múltiples componentes en un único nodo (una "instalación monolítica") o instalar los componentes entre múltiples nodos (una instalación fraccionada), pero usted debería confirmar que el componente "agent"  se encuentra en cada nodo.
 </p>
 
-<p> Debe decidir las necesidades del despliegue antes de iniciar el proceso de instalación. Para cada nodo donde instalará el componente PE, usted debe saber el FQDN de cada nodo accesible y asegurarse que las reglas del firewall permiten el acceso a los  <a href="/pe/2017.1/sys_req_sysconfig.html#firewall-configuration">puertos requeridos</a>.
+<p> Debe decidir las necesidades del despliegue antes de iniciar el proceso de instalación. Para cada nodo donde instalará el componente PE, usted debe saber el FQDN de cada nodo accesible y asegurarse que las reglas del firewall permiten el acceso a los  <a href="/pe/2017.2/sys_req_sysconfig.html#firewall-configuration">puertos requeridos</a>.
 </p>
 
 <p> Con este conocimiento en su poder, el proceso de instalación sucederá en <strong>tres etapas</strong>:
@@ -134,7 +132,7 @@ gpg: Good signature from "Puppet, Inc. Release Key (Puppet, Inc. Release Key)"
 </p>
   </li>
   <li>
-    <p> Instales el Puppet agent en todos los nodos que desee gestionar con PE. En lo referente a  las <a href="/pe/2017.1/install_agents.html">instrucciones de instalación de agent</a>.
+    <p> Instales el Puppet agent en todos los nodos que desee gestionar con PE. En lo referente a  las <a href="./install_agents.html">instrucciones de instalación de agent</a>.
 </p>
   </li>
 </ol>
@@ -145,19 +143,19 @@ gpg: Good signature from "Puppet, Inc. Release Key (Puppet, Inc. Release Key)"
 
 <ul>
 <li>
-    <p> <a href="/pe/2017.1/install_pe_mono.html">Instalación Web monolítica</a>: El base de instalación para el tipo de <a href="/pe/2017.1/sys_req_hw.html#monolithic-installation">instalación standard monolítica</a> o <a href="/pe/2017.1/sys_req_hw.html#monolithic-with-compile-masters-installation">monolítica más instalación master compilada</a>.
+    <p> <a href="./install_pe_mono.html">Instalación Web monolítica</a>: El base de instalación para el tipo de <a href="/pe/2017.2/sys_req_hw.html#monolithic-installation">instalación standard monolítica</a> o <a href="/pe/2017.2/sys_req_hw.html#monolithic-with-compile-masters-installation">monolítica más instalación master compilada</a>.
 </p>
   </li>
   <li>
-    <p> <a href="/pe/2017.1/install_text_mode.html">Instalación en modo texto</a>: Utilice el ejemplo del fichero  <code>pe.conf</code> del tarball de instalación de  PE installation o créelo usted para instalar PE. En modo texto, usted puede crear una instalación monolítica o fragmentada.
+    <p> <a href="/pe/2017.2/install_text_mode.html">Instalación en modo texto</a>: Utilice el ejemplo del fichero  <code>pe.conf</code> del tarball de instalación de  PE installation o créelo usted para instalar PE. En modo texto, usted puede crear una instalación monolítica o fragmentada.
 </p>
   </li>
 </ul>
-<p> Consulte los <a href="/pe/2017.1/sys_req_hw.html">requerimientos de sistema</a> para información adicional relativa al hardware.
+<p> Consulte los <a href="/pe/2017.2/sys_req_hw.html">requerimientos de sistema</a> para información adicional relativa al hardware.
 </p>
 
 <blockquote>
-  <p> <strong>Consejo:</strong> Antes de comenzar la instalación, usted debería familiarizarse con los componentes y servicios que constituyen PE. Consulte el  <a href="/pe/2017.1/pe_architecture_overview.html">resumen de arquitectura PE</a> para más información.
+  <p> <strong>Consejo:</strong> Antes de comenzar la instalación, usted debería familiarizarse con los componentes y servicios que constituyen PE. Consulte el  <a href="/pe/2017.2/pe_architecture_overview.html">resumen de arquitectura PE</a> para más información.
 </p>
 </blockquote>
 

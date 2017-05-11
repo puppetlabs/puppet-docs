@@ -1,0 +1,482 @@
+---
+layout: default
+title: "¿Qué se instala y donde?"
+---
+
+<p> Puppet Enterprise (PE) instala muchos componentes de software, ficheros de configuración, bases de datos, servicios, usuarios y ficheros de log. Es útil conocer la localización de los mismos, en caso de solucionar problemas o gestionar tu infraestructura PE.
+</p>
+
+<h2 id="software-components-installed">Componentes de software instalados</h2>
+
+<p> PE instala bastante componentes de software y dependencias.
+</p>
+
+<p> Los componentes funcionales de PE estas están separado entre los empaquetados con puppet-agent y los empaquetados en el lado del server (el cual también incluye puppet-agent).
+</p>
+
+<p> PE 2017.2 incluye los siguientes componentes de software importantes
+</p>
+
+<h3 id="agent-components-on-all-nodes">Componenentes Agente (en todos los nodos)</h3>
+
+<table>
+<thead><tr>
+<th>Versión PE</th> <th>Puppet Agent</th> <th>Puppet</th> <th>Facter</th> <th>Hiera</th> <th>MCollective</th> <th>Ruby</th> <th>OpenSSL</th>
+    </tr></thead>
+<tbody>
+<tr><td>2017.2.1</td> <td><a href="/puppet/4.10/release_notes_agent.html#puppet-agent-1101"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">1.10.1</abbr></a></td> <td><a href="/puppet/4.10/release_notes.html#puppet-4101"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">4.10.1</abbr></a></td> <td><a href="/facter/3.6/release_notes.html#facter-364"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">3.6.4</abbr></a></td> <td><a href="/hiera/3.3/release_notes.html#hiera-331"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">3.3.1</abbr></a></td> <td><a href="/mcollective/releasenotes.html"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.10.4</abbr></a></td> <td><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.1.9</abbr></td> <td><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">1.0.2k</abbr></td></tr>
+</tbody>
+</table>
+<h3 id="server-components">Componentes del servidor</h3>
+
+<table>
+<thead><tr>
+<th>Versión PE</th> <th>Puppet Server</th> <th>PuppetDB</th> <th>r10k</th> <th>Razor Server</th> <th>Razor Libs</th> <th>PostgreSQL</th> <th>Java</th> <th>ActiveMQ</th> <th>Nginx</th>
+    </tr></thead>
+<tbody>
+<tr><td>2017.2.1</td> <td><a href="/puppetserver/2.7/release_notes.html#puppet-server-272"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.7.2</abbr></a></td> <td><a href="/puppetdb/4.4/release_notes.html"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">4.4.0</abbr></a></td> <td><a href="https://github.com/puppetlabs/r10k/blob/master/CHANGELOG.mkd#254"><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2.5.4</abbr></a></td> <td><abbr title="el-6-x86_64, el-7-x86_64">1.6.0</abbr></td> <td><abbr title="el-6-x86_64, el-7-x86_64">2017.1.3</abbr></td> <td><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.2.9</abbr></td> <td><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.2.1</abbr></td> <td><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.2.5</abbr></td> <td><abbr title="sles-11-x86_64, el-6-x86_64, ubuntu-14.04-amd64, el-7-x86_64, sles-12-x86_64, ubuntu-16.04-amd64">2017.2.1</abbr></td></tr>
+</tbody>
+</table>
+<blockquote>
+  <p> <strong>Nota:</strong> PE también instala otras dependencias, como se documenta en <a href="/pe/2017.2/sys_req_os.md#dependencies-and-os-specific-details">requirementos del sistema</a>.
+</p>
+</blockquote>
+
+<h2 id="binaries-modules-and-plugins-installed">Binarios, modules y plugins instalados</h2>
+
+<p> PE instala muchos binarios, módulos y plugins para operaciones normales y para interactivos con sus herramientas y servicios.
+</p>
+
+<h3 id="executable-binaries-and-symlinks"> Binarios ejecutables y enlaces simbólicos</h3>
+
+<p> PE instala binarios ejecutables para interactuar con herramientas y servicios.
+</p>
+
+<p> En nodos *nix, todo el software PE está instalado bajo <code>/opt/puppetlabs</code>.
+</p>
+
+<p> En nodos Windows, todo el software PE está instalado en el subdirectorio "Puppet Enterprise" del <a href="./install_windows.html#program-directory"> directorio de aplicaciones 32-bit estandar</a>
+</p>
+
+<p> Binarios ejecutables en *unix esta en <code>/opt/puppetlabs/bin</code> y <code>/opt/puppetlabs/sbin</code>.
+</p>
+
+<p> Para hacer disponibles herramientas esenciales de Puppet para todos los usuarios, el instalador crea automáticamente enlaces simbólicos en <code>/usr/local/bin</code> para los binarios <code>facter</code>, <code>puppet</code>, <code>pe-man</code>, <code>r10k</code>, <code>hiera</code> y <code>mco</code>.
+ Nota que los enlaces simbólicos solo serán creados si <code>/usr/local/bin</code> es grabable.
+</p>
+
+<p> AIX y Solaris necesita agregar 10/11 usuarios <code>/usr/local/bin</code> a su ruta predeterminada.
+</p>
+
+<p> Si estás ejecutando agents Mac OS X, nota que enlaces simbólicos no están creados hasta la primera ejecución completa de Puppet que aplica los catálogos de agent.
+</p>
+
+<p> Los binarios provistos por otros componentes PE, aquellos que interactúan con el servidor PostgreSQL instalado de PE, PuppetDB o los paquetes de Ruby no tienen enlaces simbólicos creados.
+</p>
+
+<p> Para obtener instrucciones sobre cómo habilitar binarios o deshabilitar enlaces simbólicos, consulte lo siguiente:
+</p>
+
+<ul>
+<li><a href="./install_pe_mono.html#add-puppet-enterprise-binaries-to-path">Agrege los bianrios de Puppet Enterprise al <code>PATH</code></a></li>
+  <li><a href="./install_pe_mono.html#disable-puppet-enterprise-symlinks">Deshabilitar enlaces simbólicos Puppet Enterprise </a></li>
+</ul>
+<h3 id="modules-and-plugins">Módulos y plugins</h3>
+
+<p> PE instala algunos módulos y plugins para operaciones normales.
+</p>
+
+<ul>
+<li>Los modules de Puppet incluidos en PE están instalados en el servidor Puppet master en <code>/opt/puppetlabs/puppet/modules</code>. No realizes ningún cambio o agregues modules por tu cuenta. En su lugar instalelos en <code>/etc/puppetlabs/code/environments/&lt;environment&gt;/modules</code>.</li>
+  <li>Los plugins de MCollective están instalados en  <code>/opt/puppetlabs/mcollective/plugins/</code> *nix y en  <a href="./install_windows.html#data-directory"><code>&lt;COMMON_APPDATA&gt;</code></a><code>\PuppetLabs\mcollective\etc\plugins\mcollective</code> sobre Windows. Si tu estás agregando nuevos plugins en los nodos PE agent , tu deberías <a href="/pe/2017.2/orchestration_adding_actions.html">distribuirlos vía Puppet como está descrito en la página del manual “Adding actions”</a>.</li>
+</ul>
+<h2 id="configuration-files-installed">FIcheros de configuración instalados</h2>
+
+<p> PE instala configuración de ficheros, los cuales, de vez en cuando, puedes necesitar para interactuar con ellos.
+</p>
+
+<p> Sobre nodos *nix, todos los ficheros de configuración de Puppet Enterprise se encuentran en <code>/etc/puppetlabs/puppet</code>.
+</p>
+
+<p> Sobre nodos Windows, todos los fichero de configuración se encuentran bajo <code>&lt;COMMON_APPDATA&gt;\PuppetLabs</code>. La localización de la carpeta varía  <a href="./install_windows.html#data-directory">según la versión de  Windows</a>; en las versiones 2008 y 2012, la localización por defecto es <code>C:\ProgramData\PuppetLabs\puppet\etc</code>.
+</p>
+
+<p> El <code>confdir</code> de Puppet se encuentra en el subdirectorio <code>puppet</code>. El directorio contiene el fichero <a href="/guides/configuring.html"><code>puppet.conf</code></a>, <code>auth.conf</code> y el directorio SSL.
+</p>
+
+<h2 id="tools-installed">Utilidades instaladas</h2>
+
+<p> PE instala múltiples suites de herramientas para ayudar en el trabajo con los componentes principales del software.
+</p>
+
+<p> Esas herramientas incluyen:
+</p>
+
+<ul>
+<li>
+<strong>Puppet Tools</strong> — Herramientas para controlar las funciones básicas de Puppet como <code>puppet master</code> y <code>puppet cert.</code>
+  Consulta la  <a href="/guides/tools.html">Sección Herramientas</a> del Munual Puppet para más información.</li>
+  <li>
+<strong>PE client tools</strong> — El paquete pe-client-tools es un conjunto de utilidades CLI que amplían las capacidades para acceder a los servicios de Puppet Enterprise desde el Puppet master o una workstation.  Este paquete incluye:<ul>
+<li>
+<strong>Puppet orchestrator</strong> — El Puppet orchestrator es un conjunto de utilidades de línea de comando que proveen de una interfaz al servicio Puppet Application, y también provee de la capacidad de aplicar cambios a nivel de entorno. Estas herramientas  incluye <code>puppet job</code> y <code>puppet app</code>.  Consulta la  <a href="/pe/2017.2/orchestrator_intro.html"> documentación de Puppet Orchestrator </a> para más información. Consulta la <a href="/pe/2017.2/code_mgr_cli.html">documentación de Code Manager</a> para más información.</li>
+      <li>
+<strong>Puppet Access</strong> —  Los escenarios de Puppet Enterprise pueden generar tokens para autenticar su acceso a ciertos comandos de PE y en las distintas APIs . Consulte <a href="/pe/2017.2/rbac_token_auth.html"> la documentación en autenticación basada en token </a> para más información.</li>
+      <li>
+<strong>Code Manager CLI</strong> — El comando <code>puppet code</code> Comando le permite activar el Code Manager desde la línea de comandos para implementar su entorno.</li>
+      <li>
+<strong>PuppetDB CLI</strong> — Esta es una utilidad para trabajar con PuppetDB, como realizar consultar y exportaciones de datos. Consulta <a href="/puppetdb/4.4/pdb_client_tools.html">PuppetDB CLI</a> para más información.</li>
+    </ul>
+</li>
+  <li>
+<strong>Utilidades MCollective </strong> — Herramientas para invocar acciones simultáneas entre un número de nodos. Estas utilidades están construidas en el  MCollective framework y son accesibles desde el comando <code>mco</code>. Consulta la <a href="/pe/2017.2/orchestration_overview.html">Documentación PE MCollective</a> para más información.</li>
+  <li>
+<strong>Utilidades Module</strong> — La utilidad Modules es utilizada para acceder y crear Puppet Modules,  is used to access and create Puppet Modules, que son trozos reutilizables de código escrito por los usuarios de Puppet para automatizar tareas de configuración y despliegue. Para más información y consultar los  modules, visite <a href="http://forge.puppetlabs.com/">Puppet Forge</a>.</li>
+  <li>
+<strong>Console</strong> — La consola web UI de Puppet Enterprise. La consola provee de herramientas para consultar y editar los recursos en sus nodos, ver reportes, mostrar la actividad mediante gráficas, etc.  Consulte la <a href="/pe/2017.2/console_accessing.html">sección de consola</a> del Manual PE para más información.</li>
+</ul>
+<h2 id="databases-installed">BBDD instaladas</h2>
+
+<p> PE instala múltiples BBDD predeterminadas, todas las cuales utilizan PostgreSQL como un backend de base de datos.
+</p>
+
+<p> La BBDD PostgreSQL de PE incluye las siguientes bases de datos:
+</p>
+
+<table>
+<thead><tr>
+<th>Base de Datos</th>
+      <th>Descripción</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>pe-activity</td>
+      <td>Datos de actividad del Classifier, incluyendo quien, que y cuando</td>
+    </tr>
+<tr>
+<td>pe-classifier</td>
+      <td>Datos de clasificación, información de todos los grupos de nodos</td>
+    </tr>
+<tr>
+<td>pe-puppetdb</td>
+      <td>Datos PuppetDB, incluyendo recursos exportados, catálogos, facts y informes.</td>
+    </tr>
+<tr>
+<td>pe-rbac</td>
+      <td>Datos RBAC, incluyendo usuarios, permisos y información AD/LDAP</td>
+    </tr>
+<tr>
+<td>pe-orchestrator</td>
+      <td>Datos del orchestrator, incluyendo detalles sobre trabajos en ejecución (usuarios, nodos y salida de la ejecución)</td>
+    </tr>
+</tbody>
+</table>
+<p> Utilice herramientas nativas PostgreSQL para exportar e importar BBDD. Como mínimo, debes realizarla todas las noches el <a href="/pe/2017.2/maintain_console-db.html#backup-and-restore-procedures-for-the-pe-databases">backup</a> a un sistema remoto o como dicta la política de su empresa.
+</p>
+
+<h2 id="services-users-and-group-accounts-installed">Servicios, usuarios y grupos de usuarios instalados</h2>
+
+<p> PE instala múltiples servicios, usuarios y cuentas de grupos para interactuar con el software que contiene.
+</p>
+
+<h3 id="services-installed">Servicios instalados</h3>
+
+<p> PE instala múltiples servicios que utilizarás para interactuar en operaciones normales.
+</p>
+
+<table>
+<tr>
+<th>Servicio</th>
+   <th>Definición</th>
+ </tr>
+<tr>
+<td nowrap>pe-activemq</td>
+   <td>EL servidor de mensajes ActiveMQ, envía mensajes a los servidores MCollective en los nodos agent. Ejecute en los servidores con el componente Puppet master.</td>
+ </tr>
+<tr>
+<td nowrap>pe-console-services</td>
+   <td>Administra y sirve la consola PE.</td>
+ </tr>
+<tr>
+<td nowrap>pe-puppetserver</td>
+   <td nowrap>El servidor Puppet master, que administra el componente Puppet master.</td>
+ </tr>
+<tr>
+<td nowrap>pe-nginx</td>
+   <td>Nginx, sirve como reverse-proxy a la consola PE.</td>
+ </tr>
+<tr>
+<td nowrap>mcollective</td>
+   <td>El demonio MCollective, escucha mensajes e invoca acciones. Se ejecuta en cada nodo agent.</td>
+ </tr>
+<tr>
+<td nowrap>puppet</td>
+   <td>(sobre plataformas basadas en  EL and Debian) --- El demonio Puppet agent. Corre sobre todos los nodos agent.</td>
+ </tr>
+<tr>
+<td nowrap>pe-puppetdb, pe-postgresql</td>
+   <td>Los demonios que gestionan y sirve los componentes de BBDD. Note que pe-postgresql está solo creado, si nosotros instalamos y administramos PostgreSQL por usted.</td>
+ </tr>
+<tr>
+<td nowrap>pxp-agent</td>
+   <td>Ejecute el proceso PXP de Puppet agent.</td>
+ </tr>
+<tr>
+<td nowrap>pe-orchestration-services</td>
+   <td>Ejecute el proceso Puppet orchestration.</td>
+ </tr>
+</table>
+<h3 id="user-accounts-installed">User accounts installed</h3>
+
+<p> PE crea múltiples usuarios de cuentas.
+</p>
+
+<table>
+<tr>
+<th>User</th>
+   <th>Definición</th>
+ </tr>
+<tr>
+<td nowrap>peadmin</td>
+  <td>Una cuenta administrativa que invoca acciones relaacionadas con MCollective. Esto es solo destinada en cuentas de usuario PE para el uso en el login shell. Consulte <a href="/pe/2017.2/orchestration_invoke_cli.html">Invoking Actions</a> para más información del usuario. Este usuario existen en los servidores con el componente Puppet master.</td>
+ </tr>
+<tr>
+<td nowrap>pe-puppet</td>
+  <td>Un usuario de sistema que ejecuta en Puppet master procesos generados por pre-puppetserver.</td>
+ </tr>
+<tr>
+<td nowrap>pe-webserver</td>
+  <td>Un usuario de sistema que ejecuta Nginx(pre-nginx).</td>
+ </tr>
+<tr>
+<td nowrap>pe-activemq</td>
+  <td>Un usuario de sistema que ejecute el mensaje bus de ActiveMQ utilizado por MCollective.</td>
+ </tr>
+<tr>
+<td nowrap>pe-puppetdb</td>
+  <td>Un usuario de sistema con acceso root a la BBDD.</td>
+ </tr>
+<tr>
+<td nowrap>pe-postgres</td>
+  <td>Un usuario de sistema con acceso a la instancia de pre-postgreSQL. Tenga en cuenta que este usuario está únicamente creado y administrado para PostgreSQL por usted.</td>
+ </tr>
+<tr>
+<td nowrap>pe-console-services</td>
+  <td>Un usuario de sistema que ejecuta el proceso consola.</td>
+ </tr>
+<tr>
+<td nowrap>pe-orchestration-services</td>
+  <td>Un usuario de sistema que corre el proceso Puppet Orchestration.</td>
+ </tr>
+</table>
+<h3 id="group-accounts-installed">Cuentas de Grupo instaladas</h3>
+
+<p> PE crea múltiples cuentas de grupo.
+</p>
+
+<table>
+<tr>
+<th>Grupo</th>
+  <th>Definición</th>
+ </tr>
+<tr>
+<td nowrap>peadmin</td>
+  <td>Un grupo administrativo que invoca acciones relacionadas con MCollective.</td>
+ </tr>
+<tr>
+<td nowrap>pe-puppet</td>
+  <td>Un grupo del sistema que corre en Puppet master procesos generados por puppetserver.</td>
+ </tr>
+<tr>
+<td nowrap>pe-webserver</td>
+  <td>Un grupo de sistema que corre Nginx(pe-nginx).</td>
+ </tr>
+<tr>
+<td nowrap>pe-activemq</td>
+  <td>Un grupo de sistema que ejecuta el mensaje bus de ActiveMQ utilizado por MCollective.</td>
+ </tr>
+<tr>
+<td nowrap>pe-puppetdb</td>
+  <td>Un grupo de sistema con acceso root a la BBDD.</td>
+ </tr>
+<tr>
+<td nowrap>pe-postgres</td>
+  <td>Un grupo de sistema con acceso a la instancia pre-postgreSQL. Tenga en cuenta que este grupo esta solo creado para instalar y administrar PostgreSQL por usted.</td>
+ </tr>
+<tr>
+<td nowrap>pe-console-services</td>
+  <td>Un grupo de sistema que corre el proceso de consola.</td>
+ </tr>
+<tr>
+<td nowrap>pe-orchestration-services</td>
+  <td>Un grupo de sistema que correo el proceso Puppet Orchestration.</td>
+ </tr>
+</table>
+<h2 id="log-files-installed">Ficheros log instalados</h2>
+
+<p> El software distribuido por Puppet Enterprise genera ficheros de log que usted puede consultar o utilizar para solucionar problemas.
+</p>
+
+<h3 id="puppet-master-logs">Puppet master logs</h3>
+
+<p> El Puppet master tiene los siguientes logs.
+</p>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/puppetserver/puppetserver.log</code>: La aplicación de logs de Puppet esta activa. Aquí es donde se pueden encontrar cosas como errores de compilación y advertencias de obsolescencia.</li>
+  <li>
+<code>/var/log/puppetlabs/puppetserver/puppetserver-daemon.log</code>:es donde puede encontrar  fatal errors o crash reports.</li>
+  <li>
+<code>/var/log/puppetlabs/puppetserver/pcp-broker.log</code>: El archivo de registro para los intermediarios de PCP en los masters de compilación.</li>
+  <li><code>/var/log/puppetlabs/puppetserver/code-manager-access.log</code></li>
+  <li><code>/var/log/puppetlabs/puppetserver/file-sync-access.log</code></li>
+  <li><code>/var/log/puppetlabs/puppetserver/masterhttp.log</code></li>
+  <li><code>/var/log/puppetlabs/puppetserver/puppetserver-access.log</code></li>
+  <li><code>/var/log/puppetlabs/puppetserver/puppetserver.log</code></li>
+  <li><code>/var/log/puppetlabs/puppetserver/puppetserver-status.log</code></li>
+</ul>
+<h3 id="puppet-agent-logs">Puppet agent logs</h3>
+
+<p> La localización de los logs de Puppet agent depende del sistema operativo del agent.
+</p>
+
+<p> En nodos *nix, la actividad del  servicio de logs de Puppet agent va al servicio syslog. La configuración de syslog determina dónde se guardarán estos mensajes, pero la ubicación predeterminada es <code>/var/log/messages</code> en Linux, <code>/var/log/system.log</code> en Mac OS X y  <code>/var/adm/messages</code> en Solaris.
+</p>
+
+<p> En nodos Windows, la actividad del servicio de logs de Puppet agent va al Windows Event Log. Usted puede consultar estos logs mediante el navegador del Visor de Eventos. (<strong>Panel de Control</strong> &gt; <strong>Sistema y Seguridad </strong> &gt; <strong>Herramientas Administrativas</strong> &gt; <strong>Visor de Eventos</strong>)
+</p>
+
+<h3 id="activemq-logs">ActiveMQ logs</h3>
+
+<p> ActiveMQ tiene los siguientes logs.
+</p>
+
+<ul>
+<li><code>/var/log/puppetlabs/activemq/wrapper.log</code></li>
+  <li><code>/var/log/puppetlabs/activemq/activemq.log</code></li>
+  <li><code>/var/log/puppetlabs/activemq/data/audit.log</code></li>
+</ul>
+<h3 id="mcollective-logs">MCollective logs</h3>
+
+<p> MCollective tiene los siguientes logs.
+</p>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/mcollective.log</code>: mantenido por el servicio MCollective, el cual está instalado en todos los nodos.</li>
+  <li>
+<code>/var/log/puppetlabs/mcollective-audit.log</code>: existe en todos los nodos que tiene instalado MCollective; realiza un log sobre las acciones ejecutadas en el nodo por MCollective, incluyendo información sobre el cliente que llamó al nodo</li>
+</ul>
+<h3 id="console-and-pe-console-services-logs">Logs de Consola y pe-console-services</h3>
+
+<p> La consola y pe-console-services tiene los siguientes logs.
+</p>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/nginx/error.log</code>: contiene errores relacionados con nginx. Los errores de consola que no se registran en ningún otro lugar se pueden encontrar en este registro. Si tiene problemas con la consola o Puppet, este registro puede ser útil.</li>
+  <li><code>/var/log/puppetlabs/nginx/access.log</code></li>
+  <li><code>/var/log/puppetlabs/console-services.log</code></li>
+  <li><code>/var/log/puppetlabs/console-services-access.log</code></li>
+  <li><code>/var/log/puppetlabs/console-services/console-services-api-access.log</code></li>
+  <li>
+<code>/var/log/puppetlabs/console-services-daemon.log</code>: tSu es donde se pueden encontrar errores fatales o informes de fallos.</li>
+</ul>
+<h3 id="installer-logs">Installer logs</h3>
+
+<p> El instalador de PE tiene los siguientes logs.
+</p>
+
+<ul>
+<li>
+<code>/var/log/puppetlabs/installer/http.log</code>: Contiene las solicitudes web enviadas al instalador; Presente únicamente en la máquina desde la que se realizó la instalación basada en web</li>
+  <li>
+<code>/var/log/puppetlabs/installer/installer-&lt;timestamp&gt;.log</code>: Contiene las operaciones realizadas y los errores que ocurrieron durante la instalación</li>
+  <li>
+<code>/var/log/puppetlabs/installer/install_log.lastrun.&lt;hostname&gt;.log</code>: Contiene el contenido de la última ejecución del instalador</li>
+</ul>
+<h3 id="pe-database-logs">PE BBDD logs</h3>
+
+<p> PE tiene los siguientes logs para sus BBDD.
+</p>
+
+<ul>
+<li><code>/var/log/puppetlabs/puppetdb/puppetdb-access.log</code></li>
+  <li><code>/var/log/puppetlabs/puppetdb/puppetdb-status.log</code></li>
+  <li><code>/var/log/puppetlabs/puppetdb/puppetdb.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/pgstartup.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/postgresql-Fri.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/postgresql-Mon.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/postgresql-Sat.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/postgresql-Sun.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/postgresql-Thu.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/postgresql-Tue.log</code></li>
+  <li><code>/var/log/puppetlabs/postgresql/postgresql-Wed.log</code></li>
+</ul>
+<h3 id="pe-orchestration-services-logs">pe-orchestration-services logs</h3>
+
+<p> PE tiene los siguientes logs para pre-orchestration-services y componentes relacionados.
+</p>
+
+<ul>
+<li><code>/var/log/puppetlabs/orchestration-services.log</code></li>
+  <li><code>/var/log/puppetlabs/orchestration-services-access.log</code></li>
+  <li><code>/var/log/puppetlabs/orchestration-services-status.log</code></li>
+  <li>
+<code>/var/log/puppetlabs/orchestration-services-daemon.log</code>: Aquí es donde se pueden encontrar errores fatales o reportes de fallos.</li>
+  <li>
+<code>/var/log/puppetlabs/orchestration-services/pcp-broker.log</code>: el fichero log para intermediarios PCP en el master of masters (MoM).</li>
+  <li><code>/var/log/puppetlabs/orchestration-services/pcp-broker-access.log</code></li>
+  <li>
+<code>/var/log/puppetlabs/pxp-agent/pxp-agent.log</code> (en *nix) o <code>C:/ProgramData/PuppetLabs/pxp-agent/var/log/pxp-agent.log</code> (en Windows): contiene el fichero log de PXP agent</li>
+</ul>
+<h2 id="certificates-installed">Certificados instalados</h2>
+
+<p> Durante la instalación, PEe genera e instala un número de certificados SSL para que agents y servicios puedan autenticarse.
+</p>
+
+<p> Estos certificados puedes ser encontrados en <code>/etc/puppetlabs/puppet/ssl/certs</code>.
+</p>
+
+<table>
+<tr>
+<th>Certificados</th>
+  <th>Definición</th>
+ </tr>
+<tr>
+<td nowrap>&lt;PUPPET MASTER CERTNAME&gt;</td>
+  <td>Generados durante la instalación.  En una instalación monolítica, este certificado es utilizado por PuppetDB y la consola PE.  Este es el mismo valor para  el certname de los agents que se ejecuta en Puppet master. En instalación monolítica, el agent en la consola PE y PuppetDB comparten el certname. En un instalación dividida o monolítica por defecto, esto también es el Puppet CA cert.</td>
+ </tr>
+<tr>
+<td nowrap>&lt;PE CONSOLE CERTNAME&gt;</td>
+  <td>El certificado para la consola PE, el cual es únicamente generado, si usted tiene una instalación dividida. Este es el mismo valor del certname de los agents que ejecuta en una consola PE.</td>
+ </tr>
+<tr>
+<td nowrap>&lt;PUPPETDB CERTNAME&gt;</td>
+  <td>El certificado para PuppetDB, el cual es generado únicamente si tiene una instalación dividida. Este es el mismo valor para el certname de los agents que ejecutan en PuppetDB.</td>
+ </tr>
+<tr>
+<td nowrap>pe-internal-mcollective-servers</td>
+  <td>Un certificado generado en un Puppet master y ser comparte con todos los nodos agentes.</td>
+ </tr>
+<tr>
+<td nowrap>pe-internal-peadmin-mcollective-client</td>
+  <td>El certificado para la cuenta peadmin en el Puppet master.</td>
+ </tr>
+<tr>
+<td nowrap>pe-internal-puppet-console-mcollective-client</td>
+  <td>El certificado MCollective para la consola PE.</td>
+ </tr>
+</table>
+<p> Servicios que se ejecutan en el Puppet master o en la consola (por ejemplo, <code>pe-orchestration-services</code> y <code>pe-console-services</code>, utiliza el certificado de  Puppet agent para autenticar.
+</p>
+
+<hr>
+<p> <strong>Links relacionados</strong>
+</p>
+
+<ul>
+<li><a href="./install_license_key.html">Como instalar la licencia PE </a></li>
+</ul>
+</div>
