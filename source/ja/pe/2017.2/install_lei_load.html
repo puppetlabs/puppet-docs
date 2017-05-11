@@ -18,7 +18,7 @@ title: "コンパイルmasterでの負荷バランサの使用"
 
 <h3 id="load-balancing-for-orchestration-scale">オーケストレーション規模の負荷分散</h3>
 
-<p> Puppet通信プロトコル(PCP)ブローカはコンパイルmaster上で稼働し、ポート8142を介してPXP agentに接続します。 PCPブローカはWebSocket上に構築され、多数の持続的な接続を必要とします。  <a href="#using-health-checks">HTTPヘルスチェックを使用</a>していない場合、ラウンドロビンまたはランダムの負荷分散アルゴリズムを使用して、PXP agentをPCPブローカに接続することを推奨します。これは、PCPブローカの動作がオーケストレータから独立していないので、接続が切れると孤立するためです。 <a href="/pe/latest/status_api.html#get-statusv1simple"><code>/status/v1/simple</code></a>エンドポイントを使用して、接続にエラー状態がないかどうかをチェックすることができます。
+<p> Puppet通信プロトコル(PCP)ブローカはコンパイルmaster上で稼働し、ポート8142を介してPXP agentに接続します。 PCPブローカはWebSocket上に構築され、多数の持続的な接続を必要とします。  <a href="#using-health-checks">HTTPヘルスチェックを使用</a>していない場合、ラウンドロビンまたはランダムの負荷分散アルゴリズムを使用して、PXP agentをPCPブローカに接続することを推奨します。これは、PCPブローカの動作がオーケストレータから独立していないので、接続が切れると孤立するためです。 <a href="{{pe}}/status_api.html#get-statusv1simple"><code>/status/v1/simple</code></a>エンドポイントを使用して、接続にエラー状態がないかどうかをチェックすることができます。
 </p>
 
 <p> また、負荷バランサを設定して、トラフィックがほとんどない長時間実行接続を終了しないようにする必要があります。 PCPブローカは活動のない接続を15分後に切断するので、HAプロキシモジュールで、 <code>timeout tunnel</code> を<code>15m</code>に設定できます。
@@ -29,7 +29,7 @@ title: "コンパイルmasterでの負荷バランサの使用"
 <p> PuppetのREST APIが公開するステータスエンドポイントを負荷バランサのヘルスチェックに利用すると、問題のあるホストが負荷バランサからのagentの要求を受けとらないようにすることができます。
 </p>
 
-<p> Puppet masterサービスは、 <a href="/pe/latest/status_api.html#get-statusv1simple"><code>/status/v1/simple</code></a>に対して発行された認証されていないHTTP GET要求に応答します。 サービスに問題がない場合、APIはHTTP 200ステータスコードによる応答を返します。
+<p> Puppet masterサービスは、 <a href="{{pe}}/status_api.html#get-statusv1simple"><code>/status/v1/simple</code></a>に対して発行された認証されていないHTTP GET要求に応答します。 サービスに問題がない場合、APIはHTTP 200ステータスコードによる応答を返します。
 </p>
 
 <p> 負荷バランサがHTTPヘルスチェックをサポートしていない場合は、簡単な代替手法として、ホストがポート8140のTCP接続をリッスンしているかどうかをチェックする方法があります。 これにより、Puppet masterの到達不可能なインスタンスに要求が転送されないようにすることができます。ただし、ホストが正常でない場合や、ポート8140でリッスンしているサービスがPuppetに関連するサービスではない場合に、ホストをローテーションから外すことが保証されるわけではありません。

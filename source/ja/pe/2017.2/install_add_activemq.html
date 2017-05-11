@@ -147,9 +147,9 @@ title: "ActiveMQハブおよびスポーツの追加"
       <li>[<strong>値</strong>] — <code>pe-amq-network-connectors-for-ACTIVEMQ-HUB.EXAMPLE.COM</code>と入力します。</li>
     </ul>
 </li>
-  <li>[<strong>Commit changes</strong>]をクリックします。</li>
+  <li>[<strong>変更を保存</strong>]をクリックします。</li>
   <li>
-<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>で<a href="/pe/latest/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行します</a>。</li>
+<code>&lt;ACTIVEMQ-HUB.EXAMPLE.COM&gt;</code>で<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行します</a>。</li>
 </ol>
 <h3 id="add-spokes-to-activemq-broker-group">ActiveMQブローカグループへのスポークの追加</h3>
 
@@ -179,9 +179,9 @@ title: "ActiveMQハブおよびスポーツの追加"
 </p>
     </blockquote>
   </li>
-  <li>[<strong>Commit changes</strong>]をクリックします。</li>
+  <li>[<strong>変更を保存</strong>]をクリックします。</li>
   <li>
-    <p> <code>&lt;ACTIVEMQ.SYD.EXAMPLE.COM&gt;</code>および<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>で<a href="/pe/latest/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行します。</a>
+    <p> <code>&lt;ACTIVEMQ.SYD.EXAMPLE.COM&gt;</code>および<code>&lt;ACTIVEMQ.PDX.EXAMPLE.COM&gt;</code>で<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行します。</a>
 </p>
   </li>
   <li>
@@ -213,7 +213,7 @@ title: "ActiveMQハブおよびスポーツの追加"
 </p>
 
 <blockquote>
-  <p> <strong>ヒント：</strong> カスタムfactsの作成およびデプロイに関する詳細が必要な場合は、 <a href="/%7B%7Bfacter%7D%7D/fact_overview.html">Facter 文書</a>を参照してください。
+  <p> <strong>ヒント：</strong> カスタムfactsの作成およびデプロイに関する詳細が必要な場合は、 <a href="/{{facter}}/fact_overview.html">Facter 文書</a>を参照してください。
 </p>
 </blockquote>
 
@@ -319,7 +319,7 @@ puppet apply -e "file {'C:/ProgramData/PuppetLabs/facter/facts.d/data_center.txt
 </table>
 </li>
   <li>
-<strong>ルールを追加</strong>をクリックし、Commitボタンをクリックします。</li>
+<strong>ルールを追加</strong>をクリックし、変更を保存ボタンをクリックします。</li>
   <li>[<strong>クラス</strong>]タブをクリックし、[<strong>新しいクラスを追加</strong>]フィールドに<code>puppet_enterprise::profile::mcollective::agent</code>と入力し、[<strong>クラスを追加</strong>]をクリックします。</li>
   <li>[<strong>パラメータ</strong>]ドロップダウンリストから <code>activemq_brokers</code>を選択します。</li>
   <li>
@@ -333,7 +333,7 @@ puppet apply -e "file {'C:/ProgramData/PuppetLabs/facter/facts.d/data_center.txt
   </li>
   <li>[<strong>パラメータを追加</strong>]をクリックし、[<strong>変更を保存</strong>]ボタンをクリックします。</li>
   <li>ポートランドのデータセンターについても、ステップ1～10を繰り返します。</li>
-  <li>ActiveMQハブとスポーク (Puppet masterを含む)、およびPE agentがある場合はPE agentで、<a href="/pe/latest/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行する</a>か、予定された実行を待ちます。</li>
+  <li>ActiveMQハブとスポーク (Puppet masterを含む)、およびPE agentがある場合はPE agentで、<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行する</a>か、予定された実行を待ちます。</li>
   <li>「<a href="#verify-connections-in-your-infrastructure">インフラ内の接続の検証</a>」に進みます。</li>
 </ol>
 <h3 id="option-2-classify-the-activemq-spokes-with-hiera">オプション2：Hieraを使用したActiveMQスポークの分類</h3>
@@ -429,7 +429,7 @@ puppet_enterprise::profile::mcollective::agent::activemq_brokers:
 </p>
   </li>
   <li>
-    <p> ActiveMQハブとスポーク (Puppet masterを含む)、およびPE agentがある場合はPE agentで、<a href="/pe/latest/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行する</a>か、予定された実行を待ちます。
+    <p> ActiveMQハブとスポーク (Puppet masterを含む)、およびPE agentがある場合はPE agentで、<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行する</a>か、予定された実行を待ちます。
 </p>
   </li>
   <li>
@@ -469,7 +469,6 @@ puppet_enterprise::profile::mcollective::agent::activemq_brokers:
   </li>
 </ol>
 <blockquote>
-  <p> <strong>ヒント</strong>：<code>pe-activemq</code>ユーザが開く/処理することができるプロセスの数を増やす必要がある場合は、「<a href="/pe/latest/trouble_orchestration.html#increasing-the-ulimit-for-the-pe-activemq-user">Increasing the ulimit for the <code>pe-activemq</code> User(<code>pe-activemq</code> ユーザを無制限に増やす)</a>」の説明を参照してください。
+  <p> <strong>ヒント</strong>：<code>pe-activemq</code>ユーザが開く/処理することができるプロセスの数を増やす必要がある場合は、「<a href="{{pe}}/trouble_orchestration.html#increasing-the-ulimit-for-the-pe-activemq-user">Increasing the ulimit for the <code>pe-activemq</code> User(<code>pe-activemq</code> ユーザを無制限に増やす)</a>」の説明を参照してください。
 </p>
 </blockquote>
-</div>

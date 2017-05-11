@@ -23,7 +23,7 @@ title: "コンパイルmasterのインストール"
 
 <h3 id="components-and-services-running-on-compile-masters">コンパイルmasterで稼働するコンポーネントとサービス</h3>
 
-<p> すべてのコンパイルmasterには、Puppetサーバーと<a href="%7B%7Bpe%7D%7D/cmgmt_filesync.html">ファイル同期</a>クライアントが含まれます。 Webエンドポイントからのトリガーにより、ファイル同期はマスターオブマスターズ(MoM)の作業ディレクトリから変更を取得し、そのコードをライブコードディレクトリにデプロイします。 その後、そのコードをすべてのコンパイルmasterにデプロイし、マルチmaster構成に存在するすべてのmasterの同期を確保します。 デフォルトでは、コンパイルmasterは5秒おきにコードの更新をチェックします。
+<p> すべてのコンパイルmasterには、Puppetサーバーと<a href="{{pe}}/cmgmt_filesync.html">ファイル同期</a>クライアントが含まれます。 Webエンドポイントからのトリガーにより、ファイル同期はマスターオブマスターズ(MoM)の作業ディレクトリから変更を取得し、そのコードをライブコードディレクトリにデプロイします。 その後、そのコードをすべてのコンパイルmasterにデプロイし、マルチmaster構成に存在するすべてのmasterの同期を確保します。 デフォルトでは、コンパイルmasterは5秒おきにコードの更新をチェックします。
 </p>
 
 <p> 認証局(CA)サービスは、コンパイルmasterでは無効になっています。 コンパイルmasterのPuppetサーバーで稼働するプロキシサービスにより、デフォルトインストールでCAをホストするMoMにCA要求が送られます。
@@ -145,7 +145,7 @@ title: "コンパイルmasterのインストール"
 </p>
   </li>
   <li>
-    <p> 以下のノードで、記載する順序どおりに、<a href="%7B%7Bpe%7D%7D/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行</a>します。
+    <p> 以下のノードで、記載する順序どおりに、<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行</a>します。
 </p>
 
     <blockquote>
@@ -176,13 +176,13 @@ title: "コンパイルmasterのインストール"
 <p> Puppet Enterpriseのインストール規模が拡大した場合は、agent、負荷バランサ、コンパイルmasterの間に接続を設定することで、オーケストレータジョブを拡張できます。
 </p>
 
-<p> Puppetオーケストレータは、ポート8143を使用して<a href="%7B%7Bpe%7D%7D/orchestrator_intro.html#puppet-orchestrator-technical-overview">コンパイルmaster上でPCPブローカと通信</a>し、ジョブ関連のメッセージをブローカに送信します。次にブローカが、このメッセージをPXP agentにリレーします。 コンパイルmasterを追加するときは、agentにオーケストレーションメッセージを送信するPCPブローカの数も増やします。
+<p> Puppetオーケストレータは、ポート8143を使用して<a href="{{pe}}/orchestrator_intro.html#puppet-orchestrator-technical-overview">コンパイルmaster上でPCPブローカと通信</a>し、ジョブ関連のメッセージをブローカに送信します。次にブローカが、このメッセージをPXP agentにリレーします。 コンパイルmasterを追加するときは、agentにオーケストレーションメッセージを送信するPCPブローカの数も増やします。
 </p>
 
 <p> コンパイルmasterの追加時に、コンパイルmaster上で実行されるPCPブローカへのPXP agentの接続を負荷分散する必要があります。 PXP agentは、ポート8142を介して、コンパイルmaster上で実行されるPCPブローカに接続します。
 </p>
 
-<p> PCPブローカはWebSocket上に構築され、多数の持続的な接続を必要とします。  <a href="#using-health-checks">HTTPヘルスチェックを使用</a>していない場合、ラウンドロビンまたはランダムの負荷分散アルゴリズムを使用して、PXP agentをPCPブローカに接続します。これは、PCPブローカの動作がオーケストレータから独立していないので、接続が切れると孤立するためです。  <a href="%7B%7Bpe%7D%7D/status_api.html#get-statusv1simple"><code>/status/v1/simple</code></a> エンドポイントを使用すると、接続にエラー状態がないかどうかをチェックすることができます。 コンパイルmaster上のステータスチェックは、ポート8140に送信する必要があります。
+<p> PCPブローカはWebSocket上に構築され、多数の持続的な接続を必要とします。  <a href="#using-health-checks">HTTPヘルスチェックを使用</a>していない場合、ラウンドロビンまたはランダムの負荷分散アルゴリズムを使用して、PXP agentをPCPブローカに接続します。これは、PCPブローカの動作がオーケストレータから独立していないので、接続が切れると孤立するためです。  <a href="{{pe}}/status_api.html#get-statusv1simple"><code>/status/v1/simple</code></a> エンドポイントを使用すると、接続にエラー状態がないかどうかをチェックすることができます。 コンパイルmaster上のステータスチェックは、ポート8140に送信する必要があります。
 </p>
 
 <p> また、負荷バランサを設定して、トラフィックがほとんどない長時間実行接続を終了しないようにする必要があります。 PCPブローカでは15分以上活動のない接続が切断されるため、HAプロキシモジュールを使用している場合は<code>timeout tunnel</code> を<code>15m</code>に設定します。 コンパイルmaster上のステータスチェックは、ポート8140に送信する必要があります。
@@ -195,7 +195,7 @@ title: "コンパイルmasterのインストール"
 
 <ol>
 <li>
-    <p> <a href="%7B%7Bpe%7D%7D/console_classes_groups_preconfigured_groups.html#the-pe-infrastructure-agent-node-group"><strong>PE Infrastructure Agent</strong></a>グループを設定して、このグループ内のノードがMoMに接続するようにします。
+    <p> <a href="{{pe}}/console_classes_groups_preconfigured_groups.html#the-pe-infrastructure-agent-node-group"><strong>PE Infrastructure Agent</strong></a>グループを設定して、このグループ内のノードがMoMに接続するようにします。
 </p>
 
     <p> a. コンソールで[<strong>分類</strong>]をクリックし、<strong>PE Infrastructure</strong>グループで<strong>PE Agent</strong>グループを選択します。
@@ -224,7 +224,7 @@ title: "コンパイルmasterのインストール"
     <p> e. <code>puppet_enterprise::profile::agent::pcp_broker_ws_uris</code>に設定されている値がある場合は削除します。
 </p>
 
-    <p> f. [<strong>Commit changes</strong>]をクリックします。
+    <p> f. [<strong>変更を保存</strong>]をクリックします。
 </p>
 
     <p> g. PE Infrastructure Agentグループに属するすべてのagentで、Puppetを実行します。
@@ -260,7 +260,7 @@ title: "コンパイルmasterのインストール"
     <p> d. <code>puppet_enterprise::profile::agent::pcp_broker_ws_uris</code>に設定されている値がある場合は削除します。
 </p>
 
-    <p> e. [<strong>Commit changes</strong>]をクリックします。
+    <p> e. [<strong>変更を保存</strong>]をクリックします。
 </p>
 
     <p> f. master上でPuppetを実行します。
@@ -273,4 +273,3 @@ title: "コンパイルmasterのインストール"
 </p>
   </li>
 </ol>
-</div>

@@ -3,7 +3,7 @@ layout: default
 title: "Cisco NX-OS agentのインストール"
 ---
 
-<div>
+
 <p> Puppet Enterpriseは、Cisco NX-OSのリリース7.0以上をプラットフォームとしてサポートしており、Puppet agentはネットワークスイッチ上で動作します。 サポート対象のCiscoスイッチは以下のとおりです。 
 </p>
 
@@ -23,7 +23,7 @@ title: "Cisco NX-OS agentのインストール"
 
 <h2 id="step-2-perform-a-bash-install-or-a-guest-shell-install">ステップ2：bashインストールまたはゲストシェルインストールの実行</h2>
 
-<p> NX-OSでは、サードパーティソフトウェアを bashシェルとゲストシェルという2種類の環境で実行することができます。 いずれかの環境を選んでPuppet agentを実行します。以下の該当する手順に従ってください。 (いずれかの環境で<a href="/pe/latest/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行できます</a>が、両方の環境で同時に実行することはできません )。
+<p> NX-OSでは、サードパーティソフトウェアを bashシェルとゲストシェルという2種類の環境で実行することができます。 いずれかの環境を選んでPuppet agentを実行します。以下の該当する手順に従ってください。 (いずれかの環境で<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行できます</a>が、両方の環境で同時に実行することはできません )。
 </p>
 
 <ul>
@@ -139,4 +139,3 @@ yum remove puppet-agent
 
 <p> ネットワークスイッチ上でのモジュールの使用に関する詳細は、「<a href="https://forge.puppetlabs.com/puppetlabs/ciscopuppet">puppet-ciscopuppetモジュール</a>」を参照してください。
 </p>
-</div>

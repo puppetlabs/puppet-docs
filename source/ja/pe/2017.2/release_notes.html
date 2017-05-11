@@ -10,8 +10,8 @@ title: "新機能、機能強化、サポート終了"
 </p>
 
 <ul>
-<li><a href="/pe/latest/release_notes_known_issues.html">既知の問題</a></li>
-  <li><a href="/pe/latest/release_notes_resolved_issues.html">解決済みの問題</a></li>
+<li><a href="{{pe}}/release_notes_known_issues.html">既知の問題</a></li>
+  <li><a href="{{pe}}/release_notes_resolved_issues.html">解決済みの問題</a></li>
   <li><a href="/security">セキュリティ上の脆弱性に関する通知</a></li>
 </ul>
 <blockquote>
@@ -29,7 +29,7 @@ title: "新機能、機能強化、サポート終了"
 <p> オーケストレータがコンソールに統合されたことにより、ジョブを簡単に設定したり、コンソールのレポーティングおよびインフラ監視ツールを使用してジョブを見直したり、ノードの実行結果を詳しく掘り下げたりできます。
 </p>
 
-<p> 詳細については、<a href="/pe/latest/orchestrator_job_run_console.html">コンソールでジョブを実行する</a>を参照してください。
+<p> 詳細については、<a href="{{pe}}/orchestrator_job_run_console.html">コンソールでジョブを実行する</a>を参照してください。
 </p>
 
 <h3 id="packages-inventory-in-the-console">コンソールのパッケージインベントリ</h3>
@@ -37,7 +37,7 @@ title: "新機能、機能強化、サポート終了"
 <p> ノードにインストールされたすべてのパッケージのインベントリを表示し、メンテナンスアップデート、セキュリティパッチ、またはライセンス更新が必要なパッケージを持つノードをすばやく確認できます。 Puppet agentがインストールされたすべてのノード(Puppetがアクティブに管理していないシステムも含む)では、パッケージインベントリのレポーティングも使用できます。
 </p>
 
-<p> パッケージデータ収集は、デフォルトではオフになっています。 パッケージデータ収集をオンにし、この機能を使用する方法については、<a href="/pe/latest/CM_packages.html">使用中のすべてのパッケージを表示する</a>を参照してください。
+<p> パッケージデータ収集は、デフォルトではオフになっています。 パッケージデータ収集をオンにし、この機能を使用する方法については、<a href="{{pe}}/CM_packages.html">使用中のすべてのパッケージを表示する</a>を参照してください。
 </p>
 
 <h3 id="pe-is-now-available-in-japanese">PEを日本語で提供</h3>
@@ -75,28 +75,28 @@ title: "新機能、機能強化、サポート終了"
     <p> HTTPで接続を試行すると、コンソールはHTTPSにリダイレクトされます。 pe-nginxはデフォルトでポート80でリッスンします。
 </p>
 
-    <p> HTTPSリダイレクトを無効にするには、<a href="/pe/latest/console_config.html">コンソール</a>で<code>puppet_enterprise::profile::console::proxy::http_redirect::enable_http_redirect</code>を<code>false</code>に設定します。
+    <p> HTTPSリダイレクトを無効にするには、<a href="{{pe}}/console_config.html">コンソール</a>で<code>puppet_enterprise::profile::console::proxy::http_redirect::enable_http_redirect</code>を<code>false</code>に設定します。
 </p>
   </li>
   <li>
     <p> 以前は、ノード分類子サービスは、分類がリクエストされると各ノードのチェックインを保存していました。 チェックインには、ノードが分類された各グループのルールにどの程度合致しているかについても説明が含まれています。 この機能によって、多数のノードのデプロイを管理する際にパフォーマンス上の問題が生じていました。 チェックインストレージは引き続き使用可能ですが、デフォルトでは無効（<code>false</code>）に設定されています。
 </p>
 
-    <p> この設定を有効にするには、<a href="/pe/latest/console_config.html">コンソール</a>で<code>puppet_enterprise::profile::console::classifier_node_check_in_storage</code>を<code>true</code>に設定します。
+    <p> この設定を有効にするには、<a href="{{pe}}/console_config.html">コンソール</a>で<code>puppet_enterprise::profile::console::classifier_node_check_in_storage</code>を<code>true</code>に設定します。
 </p>
   </li>
   <li>
     <p> このリリースでは、ノードが最後のレポートを送信してから、応答なしと判断されるまでの経過時間を指定できます。 値を秒単位の整数で設定してください。 デフォルトは3600秒(1時間)です。
 </p>
 
-    <p> <a href="/pe/latest/console_config.html">コンソール</a>の<code>puppet_enterprise::console_services::no_longer_reporting_cutoff</code>を調整します。
+    <p> <a href="{{pe}}/console_config.html">コンソール</a>の<code>puppet_enterprise::console_services::no_longer_reporting_cutoff</code>を調整します。
 </p>
   </li>
   <li>
     <p> <code>ping_interval</code>設定は、PXP agentがPCPブローカにpingを送信する間隔を制御します。 agentが応答を受信しなかった場合、再接続を試みます。 デフォルトは120秒(2分)です。
 </p>
 
-    <p> <a href="/pe/latest/config_orchestration.html">コンソール</a>の<code>puppet_enterprise::pxp_agent::ping_interval</code>を調整します。
+    <p> <a href="{{pe}}/config_orchestration.html">コンソール</a>の<code>puppet_enterprise::pxp_agent::ping_interval</code>を調整します。
 </p>
   </li>
   <li>
@@ -123,7 +123,7 @@ title: "新機能、機能強化、サポート終了"
 </p>
   </li>
   <li>
-    <p> PXP agentのログファイルを使用し、Puppetオーケストレータの問題をデバッグします。 必要に応じて、デフォルト設定から<a href="/pe/latest/config_orchestration.html#configuring-pxp-agent-logfile-location">場所を変更</a>することができます。
+    <p> PXP agentのログファイルを使用し、Puppetオーケストレータの問題をデバッグします。 必要に応じて、デフォルト設定から<a href="{{pe}}/config_orchestration.html#configuring-pxp-agent-logfile-location">場所を変更</a>することができます。
 </p>
   </li>
   <li>
@@ -135,18 +135,18 @@ title: "新機能、機能強化、サポート終了"
 
 <ul>
 <li>
-<code>puppet-code</code>コマンドに新しいフラグ<a href="/pe/latest/code_mgr_cli.html#puppet-code-actions"><code>--dry-run</code></a>を追加しました。このフラグを使用して<code>puppet-code</code>を実行すると、制御リポジトリとの接続をテストし、制御リポジトリのすべての環境をまとめたリストが返されます。</li>
+<code>puppet-code</code>コマンドに新しいフラグ<a href="{{pe}}/code_mgr_cli.html#puppet-code-actions"><code>--dry-run</code></a>を追加しました。このフラグを使用して<code>puppet-code</code>を実行すると、制御リポジトリとの接続をテストし、制御リポジトリのすべての環境をまとめたリストが返されます。</li>
 </ul>
 <h3 id="analytics-enhancements">分析の機能強化</h3>
 
 <ul>
-<li>Puppet Enterpriseは、PEインストールに関するデータを収集してPuppetに送信します。弊社では、そのデータを製品の改善に役立てています。これまでのバージョンで収集されていたデータに加え、本リリースではPuppet Serverのパフォーマンスに関する基本的な情報、クラウドプラットフォームとハイパーバイザの使用状況、オールインワンの<code>puppet-agent</code>パッケージバージョン、MCollectiveおよびデフォルト以外のユーザロールの使用状況も収集します。収集されるデータとオプトアウトの方法については、<a href="/pe/latest/analytics_opt_out.html">Puppet Enterpriseの分析データの収集</a>を参照してください。</li>
+<li>Puppet Enterpriseは、PEインストールに関するデータを収集してPuppetに送信します。弊社では、そのデータを製品の改善に役立てています。これまでのバージョンで収集されていたデータに加え、本リリースではPuppet Serverのパフォーマンスに関する基本的な情報、クラウドプラットフォームとハイパーバイザの使用状況、オールインワンの<code>puppet-agent</code>パッケージバージョン、MCollectiveおよびデフォルト以外のユーザロールの使用状況も収集します。収集されるデータとオプトアウトの方法については、<a href="{{pe}}/analytics_opt_out.html">Puppet Enterpriseの分析データの収集</a>を参照してください。</li>
 </ul>
 <h3 id="security-enhancements">セキュリティの機能強化</h3>
 
 <ul>
 <li>
-    <p> セキュリティコンプライアンスのニーズに応え、PEでは<a href="/pe/latest/disable_tlsv1.html">TLSv1の無効化</a>に対応しています。 PEのサービスは、TLSバージョン1、1.1、1.2をサポートしています。
+    <p> セキュリティコンプライアンスのニーズに応え、PEでは<a href="{{pe}}/disable_tlsv1.html">TLSv1の無効化</a>に対応しています。 PEのサービスは、TLSバージョン1、1.1、1.2をサポートしています。
 </p>
   </li>
   <li>
@@ -174,7 +174,7 @@ title: "新機能、機能強化、サポート終了"
 </p>
   </li>
   <li>
-    <p> Javaのガベージコレクションログを見ると、JVMベースのPEサービスで発生したパフォーマンス上の問題を診断できます。 ガベージコレクションログは、PEでデフォルトで有効になっており、結果はサポートスクリプトでキャプチャされますが、必要であれば<a href="/pe/latest/config_java_args.html#disable-java-garbage-collection-logging">無効化</a>できます。
+    <p> Javaのガベージコレクションログを見ると、JVMベースのPEサービスで発生したパフォーマンス上の問題を診断できます。 ガベージコレクションログは、PEでデフォルトで有効になっており、結果はサポートスクリプトでキャプチャされますが、必要であれば<a href="{{pe}}/config_java_args.html#disable-java-garbage-collection-logging">無効化</a>できます。
 </p>
   </li>
   <li>
@@ -214,21 +214,20 @@ title: "新機能、機能強化、サポート終了"
 
 <h3 id="puppet-release-notes">Puppetリリースノート</h3>
 
-<p> PEの本バージョンには、Puppetバージョン4.10.1が含まれています。詳細については、<a href="%7B%7Bpuppet%7D%7D/release_notes.html">Puppetリリースノート</a>を参照してください。
+<p> PEの本バージョンには、Puppetバージョン4.10.1が含まれています。詳細については、<a href="{{puppet}}/release_notes.html">Puppetリリースノート</a>を参照してください。
 </p>
 
 <h3 id="puppet-agent-release-notes">Puppet agentリリースノート</h3>
 
-<p> PEの本バージョンには、Puppet agentバージョン1.10.1が含まれています。詳細については、<a href="%7B%7Bpuppet%7D%7D/release_notes_agent.html#puppet-agent-1101">Puppet agentリリースノート</a>を参照してください。
+<p> PEの本バージョンには、Puppet agentバージョン1.10.1が含まれています。詳細については、<a href="{{puppet}}/release_notes_agent.html#puppet-agent-1101">Puppet agentリリースノート</a>を参照してください。
 </p>
 
 <h3 id="puppetdb-release-notes">PuppetDBリリースノート</h3>
 
-<p> PEの本バージョンには、PuppetDBバージョン4.4.0が含まれています。詳細については、 <a href="%7B%7Bpuppetdb%7D%7D/release_notes.html">PuppetDBリリースノート</a>を参照してください。
+<p> PEの本バージョンには、PuppetDBバージョン4.4.0が含まれています。詳細については、 <a href="{{puppetdb}}/release_notes.html">PuppetDBリリースノート</a>を参照してください。
 </p>
 
 <h3 id="puppet-server-release-notes">Puppet Serverリリースノート</h3>
 
-<p> PEの本バージョンには、Puppet Serverバージョン2.7.2が含まれています。詳細については、<a href="%7B%7Bpuppetserver%7D%7D/release_notes.html">Puppet Serverリリースノート</a>を参照してください。
+<p> PEの本バージョンには、Puppet Serverバージョン2.7.2が含まれています。詳細については、<a href="{{puppetserver}}/release_notes.html">Puppet Serverリリースノート</a>を参照してください。
 </p>
-</div>

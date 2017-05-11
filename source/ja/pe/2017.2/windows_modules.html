@@ -3,13 +3,13 @@ layout: default
 title: "Windowsモジュールのインストールと利用"
 ---
 
-<div>
+
 <h2 id="windows-module-pack">Windowsモジュールパック</h2>
 
 <p> Puppet Forgeは、Puppetとコミュニティメンバーによるオンラインコミュニティで、さまざまなPuppetモジュールが提供されています。 Forgeを利用すると、Puppetをさらに容易に管理できるようになります。また、あらかじめ記述されたモジュールを使うことができるため、自分でモジュールを記述する時間を節約できます。 Forgeのモジュールは、コミュニティで評価済みであることに加えて、<a href="https://forge.puppetlabs.com/approved">Puppetにより承認 (Puppet Approved)</a>または、<a href="https://forge.puppetlabs.com/supported">Puppetによりサポート (Puppet Supported)</a>されています。 大きな違いは、Approvedモジュールは<a href="https://puppetlabs.com/services/customer-support">Puppet Enterpriseサポートサービス</a>には利用できませんが、テスト済みでスタイルや品質の基準に従っているという点です。
 </p>
 
-<p> <img src="/pe/latest/images/windows/puppetlabs_windows_modulepack.png" alt="Windows Module Pack">
+<p> <img src="{{pe}}/images/windows/puppetlabs_windows_modulepack.png" alt="Windows Module Pack">
 </p>
 
 <p> Windowsモジュールパックには、よくある具体的なタスクの実行に役立つ複数のWindows対応モジュールが含まれています。 Forgeを検索すると、さらに多くのWindowsモジュールを見つけることができます。  このモジュールパック自体はサポートされていませんが、パックに含まれるPuppet提供モジュールは、それぞれ個別にPuppet Enterpriseでサポートされています。 それ以外のモジュールは、Puppetにより検証および承認されていますが、商用サポートの対象ではありません。
@@ -62,7 +62,7 @@ title: "Windowsモジュールのインストールと利用"
     <p> すでにインストール済みのモジュールをリスト表示するには、[<strong>Command Prompt</strong>]ウィンドウで<code>puppet module list</code>と入力します。 使い始めたばかりの場合は、インストール済みモジュールが1つもないこともあります。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/cli_list_empty_modules.png" alt="puppet module list empty output">
+    <p> <img src="{{pe}}/images/windows/cli_list_empty_modules.png" alt="puppet module list empty output">
 </p>
   </li>
   <li>
@@ -92,7 +92,7 @@ C:/ProgramData/PuppetLabs/code/environments/production/modules
 </ol>
 <h2 id="task-1-manage-permissions-with-acl">タスク1：<code>acl</code>によるパーミッション管理</h2>
 
-<p> <img src="/pe/latest/images/windows/forge_acl.png" alt="Forge puppetlabs-acl">
+<p> <img src="{{pe}}/images/windows/forge_acl.png" alt="Forge puppetlabs-acl">
 </p>
 
 <p> <a href="https://forge.puppetlabs.com/puppetlabs/acl"><code>puppetlabs-acl</code></a>モジュールは、Windowsファイルシステムのパーミッション設定に関するアクセスコントロールリスト(ACL)の管理に役立ちます。 このモジュールを使うと、<a href="https://msdn.microsoft.com/en-us/library/aa394063.aspx">アクセスマスク</a>、インヘリタンス、プロパゲーションといった方法で、SID(Security Identifier)を使って基本的なパーミッションからきわめて高度なパーミッションまで設定することができます。 まずは、既存のパーミッションを調べるところから始めます。
@@ -106,7 +106,7 @@ C:/ProgramData/PuppetLabs/code/environments/production/modules
 <p> コマンドプロンプトで<code>puppet resource acl c:\Users</code>と入力します。
 </p>
 
-<p> <img src="/pe/latest/images/windows/cli_resource_acl.png" alt="puppet resource acl c:\users output">
+<p> <img src="{{pe}}/images/windows/cli_resource_acl.png" alt="puppet resource acl c:\users output">
 </p>
 
 <p> アウトプットを少し整理すると以下のようになります。
@@ -162,14 +162,14 @@ acl {'c:/tempperms':
 }
 </code></pre>
 
-    <p> <img src="/pe/latest/images/windows/perms_pp_manifest.png" alt="perms.pp file">
+    <p> <img src="{{pe}}/images/windows/perms_pp_manifest.png" alt="perms.pp file">
 </p>
   </li>
   <li>
     <p> マニフェストを検証するために、コマンドプロンプトで<code>puppet parser validate c:\path\to\perms.pp</code>と入力します。 パーサーが何も返さなければ、検証に合格したことになります。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/cli_parser_validate.png" alt="puppet parser validate no issues">
+    <p> <img src="{{pe}}/images/windows/cli_parser_validate.png" alt="puppet parser validate no issues">
 </p>
   </li>
   <li>
@@ -190,7 +190,7 @@ Notice: Applied catalog in 0.05 seconds
     <p> Windows UIでパーミッションを確認します。 [<strong>Windows Explorer</strong>]で[<strong>tempperms</strong>]を右クリックし、[<strong>Properties</strong>]をクリックします。 その後、[<strong>Security</strong>]タブをクリックします。おおむね以下のイメージのようになるはずです。 
 </p>
 
-    <p> <img src="/pe/latest/images/windows/security_properties.png" alt="Security properties of c:\tempperms">
+    <p> <img src="{{pe}}/images/windows/security_properties.png" alt="Security properties of c:\tempperms">
 </p>
   </li>
   <li>
@@ -297,7 +297,7 @@ Successfully processed 1 files; Failed processing 0 files
 </ol>
 <h2 id="task-2-create-puppet-managed-registry-keys-with-registry">タスク2：<code>registry</code>を使用したPuppet管理レジストリキーの作成</h2>
 
-<p> <img src="/pe/latest/images/windows/forge_registry.png" alt="Forge puppetlabs-registry">
+<p> <img src="{{pe}}/images/windows/forge_registry.png" alt="Forge puppetlabs-registry">
 </p>
 
 <p> 将来的に、可用性の高い設定を利用したり設定したりするなどの目的で、レジストリを使う必要性が生じる可能性もあります。 <a href="https://forge.puppetlabs.com/supported">Puppet Supportedモジュール</a>の<a href="https://forge.puppetlabs.com/puppetlabs/registry">puppetlabs-registry</a>モジュールを使えば、レジストリのキーと値の両方を設定することができます。
@@ -311,7 +311,7 @@ Successfully processed 1 files; Failed processing 0 files
 <p> <code>puppet resource registry_key 'HKLM\Software\Microsoft\Windows'</code>と入力します。
 </p>
 
-<p> <img src="/pe/latest/images/windows/cli_resource_registry.png" alt="Output of puppet resource registry_key 'HKLM\Software\Microsoft\Windows'">
+<p> <img src="{{pe}}/images/windows/cli_resource_registry.png" alt="Output of puppet resource registry_key 'HKLM\Software\Microsoft\Windows'">
 </p>
 
 <p> それほど興味深い結果ではありません。次に、レジストリ値を見てみましょう。
@@ -390,7 +390,7 @@ Notice: Applied catalog in 0.03 seconds
     <p> 次にレジストリを調べ、結果を確認します。 [<strong>Start + R</strong>]を押し、<code>regedit</code>と入力して[<strong>Enter</strong>]を押します。 レジストリエディタが開いたら、<code>HKEY_LOCAL_MACHINE</code>でキーを探します。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/regedit_HKLM.png" alt="Registry Editor display of keys">
+    <p> <img src="{{pe}}/images/windows/regedit_HKLM.png" alt="Registry Editor display of keys">
 </p>
 
     <p> ソフトウェアのWow6432Nodeの32ビットセクションに、32ビットキーが作成されたことがわかります。
@@ -408,7 +408,7 @@ Notice: Applied catalog in 0.02 seconds
     <p> 何も変更していないため、Puppetでは何も実行されません。 <strong>レジストリエディタ</strong>でデータを変更します。 <code>HKLM\Sofware\zTemporaryPuppet</code>を選択し、右のボックスの[<code>StringValue</code>]をダブルクリックします。 値のデータを編集し、[<strong>OK</strong>]をクリックします。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/regedit_edit_value.png" alt="Edit StringValue of HKLM\Sofware\zTemporaryPuppet">
+    <p> <img src="{{pe}}/images/windows/regedit_edit_value.png" alt="Edit StringValue of HKLM\Sofware\zTemporaryPuppet">
 </p>
 
     <p> 今回は変更が加えられました。したがって、<code>puppet apply c:\path\to\registry.pp</code>と入力すると、アウトプットは異なるものになります。
@@ -452,7 +452,7 @@ Notice: Applied catalog in 0.02 seconds
     <p> レジストリエディタの画面を更新します。 該当する値が消えているはずです。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/regedit_absent.png" alt="Removed items verification in Registry Editor">
+    <p> <img src="{{pe}}/images/windows/regedit_absent.png" alt="Removed items verification in Registry Editor">
 </p>
   </li>
 </ol>
@@ -495,7 +495,7 @@ Notice: Applied catalog in 0.02 seconds
 
 <h2 id="task-3-create-install-and-repackage-packages-with-chocolatey">タスク3：<code>chocolatey</code>を使用したパッケージの作成、インストール、再パッケージ</h2>
 
-<p> <img src="/pe/latest/images/windows/forge_chocolatey.png" alt="Forge chocolatey-chocolatey">
+<p> <img src="{{pe}}/images/windows/forge_chocolatey.png" alt="Forge chocolatey-chocolatey">
 </p>
 
 <p> <a href="https://chocolatey.org">Chocolatey</a>はWindows用のパッケージマネージャで、設計や実行という面ではWindows以外のシステムのパッケージマネージャと同様です。 <a href="https://forge.puppetlabs.com/chocolatey/chocolatey">chocolateyモジュール</a>は<a href="https://forge.puppetlabs.com/approved">Puppet Approvedモジュール</a>であるため、Puppet Enterpriseのサポートサービスの対象ではありません。 このモジュールを使うと、Chocolateyそのものをインストール・設定し、Chocolateyパッケージを使ってWindow上でソフトウェアを管理することができます。
@@ -599,21 +599,21 @@ Notice: Applied catalog in 15.51 seconds
     <p> <a href="https://chocolatey.org/packages/notepadplusplus.commandline">パッケージページ</a>でダウンロードリンクをクリックし、Chocolateyのコミュニティフィードからパッケージをダウンロードします。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/choco_npp_download.png" alt="Download Link">
+    <p> <img src="{{pe}}/images/windows/choco_npp_download.png" alt="Download Link">
 </p>
   </li>
   <li>
     <p> ダウンロードしたファイルの名前を変更して末尾に<code>.zip</code>を付け、通常のアーカイブとしてファイルを展開します。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/choco_rename_nupkg_zip.png" alt="Rename to append .zip suffix">
+    <p> <img src="{{pe}}/images/windows/choco_rename_nupkg_zip.png" alt="Rename to append .zip suffix">
 </p>
   </li>
   <li>
     <p>  <code>_rels</code>フォルダと<code>package</code>フォルダ、<code>[Content_Types].xml</code>ファイルを削除します。 これらは<code>choco pack</code>の際に再度作成されるため (また、存在すると問題が生じるため)、 含める必要はありません。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/choco_delete_pkg_files.png" alt="Remove _rels, package, and the xml file">
+    <p> <img src="{{pe}}/images/windows/choco_delete_pkg_files.png" alt="Remove _rels, package, and the xml file">
 </p>
   </li>
   <li>
@@ -627,7 +627,7 @@ Notice: Applied catalog in 15.51 seconds
     <p> zipファイルをダウンロードし、パッケージのツールフォルダに保存します。 
 </p>
 
-    <p> <img src="/pe/latest/images/windows/choco_download_zip.png" alt="Zip file embedding in package">
+    <p> <img src="{{pe}}/images/windows/choco_download_zip.png" alt="Zip file embedding in package">
 </p>
   </li>
   <li>
@@ -680,7 +680,7 @@ Successfully created package 'notepadplusplus.commandline.6.8.7.nupkg'
     <p> <code>c:\packages</code>を作成し、先ほど構築したパッケージファイル (<code>notepadplusplus.commandline.6.8.7.nupkg</code>)をコピーします。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/choco_local_packages.png" alt="package in folder">
+    <p> <img src="{{pe}}/images/windows/choco_local_packages.png" alt="package in folder">
 </p>
 
     <p> 先ほど同じバージョンをChocolateyのコミュニティフィードからインストールしているので、この手順では、実際にはシステムにインストールされません。 そのため、まず既存のパッケージを削除する必要があります。 削除するには、<code>chocolatey.pp</code>を編集し、パッケージをabsentに設定します。
@@ -704,7 +704,7 @@ Notice: Applied catalog in 12.20 seconds
     <p> パッケージのインストール場所をチェックするか、<code>choco list -lo</code>を使ってパッケージが削除されたことを確認します。
 </p>
 
-    <p> <img src="/pe/latest/images/windows/choco_list_local.png" alt="Package is uninstalled">
+    <p> <img src="{{pe}}/images/windows/choco_list_local.png" alt="Package is uninstalled">
 </p>
   </li>
   <li>
@@ -732,7 +732,7 @@ Notice: Applied catalog in 14.78 seconds
 </p>
   </li>
 </ol>
-<p> <img src="/pe/latest/images/windows/choco_list_local_installed.png" alt="Package is installed">
+<p> <img src="{{pe}}/images/windows/choco_list_local_installed.png" alt="Package is installed">
 </p>
 
 <p> <code>chocolateyInstall.ps1</code>を開き、このファイルが変更されたカスタムファイルかどうかを確認して検証することもできます。
@@ -863,7 +863,7 @@ Notice: Applied catalog in 31.51 seconds
 </p>
   </li>
 </ol>
-<p> <img src="/pe/latest/images/windows/choco_vagrant_installed.png" alt="Vagrant is installed!&lt;/p&gt; &lt;p class=" temp-sentence>"&gt;
+<p> <img src="{{pe}}/images/windows/choco_vagrant_installed.png" alt="Vagrant is installed!&lt;/p&gt; &lt;p class=" temp-sentence>"&gt;
 </p>
 
 <h4 id="uninstalling">アンインストール</h4>
@@ -899,7 +899,7 @@ Notice: /Stage[main]/Main/Package[vagrant]/ensure: removed
 Notice: Applied catalog in 40.85 seconds
 </code></pre>
 
-    <p> <img src="/pe/latest/images/windows/choco_vagrant_uninstalled.png" alt="Vagrant is no longer installed">
+    <p> <img src="{{pe}}/images/windows/choco_vagrant_uninstalled.png" alt="Vagrant is no longer installed">
 </p>
 
     <p> これでアンインストールされました！
@@ -956,4 +956,3 @@ package {'git':
 
 <p> Chocolateyの詳細については、 <a href="https://chocolatey.org">Chocolatey.org</a>で<a href="https://github.com/chocolatey/choco/wiki">GitHubに関する文書</a>を参照してください。また、Rob ReynoldsによるPuppetConf 2015の「<a href="https://www.youtube.com/watch?v=NNM2H4GsWYA">Chocolatey and Puppet - Managing Your Windows Software Since 2011</a>」も視聴できます。 Chocolateyが提供しているものと、利用可能なリファレンスの詳細については、<a href="https://forge.puppetlabs.com/chocolatey/chocolatey">Puppet Forge</a>のモジュールおよび文書を参照してください。
 </p>
-</div>

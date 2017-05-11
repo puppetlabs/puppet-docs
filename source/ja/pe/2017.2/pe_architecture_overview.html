@@ -5,7 +5,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <p> 次の図は、Puppet Enterpriseの標準インストール時のアーキテクチャを示したものです。 各種のコンポーネントとサービスが含まれています。
 </p>
 
-<p> <a href="./images/pe_architecture.png"><img src="./images/pe_architecture.png" alt="PE architecture diagram" title="Click to enlarge">(クリックして拡大)</a>
+<p> <a href="{{pe}}/images/pe_architecture.png"><img src="{{pe}}/images/pe_architecture.png" alt="PE architecture diagram" title="Click to enlarge">(クリックして拡大)</a>
 </p>
 
 <h1 id="the-master-of-masters-mom">マスターオブマスター(MoM)</h1>
@@ -32,7 +32,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 
 <h3 id="puppet-server">Puppetサーバー</h3>
 
-<p> Puppetサーバーは、MoM上のJava Virtual Machine (JVM)で稼働するアプリケーションです。 認証局サービス向けのエンドポイントをホストする以外に、カタログコンパイラを駆動します。カタログコンパイラは、Puppetコードとその他の各種データソースを使用して、Puppet agentノード向けの設定カタログをコンパイルします。 <a href="%7B%7Bpuppetserver%7D%7D/services_master_puppetserver.html">Puppetサーバーサービス</a>の詳細については、Puppetサーバーのマニュアルを参照してください。
+<p> Puppetサーバーは、MoM上のJava Virtual Machine (JVM)で稼働するアプリケーションです。 認証局サービス向けのエンドポイントをホストする以外に、カタログコンパイラを駆動します。カタログコンパイラは、Puppetコードとその他の各種データソースを使用して、Puppet agentノード向けの設定カタログをコンパイルします。 <a href="{{puppetserver}}/services_master_puppetserver.html">Puppetサーバーサービス</a>の詳細については、Puppetサーバーのマニュアルを参照してください。
 </p>
 
 <h3 id="catalog-compiler">カタログコンパイラ</h3>
@@ -42,15 +42,15 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 
 <h3 id="file-sync">ファイル同期</h3>
 
-<p> <a href="/pe/latest/cmgmt_filesync.html">ファイル同期</a>は、複数のコンパイルmaster間でPuppetコードの同期を維持します。 Webエンドポイントからのトリガーにより、ファイル同期はマスターオブマスターズ(MoM)の作業ディレクトリから変更を取得し、そのコードをライブコードディレクトリにデプロイします。 次に、このコードをすべてのコンパイルmasterにデプロイすることで、マルチmaster構成に含まれるすべてのmasterの同期を維持し、準備ができたPuppetコードのみがデプロイされるようにします。
+<p> <a href="{{pe}}/cmgmt_filesync.html">ファイル同期</a>は、複数のコンパイルmaster間でPuppetコードの同期を維持します。 Webエンドポイントからのトリガーにより、ファイル同期はマスターオブマスターズ(MoM)の作業ディレクトリから変更を取得し、そのコードをライブコードディレクトリにデプロイします。 次に、このコードをすべてのコンパイルmasterにデプロイすることで、マルチmaster構成に含まれるすべてのmasterの同期を維持し、準備ができたPuppetコードのみがデプロイされるようにします。
 </p>
 
-<p> このサービスの使用方法の詳細は、<a href="/pe/latest/cmgmt_filesync_api.html">ファイル同期APIマニュアル</a>を参照してください。
+<p> このサービスの使用方法の詳細は、<a href="{{pe}}/cmgmt_filesync_api.html">ファイル同期APIマニュアル</a>を参照してください。
 </p>
 
 <h3 id="certificate-authority">認証局</h3>
 
-<p> Puppet内部の<a href="%7B%7Bpuppetserver%7D%7D/services_master_puppetserver.html#certificate-authority-service">認証局(CA)サービス</a>は、ノードからの証明書署名リクエストを承認し、証明書と証明書取り消しリスト(CRL)をノードに提供し、必要に応じて、証明書の署名または取り消しコマンドを承認します。
+<p> Puppet内部の<a href="{{puppetserver}}/services_master_puppetserver.html#certificate-authority-service">認証局(CA)サービス</a>は、ノードからの証明書署名リクエストを承認し、証明書と証明書取り消しリスト(CRL)をノードに提供し、必要に応じて、証明書の署名または取り消しコマンドを承認します。
 </p>
 
 <p> CAサービスは、標準Puppetの<a href="{{puppet}}/dirs_ssldir.html">ssldir</a>にある<code>.pem</code>ファイルを使用して、証明書を保存します。 標準の<code>puppet cert</code>コマンドを使用すると、これらの証明書の表示、署名、取り消しを含む操作を実行できます。
@@ -63,7 +63,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
   <p> アーキテクチャとセキュリティの要件に合わせて、MoMまたは独自ノードのどちらでもCAをホストすることができます。 コンパイルmaster上のCAサービスは、デフォルトで、CAに対するCAリクエストをプロキシするように設定されています。
 </p>
 
-  <p> また、<a href="/pe/latest/external_ca.html">Puppet CAを外部CAで置き換え</a>ることができます。
+  <p> また、<a href="{{pe}}/external_ca.html">Puppet CAを外部CAで置き換え</a>ることができます。
 </p>
 </blockquote>
 
@@ -98,21 +98,21 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 
 <h2 id="mcollective">MCollective</h2>
 
-<p> <a href="/pe/latest/mco_overview.html">MCollective</a>は、タスクベースの分散オーケストレーションシステムです。 MCollectiveを含むノードは、メッセージバスを介してコマンドをリッスンし、認可されたリクエストがあれば個別に対応します。 そのため、中央のインベントリ情報を使用しなくても、リアルタイムでインフラを調査して制御することができます。
+<p> <a href="{{pe}}/mco_overview.html">MCollective</a>は、タスクベースの分散オーケストレーションシステムです。 MCollectiveを含むノードは、メッセージバスを介してコマンドをリッスンし、認可されたリクエストがあれば個別に対応します。 そのため、中央のインベントリ情報を使用しなくても、リアルタイムでインフラを調査して制御することができます。
 </p>
 
 <h2 id="facter">Facter</h2>
 
-<p> <a href="%7B%7Bfacter%7D%7D/index.html">Facter</a>は、複数のプラットフォームに対応したPuppetのシステムプロファイリングライブラリです。 Puppetマニフェスト内の変数として提供されるfactを、ノードごとに取得してレポートします。
+<p> <a href="{{facter}}/index.html">Facter</a>は、複数のプラットフォームに対応したPuppetのシステムプロファイリングライブラリです。 Puppetマニフェスト内の変数として提供されるfactを、ノードごとに取得してレポートします。
 </p>
 
-<p> Puppet agentはカタログをリクエストする前に、<a href="%7B%7Bfacter%7D%7D/index.html">Facter</a>を使用して、実行マシンのシステム情報を収集します。
+<p> Puppet agentはカタログをリクエストする前に、<a href="{{facter}}/index.html">Facter</a>を使用して、実行マシンのシステム情報を収集します。
 </p>
 
 <p> たとえば、<code>os</code>というfactはホストオペレーティングシステムに関する情報を返し、<code>networking</code>はシステムのネットワーキング情報を返します。 それぞれのfactには、さらに詳しい情報を収集するための各種の要素が含まれています。 <code>networking</code>というfactに含まれる<code>networking.hostname</code>は、システムのホスト名を返します。
 </p>
 
-<p> Facterには<a href="%7B%7Bfacter%7D%7D/core_facts.html">主要fact</a>のリストが組み込まれていますが、必要に応じて独自にカスタムfactを構築できます。
+<p> Facterには<a href="{{facter}}/core_facts.html">主要fact</a>のリストが組み込まれていますが、必要に応じて独自にカスタムfactを構築できます。
 </p>
 
 <p> また、factを使用してノードの稼働状態を特定することができ、ノードをグループ化してNCに分類することもできます。
@@ -148,7 +148,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
   <li>ノードのグループ化と分類、カタログ内のPuppetクラスの制御</li>
   <li>外部ユーザディレクトリの統合を含むユーザアクセスの管理</li>
 </ul>
-<p> Puppet Enterpriseが作成および収集したデータをコンソールから利用して、インフラの状況を把握する方法については、<a href="/pe/latest/CM_overview.html#introducing-configuration-management">設定管理の概要</a>を参照してください。
+<p> Puppet Enterpriseが作成および収集したデータをコンソールから利用して、インフラの状況を把握する方法については、<a href="{{pe}}/CM_overview.html#introducing-configuration-management">設定管理の概要</a>を参照してください。
 </p>
 
 <h3 id="rbac">RBAC</h3>
@@ -173,27 +173,27 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <p> RBACサービスは外部のLDAPディレクトリに接続できます。 つまり、Puppet Enterprise内でローカルユーザを作成して管理することも、既存のディレクトリからユーザとグループをインポートすることも、両方を組み合わせて使用することもできます。 Puppet EnterpriseはOpenLDAPとActive Directoryをサポートしています。
 </p>
 
-<p> Puppet Enterpriseに対するアクセス管理の詳細については、<a href="/pe/latest/rbac_intro.html">RBAC概要</a>を参照してください。
+<p> Puppet Enterpriseに対するアクセス管理の詳細については、<a href="{{pe}}/rbac_intro.html">RBAC概要</a>を参照してください。
 </p>
 
 <h4 id="rbac-and-activity-services-api">RBACサービスとアクティビティサービスのAPI</h4>
 
-<p> Puppet Enterprise Webコンソールを介して、RBACサービスおよびアクティビティサービスを対話方式で使用できます。 または、<a href="/pe/latest/rbac_serviceindex_v1.html">RBACサービスAPI</a>と<a href="/pe/latest/rbac_activityapis.html">アクティビティサービスAPI</a>を使用できます。 アクティビティサービスは、ユーザロール、ユーザ、ユーザグループのイベントをロギングします。
+<p> Puppet Enterprise Webコンソールを介して、RBACサービスおよびアクティビティサービスを対話方式で使用できます。 または、<a href="{{pe}}/rbac_serviceindex_v1.html">RBACサービスAPI</a>と<a href="{{pe}}/rbac_activityapis.html">アクティビティサービスAPI</a>を使用できます。 アクティビティサービスは、ユーザロール、ユーザ、ユーザグループのイベントをロギングします。
 </p>
 
 <h4 id="puppet-access-token-auth">Puppet Access (token auth)</h4>
 
-<p> Puppet Enterpriseユーザは、特定のPuppet EnterpriseコマンドラインツールとAPIエンドポイントに対する<a href="/pe/latest/rbac_token_auth.html">アクセスを認証するためのトークンを生成</a>します。 認証トークンは、以下のPuppet Enterpriseサービスおよびツールへのアクセス管理に使用されます。
+<p> Puppet Enterpriseユーザは、特定のPuppet EnterpriseコマンドラインツールとAPIエンドポイントに対する<a href="{{pe}}/rbac_token_auth.html">アクセスを認証するためのトークンを生成</a>します。 認証トークンは、以下のPuppet Enterpriseサービスおよびツールへのアクセス管理に使用されます。
 </p>
 
 <ul>
-<li><a href="/pe/latest/orchestrator_install.html#setting-pe-rbac-permissions-and-token-authentication-for-puppet-orchestrator">Puppetオーケストレータ</a></li>
-  <li><a href="/pe/latest/code_mgr_config.html#request-an-authentication-token">コードマネージャ</a></li>
-  <li><a href="/pe/latest/nc_forming_requests.html#authentication-token">Node Classifier</a></li>
-  <li><a href="/pe/latest/rbac_forming_requests_v1.html#authentication-token">ロールベースのアクセス制御(RBAC)</a></li>
-  <li><a href="/pe/latest/rbac_activityapis.html#authentication-token">アクティビティサービス</a></li>
+<li><a href="{{pe}}/orchestrator_install.html#setting-pe-rbac-permissions-and-token-authentication-for-puppet-orchestrator">Puppetオーケストレータ</a></li>
+  <li><a href="{{pe}}/code_mgr_config.html#request-an-authentication-token">コードマネージャ</a></li>
+  <li><a href="{{pe}}/nc_forming_requests.html#authentication-token">Node Classifier</a></li>
+  <li><a href="{{pe}}/rbac_forming_requests_v1.html#authentication-token">ロールベースのアクセス制御(RBAC)</a></li>
+  <li><a href="{{pe}}/rbac_activityapis.html#authentication-token">アクティビティサービス</a></li>
 </ul>
-<p> 認証トークンは、<a href="/pe/latest/rbac_permissions.html">RBACを介してユーザに付与されるパーミッション</a>と関連付けられており、HTTPリクエストに対する適切なアクセスをユーザに提供します。
+<p> 認証トークンは、<a href="{{pe}}/rbac_permissions.html">RBACを介してユーザに付与されるパーミッション</a>と関連付けられており、HTTPリクエストに対する適切なアクセスをユーザに提供します。
 </p>
 
 <h2 id="classifier">Classifier</h2>
@@ -209,10 +209,10 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <p> ユーザは独自のクラスを作成できますが、Puppetコミュニティによって作成されている多数のクラスを利用することもできます。 既存のクラスを使用すると、新たなバグが発生する可能性を抑えて、時間を節約することができます。 <a href="https://forge.puppetlabs.com/">Puppet Forge</a>で紹介されているモジュールの多くは、Puppetによって承認またはサポートされています。
 </p>
 
-<p> Puppet Enterprise WebコンソールでのNCを使用したノード管理について、詳細は<a href="/pe/latest/console_classes_groups.html">分類の使用開始</a>を参照してください。
+<p> Puppet Enterprise WebコンソールでのNCを使用したノード管理について、詳細は<a href="{{pe}}/console_classes_groups.html">分類の使用開始</a>を参照してください。
 </p>
 
-<p> <a href="/pe/latest/nc_index.html">NC API</a>を使用してノードを分類することもできます。
+<p> <a href="{{pe}}/nc_index.html">NC API</a>を使用してノードを分類することもできます。
 </p>
 
 <h2 id="code-manager-and-r10k">コードマネージャとr10k</h2>
@@ -220,10 +220,10 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <p> Puppet Enterpriseには、Puppetコードの管理およびデプロイ用ツールとしてコードマネージャとr10kが含まれています。 コードマネージャとr10kは、ユーザがgit内に保持するコードに基づいて、Puppetモジュールをインストールし、<a href="{{puppet}}/environments.html">環境</a>を作成して維持し、masterにコードをデプロイします。 両ツールによってmasterにコードが同期されるので、agentの実行を妨げることなく、すべてのサーバーが同時に新しいコードを使用し始めることができます。
 </p>
 
-<p> コードマネージャとr10kはどちらもPuppet Enterpriseに組み込まれているので、インストールは不要ですが、gitに関する基本的な知識は必要です。 これらのコード管理ツールの詳細については、<a href="/pe/latest/cmgmt_managing_code.html">Puppetコードの管理とデプロイ</a>を参照してください。
+<p> コードマネージャとr10kはどちらもPuppet Enterpriseに組み込まれているので、インストールは不要ですが、gitに関する基本的な知識は必要です。 これらのコード管理ツールの詳細については、<a href="{{pe}}/cmgmt_managing_code.html">Puppetコードの管理とデプロイ</a>を参照してください。
 </p>
 
-<p> コードマネージャに付属しているコマンドラインツールを使用すると、<a href="/pe/latest/code_mgr_cli.html">コマンドラインでコードのデプロイを実行</a>できます。
+<p> コードマネージャに付属しているコマンドラインツールを使用すると、<a href="{{pe}}/code_mgr_cli.html">コマンドラインでコードのデプロイを実行</a>できます。
 </p>
 
 <h2 id="orchestration-services">オーケストレーションサービス</h2>
@@ -231,7 +231,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <p> オーケストレーションサービスは、PuppetアプリケーションオーケストレーションとPuppetオーケストレータを駆動するための基盤となるツールセットです。
 </p>
 
-<p> <a href="/pe/latest/app_orchestration_overview.html">Puppetアプリケーションオーケストレーション</a>は、Puppet言語の拡張機能とコマンドラインツールを提供しており、マルチサービスアプリケーションやマルチノードアプリケーションの設定および管理に役立ちます。 具体的に説明すると、アプリケーションオーケストレーションは以下を指します。
+<p> <a href="{{pe}}/app_orchestration_overview.html">Puppetアプリケーションオーケストレーション</a>は、Puppet言語の拡張機能とコマンドラインツールを提供しており、マルチサービスアプリケーションやマルチノードアプリケーションの設定および管理に役立ちます。 具体的に説明すると、アプリケーションオーケストレーションは以下を指します。
 </p>
 
 <ul>
@@ -243,7 +243,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <ul>
 <li>ノードレベルから環境レベルまで、順序付けられた設定の適用をオーケストレートするサービス</li>
 </ul>
-<p> <a href="/pe/latest/orchestrator_intro.html">Puppetオーケストレータ</a>は、オーケストレーションジョブの計画、実行、検査用のコマンドラインツールです。 たとえば、このツールを使用して、環境内で宣言されたアプリケーションインスタンスを確認することができます。また、通常の30分間隔でノードがチェックインするのを待つことなく、環境レベルで変更を適用することもできます。
+<p> <a href="{{pe}}/orchestrator_intro.html">Puppetオーケストレータ</a>は、オーケストレーションジョブの計画、実行、検査用のコマンドラインツールです。 たとえば、このツールを使用して、環境内で宣言されたアプリケーションインスタンスを確認することができます。また、通常の30分間隔でノードがチェックインするのを待つことなく、環境レベルで変更を適用することもできます。
 </p>
 
 <p> オーケストレーションサービスは、PuppetDBと相互作用してノードに関するfactを取得します。 オーケストレータジョブを実行するには、最初にPuppet Accessへの認証を実行する必要があります。これにより、RBACで管理されているユーザとパーミッションプロファイルが検証されます。
@@ -284,7 +284,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
     </tr>
 </tbody>
 </table>
-<p> 上記データベースの管理方法については、<a href="/pe/latest/maintain_console-db.html">Puppet Enterpriseのデータベースの管理</a>を参照してください。
+<p> 上記データベースの管理方法については、<a href="{{pe}}/maintain_console-db.html">Puppet Enterpriseのデータベースの管理</a>を参照してください。
 </p>
 
 <h2 id="puppetdb">PuppetDB</h2>
@@ -292,7 +292,7 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 <p> PuppetDBは、Puppetインフラ全体で生成されたデータを収集します。 PuppetDBにより、エクスポートリソースなどの高度なPuppet機能が使用できるようになります。また、Puppet Enterpriseに含まれる各種のコンポーネントとサービスは、このデータベースからデータにアクセスします。 Puppet agentの実行レポートは、PuppetDBに保存されます。
 </p>
 
-<p> PuppetDBの詳細については、<a href="%7B%7Bpuppetdb%7D%7D">PuppetDBの概要</a>を参照してください。
+<p> PuppetDBの詳細については、<a href="{{puppetdb}}">PuppetDBの概要</a>を参照してください。
 </p>
 
 <h1 id="security-and-communications">セキュリティと通信</h1>
@@ -410,4 +410,3 @@ title: "Puppet Enterpriseアーキテクチャ概要"
 
 <p> <a href="./overview_version_table.html">最近のPuppet Enterpriseリリースのコンポーネントバージョン</a>は、上記のPuppet Enterpriseソフトウェアコンポーネントのバージョンと、ここに記載されていない一部のソフトウェアバージョンをトラッキングします。
 </p>
-</div>

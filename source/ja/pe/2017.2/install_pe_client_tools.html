@@ -11,13 +11,13 @@ title: "Puppet Enterpriseクライアントツールパッケージのインス�
 
 <ul>
 <li>
-<a href="/pe/latest/orchestrator_intro.html">Puppetオーケストレータ</a>: このツールを使用すると、インフラ内での変更の伝搬を制御することができます。また、Puppetアプリケーションオーケストレーションサービスのインターフェースとして使用できます。このツールには、<code>puppet-job</code>と<code>puppet-app</code>が含まれます。</li>
+<a href="{{pe}}/orchestrator_intro.html">Puppetオーケストレータ</a>: このツールを使用すると、インフラ内での変更の伝搬を制御することができます。また、Puppetアプリケーションオーケストレーションサービスのインターフェースとして使用できます。このツールには、<code>puppet-job</code>と<code>puppet-app</code>が含まれます。</li>
   <li>
-<a href="/pe/latest/rbac_token_auth.html#working-with-puppet-access">Puppetアクセス</a>: このツールを使用すると、Puppet EnterpriseのRBACトークンベース認証サービスで認証を実行して、その他の機能やAPIを使用することができます。</li>
+<a href="{{pe}}/rbac_token_auth.html#working-with-puppet-access">Puppetアクセス</a>: このツールを使用すると、Puppet EnterpriseのRBACトークンベース認証サービスで認証を実行して、その他の機能やAPIを使用することができます。</li>
   <li>
-<a href="/pe/latest/code_mgr_cli.html">コードマネージャ</a>: このツールは、コードマネージャサービスとファイル同期サービスのインターフェースとして使用でき、<code>puppet-code</code>を含みます。</li>
+<a href="{{pe}}/code_mgr_cli.html">コードマネージャ</a>: このツールは、コードマネージャサービスとファイル同期サービスのインターフェースとして使用でき、<code>puppet-code</code>を含みます。</li>
   <li>
-<a href="%7B%7Bpuppetdb%7D%7D/pdb_client_tools.html">PuppetDB CLI</a>: このツールを使用すると、クエリの構築やエクスポートの処理など、PuppetDBの操作を実行できます。</li>
+<a href="{{puppetdb}}/pdb_client_tools.html">PuppetDB CLI</a>: このツールを使用すると、クエリの構築やエクスポートの処理など、PuppetDBの操作を実行できます。</li>
 </ul>
 <h2 id="supported-operating-systems">対応するオペレーティングシステム</h2>
 
@@ -80,7 +80,7 @@ title: "Puppet Enterpriseクライアントツールパッケージのインス�
 </table>
 <h3 id="matching-client-tools-and-pe-versions">クライアントツールのバージョンとPuppet Enterpriseバージョンの対応</h3>
 
-<p> Puppet Enterpriseクライアントツールのバージョンは、Puppet Enterpriseバージョンのリリース年とリリース整理番号(「x.y」)と同じものを使用してください。 たとえば、Puppet Enterprise 2017.2.0を実行している場合、2017.2.0のクライアントツールを使用します。
+<p> Puppet Enterpriseクライアントツールのバージョンは、Puppet Enterpriseバージョンのリリース年とリリース整理番号(「x.y」)と同じものを使用してください。 たとえば、Puppet Enterprise 2017.2.1を実行している場合、2017.2.1のクライアントツールを使用します。
 </p>
 
 <p> Puppet Enterpriseまたはクライアントツールに対して、パッチリリース(「x.y.z」)が発行される場合がありますが、 このパッチ番号をPuppet Enterpriseとクライアントツール間で揃える必要はありません。 「x.y」の番号は一致させる必要があります。
@@ -103,7 +103,7 @@ title: "Puppet Enterpriseクライアントツールパッケージのインス�
 
 <ol>
 <li>Puppet agentのインストールマニュアル(<a href="./install_agents.html">*nix用</a>、<a href="tbd">Windows用</a>、<a href="./install_osx.html">OS X用</a>)に従って、コントローラマシンとして使用するPuppet agentをインストールします。</li>
-  <li>Puppet Enterprise Webコンソールで、<a href="/pe/latest/console_classes_groups.html#creating-classification-node-groups">コントローラ分類グループを作成</a>して名前(例: PE Controller)を付け、[<strong>親名</strong>]に<strong>All Nodes</strong>を設定します。</li>
+  <li>Puppet Enterprise Webコンソールで、<a href="{{pe}}/console_classes_groups.html#creating-classification-node-groups">コントローラ分類グループを作成</a>して名前(例: PE Controller)を付け、[<strong>親名</strong>]に<strong>All Nodes</strong>を設定します。</li>
   <li>
     <p> <strong>PE Controller</strong>グループを選択し、<code>puppet_enterprise::profile::controller</code>クラスを追加します。
 </p>
@@ -118,13 +118,13 @@ title: "Puppet Enterpriseクライアントツールパッケージのインス�
     <p> a. [<strong>ルール</strong>]タブで、ピン留めされたノードのセクションまで下にスクロールします。
 </p>
 
-    <p> b. [<strong>Certname</strong>]フィールドにノードの<a href="%7B%7Bpuppet%7D%7D/configuration.html#certname">certname</a>を入力します。
+    <p> b. [<strong>Certname</strong>]フィールドにノードの<a href="{{puppet}}/configuration.html#certname">certname</a>を入力します。
 </p>
 
     <p> c. [<strong>ノードをピンして追加します</strong>]をクリックし、[変更を保存]ボタンをクリックします。
 </p>
   </li>
-  <li>コントローラマシン上で<a href="/pe/latest/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行</a>します。</li>
+  <li>コントローラマシン上で<a href="{{pe}}/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行</a>します。</li>
   <li>クライアントツールの設定が必要な場合、<a href="#global-configuration-file-management">グローバル設定ファイルの管理</a>を参照してください。</li>
 </ol>
 <h2 id="non-managed-workstation-installation">Puppet Enterpriseで管理されていないワークステーションへのインストール</h2>
@@ -296,9 +296,8 @@ title: "Puppet Enterpriseクライアントツールパッケージのインス�
 </p>
 
 <ul>
-<li><a href="/pe/latest/orchestrator_install.html#puppet-orchestrator-configuration-files">Puppetオーケストレータクライアント</a></li>
-  <li><a href="/pe/latest/rbac_token_auth.html#working-with-puppet-access">Puppetアクセスクライアント</a></li>
-  <li><a href="/pe/latest/code_mgr_cli.html">Code Manager <code>puppet-code</code>クライアント</a></li>
-  <li><a href="%7B%7Bpuppetdb%7D%7D/pdb_client_tools.html">PuppetDB CLIクライアント</a></li>
+<li><a href="{{pe}}/orchestrator_install.html#puppet-orchestrator-configuration-files">Puppetオーケストレータクライアント</a></li>
+  <li><a href="{{pe}}/rbac_token_auth.html#working-with-puppet-access">Puppetアクセスクライアント</a></li>
+  <li><a href="{{pe}}/code_mgr_cli.html">Code Manager <code>puppet-code</code>クライアント</a></li>
+  <li><a href="{{puppetdb}}/pdb_client_tools.html">PuppetDB CLIクライアント</a></li>
 </ul>
-</div>

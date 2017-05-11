@@ -1,0 +1,255 @@
+---
+layout: default
+title: "Instalación modo texto: fraccionada"
+---
+
+<p> La instalación fraccionada es la base de la instalación para grandes entornos de trabajo, los cuales podrían llegar a administrar más de 20.000 nodos. Si no esta administrando esta cantidad de nodos, nosotros recomendamos un tipo de instalación monolítica (o con una colección de masters)
+</p>
+
+<h2 id="install-pe-split-installation">Instalar PE: instalación fraccionada</h2>
+
+<p> Cuando usted realiza una instalación PE fraccionada en modo texto, usted transmite el instalador y el fichero <code>pe.conf</code> a cada máquina en el que se instalará el componente.
+</p>
+
+<p> El instalador PE es <em>idempotente</em>, significa que usted puede correr tantas veces como necesite sin afectar el resultado. Si encuentra errores durante la instalación, puede corregirlos y ejecutar el instalador de nuevo.
+</p>
+
+<p> Es importante que instale los componentes en el orden especificado:
+</p>
+
+<ol>
+<li>Instalar el Puppet master.</li>
+  <li>Instalar PuppetDB.</li>
+  <li>Instalar la PE console.</li>
+</ol>
+<p> Antes de comenzar:
+</p>
+
+<ul>
+<li>Revise el  <a href="/pe/2017.2/install_text_mode.html">resumen de instalación en modo texto</a>
+</li>
+  <li><a href="./install_basic.html#downloading-puppet-enterprise">Descarge y verifique el tarball PE</a></li>
+</ul>
+<h3 id="install-the-puppet-master">Instalar  el Puppet master</h3>
+
+<p> Cuando configura una instalación de PE fraccionado, primero instale el Puppet master.
+</p>
+
+<ol>
+<li>Desempaquete el tarball ejecutando <code>tar -xf &lt;TARBALL_FILENAME&gt;</code>. Esto paso necesita un 1 GB de espacio en <code>/tmp</code>.</li>
+  <li>
+    <p> En el directorio del instalador, ejecute el instalador. Los pasos de la instalación puede variar dependiendo del path que ha seleccionado.
+</p>
+
+    <ul>
+<li>
+        <p> Para que el instalador abra una copia de <code>pe.conf</code> para editar e instalar, ejecute el instalador <strong>sin el parámetro <code>-c</code> </strong>.
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer
+</code></pre>
+      </li>
+      <li>
+        <p> Para usar el fichero <code>pe.conf</code> que has completado anteriormente, ejecuta el instalador <strong>con el parámetro <code>-c</code></strong> apuntando al fichero <code>pe.conf</code>.
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+
+        <blockquote>
+          <p> <strong>Warning:</strong> Si está utilizando un archivo pre-poblado, asegúrese de haber configurado los parámetros correctamente como se detalla en los pasos siguientes.
+</p>
+        </blockquote>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> Si ejecutaste el instalador  <strong>sin el parámetro -c </strong>, seleccione "text-mode" cuando se le solicite.
+</p>
+
+    <p> Esto abre su editor de texto con el fichero <code>pe.conf</code> que puede editar para que coincida con su infraestructura y agregue cualquier opción de instalación de texto adicional según sea necesario.
+</p>
+  </li>
+  <li>
+    <p> Establezca los siguientes parámetros:
+</p>
+
+    <blockquote>
+      <p> <strong>Importante:</strong> No utilice comillas simples en los valores de los parámetros. Use comillas dobles como se muestra en los ejemplos.
+</p>
+    </blockquote>
+
+    <blockquote>
+      <p> <strong>Nota:</strong> En los siguientes ejemplos, <code>&lt;FQDN&gt;</code> es el FQDN del servidor. Por ejemplo, el parámetro y el valor debería ser denominado como <code>"puppet_enterprise::puppet_master_host": "master.example.com"</code>.
+</p>
+    </blockquote>
+
+    <table>
+<thead><tr>
+<th>Parámetro</th>
+          <th>Value</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td><code>"console_admin_password":</code></td>
+          <td>
+<code>"&lt;PASSWORD&gt;"</code>— Sustituir <code>&lt;PASSWORD&gt;</code> Con su contraseña utilizada para iniciar sesión en la consola PE.</td>
+        </tr>
+<tr>
+<td><code>"puppet_enterprise::puppet_master_host":</code></td>
+          <td>
+<code>"&lt;FQDN&gt;"</code>— Proporcione el <code>&lt;FQDN&gt;</code> del nodo que aloja Puppet master.</td>
+        </tr>
+<tr>
+<td><code>"puppet_enterprise::console_host":</code></td>
+          <td>
+<code>"&lt;FQDN&gt;"</code>— Proporcione el <code>&lt;FQDN&gt;</code> del nodo que aloja la consola PE.</td>
+        </tr>
+<tr>
+<td><code>"puppet_enterprise::puppetdb_host":</code></td>
+          <td>
+<code>"&lt;FQDN&gt;"</code>— Proporcione el <code>&lt;FQDN&gt;</code> del nodo que aloja PuppetDB.</td>
+        </tr>
+</tbody>
+</table>
+<blockquote>
+      <p> <strong>Warning</strong>: En una instalación fraccionada, no utilice el valor “%{::trusted.certname}” valor para el Puppet master.
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> Si posee un servidor PostgreSQL externo, consulte <a href="/pe/2017.2/install_pe_conf_param.html#external-postgresql-parameters">parámetros externos de PostgreSQL en el pe.conf reference</a> agregarlos a <code>pe.conf</code>.
+</p>
+  </li>
+  <li>
+    <p> Guarde y cierre el fichero.
+</p>
+
+    <p> Esto inicia la instalación.
+</p>
+  </li>
+  <li>Cuando finalice la instalación, transfiera el instalador de PE y el fichero<code>pe.conf</code> (generado en <code>/etc/puppetlabs/enterprise/conf.d/</code>) al servidor que se convertirá en su nodo PuppetDB.</li>
+</ol>
+<h3 id="install-puppetdb">Instalar PuppetDB.</h3>
+
+<p> En una instalación fraccionada, después de instalar el Puppet master, usted está preparado para instalar PuppetDB.
+</p>
+
+<p> Antes de comenzar:
+</p>
+
+<ul>
+<li>Usted debería  <a href="#install-the-puppet-master">instalar el Puppet master</a>.</li>
+</ul>
+<ol>
+<li>Desempaquetar el tarball de instalación ejecutando <code>tar -xf &lt;TARBALL_FILENAME&gt;</code>. Requiere cerca de  1 GB de espacio en <code>/tmp</code>.</li>
+  <li>En el parámetro de <code>pe.conf</code> denominado <code>puppet_enterprise::puppet_master_host</code> tiene establecido el valor <code>"%{::trusted.certname}"</code>, modifica el valor al FQDN del Puppet master.</li>
+  <li>Desde el directorio del instalador, ejecute el instalador con <code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;</code>.</li>
+  <li>Cuando termine la instalación, transfiere el instalador PE y el fichero <code>pe.conf</code> al servidor que se convertirá en su nodo consola PE.</li>
+</ol>
+<h3 id="install-the-pe-console">Instalar la PE console.</h3>
+
+<p> Después de instalar el Puppet master y PuppetDB en su instalación fraccionada, usted está preparado para instalar la consola PE.
+</p>
+
+<p> Antes de comenzar:
+</p>
+
+<ul>
+<li>Usted debería <a href="#install-the-puppet-master">instalar el Puppet master</a> y <a href="#install-puppetdb">PuppetDB</a>.</li>
+</ul>
+<ol>
+<li>Desempaquete el tarball ejecutando <code>tar -xf &lt;TARBALL_FILENAME&gt;</code>. Esto paso necesita un 1 GB de espacio en <code>/tmp</code>.</li>
+  <li>En el parámetro de <code>pe.conf</code> denominado <code>puppet_enterprise::puppet_master_host</code> tiene establecido el valor <code>"%{::trusted.certname}"</code>, modifica el valor al FQDN del Puppet master.</li>
+  <li>Desde el directorio del instalador, ejecute el instalador con <code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;</code>.</li>
+  <li>Cuando se complete la instalación, continúe ejecutando Puppet en todos los nodos fraccionados.</li>
+</ol>
+<h3 id="run-puppet-on-all-split-nodes">Ejecute Puppet en todos los nodos fraccionados</h3>
+
+<p> Para completar la instalación dividida, ejecute Puppet en todos los nodos de la instalación dividida en el orden indicado.
+</p>
+
+<ol>
+<li>Ejecute Puppet en el nodo Puppet master.</li>
+  <li>Ejecute Puppet en el nodo PuppetDB.</li>
+  <li>Ejecute Puppet en el nodo Puppet master una segunda vez.</li>
+  <li>Ejecute Puppet en el nodo consola PE.</li>
+</ol>
+<h2 id="text-mode-installation-options">Opciones de instalación en Modo Texto</h2>
+
+<p> Cuando ejecuta el instalador en modo texto, usted puede pasar parámetros adicionales al control de la instalación.
+</p>
+
+<p> La sintaxis para la instalación basada en texto con un archivo <code>pe.conf</code> especificado es
+</p>
+
+<pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+
+<p> Cuando utilice la opción <code>-c</code>, se requiere el nombre de archivo <code>pe.conf</code> con ruta completa. El comando se cerrará con un mensaje de error si lo omite.
+</p>
+
+<p> Cuando utiliza la opción <code>-c</code>, también puede utilizar las siguientes opciones:
+</p>
+
+<table>
+<thead><tr>
+<th>Option</th>
+      <th>Definición</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>-D</code></td>
+      <td>El instalador mostrará la información de depuración</td>
+    </tr>
+<tr>
+<td><code>-q</code></td>
+      <td>El instalador se ejecutará en modo silencioso. No se mostrará el proceso de instalación. Si se producen errores durante la instalación, el comando se cerrará con un mensaje de error.</td>
+    </tr>
+<tr>
+<td><code>-V</code></td>
+      <td>El instalador mostrará información de depuración muy detallada.</td>
+    </tr>
+<tr>
+<td><code>-h</code></td>
+      <td>El instalador mostrará la información de ayuda.</td>
+    </tr>
+</tbody>
+</table>
+<h2 id="add-puppet-enterprise-binaries-to-path">Agregue los binarios de Puppet Enterprise a <code>PATH</code>
+</h2>
+
+<p> PE <a href="./install_what_and_where.html#executable-binaries-and-symlinks">instala una serie de binarios</a> para interactuar con utilidades y servicios. Debe incluir estos binarios en su path predeterminado.
+</p>
+
+<ol>
+<li>
+    <p> Para incluir estos binarios en su <code>$PATH</code> por defecto, agregarlos manualmente a su perfil de usuario o ejecute:
+</p>
+
+    <pre><code>PATH=/opt/puppetlabs/puppet/bin:/opt/puppetlabs/server/bin:$PATH;export PATH
+</code></pre>
+  </li>
+</ol>
+<h2 id="disable-puppet-enterprise-symlinks">Desactivar enlaces simbólicos de Puppet Enterprise</h2>
+
+<p> PE <a href="./install_what_and_where.html#where-is-it-installed">instala una serie de enlaces directos </a> para interactuar con utilidades y herramientas. Si lo necesita, usted puede deshabilitar los enlaces directos, sustituyendo las configuraciones en <a href="/pe/2017.2/config_intro.html#configure-settings-with-hiera">el fichero Hiera predeterminado</a>.
+</p>
+
+<ol>
+<li>
+    <p> En su fichero Hiera predeterminado, agregue las siguientes configuraciones:
+</p>
+
+    <pre><code>puppet_enterprise::manage_symlinks: false
+</code></pre>
+  </li>
+</ol>
+<hr>
+<p> <strong>Links relacionados</strong>
+</p>
+
+<ul>
+<li><a href="./install_license_key.html">Como instalar la licencia PE </a></li>
+</ul>
+

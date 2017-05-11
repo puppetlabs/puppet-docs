@@ -1,0 +1,63 @@
+---
+layout: default
+title: "Puppet Enterprise Guía de inicio rápido para usuarios de *nix"
+---
+
+<!--Overview-->
+<p> ¡Bienvenido a la guía de inicio rápido de Puppet Enterprise!
+</p>
+
+<p> Ya sea que estes configurando PE para un despliegue en producción o que desees aprended algunos conceptos fundamentales sobre manejo de confifuración con Puppet Enterprise, esta serie de guías te proveeran la información necesaria para ponerte en marcha. Te guiaremos a través de la configuración de un despliegue monolítico (todo en un nodo) y te demostraremos como automatizar algunas de las tareas básicas que los administradores de sistemas performan regularmente.
+</p>
+
+<!--Concept-->
+<h2 id="introducing-the-nix-quick-start-guides">Presentación de las guías de inicio rápido * nix</h2>
+
+<p> Las siguientes guías presentan las tareas en el orden el cual probablemente las realizarías. Por favor, revisa la seccion de prerequisitos de cada guía para asegurarte que tu entorno esta configurado como se espera para realizar los pasos como estan definidos.
+</p>
+
+<h3 id="install-a-monolithic-puppet-enterprise-deployment">1. Instalar un despliegue Monolítico de Puppet Enterprise</h3>
+<p> La configuración básica de PE instala Puppet master, la consola PE y PuppetDB en un único nodo, una maquina *nix.  Esta guía también revisa los requisitos previos necesarios para una instalación PE.
+</p>
+
+<h3 id="install-the-puppet-agent">2. Instalar el Agente de Puppet</h3>
+<p> Esta gúia instala un Puppet agent que regularmente que regularmente tira de los catálogos de configuración de un Puppet master y los aplica localmente.  Estas instrucciones incluyen los pasos para firmar el certificado de cada agente en la consola.
+</p>
+
+<h3 id="install-a-module">3. Instalar un Módulo</h3>
+<p> Esta guía instala un module de Puppet, El medio principal mediante PE configura y gestiona nodos.  Miles de modules están disponibles para su uso en <a href="https://forge.puppet.com">Puppet Forge</a>.
+</p>
+
+<h3 id="add-classes">4. Agregar classes</h3>
+<p> Esta guía crea un nuevo grupo de nodos, aplicamo un fragmento llamado de código de Puppet - mejor conocido como  <a href="/puppet/4.10/lang_classes.html">class</a> — al grupo de nodos.
+</p>
+
+<h3 id="give-users-access">5. Dar acceso a los usuarios</h3>
+<p> Esta sección le presenta el control de acceso basado en roles.  Se creará una nueva role para el usuario y se concederá el permisos para trabajar con el grupo de nodos que creó anteriormente.
+</p>
+
+<h3 id="write-a-module">6. Escribir un module</h3>
+<p> Por último, escribirá un módulo para ayudarle a familiarizarse con los módulos Puppet y el desarrollo de módulos.
+</p>
+
+<h3 id="try-it-yourself">Inténtalo tú mismo</h3>
+<ol>
+<li><a href="/pe/2017.2/quick_start_install_mono.html">Instalar PE</a></li>
+  <li><a href="/pe/2017.2/quick_start_install_agents_nix.html">Instalar Puppet Agent</a></li>
+  <li><a href="/pe/2017.2/quick_start_module_install_nix.html">Instalar un module</a></li>
+  <li><a href="./quick_start_adding_class_nix.html">Agregar classes</a></li>
+  <li><a href="./quick_start_nc_rbac.html">Dar acceso a los usuarios</a></li>
+  <li><a href="./quick_writing_nix.html">Escribe tu propio módulo</a></li>
+</ol>
+<h3 id="next-steps">Próximos pasos</h3>
+
+<p> Una vez que haya completado la guía de inicio rápido, recomendamos los siguientes pasos:
+</p>
+
+<ul>
+<li><a href="/puppet/4.10/modules_fundamentals.html">Aprenda más sobre cómo trabajar con Puppet Forge para encontrar los modules necesarios</a></li>
+  <li><a href="./r_n_p_intro.html">Utilice el método de roles y perfiles para crear una configuración completa del sistema y almacenarla en un repositorio de control</a></li>
+  <li><a href="/pe/2017.2/cmgmt_managing_code.html">Gestionar código Puppet utilizando las herramientas incluidas en PE y el repositorio de control</a></li>
+  <li><a href="/pe/2017.2/console_classes_groups_getting_started.html">Clasificar nodos utilizando grupos y reglas</a></li>
+</ul>
+
