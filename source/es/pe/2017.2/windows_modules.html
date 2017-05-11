@@ -8,7 +8,7 @@ title: "Cómo instalar y usar Windows modules"
 <p> Puppet Forge es una comunidad online de Puppet modules publicados por Puppet y miembros de la comunidad. Forge facilita la gestión de Puppet y puedes ahorrar tiempo utilizando "modules"  pre-escritos, en lugar de escribirlos usted mismo. Además puede ser calificado por la comunidad, "modules" en Forge es <a href="https://forge.puppetlabs.com/approved">Puppet Approved</a> o <a href="https://forge.puppetlabs.com/supported">Puppet Supported</a>. La mayor diferencia es que  "Approved modules" no están disponibles para <a href="https://puppetlabs.com/services/customer-support">el servicio de soporte de Puppet Enterprise</a>, pero todavía se prueban y se adhieren a un estándar por el estilo y la calidad.
 </p>
 
-<p> <img src="images/windows/puppetlabs_windows_modulepack.png" alt="Windows Module Pack">
+<p> <img src="/pe/2017.2/images/windows/puppetlabs_windows_modulepack.png" alt="Windows Module Pack">
 </p>
 
 <p> El paquete Windows "module" incluye mucho "modules" compatibles con Windows que ayudan a realizar las tarea específicas. Usted puede encontrar Windows "modules" buscando en el Forge. Mientras el paquete "module" no está soportado, los "modules" de Puppet contenidos en el paquete son soportados por Puppet Enterprise. El resto han sido evaluados y recomendados por Puppet pero no son seleccionados para el soporte comercial.
@@ -52,7 +52,7 @@ title: "Cómo instalar y usar Windows modules"
     <p> Para listar "modules" que actualmente están instalados, escriba <code>puppet module list</code> en su ventana de <strong>Símbolo de sistema</strong>. Si usted acaba de empezar, Es probable que todavía no haya "modules" instalados.
 </p>
 
-    <p> <img src="images/windows/cli_list_empty_modules.png" alt="puppet module list empty output">
+    <p> <img src="/pe/2017.2/images/windows/cli_list_empty_modules.png" alt="puppet module list empty output">
 </p>
   </li>
   <li>
@@ -83,7 +83,7 @@ C:/ProgramData/PuppetLabs/code/environments/production/modules
 <h2 id="task-1-manage-permissions-with-acl">Trabajo 1: Gestionar permisos con <code>acl</code>
 </h2>
 
-<p> <img src="images/windows/forge_acl.png" alt="Forge puppetlabs-acl">
+<p> <img src="/pe/2017.2/images/windows/forge_acl.png" alt="Forge puppetlabs-acl">
 </p>
 
 <p> El "module" <a href="https://forge.puppetlabs.com/puppetlabs/acl"><code>puppetlabs-acl</code></a> ayuda a gestionar las listas de control de acceso (ACLs), las cuales proveen una forma de interactuar con los permisos del sistema de ficheros de Windows. Este "module" posibilita llevar tu configuración de permisos básico a unos permisos avanzados utilizando SIDs (Security Identifiers) con una inherente <a href="https://msdn.microsoft.com/en-us/library/aa394063.aspx">access mask</a>, y estrategía de propagación. Lo primero, usted empezará consultando algunos permisos existentes.
@@ -97,7 +97,7 @@ C:/ProgramData/PuppetLabs/code/environments/production/modules
 <p> En el símbolo de sistema, escriba <code>puppet resource acl c:\Usuarios</code>.
 </p>
 
-<p> <img src="images/windows/cli_resource_acl.png" alt="puppet resource acl c:\usuarios output">
+<p> <img src="/pe/2017.2/images/windows/cli_resource_acl.png" alt="puppet resource acl c:\usuarios output">
 </p>
 
 <p> Usted puede limpiar esa salida un poco, de la siguiente manera:
@@ -153,14 +153,14 @@ acl {'c:/tempperms':
 }
 </code></pre>
 
-    <p> <img src="images/windows/perms_pp_manifest.png" alt="perms.pp file">
+    <p> <img src="/pe/2017.2/images/windows/perms_pp_manifest.png" alt="perms.pp file">
 </p>
   </li>
   <li>
     <p> Para validar tu manifiesto, en el símbolo de sistema, escribe <code>puppet parser validate c:\path\to\perms.pp</code>. El comando parser no devuelve nada, esto significa que ha pasado la validación.
 </p>
 
-    <p> <img src="images/windows/cli_parser_validate.png" alt="puppet parser validate no issues">
+    <p> <img src="/pe/2017.2/images/windows/cli_parser_validate.png" alt="puppet parser validate no issues">
 </p>
   </li>
   <li>
@@ -181,7 +181,7 @@ Notice: Applied catalog in 0.05 seconds
     <p> Revisa los permisos en su Windows UI. En <strong>Windows Explorer</strong>, click con el botón derecho <strong>tempperms</strong> y click  sobre <strong>Propiedades</strong>. Entonces, click sobre la etiqueta <strong>Security</strong>. Debería ser similar a la imagen de abajo.
 </p>
 
-    <p> <img src="images/windows/security_properties.png" alt="Security properties of c:\tempperms">
+    <p> <img src="/pe/2017.2/images/windows/security_properties.png" alt="Security properties of c:\tempperms">
 </p>
   </li>
   <li>
@@ -289,7 +289,7 @@ Successfully processed 1 files; Failed processing 0 files
 <h2 id="task-2-create-puppet-managed-registry-keys-with-registry">Trabajo 2: Crear claves de registro gestionadas  Puppet con <code>registry</code>
 </h2>
 
-<p> <img src="images/windows/forge_registry.png" alt="Forge puppetlabs-registry">
+<p> <img src="/pe/2017.2/images/windows/forge_registry.png" alt="Forge puppetlabs-registry">
 </p>
 
 <p> Eventualmente, es probable que tenga que utilizar el registro para acceder y establecer configuraciones de alta disponibilidad, entre otras cosas. El module <a href="https://forge.puppetlabs.com/puppetlabs/registry">puppetlabs-registry</a> , el cual también es <a href="https://forge.puppetlabs.com/supported">Puppet Supported Module</a> le permite establecer tanto las claves del registro como los valores.
@@ -303,7 +303,7 @@ Successfully processed 1 files; Failed processing 0 files
 <p> Escriba <code>puppet resource registry_key 'HKLM\Software\Microsoft\Windows'</code>.
 </p>
 
-<p> <img src="images/windows/cli_resource_registry.png" alt="Output of puppet resource registry_key 'HKLM\Software\Microsoft\Windows'">
+<p> <img src="/pe/2017.2/images/windows/cli_resource_registry.png" alt="Output of puppet resource registry_key 'HKLM\Software\Microsoft\Windows'">
 </p>
 
 <p> No es interesante, pero ahora eche un vistazo a un valor de registro.
@@ -382,7 +382,7 @@ Notice: Applied catalog in 0.03 seconds
     <p> A continuación, inspeccione el registro y ver lo que contiene. Pulse <strong>Inicio + R</strong>, entonces escriba <code>regedit</code> y pulse  <strong>Enter</strong>. Una vez ha abierto el Editos de Registro, encuentre su clave bajo  <code>HKEY_LOCAL_MACHINE</code>.
 </p>
 
-    <p> <img src="images/windows/regedit_HKLM.png" alt="Registry Editor display of keys">
+    <p> <img src="/pe/2017.2/images/windows/regedit_HKLM.png" alt="Registry Editor display of keys">
 </p>
 
     <p> Fijese que la clave de  32-bit fue creada bajo la sección 32-bit de Software para  Wow6432Node.
@@ -400,7 +400,7 @@ Notice: Applied catalog in 0.02 seconds
     <p> Nada cambió, así que no hay trabajo para hacer Puppet. En el <strong>Editor de Registro</strong>, modifique el dato. Seleccione <code>HKLM\Sofware\zTemporaryPuppet</code> y en la parte derecha, doble-click sobre <code>StringValue</code>. Modifique el valor data, y  seleccione <strong>OK</strong>.
 </p>
 
-    <p> <img src="images/windows/regedit_edit_value.png" alt="Edit StringValue of HKLM\Sofware\zTemporaryPuppet">
+    <p> <img src="/pe/2017.2/images/windows/regedit_edit_value.png" alt="Edit StringValue of HKLM\Sofware\zTemporaryPuppet">
 </p>
 
     <p> Esta vez, se han realizado cambios, por lo que escribiendo <code>puppet apply c:\path\to\registry.pp</code> muestra una salida diferente.
@@ -444,7 +444,7 @@ Notice: Applied catalog in 0.02 seconds
     <p> Refresque la vista en su Editor de Registro Los valores han desaparecido.
 </p>
 
-    <p> <img src="images/windows/regedit_absent.png" alt="Removed items verification in Registry Editor">
+    <p> <img src="/pe/2017.2/images/windows/regedit_absent.png" alt="Removed items verification in Registry Editor">
 </p>
   </li>
 </ol>
@@ -488,7 +488,7 @@ Notice: Applied catalog in 0.02 seconds
 <h2 id="task-3-create-install-and-repackage-packages-with-chocolatey">Trabajo 3: Crear, instalar and re-empaquetar con <code>chocolatey</code>
 </h2>
 
-<p> <img src="images/windows/forge_chocolatey.png" alt="Forge chocolatey-chocolatey">
+<p> <img src="/pe/2017.2/images/windows/forge_chocolatey.png" alt="Forge chocolatey-chocolatey">
 </p>
 
 <p> <a href="https://chocolatey.org">Chocolatey</a> es un gestor de paquetes para Windows que es similar en diseño y ejecución a administradores de paquetes en sistemas que no son de Windows. El <a href="https://forge.puppetlabs.com/chocolatey/chocolatey">chocolatey module</a> es un <a href="https://forge.puppetlabs.com/approved">Puppet Approved Module</a>, por lo que no es elegible para los servicios de soporte de Puppet Enterprise. El module tiene la capacidad de configurar e instalar Chocolatey y gestionar el software de Windows con paquetes Chocolatey.
@@ -592,21 +592,21 @@ Notice: Applied catalog in 15.51 seconds
     <p> Descarga el paquete desde el feed de Comunidad de Chocolatey desde  <a href="https://chocolatey.org/packages/notepadplusplus.commandline">página del paquete</a> y haciendo click en el link de descarga.
 </p>
 
-    <p> <img src="images/windows/choco_npp_download.png" alt="Download Link">
+    <p> <img src="/pe/2017.2/images/windows/choco_npp_download.png" alt="Download Link">
 </p>
   </li>
   <li>
     <p> Renombra el fichero el final del fichero descargado con <code>.zip</code> y desempaqueta el fichero como un archivo normal.
 </p>
 
-    <p> <img src="images/windows/choco_rename_nupkg_zip.png" alt="Rename to append .zip suffix">
+    <p> <img src="/pe/2017.2/images/windows/choco_rename_nupkg_zip.png" alt="Rename to append .zip suffix">
 </p>
   </li>
   <li>
     <p> Borra las carpetas <code>_rels</code> y <code>package</code> y el archivo <code>[Content_Types].xml</code>. Estos son creados durante el <code>choco pack</code> y debería no estar incluidos,  ya que serán regenerados (y su existencia conduce a problemas).
 </p>
 
-    <p> <img src="images/windows/choco_delete_pkg_files.png" alt="Remove _rels, package, and the xml file">
+    <p> <img src="/pe/2017.2/images/windows/choco_delete_pkg_files.png" alt="Remove _rels, package, and the xml file">
 </p>
   </li>
   <li>
@@ -620,7 +620,7 @@ Notice: Applied catalog in 15.51 seconds
     <p> Descargue el archivo zip y colóquelo en la carpeta tools del paquete.
 </p>
 
-    <p> <img src="images/windows/choco_download_zip.png" alt="Zip file embedding in package">
+    <p> <img src="/pe/2017.2/images/windows/choco_download_zip.png" alt="Zip file embedding in package">
 </p>
   </li>
   <li>
@@ -673,7 +673,7 @@ Paquete creado con éxito 'notepadplusplus.commandline.6.8.7.nupkg'
     <p> Cree <code>c:\packages</code> y copie el archivo de paquete resultante (<code>notepadplusplus.commandline.6.8.7.nupkg</code>).
 </p>
 
-    <p> <img src="images/windows/choco_local_packages.png" alt="package in folder">
+    <p> <img src="/pe/2017.2/images/windows/choco_local_packages.png" alt="package in folder">
 </p>
 
     <p> Esto no se instalará realmente en este sistema ya que acaba de instalar la misma versión del feed de la comunidad de Chocolatey. Por lo tanto, necesita quitar primero el paquete existente. Para borrarlo, edite <code>chocolatey.pp</code> para establecer el paquete a eliminar.
@@ -697,7 +697,7 @@ Notice: Applied catalog in 12.20 seconds
     <p> Puede confirmar que el paquete ha sido eliminado, por medio del cheque de la localización de la instalación del paquete o utilizando <code>choco list -lo</code>.
 </p>
 
-    <p> <img src="images/windows/choco_list_local.png" alt="Package is uninstalled">
+    <p> <img src="/pe/2017.2/images/windows/choco_list_local.png" alt="Package is uninstalled">
 </p>
   </li>
   <li>
@@ -725,7 +725,7 @@ Notice: Applied catalog in 14.78 seconds
 </p>
   </li>
 </ol>
-<p> <img src="images/windows/choco_list_local_installed.png" alt="Package is installed">
+<p> <img src="/pe/2017.2/images/windows/choco_list_local_installed.png" alt="Package is installed">
 </p>
 
 <p> También puede validar <code>chocolateyInstall.ps1</code> abriendo y consultando que el fichero personalizado ha cambiado. 
@@ -856,7 +856,7 @@ Notice: Applied catalog in 31.51 seconds
 </p>
   </li>
 </ol>
-<p> <img src="images/windows/choco_vagrant_installed.png" alt="Vagrant is installed!&lt;/p&gt; &lt;p class=" temp-sentence>"&gt;
+<p> <img src="/pe/2017.2/images/windows/choco_vagrant_installed.png" alt="Vagrant is installed!&lt;/p&gt; &lt;p class=" temp-sentence>"&gt;
 </p>
 
 <h4 id="uninstalling">Cómo desinstalar</h4>
@@ -892,7 +892,7 @@ Notice: /Stage[main]/Main/Package[vagrant]/ensure: removed
 Notice: Applied catalog in 40.85 seconds
 </code></pre>
 
-    <p> <img src="images/windows/choco_vagrant_uninstalled.png" alt="Vagrant is no longer installed">
+    <p> <img src="/pe/2017.2/images/windows/choco_vagrant_uninstalled.png" alt="Vagrant is no longer installed">
 </p>
 
     <p> ¡Y ya no está instalado!
@@ -949,4 +949,4 @@ package {'git':
 
 <p> Usted puede aprender más sobre Chocolatey visitando <a href="https://chocolatey.org">Chocolatey.org</a>, leyendo la <a href="https://github.com/chocolatey/choco/wiki">documentación en GitHub</a>, y visualizando  <a href="https://www.youtube.com/watch?v=NNM2H4GsWYA">“Chocolatey and Puppet - Managing Your Windows Software Since 2011”</a> de Rob Reynolds presentado en PuppetConf 2015. Para aprender específicamente que ofrece el provider y tener una referencia para saber de que es capaz, el module y la documentación están en <a href="https://forge.puppetlabs.com/chocolatey/chocolatey">Puppet Forge</a>.
 </p>
-</div>
+
