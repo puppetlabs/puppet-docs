@@ -54,15 +54,15 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
 <ol>
 <li>WindowsマシンでSFTPクライアントを使って、Puppet masterとして指定したLinuxマシンにPE Masterインストーラパッケージをコピーします。</li>
   <li>Windowsマシン上でSSHクライアントを使ってsshでLinuxマシンにログインし、以下の例に示すように、ホスト名またはIPアドレスとポートを入力します。
-  <img src="/pe/latest/images/windows/putty_config.png" alt="putty config">
+  <img src="{{pe}}/images/windows/putty_config.png" alt="putty config">
 </li>
   <li>ターミナルでプロンプトが表示されたら、<code>root</code>ユーザー、またはsudo権限を持つユーザーとしてLinuxマシンにログインします。
-  <img src="/pe/latest/images/windows/login_as_root.png" alt="login as root">
+  <img src="{{pe}}/images/windows/login_as_root.png" alt="login as root">
 </li>
   <li>Linuxマシンには指定されたホスト名があるはずです。ホスト名を確認するには、 <code>hostname -f</code>を実行します。</li>
   <li>PEで使用するWebベースのインストーラにアクセスするためには、ポート3000へのアクセスを確保する必要があります。<blockquote>
       <p> <strong>ヒント</strong>：アクセスを確保するための方法はお使いのOSおよびクラウド／仮想化プラットフォームによって異なりますが、以下の例で示すように、<code>iptables</code>を無効化することで、このポートを確実に開けることができます。
-<img src="images/windows/disable_iptables.png" alt="disable iptables">
+<img src="{{pe}}/images/windows/disable_iptables.png" alt="disable iptables">
 </p>
     </blockquote>
   </li>
@@ -70,7 +70,7 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
 <code>tar -xvf puppet-enterprise-2015.2.0-*</code>を実行し、PEインストーラtarballを展開します。</li>
   <li>
 <code>cd puppet-enterprise-2015.2.0-el-6-x86_64</code>を実行し、インストーラのディレクトリに移ります。
-  <img src="/pe/latest/images/windows/cd_tarball.png" alt="cd to tarball">
+  <img src="{{pe}}/images/windows/cd_tarball.png" alt="cd to tarball">
 </li>
   <li>Puppet Enterpriseインストールのスクリプトを開始します。<code>./puppet-enterprise-installer</code>を実行します。</li>
   <li>ガイド付きのインストール情報が表示されます。プロンプトが表示されたら、<code>y</code>と回答し、ガイド付きインストールを実行するために必要なパッケージをインストールします。「Installing setup packages (セットアップパッケージをインストールしています)」というメッセージが表示され、その後、お使いのブラウザで特定のURL(https://master.inf.puppetlabs.demo:3000など)を開くよう指示するメッセージが表示されます。</li>
@@ -83,9 +83,9 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
     </blockquote>
   </li>
   <li>対応するフィールドに、以下のようにPuppet masterのFQDNとエイリアスを入力します。
- <img src="images/windows/master_install.png" alt="master install"> 
+ <img src="{{pe}}/images/windows/master_install.png" alt="master install"> 
 次に、コンソールの管理者パスワードを入力します。 
-<img src="images/windows/master_install_two.png" alt="second install image"><blockquote>
+<img src="{{pe}}/images/windows/master_install_two.png" alt="second install image"><blockquote>
       <p> <strong>重要</strong>：Puppet agentはエイリアスによりPuppet masterを認識するため、エイリアスは正確に指定する必要があります。 デフォルトでは「puppet」と表示されています。
 </p>
     </blockquote>
@@ -120,7 +120,7 @@ title: "Windows環境へのPuppet Enterpriseのインストール"
 
 <ol>
 <li>コンソールで[<strong>分類</strong>]をクリックし、[<strong>PE Infrastructure</strong>]ノードグループで<strong>PE_Master</strong>ノードグループを選択します。
-  <img src="images/windows/classification.png" alt="classification page">
+  <img src="{{pe}}/images/windows/classification.png" alt="classification page">
 </li>
   <li>[<strong>クラス</strong>]タブをクリックし、[<strong>新しいクラスを追加</strong>]フィールドに<code>windows</code>と入力し、お使いのWindowsマシンに合わせてアーキテクチャを選択します。 
 <img src="{{pe}}/images/windows/add_class.png" alt="add class">
