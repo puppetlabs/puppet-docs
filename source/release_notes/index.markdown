@@ -38,10 +38,11 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Release
 
-- [Puppet Enterprise 2017.1](/pe/latest/release_notes.html)
+- [Puppet Enterprise 2017.2](/pe/latest/release_notes.html)
 
 ### Previous Releases
 
+- [Puppet Enterprise 2017.1][pe2017.1]
 - [Puppet Enterprise 2016.5][pe2016.5]
 - [Puppet Enterprise 2016.4][pe2016.4]
 - [Puppet Enterprise 2016.2][pe2016.2]
@@ -101,6 +102,8 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 [3.6]: /puppet/3.6/reference/release_notes.html
 [3.5]: /puppet/3.5/reference/release_notes.html
 [3.x]: /puppet/3/reference/release_notes.html
+[pe2017.1]: /pe/2017.1/release_notes.html
+[pe2016.5]: /pe/2016.5/release_notes.html
 [pe2016.4]: /pe/2016.4/release_notes.html
 [pe2016.2]: /pe/2016.2/release_notes.html
 [pe2016.1]: /pe/2016.1/release_notes.html
