@@ -5,6 +5,19 @@ title: "Facter 3.6 Release notes"
 
 This page documents the history of the Facter 3.6 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
 
+## Facter 3.6.4
+
+Released May 11, 2017.
+
+Shipped with Puppet agent 1.10.1. This is a minor bug fix release, and the remaining issues to do not affect users.
+
+* [Fixed in Facter 3.6.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.6.4%27)
+* [Introduced in Facter 3.6.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.6.4%27)
+
+### Bug fixes
+
+* [FACT-1578](https://tickets.puppetlabs.com/browse/FACT-1578): Facter had an integer overflow when reporting on large numeric fact values like disk sizes, so the values were reported as negative numbers. This fix ensures Facter uses 64-bit longs to correctly report on the data.
+
 ## Facter 3.6.3
 
 Released April 5, 2017. 
@@ -17,7 +30,7 @@ Shipped with Puppet agent 1.10.0. This minor release contains one bug fix, and t
 
 ### Bug fixes
 
-* [FACT-1585](): GCE metadata collection now works correctly when Google's DNS is not used.
+* [FACT-1585](https://tickets.puppetlabs.com/browse/FACT-1585): GCE metadata collection now works correctly when Google's DNS is not used.
 
 
 ## Facter 3.6.2
