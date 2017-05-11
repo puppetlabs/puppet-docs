@@ -59,13 +59,13 @@ module PuppetDocs
 
       # build yaml frontmatter by subbing in title from div.title
       title_div = parsed.at_css('div.title')
-      title = title_div.content
-      frontmatter = %Q{---
-title: "#{title}"
----
-
-}
-      title_div.remove
+      if title_div
+        title = title_div.content
+        frontmatter = %Q{---\ntitle: "#{title}"\n---\n\n}
+        title_div.remove
+      else # at_css can return nil if there's no title div.
+        frontmatter = %Q{---\ntitle: "(no title)"\n---\n\n}
+      end
 
       frontmatter + parsed.to_html
     end
