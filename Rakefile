@@ -332,6 +332,18 @@ task :build_html_fragments do
   end
 end
 
+desc "Build HTML fragments, then mangle all of them for Transifex (takes a while)"
+task :build_and_mangle_html_fragments do
+  require 'puppet_docs/sentence_segmenter'
+  Rake::Task[:build_html_fragments].invoke
+  all_fragments = Dir.glob('output/**/*.html') # This actually sweeps up YARD pages too, but... never mind.
+  total_size = all_fragments.length
+  all_fragments.each_with_index do |fragment, i|
+    print "(#{i+1}/#{total_size}) "
+    PuppetDocs::SentenceSegmenter.mangle_file(fragment)
+  end
+end
+
 desc "List the available groups of references. Run `rake references:<GROUP>` to build."
 task :references do
   puts 'The following references are available:'
