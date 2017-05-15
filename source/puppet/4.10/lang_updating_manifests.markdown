@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Updating 3.x Manifests for Puppet 4.x"
+title: "Updating 3.x manifests for Puppet 4.x"
 ---
 
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
