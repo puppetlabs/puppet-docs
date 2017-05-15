@@ -29,7 +29,15 @@ title: "Publishing modules on the Puppet Forge"
 [metadata]: ./modules_metadata.html
 
 
-The Puppet Forge is a community repository of modules, written and contributed by open source Puppet and Puppet Enterprise users. Using the Puppet Forge is a great way to build on the work others have done and get updates and expansions on your own module work. You can publish your own modules to the Forge so that other users can [install][installing] them, as well as how to maintain your releases once published.
+The Puppet Forge is a community repository of modules, written and contributed by open source Puppet and Puppet Enterprise users. By publishing modules on the Forge, you can share your module with other Puppet users, get contributions to your modules, and maintain your module releases.
+
+Before you begin, you should already have written a useful Puppet module. To publish your module:
+
+1. Create a Puppet Forge account, if you don't already have one.
+2. Prepare your module.
+3. Write a metadata.json file with the required metadata.
+4. Build an uploadable tarball of your module.
+5. Upload your module using the Puppet Forge's web interface.
 
 ## Related topics
 
@@ -37,14 +45,6 @@ The Puppet Forge is a community repository of modules, written and contributed b
 * [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
 * [Using plugins][plugins]: How to arrange plugins (such as custom facts and custom resource types) in modules and sync them to agent nodes.
 * [Documenting modules][documentation]: How to write good documentation for your modules.
-
-Before you begin, you should already have [written a useful Puppet module][fundamentals]. To publish your module, you will need to:
-
-1. Create a Puppet Forge account, if you don't already have one.
-2. Prepare your module.
-3. Write a metadata.json file with the required metadata.
-4. Build an uploadable tarball of your module.
-5. Upload your module using the Puppet Forge's web interface.
 
 ### A note on module names
 
@@ -84,7 +84,7 @@ If you have both a .pmtignore and a .gitignore file, the Puppet module tool will
 
 ### Remove symlinks
 
-Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored). If you try to build a module with symlinks, you will recieve the following error:
+Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored). If you try to build a module with symlinks, you will receive the following error:
 
 ```
 Warning: Symlinks in modules are unsupported. Please investigate symlink manifests/foo.pp->manifests/init.pp.
@@ -96,16 +96,17 @@ Error: Try 'puppet help module build' for usage
 
 [inpage_metadata]: #write-a-metadatajson-file
 
-If you generated your module using the `puppet module generate` command, you'll already have a metadata.json file. Check it and make any necessary edits.
+If you generated your module using the `puppet module generate` command, you'll already have a `metadata.json` file. Check it and make any necessary edits.
 
-If you assembled your module manually, you must make sure that you have a metadata.json file in your module's main directory.
+If you assembled your module manually, you must make sure that you have a metadata.json file in your module's main directory. See the related topic about module metadata for details on writing the `metadata.json` file.
 
-[See the page about `metadata.json` for full details about its format.][metadata]
+Related topics:
 
+* [Module metadata and `metadata.json`][metadata]
 
 ## Build your module
 
-In order for your module to be successfully uploaded to and displayed on the Forge, your [metadata.json][metadata] file must include the following keys:
+In order for your module to be successfully uploaded to and displayed on the Forge, your ['metadata.json'][metadata] file must include the following keys:
 
 * `name`
 * `version`
@@ -130,10 +131,9 @@ Building /etc/puppetlabs/puppet/modules/mymodule for release
 
 >**Note:**
 >
->Throughout the Puppet 3.x series, deprecation warnings were issued for Modulefile. If you still have a Modulefile, it will be treated like any other text file in the root directory of the module. You will need to move any metadata contained in it to the [metadata.json][inpage_metadata].
+>Throughout the Puppet 3.x series, deprecation warnings were issued for Modulefile. If you still have a Modulefile, it will be treated like any other text file in the root directory of the module. Move any metadata contained in the Modulefile to the [metadata.json][inpage_metadata].
 
 ## Upload to the Puppet Forge
-
 
 Now that you have a compiled `tar.gz` package, you can upload it to the Forge. There is currently no command line tool for publishing; you must use the Forge's web interface. *Note:* Your tarball must be 10MB or less.
 
