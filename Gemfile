@@ -19,6 +19,9 @@ group(:generate_references) do
   gem 'ronn'
   gem 'yard'
   gem 'rdoc'
+  gem 'nokogiri'
+  gem 'pragmatic_segmenter'
+  gem 'punkt-segmenter'
 end
 
 group(:unknown) do

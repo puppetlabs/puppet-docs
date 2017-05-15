@@ -3,7 +3,7 @@ layout: default
 title: "Windowsでの一般的なタスク"
 ---
 
-<div>
+
 <p> このページは、Puppet EnterpriseとWindows agentで使用される一般的なタスクに関する理解を深めることを目的とし、このようなタスクを実行する際のベースとなるコンセプトや理由について説明します。 ドキュメント内の他のガイドや手順説明のなかでも、タスクの手順としてこのようなコンセプトに触れていますが、詳しい解説はありません。
 </p>
 
@@ -142,7 +142,7 @@ Notice: Applied catalog in 0.03 seconds
 <p> <code>puppet resource</code>を実行すると、システム上の特定のタイプのリソースの状態を調べることができます。 たとえば、 <code>puppet resource user</code>コマンドを実行すると、システム上の全ユーザがリスト表示されます。
 </p>
 
-<p> <img src="images/windows/puppet_resource_user_output.png" alt="Puppet resource user">
+<p> <img src="{{pe}}/images/windows/puppet_resource_user_output.png" alt="Puppet resource user">
 </p>
 
 <p> この例で使用したコンピュータには、Administrator、Guest、vagrantという3つのユーザアカウントがあります。 アウトプットはマニフェストと同じフォーマットです。したがって、これをコピーしてマニフェストに直接ペーストすることができます。
@@ -164,4 +164,3 @@ Notice: Applied catalog in 0.03 seconds
 
 <p> 詳細な手順については、<a href="./windows_modules.html">Windowsモジュールのインストールと使用</a>に関するドキュメンテーションを参照してください。
 </p>
-</div>
