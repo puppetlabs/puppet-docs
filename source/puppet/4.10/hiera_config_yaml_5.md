@@ -238,7 +238,6 @@ results in:
 
 In this example, where there is no value for `interface.1.network`, the result is "networks/.yaml". The effective results are 10.0.24.0 and 127.0.0.0.
 
-
 ### Configuring a hierarchy level (hiera-eyaml)
 
 Hiera 5 (Puppet 4.9.3 and later) includes a native interface for the [Hiera eyaml][eyaml] extension, which keeps data encrypted on disk but lets Puppet read it during catalog compilation.
