@@ -18,7 +18,9 @@ title: "Hiera: Config file syntax (hiera.yaml v5)"
 [backends]: ./hiera_custom_backends.html
 [eyaml]: https://github.com/voxpupuli/hiera-eyaml
 
-Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][layers] of data.
+To configure the hierarchy for Hiera, edit Hiera's configuration file, `hiera.yaml`.
+
+This config file configures the [hierarchy][] for a given [layer][layers] of data.
 
 This version of Puppet supports three formats for hiera.yaml --- you can use any of them, although [v4][] and [v3][] are deprecated. This page is about version 5, the newest version.
 
@@ -28,9 +30,9 @@ v5     | All three data layers         | The main version of hiera.yaml, which s
 [v4][] | Environment and module layers | Deprecated. A transitional format, used in the rough draft of Hiera 5 (when we were calling it "Puppet lookup"). Doesn't support custom backends.
 [v3][] | Global layer                  | Deprecated. The classic version of hiera.yaml, which has some problems.
 
-## Location
+## Location of hiera.yaml {:.concept}
 
-There are several hiera.yaml files in a normal deployment --- Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances.
+There are several `hiera.yaml` files in a normal deployment, because Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances.
 
 The config file locations for each layer are as follows:
 
@@ -158,13 +160,15 @@ Key     | Data type | Expected value
 `paths` | Array     | Any number of file paths. This acts like a sub-hierarchy: if multiple files exist, Hiera searches all of them, in the order in which they're written.
 `glob`  | String    | One shell-like glob pattern, which might match any number of files. If multiple files are found, Hiera searches all of them in alphanumerical order.
 `globs` | Array     | Any number of shell-like glob patterns. If multiple files are found, Hiera searches all of them in alphanumerical order (ignoring the order of the globs).
-`mapped_paths` | Array or Hash     | A fact that is a collection (array or hash) of values. Hiera expands these values to produce an array of paths.
+`mapped_paths` | Array or Hash     | An array or hash, along with a temporary variable name to represent each element of the array or hash, and a path using the temporary variable in interpolation expressions. See the section about [mapped paths](#mapped-paths) for details.
 
 **Explicit file extensions are required** --- use something like `common.yaml`, not just `common`. (This is a change from prior versions of hiera.yaml, which magically guessed file extensions.)
 
 File paths are relative to the `datadir`: if the full datadir is `/etc/puppetlabs/code/environments/production/data` and the file path is set to `"nodes/%{trusted.certname}.yaml"`, the full path to the file is `/etc/puppetlabs/code/environments/production/data/nodes/<NODE NAME>.yaml`. (Absolute file paths are also allowed, but are rarely practical.)
 
 Whichever approach you choose, most of your hierarchy levels should [interpolate][interpolation] variables into the path, since that's what makes Hiera useful. For more information about crafting useful hierarchies, see [How hierarchies work][hierarchy].
+
+#### Globs {:.section}
 
 Globs are implemented with [Ruby's `Dir.glob` method][dir.glob]. In short:
 
@@ -184,20 +188,55 @@ Example:
 ```
 {% endraw %}
 
+#### Mapped paths {:.section}
+
 The `mapped_paths` key must contain three string elements, in the following order:
 
-1. A scope variable that points to a collection of strings.
-2. The variable name that will be mapped to each element of the collection.
-3. A template where that variable can be used in interpolation expressions.
+1. A variable whose value is an array or hash.
+2. A temporary variable name to represent each element of the array or hash. This variable name, shown as `tmp` in the examples, is used only in the path in this key.
+3. A path where that temporary variable can be used in interpolation expressions.
 
-For example, a fact named `$services` contains the array ["a", "b", "c"]. Then this configuration:
+If the first variable is an array of strings, interpolate the temporary variable without using key.subkey notation. For example, for a fact named `$services` that contains the array ["a", "b", "c"], the `mapped_paths` key looks like this:
 
 ``` yaml
 - name: Example
   mapped_paths: [services, tmp, "service/%{tmp}/common.yaml"]
 ```
 
-has the same results as if paths had been specified to be `[service/a/common.yaml, service/b/common.yaml, service/c/common.yaml]`.
+This gives the same results as if paths had been specified as:
+
+```yaml
+- service/a/common.yaml
+- service/b/common.yaml
+- service/c/common.yaml
+```
+
+If the first variable is a hash, then the temporary variable's value is always a `[key,value]` array. When interpolating the temporary variable, use key.subkey notation to get the part you want: `tmp.0` for the key name or `tmp.1` for the value. If the value is a nested hash, also specify the key name for the values you want to retrieve, such as `tmp.1.keyname`.
+
+For example, to find the value of the `network` fact:
+
+``` yaml
+- name: Networks
+  mapped_paths: [facts.networking.interfaces, interface, "networks/%{interface.1.network}.yaml"]
+```
+
+results in:
+
+``` yaml
+…
+        - "networks/.yaml"
+        - "networks/.yaml"
+        - "networks/10.0.24.0.yaml"
+        - "networks/.yaml"
+        - "networks/.yaml"
+        - "networks/.yaml"
+        - "networks/127.0.0.0.yaml"
+        - "networks/.yaml"
+        - "networks/.yaml"
+        - "networks/.yaml"
+```
+
+In this example, where there is no value for `interface.1.network`, the result is "networks/.yaml". The effective results are 10.0.24.0 and 127.0.0.0.
 
 ### Configuring a hierarchy level (hiera-eyaml)
 
