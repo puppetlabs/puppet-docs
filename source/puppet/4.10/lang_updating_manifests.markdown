@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Updating 3.x Manifests for Puppet 4.x"
+title: "Updating 3.x manifests for Puppet 4.x"
 ---
 
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
@@ -12,7 +12,7 @@ title: "Updating 3.x Manifests for Puppet 4.x"
 [boolean]: ./lang_data_boolean.html
 
 
-Several breaking changes were introduced in Puppet 4.0. If you previously used Puppet 3.x, your manifests will need to be updated for the new implementation. This page lists the most important steps to update your manifests to be 4.x compatible.
+Several breaking changes were introduced in Puppet 4.0. If you previously used Puppet 3.x, your manifests need to be updated for the new implementation. This page lists the most important steps to update your manifests to be 4.x compatible.
 
 
 ## Make sure everything is in the right place
@@ -33,7 +33,7 @@ Make sure this is what you want. You might want to set `noop => true` on the pur
 
 In Puppet 3, facts with boolean true/false values (like `$is_virtual`) were converted to strings unless the `stringify_facts` setting was disabled. This meant it was common to test for these facts with the `==` operator, like `if $is_virtual == 'true' { ... }`.
 
-In Puppet 4, boolean facts are never turned into strings, and those `==` comparisons will always evaluate to `false`. This can cause serious problems. Check your manifests for any comparisons that treat boolean facts like strings; if you need a manifest to work with both Puppet 3 and Puppet 4, you can convert a boolean to a string and then pass it to [the stdlib module's `str2bool` function][str2bool]:
+In Puppet 4, boolean facts are never turned into strings, and those `==` comparisons always evaluate to `false`. This can cause serious problems. Check your manifests for any comparisons that treat boolean facts like strings; if you need a manifest to work with both Puppet 3 and Puppet 4, you can convert a boolean to a string and then pass it to [the stdlib module's `str2bool` function][str2bool]:
 
 ``` puppet
 if str2bool("$is_virtual") { ... }
@@ -50,7 +50,7 @@ $port_a = 80   # Parsed and maintained as a number, errors if NOT a number
 $port_b = '80' # Parsed and maintained as a string
 ```
 
-The difference now is that Puppet will STRICTLY enforce numerics and will throw errors if values that begin with a number are not valid numbers.
+The difference now is that Puppet STRICTLY enforces numerics and throws errors if values that begin with a number are not valid numbers.
 
 ``` puppet
 node 1name {} # invalid because 1name is not a valid decimal number; you would need to quote this name
@@ -60,7 +60,7 @@ $a = 1 + 0789 # invalid because 0789 is not a valid octal number
 
 ### Arithmetic expressions
 
-Mathematical expressions still convert strings to numeric values. If a value begins with 0 or 0x, it will be interpreted as an octal or hex number, respectively.  An error is raised if either side in an arithmetic expression is not a number or a string that can be converted to a number.  For example:
+Mathematical expressions still convert strings to numeric values. If a value begins with 0 or 0x, it is interpreted as an octal or hex number, respectively.  An error is raised if either side in an arithmetic expression is not a number or a string that can be converted to a number.  For example:
 
 ``` puppet
 $valid = 40 + 50       # valid because both values are numeric
@@ -107,7 +107,7 @@ class empty_string_defaults (
 }
 ```
 
-Puppet's old behavior of evaluating the empty string as `false` would allow you to set the default based on a simple if-statement. In Puppet 4.x, this behavior is flipped and `$parameter_to_check_real` will be set to an empty string.
+Puppet's old behavior of evaluating the empty string as `false` would allow you to set the default based on a simple if-statement. In Puppet 4.x, this behavior is flipped and `$parameter_to_check_real` is set to an empty string.
 
 You can check your existing codebase for this behavior with a [puppet-lint plugin](https://github.com/puppet-community/puppet-lint-empty_string-check).
 
@@ -127,7 +127,7 @@ Different [data types](./lang_data.html) can't be compared as if they're the sam
 
 The `\\` escape now works properly in single-quoted strings. Previously, there was no way to end a single-quoted string with a backslash.
 
-This will change any existing strings that are supposed to have literal double backslashes in them; you'll need to change them to quadruple backslashes. Read more about this behavior in the [language page about strings](./lang_data_string.html#single-quoted-strings).
+This changes any existing strings that are supposed to have literal double backslashes in them; you'll need to change them to quadruple backslashes. Read more about this behavior in the [language page about strings](./lang_data_string.html#single-quoted-strings).
 
 ## Check names of variables, classes, functions, defined types, etc.
 
@@ -159,7 +159,7 @@ More reserved words were added in Puppet 4.0, so check your manifests for any un
 
 ## Check for excess spaces when accessing hashes and arrays
 
-The space between a value and a left bracket is significant, and Puppet will output different results if there is a space.
+The space between a value and a left bracket is significant, and Puppet outputs different results if there is a space.
 
 Bad:
 
@@ -183,11 +183,11 @@ Puppet 4 bundles its own copy of Ruby 2.x, and the regex syntax is slightly diff
 
 ## Check YAML files used by Hiera, etc. for correct syntax
 
-If the Ruby version changed since upgrade, the YAML parser will be more strict. Ensure strings containing a `%` are quoted.
+If the Ruby version changed since upgrade, the YAML parser is more strict. Ensure strings containing a `%` are quoted.
 
 ## Check the `mode` attribute of any file resources
 
-[The `mode` attribute][file_mode] of a file resource must be a string. If you use an actual octal number, it will be converted to a decimal number, then converted back to a string representing the wrong number when it comes time to run the `chown` command.
+[The `mode` attribute][file_mode] of a file resource must be a string. If you use an actual octal number, Puppet converts it to a decimal number, then converted back to a string representing the wrong number when it comes time to run the `chown` command.
 
 ## Check for resources with `noop => true` that receive refresh events
 
@@ -222,9 +222,9 @@ class inner {
 include outer
 ```
 
-Prior to Puppet 4.x, the value supplied to `notice()` will resolve to the string dynamic.
+Prior to Puppet 4.x, the value supplied to `notice()` resolves to the string dynamic.
 
-Now, in Puppet 4.x, the value supplied to `notice()` will resolve to an empty string.
+Now, in Puppet 4.x, the value supplied to `notice()` resolves to an empty string.
 
 The behavior of resource defaults has not been changed.
 
