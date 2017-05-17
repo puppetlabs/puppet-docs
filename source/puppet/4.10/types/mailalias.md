@@ -5,7 +5,7 @@ title: 'Resource Type: mailalias'
 canonical: "/puppet/latest/types/mailalias.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
 
 mailalias
 -----
@@ -97,4 +97,4 @@ those providers that write to disk.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700

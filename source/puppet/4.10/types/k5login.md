@@ -5,7 +5,7 @@ title: 'Resource Type: k5login'
 canonical: "/puppet/latest/types/k5login.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
 
 k5login
 -----
@@ -87,4 +87,4 @@ type.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
