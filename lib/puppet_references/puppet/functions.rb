@@ -43,6 +43,7 @@ module PuppetReferences
         }
 
         # Make a limited binding object that only has one variable, so the template doesn't have access to the current scope.
+        # BTW, I learned this trick from the Facter reference that the agent team made for us back in the day.
         template_binding = OpenStruct.new({ functions: functions }).instance_eval {binding}
 
         body = ERB.new(File.read(TEMPLATE_FILE), nil, '-').result(template_binding)
