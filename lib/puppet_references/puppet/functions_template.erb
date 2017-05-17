@@ -1,23 +1,19 @@
 <% functions.sort{|a,b| a['name'] <=> b['name'] }.each do |func| -%>
 ## `<%= func['name'] %>`
 
-<% if func['signature'] -%>
-* `<%= func['signature'] %>`
-<% if func['docstring']['tags'].class == Array
-func['docstring']['tags'].select {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil}.each do |param| -%>
+<% if func['signatures']
+func['signatures'].each do |signature| -%>
+* `<%= signature['signature'] %>`
+<% if signature['docstring']['tags'].class == Array
+signature['docstring']['tags'].select {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil}.each do |param| -%>
     * `<%= param['name'] %>` --- <%= param['text'] %>
-<% end
-end -%>
-<% end -%>
-<% if func['docstring']['tags'].class == Array
-func['docstring']['tags'].select {|tag| tag['tag_name'] == 'overload'}.each do |overload| -%>
-* `<%= overload['signature'] %>`
-<% if overload['tags'].class == Array
-overload['tags'].select {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil}.each do |param| -%>
-    * `<%= param['name'] %>` --- <%= param['text'] %>
-<% end
+<% end # each param
+return_types = signature['docstring']['tags'].detect {|tag| tag['tag_name'] == 'return'}
+if return_types -%>
+    * Return type(s): <%= return_types['types'].map {|t| "`#{t}`"}.join(', ') %>. <%= return_types['text'] %>
+<% end # if return_types
 end-%>
-<% end
+<% end # each signature
 end -%>
 
 <%= func['docstring']['text'] %>
