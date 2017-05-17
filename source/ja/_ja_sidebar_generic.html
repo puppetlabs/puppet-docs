@@ -1,0 +1,8 @@
+{% comment %}
+Currently the default Japanese sidebar is supposed to be the most recent Japanese PE nav, but we don't want to hardcode that now that the docs are versioned, because it'll become wrong as soon as we ship the NEXT version. So, try to discover the most recent ja_pe nav snippet (using the same machinery we use for magic links) and use that.
+
+Later, we should make it so there's a real default nav snippet for Japanese docs, instead of using the latest PE everywhere. But until then, this should be self-maintaining as long as we don't rename the PE nav snippet.
+{% endcomment %}
+
+{% capture latest_pe %}{{pe_ja}}/_ja_docs_toc.html{% endcapture %}
+{% partial {{latest_pe}} %}

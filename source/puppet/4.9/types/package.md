@@ -1,10 +1,11 @@
 ---
 layout: default
-built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
+built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
 title: 'Resource Type: package'
+canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:41 -0600
 
 package
 -----
@@ -485,7 +486,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`.
-* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24`.
+* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24, 25`.
 * Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
@@ -624,7 +625,7 @@ or an array where each element is either a string or a hash.
 OpenSolaris image packaging system. See pkg(5) for more information.
 
 * Required binaries: `/usr/bin/pkg`.
-* Default for `kernelrelease` == `5.11` and `osfamily` == `solaris`.
+* Default for `kernelrelease` == `5.11, 5.12` and `osfamily` == `solaris`.
 * Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
@@ -1418,4 +1419,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:41 -0600

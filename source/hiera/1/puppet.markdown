@@ -27,6 +27,7 @@ title: "Hiera 1: Using Hiera With Puppet"
 [site_manifest]: /puppet/latest/reference/dirs_manifest.html
 [node_definition]: /puppet/latest/reference/lang_node_definitions.html
 
+{% partial /hiera/_hiera_update.md %}
 
 Puppet can use Hiera to look up data. This helps you disentangle site-specific data from Puppet code, for easier code re-use and easier management of data that needs to differ across your node population.
 

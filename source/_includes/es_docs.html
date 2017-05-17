@@ -1,40 +1,290 @@
+<h3><a href="/pe/2017.2/index.html">Puppet Enterprise 2017.2</a></h3>
 
+{% md %}
 
-<h3 id="spanish-docs">Documentación en Español</h3>
+* **Overview**
+    * [Guía de usuarios Puppet Enterprise](./index.html)
+    * [PE architecture overview](/pe/2017.2/pe_architecture_overview.html)
+    * [Versiones de componentes en versiones recientes de PE](./overview_version_table.html)
+    * [Getting support](/pe/2017.2/overview_getting_support.html)
+    * [PE version numbers](/pe/2017.2/pe_versioning.html)
+* **Release notes**
+    * [New features and enhancements](/pe/2017.2/release_notes.html)
+    * **[Known issues](/pe/2017.2/release_notes_known_issues.html)**
+        * [Install and upgrade](/pe/2017.2/release_notes_known_issues_install.html)
+        * [PE console and console services](/pe/2017.2/release_notes_known_issues_console.html)
+        * [Puppet Server](/pe/2017.2/release_notes_known_issues_puppetserver.html)
+        * [Databases and PostgreSQL](/pe/2017.2/release_notes_known_issues_puppetdb.html)
+        * [Orchestration services](/pe/2017.2/release_notes_known_issues_app.html)
+        * [PE services and Puppet core](/pe/2017.2/release_notes_known_issues_core.html)
+        * [Supported platforms](/pe/2017.2/release_notes_known_issues_platforms.html)
+        * [Razor](/pe/2017.2/release_notes_known_issues_razor.html)
+        * [Code management](/pe/2017.2/release_notes_known_issues_codemgmt.html)
+        * [UTF-8](/pe/2017.2/release_notes_known_issues_utf8.html)
+        * [High availability](/pe/2017.2/release_notes_known_issues_ha.html)
+    * [Resolved issues](/pe/2017.2/release_notes_resolved_issues.html)
+* [Puppet platform documentation](/pe/2017.2/puppet_overview.html)
+* **Guía de inicio rápida**
+    * **[Puppet Enterprise Guía de inicio rápido para usuarios de *nix](./quick_start.html)**
+        * [1: Install PE](/pe/2017.2/quick_start_install_mono.html)
+        * [2: Install agents](/pe/2017.2/quick_start_install_agents_nix.html)
+        * [3: Module install](/pe/2017.2/quick_start_module_install_nix.html)
+        * [4: Guía de inicio rápida de classes](./quick_start_adding_class_nix.html)
+        * [5: Guía de inicio rápido de asignación de permisos de usuarios](./quick_start_nc_rbac.html)
+        * [6: Escribir modules para la guía de inicio rápida *nix](./quick_writing_nix.html)
+    * **[Quick start guide for Windows users](/pe/2017.2/quick_start_windows_intro.html)**
+        * [1: Install PE](/pe/2017.2/quick_start_install_mono.html)
+        * [2: Guía de inicio rápido de la instalación de agents](./quick_start_install_agents_windows.html)
+        * [3: Module install](/pe/2017.2/quick_start_module_install_windows.html)
+        * [4: Classify agents](/pe/2017.2/quick_start_adding_class_windows.html)
+        * [5: Assign user access](/pe/2017.2/quick_start_rbac_windows.html)
+        * [6: Write modules](/pe/2017.2/quick_writing_windows.html)
+    * **[Essential configuration tasks](/pe/2017.2/quick_start_essential_config.html)**
+        * [NTP quick start guide](/pe/2017.2/quick_start_ntp.html)
+        * [DNS quick start guide](/pe/2017.2/quick_start_dns.html)
+        * [SSH quick start guide](/pe/2017.2/quick_start_ssh.html)
+        * [Sudo quick start guide](/pe/2017.2/quick_start_sudo.html)
+        * [Firewall quick start guide](/pe/2017.2/quick_start_firewall.html)
+* **Managing Windows nodes**
+    * [Installing PE for a Windows environment](/pe/2017.2/windows_installing.html)
+    * [Basic tasks and concepts in Windows](/pe/2017.2/windows_basic_tasks.html)
+    * [Managing Windows configurations](/pe/2017.2/windows_config_mgmnt.html)
+    * [Cómo instalar y usar Windows modules](./windows_modules.html)
+    * [Troubleshooting Puppet on Windows](/pe/2017.2/troubleshooting_windows.html)
+* **Instalar**
+    * **System requirements**
+        * [Hardware requirements](/pe/2017.2/sys_req_hw.html)
+        * [Supported operating systems](/pe/2017.2/sys_req_os.html)
+        * [Supported browsers](/pe/2017.2/sys_req_browsers.html)
+        * [System config and firewall requirements](/pe/2017.2/sys_req_sysconfig.html)
+    * [¿Qué se instala y donde?](./install_what_and_where.html)
+    * [Descarga e instalación de Puppet Enterprise](./install_basic.html)
+    * [Instalación basada en Web: monolítica](./install_pe_mono.html)
+    * **Instalación en modo texto**
+        * [Text-mode installation overview](/pe/2017.2/install_text_mode.html)
+        * [Instalación en modo texto: monolítica](./install_text_mode_mono.html)
+        * [Instalación en modo texto: fraccionada](./install_text_mode_split.html)
+        * [Configuration settings in pe.conf](/pe/2017.2/install_pe_conf_param.html)
+    * [Cómo instalar la PE license key](./install_license_key.html)
+    * **Instalar agents**
+        * [Cómo instalar Puppet Enterprise agents](./install_agents.html)
+        * [Instalar Windows agents](./install_windows.html)
+        * [Instalar OS X agents](./install_osx.html)
+    * **Installing network device agents**
+        * [Installing agents: Arista EOS](/pe/2017.2/install_eos.html)
+        * [Installing agents: Cisco NS-OX](/pe/2017.2/install_nxos.html)
+        * [Installing agents: Cisco IOS-XR](/pe/2017.2/install_iosxr.html)
+        * [Installing agents: Cumulus Linux](/pe/2017.2/install_cumulus.html)
+        * [Installing agents: Huawei CloudEngine](/pe/2017.2/install_huawei_ce.html)
+    * [Installing compile masters](/pe/2017.2/install_multimaster.html)
+    * [Load balancing compile masters](/pe/2017.2/install_lei_load.html)
+    * [Instalación de concentradores y enlaces ActiveMQ](./install_add_activemq.html)
+    * [Installing PE client tools](/pe/2017.2/install_pe_client_tools.html)
+    * [Uninstalling PE](/pe/2017.2/install_uninstalling.html)
+    * **PE and external PostgreSQL Setup**
+        * [External PostgreSQL prep](/pe/2017.2/sys_req_extsql.html)
+        * [SSL for PE and external PostgreSQL](/pe/2017.2/install_ssl_postgresql.html)
+        * [PE and external PostgreSQL without root access](/pe/2017.2/install_external_postgresql.html)
+* **Upgrading**
+    * [Upgrading PE: monolithic](/pe/2017.2/upgrade_mono.html)
+    * [Upgrading PE: split](/pe/2017.2/upgrade_split.html)
+    * [Upgrading PE agents: *nix](/pe/2017.2/install_upgrading_agents.html)
+    * [Upgrading PE agents: Windows](/pe/2017.2/upgrade_windows.html)
+* **Migrating from 3.8**
+    * [Preparing for Migration to PE 2017.2](/pe/2017.2/migrate_pe_catalog_preview.html)
+    * [Migrating from PE 3.8 to 2017.2: monolithic](/pe/2017.2/migrate_monolithic.html)
+    * [Migrating: important notes](/pe/2017.2/migrate_notes.html)
+    * [Major path changes](/pe/2017.2/install_upgrading_path_changes.html)
+* **Configuring PE**
+    * [Your PE infrastructure](/pe/2017.2/config_intro.html)
+    * [Tuning Puppet Server](/pe/2017.2/config_puppetserver.html)
+    * [Tuning the console](/pe/2017.2/console_config.html)
+    * [Tuning PuppetDB](/pe/2017.2/config_puppetdb.html)
+    * [Tuning orchestration](/pe/2017.2/config_orchestration.html)
+    * [Java arguments for PE](/pe/2017.2/config_java_args.html)
+    * [Configuring ulimit for PE services](/pe/2017.2/config_ulimit.html)
+    * [Tuning mono installs (reference)](/pe/2017.2/config_monolithic.html)
+    * [Writing configuration files](/pe/2017.2/config_hocon.html)
+    * [PE analytics data collection](/pe/2017.2/analytics_opt_out.html)
+    * [Static catalogs](/pe/2017.2/static_catalogs.html)
+* **Configuring high availability**
+    * [High availability overview](/pe/2017.2/ha_overview.html)
+    * [Configure high availability](/pe/2017.2/ha_configure.html)
+* **Monitoring infrastructure state**
+    * [Monitor current infrastructure state](/pe/2017.2/CM_overview.html)
+    * [Explore your catalog with the node graph](/pe/2017.2/CM_graph.html)
+    * [Analyze changes across Puppet runs](/pe/2017.2/CM_events.html)
+    * [View all packages in use](/pe/2017.2/CM_packages.html)
+    * [Infrastructure reports](/pe/2017.2/CM_reports.html)
+    * [Monitoring Puppet Server metrics](/pe/2017.2/puppet_server_metrics.html)
+    * [Monitoring PE services](/pe/2017.2/CM_status.html)
+    * [Status API](/pe/2017.2/status_api.html)
+* **Managing nodes**
+    * [Managing node requests](/pe/2017.2/console_cert_mgmt.html)
+    * [Running Puppet on agent nodes](/pe/2017.2/console_classes_groups_running_puppet.html)
+    * [Getting started with classification](/pe/2017.2/console_classes_groups_getting_started.html)
+    * [Grouping and classifying nodes](/pe/2017.2/console_classes_groups.html)
+    * **Roles y perfiles**
+        * [Roles y perfiles: Introducción](./r_n_p_intro.html)
+        * [Roles y perfiles: Una explicación completa](./r_n_p_full_example.html)
+        * [Designing advanced profiles](/pe/2017.2/r_n_p_profiles.html)
+        * [Roles y perfiles: Diseñar funciones](./r_n_p_roles.html)
+    * [Viewing node-specific information](/pe/2017.2/nodes_viewing.html)
+    * [Making changes to node groups](/pe/2017.2/console_classes_groups_making_changes.html)
+    * [Removing nodes](/pe/2017.2/node_deactivation.html)
+    * [Preconfigured node groups](/pe/2017.2/console_classes_groups_preconfigured_groups.html)
+    * [How does inheritance work?](/pe/2017.2/console_classes_groups_inheritance.html)
+    * [Working with environments](/pe/2017.2/console_classes_groups_environment_override.html)
+    * **Node classifier service API**
+        * [Endpoints](/pe/2017.2/nc_index.html)
+        * [Forming node classifier requests](/pe/2017.2/nc_forming_requests.html)
+        * **[Groups](/pe/2017.2/nc_groups.html)**
+            * [Groups endpoint examples](/pe/2017.2/nc_groups_example.html)
+        * [Classes](/pe/2017.2/nc_classes.html)
+        * [Classification](/pe/2017.2/nc_classification.html)
+        * [Commands](/pe/2017.2/nc_commands.html)
+        * [Environments](/pe/2017.2/nc_environments.html)
+        * [Node history](/pe/2017.2/nc_nodes.html)
+        * [Group children](/pe/2017.2/nc_groups_children.html)
+        * [Rules](/pe/2017.2/nc_rules.html)
+        * [Importing node classifier hierarchy](/pe/2017.2/nc_import-hierarchy.html)
+        * [Last class](/pe/2017.2/nc_last_class_update.html)
+        * [Updating node classifier classes](/pe/2017.2/nc_update_classes.html)
+        * [Validating node classifier endpoints](/pe/2017.2/nc_validate.html)
+        * [Node classifier errors](/pe/2017.2/nc_errors.html)
+* **Managing access**
+    * [Accessing the console](/pe/2017.2/console_accessing.html)
+    * [Role-based access control](/pe/2017.2/rbac_intro.html)
+    * [Connecting PE with external directory services](/pe/2017.2/rbac_ldap.html)
+    * [About RBAC permissions](/pe/2017.2/rbac_permissions.html)
+    * [Creating and managing users and user roles](/pe/2017.2/rbac_user_roles.html)
+    * [Token-based authentication](/pe/2017.2/rbac_token_auth.html)
+    * [Running agents without root privileges](/pe/2017.2/deploy_nonroot-agent.html)
+    * **RBAC service API v1**
+        * [Endpoints](/pe/2017.2/rbac_serviceindex_v1.html)
+        * [Forming RBAC requests](/pe/2017.2/rbac_forming_requests_v1.html)
+        * [Users](/pe/2017.2/rbac_users_v1.html)
+        * [User groups](/pe/2017.2/rbac_usergroups_v1.html)
+        * [Roles](/pe/2017.2/rbac_roles_v1.html)
+        * [Permissions](/pe/2017.2/rbac_permissionsref_v1.html)
+        * [Authentication tokens](/pe/2017.2/rbac_token_v1.html)
+        * [Directory service](/pe/2017.2/rbac_dsref_v1.html)
+        * [Passwords](/pe/2017.2/rbac_passwords_v1.html)
+        * [Errors](/pe/2017.2/rbac_serviceerrors_v1.html)
+        * [Configuration options](/pe/2017.2/rbac_config_v1.html)
+    * **RBAC service API v2**
+        * [Endpoints](/pe/2017.2/rbac_serviceindex_v2.html)
+        * [Revoke tokens](/pe/2017.2/rbac_revoke_token_v2.html)
+    * **Activity service API**
+        * [Endpoints](/pe/2017.2/rbac_activityapis.html)
+        * [Activity reporting](/pe/2017.2/rbac_activityreporting.html)
+* **Managing applications**
+    * [Application orchestration: Overview](/pe/2017.2/app_orchestration_overview.html)
+    * **Application orchestration: Key concepts and workflow**
+        * [Application orchestration workflow](/pe/2017.2/app_orchestration_workflow.html)
+        * [Creating application definitions](/pe/2017.2/app_orchestration_app_definition.html)
+        * [Declaring application instances](/pe/2017.2/app_orchestration_declare_instance.html)
+        * [Producing and consuming service resources](/pe/2017.2/app_orchestration_produce_consume.html)
+        * [Writing custom service resource types](/pe/2017.2/app_orchestration_writing_service_resources.html)
+        * [Availability tests](/pe/2017.2/app_orchestration_availability_tests.html)
+* **Enforcing change with Puppet orchestrator**
+    * [Direct Puppet: a workflow](/pe/2017.2/direct_puppet_workflow.html)
+    * [Puppet orchestrator: overview](/pe/2017.2/orchestrator_intro.html)
+    * **Puppet orchestrator in the console**
+        * [Configuring Puppet orchestrator](/pe/2017.2/orchestrator_prep_console.html)
+        * [Running jobs](/pe/2017.2/orchestrator_job_run_console.html)
+        * [Reviewing jobs](/pe/2017.2/orchestrator_review_console.html)
+    * **Puppet orchestrator on the command line**
+        * [Configuring Puppet orchestrator](/pe/2017.2/orchestrator_install.html)
+        * [Reviewing applications](/pe/2017.2/orchestrator_app.html)
+        * [Checking a job plan](/pe/2017.2/orchestrator_job_plan.html)
+        * [Running jobs](/pe/2017.2/orchestrator_job_run.html)
+        * [Reviewing jobs](/pe/2017.2/orchestrator_job_status_view.html)
+    * **Puppet orchestrator API**
+        * [Endpoints](/pe/2017.2/orchestrator_api_endpoints.html)
+        * [Forming requests](/pe/2017.2/orchestrator_api_requests.html)
+        * [Commands](/pe/2017.2/orchestrator_api_commands.html)
+        * [Environments](/pe/2017.2/orchestrator_api_environments.html)
+        * [Events](/pe/2017.2/orchestrator_api_events.html)
+        * [Jobs](/pe/2017.2/orchestrator_api_jobs.html)
+        * [Root](/pe/2017.2/orchestrator_api_root.html)
+        * [Errors](/pe/2017.2/orchestrator_api_errors.html)
+* **Managing and deploying Puppet code**
+    * [Managing and deploying Puppet code](/pe/2017.2/cmgmt_managing_code.html)
+    * [Managing environments with a control repository](/pe/2017.2/cmgmt_control_repo.html)
+    * [Managing environment content with Puppetfiles](/pe/2017.2/cmgmt_puppetfile.html)
+    * **Code Manager**
+        * [Managing code with Code Manager](/pe/2017.2/code_mgr.html)
+        * [Configuring Code Manager](/pe/2017.2/code_mgr_config.html)
+        * [Customizing Code Manager configuration](/pe/2017.2/code_mgr_custom.html)
+        * [Triggering Code Manager from the command line](/pe/2017.2/code_mgr_cli.html)
+        * [Triggering Code Manager with a webhook](/pe/2017.2/code_mgr_webhook.html)
+        * [Triggering Code Manager with custom scripts](/pe/2017.2/code_mgr_scripts.html)
+        * [Troubleshooting Code Manager](/pe/2017.2/code_mgr_troubleshoot.html)
+    * **r10k**
+        * [Managing code with r10k](/pe/2017.2/r10k.html)
+        * [Configuring r10k](/pe/2017.2/r10k_config.html)
+        * [Customizing r10k configuration](/pe/2017.2/r10k_custom.html)
+        * [Deploying environments with r10k](/pe/2017.2/r10k_run.html)
+        * [r10k subcommand reference](/pe/2017.2/r10k_reference.html)
+    * [About file sync](/pe/2017.2/cmgmt_filesync.html)
+* **Provisioning with Razor**
+    * [Bare-metal provisioning with Razor](/pe/2017.2/razor_intro.html)
+    * [Setting up a Razor environment](/pe/2017.2/razor_prereqs.html)
+    * [Installing Razor](/pe/2017.2/razor_install.html)
+    * **[Using the Razor client](/pe/2017.2/razor_client.html)**
+        * [Razor client commands](/pe/2017.2/razor_client_commands.html)
+    * [Protecting existing nodes](/pe/2017.2/razor_brownfield.html)
+    * [Provisioning a node](/pe/2017.2/razor_using.html)
+    * [Provisioning a Windows node](/pe/2017.2/razor_windows_install.html)
+    * [Provisioning with custom facts](/pe/2017.2/razor_microkernel_extension.html)
+    * **[Working with Razor objects](/pe/2017.2/razor_objects.html)**
+        * [Repositories](/pe/2017.2/razor_repos.html)
+        * [Tasks](/pe/2017.2/razor_tasks.html)
+        * [Tags](/pe/2017.2/razor_tags.html)
+        * [Policies](/pe/2017.2/razor_policies.html)
+        * [Brokers](/pe/2017.2/razor_brokers.html)
+        * [Hooks](/pe/2017.2/razor_hooks.html)
+    * **[Using the Razor API](/pe/2017.2/razor_api.html)**
+        * [API reference](/pe/2017.2/razor_reference.html)
+    * [Upgrading Razor](/pe/2017.2/razor_upgrade.html)
+    * [Uninstalling Razor](/pe/2017.2/razor_uninstall.html)
+* **SSL and certificates**
+    * **Complete PE cert regeneration**
+        * [Regenerating certs: mono](/pe/2017.2/trouble_regenerate_certs_monolithic.html)
+        * [Regenerating certs: splits](/pe/2017.2/trouble_regenerate_certs_split.html)
+    * **Individual PE component cert regeneration**
+        * [Regenerating certs for the Puppet master](/pe/2017.2/regenerate_certs_master.html)
+        * [Regenerating certs for PuppetDB](/pe/2017.2/regenerate_certs_puppetdb.html)
+        * [Regenerating certs for the PE console](/pe/2017.2/regenerate_certs_console.html)
+    * [Regenerating a Puppet agent certificate](/pe/2017.2/agent_cert_regen.html)
+    * [Regenerating a compile master certificate](/pe/2017.2/compile_master_cert_regen.html)
+    * [Using an external certificate authority with PE](/pe/2017.2/external_ca.html)
+    * [Configuring the PE console to use a custom SSL certificate](/pe/2017.2/custom_console_cert.html)
+    * [Custom Diffie-Hellman param file generation](/pe/2017.2/trouble_dh_generate.html)
+    * [SSL for PE and external PostgreSQL](/pe/2017.2/install_ssl_postgresql.html)
+    * [Disable TLSV1 in PE](/pe/2017.2/disable_tlsv1.html)
+* **APIs**
+    * [Index of Puppet APIs](/pe/2017.2/api_index.html)
+* **Managing MCollective**
+    * [Overview](/pe/2017.2/mco_overview.html)
+    * [Invoking actions](/pe/2017.2/mco_invoke_cli.html)
+    * [Controlling Puppet](/pe/2017.2/orchestration_puppet.html)
+    * [List of built-in actions](/pe/2017.2/mco_actions.html)
+    * [Adding new actions](/pe/2017.2/mco_adding_actions.html)
+    * [Configuring MCollective](/pe/2017.2/mco_config.html)
+* **Maintenance**
+    * [PE database maintenance](/pe/2017.2/maintain_console-db.html)
+    * [Back up and restore PE](/pe/2017.2/maintain_backup_restore.html)
+* **Troubleshooting**
+    * [Troubleshooting the installer](/pe/2017.2/trouble_install.html)
+    * [Troubleshooting connections](/pe/2017.2/trouble_comms.html)
+    * [Troubleshooting Code Manager](/pe/2017.2/code_mgr_troubleshoot.html)
+    * [Troubleshooting the databases](/pe/2017.2/trouble_console-db.html)
+    * [Troubleshooting Puppet core](/pe/2017.2/trouble_puppet.html)
+    * [Troubleshooting MCollective](/pe/2017.2/trouble_orchestration.html)
+    * [Troubleshooting Windows](/pe/2017.2/trouble_windows.html)
+* **Appendix**
+    * [Compliance alternate workflow](/pe/2017.2/compliance_alt.html)
 
-<ul>
-  <li><strong><a href="/es/index.html">Documentación de Puppet Labs</a></strong></li>
-  <li><strong><a href="/es/pe/3.8/index.html">Puppet Enterprise</a></strong></li>
-  <li><strong><a href="/es/learning/introduction.html">Aprende Puppet</a></strong></li>
-  <li><strong><a href="/es/hiera/index.html">Hiera</a></strong></li>
-</ul>
-
-<h3 id="spanish-docs">Webinar y artículo en Español</h3>
-
-<ul>
-   <li><strong><a href="https://www.youtube.com/watch?v=3bX69N7gGhg">Cómo pappetizar en la nube</a></strong></li>
-  <li><strong><a href="https://www.youtube.com/watch?v=Et7ac8Ksedk">Instalando Puppet Enterprise - CoreOS</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/27/hiera-y-hiera-backends/">Aprendiendo sobre hiera backends</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/10/instalando-puppet-enterprise/">Instalando Puppet Enterprise</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/10/creando-tu-primer-modulo-en-puppet/">Creando tu primer módulo en Puppet</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/10/intro-a-marrionette-collective/">Intro a MCollective</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/10/introduccion-a-hiera/">Introducción a Hiera</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/10/hiera-ejemplo-completo/">Hiera - Ejemplo completo</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/10/hiera-vista-general/">Hiera: Vista general</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2014/02/10/hiera-creando-jerarquias/">Hiera: Creando Jerarquias</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/09/29/estructura-simple-de-modulos/">Estructura simple de módulos</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/08/01/caracteristicas-experimentales-puppet-3-2/">Caracteristicas experimentales (Puppet 3.2)</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/23/facts-custimizados/">Facts custimizados</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/05/aprendiendo-puppet-parte-i/">Aprendiendo Puppet: Parte I</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/08/aprende-puppet/">Aprendiendo Puppet: Parte II</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/10/hiera-tipos-de-busqueda/">Hiera: Tipos de búsqueda</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/03/hiera-instalacion/">Hiera: Instalación</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/04/automatizacion-de-infraestructuras-de-ti/">Automatizando entornos de TI</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/03/mcollective-terminologia/">MCollective: Terminología</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/03/hiera-variables-e-interpolacion/">Hiera: Variables e Interpolación</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/03/hiera-escribiendo-fuentes-de-informacion/">Hiera: Escribiendo fuentes de información</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/07/03/usando-puppet-con-hiera/">Usando Puppet con Hiera</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2013/03/07/patron-de-diseno-en-puppet/">Patron de Diseño en Puppet</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2012/01/20/hiera-configurando-hiera-yaml/">Hiera: Configurando hiera.yaml</a></strong></li>
-  <li><strong><a href="http://www.devops-es.com/2012/01/07/hiera-linea-de-comandos/">Hiera - Linea de comandos</a></strong></li>
-</ul>
+{% endmd %}

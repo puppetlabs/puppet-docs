@@ -45,7 +45,7 @@ The `puppet_agent`  module is completely inert on nodes already running Puppet 4
 
 ### Assign the `puppet_agent` class to nodes
 
-However you classify nodes --- whether in the [main mainfest](./dirs_manifest.html), with an [external node classifier](/guides/external_nodes.html) or [Hiera][], or some other method --- classify your agents with `puppet_agent`.
+However you classify nodes --- whether in the [main mainfest](./dirs_manifest.html), with an [external node classifier](./nodes_external.html) or [Hiera][], or some other method --- classify your agents with `puppet_agent`.
 
 You can also [configure the module](https://forge.puppetlabs.com/puppetlabs/puppet_agent/readme#usage) to control which services start or to force a different architecture on Windows.
 

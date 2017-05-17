@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PFloatType
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Types::PFloatType
   
@@ -294,24 +292,24 @@ method will return <code>nil</code></p>
       <pre class="lines">
 
 
-1067
-1068
-1069
-1070
-1071
-1072
-1073
-1074
-1075</pre>
+1082
+1083
+1084
+1085
+1086
+1087
+1088
+1089
+1090</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1067</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1082</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_intersect?'>intersect?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_min'>min</span> <span class='op'>=</span> <span class='ivar'>@from</span> <span class='op'>&lt;=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_from'>from</span> <span class='op'>?</span> <span class='ivar'>@from</span> <span class='op'>:</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_from'>from</span>
     <span class='id identifier rubyid_max'>max</span> <span class='op'>=</span> <span class='ivar'>@to</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span> <span class='op'>?</span> <span class='ivar'>@to</span> <span class='op'>:</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span>
-    <span class='const'>PFloatType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PFloatType (class)">PFloatType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_min'>min</span><span class='comma'>,</span> <span class='id identifier rubyid_max'>max</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='kw'>nil</span>
   <span class='kw'>end</span>
@@ -326,9 +324,9 @@ method will return <code>nil</code></p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:40 2016 by
+  Generated on Tue Jan 31 13:38:25 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

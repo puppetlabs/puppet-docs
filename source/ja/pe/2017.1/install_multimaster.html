@@ -1,0 +1,183 @@
+---
+layout: default
+title: "コンパイルmasterのインストール"
+canonical: "/ja/pe/install_multimaster.html"
+---
+
+<div>
+<p> インフラの規模が拡大した(ノードが4000台を超える)場合、負荷を分散したコンパイルmasterをモノリシックインストールのアーキテクチャに追加すると、より多くのagentを管理できるようになります。 マスターオブマスター(MoM)上で稼働するPuppetDBまたはPuppet Enterprise Webコンソールの容量上限に達するまでは、コンパイルmasterを1つ追加すると、約1500～3000台のノードを増設することができます。
+</p>
+
+<h2 id="how-compile-masters-work">コンパイルmasterの仕組み</h2>
+
+<p> 以下に、コンパイルmasterの仕組みと関連情報の概要を示します。
+</p>
+
+<p> インフラで管理しているノードが2000台を超えると、1つのPuppet masterでPuppet agentの要求をすべて処理し、コードをすべてコンパイルすることはできなくなります。 コンパイルmasterを追加してインフラを拡張すれば、作業負荷を分散させ、コンパイル時間を短縮して効率化することができます。 コンパイルmasterの機能の多くは、Puppet masterと同じです。ファイル同期を実行し、Puppetサーバーを内包するほか、<code>pe_repo</code>をホストすることができます。 コンパイルmasterのデプロイにおいて、メインとなるPuppet masterはマスターオブマスターズ(MoM)と呼ばれます。
+</p>
+
+<blockquote>
+  <p> <strong>ヒント</strong>: 基本的なインストールタイプとそれぞれの推奨ハードウェアの指針については、<a href="./sys_req_hw.html">Puppet Enterpriseハードウェアの推奨事項</a>を参照してください。
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>重要</strong>: コンパイルmasterでは、MoMと<a href="./sys_req_os.html#puppet-master-platforms">同じOSメジャーバージョン、プラットフォーム、アーキテクチャ</a>を使用する必要があります。
+</p>
+</blockquote>
+
+<h3 id="components-and-services-running-on-compile-masters">コンパイルmasterで稼働するコンポーネントとサービス</h3>
+
+<p> すべてのコンパイルmasterには、Puppetサーバーと<a href="/pe/2017.1/cmgmt_filesync.html">ファイル同期</a>クライアントが含まれます。 Webエンドポイントからのトリガーにより、ファイル同期はマスターオブマスターズ(MoM)の作業ディレクトリから変更を取得し、そのコードをライブコードディレクトリにデプロイします。 その後、自動的にそのコードをすべてのコンパイルmasterにデプロイし、マルチmaster構成に存在するすべてのmasterの同期を確保します。 デフォルトでは、コンパイルmasterは5秒おきにコードの更新をチェックします。
+</p>
+
+<p> CAサービスは、コンパイルmasterでは無効になっています。 コンパイルmasterのPuppetサーバーで稼働するプロキシサービスにより、デフォルトインストールでCAをホストするMoMにCA要求が送られます。
+</p>
+
+<p> コンパイルmasterには以下のものも含まれます。
+</p>
+
+<ul>
+<li>
+<code>peadmin</code> (MCollectiveクライアント)</li>
+  <li>
+<code>pe_repo</code> (agentインストール用のPEのリポジトリ)</li>
+  <li>コントローラプロファイル (PEクライアントツールと連動して使用)</li>
+</ul>
+<p> コンパイルmasterログは、<code>/var/log/puppetlabs/puppetserver/</code>に保存されます。
+</p>
+
+<h2 id="install-compile-masters">コンパイルmasterのインストール</h2>
+
+<p> コンパイルmasterをインストールするには、はじめにPuppet agentをインストールし、このagentをコンパイルmasterとして指定します。
+</p>
+
+<p> インストールを始める前に
+</p>
+
+<p> インストールを始める前に、以下の手順を確認してください。誤った順序で実行すると、設定に問題が生じるおそれがあります。 また、これらの手順については、以下の点も注意してください。
+</p>
+
+<ul>
+<li>この手順は、Puppet Enterpriseデプロイの<a href="./install_pe_split.html">分割インストール</a>または<a href="./install_pe_mono.html">モノリシックインストール</a> を実施済みであるものと想定しています。</li>
+  <li>この手順は、すべてのサーバーが同じOSおよびアーキテクチャを使用することを前提としています。</li>
+  <li>この手順で使用している以下のホスト名は、お使いのインフラのホスト名に置き換える必要があります。<ul>
+<li>
+<strong>Puppet master/CAサーバー(MoM)</strong>: <code>&lt;MASTER.EXAMPLE.COM&gt;</code>。</li>
+      <li>
+<strong>PEコンソール</strong>： <code>&lt;CONSOLE.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>PuppetDB</strong>：<code>&lt;PUPPETDB.EXAMPLE.COM&gt;</code>
+</li>
+      <li>
+<strong>コンパイルmaster</strong>：<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>
+</li>
+    </ul>
+</li>
+  <li>コンパイルmasterとして指定するマシンには、まだPuppet agentがインストールされていないことが条件となります。</li>
+</ul>
+<ol>
+<li>
+    <p> SSHで<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>にログインし、以下のコマンドを実行します。
+</p>
+
+    <pre><code>`curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/install.bash | sudo bash -s main:dns_alt_names=&lt;COMMA-SEPARATED LIST OF ALT NAMES FOR THE COMPILE MASTER&gt;`
+</code></pre>
+
+    <blockquote>
+      <p> <strong>注意</strong>: <code>dns_alt_names</code>の値の設定では、Puppet agentがmasterとの接続に用いる可能性のある別名をカンマ区切りで列挙する必要があります。 インストールのデフォルトでは「puppet」が使用されます。
+</p>
+    </blockquote>
+
+    <p> これにより、<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>にPE agentがインストールおよび設定されます。
+</p>
+  </li>
+  <li>
+    <p> <code>&lt;MASTER.EXAMPLE.COM&gt;</code>のコマンドラインで<code>puppet cert --allow-dns-alt-names sign add.master.example.com</code>を実行します。
+</p>
+
+    <blockquote>
+      <p> <strong>注意</strong>：DNSオルトネームのあるノードの証明書の署名には、コンソールは使用できません。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> <code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>のコマンドラインで<code>puppet agent -t</code>を実行します。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterprise Webコンソールを用いて<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>を分類し、Puppet masterおよびPE証明書オーソリティへのプロキシ要求として機能するようにします。
+</p>
+
+    <p> a. コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、<strong>PE Infrastructure</strong>ノードグループで <strong>PE Master</strong>ノードグループを選択します。
+</p>
+
+    <p> b. [<strong>Certname</strong>]セクションの[<strong>Node name</strong>]フィールドに<code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code>と入力します。
+</p>
+
+    <p> c. <strong>Pin node</strong>をクリックし、Commitボタンをクリックします。
+</p>
+
+    <blockquote>
+      <p> <strong>ヒント</strong>：エージェントインストールリクエストに対して、<code>pe_repo</code>がロードバランサを参照するように設定する方法の詳細は、「<a href="./install_lei_load.html">コンパイルmasterでのロードバランサの使用</a>」を参照してください。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> (オプション)<code>pe_repo</code>を設定して、ロードバランサに対してagentインストールリクエストを送信するようにします。
+</p>
+
+    <blockquote>
+      <p> <strong>注：</strong>ロードバランサを使用している場合、<code>pe_repo</code>の設定により、インストールリクエストをロードバランサに送信することができます。
+</p>
+
+      <p> 負荷バランサインフラの具体的な設定方法についてはこのガイドでは解説しませんが、HAプロキシを負荷分散の目的で利用する方法については、<a href="https://forge.puppet.com/puppetlabs/haproxy">HAプロキシモジュール文書</a>で読むことができます。
+</p>
+    </blockquote>
+
+    <p> a. コンソールで[<strong>Nodes</strong>] &gt; [<strong>Classification</strong>]の順にクリックし、[<strong>PE Master</strong>]グループを選択します。
+</p>
+
+    <p> b. [<strong>PE Master</strong>]グループで[<strong>Classes</strong>]タブをクリックし、[<strong>pe_repo</strong>]クラスを探します。
+</p>
+
+    <p> c. [<strong>Parameter</strong>]ドロップダウンリストから[<strong>master</strong>]を選択します。
+</p>
+
+    <p> d. [<strong>Value</strong>]フィールドに、負荷バランサを説明するアドレスを入力します (<code>&lt;LOADBALANCER.EXAMPLE.COM&gt;</code>など)。
+</p>
+
+    <p> e. [<strong>Add parameter</strong>]をクリックし、[<strong>Commit change</strong>]ボタンをクリックします。
+</p>
+  </li>
+  <li>
+    <p> 選択したノードで、<a href="/pe/2017.1/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Puppetを実行</a>します。
+</p>
+
+    <blockquote>
+      <p> <strong>重要</strong>：以下のPuppet実行は、<strong>必ず</strong>以下の手順で指定された順序で実施してください。 コンパイルmasterをできる限り早くアクティブにするためには、Puppetでこれらのノードをこの順番で実行する必要があります。 
+</p>
+    </blockquote>
+
+    <ul>
+<li>
+<strong>モノリシックインストールの場合</strong><ol>
+<li><code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;MASTER.EXAMPLE.COM&gt;</code></li>
+        </ol>
+</li>
+      <li>
+<strong>分割インストールの場合</strong><ol>
+<li><code>&lt;COMPILE.MASTER.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;PUPPETDB.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;CONSOLE.EXAMPLE.COM&gt;</code></li>
+          <li><code>&lt;MASTER.EXAMPLE.COM&gt;</code></li>
+        </ol>
+</li>
+    </ul>
+<p> いずれのケースでも、最初のノードの実行が終わるまで待ってから、次に進むようにしてください。
+</p>
+  </li>
+</ol>
+</div>

@@ -1,0 +1,381 @@
+<body>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags --><title>Puppet Documentación — Documentación — Puppet</title>
+<link rel="alternate" type="application/atom+xml" title="Puppet Documentation Updates" href="https://github.com/puppetlabs/puppet-docs/commits/master.atom">
+<link rel="alternate" type="application/atom+xml" title="Puppet Blog Feed" href="http://puppet.com/feed/">
+<link rel="index" title="Puppet Documentation" href="https://docs.puppet.com">
+<link rel="icon" href="/favicon.ico?v=20160406">
+<!-- Fonts: must come before Bootstrap --><link rel="stylesheet" type="text/css" href="/files/stylesheets/fonts.css">
+<!-- Bootstrap --><link href="/files/css/bootstrap.min.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries --><!-- WARNING: Respond.js doesn't work if you view the page via file:// --><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]--><!-- Other stylesheets --><link rel="stylesheet" type="text/css" href="/files/stylesheets/adjustments.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/files/stylesheets/prism.css" media="screen">
+<link rel="stylesheet" type="text/css" href="/files/stylesheets/anchor.css">
+<link rel="stylesheet" type="text/css" href="/files/stylesheets/homepage.css">
+<!-- Localized styles, like sub-list numbering --><link rel="stylesheet" type="text/css" href="/files/stylesheets/style_localized_en.css" media="screen">
+<meta name="description" content="Welcome to the Puppet Documentation Site: Curated documentation for Puppet and Puppet Enterprise">
+<!-- Set a canonical URL, in the following order: 1. explicit, from yaml frontmatter; 2. implicit, from document data; 3. singleton, from page URL. -NF --><link rel="canonical" href="https://docs.puppet.com/">
+<!-- Hidden Search Field -->
+
+
+<form action="https://www.google.com/cse" id="cse-search-box">
+        <div>
+<input type="hidden" name="cx" value="000105152632420139001:x6x9kkvlsls"><input type="hidden" name="ie" value="UTF-8"><input type="text" name="q" class="gsc-input" size="31"><input type="submit" name="sa" class="searchbtn" value="Search">
+</div>
+    </form>
+
+    <!-- Static navbar -->
+
+            <nav class="navbar navbar-inverse navbar-static-top"><div id="navbar-container" class="container-fluid">
+
+        <div id="navbar-top" class="row navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+<li><a href="//puppet.com" class="home">Inicio</a></li>
+            <li><a href="//puppet.com/puppetconf" class="offsite">PuppetConf</a></li>
+            <li><a href="//forge.puppet.com" class="offsite forge">Forge</a></li>
+            <li class="active"><a href="/" class="offsite docs">Documentación</a></li>
+            <li><a href="//learn.puppet.com" class="offsite learn">Training</a></li>
+
+            <li class="navbar-gap"><a href="/download/">Descarga Documentos</a></li>
+            <li><a href="//puppet.com/support">Soporte &amp; servicios</a></li>
+            <li><a href="//puppet.com/contact">Contacte con nosotros</a></li>
+          </ul>
+</div>
+<!--/.nav-collapse -->
+
+
+
+        <div id="navbar-bottom" class="row">
+          <div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a id="navbar-logo" class="navbar-brand" href="//puppet.com"><img src="/images/puppet-logo/puppet-logo-amber-white-lg.png" alt="Puppet"></a>
+</div>
+
+          <div class="navbar-header hidden-xs"><a id="navbar-site-name" class="navbar-brand" href="/">Documentación</a></div>
+
+          <form class="navbar-form navbar-right navbar-collapse collapse" role="search">
+            <div class="form-group">
+<input type="text" class="form-control" id="search-container" placeholder="Search..."><img class="search-white" id="search-icon" src="/images/puppet-icons/search-white-2.svg" alt="Search">
+</div>
+          </form>
+        </div>
+
+
+
+      </div>
+    </nav><div id="doc-switchers" class="container">
+      <div class="col-md-8">
+<div class="btn-group">
+<button type="button" class="btn btn-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Elija un producto
+    <span class="caret"></span>
+  </button><ul class="dropdown-menu">
+<li class="dropdown-header">Productos</li>
+    <li><a href="/pe/2017.2/">Puppet Enterprise</a></li>
+    <li><a href="/puppet/4.9/">Puppet (PE y open source)</a></li>
+    <li><a href="/puppetserver/2.7/">Puppet Server (PE y open source)</a></li>
+    <li><a href="/puppetdb/4.3/">PuppetDB (PE y open source)</a></li>
+    <li><a href="/facter/3.6/">Facter (PE y open source)</a></li>
+    <li><a href="/hiera/3.3/">Hiera (PE y open source)</a></li>
+    <li><a href="/mcollective/">MCollective (PE y open source)</a></li>
+
+    <li class="dropdown-header">Otros</li>
+    <li><a href="/">Página de  Inicio Puppet Docs </a></li>
+    <li><a href="/security/">Anuncios de Seguridad</a></li>
+    <li><a href="/forge/">Cómo utilizar Puppet Forge</a></li>
+    <li><a href="/puppet/latest/reference/type.html">Manual de referencias Type</a></li>
+    <li><a href="/community/community_guidelines.html">Guía de la comunidad Puppet</a></li>
+    <li><a href="/references/glossary.html">Glosario de términos Puppet</a></li>
+
+  </ul>
+</div>
+</div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <div class="container">
+
+      <div id="content" class="main-content col-xs-12 col-md-12 col-lg-12">
+        <div id="rendered-markdown">
+                <div class="site-width">
+
+          <!-- homepage header and language selector -->
+          <div class="homepage-header container-fluid">
+              <div class="hh-col title col-md-6 col-xs-12">
+                  <h1>Documentación Puppet</h1>
+              </div>
+              <div class="col-md-2"> </div>
+              <div class="hh-col language col-md-4 col-xs-12">
+
+
+<div class="btn-group">
+<button type="button" class="btn btn-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    English
+    <span class="caret"></span>
+  </button><ul class="dropdown-menu dropdown-menu-right">
+<li><a href="/de/pe/index.html">Deutsch</a></li>
+
+    <li class="active"><a href="/">English</a></li>
+
+    <li><a href="/es/">Español</a></li>
+
+    <li><a href="/fr/">Français</a></li>
+
+    <li><a href="/ja/">日本語</a></li>
+
+
+
+  </ul>
+</div>
+
+              </div>
+          </div>
+
+          <!-- call out boxes -->
+          <div class="homepage-callout">
+              <div class="hc-wrapper container-fluid">
+                  <div class="hc-col left col-md-6 col-xs-12">
+                      <div class="hc-col-box">
+                          <h2>Puppet Enterprise</h2>
+                          <p> PE amplía Puppet con gestión de nodos avanzada, control de acceso, informes, y funcionalidades de gestión del código a través de una GUI intuitiva, APIs y herramienta de línea de comandos.
+</p>
+<a href="/es/pe/2017.2/index.html" class="homepage-button homepage">Ir a Puppet Enterprise docs</a><div class="hc-hr">
+                              <div class="hc-hr-wrapper">
+                                  <hr>
+<div class="square">
+                                      <div class="or-square">O</div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="hc-col-subtitle">Ver Temas</div>
+                          <div class="hc-col-list container-fluid">
+                              <div class="hc-col-list-col col-md-6 col-xs-12">
+                                  <ul>
+<li><a href="/pe/latest/quick_start.html">Inicio rápido en *Nix</a></li>
+                                      <li><a href="/pe/latest/quick_start_windows_intro.html">Inicio rápido en Windows</a></li>
+                                      <li><a href="/pe/latest/install_system_requirements.html">Requerimientos del sistema</a></li>
+                                      <li><a href="/pe/latest/install_pe_mono.html">Cómo instalar PE</a></li>
+                                      <li><a href="/pe/latest/install_upgrading.html">Cómo actualizar PE</a></li>
+                                      <li><a href="/pe/latest/config_intro.html">Tuning PE</a></li>
+                                      <li><a href="/pe/latest/app_orchestration_overview.html">Cómo gestionar aplicaciones</a></li>
+                                      <li><a href="/pe/latest/orchestrator_intro.html">Cómo ejecutar Orchestrator Jobs</a></li>
+
+                                  </ul>
+</div>
+                              <div class="hc-col-list-col col-md-6 col-xs-12">
+                                  <ul>
+<li><a href="/pe/latest/rbac_intro.html">Gestión de Usuarios</a></li>
+                                      <li><a href="/pe/latest/console_cert_mgmt.html">Gestión de Nodos</a></li>
+                                      <li><a href="/pe/latest/CM_overview.html">Cómo Monitorizar PE · Configuraciones</a></li>
+                                      <li><a href="/pe/latest/razor_intro.html">Provisionamiento Razor</a></li>
+                                      <li><a href="/pe/latest/cmgmt_managing_code.html">Cómo gestiónar Código</a></li>
+                                      <li><a href="/pe/index.html">Índice PE Version</a></li>
+                                      <li><a href="/pe/latest/overview_getting_support.html">Obtener soporte para PE</a></li>
+                                      <li><a href="/pe/latest/release_notes.html">Notas de lanzamiento</a></li>
+                                  </ul>
+</div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="hc-col right col-md-6 col-xs-12">
+                      <div class="hc-col-box">
+                          <h2>Open Source Puppet</h2>
+                          <p> Open Source Puppet le ayuda a escribir la configuración de la máquina gracias a un lenguage declarativo, además configura el estado deseado y mantiene el sistema mediante la automatización.
+</p>
+<a href="/es/puppet/" class="homepage-button homepage">Ir a open source Puppet docs</a><div class="hc-hr">
+                              <div class="hc-hr-wrapper">
+                                  <hr>
+<div class="square">
+                                      <div class="or-square">O</div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="hc-col-subtitle">Ver Temas</div>
+                          <div class="hc-col-list container-fluid">
+                              <div class="hc-col-list-col col-md-6 col-xs-12">
+                                  <ul>
+<li><a href="/puppet/latest/reference/release_notes.html">Puppet Notas de lanzamiento</a></li>
+                                      <li><a href="/puppet/latest/reference/install_pre.html">Cómo instalar Puppet</a></li>
+                                      <li><a href="/puppet/latest/reference/type.html">Referencias Type</a></li>
+                                      <li><a href="/puppet/latest/reference/modules_fundamentals.html">Fundamentos de Module</a></li>
+                                      <li><a href="/puppet/latest/reference/lang_updating_manifests.html">Cómo actualizar Manifiestos 3.x a Puppet 4.x</a></li>
+                                      <li><a href="/puppet/latest/reference/whered_it_go.html">Puppet 4: Localización de ficheros</a></li>
+                                  </ul>
+</div>
+                              <div class="hc-col-list-col col-md-6 col-xs-12">
+                                  <ul>
+<li><a href="/puppetserver/latest/">Puppet Server</a></li>
+                                      <li><a href="/puppetdb/latest/">PuppetDB</a></li>
+
+                                      <li><a href="/hiera/latest/">Hiera</a></li>
+                                      <li><a href="/facter/latest/">Facter</a></li>
+                                      <li><a href="/mcollective/">MCollective</a></li>
+                                      <li><a href="https://forge.puppet.com/?_ga=1.19724600.1018811879.1418687874">Puppet Forge</a></li>
+                                      <li><a href="/community/community_guidelines.html">Comunidad Puppet y el código de conducta</a></li>
+                                  </ul>
+</div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- hc-footer -->
+          <div class="homepage-sub-footer">
+            <div class="hc-footer-box">
+              <div class="hc-footer-list container-fluid">
+                <ul class="hc-footer-list-col col-md-4 col-xs-12">
+<li><a href="/pe/latest/api_index.html" class="hsf-link">Puppet APIs</a></li>
+                  <li><a href="/pe/latest/pe_versioning.html" class="hsf-link">Sistema de versiones de sofware</a></li>
+                  <li><a href="/security/" class="hsf-link">Advertencias de seguridad Puppet</a></li>
+                  <li><a href="/contribute.html" class="hsf-link">Erratas y cambios sugeridos</a></li>
+                </ul>
+<ul class="hc-footer-list-col col-md-4 col-xs-12">
+<li><a href="/upgrade/">Cómo actualizar de  Puppet 3 a Puppet 4</a></li>
+                </ul>
+<ul class="hc-footer-list-col col-md-4 col-xs-12">
+<li><a href="/pe/latest/localization.html" class="hsf-link">Ayúdanos a traducir</a></li>
+                  <li><a href="/community/community_guidelines.html">Guía de la comunidad Puppet</a></li>
+                  <li><a href="https://learn.puppet.com/?_ga=1.126222344.422025574.1442952075" class="hsf-link">Recibe una clase</a></li>
+                </ul>
+</div>
+            </div>
+          </div>
+
+      </div>
+
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <footer class="layout-footer"><div class="footer-row-1 container">
+        <div class="fg-col col-md-8 container">
+
+          <div class="fg-col col-md-3"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/232088/puppet-logo-white-sm.png" class="puppet-logo"></div>
+
+          <div class="fg-col col-md-3">
+            <h3>Resumen</h3>
+            <ul>
+<li><a href="//puppet.com/product">Productos</a></li>
+              <li><a href="//puppet.com/solutions">Soluciones</a></li>
+              <li><a href="//puppet.com/resources">Biblioteca de manuales</a></li>
+              <li><a href="//puppet.com/company">Compañía</a></li>
+              <li><a href="//puppet.com/product/open-source-projects">Seguridad</a></li>
+              <li><a href="//puppet.com/security">Seguridad</a></li>
+            </ul>
+</div>
+
+          <div class="fg-col col-md-3">
+            <h3>Recursos</h3>
+            <ul>
+<li><a href="//puppet.com/support/customer-support">Obtenga ayuda</a></li>
+              <li><a href="//puppet.com/partners/partner-finder">Encuentre un Partner</a></li>
+              <li><a href="//puppet.com/support-services/training">Training</a></li>
+              <li><a href="//puppet.com/download-puppet">Descargas</a></li>
+              <li><a href="//puppet.com/sitemap">Mapa de sitio</a></li>
+            </ul>
+</div>
+
+          <div class="fg-col col-md-3">
+            <h3>Contactos</h3>
+            <ul>
+<li><a href="//puppet.com/company/contact">Contacte con nosotros</a></li>
+              <li><a href="//puppet.com/community/events">Eventos</a></li>
+              <li><a href="//puppet.com/blog">Blog</a></li>
+            </ul>
+</div>
+        </div>
+
+        <div class="fg-col col-md-3">
+          <h3>Únase a nuestra lista de correos</h3>
+          <p> Obtenga nuestro boletín mensual y correo ocasional que le gustará
+</p>
+
+          <form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="https://app-sjh.marketo.com/index.php/leadCapture/save" id="mktForm_1047" name="mktForm_1047">
+<input class="mktFormText mktFormEmail mktFReq" name="Email" id="Email" type="email" value="" placeholder="Enter your email" maxlength="255" tabindex="1"><input class="mktFormHidden" name="Form_Name__c" id="Form_Name__c" type="hidden" value="Newsletter"><input class="mktFormHidden" name="Current_Form_Name__c" id="Current_Form_Name__c" type="hidden" value="Newsletter"><input class="mktFormHidden" name="Original_Campaign_ID__c" id="Original_Campaign_ID__c" type="hidden" value="701G0000000F68K"><input class='mktFormHidden' name="Current_Lead_Source__c" id="Current_Lead_Source__c" type='hidden' value="Organic"><input class='mktFormHidden' name="LeadSource" id="LeadSource" type='hidden' value="Organic"><input class="mktFormHidden" name="LeadSourceDescription__c" id="LeadSourceDescription__c" type="hidden" value="Search"><input class="mktFormHidden" name="CurrentLeadSourceDescription__c" id="CurrentLeadSourceDescription__c" type="hidden" value="Search"><input class="mktFormHidden" name="Custom_Campaign__c" id="Custom_Campaign__c" type="hidden" value="null"><input class="mktFormHidden" name="Current_Custom_Campaign__c" id="Current_Custom_Campaign__c" type="hidden" value="null"><input class="mktFormHidden" name="honeypot" id="honeypot" type="hidden" value="null"><input id="mktFrmSubmit" style="display:none;" type="submit" value="" name="submitButton"><span style="display:none;"><input type="text" name="_marketo_comments" value=""></span>
+            <input type="hidden" name="lpId" value="-1"><input type="hidden" name="subId" value="100"><input type="hidden" name="munchkinId" value="307-QLA-991"><input type="hidden" name="kw" value=""><input type="hidden" name="cr" value=""><input type="hidden" name="searchstr" value=""><input type="hidden" name="lpurl" value="http://info.puppetlabs.com/newslettersubscribe.html?cr={creative}&amp;kw={keyword}"><input type="hidden" name="formid" value="1047"><input type="hidden" name="returnURL" value="http://www.puppet.com"><input type="hidden" name="retURL" value="http://www.puppet.com/misc/subscription-thank-you"><input type="hidden" name="returnLPId" value="-1"><input type="hidden" name="_mkt_disp" value="return"><input type="hidden" name="_mkt_trk" value="">
+</form>
+
+
+          <p> <a href="https://twitter.com/puppetize" class="social-icon"><img class="social-icon" src="/images/social-icons/twitter-box-white.svg" alt="Twitter"></a>
+            <a href="https://www.linkedin.com/company/puppet" class="social-icon"><img class="social-icon" src="/images/social-icons/linkedin-box-white.svg" alt="LinkedIn"></a>
+            <a href="https://www.facebook.com/PuppetSoftware" class="social-icon"><img class="social-icon" src="/images/social-icons/facebook-box-white.svg" alt="Facebook"></a>
+            <a href="https://www.youtube.com/c/Puppet-Inc" class="social-icon"><img class="social-icon" src="/images/social-icons/youtube-white.svg" alt="YouTube"></a>
+            <a href="https://plus.google.com/+Puppetlabs" class="social-icon"><img class="social-icon" src="/images/social-icons/g-plus-white.svg" alt="Google+"></a>
+</p>
+        </div>
+      </div>
+
+      <div class="footer-row-2 container">
+        <div class="footer-row-2-wrapper">
+          <div class="footer-row-2-col-1 col-md-9">
+<a href="//puppet.com/legal">Legal</a>
+            <a href="//puppet.com/legal/privacy">Política de privacidad</a>
+            <a href="//puppet.com/legal/terms">Terminos de uso</a>
+</div>
+          <div class="footer-row-2-col-2 col-md-3"><a href="/">© 2016 Puppet</a></div>
+        </div>
+      </div>
+
+
+
+
+    </footer><!-- jQuery (necessary for Bootstrap's JavaScript plugins) --><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script><!-- Bootstrap's stock JS components --><script src="/files/js/bootstrap.min.js"></script><!-- Utility JS --><script type="text/javascript" src="/files/javascripts/prism.js"></script><script type="text/javascript" src="/files/javascripts/navigation-accordion.js"></script><!-- Hover anchor links on headers --><!-- Relies on jQuery. Code comes from https://github.com/bryanbraun/anchorjs --><script type="text/javascript" src="/files/javascripts/anchor.min.js"></script><script>
+      $(document).ready(function(){
+          addAnchors("#content h1");
+          addAnchors("#content h2");
+          addAnchors("#content h3");
+          addAnchors("#content h4");
+          });
+      </script><!-- End hover anchor links --><!-- Marketing and tracking javascripts --><!-- Google Tag Manager --><!-- To update or confirm working condition, contact the Web team, or search Confluence for "Google Tag Manager" or "Google Analytics". Contrary to the current docs, we've verified that this doesn't need to be at the top of the page. --><noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PF6FV6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+      <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&amp;l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PF6FV6');</script><!-- End Google Tag Manager --><!-- Marketo form support v1 --><!-- Used only for the newsletter sign-up form. To update or confirm working condition, contact BizOps department. --><script type="text/javascript" src="//puppet.com/sites/default/files/mktFormSupport.js"></script><!-- Marketo tracking --><!-- To update or confirm working condition, contact BizOps department. --><!-- This is the "asynchronous jQuery" version of the tracking code, which assumes jQuery is available. --><!-- See https://docs.marketo.com/display/public/DOCS/Add+Munchkin+Tracking+Code+to+Your+Website#AddMunchkinTrackingCodetoYourWebsite-TypesofMunchkinTrackingCodes --><script type="text/javascript">
+        $.ajax({
+          url: '//munchkin.marketo.net/munchkin.js',
+          dataType: 'script',
+          cache: true,
+          success: function() {
+            Munchkin.init('307-QLA-991');
+          }
+        });
+      </script><!-- End Marketo tracking --><!-- One-off JS snippets --><script type="text/javascript">
+      // Handle routing of search to real (hidden) search input
+      $("#search-container").on( 'keypress', function (e) {
+        if (e.keyCode == 13) {
+          $('#cse-search-box [type="text"]').val($("#search-container").val());
+          $('#cse-search-box [type="submit"]').click();
+          return false;
+        }
+      });
+      $("#search-icon").on( 'click', function(e) {
+        $('#cse-search-box [type="text"]').val($("#search-container").val());
+        $('#cse-search-box [type="submit"]').click();
+      });
+
+      $( '#Email' ).on( 'keypress', function (evt) {
+        if (evt.keyCode == 13) {
+          $( '#mktFrmSubmit' ).click();
+          return false;
+        }
+      });
+    </script>
+
+
+</body>

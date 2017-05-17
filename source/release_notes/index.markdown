@@ -6,10 +6,11 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 # Puppet Releases
 
-## Puppet Open Source
+## Open Source Puppet
 
 ### Current Releases
 
+- [Puppet 4.9][4.9]
 - [Puppet 4.8][4.8]
 - [Puppet 4.7][4.7]
 - [Puppet 4.6][4.6]
@@ -37,10 +38,13 @@ description: Links to Puppet and Puppet Enterprise release notes
 
 ### Current Release
 
-- [Puppet Enterprise 2016.4](/pe/latest/release_notes.html)
+- [Puppet Enterprise 2017.2](/pe/latest/release_notes.html)
 
 ### Previous Releases
 
+- [Puppet Enterprise 2017.1][pe2017.1]
+- [Puppet Enterprise 2016.5][pe2016.5]
+- [Puppet Enterprise 2016.4][pe2016.4]
 - [Puppet Enterprise 2016.2][pe2016.2]
 - [Puppet Enterprise 2016.1][pe2016.1]
 - [Puppet Enterprise 2015.3][pe2015.3]
@@ -83,6 +87,7 @@ The short version is that you should upgrade when you're ready to upgrade, skim 
 The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.atlassian.jira.plugin.system.project%3Aversions-panel) lists tickets closed for each release.
 
 [semver]: http://semver.org
+[4.9]: /puppet/4.9/reference/release_notes.html
 [4.8]: /puppet/4.8/reference/release_notes.html
 [4.7]: /puppet/4.7/reference/release_notes.html
 [4.6]: /puppet/4.6/reference/release_notes.html
@@ -97,6 +102,9 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 [3.6]: /puppet/3.6/reference/release_notes.html
 [3.5]: /puppet/3.5/reference/release_notes.html
 [3.x]: /puppet/3/reference/release_notes.html
+[pe2017.1]: /pe/2017.1/release_notes.html
+[pe2016.5]: /pe/2016.5/release_notes.html
+[pe2016.4]: /pe/2016.4/release_notes.html
 [pe2016.2]: /pe/2016.2/release_notes.html
 [pe2016.1]: /pe/2016.1/release_notes.html
 [pe2015.3]: /pe/2015.3/release_notes.html

@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+# > unmangle_files ./file1.html ./file2.html ./file3.html
+
+# This script expects any number of HTML fragment files as its argument(s). It
+# will un-mangle the content and update it in-place, destroying the previous
+# content of the files.
+
+require 'puppet_docs/sentence_segmenter'
+
+ARGV.each do |filename|
+  PuppetDocs::SentenceSegmenter.unmangle_file(filename)
+end
+

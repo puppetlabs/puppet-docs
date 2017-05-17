@@ -12,6 +12,8 @@
 <# cell data #> | <# cell data #> | <# cell data #>    | <# cell data #>
 <# cell data #> | <# cell data #> | <# cell data #>    | <# cell data #>
 
+### <# SECTION (optional) -- Use a subhead to break references into logical sections, rather than creating a separate topic, when you: a) expect users to view the information together, or b) the information doesn't make sense on its own. Sections must have a title usually proceed each additional table in a reference topic. #>
+
 <table>
   <tr>
     <th><# Heading #></th>
@@ -37,6 +39,5 @@
     </td>
   </tr>
 </table>
-
 
 * * *

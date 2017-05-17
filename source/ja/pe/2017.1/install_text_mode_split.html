@@ -1,0 +1,264 @@
+---
+layout: default
+title: "テキストモードインストール: 分割"
+canonical: "/ja/pe/install_text_mode_split.html"
+---
+
+<div>
+<p> 分割インストールは大規模環境で基本となるインストールタイプで、20,000台を超えるノードの管理に使用できます。 これほど多数のノードを管理しない場合、モノリシック(またはコンパイルmasterを使用したモノリシック)インストールタイプを推奨します。
+</p>
+
+<h2 id="install-pe-split-installation">Puppet Enterpriseのインストール: 分割インストール</h2>
+
+<p> テキストモードでPuppet Enterpriseの分割インストールを実行する場合、コンポーネントをインストールする各マシンにインストーラと<code>pe.conf</code>ファイルを転送します。
+</p>
+
+<p> PEインストーラは<em>べき等性</em>のインストーラです。つまり、結果に影響を与えずに、必要に応じて何度でも実行することができます。 インストール中にエラーが生じた場合は、修正してもう一度インストーラを実行することができます。
+</p>
+
+<p> 以下に指定するとおりの順序でコンポーネントをインストールすることが非常に重要です。
+</p>
+
+<ol>
+<li>Puppet masterのインストール。</li>
+  <li>PuppetDBのインストール。</li>
+  <li>Puppet Enterprise Webコンソールのインストール。</li>
+</ol>
+<p> インストールを始める前に
+</p>
+
+<ul>
+<li>「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」をお読みください。</li>
+  <li>
+<a href="./install_basic.html#downloading-puppet-enterprise">適切なPuppet Enterprise tarballをダウンロードし、検証します</a>。</li>
+</ul>
+<h3 id="install-the-puppet-master">Puppet masterのインストール</h3>
+
+<p> Puppet Enterpriseの分割インストールを設定する場合、はじめにPuppet masterをインストールします。
+</p>
+
+<ol>
+<li>
+<code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してtarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
+  <li>
+    <p> インストーラのディレクトリから、インストーラを実行します。 インストール手順は、どの方法を選択するかによって異なります。
+</p>
+
+    <ul>
+<li>
+        <p> インストーラで<code>pe.conf</code>のコピーを開き、それを編集して使用する場合は、<strong><code>-c</code>フラグを用いずに</strong>インストーラを実行します。
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer
+</code></pre>
+      </li>
+      <li>
+        <p> 以前に生成した<code>pe.conf</code>ファイルを使用する場合は、<code>pe.conf</code>ファイルを指す<strong><code>-c</code>フラグを用いて</strong>インストーラを実行します。
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+
+        <blockquote>
+          <p> <strong>警告：</strong>事前生成済みのファイルを使用する場合、以下のステップに記載するとおりにパラメータを正しく設定していることを確認してください。
+</p>
+        </blockquote>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> <strong>-cフラグを使用せずに</strong>インストーラを実行した場合、プロンプトが表示されたら[text-mode]を選択します。
+</p>
+
+    <p> これにより、テキストエディタで<code>pe.conf</code>ファイルが開きます。このファイルをお使いのインフラに合わせて編集し、必要に応じて任意のテキストモードインストールのオプションを追加することができます。 
+</p>
+  </li>
+  <li>
+    <p> 以下のパラメータを設定します。
+</p>
+
+    <blockquote>
+      <p> <strong>重要</strong>: パラメータ値にシングルクォーテーションを使わないでください。 例に示したように、ダブルクォーテーションを使用してください。
+</p>
+    </blockquote>
+
+    <blockquote>
+      <p> <strong>注：</strong>以下の例で、<code>&lt;FQDN&gt;</code>はサーバーのFQDNを指します。 例えば、パラメータと値を次のように指定します。<code>"puppet_enterprise::puppet_master_host": "master.example.com"</code>
+</p>
+    </blockquote>
+
+    <table>
+<thead><tr>
+<th>パラメータ</th>
+          <th>値</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td><code>"console_admin_password":</code></td>
+          <td>
+<code>"&lt;PASSWORD&gt;"</code>— Puppet Enterprise Webコンソールのログインに使用したパスワードで、<code>&lt;PASSWORD&gt;</code>を置き換えます。</td>
+        </tr>
+<tr>
+<td><code>"puppet_enterprise::puppet_master_host":</code></td>
+          <td>
+<code>"&lt;FQDN&gt;"</code>— Puppet masterをホストするノードの<code>&lt;FQDN&gt;</code>を入力します。</td>
+        </tr>
+<tr>
+<td><code>"puppet_enterprise::console_host":</code></td>
+          <td>
+<code>"&lt;FQDN&gt;"</code>— Puppet Enterprise Webコンソールをホストするノードの<code>&lt;FQDN&gt;</code>を入力します。</td>
+        </tr>
+<tr>
+<td><code>"puppet_enterprise::puppetdb_host":</code></td>
+          <td>
+<code>"&lt;FQDN&gt;"</code>— PuppetDBをホストするノードの<code>&lt;FQDN&gt;</code>を入力します。</td>
+        </tr>
+</tbody>
+</table>
+<blockquote>
+      <p> <strong>警告</strong>：分割インストールでは、Puppet masterに"%{::trusted.certname}"値を使用しないでください。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> 外部PostgreSQLサーバーがある場合、「<a href="./install_pe_conf_param.html#external-postgresql-parameters">pe.confパラメータリファレンスの外部PostgreSQLパラメータ</a>」を参照して、<code>pe.conf</code>にパラメータを追加します。
+</p>
+  </li>
+  <li>
+    <p> ファイルを保存し、テキストエディタを終了します。
+</p>
+
+    <p> これにより、インストールが開始されます。
+</p>
+  </li>
+  <li>インストールが完了したら、Puppet Enterpriseインストーラと<code>pe.conf</code>ファイル(<code>/etc/puppetlabs/enterprise/conf.d/</code>内に生成済み)を、PuppetDBノードとして使用するサーバーに転送します。</li>
+</ol>
+<h3 id="install-puppetdb">PuppetDBのインストール</h3>
+
+<p> 分割インストールでは、Puppet masterのインストール後にPuppetDBをインストールできます。
+</p>
+
+<p> インストールを始める前に
+</p>
+
+<ul>
+<li>
+<a href="#install-the-puppet-master">Puppet masterをインストールしている</a>ことが条件になります。</li>
+</ul>
+<ol>
+<li>
+<code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してインストール用tarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
+  <li>
+<code>pe.conf</code>パラメータ<code>puppet_enterprise::puppet_master_host</code>が<code>"%{::trusted.certname}"</code>に設定されている場合は、値をPuppet masterのFQDNに変更します。</li>
+  <li>インストーラのディレクトリから、<code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;</code>を実行します。</li>
+  <li>インストールが完了したら、Puppet Enterpriseインストーラと<code>pe.conf</code>ファイルを、Puppet Enterprise Webコンソールノードとして使用するサーバーに転送します。</li>
+</ol>
+<h3 id="install-the-pe-console">Puppet Enterprise Webコンソールのインストール</h3>
+
+<p> Puppet masterとPuppetDBを分割インストールにインストールした後、Puppet Enterprise Webコンソールをインストールできます。
+</p>
+
+<p> インストールを始める前に
+</p>
+
+<ul>
+<li>
+<a href="#install-the-puppet-master">Puppet master</a>と<a href="#install-puppetdb">PuppetDBをインストールしている</a>ことが条件になります。</li>
+</ul>
+<ol>
+<li>
+<code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してtarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
+  <li>
+<code>pe.conf</code>パラメータ<code>puppet_enterprise::puppet_master_host</code>が<code>"%{::trusted.certname}"</code>に設定されている場合は、値をPuppet masterのFQDNに変更します。</li>
+  <li>インストーラのディレクトリから、<code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;</code>を実行します。</li>
+  <li>インストールが完了したら、「すべての分割ノードでのPuppetの実行」に進みます。</li>
+</ol>
+<h3 id="run-puppet-on-all-split-nodes">すべての分割ノードでのPuppetの実行</h3>
+
+<p> 分割インストールを完了するには、分割インストール内のすべてのノードで、以下の順序どおりにPuppetを実行します。
+</p>
+
+<ol>
+<li>Puppet masterノードでPuppetを実行します。</li>
+  <li>PuppetDBノードでPuppetを実行します。</li>
+  <li>Puppet masterノードでPuppetをもう1回実行します。</li>
+  <li>Puppet Enterprise WebコンソールノードでPuppetを実行します。</li>
+</ol>
+<h2 id="text-mode-installation-options">テキストモードインストールのオプション</h2>
+
+<p> テキストモードでインストーラを実行する場合、追加のフラグを渡してインストールを制御することができます。
+</p>
+
+<p> <code>pe.conf</code>ファイルを指定したテキストベースインストールのシンタックスは、次のようになります。
+</p>
+
+<pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+
+<p>  <code>-c</code>オプションを使用する場合、<code>pe.conf</code>ファイルをフルパスで指定する必要があります。 これを省略すると、コマンドが閉じてエラーメッセージが表示されます。
+</p>
+
+<p> <code>-c</code>オプションを使用する場合は、以下のオプションを用いることもできます。
+</p>
+
+<table>
+<thead><tr>
+<th>オプション</th>
+      <th>定義</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>-D</code></td>
+      <td>インストーラによりデバッグ情報が表示されます。</td>
+    </tr>
+<tr>
+<td><code>-q</code></td>
+      <td>インストーラがクワイエットモードで実行されます。インストールプロセスは表示されません。インストール中にエラーが生じた場合には、コマンドが終了してエラーメッセージが表示されます。</td>
+    </tr>
+<tr>
+<td><code>-V</code></td>
+      <td>きわめて詳細なデバッグ情報が表示されます。</td>
+    </tr>
+<tr>
+<td><code>-h</code></td>
+      <td>インストーラによりヘルプ情報が表示されます。</td>
+    </tr>
+</tbody>
+</table>
+<h2 id="add-puppet-enterprise-binaries-to-path">
+<code>PATH</code>へのPuppet Enterpriseバイナリの追加</h2>
+
+<p> Puppet Enterpriseは、ツールおよびサービスと対話するために<a href="./install_what_and_where.html#executable-binaries-and-symlinks">多数のバイナリをインストール</a>します。 これらのバイナリをデフォルトパスに含める必要があります。
+</p>
+
+<ol>
+<li>
+    <p> これらのバイナリをデフォルトの<code>$PATH</code>に追加するには、プロファイルに手動で追加するか、または以下を実行します。
+</p>
+
+    <pre><code>PATH=/opt/puppetlabs/puppet/bin:/opt/puppetlabs/server/bin:$PATH;export PATH
+</code></pre>
+  </li>
+</ol>
+<h2 id="disable-puppet-enterprise-symlinks">Puppet Enterpriseシンボリックリンクの無効化</h2>
+
+<p> Puppet Enterpriseは、ツールおよびサービスと対話するために<a href="./install_what_and_where.html#where-is-it-installed">多数のシンボリックリンクをインストール</a>します。 必要に応じて、 <a href="/pe/2017.1/config_intro.html#configure-settings-with-hiera">デフォルトのHieraファイル</a>に設定を追加すると、シンボリックリンクを無効化できます。
+</p>
+
+<ol>
+<li>
+    <p> デフォルトのHieraファイルに以下の設定を追加します。
+</p>
+
+    <pre><code>puppet_enterprise::manage_symlinks: false
+</code></pre>
+  </li>
+</ol>
+<hr>
+<p> <strong>関連リンク</strong>
+</p>
+
+<ul>
+<li><a href="./install_license_key.html">Puppet Enterpriseライセンスキーのインストール</a></li>
+</ul>
+</div>

@@ -16,28 +16,36 @@ title: "Installing Puppet agent: Microsoft Windows"
 
 ## Make sure you're ready
 
-Before installing Puppet on any agent nodes, make sure you've read the [pre-install tasks](./install_pre.html) and [installed Puppet Server][server_install].
+Before installing Puppet on any agent nodes:
+
+* Make sure you've read the [pre-install tasks.](./install_pre.html)
+* [Install Puppet Server][server_install].
+* Make sure the version of Windows you're using is listed in the [system requirements](./system_requirements#windows).
+* If you're using Puppet with a master/agent configuration, you'll need a \*nix node to act as your Puppet master.
+
 
 > **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
-
-## Review supported versions
-
-{% include pup43_platforms_windows.markdown %}
-
-> **Deprecation Note:** Puppet 4.2 deprecated Windows Server 2003 and 2003 R2. The Windows installation packages for `puppet-agent` 1.4.0 and above, which contain Puppet won't install on those versions of Windows Server.
-
-To install on other operating systems, see the pages linked in the navigation sidebar.
 
 ## Download the Windows `puppet-agent` package
 
 [Puppet's Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
 
-* 64-bit versions of Windows can use `puppet-agent-<VERSION>-x64.msi` (recommended) or `puppet-agent-<VERSION>-x86.msi`.
-* 32-bit versions of Windows _must_ use `puppet-agent-<VERSION>-x86.msi`.
+* 64-bit versions of Windows must use `puppet-agent-<VERSION>-x64.msi`.
+* 32-bit versions of Windows must use `puppet-agent-<VERSION>-x86.msi`.
+
+>**Note:** Running 32-bit Puppet agent on a 64-bit Windows system was deprecated on December 31, 2016.
 
 These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
 The list of Windows packages might include release candidates, whose filenames have something like `-rc1` after the version number. Use these only if you want to test upcoming Puppet versions.
+
+>**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You might see a warning from your browser saying the signature is corrupt or invalid.
+>
+> ![invalid or corrupt](./images/windows_invalid_signature.jpg)
+>
+> If you want to verify the package is dual-signed, right-click on the MSI, and select **Properties**. Navigate to the **Digital Signatures** tab and you should see the following:
+>
+> ![Puppet Package Properties](./images/windows_package_signatures.png)
 
 ## Install Puppet
 
@@ -49,13 +57,13 @@ You can install Puppet [with a graphical wizard](#graphical-installation) or [on
 
 Double-click the MSI package you downloaded, and follow the graphical wizard. The installer must be run with elevated privileges. Installing Puppet does not require a system reboot.
 
-During installation, you will be asked for the hostname of your Puppet master server. This must be a \*nix node configured to act as a Puppet master.
+During installation, you Puppet asks for the hostname of your Puppet master server. This must be a \*nix node configured to act as a Puppet master.
 
 For standalone Puppet nodes that won't connect to a master, use the default hostname (`puppet`). You might also want to install on the command line and set the agent startup mode to `Disabled`.
 
 ![Puppet master hostname selection][server]
 
-Once the installer finishes, Puppet will be installed, running, and at least partially configured.
+Once the installer finishes, Puppet will be installed, running, and partially configured.
 
 ### Automated installation
 
@@ -73,7 +81,7 @@ You can also set several MSI properties to pre-configure Puppet as you install i
 
 See [the MSI Properties section](#msi-properties) for information about these MSI properties.
 
-Once the installer finishes, Puppet will be installed, running, and at least partially configured.
+Once the installer finishes, Puppet will be installed, running, and partially configured.
 
 ### MSI properties
 
@@ -102,7 +110,7 @@ MSI Property                                                   | Puppet Setting 
 
 Where Puppet and its dependencies should be installed.
 
-> **Note:** By end of year 2016, running 32-bit Puppet agent on a 64-bit Windows system will be deprecated. Update your Puppet installation to the 64-bit platform by December 31, 2016.
+> **Note:** Running 32-bit Puppet agent on a 64-bit Windows system is now deprecated. Update your Puppet installation to the 64-bit platform.
 >
 > If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR` option when upgrading.
 >
@@ -197,7 +205,7 @@ The domain of the Puppet agent's user account. See the notes under [`PUPPET_AGEN
 
 #### Downgrades
 
-If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package. You must also uninstall if you are downgrading from 3.7 or later to 3.6 or earlier.
+If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package.
 
 ### Uninstalling
 

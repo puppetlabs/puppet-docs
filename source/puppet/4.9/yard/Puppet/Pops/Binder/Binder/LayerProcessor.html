@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Binder::Binder::LayerProcessor
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Binder::Binder::LayerProcessor
   
@@ -448,7 +446,7 @@ A LayerProcessor holds the intermediate state required while processing one laye
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 192</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add'>add</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_bindings'>bindings</span> <span class='op'>&lt;&lt;</span> <span class='const'>InjectorEntry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_binder_precedence'>binder_precedence</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_bindings'>bindings</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="../InjectorEntry.html" title="Puppet::Pops::Binder::InjectorEntry (class)">InjectorEntry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../InjectorEntry.html#initialize-instance_method" title="Puppet::Pops::Binder::InjectorEntry#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_binder_precedence'>binder_precedence</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -492,7 +490,7 @@ A LayerProcessor holds the intermediate state required while processing one laye
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/binder.rb', line 199</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_contribution'>add_contribution</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_contributions'>contributions</span> <span class='op'>&lt;&lt;</span> <span class='const'>InjectorEntry</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_binder_precedence'>binder_precedence</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_contributions'>contributions</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="../InjectorEntry.html" title="Puppet::Pops::Binder::InjectorEntry (class)">InjectorEntry</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../InjectorEntry.html#initialize-instance_method" title="Puppet::Pops::Binder::InjectorEntry#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_b'>b</span><span class='comma'>,</span> <span class='id identifier rubyid_binder_precedence'>binder_precedence</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -694,7 +692,7 @@ A LayerProcessor holds the intermediate state required while processing one laye
 
 <span class='kw'>def</span> <span class='id identifier rubyid_bind_LayeredBindings'>bind_LayeredBindings</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_layers'>layers</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_layer'>layer</span><span class='op'>|</span>
-    <span class='id identifier rubyid_processor'>processor</span> <span class='op'>=</span> <span class='const'>LayerProcessor</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='id identifier rubyid_key_factory'>key_factory</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_processor'>processor</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Binder::Binder::LayerProcessor (class)">LayerProcessor</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_binder'>binder</span><span class='comma'>,</span> <span class='id identifier rubyid_key_factory'>key_factory</span><span class='rparen'>)</span>
     <span class='comment'># All except abstract (==error) are transferred to injector_entries
 </span>
     <span class='id identifier rubyid_processor'>processor</span><span class='period'>.</span><span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='id identifier rubyid_layer'>layer</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
@@ -1148,9 +1146,9 @@ A LayerProcessor holds the intermediate state required while processing one laye
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:42 2016 by
+  Generated on Tue Jan 31 13:38:27 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

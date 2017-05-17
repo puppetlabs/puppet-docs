@@ -1,0 +1,244 @@
+---
+layout: default
+title: "ロールとプロファイル: 詳細な例"
+---
+
+<p> 適度に簡略化された例を通じて、ロールとプロファイルの完全なワークフローを示します。
+</p>
+
+<p> ロールとプロファイルの手法の全体像を理解するために活用してください。 この後の例では、このコード例をリファクタリングしてさらに複雑なコードにすることで、高度な設定にする方法を示します。
+</p>
+
+<h2 id="our-example-jenkins-masters">サンプル: Jenkins master</h2>
+
+<p> <a href="https://jenkins.io/">Jenkins</a>とは、JVM上で動作する連続的なインテグレーション(CI)アプリケーションです。Jenkins masterサーバーはWebフロントエンドを提供するとともに、指定時間またはイベントへの対応としてCIタスクを実行します。
+</p>
+
+<p> 主な例として、Jenkins masterサーバーの設定を管理します。
+</p>
+
+<h2 id="step-0-set-up-your-prerequisites">ステップ0: 前提条件を設定する</h2>
+
+<p> ロールとプロファイルを初めて使用する場合は、新しいコードを記述する前に設定を追加する必要があります。
+</p>
+
+<ol>
+<li>
+    <p> <a href="{{puppet}}/modules_fundamentals.html">モジュール</a>を2つ作成します。そのうち1つは<code>role</code>、もう1つは<code>profile</code>と名付けます。
+</p>
+
+    <p> Puppet Enterpriseのコードマネージャやr10kを使用してコードをデプロイする場合、これら2つのモジュールをPuppetfileで宣言するのではなく、管理リポジトリに格納しておくことを推奨します。 コードマネージャとr10kは、<code>modules</code>ディレクトリを各自の用途のために予約しているため、それぞれ個別のディレクトリに格納する必要があります。
+</p>
+
+    <ol>
+<li>リポジトリに、<code>site</code>という名前の新規ディレクトリを作成します。</li>
+      <li>
+<code>environment.conf</code>ファイルを編集し、<code>modulepath</code>に<code>site</code>を追加します(例: <code>modulepath = site:modules:$basemodulepath</code>)。</li>
+      <li>
+<code>role</code>および<code>profile</code>モジュールを<code>site</code>ディレクトリに格納します。</li>
+    </ol>
+</li>
+  <li>
+    <p> <a href="{{hiera}}">Hiera</a>または<a href="{{puppet}}/lookup_quick.html">Puppetルックアップ</a>に、適切な階層が設定されていて動作していることを確認します。
+</p>
+  </li>
+</ol>
+<h2 id="step-1-choose-component-modules">ステップ1: コンポーネントモジュールを選択する</h2>
+
+<ol>
+<li>この例では、Jenkins自体を管理します。標準的なモジュールは<a href="https://forge.puppet.com/rtyler/jenkins"><code>rtyler/jenkins</code></a>です。</li>
+  <li>JenkinsにはJavaが必要です。また、<code>rtyler</code>モジュールはJavaを自動的に管理できます。しかし、Javaを細かく管理したいため、ここではrtylerモジュールは無効にします。つまり、Javaモジュールが必要なので、<a href="https://forge.puppet.com/puppetlabs/java"><code>puppetlabs/java</code></a>があればよいでしょう。</li>
+</ol>
+<p> まずはそれで十分です。動作させてから、リファクタリングと拡張を行います。
+</p>
+
+<h2 id="step-2-write-a-profile">ステップ2: プロファイルを記述する</h2>
+
+<p> Puppetから見ると、プロファイルは<code>profile</code>モジュールに保存された通常クラスの1つです。 <code>.../profile/manifests/jenkins/master.pp</code>に<code>profile::jenkins::master</code>という名前の新規クラスを作成し、ここにPuppetコードを記述します。
+</p>
+
+<h3 id="the-rules-for-profile-classes">プロファイルクラスのルール</h3>
+
+<ol>
+<li>どのプロファイルも、何度でも安全に<a href="{{puppet}}/lang_classes.html#using-include"><code>include</code></a>できることを確認してください。プロファイルに<a href="{{puppet}}/lang_classes.html#include-like-vs-resource-like">リソースライクなクラス宣言</a>は使用しないでください。</li>
+  <li>プロファイルには、他のプロファイルを<code>include</code>できます。</li>
+  <li>プロファイルは、コンポーネントクラスの<em>すべて</em>のクラスパラメータを所有します。プロファイルでいずれかのクラスパラメータが省略されている場合、デフォルト値が確実に必要です。コンポーネントクラスはHieraデータの値を使用してはなりません。以前に省略されたクラスパラメータを設定する必要がある場合、プロファイルをリファクタリングします。</li>
+  <li>コンポーネントクラスを設定するにあたり、プロファイルに必要な情報を入手するには3通りの方法があります。<ul>
+<li>指定のパラメータに対して常に同じ値を使用する場合は、<strong>ハードコード化</strong>してください。</li>
+      <li>ハードコード化できない場合は、すでにわかっている情報をもとに<strong>計算</strong>してください。</li>
+      <li>最後に、計算できない場合は、データの中で <strong>ルックアップを実行</strong>します。ルックアップを減らすため、1つの質問に対する回答から複数のパラメータを得られるケースを特定します。</li>
+    </ul>
+<p> 何らかのトレードオフが必要となるということです。 つまり、ハードコード化されたパラメータは読みやすいものの、柔軟性には欠けます。 一方で、Hieraデータに値を指定すると柔軟性は非常に高まりますが、読みにくくなります。プロファイルの実際の動作を見るには、多数のファイルを確認(または多数のルックアップコマンドを実行)しなければならないことがあります。 その妥協点として、条件分岐を使用して値を生成します。
+</p>
+
+    <p> 可能な手段の中で、最も読みやすいオプションを選んでください。
+</p>
+  </li>
+</ol>
+<h3 id="the-sample-profile-code">プロファイルコード例</h3>
+
+<pre><code class="language-puppet"># /etc/puppetlabs/code/environments/production/site/profile/manifests/jenkins/master.pp
+class profile::jenkins::master (
+  String $jenkins_port = '9091',
+  String $java_dist    = 'jdk',
+  String $java_version = 'latest',
+) {
+
+  class { 'jenkins':
+    configure_firewall =&gt; true,
+    install_java       =&gt; false,
+    port               =&gt; $jenkins_port,
+    config_hash        =&gt; {
+      'HTTP_PORT'    =&gt; { 'value' =&gt; $jenkins_port },
+      'JENKINS_PORT' =&gt; { 'value' =&gt; $jenkins_port },
+    },
+  }
+
+  class { 'java':
+    distribution =&gt; $java_dist,
+    version      =&gt; $java_version,
+    before       =&gt; Class['jenkins'],
+  }
+}
+</code></pre>
+
+<p> これは比較的シンプルな例ですが、これだけでもメリットはあります。Jenkinsを構成するためのインターフェースは、Jenkinsクラスの場合は30個のパラメータで構成されていましたが(Javaの場合はそれよりも多い)、わずか3つにまで抑えられています。 ここで、<code>configure_firewall</code>および<code>install_java</code>パラメータをハードコード化し、<code>$jenkins_port</code>の値を3か所で再利用していることに注目してください。
+</p>
+
+<h3 id="about-data-and-class-parameters">データとクラスパラメータについて</h3>
+
+<p> 通常、プロファイルには何らかの設定が必要で、その設定のためにデータルックアップを使用する必要があります。
+</p>
+
+<p> このプロファイルでは、<a href="{{hiera}}/puppet.html#automatic-parameter-lookup">自動クラスパラメータルックアップ</a>を使用してデータをリクエストします。 しかし、パラメータを省略して<code>lookup</code>関数を使用することもできます。
+</p>
+
+<pre><code class="language-puppet">class profile::jenkins {
+  $jenkins_port = lookup('profile::jenkins::jenkins_port', {value_type =&gt; String, default_value =&gt; '9091'})
+  $java_dist    = lookup('profile::jenkins::java_dist',    {value_type =&gt; String, default_value =&gt; 'jdk'})
+  $java_version = lookup('profile::jenkins::java_version', {value_type =&gt; String, default_value =&gt; 'latest'})
+  # ...
+</code></pre>
+
+<p> 一般的に、クラスパラメータの方が適切です。 クラスパラメータは<a href="https://github.com/puppetlabs/puppetlabs-strings">Puppet Strings</a>のようなツールとも統合でき、設定を見つけられる場所として信頼性が高く、広く知られています。 しかし、自動パラメータルックアップに慣れていない場合は、<code>lookup</code>を使用する方が適切なアプローチです。 グローバルにgrepできるよう、プロファイルに完全なルックアップキーを記述することを好む人もいます。
+</p>
+
+<h2 id="step-3-set-hiera-data-for-the-profile">ステップ3: プロファイル用のHieraデータを設定する</h2>
+
+<p> 以下の条件を仮定します。
+</p>
+
+<ul>
+<li>カスタムfactを使用する。<ul>
+<li>
+<code>group</code>: このノードが属するグループ(事業部や多数のノードが共有する大規模な機能など)。</li>
+      <li>
+<code>stage</code>: このノードのデプロイステージ(dev、test、prodなど)。</li>
+    </ul>
+</li>
+  <li>4つのレイヤで構成される階層がある。<ul>
+<li>
+<code>nodes/%{trusted.certname}</code>(ノードごとのオーバーライド用)</li>
+      <li>
+<code>groups/%{facts.group}/%{facts.stage}</code>(グループ内のステージ固有データの設定用)</li>
+      <li>
+<code>groups/%{facts.group}</code>(グループ固有のデータの設定用)</li>
+      <li>
+<code>common</code>(グローバルフォールバックデータ用)</li>
+    </ul>
+</li>
+  <li>単発的なJenkins masterはありますが、そのほとんどは<code>ci</code>グループに属します。</li>
+  <li>品質エンジニアリング(QE)部では、<code>ci</code>グループのmasterがOracke JDKを使用するようにしたいと考えていますが、単発的なマシンではプラットフォームのデフォルトのJavaしか使用できません。</li>
+  <li>また、prod masterがポート80でリッスンするように設定したいとも考えています。</li>
+</ul>
+<p> ここで、次の値をデータに設定します。
+</p>
+
+<pre><code class="language-yaml"># /etc/puppetlabs/code/environments/production/data/nodes/ci-master01.example.com.yaml
+# --Nothing. We don't need any per-node values right now.
+
+# /etc/puppetlabs/code/environments/production/data/groups/ci/prod.yaml
+profile::jenkins::master::jenkins_port: '80'
+
+# /etc/puppetlabs/code/environments/production/data/groups/ci.yaml
+profile::jenkins::master::java_dist: 'oracle-jdk8'
+profile::jenkins::master::java_version: '8u92'
+
+# /etc/puppetlabs/code/environments/production/data/common.yaml
+# --Nothing. Just use the default parameter values.
+</code></pre>
+
+<h2 id="step-4-write-a-role">ステップ4: ロールを記述する</h2>
+
+<p> 次に、管理対象のマシンを考慮し、Jenkinsプロファイル以外に必要なものを決定します。
+</p>
+
+<p> Jenkins masterは、他の目的は果たしません。 しかし、フリートの全マシンには、以下のプロファイルがあることを想定しています(ここではコードは示しません)。
+</p>
+
+<ul>
+<li>
+<code>profile::base</code>を、ワークステーションを含むすべてのマシンに割り当てる必要があります。基本的なポリシーを管理し、必要に応じてOS固有のプロファイルを含めるために、条件分岐を使用します。</li>
+  <li>
+<code>profile::server</code>は、ネットワーク上でサービスを提供するすべてのマシンに割り当てる必要があります。オペレータがマシンにログインできるようにし、時間管理、ファイアウォール、ロギング、モニタリングなどを設定します。</li>
+</ul>
+<p> そのため、Jenkins masterを管理するロールにもこれらのクラスが必要となります。
+</p>
+
+<h3 id="the-rules-for-role-classes">ロールクラスのルール</h3>
+
+<p> ロールクラスを記述する際のルールは以下のとおりです。
+</p>
+
+<ol>
+<li>
+    <p> ロールが行う唯一のこととは、<code>include</code>でプロファイルクラスを宣言することです。 ロールでコンポーネントクラスや通常のリソースを宣言しないでください。
+</p>
+
+    <p> あるいは、ロールで条件分岐を使用し、使用するプロファイルを決定することもできます。 また、ロールが同じルールに準じていれば、他のロールクラスを含めることもできます。
+</p>
+  </li>
+  <li>ロールは、独自のクラスパラメータを所有してはなりません。</li>
+  <li>ロールは、プロファイルのクラスパラメータを設定してはなりません(プロファイルのクラスパラメータはデータルックアップで処理されます)。</li>
+  <li>
+    <p> ロールの名称は、ビジネスが管理するノードのタイプの<em>通称</em>に基づいて指定されます。
+</p>
+
+    <p> つまり、マシンに「Jenkins master」という名前を付けている場合は、<code>role::jenkins::master</code>という名前のロールを記述するということです。 また、「web server」という名前を付けている場合は、<code>role::nginx</code>ではなく<code>role::web</code>という名前を使います。
+</p>
+  </li>
+</ol>
+<h3 id="the-sample-role-code">ロールコードの例</h3>
+
+<pre><code class="language-puppet">class role::jenkins::master {
+  include profile::base
+  include profile::server
+  include profile::jenkins::master
+}
+</code></pre>
+
+<h2 id="step-5-assign-the-role-to-nodes">ステップ5: ロールをノードに割り当てる</h2>
+
+<p> 最後に、Jenkins masterとして動作するすべてのノードに<code>role::jenkins::master</code>を割り当てます。
+</p>
+
+<p> Puppetには、ノードにクラスを割り当てる方法がいくつかあるため、チームに適したツールを使用してください。 主な選択肢は以下のとおりです。
+</p>
+
+<ul>
+<li>
+<a href="{{pe}}/console_classes_groups_getting_started.html">PEコンソール</a>ノード分類子。factsに基づいてノードをグループ化し、それらのグループにクラスを割り当てます。</li>
+  <li>
+<a href="{{puppet}}/dirs_manifest.html">mainマニフェスト</a>。<a href="{{puppet}}/lang_node_definitions.html">ノードステートメント</a>または条件分岐を使用してクラスを割り当てます。</li>
+  <li>HieraまたはPuppetルックアップ - <code>lookup</code>関数を使用して特殊な<code>classes</code>キーに対して独自の配列マージを実行し、その結果として生成された配列を<code>include</code>関数に渡します。</li>
+</ul>
+<h2 id="next-steps">次の手順</h2>
+
+<p> ロールとプロファイルの使用方法がわかると、以下のことが行えるようになります。
+</p>
+
+<ul>
+<li>
+<a href="./r_n_p_profiles.html">さらに高度なプロファイルの記述方法を学ぶ。</a>ロールおよびプロファイルの手法において、最も複雑で非常に重要な部分です。</li>
+  <li><a href="./r_n_p_roles.html">便利なロールを記述する別のアプローチについて学ぶ。</a></li>
+</ul>

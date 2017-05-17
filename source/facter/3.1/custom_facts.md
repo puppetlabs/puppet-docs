@@ -339,10 +339,6 @@ On Windows:
 
     C:\ProgramData\PuppetLabs\facter\facts.d\
 
-On Windows 2003:
-
-    C:\Documents and Settings\All Users\Application Data\PuppetLabs\facter\facts.d\
-
 When running as a non-root / non-Administrator user:
 
     <HOME DIRECTORY>/.facter/facts.d/

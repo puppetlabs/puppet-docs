@@ -1,0 +1,162 @@
+---
+layout: default
+title: "Puppet Enterpriseのダウンロードとインストール"
+---
+<p> 最初の作業として、Puppet Enterpriseインストールパッケージをダウンロードして検証し、インストールタイプを選択します。
+</p>
+
+<h2 id="download-and-verify-puppet-enterprise-installation-package">Puppet Enterpriseインストールパッケージをダウンロードして検証する</h2>
+
+<p> Puppet Enterpriseは、サポートされるOSバージョンおよびアーキテクチャに合わせて、固有のパッケージで配布されています。
+</p>
+
+<p> 最新バージョンのPuppet Enterpriseは、弊社のWebサイトからダウンロードできます。 ダウンロードには、完全なPuppet Enterpriseインストールtarballと、本物であることを検証するためのGPG署名(.asc)ファイルが含まれています。
+</p>
+
+<h3 id="download-puppet-enterprise">Puppet Enterpriseをダウンロード</h3>
+
+<p> Puppet Enterpriseは弊社のWebサイトからダウンロードできます。
+</p>
+
+<ol>
+<li>
+    <p> 適切なtarballを選択して、最新バージョンのPuppet Enterpriseを<a href="http://info.puppetlabs.com/download-pe.html">ダウンロード</a>します。
+</p>
+
+    <table>
+<thead><tr>
+<th>ファイル名の末尾</th>
+          <th>インストール対象の環境</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td><code>-el-&lt;version and arch&gt;.tar.gz</code></td>
+          <td>RHEL、CentOS、Scientific Linux、またはOracle Linux</td>
+        </tr>
+<tr>
+<td><code>-ubuntu-&lt;version and arch&gt;.tar.gz</code></td>
+          <td>Ubuntu LTS</td>
+        </tr>
+<tr>
+<td><code>-sles-&lt;version and arch&gt;.tar.gz</code></td>
+          <td>SLES</td>
+        </tr>
+</tbody>
+</table>
+</li>
+  <li>
+    <p> 次のタスクに進んで、インストールパッケージを検証します。
+</p>
+  </li>
+</ol>
+<h3 id="verify-the-installation-package">インストールパッケージを検証する</h3>
+
+<p> Puppet Enterpriseのインストールに進む前に、Puppetの公開鍵をインポートし、ダウンロードしたPuppet Enterpriseインストールパッケージの暗号検証を実行します。
+</p>
+
+<p> インストールを始める前に
+</p>
+
+<p> GnuPGをインストールする必要があります。 また、Puppet Enterpriseインストールパッケージと一緒にダウンロードしたGPG署名(.ascファイル)も必要です。
+</p>
+
+<ol>
+<li>
+    <p> Puppetの公開鍵をインポート
+</p>
+
+    <pre><code>wget -O - https://downloads.puppetlabs.com/puppet-gpg-signing-key.pub | gpg --import
+</code></pre>
+  </li>
+  <li>
+    <p> Puppetの鍵のフィンガープリントを出力します。
+</p>
+
+    <pre><code>gpg --fingerprint 0x7F438280EF8D349F
+</code></pre>
+
+    <p> 検証の際に表示されるフィンガープリントと、ここで表示されるPuppetのフィンガープリントは完全に一致しなければなりません。
+</p>
+
+    <pre><code>Primary key fingerprint: 6F6B 1550 9CF8 E59E 6E46  9F32 7F43 8280 EF8D 349F
+</code></pre>
+  </li>
+  <li>
+    <p> インストールパッケージのリリース署名を検証します。
+</p>
+
+    <pre><code>$ gpg --verify puppet-enterprise-&lt;version&gt;-&lt;platform&gt;.tar.gz.asc
+</code></pre>
+
+    <p> 以下のような結果が表示されます。
+</p>
+
+    <pre><code>gpg: Signature made Tue 18 Sep 2016 10:05:25 AM PDT using RSA key ID EF8D349F
+gpg: Good signature from "Puppet, Inc. Release Key (Puppet, Inc. Release Key)"
+</code></pre>
+
+    <p> <strong>注意</strong>: 署名を検証する際、リリース鍵の署名の1つへの信頼できるパスがない場合は、以下のような警告メッセージが表示されます。
+</p>
+
+    <pre><code>Could not find a valid trust path to the key.
+     gpg: WARNING: This key is not certified with a trusted signature!
+     gpg:          There is no indication that the signature belongs to the owner.
+</code></pre>
+
+    <p> これは、リリース鍵に署名したユーザーを証明できる信頼できるパスが作成されていないためです。この警告は無視してかまいません。
+</p>
+  </li>
+</ol>
+<h2 id="installing-puppet-enterprise-overview">Puppet Enterpriseのインストール：概要</h2>
+
+<p> 以下では、Puppet Enterpriseをスムーズにインストールするために知っておくべきことを説明します。
+</p>
+
+<p> Puppet Enterpriseの機能は複数のコンポーネントにより構成されています。インストーラを実行すると、これらすべてのコンポーネントがインストールされ、設定されます。 複数のコンポーネントを1つのノードにインストール（モノシックインストール）、もしくは複数のノードにコンポーネントを分散してインストール（分割インストール）することができます。ただしagentコンポーネントについては、すべてのノードにインストールされます。
+</p>
+
+<p> インストールを始める前に、デプロイするものを決めておきましょう。 Puppet Enterpriseコンポーネントをインストールするすべてのノードにアクセスできるよう、各ノードの完全修飾ドメイン名を把握し、ファイアウォールのルールが<a href="./sys_req_sysconfig.html#firewall-configuration">必要なポート</a>にアクセスできるよう設定されているか確認する必要があります。
+</p>
+
+<p> これらの情報を確認した後、次の<strong>三つの手順</strong>でインストールを実行します。
+</p>
+
+<ol>
+<li>
+    <p> インストール方法を選択します。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseの主要コンポーネント、すなわち、Puppet master、PuppetDB (およびデータベースサポート)、PEコンソールをインストールします。
+</p>
+  </li>
+  <li>
+    <p> Puppet Enterpriseによる管理を行うすべてのノードに、Puppet agentをインストールします。 「<a href="./install_agents.html">agentのインストール手順</a>」を参照してください。
+</p>
+  </li>
+</ol>
+<h3 id="choosing-an-installation-method">インストール方法の選択</h3>
+
+<p> 開始する前に、インストール方法を選択します。 いくつかの選択肢を提供しています。また、それぞれに対応するインストール手順へのリンクも提供しています。
+</p>
+
+<ul>
+<li>
+    <p> <a href="./install_pe_mono.html">Webベースのモノリシックインストール</a>: <a href="./sys_req_hw.html#monolithic-installation">標準モノリシックインストール</a>または<a href="./sys_req_hw.html#monolithic-with-compile-masters-installation">モノリシックインストールにコンパイルmasterを追加する場合</a>の土台となるインストール方法。
+</p>
+  </li>
+  <li>
+    <p> <a href="./install_text_mode.html">テキストモードインストール</a>：Puppet Enterpriseインストール用tarballで提供されているサンプルの<code>pe.conf</code>ファイルを使用するか、または独自ファイルを作成して、Puppet Enterpriseをインストールします。 テキストモードの場合、分割インストールまたはモノリシックインストールのどちらも作成できます。
+</p>
+  </li>
+</ul>
+<p> 「<a href="./sys_req_hw.html">システム要件</a>」で、ハードウェア関連の仕様を確認します。
+</p>
+
+<blockquote>
+  <p> <strong>ヒント</strong>：インストールを開始する前に、Puppet Enterpriseを構成するサービスとコンポーネントをよく理解しておく必要があります。 詳細については、「<a href="./pe_architecture_overview.html">PEアーキテクチャ概要</a>」を参照してください。
+</p>
+</blockquote>
+
+<hr>
+

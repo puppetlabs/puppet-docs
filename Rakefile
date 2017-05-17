@@ -147,6 +147,12 @@ namespace :externalsources do
     Rake::Task['externalsources:clean'].reenable
     @config_data['externalsources'].each do |url, info|
       workdir = safe_dirname(url)
+      destination = "#{SOURCE_DIR}#{url}"
+      if File.exist?(destination)
+        puts "\n  WARNING: I need to symlink #{url} into place at #{destination}, but a file or directory already exists there. It's probably a glitch, so I'm deleting it. -NF"
+        # This usually happens when a directory like source/pe/3.8 contains a (usually hidden) file that Git won't automatically delete because it's listed in the .gitignore file. (For example, .DS_Store.) That leaves the containing directory hanging around, and if we try to run the FileUtils.ln_sf command below, it will link <PE REPO>/source into place at source/pe/3.8/source instead of source/pe/3.8, which then breaks the site.
+        FileUtils.remove_entry_secure(destination)
+      end
       # Have to use absolute paths for the source, since we have no idea how deep in the hierarchy the url is (and thus how many ../..s it would need).
       FileUtils.ln_sf "#{top_dir}/externalsources/#{workdir}/#{info['subdirectory']}", "#{SOURCE_DIR}#{url}"
     end
@@ -164,10 +170,16 @@ end
 desc "Clean up any crap left over from failed docs site builds"
 task :clean do
   # Get rid of external sources symlinks
+  pust "Deleting symlinks to external sources..."
   Rake::Task['externalsources:clean'].invoke
   Rake::Task['externalsources:clean'].reenable
   # Get rid of the amended config file we write for Jekyll
-  FileUtils.rm("#{SOURCE_DIR}/_config_amended.yml")
+  begin
+    puts "Deleting _config_amended.yml..."
+    FileUtils.rm("#{SOURCE_DIR}/_config_amended.yml")
+  rescue
+    puts "There was no _config_amended.yml file to delete."
+  end
 end
 
 desc "Generate the documentation"
@@ -183,6 +195,10 @@ task :generate do
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
   Rake::Task['externalsources:clean'].reenable
+
+  if @config_data['preview'].class == Array && @config_data['preview'].length > 0
+    puts "THIS IS A PREVIEW VERSION, AND IT'S MISSING IMPORTANT STUFF. Do not deploy the site in this state; this is for local viewing only. To build a real version of the site, delete the `preview:` key from _config.yml."
+  end
 end
 
 desc "Symlink latest versions of several projects; see symlink_latest and lock_latest lists in _config.yml"
@@ -199,8 +215,17 @@ task :symlink_latest_versions do
 
     latest = @config_data['lock_latest'][project] || PuppetDocs::Versions.latest(versions)
 
-    Dir.chdir project_dir do
-      FileUtils.ln_sf latest, 'latest'
+    begin
+      Dir.chdir project_dir do
+        FileUtils.ln_sf latest, 'latest'
+      end
+    rescue Errno::ENOENT => err
+      if @config_data['preview'].class == Array && @config_data['preview'].length > 0
+        puts "WARNING: Couldn't symlink latest version of #{project}, but you're building a limited preview, so I'll let it slide."
+      else
+        puts "ERROR: Couldn't symlink latest version of #{project}. Something is probably horribly wrong. I'm bailing out."
+        raise Errno::ENOENT
+      end
     end
   end
 end
@@ -304,6 +329,18 @@ task :build_html_fragments do
   Dir.chdir("#{SOURCE_DIR}/_layouts") do
     FileUtils.mv("default.html", "fragment.html")
     FileUtils.mv("real_default.html", "default.html")
+  end
+end
+
+desc "Build HTML fragments, then mangle all of them for Transifex (takes a while)"
+task :build_and_mangle_html_fragments do
+  require 'puppet_docs/sentence_segmenter'
+  Rake::Task[:build_html_fragments].invoke
+  all_fragments = Dir.glob('output/**/*.html') # This actually sweeps up YARD pages too, but... never mind.
+  total_size = all_fragments.length
+  all_fragments.each_with_index do |fragment, i|
+    print "(#{i+1}/#{total_size}) "
+    PuppetDocs::SentenceSegmenter.mangle_file(fragment)
   end
 end
 

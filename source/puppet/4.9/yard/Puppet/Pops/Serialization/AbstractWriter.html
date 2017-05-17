@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::AbstractWriter
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../../class_list.html"></iframe>
+      <iframe id="nav" src="../../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Pops::Serialization::AbstractWriter
   
@@ -549,12 +547,12 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-76
-77
-78</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build_payload'>build_payload</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SerializationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Internal error: Class </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_content'> does not implement method &#39;build_payload&#39;</span><span class='tstring_end'>&quot;</span></span>
@@ -592,12 +590,12 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-81
-82
-83</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_extension_packer'>extension_packer</span>
   <span class='ivar'>@extension_packer</span>
@@ -675,12 +673,12 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-111
-112
-113</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='id identifier rubyid_extension_number'>extension_number</span><span class='comma'>,</span> <span class='id identifier rubyid_payload_class'>payload_class</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@packer</span><span class='period'>.</span><span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='id identifier rubyid_extension_number'>extension_number</span><span class='comma'>,</span> <span class='id identifier rubyid_payload_class'>payload_class</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -718,10 +716,6 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-116
-117
-118
-119
 120
 121
 122
@@ -790,10 +784,26 @@ and, by using extensions, also</li>
 185
 186
 187
-188</pre>
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_types'>register_types</span>
   <span class='comment'># 0x00 - 0x0F are reserved for low-level serialization / tabulation extensions
@@ -816,8 +826,12 @@ and, by using extensions, also</li>
     <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>OBJECT_START</span><span class='comma'>,</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>PCORE_OBJECT_START</span><span class='comma'>,</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>PcoreObjectStart</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
     <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_write_tpl_qname'>write_tpl_qname</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type_name'>type_name</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_attribute_count'>attribute_count</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>OBJECT_START</span><span class='comma'>,</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+    <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_attribute_count'>attribute_count</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='comment'># 0x20 - 0x2f reserved for special extension objects
@@ -830,6 +844,10 @@ and, by using extensions, also</li>
     <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_comment'>comment</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SENSITIVE_START</span><span class='comma'>,</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>SensitiveStart</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+    <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+
   <span class='comment'># 0x30 - 0x7f reserved for mapping of specific runtime classes
 </span>
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>REGEXP</span><span class='comma'>,</span> <span class='const'>Regexp</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
@@ -837,7 +855,7 @@ and, by using extensions, also</li>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>TYPE_REFERENCE</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PTypeReferenceType</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
-    <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_write_tpl_qname'>write_tpl_qname</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type_string'>type_string</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type_string'>type_string</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SYMBOL</span><span class='comma'>,</span> <span class='const'>Symbol</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
@@ -852,20 +870,24 @@ and, by using extensions, also</li>
     <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_nsecs'>nsecs</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_nsecs'>nsecs</span><span class='semicolon'>;</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_nsecs'>nsecs</span> <span class='op'>/</span> <span class='int'>1000000000</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_nsecs'>nsecs</span> <span class='op'>%</span> <span class='int'>1000000000</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>VERSION</span><span class='comma'>,</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>Version</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>VERSION</span><span class='comma'>,</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>Version</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
     <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>VERSION_RANGE</span><span class='comma'>,</span> <span class='const'>Semantic</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>VERSION_RANGE</span><span class='comma'>,</span> <span class='const'>SemanticPuppet</span><span class='op'>::</span><span class='const'>VersionRange</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
     <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SENSITIVE</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PSensitiveType</span><span class='op'>::</span><span class='const'>Sensitive</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
-    <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_unwrap'>unwrap</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-  <span class='kw'>end</span>
-
-  <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>BINARY</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PBinaryType</span><span class='op'>::</span><span class='const'>Binary</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
-    <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_supports_binary?'>supports_binary?</span>
+    <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>BINARY</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType.html" title="Puppet::Pops::Types::PBinaryType (class)">PBinaryType</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+      <span class='comment'># The Ruby MessagePack implementation has special treatment for &quot;ASCII-8BIT&quot; strings. They
+</span>      <span class='comment'># are written as binary data.
+</span>      <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_binary_buffer'>binary_buffer</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>BASE64</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType.html" title="Puppet::Pops::Types::PBinaryType (class)">PBinaryType</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PBinaryType/Binary.html" title="Puppet::Pops::Types::PBinaryType::Binary (class)">Binary</a></span></span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span>
+      <span class='id identifier rubyid_build_payload'>build_payload</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ep'>ep</span><span class='op'>|</span> <span class='id identifier rubyid_ep'>ep</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -898,10 +920,6 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-50
-51
-52
-53
 54
 55
 56
@@ -919,10 +937,14 @@ and, by using extensions, also</li>
 68
 69
 70
-71</pre>
+71
+72
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_written'>written</span> <span class='op'>=</span> <span class='kw'>false</span>
@@ -930,7 +952,7 @@ and, by using extensions, also</li>
   <span class='kw'>when</span> <span class='const'>Integer</span>
     <span class='comment'># not tabulated, but integers larger than 64-bit cannot be allowed.
 </span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SerializationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Integer out of bounds</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&gt;</span> <span class='const'>MAX_INTEGER</span> <span class='op'>||</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&lt;</span> <span class='const'>MIN_INTEGER</span>
-  <span class='kw'>when</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='const'>Types</span><span class='op'>::</span><span class='const'>PSensitiveType</span><span class='op'>::</span><span class='const'>Sensitive</span><span class='comma'>,</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>NotTabulated</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>nil</span>
+  <span class='kw'>when</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>NotTabulated</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>nil</span>
     <span class='comment'># not tabulated
 </span>  <span class='kw'>else</span>
     <span class='kw'>if</span> <span class='ivar'>@tabulate</span>
@@ -993,10 +1015,6 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-97
-98
-99
-100
 101
 102
 103
@@ -1004,10 +1022,14 @@ and, by using extensions, also</li>
 105
 106
 107
-108</pre>
+108
+109
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_tpl'>write_tpl</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Internal error. Integers cannot be tabulated in extension payload</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span>
@@ -1055,14 +1077,14 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-88
-89
-90
-91
-92</pre>
+92
+93
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 92</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_tpl_qname'>write_tpl_qname</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='comma'>,</span> <span class='id identifier rubyid_qname'>qname</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_names'>names</span> <span class='op'>=</span> <span class='id identifier rubyid_qname'>qname</span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>::</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
@@ -1079,9 +1101,9 @@ and, by using extensions, also</li>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:54 2016 by
+  Generated on Tue Jan 31 13:38:42 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

@@ -40,6 +40,14 @@ These packages bundle all of Puppet's prerequisites, so you don't need to downlo
 
 The list of Windows packages might include release candidates, whose filenames have something like `-rc1` after the version number. Use these only if you want to test upcoming Puppet versions.
 
+>**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You may see a warning from your browser saying the signature is corrupt or invalid.
+>
+> ![invalid or corrupt](./images/windows_invalid_signature.jpg)
+>
+> If you want to verify the package is dual-signed, right-click on the MSI, and select **Properties**. Navigate to the **Digital Signatures** tab and you should see the following:
+>
+> ![Puppet Package Properties](./images/windows_package_signatures.png)
+
 ## Install Puppet
 
 You can install Puppet [with a graphical wizard](#graphical-installation) or [on the command line](#automated-installation). The command-line installer provides more configuration options.
@@ -103,7 +111,7 @@ MSI Property                                                   | Puppet Setting 
 
 Where Puppet and its dependencies should be installed.
 
-> **Note:** By end of year 2016, running 32-bit Puppet agent on a 64-bit Windows system will be deprecated. Update your Puppet installation to the 64-bit platform by December 31, 2016.
+> **Note:** Running 32-bit Puppet agent on a 64-bit Windows system is now deprecated. Update your Puppet installation to the 64-bit platform.
 >
 > If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR` option when upgrading.
 >

@@ -1,0 +1,69 @@
+---
+layout: default
+title: "Roles y perfiles: Introducción"
+---
+
+<p> Su objetivo típico con Puppet es construir <em>configuraciones completas de configuraciones</em> que gestionen todo software, servicios y configuración que interesan en un determinado sistema.
+</p>
+
+<p> La configuración de sistemas de construcción pueden ser un desafío   — sobre todo si los sistemas que administramos son complejos. Para mantener esa complejidad bajo control, su código debe ser reutilizable, sencillo de configurar y sencillo de refactorizar.
+</p>
+
+<p> El método <strong>roles y perfiles</strong> es el forma más accesible para reutilizar, configurar y refactorizar configuraciones de sistemas. No hay una receta sencilla: Usted debe reflexionar acerca de la naturaleza de su infraestructura y su equipo. No es un estado final: las configuraciones mejorarán con el tiempo. En cambio, es un enfoque para <em>diseñar la infraestructura de la interfaz</em> — eliminando complejidades accidentales, resaltar complejidades significativas y asegurando  que el comportamiento de los datos sea predecible.
+</p>
+
+<h2 id="a-summary-of-the-roles-and-profiles-method">El resumen del método de roles y perfiles</h2>
+
+<p> Roles y perfiles <strong>dos capas indirectas extra</strong> entre su clasificador de nodos y su componente modules. Esto separa su código en 3 niveles:
+</p>
+
+<ul>
+<li>
+<strong>Componentes modules:</strong> Modules normales que gestionen una tecnología particular. (Por ejemplo, puppetlabs/apache.)</li>
+  <li>
+<strong>Perfiles:</strong> El contenedor classes que utiliza  múltiples componentes modules para configurar una tecnología con múltiples capas. </li>
+  <li>
+<strong>Roles:</strong> contenedores classes que utilizan múltiples perfiles para construir una configuración del sistema completo.</li>
+</ul>
+<p> Estas capas indirectas extra pueden parecer que agregan complejidad, pero te dan un espacio para construir interfaces prácticas, específicas del negocio a la configuración que más te interesa. Una interfaz mejor facilita el uso de los datos jerárquicos, facilita la lectura de las configuraciones del sistema y facilita la refactorización.
+</p>
+
+<p> <img src="/pe/2017.2/images/roles_and_profiles_overview.png" alt="Diagrama: NC asigna un role a un grupo de nodos, el role declara múltiples perfiles, los perfiles declaran utilidades y classes de modules de componentes, así como utilidades core y otros perfiles.&lt;/p&gt; &lt;p class=" temp-sentence>"&gt;
+</p>
+
+<p> En resumen, de arriba a abajo:
+</p>
+
+<ul>
+<li>Su clasificador de nodos asigna un <strong>rol</strong> class a cada grupo de nodos. El role administra el sistema de configuración completo, así no son necesarias otras classes. El NC no configura el rol de ninguna manera.</li>
+  <li>
+    <p> Esa clase de rol declara algunos clases de <strong>perfiles</strong> con <code>include</code> y no hace nada más. Por ejemplo:
+</p>
+
+    <pre><code class="language-puppet">class role::jenkins::master {
+  include profile::base
+  include profile::server
+  include profile::jenkins::master
+}
+</code></pre>
+  </li>
+  <li>Cada perfil configura una pila de capas de tecnología, utilizando múltiples módulos de componentes y los tipos de recursos integrados. (En el diagrama, <code>profile::jenkins::master</code> utiliza rtyler/jenkins, puppetlabs/apt, a home-built backup module y algunos <code>paquetes</code> y <code>fichero</code> de recursos)</li>
+  <li>Los perfiles pueden coger datos de configuración de Hiera o Puppet lookup. (En el diagram, tres niveles jerárquicos diferentes aportan datos. )</li>
+  <li>Las clases de componentes modules siempre son declaradas via un perfil y nunca asignado directamente a un nodo.<ul>
+<li>Si una clase de componente tiene parámetros, los especifica en  el <em>perfil</em>, nunca utilice Hiera o Puppet lookup para reemplazar los parámetros de clase de componente.</li>
+    </ul>
+</li>
+</ul>
+<h2 id="building-configurations-without-roles-and-profiles">Cómo construir configuraciones sin rol ni perfiles</h2>
+
+<p> Si roles ni perfiles, normalmente las configuraciones del sistema en su clasificador de nodos o <a href="/puppet/4.10/dirs_manifest.html">manifesto principal</a>, usando Hiera para manejar problemas de herencia difíciles. Un enfoque estándar es crear un grupo de nodos similares y asignarle clases, luego crear grupos secundarios con clases adicionales para nodos que tengan necesidades adicionales. Otro patrón común es poner todo en Hiera, usando una jerarquía muy grande que refleja cada modificación en la infraestructura.
+</p>
+
+<p> Si esto funciona, ¡es una solución para usted! Es posible que no necesite funciones y perfiles. Pero la mayoría de las personas encuentran que la construcción directa es difícil de entender y mantener con el tiempo.
+</p>
+
+<h2 id="next-steps">Próximos pasos</h2>
+
+<p> Ahora que entiende el método de roles y perfiles, puede aprender a usarlo con <a href="./r_n_p_full_example.html">Un flujo de trabajo de ejemplo simple (pero no simplificado).</a>
+</p>
+

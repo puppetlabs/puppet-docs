@@ -7,7 +7,7 @@ module PuppetReferences
   module VersionTables
     module Data
       class Agent
-        def initialize
+        def initialize(cache = {})
           @repo = PuppetReferences::Repo.new(
             'puppet-agent',
             PuppetReferences::AGENT_DIR,
@@ -15,6 +15,7 @@ module PuppetReferences
              'git@github.com:puppetlabs/puppet-agent-cve.git']
           )
           @data = nil
+          @cache = cache
           config = PuppetReferences::VersionTables::Config.read
           @includes = config['agent']['include'] || {}
           @excludes = config['agent']['exclude'] || []
@@ -55,11 +56,16 @@ module PuppetReferences
             @data = Hash[
                 @versions_and_commits.map {|name, commit|
                   puts "#{name}..."
-                  @repo.checkout(commit)
-                  if Versionomy.parse(name) < Versionomy.parse('1.8.0')
-                    components_hash = get_components_hash_pre_vanagon_0_7()
+                  if @cache[name]
+                    puts "  (using cached)"
+                    components_hash = @cache[name]
                   else
-                    components_hash = get_components_hash()
+                    @repo.checkout(commit)
+                    if Versionomy.parse(name) < Versionomy.parse('1.8.0')
+                      components_hash = get_components_hash_pre_vanagon_0_7()
+                    else
+                      components_hash = get_components_hash()
+                    end
                   end
                   [name, components_hash]
                 }

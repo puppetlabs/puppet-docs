@@ -1,10 +1,11 @@
 ---
 layout: default
-built_from_commit: 629a508e98d21e5fe98a8a35b2c31dbc62e6a669
+built_from_commit: ca4d947a102453a17a819a94bd01bac97f83c7e6
 title: 'Resource Type: yumrepo'
+canonical: "/puppet/latest/types/yumrepo.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:41 -0600
 
 yumrepo
 -----
@@ -552,7 +553,7 @@ Valid values are `absent`. Values can match `/^\d+$/`.
 
 Manage yum repo configurations by parsing yum INI configuration files.
 
-## Fetching instances
+### Fetching instances
 
 When fetching repo instances, directory entries in '/etc/yum/repos.d',
 '/etc/yum.repos.d', and the directory optionally specified by the reposdir
@@ -560,7 +561,7 @@ key in '/etc/yum.conf' will be checked. If a given directory does not exist it
 will be ignored. In addition, all sections in '/etc/yum.conf' aside from
 'main' will be created as sections.
 
-## Storing instances
+### Storing instances
 
 When creating a new repository, a new section will be added in the first
 yum repo directory that exists. The custom directory specified by the
@@ -571,4 +572,4 @@ section will be created in '/etc/yum.conf'.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2016-11-01 14:17:00 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-01-31 13:37:41 -0600

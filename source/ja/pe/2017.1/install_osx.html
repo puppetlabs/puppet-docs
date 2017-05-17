@@ -1,0 +1,129 @@
+---
+layout: default
+title: "Mac OS X agentのインストール"
+canonical: "/ja/pe/install_osx.html"
+---
+
+<div>
+<p> Mac OS X agentでは、サーバーを管理する共通のPuppet Enterpriseインフラから、Apple製のノートパソコンおよびデスクトップを一貫して自動管理することができます。
+</p>
+
+<p> 利用できる機能としては、PEコア機能のほか、OS X固有の機能があります。
+</p>
+
+<ul>
+<li>DMGおよびPKGによるパッケージのインストール</li>
+  <li>LaunchDによるサービス管理</li>
+  <li>ローカルユーザ/グループ管理のためのディレクトリサービスの統合</li>
+  <li>System Profilerによるインベントリfacts</li>
+</ul>
+<h2 id="install-os-x-agents">OS X agentのインストール</h2>
+
+<p> Puppet Enterpriseパッケージ管理を使用して、FinderまたはコマンドラインでMac OS X agentをインストールできます。
+</p>
+
+<p> Puppet EnterpriseでサポートされるMac OS Xバージョンについては、「<a href="./sys_req_os.html#puppet-agent-platforms">システム要件</a>」を参照してください。
+</p>
+
+<p> バイナリおよびシンボリックリンクPE設定の詳細については、<a href="./install_pe_mono.html#puppet-enterprise-binaries-and-symlinks">Puppet Enterpriseのバイナリおよびシンボリックリンク</a>を参照してください。 シンボリックリンクの無効化に関する説明も記載しています。
+</p>
+
+<p> 開始する前に、<a href="http://puppetlabs.com/download-puppet-enterprise">OS X Puppet Enterprise agentパッケージ</a> をダウンロードして、agentをインストールするマシンに転送します。
+</p>
+
+<h3 id="change-mac-os-x-name-to-lowercase-letters">Mac OS X名を小文字に変更する</h3>
+
+<p> OS XマシンにPuppet agentをインストールする前に、マシン名が小文字を使用していることを確認します。
+</p>
+
+<p> Puppet Enterprise agentでは、certnameを小文字にする必要があります。 Mac OS X agentの場合、certnameはマシンの名前から派生します(&lt;My-Example-Mac&gt;など)。 インストールの問題を防ぐために、マシンの名前には必ず小文字を使うようにしてください。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>: マシンの名前を変更しない場合は、インストーラで求められた際に、agentのcertnameをすべて小文字で入力するという方法もあります。
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> 小文字を使用するようにマシン名を変更するには、以下のいずれかの方法に従います。
+</p>
+
+    <ul>
+<li>
+        <p> [<strong>System Preferences</strong>]で、[<strong>Sharing</strong>] &gt; [<strong>Computer Name</strong>] &gt; [<strong>Edit</strong>]を選択します。
+</p>
+      </li>
+      <li>
+        <p> コマンドラインで、以下のコマンドを実行します。
+</p>
+
+        <ol>
+<li><code>sudo scutil --set ComputerName &lt;new machine name&gt;</code></li>
+          <li><code>sudo scutil --set LocalHostName &lt;new machine name&gt;</code></li>
+          <li><code>sudo scutil --set HostName &lt;new machine name&gt;</code></li>
+        </ol>
+</li>
+    </ul>
+</li>
+</ol>
+<h3 id="install-with-puppet-enterprise-package-management">Puppet Enterpriseパッケージ管理を用いたインストール</h3>
+
+<p> Puppet Enterpriseが提供する独自のパッケージ管理を利用して、Puppet EnterpriseインフラにPuppet agentをインストールできます。
+</p>
+
+<p> Puppet Enterpriseパッケージ管理を使用してMac OS X agentをインストールする方法については、「<a href="/install_agents.html#install-agents-with-a-different-os-and-architecture-than-the-puppet-master">Puppet Enterpriseパッケージ管理を使用したPuppet agentのインストール</a>」を参照してください。
+</p>
+
+<h3 id="install-from-finder">Finderを用いたインストール</h3>
+
+<p> Finderを用いて、Mac OS Xマシン上にagentをインストールすることができます。
+</p>
+
+<ol>
+<li>OS X PE agentパッケージの.dmgを開き、 インストーラの.pkgをクリックします。</li>
+  <li>
+    <p> インストーラのダイアログの指示に従います。 Puppet masterのホスト名とagentのcertnameが必要になります。
+</p>
+
+    <blockquote>
+      <p> <strong>ヒント：</strong>Puppet masterのホスト名を取得するには、<code>puppet cert list --all</code>を使用します。
+</p>
+    </blockquote>
+  </li>
+</ol>
+<p> インストーラにより、証明書署名リクエストが作成されます。これに<a href="./install_agents.html#managing-agent-certificate-requests">署名</a>する必要があります。
+</p>
+
+<h3 id="install-from-the-command-line">コマンドラインを用いたインストール</h3>
+
+<p> コマンドラインを使用して、Mac OS Xマシン上にagentをインストールすることができます。
+</p>
+
+<ol>
+<li>rootまたはsudoユーザとしてSSHでOS Xノードにログインします。<code>/var/root</code>に入ることになります。</li>
+  <li>
+    <p> <code>sudo hdiutil mount &lt;DMGFILE&gt;</code>を実行します。
+</p>
+
+    <p> <code>/Volumes/puppet-agent-VERSION</code>で終わる行が表示されます。 これは、ディスクイメージから作成された仮想ボリュームのマウントポイントです。
+</p>
+  </li>
+  <li>
+<code>cd /Volumes/puppet-agent-VERSION</code>を実行します。</li>
+  <li>
+<code>sudo installer -pkg puppet-agent-installer.pkg -target /</code>を実行します。</li>
+  <li>
+    <p> インストールを検証するには、<code>/opt/puppetlabs/bin/puppet --version</code>を実行します。
+</p>
+
+    <blockquote>
+      <p> <strong>ヒント：</strong>: パスにPEバイナリを追加するには、<code>PATH=/opt/puppetlabs/bin:$PATH;export PATH</code>を実行します。
+</p>
+    </blockquote>
+  </li>
+  <li>「<a href="./install_agents.html#configuring-agents">configuring agents(agentの設定)</a>」の説明に従い、適切なPuppet masterでOS X agentを指定しagentのcertnameを設定します。</li>
+  <li>
+<code>sudo puppet agent -t</code>を用いてPuppetを実行します。これにより、証明書署名要求が作成されます。これに<a href="./install_agents.html#managing-agent-certificate-requests">署名</a>する必要があります。</li>
+</ol>
+</div>

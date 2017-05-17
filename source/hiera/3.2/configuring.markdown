@@ -11,6 +11,8 @@ title: "The hiera.yaml config file"
 [puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems
 [deep_merge_gem_docs]: https://github.com/danielsdeleo/deep_merge/blob/master/README.md
 
+{% partial /hiera/_hiera_update.md %}
+
 Hiera's config file is usually referred to as `hiera.yaml`. Use this file to configure the [hierarchy][], which backend(s) to use, and settings for each backend.
 
 Hiera will fail with an error if the config file can't be found, although an empty config file is allowed.

@@ -1,11 +1,9 @@
 div#content.main-content ol ol {
-  margin-left: 2em;
   list-style-type: lower-alpha;
   list-style-position: outside;
 }
 
 div#content.main-content ol ol ol {
-  margin-left: 2em;
   list-style-type: lower-roman;
   list-style-position: outside;
 }

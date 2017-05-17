@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Functions::DispatcherBuilder
   
-    &mdash; Documentation by YARD 0.9.5
+    &mdash; Documentation by YARD 0.9.8
   
 </title>
 
@@ -28,7 +28,7 @@
   </head>
   <body>
     <div class="nav_wrap">
-      <iframe id="nav" src="../../class_list.html"></iframe>
+      <iframe id="nav" src="../../class_list.html?1"></iframe>
       <div id="resizer"></div>
     </div>
 
@@ -58,8 +58,6 @@
 </div>
         <div class="clear"></div>
       </div>
-
-      <iframe id="search_frame" src="../../class_list.html"></iframe>
 
       <div id="content"><h1>Class: Puppet::Functions::DispatcherBuilder
   
@@ -555,7 +553,7 @@ parameter is given, then that is the name and the type is &quot;Callable&quot;.<
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>block_param accepts max 2 arguments (type, name), got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type_and_name'>type_and_name</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
-  <span class='kw'>unless</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeCalculator</span><span class='period'>.</span><span class='id identifier rubyid_is_kind_of_callable?'>is_kind_of_callable?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/TypeCalculator.html" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span></span><span class='period'>.</span><span class='id identifier rubyid_is_kind_of_callable?'><span class='object_link'><a href="../Pops/Types/TypeCalculator.html#is_kind_of_callable%3F-class_method" title="Puppet::Pops::Types::TypeCalculator.is_kind_of_callable? (method)">is_kind_of_callable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Expected PCallableType or PVariantType thereof, got </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
 
@@ -623,9 +621,9 @@ Optional[Callable], Callable, or nil.</p>
   <span class='id identifier rubyid_mapped_types'>mapped_types</span> <span class='op'>=</span> <span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_t'>t</span><span class='op'>|</span>
     <span class='ivar'>@type_parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_param_types'>param_types</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PTupleType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_mapped_types'>mapped_types</span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_from'>from</span> <span class='op'>==</span> <span class='id identifier rubyid_to'>to</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PIntegerType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_param_types'>param_types</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_mapped_types'>mapped_types</span><span class='comma'>,</span> <span class='id identifier rubyid_from'>from</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_from'>from</span> <span class='op'>==</span> <span class='id identifier rubyid_to'>to</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_from'>from</span><span class='comma'>,</span> <span class='id identifier rubyid_to'>to</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_return_type'>return_type</span> <span class='op'>=</span> <span class='ivar'>@type_parser</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_return_type'>return_type</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_return_type'>return_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>PCallableType</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_param_types'>param_types</span><span class='comma'>,</span> <span class='id identifier rubyid_block_type'>block_type</span><span class='comma'>,</span> <span class='id identifier rubyid_return_type'>return_type</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_param_types'>param_types</span><span class='comma'>,</span> <span class='id identifier rubyid_block_type'>block_type</span><span class='comma'>,</span> <span class='id identifier rubyid_return_type'>return_type</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -836,7 +834,7 @@ must use block = nil when it is optional (or an error is raised when the call is
 <span class='kw'>def</span> <span class='id identifier rubyid_optional_block_param'>optional_block_param</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_type_and_name'>type_and_name</span><span class='rparen'>)</span>
   <span class='comment'># same as required, only wrap the result in an optional type
 </span>  <span class='id identifier rubyid_required_block_param'>required_block_param</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_type_and_name'>type_and_name</span><span class='rparen'>)</span>
-  <span class='ivar'>@block_type</span> <span class='op'>=</span> <span class='const'>Puppet</span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeFactory</span><span class='period'>.</span><span class='id identifier rubyid_optional'>optional</span><span class='lparen'>(</span><span class='ivar'>@block_type</span><span class='rparen'>)</span>
+  <span class='ivar'>@block_type</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/TypeFactory.html" title="Puppet::Pops::Types::TypeFactory (module)">TypeFactory</a></span></span><span class='period'>.</span><span class='id identifier rubyid_optional'><span class='object_link'><a href="../Pops/Types/TypeFactory.html#optional-class_method" title="Puppet::Pops::Types::TypeFactory.optional (method)">optional</a></span></span><span class='lparen'>(</span><span class='ivar'>@block_type</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1331,9 +1329,9 @@ method parameter.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Nov  1 14:17:38 2016 by
+  Generated on Tue Jan 31 13:38:22 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.5 (ruby-2.0.0).
+  0.9.8 (ruby-2.1.5).
 </div>
 
     </div>

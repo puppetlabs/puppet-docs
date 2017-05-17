@@ -1,0 +1,64 @@
+---
+layout: default
+title: "Puppet Enterprise クイックスタートガイド"
+canonical: "/ja/pe/quick_start.html"
+---
+
+<div>
+<p> Puppet Enterpriseクイックスタートガイドにようこそ。
+</p>
+
+<p> Puppet Enterpriseを実環境にインストールして設定を行うかPuppet Enterpriseの設定の基礎を学ぶ場合に、本ガイドは迅速に必要な環境を準備して動かす方法を提供します。 モノリシック(オールインワンノード)を構築することによって、システム管理者が定期的に利用する基本タスクのいくつかを自動化する方法を紹介しています。 
+</p>
+
+<!--Concept-->
+<h2 id="introducing-the-nix-quick-start-guides">*nixクイックスタートガイドの概要</h2>
+
+<p> 以下、よく使う作業順でガイドを紹介します。 各ガイドの「前提条件」セクションで、ハードウェアとソフトウェアの要件が満たされていることを確認してください。
+</p>
+
+<h3 id="install-a-monolithic-puppet-enterprise-deployment">1.Puppet Enterpriseをモノリシックインストールする</h3>
+<p> この基本的なPuppet Enterprise設定では、Puppet master、Puppet Enterprise Webコンソール、PuppetDBのすべてが、*nixマシン上の単一ノードにインストールされます。 このガイドでは、PEのインストールの前提条件についても説明します。
+</p>
+
+<h3 id="install-the-puppet-agent">2. Puppet agentをインストールする</h3>
+<p> このガイドでは、Puppet agentをインストールします。Puppet agentはPuppet masterから定期的に設定カタログを取得して、ローカルで適用します。 これらのガイドでは、agentの証明書署名要求に対して、コンソール上で署名する手順についても取り上げています。
+</p>
+
+<h3 id="install-a-module">3. モジュールをインストールする</h3>
+<p> このガイドでは、Puppetモジュールをインストールします。Puppetモジュールは、Puppet Enterpriseがノードを設定して管理するための基本的な単位です。 <a href="https://forge.puppet.com">Puppet Forge</a>で提供されている非常に多数のモジュールを使用できます。
+</p>
+
+<h3 id="add-classes">4. クラスを追加する</h3>
+<p> このガイドでは、新規ノードグループを作成してから、<a href="/puppet/4.9/lang_classes.html">クラス</a>と呼ばれる、Puppetコードを1つにまとめて名前を付けたものをこのノードグループに適用します。
+</p>
+
+<h3 id="give-users-access">5. ユーザアクセスを付与する</h3>
+<p> このセクションでは、ロールベースのアクセス制御を紹介します。 新規ユーザロールを作成して、以前に作成したノードグループを使用するパーミッションをこのロールに付与します。
+</p>
+
+<h3 id="write-a-module">6. モジュールを記述する</h3>
+<p> 最後に、Puppetモジュールおよびモジュール開発の理解を深めるために、モジュールを記述します。
+</p>
+
+<h3 id="try-it-yourself">ぜひお試しください</h3>
+<ol>
+<li><a href="./quick_start_install_mono.html">Puppet Enterpriseをインストールする</a></li>
+  <li><a href="./quick_start_install_agents_nix.html">Puppet Agentをインストールする</a></li>
+  <li><a href="./quick_start_module_install_nix.html">モジュールをインストールする</a></li>
+  <li><a href="./quick_start_adding_class_nix.html">クラスを追加する</a></li>
+  <li><a href="./quick_start_nc_rbac.html">ユーザアクセスを付与する</a></li>
+  <li><a href="./quick_writing_nix.html">モジュールを記述する</a></li>
+</ol>
+<h3 id="next-steps">次の手順</h3>
+
+<p> クイックスタートガイドシリーズを完了したら、次のステップとして以下を推奨します。
+</p>
+
+<ul>
+<li><a href="/puppet/4.9/modules_fundamentals.html">Puppet Forgeを使用して必要なモジュールを見つける</a></li>
+  <li><a href="/pe/2017.1/r_n_p_intro.html">ロールおよびプロファイル手法を使用して完全なシステム設定を作成し、管理リポジトリに保存する</a></li>
+  <li><a href="/pe/2017.1/cmgmt_managing_code.html">Puppet Enterpriseビルトインツールと管理リポジトリを使用して、Puppetコードを管理する</a></li>
+  <li><a href="/pe/2017.1/console_classes_groups_getting_started.html">グループとルールを使用してノードを分類する</a></li>
+</ul>
+</div>

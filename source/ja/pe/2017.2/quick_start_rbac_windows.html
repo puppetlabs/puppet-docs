@@ -1,0 +1,77 @@
+---
+layout: default
+title: "インストールされる要素とその場所"
+---
+
+<h2 id="overview">概要</h2>
+
+<p> Puppet Enterprise (PE) コンソールでは、複数のロケーションでユーザーやグループを作成して管理する代わりに、Active DirectoryやOpenLDAPといった外部のディレクトリと接続し、ユーザやグループをインポートすることができます。 ユーザのロール(役割)を作成し、各ユーザをそれらのロールに割り当てることも可能です。 各ロールには、ノードグループ上での動作のパーミッションなど、各種パーミッションが付与されます。 ユーザやユーザグループに対してロールを割り当てると、より組織的にパーミッションを付与できます。
+</p>
+
+<p> この演習では、新規ユーザロールを作成し、作成したノードグループの閲覧権限を新規ロールに付与します。 また、新しいローカルユーザを作成し、そのユーザにユーザロールを割り当てます。 この演習では、OpenLDAPやActive Directoryとの接続は扱いません。 詳細については、「<a href="{{pe}}/rbac_intro.html">Working with Role-Based Access Control (ロールベースのアクセス制御の使用)</a>」を参照してください。
+</p>
+
+<blockquote>
+  <p> <strong>注意</strong>：ユーザとユーザグループは、現時点では削除できません。 また、ロールはコンソールではなく、APIで削除可能です。 そのため、これらの手順については、仮想マシンで試してみることを推奨します。
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>前提条件</strong>：このガイドでは、すでに<a href="./quick_start_install_mono.html">PEがモノリシックインストール</a>されており、1つ以上の<a href="{{pe}}/quick_start_install_agents_windows.html">Windowsノード</a>がインストールされているものと想定します。
+</p>
+
+  <p> また<a href="{{pe}}/quick_start_module_install_windows.html">Windows</a>モジュールもインストールしているものと想定しています。 さらに、これらの手順にはロールへのユーザの割り当てが含まれるため、アドミンパーミッションが必要になります。
+</p>
+</blockquote>
+
+<h2 id="create-a-new-user-role">新しいユーザロールを作成する</h2>
+
+<p> 複数のユーザに対する許可を一度に管理できるようにするために、ユーザロールを追加します。
+</p>
+
+<ol>
+<li>コンソールで<strong>ユーザロール</strong>の順にクリックします。</li>
+  <li>[<strong>名前</strong>]に<strong>Windowsユーザ</strong>と入力し、[<strong>説明</strong>]に<strong>Windowsユーザ</strong>などのロールの説明を入力します。</li>
+  <li>[<strong>ロールを追加</strong>]をクリックします。</li>
+</ol>
+<h2 id="create-a-new-user-and-add-the-user-to-your-new-role">新しいユーザを作成し、新しいロールにそのユーザを追加する</h2>
+
+<p> この手順では、新しいローカルユーザを作成する方法を実践します。 ディレクトリサービスの既存ユーザの追加に関する情報は、「<a href="{{pe}}/rbac_user_roles.html#add-external-directory-users-to-pe">LDAPユーザをPEに追加する</a>」を参照してください。
+</p>
+
+<ol>
+<li>コンソールで<strong>ユーザ</strong>の順にクリックします。</li>
+  <li>[<strong>フルネーム</strong>]フィールドにユーザ名を入力します。</li>
+  <li>[<strong>ログイン</strong>]フィールドにユーザのユーザ名を入力します。</li>
+  <li>
+    <p> [<strong>ローカルユーザを追加</strong>]をクリックします。
+</p>
+
+    <p> <strong>注意</strong>: 新しいローカルユーザを作成する際には、ユーザにログイントークンを送付する必要があります。 ログイントークンを送付するには、[<strong>ユーザ</strong>]リストで新しいユーザ名をクリックし、ユーザページの右上にある[<strong>パスワードリセットを生成</strong>]をクリックします。メッセージが開き、リンクが表示されます。このリンクをコピーし、新しいユーザに送付する必要があります。
+</p>
+  </li>
+  <li>[<strong>ユーザロール</strong>]をクリックし、[<strong>Windowsユーザ</strong>]をクリックします。</li>
+  <li>[<strong>メンバーユーザ</strong>]タブの[<strong>ユーザ名</strong>]リストで、作成した新しいユーザを選択したら、[<strong>ユーザを追加</strong>]をクリックして変更を保存ボタンをクリックします。</li>
+</ol>
+<h2 id="enable-a-user-to-log-in">ユーザのログインを有効化する</h2>
+<p> 新しいローカルユーザを作成する際には、初回にログインするためのパスワードリセットトークンをユーザに送付する必要があります。
+</p>
+
+<ol>
+<li>[<strong>ユーザ</strong>]ページで新しいローカルユーザをクリックします。新しいユーザのページが開きます。</li>
+  <li>ページの右上の<strong>パスワードリセットを生成</strong>をクリックします。<strong>パスワードリセットリンク</strong>メッセージボックスが開きます。 </li>
+  <li>メッセージに表示されているリンクをコピーし、新ユーザに送付します。その後、メッセージを閉じてもかまいません。</li>
+</ol>
+<h2 id="give-your-new-role-access-to-the-node-group-you-created">作成したノードグループに新しいロールアクセスを追加する</h2>
+
+<ol>
+<li>[<strong>Windowsユーザ</strong>]ロールページの[<strong>パーミッション</strong>]タブをクリックします。</li>
+  <li>[<strong>
+タイプ</strong>]ボックスで[<strong>ノードグループ</strong>]を選択します。</li>
+  <li>[<strong>パーミッション</strong>]ボックスで[<strong>表示</strong>]を選択します。</li>
+  <li>[<strong>オブジェクト</strong>]ボックスで[<strong>windows_example</strong>]を選択します。</li>
+  <li>[<strong>パーミッションを追加</strong>]をクリックし、変更を保存ボタンをクリックします。これで、 <code>Windowsユーザ</code>のメンバーに、<code>windows_example</code>ノードグループを閲覧する許可が与えられました。</li>
+</ol>
+<hr>
+<p> 次の手順：<a href="{{pe}}/quick_start_module_install_windows.html">モジュールの記述(Windows)</a>
+</p>

@@ -1,0 +1,479 @@
+---
+layout: default
+title: "Instalación de concentradores y enlaces ActiveMQ"
+---
+
+<p> Usted puede agregar concentradores y enlaces ActiveMQ a grandes despliegues de Puppet Enterprise. La creación de sus intermediarios ActiveMQ proporciona un balanceo de carga eficiente de las conexiones de red para transmitir mensajes MCollective a través de su infraestructura PE grande.
+</p>
+
+<p> Para más información sobre MCollective, consulte <a href="/mcollective/index.html">documentación MCollective</a> y más especificamente<a href="/mcollective/reference/integration/activemq_clusters.html">ActiveMQ clustering</a>.
+</p>
+
+<p> Agregando concentradores y enlaces ActiveMQ puede hacerse además de o independientemente de agregar <a href="/pe/2017.2/install_multimaster.html">Puppet masters adicionales</a> a su infraestructura PE.
+</p>
+
+<p> Consulte <a href="/pe/2017.2/sys_req_hw.html">las recomendaciones de hardware de PE</a> para obtener orientación sobre el hardware recomendado para instalaciones de gran tamaño.
+</p>
+
+<h2 id="installing-activemq-hubs-and-spokes">Cómo instalar concentradores y enlaces ActiveMQ</h2>
+
+<p> Asegúrese de revisar estos procedimientos antes de comenzar, ya que realizar estos pasos fuera de servicio puede causar problemas para su configuración.
+</p>
+
+<p> Además, tenga en cuenta lo siguiente acerca de esta guía:
+</p>
+
+<ul>
+<li>Se supone que ya ha instalado un despliegue PE<a href="./install_pe_mono.html">monolítico</a> o <a href="./install_text_mode_split.html">dividido</a>.</li>
+  <li>Se supone que todos los servidores de infraestructura de puppet están ejecutando el mismo sistema operativo y la misma arquitectura.</li>
+  <li>
+    <p> En este  ejemplo, asumimos que estamos construyendo un datacenter en Portland, Oregon y otro en Sydney, Australia. Usaremos los siguientes hostnames:
+</p>
+
+    <ul>
+<li>
+<strong>Puppet master</strong>: <code>MASTER.EXAMPLE.COM</code>
+</li>
+      <li>
+<strong>PE console</strong>: <code>CONSOLE.EXAMPLE.COM</code>
+</li>
+      <li>
+<strong>PE agents</strong>: <code>AGENT1.EXAMPLE.COM</code> and <code>AGENT2.EXAMPLE.COM</code>
+</li>
+      <li>
+<strong>ActiveMQ hub</strong>: <code>ACTIVEMQ-HUB.EXAMPLE.COM</code>
+</li>
+      <li>
+<strong>ActiveMQ spoke 1</strong>: <code>ACTVIEMQ.SYD.EXAMPLE.COM</code>
+</li>
+      <li>
+<strong>ActiveMQ spoke 2</strong>: <code>ACTIVEMQ.PDX.EXAMPLE.COM</code>
+</li>
+    </ul>
+</li>
+</ul>
+<p> El procedimiento general es el siguiente:
+</p>
+
+<ol>
+<li>Instalar Puppet agent en 4 nodos.</li>
+  <li>Crear el grupo concentrador ActiveMQ. </li>
+  <li>Agregar enlaces al grupo intermediario.</li>
+  <li>Crear un fact personalizado para las relaciones de nodo y enlace que pueden ser utilizadas para identificar los atributos de los grupos de suscriptores/servidores in Portland y Sydney.</li>
+  <li>Clasificar los nodos ActiveMQ: Para entornos de gran escala y/o geo-diversidad en los que los concentradores ActiveMQ y los enlaces suelen administrar un gran número de suscriptores/servidores MCO. Nosotros le recomendamos que usted clasifique esos nodos en uno o dos formas:<ul>
+<li>Opción 1: Crear nuevos grupos de nodo para cada en enlace o grupos de enlaces en Portland y Sydney.</li>
+      <li>Opción 2: Si usted no quiere usar grupos de nodos, usted puede usar Hiera y en su lugar vincular datos automáticamente.</li>
+    </ul>
+</li>
+  <li>Verificar conexiones en su infraestructura.</li>
+</ol>
+<h3 id="install-puppet-agent-on-activemq-hub-and-spoke-nodes">Instalar Puppet agent sobre concentradores y nodos enlace ActiveMQ</h3>
+
+<p> Antes de poder establecer sus concentradores y enlaces, usted debe instalar Puppet agents en los siguientes nodos:
+</p>
+
+<ul>
+<li><code>ACTIVEMQ-HUB.EXAMPLE.COM</code></li>
+  <li><code>ACTIVEMQ.SYD.EXAMPLE.COM</code></li>
+  <li><code>ACTIVEMQ.PDX.EXAMPLE.COM</code></li>
+  <li><code>AGENT1.EXAMPLE.COM</code></li>
+  <li><code>AGENT2.EXAMPLE.COM</code></li>
+</ul>
+<p> Debe realizar este paso para que cada máquina tenga instalado un Puppet agent.
+</p>
+
+<ol>
+<li>
+    <p> SSH en cada máquina y ejecute el siguiente comando:
+</p>
+
+    <pre><code>curl -k https://&lt;MASTER.EXAMPLE.COM&gt;:8140/packages/current/install.bash | sudo bash -s agent:ca_server=&lt;MASTER.EXAMPLE.COM&gt;
+</code></pre>
+  </li>
+  <li>
+    <p> Use la consola PE para <a href="install_agents.html#managing-agent-certificate-requests-from-the-pe-console">firmar sus peticiones de certificados</a>.
+</p>
+  </li>
+</ol>
+<h3 id="create-the-activemq-hub-group">Cree el grupo de concentradores ActiveMQ</h3>
+
+<p> Ahora que ha instalado agents en sus concentradores y nodos intermediarios, usted está listo para crear el grupo de concentradores ActiveMQ.
+</p>
+
+<ol>
+<li>En la consola, click sobre <strong>Classification</strong>, entonces click sobre <strong>Add group</strong>.</li>
+  <li>
+    <p> Especificar opciones para el nuevo grupo de nodos:
+</p>
+
+    <table>
+<thead><tr>
+<th>Opción</th>
+          <th>Valor</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td>Parent name</td>
+          <td>PE Infrastructure</td>
+        </tr>
+<tr>
+<td>Group name</td>
+          <td>PE ActiveMQ Hub</td>
+        </tr>
+<tr>
+<td>Environment</td>
+          <td>Seleccionar los agentes de entorno.</td>
+        </tr>
+<tr>
+<td>Environment group</td>
+          <td>
+<strong>No</strong> seleccionar esta opción</td>
+        </tr>
+</tbody>
+</table>
+</li>
+  <li>Click <strong>Add</strong>.</li>
+  <li>Click en el enlace a <strong>Añadir reglas de membresía, classes y variables</strong>.</li>
+  <li>En la pestaña <strong>Rules</strong>, en el campo <strong>Node name</strong> escribir <code>ACTIVEMQ-HUB.EXAMPLE.COM</code>.</li>
+  <li>Haz clic en <strong>Pin node</strong>.</li>
+  <li>En la pestaña <strong>Classes</strong>, en el campo <strong>class name</strong>, agregar <code>puppet_enterprise::profile::amq::hub</code>.</li>
+  <li>Haz clic en <strong>Add class</strong>.</li>
+  <li>
+    <p> En la class <code>puppet_enterprise::profile::amq::hub</code>, especificar parámetros
+</p>
+
+    <ul>
+<li>
+<strong>Parameter</strong> — seleccionar <code>network_connector_spoke_collect_tag</code>
+</li>
+      <li>
+<strong>Value</strong> — escribir <code>pe-amq-network-connectors-for-ACTIVEMQ-HUB.EXAMPLE.COM</code>
+</li>
+    </ul>
+</li>
+  <li>Acometer cambios.</li>
+  <li>En <code>ACTIVEMQ-HUB.EXAMPLE.COM</code> <a href="/pe/2017.2/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">ejecutar Puppet</a>.</li>
+</ol>
+<h3 id="add-spokes-to-activemq-broker-group">Agregar enlaces a un grupo ActiveMQ Broker</h3>
+
+<p> Despues de crear el grupo de concetradores, puede agregar nodos enlace (<code>ACTIVEMQ.SYD.EXAMPLE.COM</code> y <code>ACTIVEMQ.PDX.EXAMPLE.COM</code>) al grupo <strong>PE ActiveMQ Broker</strong>, grupo de nodos preconfigurado en PE.
+</p>
+
+<p> <strong>Para agregar enlaces adicionales al grupo intermediario PE ActiveMQ</strong>:
+</p>
+
+<ol>
+<li>En la consola, click sobre <strong>Classification</strong> y en el grupo <strong>PE Infrastructure</strong>, seleccione el grupo <strong>PE ActiveMQ Broker</strong>.</li>
+  <li>En la pestaña <strong>Rules</strong>,  en el campo <strong>Node name</strong>, escribir <code>ACTIVEMQ.SYD.EXAMPLE.COM</code> y <code>ACTIVEMQ.PDX.EXAMPLE.COM</code>.</li>
+  <li>Click sobre <strong>Pin node</strong> .</li>
+  <li>Haz clic en la pestaña <strong>Classes</strong>.</li>
+  <li>
+    <p> En la class <strong>puppet_enterprise::profile::amq::broker</strong>  y especificar parámetros:
+</p>
+
+    <ul>
+<li>
+<strong>Parameter</strong> — seleccionar <code>activemq_hubname</code>
+</li>
+      <li>
+<strong>Value</strong> — introducir <code>["ACTIVEMQ-HUB.EXAMPLE.COM"]</code>
+</li>
+    </ul>
+<blockquote>
+      <p> <strong>Note</strong>: El FQDN del concentrador se debe introducir como una array. Los concentradores adicionales puede ser agregados si es necesario.
+</p>
+    </blockquote>
+  </li>
+  <li>Acometer cambios.</li>
+  <li>
+    <p> <a href="/pe/2017.2/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Ejecutar Puppet</a> en <code>ACTIVEMQ.SYD.EXAMPLE.COM</code> y <code>ACTIVEMQ.PDX.EXAMPLE.COM</code>.
+</p>
+  </li>
+  <li>
+    <p> Después de ejecutar Puppet en todos los nodos enlace, ejecuta Puppet en cada concentrador (en este caso, <code>ACTIVEMQ-HUB.EXAMPLE.COM</code>).
+</p>
+
+    <blockquote>
+      <p> <strong>Nota</strong>: Es Puppet master (e.g., <code>MASTER.EXAMPLE.COM</code>) es, por defecto, un intermediador de MCollective. Si es necesario, puedes sacarlo del grupo <strong>PE ActiveMQ Broker</strong>.
+</p>
+    </blockquote>
+  </li>
+</ol>
+<h3 id="create-a-custom-fact-for-node-and-spoke-relationships">Crea un fact personalizado para relaciones de nodos y enlaces.</h3>
+
+<p> De forma predeterminada, los nodos gestionados utilizan el Puppet master (master-of-masters) como intermediario de ActiveMQ. En una configuración concentrados y enlaces todos los nodos que no sean nodos de infraestructura de Puppet usan el intermediario más adecuado. Por lo general, los enlaces preferidos son aquellos que comparten una ubicación geográfica o comparten segmentos de red debido a geo-diversidad o diferentes segmentos de red, etc. En algunas circunstancias los Enlaces pueden también encontrarse tras un balanceador de carga.
+</p>
+
+<p> Cada nodo de su infraestructura necesita conectarse al enlace más adecuados, y usted puede crear tales conexiones fácilmente con facts personalizados.
+</p>
+
+<p> Tendrá que crear un fact personalizado que pueda utilizarse para identificar los atributos físicos de los grupos de suscriptores/servidores de MCO en Portland y Sydney.
+</p>
+
+<p> Más tarde usará el fact personalizado que hará (por ejemplo, <code>data_center</code>) para clasificar enlaces en la consola o para unir agents a enlaces con Hiera.
+</p>
+
+<p> En este ejemplo, crearemos un fact personalizado para asociar <code>AGENT.EXAMPLE.COM</code> con <code>SPOKE.SYD.EXAMPLE.COM</code>.
+</p>
+
+<blockquote>
+  <p> <strong>Truco:</strong> Si es necesario, consulte <a href="/facter/3.6/fact_overview.html">la documentación Facter 2.4</a> Para obtener información sobre cómo crear e implementar facts personalizados.
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> Dependiendo de su sistema operativo, seleccione uno de los siguientes para crear el fact personalizado:
+</p>
+
+    <p> a. Si <code>AGENT.EXAMPLE.COM</code>es una máquina *nix, ejecutar:
+</p>
+
+    <pre><code>puppet apply -e 'file { ["/etc/puppetlabs", "/etc/puppetlabs/facter", "/etc/puppetlabs/facter/facts.d"]: ensure =&gt; directory }'
+puppet apply -e 'file {"/etc/puppetlabs/facter/facts.d/data_center.txt": ensure =&gt; file, content =&gt; "data_center=syd"}'
+</code></pre>
+
+    <p> b. Si <code>AGENT.EXAMPLE.COM</code>es una máquina Windows (Windows Vista, 7, 8, 2008, 2012), ejecutar:
+</p>
+
+    <pre><code>puppet apply -e "file { ['C:/ProgramData/PuppetLabs', 'C:/ProgramData/PuppetLabs/facter', 'C:/ProgramData/PuppetLabs/facter/facts.d']: ensure =&gt; directory }"
+puppet apply -e "file {'C:/ProgramData/PuppetLabs/facter/facts.d/data_center.txt': ensure =&gt; file, content =&gt; 'data_center=syd'}"
+</code></pre>
+  </li>
+  <li>
+    <p> Proceda a una de las siguientes tareas para asignar agents a sus enlaces:
+</p>
+
+    <ul>
+<li><a href="#optional-classify-the-activemq-spokes-with-the-console">Clasificar los enlaces ActiveMQ con la consola</a></li>
+      <li><a href="#optional-classify-the-activemq-spokes-with-hiera">Clasificar los enlaces ActiveMQ con Hiera</a></li>
+    </ul>
+</li>
+</ol>
+<h3 id="option-1-classify-the-activemq-spokes-with-the-console">Opción 1: Clasificar el enlace ActiveMQ con la consola</h3>
+
+<p> Utiliza la consola PE para crear un nuevo grupo de nodos para cada enlace o grupo de enlaces en Portland y Sydney. Puede utilizar su fact personalizado como la regla de clasificación para cada grupo de nodos.
+</p>
+
+<p> Estos grupos deben heredar el grupo PE MCollective, y deberían incluir la class <code>puppet_enterprise::profile::mcollective::agent</code>, con el parámetro <code>activemq_brokers</code> ajustado al nombre del (de los) enlace(s) deseado(s).
+</p>
+
+<blockquote>
+  <p> <strong>Nota</strong>: El nodo debe pertenecer al grupo de nodos MCollective PE.
+</p>
+</blockquote>
+
+<ol>
+<li>En la consola, click sobre <strong>Classification</strong>, entonces click sobre <strong>Add group</strong>.</li>
+  <li>
+    <p> Especificar opciones para el nuevo grupo de nodos:
+</p>
+
+    <table>
+<thead><tr>
+<th>Opciones</th>
+          <th>Valor</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td>Parent name</td>
+          <td>PE MCollective</td>
+        </tr>
+<tr>
+<td>Group name</td>
+          <td>Sydney_datacenter</td>
+        </tr>
+<tr>
+<td>Environment</td>
+          <td>Seleccionar agents del entorno en</td>
+        </tr>
+<tr>
+<td>Environment group</td>
+          <td>
+<strong>No</strong> seleccionar esta opción</td>
+        </tr>
+</tbody>
+</table>
+</li>
+  <li>Click <strong>Add</strong>.</li>
+  <li>Click sobre <strong>Añadir reglas de membresía, classes y variables</strong>.</li>
+  <li>
+    <p> En la pestaña <strong>Rules</strong>, crear una regla para agregar agents a este grupo:
+</p>
+
+    <table>
+<thead><tr>
+<th>Opción</th>
+          <th>Valor</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td>Fact</td>
+          <td>data_center</td>
+        </tr>
+<tr>
+<td>Operator</td>
+          <td>=</td>
+        </tr>
+<tr>
+<td>Valor</td>
+          <td>syd</td>
+        </tr>
+</tbody>
+</table>
+</li>
+  <li>Click sobre <strong>Add rule</strong>, y guardar cambios.</li>
+  <li>Aún en el grupo que ha creado, click sobre la etiqueta <strong>Classes</strong> y en el campo field <strong>Add new class</strong>, introducir <code>puppet_enterprise::profile::mcollective::agent</code> y hacer click sobre <strong>Add class</strong>.</li>
+  <li>Desde la lista desplegable <strong>Parameter</strong>, seleccionar <code>activemq_brokers</code>.</li>
+  <li>
+    <p> En el campo <strong>Value</strong>, agregar los nombres de los enlaces deseados (e.g., <code>["SPOKE.SYD.EXAMPLE.COM"]</code>).
+</p>
+
+    <blockquote>
+      <p> <strong>Nota:</strong> Los FQDNS de los hubs deben ser introducidos como un array.
+</p>
+    </blockquote>
+  </li>
+  <li>Click sobre <strong>Add parameter</strong>, y click sobre el botón <strong>Commit change</strong>.</li>
+  <li>Repita los pasos 1-10 para el datacenter de Portland.</li>
+  <li>
+<a href="/pe/2017.2/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Ejecute Puppet</a> en los enlaces y concentrador ActiveMQ  (incluyendo el Puppet master) y en cualquier PE agents, o espere a una ejecución programada.</li>
+  <li>Continue a <a href="#verify-connections-in-your-infrastructure">verificar conexiones en su infraestructura</a>.</li>
+</ol>
+<h3 id="option-2-classify-the-activemq-spokes-with-hiera">Opcion 2: Clasificar los enlaces ActiveMQ con Hiera</h3>
+
+<p> Si usted no desea utilizar la consola PE para crear un nuevo grupo de nodos para cada enlace o grupo de enlaces en Portland o Sydney, usted puede utilizar Hiera y utilice en su lugar la vinculación automática de datos.
+</p>
+
+<p> En este caso, usted necesitará borrar el <code>mcollective_middleware_hosts parameter</code> de la clase <code>puppet_enterprise</code> en el PE Infrastructure grupo y Y colocar este parámetro dentro de Hiera en el nivel apropiado para distinguir los diferentes enlaces.
+</p>
+
+<ol>
+<li>
+    <p> <strong>En el Puppet master</strong>, edite su fichero de configuración Hiera (<code>/etc/puppetlabs/puppet/hiera.yaml</code>) de modo que contenga el fact <code>data_center</code> como parte de la jerarquía.
+</p>
+
+    <p> El fichero de configuración Hiera debe parecerse a lo siguiente:
+</p>
+
+    <pre><code>#hiera.yaml
+   ---
+    :backends:
+         - eyaml
+         - yaml
+    :hierarchy:
+         - "%{clientcert}"
+         - "%{data_center}"
+         - global
+
+
+     :yaml:
+     :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+</code></pre>
+  </li>
+  <li>
+    <p> <strong>En el Puppet master</strong>, agregue los archivos de datos Hiera para mapear  los enlaces ActiveMQ deseados a los <code>data_center</code> facts personalizados.
+</p>
+
+    <p> Los siguientes comandos de ejemplo son para los datacenters <code>syd</code> y <code>pdx</code>. Estos asumen que usted se encuentra en un entorno de <code>producción</code>.
+</p>
+
+    <blockquote>
+      <p> <strong>Importante</strong>: El nombre del archivo que cree en este paso debe coincidir con el valor de fact personalizado.
+</p>
+    </blockquote>
+
+    <p> a. Navigar a <code>/etc/puppetlabs/code/environments/production/hieradata/</code>, y cree un fichero denominado <code>syd.yaml</code>.
+</p>
+
+    <p> b. Edite <code>syd.yaml</code> para que tenga el siguiente contenido:
+</p>
+
+    <pre><code>---
+puppet_enterprise::profile::mcollective::agent::activemq_brokers:
+   - 'SPOKE.SYD.EXAMPLE.COM'
+</code></pre>
+
+    <p> c. Aún en el directorio <code>hieradata</code>, cree un fichero denominado <code>pdx.yaml</code>.
+</p>
+
+    <p> d. Edite <code>pdx.yaml</code> para que tenga el siguiente contenido:
+</p>
+
+    <pre><code>---
+puppet_enterprise::profile::mcollective::agent::activemq_brokers:
+    - 'SPOKE.PDX.EXAMPLE.COM'
+</code></pre>
+  </li>
+  <li>
+    <p> Verifique que Hiera y el fact personalizado estén configurados correctamente. Verifique el fact personalizado en el nodo final. En <code>AGENT.EXAMPLE.COM</code> ejecute <code>facter data_center</code>.
+</p>
+
+    <p> Esto debería devolver el valor esperado de <code>syd</code> para este ejemplo.
+</p>
+  </li>
+  <li>
+    <p> Verifique que Hiera obtenga el valor esperado para el enlace ActiveMQ dado, teniendo en cuenta los parámetros apropiados. En el Puppet master, ejecute lo siguiente:
+</p>
+
+    <pre><code>hiera puppet_enterprise::profile::mcollective::agent::activemq_brokers data_center=syd environment=production
+</code></pre>
+
+    <p> Esto debería devolver el valor esperado para este ejemplo<code>["SPOKE.SYD.EXAMPLE.COM"]</code>.
+</p>
+  </li>
+  <li>
+    <p> <strong>En el Puppet master</strong>, recargue el servicio pe-puppetserver.
+</p>
+
+    <pre><code>sudo service pe-puppetserver reload
+</code></pre>
+
+    <p> Desde Puppet Server no supervisa activamente el archivo hiera.yaml para los cambios, que requiere una recarga siempre que lo edite.
+</p>
+  </li>
+  <li>
+    <p> <a href="/pe/2017.2/console_classes_groups_running_puppet.html#options-for-running-puppet-on-agent-nodes">Ejecute Puppet</a> en los enlaces y concentrador ActiveMQ  (incluyendo el Puppet master) y en cualquier PE agents, o espere a una ejecución programada.
+</p>
+  </li>
+  <li>
+    <p> Continue a <a href="#verify-connections-in-your-infrastructure">verificar conexiones en su infraestructura</a>.
+</p>
+  </li>
+</ol>
+<h3 id="verify-connections-in-your-infrastructure">Verificar conexiones en su infraestructura.</h3>
+
+<p> Lo último que debe hacer es verificar que todas las conexiones se han establecido correctamente.
+</p>
+
+<ol>
+<li>
+    <p> Para verificar que el grupo <strong>MCollective</strong> esta correctamente configurado, vaya a <code>MASTER.EXAMPLE.COM</code>, ejecute <code>su peadmin</code> y después <code>mco ping</code>.
+</p>
+
+    <p> Usted debería ver los enlaces y concentrador ActiveMQ (incluyendo el Puppet master) y cualquier PE agent listado.
+</p>
+  </li>
+  <li>
+    <p> Para verificar las conexiones de concentrador ActiveMQ está correctamente establecidas, ir a <code>ACTIVEMQ-HUB.EXAMPLE.COM</code> y ejecute el siguiente comando:
+</p>
+
+    <ul>
+<li>
+        <p> Para RHEL 7 y derivados: <code>ss -a -n | grep '61616'</code>.
+</p>
+      </li>
+      <li>
+        <p> Para otras distribuciones: <code>netstat -an | grep '61616'</code>.
+</p>
+      </li>
+    </ul>
+<p> Usted debería ver que el concentrador ActiveMQ tiene conexiones establecidas entre los nodos intermediarios de ActiveMQ.
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> <strong>Truco</strong>: Si necesita incrementar el número de procesos el usuario <code>pe-activemq</code> puede abrir/procesar, consulte las instrucciones <a href="/pe/2017.2/trouble_orchestration.html#increasing-the-ulimit-for-the-pe-activemq-user">Cómo aumentar el ulimit para el usuario<code>pe-activemq</code></a>.
+</p>
+</blockquote>
+

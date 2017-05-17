@@ -8,13 +8,41 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2017-2292 - MCollective Remote Code Execution Via YAML Deserialization](https://puppet.com/security/cve/cve-2017-2292)
+
+   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
+   
+- [CVE-2017-2293 - MCollective Server Allows Installing Arbitrary Packages On agents](https://puppet.com/security/cve/cve-2017-2293)
+
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
+   
+- [CVE-2017-2294 - MCollective Private Keys Visible In PuppetDB](https://puppet.com/security/cve/cve-2017-2294)
+
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
+   
+- [CVE-2017-2295 - Puppet Server Remote Code Execution Via YAML Deserialization](https://puppet.com/security/cve/cve-2017-2295)
+
+   Resolved in Puppet 4.10.1, Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
+   
+- [CVE-2017-2297 - Incorrect Credential Management with Labeled RBAC Tokens](https://puppet.com/security/cve/cve-2017-2297)
+
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
+
+- [CVE-2017-2290 - Privilege Escalation in mcollective-puppet-agent](https://puppet.com/security/cve/cve-2017-2290)
+
+   Resolved in mcollective-puppet-agent 1.12.1
+
+- [CVE-2016-9686 - Denial of Service in Puppet Communications Protocol Broker](https://puppet.com/security/cve/cve-2016-9686)
+
+   Resolved in Puppet Enterprise 2016.5.2 and Puppet Enterprise 2016.4.3
+
 - [CVE-2016-5715 - Arbitrary URL Redirection in Puppet Enterprise Console](https://puppet.com/security/cve/cve-2016-5715)
 
    Resolved in Puppet Enterprise 2016.4.0
 
 - [Puppet Execution Protocol (PXP) Command Whitelist Validation Vulnerability](https://puppet.com/security/cve/pxp-agent-oct-2016)
 
-   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
+   Resolved in Puppet Enterprise 2016.4.0, Puppet agent 1.7.1
 
 - [Puppet Communications Protocol (PCP) Broker String Validation Vulnerability](https://puppet.com/security/cve/pcp-broker-oct-2016)
 
@@ -26,11 +54,11 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [CVE-2016-5714 - Unprivileged Access to Environment Catalogs](https://puppet.com/security/cve/cve-2016-5714)
 
-   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.0
+   Resolved in Puppet Enterprise 2016.4.0, Puppet agent 1.7.0
 
 - [CVE-2016-5713 - Environment Leakage in pxp-module-puppet](https://puppet.com/security/cve/cve-2016-5713)
 
-    Resolved in Puppet Agent 1.6.0
+    Resolved in Puppet agent 1.6.0
 
 - [CVE-2015-7331: Remote Code Execution in mcollective-puppet-agent plugin](https://puppet.com/security/cve/cve-2015-7331)
 
@@ -188,7 +216,7 @@ This page contains information about security fixes from both Puppet and third-p
 
    Resolved in Puppet 2.7.23, 3.2.4, Puppet Enterprise 2.8.3, 3.0.1
 
-- [CVE-2013-1653 – Agent Remote Code Execution Vulnerability](https://puppet.com/security/cve/cve-2013-1653)
+- [CVE-2013-1653 – agent Remote Code Execution Vulnerability](https://puppet.com/security/cve/cve-2013-1653)
 
    Resolved in Puppet 2.7.21, 3.1.1, Puppet Enterprise 2.7.2
 
@@ -220,7 +248,7 @@ This page contains information about security fixes from both Puppet and third-p
 
    Resolved in Puppet 2.6.17, 2.7.18, Puppet Enterprise Hotfixes for 1.0, 1.1, 1.2.x, and 2.0.x, Puppet Enterprise 2.5.2
 
-- [CVE-2012-3408: Agent Impersonation](https://puppet.com/security/cve/cve-2012-3408)
+- [CVE-2012-3408: agent Impersonation](https://puppet.com/security/cve/cve-2012-3408)
 
    Addressed in 2.7.18, Puppet Enterprise Hotfixes for 2.0.x, Puppet Enterprise 2.5.2
 
@@ -270,13 +298,37 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party security announcements
 
+- [OpenSSL January 2017 Security Fixes](https://puppet.com/security/cve/openssl-jan-2017-security-fixes)
+
+   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, Puppet Enterprise 2016.4.5, PE client tools 17.2.0, and PE client tools 16.4.2
+
+- [Oracle Java April 2017 Security Fixes](https://puppet.com/security/cve/oracle-java-apr-2017-security-fixes)
+
+   Resolved in Puppet Enterprise 2017.2.1 and Puppet Enterprise 2016.4.5
+   
+- [Libxml2 March 2017 Security Fixes](https://puppet.com/security/cve/libxml2-mar-2017-security-fixes)
+
+   Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
+
+- [CVE-2016-10173: Directory Traversal in Minitar](https://puppet.com/security/cve/cve-2016-10173)
+
+   Resolved in Puppet 4.10.0 and Puppet agent 1.10.0 
+    
+- [Oracle Java January 2017 Security Fixes](https://puppet.com/security/cve/oracle-java-jan-2017-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.5.2 and Puppet Enterprise 2016.4.3
+
+- [curl November 2016 Security Fixes](https://puppet.com/security/cve/curl-nov-2016-security-fixes)
+
+   Resolved in Puppet Enterprise 2016.5.2, Puppet Enterprise 2016.4.3, Puppet agent 1.7.2, Puppet agent 1.8.3, PE Client Tools 16.4.1, and PE Client Tools 16.5.3
+
 - [CVE-2016-6316: Rails (Action View) XSS Vulnerability](https://puppet.com/security/cve/cve-2016-6316)
 
    Resolved in Puppet Enterprise 3.8.7
 
 - [OpenSSL September 2016 Security Fixes](https://puppet.com/security/cve/openssl-sep-2016-security-fixes)
 
-   Resolved in Puppet Enterprise 3.8.7 and Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
+   Resolved in Puppet Enterprise 3.8.7 and Puppet Enterprise 2016.4.0, Puppet agent 1.7.1
 
 - [PostgreSQL August 2016 Security Fixes](https://puppet.com/security/cve/postgresql-aug-2016-security-fixes)
 
@@ -284,7 +336,7 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [Curl 2016 Security Fixes](https://puppet.com/security/cve/curl-2016-security-fixes)
 
-   Resolved in Puppet Enterprise 2016.4.0, Puppet Agent 1.7.1
+   Resolved in Puppet Enterprise 2016.4.0, Puppet agent 1.7.1
 
 - [Nokogiri June 2016 Security Fixes](https://puppet.com/security/cve/nokogiri-jun-2016-security-fixes)
 
@@ -356,7 +408,7 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [OpenSSL January 2016 Security Fixes](https://puppet.com/security/cve/openssl-jan-2016-security-fixes)
 
-   Resolved in Puppet Enterprise 2015.3.2, Puppet Enterprise 3.8.4, Puppet Agent 1.3.5 and Puppet 3.8.6 (Windows)
+   Resolved in Puppet Enterprise 2015.3.2, Puppet Enterprise 3.8.4, Puppet agent 1.3.5 and Puppet 3.8.6 (Windows)
 
 - [Passenger December 2015 Security Fixes](https://puppet.com/security/cve/passenger-dec-2015-security-fixes)
 
@@ -368,11 +420,11 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [OpenSSL December 2015 Security Fixes](https://puppet.com/security/cve/openssl-dec-2015-security-fixes)
 
-   Resolved in Puppet Agent 1.3.4
+   Resolved in Puppet agent 1.3.4
 
 - [CVE-2015-7551: Fiddle and DL Ruby Vulnerability](https://puppet.com/security/cve/ruby-dec-2015-security-fixes)
 
-   Resolved in Puppet Enterprise 2015.3.2, Puppet Enterprise 3.8.4, Puppet Agent 1.3.4 and Puppet 3.8.5 (Windows)
+   Resolved in Puppet Enterprise 2015.3.2, Puppet Enterprise 3.8.4, Puppet agent 1.3.4 and Puppet 3.8.5 (Windows)
 
 - [Oracle Java October 2015 Security Fixes](https://puppet.com/security/cve/oracle-java-october-2015-security-fixes)
 
@@ -408,7 +460,7 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [OpenSSL June 2015 Security Fixes](https://puppet.com/security/cve/openssl-june-2015-vulnerability-fix)
 
-   Resolved in Puppet Enterprise 3.8.1 and Puppet-Agent 1.1.1
+   Resolved in Puppet Enterprise 3.8.1 and Puppet-agent 1.1.1
 
 - [PostgreSQL May 2015 Security Fixes](https://puppet.com/security/cve/postgresql-may-2015-vulnerability-fix)
 
@@ -420,11 +472,11 @@ This page contains information about security fixes from both Puppet and third-p
 
 - [CVE-2015-3900, CVE-2015-4020: Request Hijacking Vulnerability in RubyGems](https://puppet.com/security/cve/CVE-2015-3900)
 
-   Resolved in Puppet Enterprise 3.8.1, Puppet Agent 1.1.1, and Razor Server 1.0.1
+   Resolved in Puppet Enterprise 3.8.1, Puppet agent 1.1.1, and Razor Server 1.0.1
 
 - [CVE-2015-1855: Ruby OpenSSL Hostname Verification](https://puppet.com/security/cve/cve-2015-1855)
 
-   Resolved in Puppet Enterprise 3.8.0 and Puppet-Agent 1.0.1
+   Resolved in Puppet Enterprise 3.8.0 and Puppet-agent 1.0.1
 
 - [CVE-2014-9130: LibYAML vulnerability could allow denial of service](https://puppet.com/security/cve/cve-2014-9130)
 

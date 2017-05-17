@@ -1,0 +1,234 @@
+---
+layout: default
+title: "Puppet Enterprise インストールクイックスタートガイド"
+canonical: "/ja/pe/quick_start_install_mono.html"
+---
+
+<div>
+<p> <strong>Puppet Enterpriseへようこそ！</strong> このクイックスタートガイドでは、GUIによるインストールを用いて、基本的なPuppet Enterpriseインストールについて説明します。 このタイプのインストールは、最大10台のノードを持つPEに最適で、4000ノードまでの管理に用いることができます。
+</p>
+
+<p> 1台の*nixマシンに、以下のものをインストールします。
+</p>
+
+<ul>
+<li>
+<strong>Puppet master</strong>は、アクティビティの中心ハブです。ここでPuppetコードがコンパイルされ、agentカタログが作成されます。また、SSL証明書の確認と署名も行われます。</li>
+  <li>
+<strong>Puppet Enterprise Webコンソール</strong>は、PEのWebインターフェースで、多数の設定およびレポートツールを備えています。</li>
+  <li>
+<strong>PuppetDB</strong>は、Puppetインフラ全体で生成されたデータを収集します。</li>
+</ul>
+<p> インストールが完了したら、次はPuppetで管理対象するノード上にPuppet Enterpriseをインストールします。このノードはagentノードと呼ばれます。
+</p>
+
+<blockquote>
+  <h4 id="faqs">FAQ</h4>
+
+  <ul>
+<li><a href="/pe/2017.1/pe_architecture_overview.html">Puppet Enterpriseのアーキテクチャの詳細については、どこで学ぶことができますか？</a></li>
+    <li><a href="./sys_req_hw.html#choosing-a-pe-architecture">4000ノード以上を管理する場合はどうすればいいですか？</a></li>
+    <li><a href="./windows_installing.html">WindowsマシンにPEをインストールできますか？</a></li>
+  </ul>
+</blockquote>
+
+<h2 id="step-1-review-prerequisites">ステップ１: インストールの前提条件を確認する</h2>
+
+<p> 始める前にこのチェックリストに目を通し、PEをインストールする準備が整っているかどうかを確認してください。
+</p>
+
+<ol>
+<li>
+    <p> インストールプロセスの全体を通じて、コマンドラインでは<code>root</code>ユーザーとして作業する必要がある点に注意してください。
+</p>
+  </li>
+  <li>
+    <p> ハードウェア要件を満たしていることを確認してください。
+</p>
+
+    <p> 10台以下のノードの最小ハードウェア要件(Puppet Enterpriseは最大10台まで無料でダウンロードおよびインストールできます)：
+</p>
+
+    <table>
+<thead><tr>
+<th>コア数</th>
+          <th>RAM</th>
+          <th>/opt/</th>
+          <th>EC2</th>
+        </tr></thead>
+<tbody><tr>
+<td>2</td>
+          <td>6 GB</td>
+          <td>20 GB</td>
+          <td>m3.xlargeインスタンス</td>
+        </tr></tbody>
+</table>
+<p> 10台を超えるノードを管理する場合は、<a href="./sys_req_hw.html">ハードウェアの推奨事項</a>を参照してください。
+</p>
+  </li>
+  <li>
+    <p> PEを使用するすべてのノードは、必ず<strong>自身のホスト名を認識していなければなりません</strong>。そのためには、ローカルDNSサーバーで逆引きDNSを正しく設定するか、ホスト名を明示的に設定する必要があります。 
+</p>
+  </li>
+  <li>
+    <p> さらに、すべてのノードが<strong>名前を使用して相互アクセスできる必要があります</strong>。そのためには、ローカルDNSサーバーを使用するか、各ノードの<code>/etc/hosts</code>ファイルを編集して、適切なIPアドレスを示す必要があります。 
+</p>
+  </li>
+  <li>
+    <p> ポート3000にアクセスできるよう設定する必要があります。このポートは、Webベースのインストーラが使用します。
+</p>
+  </li>
+  <li>
+    <p> PEをインストールするサーバーの完全修飾ドメイン名を確認してください。 (例: <code>master.example.com</code>) )。
+</p>
+  </li>
+</ol>
+<h2 id="step-2-download-the-tarball">ステップ2：Tarballをダウンロード</h2>
+
+<p> Puppet Enterpriseのインストールに必要なすべてのファイルは、tarballと呼ばれる圧縮ファイルにまとめられています。 <a href="https://puppet.com/download-puppet-enterprise">ダウンロードページ</a>から、お使いのオペレーティングシステムのバージョンとアーキテクチャに合った完全版のtarballをダウンロードしてください。 
+</p>
+
+<table>
+<thead><tr>
+<th>…にインストール</th>
+      <th>…で終わるファイル名を選択</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>RHEL、CentOS、Scientific Linux、またはOracle Linux</td>
+      <td><code>-el-&lt;version and arch&gt;.tar.gz</code></td>
+    </tr>
+<tr>
+<td>Ubuntu LTS</td>
+      <td><code>-ubuntu-&lt;version and arch&gt;.tar.gz</code></td>
+    </tr>
+<tr>
+<td>SLES</td>
+      <td><code>-sles-&lt;version and arch&gt;.tar.gz</code></td>
+    </tr>
+</tbody>
+</table>
+<p> Puppetは、デジタル署名を使用してファイルを認証します。 以下の<a href="./install_basic.html#verifying-the-installer">インストーラの検証</a>手順に従えば、tarballの完全性を確認することができます。
+</p>
+
+<h2 id="step-3-unpack-the-tarball-and-set-up-the-installer">ステップ3：tarballを展開し、インストーラを設定する</h2>
+
+<ol>
+<li>
+    <p> 以下のコマンドを実行し、tarballを展開します。
+</p>
+
+    <pre><code>tar -xf &lt;TARBALL&gt; 
+</code></pre>
+  </li>
+  <li>
+    <p> 次に、インストーラを設定します。 PEインストーラのディレクトリから、以下を実行します。
+</p>
+
+    <pre><code>sudo ./puppet-enterprise-installer
+</code></pre>
+  </li>
+  <li>
+    <p> プロンプトが表示されたら、「Guided（ガイド付き）」インストールオプションを選択します。
+</p>
+  </li>
+  <li>
+    <p> この段階で、Puppet EnterpriseインストーラによってWebサーバーが起動され、Webアドレス<code>https://&lt;install platform hostname&gt;:3000</code>が提供されます。 アドレスをブラウザにコピーします。必ず<code>https</code>を使用してください。
+</p>
+
+    <p> インストールが完了するまで、ターミナル接続を開いたままにしておいてください。接続を終了するとインストールに失敗します。
+</p>
+  </li>
+  <li>
+    <p> メッセージ画面で、ブラウザのセキュリティ条件を承認します。 Webベースのインストールでは、デフォルトのSSL証明書を使用するため、Webベースのインストーラにアクセスするには、セキュリティの例外を追加する必要があります。 <strong>セキュリティ上問題は起こりません。</strong>
+</p>
+  </li>
+</ol>
+<blockquote>
+  <h4 id="faqs-1">FAQ</h4>
+
+  <ul>
+<li><a href="/pe/2017.1/console_accessing.html#accepting-the-consoles-certificate">ブラウザのセキュリティ要求を許可するにはどうすればいいですか？</a></li>
+  </ul>
+</blockquote>
+
+<h2 id="step-4-personalize-your-installation">ステップ4：インストールのパーソナライゼーション</h2>
+
+<p> ここまでの手順で、PEのWebベースのインストーラを起動させることができました。 最初のページで[<strong>Let’s get started!</strong>]をクリックします。 インストーラはまず主要な設定情報を収集します。この情報は、インストールを適切に設定するために使われます。
+</p>
+
+<p> 設定方法：
+</p>
+
+<ol>
+<li>
+    <p> デプロイタイプとして<strong>Monolithic</strong>を選択します。
+</p>
+  </li>
+  <li>
+    <p> Puppet masterのコンポーネントのインストール先として、インストーラを実行しているサーバーを選択します。
+</p>
+  </li>
+  <li>
+    <p> Puppet masterサーバーに以下の情報を入力します。
+</p>
+
+    <ol>
+<li>
+        <p> <strong>Puppet master FQDN</strong>: PEのインストール先サーバーの完全修飾ドメイン名
+</p>
+      </li>
+      <li>
+        <p> <strong>DNS aliases</strong>：agentノード(PEで管理するノード)がPuppet masterにアクセスする際に使用できるエイリアスのリストを、カンマ区切りで列挙します。
+</p>
+      </li>
+    </ol>
+</li>
+  <li>
+    <p> データベースサポートに関するメッセージ画面で、デフォルトのオプション[<strong>Install PostgreSQL for me</strong>]を選択します。
+</p>
+  </li>
+  <li>
+    <p> コンソール管理ユーザーの<strong>パスワードを作成</strong>します。 パスワードは8文字以上でなければなりません。 コンソール管理ユーザーのユーザー名は<strong>admin</strong>です。
+</p>
+  </li>
+  <li>
+    <p> 最後に、[<strong>Submit</strong>]をクリックし、表示される情報を確認します。 変更が必要な場合は、[<strong>Go back</strong>]をクリックして情報を変更します。 変更がない場合は、[<strong>Continue</strong>]をクリックします。
+</p>
+  </li>
+</ol>
+<h2 id="step-5-sit-back-relax-its-time-to-install">ステップ5：インストールが終わるまで待ちます。</h2>
+
+<p> 確認ページで、インストーラが各種の設定項目 (SSH証明書が正しいか、ディスク空き容量は十分か、各コンポーネントのOSが同じかなど) を検証します。
+</p>
+
+<p> 問題が表示されなければ、[<strong>Deploy now</strong>]をクリックします。
+</p>
+
+<p> インストーラによって、Puppet Enterpriseがインストールされ、設定されます。 お使いのOSのリポジトリから追加パッケージをインストールする必要がある場合があります。 <strong>このプロセスには、最大15分ほどかかることがあります。</strong>
+</p>
+
+<p> インストールが完了すると、ターミナルで実行されていたインストーラのスクリプトは自動的に終了します。
+</p>
+
+<h2 id="step-6-log-into-the-pe-console">ステップ６: コンソールにログインします。</h2>
+
+<ol>
+<li>
+    <p> Webベースのインストーラが完了すると[<strong>Start Using Puppet Enterprise Now</strong>]ボタンが表示されます。このボタンを選択します。 
+</p>
+  </li>
+  <li>
+    <p> 信用できない証明書に関するブラウザの警告が表示されます。 これは、<em>あなた自身</em>がコンソールの証明書の署名オーソリティであり、ブラウザがPuppet Enterpriseデプロイを有効な署名オーソリティと認識していないためです。 <strong>警告を無視し、証明書を受け入れます</strong>。
+</p>
+  </li>
+  <li>
+    <p> コンソールのログインページで、ユーザー名に<strong>admin</strong>を使用し、Puppet masterのインストール時に作成したしたパスワードを使用して<strong>ログイン</strong>します。
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> お疲れさまでした！これでPuppet masterがインストールされました！ 次に、<strong>agentノード</strong>にPEをインストールし、ノードをPuppetで管理できるようにします。 <a href="./quick_start_install_agents_nix.html">準備ができたら、クリックして先へ進んでください</a>。
+</p>
+</blockquote>
+</div>

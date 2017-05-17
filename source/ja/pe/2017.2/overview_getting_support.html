@@ -1,0 +1,300 @@
+---
+layout: default
+title: "Puppet Enterprise向けサポートの利用"
+---
+<h2 id="puppet-enterprise-support-life-cycle">Puppet Enterpriseサポート期間</h2>
+
+<p> Puppet Enterpriseの各バージョンには、メインストリームサポート、限定サポート、サポート終了(EOL)、という3つの製品サポートフェーズがあります。
+</p>
+
+<table>
+<thead><tr>
+<th>フェーズ</th>
+      <th>セキュリティアップデートとバグフィックスの取得</th>
+      <th>サポート対応までの時間</th>
+      <th>メインストリームサポートバージョンへのアップグレードサポート</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>メインストリーム</td>
+      <td>はい</td>
+      <td>SLA(サービスレベル契約)上の対応までの時間</td>
+      <td>該当なし</td>
+    </tr>
+<tr>
+<td>限定サポート</td>
+      <td>いいえ</td>
+      <td>SLA上の対応までの時間</td>
+      <td>アップグレードサポートとして、各種の支援とリソースを提供します。</td>
+    </tr>
+<tr>
+<td>サポート終了(EOL)</td>
+      <td>いいえ</td>
+      <td>「商業上合理的な」支援</td>
+      <td>支援に関するサポートへのお問い合わせ</td>
+    </tr>
+</tbody>
+</table>
+<h3 id="standard-releases-and-long-term-support-releases">標準リリースと長期サポートリリース</h3>
+
+<p> <a href="https://puppet.com/download-puppet-enterprise">最新バージョン</a>または<a href="https://puppet.com/misc/pe-files/previous-releases">最新の長期サポート(LTS)バージョン</a>へのアップグレードを推奨します。 最新機能を使用する場合、<strong>標準リリース</strong>をインストールします。 長期にわたって同じバージョンを使用する場合、最新の<strong>長期サポート(LTS)</strong>リリースをインストールします。
+</p>
+
+<table>
+<thead><tr>
+<th>リリースタイプ</th>
+      <th>リリーススケジュール</th>
+      <th>メインストリームサポート</th>
+      <th> </th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><strong>標準</strong></td>
+      <td>約6カ月ごと</td>
+      <td>次の標準リリースまたは長期サポート(LTS)リリースまで</td>
+      <td> </td>
+    </tr>
+<tr>
+<td><strong>長期サポート(LTS)</strong></td>
+      <td>18カ月ごと</td>
+      <td>リリース後24カ月</td>
+      <td> </td>
+    </tr>
+</tbody>
+</table>
+<h3 id="supported-puppet-enterprise-versions">サポートされるPuppet Enterpriseバージョン</h3>
+
+<p> 以下に、<strong>メインストリームサポート</strong>または<strong>限定サポート</strong>を提供しているPuppet Enterpriseバージョンを示します。 Puppet Enterprise 3.8以前のバージョンは<strong>サポート終了</strong>(EOL)しています。
+</p>
+
+<table>
+<thead><tr>
+<th>PEバージョン</th>
+      <th>メインストリームサポート開始日</th>
+      <th>限定サポート開始日</th>
+      <th>サポート終了日</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>2017.2</td>
+      <td>2017年5月11日</td>
+      <td>未定</td>
+      <td>未定</td>
+    </tr>
+<tr>
+<td>2017.1</td>
+      <td>2017年3月14日</td>
+      <td>2017年5月11日</td>
+      <td>2017年10月31日</td>
+    </tr>
+<tr>
+<td>2016.5</td>
+      <td>2016年12月13日</td>
+      <td>2017年3月14日</td>
+      <td>2017年10月31日</td>
+    </tr>
+<tr>
+<td>2016.4 (LTS)</td>
+      <td>2016年10月20日</td>
+      <td>2018年10月</td>
+      <td>未定</td>
+    </tr>
+<tr>
+<td>2016.2</td>
+      <td>2016年6月21日</td>
+      <td>2016年10月20日</td>
+      <td>2017年10月31日</td>
+    </tr>
+<tr>
+<td>2016.1</td>
+      <td>2016年4月7日</td>
+      <td>2016年6月21日</td>
+      <td>2017年10月31日</td>
+    </tr>
+<tr>
+<td>2015.3</td>
+      <td>2015年12月8日</td>
+      <td>2016年4月7日</td>
+      <td>2017年10月31日</td>
+    </tr>
+<tr>
+<td>2015.2</td>
+      <td>2015年7月28日</td>
+      <td>2015年12月8日</td>
+      <td>2017年10月31日</td>
+    </tr>
+<tr>
+<td>3.8</td>
+      <td>2015年4月28日</td>
+      <td>2016年12月31日</td>
+      <td>2016年12月31日</td>
+    </tr>
+</tbody>
+</table>
+<p> <a href="./sys_req_os.html#operating-system-support-life-cycles">オペレーティングシステムのサポート期間</a>も併せて参照してください。
+</p>
+
+<h3 id="open-source-tools-and-libraries">オープンソースのツールとライブラリ</h3>
+
+<p> Puppet Enterpriseは、オープンソースのツールとライブラリを使用します。 これには、外部でメンテナンスされているコンポーネント( Ruby、Postgres、JVMなど)と、Puppetが所有しメンテナンスしているプロジェクト(Facter、Puppet Agent、Puppetサーバー、PuppetDB)の両方が含まれます。 Puppetが所有、メンテナンスしているプロジェクトは、商用リリースの「上流」という位置付けになります。 PuppetのオープンソースプロジェクトはPuppet Enterpriseよりも動きが速く、サポート期間も短くなります。 そのため、オープンソースプラットフォームのコンポーネントは、商用のサポート終了日よりも早くアップデートが打ち切られる場合があります。 Puppetは、上流のセキュリティと機能リリースを慎重に調査したうえで、お客様の要望と<a href="/security/vulnerability_submission_process.html">製品セキュリティポリシー</a>に従ってサポートされるバージョンを更新します。
+</p>
+
+<h2 id="getting-support">サポートの利用</h2>
+
+<p> Puppet Enterprise向けサポートには、商用サポートとしてPuppetが提供するサポートと、ユーザコミュニティが提供するサポートがあり、簡単に利用できます。
+</p>
+
+<h3 id="customer-support-portal">カスタマーサポートポータル</h3>
+
+<p> Puppetのインストール、運用、使用に関する問題を解決するために、信頼できる高品質なサポートを迅速に提供します。 <a href="http://puppet.com/support-services/customer-support">Puppet Enterprise向けの商用サポート</a>には、スタンダードとプレミアムの2つのレベルがあります。 いずれも専用の<a href="https://support.puppet.com">カスタマーサポートポータル</a>から問題を報告できます。 Puppet Enterpriseの購入時に、このポータルのアカウントとログオンが提供されます。これには、<a href="https://support.puppet.com/hc/en-us">ナレッジベース</a>へのアクセスも含まれています。
+</p>
+
+<p> <strong>カスタマーサポートポータル: <a href="https://support.puppet.com">https://support.puppet.com</a></strong>
+</p>
+
+<h3 id="pe-support-script">Puppet Enterpriseサポートスクリプト</h3>
+
+<p> サポートを要求すると、情報収集用サポートスクリプトを実行するように依頼される場合があります。 このスクリプトは大量のシステム情報を収集して圧縮し、圧縮済みtarballの場所を実行終了時に出力します。 収集されたデータをPuppetのサポートチームに送る前に、編集を必要とする機密情報が含まれていないかどうかを確認してください。
+</p>
+
+<p> このスクリプトを提供する<code>pe_support_script</code> モジュールは、Puppet Enterpriseのインストーラに含まれています。 コマンドを実行すると、次のbashスクリプトが実行されます。
+<code>/opt/puppetlabs/puppet/cache/lib/puppet_x/puppetlabs/support_script/v1/puppet-enterprise-support.sh</code>
+</p>
+
+<p> RedHat、Ubuntu、SLESのいずれかのオペレーティングシステムを実行するPEノードまたはコマンドラインで、次のコマンドを使用してサポートスクリプトを実行します。<code>/opt/puppetlabs/bin/puppet enterprise support</code>
+</p>
+
+<h4 id="information-collected-by-the-pe-support-script">Puppet Enterpriseサポートスクリプトによって収集される情報</h4>
+
+<p> サポートスクリプトは、Puppetのサポートチームが問題のトラブルシューティングを行う際に役立つシステム情報を、大量に収集します。
+</p>
+
+<ul>
+<li> iptables情報: ロードされているか? IPv4およびIPv6向けのインバウンドルールとアウトバウンドルールは?</li>
+  <li>
+<code>puppet facts find</code>を使用して生成されたFacter出力</li>
+  <li>SELinuxステータス</li>
+  <li>システムの空きディスク容量とメモリ容量</li>
+  <li>ホスト名情報: <code>/etc/hosts</code>と、<code>hostname --fqdn</code>の出力</li>
+  <li>
+<code>netstat</code>による確立済みの接続リスト</li>
+  <li>
+<code>ifconfig</code>の出力</li>
+  <li>システムのumask</li>
+  <li>NTPの設定: 使用可能なサーバーとそのオフセット</li>
+  <li>
+<code>uname -a</code>と<code>lsb_release -a</code> (インストールされている場合)によるOSおよびカーネル情報</li>
+  <li>システムパッケージマネージャによって通知される、インストール済みPuppet Enterpriseパッケージの状態</li>
+  <li>
+<code>/opt/puppetlabs/puppet/bin/gem</code>および<code>/opt/puppetlabs/puppetserver/bin/gem</code>によってインストールされたRuby gemのリスト</li>
+  <li>現在のプロセスのリスト</li>
+  <li>Puppet証明書のリスト</li>
+  <li>すべてのサーバーとその状態(実行中/停止中、有効/無効など)のリスト</li>
+  <li>現在の環境変数</li>
+  <li>Puppet masterにアクセスできるかどうか</li>
+  <li>
+<code>mco ping</code>および<code>mco inventory</code>の出力</li>
+  <li>MCOコマンドの実行に使用した<code>peadmin</code>ユーザに関する情報<ul>
+<li>
+<code>/var/lib/peadmin/.mcollective</code>にあるクライアント設定ファイル</li>
+      <li>
+<code>/var/lib/peadmin/.mcollective.d/client.log</code>にあるクライアントログファイル</li>
+    </ul>
+</li>
+  <li>
+<code>pe-activemq</code>ユーザによる<code>ulimit -a</code>の出力と、<code>pe-activemq</code>プロセスが使用するファイル記述子の数</li>
+  <li>システム上のPuppetモジュールのリスト</li>
+  <li>
+<code>puppet module changes</code>の出力(Puppet Enterpriseによってインストールされたモジュールに変更があった場合、表示される)</li>
+  <li>以下のディレクトリに含まれるファイルのリスト(内容は含まない)<ul>
+<li><code>/opt/puppetlabs</code></li>
+      <li><code>/var/log/puppetlabs</code></li>
+      <li><code>/var/opt/lib</code></li>
+    </ul>
+</li>
+  <li>PostgreSQLデータベースのサイズと関係情報</li>
+  <li>以下から取得したPuppet Enterprise PostgreSQLの設定<ul>
+<li><code>/opt/puppetlabs/server/data/postgresql/9.4/data</code></li>
+      <li>
+<code>SELECT * FROM pg_settings;</code>の出力</li>
+    </ul>
+</li>
+  <li>ディレクトリサービスに接続するためにPuppet Enterprise RBACが使用する設定情報(パスワードなどの機密情報は除く)</li>
+  <li>r10kに関する以下の情報<ul>
+<li>設定ファイル</li>
+      <li>
+<code>r10k deploy display -p --detail</code>の出力</li>
+    </ul>
+</li>
+  <li>
+<a href="{{pe}}/status_api.html">Puppet EnterpriseステータスAPIエンドポイント</a>からの出力</li>
+  <li>PuppetDBの<a href="{{puppetdb}}/api/admin/v1/summary-stats.html"><code>/summary-stats</code>エンドポイント</a>からの出力(トラブルシューティング用の非識別データベース統計情報)</li>
+  <li>PuppetDBのアクティブノードのリスト</li>
+  <li>オーケストレーションサービスのアクティブノードのリスト</li>
+  <li>PuppetDBから取得したagent実行開始時間のヒストグラム(Thundering Herdの検出に使用)</li>
+  <li>Puppetサーバー<a href="{{puppet}}/http_api/http_environments.html"><code>/environments</code>エンドポイント</a>からの出力(使用可能なディレクトリ環境とモジュール検索パスのリスト)</li>
+  <li>各環境のenvironment.confファイルとhiera.yaml設定ファイル</li>
+</ul>
+<p> また、以下のファイルをコピーします。
+</p>
+
+<ul>
+<li>システムログ</li>
+  <li>
+<code>/etc/puppetlabs/</code>の内容(モジュール、マニフェスト、SSL証明書、MCollective証明書などの機密ファイルは除く)</li>
+  <li>
+<code>/etc/sysconfig</code>または<code>/etc/default</code>および<code>/etc/puppetlabs</code>にあるPuppet Enterpriseサービスの設定ファイル</li>
+  <li>
+<code>/var/log/puppetlabs/</code>の内容</li>
+  <li>
+<code>/opt/puppetlabs/puppet/cache/state/</code>の内容</li>
+  <li>
+<code>/opt/puppetlabs/pe_metric_curl_cron_jobs</code>の内容(存在する場合)</li>
+  <li>
+<code>/etc/resolv.conf</code>の内容</li>
+  <li>
+<code>/etc/nsswitch.conf</code>の内容</li>
+  <li>
+<code>/etc/hosts</code>の内容</li>
+</ul>
+<h3 id="join-the-puppet-enterprise-user-group">Puppet Enterpriseユーザグループへの加入</h3>
+
+<p> <a href="https://groups.google.com/a/puppet.com/forum/#!forum/pe-users">https://groups.google.com/a/puppet.com/forum/#!forum/pe-users</a>
+</p>
+
+<ul>
+<li>「Sign in and apply for membership」をクリックします。</li>
+  <li>「Enter your email address to access the document」をクリックします。</li>
+  <li>メールアドレスを入力します。</li>
+</ul>
+<p> 送信された加入リクエストはPuppetによって承認され、ユーザグループに追加された時点でメールが送付されます。
+</p>
+
+<h3 id="getting-support-from-the-existing-puppet-community">既存のPuppetコミュニティによるサポートの利用</h3>
+
+<p> Puppet Enterpriseに関する大規模かつ有用なオープンソースコミュニティに、是非ご参加ください。オープンソースプロジェクトに関する問題のご報告もお待ちしております。
+</p>
+
+<ul>
+<li>
+    <p> Puppetオープンソースユーザグループ:
+</p>
+
+    <p> <a href="http://groups.google.com/group/puppet-users">http://groups.google.com/group/puppet-users</a>
+</p>
+  </li>
+  <li>
+    <p> Puppet開発者グループ:
+</p>
+
+    <p> <a href="http://groups.google.com/group/puppet-dev">http://groups.google.com/group/puppet-dev</a>
+</p>
+  </li>
+  <li>
+    <p> オープンソースのPuppetプロジェクトに関する問題の報告:
+</p>
+
+    <p> <a href="https://tickets.puppetlabs.com/browse/PUP">https://tickets.puppetlabs.com/browse/PUP</a>
+</p>
+  </li>
+</ul>

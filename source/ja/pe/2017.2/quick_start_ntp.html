@@ -1,0 +1,220 @@
+---
+layout: default
+title: "NTPクイックスタートガイド"
+---
+
+<p> このPuppet Enterprise NTPクイックスタートガイドでは、Puppet <code>ntp</code>モジュールを使用して、NTPサービスを管理する方法について説明します。
+</p>
+
+<p> サーバー上のクロックは、もともと正確さを備えているわけではありません。 正しい時刻を認識するには、何らかの要素と同期する必要があります。 NTPは、コンピュータ上のクロックをネットワーク経由で同期させるためのプロトコルです。 NTPは協定世界時(UTC)を使用して、コンピュータクロックの時刻を1ミリ秒以下の誤差で同期します。
+</p>
+
+<p> ネットワークからアプリケーションにいたるまで、データセンター全体が、セキュリティサービス、証明書の検証、ノード間のファイル共有など、さまざまな目的で正確な時刻を必要としています。
+</p>
+
+<p> NTPは、Puppet Enterpriseで設定および管理できるサービスのうち、最も簡単でありながら最も重要なサービスの1つです。 Puppet <code>ntp</code>モジュールを使用すると、以下が可能になります。
+</p>
+
+<ul>
+<li>インフラ内の全サーバー間で、時刻を正しく同期する</li>
+  <li>異なる設定管理ツール間で、時刻を正しく同期する</li>
+  <li>独自の内部NTPサーバープールを変更または指定する必要がある場合に、更新を素早くロールアウトする</li>
+</ul>
+<p> <code>ntp</code>モジュールは、Puppetによって<a href="http://forge.puppetlabs.com/supported">サポート</a>、テスト、メンテナンスされています。 ntpモジュールの詳細については、<a href="http://forge.puppetlabs.com/puppetlabs/ntp">Puppet Forge</a>を参照してください。
+</p>
+
+<p> <code>ntp</code>モジュールには、いくつかの<strong>クラス</strong>が含まれています。 <a href="{{puppet}}/lang_classes.html">クラス</a>とは、Puppetコードを1つにまとめて名前を付けたもので、Puppet Enterpriseでノードを設定して管理する際の基本的な単位です。 <code>ntp</code>モジュールに含まれるクラスの中で、ユーザが使用するのは<code>ntp</code>クラスだけです。 ntpクラスにはいくつかのプライベートクラスが含まれていますが、これらはモジュールによる内部使用専用です。
+</p>
+
+<p> このガイドでは、以下のタスクについて詳しく確認していきます。
+</p>
+
+<ul>
+<li><a href="#install-the-ntp-module"><code>ntp</code>モジュールをインストールする</a></li>
+  <li><a href="#create-the-ntp-node-group">NTPノードグループを作成する</a></li>
+  <li><a href="#add-classes-from-the-module">Puppet Enterprise Webコンソールから、モジュールに含まれるクラスをagentノードに追加する</a></li>
+  <li><a href="#view-changes-in-the-pe-console">Puppet Enterprise WebコンソールのEventsページでインフラの変更を確認する</a></li>
+  <li><a href="#edit-parameters-of-the-ntp-class">メインNTPクラスのパラメータを編集する</a></li>
+</ul>
+<p> 作業を開始する前に、Puppet Enterpriseをインストールしている必要があります。 詳しい手順については、<a href="./install_basic.html">インストールの概要</a>と<a href="./install_agents.html">agentのインストール手順</a>を参照してください。 サポート対象プラットフォームについては、<a href="./sys_req_os.html">サポート対象のオペレーティングシステム</a>を参照してください。 このガイドは、コードマネージャやr10kを <em>使用していない</em>ことを前提としています。
+</p>
+
+<h2 id="install-the-ntp-module">
+<code>ntp</code>モジュールのインストール</h2>
+
+<p> <code>puppetlabs-ntp</code>モジュールをインストールします。このモジュールはNTPサービスの管理に役立ちます。
+</p>
+
+<ol>
+<li>Puppet masterのコマンドラインで、<code>puppet module install puppetlabs-ntp</code>を実行します。</li>
+</ol>
+<p> おおむね以下のようなアウトプットになるはずです。
+</p>
+
+<pre><code>Preparing to install into /etc/puppetlabs/code/environments/production/modules ...
+Notice: Downloading from http://forgeapi.puppetlabs.com ...
+Notice: Installing -- do not interrupt ...
+/etc/puppetlabs/code/environments/production/modules
+└── puppetlabs-ntp (v3.1.2)
+</code></pre>
+
+<blockquote>
+  <p> これで終わりです！  <code>ntp</code>モジュールのインストールが完了しました。 Puppetサーバーが更新され、agentノードにクラスを追加できるようになるまで少し時間がかかります。
+</p>
+</blockquote>
+
+<h2 id="add-classes-from-the-module">モジュールに含まれるクラスの追加</h2>
+
+<p> Puppet Enterprise Webコンソールを使用して、これから作成するノードグループ<strong>NTP</strong>に、モジュールの<code>ntp</code>クラスを追加します。このノードグループにはすべてのノードを含めます。 使用環境やインフラに応じて別のグループにNTPを割り当てる場合も、手順は同じです。
+</p>
+
+<h3 id="create-the-ntp-node-group">NTPノードグループの作成</h3>
+
+<ol>
+<li>コンソールで、[<strong>分類</strong>]の順にクリックし、[<strong>グループを追加</strong>]をクリックします。</li>
+  <li>新規ノードグループのオプションを指定します。<ul>
+<li>
+<strong>親名</strong>: [<strong>All Nodes</strong>]を選択します。</li>
+      <li>
+<strong>グループ名</strong>: <em>NTP</em>などのように、この環境ノードグループの役割を表す名前を入力します。</li>
+      <li>
+<strong>Environment</strong>: [<strong>production</strong>]を選択します。</li>
+      <li>
+<strong>Environmentグループ</strong> – このオプションは選択しないでください。</li>
+    </ul>
+</li>
+  <li>[<strong>追加</strong>]をクリックします。</li>
+  <li>[<strong>NTP</strong>]グループをクリックし、[<strong>ルール</strong>]タブを選択します。</li>
+  <li>
+<strong>Fact</strong>フィールドに<code>name</code>と入力します。</li>
+  <li>[<strong>演算子</strong>]ドロップダウンリストから[<strong>~</strong>] (matches regex)を選択します。</li>
+  <li>
+<strong> 値</strong>フィールドに<code>.*</code>と入力します。</li>
+  <li>
+    <p> [<strong>ルールを追加</strong>]をクリックします。
+</p>
+
+    <p> このルールによって、<strong>NTP</strong>グループに<a href="{{pe}}/console_classes_groups.html#adding-nodes-dynamically">すべてのノードが「動的に」ピン</a>されます。 このルールはテスト目的で作成されたものであり、本稼働環境にあるグループにノードをピンするかどうかの判断はユーザごとに異なります。
+</p>
+  </li>
+</ol>
+<h3 id="add-the-ntp-class-to-the-ntp-group">NTPグループへの<code>ntp</code>クラスの追加</h3>
+
+<ol>
+<li>
+    <p> コンソールで[<strong>分類</strong>]をクリックし、<strong>NTP</strong>グループを選択します。
+</p>
+  </li>
+  <li>
+    <p> [<strong>クラス</strong>]タブの[<strong>クラス名</strong>]フィールドで、<code>ntp</code>を選択します。
+</p>
+
+    <p> <strong>ヒント</strong>: メインの<code>ntp</code>クラスのみ追加してください。モジュールのその他のクラスはメインのクラスに含まれています。
+</p>
+  </li>
+  <li>
+    <p> <strong>クラスを追加</strong>をクリックし、変更を保存ボタンをクリックします。
+</p>
+
+    <p> <strong>注</strong>: <code>ntp</code>クラスが<strong>NTP</strong>グループのクラスの一覧リストに表示されますが、この段階ではまだノードに設定されていません。 ノードに設定するには、Puppetを実行する必要があります。
+</p>
+  </li>
+  <li>
+    <p> Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。
+</p>
+  </li>
+  <li>
+    <p> PEで管理している各ノード上で、<code>puppet agent -t</code>を実行します。
+</p>
+
+    <p> これにより、新しく割り当てられたクラスを使用してノードが設定されます。
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> <strong>成功です!</strong> この段階で、Puppet Enterpriseが<strong>NTP</strong>グループに含まれるノード上でNTPの管理を始めます。 したがって、<code>ntpdate</code>の実行後にいずれかのノードでNPTサービスの再起動を忘れても、次のPuppet実行時に、Puppet Enterpriseによって自動的に再起動されます。
+</p>
+</blockquote>
+
+<h2 id="view-changes-in-the-pe-console">Puppet Enterprise Webコンソールでの変更の表示</h2>
+
+<p> コンソールの[<strong>イベント</strong>]ページで、インフラの変更およびイベントを表示し、調査することができます。 たとえば、 <code>ntp</code>クラスを適用した後に[<strong>イベント</strong>]ページをチェックすると、実際に変更がインフラに反映されているかどうかを確認できます。
+</p>
+
+<p> 左側のサマリーウィンドウを確認すると、[<strong>イベントありのノード</strong>]に、イベントと正常に処理された変更が1件ずつ記録されています。 しかし、[<strong>イベントありのクラス</strong>]と[<strong>イベントありのリソース</strong>]には、2件の変更が表示されています。 これは、<code>ntp</code>モジュールからロードされた<code>ntp</code>クラスには、追加のクラスとして、NTPの設定を処理するクラス(<code>Ntp::Config</code>)とNTPサービスを処理するクラス(<code>Ntp::Service</code>)が含まれているためです。
+</p>
+
+<ol>
+<li>
+    <p> [<strong>イベントありのクラス</strong>]サマリービューで、[<strong>変更</strong>]をクリックします。 メインウィンドウを確認すると、メインの<code>ntp</code>クラスを追加した後でPuppet Enterpriseを実行したときに、<code>Ntp::Config</code>クラスと<code>Ntp::Service</code>クラスが正しく追加されたことが示されています。
+</p>
+  </li>
+  <li>
+    <p> 詳細レベルにナビゲートすると、さらにデータが表示されます。
+</p>
+  </li>
+</ol>
+<p> 下にナビゲートし続けると実行サマリーが表示され、イベントの詳細が示されます。 たとえば、どのPuppetコードによってイベントが生成されたか正確に確認することができます。 ここでは、<code>puppetlabs-ntp</code>モジュールに含まれる<code>service.pp</code>マニフェストの15行目と<code>config.pp</code>マニフェストの21行目が当てはまります。
+</p>
+
+<p> このクラスの適用に問題があった場合、この情報に基づいてコードのどの部分を修正すればよいか正しく判断することができます。 ここでは、[<strong>イベント</strong>]ページで、Puppet EnterpriseがNTPを管理していることを確認できます。
+</p>
+
+<p> 詳細ウィンドウの右上にはレポート実行のリンクがあり、このレポートには、変更を加えたPuppet実行に関する情報(実行のログやメトリクスを含む)が記載されます。 詳細については、<a href="{{pe}}/CM_reports.html">インフラレポート</a>を参照してください。
+</p>
+
+<p> [<strong>イベント</strong>]ページの使用の詳細については、<a href="{{pe}}/CM_events.html#working-with-the-events-page">Eventsページの使用</a>を参照してください。
+</p>
+
+<h2 id="edit-parameters-of-the-ntp-class">
+<code>ntp</code>クラスのパラメータの編集</h2>
+
+<p> モジュールコードを直接編集しなくても、Puppet Enterprise Webコンソールでクラスパラメータを編集または追加することができます。
+</p>
+
+<p> NTPモジュールは、デフォルトでパブリックNTPサーバーを使用します。 お使いのインフラで、内部のNTPサーバープールが使用されている場合はどうなるでしょうか。 Puppet Enterprise Webコンソールを使用すると、わずかな手順で<code>ntp</code>クラスのサーバーパラメータを変更できます。
+</p>
+
+<ol>
+<li>
+    <p> コンソールで[<strong>分類</strong>]をクリックし、<strong>NTP</strong>グループを選択します。
+</p>
+  </li>
+  <li>
+    <p> [<strong>クラス</strong>]タブで、クラス一覧から<code>ntp</code>を見つけます。
+</p>
+  </li>
+  <li>
+    <p> [<strong>パラメータ名</strong>]ドロップダウンリストから、<strong>servers</strong>を選択します。
+</p>
+
+    <p> <strong>注</strong>: 一部のパラメータについては、値がグレーのテキストで表示されますが、これはデフォルト値です。この値としては、数値かPuppet変数のいずれかを使えます。 パラメータ追加後に<strong>変更を破棄</strong>を選択すれば、この値を元に戻すことができます。
+</p>
+  </li>
+  <li>[<strong>値</strong>]フィールドに新しいサーバー名(例: <code>["time.apple.com"]</code>)を入力します。これはJSON形式の配列である必要があります。</li>
+  <li>
+<strong>パラメータを追加</strong>をクリックし、変更を保存ボタンをクリックします。</li>
+  <li>Puppet masterのコマンドラインから、<code>puppet agent -t</code>を実行します。</li>
+  <li>
+    <p> PEで管理している各ノード上で、<code>puppet agent -t</code>を実行します。
+</p>
+
+    <p> これでPuppetが実行され、Puppet Enterpriseによって新しい設定が作成されます。
+</p>
+  </li>
+</ol>
+<blockquote>
+  <p> 今後は、このノードに指定したNTPサーバーが使用されます。
+</p>
+
+  <p> <strong>ヒント</strong>: [<strong>イベント</strong>]ページをチェックして、変更が正しくノードに反映されていることを確認します。
+</p>
+</blockquote>
+
+<h2 id="other-resources">その他のリソース</h2>
+
+<p> Puppet <code>ntp</code>モジュールの使用の詳細については、ブログ記事<a href="http://puppetlabs.com/blog/puppetlabs-ntp-puppet-enterprise-supported-module">puppetlabs-ntp: A Puppet Enterprise supported module</a>を参照してください。
+</p>
+
+<p> Puppetは、正式な認定コースからガイド付きのオンラインレッスンまでさまざまな学習とトレーニングの機会を提供しています。 詳細については、<a href="https://learn.puppet.com">トレーニングページ</a>を参照してください。
+</p>

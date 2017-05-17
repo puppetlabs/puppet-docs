@@ -7,6 +7,31 @@ title: "Facter 3.5 Release notes"
 
 This page documents the history of the Facter 3.5 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
 
+## Facter 3.5.1
+
+Released January 19, 2017.
+
+This is a bug fix release that includes two new command line options.
+
+* [Fixed in Facter 3.5.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.5.1%27)
+* [Introduced in Facter 3.5.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion%20%3D%20%27FACT%203.5.1%27)
+
+### New features
+
+#### New command line options
+
+Facter will now output the names of facts that belong to each blockable and cacheable group of facts when using the `--list-block-groups` and `--list-cache-groups` command line options. The group name headers are still the only valid values to add to the `blocklist` and `ttls` fields in the config file, but this change makes it more apparent which facts will be blocked or cached.
+
+* [FACT-1536](https://tickets.puppetlabs.com/browse/FACT-1536)
+
+### Bug fixes
+
+* [FACT-1551](https://tickets.puppetlabs.com/browse/FACT-1551): An issue has been corrected that could cause custom Ruby facts running on Windows to fail to run if they made use of the Ruby network stack (such as Net::HTTP).
+
+* [FACT-1537](https://tickets.puppetlabs.com/browse/FACT-1537): Our automation for producing tarballs uses a whitelist to construct tarballs, so it does not pick up new directories automatically. This resulted in an incomplete tarball for Facter 3.5.0. Git clones and archives produced from Git were not affected. We have updated the whitelist, but the automation should still be refactored to remove this shortcoming.
+
+* [FACT-1485](https://tickets.puppetlabs.com/browse/FACT-1485): Previously, Facter 3 would report `release` incorrectly on Amazon Linux, but this has been resolved.
+
 ## Facter 3.5.0
 
 Released November 1, 2016.

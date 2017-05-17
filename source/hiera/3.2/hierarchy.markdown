@@ -13,6 +13,8 @@ title: "Creating hierarchies"
 [hash]: ./lookup_types.html#hash-merge
 [qualified_var]: /puppet/latest/reference/lang_variables.html#accessing-out-of-scope-variables
 
+{% partial /hiera/_hiera_update.md %}
+
 Hiera uses an ordered hierarchy to look up data. This allows you to have a large amount of common data and override smaller amounts of it wherever necessary.
 
 ## Location and syntax
@@ -106,9 +108,9 @@ Assume the following hierarchy:
 
 ...and the following set of data sources:
 
-* `nodes/web01.example.com`
-* `nodes/web02.example.com`
-* `nodes/db01.example.com`
+* `nodes/web01.example.com.yaml`
+* `nodes/web02.example.com.yaml`
+* `nodes/db01.example.com.yaml`
 * `environment/production.yaml`
 * `environment/development.yaml`
 * `virtual/true.yaml`

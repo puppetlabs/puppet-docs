@@ -31,7 +31,7 @@ canonical: "/puppet/latest/reference/lang_summary.html"
 
 Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
 
-> To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](/guides/language_history.html).
+> To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](./language_history.html).
 
 ## Resources, classes, and nodes
 

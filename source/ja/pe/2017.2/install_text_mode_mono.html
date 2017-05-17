@@ -1,0 +1,177 @@
+---
+layout: default
+title: "テキストモードインストール: モノリシック"
+---
+
+
+<p> モノリシックインストールでは、すべてのPuppet Enterpriseコンポーネントが1つのノードにインストールされます。 このインストールタイプは、インストール、アップグレード、トラブルシューティングが容易で、コンパイルmasterを追加することで、最大20,000台の管理対象ノードまでインストールを拡張することができます。 モノリシックインストールは、ほとんどのユーザに推奨されるインストールタイプです。
+</p>
+
+<h2 id="install-pe-monolithic-installation">Puppet Enterpriseのインストール: モノリシックインストール</h2>
+
+<p> Puppet Enterpriseのモノリシックインストールをテキストモードで実行すると、Puppet master、PuppetDB、Puppet Enterprise Webコンソールコンポーネントがすべて同じマシンにインストールされます。
+</p>
+
+<p> PEインストーラは<em>べき等性</em>のインストーラです。つまり、結果に影響を与えずに、必要に応じて何度でも実行することができます。 インストール中にエラーが生じた場合は、修正してもう一度インストーラを実行することができます。
+</p>
+
+<p> インストールを始める前に
+</p>
+
+<ul>
+<li>「<a href="./install_text_mode.html">テキストモードインストールの概要</a>」をお読みください。</li>
+  <li>
+<a href="./install_basic.html#downloading-puppet-enterprise">適切なPuppet Enterprise tarballをダウンロードし、検証します</a>。</li>
+</ul>
+<ol>
+<li>
+<code>tar -xf &lt;TARBALL_FILENAME&gt;</code>を実行してtarballを展開します。この手順を実施するには、<code>/tmp</code>に約1 GBの空き容量が必要です。 </li>
+  <li>
+    <p> インストーラのディレクトリから、インストーラを実行します。 インストール手順は、どの方法を選択するかによって異なります。
+</p>
+
+    <ul>
+<li>
+        <p> インストーラで<code>pe.conf</code>のコピーを開き、それを編集して使用する場合は、<strong><code>-c</code>フラグを用いずに</strong>インストーラを実行します。
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer
+</code></pre>
+      </li>
+      <li>
+        <p> 以前に生成した<code>pe.conf</code>ファイルを使用する場合は、<code>pe.conf</code>ファイルを指す<strong><code>-c</code>フラグを用いて</strong>インストーラを実行します。
+</p>
+
+        <pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+
+        <blockquote>
+          <p> <strong>警告：</strong>事前生成済みのファイルを使用する場合、以下のステップに記載するとおりにパラメータを正しく設定していることを確認してください。 パラメータ値にシングルクォーテーションを使わないでください。 例に示したように、ダブルクォーテーションを使用してください。
+</p>
+        </blockquote>
+      </li>
+    </ul>
+</li>
+  <li>
+    <p> <strong>-cフラグを使用せずに</strong>インストーラを実行した場合、プロンプトが表示されたら[text-mode]を選択します。
+</p>
+
+    <p> これにより、テキストエディタで<code>pe.conf</code>ファイルが開きます。このファイルをお使いのインフラに合わせて編集し、必要に応じて任意のテキストモードインストールのオプションを追加することができます。 
+</p>
+  </li>
+  <li>
+    <p> 以下のパラメータを設定します。
+</p>
+
+    <table>
+<thead><tr>
+<th>パラメータ</th>
+          <th>値</th>
+        </tr></thead>
+<tbody><tr>
+<td><code>"console_admin_password":</code></td>
+          <td>
+<code>"&lt;PASSWORD&gt;"</code> Puppet Enterprise Webコンソールのログインに使用したパスワードで、<code>&lt;PASSWORD&gt;</code>を置き換えます。</td>
+        </tr></tbody>
+</table>
+<blockquote>
+      <p> <strong>ヒント</strong>：モノリシックインストールでは、モノリシックサーバーのcertnameがFQDNとマッチする場合には、<code>"%{::trusted.certname}"</code>のデフォルト値を使用できます。
+</p>
+    </blockquote>
+  </li>
+  <li>
+    <p> 外部PostgreSQLサーバーがある場合、「<a href="./install_pe_conf_param.html#external-postgresql-parameters">pe.confパラメータリファレンスの外部PostgreSQLパラメータ</a>」を参照して、<code>pe.conf</code>に追加します。
+</p>
+  </li>
+  <li>
+    <p> ファイルを保存し、テキストエディタを終了します。
+</p>
+
+    <p> これにより、インストールが開始されます。
+</p>
+  </li>
+  <li>
+    <p> インストールが完了したら、<code>puppet agent -t</code>を2回実行して、モノリシックPuppet masterで <strong>Puppetを2回実行</strong> します。
+</p>
+
+    <p> インストールの完了後は、更新された<code>pe.conf</code>ファイルを<code>/etc/puppetlabs/enterprise/conf.d</code>で見つけることができます。
+</p>
+  </li>
+</ol>
+<h2 id="text-mode-installation-options">テキストモードインストールのオプション</h2>
+
+<p> テキストモードでインストーラを実行する場合、追加のフラグを渡してインストールを制御することができます。
+</p>
+
+<p> <code>pe.conf</code>ファイルを指定したテキストベースインストールのシンタックスは、次のようになります。
+</p>
+
+<pre><code>sudo ./puppet-enterprise-installer -c &lt;FULL PATH TO pe.conf&gt;
+</code></pre>
+
+<p>  <code>-c</code>オプションを使用する場合、<code>pe.conf</code>ファイルをフルパスで指定する必要があります。 これを省略すると、コマンドが終了してエラーメッセージが表示されます。
+</p>
+
+<p> <code>-c</code>オプションを使用する場合は、以下のオプションを用いることもできます。
+</p>
+
+<table>
+<thead><tr>
+<th>オプション</th>
+      <th>定義</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>-D</code></td>
+      <td>インストーラによりデバッグ情報が表示されます。</td>
+    </tr>
+<tr>
+<td><code>-q</code></td>
+      <td>インストーラがクワイエットモードで実行されます。インストールプロセスは表示されません。インストール中にエラーが生じた場合には、コマンドが終了してエラーメッセージが表示されます。</td>
+    </tr>
+<tr>
+<td><code>-V</code></td>
+      <td>きわめて詳細なデバッグ情報が表示されます。</td>
+    </tr>
+<tr>
+<td><code>-h</code></td>
+      <td>インストーラによりヘルプ情報が表示されます。</td>
+    </tr>
+</tbody>
+</table>
+<h2 id="add-puppet-enterprise-binaries-to-path">
+<code>PATH</code>へのPuppet Enterpriseバイナリの追加</h2>
+
+<p> Puppet Enterpriseは、ツールおよびサービスと対話するために<a href="./install_what_and_where.html#executable-binaries-and-symlinks">多数のバイナリをインストール</a>します。 これらのバイナリをデフォルトパスに含める必要があります。
+</p>
+
+<ol>
+<li>
+    <p> これらのバイナリをデフォルトの<code>$PATH</code>に追加するには、プロファイルに手動で追加するか、または以下を実行します。
+</p>
+
+    <pre><code>PATH=/opt/puppetlabs/puppet/bin:/opt/puppetlabs/server/bin:$PATH;export PATH
+</code></pre>
+  </li>
+</ol>
+<h2 id="disable-puppet-enterprise-symlinks">Puppet Enterpriseシンボリックリンクの無効化</h2>
+
+<p> Puppet Enterpriseは、ツールおよびサービスと対話するために<a href="./install_what_and_where.html#where-is-it-installed">多数のシンボリックリンクをインストール</a>します。 必要に応じて、 <a href="{{pe}}/config_intro.html#configure-settings-with-hiera">デフォルトのHieraファイル</a>に設定を追加すると、シンボリックリンクを無効化できます。
+</p>
+
+<ol>
+<li>
+    <p> デフォルトのHieraファイルに以下の設定を追加します。
+</p>
+
+    <pre><code>puppet_enterprise::manage_symlinks: false
+</code></pre>
+  </li>
+</ol>
+<hr>
+<p> <strong>関連リンク</strong>
+</p>
+
+<ul>
+<li><a href="./install_license_key.html">Puppet Enterpriseライセンスキーのインストール</a></li>
+</ul>

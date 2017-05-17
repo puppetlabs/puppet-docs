@@ -3,6 +3,8 @@ layout: default
 title: "Lookup types"
 ---
 
+{% partial /hiera/_hiera_update.md %}
+
 Hiera always takes a lookup key and returns a single value (of some simple or complex data type), but it has several methods for extracting/assembling that one value from the hierarchy. We refer to these as "lookup methods."
 
 All of these lookup methods are available via Hiera's Puppet functions, command line interface, and Ruby API.
