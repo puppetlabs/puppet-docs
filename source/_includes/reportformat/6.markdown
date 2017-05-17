@@ -1,7 +1,6 @@
-Report Format 6
------
+## Report Format 6
 
-This is the format of reports output by Puppet versions 4.7.0 and later. Nothing has been removed, so it is backwards-compatible with report format 5.
+This is the format of reports output by Puppet versions 4.6 and later. Nothing has been removed, so it is backwards-compatible with report format 5.
 
 ### Puppet::Transaction::Report
 
