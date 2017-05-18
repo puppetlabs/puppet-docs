@@ -18,11 +18,9 @@ title: "Installing Puppet agent: Linux"
 
 Install the Puppet agent so that your master can communicate with your Linux nodes.
 
-**Before you begin**: Review the [pre-install tasks](./install_pre.html) and [installing Puppet Server][server_install]. If you're familiar with Puppet 3 and earlier, learn about new locations for many of the files and directories by reading a summary of [changes in Puppet 4][where] or referring to the [full specification of Puppet directories](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md).
+**Before you begin**: Review the [pre-install tasks](./install_pre.html) and [installing Puppet Server][server_install]. If you're familiar with Puppet 3 and earlier, learn about new locations for many of the files and directories by reading a summary of [changes in Puppet 4][where] or referring to the [full specification of Puppet directories](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md). Install the release package for your OS to enable [Puppet Collection][] repositories.
 
-1. Install a [release package](#about-release-packages) to enable Puppet Collection repositories.
-
-2. Confirm that you can run Puppet executables.
+1. Confirm that you can run Puppet executables.
 
    The location for Puppet's executables is `/opt/puppetlabs/bin/`, which is not in your `PATH` environment variable by default.
 
@@ -32,23 +30,23 @@ Install the Puppet agent so that your master can communicate with your Linux nod
 
    For more information, see details about [files and directories moved in Puppet 4][where].
 
-4. Install the `puppet-agent` package on your Puppet agent nodes using the command appropriate to your system:
+2. Install the `puppet-agent` package on your Puppet agent nodes using the command appropriate to your system:
 
    * Yum -- `sudo yum install puppet-agent`.
    * Apt -- `sudo apt-get install puppet-agent`.
 
-5. (Optional) Configure agent settings.
+3. (Optional) Configure agent settings.
 
    For example, if your master isn't reachable at the default address, `server = puppet`, set the `server` setting to your Puppet master's hostname.
 
    For other settings you might want to change, see a [list of agent-related settings][agent_settings].
 
-6. Start the `puppet` service: `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
+4. Start the `puppet` service: `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
 
-7. (Optional) To see a sample of Puppet agent's output and verify any changes you may have made to your configuration settings in step 5, manually launch and watch a Puppet run:
+5. (Optional) To see a sample of Puppet agent's output and verify any changes you may have made to your configuration settings in step 5, manually launch and watch a Puppet run:
    `sudo /opt/puppetlabs/bin/puppet agent --test`
 
-8. Sign certificates on the certificate authority (CA) master.
+6. Sign certificates on the certificate authority (CA) master.
 
    On the Puppet master:
 
@@ -56,22 +54,3 @@ Install the Puppet agent so that your master can communicate with your Linux nod
    2. Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
 
    As each Puppet agent runs for the first time, it submits a certificate signing request (CSR) to the CA Puppet master. You must log into that server to check for and sign certificates. After an agent's certificate is signed, it regularly fetches and applies configuration catalogs from the Puppet master.
-
-
-## About release packages
-
-Release packages configure your system to download and install appropriate versions of the `puppetserver` and [`puppet-agent`][] packages. These packages are grouped into a [Puppet Collection][] repository comprised of compatible versions of Puppet tools.
-
-{% include puppet-collections/_puppet_collections_intro.md %}
-
-{% include puppet-collections/_puppet_collection_1_contents.md %}
-
-Yum-based systems:
-
-{% include puppet-collections/_puppet_collection_1_yum.md %}
-
-> **Note:** We only provide the `puppet-agent` package for recent versions of Puppet on RHEL 5, and to install it you must first download the package as `rpm` on RHEL 5, as it doesn't support installing packages from a URL.
-
-Apt-based systems:
-
-{% include puppet-collections/_puppet_collection_1_apt.md %}
