@@ -1,0 +1,306 @@
+---
+layout: default
+title: "Configuración de sistema"
+---
+
+<div>
+
+
+<p> Antes de instalar Puppet Enterprise en su site, asegúrese que los nodos y la red está correctamente configurada.
+</p>
+
+<h2 id="timekeeping-and-name-resolution">Control horario y resolución de nombres</h2>
+
+<p> Antes de instalar PE, hay algunos requisitos básicos de la red que usted necesita considerar y preparar. Los requisitos más importantes incluyen la sincronización de tiempo y la creación de un plan para la resolución de nombres.
+</p>
+
+<h3 id="timekeeping">Control horario</h3>
+
+<p> Recomendamos usar NTP o un servicio equivalente para asegurar que el tiempo esté sincronizado entre su Puppet master y cualquier nodo de agente de Puppet. En caso que el tiempo se corrompa en su infraestructura PE, puedes encontrar problemas como desaparición de nodos de la consola de administración. Un servicio como NTP  (<a href="https://forge.puppetlabs.com/puppetlabs/ntp">disponible como módulo compatible de Puppets</a>) es garantía de un servicio preciso.
+</p>
+
+<h3 id="name-resolution">Resolución de nombres</h3>
+
+<ul>
+<li>Decida el nombre o el conjunto de nombres que los nodos de agentes pueden utilizar para ponerse en contacto con el servidor maestro de Puppet.</li>
+  <li>Asegúrese de que el servidor de Puppet master puede ser accesible a través de la búsqueda de nombres de dominio por todos los futuros nodos del agent Puppet en el site.</li>
+</ul>
+<p> También puede simplificar la configuración de nodos de agent mediante un registro CNAME para que el Puppet master se pueda encontrar en el nombre de host <code>puppet</code>. (Este el hostname de Puppet master es automáticamente sugerido cuando instalen un nodo agent. )
+</p>
+
+<h2 id="firewall-configuration">Configuración Firewall</h2>
+
+<p> Puppet Enterprise requiere acceso a ciertos puertos del tráfico de red. Los siguientes diagramas muestran los usos del puerto para instalaciones estándar de PE.
+</p>
+
+<p> Una lista separada proporciona <a href="#additional-port-usage-for-all-installation-types">información adicional sobre el uso del puerto</a>.
+</p>
+
+<h3 id="for-monolithic-installs">Para instalaciones monolíticas</h3>
+
+<p> <a href="/pe/2017.2/images/mono_port_diagram.png"><img src="/images/mono_port_diagram.png" alt="Monolithic Port Diagram" title="Click to enlarge"> (Click para ampliar)</a>
+</p>
+
+<table>
+<tr>
+<th>Puerto</th>
+    <th>Uso</th>
+  </tr>
+<tr>
+<td>8140</td>
+    <td>
+     <ul>
+<li>El Puppet master utiliza este puerto para aceptar el tráfico de entrada/solicitudes de los agentes de Puppet.</li>
+      <li>La consola PE envía la solicitud al Puppet master en este puerto.</li>
+      <li>Las solicitudes de certificados se pasan a través de este puerto, a menos que ca_port se establezca de forma diferente.</li>
+      <li>Puppet Server <a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">status checks</a> se envían a través de este puerto.</li>
+      <li>Grupo de clasificadores: "PE Master"</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>443</td>
+    <td>
+     <ul>
+<li>Este puerto proporciona acceso de host a la consola PE.</li>
+      <li>La consola PE Console acepta el tráfico HTTPS de usuarios finales en este puerto.</li>
+      <li>Grupo de clasificadores: "PE Console"</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>61613</td>
+    <td>
+     <ul>
+<li>MCollective utiliza este puerto para aceptar el tráfico de entrada/solicitudes de Puppet agents.</li>
+      <li>Cualquier host utilizado para invocar comandos debe ser capaz de llegar a MCollective en este puerto.</li>
+      <li>Grupo de clasificadores: “PE ActiveMQ Broker”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>8142</td>
+    <td>
+     <ul>
+<li>Orchestrator y el botón Run Puppet  utiliza este puerto en el MoM para aceptar tráfico desde los agents de Puppet (vía PXP agent).</li>
+      <li>Grupo de clasificadores: “PE Orchestrator”</li>
+     </ul>
+</td>
+  </tr>
+</table>
+<h3 id="for-monolithic-installs-with-compile-masters">Para instalaciones monolíticas con maestros compilados</h3>
+
+<p> <a href="/pe/2017.2/images/mono_compile_port_diagram.png"><img src="/pe/2017.2/images/mono_compile_port_diagram.png" alt="Monolithic with Compile Masters Port Diagram" title="Click to enlarge"> (Click para ampliar)</a>
+</p>
+
+<table>
+<tr>
+<th>Puerto</th>
+    <th>Uso</th>
+  </tr>
+<tr>
+<td>8140</td>
+    <td>
+     <ul>
+<li>El Puppet master utiliza este puerto para aceptar el tráfico de entrada/solicitudes de los agentes de Puppet.</li>
+      <li>El Puppet master utiliza este puerto para enviar el estado chequeado al master compilado. (No requiere ejecutar PE.)</li>
+      <li>La consola PE envía la solicitud al Puppet master en este puerto.</li>
+      <li>Las solicitudes de certificados se pasan a través de este puerto, a menos que ca_port se establezca de forma diferente.</li>
+      <li>Puppet Server <a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">status checks</a> se envían a través de este puerto.</li>
+      <li>Grupo de clasificadores: "PE Master"</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>443</td>
+    <td>
+     <ul>
+<li>Este puerto proporciona acceso de host a la consola PE.</li>
+      <li>La consola PE Console acepta el tráfico HTTPS de usuarios finales en este puerto.</li>
+      <li>Grupo de clasificadores: "PE Console"</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>61613</td>
+    <td>
+     <ul>
+<li>MCollective utiliza este puerto para aceptar el tráfico de entrada/solicitudes de Puppet agents.</li>
+      <li>Cualquier host utilizado para invocar comandos debe ser capaz de llegar a MCollective en este puerto.</li>
+      <li>Grupo de clasificadores: “PE ActiveMQ Broker”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>4433</td>
+    <td>
+     <ul>
+<li>Este puerto es utilizado como Clasificador/Consola de servicios API.</li>
+      <li>El Puppet master necesitar ser capaz de comunicar con la consola PE sobre este puerto.</li>
+      <li>Grupo de clasificadores: "PE Console"</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>8081</td>
+    <td>
+     <ul>
+<li>PuppetDB acepta tráfico en este puerto.</li>
+      <li>El Puppet master y la consola PE envían tráfico a PuppetDB en este puerto.</li>
+      <li>PuppetDB <a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">status checks</a> se envían en este puerto.</li>
+      <li>Grupo de clasificador: “PE PuppetDB”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>8142</td>
+    <td>
+     <ul>
+<li>Orchestrator y el botón Run Puppet usan este puerto en el MoM y compilan masters para aceptar tráfico/respuestas entrantes de los agent Puppet (vía agent PXP).</li>
+      <li>Grupo de clasificadores: “PE Orchestrator”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>8143</td>
+    <td>
+     <ul>
+<li>Orchestrator utiliza este puerto para aceptar las conexiones de los corredores de PCP para retransmitir comunicaciones. El cliente orchestrator también utiliza este puerto para comunicarse con los servicios de orquestación que se ejecutan en el MoM. Si instala el cliente en una estación de trabajo, este puerto debe estar disponible en la estación de trabajo.</li>
+      <li>Grupo de clasificadores: “PE Orchestrator”</li>
+     </ul>
+</td>
+  </tr>
+</table>
+<h3 id="for-split-installs">Para instalaciones fraccionadas</h3>
+
+<p> <a href="/pe/2017.2/images/split_port_diagram.png"><img src="/pe/2017.2/images/split_port_diagram.png" alt="Split Port Diagram" title="Click to enlarge"> (Click para ampliar)</a>
+</p>
+
+<table>
+<tr>
+<th>Puerto</th>
+    <th>Uso</th>
+  </tr>
+<tr>
+<td>8140</td>
+    <td>
+     <ul>
+<li>El Puppet master utiliza este puerto para aceptar el tráfico de entrada/solicitudes de los agentes de Puppet.</li>
+      <li>La consola PE envía la solicitud al Puppet master en este puerto.</li>
+       <li>En un LEI, el Puppet master utiliza este puerto para enviar comprobaciones de estado a los maestros de compilación. (No se requiere para ejecutar PE.)</li>
+      <li>Las solicitudes de certificados se pasan a través de este puerto, a menos que ca_port se establezca de forma diferente.</li>
+      <li>Puppet Server <a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">status checks</a> se envían a través de este puerto.</li>
+      <li>Grupo de clasificadores: "PE Master"</li>
+     </ul>
+</td>
+  </tr>
+<tr></tr>
+<tr>
+<td>443</td>
+    <td>
+     <ul>
+<li>Este puerto proporciona acceso de host a la consola PE.</li>
+      <li>La consola PE Console acepta el tráfico HTTPS de usuarios finales en este puerto.</li>
+      <li>Grupo de clasificadores: "PE Console"</li>
+     </ul>
+</td>
+  </tr>
+<td>8081</td>
+    <td>
+     <ul>
+<li>PuppetDB acepta tráfico en este puerto.</li>
+      <li>El Puppet master y la consola PE envían tráfico a PuppetDB en este puerto.</li>
+      <li>PuppetDB <a href="https://docs.puppet.com/pe/latest/status_api.html#puppet-services-status-check">status checks</a> se envían en este puerto.</li>
+      <li>Grupo de clasificador: “PE PuppetDB”</li>
+     </ul>
+</td>
+  
+  <tr>
+<td>61613</td>
+    <td>
+     <ul>
+<li>MCollective utiliza este puerto para aceptar el tráfico de entrada/solicitudes de Puppet agents.</li>
+      <li>Cualquier host utilizado para invocar comandos debe ser capaz de llegar a MCollective en este puerto.</li>
+      <li>Grupo de clasificadores: “PE ActiveMQ Broker”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>5432</td>
+    <td>
+     <ul>
+<li>PostgreSQLcorre en este puerto.</li>
+      <li>El nodo de la consola PE tendrá que conectarse al nodo PuppetDB que aloja la base de datos PostgreSQL en este puerto.</li>
+      <li>Grupo de clasificador: “PE PuppetDB”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>4433</td>
+    <td>
+     <ul>
+<li>Este puerto es utilizado como Clasificador/Consola de servicios API.</li>
+      <li>El Puppet master necesitar ser capaz de comunicar con la consola PE sobre este puerto.</li>
+      <li>Grupo de clasificadores: "PE Console"</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>61616</td>
+    <td>
+     <ul>
+<li>Este puerto se utiliza para el concentrador ActiveMQ y la comunicación de radio.</li>
+      <li>Grupo de clasificadores: “PE ActiveMQ Broker”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>8142</td>
+    <td>
+     <ul>
+<li>Orchestrator y el botón Run Puppet usan este puerto en el MoM y compilan masters para aceptar tráfico/respuestas entrantes de los agent Puppet (vía agent PXP).</li>
+      <li>Grupo de clasificadores: “PE Orchestrator”</li>
+     </ul>
+</td>
+  </tr>
+<tr>
+<td>8143</td>
+    <td>
+     <ul>
+<li>Orchestrator utiliza este puerto para aceptar las conexiones de los corredores de PCP para retransmitir comunicaciones. El cliente orchestrator también utiliza este puerto para comunicarse con los servicios de orquestación que se ejecutan en el MoM. Si instala el cliente en una estación de trabajo, este puerto debe estar disponible en la estación de trabajo.</li>
+      <li>Grupo de clasificadores: “PE Orchestrator”</li>
+     </ul>
+</td>
+  </tr>
+</table>
+<h3 id="for-large-environment-installations">Para grandes instalaciones ambientales</h3>
+
+<p> Consulte la instalación dividida el puerto/uso de tabla para obtener explicaciones de los puertos y sus usos.
+</p>
+
+<p> <a href="/pe/2017.2/images/lei_port_diagram.png"><img src="/pe/2017.2/images/lei_port_diagram.png" alt="LEI Port Diagram" title="Click to enlarge"> (Click para ampliar)</a>
+</p>
+
+<blockquote>
+  <h2 id="additional-port-usage-for-all-installation-types">Uso adicional del puerto para todos los tipos de instalación</h2>
+
+  <ul>
+<li>
+      <p> Puerto <strong>3000</strong>: Si está instalando PE usando el instalador basado en web, asegúrese que el puerto <strong>3000</strong> esta abierto. Puede cerrar este puerto cuando finalice la instalación. Si es necesario, <a href="./install_pe_mono.html#port-forwarding-to-the-installer"> las instrucciones para el reenvío de puertos al instalador basado en la web</a> están disponibles en las instrucciones de instalación. (Esto se aplica tanto a las instalaciones divididas como a las mono. )
+</p>
+    </li>
+    <li>
+      <p> Puertos <strong>8150</strong> y <strong>8151</strong>: Razor utiliza el puerto 8150 para HTTP y 8151 para HTTPS. Cualquier nodo clasificado como un servidor Razor debe ser capaz de utilizar estos puertos.
+</p>
+    </li>
+    <li>
+      <p> Puerto <strong>4432</strong>: Conexiones locales para el clasificador de nodos, servicio de actividades y RBAC <a href="/pe/2017.2/status_api.html#puppet-services-status-check">status checks</a> son enviados por este puerto. Las conexiones remotas deberían usar el puerto <strong>4433</strong>.
+</p>
+    </li>
+    <li>
+      <p> Puerto <strong>8170</strong>: Si utiliza el Code Manager, requiere este puerto. Code manager <a href="/pe/2017.2/status_api.html#puppet-services-status-check">status checks</a> son enviados sobre este puerto.
+</p>
+    </li>
+  </ul>
+</blockquote>
+</div>
