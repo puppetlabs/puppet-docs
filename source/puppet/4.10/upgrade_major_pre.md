@@ -3,13 +3,11 @@ layout: default
 title: "Puppet 3.x to 4.x: Get upgrade-ready"
 ---
 
-Puppet 4 is a major upgrade with lots of configuration and functionality changes. Because Puppet likely manages your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:
+Puppet 4 is a major upgrade with lots of configuration and functionality changes. Because Puppet likely manages your entire infrastructure, it should be **upgraded with care**. Specifically, try to:
 
 * Split the upgrade process into smaller tasks.
 * Confirm that your system remains functional after each task.
 * Thoroughly read the release notes, particularly any about backwards-incompatible changes.
-
-This page provides steps you should take before starting the upgrade to help prepare for a safe transition. See the navigation to the left for the actual upgrade steps and post-upgrade tasks.
 
 ## Update to the latest Puppet Server 1.1.x, Puppet 3.8.x, and PuppetDB 2.3.x
 
@@ -17,15 +15,17 @@ This page provides steps you should take before starting the upgrade to help pre
 
 **Note**: PuppetDB remains optional, and you can skip it if you don't use it.
 
-- If you already use Puppet Server, update it across your infrastructure to the latest 1.1.x release.
-- If you're still using Rack or WEBrick to run your Puppet master, [switch to Puppet Server](/puppetserver/1.1/install_from_packages.html). Puppet Server is designed to be a better-performing drop-in replacement for Rack and WEBrick Puppet masters, which are [deprecated as of Puppet 4.1](/puppet/4.1/reference/release_notes.html#deprecated-rack-and-webrick-web-servers-for-puppet-master).
-  - **This is a big change!** Make sure you can successfully switch to Puppet Server 1.1.x before tackling the Puppet 4 upgrade.
+1. If you already use Puppet Server, update it across your infrastructure to the latest 1.1.x release.
+2. If you're still using Rack or WEBrick to run your Puppet master, [switch to Puppet Server](/puppetserver/1.1/install_from_packages.html). Puppet Server is designed to be a better-performing drop-in replacement for Rack and WEBrick Puppet masters, which are [deprecated as of Puppet 4.1](/puppet/4.1/reference/release_notes.html#deprecated-rack-and-webrick-web-servers-for-puppet-master).
+
+  **This is a big change!** Make sure you can successfully switch to Puppet Server 1.1.x before tackling the Puppet 4 upgrade.
+
   - Check out [our overview](/puppetserver/1.1/puppetserver_vs_passenger.html) of what sets Puppet Server apart from a Rack Puppet master.
   - Puppet Server uses 2GB of memory by default. Depending on your server's specs, you might have to adjust [how much memory you allocate](/puppetserver/1.1/install_from_packages.html#memory-allocation) to Puppet Server before you launch it.
   - If you run multiple Puppet masters with a single certificate authority, you'll need to edit Puppet Server's `bootstrap.cfg` to [disable the CA service](/puppetserver/1.1/external_ca_configuration.html#disabling-the-internal-puppet-ca-service). You'll also need to ensure you're routing traffic to the appropriate node with a load balancer or the agents' [`ca_server`](./configuration.html#caserver) setting.
-- Update all Puppet agents to the latest 3.8.x release.
-- If you use PuppetDB, [update it](/puppetdb/2.3/upgrade.html) to the latest 2.3.x release, then [update the PuppetDB terminus plugins](/puppetdb/2.3/upgrade.html#upgrading-the-terminus-plugins) on your Puppet Server node to the same release.
-    - Puppet Server 1.x and 2.x look for the PuppetDB termini in two different places. The 2.3.x `puppetdb-terminus` package installs the termini in both of them, so the server will still be able to find the plugins after you upgrade.
+3. Update all Puppet agents to the latest 3.8.x release.
+4. If you use PuppetDB, [update it](/puppetdb/2.3/upgrade.html) to the latest 2.3.x release, then [update the PuppetDB terminus plugins](/puppetdb/2.3/upgrade.html#upgrading-the-terminus-plugins) on your Puppet Server node to the same release.
+    - Puppet Server 1.x and 2.x look for the PuppetDB termini in two different places. The 2.3.x `puppetdb-terminus` package installs the termini in both of them, so the server is able to find the plugins after you upgrade.
 
 ## Check for deprecated features
 
