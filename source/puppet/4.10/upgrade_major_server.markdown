@@ -25,9 +25,7 @@ Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a man
 
 An upgraded Puppet Server can handle both Puppet 3 and Puppet 4 agents. Don't start upgrading agents until after the servers are stabilized.
 
-## Prepare to upgrade
-
-Before upgrading, complete the [pre-upgrade steps](./upgrade_major_pre.html) to ensure your Puppet infrastructure is stable and running the following things:
+**Before you begin:** Complete the [pre-upgrade steps](./upgrade_major_pre.html) to ensure your Puppet infrastructure is stable and running the following things:
 
 * Puppet Server instead of Rack or WEBrick.
 * The latest Puppet 3-compatible versions of everything you use.
@@ -38,7 +36,7 @@ If you're having any problems with your Puppet 3 configuration, **fix them first
 
 ## Plan your upgrade
 
-Puppet masters are in charge of managing your Puppet infrastructure, and this upgrade interrupts their work. Bring up replacement masters and gradually cut over service to them, take a few masters out of your pool for upgrades while always leaving a few to handle traffic, or schedule Puppet service downtime.
+Puppet masters are in charge of managing your Puppet infrastructure, and this upgrade interrupts their work. Set up replacement masters and gradually cut over service to them, take a few masters out of your pool for upgrades while always leaving a few to handle traffic, or schedule Puppet service downtime.
 
 If you have multiple Puppet masters, upgrade or replace the certificate authority (CA) master first, and pause provisioning of new Puppet agents while upgrading or replacing the CA server.
 
@@ -70,7 +68,7 @@ If you are installing Puppet Server 4 onto a new node, look at the [list of impo
 
 ### Reconcile `auth.conf`
 
-Puppet 4 uses different HTTPS URLs to fetch configurations. Any rules in `auth.conf` that match Puppet 3-style URLs will have _no effect_. For more details, see the [Puppet Server compatibility documentation][].
+Puppet 4 uses different HTTPS URLs to fetch configurations. Any rules in `auth.conf` that match Puppet 3-style URLs have _no effect_. For more details, see the [Puppet Server compatibility documentation][].
 
 To convert the URLs:
 
@@ -98,8 +96,9 @@ method find
 allow $1
 ```
 
-To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is false, modify the rules to follow the new HOCON `auth.conf` format and place the new rules in `/etc/puppetlabs/puppetserver/conf.d/auth.conf`:
-
+To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is false:
+1. Modify the rules to follow the new HOCON `auth.conf` format. 
+2. Place the new rules in `/etc/puppetlabs/puppetserver/conf.d/auth.conf`
 ```
 authorization: {
     version: 1
@@ -132,7 +131,10 @@ authorization: {
 }
 ```
 
-To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is true, modify the rules to specify the v3 endpoints while following the legacy `auth.conf` format, then place the new rules in `/etc/puppetlabs/puppet/auth.conf`:
+To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is true:
+
+1. Modify the rules to specify the v3 endpoints while following the legacy `auth.conf` format.
+2. Place the new rules in `/etc/puppetlabs/puppet/auth.conf`
 
 ```
 # Puppet 3 & 4 compatible auth.conf with Puppet Server 2.1+
@@ -160,11 +162,11 @@ If this is a new Puppet master but _isn't_ serving as a certificate authority, u
 
 1. Run the following command: `puppet agent --test --certname=<NAME> --dns_alt_names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>`
 
-2. Sign the certificate on the CA, then run the above `puppet agent` command again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service]({{puppetserver}}/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
+2. Sign the certificate on the CA, then run the `puppet agent` command from the previous step again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service]({{puppetserver}}/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
 
 ### Move code
 
-> **Note:** You should have already switched to [directory environments](/puppet/latest/reference/environments.html) in the pre-upgrade steps, as [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4.
+> **Note:** You should have already switched to [directory environments](/puppet/latest/reference/environments.html) in the pre-upgrade steps, because [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4.
 
 Move the contents of your old `environments` directory to `/etc/puppetlabs/code/environments`. If you need multiple groups of environments, set the `environmentpath` in `puppet.conf`.
 
@@ -182,7 +184,7 @@ If you use [Hiera][], move its configuration and data files:
 2. Move your Hiera data files to somewhere inside `/etc/puppetlabs/code`.
 3. Update file references in `hiera.yaml` accordingly.
 
->**Note**: In Puppet 4.0, the default location of hiera.yaml changed from `/etc/puppetlabs/puppet/hiera.yaml` to `/etc/puppetlabs/code/hiera.yaml`. In Puppet 4.5, its location was reverted to `/etc/puppetlabs/puppet/hiera.yaml`. If you are upgrading with a package from puppet-agent 1.5.0 or newer, it will **not** move your hiera.yaml file. If you are starting with a new installation, it will place it in the correct location.
+>**Note**: In Puppet 4.0, the default location of hiera.yaml changed from `/etc/puppetlabs/puppet/hiera.yaml` to `/etc/puppetlabs/code/hiera.yaml`. In Puppet 4.5, its location was reverted to `/etc/puppetlabs/puppet/hiera.yaml`. If you are upgrading with a package from puppet-agent 1.5.0 or newer, it does **not** move your hiera.yaml file. If you are starting with a new installation, it places it in the correct location.
 
 ### Start Puppet Server
 
