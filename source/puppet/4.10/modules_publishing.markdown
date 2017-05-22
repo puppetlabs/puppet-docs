@@ -46,27 +46,27 @@ Before you begin, you should already have written a useful Puppet module. To pub
 * [Using plugins][plugins]: How to arrange plugins (such as custom facts and custom resource types) in modules and sync them to agent nodes.
 * [Documenting modules][documentation]: How to write good documentation for your modules.
 
-### A note on module names
+### Naming your module {:.concept}
 
-Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires that module names have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
+Your module has two names: a short name, like "mysql" and a long name that includes your Forge username, like "puppetlabs-mysql".
 
-However, your module's directory on disk must use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
+The Puppet Forge requires the module long name. This name is composed of your Forge username and the short name of your module. For example, the user named "puppetlabs" maintains a "mysql" module, which is known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's [metadata.json file][inpage_metadata].** This helps disambiguate modules that might have common short names, such as "mysql" or "apache."
 
-### Another note on module names
+However, your module directory on disk **must** use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). As long as you have the correct long name in your `metadata.json` file, the `puppet module build` command will use the correct names in the correct places.
 
-Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style in your metadata files and when issuing commands.
+> **Note**: Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. Always use the `username-module` style in your metadata files and when issuing commands.
 
-## Create a Puppet Forge account
+## Create a Puppet Forge account {:.task}
 
-Before you begin, you should create a user account on the Puppet Forge (Forge). You will need to know your username when publishing any of your modules.
+To publish your modules to the Puppet Forge, you need to create a Puppet Forge account.
 
-1. Start by navigating to the [Forge website][forge] and clicking the "Sign Up" link in the sidebar:
+1. Start by navigating to the [Forge website][forge] and click **Sign Up*:
 
-![The "sign up" link in the Puppet Forge sidebar][signup]
+2. Fill in your details. The username you pick will be the first part of your module long name (such as "bobcat/apache").
 
-2. Fill in your details. After you finish, you will be asked to verify your email address via a verification email. Once you have done so, you can publish modules to the Forge.
+3. After you sign up, you will receive a verification email. After you verify your email, you can publish modules to the Forge.
 
-## Prepare the module
+## Prepare your module {:.task}
 
 If you already have a Puppet module with the [correct directory layout][fundamentals], you can continue to the next step.
 
@@ -74,17 +74,43 @@ Alternately, you can use the `puppet module generate` action to generate a templ
 
 Follow the directions to [generate a new module](./modules_fundamentals.html#writing-modules).
 
->**Note:** In order to successfully publish your module to the Puppet Forge and ensure everything can be rendered correctly, your README, license file, changelog, and metadata.json must be UTF-8 encoded.
+>**Note:** In order to successfully publish your module to the Puppet Forge and ensure that everything is rendered correctly, your README, license file, changelog, and metadata.json must be UTF-8 encoded.
 
-### Set files to be ignored
+1. Create a list of files to exclude from your module package.
 
-It's not unusual to have some files in your module that you want to exclude from your build. You can exclude files by including them in .gitgnore or .pmtignore. Your .pmtignore or .gitignore file must be in the module's root directory, and will be read during the build process.
+   You can exclude certain files from your module build by including them in either a `.gitignore` or a `.pmtignore` file. This is useful for excluding files that are not needed to run the module, such as files generated by spec tests.
+   
+   The `.pmtignore` file excludes files during `puppet module build` only. To prevent files from ever being checked into Git, use `.gitignore`
+[3:58 PM] Glenn Sarti: .gitignore = Ignore these files ever being checked in. Only ignore these files as they're local to my development e.g. Gemfile.lock, tmp/stuff.pp
+[3:58 PM] Glenn Sarti: You want spec tests in source control but not in your moduleIf you have both a `.pmtignore` and a `.gitignore` file, the `puppet module` command uses the `.pmtignore` file.
 
-If you have both a .pmtignore and a .gitignore file, the Puppet module tool will read the .pmtignore file over the .gitignore.
+   1. Create a `.pmtignore` or `.gitignore` file in the module's root directory.
+   
+   2. List the files you want ignored. For example:
 
-### Remove symlinks
 
-Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored). If you try to build a module with symlinks, you will receive the following error:
+    ```
+import/
+/spec/fixtures/
+.tmp
+*.lock
+*.local
+.rbenv-gemsets
+.ruby-version
+build/
+docs/
+tests/
+log/
+junit/
+tmp/
+    ```
+
+
+2. Remove symlinks from your module
+
+Symlinks in modules are unsupported. If your module contains symlinks, remove them Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored).
+
+If you try to build a module with symlinks, you will receive the following error:
 
 ```
 Warning: Symlinks in modules are unsupported. Please investigate symlink manifests/foo.pp->manifests/init.pp.
@@ -92,9 +118,7 @@ Error: Found symlinks. Symlinks in modules are not allowed, please remove them.
 Error: Try 'puppet help module build' for usage
 ```
 
-## Write a metadata.json file
-
-[inpage_metadata]: #write-a-metadatajson-file
+1. Add module metadata in `metadata.json` {:.task}
 
 If you generated your module using the `puppet module generate` command, you'll already have a `metadata.json` file. Check it and make any necessary edits.
 
