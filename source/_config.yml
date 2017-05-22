@@ -223,6 +223,7 @@ documents:
       hiera: "1"
       puppetserver: "1.2"
       puppetdb: "2.3"
+    hide: true
   /pe/3.7:
     doc: pe
     version: "3.7"
@@ -237,6 +238,7 @@ documents:
       hiera: "1"
       puppetserver: "1.0"
       puppetdb: "2.2"
+    hide: true
   /pe/3.3:
     doc: pe
     version: "3.3"
@@ -246,6 +248,7 @@ documents:
       facter: "1.7"
       hiera: "1"
       puppetdb: "1.6"
+    hide: true
   /pe/3.2:
     doc: pe
     version: "3.2"
@@ -255,14 +258,17 @@ documents:
       facter: "1.7"
       hiera: "1"
       puppetdb: "1.5"
+    hide: true
   /pe/3.1:
     doc: pe
     version: "3.1"
     nav: /_includes/pe31.html
+    hide: true
   /pe/3.0:
     doc: pe
     version: "3.0"
     nav: /_includes/pe30.html
+    hide: true
   /pe/2.8:
     doc: pe
     version: "2.8"
