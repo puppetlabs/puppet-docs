@@ -196,6 +196,8 @@ task :generate do
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
   Rake::Task['externalsources:clean'].reenable
 
+  Rake::Task['generate_redirects'].invoke
+
   if @config_data['preview'].class == Array && @config_data['preview'].length > 0
     puts "THIS IS A PREVIEW VERSION, AND IT'S MISSING IMPORTANT STUFF. Do not deploy the site in this state; this is for local viewing only. To build a real version of the site, delete the `preview:` key from _config.yml."
   end
@@ -292,7 +294,6 @@ desc "Build the documentation site and prepare it for deployment"
 task :build do
   Rake::Task['check_git_dirty_status'].invoke
   Rake::Task['generate'].invoke
-  Rake::Task['generate_redirects'].invoke
   Rake::Task['write_version'].invoke
 end
 
