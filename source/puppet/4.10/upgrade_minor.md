@@ -9,7 +9,7 @@ title: "Minor upgrades: Within Puppet 4.x"
 
 A minor upgrade is an upgrade from one Puppet 4 release to another. The order in which you upgrade packages is important. Always upgrade `puppetserver` on your masters _before_ you upgrade agents. You can upgrade PuppetDB before or after you upgrade other nodes.
 
-### Upgrade Puppet Server
+### Upgrading Puppet Server
 
 Upgrade Puppet Server on the masters before upgrading any agents. 
 
@@ -32,9 +32,9 @@ The `puppetserver` package depends on the `puppet-agent` package, and your node'
 
 > **Note**: If you pinned or held your Puppet packages to a specific version, remove the pins or holds before continuing. On systems that use `apt`, remove any special `.pref` files from `/etc/apt/preferences.d/` that pin Puppet packages, and use the `apt-mark unhold` command on each held package. For `yum` packages locked with the versionlock plugin, edit `/etc/yum/pluginconf.d/versionlock.list` and remove the Puppet lock.
 
-### Upgrade Puppet on agents
+### Upgrading Puppet on agents
 
-You should regularly upgrade Puppet on agents, and in most cases you shouldn't need to do anything to prepare for such upgrades.
+Regularly upgrading Puppet on agents helps ease the process when major updates are released, and in most cases you don't need to do anything to prepare for them.
 
 Read the [release notes](./release_notes.html) before upgrading to learn about changes that affect specific systems or workflows.
 
@@ -51,11 +51,13 @@ Read the [release notes](./release_notes.html) before upgrading to learn about c
    # yum update puppet-agent
    ```
 
-On Windows agents, follow the [installation guide](./install_windows.html) to upgrade installed Puppet packages. You do not need to uninstall Puppet first unless you're changing from 32-bit Puppet to the 64-bit version. Running 32-bit Puppet on 64-bit Windows is now deprecated, so you should update your Puppet's architecture to match your system.
+   On Windows agents:
 
-> **Note**: If you installed Puppet into a custom directory and are moving from a 32-bit version to a 64-bit version, you must specify the INSTALLDIR option and any other relevant MSI properties when re-installing.
+   Follow the [installation guide](./install_windows.html) to upgrade installed Puppet packages. You do not need to uninstall Puppet first unless you're changing from 32-bit Puppet to the 64-bit version. Running 32-bit Puppet on 64-bit Windows is now deprecated, so you should update your Puppet's architecture to match your system.
 
-### Upgrade PuppetDB
+   > **Note**: If you installed Puppet into a custom directory and are moving from a 32-bit version to a 64-bit version, you must specify the INSTALLDIR option and any other relevant MSI properties when re-installing.
+
+### Upgrading PuppetDB
 
 Upgrade PuppetDB nodes independently of masters and agents. 
 
