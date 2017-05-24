@@ -23,8 +23,6 @@ defaultnav:
   /es/pe/3.8: /_includes/es_pe38.html
   /ja: /ja/_ja_sidebar_generic.html
   /es/puppet: /_includes/_es_fallback_nav.html
-  /es/puppet/4.9: /_includes/_es_puppet_toc_49.html
-  /es/puppet/4.10: /_includes/_es_puppet_toc_410.html
   /ja: /ja/_ja_sidebar_generic.html
   /ja/guides/install_puppet: /_includes/ja_puppet_general.html
   /ja/learning: /_includes/ja_learning_nav.html
@@ -59,6 +57,7 @@ symlink_latest:
   - facter
   - pe
   - ja/pe
+  - es/puppet
 lock_latest:
   puppet: "4.10"
 
@@ -70,6 +69,7 @@ document_names:
   hiera: Hiera
   facter: Facter
   pe_ja: "Puppet Enterprise (日本語)"
+  puppet_es: "Puppet (español)"
 
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
@@ -306,7 +306,7 @@ documents:
       hiera: "3.3"
       puppetserver: "2.7"
       puppetdb: "4.4"
-      
+
   /ja/pe/2017.1:
     doc: pe_ja
     version: "2017.1"
@@ -457,6 +457,23 @@ documents:
     version: "0.24"
     nav: /_includes/puppet_0_24.html
     hide: true
+
+  /es/puppet/4.10:
+    doc: puppet_es
+    version: "4.10"
+    nav: /_includes/_es_puppet_toc_410.html
+    my_versions:
+      facter: "3.6"
+      hiera: "3.3"
+      puppetserver: "2.7"
+  /es/puppet/4.9:
+    doc: puppet_es
+    version: "4.9"
+    nav: /_includes/_es_puppet_toc_49.html
+    my_versions:
+      facter: "3.6"
+      hiera: "3.3"
+      puppetserver: "2.7"
 
   /facter/3.6:
     doc: facter
