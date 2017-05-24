@@ -43,10 +43,6 @@ externalsources:
     repo: git://github.com/puppetlabs/marionette-collective.git
     commit: origin/master
     subdirectory: website
-  /mcollective1.2:
-    repo: git://github.com/nfagerlund/marionette-collective.git
-    commit: origin/docs_1.2
-    subdirectory: website
 
 
 symlink_latest:
