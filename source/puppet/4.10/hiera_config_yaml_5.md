@@ -30,7 +30,8 @@ v5     | All three data layers         | The main version of hiera.yaml, which s
 [v4][] | Environment and module layers | Deprecated. A transitional format, used in the rough draft of Hiera 5 (when we were calling it "Puppet lookup"). Doesn't support custom backends.
 [v3][] | Global layer                  | Deprecated. The classic version of hiera.yaml, which has some problems.
 
-## Location of hiera.yaml {:.concept}
+{:.concept}
+## Location of hiera.yaml
 
 There are several `hiera.yaml` files in a normal deployment, because Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances.
 
@@ -44,6 +45,7 @@ Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/et
 
 > **Note:** You can change the location for the global layer with Puppet's `hiera_config` setting.
 
+{:.concept}
 ## Syntax
 
 hiera.yaml is a [YAML][] file, containing a hash with up to four top-level keys:
@@ -168,7 +170,8 @@ File paths are relative to the `datadir`: if the full datadir is `/etc/puppetlab
 
 Whichever approach you choose, most of your hierarchy levels should [interpolate][interpolation] variables into the path, since that's what makes Hiera useful. For more information about crafting useful hierarchies, see [How hierarchies work][hierarchy].
 
-#### Globs {:.section}
+{:.section}
+#### Globs
 
 Globs are implemented with [Ruby's `Dir.glob` method][dir.glob]. In short:
 
@@ -188,7 +191,8 @@ Example:
 ```
 {% endraw %}
 
-#### Mapped paths {:.section}
+{:.section}
+#### Mapped paths 
 
 The `mapped_paths` key must contain three string elements, in the following order:
 
