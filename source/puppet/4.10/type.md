@@ -38,9 +38,9 @@ _title_ of the resource.
 Example:
 
     file { '/etc/passwd':
-      owner => root,
-      group => root,
-      mode  => 644
+      owner => 'root',
+      group => 'root',
+      mode  => '0644',
     }
 
 In this code, `/etc/passwd` is the _title_ of the file resource; other Puppet
