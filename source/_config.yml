@@ -23,8 +23,6 @@ defaultnav:
   /es/pe/3.8: /_includes/es_pe38.html
   /ja: /ja/_ja_sidebar_generic.html
   /es/puppet: /_includes/_es_fallback_nav.html
-  /es/puppet/4.9: /_includes/_es_puppet_toc_49.html
-  /es/puppet/4.10: /_includes/_es_puppet_toc_410.html
   /ja: /ja/_ja_sidebar_generic.html
   /ja/guides/install_puppet: /_includes/ja_puppet_general.html
   /ja/learning: /_includes/ja_learning_nav.html
@@ -59,6 +57,7 @@ symlink_latest:
   - facter
   - pe
   - ja/pe
+  - es/puppet
 lock_latest:
   puppet: "4.10"
 
@@ -459,7 +458,7 @@ documents:
     nav: /_includes/puppet_0_24.html
     hide: true
 
-  /puppet/4.10:
+  /es/puppet/4.10:
     doc: puppet_es
     version: "4.10"
     nav: /_includes/_es_puppet_toc_410.html
@@ -467,7 +466,7 @@ documents:
       facter: "3.6"
       hiera: "3.3"
       puppetserver: "2.7"
-  /puppet/4.9:
+  /es/puppet/4.9:
     doc: puppet_es
     version: "4.9"
     nav: /_includes/_es_puppet_toc_49.html
