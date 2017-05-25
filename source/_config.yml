@@ -91,6 +91,23 @@ document_names:
 
 documents:
 
+
+  /pe/2017.3:
+    doc: pe
+    version: "2017.3"
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/hoyt
+      subdirectory: source
+    my_versions:
+      puppet: "4.10"
+      facter: "3.6"
+      hiera: "3.3"
+      puppetserver: "2.7"
+      puppetdb: "4.4"
+
+
   /pe/2017.2:
     doc: pe
     version: "2017.2"
