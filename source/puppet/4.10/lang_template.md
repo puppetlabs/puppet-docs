@@ -48,9 +48,8 @@ Embedded Ruby (ERB)   | `template` | `inline_template`
 
 You can put template files in the `templates` directory of a [module][]. EPP files should have the `.epp` extension, and ERB files should have the `.erb` extension.
 
-`template` function reference can be found here [https://docs.puppet.com/puppet/latest/function.html#template], and for `epp` [https://docs.puppet.com/puppet/latest/function.html#epp]
 
-To use a template file, evaluate it with the `template` (ERB) or `epp` function as follows:
+To use a template file, evaluate it with the [`template`](https://docs.puppet.com/puppet/latest/function.html#template) (ERB) or [`epp`](https://docs.puppet.com/puppet/latest/function.html#epp) function as follows:
 
 ``` puppet
 # epp(<FILE REFERENCE>, [<PARAMETER HASH>])
