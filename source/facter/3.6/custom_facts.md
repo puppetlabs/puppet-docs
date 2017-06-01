@@ -321,7 +321,7 @@ When running as a non-root / non-Administrator user:
 
     <HOME DIRECTORY>/.facter/facts.d/
 
-> **Note:** You can only use custom facts as a non-root user if you have first [configured non-root user access]({{pe}}/deploy_nonroot-agent.html).
+> **Note:** You can only use custom facts as a non-root user if you have first [configured non-root user access]({{pe}}/deploy_nonroot-agent.html) and previously run Puppet agent by that same user.
 
 ### Executable facts --- Unix
 
