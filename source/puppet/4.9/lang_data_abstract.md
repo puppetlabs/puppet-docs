@@ -213,7 +213,7 @@ Struct[{mode => Enum[read, write, update],
         path => Optional[String[1]]}]
 ```
 
-This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]`.
+This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]` or Undef.
 
 ``` puppet
 Struct[{mode            => Enum[read, write, update],
