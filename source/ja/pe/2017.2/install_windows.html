@@ -253,11 +253,6 @@ service { 'puppet':
 <p> Puppetとその従属物がインストールされる場所。
 </p>
 
-<blockquote>
-  <p> <strong>注意</strong>：32ビットOSでインストールする場合、32ビットPuppetを実行する必要があります。 64ビットOSでインストールする場合、 32ビットおよび64ビットのいずれのPuppetも実行できます。 ただし、Windows 2003でPuppetをインストールする場合、Windowsが64ビットバージョンでも、32ビットのPuppetをインストールする必要があります。
-</p>
-</blockquote>
-
 <p> <strong>デフォルト：</strong>
 </p>
 
@@ -274,17 +269,18 @@ service { 'puppet':
       <td><code>C:\Program Files\Puppet Labs\Puppet</code></td>
     </tr>
 <tr>
-<td>32ビット</td>
-      <td>64ビット</td>
-      <td><code>C:\Program Files (x86)\Puppet Labs\Puppet</code></td>
-    </tr>
-<tr>
 <td>64ビット</td>
       <td>64ビット</td>
       <td><code>C:\Program Files \Puppet Labs\Puppet</code></td>
     </tr>
 </tbody>
 </table>
+
+<blockquote>
+  <p> <strong>注意</strong>：32ビットPuppetを64ビットWindows上で実行することはサポート終了です。OSバージョンと一致するPuppetバージョンをインストールしてください。
+</p>
+</blockquote>
+
 <p> プログラムファイルディレクトリの関連情報については、以下の<strong>プログラムディレクトリ</strong>セクションを参照してください。
 </p>
 
@@ -430,24 +426,20 @@ service { 'puppet':
       <td><code>C:\Program Files\Puppet Labs\Puppet</code></td>
     </tr>
 <tr>
-<td>32ビット</td>
-      <td>64ビット</td>
-      <td><code>C:\Program Files (x86)\Puppet Labs\Puppet</code></td>
-    </tr>
-<tr>
 <td>64ビット</td>
       <td>64ビット</td>
       <td><code>C:\Program Files \Puppet Labs\Puppet</code></td>
     </tr>
 </tbody>
 </table>
-<p> <code>PROGRAMFILES</code>変数または<code>PROGRAMFILES(X86)</code>変数を使用して、Program Filesディレクトリのロケーションを決めることができます。 どの変数を使用するかは、上の表の「デフォルトのインストールパス」を参照してください。
-</p>
 
 <blockquote>
-  <p> <strong>注意</strong>：前述したように、32ビットOSでインストールする場合は、32ビットPuppetを実行する必要があります。 64ビットOSでインストールする場合、 32ビットおよび64ビットのいずれのPuppetも実行できます。
+  <p> <strong>注意</strong>：32ビットPuppetを64ビットWindows上で実行することはサポート終了です。OSバージョンと一致するPuppetバージョンをインストールしてください。
 </p>
 </blockquote>
+
+<p> <code>PROGRAMFILES</code>変数または<code>PROGRAMFILES(X86)</code>変数を使用して、Program Filesディレクトリのロケーションを決めることができます。 どの変数を使用するかは、上の表の「デフォルトのインストールパス」を参照してください。
+</p>
 
 <p> Puppetのプログラムディレクトリには、以下のサブディレクトリが含まれます。
 </p>
