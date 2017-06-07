@@ -5,9 +5,9 @@ canonical: "/pdk/pdk_get_started.html"
 description: "Getting started with the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-# PDK Getting Started Guide [TODO: maybe Getting started isn't the best title? Create a new module or something taskier?]
+# PDK Getting Started Guide [TODO: Jean, maybe Getting started isn't the best title? Create a new module or something taskier?]
  
-TODO Write a shortdesc here
+[TODO Jean write a shortdesc here]
  
 ## Create a new module
  
@@ -101,6 +101,7 @@ pdk validate
  
 This should return successfully (exit code 0) with no warnings or errors.
 [NOTE: Will provide an example when this features is ready]
+[TODO
  
 ## Run Unit Tests on module
  
