@@ -25,7 +25,17 @@ Released June 13, 2017.
 * [Fixed in Puppet 4.10.2]()
 * [Introduced in Puppet 4.10.2]()
 
-This is a bug fix release included in Puppet agent 1.10.2.
+This is a bug fix release included in Puppet agent 1.10.2, that also includes two new deprecations for Puppet.
+
+### Deprecations
+
+#### Automatic string to numeric conversions deprecated
+
+Puppet's automatic string to numeric coercion now outputs a warning if `--strict` is set to `warning` or `error` whenever an automatic conversion is triggered directly by logic in a manifest, such as conversions performed by functions, or the runtime in general does not generate warnings. If you get a warning for something like `$numstr + 0` change your logic to any numeric, an integer, or a float (`Numeric($numstr), Integer($numstr), Float($numstr)`) depending on the expectations of the produced value. ([PUP-1795](https://tickets.puppetlabs.com/browse/PUP-1795))
+
+#### Virtual classes trigger warnings or errors
+
+Attempts to use `@class` or `@@class` to create virtual or exported classes were previously silently ignored. The attempted use now triggers either a warning or an error depending on the level you have set for `--strict`. ([PUP-1606](https://tickets.puppetlabs.com/browse/PUP-1606))
 
 ### Bug fixes
 
