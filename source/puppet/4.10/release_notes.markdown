@@ -18,18 +18,6 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
-## Puppet 4.10.2
-
-Released
-
-* [Fixed in Puppet 4.10.2]()
-* [Introduced in Puppet 4.10.2]()
-
-### Bug fixes
-
-* [PUP-7594](https://tickets.puppetlabs.com/browse/PUP-7594): In Puppet 4.9 and greater, a regression converted integer or float keys in Hiera data to strings. The intended behavior was to filter out Ruby Symbol keys. Integer and Float keys in hashes now work as they should.
-
-
 ## Puppet 4.10.1
 
 Released May 11, 2017.
