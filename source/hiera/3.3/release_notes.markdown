@@ -9,6 +9,16 @@ title: "Hiera 3.3: Release Notes"
 
 {% partial ./_hiera_deprecation.md %}
 
+## Hiera 3.3.2
+
+Released June 13, 2017.
+
+This is a minor bug fix version of Hiera that ships with Puppet agent 1.10.2 and does not affect users.
+
+* [Fixed in Hiera 3.3.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.3.2%27)
+* [Introduced in Hiera 3.3.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.3.2%27)
+
+
 ## Hiera 3.3.1
 
 Released March 9, 2017. 
@@ -27,6 +37,6 @@ Released February 1, 2017.
 
 This version of Hiera ships with [Puppet agent 1.9.0][]. Hiera 5, a successor of the experimental Puppet lookup feature is built into Puppet 4.9, and uses the classic Hiera 3.3 codebase. You can learn more about Hiera 5 in the [Puppet 4.9 release notes][].
 
-* [Fixed in Hiera 3.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.3.0%27)
-* [Introduced in Hiera 3.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.3.0%27)
+* [Fixed in Hiera 3.3.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.3.0%27)
+* [Introduced in Hiera 3.3.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.3.0%27)
 
