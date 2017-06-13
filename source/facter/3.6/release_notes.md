@@ -5,11 +5,25 @@ title: "Facter 3.6 Release notes"
 
 This page documents the history of the Facter 3.6 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
 
+## Facter 3.6.5
+
+Released June 12, 2017.
+
+This is a minor bug fix release that shipped with Puppet agent 1.10.2.
+
+* [Fixed in Facter 3.6.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.6.5%27)
+* [Introduced in Facter 3.6.5](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.6.5%27)
+
+### Bug fixes
+
+* [FACT-1627](https://tickets.puppetlabs.com/browse/FACT-1627): Facter computes more accurate version information for AIX.
+* [FACT-1610](https://tickets.puppetlabs.com/browse/FACT-1610): Facter correctly handles AIX volume groups that have been inherited from AIX 4 versions.
+
 ## Facter 3.6.4
 
 Released May 11, 2017.
 
-Shipped with Puppet agent 1.10.1. This is a minor bug fix release, and the remaining issues to do not affect users.
+Shipped with Puppet agent 1.10.1. This is a minor bug fix release, and most issues contained in it to do not affect users.
 
 * [Fixed in Facter 3.6.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27FACT%203.6.4%27)
 * [Introduced in Facter 3.6.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27FACT+3.6.4%27)
