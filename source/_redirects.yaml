@@ -182,3 +182,10 @@
   was: config_file_hiera.html
   became: hiera_config_yaml_5.html
   at_version: 4.9
+
+# Reconcile duplicate Windows troubleshooting pages in Flanders
+- in_doc: pe
+  was: troubleshooting_windows.html
+  became: trouble_windows.html
+  at_version: 2017.1
+  forward_only: true
