@@ -22,7 +22,7 @@ following order:
    `<MODULE NAME>::<SOMETHING>`.
 
 
->**Note**: Hiera always checks the [global layer][] before the [environment layer][]. If no global hiera.yaml file has been configured, Hiera defaults are used. If you don't want it to use the defaults, you can create an empty v5 hiera.yaml in `/etc/puppetlabs/puppet/data/`.
+>**Note**: Hiera always checks the [global layer][] before the [environment layer][]. If no global hiera.yaml file has been configured, Hiera defaults are used. If you don't want it to use the defaults, you can create an empty hiera.yaml in `/etc/puppetlabs/puppet/data/`.
 
 
 ## Arguments
