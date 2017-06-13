@@ -5,6 +5,9 @@ canonical: "/pdk/pdk_install.html"
 description: "Installing the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
+
+**Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
+
 Download and install the Puppet Development Kit to get started developing and testing Puppet modules.
 
 {:.concept}
@@ -16,16 +19,16 @@ Specifically, the package includes:
 [TODO: what exactly gets installed when you install the PDK package?]
 [TODO: are we versioning this? what versions of things are included in this version?] [TODO: When do we update the PDK package and how do users get updates?]
 
-[TODO: Jean, make a table]
+Tool   | Description      | Version
+----------------|:---------------:|:------------------:|-------------------------
+pdk | Command line tool for doing stuff [TODO: like what stuff]    | <# cell data #>
+rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalogue of Puppet resources.    | <# cell data #>
+puppet-lint | Checks your Puppet code against the recommendations in the Puppet Language style guide    | <# cell data #>
+puppet-syntax | Checks for correct syntax in Puppet manifests, templates, and Hiera YAML.    | <# cell data #>
+metadata-json-lint | Validates and lints metadata.json files in Puppet modules against style guidelines from the Puppet module metadata recommendations.    | <# cell data #>
+rspec-puppet-facts | Adds a method for running rspec-puppet tests against the facts for your supported operating systems.    | <# cell data #>
+puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code. | <# cell data #>
 
-* the pdk command line tool
-* rspec-puppet
-* puppet-lint
-* puppet-syntax
-* metadata-json-lint
-* rspec-puppet-facts
-* puppetlabs_spec_helper
-* A complete module skeleton
 
 PDK [TODO are we versioning this?] is supported on: [TODO: update this table when support is finalized. These platforms are taken from [SDK-28](https://tickets.puppetlabs.com/browse/SDK-28) and describe the preliminary platform support goals. Due to the scoping constraints, the platforms may include as little as Red Hat, Ubuntu, OS X, and Windows only.]
 
@@ -51,59 +54,56 @@ Before you begin [TODO: prereqs TK]:
 * prereq
 * prereq
 
-[TODO are we assuming they already have Puppet installed? Do they need Puppet installed on the workstation they are coding from?]
-
-
-### Preinstall on Linux
-
-Enable the package repository to your respective Linux platform: Like this... https://docs.puppet.com/puppet/3.8/install_debian_ubuntu.html#step-1-enable-the-puppet-package-repository
-
-The exact url may change, but the steps/concept shouldnt.
+[TODO are we assuming they already have Puppet installed? Do they need Puppet installed on the workstation they are working on?]
 
 
 ## Preinstall tasks
 
-[TK] This should be a list of stuff that the user needs to do before they can install PDK. For example, enabling the repository (if applicable).
+[TK] This should be a list of stuff that the user needs to do before they can install PDK, IF this is the appropriate place for such instructions. For example, enabling the repository (if applicable).
 
-For Linux:
-1) Enable the package repository to your respective Linux platform: Like this... https://docs.puppet.com/puppet/3.8/install_debian_ubuntu.html#step-1-enable-the-puppet-package-repository
+### On Linux
+Enable the package repository to your respective Linux platform. 
 
-The exact url may change, but the steps/concept shouldnt.
+[TODO: add information like this... https://docs.puppet.com/puppet/3.8/install_debian_ubuntu.html#step-1-enable-the-puppet-package-repository
+
+The exact url may change, but the steps/concept shouldnt.]
+
+### Windows Platforms
+
+[TODO: ANYTHING NEEDED?]
 
 
-### Install PDK on Linux-based or OS X
- 
-### Windows Platforms:
+## Install PDK
 
-
-### Install PDK
-
-For installation instructions, 
-1. Figure out what platform you are on.
-2. Download the correct package for your platform.
-3. Do the thing to install.
+Download the appropriate Puppet Development Kit package for your platform and install it.
 
 [TODO: I don't know yet how similar these tasks will be, but I assume they will need to be separate topics.]
 
-To install the PDK, determine what platform it is going to be installed on: Windows, OS X, Red Hat, Ubuntu, etc.
+TODO [Reference](https://docs.puppet.com/puppet/4.10/install_linux.html)
 
+TODO: Do our users need to do Step 1 from the above referenced page (highlighted text below? If so, for Linux only? Linux + OS X?)
 
-## Installation steps
- 
-### On Linux-based systems [Reference](https://docs.puppet.com/puppet/4.10/install_linux.html)
-Yum – sudo yum install puppet-pdk
-Apt – sudo apt-get install puppet-pdk
+>Confirm that you can run Puppet executables.
+>
+>The location for Puppet’s executables is /opt/puppetlabs/bin/, which is not in your PATH environment variable by default.
+>
+>The executable path doesn’t matter for Puppet services — for instance, service puppet start works regardless of the PATH — but if you’re running interactive puppet commands, you must either add their location to your PATH or execute them using their full path.
+>
+>To quickly add the executable location to your PATH for your current terminal session, use the command export PATH=/opt/puppetlabs/bin:$PATH. You can also add this location wherever you configure your PATH, such as your .profile or .bashrc configuration files.
+>
+>For more information, see details about files and directories moved in Puppet 4.
 
-2) Install PDK
+### On Linux-based systems 
 
-This is where the respective linux platform install commands will need to be differentiated.
+1. Install the `puppet-pdk` package on your [TODO: where do they need to install pdk? the machine they are working on only? other machines?] Puppet agent nodes using the command appropriate to your system:
 
-e.g. sudo apt-get install puppet-pdk or sudo yum install puppet-pdk
+   * Apt: `sudo apt-get install puppet-pdk`
+   * Yum: `sudo yum install puppet-pdk`
 
-For Windows/OSX:
+### On OS X
 
-1) Download the pkg or msi
-2) double-click to install
+1. Download the PDK package from [TODO link to the puppet-pdk package for OS X on the Puppet downloads site](downloads.puppetlabs.com).
+2. Double click on the downloaded package to install.
 
 ### On Windows
 

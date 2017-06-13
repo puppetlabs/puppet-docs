@@ -5,6 +5,8 @@ canonical: "/pdk/pdk_get_started.html"
 description: "Getting started with the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
+**Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
+
 # PDK Getting Started Guide [TODO: Jean, maybe Getting started isn't the best title? Create a new module or something taskier?]
  
 [TODO Jean write a shortdesc here]
