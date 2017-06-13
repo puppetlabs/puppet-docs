@@ -3,6 +3,10 @@ title: "Hiera: Using the lookup function"
 ---
 
 
+[global layer]: ./hiera_layers.html#the-global-layer
+[environment layer]: ./hiera_layers.html#the-environment-layer
+
+
 
 The `lookup` function uses Hiera to retrieve a value for a given key. By default,
 this returns the first value found (and fails compilation if no values are
@@ -16,6 +20,10 @@ following order:
 2. The current environment's data provider.
 3. The indicated module's data provider, if the key is of the form
    `<MODULE NAME>::<SOMETHING>`.
+
+
+>**Note**: Hiera always checks the [global layer][] before the [environment layer][]. If no global hiera.yaml file has been configured, Hiera defaults are used. If you don't want it to use the defaults, you can create an empty v5 hiera.yaml in `/etc/puppetlabs/puppet/data/`.
+
 
 ## Arguments
 
