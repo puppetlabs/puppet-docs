@@ -34,6 +34,14 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
 
+## Puppet agent 1.10.3
+
+Released June 15, 2017.
+
+### Component updates
+
+This release only affects Puppet. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release includes Puppet 4.10.3, which resolves that issue.
+
 ## Puppet agent 1.10.2
 
 Released June 12, 2017.
