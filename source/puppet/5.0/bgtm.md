@@ -7,15 +7,18 @@ title: Beginner's guide to writing modules
 [anchor]: ./lang_containment.html#anchor-pattern-containment-for-compatibility-with-puppet--340
 
 
-This module guide will help you learn how to create fantastic modules by introducing module best practices [standards and architecture](./style_guide.html). Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
+Learn how to create fantastic modules by introducing module best practices [standards and architecture](./style_guide.html).
 
-## Requirements
+Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
-Before reading this guide we recommend that you become familiar with Puppet such that you have a basic understanding of the Puppet [language](./lang_summary.html), you know what constitutes a [class](./lang_classes.html), and you know how to put together a [basic module](./modules_fundamentals.html).
+Before you begin, you should be familiar with Puppet such that you have a basic understanding of the Puppet [language](./lang_summary.html), you know what constitutes a [class](./lang_classes.html), and you know how to put together a [basic module](./modules_fundamentals.html).
 
+{:.concept}
 ## 1. Giving your module purpose
 
-Before you begin writing your module, you must define what it will do. Defining the range of your module's work helps you avoid accidentally creating a sprawling monster of a module that is unwieldy and difficult to work with. Your module should have one area of responsibility. For example, a good module addresses installing MySQL but **does not address** installing another program/service that requires MySQL.
+Before you begin writing your module, you must define what it will do.
+
+Defining the range of your module's work helps you avoid accidentally creating a sprawling monster of a module that is unwieldy and difficult to work with. Your module should have one area of responsibility. For example, a good module addresses installing MySQL but **does not address** installing another program/service that requires MySQL.
 
 To help plan your module appropriately, ask yourself some questions:
 
@@ -29,6 +32,7 @@ It is standard practice for Puppet users to have upwards of 200 modules in their
 
 As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppet.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [puppetlabs/postgresql](http://forge.puppet.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the puppetdb module needs to manipulate puppet.conf in order to operate PuppetDB. Instead of having the puppetdb module handle it internally, the author took advantage of the [puppetlabs/inifile](http://forge.puppet.com/puppetlabs/inifile) module to enable puppetdb to make only the required edits to puppet.conf.
 
+{:.concept}
 ## 2. Structuring your module
 
 The ideal module manages a single piece of software from installation through setup, configuration, and service management.
@@ -44,9 +48,10 @@ This section covers:
 
 To demonstrate a real-world best practices standard module, we will walk through the structure of the [puppetlabs/ntp](http://forge.puppet.com/puppetlabs/ntp) module.
 
+{:.section}
 ### 2a. Class design
 
-Module development follows a similar principle as software development: good software is built of small, easily tested components. A good module is comprised of small, self-contained classes that each do only one thing. Classes within a module are similar to functions in programming, using parameters to perform related steps that create a coherent whole.
+A good module is comprised of small, self-contained classes that each do only one thing. Classes within a module are similar to functions in programming, using parameters to perform related steps that create a coherent whole.
 
 In general, the best practice naming convention is that the file must be named the same as the class or definition that is contained within (with the sole exception of the [main class](#module)), and classes must be named after their function.
 
@@ -165,13 +170,18 @@ class ntp::service inherits ntp {
 }
 ```
 
+{:.section}
 ### 2b. Parameters
 
-Parameters form the public API of your module. They are the most important interface you expose, and you should take care to balance to the number and variety of parameters so that users can customize their interactions with the module. Below, we walk through best practices for naming and developing parameters.
+Parameters form the public API of your module.
+
+They are the most important interface you expose, and you should take care to balance to the number and variety of parameters so that users can customize their interactions with the module. Below, we walk through best practices for naming and developing parameters.
 
 #### Naming parameters
 
-Naming consistency is imperative for community comprehension and assists in troubleshooting and collaborating on module development. Best practices recommend the pattern of `thing_property` for naming parameters.
+Naming consistency is imperative for community comprehension and assists in troubleshooting and collaborating on module development.
+
+Best practices recommend the pattern of `thing_property` for naming parameters.
 
 For example, in the `ntp` module
 
@@ -203,9 +213,12 @@ Avoid adding parameters that allow you to override templates. When your paramete
 
 For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppet.com/puppetlabs/apache).
 
+{:.section}
 ### 2c. Ordering
 
-Best practice is to base all order-related dependencies (such as `require` and `before`) on classes rather than resources. Class-based ordering allows you to shield the implementation details of each class from the other classes. For example:
+Best practice is to base all order-related dependencies (such as `require` and `before`) on classes rather than resources. Class-based ordering allows you to shield the implementation details of each class from the other classes.
+
+For example:
 
 ``` ruby
     file { 'configuration':
@@ -235,16 +248,21 @@ contain ntp::install
 
 Containment is supported in Puppet 3.4 and later. To support versions prior to Puppet 3.4 (or Puppet Enterprise 3.2), you must use the [anchor pattern][anchor] to hold those classes in place. Anchoring requires [puppetlabs-stdlib](http://forge.puppet.com/puppetlabs/stdlib).
 
+{:.section}
 ### 2d. Dependencies
 
 If your module's functionality depends on another module, then you must list these dependencies and include them directly.
 
 This means you must `include x` in the main class to ensure the dependency is included in the catalog. You must also add the dependency to the module's [metadata.json](./style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by rspec to pull in dependencies required to successfully run unit tests.)
 
+{:.concept}
 ## Testing your module
 
-Congratulations! You have written a module that accomplishes a task; has appropriate names, classes, and parameters; is ordered correctly; and that lists its dependencies. Now you must ensure that the module works in a variety of conditions, and that the options and parameters of your module work together to an appropriate end result. We have several testing frameworks available to help you write unit and acceptance tests.
+Ensure that the module works in a variety of conditions, and that the options and parameters of your module work together to an appropriate end result.
 
+We recommend several testing frameworks available to help you write unit and acceptance tests.
+
+{:.section}
 ### rspec-puppet
 
 RSpec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing. You can write tests, as in the below example, to test that aspects of your module work as intended.
@@ -253,21 +271,29 @@ RSpec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to a
 it { should contain_file('configuration') }
 ````
 
-RSpec lets you provide facts, like `osfamily`, in order to test the module in various scenarios. A typical use is iteration over a list of operating systems, asserting that the package and service should exist in the catalog for every operating system we support.
+RSpec lets you provide facts, like `osfamily`, in order to test the module in various scenarios.
+
+A typical use of RSpec is to iterate over a list of operating systems, asserting that the package and service should exist in the catalog for every operating system your module supports.
 
 You can read more at [http://rspec-puppet.com/](http://rspec-puppet.com/).
 
+{:.section}
 ### puppetlabs-spec-helper
 
-The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) is a gem that automates some of the tasks required to test modules. It's particularly useful in conjunction with rspec-puppet. Puppet-spec-helper provides default rake tasks that allow you to standardize testing across modules, and it provides some glue code between rspec-puppet and actual modules. Usually, you only need to add it to the Gemfile of the project, and then add the following the to the Rakefile:
+The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) is a gem that automates some of the tasks required to test modules.
+
+It's particularly useful in conjunction with rspec-puppet. Puppet-spec-helper provides default rake tasks that allow you to standardize testing across modules, and it provides some glue code between rspec-puppet and actual modules. Usually, you only need to add it to the Gemfile of the project, and then add the following the to the Rakefile:
 
 ```
 require 'puppetlabs_spec_helper/rake_tasks'
 ```
 
+{:.section}
 ### Beaker-rspec
 
-[Beaker-rspec](https://github.com/puppetlabs/beaker-rspec) is an acceptance/integration testing framework that provisions one or more virtual machines on various hypervisors (such as [Vagrant](http://www.vagrantup.com/)) and then checks the result of applying your Puppet module in a realistic environment.
+[Beaker-rspec](https://github.com/puppetlabs/beaker-rspec) is an acceptance/integration testing framework.
+
+It provisions one or more virtual machines on various hypervisors (such as [Vagrant](http://www.vagrantup.com/)) and then checks the result of applying your Puppet module in a realistic environment.
 
 #### serverspec
 
@@ -279,23 +305,35 @@ require 'puppetlabs_spec_helper/rake_tasks'
 
 It then knows how to translate `be_running` into shell commands for different distributions.
 
+{:.concept}
 ## Versioning your module
 
-Modules, like any other piece of software, must be versioned and released when changes are made. We use and recommend using [SemVer 1.0.0](http://semver.org/spec/v1.0.0.html). It sets out specific rules for when to increment major and minor versions.
+Modules, like any other piece of software, must be versioned and released when changes are made. We use and recommend semantic versioning, which sets out specific rules for when to increment major and minor versions.
 
 After you've decided on the new version number, you must increase the version number in the metadata.json.
 
 This allows you to create a list of dependencies in the metadata.json of your modules with specific versions of dependent modules, which ensures your module isn't used with an old dependency that won't work. Versioning also enables workflow management by allowing you to easily use different versions of modules in different environments.
 
+{:.concept}
 ## Documenting your module
 
-We recommend that you document your module with a README explaining how your module works and a Reference section detailing information about your module's classes, defined types, functions, and resource types and providers. For guidance, see our modules documentation [guide](./modules_documentation.html)and the [documentation](./style_guide.html#module-documentation) section of the Puppet Language Style Guide.
+We recommend that you document your module with a README explaining how your module works and a Reference section detailing information about your module's classes, defined types, functions, and resource types and providers.
 
+For guidance, see our modules documentation [guide](./modules_documentation.html)and the [documentation](./style_guide.html#module-documentation) section of the Puppet Language Style Guide.
+
+{:.concept}
 ## Releasing your module
 
-We encourage you to publish your modules on the [Puppet Forge](http://forge.puppet.com). Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules! Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module. If the Puppet community routinely releases and iterates on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Puppet Forge can be found [here](./modules_publishing.html).
+We encourage you to publish your modules on the [Puppet Forge](http://forge.puppet.com). 
 
+Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules.
+
+Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module. If the Puppet community routinely releases and iterates on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Puppet Forge can be found [here](./modules_publishing.html).
+
+{:.concept}
 ## Community Resources
+
+For beginning Puppet module authors, a variety of community resources are available.
 
 [All the module basics](./modules_fundamentals.html)
 

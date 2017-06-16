@@ -6,49 +6,58 @@ title: The Puppet Language Style Guide
 The Puppet Language Style Guide
 ===========
 
-#### Metadata
-
-Puppet: Version 4.0+
-
 This style guide applies to Puppet 4 and later. Puppet 3 is no longer supported, but this style guide includes some Puppet 3 guidelines for those who need to maintain older code.
 
+{:.section}
 ## 1. Terminology
+
+Unless explicitly called out, everything discussed here applies specifically to Puppet (that is, Puppet modules, Puppet classes, etc.). The name 'Puppet' is not appended to every topic discussed.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC 2119](http://www.faqs.org/rfcs/rfc2119.html).
 
-Unless explicitly called out, everything discussed here applies specifically to Puppet (that is, Puppet modules, Puppet classes, etc.). The name 'Puppet' is not appended to every topic discussed.
-
+{:.section}
 ## 2. Purpose
 
 The purpose of this style guide is to promote consistent formatting in the Puppet Language, especially across modules, giving users and developers of Puppet modules a common pattern, design, and style to follow. Additionally, consistency in code and module structure makes continued development and contributions easier.
 
 We recommend using [puppet-lint](http://puppet-lint.com/) and [metadata-json-lint](https://github.com/voxpupuli/metadata-json-lint) within your module to check for compliance with the style guide.
 
+{:.section}
 ## 3. Guiding principles
 
-We can never cover every circumstance you might run into when developing Puppet code. When you need to make a judgement call, keep in mind these general principles:
+We can never cover every circumstance you might run into when developing Puppet code. When you need to make a judgement call, keep in mind a few general principles.
 
-1.  **Readability matters.**
-    
-    If you have to choose between two equal alternatives, pick the more readable one. This is subjective, but if you can read your own code three months from now, it's a great start. In particular, code that generates readable diffs is highly preferred.
+1. **Readability matters.**
+
+   If you have to choose between two equal alternatives, pick the more readable one. This is subjective, but if you can read your own code three months from now, it's a great start. In particular, code that generates readable diffs is highly preferred.
     
 2. **Scoping and simplicity are key.**
 
-    When in doubt, err on the side of simplicity. A module should contain related resources that enable it to accomplish a task. If you describe the function of your module and you find yourself using the word "and," consider splitting the module. You should have one goal, with all your classes and parameters focused on achieving it.
+   When in doubt, err on the side of simplicity. A module should contain related resources that enable it to accomplish a task. If you describe the function of your module and you find yourself using the word "and," consider splitting the module. You should have one goal, with all your classes and parameters focused on achieving it.
 
 3. **Your module is a piece of software.**
 
-    At least, you should treat it that way. When it comes to making decisions, choose the option that is easier to maintain in the long term.
+   At least, you should treat it that way. When it comes to making decisions, choose the option that is easier to maintain in the long term.
 
+{:.section}
 ## 4. Versioning
 
-Your module must be versioned. We recommend [SemVer](http://semver.org/spec/v1.0.0.html); meaning that for a version x.y.z., an increase in x indicates backwards incompatible changes or a complete rewrite, an increase in y indicates the non-breaking addition of new features, and an increase in z indicates non-breaking bug fixes. 
+Your module must be versioned. We recommend semantic versioning.
 
+Semantic versioning, or [SemVer](http://semver.org), means that in a version number given as x.y.z:
+
+* An increase in 'x' indicates major changes: backwards incompatible changes or a complete rewrite.
+* An increase in 'y' indicates minor changes: the non-breaking addition of new features.
+* An increase in 'z' indicates a patch: non-breaking bug fixes.
+
+{:.section}
 ## 5. Spacing, indentation, and whitespace
 
-Module manifests:
+Module manifests should follow best practices for spacing, indentation, and whitespace.
+
+Manifests:
 
 * Must use two-space soft tabs,
 * Must not use literal tab characters,
@@ -138,9 +147,12 @@ service { 'foo':
 }
 ```
 
+{:.section}
 ## 6. Quoting
 
-* All strings must be enclosed in single quotes, unless the string:
+All strings must be enclosed in single quotes, with some exceptions.
+
+A string does not have to be in single quotes if it:
   * Contains variables.
   * Contains single quotes.
   * Contains escaped characters not supported by single-quoted strings.
@@ -183,6 +195,7 @@ Do not rely on unrecognized escaped characters as a method for including the bac
 
 Unicode character escapes using fewer than 4 hex digits, as in `\u040`, results in a backslash followed by the string `u040`. (This also causes a warning for the unrecognized escape.) To use a number of hex digits not equal to 4, use the longer `u{digits}` format.
 
+{:.section}
 ## 7. Comments
 
 Comments must be hash comments (`# This is a comment`), not `/* */` comments. Comments should explain the **why**, not the **how**, of your code.
@@ -205,6 +218,7 @@ file { '/etc/ntp.conf': ... }
 
 Documentation comments for Puppet Strings should be included for each of your classes, defined types, functions, and resource types and providers. See the [documentation section](#documenting-puppet-code) of this guide for complete documentation recommendations. If used, documentation comments must precede the name of the element.
 
+{:.section}
 ## 8. Module metadata
 
 Every module must have metadata defined in the metadata.json file.  Your metadata should follow the below format:
@@ -251,6 +265,7 @@ Hard dependencies must be declared explicitly in your module's metadata.json fil
 
 Your hard dependency declarations should not be unbounded.
 
+{:.section}
 ## 9. Resources
 
 ### 9.1. Resource names
@@ -1016,7 +1031,7 @@ class profile::myclass (
 
 ### 11.1. Class inheritance
 
-Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should only be used for params.pp, which is not recommended in Puppet 4.
+Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should be used only for params.pp, which is not recommended in Puppet 4.
 
 For maintaining older modules, inheritance can be used, but must not be used across module
 namespaces. Cross-module dependencies should be satisfied in a more portable way, such as with include statements or relationship declarations. Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic. 
