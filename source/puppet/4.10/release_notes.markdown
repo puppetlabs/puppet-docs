@@ -22,7 +22,7 @@ Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html)
 
 Released June 19, 2017.
 
-This is a single issue release to resolve a regression introduced in Puppet 4.10.3. Resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references.
+This is a single issue release to resolve a regression introduced in Puppet 4.10.3. Resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references. ([PUP-7671](https://tickets.puppetlabs.com/browse/PUP-7671))
 
 * [Fixed in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.4%27)
 * [Introduced in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.4%27)
