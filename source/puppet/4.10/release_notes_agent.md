@@ -34,6 +34,14 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
 
+## Puppet agent 1.10.4
+
+Released June 19, 2017.
+
+### Component updates
+
+This release only affects Puppet. A regression in Puppet 4.10.3 where resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references.
+
 ## Puppet agent 1.10.3
 
 Released June 15, 2017.
