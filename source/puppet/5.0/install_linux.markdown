@@ -56,22 +56,3 @@ Install the Puppet agent so that your master can communicate with your Linux nod
    2. Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
 
    As each Puppet agent runs for the first time, it submits a certificate signing request (CSR) to the CA Puppet master. You must log into that server to check for and sign certificates. After an agent's certificate is signed, it regularly fetches and applies configuration catalogs from the Puppet master.
-
-
-## About release packages
-
-Release packages configure your system to download and install appropriate versions of the `puppetserver` and [`puppet-agent`][] packages. These packages are grouped into a [Puppet Collection][] repository comprised of compatible versions of Puppet tools.
-
-{% include puppet-collections/_puppet_collections_intro.md %}
-
-{% include puppet-collections/_puppet_collection_1_contents.md %}
-
-Yum-based systems:
-
-{% include puppet-collections/_puppet_collection_1_yum.md %}
-
-> **Note:** We only provide the `puppet-agent` package for recent versions of Puppet on RHEL 5, and to install it you must first download the package as `rpm` on RHEL 5, as it doesn't support installing packages from a URL.
-
-Apt-based systems:
-
-{% include puppet-collections/_puppet_collection_1_apt.md %}

@@ -18,6 +18,16 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.3
+
+Released June 15, 2017.
+
+* [Fixed in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.3%27)
+* [Introduced in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.3%27)
+
+This is a minor bug fix release. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release resolves that issue. ([PUP-7658](https://tickets.puppetlabs.com/browse/PUP-7658))
+
+
 ## Puppet 4.10.2
 
 Released June 13, 2017.
@@ -26,6 +36,8 @@ Released June 13, 2017.
 * [Introduced in Puppet 4.10.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.2%27)
 
 This is a bug fix release included in Puppet agent 1.10.2, that also includes two new deprecations for Puppet.
+
+>Note: There is a known issue with this release when using ampersands in custom facts. You can revert back to 4.10.1, or upgrade to 4.10.3.
 
 ### Deprecations
 
