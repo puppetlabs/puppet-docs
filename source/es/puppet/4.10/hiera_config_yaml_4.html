@@ -109,7 +109,7 @@ hierarchy:
 </ul>
 <h2 id="changes-to-version-4-for-hiera-5">Cambios en la versión 4 de Hiera 5</h2>
 
-<p> En el Puppet lookup experimental, Tuviste que usar un ajuste para habilitar Hiera: para entornos que tenías que configurar <code>environment_data_provider = hiera</code> En environment.conf o puppet.conf, y para los módulos que tenía que configurar<code>"data_provider":"hiera"</code>en metadata.json.
+<p> En el Puppet lookup experimental, Tuviste que usar un ajuste para habilitar Hiera: para entornos que tenías que configurar <code>environment_data_provider = hiera</code> En environment.conf o puppet.conf, y para los módulos que tenía que configurar<code>"data_provider":"hiera"</code> en metadata.json.
 </p>
 
 <p> Eso ya no es necesario. A partir de Puppet 4.9, Puppet habilita automáticamente Hiera para un módulo o entorno si existe un archivo hiera.yaml presente. Esto funciona para los archivos v4 y v5 hiera.yaml.
