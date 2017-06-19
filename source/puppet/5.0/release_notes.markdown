@@ -36,3 +36,4 @@ We've added a dedicated known issues page to the open source Puppet documentatio
 
 * [PUP-7594](https://tickets.puppetlabs.com/browse/PUP-7594): In Puppet 4.9 and greater, a regression converted integer or float keys in Hiera data to strings. The intended behavior was to filter out Ruby Symbol keys. Integer and Float keys in hashes now work as they should.
 
+* [PUP-7608](https://tickets.puppetlabs.com/browse/PUP-7608) In Hiera, when performing a lookup with merge strategy `unique` on an array value, the array could contain duplicates if it was never merged with another array during the lookup. Now this is fixed so that a lookup with `unique` merge always results in a unique set of values.
