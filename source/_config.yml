@@ -93,7 +93,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/glisan
+      commit: origin/pe2017.2.2
       subdirectory: source
     my_versions:
       puppet: "4.10"
@@ -138,7 +138,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.5
+      commit: origin/pe2016.4.6
       subdirectory: source
     my_versions:
       puppet: "4.10"
