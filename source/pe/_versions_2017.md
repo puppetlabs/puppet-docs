@@ -15,6 +15,8 @@
   </tbody>
 </table>
 
+> **Note:** Beginning with the Puppet 4.9.0 release, Hiera is fully integrated into Puppet. 
+
 ### Server components
 
 <table>
