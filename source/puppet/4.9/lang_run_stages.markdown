@@ -53,6 +53,6 @@ The above example will ensure that the `apt-keys` class happens before all other
 * In order to assign a class to a stage, you **must** use the [resource-like][resourcelike] class declaration syntax and supply the stage explicitly. You **cannot** assign classes to stages with the `include` function, or by relying on automatic parameter lookup from hiera while using [resource-like][resourcelike] class declarations.
 * You cannot subscribe to or notify resources across a stage boundary.
 * Classes that [contain][containment] other classes (with either the `contain` function or the anchor pattern) can sometimes behave badly if declared with a run stage --- if the contained class is **only** declared by its container, it will work fine, but if it is also declared anywhere outside its container, it will often create a dependency cycle that will prevent the involved classes from being applied.
-* `stage` resources are *parse-order dependent*. This means that all run stages must be declared before Puppet parses any manifest code that uses them by assigning a class to a run stage.
+* `stage` resources are *evaluation-order dependent*. This means that all run stages must be declared before Puppet evaluates any manifest code that references them.
 
 Due to these limitations, **stages should only be used with the simplest of classes,** and only when absolutely necessary. Mass dependencies like package repositories are effectively the only valid use case.
