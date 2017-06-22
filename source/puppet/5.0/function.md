@@ -2492,6 +2492,34 @@ $combine = $data.reduce( [d, 4] ) |$memo, $value| {
 # At the start of the lambda's first iteration, $memo contains [d, 4] and $value
 # contains [a, 1].
 # $combine contains [dabc, 10]
+
+# Reduce a hash of hashes $data, merging defaults into the inner hashes.
+$data = {
+  'connection1' => {
+    'username' => 'user1',
+    'password' => 'pass1',
+  },
+  'connection_name2' => {
+    'username' => 'user2',
+    'password' => 'pass2',
+  },
+}
+
+$defaults = {
+  'maxActive' => '20',
+  'maxWait'   => '10000',
+  'username'  => 'defaultuser',
+  'password'  => 'defaultpass',
+}
+
+$merged = $data.reduce( {} ) |$memo, $x| {
+  $memo + { $x[0] => $defaults + $data[$x[0]] }
+}
+# At the start of the lambda's first iteration, $memo is set to {}, and $x is set to
+# the first [key, value] tuple. The key in $data is, therefore, given by $x[0]. In
+# subsequent rounds, $memo retains the value returned by the expression, i.e.
+# $memo + { $x[0] => $defaults + $data[$x[0]] }.
+
 ~~~
 
 - Since 4.0.0
