@@ -13,13 +13,13 @@ Most of the content here applies equally to Puppet Enterprise and open source re
 
 Practically speaking, Puppet is a collection of several projects. Here's the documentation for all of the major components that make up a Puppet deployment:
 
-Component     | Latest                             | Other versions
---------------|------------------------------------|--------------------------------------------
-Puppet        | [Latest](/puppet/latest)           | [Other versions](#puppet-reference-manuals)
-Puppet Server | [Latest](/puppetserver/latest)     | [Other versions](/puppetserver)
-Facter        | [Latest](/facter/latest)           | [Other versions](/facter)
-Hiera         | [Latest](/hiera/latest)            | [Other versions](/hiera)
-PuppetDB      | [Latest](/puppetdb/latest)         | [Other versions](/puppetdb)
+Component     | Latest                                     | Other versions
+--------------|--------------------------------------------|--------------------------------------------
+Puppet        | [Latest](/puppet/latest)                   | [Other versions](#puppet-reference-manuals)
+Puppet Server | [Latest](/puppetserver/latest)             | [Other versions](/puppetserver)
+Facter        | [Latest](/facter/latest)                   | [Other versions](/facter)
+Hiera         | [Latest](/puppet/latest/hiera_intro.html)  | [Other versions](/hiera)
+PuppetDB      | [Latest](/puppetdb/latest)                 | [Other versions](/puppetdb)
 
 
 * * *
