@@ -471,6 +471,11 @@ documents:
       hiera: "3.3"
       puppetserver: "2.7"
 
+  /facter/3.7:
+    doc: facter
+    version: "3.7"
+    nav: ./_facter_toc.html
+    hide: true                    #REMOVE AT PLATFORM 5 RELEASE!
   /facter/3.6:
     doc: facter
     version: "3.6"
