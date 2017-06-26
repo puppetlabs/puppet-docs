@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 3.x to 4.x: Upgrade Puppet Server and PuppetDB"
+title: "Puppet 3.8 to 5: Upgrade Puppet Server and PuppetDB"
 ---
 
 [moved]: ./whered_it_go.html
@@ -48,15 +48,15 @@ Repeat the following steps for each Puppet Server until you're running a pure Pu
 
 ### Install the latest Puppet Server
 
-Starting with Puppet 4, our software releases are grouped into **Puppet Collections**.
+Our software releases are grouped into the Puppet Platform.
 
-To upgrade Puppet Server, you'll need to add the Puppet Collection repository to each node's package manager. Follow the [Puppet Server installation instructions]({{puppetserver}}/install_from_packages.html) to [enable the Puppet Collection 1 repository](./puppet_collections.html) and install the `puppetserver` package.
+To upgrade Puppet Server, you'll need to add the Puppet Platform repository to each node's package manager. Follow the [Puppet Server installation instructions]({{puppetserver}}/install_from_packages.html) to [enable the Puppet Platform repository](./puppet_platform.html) and install the `puppetserver` package.
 
 Even after you've installed the package, **don't start the `puppetserver` service yet**! You should do a few other things first.
 
 ### Get familiar with the new binary locations
 
-In Puppet 4, we [moved][] all of Puppet's binaries on \*nix systems. They are now at `/opt/puppetlabs/bin`, which isn't in your system's `PATH` by default. You should do one of the following :
+In Puppet 4, we [moved][] all of Puppet's binaries on \*nix systems. They are now at `/opt/puppetlabs/bin`, which isn't in your system's `PATH` by default. You should do one of the following:
 
 * Add `/opt/puppetlabs/bin` to your `PATH` environment variable. There are lots of ways to accomplish this---do whatever works best for you.
 * Symlink all the binaries you use into a directory in your path.
