@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 3.x to 4.x agent upgrades"
+title: "Puppet 4.x to 5.x agent upgrades"
 ---
 
 [Hiera]: /hiera/
@@ -8,7 +8,7 @@ title: "Puppet 3.x to 4.x agent upgrades"
 [puppet_agent]: https://forge.puppetlabs.com/puppetlabs/puppet_agent
 [moved]: ./whered_it_go.html
 [facter]: /facter/
-[Puppet Collection]: ./puppet_collections.md
+[Puppet Platform]: ./puppet_platform.md
 
 Although there are a lot of changes to Puppet agent configuration in Puppet 4, the process of upgrading agents can be automated in a way that server upgrades can't.
 
@@ -28,7 +28,7 @@ Although there are a lot of changes to Puppet agent configuration in Puppet 4, t
 
 The `puppet_agent` module does the following things for you:
 
-- Enables the [Puppet Collection][] 1 (PC1) repository, if applicable.
+- Enables the [Puppet Platform][] repository, if applicable.
 - Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][], and [MCollective][].
 - Copies Puppet's SSL files to their new location.
 - Copies your old `puppet.conf` to Puppet 4's [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
