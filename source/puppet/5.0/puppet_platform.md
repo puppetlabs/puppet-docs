@@ -136,9 +136,9 @@ While the [`puppet-agent` package](./about_agent.html) is the only component of 
 
 To download `puppet-agent` for Puppet Platform 5:
 
-* [10.12 Sierra](https://downloads.puppetlabs.com/mac/10.12/puppet5/x86_64/)
-* [10.11 El Capitan](https://downloads.puppetlabs.com/mac/10.11/puppet5/x86_64/)
-* [10.10 Yosemite](https://downloads.puppetlabs.com/mac/10.10/puppet5/x86_64/)
+* [10.12 Sierra](https://downloads.puppetlabs.com/mac/puppet5/10.12/x86_64/)
+* [10.11 El Capitan](https://downloads.puppetlabs.com/mac/puppet5/10.11/x86_64/)
+* [10.10 Yosemite](https://downloads.puppetlabs.com/mac/puppet5/10.10/x86_64/)
 
 
 ## Verifying Puppet packages
