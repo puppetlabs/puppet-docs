@@ -56,7 +56,7 @@ symlink_latest:
   - es/puppet
 lock_latest:
   puppet: "4.10"
-  facter: "3.7"
+  facter: "3.6"
 
 document_names:
   pe: Puppet Enterprise
