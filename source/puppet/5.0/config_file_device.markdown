@@ -43,11 +43,11 @@ For Cisco devices, the `url` is in the following format:
 
 with:
 
-* scheme: either 'ssh' or 'telnet'
+* scheme: either `ssh` or `telnet`
 
 * user: optional connection username, depending on the device configuration
 
 * password: connection password
 
-* query: optional '?enable=' parameter whose value is the enable password
+* query: optional `?enable=` parameter whose value is the enable password
 
