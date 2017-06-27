@@ -14,7 +14,7 @@ Contributors to this guide have spent years creating Puppet modules, falling int
 Before you begin, you should be familiar with Puppet such that you have a basic understanding of the Puppet [language](./lang_summary.html), you know what constitutes a [class](./lang_classes.html), and you know how to put together a [basic module](./modules_fundamentals.html).
 
 {:.concept}
-## 1. Giving your module purpose
+## Giving your module purpose
 
 Before you begin writing your module, you must define what it will do.
 
@@ -33,7 +33,7 @@ It is standard practice for Puppet users to have upwards of 200 modules in their
 As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppet.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [puppetlabs/postgresql](http://forge.puppet.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the puppetdb module needs to manipulate puppet.conf in order to operate PuppetDB. Instead of having the puppetdb module handle it internally, the author took advantage of the [puppetlabs/inifile](http://forge.puppet.com/puppetlabs/inifile) module to enable puppetdb to make only the required edits to puppet.conf.
 
 {:.concept}
-## 2. Structuring your module
+## Structuring your module
 
 The ideal module manages a single piece of software from installation through setup, configuration, and service management.
 
@@ -48,8 +48,8 @@ This section covers:
 
 To demonstrate a real-world best practices standard module, we will walk through the structure of the [puppetlabs/ntp](http://forge.puppet.com/puppetlabs/ntp) module.
 
-{:.section}
-### 2a. Class design
+{:.concept}
+### Class design
 
 A good module is comprised of small, self-contained classes that each do only one thing. Classes within a module are similar to functions in programming, using parameters to perform related steps that create a coherent whole.
 
@@ -59,6 +59,7 @@ In terms of class structure we recommend the following (more detail below):
 
 ![module class structure][structure]
 
+{:.section}
 #### `module`
 
 The main class of any module must share the name of the module and be located in the `init.pp` file. The name and location of the main module class is extremely important, as it guides the [autoloader](./lang_namespaces.html#autoloader-behavior) behavior. The main class of a module is its interface point and ought to be the only parameterized class if possible. Limiting the parameterized classes to just the main class allows you to control usage of the entire module with the inclusion of a single class. This class should provide sensible defaults so that a user can get going with `include module`.
@@ -82,6 +83,7 @@ class ntp (
  ...
 ```
 
+{:.section}
 #### `module::install`
 
 The install class must be located in the `install.pp` file. It should contain all of the resources related to getting the software that the module manages onto the node.
@@ -102,6 +104,7 @@ class ntp::install inherits ntp {
 }
 ```
 
+{:.section}
 #### `module::config`
 
 The resources related to configuring the installed software should be placed in a config class. The config class must be named `module::config` and must be located in the `config.pp` file.
@@ -143,6 +146,7 @@ class ntp::config inherits ntp {
 ...
 ```
 
+{:.section}
 #### `module::service`
 
 The remaining service resources, and anything else related to the running state of the software, should be contained in the service class. The service class must be named `module::service` and must be located in the `service.pp` file.
@@ -170,13 +174,14 @@ class ntp::service inherits ntp {
 }
 ```
 
-{:.section}
-### 2b. Parameters
+{:.concept}
+### Parameters
 
 Parameters form the public API of your module.
 
 They are the most important interface you expose, and you should take care to balance to the number and variety of parameters so that users can customize their interactions with the module. Below, we walk through best practices for naming and developing parameters.
 
+{:.section}
 #### Naming parameters
 
 Naming consistency is imperative for community comprehension and assists in troubleshooting and collaborating on module development.
@@ -203,6 +208,7 @@ If you have a parameter that toggles an entire function on and off, the naming c
 
 Consistent naming across modules helps with the readability and usability of your code.
 
+{:.section}
 #### Number of parameters
 
 To maximize the usability of your module, make it flexible by adding parameters. Parameters enable users to customize their use of your module.
@@ -213,8 +219,8 @@ Avoid adding parameters that allow you to override templates. When your paramete
 
 For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppet.com/puppetlabs/apache).
 
-{:.section}
-### 2c. Ordering
+{:.concept}
+### Ordering
 
 Best practice is to base all order-related dependencies (such as `require` and `before`) on classes rather than resources. Class-based ordering allows you to shield the implementation details of each class from the other classes.
 
@@ -229,6 +235,7 @@ For example:
 
 Rather than making a `require` to several packages, the above ordering allows you to refactor and improve `module::install` without adjusting the manifests of other classes to match the changes.
 
+{:.section}
 #### Containment and anchoring
 
 To allow other modules to form ordering relationships with your module, ensure that your main classes explicitly _contain_ any subordinate classes they declare.
@@ -248,8 +255,8 @@ contain ntp::install
 
 Containment is supported in Puppet 3.4 and later. To support versions prior to Puppet 3.4 (or Puppet Enterprise 3.2), you must use the [anchor pattern][anchor] to hold those classes in place. Anchoring requires [puppetlabs-stdlib](http://forge.puppet.com/puppetlabs/stdlib).
 
-{:.section}
-### 2d. Dependencies
+{:.concept}
+### Dependencies
 
 If your module's functionality depends on another module, then you must list these dependencies and include them directly.
 
@@ -262,7 +269,7 @@ Ensure that the module works in a variety of conditions, and that the options an
 
 We recommend several testing frameworks available to help you write unit and acceptance tests.
 
-{:.section}
+{:.concept}
 ### rspec-puppet
 
 RSpec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing. You can write tests, as in the below example, to test that aspects of your module work as intended.
@@ -277,7 +284,7 @@ A typical use of RSpec is to iterate over a list of operating systems, asserting
 
 You can read more at [http://rspec-puppet.com/](http://rspec-puppet.com/).
 
-{:.section}
+{:.concept}
 ### puppetlabs-spec-helper
 
 The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) is a gem that automates some of the tasks required to test modules.
@@ -288,13 +295,14 @@ It's particularly useful in conjunction with rspec-puppet. Puppet-spec-helper pr
 require 'puppetlabs_spec_helper/rake_tasks'
 ```
 
-{:.section}
+{:.concept}
 ### Beaker-rspec
 
 [Beaker-rspec](https://github.com/puppetlabs/beaker-rspec) is an acceptance/integration testing framework.
 
 It provisions one or more virtual machines on various hypervisors (such as [Vagrant](http://www.vagrantup.com/)) and then checks the result of applying your Puppet module in a realistic environment.
 
+{:.section}
 #### serverspec
 
 [Serverspec](http://serverspec.org/) provides additional testing constructs (such as `be_running` and `be_installed`) for beaker-rspec. It allows you to abstract away details of the underlying distribution when testing. It lets you write tests like:
@@ -335,7 +343,7 @@ Additionally, publishing your modules to the Forge helps foster community among 
 
 For beginning Puppet module authors, a variety of community resources are available.
 
-[All the module basics](./modules_fundamentals.html)
+[Module basics](./modules_fundamentals.html)
 
 [Puppet Language Style Guide](./style_guide.html)
 
@@ -344,5 +352,4 @@ For beginning Puppet module authors, a variety of community resources are availa
 The [puppet-users mailing list](https://groups.google.com/forum/#!forum/puppet-users)
 
 `#puppet` on IRC
-
 
