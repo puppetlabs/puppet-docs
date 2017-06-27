@@ -200,6 +200,124 @@ We've added a dedicated known issues page to the open source Puppet documentatio
 
 ### Bug fixes
 
+These issues were resolved in Puppet 5.0.0.
+
 * [PUP-7594](https://tickets.puppetlabs.com/browse/PUP-7594): In Puppet 4.9 and greater, a regression converted integer or float keys in Hiera data to strings. The intended behavior was to filter out Ruby Symbol keys. Integer and Float keys in hashes now work as they should.
 
-* [PUP-7608](https://tickets.puppetlabs.com/browse/PUP-7608) In Hiera, when performing a lookup with merge strategy `unique` on an array value, the array could contain duplicates if it was never merged with another array during the lookup. Now this is fixed so that a lookup with `unique` merge always results in a unique set of values.
+* [PUP-7608](https://tickets.puppetlabs.com/browse/PUP-7608): In Hiera, when performing a lookup with merge strategy `unique` on an array value, the array could contain duplicates if it was never merged with another array during the lookup. Now this is fixed so that a lookup with `unique` merge always results in a unique set of values.
+
+* [PUP-6182](https://tickets.puppetlabs.com/browse/PUP-6182):
+
+* [PUP-3552](https://tickets.puppetlabs.com/browse/PUP-3552):
+
+* [PUP-3478](https://tickets.puppetlabs.com/browse/PUP-3478):
+
+* [PUP-3170](https://tickets.puppetlabs.com/browse/PUP-3170):
+
+* [PUP-3042](https://tickets.puppetlabs.com/browse/PUP-3042):
+
+* [PUP-2280](https://tickets.puppetlabs.com/browse/PUP-2280):
+
+* [PUP-1723](https://tickets.puppetlabs.com/browse/PUP-1723):
+
+* [PUP-1890](https://tickets.puppetlabs.com/browse/PUP-1890):
+
+* [PUP-1441](https://tickets.puppetlabs.com/browse/PUP-1441):
+
+* [PUP-25](https://tickets.puppetlabs.com/browse/PUP-25):
+
+* [PUP-7554](https://tickets.puppetlabs.com/browse/PUP-7554):
+ 
+* [PUP-7478](https://tickets.puppetlabs.com/browse/PUP-7478):
+ 
+* [PUP-7485](https://tickets.puppetlabs.com/browse/PUP-7485):
+ 
+* [PUP-7529](https://tickets.puppetlabs.com/browse/PUP-7529):
+ 
+* [PUP-7475](https://tickets.puppetlabs.com/browse/PUP-7475):
+ 
+* [PUP-7492](https://tickets.puppetlabs.com/browse/PUP-7492):
+ 
+* [PUP-7464](https://tickets.puppetlabs.com/browse/PUP-7464):
+ 
+* [PUP-7514](https://tickets.puppetlabs.com/browse/PUP-7514):
+ 
+* [PUP-7465](https://tickets.puppetlabs.com/browse/PUP-7465):
+ 
+* [PUP-7660](https://tickets.puppetlabs.com/browse/PUP-7660):
+ 
+* [PUP-7650](https://tickets.puppetlabs.com/browse/PUP-7650):
+ 
+* [PUP-7627](https://tickets.puppetlabs.com/browse/PUP-7627):
+ 
+* [PUP-7625](https://tickets.puppetlabs.com/browse/PUP-7625):
+ 
+* [PUP-7616](https://tickets.puppetlabs.com/browse/PUP-7616):
+ 
+* [PUP-7436](https://tickets.puppetlabs.com/browse/PUP-7436):
+ 
+* [PUP-7402](https://tickets.puppetlabs.com/browse/PUP-7402):
+ 
+* [PUP-7382](https://tickets.puppetlabs.com/browse/PUP-7382):
+ 
+* [PUP-7381](https://tickets.puppetlabs.com/browse/PUP-7381):
+ 
+* [PUP-7437](https://tickets.puppetlabs.com/browse/PUP-7437):
+ 
+* [PUP-7431](https://tickets.puppetlabs.com/browse/PUP-7431):
+ 
+* [PUP-7329](https://tickets.puppetlabs.com/browse/PUP-7329):
+ 
+* [PUP-7258](https://tickets.puppetlabs.com/browse/PUP-7258):
+ 
+* [PUP-7256](https://tickets.puppetlabs.com/browse/PUP-7256):
+ 
+* [PUP-7198](https://tickets.puppetlabs.com/browse/PUP-7198):
+ 
+* [PUP-7110](https://tickets.puppetlabs.com/browse/PUP-7110):
+ 
+* [PUP-7130](https://tickets.puppetlabs.com/browse/PUP-7130):
+ 
+* [PUP-7155](https://tickets.puppetlabs.com/browse/PUP-7155):
+ 
+* [PUP-7073](https://tickets.puppetlabs.com/browse/PUP-7073):
+ 
+* [PUP-6984](https://tickets.puppetlabs.com/browse/PUP-6984):
+ 
+* [PUP-7063](https://tickets.puppetlabs.com/browse/PUP-7063):
+ 
+* [PUP-6930](https://tickets.puppetlabs.com/browse/PUP-6930):
+ 
+* [PUP-5973](https://tickets.puppetlabs.com/browse/PUP-5973):
+ 
+* [PUP-6660](https://tickets.puppetlabs.com/browse/PUP-6660):
+ 
+* [PUP-5659](https://tickets.puppetlabs.com/browse/PUP-5659):
+ 
+* [PUP-5635](https://tickets.puppetlabs.com/browse/PUP-5635):
+ 
+* [PUP-5479](https://tickets.puppetlabs.com/browse/PUP-5479):
+ 
+* [PUP-4283](https://tickets.puppetlabs.com/browse/PUP-4283):
+ 
+* [PUP-3940](https://tickets.puppetlabs.com/browse/PUP-3940):
+ 
+* [PUP-7674](https://tickets.puppetlabs.com/browse/PUP-7674):
+ 
+* [PUP-7671](https://tickets.puppetlabs.com/browse/PUP-7671):
+ 
+* [PUP-7611](https://tickets.puppetlabs.com/browse/PUP-7611):
+ 
+* [PUP-7587](https://tickets.puppetlabs.com/browse/PUP-7587):
+ 
+* [PUP-7579](https://tickets.puppetlabs.com/browse/PUP-7579):
+ 
+* [PUP-6596](https://tickets.puppetlabs.com/browse/PUP-6596):
+ 
+* [PUP-6517](https://tickets.puppetlabs.com/browse/PUP-6517):
+ 
+* [PUP-6264](https://tickets.puppetlabs.com/browse/PUP-6264):
+ 
+* [PUP-6368](https://tickets.puppetlabs.com/browse/PUP-6368):
+ 
+* [PUP-6367](https://tickets.puppetlabs.com/browse/PUP-6367):
