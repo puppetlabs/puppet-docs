@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 3.x to 4.x agent upgrades"
+title: "Puppet 3.8.x to 5.x agent upgrades"
 ---
 
 [Hiera]: /hiera/
@@ -8,13 +8,15 @@ title: "Puppet 3.x to 4.x agent upgrades"
 [puppet_agent]: https://forge.puppetlabs.com/puppetlabs/puppet_agent
 [moved]: ./whered_it_go.html
 [facter]: /facter/
-[Puppet Collection]: ./puppet_collections.md
+[Puppet Platform]: ./puppet_platform.md
 
-Although there are a lot of changes to Puppet agent configuration in Puppet 4, the process of upgrading agents can be automated in a way that server upgrades can't.
+Although there are a lot of changes to Puppet agent configuration from Puppet 3.8 to Puppet 4, the process of upgrading agents to Puppet 5 can be automated in a way that server upgrades can't.
 
 ### Decide how to upgrade your nodes
 
    We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 4.
+
+   >*Note:* This module has not yet been tested for upgrades to Puppet 5, but the process should be the same.
 
    If you're running Puppet on Windows or [any supported Linux operating system](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agents.
 
@@ -28,14 +30,12 @@ Although there are a lot of changes to Puppet agent configuration in Puppet 4, t
 
 The `puppet_agent` module does the following things for you:
 
-- Enables the [Puppet Collection][] 1 (PC1) repository, if applicable.
+- Enables the [Puppet Platform][] repository, if applicable.
 - Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][], and [MCollective][].
 - Copies Puppet's SSL files to their new location.
-- Copies your old `puppet.conf` to Puppet 4's [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
+- Copies your old `puppet.conf` to its [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
 - Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/mcollective/deploy/plugins.html) to the `libdir` setting.
 - Ensures the Puppet and MCollective services are running.
-
-The `puppet_agent` module is completely inert on nodes already running Puppet 4---its only purpose is to help you upgrade from Puppet 3.
 
 1. Install the module on Puppet servers.
 
@@ -45,7 +45,7 @@ The `puppet_agent` module is completely inert on nodes already running Puppet 4-
 
 2. Assign the `puppet_agent` class to nodes.
 
-   However you classify nodes --- whether in the [main mainfest](./dirs_manifest.html), with an [external node classifier](./nodes_external.html) or [Hiera][], or some other method --- classify your agents with `puppet_agent`.
+   However you classify nodes --- whether in the [main mainfest](./dirs_manifest.html), with an [external node classifier](./nodes_external.html), [Hiera][], or some other method --- classify your agents with `puppet_agent`.
 
    You can also [configure the module](https://forge.puppetlabs.com/puppetlabs/puppet_agent/readme#usage) to control which services start or to force a different architecture on Windows.
 
@@ -71,7 +71,7 @@ Find your operating system in the sidebar navigation to the left and follow the 
 
    Locate your [`ssldir`](./dirs_ssldir.html) in `/etc/puppet/puppet.conf` and move that directory's contents to `/etc/puppetlabs/puppet/ssl` without changing the files' permissions. For example, run `sudo cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl`.
 
-3. Reconcile `puppet.conf`.
+3. Reconcile `puppet.conf`
 
    On \*nix systems, we moved [`puppet.conf`](./config_file_main.html) from `/etc/puppet/puppet.conf` to `/etc/puppetlabs/puppet/puppet.conf`. Either edit the new `puppet.conf` file or copy your old version. (We didn't change `puppet.conf`'s location on Windows.)
 

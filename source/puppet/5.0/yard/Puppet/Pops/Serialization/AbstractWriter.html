@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::AbstractWriter
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -951,7 +951,7 @@ and, by using extensions, also</li>
   <span class='kw'>case</span> <span class='id identifier rubyid_value'>value</span>
   <span class='kw'>when</span> <span class='const'>Integer</span>
     <span class='comment'># not tabulated, but integers larger than 64-bit cannot be allowed.
-</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SerializationError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Integer out of bounds</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&gt;</span> <span class='const'>MAX_INTEGER</span> <span class='op'>||</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&lt;</span> <span class='const'>MIN_INTEGER</span>
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>SerializationError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Integer out of bounds</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&gt;</span> <span class='const'>MAX_INTEGER</span> <span class='op'>||</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&lt;</span> <span class='const'>MIN_INTEGER</span>
   <span class='kw'>when</span> <span class='const'>Numeric</span><span class='comma'>,</span> <span class='const'>Symbol</span><span class='comma'>,</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>NotTabulated</span><span class='comma'>,</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='kw'>nil</span>
     <span class='comment'># not tabulated
 </span>  <span class='kw'>else</span>
@@ -1101,9 +1101,9 @@ and, by using extensions, also</li>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:31 2017 by
+  Generated on Tue Jun 27 17:24:26 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

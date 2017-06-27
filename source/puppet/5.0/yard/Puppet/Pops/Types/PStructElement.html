@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PStructElement
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -117,6 +117,42 @@
 
 
 
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#replace_value_type-instance_method" title="#replace_value_type (instance method)">#<strong>replace_value_type</strong>(new_type)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Special boostrap method to overcome the hen and egg problem with the Object initializer that contains types that are derived from Object (such as Annotation).</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
 
   
   
@@ -142,13 +178,64 @@
   
   
   
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="replace_value_type-instance_method">
+  
+    #<strong>replace_value_type</strong>(new_type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Special boostrap method to overcome the hen and egg problem with the Object initializer that contains
+types that are derived from Object (such as Annotation)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1800
+1801
+1802</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1800</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_replace_value_type'>replace_value_type</span><span class='lparen'>(</span><span class='id identifier rubyid_new_type'>new_type</span><span class='rparen'>)</span>
+  <span class='ivar'>@value_type</span> <span class='op'>=</span> <span class='id identifier rubyid_new_type'>new_type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:20 2017 by
+  Generated on Tue Jun 27 17:24:17 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

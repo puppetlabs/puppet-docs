@@ -4,6 +4,6 @@ title: "Deprecated command line features"
 ---
 
 
-The following features of Puppet's command line interface are deprecated, and will be removed in Puppet 5.0.
+These features of Puppet's command line interface are deprecated in Puppet 5.0:
 
-No deprecations yet!
+* The system now behaves as if the setting `--trusted_server_facts` is always set to true, and the setting itself is deprecated but is still present; this to avoid errors for users having set it to true (which is now the default).

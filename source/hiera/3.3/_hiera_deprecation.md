@@ -1,4 +1,4 @@
-> **Important:** This is old documentation; read the new stuff instead.
+> ### **Important:** This is old documentation; read the new version instead.
 >
 > Puppet 4.9 and later use Hiera 5, and its documentation is in the Puppet reference manual. See the following pages for more info:
 >

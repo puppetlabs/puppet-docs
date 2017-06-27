@@ -4,9 +4,9 @@ _... wherein we discuss the innards of docs.puppetlabs.com_
 
 ## Elevator Pitch
 
-The Puppet Labs docs site is a collection of static HTML files generated from [Markdown][] source files and from Puppet itself. When we talk about the toolchain, we're talking about the collection of tools and services in use to generate the site then deploy it to the web servers for docs.puppetlabs.com. Among the things the toolchain provides:
+The Puppet docs site is a collection of static HTML files generated from [Markdown][] source files and from Puppet itself. When we talk about the toolchain, we're talking about the collection of tools and services in use to generate the site then deploy it to the web servers for docs.puppetlabs.com. Among the things the toolchain provides:
 
-- The HTML for the Puppet Labs docs site
+- The HTML for the Puppet docs site
 - References generated from inline documentation in Puppet itself
 - YARD developer documentation
 - PDFs of Puppet references
@@ -19,17 +19,17 @@ The Puppet Labs docs site is a collection of static HTML files generated from [M
 
 ### Git & Github
 
-The Puppet Labs docs repository lives on Github:
+The Puppet docs repository lives on Github:
 
 <https://github.com/puppetlabs/puppet-docs>
 
 #### Git Workflow
 
-For working with the puppet-docs repository from day to day, we recommend:
+For working with the puppet-docs repository from day to day:
 
-- Forking puppetlabs/puppet-docs
+- Fork puppetlabs/puppet-docs
 
-- Cloning your fork to your machine ("set up a local"):
+- Clone your fork to your machine ("set up a local remote"):
     `git clone git@github.com:#{your_github_username}/puppet-docs.git`
 
 - Designating puppetlabs/puppet-docs as your git upstream:
@@ -129,15 +129,11 @@ See the [Liquid wiki][] for a complete reference to Liquid functions (Liquid for
 
 #### YARD
 
-The Puppet Labs platform team recently adopted [YARD][] as its tool of choice for developer documentation in Puppet. Among YARD's featues:
+Among YARD's featues:
 
-- simple templating that allows developers to include and display useful metadata, such as whether a function is part of the public API
+- Simple templating that allows developers to include and display useful metadata, such as whether a function is part of the public API
 - Markdown support
-- the ability to provide a simple desktop documentation webserver with nothing more than a local copy of the Puppet repo
-
-Though YARD documentation is easily read via its built-in webserver, the Puppet docs site keeps a copy of YARD's generated output:
-
-<http://docs.puppetlabs.com/references/3.1.latest/developer/index.html>
+- The ability to provide a simple desktop documentation webserver with nothing more than a local copy of the Puppet repo
 
 ##### What do I need to know about this?
 
@@ -145,13 +141,13 @@ Though YARD documentation is easily read via its built-in webserver, the Puppet 
 
 **Toolsmiths:** There's room for improvement in the YARD templating, but that should be coordinated with the platform team's developers since YARD templating has to pull double duty, both for output on a desktop docs webserver and as part of the generated references.
 
-#### Puppet Documentation
+#### Puppet documentation
 
 Much Puppet code includes what are referred to as "doc strings," generally brief inline documentation made available via the `puppet doc` command. The Puppet docs site keeps a copy of Puppet's `puppet doc` output. The latest version is linked in the sidebar of the Puppet reference manual:
 
-<http://docs.puppetlabs.com/puppet/3/reference/>
+<http://docs.puppetlabs.com/puppet/latest>
 
-##### Editing Puppet Docs
+##### Editing Puppet docs
 
 To modify Puppet documentation, you need to:
 
@@ -160,7 +156,7 @@ To modify Puppet documentation, you need to:
 3. make your changes in a topic branch
 4. submit a pull request
 
-##### Revising Past Versions of Puppet Docs
+##### Revising past versions of Puppet docs
 
 Since we keep generated references for every patch release of Puppet, there will be times when you need to make a change to legacy generated references. Consult with developers on this, since you can't always be sure under which point or patch release a change was introduced. Generally speaking, making a change to the last patch release in a series (e.g. 2.7.21) is all that's required, since that in turn will be presented as the latest, canonical version of a given document.
 
@@ -172,7 +168,7 @@ ___WARNING: You should not regenerate references for older versions of these doc
 
 **Toolsmiths:** Puppet documentation can be crabby. Here are some things to look out for:
 
-- Clean loadpath: You should never have Puppet installed from Puppet-Labs-provided packages on a system that's generating documents unless you've got a sound plan for isolating the version of Ruby you're using to generate the docs from system Ruby libraries (e.g. rbenv or rvm).
+- Clean loadpath: You should never have Puppet installed from Puppet provided packages on a system that's generating documents unless you've got a sound plan for isolating the version of Ruby you're using to generate the docs from system Ruby libraries (e.g. rbenv or rvm).
 - ActiveRecord: A few parts of Puppet have declared dependencies on ActiveRecord but do not actually use it and will not raise an error if ActiveRecord isn't present (Puppet 3 or later). If generated reference pages come up blank, doublecheck for ActiveRecord.
 
 
@@ -180,71 +176,7 @@ ___WARNING: You should not regenerate references for older versions of these doc
 
 Eventually, once the site is deployed to the servers, it's served by Apache, although it could be served by more or less anything.
 
-In production, the Apache virtual host file is managed by a Puppet module in the puppetlabs-modules repo. This is a private repository only accessible to Puppet Labs employees.
-
-If you need to do redirects from one page to another within the docs.puppetlabs.com domain, where by "you" we mean "us," edit the puppetlabs-modules/site/profile/manifests/web/static/docs.pp file. (This file changed in early August, 2014, when Ops refactored our web stack to use Nginx. As of Aug 8, it's in the nginx_next branch, but it will get merged to production very soon.)
-
-If you need to do redirects from the wiki, edit the puppetlabs-modules/dist/redmine/templates/vhost-redmine-unicorn.nginx.erb file. WATCH OUT, because there's another file that looks nearly identical but is not used.
-
-## Linkchecker
-
-Linkchecker is a python app that does what it says on the tin. It's not a mandatory part of the toolchain, but it's nice to run once in a while and catch the inevitable link rot. You can install it with macports by running sudo port install linkchecker, not sure if there's another good way to install it.
-
-The docs for linkchecker are a little bit crap, and some of its behavior isn't clear, but here's what I've managed to nail down:
-
-### Neuter the templates, then generate the site
-
-All our templates include these conditional stylesheet links for IE that cause linkchecker to stop reading the file as soon as they reach them. So you have to delete them in each _layouts/something.html file, then restore them when you're done with the whole process.
-
-    <!--[if IE 7]>
-	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
-    <![endif]-->
-
-    <!--[if IE 8]>
-	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
-    <![endif]-->
-
-Then generate the site with rake generate.
-
-### Make a ~/.linkchecker/linkcheckerrc file, or edit it if it exists
-
-You want the ignorewarnings line to look like this:
-
-ignorewarnings=url-content-duplicate,http-moved-permanent
-
-This prevents a bunch of noise I'm having to wrestle with right now.
-
-### Make sure you're serving the site locally with apache... or something
-
-This thing spins up like 100 threads to do http requests, so the little webrick server made by "rake serve" is a no-go.
-
-And since we use domain-less links all over the place, the site doesn't quite work as local files, so it has to be served by something. Hmm, maybe nginx would make this go faster. :/
-
-#### OH WAIT, HOLD ON
-
-It looks like the config file allows a localwebroot setting for checking absolute URLs in local files?
-
-localwebroot=/Users/nick/puppet-docs/output/
-
-YES, set that and do a local check.
-
-### Limit your command
-
-As far as I can tell, the default behavior is to recurse infinitely on the domain you provide, and go one step outwards on links to other domains. This gets INSSSAAANNNNEEE, but I don't know what a safe recursion limit is for catching all the links. I guess it only takes six degrees to reach Kevin Bacon, so maybe peg it at 6 and see what happens? Anyway, this time I left it at infinite, but blocked anything outside the local area and didn't recurse into any /references/ links.
-
-    linkchecker --anchors --ignore-url='^(?!file:///)' --no-follow-url='^file:///Users/nick/Documents/puppet-docs/output/references/' /Users/nick/Documents/puppet-docs/output/
-
-That one above is using the local filesystem, which is so much faster OMG. What I was doing before was using the local apache server:
-
-    linkchecker --anchors --ignore-url='^(?!http://docs.magpie)' --no-follow-url='docs.magpie.lan/references/' http://docs.magpie.lan
-
-If we wanted to set a recursion limit, it'd be `-r 6` or whatever.
-
-Oh, and we're using the `--anchors` flag because anchors matter on our internal links.
-
-### Also
-
-I've experienced with doing things like -r 0 or -r 1 and giving it a file glob, with the hope that that would make it slurp every file and be faster because it's not recursing, and it didn't work. Good thought, though.
+In production, the Apache virtual host file is managed by a Puppet module in a private Puppet repo.
 
 ## Working With the Toolchain
 
@@ -295,7 +227,7 @@ The content for the docs site lives in the `_source` directory of the puppet-doc
 
 ### Generating the Docs
 
-Generating the Puppet docs site using the Rakefile in the top of the docs repo. The
+Generating the Puppet docs site using the Rakefile in the top of the docs repo.
 
 #### The core site
 
@@ -305,7 +237,7 @@ If all you need to do is regenerate the docs site to reflect changes you've made
 
 `$ cd puppet-docs`
 `$ rake generate`
-`$ rake preview`
+`$ rake serve`
 
 Visit `http://localhost:9292` to review your changes.
 
@@ -324,23 +256,11 @@ Look at the `:generate` task in the Rakefile. For the mcollective and PuppetDB d
 
 #### Generated References/YARD Docs
 
-__Rake command:__ `VERSION=3.1.1 rake references`
+__Rake command:__ `rake references`
 
-The generated references and YARD docs are produced from inline documentation in Puppet.  You need to regenerate these with each patch release of Puppet. Once the references are generated, the new files will need to be added to the repo and committed. The new files are located under `_source/references`.
+The generated references and YARD docs are produced from inline documentation in Puppet. You need to regenerate these with each patch release of Puppet. Once the references are generated, the new files will need to be added to the repo and committed. The new files are located under `_source/references`.
 
 **WARNING:** Sometimes we have to go back and make corrections to existing generated references. Please do not regenerate older references or those corrections will likely be overwritten.
-
-##### What do I need to know about this?
-
-**Day-to-day:** You shouldn't have Puppet, Hiera or Facter packages installed on your system because there's a good chance they'll cause the generated documentation to be incorrect. You should either have Puppet installed via a gem or use it from a clone of the repository.
-
-**Toolsmith:** The rake task for references calls `lib/puppet_docs/reference.rb`, which does some stuff to clean out the Ruby loadpath, check out captive versions of Puppet, Facter and Hiera, and then use the captive Puppet to generate the references.
-
-### Deploying
-
-__Rake command:__ `rake deploy` generates the site and deploys it to the docs.puppetlabs.com server.
-
-For this command to work, you should generate an ssh key and make sure operations has included it for use with the mirror0 and mirror1 servers.
 
 ## Navigation, Templating, Pages
 
@@ -358,12 +278,6 @@ In addition to the basic templates, there are also two error pages in the `sourc
 
 - **general_404.html**, a 404 page with links to commonly sought items across the docs site
 - **versioned_404.html**, a 404 page that helps users find their way to current versions of older docs
-
-If you want to introduce new error pages for more than not-found errors, or if you decide to designate a different file altogether, you'll need to visit the Puppet Labs `puppetlabs-modules` repo:
-
-<https://github.com/puppetlabs/puppetlabs-modules/>
-
-and edit `production/site/puppetlabs/templates/docs_vhost.erb`. Please do this by forking `puppetlabs-modules`, creating a topic branch, and submitting a pull request.
 
 ### Navigation
 
@@ -419,12 +333,6 @@ Version notes can optionally include a `<p class="noisy">`, which will make the 
 [Puppet contribution guidelines]: https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md
 [Jekyll]: https://github.com/mojombo/jekyll
 [Liquid wiki]: https://github.com/Shopify/liquid/wiki
-<!--
-##### What do I need to know about this?
 
-**Day-to-day:**
-
-**Toolsmith:**
--->
 
 

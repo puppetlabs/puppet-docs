@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: Puppet Man Pages
 canonical: "/puppet/latest/man/index.html"
 ---
@@ -51,12 +51,9 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 - [puppet certificate_request](./certificate_request.html)
 - [puppet certificate_revocation_list](./certificate_revocation_list.html)
 - [puppet facts](./facts.html)
-- [puppet file](./file.html)
 - [puppet filebucket](./filebucket.html)
-- [puppet inspect](./inspect.html)
 - [puppet key](./key.html)
 - [puppet report](./report.html)
-- [puppet resource_type](./resource_type.html)
 - [puppet status](./status.html)
 
 

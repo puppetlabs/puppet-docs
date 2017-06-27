@@ -18,14 +18,23 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.4
+
+Released June 19, 2017.
+
+This is a single issue release to resolve a regression introduced in Puppet 4.10.3. Resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references. ([PUP-7671](https://tickets.puppetlabs.com/browse/PUP-7671))
+
+* [Fixed in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.4%27)
+* [Introduced in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.4%27)
+
 ## Puppet 4.10.3
 
 Released June 15, 2017.
 
+This is a minor bug fix release. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release resolves that issue. ([PUP-7658](https://tickets.puppetlabs.com/browse/PUP-7658))
+
 * [Fixed in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.3%27)
 * [Introduced in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.3%27)
-
-This is a minor bug fix release. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release resolves that issue. ([PUP-7658](https://tickets.puppetlabs.com/browse/PUP-7658))
 
 
 ## Puppet 4.10.2
@@ -37,7 +46,7 @@ Released June 13, 2017.
 
 This is a bug fix release included in Puppet agent 1.10.2, that also includes two new deprecations for Puppet.
 
->Note: There is a known issue with this release when using ampersands in custom facts. You can revert back to 4.10.1, or upgrade to 4.10.3.
+>Note: There is a known issue with this release when using ampersands in custom facts. You can revert back to 4.10.1, or upgrade to 4.10.4.
 
 ### Deprecations
 

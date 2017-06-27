@@ -3,9 +3,9 @@ layout: default
 title: "Deprecated language features"
 ---
 
-The following features of the Puppet language are deprecated, and will be removed in a future Puppet version.
+These features of the Puppet language are deprecated in Puppet 5.0.
 
-## Several Hiera 3.x features
+## Hiera 3.x features
 
 [hiera_functions]: ./hiera_use_hiera_functions.html
 [v3]: ./hiera_config_yaml_3.html
@@ -18,7 +18,7 @@ The following features of the Puppet language are deprecated, and will be remove
 [lookup_command]: ./man/lookup.html
 [backend_3]: {{hiera}}/custom_backends.html
 
-The following Hiera features are deprecated, since we replaced them with improved equivalents in [Hiera 5](./hiera_intro.html). They'll be removed in Puppet 6.
+These Hiera features are deprecated, because we replaced them with improved equivalents in [Hiera 5](./hiera_intro.html).
 
 Old feature | Replacement
 ------------|------------
@@ -31,23 +31,13 @@ The `calling_module`, `calling_class`, and `calling_class_path` pseudo-variables
 
 ## Non-strict variables
 
-#### Now
-
 By default, you can access the value of a variable that was never assigned. The value of an unassigned variable is `undef`.
 
-If you set the `strict_variables` setting to true, Puppet will instead raise an error if you try to access an unassigned variable.
+If you set the `strict_variables` setting to `true`, Puppet raises an error if you try to access an unassigned variable.
 
-#### In Puppet 5.0
-
-The `strict_variables` setting will be removed, and Puppet will always raise an error for accessing unassigned variables.
-
-#### Detecting and updating
-
-Enable `strict_variables` on your Puppet master, run as normal for a while, and look for compilation errors.
+**To update:** Enable `strict_variables` on your Puppet master, run as normal, and look for compilation errors.
 
 ## Automatic symbolic links for `ensure` values in `file` resources
-
-#### Now
 
 Puppet doesn't validate the value of the [`ensure` attribute in `file` resources](/puppet/latest/reference/type.html#file-attribute-ensure). If the value is not `present`, `absent`, `file`, `directory`, or `link`, Puppet treats the value as an arbitrary path and creates a symbolic link to that path.
 
@@ -84,10 +74,4 @@ $ sudo ls -la /etc/inetd.conf
 lrwxrwxrwx 1 root root 10 Nov  9 20:53 /etc/inetd.conf -> filer
 ```
 
-#### In Puppet 5.0
-
-This behavior will be removed. If the value of `ensure` isn't one of its allowed values, the Puppet run will fail with an error instead of attempting to create a symlink.
-
-#### Detecting and updating
-
-Confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.
+**To update:** Confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.

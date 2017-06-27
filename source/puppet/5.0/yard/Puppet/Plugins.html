@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Plugins
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -62,7 +62,7 @@
       <div id="content"><h1>Module: Puppet::Plugins
   
   
-  
+  <span class="private note title">Private</span>
 </h1>
 <div class="box_info">
   
@@ -79,7 +79,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/puppet/plugins.rb<span class="defines">,<br />
-  lib/puppet/plugins/data_providers.rb</span>
+  lib/puppet/plugins/configuration.rb,<br /> lib/puppet/plugins/syntax_checkers.rb</span>
 </dd>
   </dl>
   
@@ -87,42 +87,22 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>The Puppet Plugins module defines extension points where plugins can be configured
-to add or modify puppet&#39;s behavior. See the respective classes in this module for more
-details.</p>
+    <p class="note private">
+  <strong>This module is part of a private API.</strong>
+  You should avoid using this module if possible, as it may be removed or be changed in the future.
+</p>
+<p>Configures the Puppet Plugins, by registering extension points
+and default implementations.</p>
+
+<p>See the respective configured services for more information.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Since:</p>
-<ul class="since">
-  
-    <li>
-      
-      
-      
-      
-        
-        <div class='inline'><p>Puppet 4.0.0</p>
+
 </div>
-      
-    </li>
-  
-</ul>
-
-</div><h2>Defined Under Namespace</h2>
-<p class="children">
-  
-    
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Plugins/DataProviders.html" title="Puppet::Plugins::DataProviders (module)">DataProviders</a></span>
-    
-  
-    
-  
-</p>
-
 
 
 
@@ -134,9 +114,9 @@ details.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Tue Jun 27 17:24:08 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

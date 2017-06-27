@@ -6,7 +6,7 @@
 <title>
   File: CONTRIBUTING
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -136,6 +136,26 @@ fix/master/my_contribution master</code>. Please avoid working directly on the
 <li>Run <em>all</em> the tests to assure nothing else was accidentally broken.</li>
 </ul>
 
+<h2>Writing Translatable Code</h2>
+
+<p>We use <a href="https://github.com/puppetlabs/gettext-setup-gem">gettext tooling</a> to
+extract user-facing strings and pull in translations based on the user&#39;s locale
+at runtime. In order for this tooling to work, all user-facing strings must be
+wrapped in the <code>_()</code> translation function, so they can be extracted into files
+for the translators.</p>
+
+<p>When adding user-facing strings to your work, follow these guidelines:</p>
+
+<ul>
+<li>Use full sentences. Strings built up out of concatenated bits are hard to translate.</li>
+<li>Use string formatting instead of interpolation.
+Ex. <code>_(&#39;Creating new user %{name}.&#39;) % { name: user.name }</code></li>
+<li>Use <code>n_()</code> for pluralization. (see gettext gem docs linked above for details)</li>
+</ul>
+
+<p>It is the responsibility of contributors and code reviewers to ensure that all
+user-facing strings are marked in new PRs before merging.</p>
+
 <h2>Making Trivial Changes</h2>
 
 <h3>Documentation</h3>
@@ -221,9 +241,9 @@ be resolved within one business day.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Tue Jun 27 17:24:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

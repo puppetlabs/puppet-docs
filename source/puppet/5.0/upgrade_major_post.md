@@ -1,15 +1,15 @@
 ---
 layout: default
-title: "Puppet 3.x to 4.x: Post-upgrade clean-up"
+title: "Puppet 3.8.x to 5.x: Post-upgrade clean-up"
 ---
 
 [moved]: ./whered_it_go.html
 
-After upgrading, you should do a few more things to make Puppet 4 easier to maintain.
+After upgrading, you should do a few more things to make Puppet easier to maintain.
 
 ## Reconfigure systems that use Puppet's data
 
-Puppet 4 [changes the locations of many configuration files][moved]. If you have any other systems that reuse Puppet's SSL credentials, configuration data, or generated data, point them to the new directories.
+Puppet 4 [changed the locations of many configuration files][moved]. If you have any other systems that reuse Puppet's SSL credentials, configuration data, or generated data, point them to the new directories.
 
 ## Update backup jobs
 
@@ -25,4 +25,4 @@ If you set the [`parser`](/puppet/3.8/reference/config_file_environment.html#par
 
 ## Unassign `puppet_agent` class from nodes
 
-The [`puppet_agent` module](https://forge.puppetlabs.com/puppetlabs/puppet_agent) doesn't affect nodes running Puppet 4, and you can unassign it from all nodes after your entire Puppet infrastructure is upgraded.
+The [`puppet_agent` module](https://forge.puppetlabs.com/puppetlabs/puppet_agent) doesn't affect nodes running Puppet >=4, and you can unassign it from all nodes after your entire Puppet infrastructure is upgraded.

@@ -6,7 +6,6 @@ title: "Installing Puppet agent: macOS"
 [server_install]: {{puppetserver}}/install_from_packages.html
 [where]: ./whered_it_go.html
 [agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
-[Puppet Collection]: ./puppet_collections.html
 
 These instructions cover installing Puppet agent on macOS machines.
 

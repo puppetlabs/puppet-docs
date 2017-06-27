@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Where did everything go in Puppet 4.x?"
+title: "File location changes since Puppet 3.8.x"
 ---
 
 

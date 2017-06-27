@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500
 
 package
 -----
@@ -661,7 +661,7 @@ Notes:
 Package management using pkgin, a binary package manager for pkgsrc.
 
 * Required binaries: `pkgin`.
-* Default for `operatingsystem` == `dragonfly, smartos, netbsd`.
+* Default for `operatingsystem` == `smartos, netbsd`.
 * Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgng">pkgng</h4>
@@ -669,7 +669,7 @@ Package management using pkgin, a binary package manager for pkgsrc.
 A PkgNG provider for FreeBSD and DragonFly.
 
 * Required binaries: `/usr/local/sbin/pkg`.
-* Default for `operatingsystem` == `freebsd`.
+* Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgutil">pkgutil</h4>
@@ -683,9 +683,13 @@ Package management using Peter Bonivart's ``pkgutil`` command on Solaris.
 
 Provides packaging support for Gentoo's portage system.
 
-* Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`.
+This provider supports the `install_options` and `uninstall_options` attributes, which allows command-line
+flags to be passed to emerge.  These options should be specified as a string (e.g. '--flag'), a hash
+(e.g. {'--flag' => 'value'}), or an array where each element is either a string or a hash.
+
+* Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`, `/usr/bin/qatom`.
 * Default for `operatingsystem` == `gentoo`.
-* Supported features: `installable`, `reinstallable`, `uninstallable`, `upgradeable`, `versionable`.
+* Supported features: `install_options`, `installable`, `purgeable`, `reinstallable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-ports">ports</h4>
 
@@ -1221,16 +1225,16 @@ Provider support:
     <tr>
       <td>portage</td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>ports</td>
@@ -1419,4 +1423,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500

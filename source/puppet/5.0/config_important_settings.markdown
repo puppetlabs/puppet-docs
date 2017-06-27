@@ -83,7 +83,7 @@ title: "Configuration: Short list of important settings"
 [puppetserver_ca]: {{puppetserver}}/puppet_conf_setting_diffs.html#cahttpsdocspuppetcompuppetlatestreferenceconfigurationhtmlca
 [service_bootstrap]: {{puppetserver}}/configuration.html#service-bootstrapping
 [trusted_server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
-
+[always_retry_plugins]: ./configuration.html#alwaysretryplugins
 
 Puppet has about 200 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 170 of those.
 
@@ -173,7 +173,7 @@ Puppet Server has [its own configuration files][puppetserver_config_files]; cons
 ### Rack related settings
 
 * [`ssl_client_header`][ssl_client_header] and [`ssl_client_verify_header`][ssl_client_verify_header] --- These are used when running Puppet master as a Rack application (e.g. under Passenger), which you should definitely be doing. See [the Passenger setup guide][passenger_headers] for more context about how these settings work; depending on how you configure your Rack server, you can usually leave these settings with their default values.
-* [`always_cache_features`][alwayscachefeatures] --- You should always set this to `true` in `[master]` for better performance. (Don't change the default value in `[main]`, because Puppet apply and Puppet agent both need this set to `false`.) Your `config.ru` file should forcibly set this, as done in the default `config.ru` file.
+* [`always_retry_plugins`][always_retry_plugins] --- If this setting is set to false, then types and features will only be checked once, and if they are not available, the negative result is cached and returned for all subsequent attempts to load the type or feature. This replaces the [`always_cache_features`][alwayscachefeatures] setting.
 
 ### Extensions
 
