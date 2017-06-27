@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Component versions in `puppet-agent`"
+title: "Component versions in puppet-agent"
 ---
 
 [Facter]: {{facter}}/
