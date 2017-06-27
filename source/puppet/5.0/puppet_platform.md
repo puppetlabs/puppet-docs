@@ -122,15 +122,17 @@ To enable the Puppet Platform 5 repository:
     sudo apt-get update
 
 
-### macOS systems
+### Windows and macOS systems
 
-While the [`puppet-agent` package](./about_agent.html) is the only component of a Puppet Platform available on macOS, you can still use Puppet Platform to ensure the version of `package-agent` you install is compatible with the Puppet Platform powering your infrastructure.
+While the [`puppet-agent` package](./about_agent.html) is the only component of the Puppet Platform available on macOS and Windows, you can still use Puppet Platform to ensure the version of `package-agent` you install is compatible with the rest of your infrastructure.
 
-To download `puppet-agent` for Puppet Platform 5:
+To download `puppet-agent` for Puppet Platform 5 on macOS:
 
-* [10.12 Sierra](https://downloads.puppetlabs.com/mac/puppet5/10.12/x86_64/)
-* [10.11 El Capitan](https://downloads.puppetlabs.com/mac/puppet5/10.11/x86_64/)
-* [10.10 Yosemite](https://downloads.puppetlabs.com/mac/puppet5/10.10/x86_64/)
+* [macOS packages](https://downloads.puppetlabs.com/mac/puppet5/)
+
+To download `puppet-agent` for Puppet Platform 5 on Windows:
+
+* [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet5/)
 
 
 ## Verifying Puppet packages
