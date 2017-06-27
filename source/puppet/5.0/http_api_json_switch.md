@@ -3,17 +3,19 @@ layout: default
 title: "The PSON to JSON switch"
 ---
 
-PSON is our vendored version of `pure_json` with Puppet patches applied. It is much slower than the native compiled versions of JSON available in nearly all modern Ruby distributions from 1.9.3 and newer. By moving to JSON, we ensure maximum interoperability with other languages and tools, and you will see better performance, especially when the master is parsing JSON facts and reports from agents.
+PSON is our vendored version of `pure_json` with Puppet patches applied. It is much slower than the native compiled versions of JSON available in nearly all modern Ruby distributions versions 1.9.3 and newer. By moving to JSON, it ensures maximum interoperability with other languages and tools, and better performance, especially when the master is parsing JSON facts and reports from agents.
 
 ### What changed
 
-* Puppet 5 agents prefer JSON over PSON when requesting node, catalog and `file_metadata` objects as can be seen in an agent's HTTP header `Accept: application/json, text/pson`. Puppet 5 servers return JSON encoded objects in the body of the HTTP response.
+* Puppet 5 agents prefer JSON over PSON when requesting node, catalog and `file_metadata` objects. You'll see this in an agent's HTTP header as `Accept: application/json, text/pson`.
+
+* Puppet 5 servers return JSON encoded objects in the body of the HTTP response.
 
 * Puppet 5 agents send facts and reports in JSON by default, including App Orchestration deployments when agents are running from a cached catalog.
 
 * Puppet 5 agents and servers include a charset encoding when using JSON or other text-based content-types, similar to `Content-Type: application/json; charset=utf-8`. This is necessary so that the receiving side understands what encoding was used.
 
-### What is not changing
+### What is staying the same
 
 * Puppet 3 and 4 agents will continue to use PSON for network communication when communicating with Puppet 5 servers. This is important so that you can upgrade older agents to Puppet 5.
 
@@ -38,18 +40,9 @@ Setting `preferred_serialization_format=pson` is recommended if your catalogs co
 | 415   | The client sent data in the body of the request (report), but the server doesn't support the specified `Content-Type`. For example, an agent supports msgpack and is configured to prefer it, but the server doesn't support it. |
 | 500   | The HTTP request's `Content-Type` header is missing or the server failed to parse the body of the request. For example if it tries to read the submitted report using the specified `Content-Type`, but it fails to deserialize. |
 
-### Binary data uses PSON for now
+### Binary data
 
 PSON supports binary content, but JSON only supports Unicode characters, typically encoded in UTF-8. The move to JSON will break your setup if you're relying on PSON for inlining binary content in the catalog.
-
-For example, a file resource, whose `content` parameter refers to a binary file on the server:
- +
- +```puppet
- +file { '/etc/file.bin':
- + ensure  => file,
- + content => file('/path/to/source.bin')
- +}
- +```
 
 PSON can encode a Ruby string consisting of two bytes `[\xC0, xFF]`, but JSON cannot:
 
