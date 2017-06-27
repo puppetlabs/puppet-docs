@@ -23,8 +23,6 @@ title: "Puppet 3.8 to 5: Upgrade Puppet Server and PuppetDB"
 
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process because you need to make more decisions during the upgrade.
 
-An upgraded Puppet Server can handle both Puppet 3 and Puppet 4 agents. Don't start upgrading agents until after the servers are stabilized.
-
 ## Prepare to upgrade
 
 Before upgrading, complete the [pre-upgrade steps](./upgrade_major_pre.html) to ensure your Puppet infrastructure is stable and running the following things:
@@ -44,7 +42,7 @@ If you have multiple Puppet masters, upgrade or replace the certificate authorit
 
 ## Upgrade each Puppet master
 
-Repeat the following steps for each Puppet Server until you're running a pure Puppet 4/Puppet Server 2.1+ infrastructure.
+Repeat the following steps for each Puppet Server until you're running a pure Puppet 5/Puppet Server 5 infrastructure.
 
 ### Install the latest Puppet Server
 
@@ -60,31 +58,31 @@ In Puppet 4, we [moved][] all of Puppet's binaries on \*nix systems. They are no
 
 * Add `/opt/puppetlabs/bin` to your `PATH` environment variable. There are lots of ways to accomplish this---do whatever works best for you.
 * Symlink all the binaries you use into a directory in your path.
-* Use the full path to run all Puppet commands (e.g. `/opt/puppetlabs/bin/puppet agent --test`).
+* Use the full path to run all Puppet commands (like `/opt/puppetlabs/bin/puppet agent --test`).
 
 ### Reconcile `puppet.conf`
 
 We also moved [`puppet.conf`][puppet.conf] to `/etc/puppetlabs/puppet/puppet.conf`, changed a lot of defaults, and removed many settings. Compare the new `puppet.conf` to the old one, which is probably at `/etc/puppet/puppet.conf`, and copy over the settings you need to keep.
 
-If you are installing Puppet Server 4 onto a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. You can also remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting you enabled for the [future parser][future].
+If you are installing Puppet Server 5 onto a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. You can also remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting you enabled for the [future parser][future].
 
 ### Reconcile `auth.conf`
 
-Puppet 4 uses different HTTPS URLs to fetch configurations. Any rules in `auth.conf` that match Puppet 3-style URLs will have _no effect_. For more details, see the [Puppet Server compatibility documentation][].
+Puppet now uses different HTTPS URLs from Puppet 3.8 to fetch configurations. Any rules in `auth.conf` that match Puppet 3-style URLs will have _no effect_. For more details, see the [Puppet Server compatibility documentation][].
 
 To convert the URLs:
 
 1. Open your old [`auth.conf`][auth.conf] file, which is probably at `/etc/puppet/auth.conf`.
 2. Identify [any _custom_ rules]({{puppetserver}}/compatibility_with_puppet_agent.html#transfer-and-update-authconf) you've added to your old [`auth.conf`][auth.conf] file. (Don't worry about default rules.)
-3. Change the `path` of each custom rule to use Puppet 4 URLs.
+3. Change the `path` of each custom rule to use Puppet 5 URLs.
     1. Add `/puppet/v3` to the beginning of most paths.
-    2. Configure the `certificate_status` endpoint in `auth.conf`. Puppet Server's `ca.conf` file is [deprecated][] as of Puppet Server 2.2.
+    2. Configure the `certificate_status` endpoint in `auth.conf`.
 4. (Optional) Convert your rules to use new authorization methods and `auth.conf` format. See the [Puppet Server configuration documentation]({{puppetserver}}/configuration.html) for details.
 5. Add the custom rules to Puppet Server's new `/etc/puppetlabs/puppet/conf.d/auth.conf` file.
 
-#### Example `auth.conf` rules for Puppet 3 and 4 agents
+#### Example `auth.conf` rules for Puppet 3 and 5 agents
 
-The other examples in this section convert this Puppet 3 example `auth.conf` rule to be compatible with Puppet 4:
+The other examples in this section convert this Puppet 3 example `auth.conf` rule to be compatible with Puppet 5:
 
 ```
 # Puppet 3 auth.conf on the master
@@ -98,7 +96,7 @@ method find
 allow $1
 ```
 
-To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is false, modify the rules to follow the new HOCON `auth.conf` format and place the new rules in `/etc/puppetlabs/puppetserver/conf.d/auth.conf`:
+To support both Puppet 3 and Puppet 5 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is false, modify the rules to follow the new HOCON `auth.conf` format and place the new rules in `/etc/puppetlabs/puppetserver/conf.d/auth.conf`:
 
 ```
 authorization: {
@@ -106,7 +104,7 @@ authorization: {
     rules: [
         ...
         {
-            # Puppet 3 & 4 compatible auth.conf with Puppet Server 2.2+
+            # Puppet 3 & 5 compatible auth.conf with Puppet Server 2.2+
             match-request: {
                 path: "^/puppet/v3/catalog/([^/]+).uuid$"
                 type: regex
@@ -132,10 +130,10 @@ authorization: {
 }
 ```
 
-To support both Puppet 3 and Puppet 4 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is true, modify the rules to specify the v3 endpoints while following the legacy `auth.conf` format, then place the new rules in `/etc/puppetlabs/puppet/auth.conf`:
+To support both Puppet 3 and Puppet 5 agents when the `use-legacy-auth-conf` parameter in the `jruby-puppet` setting is true, modify the rules to specify the v3 endpoints while following the legacy `auth.conf` format, then place the new rules in `/etc/puppetlabs/puppet/auth.conf`:
 
 ```
-# Puppet 3 & 4 compatible auth.conf with Puppet Server 2.1+
+# Puppet 3 & 5 compatible auth.conf with Puppet Server 2.1+
 path ~ ^/puppet/v3/catalog/([^/]+).uuid$
 method find
 allow /^$1\.uuid.*/
@@ -154,13 +152,13 @@ If you have [other configuration files](./config_about_settings.html#main-settin
 
 If you're upgrading an existing Puppet master, find the server's [`ssldir`](./dirs_ssldir.html) and copy it to the new location at `/etc/puppetlabs/puppet/ssl`.
 
-If you're configuring an exact replacement for an older Puppet master---you're keeping the same names, certificates, and DNS configuration---copy the `ssldir` from the old server to `/etc/puppetlabs/puppet/ssl` on the new one. We recommend using `rsync -a` for this, as SSL is picky about file permissions and `rsync`'s "archive" mode preserves the source's permissions at the destination.
+If you're configuring an exact replacement for an older Puppet master---you're keeping the same names, certificates, and DNS configuration---copy the `ssldir` from the old server to `/etc/puppetlabs/puppet/ssl` on the new one. We recommend using `rsync -a` for this, as SSL is picky about file permissions and the `rsync` "archive" mode preserves the source's permissions at the destination.
 
 If this is a new Puppet master but _isn't_ serving as a certificate authority, use `puppet agent` to request a new certificate. (You should have already upgraded the CA server.)
 
-1. Run the following command: `puppet agent --test --certname=<NAME> --dns_alt_names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>`
+1. Run `puppet agent --test --certname=<NAME> --dns_alt_names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>` to request the certificate.
 
-2. Sign the certificate on the CA, then run the above `puppet agent` command again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service]({{puppetserver}}/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
+2. Sign the certificate on the CA, then run the `puppet agent` command in Step 1 again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service]({{puppetserver}}/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
 
 ### Move code
 

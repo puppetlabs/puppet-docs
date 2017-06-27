@@ -3,7 +3,7 @@ layout: default
 title: "Puppet 3.8.x to 5.x: Get upgrade-ready"
 ---
 
-Puppet 4 was a major upgrade from Puppet 3.8, with lots of configuration and functionality changes. Because Puppet likely manages your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:
+Puppet 4 was a major upgrade from Puppet 3.8, with lots of configuration and functionality changes, and Puppet 5 removed a lot of features and settings that were deprecated in Puppet 4.x. Because Puppet likely manages your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:
 
 * Split the upgrade process into smaller tasks.
 * Confirm that your system remains functional after each task.
@@ -31,7 +31,7 @@ This page provides steps you should take before starting the upgrade to help pre
 
 [deprecations]: /puppet/3.8/reference/deprecated_summary.html
 
-Puppet 3.8 [deprecated several features][deprecations] which are either removed from Puppet 4 or require major workflow changes. Read the [lists of deprecated features][deprecations], and if you're using any of them, follow steps for migrating away from them.
+Puppet 3.8 [deprecated several features][deprecations] which are either removed from Puppet 4 and 5 or require major workflow changes. Read the [lists of deprecated features][deprecations], and if you're using any of them, follow steps for migrating away from them.
 
 ## Stop stringifying facts, and check for breakage
 
@@ -47,7 +47,7 @@ If you've already set [`stringify_facts = false`](/puppet/3.8/reference/deprecat
 
 ## Enable directory environments and move code into them
 
-Puppet 5 organizes all code into [directory environments](./environments.html), which are the only way to organize code now that [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated).
+Puppet now organizes all code into [directory environments](./environments.html), which are the only way to organize code now that [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated).
 
 [envs_config]: /puppet/3.8/reference/environments_configuring.html
 
@@ -76,7 +76,7 @@ Some of the changes to look out for include:
 - [Facts having additional data types](/puppet/3.8/reference/experiments_future.html#check-your-comparisons).
 - [Quoting required for octal numbers in `file` resources' `mode` attributes](/puppet/3.8/reference/experiments_future.html#quote-any-octal-numbers-in-file-modes).
 
-For a more complete list, see [Updating 3.x Manifests for Puppet 4.x.](./lang_updating_manifests.html)
+For a more complete list, see [Updating 3.x Manifests for Puppet 4+.](./lang_updating_manifests.html)
 
 Run Puppet for several runs with the future parser enabled to ensure you've got any kinks worked out.
 
@@ -84,7 +84,7 @@ Run Puppet for several runs with the future parser enabled to ensure you've got 
 
 Puppet 4.0 introduced several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), [4.2](/puppet/4.2/reference/release_notes.html), [4.3](/puppet/4.3/reference/release_notes.html), [4.4](/puppet/4.4/reference/release_notes.html), and [4.5](./release_notes.html) and prepare accordingly.
 
-Also read the [Puppet 5 release notes](./release_notes.html) to see breaking changes since Puppet 4.x.
+Also read the [Puppet 5 release notes](./release_notes.html) to see breaking changes since Puppet 4.
 
 ## You're ready!
 
