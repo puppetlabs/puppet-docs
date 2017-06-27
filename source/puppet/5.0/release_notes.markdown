@@ -20,15 +20,114 @@ Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.htm
 
 ## Puppet 5.0.0
 
-This version of Puppet has not been released yet, and these docs are an unfinished draft until their release.
-
 Released June 26, 2017.
 
 This release of Puppet is included in Puppet agent 5.0.0. Many features that were deprecated in Puppet 4 have been removed.
 
+* [All issues fixed in Puppet 5.0.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+5.0.0%27)
+
 ### New features
 
+#### Added function: `call`
+
+The function `call(name, args...)` has been added to allow calling a function by name.
+
+#### Added functin: `unique`
+
+The function `unique` is now available directly in Puppet and no longer requires the `stdlib` module to be included. The new version of the function also handles `Hash` and `Iterable` data types. It is now also possible to give a code block that determines if the uniqueness is computed.
+
+#### Puppet Server request metrics available
+
+Puppet Server 5 includes an http-client metric `puppetlabs.<localhost>.http-client.experimental.with-metric-id.puppet.report.http.full-response` that tracks how long requests from Puppet Server to a configured HTTP report processor take (during handling of /puppet/v3/reports requests, if the HTTP report processor is configured).
+
+#### Switch from PSON to JSON
+
+In Puppet 5, agents download node information, catalogs, and file metadata in JSON (instead of PSON). The Puppet master can now accept JSON encoded facts, but will continue to accept PSON encoded facts from older agents.
+
+If the server compiles a catalog, and it contains binary data, typically as a result of inlining a file into the catalog using `content => file("/path/to/file")`, then the server transfers the catalog as PSON instead of JSON.
+
 ### Enhancements
+
+#### Ruby 2.4
+
+Puppet now uses Ruby 2.4, which ships in the `puppet-agent` package. Reinstallation of user-installed Puppet agent gems is required after upgrade to Puppet agent 5.0.
+	* Due to Ruby API changes between Ruby 2.1 and 2.4, any user-installed Puppet agent gems (Ruby gems installed using Puppet agent's gem binary) require re-installation following upgrade to Puppet agent 5.0.
+	* Some gems may also require upgrade to versions that are compatible with Ruby 2.4.
+
+#### HOCON gem is now a dependency
+
+The HOCON gem, which has previously shipped in `puppet-agent` packages, is also now a dependency of the Puppet gem.
+
+#### You can silence warnings from metadata.json
+
+Warnings from faulty metadata.json can now be turned off by setting `--strict=off`.
+
+#### You can use Portage with Puppet
+
+The Portage package manager is now installable and uninstallable.
+
+#### Updated Puppet Module Tool's dependencies
+
+Puppet Module Tool’s gem dependencies are updated to use `puppetlabs_spec_helper` 1.2.0 or later (which runs `metadata-json-lint` as part of the `validate` rake task).
+
+#### `puppet device`
+
+Notify resources can now be used with `puppet device`.
+
+#### Variables in `$settings` available as a Hash
+
+All individual variables in the `$settings` namespace are now available as a Hash of `<SETTING_NAME> => <SETTING_VALUE>` in the variable `$settings::all_local`. This makes it easy to lookup a setting that may be missing when `--strict_variables` is in effect.
+
+#### Hiera 5 default file
+
+Hiera 5 compliant default files go in your `confdir` and `env-directory`.
+
+* New installs: Pupppet creates appropriate v5 hiera.yaml in $confdir and $environment
+* On upgrade: If Puppet detects a hiera.yaml in either $confdir or $environment, it won't install a new file in either location, or remove `$hieradata`. 
+
+#### Added command line option to pass job-id to agent
+
+Puppet now accepts an arbitrary string as a job identifier via `--job-id` that is used in catalog requests and reports. A job id field has been added to the report.
+
+#### Added --strict-semver
+
+The `--strict-semver` option was added to the Puppet module commands install, list, uninstall, and upgrade. When used, module dependencies are resolved using the strict semver-range behavior specified by node semver.
+
+#### Added support for `Sensitive` commands in the Exec resource type
+
+Command parameters that are specified as `Sensitive.new(...)` are now properly redacted when the command fails. This supports using data from Puppet lookup and Hiera.
+
+#### Changed behavior for relationship chains with empty sets 
+
+<!-- This needs updating in the docs page for relationships too -->
+
+Previously, if a relationship was formed with an empty set of references, then no relationships were created. In practice, this was a problem when an intermediate set is empty:
+
+~~~puppet
+File[a] -> [] -> File[b] 
+~~~
+
+Which results in the same as: 
+
+~~~puppet
+File[a] -> [] 
+[] -> File[b] 
+~~~
+
+The same problem occurred when an intermediate set produced via collection was empty. 
+
+~~~puppet 
+File[a] -> File <| tag = 'nowhere' |> -> File[b] 
+~~~
+
+The old behavior silently ignored the empty sets. This was surprising and hard to work around. The intention with such a construct is clearly that "b" should come after "a", and optionally if there was something in the middle, then it would be between "a" and "b". 
+
+**The new behavior:**
+
+* If an empty intermediate set is found (denoted by `Ø`), the gap is closed as if this part did not exists in the logic. This is done silently. For example `A -> Ø -> B` is the same as `A ~> B`
+* The gap is closed with the operator for the non empty right hand side. `A -> Ø ~> B` is the same as `A ~> B`
+* Reverse operators work the same way `A -> Ø <~ B` is the same as `B ~> A` - this construct should in general be avoided and be expressed as `A -> Ø; B~>Ø` if it is not wanted that B is before A if the optional set is empty.
+
 
 ### Deprecations
 
@@ -38,7 +137,11 @@ This release of Puppet is included in Puppet agent 5.0.0. Many features that wer
 
 * The keywords `site`, `application`, `consumes` and `produces` that were earlier opt-in via the `app_management` setting are now always keywords. The `app_management` setting is now also deprecated, but will remain as a setting without any effect until a future Puppet release. This means that Puppet will always be enabled for application management without the earlier required opt-in.
 
+* The system now behaves as if the setting `--trusted_server_facts` is always set to true, and the setting itself is deprecated but is still present; this is to avoid errors if you already had set it to true (which is now the default). The setting will be removed in a future major version update, and before then any use of the setting `trusted_server_facts` should have been removed.
+
 ### Removals
+
+In most cases, these features have been deprecated for several versions of Puppet and often are replaced by new features, so their removal shouldn't affect most users.
 
 * The `inspect` command and its associated fields in the report have been removed, most notably the `kind` field, which used to distinguish between `apply` and `inspect` runs.
 
@@ -72,6 +175,8 @@ This release of Puppet is included in Puppet agent 5.0.0. Many features that wer
 
 * The old cfacter feature, which has been obsolete since the Puppet 4.x series has been removed.
 
+* The SemVer class, which has been deprecated since Puppet 4.9.0, was removed from the Puppet code-base.
+
 #### Generated Pcore metadata replaces RGen AST model
 
 In all versions before Puppet 5.0.0, the Puppet Language AST classes (about 100) were implemented using the RGen meta modeling gem. From Puppet 5.0.0 and forward, Puppet includes its own modeling system named Pcore - based on the Puppet type system. 
@@ -85,6 +190,9 @@ Since RGen included monkey patching of some common Ruby classes, the removal of 
 ### Known issues
 
 We've added a dedicated known issues page to the open source Puppet documentation so that you don't need to read through every version of the release notes to try and determine whether or not a known issue is still relevant. 
+
+* [Known issues in Puppet 5](./known_issues.html)
+* [Issues introduced in Puppet 5.0.0](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+5.0.0%27)
 
 ### Bug fixes
 
