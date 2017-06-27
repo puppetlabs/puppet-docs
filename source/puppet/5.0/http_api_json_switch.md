@@ -29,6 +29,15 @@ Puppet 5 agents default the `preferred_serialization_format` setting to `json`. 
 
 Setting `preferred_serialization_format=pson` is recommended if your catalogs contain binary data, because Puppet attempts to use JSON, fails, and then will fallback to PSON. Puppet does have a `Binary` data type, and in the future, this will be the way to encode binary data in a JSON catalog. We will likely then deprecate and eventually remove PSON functionality.
 
+### Server error responses
+
+| Error | Description                                                                                                                                                                                                                      |
+|-------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 400   | An agent uploaded a report without specifying a `Content-Type` header, or an agent set `Content-Type: application/json`, but the body is not valid JSON.                                                                         |
+| 406   | The client requested data from the server, but the server doesn't support at least one format specified in the request's `Accepts` header.                                                                                       |
+| 415   | The client sent data in the body of the request (report), but the server doesn't support the specified `Content-Type`. For example, an agent supports msgpack and is configured to prefer it, but the server doesn't support it. |
+| 500   | The HTTP request's `Content-Type` header is missing or the server failed to parse the body of the request. For example if it tries to read the submitted report using the specified `Content-Type`, but it fails to deserialize. |
+
 ### Binary data uses PSON for now
 
 PSON supports binary content, but JSON only supports Unicode characters, typically encoded in UTF-8. The move to JSON will break your setup if you're relying on PSON for inlining binary content in the catalog.
