@@ -28,16 +28,6 @@ This release of Puppet is included in Puppet agent 5.0.0. This release is remova
 
 ### New features
 
-#### Switched from PSON to JSON as default
-
-In Puppet 5, agents download node information, catalogs, and file metadata in JSON (instead of PSON) by default. By moving to JSON, we ensure maximum interoperability with other languages and tools, and you will see better performance, especially when the master is parsing JSON facts and reports from agents. The Puppet master can now also accept JSON encoded facts.
-
-Puppet 5 agents and servers include a charset encoding when using JSON or other text-based content-types, similar to `Content-Type: application/json; charset=utf-8`. This is necessary so that the receiving side understands what encoding was used.
-
-If the server compiles a catalog, and it contains binary data, typically as a result of inlining a file into the catalog using `content => file("/path/to/file")`, then the server transfers the catalog as PSON instead of JSON.
-
-* [More information about our PSON to JSON transition](./pson_to_json.html)
-
 #### Added function: `call`
 
 The function `call(name, args...)` has been added to allow calling a function by name.
@@ -51,6 +41,15 @@ The function `unique` is now available directly in Puppet and no longer requires
 Puppet Server 5 includes an http-client metric `puppetlabs.<localhost>.http-client.experimental.with-metric-id.puppet.report.http.full-response` that tracks how long requests from Puppet Server to a configured HTTP report processor take (during handling of /puppet/v3/reports requests, if the HTTP report processor is configured).
 
 ### Enhancements
+
+#### Switched from PSON to JSON as default
+
+In Puppet 5, agents download node information, catalogs, and file metadata in JSON (instead of PSON) by default. By moving to JSON, we ensure maximum interoperability with other languages and tools, and you will see better performance, especially when the master is parsing JSON facts and reports from agents. The Puppet master can now also accept JSON encoded facts.
+
+Puppet 5 agents and servers include a charset encoding when using JSON or other text-based content-types, similar to `Content-Type: application/json; charset=utf-8`. This is necessary so that the receiving side understands what encoding was used.
+
+If the server compiles a catalog, and it contains binary data, typically as a result of inlining a file into the catalog using `content => file("/path/to/file")`, then the server transfers the catalog as PSON instead of JSON.
+
 
 #### Ruby 2.4
 
