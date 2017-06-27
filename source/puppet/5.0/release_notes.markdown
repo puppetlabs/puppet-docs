@@ -206,118 +206,125 @@ These issues were resolved in Puppet 5.0.0.
 
 * [PUP-7608](https://tickets.puppetlabs.com/browse/PUP-7608): In Hiera, when performing a lookup with merge strategy `unique` on an array value, the array could contain duplicates if it was never merged with another array during the lookup. Now this is fixed so that a lookup with `unique` merge always results in a unique set of values.
 
-* [PUP-6182](https://tickets.puppetlabs.com/browse/PUP-6182):
+* [PUP-6182](https://tickets.puppetlabs.com/browse/PUP-6182): Environment catalog compilation now gives more helpful error messages when components are incorrectly mapped to nodes, or not mapped to nodes at all.
 
-* [PUP-3552](https://tickets.puppetlabs.com/browse/PUP-3552):
+* [PUP-3552](https://tickets.puppetlabs.com/browse/PUP-3552): The server replies with [descriptive errors](./http_api_json_switch.html#server-error-responses) if the agent uses the HTTP `Content-Type` header incorrectly, or if serialization fails.
 
-* [PUP-3478](https://tickets.puppetlabs.com/browse/PUP-3478):
+* [PUP-3478](https://tickets.puppetlabs.com/browse/PUP-3478): Removed the `extlookup2hiera` binary, which did not work since the `extlookup` function it depended on had already been removed in Puppet 4.x.
 
-* [PUP-3170](https://tickets.puppetlabs.com/browse/PUP-3170):
+* [PUP-3170](https://tickets.puppetlabs.com/browse/PUP-3170): Puppet now raises errors when converting integer values out of 64-bit range, or `BigDecimal` values out of range for `Float`.
 
-* [PUP-3042](https://tickets.puppetlabs.com/browse/PUP-3042):
+* [PUP-3042](https://tickets.puppetlabs.com/browse/PUP-3042): When a catalog contained a circular dependency error (or other similar general errors), a report from the agent would not show up as being in error. This is now changed so that any logged errors during the application of a catalog that are also included in the report log now sets the report's status to 'failed'.
 
-* [PUP-2280](https://tickets.puppetlabs.com/browse/PUP-2280):
+* [PUP-2280](https://tickets.puppetlabs.com/browse/PUP-2280): Puppet now reports runs as failed when an exec resource fails to refresh. In the past, failures to restart would not flag the run as failed.
 
-* [PUP-1723](https://tickets.puppetlabs.com/browse/PUP-1723):
+* [PUP-1723](https://tickets.puppetlabs.com/browse/PUP-1723): The yumrepo provider will includes context information when changing the mode of a repo file, `Info: Yumrepo[IUS](provider=inifile): changing mode of /etc/yum.repos.d/puppet-agent.repo from 600 to 644` 
 
-* [PUP-1890](https://tickets.puppetlabs.com/browse/PUP-1890):
 
-* [PUP-1441](https://tickets.puppetlabs.com/browse/PUP-1441):
+* [PUP-1890](https://tickets.puppetlabs.com/browse/PUP-1890): In some scenarios Puppet could fail to manage file resources with UTF-8 file names because of incorrect character encoding and escaping when transforming requests into URI-compatible text.
 
-* [PUP-25](https://tickets.puppetlabs.com/browse/PUP-25):
+* [PUP-1441](https://tickets.puppetlabs.com/browse/PUP-1441), [PUP-7063](https://tickets.puppetlabs.com/browse/PUP-7063): Prior to Puppet 5.0.0, when printing values to the console that were in a character encoding incompatible with UTF-8 or contained invalid byte sequences, Puppet would fail, usually with an `incompatible encodings` error. In Puppet 5.0.0 and later, Puppet logs in UTF-8, and issues a warning upon encountering invalid strings with their content and the backtrace leading up to the log event.
 
-* [PUP-7554](https://tickets.puppetlabs.com/browse/PUP-7554):
+* [PUP-25](https://tickets.puppetlabs.com/browse/PUP-25): Puppet has always evaluated collections before applying default values defined via resource type defaults, making it impossible to use such values when performing collection. This is now changed and an example like this now works as expected: 
+   ~~~
+   File { tag => 'sc_test' } 
+   File { '/tmp/test': ensure => present } 
+   File <<| tag == 'sc_test' |>> 
+   ~~~
+
+   >*Note:* This change affects existing logic where it was assumed that default values were set via resource type defaults were *not* present at the time of collection.
+
+* [PUP-7554](https://tickets.puppetlabs.com/browse/PUP-7554): With the introduction of Hiera 5 there were errors if a module or environment root contained a hiera.yaml in the Hiera 3 format. These files were never used earlier, but now they are part of the Hiera 5 configuration. The issue is fixed by ignoring the files if they are version 3 and by logging a warning when encountered. You should migrate to Hiera 5, or move those files to another location.
  
-* [PUP-7478](https://tickets.puppetlabs.com/browse/PUP-7478):
+* [PUP-7478](https://tickets.puppetlabs.com/browse/PUP-7478): Puppet provides additional information when a feature is not suitable on a given platform.
  
-* [PUP-7485](https://tickets.puppetlabs.com/browse/PUP-7485):
+* [PUP-7485](https://tickets.puppetlabs.com/browse/PUP-7485): It was not possible to call a function defined in the main manifest from logic in a module. This now works for those special occasions when it is actually needed, but the best practice is to autoload functions.
  
-* [PUP-7529](https://tickets.puppetlabs.com/browse/PUP-7529):
+* [PUP-7529](https://tickets.puppetlabs.com/browse/PUP-7529): This fixes a bug in the rpm package provider that didn't properly sort packages containing tildes that did not occur as the first character.
  
-* [PUP-7475](https://tickets.puppetlabs.com/browse/PUP-7475):
+* [PUP-7475](https://tickets.puppetlabs.com/browse/PUP-7475): A literal regex for matching a backslash previously caused a lexer error.
  
-* [PUP-7492](https://tickets.puppetlabs.com/browse/PUP-7492):
+* [PUP-7492](https://tickets.puppetlabs.com/browse/PUP-7492): Previously in Hiera data, if aliasing a key and the value for that key contained escaped interpolations those escaped interpolations would be taken as interpolations instead of keeping the aliased value intact. 
  
-* [PUP-7464](https://tickets.puppetlabs.com/browse/PUP-7464):
+* [PUP-7464](https://tickets.puppetlabs.com/browse/PUP-7464): A regression caused resource parameter values containing Array or Hash values with embedded `undef` values to report a warning `... will be converted to string` and the parameter value would end up being a String in the serialization of a catalog. This has changed so that `undef` values are serialized as a JSON compliant `nil` value.
  
-* [PUP-7514](https://tickets.puppetlabs.com/browse/PUP-7514):
+* [PUP-7514](https://tickets.puppetlabs.com/browse/PUP-7514): It was not possible to call the `break()` function to end the iteration in a `reduce` code block.
  
-* [PUP-7465](https://tickets.puppetlabs.com/browse/PUP-7465):
+* [PUP-7465](https://tickets.puppetlabs.com/browse/PUP-7465): When using `puppet generate types` for environment isolation, a type with a multipart namevar title previously lead to an error of "Error: undefined method `call' for :top_level:Symbol". 
  
-* [PUP-7660](https://tickets.puppetlabs.com/browse/PUP-7660):
+* [PUP-7660](https://tickets.puppetlabs.com/browse/PUP-7660): Virtual resources with relationship metaparameters containing a reference to a non existing resource was validated even if the resource was not realized. 
  
-* [PUP-7650](https://tickets.puppetlabs.com/browse/PUP-7650):
+* [PUP-7650](https://tickets.puppetlabs.com/browse/PUP-7650): Intermittently, Puppet would report errors on the form "Attempt to redefine entity" when `puppet generate types` was being used. This was caused by internal Puppet logic not being consistent about names in upper and lowercase. 
  
-* [PUP-7627](https://tickets.puppetlabs.com/browse/PUP-7627):
+* [PUP-7627](https://tickets.puppetlabs.com/browse/PUP-7627): Puppet's interface with the `CreateSymbolicLinkW` Windows API function previously defined an incorrect return type which could cause unexpected results in the case of an error.
  
-* [PUP-7625](https://tickets.puppetlabs.com/browse/PUP-7625):
+* [PUP-7625](https://tickets.puppetlabs.com/browse/PUP-7625): Updated the logcheck rule to match when the master compiles a catalog for a node in a given environment.
  
-* [PUP-7616](https://tickets.puppetlabs.com/browse/PUP-7616):
+* [PUP-7616](https://tickets.puppetlabs.com/browse/PUP-7616): Change reports describing a change in a resource property "from" - "to" would output structured data for "from" but not for "to"; which was always shrinkwrapped into an awkward string representation. Now the "to" in a property change report is formatted in the same structured was as the "from".
  
-* [PUP-7436](https://tickets.puppetlabs.com/browse/PUP-7436):
+* [PUP-7436](https://tickets.puppetlabs.com/browse/PUP-7436): A default value expression for an EPP parameter of `undef` previously did not take effect and the parameter was instead resolved against an outer scope. 
  
-* [PUP-7402](https://tickets.puppetlabs.com/browse/PUP-7402):
+* [PUP-7402](https://tickets.puppetlabs.com/browse/PUP-7402): Certain combinations of references to `File` resources where title and reference were not the same with respect to use of a trailing `/` could cause a reference to not be resolved and resulting in an error. This is now fixed.
  
-* [PUP-7382](https://tickets.puppetlabs.com/browse/PUP-7382):
+* [PUP-7382](https://tickets.puppetlabs.com/browse/PUP-7382): Values in reports that were earlier serialized using Ruby specific YAML tags are now serialized as hashes with a special key stating the data type - making them valid general YAML.
  
-* [PUP-7381](https://tickets.puppetlabs.com/browse/PUP-7381):
+* [PUP-7381](https://tickets.puppetlabs.com/browse/PUP-7381): YAML produced from Puppet could sometimes not be read by the consumer due to different Ruby versions in the producer and consumer. This fix ensures that the YAML format is consistent regardless of Ruby version.
  
-* [PUP-7437](https://tickets.puppetlabs.com/browse/PUP-7437):
+* [PUP-7437](https://tickets.puppetlabs.com/browse/PUP-7437): Changed DragonFly BSD to use the `pkgng` package provider by default.
  
-* [PUP-7431](https://tickets.puppetlabs.com/browse/PUP-7431):
+* [PUP-7431](https://tickets.puppetlabs.com/browse/PUP-7431): The vendored `semantic_puppet` gem was upgraded to version 1.0.0, which resolved multiple bugs.
  
-* [PUP-7329](https://tickets.puppetlabs.com/browse/PUP-7329):
+* [PUP-7329](https://tickets.puppetlabs.com/browse/PUP-7329): Running `puppet describe <type>` generated malformed output if the description was too long.
  
-* [PUP-7258](https://tickets.puppetlabs.com/browse/PUP-7258):
+* [PUP-7258](https://tickets.puppetlabs.com/browse/PUP-7258): We removed Puppet's gem dependency on `pure_json`, and instead we rely on the native `json` implementation in Ruby 1.9.3 and up.
  
-* [PUP-7256](https://tickets.puppetlabs.com/browse/PUP-7256):
+* [PUP-7256](https://tickets.puppetlabs.com/browse/PUP-7256): Internally we're changing from PSON to JSON when pretty printing console output, for example, `puppet facts find`, but there shouldn't be any visible user changes.
  
-* [PUP-7198](https://tickets.puppetlabs.com/browse/PUP-7198):
+* [PUP-7110](https://tickets.puppetlabs.com/browse/PUP-7110): A Puppet resource is now able to halt the Puppet service without terminating an agent run started by that service.
  
-* [PUP-7110](https://tickets.puppetlabs.com/browse/PUP-7110):
+* [PUP-7130](https://tickets.puppetlabs.com/browse/PUP-7130): Ruby 2.4 previously could not be used with Puppet because in Ruby 2.4 the `Fixnum` and `Bignum` classes have been merged into `Integer`, and Puppet explicitly uses `Fixnum` as `Bignum` (roughly: Integers larger than 64 bits) is not supported by Puppet other than as an intermediate result in arithmetic.
  
-* [PUP-7130](https://tickets.puppetlabs.com/browse/PUP-7130):
+* [PUP-7155](https://tickets.puppetlabs.com/browse/PUP-7155):The command `puppet resource` could output information about resources that could not be directly used in a Puppet manifest because of errors related to quoting and escaped characters.
  
-* [PUP-7155](https://tickets.puppetlabs.com/browse/PUP-7155):
+* [PUP-7073](https://tickets.puppetlabs.com/browse/PUP-7073): Puppet now attempts to translate selinux contexts itself, instead of relying on mcstransd. This is to work around instabilities in that service. This means that Puppet now requires a `setrans.conf` file to exist for the active selinux policy when it is managing selinux attributes.
  
-* [PUP-7073](https://tickets.puppetlabs.com/browse/PUP-7073):
+* [PUP-6984](https://tickets.puppetlabs.com/browse/PUP-6984): It was not possible to always use a resource alias when forming a resource relationship. If the relationship was formed with a relationship operator ( like `->` or `~>`), the compilation would fail. If a metaparameter was used to form the relationship further problems would be triggered. Both issues are now fixed.
  
-* [PUP-6984](https://tickets.puppetlabs.com/browse/PUP-6984):
+* [PUP-6930](https://tickets.puppetlabs.com/browse/PUP-6930): Duplicate literal default entries in case and selector expressions now always error. Earlier this was under the control of the `--strict` option.
  
-* [PUP-7063](https://tickets.puppetlabs.com/browse/PUP-7063):
+* [PUP-5973](https://tickets.puppetlabs.com/browse/PUP-5973): Previously Puppet monkey patched the `Symbol` class so that it was comparable to String, so for example, `:foo == "foo"` would evaluate to true. This ticket removes the monkey patch. It should not affect users unless they are using Puppet as a library and are unintentionally relying on this behavior (we've been emitting deprecation warnings about this since 4.x).
  
-* [PUP-6930](https://tickets.puppetlabs.com/browse/PUP-6930):
+* [PUP-6660](https://tickets.puppetlabs.com/browse/PUP-6660): When you run `puppet agent --test`, Puppet uses the cached catalog (if `use_cached_catalog = true` in settings or enabled via command-line flag). Puppet now behaves like it did pre-4.6.0 with respect to cached catalogs.
  
-* [PUP-5973](https://tickets.puppetlabs.com/browse/PUP-5973):
+* [PUP-5659](https://tickets.puppetlabs.com/browse/PUP-5659): Relationships formed via metaparameters (like `require`) are now validated when everything in a catalog has been evaluated, and if there is a reference to a resource that is not in the catalog an error is raised. In earlier versions, an error was raised when the catalog was applied on an agent. Now an error is raised when validating the compilation result. In earlier versions this was only done when a relationship was formed using the arrow operators. The behavior could be controlled with the `strict` setting but it would then issue warnings or error for relationships formed with aliases. Both problems are now fixed.
  
-* [PUP-6660](https://tickets.puppetlabs.com/browse/PUP-6660):
+* [PUP-5635](https://tickets.puppetlabs.com/browse/PUP-5635): Instead of an error/undef when referencing a non existing variable, Puppet could end up resolving the last part of a qualified name against top scope such that a request for `$::somemodule::x` would be satisfied by the existence of a topscope `$::x` variable.
  
-* [PUP-5659](https://tickets.puppetlabs.com/browse/PUP-5659):
+* [PUP-5479](https://tickets.puppetlabs.com/browse/PUP-5479): Incorrectly prepared augeas resources crashed Puppet agent with a segfault and caused it to hang. The augeas component was updated from 1.4.0 to 1.8.0 to resolve this issue.
  
-* [PUP-5635](https://tickets.puppetlabs.com/browse/PUP-5635):
+* [PUP-4283](https://tickets.puppetlabs.com/browse/PUP-4283): The Puppet Module Tool (PMT) used both the vendored Semantic library and the Puppet::SemVer module to check version numbers for modules. Now PMT only uses the vendored Semantic library. This removes inconsistencies between the various places semantic versions were compared as well as fixes issues with certain types of version compares, because the Semantic library is now updated.
  
-* [PUP-5479](https://tickets.puppetlabs.com/browse/PUP-5479):
+* [PUP-3940](https://tickets.puppetlabs.com/browse/PUP-3940): Puppet now sends proper MIME content types, like `application/json`, instead of format names, `json`, in its `Accept` header when making HTTP requests.
  
-* [PUP-4283](https://tickets.puppetlabs.com/browse/PUP-4283):
+* [PUP-7674](https://tickets.puppetlabs.com/browse/PUP-7674): A problem was found with the environment isolation solution (`generate types`) where a collection of a type would cause it to be loaded as a Ruby implementation instead of the generated metadata. This in turn could cause isolation problems if different environments had different versions of this type. 
+This is now fixed so collectors also load the generated metadata form if present.
  
-* [PUP-3940](https://tickets.puppetlabs.com/browse/PUP-3940):
+* [PUP-7671](https://tickets.puppetlabs.com/browse/PUP-7671): Puppet 4.10.3 contained a regression where resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references.
  
-* [PUP-7674](https://tickets.puppetlabs.com/browse/PUP-7674):
+* [PUP-7611](https://tickets.puppetlabs.com/browse/PUP-7611): Some deprecation warnings were issued even when using `--disable_warnings deprecations`.
  
-* [PUP-7671](https://tickets.puppetlabs.com/browse/PUP-7671):
+* [PUP-7587](https://tickets.puppetlabs.com/browse/PUP-7587): A regression was found that from Puppet >= 4.9 Hiera data containing `Integer` or `Float` keys ended up having those keys converted to `String`. The intention was to only filter out Ruby `Symbol` keys. `Integer` and `Float` keys in hashes now work as they should.
  
-* [PUP-7611](https://tickets.puppetlabs.com/browse/PUP-7611):
+* [PUP-7579](https://tickets.puppetlabs.com/browse/PUP-7579): Puppet now accepts unicode tags, which is useful if you want to run a subset of resources in a catalog using a tag name that isn't US-ASCII. This also allows the `concat::fragment` defines from the concat module to write to file paths that are not US-ASCII. This is considered a bug fix, because Puppet accepts unicode for other inputs like resource names and titles, but not tags.
+
+<!-- We'll also need to update the public docs that specify the valid tag regex. (There might already be a PR for this from Ethan??) -->
  
-* [PUP-7587](https://tickets.puppetlabs.com/browse/PUP-7587):
+* [PUP-6596](https://tickets.puppetlabs.com/browse/PUP-6596): Upgraded to CFPropertyList 2.3.5, which adds support for Ruby 2.4 and fixes an issue with parsing large blocks of XML content.
  
-* [PUP-7579](https://tickets.puppetlabs.com/browse/PUP-7579):
+* [PUP-6517](https://tickets.puppetlabs.com/browse/PUP-6517): If the rpm provider failed to query a package source, it would generate a different error unrelated to the original problem. This fix ensures the original error is preserved and reported.
  
-* [PUP-6596](https://tickets.puppetlabs.com/browse/PUP-6596):
+* [PUP-6264](https://tickets.puppetlabs.com/browse/PUP-6264): A version range declared as `>=x.y.z` would incorrectly include pre-releases of version x.y.z. That is now corrected so that pre-releases are always considered to be semantically less than the actual release.
  
-* [PUP-6517](https://tickets.puppetlabs.com/browse/PUP-6517):
+* [PUP-6368](https://tickets.puppetlabs.com/browse/PUP-6368): When converting version ranges back to their string representation, the string would often be different and sometimes even invalid. The original string representation is now properly retained.
  
-* [PUP-6264](https://tickets.puppetlabs.com/browse/PUP-6264):
- 
-* [PUP-6368](https://tickets.puppetlabs.com/browse/PUP-6368):
- 
-* [PUP-6367](https://tickets.puppetlabs.com/browse/PUP-6367):
+* [PUP-6367](https://tickets.puppetlabs.com/browse/PUP-6367): A `VersionRange` data type created from the string `'1.2.3'` resulted in the range `1.2.3...1.2.4`, which was incorrect even if 3 dots means "exclude end", because that range included all prebuild releases between 1.2.4-nnn to the final release 1.2.4. The correct exact range is now `1.2.3..1.2.3` that is, a range that has the same begin and end, and that doesn't exclude end.
