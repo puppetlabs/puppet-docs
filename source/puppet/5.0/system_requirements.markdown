@@ -71,8 +71,9 @@ If you install Puppet via the official packages, you don't need to worry about p
 
 * Mandatory libraries:
 
-  * [Facter]({{facter}}/) 3.1 or later
-  * [Hiera]({{hiera}}/) 3.0.0 or later
-  * The `json` gem (any modern version)
+  * CFPropertyList 2.2 or later
+  * [Hiera]({{hiera}}/) 3.2.1 or later
+  * [Facter]({{facter}}/) 2.0 or later
+
 
 * Optional libraries: The `msgpack` gem is required if you are using [msgpack serialization](./experiments_msgpack.html).
