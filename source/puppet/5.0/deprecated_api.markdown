@@ -18,11 +18,13 @@ The `Puppet::Face` and `Puppet::Indirector::Face` classes are private APIs, and 
 {:.section}
 ## Resource type and provider APIs
 
-As of Puppet 4.5, the [`resource_types` API endpoint](./http_api/http_resource_type.html) is deprecated in favor of Puppet Server's [`environment_classes` endpoint]({{puppetserver}}/puppet-api/v3/environment_classes.html) and will be removed in a future release. Calls to the `resource_types` endpoint include a deprecation warning in the response.
+As of Puppet 5.0, the [`resource_types` API endpoint](./http_api/http_resource_type.html) has been removed. Instead, use Puppet Server's [`environment_classes` endpoint]({{puppetserver}}/puppet-api/v3/environment_classes.html).
 
 The `Puppet.newtype` method on the top-level `Puppet` module is a proxy for `Puppet::Type.newtype`. The `Puppet.newtype` method will be removed in a future release. Update any custom resource types to use `Puppet::Type.newtype` instead.
 
 {:.section}
 ## Miscellaneous APIs
 
-The `Puppet::Node::Facts#strip_internal` method does nothing, and will be removed in a future release.
+The `Puppet::Node::Facts#strip_internal` method has been removed as of Puppet 5.0.
+
+Previously, the `stacktrace` property in HTTP error responses was always empty for security reasons. In Puppet 5, we've removed the `stacktrace` property as it serves no purpose.

@@ -3,9 +3,9 @@ layout: default
 title: "Deprecated language features"
 ---
 
-The following features of the Puppet language are deprecated, and will be removed in a future Puppet version.
+These features of the Puppet language are deprecated, and will be removed in a future Puppet version.
 
-## Several Hiera 3.x features
+## Hiera 3.x features
 
 [hiera_functions]: ./hiera_use_hiera_functions.html
 [v3]: ./hiera_config_yaml_3.html
@@ -18,7 +18,7 @@ The following features of the Puppet language are deprecated, and will be remove
 [lookup_command]: ./man/lookup.html
 [backend_3]: {{hiera}}/custom_backends.html
 
-The following Hiera features are deprecated, because we replaced them with improved equivalents in [Hiera 5](./hiera_intro.html).
+These Hiera features are deprecated, because we replaced them with improved equivalents in [Hiera 5](./hiera_intro.html).
 
 Old feature | Replacement
 ------------|------------
@@ -37,7 +37,7 @@ If you set the `strict_variables` setting to `true`, Puppet raises an error if y
 
 In a future version of Puppet, the `strict_variables` setting will be removed, and Puppet will always raise an error for accessing unassigned variables.
 
-To update, enable `strict_variables` on your Puppet master, run as normal for a while, and look for compilation errors.
+To update, enable `strict_variables` on your Puppet master, run as normal, and look for compilation errors.
 
 ## Automatic symbolic links for `ensure` values in `file` resources
 
@@ -79,3 +79,7 @@ lrwxrwxrwx 1 root root 10 Nov  9 20:53 /etc/inetd.conf -> filer
 In a future version of Puppet, this behavior will be removed. If the value of `ensure` isn't one of its allowed values, the Puppet run will fail with an error instead of attempting to create a symlink.
 
 To update, confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.
+
+### Syntax highlighters for emacs and vim
+
+Outdated extension files with macros and configurations for the Puppet language syntax for emacs and vim have been completely removed.
