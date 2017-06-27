@@ -5,6 +5,8 @@ title: "Puppet agent release notes"
 
 [Facter 3.7]: /facter/3.7/release_notes.html#facter-370
 
+[MCollective 2.11.0]: /mcollective/releasenotes.html#2_11_0
+
 This page lists changes to the `puppet-agent` package. For details about changes to components in a `puppet-agent` release, follow the links to those components in the package release's notes.
 
 The `puppet-agent` package's version numbers use the format X.Y.Z, where:
@@ -33,7 +35,7 @@ This is a major release of Puppet agent, and includes updates to nearly every co
 	* Some gems may also require upgrade to versions that are compatible with Ruby 2.4.
 * **Augeas 1.8.0:** This component has been updated from 1.4.0 to resolve issues caused by a segfault.
 **Facter 3.7:** Read the [Facter 3.7][] release notes about some small bug fixes in this release.
-**MCollective 2.11:** Read the MCollective release notes to see the bug fixes in this verison.
+**MCollective 2.11:** Read the [MCollective 2.11.0][] release notes to see the bug fixes in this verison.
 **`pxp-agent` 1.6.0:** `pxp-module-puppet` now returns metrics about resource events when a run finishes. It can also accept `job-id` as an argument and pass it to Puppet.
 * **Hiera 3.4:** The component version of Hiera in Puppet agent has been increased to 3.4, but Hiera 5 is fully integrated into Puppet. You should update your configuration to use version 5 of `hiera.yaml`.
 
