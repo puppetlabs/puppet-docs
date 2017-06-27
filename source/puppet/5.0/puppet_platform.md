@@ -59,34 +59,26 @@ To enable the Puppet Platform 5 repository:
 
 #### Enterprise Linux 7
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5-release-el-7.noarch.rpm
+    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
 
 #### Enterprise Linux 6
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5-release-el-6.noarch.rpm
+    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-6.noarch.rpm
 
 #### Enterprise Linux 5
 
-    wget https://yum.puppetlabs.com/puppet5-release-el-5.noarch.rpm
+    wget https://yum.puppetlabs.com/puppet5/puppet5-release-el-5.noarch.rpm
     sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
 
 #### Fedora 25
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5-release-fedora-25.noarch.rpm
+    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-25.noarch.rpm
 
 #### Fedora 24
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5-release-fedora-24.noarch.rpm
-
-#### Fedora 23
-
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5-release-fedora-23.noarch.rpm
-
-> **Note:** We ship only `puppet-agent` packages for Fedora 23.
-
-
+    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-24.noarch.rpm
 
 ### Apt-based systems
 
