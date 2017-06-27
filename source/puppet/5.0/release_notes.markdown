@@ -22,11 +22,21 @@ Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.htm
 
 Released June 26, 2017.
 
-This release of Puppet is included in Puppet agent 5.0.0. Many features that were deprecated in Puppet 4 have been removed.
+This release of Puppet is included in Puppet agent 5.0.0. This release is removal heavy --- many features that were deprecated in Puppet 4 have been removed. Although they've had a long deprecation period, some of these could still be in use and introduce breaking changes for your Puppet installation. Read through the list of removals to check for updates you may need to make.
 
 * [All issues fixed in Puppet 5.0.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+5.0.0%27)
 
 ### New features
+
+#### Switched from PSON to JSON as default
+
+In Puppet 5, agents download node information, catalogs, and file metadata in JSON (instead of PSON) by default. By moving to JSON, we ensure maximum interoperability with other languages and tools, and you will see better performance, especially when the master is parsing JSON facts and reports from agents. The Puppet master can now also accept JSON encoded facts.
+
+Puppet 5 agents and servers include a charset encoding when using JSON or other text-based content-types, similar to `Content-Type: application/json; charset=utf-8`. This is necessary so that the receiving side understands what encoding was used.
+
+If the server compiles a catalog, and it contains binary data, typically as a result of inlining a file into the catalog using `content => file("/path/to/file")`, then the server transfers the catalog as PSON instead of JSON.
+
+* [More information about our PSON to JSON transition](./pson_to_json.html)
 
 #### Added function: `call`
 
@@ -39,12 +49,6 @@ The function `unique` is now available directly in Puppet and no longer requires
 #### Puppet Server request metrics available
 
 Puppet Server 5 includes an http-client metric `puppetlabs.<localhost>.http-client.experimental.with-metric-id.puppet.report.http.full-response` that tracks how long requests from Puppet Server to a configured HTTP report processor take (during handling of /puppet/v3/reports requests, if the HTTP report processor is configured).
-
-#### Switch from PSON to JSON
-
-In Puppet 5, agents download node information, catalogs, and file metadata in JSON (instead of PSON). The Puppet master can now accept JSON encoded facts, but will continue to accept PSON encoded facts from older agents.
-
-If the server compiles a catalog, and it contains binary data, typically as a result of inlining a file into the catalog using `content => file("/path/to/file")`, then the server transfers the catalog as PSON instead of JSON.
 
 ### Enhancements
 
