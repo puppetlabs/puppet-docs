@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Directories: The cache directory (`vardir`)"
+title: "Directories: The cache directory (vardir)"
 ---
 
 [confdir]: ./dirs_confdir.html
