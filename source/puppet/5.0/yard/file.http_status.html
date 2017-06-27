@@ -6,7 +6,7 @@
 <title>
   File: http_status
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -77,7 +77,7 @@ effect on the response. The <code>environment</code> must be a valid environment
 
 <h3>Supported Response Formats</h3>
 
-<p>PSON</p>
+<p><code>application/json</code>, <code>text/pson</code></p>
 
 <h3>Parameters</h3>
 
@@ -88,7 +88,7 @@ effect on the response. The <code>environment</code> must be a valid environment
 <pre class="code ruby"><code class="ruby">GET /puppet/v3/status/whatever?environment=env
 
 HTTP 200 OK
-Content-Type: text/pson
+Content-Type: application/json
 
 {&quot;is_alive&quot;:true,&quot;version&quot;:&quot;3.3.2&quot;}
 </code></pre>
@@ -99,9 +99,9 @@ Content-Type: text/pson
 </div></div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Tue Jun 27 17:24:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Deprecated operating systems"
+title: "Upcoming operating system deprecations"
 toc: false
 ---
 

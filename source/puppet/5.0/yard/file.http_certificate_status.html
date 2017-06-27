@@ -6,7 +6,7 @@
 <title>
   File: http_certificate_status
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -70,7 +70,7 @@ must be a valid environment, but it has no effect on the response.</p>
 <h2>Find</h2>
 
 <pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate_status/:certname?environment=:environment
-Accept: pson
+Accept: application/json, text/pson
 </code></pre>
 
 <p>Retrieve information about the specified certificate. Similar to <code>puppet
@@ -79,7 +79,7 @@ cert --list :certname</code>.</p>
 <h2>Search</h2>
 
 <pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate_statuses/:any_key?environment=:environment
-Accept: pson
+Accept: application/json, text/pson
 </code></pre>
 
 <p>Retrieve information about all known certificates. Similar to <code>puppet
@@ -104,7 +104,7 @@ host - see the DELETE request for more information.</p>
 <h2>Delete</h2>
 
 <pre class="code ruby"><code class="ruby">DELETE /puppet-ca/v1/certificate_status/:hostname?environment=:environment
-Accept: pson
+Accept: application/json, text/pson
 </code></pre>
 
 <p>Cause the certificate authority to discard all SSL information regarding
@@ -134,7 +134,7 @@ over the certificates used by the puppet master.</p>
 
 <h3>Supported Response Formats</h3>
 
-<p>PSON</p>
+<p><code>application/json</code>, <code>text/pson</code>, <code>pson</code></p>
 
 <p>This endpoint can produce yaml as well, but the returned data is
 incomplete.</p>
@@ -190,9 +190,9 @@ conform to <a href="../schemas/host.json">the host schema.</a></p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Tue Jun 27 17:24:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

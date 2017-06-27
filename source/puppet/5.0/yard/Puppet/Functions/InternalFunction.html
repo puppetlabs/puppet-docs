@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Functions::InternalFunction
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -177,56 +177,6 @@ accessor method calls.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#attr_injected-class_method" title="attr_injected (class method)">.<strong>attr_injected</strong>(type, attribute_name, injection_name = nil)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-  <span class="private note title">private</span>
-
-  
-    <span class="summary_desc"><div class='inline'><p>Defines class level injected attribute with reader method.</p>
-</div></span>
-  
-</li>
-
-      
-        
-<li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#attr_injected_producer-class_method" title="attr_injected_producer (class method)">.<strong>attr_injected_producer</strong>(type, attribute_name, injection_name = nil)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-  <span class="private note title">private</span>
-
-  
-    <span class="summary_desc"><div class='inline'><p>Defines class level injected producer attribute with reader method.</p>
-</div></span>
-  
-</li>
-
-      
-        
-<li class="public ">
-  <span class="summary_signature">
-    
       <a href="#builder-class_method" title="builder (class method)">.<strong>builder</strong>  &#x21d2; Object </a>
     
 
@@ -260,7 +210,7 @@ accessor method calls.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#call_function_with_scope-instance_method" title="#call_function_with_scope (instance method)">#<strong>call_function_with_scope</strong>(scope, function_name, *args)  &#x21d2; Object </a>
+      <a href="#call_function_with_scope-instance_method" title="#call_function_with_scope (instance method)">#<strong>call_function_with_scope</strong>(scope, function_name, *args, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -313,123 +263,7 @@ accessor method calls.</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="attr_injected-class_method">
-  
-    .<strong>attr_injected</strong>(type, attribute_name, injection_name = nil)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note private">
-  <strong>This method is part of a private API.</strong>
-  You should avoid using this method if possible, as it may be removed or be changed in the future.
-</p>
-<p>Defines class level injected attribute with reader method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-655
-656
-657
-658
-659
-660
-661
-662
-663
-664</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 655</span>
-
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_attr_injected'>attr_injected</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_ivar'>ivar</span> <span class='op'>=</span> <span class='symbol'>:@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>unless</span> <span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='comma'>,</span> <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_closure_scope'>closure_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="attr_injected_producer-class_method">
-  
-    .<strong>attr_injected_producer</strong>(type, attribute_name, injection_name = nil)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note private">
-  <strong>This method is part of a private API.</strong>
-  You should avoid using this method if possible, as it may be removed or be changed in the future.
-</p>
-<p>Defines class level injected producer attribute with reader method</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-669
-670
-671
-672
-673
-674
-675
-676
-677
-678</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 669</span>
-
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_attr_injected_producer'>attr_injected_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='rparen'>)</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_ivar'>ivar</span> <span class='op'>=</span> <span class='symbol'>:@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_attribute_name'>attribute_name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>unless</span> <span class='id identifier rubyid_instance_variable_defined?'>instance_variable_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_injector'>injector</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_lookup'><span class='object_link'><a href="../../Puppet.html#lookup-class_method" title="Puppet.lookup (method)">lookup</a></span></span><span class='lparen'>(</span><span class='symbol'>:injector</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='comma'>,</span> <span class='id identifier rubyid_injector'>injector</span><span class='period'>.</span><span class='id identifier rubyid_lookup_producer'>lookup_producer</span><span class='lparen'>(</span><span class='id identifier rubyid_closure_scope'>closure_scope</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_injection_name'>injection_name</span><span class='rparen'>)</span><span class='rparen'>)</span>
-    <span class='kw'>end</span>
-    <span class='id identifier rubyid_instance_variable_get'>instance_variable_get</span><span class='lparen'>(</span><span class='id identifier rubyid_ivar'>ivar</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="builder-class_method">
+  <h3 class="signature first" id="builder-class_method">
   
     .<strong>builder</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
@@ -480,7 +314,7 @@ accessor method calls.</p>
       <div class="method_details first">
   <h3 class="signature first" id="call_function_with_scope-instance_method">
   
-    #<strong>call_function_with_scope</strong>(scope, function_name, *args)  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
+    #<strong>call_function_with_scope</strong>(scope, function_name, *args, &amp;block)  &#x21d2; <tt><span class='object_link'>Object</span></tt> 
   
 
   
@@ -570,15 +404,15 @@ scope. The callable functions are those visible to the same loader that loaded t
       <pre class="lines">
 
 
-690
-691
-692</pre>
+662
+663
+664</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 690</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 662</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_call_function_with_scope'>call_function_with_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_call_function_with_scope'>call_function_with_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -590,9 +424,9 @@ scope. The callable functions are those visible to the same loader that loaded t
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:18 2017 by
+  Generated on Tue Jun 27 17:24:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

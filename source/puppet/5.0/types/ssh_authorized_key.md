@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Resource Type: ssh_authorized_key'
 canonical: "/puppet/latest/types/ssh_authorized_key.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500
 
 ssh_authorized_key
 -----
@@ -164,4 +164,4 @@ Parse and generate authorized_keys files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500

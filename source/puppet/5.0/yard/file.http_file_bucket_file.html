@@ -6,7 +6,7 @@
 <title>
   File: http_file_bucket_file
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -108,7 +108,7 @@ incorrect, the file will be instead saved under the correct checksum.</p>
 
 <h3>Supported Response Formats</h3>
 
-<p><code>binary</code> or <code>application/octet-stream</code> (a string of the raw file contents)</p>
+<p><code>application/octet-stream</code></p>
 
 <h3>Parameters</h3>
 
@@ -132,7 +132,7 @@ incorrect, the file will be instead saved under the correct checksum.</p>
 <h4>Retrieving a file</h4>
 
 <pre class="code ruby"><code class="ruby">&gt; GET /puppet/v3/file_bucket_file/md5/4949e56d376cc80ce5387e8e89a75396//home/user/myfile.txt?environment=production HTTP/1.1
-&gt; Accept: binary
+&gt; Accept: application/octet-stream
 
 
 &lt; HTTP/1.1 200 OK
@@ -144,7 +144,7 @@ incorrect, the file will be instead saved under the correct checksum.</p>
 <h4>Wrong file name</h4>
 
 <pre class="code ruby"><code class="ruby">&gt; GET /puppet/v3/file_bucket_file/md5/4949e56d376cc80ce5387e8e89a75396//home/user/wrong_name?environment=production HTTP/1.1
-&gt; Accept: binary
+&gt; Accept: application/octet-stream
 
 
 &lt; HTTP/1.1 404 Not Found
@@ -159,9 +159,9 @@ json/yaml, so no schema is applicable.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Tue Jun 27 17:24:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

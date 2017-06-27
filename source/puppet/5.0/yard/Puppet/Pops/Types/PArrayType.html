@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PArrayType
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -270,38 +270,28 @@
       <pre class="lines">
 
 
-2438
-2439
-2440
-2441
-2442
-2443
-2444
-2445
-2446
-2447
-2448
-2449
-2450
-2451
-2452
-2453
-2454
 2455
 2456
 2457
-2458</pre>
+2458
+2459
+2460
+2461
+2462
+2463
+2464
+2465
+2466
+2467
+2468
+2469
+2470</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2438</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2455</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_s_entry'>s_entry</span> <span class='op'>=</span> <span class='id identifier rubyid_element_type'>element_type</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PTupleType.html" title="Puppet::Pops::Types::PTupleType (class)">PTupleType</a></span></span><span class='rparen'>)</span>
-    <span class='comment'># If s_entry is nil, this Array type has no opinion on element types. Therefore any
-</span>    <span class='comment'># tuple can be assigned.
-</span>    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_s_entry'>s_entry</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-
     <span class='id identifier rubyid_o_types'>o_types</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span>
     <span class='id identifier rubyid_size_s'>size_s</span> <span class='op'>=</span> <span class='id identifier rubyid_size_type'>size_type</span> <span class='op'>||</span> <span class='const'>DEFAULT_SIZE</span>
     <span class='id identifier rubyid_size_o'>size_o</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_size_type'>size_type</span>
@@ -309,9 +299,9 @@
       <span class='id identifier rubyid_type_count'>type_count</span> <span class='op'>=</span> <span class='id identifier rubyid_o_types'>o_types</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
       <span class='id identifier rubyid_size_o'>size_o</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type_count'>type_count</span><span class='comma'>,</span> <span class='id identifier rubyid_type_count'>type_count</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_size_s'>size_s</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_size_o'>size_o</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_o_types'>o_types</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ot'>ot</span><span class='op'>|</span> <span class='id identifier rubyid_s_entry'>s_entry</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_ot'>ot</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_size_s'>size_s</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_size_o'>size_o</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_o_types'>o_types</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_ot'>ot</span><span class='op'>|</span> <span class='ivar'>@element_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_ot'>ot</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PArrayType (class)">PArrayType</a></span></span><span class='rparen'>)</span>
-    <span class='kw'>super</span> <span class='op'>&amp;&amp;</span> <span class='lparen'>(</span><span class='id identifier rubyid_s_entry'>s_entry</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_s_entry'>s_entry</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>super</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@element_type</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_element_type'>element_type</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
     <span class='kw'>false</span>
   <span class='kw'>end</span>
@@ -362,15 +352,15 @@
       <pre class="lines">
 
 
-2332
-2333
-2334
-2335
-2336
-2337</pre>
+2355
+2356
+2357
+2358
+2359
+2360</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2332</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2355</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_callable_args?'>callable_args?</span><span class='lparen'>(</span><span class='id identifier rubyid_callable'>callable</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_param_t'>param_t</span> <span class='op'>=</span> <span class='id identifier rubyid_callable'>callable</span><span class='period'>.</span><span class='id identifier rubyid_param_types'>param_types</span>
@@ -388,9 +378,9 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:20 2017 by
+  Generated on Tue Jun 27 17:24:18 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

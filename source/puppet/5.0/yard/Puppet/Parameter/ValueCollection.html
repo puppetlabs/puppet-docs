@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parameter::ValueCollection
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -1039,7 +1039,7 @@ argument).</p>
   <span class='id identifier rubyid_call_opt'>call_opt</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:call</span><span class='rbracket'>]</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_call_opt'>call_opt</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='id identifier rubyid_devfail'>devfail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cannot use obsolete :call value &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_call_opt'>call_opt</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; for property &#39;</span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_call_opt'>call_opt</span> <span class='op'>==</span> <span class='symbol'>:none</span> <span class='op'>||</span> <span class='id identifier rubyid_call_opt'>call_opt</span> <span class='op'>==</span> <span class='symbol'>:instead</span>
-    <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Property option :call is deprecated and no longer used. Please remove it.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_deprecation_warning'>deprecation_warning</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Property option :call is deprecated and no longer used. Please remove it.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_reject'>reject</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_k'>k</span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_k'>k</span> <span class='op'>==</span> <span class='symbol'>:call</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
@@ -1253,11 +1253,11 @@ argument).</p>
   <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_empty?'>empty?</span>
 
   <span class='kw'>unless</span> <span class='ivar'>@values</span><span class='period'>.</span><span class='id identifier rubyid_detect'>detect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='op'>|</span> <span class='id identifier rubyid_v'>v</span><span class='period'>.</span><span class='id identifier rubyid_match?'>match?</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
-    <span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid value </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>. </span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_str'>str</span> <span class='op'>=</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Invalid value %{value}. </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>value:</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='rbrace'>}</span>
 
-    <span class='id identifier rubyid_str'>str</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Valid values are </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>. </span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_str'>str</span> <span class='op'>+=</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Valid values are %{value_list}. </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>value_list:</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
 
-    <span class='id identifier rubyid_str'>str</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Valid values match </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_regexes'>regexes</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_regexes'>regexes</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='id identifier rubyid_str'>str</span> <span class='op'>+=</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Valid values match %{pattern}.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>pattern:</span> <span class='id identifier rubyid_regexes'>regexes</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='rbrace'>}</span> <span class='kw'>unless</span> <span class='id identifier rubyid_regexes'>regexes</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
 
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid_str'>str</span>
   <span class='kw'>end</span>
@@ -1339,7 +1339,7 @@ a regexp. What is the intention here? Marking as api private...</p>
       <div class="method_details ">
   <h3 class="signature " id="values-instance_method">
   
-    #<strong>values</strong>  &#x21d2; <tt>Array&lt;<span class='object_link'>Symbol</span>&gt;</tt> &nbsp;<span class="private note title">private</span>
+    #<strong>values</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1364,7 +1364,7 @@ a regexp. What is the intention here? Marking as api private...</p>
     <li>
       
       
-        <span class='type'>(<tt>Array&lt;<span class='object_link'>Symbol</span>&gt;</tt>)</span>
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
       
       
       
@@ -1409,9 +1409,9 @@ a regexp. What is the intention here? Marking as api private...</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:25 2017 by
+  Generated on Tue Jun 27 17:24:24 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

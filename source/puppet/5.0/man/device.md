@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -20,9 +20,10 @@ them to the remote devices configured in /etc/puppetlabs/puppet/device.conf.</p>
 
 <h2 id="USAGE">USAGE</h2>
 
-<p>  puppet device [-d|--debug] [--detailed-exitcodes] [-V|--version]
+<p>  puppet device [-d|--debug] [--detailed-exitcodes] [--deviceconfig <var>file</var>]
                 [-h|--help] [-l|--logdest syslog|<var>file</var>|console]
-                [-v|--verbose] [-w|--waitforcert <var>seconds</var>]</p>
+                [-v|--verbose] [-w|--waitforcert <var>seconds</var>]
+                [-t|--target <var>device</var>] [-V|--version]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -64,6 +65,8 @@ code of '1' means at least one device had a compile failure, an exit code of
 '2' means at least one device had resource changes, and an exit code of '4'
 means at least one device had resource failures. Exit codes of '3', '5', '6',
 or '7' means that a bitwise combination of the preceding exit codes happened.</p></dd>
+<dt>--deviceconfig</dt><dd><p>Path to the device config file for puppet device.
+Default: $confdir/device.conf</p></dd>
 <dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
 <dt>--logdest</dt><dd><p>Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'console', or the path to a log file. If debugging or verbosity is
@@ -73,6 +76,8 @@ enabled, this defaults to 'console'. Otherwise, it defaults to 'syslog'.</p>
 log file will not have an ending ']' automatically written to it due to the
 appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
+<dt>--target</dt><dd><p>Target a specific device/certificate in the device.conf. Doing so will perform a
+device run against only that device/certificate.</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
 and it is enabled by default, with a value of 120 (seconds).  This causes
@@ -94,7 +99,7 @@ of 0.</p></dd>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC
+<p>Copyright (c) 2011 Puppet Inc., LLC
 Licensed under the Apache 2.0 License</p>
 
 </div>

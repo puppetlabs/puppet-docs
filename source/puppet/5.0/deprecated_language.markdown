@@ -3,7 +3,7 @@ layout: default
 title: "Deprecated language features"
 ---
 
-These features of the Puppet language are deprecated, and will be removed in a future Puppet version.
+These features of the Puppet language are deprecated in Puppet 5.0.
 
 ## Hiera 3.x features
 
@@ -35,9 +35,7 @@ By default, you can access the value of a variable that was never assigned. The 
 
 If you set the `strict_variables` setting to `true`, Puppet raises an error if you try to access an unassigned variable.
 
-In a future version of Puppet, the `strict_variables` setting will be removed, and Puppet will always raise an error for accessing unassigned variables.
-
-To update, enable `strict_variables` on your Puppet master, run as normal, and look for compilation errors.
+**To update:** Enable `strict_variables` on your Puppet master, run as normal, and look for compilation errors.
 
 ## Automatic symbolic links for `ensure` values in `file` resources
 
@@ -76,10 +74,4 @@ $ sudo ls -la /etc/inetd.conf
 lrwxrwxrwx 1 root root 10 Nov  9 20:53 /etc/inetd.conf -> filer
 ```
 
-In a future version of Puppet, this behavior will be removed. If the value of `ensure` isn't one of its allowed values, the Puppet run will fail with an error instead of attempting to create a symlink.
-
-To update, confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.
-
-### Syntax highlighters for emacs and vim
-
-Outdated extension files with macros and configurations for the Puppet language syntax for emacs and vim have been completely removed.
+**To update:** Confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.
