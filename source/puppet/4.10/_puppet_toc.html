@@ -1,4 +1,4 @@
-{% comment %} Instead of hardcoding (and then updating for each release), use document data from _config.yml to look up version numbers. {% endcomment %}
+s{% comment %} Instead of hardcoding (and then updating for each release), use document data from _config.yml to look up version numbers. {% endcomment %}
 {% capture server_version %}{{ page.doc.my_versions.puppetserver }}{% endcapture %}
 {% capture puppet_version %}{{ page.doc.my_versions.puppet }}{% endcapture %}
 
@@ -90,13 +90,8 @@
     * [Cache directory (vardir)]({{puppet}}/dirs_vardir.html)
 * **Environments**
     * [About environments]({{puppet}}/environments.html)
-    * [Configuring environments]({{puppet}}/environments_configuring.html)
     * [Creating environments]({{puppet}}/environments_creating.html)
-    * [Assigning environments to nodes]({{puppet}}/environments_assigning.html)
-    * [Suggestions for use]({{puppet}}/environments_suggestions.html)
-    * [Limitations of environments]({{puppet}}/environments_limitations.html)
     * [Environment isolation]({{puppet}}/environment_isolation.html)
-    * [Environments and Puppet's HTTPS interface]({{puppet}}/environments_https.html)
 * **Modules**
     * [Fundamentals]({{puppet}}/modules_fundamentals.html)
     * [Beginner's guide to writing modules]({{puppet}}/bgtm.html)
