@@ -27,7 +27,7 @@ title: "Installing modules"
 
 Install and manage Puppet Forge modules with the `puppet module` command.
 
-* [Module fundamentals"][fundamentals]: How to use and write Puppet modules.
+* [Module fundamentals][fundamentals]: How to use and write Puppet modules.
 * [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
 * [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [Documenting modules][documentation]: A module README template and information on providing directions for your module.
@@ -35,9 +35,7 @@ Install and manage Puppet Forge modules with the `puppet module` command.
 {:.concept}
 ## About `puppet module`
 
-The [Puppet Forge][forge] is a repository of modules written both by Puppet and by the Puppet user community. These modules solve a wide variety of problems, and using them can save you time and effort.
-
-The `puppet module` command provides an interface for managing modules from the Forge. Its interface is similar to several common package managers (such as `gem`, `apt-get`, or `yum`). You can use the `puppet module` command to search for, install, and manage modules.
+The `puppet module` command provides an interface for managing modules from the Puppet Forge. Its interface is similar to several common package managers (such as `gem`, `apt-get`, or `yum`). You can use the `puppet module` command to search for, install, and manage modules.
 
 > **Important:** If you are using [Code Manager][code_mgr] or [r10k][r10k], do not use the `puppet module` command to install or manage modules. Instead, use a [Puppetfile][puppetfile] to manage modules in your environments. In particular, note that Code Manager purges modules that were installed to the live code directory with the `puppet module` command.
 
@@ -46,7 +44,7 @@ The `puppet module` command provides an interface for managing modules from the 
 {:.section}
 ### Using `puppet module` behind a proxy
 
-To use the `puppet module` command behind a proxy, set the following, replacing `<PROXY IP>` and `<PROXY PORT>` with the proxy's IP address and port:
+To use the `puppet module` command behind a proxy, set the following, replacing `<PROXY IP>` and `<PROXY PORT>` with the proxy's IP address and port.
 
 ```
 export http_proxy=http://<PROXY IP>:<PROXY PORT>
@@ -67,9 +65,9 @@ Alternatively, you can set these two proxy settings inside the `[user]` config s
 {:.concept}
 ## Finding Forge modules
 
-The Puppet Forge houses thousands of modules, which you can find by browsing the [Puppet Forge][forge] on the web or by using the `puppet module search` command.
+The Puppet Forge houses thousands of modules, which you can find by browsing the Puppet Forge on the web or by using the `puppet module search` command.
 
-Some Forge modules are Puppet **supported** or **approved** modules. Puppet approved][approved] modules pass our specific quality and usability requirements. These modules are recommended by Puppet, but are not supported as part of a Puppet Enterprise license agreement. Puppet supported modules have been tested with Puppet Enterprise and are fully supported by Puppet. If there are no supported or approved modules for what you want to do, evaluate available modules by module score, compatibility, documentation, last release date, and number of downloads.
+Some Forge modules are Puppet **supported** or **approved** modules. Puppet approved modules pass our specific quality and usability requirements. These modules are recommended by Puppet, but are not supported as part of a Puppet Enterprise license agreement. Puppet supported modules have been tested with Puppet Enterprise and are fully supported by Puppet. If there are no supported or approved modules for what you want to do, evaluate available modules by module score, compatibility, documentation, last release date, and number of downloads.
 
 Related topics:
 
@@ -78,7 +76,7 @@ Related topics:
 * [Module score][score]
 
 {:.concept}
-### Search modules from the command line
+### Searching modules from the command line
 
 The `puppet module search` command accepts a single search term and returns a list of modules whose names, descriptions, or keywords match the search term.
 
@@ -131,18 +129,18 @@ Option   | Description
 
 Related topics:
 
-* [About the modulepath][modulepath].
-* [How to find the codedir][codedir].
+* [About the modulepath][modulepath]
+* [About the codedir][codedir]
 
 {:.concept}
 ### Install modules from the Puppet Forge
 
 To install a module from the Puppet Forge, use the `puppet module install` command with the full name of the module you want.
 
-The full name of a Forge module is formatted as username-modulename. For example, `puppetlabs-apache`.
+The full name of a Forge module is formatted as username-modulename. For example, to instal `puppetlabs-apache`:
 
 ``` bash
-sudo puppet module install puppetlabs-apache
+puppet module install puppetlabs-apache
 ```
 
 {:.concept}
@@ -253,7 +251,7 @@ By default, the tool won't uninstall a module that other modules depend on, or w
 * To uninstall the module while ignoring and overwriting any local changes, use the `--ignore-changes` option.
 
 {:.reference}
-## `puppet module` actions
+## Reference: `puppet module` actions
 
 The `puppet module` command manages modules with several actions, including install, uninstall, list, and search.
 
@@ -317,7 +315,7 @@ sudo puppet module upgrade puppetlabs-apache --version 0.0.3
 ```
 
 {:.concept}
-## Puppet Enterprise module errors
+## Troubleshooting Puppet Enterprise module errors
 
 If you get an error when installing a Puppet Enterprise module, check for common issues.
 

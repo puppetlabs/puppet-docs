@@ -59,7 +59,7 @@ node default {
 }
 ```
 
-Likewise, Puppet can automatically load plug-ins (like custom native resource types or custom facts) from modules. See the related topic about [using plug-ins][plugins] for more details.
+Likewise, Puppet can automatically load plug-ins (like custom native resource types or custom facts) from modules. See the related topic about using plug-ins for more details.
 
 To make a module available to Puppet, place it in one of the directories in Puppet's [modulepath][], and make sure it has a [valid name](#allowed-module-names).
 
@@ -71,6 +71,7 @@ Related topics:
 * [Defined types][defined_types]
 * [Installing Modules][installing]
 * [External node classifiers (ENC)][enc]
+* [Using plug-ins][plugins]
 
 {:.concept}
 ## Module layout
@@ -103,7 +104,7 @@ This example module, `my_module`, shows the standard module layout in more detai
             * `bar.pp` --- Contains a class named `my_module::implementation::bar`.
     * `files/` --- Contains static files, which managed nodes can download.
         * `service.conf` --- This file's `source =>` URL would be `puppet:///modules/my_module/service.conf`. Its contents can also be accessed with the `file` function, like `content => file('my_module/service.conf')`.
-    * `lib/` --- Contains plug-ins, like custom facts and custom resource types. These are used by both the Puppet master server and the Puppet agent service, and they are synced to all agent nodes whenever they request their configurations. See ["Using plug-ins"][plugins] for more details.
+    * `lib/` --- Contains plug-ins, like custom facts and custom resource types. These are used by both the Puppet master server and the Puppet agent service, and they are synced to all agent nodes whenever they request their configurations.
     * `facts.d/` --- Contains [external facts][], which are an alternative to Ruby-based [custom facts][]. These will be synced to all agent nodes, so they can submit values for those facts to the Puppet master. (Requires Facter 2.0.1 or later.)
     * `templates/` --- Contains templates, which the module's manifests can use. See ["Templates"][templates] for more details.
         * `component.erb` --- A manifest can render this template with `template('my_module/component.erb')`.
@@ -141,7 +142,9 @@ The double colon that divides the sections of a class's name is called the *name
 {:.section}
 ### Allowed module names
 
-Module names should only contain lowercase letters, numbers, and underscores, and should begin with a lowercase letter; that is, they should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, but with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested.
+Module names should only contain lowercase letters, numbers, and underscores, and should begin with a lowercase letter.
+
+That is, module names should match the expression `[a-z][a-z0-9_]*`. Note that these are the same restrictions that apply to class names, but with the added restriction that module names cannot contain the namespace separator (`::`) as modules cannot be nested.
 
 Certain module names are disallowed; see the list of [reserved words and names][reserved names].
 
@@ -167,7 +170,9 @@ So `puppet:///modules/my_module/service.conf` would map to `my_module/files/serv
 {:.section}
 ### Templates in modules
 
-Any ERB or EPP template (see ["Templates"][templates] for more details) can be rendered in a manifest with the `template` function (for ERB templates which use Ruby) or the `epp` function (for EPP templates, which use the Puppet language). The output of the template is a string, which can be used as the content attribute of a [`file`][file] resource or as the value of a variable.
+Any ERB or EPP template (see ["Templates"][templates] for more details) can be rendered in a manifest.
+
+For ERB templates, which use Ruby, use the `template` function. For EPP templates, which use the Puppet language, use the `epp` function. The output of the template is a string, which can be used as the content attribute of a `file` resource or as the value of a variable.
 
 The `template` and `epp` functions can look up templates identified by shorthand:
 
@@ -181,9 +186,13 @@ So `template('my_module/component.erb')` would render the template `my_module/te
 {:.concept}
 ## Writing modules
 
-To write a module, we strongly suggest running `puppet module generate <USERNAME>-<MODULE NAME>`.
+To write a module, use the `puppet module generate` command.
 
-When you run the above command, the `puppet module` command asks a series of questions to gather metadata about your module, and then it creates a basic module structure for you.
+Specify the full name of the module, in the format `username-modulename`. For example:
+
+`puppet module generate <USERNAME>-<MODULE NAME>`
+
+When you run this command, the `puppet module` command asks a series of questions to gather metadata about your module, and then it creates a basic module structure for you.
 
 ```bash
 $ puppet module generate examplecorp-mymodule
