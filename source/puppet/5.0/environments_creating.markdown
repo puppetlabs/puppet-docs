@@ -72,10 +72,10 @@ Related topics: [Hiera: Config file syntax][hiera.yaml].
 
 * An environment can contain an environment.conf file, which can override values for certain settings.
 * The environment.conf file is overrides these settings:
-	* Modulepath
-	* Manifest
-	* Config_version
-	* environment_timeout
+	* `modulepath`
+	* `manifest`
+	* `config_version`
+	* `environment_timeout`
  
 Related topics: [environment.conf][environment.conf]
 
@@ -88,7 +88,7 @@ Environments are turned on by default. Create an environment by adding a new dir
 To create a new environment:: 
  
 1. Inside your code directory, create a directory called environments.
-2. Inside the environment directory, create a directory with the name of your new environment using the following structure: `$codedir/environments/`
+2. Inside the environment directory, create a directory with the name of your new environment using the structure: `$codedir/environments/`
 3. Create a modules directory and a manifests directory. These two directories will contain your Puppet code. 
  
  
@@ -97,9 +97,9 @@ To create a new environment::
 Configure a modulepath:
  
 1. Set modulepath in its environment.conf file (If you set a value for this setting, the global modulepath setting from puppet.conf will not be used by an environment).
-Check the modulepath by specifying the environment when requesting the setting value:
-2. $ sudo puppet config print modulepath --section master --environment test
-/etc/puppetlabs/code/environments/test/modules:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules
+
+2. Check the modulepath by specifying the environment when requesting the setting value:
+   `$ sudo puppet config print modulepath --section master --environment test /etc/puppetlabs/code/environments/test/modules:/etc/puppetlabs/code/modules:/opt/puppetlabs/puppet/modules`
  
 > Note: In Puppet Enterprise, every environment must include /opt/puppetlabs/puppet/modules in its modulepath, since PE uses modules in that directory to configure its own infrastructure.
  
@@ -107,13 +107,13 @@ Check the modulepath by specifying the environment when requesting the setting v
 Configure a main manifest:
  
 1. Set manifest in its environment.conf file. As with the global default_manifest setting, you can specify a relative path (to be resolved within the environment’s directory) or an absolute path.
-2. Lock all environments to a single global manifest with the disable_per_environment_manifest setting - preventing any environment setting its own main manifest.
+2. Lock all environments to a single global manifest with the `disable_per_environment_manifest` setting - preventing any environment setting its own main manifest.
  
 To specify an executable script that will determine an environment’s config version:
 
-1. Specify a path to the script in the config_version setting in its environment.conf file. Puppet will run this script when compiling a catalog for a node in the environment, and use its output as the config version (if you specify a value here, the global config_version setting from puppet.conf will not be used by an environment).
+1. Specify a path to the script in the `config_version` setting in its environment.conf file. Puppet runs this script when compiling a catalog for a node in the environment, and use its output as the config version (if you specify a value here, the global `config_version` setting from puppet.conf will not be used by an environment).
  
-> Note: If you’re using a system binary like git rev-parse, make sure to specify the absolute path to it. If config_version is set to a relative path, Puppet will look for the binary in the environment, not in the system’s PATH.
+> Note: If you’re using a system binary like git rev-parse, make sure to specify the absolute path to it. If `config_version` is set to a relative path, Puppet will look for the binary in the environment, not in the system’s PATH.
  
 Related topics: [Deploying environments with r10k][environments_r10k], [Code Manager control repositories] [environment_code_repository], [disable_per_environment_manifest] [disable_per_environment_manifest].
  
@@ -153,25 +153,25 @@ When that node requests a catalog from the Puppet master, it will request that e
  
 The settings in the master’s `puppet.conf` file configure how Puppet finds and uses environments. 
  
-### Environmentpath
+### `environmentpath`
  
-* environmentpath is the list of directories where Puppet will look for environments. The default value for environmentpath is $codedir/environments. 
+* environmentpath is the list of directories where Puppet will look for environments. The default value for environmentpath is `$codedir/environments`. 
 * If more than one directory, separate them by colons and put them in order of precedence. In this example, `temp_environments` will be searched before `environments`:`$codedir/temp_environments:$codedir/environments`
 * If environments with the same name exist in both paths, Puppet uses the first environment with that name that it encounters.
 * Put the environmentpath setting in the main section of the `puppet.conf` file.
  
  
-### Basemodulepath
+### `basemodulepath`
  
-* basemodulepath lists directories of global modules that all environments can access by default.
-* Some modules can be made  available to all environments.
-* The basemodulepath setting configures the global module directories. By default, it includes $codedir/modules for user-accessible modules and /opt/puppetlabs/puppet/modules for system modules.
-* Add additional directories containing global modules by setting your own value for basemodulepath.
+* `basemodulepath` lists directories of global modules that all environments can access by default.
+* Some modules can be made available to all environments.
+* The `basemodulepath` setting configures the global module directories. By default, it includes `$codedir/modules` for user-accessible modules and `/opt/puppetlabs/puppet/modules` for system modules.
+* Add additional directories containing global modules by setting your own value for `basemodulepath`.
  
 Related topics: [modulepath] [modulepath].
  
  
-### Default_manifest
+### `default_manifest`
  
 * default_manifest specifies the main manifest for any environment that doesn’t set a manifest value in environment.conf.
 * The default value of default_manifest is ./manifests - the environment’s own manifests directory. 
@@ -181,7 +181,7 @@ Related topics: [modulepath] [modulepath].
  
 Related topics: [default_manifest setting][default_manifest].
  
-### Disable_per_environment_manifest
+### `disable_per_environment_manifest`
  
 * disable_per_environment_manifest lets you specify that all environments use a shared main manifest. 
 * When disable_per_environment_manifest is set to true, Puppet will use the same global manifest for every environment. 
@@ -189,7 +189,7 @@ Related topics: [default_manifest setting][default_manifest].
 * If this setting is set to true, the  default_manifest value must  be an absolute path.
  
  
-### environment_timeout
+### `environment_timeout`
  
 * environment_timeout sets how often the Pupper master refreshes information about environments. It can be overridden per-environment.
 * This setting defaults to 0 (caching disabled), which lowers the performance of your Puppet master but makes it easy for new users to deploy updated Puppet code. 
@@ -197,11 +197,11 @@ Related topics: [default_manifest setting][default_manifest].
  
  
 {:.Task}
-## Configuring environment_timeout
+## Configuring e`nvironment_timeout`
  
 enviroment_timeout is how often the Puppet master should cache the data it loads from an environment. For best performance, change the settings once you have a mature code deployment process.
  
-1. Set environment_timeout = unlimited in puppet.conf.
+1. Set `environment_timeout = unlimited` in puppet.conf.
 2. Change your code deployment process to refresh the Puppet master whenever you deploy updated code. (For example, set a postrun command in your r10k config or add a step to your continuous integration job.)
 * With Puppet Server, refresh environments by calling the environment-cache API endpoint. Ensure you have write access to the puppet-admin section of the `puppetserver.conf` file. 
 * With a Rack Puppet master, restart the web server or the application server. Passenger lets you touch a `restart.txt` file to refresh an application without restarting Apache. See the Passenger docs for details.
