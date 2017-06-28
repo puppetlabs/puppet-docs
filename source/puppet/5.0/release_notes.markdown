@@ -32,7 +32,7 @@ This release of Puppet is included in Puppet agent 5.0.0. This release is remova
 
 The function `call(name, args...)` has been added to allow calling a function by name.
 
-#### Added functin: `unique`
+#### Added function: `unique`
 
 The function `unique` is now available directly in Puppet and no longer requires the `stdlib` module to be included. The new version of the function also handles `Hash` and `Iterable` data types. It is now also possible to give a code block that determines if the uniqueness is computed.
 
