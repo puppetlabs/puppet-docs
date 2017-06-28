@@ -13,12 +13,14 @@ title: "Documenting modules"
 [metadata.json]: ./modules_metadata.html
 
 
-We strongly encourage you to document any module you write, whether you intend the module solely for internal use or for publication on the [Puppet Forge][forge] (Forge). This guide details module documentation best practices and walks you through our module README template.
+You should document any module you write, whether you the module is for internal use only or for publication on the [Puppet Forge][forge]. When you write module documentation, follow best practices and our module README template.
 
-* Continue reading to learn README best practices.
-* [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
-* [See "Publishing Modules"][publishing] for how to publish your modules to the Puppet Forge.
-* [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agents.
+Related topics:
+
+* [Module fundamentals"][fundamentals]: How to use and write Puppet modules.
+* [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
+* [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
+* [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 
 Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it. We recommend using [Markdown][commonmark] and `.md` (or `.markdown`) files for your READMEs.
 

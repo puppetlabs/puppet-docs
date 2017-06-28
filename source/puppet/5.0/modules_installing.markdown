@@ -25,25 +25,25 @@ title: "Installing modules"
 [score]: /forge/assessingmodulequality.html
 [environment]: ./environments.html
 
-This page explains how to install and manage modules using the `puppet module` command.
+Install and manage Puppet Forge modules with the `puppet module` command.
 
-* [See "Module Fundamentals"][fundamentals] to learn how to use and write Puppet modules.
-* [See "Publishing Modules"][publishing] to learn how to contribute your own modules to the Forge, including information about the Puppet module tool's `build` and `generate` actions.
-* [See "Module Metadata"][metadata.json] for information about the metadata.json file.
-* [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and how to sync them to agent nodes.
-* [See "Documenting Modules"][documentation] for a README template and best practices for documenting your module.
+* [Module fundamentals"][fundamentals]: How to use and write Puppet modules.
+* [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
+* [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
+* [Documenting modules][documentation]: A module README template and information on providing directions for your module.
 
+{:.concept}
 ## About `puppet module`
 
 The [Puppet Forge][forge] is a repository of modules written both by Puppet and by the Puppet user community. These modules solve a wide variety of problems, and using them can save you time and effort.
 
-The `puppet module` tool provides a command line interface for managing modules from the Forge. Its interface is similar to several common package managers (such as `gem`, `apt-get`, or `yum`). You can use the `puppet module` command to search for, install, and manage modules.
+The `puppet module` command provides an interface for managing modules from the Forge. Its interface is similar to several common package managers (such as `gem`, `apt-get`, or `yum`). You can use the `puppet module` command to search for, install, and manage modules.
 
 > **Important:** If you are using [Code Manager][code_mgr] or [r10k][r10k], do not use the `puppet module` command to install or manage modules. Instead, use a [Puppetfile][puppetfile] to manage modules in your environments. In particular, note that Code Manager purges modules that were installed to the live code directory with the `puppet module` command.
 
-
 > **Solaris Note:** To use `puppet module` commands on Solaris systems, you must first install gtar.
 
+{:.section}
 ### Using `puppet module` behind a proxy
 
 To use the `puppet module` command behind a proxy, set the following, replacing `<PROXY IP>` and `<PROXY PORT>` with the proxy's IP address and port:
@@ -64,15 +64,23 @@ Alternatively, you can set these two proxy settings inside the `[user]` config s
 
 > **Important:** Make sure to set these two proxy settings in the `user` section only. Otherwise, there can be adverse effects.
 
+{:.concept}
 ## Finding Forge modules
 
-You can find modules by browsing the [Puppet Forge][forge] on the web or by using the module tool's [`search`](#search-modules-from-the-command-line) action.
+The Puppet Forge houses thousands of modules, which you can find by browsing the [Puppet Forge][forge] on the web or by using the `puppet module search` command.
 
-The Forge houses thousands of modules, including Puppet **supported** or **approved** modules. Puppet [approved][approved] modules pass our specific quality and usability requirements. These modules are recommended by Puppet, but are not supported as part of a Puppet Enterprise license agreement. Puppet [supported][supported] modules have been tested with Puppet Enterprise and are fully supported by Puppet. If there are no supported or approved modules for what you want to do, evaluate available modules by [score][score], compatibility, documentation, last release date, and number of downloads.
+Some Forge modules are Puppet **supported** or **approved** modules. Puppet approved][approved] modules pass our specific quality and usability requirements. These modules are recommended by Puppet, but are not supported as part of a Puppet Enterprise license agreement. Puppet supported modules have been tested with Puppet Enterprise and are fully supported by Puppet. If there are no supported or approved modules for what you want to do, evaluate available modules by module score, compatibility, documentation, last release date, and number of downloads.
 
+Related topics:
+
+* [Approved modules][approved]
+* [Supported modules][supported]
+* [Module score][score]
+
+{:.concept}
 ### Search modules from the command line
 
-The search action accepts a single search term and returns a list of modules whose names, descriptions, or keywords match the search term.
+The `puppet module search` command accepts a single search term and returns a list of modules whose names, descriptions, or keywords match the search term.
 
 ```
 $ puppet module search apache
@@ -86,25 +94,32 @@ jamtur01-apachemodules         Puppet Apache Modu...  @jamtur01       apache
 adobe-hadoop                   Puppet module to d...  @adobe          apache
 ```
 
-Once you've identified the module you want, you can install it.
+When you've identified the module you want, you can then install it.
 
-## Installing modules
+{:.concept}
+## Installing modules from the command line
 
-The `puppet module install` action installs a module and all of its dependencies. By default, it installs into the first directory in Puppet's [modulepath][], which defaults to `$codedir/environments/production/modules`. (See also: [more about the modulepath][modulepath] and [how to find the codedir][codedir].)
+The `puppet module install` command installs a module and all of its dependencies.
+
+By default, it installs into the first directory in Puppet's [modulepath][], which defaults to `$codedir/environments/production/modules`.
+
+For example, to install the `puppetlabs-apache` module, run:
 
 ```bash
-sudo puppet module install puppetlabs-apache
+puppet module install puppetlabs-apache
 ```
 
 This command accepts the following options:
 
-* Use the `--target-dir` option to specify a different directory for installation. Relatedly:
-    * Use the `--environment` option to install into a different [environment][]. (Each environment has its own modulepath, which is used to calculate dependencies and choose a default value for `--target-dir`.)
-    * Use the `--modulepath` option to manually specify a modulepath, instead of using an environment's.
-* Use the `--version` option to specify a version of the module. You can use an exact version or a requirement string like `>=1.0.3`.
-* Use the `--force` option to forcibly install a module or re-install an existing module. (**Note:** Does not install dependencies.)
-* Use the `--ignore-dependencies` option to skip installing any modules required by this module.
-* Use the `--debug` option to see additional information about what the Puppet module tool is doing.
+Option   | Description
+----------------|:---------------
+`--target-dir` | Specifies a different directory for installation.
+`--environment` | Installs the module into the specified environment.
+`--modulepath` | Specifies a modulepath, instead of using an environment's default modulepath.
+`--version` | Specifies the module version to install. You can use an exact version or a requirement string like `>=1.0.3`.
+`--force` | Forcibly installs a module or re-install an existing module. Does **not** install dependencies.
+`--ignore-dependencies` | Does not install any modules required by this module.
+`--debug` | Displays additional information about what the `puppet module` command is doing.
 
 > **Note: Invalid Version Warnings**
 >
@@ -114,25 +129,43 @@ This command accepts the following options:
 >
 > Despite the warning, Puppet still downloads your module and does not permanently change the offending module's metadata. The version is only changed in memory during the run of the program, in order to calculate dependencies for the modules you're installing.
 
-### Install from the Puppet Forge
+Related topics:
 
-To install a module from the Puppet Forge, identify the module you want by its full name. The full name of a Forge module is formatted as username-modulename.
+* [About the modulepath][modulepath].
+* [How to find the codedir][codedir].
+
+{:.concept}
+### Install modules from the Puppet Forge
+
+To install a module from the Puppet Forge, use the `puppet module install` command with the full name of the module you want.
+
+The full name of a Forge module is formatted as username-modulename. For example, `puppetlabs-apache`.
 
 ``` bash
 sudo puppet module install puppetlabs-apache
 ```
 
-### Install from another module repository
+{:.concept}
+### Installing from another module repository
 
-The module tool can install modules from other repositories that mimic the Forge's interface. To do this, change the [`module_repository`](./configuration.html#modulerepository) setting in [`puppet.conf`](./config_file_main.html) or specify a repository on the command line with the `--module_repository` option. The value of this setting should be the base URL of the repository; the default value, which uses the Forge, is `https://forgeapi.puppetlabs.com`.
+The `puppet module` command can install modules from other repositories that mimic the Forge's interface. You can change the module repository for one installation, or you can change your default repository.
 
-After setting the repository, follow the instructions above for installing from the Forge.
+The normal default module repository is the Forge, so the default `module_repository` value is `https://forgeapi.puppetlabs.com`.
+
+* To change the default module repository, edit the `module_repository` setting in `puppet.conf` to the base URL of the repository you want to use.
+
+* To change the repository for a single module installation only, specify the base URL of the repository when you install the module. Use the `--module_repository` option to set this. For example:
 
 ``` bash
-sudo puppet module install --module_repository http://dev-forge.example.com puppetlabs-apache
+puppet module install --module_repository http://dev-forge.example.com puppetlabs-apache
 ```
 
-### Install from a release tarball
+Related topics:
+
+* [The `module_repository` setting](./configuration.html#modulerepository)
+
+{:.concept}
+### Installing from a release tarball
 
 To install a module from a release tarball, specify the path to the tarball instead of the module name.
 
@@ -142,77 +175,91 @@ If you cannot connect to the Puppet Forge, or you are installing modules that ha
 sudo puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependencies
 ```
 
-> **Note:** You can manually install modules without the `puppet module` tool. If you do, you must name your module's directory appropriately. Module directory names can only contain letters, numbers, and underscores. Dashes and periods are **not valid** and cause errors when attempting to use the module.
+> **Note:** You can manually install modules without the `puppet module` command. If you do, you must name your module's directory appropriately. Module directory names can only contain letters, numbers, and underscores. Dashes and periods are **not valid** and cause errors when attempting to use the module.
 
-### Install Puppet Enterprise modules
+{:.concept}
+### Installing Puppet Enterprise modules
 
-We publish some premium modules exclusively for Puppet Enterprise users. To install a [Puppet Enterprise module](/forge/puppetenterprisemodules) you must:
+Some premium Puppet modules are only available to Puppet Enterprise users.
+
+To install a [Puppet Enterprise module](/forge/puppetenterprisemodules) you must:
 
 * Be logged in as the root user.
-* Use the [Puppet module tool](#about-puppet-module) (unless you are using a [Puppetfile][puppetfile].
+* Use the [Puppet module command](#about-puppet-module), unless you are using a [Puppetfile][puppetfile] with Code Manager or r10k.
 * Install the module on a properly licensed Puppet node.
 * Have internet access on the node you are using to download the module.
 
 After you've run `puppet module install puppetlabs-<MODULE>` you can move the installed module to the directory, server, or version control system repository of your choice.
 
-If you need to install a PE-only module on a PE node that doesn't have internet access, move the package:
+{:.task}
+### Install PE modules on nodes without internet
+
+If you need to install a PE-only module on a node with no internet, you can download the module on a connected machine, and then move the module package to the disconnected node.
 
 1. Run `puppet module install puppetlabs-<MODULE>` on a licensed node with internet access.
-2. Run `puppet module build` to build the newly-installed module.
+2. Run `puppet module build` to build a package from the newly installed module.
 3. Move the *.tar.gz wherever you choose.
 4. Run `puppet module install` against the tar.gz.
+5. Manually install the module's dependencies. Without internet access, the `puppet module` command cannot install dependencies automatically.
 
-As mentioned in the instructions for [installing from a tarball](#install-from-a-release-tarball), when installing on a node without internet access, you must manually install any dependencies.
-
+{:.concept}
 ## Managing modules
 
-### List installed modules
+The `puppet module` command can also list, upgrade, and uninstall modules.
 
-Use the module tool's `list` action to see which modules you have installed (and which directory they're installed in).
+{:.concept}
+### Listing installed modules
 
-* Use the `--tree` option to view the modules arranged by dependency instead of by location on disk.
+Use the `puppet module list` command to see which modules you have installed and which directory they're installed in.
 
-### Upgrade modules
+To view the modules arranged by dependency instead of location on disk, use the `--tree` option.
 
-Use the module tool's `upgrade` action to upgrade an installed module to the latest version. You must identify the target module by its full name (username-modulename).
+{:.concept}
+### Upgrading modules
+
+Use the `puppet module upgrade`command to upgrade an installed module to the latest version.
+
+You must identify the target module by its full name, in the `username-modulename` format. The `puppet module upgrade` command has several options available:
 
 * Use the `--version` option to specify a version.
 * Use the `--ignore-changes` option to upgrade the module while ignoring and overwriting any local changes that might have been made.
 * Use the `--ignore-dependencies` option to skip upgrading any modules required by this module.
 
-### Uninstall modules
+{:.section}
+#### Upgrading Puppet Enterprise modules
 
-Use the module tool's `uninstall` action to remove an installed module. You must identify the target module by its full name  (username-modulename).
+To upgrade PE modules, you must meet requirements similar to those needed for installing PE-only modules.
 
-```
-$ sudo puppet module uninstall apache
-Error: Could not uninstall module 'apache':
-  Module 'apache' is not installed
-      You may have meant `puppet module uninstall puppetlabs-apache`
-$ sudo puppet module uninstall puppetlabs-apache
-Removed /etc/puppetlabs/code/modules/apache (v0.0.3)
-```
+You must:
+
+* Be logged in as the root user.
+* Have internet access on the node you are using to download the module.
+* Use the `puppet module install` command.
+* Install the module on a properly licensed Puppet node.
+
+> **Note**: If you use `librarian-puppet` to manage Puppet Enterprise modules, you must first install the module, and then commit the module to your version control repository.
+
+
+{:.concept}
+### Uninstalling modules
+
+Use the `puppet module uninstall` command to remove an installed module.
+
+You must identify the target module by its full name, in the `username-modulename` format.
 
 By default, the tool won't uninstall a module that other modules depend on, or whose files have been edited since it was installed.
 
-* Use the `--force` option to uninstall even if the module is depended upon or has been manually edited.
-* Use the `--ignore-changes` option to uninstall the module while ignoring and overwriting any local changes that might have been made.
+* To force an uninstall even if the module is a dependency or has been manually edited, use the `--force` option.
+* To uninstall the module while ignoring and overwriting any local changes, use the `--ignore-changes` option.
 
-### Managing Puppet Enterprise modules
+{:.reference}
+## `puppet module` actions
 
-If you manage Puppet Enterprise modules with [librarian-puppet](https://github.com/rodjek/librarian-puppet), you must first [install the module](#install-puppet-enterprise-modules), and then commit the module to your version control repository.
+The `puppet module` command manages modules with several actions, including install, uninstall, list, and search.
 
-To upgrade your Puppet Enterprise module, as with installation, you must:
+View a full description of each action with `puppet man module` or by viewing the man page online.
 
-* Be logged in as the root user.
-* Use the [Puppet module tool](#about-puppet-module).
-* Install the module on a properly licensed Puppet node.
-* Have internet access on the node you are using to download the module.
-
-## Reference: `puppet module` actions
-
-View a full description of each action with `puppet man module` or by [viewing the man page online][module_man]. The main actions of the `puppet module` command are:
-
+{:.section}
 #### `install`
 
 Installs a module from either the Forge or a release archive.
@@ -223,14 +270,17 @@ sudo puppet module install puppetlabs-apache --version 0.0.2
 
 Accepts the following options:
 
-* `--target-dir`: Specify a different directory for installation.
-* `--environment`: Install into a different [environment][].
-* `--modulepath`: Specify a different modulepath.
-* `--version`: Specify a version of the module. Accepts an exact version or a requirement string like `>=1.0.3`.
-* `--force`: Forcibly install a module or re-install an existing module. (**Note:** Does not install dependencies.)
-* `--ignore-dependencies`: Skips installing any modules required by this module.
-* `--debug`: Displays additional information about what `puppet module` is doing.
+Option   | Description
+----------------|:---------------
+`--target-dir` | Specifies a different directory for installation.
+`--environment` | Installs the module into the specified environment.
+`--modulepath` | Specifies a modulepath, instead of using an environment's default modulepath.
+`--version` | Specifies the module version to install. You can use an exact version or a requirement string like `>=1.0.3`.
+`--force` | Forcibly installs a module or re-install an existing module. Does **not** install dependencies.
+`--ignore-dependencies` | Does not install any modules required by this module.
+`--debug` | Displays additional information about what the `puppet module` command is doing.
 
+{:.section}
 #### `list`
 
 Lists installed modules.
@@ -239,6 +289,7 @@ Lists installed modules.
 sudo puppet module list
 ```
 
+{:.section}
 #### `search`
 
 Searches the Forge for a module.
@@ -247,6 +298,7 @@ Searches the Forge for a module.
 sudo puppet module search apache
 ```
 
+{:.section}
 #### `uninstall`
 
 Uninstalls a Puppet module.
@@ -255,6 +307,7 @@ Uninstalls a Puppet module.
 sudo puppet module uninstall puppetlabs-apache
 ```
 
+{:.section}
 #### `upgrade`
 
 Upgrades a Puppet module.
@@ -263,11 +316,12 @@ Upgrades a Puppet module.
 sudo puppet module upgrade puppetlabs-apache --version 0.0.3
 ```
 
-## Common errors
+{:.concept}
+## Puppet Enterprise module errors
 
-### Puppet Enterprise module errors
+If you get an error when installing a Puppet Enterprise module, check for common issues.
 
-When installing or upgrading a Puppet Enterprise module, you might receive an error like the following:
+When installing or upgrading a PE-only module, you might get the following error:
 
 ```
 Error: Request to Puppet Forge failed.

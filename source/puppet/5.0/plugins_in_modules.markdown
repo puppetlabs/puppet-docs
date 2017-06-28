@@ -1,5 +1,5 @@
 ---
-title: Plugins in Modules
+title: Plug-ins in Modules
 ---
 
 [modules]: ./modules_fundamentals.html
@@ -14,41 +14,48 @@ title: Plugins in Modules
 [custom augeas lenses]: https://github.com/hercules-team/augeas/wiki/Create-a-lens-from-bottom-to-top
 
 
-Puppet supports several kinds of **plugins,** which can be distributed in [modules][].
+Puppet supports several kinds of **plug-ins,** which can be distributed in modules. These plug-ins enable new features for managing your nodes. Plug-ins are often included in modules downloaded from the Puppet Forge, and you can also develop your own.
 
-These plugins enable new features for managing your nodes. Plugins are often included in modules downloaded from the Puppet Forge, and you can also develop your own.
+{:.concept}
+## Installing plug-ins
 
-## Installing plugins
+Plug-ins are automatically enabled when you install the module that contains them. You don't have to do anything else: once a module is installed in an environment's modulepath, its plug-ins are available when managing nodes in that environment.
 
-Plugins are automatically enabled when you install the module that contains them. You don't have to do anything else: once a module is installed in an [environment][]'s [modulepath][], its plugins are available when managing nodes in that environment.
+{:.concept}
+### Auto-download of agent-side plug-ins (pluginsync)
 
-### Auto-download of agent-side plugins (pluginsync)
+Some plug-ins are used by Puppet Server, which can load them directly from modules. But other plug-ins (facts, custom resource types and providers) are used by Puppet agent, which doesn't have direct access to the server's modules.
 
-Some plugins are used by Puppet Server, which can load them directly from modules. But other plugins (facts, custom resource types and providers) are used by Puppet agent, which doesn't have direct access to the server's modules.
+To enable this, Puppet agent automatically downloads plug-ins from the server at the start of each agent run. Those plug-ins are then available during the run.
 
-To enable this, Puppet agent automatically downloads plugins from the server at the start of each agent run. Those plugins are then available during the run.
+Puppet agent syncs plug-in files from _every_ module in its environment's modulepath, regardless of whether that node uses any classes from a given module. In other words, even if you don't declare any classes from the `stdlib` module, nodes will still use `stdlib`'s custom facts.
 
-Puppet agent syncs plugin files from _every_ module in its environment's [modulepath][], regardless of whether that node uses any classes from a given module. (In other words: even if you don't declare any classes from the `stdlib` module, nodes will still use `stdlib`'s custom facts.)
-
-#### Technical details of pluginsync
+{:.concept}
+### Technical details of pluginsync
 
 Pluginsync takes advantage of the same file serving features used by the `file` resource type.
 
-Puppet Server creates two special file server mount points for pluginsync, and populates them with the aggregate contents of certain subdirectories of modules. Before doing an agent run, Puppet agent recursively manages the contents of those mount points into two cache directories on disk. This uses the same machinery as the `source` attribute in classic (non-static-catalog) recursive `file` resources: the agent does a GET request to `/puppet/v3/file_metadatas/<MOUNT POINT>`, compares the resulting checksums and ownership info to local files, deletes any unmanaged files, retrieves content data for any missing or out-of-date files, and sets permissions as needed.
+Puppet Server creates two special file server mount points for pluginsync, and populates them with the aggregate contents of certain subdirectories of modules. Before doing an agent run, Puppet agent recursively manages the contents of those mount points into two cache directories on disk. The agent performs the following functions:
 
-The following table shows the corresponding module subdirectories, mount points, and agent-side directories for each kind of plugin:
+1. Sends a GET request to `/puppet/v3/file_metadatas/<MOUNT POINT>`,
+2. Compares the resulting checksums and ownership info to local files
+3. Deletes any unmanaged files, 
+4. Retrieves content data for any missing or out-of-date files, and
+5. Sets permissions as needed.
 
-Plugin type        | Module subdirectory | Mount point   | Agent directory
+The following table shows the corresponding module subdirectories, mount points, and agent-side directories for each kind of plug-in:
+
+Plug-in type        | Module subdirectory | Mount point   | Agent directory
 -------------------|---------------------|---------------|----------------------------------------
 [External facts][] | `<MODULE>/facts.d`  | `pluginfacts` | `<VARDIR>/facts.d`
-Ruby plugins       | `<MODULE>/lib`      | `plugins`     | `<VARDIR>/lib`
+Ruby plug-ins       | `<MODULE>/lib`      | `plugins`     | `<VARDIR>/lib`
 
 (`<VARDIR>` is Puppet agent's [cache directory][vardir], which is located at `/var/opt/puppetlabs/puppet/cache`, `%PROGRAMDATA%\PuppetLabs\puppet\cache`, or `~/.puppetlabs/opt/puppet/cache`.)
 
+{:.concept}
+## Types of plug-ins
 
-## Types of plugins
-
-Puppet supports several kinds of plugins:
+Puppet supports several kinds of plug-ins:
 
 * [Custom facts][] (written in Ruby).
 * [External facts][] (executable scripts or static data).
@@ -56,15 +63,16 @@ Puppet supports several kinds of plugins:
 * [Custom functions written in Ruby][ruby_functions].
 * [Custom functions written in the Puppet language][puppet_functions].
 * [Custom Augeas lenses][].
-* Miscellaneous utility Ruby code used by other plugins.
+* Miscellaneous utility Ruby code used by other plug-ins.
 
 Facts and Augeas lenses are used solely by Puppet agent. Functions are used solely by Puppet Server. Resource types and providers are used by both. (Note that Puppet apply acts as both agent and server.)
 
-## Adding plugins to a module
+{:.concept}
+## Adding plug-ins to a module
 
-To add plugins to a module, put them in the following directories:
+To add plug-ins to a module, put them in the following directories:
 
-Type of plugin                                           | Module subdirectory
+Type of plug-in                                           | Module subdirectory
 ---------------------------------------------------------|------------------------------
 Facts                                                    | `lib/facter`
 Functions (Ruby, modern `Puppet::Functions` API)         | `lib/puppet/functions`
@@ -75,9 +83,9 @@ Resource providers                                       | `lib/puppet/provider`
 External facts                                           | `facts.d`
 Augeas lenses                                            | `lib/augeas/lenses`
 
-In all cases, you must name files and additional subdirectories according to the plugin type's loading requirements.
+In all cases, you must name files and additional subdirectories according to the plug-in type's loading requirements.
 
-To illustrate, a module that included every type of plugin would have a directory structure like this:
+To illustrate, a module that included every type of plug-in would have a directory structure like this:
 
 * `mymodule` (the module's top-level directory; this module is named `mymodule`.)
     * `lib`
@@ -103,13 +111,14 @@ To illustrate, a module that included every type of plugin would have a director
         * `datacenter.py` (an executable script that returns fact data.)
 
 
-## Issues with server-side plugins
+{:.concept}
+## Issues with server-side plug-ins
 
-If you encounter problems with conflicting versions of the same plugin in different environments, you can fix these issues as described below.
+If you encounter problems with conflicting versions of the same plug-in in different environments, you can fix these issues as described below.
 
-Environments aren't completely isolated for certain kinds of plugins. If a plugin of the same name exists in different versions in multiple environments, Puppet loads the plugin from the first environment to use that plugin, then continues to use that version of the plugin for all subsequent environments.
+Environments aren't completely isolated for certain kinds of plug-ins. If a plug-in of the same name exists in different versions in multiple environments, Puppet loads the plug-in from the first environment to use that plug-in, then continues to use that version of the plug-in for all subsequent environments.
 
-This issue can occur with the following plugin types:
+This issue can occur with the following plug-in types:
 
 * Custom resource types. To avoid resource type conflicts, use the `puppet generate types` command as described in [environment isolation](./environment_isolation.html) documentation.
 * Custom functions, only with the legacy `Puppet::Parser::Functions` API. To fix the issue, rewrite functions with the modern API, which is not affected by this issue.
