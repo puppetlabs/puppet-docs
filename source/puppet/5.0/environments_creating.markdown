@@ -209,7 +209,7 @@ Related topics: [default_manifest setting][default_manifest].
  
  
 {:.Task}
-## Configuring e`nvironment_timeout`
+## Configuring `environment_timeout`
  
 `enviroment_timeout` is how often the Puppet master should cache the data it loads from an environment. For best performance, change the settings once you have a mature code deployment process.
  
