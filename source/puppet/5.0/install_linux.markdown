@@ -19,7 +19,7 @@ Install the Puppet agent so that your master can communicate with your Linux nod
 
 **Before you begin**: Review the [pre-install tasks](./install_pre.html) and [installing Puppet Server][server_install].
 
-1. Install a [release package](#about-release-packages) to enable Puppet Platform repositories.
+1. Install a release package to [enable Puppet Platform repositories](./puppet_platform.html).
 
 2. Confirm that you can run Puppet executables.
 
