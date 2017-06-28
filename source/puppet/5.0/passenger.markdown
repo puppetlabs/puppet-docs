@@ -122,7 +122,7 @@ See "Example Vhost Configuration" below for the contents of the `puppetmaster.co
 This Apache Virtual Host configures the Puppet master on the default
 puppetmaster port (8140). You can also see a similar file at `ext/rack/example-passenger-vhost.conf` in the Puppet source.
 
-Make sure you point the SSL-related settings to your actual SSL files; the example below uses Puppet 4's `ssldir`, but Puppet 3 uses a different path, which can vary by OS.
+Make sure you point the SSL-related settings to your actual SSL files; the example below uses Puppet 5's `ssldir`, but Puppet 3 uses a different path, which can vary by OS.
 
     # You'll need to adjust the paths in the Passenger config depending on which OS
     # you're using, as well as the installed version of Passenger.

@@ -7,7 +7,7 @@ title: "About Puppet Platform and its packages"
 > -   For Puppet 3.8 open source packages, see its [repository documentation](/puppet/3.8/reference/puppet_repositories.html).
 > -   For Puppet Enterprise installation tarballs, see its [installation documentation](/pe/latest/install_basic.html).
 
-Puppet maintains official Puppet Platform 5 package repositories for several operating systems and distributions. Puppet Platform 5 has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other.
+Puppet maintains official Puppet 5 Platform package repositories for several operating systems and distributions. Puppet 5 Platform has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other.
 
 Puppet publishes updates for operating systems starting from the time a package is first published, to 30 days after the end of the operating system's vendor-determined lifespan.
 
@@ -24,9 +24,9 @@ class { '::puppet_agent':
 
 If you're upgrading from a 1.x version of `puppet-agent`, just update the `package_version` when you're ready to upgrade to the 5.x series.
 
-## Puppet Platform 5 contents
+## Puppet 5 Platform contents
 
-Puppet Platform 5 contains the following components:
+Puppet 5 Platform contains the following components:
 
 Package                              | Contents
 -------------------------------------|----------------------------------------------
@@ -36,22 +36,22 @@ Package                              | Contents
 `puppetdb-termini`                   | Plugins to let [Puppet Server talk to PuppetDB](/puppetdb/latest/connect_puppet_master.html)
 
 
-## Using Puppet Platform 5
+## Using Puppet 5 Platform
 
-The way you access Puppet Platform 5 depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
+The way you access Puppet 5 Platform  depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
 
 > **Note:** macOS and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/reference/about_agent.html). macOS `puppet-agent` packages are organized by Puppet Platform; for more information, see [the macOS installation instructions](./install_osx.html).
 
 
 ### Yum-based systems
 
-To enable the Puppet Platform 5 repository:
+To enable the Puppet 5 Platform repository:
 
 1. Choose the package based on your operating system and version. The packages are located in the [`yum.puppet.com`](https://yum.puppet.com) repository and named using the following convention:
 
    `<PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm`
 
-   For instance, the package for Puppet Platform 5 on Red Hat Enterprise Linux 7 (RHEL 7) is `puppet5-release-el-7.noarch.rpm`.
+   For instance, the package for Puppet 5 Platform  on Red Hat Enterprise Linux 7 (RHEL 7) is `puppet5-release-el-7.noarch.rpm`.
 
 2. Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
 
@@ -82,7 +82,7 @@ To enable the Puppet Platform 5 repository:
 
 ### Apt-based systems
 
-To enable the Puppet Platform 5 repository:
+To enable the Puppet 5 Platform repository:
 
 1. Choose the package based on your operating system and version. The packages are located in the [`apt.puppet.com`](https://apt.puppet.com) repository and named using the convention `<PLATFORM_VERSION>-release-<VERSION CODE NAME>.deb`
 
@@ -126,11 +126,11 @@ To enable the Puppet Platform 5 repository:
 
 While the [`puppet-agent` package](./about_agent.html) is the only component of the Puppet Platform available on macOS and Windows, you can still use Puppet Platform to ensure the version of `package-agent` you install is compatible with the rest of your infrastructure.
 
-To download `puppet-agent` for Puppet Platform 5 on macOS:
+To download `puppet-agent` for Puppet 5 Platform on macOS:
 
 * [macOS packages](https://downloads.puppetlabs.com/mac/puppet5/)
 
-To download `puppet-agent` for Puppet Platform 5 on Windows:
+To download `puppet-agent` for Puppet 5 Platform on Windows:
 
 * [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet5/)
 
