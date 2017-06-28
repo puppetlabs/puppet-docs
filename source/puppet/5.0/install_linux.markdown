@@ -17,9 +17,9 @@ title: "Installing Puppet agent: Linux"
 
 Install the Puppet agent so that your master can communicate with your Linux nodes.
 
-**Before you begin**: Review the [pre-install tasks](./install_pre.html) and [installing Puppet Server][server_install]. If you're familiar with Puppet 3 and earlier, learn about new locations for many of the files and directories by reading a summary of [changes in Puppet 4][where] or referring to the [full specification of Puppet directories](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md).
+**Before you begin**: Review the [pre-install tasks](./install_pre.html) and [installing Puppet Server][server_install].
 
-1. Install a [release package](#about-release-packages) to enable Puppet Platform repositories.
+1. Install a release package to [enable Puppet Platform repositories](./puppet_platform.html).
 
 2. Confirm that you can run Puppet executables.
 
@@ -29,7 +29,7 @@ Install the Puppet agent so that your master can communicate with your Linux nod
 
    To quickly add the executable location to your `PATH` for your current terminal session, use the command `export PATH=/opt/puppetlabs/bin:$PATH`. You can also add this location wherever you configure your `PATH`, such as your `.profile` or `.bashrc` configuration files.
 
-   For more information, see details about [files and directories moved in Puppet 4][where].
+   For more information, see details about [file and directory locations][where].
 
 4. Install the `puppet-agent` package on your Puppet agent nodes using the command appropriate to your system:
 

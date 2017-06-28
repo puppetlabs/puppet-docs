@@ -32,7 +32,7 @@ This release of Puppet is included in Puppet agent 5.0.0. This release is remova
 
 The function `call(name, args...)` has been added to allow calling a function by name.
 
-#### Added functin: `unique`
+#### Added function: `unique`
 
 The function `unique` is now available directly in Puppet and no longer requires the `stdlib` module to be included. The new version of the function also handles `Hash` and `Iterable` data types. It is now also possible to give a code block that determines if the uniqueness is computed.
 
@@ -54,8 +54,10 @@ If the server compiles a catalog, and it contains binary data, typically as a re
 #### Ruby 2.4
 
 Puppet now uses Ruby 2.4, which ships in the `puppet-agent` package. Reinstallation of user-installed Puppet agent gems is required after upgrade to Puppet agent 5.0.
-	* Due to Ruby API changes between Ruby 2.1 and 2.4, any user-installed Puppet agent gems (Ruby gems installed using Puppet agent's gem binary) require re-installation following upgrade to Puppet agent 5.0.
-	* Some gems may also require upgrade to versions that are compatible with Ruby 2.4.
+
+* Due to Ruby API changes between Ruby 2.1 and 2.4, any user-installed Puppet agent gems (Ruby gems installed using Puppet agent's gem binary) require re-installation following upgrade to Puppet agent 5.0.
+
+* Some gems may also require upgrade to versions that are compatible with Ruby 2.4.
 
 #### HOCON gem is now a dependency
 
@@ -86,7 +88,7 @@ All individual variables in the `$settings` namespace are now available as a Has
 Hiera 5 compliant default files go in your `confdir` and `env-directory`.
 
 * New installs: Pupppet creates appropriate v5 hiera.yaml in $confdir and $environment
-* On upgrade: If Puppet detects a hiera.yaml in either $confdir or $environment, it won't install a new file in either location, or remove `$hieradata`. 
+* On upgrade: If Puppet detects a hiera.yaml in either `$confdir` or `$environment`, it won't install a new file in either location, or remove `$hieradata`. 
 
 #### Added command line option to pass job-id to agent
 
@@ -134,7 +136,7 @@ The old behavior silently ignored the empty sets. This was surprising and hard t
 
 ### Deprecations
 
-* The `external_facts` feature is deprecated as the version of Facter Puppet depends on now always includes this functionality.
+* The `external_facts` feature is deprecated, the version of Facter Puppet depends on now always includes this functionality.
 
 * The experimental "data in environments and modules" support implementation has been deprecated in favor of Hiera version 5. Implementors of custom experimental data providers using the experimental "version 4" should migrate their implementations as soon as possible because there is no guarantee that the experimental APIs will continue to work. Users of the hiera.yaml version 4 format, and the built in data providers for JSON and YAML, as well as the `data()` function can migrate at their own pace as those features are deprecated but still supported.
 
@@ -224,7 +226,8 @@ These issues were resolved in Puppet 5.0.0.
 
 * [PUP-1441](https://tickets.puppetlabs.com/browse/PUP-1441), [PUP-7063](https://tickets.puppetlabs.com/browse/PUP-7063): Prior to Puppet 5.0.0, when printing values to the console that were in a character encoding incompatible with UTF-8 or contained invalid byte sequences, Puppet would fail, usually with an `incompatible encodings` error. In Puppet 5.0.0 and later, Puppet logs in UTF-8, and issues a warning upon encountering invalid strings with their content and the backtrace leading up to the log event.
 
-* [PUP-25](https://tickets.puppetlabs.com/browse/PUP-25): Puppet has always evaluated collections before applying default values defined via resource type defaults, making it impossible to use such values when performing collection. This is now changed and an example like this now works as expected: 
+* [PUP-25](https://tickets.puppetlabs.com/browse/PUP-25): Puppet has always evaluated collections before applying default values defined via resource type defaults, making it impossible to use such values when performing collection. This is now changed and an example like this now works as expected:
+ 
    ~~~
    File { tag => 'sc_test' } 
    File { '/tmp/test': ensure => present } 
