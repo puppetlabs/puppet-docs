@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Beginner's guide to writing modules
+title: Module cheat sheet
 ---
 
 
@@ -9,7 +9,7 @@ title: Beginner's guide to writing modules
 [plugins]: ./plugins_in_modules.html
 [publishing]: ./modules_publishing.html
 [template]: ./READMEtemplate.txt
-[forge]: https://forge.puppetlabs.com/
+[forge]: https://forge.puppet.com/
 [documentation]: ./modules_documentation.html
 
 
