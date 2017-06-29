@@ -78,7 +78,7 @@ Related topics: [Hiera: Config file syntax][hiera.yaml].
 
 * By default, the config version will be the time at which the catalog was compiled (as the number of seconds since January 1, 1970).
  
-### The environment.conf File
+### The environment.conf file
 
 * An environment can contain an `environment.conf` file, which can override values for certain settings.
 
@@ -180,7 +180,7 @@ The settings in the master’s `puppet.conf` file configure how Puppet finds and
 * The `basemodulepath` setting configures the global module directories. By default, it includes `$codedir/modules` for user-accessible modules and `/opt/puppetlabs/puppet/modules` for system modules.
 * Add additional directories containing global modules by setting your own value for `basemodulepath`.
  
-Related topics: [modulepath] [modulepath].
+Related topics: [modulepath][modulepath].
  
  
 ### `default_manifest`
