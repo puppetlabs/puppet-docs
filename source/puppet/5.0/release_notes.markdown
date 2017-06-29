@@ -148,6 +148,8 @@ The old behavior silently ignored the empty sets. This was surprising and hard t
 
 In most cases, these features have been deprecated for several versions of Puppet and often are replaced by new features, so their removal shouldn't affect most users.
 
+* Running 32-bit Puppet agent on a 64-bit Windows system was deprecated as of December 31, 2016. Now, the installer will prevent you from installing a version of Puppet that doesn't match your Windows architecture.
+
 * The `inspect` command and its associated fields in the report have been removed, most notably the `kind` field, which used to distinguish between `apply` and `inspect` runs.
 
 * The Puppet face, 'file' (deprecated in Puppet 4.x) has been removed.
