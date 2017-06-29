@@ -21,7 +21,7 @@ We've constructed a README template that you can use for your own modules. This 
 
 Related topics:
 
-* [Module fundamentals"][fundamentals]: How to use and write Puppet modules.
+* [Module fundamentals][fundamentals]: How to use and write Puppet modules.
 * [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
 * [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
 * [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
