@@ -3,7 +3,7 @@ layout: default
 title: "Installing Puppet agent: Microsoft Windows"
 ---
 
-[downloads]: https://downloads.puppetlabs.com/windows/?C=N;O=D
+[downloads]: https://downloads.puppetlabs.com/windows/puppet5/
 [peinstall]: {{pe}}/install_windows.html
 [pre_install]: ./install_pre.html
 [where]: ./whered_it_go.html
@@ -17,37 +17,30 @@ title: "Installing Puppet agent: Microsoft Windows"
 
 These instructions cover installing Puppet agent on Windows machines.
 
-1. Make sure you're ready.
-
-   Before installing Puppet on any agent nodes:
-
-   * If you're using Puppet with a master/agent configuration, you'll need a \*nix node to act as your Puppet master.
-   * Make sure you've read the [pre-install tasks.](./install_pre.html)
+**Before you begin:** If you're using Puppet with a master/agent configuration, you'll need a \*nix node to act as your Puppet master. Read the [pre-install tasks.](./install_pre.html)
    
-   > **Note:** If you've used older Puppet versions, Puppet 4 changed the locations for a lot of the most important files and directories. [See this page for a summary of the changes.][where]
-
-2. Download the Windows `puppet-agent` package
+1. Download the Windows `puppet-agent` package
 
    [Puppet's Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
 
    * 64-bit versions of Windows must use `puppet-agent-<VERSION>-x64.msi`.
    * 32-bit versions of Windows must use `puppet-agent-<VERSION>-x86.msi`.
 
-   >**Note:** Running 32-bit Puppet agent on a 64-bit Windows system is now deprecated.
+   >**Note:** Puppet agent will prevent you from running the 32-bit version on a 64-bit Windows system, this functionality was deprecated in Puppet 4, and removed in Puppet 5.
 
    These packages bundle all of Puppet's prerequisites, so you don't need to download anything else.
 
    The list of Windows packages might include release candidates, whose filenames have something like `-rc1` after the version number. Use these only if you want to test upcoming Puppet versions.
 
-   >**Note:** As of January 2016, Puppet dual-signs `puppet-agent` packages. You might see a warning from your browser saying the signature is corrupt or invalid.
+   >**Note:** Puppet dual-signs `puppet-agent` packages. You might see a warning from your browser saying the signature is corrupt or invalid.
    >
    > ![invalid or corrupt](./images/windows_invalid_signature.jpg)
    >
-   > If you want to verify the package is dual-signed, right-click on the MSI, and select **Properties**. Navigate to the **Digital Signatures** tab and you    should see the following:
+   > If you want to verify the package is dual-signed, right-click on the MSI, and select **Properties**. Navigate to the **Digital Signatures** tab and you should see something similar to:
    >
    > ![Puppet Package Properties](./images/windows_package_signatures.png)
 
-3. Install Puppet
+2. Install Puppet
 
    You can install Puppet [with a graphical wizard](#graphical-installation) or [on the command line](#automated-installation). The command-line installer provides more configuration options.
 
@@ -87,17 +80,17 @@ These instructions cover installing Puppet agent on Windows machines.
 
 These options are only available when installing Puppet on the command line.
 
-MSI Property                                                   | Puppet Setting     | Introduced in
----------------------------------------------------------------|--------------------|-------------------------
-[`INSTALLDIR`](#installdir)                                    | n/a                | Puppet 2.7.12 / PE 2.5.0
-[`PUPPET_MASTER_SERVER`](#puppetmasterserver)                  | [`server`][s]      | Puppet 2.7.12 / PE 2.5.0
-[`PUPPET_CA_SERVER`](#puppetcaserver)                          | [`ca_server`][c]   | Puppet 2.7.12 / PE 2.5.0
-[`PUPPET_AGENT_CERTNAME`](#puppetagentcertname)                | [`certname`][r]    | Puppet 2.7.12 / PE 2.5.0
-[`PUPPET_AGENT_ENVIRONMENT`](#puppetagentenvironment)          | [`environment`][e] | Puppet 3.3.1  / PE 3.1.0
-[`PUPPET_AGENT_STARTUP_MODE`](#puppetagentstartupmode)         | n/a                | Puppet 3.4.0  / PE 3.2
-[`PUPPET_AGENT_ACCOUNT_USER`](#puppetagentaccountuser)         | n/a                | Puppet 3.4.0  / PE 3.2
-[`PUPPET_AGENT_ACCOUNT_PASSWORD`](#puppetagentaccountpassword) | n/a                | Puppet 3.4.0  / PE 3.2
-[`PUPPET_AGENT_ACCOUNT_DOMAIN`](#puppetagentaccountdomain)     | n/a                | Puppet 3.4.0  / PE 3.2
+MSI Property                    | Puppet Setting     
+--------------------------------|--------------------
+`INSTALLDIR`                    |                
+`PUPPET_MASTER_SERVER`          | [`server`][s]      
+`PUPPET_CA_SERVER`              | [`ca_server`][c]   
+`PUPPET_AGENT_CERTNAME`         | [`certname`][r]    
+`PUPPET_AGENT_ENVIRONMENT`      | [`environment`][e] 
+`PUPPET_AGENT_STARTUP_MODE`     |                
+`PUPPET_AGENT_ACCOUNT_USER`     |                
+`PUPPET_AGENT_ACCOUNT_PASSWORD` |                 
+`PUPPET_AGENT_ACCOUNT_DOMAIN`   |              
 
 [s]: /puppet/latest/reference/configuration.html#server
 [c]: /puppet/latest/reference/configuration.html#caserver
@@ -108,11 +101,11 @@ MSI Property                                                   | Puppet Setting 
 
   Where Puppet and its dependencies should be installed.
 
-  > **Note:** Running 32-bit Puppet agent on a 64-bit Windows system is now deprecated. Update your Puppet installation to the 64-bit platform.
+  >
   >
   > If you installed Puppet into a custom directory and are upgrading from a 32-bit version to a 64-bit version, you must re-specify the `INSTALLDIR`   option when upgrading.
   >
-  > If you are replacing 64-bit Puppet with a 32-bit version, you should **uninstall** Puppet before installing the new package. Be sure to re-specify any   relevant MSI properties when re-installing.
+  > If you are replacing 64-bit Puppet with a 32-bit version, you should **uninstall** Puppet before installing the new package. Be sure to re-specify any relevant MSI properties when re-installing.
   
   Puppet's program directory contains the following subdirectories:
   
