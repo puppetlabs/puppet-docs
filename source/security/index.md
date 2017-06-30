@@ -8,6 +8,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2017-2298 - mcollective-sshkey-security missing input sanitization](https://puppet.com/security/cve/cve-2017-2298)
+
+    Resolved in mcollective-sshkey-security 0.5.1
+
 - [CVE-2017-2296 - RBAC and Classifier errors caused by specially crafted strings](https://puppet.com/security/cve/cve-2017-2296)
 
    Resolved in Puppet Enterprise 2017.2.2
