@@ -19,6 +19,7 @@ title: "Creating Environments"
 [writingenc]: ./nodes_external.html
 [environments_r10k]: {{pe}}/r10k_run.html
 [environment_code_repository]: {{pe}}/cmgmt_control_repo.html
+[Using Environment Data]: {{pe}}/lookup_quick.html#using-environment-data
 
 {:.Concept}
 ## Environment structure
@@ -36,7 +37,10 @@ When you create an environment, you give it the following structure:
 * It can optionally contain an `environment.conf` file, which can locally override configuration settings, including `modulepath` and `manifest`.
  
 > Note: Environment names can contain lowercase letters, numbers, and underscores. They must match the following regular expression rule: \A[a-z0-9_]+\Z
+
+> Note: If you are using Hiera/puppet 5, remove the environment_data_provider setting. See link to using environment data for more information. 
  
+ Related topics: [Using environment data][Using Environment Data] 
  
 {:.Concept}
 ## Environment resources
@@ -147,7 +151,7 @@ Related topics: [writing ENCs][writingenc]
  
 You can assign agent nodes to environments by using the agent’s config file. By default, all nodes are assigned to a default environment named production.
  
-Configure an agent to use an environment by editing the agent’s ` puppet.conf` file:
+Configure an agent to use an environment by editing the agent’s `puppet.conf` file:
  
 1. Open the agent's `puppet.conf` file in an editor.
 2. Find the `environment` setting in either the agent or main section.
