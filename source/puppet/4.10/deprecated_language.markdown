@@ -35,8 +35,6 @@ By default, you can access the value of a variable that was never assigned. The 
 
 If you set the `strict_variables` setting to `true`, Puppet raises an error if you try to access an unassigned variable.
 
-In a future version of Puppet, the `strict_variables` setting will be removed, and Puppet will always raise an error for accessing unassigned variables.
-
 To update, enable `strict_variables` on your Puppet master, run as normal for a while, and look for compilation errors.
 
 ## Automatic symbolic links for `ensure` values in `file` resources
