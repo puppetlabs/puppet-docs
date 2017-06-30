@@ -80,9 +80,8 @@ Even with all the new features enabled, you can keep using your Hiera 3 backends
 
 As soon as possible, the backend's maintainer should rewrite it to support Hiera 5. Hiera 5 backends are much easier to write, and support per-environment configuration.
 
-### Some features are deprecated. When are they getting removed?
+### Some features are deprecated
 
-Probably in Puppet 6. You have some time.
 
 The current list of deprecated Hiera features includes:
 

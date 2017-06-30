@@ -147,7 +147,7 @@ Related topics: [writing ENCs][writingenc]
  
 You can assign agent nodes to environments by using the agent’s config file. By default, all nodes are assigned to a default environment named production.
  
-Configure an agent to use an environment by editing the agent’s ` puppet.conf` file:
+Configure an agent to use an environment by editing the agent’s `puppet.conf` file:
  
 1. Open the agent's `puppet.conf` file in an editor.
 2. Find the `environment` setting in either the agent or main section.
