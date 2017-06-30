@@ -230,11 +230,11 @@ These issues were resolved in Puppet 5.0.0.
 
 * [PUP-25](https://tickets.puppetlabs.com/browse/PUP-25): Puppet has always evaluated collections before applying default values defined via resource type defaults, making it impossible to use such values when performing collection. This is now changed and an example like this now works as expected:
  
-   ~~~
-   File { tag => 'sc_test' } 
-   File { '/tmp/test': ensure => present } 
-   File <<| tag == 'sc_test' |>> 
-   ~~~
+   
+	   File { tag => 'sc_test' } 
+	   File { '/tmp/test': ensure => present } 
+	   File <<| tag == 'sc_test' |>> 
+	   
 
    >*Note:* This change affects existing logic where it was assumed that default values were set via resource type defaults were *not* present at the time of collection.
 
