@@ -55,7 +55,7 @@ To enable the Puppet 5 Platform repository:
 
 2. Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
 
-    `sudo rpm -Uvh https://yum.puppetlabs.com/puppet5-release-el-7.noarch.rpm`
+    `sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm`
 
 #### Enterprise Linux 7
 
