@@ -19,14 +19,14 @@ Specifically, the package includes:
 [TODO: what exactly gets installed when you install the PDK package?]
 [TODO: are we versioning this? what versions of things are included in this version?] [TODO: When do we update the PDK package and how do users get updates?]
 
-Tool   | Description      | Version
-----------------|:---------------:|-------------------------
-pdk | Command line tool for doing stuff [TODO: like what stuff]
-rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalogue of Puppet resources.
-puppet-lint | Checks your Puppet code against the recommendations in the Puppet Language style guide
+Tool   | Description
+----------------|-------------------------
+pdk | Command line tool for generating and testing modules
+rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalog of Puppet resources.
+puppet-lint | Checks your Puppet code against the recommendations in the Puppet Language style guide.
 puppet-syntax | Checks for correct syntax in Puppet manifests, templates, and Hiera YAML.
-metadata-json-lint | Validates and lints metadata.json files in Puppet modules against style guidelines from the Puppet module metadata recommendations.
-rspec-puppet-facts | Adds a method for running rspec-puppet tests against the facts for your supported operating systems.
+metadata-json-lint | Validates and lints `metadata.json` files in modules against  Puppet's module metadatastyle guidelines.
+rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
 puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code.
 
 
@@ -44,122 +44,59 @@ PDK 1.0 is supported on: [TODO: update this table when support is finalized. The
 | Windows Server (Server OS) | 2008r2, 2012, 2012r2, 2012r2 Core, and 2016 | x86_64 | MSI |
 | Mac OS X | 10.10, 10.11 | x86_64 | N/A |
 
+{:.section}
+### Before you begin
 
-## Prerequisites
+PDK is a standalone development kit and does not require a pre-existing installation of Puppet. On Linux-based systems, you must enable the repository before you can download and install the package.
 
-[TODO what are the requirements and dependencies? What does the user need to have already set up?]
-[TODO are we assuming they already have Puppet installed? Do they need Puppet installed on the workstation they are working on?]
+If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
 
-* prereq
-* prereq
-* prereq
+{:.task}
+## Enable the PDK repository on Linux
 
-## Preinstall tasks
+Before you can download and install the PDK, enable the package repository to your respective Linux platform. 
 
-[TK] [TODO: This should be a list of stuff that the user needs to do before they can install PDK, IF this is the appropriate place for such instructions. I have already added Enable the repository below.
+{:.task}
+### Enable PDK repo on Yum-based systems
 
-## Enable the repository on Linux-based systems [TODO: is Linux-based correct? Unix-like?] 
+Before you can install the PDK package, enable the repository on your Yum-based system.
 
-[TODO PLEASE tech review this section for accuracy; I swiped it from Platform docs.]
+1. Choose the package based on your operating system and version.
 
-To download and install the PDK, you'll first need to enable the package repository to your respective Linux platform. 
+   Packages are located in the [`yum.puppet.com/pdk`](https://yum.puppet.com/pdk) repository and are named using the PDK package name and version, followed by the OS abbreviation and version.
 
-### Yum-based systems
+   For instance, the PDK package for Red Hat Enterprise Linux 7 (RHEL 7) is `pdk-1.0.0.-1.el7.x86_64.rpm`.
 
-To enable the PDK [TODO is that right, or does it live in another repo?] repository:
+2. Install with `rpm` as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags.
 
-1. Choose the package based on your operating system and version. The packages are located in the [`yum.puppet.com`](https://yum.puppet.com) [TODO: is this where the packages will live?] repository and named using the following convention:
+   For example:
 
-   `<PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm` [TODO: what do the package names look like?]
+   `sudo rpm -Uvh https://yum.puppet.com/pdk/pdk-1.0.0.-1.el7.x86_64.rpm`
 
-   For instance, the package for Puppet 5 Platform on Red Hat Enterprise Linux 7 (RHEL 7) is `puppet5-release-el-7.noarch.rpm`.
+{:.task}
+### Enable PDK repo on Apt-based systems
 
-2. Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
+Before you can install the PDK package, enable the repository on your Apt-based system.
 
-    `sudo rpm -Uvh https://yum.puppetlabs.com/puppet5-release-el-7.noarch.rpm`
+1. Choose the package based on your operating system and version.
 
-[TODO: I'm inclined to remove specific links in the page as show below. Opinions welcome. If yes, these will need updating to correct links before release.]
+   The packages are located in the [`apt.puppet.com/pdk`](https://apt.puppet.com/pdk) and are named using the PDK package name and version, followed by the OS abbreviation and version.
 
-#### Enterprise Linux 7
+   For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `pdk-1.0.0-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
-
-#### Enterprise Linux 6
-
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-6.noarch.rpm
-
-#### Enterprise Linux 5
-
-    wget https://yum.puppetlabs.com/puppet5/puppet5-release-el-5.noarch.rpm
-    sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
-[TODO: I guess this Linux version specifically require wget AND rpm commands?]
-
-#### Fedora 25
-
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-25.noarch.rpm
-
-#### Fedora 24
-
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-24.noarch.rpm
-
-### Apt-based systems
-
-To enable the PDK repository:
-
-1. Choose the package based on your operating system and version. The packages are located in the [`apt.puppet.com`](https://apt.puppet.com) [TODO need to know where these live] repository and named using the convention `<PLATFORM_VERSION>-release-<VERSION CODE NAME>.deb` [TODO and need to know the naming convention]
-
-   For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `puppet5-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
-
-2. Download the release package and install it as root using the `dpkg` tool and the `install` flag (`-i`):
+2. Download the PDK package and install it as root using `dpkg` and the `install` flag (`-i`):
 
 ```
-wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
-sudo dpkg -i puppet5-release-wheezy.deb
+wget https://apt.puppetlabs.com/pdk-1.0.0-wheezy.deb
+sudo dpkg -i pdk-1.0.0-wheezy.deb
 ```
 
 3. Run `apt-get update` after installing the release package to update the `apt` package lists.
 
-[TODO Again, still deciding whether we keep all of these specific links/commands.]
-
-#### Ubuntu 16.04 Xenial Xerus
-
-    wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
-    sudo dpkg -i puppet5-release-xenial.deb
-    sudo apt update
-
-#### Ubuntu 14.04 Trusty Tahr
-
-    wget https://apt.puppetlabs.com/puppet5-release-trusty.deb
-    sudo dpkg -i puppet5-release-trusty.deb
-    sudo apt-get update
-
-#### Debian 8 Jessie
-
-    wget https://apt.puppetlabs.com/puppet5-release-jessie.deb
-    sudo dpkg -i puppet5-release-jessie.deb
-    sudo apt-get update
-
-#### Debian 7 Wheezy
-
-    wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
-    sudo dpkg -i puppet5-release-wheezy.deb
-    sudo apt-get update
-
-### Windows Platforms
-
-[TODO: ANY PREINSTALL NEEDED?]
-
-### OS X
-
-[TODO: ANY PREINSTALL NEEDED?]
-
+{:.task}
 ## Install PDK
 
 Download the appropriate Puppet Development Kit package for your platform and install it.
-
-[TODO: I don't know yet how similar these tasks will be, but I assume they will need to be separate topics.]
-
-TODO [Reference](https://docs.puppet.com/puppet/4.10/install_linux.html)
 
 ### On Linux-based systems 
 
