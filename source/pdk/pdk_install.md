@@ -99,15 +99,7 @@ Download the appropriate Puppet Development Kit package for your platform and in
 
 ### On Linux-based systems 
 
-1. Confirm that you can run Puppet executables. [TODO: do users need to do this? Do we assume they have already done it, because they installed Puppet already or anything? Or is this step irrelevant to PDK?]
-
-   The location for Puppet’s executables is /opt/puppetlabs/bin/, which is not in your PATH environment variable by default.
-
-   The executable path doesn’t matter for Puppet services — for instance, service puppet start works regardless of the PATH — but if you’re running interactive puppet commands, you must either add their location to your PATH or execute them using their full path.
-
-   To quickly add the executable location to your PATH for your current terminal session, use the command export PATH=/opt/puppetlabs/bin:$PATH. You can also add this location wherever you configure your PATH, such as your .profile or .bashrc configuration files.
-
-1. Install the `puppet-pdk` package [TODO: where do they need to install pdk? the machine they are working on only? other machines?] using the command appropriate to your system:
+1. Install the `puppet-pdk` package using the command appropriate to your system:
 
    * Apt: `sudo apt-get install puppet-pdk`
    * Yum: `sudo yum install puppet-pdk`
@@ -121,8 +113,5 @@ Download the appropriate Puppet Development Kit package for your platform and in
 
 1. Download the PDK package from [TODO link to the puppet-pdk MSI on the Puppet downloads site](downloads.puppetlabs.com).
 2. Double click on the downloaded package to install.
-
-## Troubleshooting
-  [TBD]
  
 
