@@ -12,7 +12,7 @@ description: "Getting started with the Puppet Development Kit, the shortest path
 
 Get started developing and testing Puppet modules with the Puppet Development Kit.
 
-PDK includes testing tools, a complete module skeleton, and command line tools to help you create and test Puppet modules.
+PDK includes testing tools, a complete module skeleton, and command line tools to help you create, validate, and run tests on Puppet modules.
 
 To get started, you'll create and test a new module with PDK. 
 
@@ -22,7 +22,7 @@ To get started, you'll create and test a new module with PDK.
 
 These steps provide a basic workflow for development and testing with PDK. Then, as you add new code to your module, continue validating, testing, and iterating on your code as needed.
 
-Before you begin, you should already have installed the puppet-pdk package.
+Before you begin, you should already have installed the pdk package.
 
 Related topics:
 
@@ -33,7 +33,7 @@ Related topics:
 
 PDK generates the basic components of a new module and sets up the basic infrastructure you need to test your module.
 
-When you create a new module with PDK, the `pdk new module` command asks you a series of questions, sets some metadata default values based on your environment, and creates a `metadata.json` with the metadata for your new module. The new module that PDK creates includes all the infrastructure to use the other capabilities of `pdk`.
+When you create a new module with PDK, the `pdk new module` command asks you a series of questions, sets metadata based on your answers, and creates a `metadata.json` with the metadata for your new module. The new module that PDK creates includes all the infrastructure to use the other capabilities of `pdk`.
 
 Each question has a default response that PDK uses if you hit **Enter** to skip the question.
 
@@ -55,11 +55,11 @@ PDK then displays the metadata information that it will use to generate the new 
   "name": "testuser-hello_module",
   "version": "0.1.0",
   "author": "testuser",
-  "summary": null,
+  "summary": "",
   "license": "Apache-2.0",
-  "source": null,
-  "project_page": null,
-  "issues_url": null,
+  "source": "",
+  "project_page": "",
+  "issues_url": "",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",

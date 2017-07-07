@@ -41,7 +41,7 @@ PDK 1.0 is supported on:
 | Ubuntu | 14.04. 16.04 | x86_64 | DEB |
 | Windows (Consumer OS) | 7, 8.1, 10 | x86_64 | MSI |
 | Windows Server (Server OS) | 2008r2, 2012, 2012r2, 2012r2 Core, and 2016 | x86_64 | MSI |
-| Mac OS X | 10.10, 10.11 | x86_64 | N/A |
+| Mac OS X | 10.11, 10.12 | x86_64 | N/A |
 
 {:.section}
 ### Before you begin
@@ -58,36 +58,36 @@ Before you can download and install the PDK, enable the package repository to yo
 {:.task}
 ### Enable PDK repo on Yum-based systems
 
-Before you can install the PDK package, enable the repository on your Yum-based system.
+Before you can install the PDK package, enable the PDK release repository on your Yum-based system.
 
 1. Choose the package based on your operating system and version.
 
    Packages are located in the [`yum.puppet.com/pdk`](https://yum.puppet.com/pdk) repository and are named using the PDK package name and version, followed by the OS abbreviation and version.
 
-   For instance, the PDK package for Red Hat Enterprise Linux 7 (RHEL 7) is `pdk-1.0.0.-1.el7.x86_64.rpm`.
+   For instance, the PDK repository package for Red Hat Enterprise Linux 7 (RHEL 7) is `pdk-release-el7.rpm`.
 
 2. Install with `rpm` as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags.
 
    For example:
 
-   `sudo rpm -Uvh https://yum.puppet.com/pdk/pdk-1.0.0.-1.el7.x86_64.rpm`
+   `sudo rpm -Uvh https://yum.puppet.com/pdk/pdk-release-el7.rpm`
 
 {:.task}
 ### Enable PDK repo on Apt-based systems
 
-Before you can install the PDK package, enable the repository on your Apt-based system.
+Before you can install the PDK package, enable the PDK release repository on your Apt-based system.
 
 1. Choose the package based on your operating system and version.
 
    The packages are located in the [`apt.puppet.com/pdk`](https://apt.puppet.com/pdk) and are named using the PDK package name and version, followed by the OS abbreviation and version.
 
-   For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `pdk-1.0.0-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
+   For instance, the PDK repository package for on Debian 7 "Wheezy" is `pdk-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
 
 2. Download the PDK package and install it as root using `dpkg` and the `install` flag (`-i`):
 
 ```
-wget https://apt.puppetlabs.com/pdk-1.0.0-wheezy.deb
-sudo dpkg -i pdk-1.0.0-wheezy.deb
+wget https://apt.puppetlabs.com/pdk-release-wheezy.deb
+sudo dpkg -i pdk-release-wheezy.deb
 ```
 
 3. Run `apt-get update` after installing the release package to update the `apt` package lists.
@@ -100,10 +100,10 @@ Download the appropriate Puppet Development Kit package for your platform and in
 {:.task}
 ### Install PDK on Linux-based systems 
 
-1. Install the `puppet-pdk` package using the command appropriate to your system:
+1. Install the `pdk` package using the command appropriate to your system:
 
-   * Apt: `sudo apt-get install puppet-pdk`
-   * Yum: `sudo yum install puppet-pdk`
+   * Apt: `sudo apt-get install pdk`
+   * Yum: `sudo yum install pdk`
 
 {:.task}
 ### Install PDK on OS X
