@@ -6,7 +6,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 
 
 
-<p> El fichero de configuración Hiera es denominado hiera.yaml. Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="/puppet/4.10/hiera_layers.html">capa</a> de datos propuesta.
+<p> El fichero de configuración Hiera es denominado hiera.yaml. Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.
 </p>
 
 <p> Esta versión de Puppet soporta tres formatos para hiera.yaml — usted puede usar cualquiera de ellos, a pesar de que <a href="./hiera_config_yaml_4.html">v4</a> y v3 están obsoletos. Esta página está sobre la versión 3, la versión heredada.
@@ -20,7 +20,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
     </tr></thead>
 <tbody>
 <tr>
-<td><a href="/puppet/4.10/hiera_config_yaml_5.html">v5</a></td>
+<td><a href="./hiera_config_yaml_5.html">v5</a></td>
       <td>Las tres capas de datos</td>
       <td>La versión principal de hiera.yaml, que admite todas las funciones de Hiera 5.</td>
     </tr>
@@ -49,12 +49,12 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
   <li>La configuración global del comportamiento de mezcla de hash profundo fue una idea terrible. Hiera 5 tiene <a href="/puppet/4.10/hiera_merging.html">mejores maneras de configurar con una base per-key</a>.</li>
   <li>hiera.yaml v5 puede soportar backends v3, pero no viceversa.</li>
 </ul>
-<p> Debe actualizar su hiera.yaml a <a href="/puppet/4.10/hiera_config_yaml_5.html">version 5</a> cuando tengas la oportunidad.
+<p> Debe actualizar su hiera.yaml a <a href="./hiera_config_yaml_5.html">version 5</a> cuando tengas la oportunidad.
 </p>
 
 <h2 id="location">Ubicación</h2>
 
-<p> El fichero v3 hiera.yaml pueden utilizarse solo <a href="/puppet/4.10/hiera_layers.html">capa de configuración global</a>.
+<p> El fichero v3 hiera.yaml pueden utilizarse solo <a href="./hiera_layers.html">capa de configuración global</a>.
 </p>
 
 <p> La ubicación predeterminada para el hiera.yaml es <a href="/puppet/4.10/dirs_confdir.html"><code>$confdir</code></a><code>/hiera.yaml</code>. Dependiendo de su plataforma, generalmente  de <code>/etc/puppetlabs/puppet/hiera.yaml</code> o <code>C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml</code>.
@@ -179,7 +179,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
   <li>
 <code>deeper</code> — fusiona recursivamente. En el caso de conflicto, permite valores de<strong>alta prioridad</strong> para ganar.</li>
 </ul>
-<p> Cualquiercosa menos <code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si está usando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/2.7/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instalar la gem.
+<p> Cualquiercosa menos<code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si está usando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/2.7/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instalar la gem.
 </p>
 
 <p> Para obtener más información acerca de las estrategias de búsqueda de combinaciones hash, consulte <a href="/puppet/4.10/hiera_merging.html#hash">“Hash Merge”</a> y <a href="/puppet/4.10/hiera_merging.html#deep">“Deep Merging in Hiera”</a>.
@@ -206,7 +206,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 
 <h2 id="backend-specific-settings">Backend-specific configuración</h2>
 
-<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong> cuyas claves son las configuraciones que utiliza.
+<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong>cuyas claves son las configuraciones que utiliza.
 </p>
 
 <p> Las siguientes opciones de configuración están disponibles para backends integrados:
