@@ -13,11 +13,11 @@ Download and install the Puppet Development Kit to get started developing and te
 {:.concept}
 ## Installing PDK
 
-The PDK package includes testing tools, a complete module skeleton, and command line tools that help get you started creating and testing Puppet modules.
+Install the Puppet Development Kit as your first step in creating and testing Puppet modules.
 
-Specifically, the package includes:
-[TODO: what exactly gets installed when you install the PDK package?]
-[TODO: are we versioning this? what versions of things are included in this version?] [TODO: When do we update the PDK package and how do users get updates?]
+The PDK package includes testing tools, a complete module skeleton, and command line tools to enable you to more easily create and test Puppet modules.
+
+Specifically, the package includes the following tools:
 
 Tool   | Description
 ----------------|-------------------------
@@ -29,8 +29,7 @@ metadata-json-lint | Validates and lints `metadata.json` files in modules agains
 rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
 puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code.
 
-
-PDK 1.0 is supported on: [TODO: update this table when support is finalized. These platforms are taken from [SDK-28](https://tickets.puppetlabs.com/browse/SDK-28) and describe the preliminary platform support goals. Due to the scoping constraints, the platforms may include as little as Red Hat, Ubuntu, OS X, and Windows only.]
+PDK 1.0 is supported on:
 
 | Operating system | Version(s) | Arch | PkgType |
 | ---------------- | ---------- | ---- | ------- |
@@ -47,7 +46,7 @@ PDK 1.0 is supported on: [TODO: update this table when support is finalized. The
 {:.section}
 ### Before you begin
 
-PDK is a standalone development kit and does not require a pre-existing installation of Puppet. On Linux-based systems, you must enable the repository before you can download and install the package.
+PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet. On Linux-based systems, you must enable the repository before you can download and install the package.
 
 If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
 
