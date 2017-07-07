@@ -1,12 +1,16 @@
+---
+title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
+---
+
 <div>
-<div class="title">Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)</div>
 
 
-<div class="real-paragraph"> <p class="temp-sentence">El fichero de configuración Hiera es denominado hiera.yaml.</p> <p class="temp-sentence">Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.</p>
-</div>
 
-<div class="real-paragraph"> <p class="temp-sentence">Esta versión de Puppet soporta tres formatos para hiera.yaml — usted puede usar cualquiera de ellos, a pesar de que <a href="./hiera_config_yaml_4.html">v4</a> y v3 están obsoletos.</p> <p class="temp-sentence">Esta página está sobre la versión 3, la versión heredada.</p>
-</div>
+<p> El fichero de configuración Hiera es denominado hiera.yaml. Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.
+</p>
+
+<p> Esta versión de Puppet soporta tres formatos para hiera.yaml — usted puede usar cualquiera de ellos, a pesar de que <a href="./hiera_config_yaml_4.html">v4</a> y v3 están obsoletos. Esta página está sobre la versión 3, la versión heredada.
+</p>
 
 <table>
 <thead><tr>
@@ -34,38 +38,38 @@
 </table>
 <h2 id="important-version-3-is-deprecated">Importante: la versión 3 está obsoleta.</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">La versión 3 de hiera.yaml está obsoleta, y planeamos eliminar el soporte para ello en Puppet 6.</p>
-</div>
+<p> La versión 3 de hiera.yaml está obsoleta, y planeamos eliminar el soporte para ello en Puppet 6.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Lo que es más importante, tiene algunos problemas importantes:</p>
-</div>
+<p> Lo que es más importante, tiene algunos problemas importantes:
+</p>
 
 <ul>
 <li>La jerarquía combinatoria (ejecutar toda la jerarquía en un backend, luego ejecutar toda la jerarquía en el siguiente, entonces ...) era molesto para razonar, y hacía que algunos flujos de trabajo simples fueran más difíciles de lo necesario.</li>
   <li>La configuración global del comportamiento de mezcla de hash profundo fue una idea terrible. Hiera 5 tiene <a href="/puppet/4.10/hiera_merging.html">mejores maneras de configurar con una base per-key</a>.</li>
   <li>hiera.yaml v5 puede soportar backends v3, pero no viceversa.</li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">Debe actualizar su hiera.yaml a <a href="./hiera_config_yaml_5.html">version 5</a> cuando tengas la oportunidad.</p>
-</div>
+<p> Debe actualizar su hiera.yaml a <a href="./hiera_config_yaml_5.html">version 5</a> cuando tengas la oportunidad.
+</p>
 
 <h2 id="location">Ubicación</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">El fichero v3 hiera.yaml pueden utilizarse solo <a href="./hiera_layers.html">capa de configuración global</a>.</p>
-</div>
+<p> El fichero v3 hiera.yaml pueden utilizarse solo <a href="./hiera_layers.html">capa de configuración global</a>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">La ubicación predeterminada para el hiera.yaml es <a href="/puppet/4.10/dirs_confdir.html"><code>$confdir</code></a><code>/hiera.yaml</code>.</p> <p class="temp-sentence">Dependiendo de su plataforma, generalmente  de <code>/etc/puppetlabs/puppet/hiera.yaml</code> o <code>C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml</code>.</p>
-</div>
+<p> La ubicación predeterminada para el hiera.yaml es <a href="/puppet/4.10/dirs_confdir.html"><code>$confdir</code></a><code>/hiera.yaml</code>. Dependiendo de su plataforma, generalmente  de <code>/etc/puppetlabs/puppet/hiera.yaml</code> o <code>C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml</code>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Usted puede utilizar <a href="/puppet/4.10/configuration.html#hieraconfig">la configuración <code>hiera_config</code> </a> en <code>puppet.conf</code>para cambiar la ubicación del global hiera.yaml.</p>
-</div>
+<p> Usted puede utilizar <a href="/puppet/4.10/configuration.html#hieraconfig">la configuración <code>hiera_config</code> </a> en <code>puppet.conf</code>para cambiar la ubicación del global hiera.yaml.
+</p>
 
 <h2 id="format">Formato</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">hiera.yaml v3 debe ser un<a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a> hash.</p>
-</div>
+<p> hiera.yaml v3 debe ser un<a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a> hash.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cada clave de nivel superior en el hash <strong>debe ser un símbolo Ruby con dos puntos (<code>:</code>) prefix.</strong> Los ajustes disponibles se enumeran a continuación, bajo <a href="#global-settings">“Global Settings”</a> y <a href="#backend-specific-settings">“Backend-Specific Settings”</a>.</p>
-</div>
+<p> Cada clave de nivel superior en el hash <strong>debe ser un símbolo Ruby con dos puntos (<code>:</code>) prefix.</strong> Los ajustes disponibles se enumeran a continuación, bajo <a href="#global-settings">“Global Settings”</a> y <a href="#backend-specific-settings">“Backend-Specific Settings”</a>.
+</p>
 
 <h3 id="example-config-file">Ejemplo de archivo de configuración</h3>
 
@@ -85,8 +89,8 @@
 
 <h3 id="default-config-values">Valores de configuración predeterminados</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Si el archivo de configuración existe pero no tiene datos, Hiera utiliza las siguientes configuraciones predeterminadas:</p>
-</div>
+<p> Si el archivo de configuración existe pero no tiene datos, Hiera utiliza las siguientes configuraciones predeterminadas:
+</p>
 
 <pre><code class="language-yaml">---
 :backends: yaml
@@ -105,43 +109,43 @@
 
 <h2 id="global-settings">Global settings</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">hiera.yaml v3 puede contener cualquiera de los siguientes ajustes.</p> <p class="temp-sentence">Si están ausentes, usan valores predeterminados como se muestra arriba.</p> <p class="temp-sentence"><strong>Tenga en cuenta que cada ajuste debe ser un símbolo Ruby con dos puntos (<code>:</code>) prefix.</strong></p>
-</div>
+<p> hiera.yaml v3 puede contener cualquiera de los siguientes ajustes. Si están ausentes, usan valores predeterminados como se muestra arriba. <strong>Tenga en cuenta que cada ajuste debe ser un símbolo Ruby con dos puntos (<code>:</code>) prefix.</strong>
+</p>
 
 <h3 id="hierarchy"><code>:hierarchy</code></h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Debe ser un <strong>string</strong> o un <strong>array de strings,</strong> donde cada cadena es el nombre de un data source estático o dinámico. </p> <p class="temp-sentence">(Una fuente dinámica es simplemente una que contiene una <code>%{variable}</code> token de interpolación.</p> <p class="temp-sentence"><a href="./hiera_hierarchy.html">Consulte "Creación de jerarquías" para obtener más detalles</a>.</p> <p class="temp-sentence">)</p>
-</div>
+<p> Debe ser un <strong>string</strong> o un <strong>array de strings,</strong> donde cada cadena es el nombre de un data source estático o dinámico.  (Una fuente dinámica es simplemente una que contiene una <code>%{variable}</code> token de interpolación. <a href="./hiera_hierarchy.html">Consulte "Creación de jerarquías" para obtener más detalles</a>. )
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Las fuentes de información en la jerarquía son chequeadas en orden, de arriba hacia abajo.</p>
-</div>
+<p> Las fuentes de información en la jerarquía son chequeadas en orden, de arriba hacia abajo.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence"><strong>Valores por defecto:</strong> <code>["nodes/%{::trusted.certname}", "common"]</code></p>
-</div>
+<p> <strong>Valores por defecto:</strong> <code>["nodes/%{::trusted.certname}", "common"]</code>
+</p>
 
 <h3 id="backends"><code>:backends</code></h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Debe ser un <strong>string</strong> o un <strong>array de strings,</strong> donde cada cadena es el nombre de un backend disponible de Hiera.</p> <p class="temp-sentence">Los backends incorporados son <code>yaml</code> y <code>json</code>.</p> <p class="temp-sentence">Los backends adicionales están disponibles como complemento.</p>
-</div>
+<p> Debe ser un <strong>string</strong> o un <strong>array de strings,</strong> donde cada cadena es el nombre de un backend disponible de Hiera. Los backends incorporados son <code>yaml</code> y <code>json</code>. Los backends adicionales están disponibles como complemento.
+</p>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Nota:</strong> hiera.yaml v3 sólo soporta backends escritos para dar soporte a Hiera 3.</p> <p class="temp-sentence">Ver la documentación Hiera 3 acerca de <a href="/hiera/3.3/custom_backends.html">custom backends</a> para detalles.</p>
-</div>
+  <p> <strong>Nota:</strong> hiera.yaml v3 sólo soporta backends escritos para dar soporte a Hiera 3. Ver la documentación Hiera 3 acerca de <a href="/hiera/3.3/custom_backends.html">custom backends</a> para detalles.
+</p>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence">La lista de los backends se procesa en orden: en el <a href="#example-config-file">ejemplo anterior</a>, Hiera revisaría toda la jerarquía de la <strong>yaml</strong> backend antes de empezar de nuevo con el <strong>json</strong> backend.</p>
-</div>
+<p> La lista de los backends se procesa en orden: en el <a href="#example-config-file">ejemplo anterior</a>, Hiera revisaría toda la jerarquía de la <strong>yaml</strong> backend antes de empezar de nuevo con el <strong>json</strong> backend.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence"><strong>Valor por defecto:</strong> <code>"yaml"</code></p>
-</div>
+<p> <strong>Valor por defecto:</strong> <code>"yaml"</code>
+</p>
 
 <h3 id="logger"><code>:logger</code></h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Debe ser el nombre de un registrador disponible, como <strong>string.</strong></p>
-</div>
+<p> Debe ser el nombre de un registrador disponible, como <strong>string.</strong>
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Los loggers sólo controlan hacia dónde se direccionan las alertas y los mensajes de depuración.</p> <p class="temp-sentence">Puedes usar uno de los loggers inegrados o escribir el tuyo propio.</p> <p class="temp-sentence">Los loggers integrados son:</p>
-</div>
+<p> Los loggers sólo controlan hacia dónde se direccionan las alertas y los mensajes de depuración. Puedes usar uno de los loggers inegrados o escribir el tuyo propio. Los loggers integrados son:
+</p>
 
 <ul>
 <li>
@@ -152,20 +156,20 @@
 <code>noop</code> (mensajes silenciados)</li>
 </ul>
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Custom loggers:</strong> Usted puede hacer su propio logger proporcionando una clase llamada, e.g., <code>Hiera::Foo_logger</code> (en su caso el nombre interno de Hiera para el logger sería  <code>foo</code>), y facilita métodos de clase denominados <code>warn</code> y <code>debug</code>,cada uno de los cuales debe aceptar una sola cadena.</p>
-</div>
+  <p> <strong>Custom loggers:</strong> Usted puede hacer su propio logger proporcionando una clase llamada, e.g., <code>Hiera::Foo_logger</code> (en su caso el nombre interno de Hiera para el logger sería  <code>foo</code>), y facilita métodos de clase denominados <code>warn</code> y <code>debug</code>,cada uno de los cuales debe aceptar una sola cadena.
+</p>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence"><strong>Valor por defecto:</strong> <code>"console"</code>. Tenga en cuenta que Puppet anula esto y lo establece en <code>"puppet"</code>, independientemente de lo que contenga el archivo de configuración.</p>
-</div>
+<p> <strong>Valor por defecto:</strong> <code>"console"</code>. Tenga en cuenta que Puppet anula esto y lo establece en <code>"puppet"</code>, independientemente de lo que contenga el archivo de configuración.
+</p>
 
 <h3 id="mergebehavior"><code>:merge_behavior</code></h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Qué combinación de comportamiento la función <code>hiera_hash</code>debería usar.</p> <p class="temp-sentence"><strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong></p>
-</div>
+<p> Qué combinación de comportamiento la función <code>hiera_hash</code>debería usar. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Debe ser uno de los siguientes:</p>
-</div>
+<p> Debe ser uno de los siguientes:
+</p>
 
 <ul>
 <li>
@@ -175,38 +179,38 @@
   <li>
 <code>deeper</code> — fusiona recursivamente. En el caso de conflicto, permite valores de<strong>alta prioridad</strong> para ganar.</li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">Cualquiercosa menos<code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada.</p> <p class="temp-sentence">Si está usando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/2.7/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instalar la gem.</p>
-</div>
+<p> Cualquiercosa menos<code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si está usando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/2.7/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instalar la gem.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Para obtener más información acerca de las estrategias de búsqueda de combinaciones hash, consulte <a href="/puppet/4.10/hiera_merging.html#hash">“Hash Merge”</a> y <a href="/puppet/4.10/hiera_merging.html#deep">“Deep Merging in Hiera”</a>.</p>
-</div>
+<p> Para obtener más información acerca de las estrategias de búsqueda de combinaciones hash, consulte <a href="/puppet/4.10/hiera_merging.html#hash">“Hash Merge”</a> y <a href="/puppet/4.10/hiera_merging.html#deep">“Deep Merging in Hiera”</a>.
+</p>
 
 <h3 id="deepmergeoptions"><code>:deep_merge_options</code></h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Un hash de profundas opciones de fusión para <code>hiera_hash</code>, si <code>:merge_behavior</code> es establecido a<code>deeper</code> o <code>deep</code>.</p> <p class="temp-sentence"><strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong></p>
-</div>
+<p> Un hash de profundas opciones de fusión para <code>hiera_hash</code>, si <code>:merge_behavior</code> es establecido a<code>deeper</code> o <code>deep</code>. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Por ejemplo:</p>
-</div>
+<p> Por ejemplo:
+</p>
 
 <pre><code>:merge_behavior: deeper
 :deep_merge_options:
   :knockout_prefix: '--'
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Las opciones disponibles están documentadas en <a href="https://github.com/danielsdeleo/deep_merge/blob/master/README.md">la gem <code>deep_merge</code> </a>.</p>
-</div>
+<p> Las opciones disponibles están documentadas en <a href="https://github.com/danielsdeleo/deep_merge/blob/master/README.md">la gem <code>deep_merge</code> </a>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence"><strong>Valor por defecto:</strong> Un hash vacío de opciones.</p>
-</div>
+<p> <strong>Valor por defecto:</strong> Un hash vacío de opciones.
+</p>
 
 <h2 id="backend-specific-settings">Backend-specific configuración</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml.</p> <p class="temp-sentence">Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong>cuyas claves son las configuraciones que utiliza.</p>
-</div>
+<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong>cuyas claves son las configuraciones que utiliza.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Las siguientes opciones de configuración están disponibles para backends integrados:</p>
-</div>
+<p> Las siguientes opciones de configuración están disponibles para backends integrados:
+</p>
 
 <h3 id="yaml-and-json">
 <code>:yaml</code> y <code>:json</code>
@@ -214,12 +218,12 @@
 
 <h4 id="datadir"><code>:datadir</code></h4>
 
-<div class="real-paragraph"> <p class="temp-sentence">El directorio en el que se encuentran los archivos de origen de datos.</p> <p class="temp-sentence">Debe ser un string.</p>
-</div>
+<p> El directorio en el que se encuentran los archivos de origen de datos. Debe ser un string.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Usted puede <a href="/puppet/4.10/hiera_interpolation.html">Interpolar las variables</a> en el datadir utilizando<code>%{variable}</code>Tokens de interpolación.</p> <p class="temp-sentence">Esto le permite, por ejemplo, señalar a <code>"/etc/puppetlabs/code/hieradata/%{::environment}"</code> Para mantener sus datos de producción y desarrollo completamente separados.</p>
-</div>
+<p> Usted puede <a href="/puppet/4.10/hiera_interpolation.html">Interpolar las variables</a> en el datadir utilizando<code>%{variable}</code>Tokens de interpolación. Esto le permite, por ejemplo, señalar a <code>"/etc/puppetlabs/code/hieradata/%{::environment}"</code> Para mantener sus datos de producción y desarrollo completamente separados.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence"><strong>Valor por defecto:</strong> <code>"/etc/puppetlabs/code/environments/%{environment}/hieradata"</code> en *nix, y <code>"C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"</code> en Windows.</p>
-</div>
+<p> <strong>Valor por defecto:</strong> <code>"/etc/puppetlabs/code/environments/%{environment}/hieradata"</code> en *nix, y <code>"C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"</code> en Windows.
+</p>
 </div>

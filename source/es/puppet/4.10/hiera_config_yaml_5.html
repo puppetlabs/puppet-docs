@@ -1,12 +1,16 @@
+---
+title: "Hiera: Sintaxis del archivo de configuración (hiera.yaml v5)"
+---
+
 <div>
-<div class="title">Hiera: Sintaxis del archivo de configuración (hiera.yaml v5)</div>
 
 
-<div class="real-paragraph"> <p class="temp-sentence">El fichero de configuración Hiera es denominado hiera.yaml.</p> <p class="temp-sentence">Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.</p>
-</div>
 
-<div class="real-paragraph"> <p class="temp-sentence">Esta versión de Puppet soporta tres formatos para hiera.yaml — Puede utilizar cualquiera de ellos, aunque <a href="./hiera_config_yaml_4.html">v4</a> y <a href="./hiera_config_yaml_3.html">v3</a> están obsoletos.</p> <p class="temp-sentence">Esta página es sobre la versión 5, la versión más reciente.</p>
-</div>
+<p> El fichero de configuración Hiera es denominado hiera.yaml. Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.
+</p>
+
+<p> Esta versión de Puppet soporta tres formatos para hiera.yaml — Puede utilizar cualquiera de ellos, aunque <a href="./hiera_config_yaml_4.html">v4</a> y <a href="./hiera_config_yaml_3.html">v3</a> están obsoletos. Esta página es sobre la versión 5, la versión más reciente.
+</p>
 
 <table>
 <thead><tr>
@@ -34,11 +38,11 @@
 </table>
 <h2 id="location">Ubicación</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">Hay varios archivos hiera.yaml en una implementación normal. Hiera utiliza tres capas de configuración y las capas de módulo y entorno normalmente tienen varias instancias.</p>
-</div>
+<p> Hay varios archivos hiera.yaml en una implementación normal. Hiera utiliza tres capas de configuración y las capas de módulo y entorno normalmente tienen varias instancias.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Las ubicaciones de los archivos de configuración para cada capa son las siguientes:</p>
-</div>
+<p> Las ubicaciones de los archivos de configuración para cada capa son las siguientes:
+</p>
 
 <table>
 <thead><tr>
@@ -73,14 +77,14 @@
 </tbody>
 </table>
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Nota:</strong> Puede cambiar la localización de la capa global con la configuracion de Puppet’s <code>hiera_config</code>.</p>
-</div>
+  <p> <strong>Nota:</strong> Puede cambiar la localización de la capa global con la configuracion de Puppet’s <code>hiera_config</code>.
+</p>
 </blockquote>
 
 <h2 id="syntax">Syntax</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">hiera.yaml es  un fichero <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a>, Que contiene un hash con hasta cuatro claves de nivel superior:</p>
-</div>
+<p> hiera.yaml es  un fichero <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a>, Que contiene un hash con hasta cuatro claves de nivel superior:
+</p>
 
 <ul>
 <li>
@@ -124,14 +128,14 @@ hierarchy:
 </code></pre>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Nota:</strong> En hiera.yaml v3, las claves tenían que comenzar con dos puntos (ejemplo <code>:hierarchy</code>).</p> <p class="temp-sentence">Eso ya no es necesario.</p>
-</div>
+  <p> <strong>Nota:</strong> En hiera.yaml v3, las claves tenían que comenzar con dos puntos (ejemplo <code>:hierarchy</code>). Eso ya no es necesario.
+</p>
 </blockquote>
 
 <h3 id="the-default-configuration">La configuración por defecto</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Si omite las claves <code>hierarchy</code> y/o <code>defaults</code>, Hiera utilizará los siguientes valores por defecto:</p>
-</div>
+<p> Si omite las claves <code>hierarchy</code> y/o <code>defaults</code>, Hiera utilizará los siguientes valores por defecto:
+</p>
 
 <pre><code class="language-yaml">---
 version: 5
@@ -143,17 +147,17 @@ defaults:
   datadir: data
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Estos valores predeterminados sólo se utilizan si el archivo está presente y especifica <code>version: 5</code>.</p> <p class="temp-sentence">Si hiera.yaml esta ausente, esto desactiva HIera para esta capa.Si especifica otra versión, pueden aplicarse diferentes valores por defecto.</p>
-</div>
+<p> Estos valores predeterminados sólo se utilizan si el archivo está presente y especifica <code>version: 5</code>. Si hiera.yaml esta ausente, esto desactiva HIera para esta capa.Si especifica otra versión, pueden aplicarse diferentes valores por defecto.
+</p>
 
 <h2 id="the-defaults-key">Las clave <code>defaults</code>
 </h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">La clave <code>defaults</code> puede establecer valores por defecto para las claves backend y <code>datadir</code>, que le permite omitir esas claves en los niveles de jerarquía.</p>
-</div>
+<p> La clave <code>defaults</code> puede establecer valores por defecto para las claves backend y <code>datadir</code>, que le permite omitir esas claves en los niveles de jerarquía.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">El valor de <code>defaults</code> debe ser un hash, que puede tener hasta tres teclas:</p>
-</div>
+<p> El valor de <code>defaults</code> debe ser un hash, que puede tener hasta tres teclas:
+</p>
 
 <ul>
 <li>
@@ -167,33 +171,33 @@ defaults:
     </ul>
 </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>options</code> — Un valor por defecto para <code>options</code>, utilizado para cualquier nivel de jerarquía que no especifique su propio.</p>
-</div>
+    <p> <code>options</code> — Un valor por defecto para <code>options</code>, utilizado para cualquier nivel de jerarquía que no especifique su propio.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Para los backends incorporados (YAML, JSON, y HOCON), la clave es siempre <code>data_hash</code> y el valor es uno de <code>yaml_data</code>, <code>json_data</code>, o <code>hocon_data</code>.</p> <p class="temp-sentence">Si desea configurar un backend personalizado como predeterminado, tendrá que comprobar la documentación del backend.</p>
-</div>
+    <p> Para los backends incorporados (YAML, JSON, y HOCON), la clave es siempre <code>data_hash</code> y el valor es uno de <code>yaml_data</code>, <code>json_data</code>, o <code>hocon_data</code>. Si desea configurar un backend personalizado como predeterminado, tendrá que comprobar la documentación del backend.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/4.10/functions_basics.html">custom Puppet function</a> que implementa el backend.</p> <p class="temp-sentence">Para más detalles, vea <a href="./hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.</p>
-</div>
+    <p> Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/4.10/functions_basics.html">custom Puppet function</a> que implementa el backend. Para más detalles, vea <a href="./hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.
+</p>
   </li>
 </ul>
 <h2 id="the-hierarchy-key">La clave <code>hierarchy</code> </h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">La clave <code>hierarchy</code> configura los niveles de la jerarquía.</p>
-</div>
+<p> La clave <code>hierarchy</code> configura los niveles de la jerarquía.
+</p>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence">La clave <code>default_hierarchy</code>es una clave de nivel superior como la clave<code>hierarchy</code>.</p> <p class="temp-sentence">Esto trabaja exactamente como la clave <code>hierarchy</code>, pero sus valores se utilizan sólo si las entradas de jerarquía normales en el mismo módulo, o  si en cualquiera de las capas de precedentes (entorno o global) no dan como resultado un valor.</p> <p class="temp-sentence">Dentro de esta jerarquía predeterminada, se aplican las reglas de fusión normales.</p> <p class="temp-sentence">De cualquier forma, la <code>default_hierarchy</code>no está permitido en ambientes o capas globales.</p>
-</div>
+  <p> La clave <code>default_hierarchy</code>es una clave de nivel superior como la clave<code>hierarchy</code>. Esto trabaja exactamente como la clave <code>hierarchy</code>, pero sus valores se utilizan sólo si las entradas de jerarquía normales en el mismo módulo, o  si en cualquiera de las capas de precedentes (entorno o global) no dan como resultado un valor. Dentro de esta jerarquía predeterminada, se aplican las reglas de fusión normales. De cualquier forma, la <code>default_hierarchy</code>no está permitido en ambientes o capas globales.
+</p>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence">Para una explicación de cómo funcionan las jerarquías, consulta <a href="./hiera_hierarchy.html">Cómo funcionan las jerarquías</a>.</p> <p class="temp-sentence">Esta página se centra en la sintaxis.</p>
-</div>
+<p> Para una explicación de cómo funcionan las jerarquías, consulta <a href="./hiera_hierarchy.html">Cómo funcionan las jerarquías</a>. Esta página se centra en la sintaxis.
+</p>
 
 <h3 id="how-to-write-an-array-of-hashes">Cómo escribir una array de hashes</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">El valor de <code>hierarchy</code> debe ser un array de hashes.</p>
-</div>
+<p> El valor de <code>hierarchy</code> debe ser un array de hashes.
+</p>
 
 <pre><code class="language-yaml">hierarchy:
   - name: "Per-node data"
@@ -203,8 +207,8 @@ defaults:
     path: "location/%{facts.whereami}/%{facts.group}.yaml"
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">YAML tiene varias maneras de expresar una matriz de hashes.</p> <p class="temp-sentence">Usted puede hacer lo que funciona, pero aquí está la manera más fácil:</p>
-</div>
+<p> YAML tiene varias maneras de expresar una matriz de hashes. Usted puede hacer lo que funciona, pero aquí está la manera más fácil:
+</p>
 
 <ul>
 <li>Comienza cada nivel de la jerarquía con:<ul>
@@ -219,24 +223,24 @@ defaults:
 </ul>
 <h3 id="configuring-a-hierarchy-level-built-in-backends">Configuración de un nivel de jerarquía (backend integrados)</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Hiera tiene tres backends estándar incorporados: <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a>, <a href="https://www.w3schools.com/js/js_json_syntax.asp">JSON</a> y <a href="https://github.com/typesafehub/config/blob/master/HOCON.md">HOCON</a>.</p> <p class="temp-sentence">Todos ellos utilizan archivos como fuentes de datos.</p>
-</div>
+<p> Hiera tiene tres backends estándar incorporados: <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a>, <a href="https://www.w3schools.com/js/js_json_syntax.asp">JSON</a> y <a href="https://github.com/typesafehub/config/blob/master/HOCON.md">HOCON</a>. Todos ellos utilizan archivos como fuentes de datos.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Puede utilizar cualquier combinación de estos backends en una jerarquía y también puede combinarlos con backends personalizados.</p> <p class="temp-sentence">Pero si la mayoría de sus datos están en un formato de archivo, sea perezoso: <a href="#the-defaults-key">establezca los valores por defecto de sus  <code>datadir</code> y claves <code>data_hash</code>.</a></p>
-</div>
+<p> Puede utilizar cualquier combinación de estos backends en una jerarquía y también puede combinarlos con backends personalizados. Pero si la mayoría de sus datos están en un formato de archivo, sea perezoso: <a href="#the-defaults-key">establezca los valores por defecto de sus  <code>datadir</code> y claves <code>data_hash</code>.</a>
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cada nivel de jerarquía YAML/JSON/HOCON   necesita las siguientes claves:</p>
-</div>
+<p> Cada nivel de jerarquía YAML/JSON/HOCON   necesita las siguientes claves:
+</p>
 
 <ul>
 <li>
 <code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida<code>--explain</code>.</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>path</code>, <code>paths</code>, <code>glob</code>, <code>globs</code>, o <code>mapped_paths</code> (seleccione uno) — Los archivos de datos que se utilizarán para este nivel de jerarquía.</p>
-</div>
+    <p> <code>path</code>, <code>paths</code>, <code>glob</code>, <code>globs</code>, o <code>mapped_paths</code> (seleccione uno) — Los archivos de datos que se utilizarán para este nivel de jerarquía.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Estos caminos son relativos al datadir, soportan una <a href="/puppet/4.10/hiera_interpolation.html">interpolación variable</a>, y requieren una extensión de archivo.</p> <p class="temp-sentence">Vea más abajo para más detalles.</p>
-</div>
+    <p> Estos caminos son relativos al datadir, soportan una <a href="/puppet/4.10/hiera_interpolation.html">interpolación variable</a>, y requieren una extensión de archivo. Vea más abajo para más detalles.
+</p>
   </li>
   <li>
 <code>data_hash</code> — Qué backend utilizar. Puede omitirse si establece un valor predeterminado. El valor debe ser uno de los siguientes:<ul>
@@ -249,23 +253,23 @@ defaults:
     </ul>
 </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>datadir</code> — El directorio donde se guardan los archivos de datos. Puede omitirse si establece un valor predeterminado.</p>
-</div>
+    <p> <code>datadir</code> — El directorio donde se guardan los archivos de datos. Puede omitirse si establece un valor predeterminado.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.</p>
-</div>
+    <p> Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">En la capa global, puede configurar opcionalmente el datadir a una ruta absoluta. En las otras capas, debe ser siempre relativa.</p>
-</div>
+    <p> En la capa global, puede configurar opcionalmente el datadir a una ruta absoluta. En las otras capas, debe ser siempre relativa.
+</p>
   </li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">La única clave que soporta<a href="./hiera_interpolation.html">interpolación de variables</a> es la ruta del archivo.</p>
-</div>
+<p> La única clave que soporta<a href="./hiera_interpolation.html">interpolación de variables</a> es la ruta del archivo.
+</p>
 
 <h4 id="specifying-file-paths">Especificar de rutas de archivo</h4>
 
-<div class="real-paragraph"> <p class="temp-sentence">Hay cuatro opciones para especificar una ruta de acceso de archivo.</p> <p class="temp-sentence">Usted puede utilizar solo  <em>una</em> de estas claves en un nivel de jerarquía dado.</p>
-</div>
+<p> Hay cuatro opciones para especificar una ruta de acceso de archivo. Usted puede utilizar solo  <em>una</em> de estas claves en un nivel de jerarquía dado.
+</p>
 
 <table>
 <thead><tr>
@@ -301,17 +305,17 @@ defaults:
     </tr>
 </tbody>
 </table>
-<div class="real-paragraph"> <p class="temp-sentence"><strong>Especificar la extensión del fichero es obligatorio</strong> — usar algo como <code>common.yaml</code>, no solo <code>common</code>.</p> <p class="temp-sentence">(Este es un cambio de las versiones anteriores de hiera.yaml, que supuso que las extensiones de archivos.</p> <p class="temp-sentence">)</p>
-</div>
+<p> <strong>Especificar la extensión del fichero es obligatorio</strong> — usar algo como <code>common.yaml</code>, no solo <code>common</code>. (Este es un cambio de las versiones anteriores de hiera.yaml, que supuso que las extensiones de archivos. )
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Las rutas de archivo son <code>datadir</code>: Si el datadir  completo es <code>/etc/puppetlabs/code/environments/production/data</code> y el path del fichero esta establecido a <code>"nodes/%{trusted.certname}.yaml"</code>, la ruta completa al archivo es <code>/etc/puppetlabs/code/environments/production/data/nodes/&lt;NODE NAME&gt;.yaml</code>.</p> <p class="temp-sentence">(También se permiten rutas de archivo absolutas, pero rara vez son prácticas.</p> <p class="temp-sentence">)</p>
-</div>
+<p> Las rutas de archivo son <code>datadir</code>: Si el datadir  completo es <code>/etc/puppetlabs/code/environments/production/data</code> y el path del fichero esta establecido a <code>"nodes/%{trusted.certname}.yaml"</code>, la ruta completa al archivo es <code>/etc/puppetlabs/code/environments/production/data/nodes/&lt;NODE NAME&gt;.yaml</code>. (También se permiten rutas de archivo absolutas, pero rara vez son prácticas. )
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="/puppet/4.10/hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera.</p> <p class="temp-sentence">Para obtener más información sobre la creación de jerarquías útiles, consulte<a href="">Cómo funcionan las jerarquías</a>.</p>
-</div>
+<p> Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="/puppet/4.10/hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera. Para obtener más información sobre la creación de jerarquías útiles, consulte<a href="">Cómo funcionan las jerarquías</a>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Globs se implementan con <a href="ruby-doc.org/core/Dir.html#method-c-glob">El método Ruby<code>Dir.glob</code> </a>.</p> <p class="temp-sentence">En resumen:</p>
-</div>
+<p> Globs se implementan con <a href="ruby-doc.org/core/Dir.html#method-c-glob">El método Ruby<code>Dir.glob</code> </a>. En resumen:
+</p>
 
 <ul>
 <li>Un asterisco (<code>*</code>) coincide con una serie de caractéres.</li>
@@ -321,45 +325,45 @@ defaults:
   <li>Conjuntos de caracteres entre corchetes (<code>[abcd]</code>) coincide con cualquier carácter del conjunto.</li>
   <li>Una barra invertida (<code>\</code>) carácteres especiales de escape.</li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">Ejemplo:</p>
-</div>
+<p> Ejemplo:
+</p>
 
 <pre><code class="language-yaml">  - name: "Domain or network segment"
     glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">La clave <code>mapped_paths</code> debe contener tres cadenas, en el siguiente orden:</p>
-</div>
+<p> La clave <code>mapped_paths</code> debe contener tres cadenas, en el siguiente orden:
+</p>
 
 <ol>
 <li>Una variable apunta a una colección de cadenas.</li>
   <li>El nombre de la variable que se asignará a cada elemento de la colección.</li>
   <li>Una plantilla donde esa variable se puede usar en expresiones de interpolación.</li>
 </ol>
-<div class="real-paragraph"> <p class="temp-sentence">Por ejemplo, un fact denominado <code>$services</code> contiene el array [“a”, “b”, “c”].</p> <p class="temp-sentence">Entonces esta configuración:</p>
-</div>
+<p> Por ejemplo, un fact denominado <code>$services</code> contiene el array [“a”, “b”, “c”]. Entonces esta configuración:
+</p>
 
 <pre><code class="language-yaml">- name: Example
   mapped_paths: [services, tmp, "service/%{tmp}/common.yaml"]
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Tiene los mismos resultados que si se hubieran especificado rutas <code>[service/a/common.yaml, service/b/common.yaml, service/c/common.yaml]</code>.</p>
-</div>
+<p> Tiene los mismos resultados que si se hubieran especificado rutas <code>[service/a/common.yaml, service/b/common.yaml, service/c/common.yaml]</code>.
+</p>
 
 <h3 id="configuring-a-hierarchy-level-hiera-eyaml">Configuración de un nivel de jerarquía (hiera-eyaml)</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Hiera 5 (Puppet 4.9.3y posteriores) incluye una interfaz nativa para la extensión<a href="https://github.com/voxpupuli/hiera-eyaml">Hiera eyaml</a>, la cual mantiene la infomación encriptada en el disco, pero permite a Puppet leer la misma durante la compilación del catálogo.</p>
-</div>
+<p> Hiera 5 (Puppet 4.9.3y posteriores) incluye una interfaz nativa para la extensión<a href="https://github.com/voxpupuli/hiera-eyaml">Hiera eyaml</a>, la cual mantiene la infomación encriptada en el disco, pero permite a Puppet leer la misma durante la compilación del catálogo.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Para aprender a crear claves y editar archivos cifrados, consulte <a href="https://github.com/voxpupuli/hiera-eyaml">La documentación de Hiera eyaml </a>.</p>
-</div>
+<p> Para aprender a crear claves y editar archivos cifrados, consulte <a href="https://github.com/voxpupuli/hiera-eyaml">La documentación de Hiera eyaml </a>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Dentro de hiera.yaml, el backend eyaml se parece sobre todo a los backends estándar incorporados, con algunas diferencias.</p> <p class="temp-sentence">(Utiliza <code>lookup_key</code> en vez de <code>data_hash</code>, y requiere una clave <code>options</code> para localizar claves de descifrado.</p> <p class="temp-sentence">)</p>
-</div>
+<p> Dentro de hiera.yaml, el backend eyaml se parece sobre todo a los backends estándar incorporados, con algunas diferencias. (Utiliza <code>lookup_key</code> en vez de <code>data_hash</code>, y requiere una clave <code>options</code> para localizar claves de descifrado. )
+</p>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Importante:</strong> Para utilizar el backend eyaml, usted debe tener instalado la gema  <code>hiera-eyaml</code>donde Puppet pueda utilizarla.</p> <p class="temp-sentence">Tendrás que instalarlo dos veces:</p>
-</div>
+  <p> <strong>Importante:</strong> Para utilizar el backend eyaml, usted debe tener instalado la gema  <code>hiera-eyaml</code>donde Puppet pueda utilizarla. Tendrás que instalarlo dos veces:
+</p>
 
   <ul>
 <li>Para habilitar eyaml con Puppet Server, utilice <code>sudo /opt/puppetlabs/bin/puppetserver gem install hiera-eyaml</code>.</li>
@@ -367,8 +371,8 @@ defaults:
   </ul>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cana nivel de jerarquía  eyaml necesita las siguientes claves:</p>
-</div>
+<p> Cana nivel de jerarquía  eyaml necesita las siguientes claves:
+</p>
 
 <ul>
 <li>
@@ -376,11 +380,11 @@ defaults:
   <li>
 <code>lookup_key</code> — Qué backend para usar. El valor debe ser<code>eyaml_lookup_key</code>. (Utilice este en vez de la configuración <code>data_hash</code>.)</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>path</code>, <code>paths</code>, <code>glob</code> o <code>globs</code> (seleccione uno) — Los archivo(s) de datos que se utilizarán para este nivel de jerarquía.</p>
-</div>
+    <p> <code>path</code>, <code>paths</code>, <code>glob</code> o <code>globs</code> (seleccione uno) — Los archivo(s) de datos que se utilizarán para este nivel de jerarquía.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Estos caminos son relativos al datadir, soportan una <a href="/puppet/4.10/hiera_interpolation.html">interpolación variable</a>, y requieren una extensión de archivo.</p> <p class="temp-sentence">(En este caso, usualmente usas <code>.eyaml</code>.</p> <p class="temp-sentence">Trabajan de la misma manera que lo hacen para los backends estándar.</p>
-</div>
+    <p> Estos caminos son relativos al datadir, soportan una <a href="/puppet/4.10/hiera_interpolation.html">interpolación variable</a>, y requieren una extensión de archivo. (En este caso, usualmente usas <code>.eyaml</code>. Trabajan de la misma manera que lo hacen para los backends estándar.
+</p>
   </li>
   <li>
 <code>datadir</code> — El directorio donde se guardan los archivos de datos. Puede omitirse si establece un valor predeterminado. Funciona de la misma manera que lo hace para los backends estándar.</li>
@@ -391,18 +395,18 @@ defaults:
       <li>
 <code>pkcs7_public_key</code> —  La ubicación de la clave pública PKCS7 a utilizar.</li>
     </ul>
-<div class="real-paragraph"> <p class="temp-sentence">Si utiliza un complemento de cifrado alternativo, sus documentos deben especificar qué opciones establecer.</p> <p class="temp-sentence">Por lo general, establecerá un <code>encrypt_method</code> , además de algunas opciones específicas de complemento para unos <code>pkcs7_</code>.</p>
-</div>
+<p> Si utiliza un complemento de cifrado alternativo, sus documentos deben especificar qué opciones establecer. Por lo general, establecerá un <code>encrypt_method</code> , además de algunas opciones específicas de complemento para unos <code>pkcs7_</code>.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Tenga en cuenta que puede utilizar cadenas normales como claves en este hash. No es necesario utilizar :symbols</p>
-</div>
+    <p> Tenga en cuenta que puede utilizar cadenas normales como claves en este hash. No es necesario utilizar :symbols
+</p>
   </li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">La ruta del archivo y las opciones<a href="">interpolación variable</a>.</p>
-</div>
+<p> La ruta del archivo y las opciones<a href="">interpolación variable</a>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">An example hierarchy level:</p>
-</div>
+<p> An example hierarchy level:
+</p>
 
 <pre><code class="language-yaml">hierarchy:
   - name: "Per-datacenter secret data (encrypted)"
@@ -416,51 +420,51 @@ defaults:
 <h3 id="configuring-a-hierarchy-level-legacy-hiera-3-backends">Configuración de un nivel de jerarquía (legacy Hiera 3 backends)</h3>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Nota:</strong> Esta característica es una medida temporal que le permite comenzar a utilizar las nuevas funciones de Hiera mientras espera actualizaciones de backend.</p> <p class="temp-sentence">Esperamos que el soporte Hiera 3 backend desaparezca en Puppet 6.</p>
-</div>
+  <p> <strong>Nota:</strong> Esta característica es una medida temporal que le permite comenzar a utilizar las nuevas funciones de Hiera mientras espera actualizaciones de backend. Esperamos que el soporte Hiera 3 backend desaparezca en Puppet 6.
+</p>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence">Si confías en los backends de datos personalizados diseñados para Hiera 3, puedes usarlos en tu jerarquía <strong>global</strong>.</p> <p class="temp-sentence">(No se admiten en el entorno ni en las capas de módulo.</p> <p class="temp-sentence">)</p>
-</div>
+<p> Si confías en los backends de datos personalizados diseñados para Hiera 3, puedes usarlos en tu jerarquía <strong>global</strong>. (No se admiten en el entorno ni en las capas de módulo. )
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cada nivel de jerarquía heredado necesita las siguientes claves:</p>
-</div>
+<p> Cada nivel de jerarquía heredado necesita las siguientes claves:
+</p>
 
 <ul>
 <li>
 <code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida<code>--explain</code>.</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>path</code> o <code>paths</code> (selecciona uno) — Los archivos de datos que se utilizarán para este nivel de jerarquía.</p>
-</div>
+    <p> <code>path</code> o <code>paths</code> (selecciona uno) — Los archivos de datos que se utilizarán para este nivel de jerarquía.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Para backends basados en archivos, <strong>Incluir la extensión de archivo,</strong> aunque lo hubiera omitido en el archivo hiera.yaml v3.</p>
-</div>
+    <p> Para backends basados en archivos, <strong>Incluir la extensión de archivo,</strong> aunque lo hubiera omitido en el archivo hiera.yaml v3.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Para los backends sin archivos, no utilice una extensión de archivo.</p>
-</div>
+    <p> Para los backends sin archivos, no utilice una extensión de archivo.
+</p>
   </li>
   <li>
 <code>hiera3_backend</code> —El backend para usar. Este es el mismo nombre que usarías en el archivo de configuración v3, clave <code>:backends</code>.</li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>datadir</code> — El directorio donde se guardan los archivos de datos.</p> <p class="temp-sentence">Sólo configure esto si su backend requiere un <code>:datadir</code> en sus opciones específicas del backend.</p>
-</div>
+    <p> <code>datadir</code> — El directorio donde se guardan los archivos de datos. Sólo configure esto si su backend requiere un <code>:datadir</code> en sus opciones específicas del backend.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.</p>
-</div>
+    <p> Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">En la capa global, puede configurar opcionalmente el datadir en una ruta absoluta.</p>
-</div>
+    <p> En la capa global, puede configurar opcionalmente el datadir en una ruta absoluta.
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>options</code> — Un hash, con cualquier opción específica del backend (que no sea <code>datadir</code>) Requerido por su backend.</p> <p class="temp-sentence">En la configuración v3, esto habría estado en una llave de nivel superior nombrada después del backend.</p>
-</div>
+    <p> <code>options</code> — Un hash, con cualquier opción específica del backend (que no sea <code>datadir</code>) Requerido por su backend. En la configuración v3, esto habría estado en una llave de nivel superior nombrada después del backend.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Puede utilizar cadenas normales como claves. Hiera los convierte automáticamente en símbolos para el backend.</p>
-</div>
+    <p> Puede utilizar cadenas normales como claves. Hiera los convierte automáticamente en símbolos para el backend.
+</p>
   </li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">En el siguiente ejemplo se muestran archivos equivalente v3 y v5 hiera.yaml utilizando backends heredados:</p>
-</div>
+<p> En el siguiente ejemplo se muestran archivos equivalente v3 y v5 hiera.yaml utilizando backends heredados:
+</p>
 
 <table><tr>
 <td>
@@ -516,14 +520,14 @@ hierarchy:
 </tr></table>
 <h3 id="configuring-a-hierarchy-level-general-format">Configuración de un nivel de jerarquía (formato general)</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Hiera soporta backends personalizados, que no siempre actúan como los backends incorporados.</p>
-</div>
+<p> Hiera soporta backends personalizados, que no siempre actúan como los backends incorporados.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">La documentación de su backend debe explicar cómo configurar niveles de jerarquía para él, por lo que normalmente no tendrá que consultar estas reglas.</p> <p class="temp-sentence">Se presentan aquí como una ayuda para los autores de back-end, y como una alternativa en caso de documentos incompletos de back-end.</p>
-</div>
+<p> La documentación de su backend debe explicar cómo configurar niveles de jerarquía para él, por lo que normalmente no tendrá que consultar estas reglas. Se presentan aquí como una ayuda para los autores de back-end, y como una alternativa en caso de documentos incompletos de back-end.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cada nivel jerárquico está representado por un hash, que necesita las siguientes teclas:</p>
-</div>
+<p> Cada nivel jerárquico está representado por un hash, que necesita las siguientes teclas:
+</p>
 
 <ul>
 <li>
@@ -535,11 +539,11 @@ hierarchy:
       <li>
 <code>hiera3_backend</code> (solo capa global)</li>
     </ul>
-<div class="real-paragraph"> <p class="temp-sentence">El backend determina qué clave debe utilizar, por lo que tendrá que comprobar su documentación.</p> <p class="temp-sentence">En general, los backends basados en archivos normalmente usan<code>data_hash</code>, Los backends rápidos sin archivos usan usualmente <code>lookup_key</code>, Y los backends lentos que no son archivos normalmente usan <code>data_dig</code>.</p>
-</div>
+<p> El backend determina qué clave debe utilizar, por lo que tendrá que comprobar su documentación. En general, los backends basados en archivos normalmente usan<code>data_hash</code>, Los backends rápidos sin archivos usan usualmente <code>lookup_key</code>, Y los backends lentos que no son archivos normalmente usan <code>data_dig</code>.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/4.10/functions_basics.html">custom Puppet function</a> que implementa el backend.</p> <p class="temp-sentence">Para más detalles, vea <a href="./hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.</p>
-</div>
+    <p> Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/4.10/functions_basics.html">custom Puppet function</a> que implementa el backend. Para más detalles, vea <a href="./hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.
+</p>
   </li>
   <li>Una ruta o clave URI (sólo si el backend lo requiere). <strong>Estas claves soportan <a href="">Interpolación de variables</a>.</strong> Las siguientes claves de ruta / URI están disponibles:<ul>
 <li><code>path</code></li>
@@ -549,14 +553,14 @@ hierarchy:
       <li><code>uri</code></li>
       <li><code>uris</code></li>
     </ul>
-<div class="real-paragraph"> <p class="temp-sentence"><code>path(s)</code> y<code>glob(s)</code> funcionan de la misma manera que lo hacen para los backends incorporados.</p> <p class="temp-sentence">Hiera maneja el trabajo de localizar archivos, por lo que cualquier backend que soporte <code>path</code> soporta automáticamente <code>paths</code>, <code>glob</code> y <code>globs</code>.</p>
-</div>
+<p> <code>path(s)</code> y<code>glob(s)</code> funcionan de la misma manera que lo hacen para los backends incorporados. Hiera maneja el trabajo de localizar archivos, por lo que cualquier backend que soporte <code>path</code> soporta automáticamente <code>paths</code>, <code>glob</code> y <code>globs</code>.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence"><code>uri</code> (string) y <code>uris</code> (array) puede representar cualquier tipo de fuente de datos.</p> <p class="temp-sentence">Hiera no asegura que los URIs sean solucionables antes de llamar al backend, y no necesita entender ningún esquema URI dado.</p>
-</div>
+    <p> <code>uri</code> (string) y <code>uris</code> (array) puede representar cualquier tipo de fuente de datos. Hiera no asegura que los URIs sean solucionables antes de llamar al backend, y no necesita entender ningún esquema URI dado.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">También es posible que un backend omita la clave de ruta / URI, y confíe completamente en el <code>options</code>para localizar sus datos.</p>
-</div>
+    <p> También es posible que un backend omita la clave de ruta / URI, y confíe completamente en el <code>options</code>para localizar sus datos.
+</p>
   </li>
   <li>
 <code>datadir</code> —El directorio donde se guardan los archivos de datos. El camino es relativo al directorio de hiera.yaml.Sólo es necesario si el backend utiliza la <code>path(s)</code> y claves <code>glob(s)</code> y se puede omitir si establece un valor predeterminado.</li>

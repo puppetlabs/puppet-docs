@@ -1,12 +1,16 @@
+---
+title: "Hiera: Sintaxis del archivo de configuración heredado (hiera.yaml v4)"
+---
+
 <div>
-<div class="title">Hiera: Sintaxis del archivo de configuración heredado (hiera.yaml v4)</div>
 
 
-<div class="real-paragraph"> <p class="temp-sentence">El fichero de configuración Hiera es denominado hiera.yaml.</p> <p class="temp-sentence">Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.</p>
-</div>
 
-<div class="real-paragraph"> <p class="temp-sentence">Esta versión de Puppet soporta tres formatos de hiera.yaml — puede usar cualquier de ellos,  a pesar de que v4 y <a href="./hiera_config_yaml_3.html">v3</a> están obsoletos.</p> <p class="temp-sentence">Esta página trata sobre la versión 4, un formato de transición usado en el predecesor experimental de Hiera 5 (Puppet lookup).</p>
-</div>
+<p> El fichero de configuración Hiera es denominado hiera.yaml. Esto configura la <a href="/puppet/4.10/hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.
+</p>
+
+<p> Esta versión de Puppet soporta tres formatos de hiera.yaml — puede usar cualquier de ellos,  a pesar de que v4 y <a href="./hiera_config_yaml_3.html">v3</a> están obsoletos. Esta página trata sobre la versión 4, un formato de transición usado en el predecesor experimental de Hiera 5 (Puppet lookup).
+</p>
 
 <table>
 <thead><tr>
@@ -34,11 +38,11 @@
 </table>
 <h2 id="important-version-4-is-deprecated">Importante: version 4 está obsoleta.</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">La versión 4 de hiera.yaml está obsoleta, y planeamos eliminar el soporte para ello en Puppet 6.</p>
-</div>
+<p> La versión 4 de hiera.yaml está obsoleta, y planeamos eliminar el soporte para ello en Puppet 6.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Más importante, version 4 no puede utilizar algunas de las mejores características de Hiera 5, como backends personalizables.</p>
-</div>
+<p> Más importante, version 4 no puede utilizar algunas de las mejores características de Hiera 5, como backends personalizables.
+</p>
 
 <h2 id="hierayaml-version-4-in-a-nutshell">
 <code>hiera.yaml</code> (Version 4) en pocas palabras</h2>
@@ -69,8 +73,8 @@ hierarchy:
     backend: yaml
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">El fichero <code>hiera.yaml</code> (version 4)  va en el directorio principal de un módulo o entorno.</p> <p class="temp-sentence">Es un hash YAML que contiene tres claves:</p>
-</div>
+<p> El fichero <code>hiera.yaml</code> (version 4)  va en el directorio principal de un módulo o entorno. Es un hash YAML que contiene tres claves:
+</p>
 
 <ul>
 <li>
@@ -80,19 +84,19 @@ hierarchy:
   <li>
 <code>hierarchy</code> — Opcional. Una jerarquía de fuentes de datos para buscar, en el nuevo formato. Si se omite, el valor predeterminado es una fuente única <code>common</code> que utiliza el YAML backend.</li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">La <code>hierarchy</code> es un array de hashes.</p> <p class="temp-sentence">A diferencia de Hiera clásico, cada nivel de jerarquía debe especificar su propio backend, y opcionalmente puede utilizar un datadir independiente.</p>
-</div>
+<p> La <code>hierarchy</code> es un array de hashes. A diferencia de Hiera clásico, cada nivel de jerarquía debe especificar su propio backend, y opcionalmente puede utilizar un datadir independiente.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cada nivel de jerarquía puede contener las siguientes claves:</p>
-</div>
+<p> Cada nivel de jerarquía puede contener las siguientes claves:
+</p>
 
 <ul>
 <li>
-    <div class="real-paragraph"> <p class="temp-sentence"><code>name</code> — Obligatorio.</p> <p class="temp-sentence">Un nombre arbitrario legible por humanos, usado para depurar yr <code>puppet lookup --explain</code>.</p>
-</div>
+    <p> <code>name</code> — Obligatorio. Un nombre arbitrario legible por humanos, usado para depurar yr <code>puppet lookup --explain</code>.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">También se utiliza como valor predeterminado <code>path</code> si no especifica ningún path.</p> <p class="temp-sentence">(Si el nombre interpola las variables, Hiera interpolará al encontrar archivos de datos, pero lo dejará sin interpolar al informar el nombre del nivel.</p> <p class="temp-sentence">)</p>
-</div>
+    <p> También se utiliza como valor predeterminado <code>path</code> si no especifica ningún path. (Si el nombre interpola las variables, Hiera interpolará al encontrar archivos de datos, pero lo dejará sin interpolar al informar el nombre del nivel. )
+</p>
   </li>
   <li>
 <code>backend</code> — Obligatorio. Backend a utilizar. Actualmente solo <code>yaml</code> y <code>json</code> son soportados.</li>
@@ -105,9 +109,9 @@ hierarchy:
 </ul>
 <h2 id="changes-to-version-4-for-hiera-5">Cambios en la versión 4 de Hiera 5</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">En el Puppet lookup experimental, Tuviste que usar un ajuste para habilitar Hiera: para entornos que tenías que configurar <code>environment_data_provider = hiera</code> En environment.conf o puppet.conf, y para los módulos que tenía que configurar<code>"data_provider":"hiera"</code>en metadata.json.</p>
-</div>
+<p> En el Puppet lookup experimental, Tuviste que usar un ajuste para habilitar Hiera: para entornos que tenías que configurar <code>environment_data_provider = hiera</code> En environment.conf o puppet.conf, y para los módulos que tenía que configurar<code>"data_provider":"hiera"</code>en metadata.json.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Eso ya no es necesario.</p> <p class="temp-sentence">A partir de Puppet 4.9, Puppet habilita automáticamente Hiera para un módulo o entorno si existe un archivo hiera.yaml presente.</p> <p class="temp-sentence">Esto funciona para los archivos v4 y v5 hiera.yaml.</p>
-</div>
+<p> Eso ya no es necesario. A partir de Puppet 4.9, Puppet habilita automáticamente Hiera para un módulo o entorno si existe un archivo hiera.yaml presente. Esto funciona para los archivos v4 y v5 hiera.yaml.
+</p>
 </div>

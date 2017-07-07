@@ -1,45 +1,49 @@
+---
+title: "Instalación Puppet: Tareas de Pre-instalación"
+---
+
 <div>
-<div class="title">Instalación Puppet: Tareas de Pre-instalación</div>
 
 
-<div class="real-paragraph"> <p class="temp-sentence">Para facilitar su instalación de Puppet, realice estas tareas antes de instalar el Puppet agent.</p>
-</div>
+
+<p> Para facilitar su instalación de Puppet, realice estas tareas antes de instalar el Puppet agent.
+</p>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Nota:</strong> Este documento cubre los lanzamientos open source de Puppet.</p> <p class="temp-sentence">Para instrucciones de instalación de Puppet Enterprise, revisar<a href="../../pe/2017.2/install_basic.html">esta documentación de instalación</a>.</p>
-</div>
+  <p> <strong>Nota:</strong> Este documento cubre los lanzamientos open source de Puppet. Para instrucciones de instalación de Puppet Enterprise, revisar<a href="../../pe/2017.2/install_basic.html">esta documentación de instalación</a>.
+</p>
 </blockquote>
 
 <ol>
 <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Decidir el tipo de despliegue.</p>
-</div>
+    <p> Decidir el tipo de despliegue.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Generalmente Puppet utiliza una arquitectura agent/master (cliente/servidor), pero también puede ejecutar una arquitectura autónoma. </p> <p class="temp-sentence">Su elección determinara los paquetes a instalar y la configuración extra necesaria.</p>
-</div>
+    <p> Generalmente Puppet utiliza una arquitectura agent/master (cliente/servidor), pero también puede ejecutar una arquitectura autónoma.  Su elección determinara los paquetes a instalar y la configuración extra necesaria.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Además, Usted debería considerar utilizar <a href="/puppetdb/4.4/">PuppetDB</a>, activando más características Puppet y facilitando la consulta y el análisis de los datos que Puppet ofrece sobre su infraestructura.</p>
-</div>
+    <p> Además, Usted debería considerar utilizar <a href="/puppetdb/4.4/">PuppetDB</a>, activando más características Puppet y facilitando la consulta y el análisis de los datos que Puppet ofrece sobre su infraestructura.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence"><a href="/puppet/latest/architecture.html">Aprenda más sobre la infraestructura Puppet aquí.</a></p>
-</div>
+    <p> <a href="/puppet/latest/architecture.html">Aprenda más sobre la infraestructura Puppet aquí.</a>
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Si selecciona la arquitectura estándar agent/master, deberá decidir que servidor o servidores actuarán como Puppet master ( y servidor <a href="/puppetdb/4.4/">PuppetDB</a> , si decide utilizarlo).</p>
-</div>
+    <p> Si selecciona la arquitectura estándar agent/master, deberá decidir que servidor o servidores actuarán como Puppet master ( y servidor <a href="/puppetdb/4.4/">PuppetDB</a> , si decide utilizarlo).
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Instale y configure completamente Puppet en cualquier Puppet masters y PuppetDB antes de instalarlo en cualquier nodo de agente.</p> <p class="temp-sentence">El master debe correr sobre algún *nix. El master no puede correr sobre máquinas Windows.</p>
-</div>
+    <p> Instale y configure completamente Puppet en cualquier Puppet masters y PuppetDB antes de instalarlo en cualquier nodo de agente. El master debe correr sobre algún *nix. El master no puede correr sobre máquinas Windows.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Un Puppet master es una máquina dedicada, por lo que debe ser accesible por hostname.</p> <p class="temp-sentence">Los nodo Agent consultarán por defecto al master con el hostname <code>puppet</code>.</p> <p class="temp-sentence">Si estás seguro que el hostname apunta al master, puede reducir el tiempo de setup realizando un cambio en <a href="/puppet/4.10/configuration.html#server">la configuración <code>server</code></a>.</p>
-</div>
+    <p> Un Puppet master es una máquina dedicada, por lo que debe ser accesible por hostname. Los nodo Agent consultarán por defecto al master con el hostname <code>puppet</code>. Si estás seguro que el hostname apunta al master, puede reducir el tiempo de setup realizando un cambio en <a href="/puppet/4.10/configuration.html#server">la configuración <code>server</code></a>.
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Revise las versiones SO y requerimientos del sistema.</p>
-</div>
+    <p> Revise las versiones SO y requerimientos del sistema.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Consulta los <a href="/puppet/4.10/system_requirements.html">requerimientos de sistema</a> para la versión de Puppet a instalar, considerando los siguientes puntos:</p>
-</div>
+    <p> Consulta los <a href="/puppet/4.10/system_requirements.html">requerimientos de sistema</a> para la versión de Puppet a instalar, considerando los siguientes puntos:
+</p>
 
     <ul>
 <li>Su Puppet master ha de ser capaz de gestionar el número total de agents a servir.</li>
@@ -48,11 +52,11 @@
     </ul>
 </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Compruebe la configuración de red.</p>
-</div>
+    <p> Compruebe la configuración de red.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">En despliegues de agent/master, debes preparar tu red para soportar el tráfico de Puppet.</p>
-</div>
+    <p> En despliegues de agent/master, debes preparar tu red para soportar el tráfico de Puppet.
+</p>
 
     <ul>
 <li>
@@ -66,15 +70,15 @@
     </ul>
 </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Establezca el tiempo con precisión en su servidor Puppet master.</p>
-</div>
+    <p> Establezca el tiempo con precisión en su servidor Puppet master.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">El tiempo debe establecerse con precisión en el servidor Puppet master que actúa como autoridad de certificación.</p> <p class="temp-sentence">Si el tiempo es incorrecto, puede emitir por error certificados de agentes de un pasado o futuro, que otros nodos tratan como caducado.</p> <p class="temp-sentence">Existen modules en el forge, como el module ntp que puede ayudar con esta tarea.</p>
-</div>
+    <p> El tiempo debe establecerse con precisión en el servidor Puppet master que actúa como autoridad de certificación. Si el tiempo es incorrecto, puede emitir por error certificados de agentes de un pasado o futuro, que otros nodos tratan como caducado. Existen modules en el forge, como el module ntp que puede ayudar con esta tarea.
+</p>
   </li>
 </ol>
-<div class="real-paragraph"> <p class="temp-sentence">Instala Puppet Server antes de instalar Puppet en los nodos agent.</p> <p class="temp-sentence">Si está usando PuppetDB, instálelo una vez que Puppet Server esté funcionando.</p> <p class="temp-sentence">Una vez usted ha completado estos pasos y ha configurado su master, usted puede instalar Puppet agent.</p>
-</div>
+<p> Instala Puppet Server antes de instalar Puppet en los nodos agent. Si está usando PuppetDB, instálelo una vez que Puppet Server esté funcionando. Una vez usted ha completado estos pasos y ha configurado su master, usted puede instalar Puppet agent.
+</p>
 
 <ul>
 <li><a href="./install_linux.html">Cómo instalar Puppet agent en Linux</a></li>

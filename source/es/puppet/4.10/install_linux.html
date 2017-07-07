@@ -1,37 +1,41 @@
+---
+title: "Instalación Puppet agent: Linux"
+---
+
 <div>
-<div class="title">Instalación Puppet agent: Linux</div>
 
 
-<div class="real-paragraph"> <p class="temp-sentence">Instalar Puppet agent para que su master pueda comunicar con su nodos Linux.</p>
-</div>
 
-<div class="real-paragraph"> <p class="temp-sentence"><strong>Antes de empezar</strong>: Consulte la <a href="./install_pre.html">tareas de pre-instalación</a> y <a href="/puppetserver/2.7/install_from_packages.html">instalación de Puppet Server</a>.</p> <p class="temp-sentence">Si esta familiarizado con Puppet 3 y anteriores, aprenda las nuevas ubicaciones para muchos de los archivos y directorios leyendo un resumen de<a href="/puppet/4.10/whered_it_go.html">cambios en Puppet 4</a> o refiriéndose a la <a href="https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md"> especificación completa de Puppet directories</a>.</p>
-</div>
+<p> Instalar Puppet agent para que su master pueda comunicar con su nodos Linux.
+</p>
+
+<p> <strong>Antes de empezar</strong>: Consulte la <a href="./install_pre.html">tareas de pre-instalación</a> y <a href="/puppetserver/2.7/install_from_packages.html">instalación de Puppet Server</a>. Si esta familiarizado con Puppet 3 y anteriores, aprenda las nuevas ubicaciones para muchos de los archivos y directorios leyendo un resumen de<a href="/puppet/4.10/whered_it_go.html">cambios en Puppet 4</a> o refiriéndose a la <a href="https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md"> especificación completa de Puppet directories</a>.
+</p>
 
 <ol>
 <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Instale un <a href="/puppet/4.10/puppet_collections.html">release package</a> para activar los repositorios Puppet Collection.</p>
-</div>
+    <p> Instale un <a href="/puppet/4.10/puppet_collections.html">release package</a> para activar los repositorios Puppet Collection.
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Confirme que puede correr ejecutables de  Puppet.</p>
-</div>
+    <p> Confirme que puede correr ejecutables de  Puppet.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">La ubicación de los ejecutables de Puppet es<code>/opt/puppetlabs/bin/</code>, Que no está en su <code>PATH</code> de variables de entorno por defecto.</p>
-</div>
+    <p> La ubicación de los ejecutables de Puppet es<code>/opt/puppetlabs/bin/</code>, Que no está en su <code>PATH</code> de variables de entorno por defecto.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">El path ejecutable no importa para los servicios de Puppet - por ejemplo, <code>service puppet start</code> funciona independientemente del <code>PATH</code> — Pero si está ejecutando comandos <code>puppet</code>interactivos, debe agregar su ubicación a su <code>PATH</code> o ejecutarlos utilizando su ruta completa.</p>
-</div>
+    <p> El path ejecutable no importa para los servicios de Puppet - por ejemplo, <code>service puppet start</code> funciona independientemente del <code>PATH</code> — Pero si está ejecutando comandos <code>puppet</code>interactivos, debe agregar su ubicación a su <code>PATH</code> o ejecutarlos utilizando su ruta completa.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Para agregar rápidamente la ubicación del<code>PATH</code> para la sesión de terminal actual, utilice el comando <code>export PATH=/opt/puppetlabs/bin:$PATH</code>.</p> <p class="temp-sentence">También puede agregar esta localización donde configure el <code>PATH</code>, como pueden ser los ficheros de configuración <code>.profile</code> or <code>.bashrc</code>.</p>
-</div>
+    <p> Para agregar rápidamente la ubicación del<code>PATH</code> para la sesión de terminal actual, utilice el comando <code>export PATH=/opt/puppetlabs/bin:$PATH</code>. También puede agregar esta localización donde configure el <code>PATH</code>, como pueden ser los ficheros de configuración <code>.profile</code> or <code>.bashrc</code>.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Para más información, consulte detalles sobre <a href="/puppet/4.10/whered_it_go.html">ficheros y directorios movidos en Puppet 4</a>.</p>
-</div>
+    <p> Para más información, consulte detalles sobre <a href="/puppet/4.10/whered_it_go.html">ficheros y directorios movidos en Puppet 4</a>.
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Instale el paquete <code>puppet-agent</code> en su nodo Puppet agent utilizando el comando apropiado para su sistema:</p>
-</div>
+    <p> Instale el paquete <code>puppet-agent</code> en su nodo Puppet agent utilizando el comando apropiado para su sistema:
+</p>
 
     <ul>
 <li>Yum – <code>sudo yum install puppet-agent</code>.</li>
@@ -39,58 +43,58 @@
     </ul>
 </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">(Opcional) Configure la configuración del agent.</p>
-</div>
+    <p> (Opcional) Configure la configuración del agent.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Por ejemplo, Si su maestro no es accesible en la dirección predeterminada,<code>server = puppet</code>, establecer la configuración <code>server</code>a su hostname de Puppet master.</p>
-</div>
+    <p> Por ejemplo, Si su maestro no es accesible en la dirección predeterminada,<code>server = puppet</code>, establecer la configuración <code>server</code>a su hostname de Puppet master.
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">Para otras configuraciones, es posible que desee cambiar, consulte <a href="/puppet/4.10/config_important_settings.html#settings-for-agents-all-nodes">lLista de ajustes relacionados con el agent</a>.</p>
-</div>
+    <p> Para otras configuraciones, es posible que desee cambiar, consulte <a href="/puppet/4.10/config_important_settings.html#settings-for-agents-all-nodes">lLista de ajustes relacionados con el agent</a>.
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Inicie el servicio <code>puppet</code>: <code>sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true</code>.</p>
-</div>
+    <p> Inicie el servicio <code>puppet</code>: <code>sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true</code>.
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">(Opcional) Para ver una muestra de la salida del agent de Puppet y verificar cualquier cambio que haya hecho a sus ajustes de configuración en el paso 5, iniciar manualmente y ver una ejecución de Puppets:
-<code>sudo /opt/puppetlabs/bin/puppet agent --test</code></p>
-</div>
+    <p> (Opcional) Para ver una muestra de la salida del agent de Puppet y verificar cualquier cambio que haya hecho a sus ajustes de configuración en el paso 5, iniciar manualmente y ver una ejecución de Puppets:
+<code>sudo /opt/puppetlabs/bin/puppet agent --test</code>
+</p>
   </li>
   <li>
-    <div class="real-paragraph"> <p class="temp-sentence">Firme certificados en el maestro de la autoridad de certificación (CA).</p>
-</div>
+    <p> Firme certificados en el maestro de la autoridad de certificación (CA).
+</p>
 
-    <div class="real-paragraph"> <p class="temp-sentence">En el Puppet master:</p>
-</div>
+    <p> En el Puppet master:
+</p>
 
     <ol>
 <li>Ejecute <code>sudo /opt/puppetlabs/bin/puppet cert list</code> para consultar las peticiones pendientes.</li>
       <li>Ejecute <code>sudo /opt/puppetlabs/bin/puppet cert sign &lt;NAME&gt;</code> para firmar la petición.</li>
     </ol>
-<div class="real-paragraph"> <p class="temp-sentence">A medida que cada Puppet agent se ejecuta por primera vez, envía una solicitud de firma de certificado (CSR) al Puppet master de CA.</p> <p class="temp-sentence">Debe iniciar sesión en ese servidor para comprobar y firmar certificados.</p> <p class="temp-sentence">Después de firmar un certificado de agente, normalmente se buscan y ejecutan los catálogos de configuración del Puppet master.</p>
-</div>
+<p> A medida que cada Puppet agent se ejecuta por primera vez, envía una solicitud de firma de certificado (CSR) al Puppet master de CA. Debe iniciar sesión en ese servidor para comprobar y firmar certificados. Después de firmar un certificado de agente, normalmente se buscan y ejecutan los catálogos de configuración del Puppet master.
+</p>
   </li>
 </ol>
 <h2 id="about-release-packages">Acerca release packages</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">Los paquetes de producción configuran su sistema para descargar e instalar la versión apropiada de los paquetes <code>puppetserver</code> y <a href="/puppet/4.10/about_agent.html"><code>puppet-agent</code></a>.</p> <p class="temp-sentence">Estos paquetes están agrupados en el repositorio de <a href="/puppet/4.10/puppet_collections.html">Puppet Collection</a>, compuesto por versiones compatibles de herramientas Puppet.</p>
-</div>
+<p> Los paquetes de producción configuran su sistema para descargar e instalar la versión apropiada de los paquetes <code>puppetserver</code> y <a href="/puppet/4.10/about_agent.html"><code>puppet-agent</code></a>. Estos paquetes están agrupados en el repositorio de <a href="/puppet/4.10/puppet_collections.html">Puppet Collection</a>, compuesto por versiones compatibles de herramientas Puppet.
+</p>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Nota:</strong> Este documento incluye el repositorio Puppet Collection del software compatible con Puppet 4 open source.</p>
-</div>
+  <p> <strong>Nota:</strong> Este documento incluye el repositorio Puppet Collection del software compatible con Puppet 4 open source.
+</p>
   <ul>
 <li>Para los paquetes Puppet 3.8 open source, consulta esta <a href="/puppet/3.8/reference/puppet_repositories.html">documentación de repositorios</a>.</li>
     <li>Para la instalación de los tarballs de Puppet Enterprise, consulta esta <a href="../../pe/2017.2/install_basic.html">documentación de instalación</a>.</li>
   </ul>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence">Puppet mantiene repositorios de paquetes oficiales para varios sistemas operativos y distribuciones.</p> <p class="temp-sentence">Para hacer los repositorios más intuitivos, los hemos versionado como "Puppet Collections" - cada colección tiene todo el software necesario para ejecutar un despliegue funcional de Puppet, en versiones confirmadas que funciona correctamente entre sí.</p> <p class="temp-sentence">Cada colección es una subscripción, y usted debe seleccionar (en algunos sistemas operativos, instalar un paquete de sistemas gestionados por Puppet) instalar software y recibir actualizaciones.</p>
-</div>
+<p> Puppet mantiene repositorios de paquetes oficiales para varios sistemas operativos y distribuciones. Para hacer los repositorios más intuitivos, los hemos versionado como "Puppet Collections" - cada colección tiene todo el software necesario para ejecutar un despliegue funcional de Puppet, en versiones confirmadas que funciona correctamente entre sí. Cada colección es una subscripción, y usted debe seleccionar (en algunos sistemas operativos, instalar un paquete de sistemas gestionados por Puppet) instalar software y recibir actualizaciones.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Los repositorios Collection están organizados en 2  niveles que corresponden a las versiones de Puppet Enterprise, los cuales están transformados para los componentes open-source de Collection:</p>
-</div>
+<p> Los repositorios Collection están organizados en 2  niveles que corresponden a las versiones de Puppet Enterprise, los cuales están transformados para los componentes open-source de Collection:
+</p>
 
 <ul>
 <li>
@@ -98,14 +102,14 @@
   <li>
 <strong>La versión “latest” </strong> se relaciona con cada nuevo lanzamiento de Puppet Enterprise, abarca las versiones no consideradas LTS y actualizada con los lanzamientos de la versión principal, que puede introducir cambios importantes. </li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">Puppet publica actualizaciones para sistemas operativos empezando desde la publicación del paquete para un sistema operativo a un repositorio, y paraliza las actualizaciones de paquetes de sistemas operativos retirados por el vendedor 30 días después del fin del ciclo de vida.</p>
-</div>
+<p> Puppet publica actualizaciones para sistemas operativos empezando desde la publicación del paquete para un sistema operativo a un repositorio, y paraliza las actualizaciones de paquetes de sistemas operativos retirados por el vendedor 30 días después del fin del ciclo de vida.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Consulta <a href="https://puppet.com/misc/puppet-enterprise-lifecycle">El ciclo de vida Puppet Enterprise</a> para más información sobre las etapas del ciclo de vida de Puppet Support.</p>
-</div>
+<p> Consulta <a href="https://puppet.com/misc/puppet-enterprise-lifecycle">El ciclo de vida Puppet Enterprise</a> para más información sobre las etapas del ciclo de vida de Puppet Support.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Para recibir la versión de software Puppet más actualizada sin introducir cambios importantes, utiliza la versión <code>latest</code>, instale en su estructura a versiones conocidas, y actualize la versión instalada manualmente cuando este listo para realizarla.</p> <p class="temp-sentence">Por ejemplo, si usted utiliza <a href="https://forge.puppet.com/puppetlabs/puppet_agent"><code>puppetlabs-puppet_agent</code> "module"</a> para gestionar el paquete instalado <code>puppet-agent</code>, use este recurso para instalar la versión 1.7.0:</p>
-</div>
+<p> Para recibir la versión de software Puppet más actualizada sin introducir cambios importantes, utiliza la versión <code>latest</code>, instale en su estructura a versiones conocidas, y actualize la versión instalada manualmente cuando este listo para realizarla. Por ejemplo, si usted utiliza <a href="https://forge.puppet.com/puppetlabs/puppet_agent"><code>puppetlabs-puppet_agent</code> "module"</a> para gestionar el paquete instalado <code>puppet-agent</code>, use este recurso para instalar la versión 1.7.0:
+</p>
 
 <pre><code>class { '::puppet_agent':
   collection      =&gt; 'latest',
@@ -113,8 +117,8 @@
 }
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Cuando <code>puppet-agent</code> 2.0.0 este en lanzamiento, actualize <code>package_version</code> cuando este listo para actualizar a esa versión:</p>
-</div>
+<p> Cuando <code>puppet-agent</code> 2.0.0 este en lanzamiento, actualize <code>package_version</code> cuando este listo para actualizar a esa versión:
+</p>
 
 <pre><code>class { '::puppet_agent':
   collection      =&gt; 'latest',
@@ -150,26 +154,26 @@
     </tr>
 </tbody>
 </table>
-<div class="real-paragraph"> <p class="temp-sentence">Sistemas basados en Yum:</p>
-</div>
+<p> Sistemas basados en Yum:
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Para activar el repositorio Puppet Collection1, primero selecciona el paquete basado en la versión y en el sistema operativo.</p> <p class="temp-sentence">Los paquetes estan localizado en el repositorio <a href="https://yum.puppetlabs.com"><code>yum.puppetlabs.com</code></a> y denominados por medio de las siguientes convenciones:</p>
-</div>
+<p> Para activar el repositorio Puppet Collection1, primero selecciona el paquete basado en la versión y en el sistema operativo. Los paquetes estan localizado en el repositorio <a href="https://yum.puppetlabs.com"><code>yum.puppetlabs.com</code></a> y denominados por medio de las siguientes convenciones:
+</p>
 
 <pre><code>puppetlabs-release-&lt;COLLECTION&gt;-&lt;OS ABBREVIATION&gt;-&lt;OS VERSION&gt;.noarch.rpm
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Por ejemplo, el paquete de Puppet Collection 1 para Red Hat Enterprise Linux 7 (RHEL 7) es <code>puppetlabs-release-pc1-el-7.noarch.rpm</code>.</p>
-</div>
+<p> Por ejemplo, el paquete de Puppet Collection 1 para Red Hat Enterprise Linux 7 (RHEL 7) es <code>puppetlabs-release-pc1-el-7.noarch.rpm</code>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Después, utilize el comando <code>rpm</code> como root con el parámetro <code>upgrade</code> (<code>-U</code>), y opcionalmente con parámetros <code>verbose</code> (<code>-v</code>), y <code>hash</code> (<code>-h</code>):</p>
-</div>
+<p> Después, utilize el comando <code>rpm</code> como root con el parámetro <code>upgrade</code> (<code>-U</code>), y opcionalmente con parámetros <code>verbose</code> (<code>-v</code>), y <code>hash</code> (<code>-h</code>):
+</p>
 
 <pre><code>sudo rpm -Uvh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">El comando <code>rpm</code> le ofrecerá el siguiente mensaje:</p>
-</div>
+<p> El comando <code>rpm</code> le ofrecerá el siguiente mensaje:
+</p>
 
 <pre><code>Retrieving https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
 Preparing...                          ################################# [100%]
@@ -178,29 +182,29 @@ Updating / installing...
 </code></pre>
 
 <blockquote>
-  <div class="real-paragraph"> <p class="temp-sentence"><strong>Nota:</strong> Sólo proporcionamos el paquete <code>puppet-agent</code> para versiones recientes de Puppet en RHEL 5, Y para instalarlo primero debe descargar el paquete como <code>rpm</code> en RHEL 5, ya que no admite la instalación de paquetes desde una URL.</p>
-</div>
+  <p> <strong>Nota:</strong> Sólo proporcionamos el paquete <code>puppet-agent</code> para versiones recientes de Puppet en RHEL 5, Y para instalarlo primero debe descargar el paquete como <code>rpm</code> en RHEL 5, ya que no admite la instalación de paquetes desde una URL.
+</p>
 </blockquote>
 
-<div class="real-paragraph"> <p class="temp-sentence">Sistemas basados en Apt:</p>
-</div>
+<p> Sistemas basados en Apt:
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Para activar el repositorio Puppet Collection1, primero selecciona el paquete basado en la versión y en el sistema operativo.</p> <p class="temp-sentence">Los paquetes estan localizados en el repositorio <a href="https://apt.puppetlabs.com"><code>apt.puppetlabs.com</code></a> y están denominados siguiendo las siguientes convenciones: </p>
-</div>
+<p> Para activar el repositorio Puppet Collection1, primero selecciona el paquete basado en la versión y en el sistema operativo. Los paquetes estan localizados en el repositorio <a href="https://apt.puppetlabs.com"><code>apt.puppetlabs.com</code></a> y están denominados siguiendo las siguientes convenciones: 
+</p>
 
 <pre><code>puppetlabs-release-&lt;COLLECTION&gt;-&lt;VERSION CODE NAME&gt;.deb
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Por ejemplo, la versión del paquete Puppet Collection 1 para Debian 7 “Wheezy” es <code>puppetlabs-release-pc1-wheezy.deb</code>.</p> <p class="temp-sentence">Para versiones Ubuntu, el código de nombre es el adjetivo, no el animal.</p>
-</div>
+<p> Por ejemplo, la versión del paquete Puppet Collection 1 para Debian 7 “Wheezy” es <code>puppetlabs-release-pc1-wheezy.deb</code>. Para versiones Ubuntu, el código de nombre es el adjetivo, no el animal.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Luego, descargue la versión del paquete e instalelo como root  utilizando el comando <code>dpkg</code> y el parámetro install <code>install</code> (<code>-i</code>):</p>
-</div>
+<p> Luego, descargue la versión del paquete e instalelo como root  utilizando el comando <code>dpkg</code> y el parámetro install <code>install</code> (<code>-i</code>):
+</p>
 
 <pre><code>wget https://apt.puppetlabs.com/puppetlabs-release-pc1-wheezy.deb
 sudo dpkg -i puppetlabs-release-pc1-wheezy.deb
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Por último, ejecutar <code>apt-get update</code> tras instalar la versión actualizada del paquete que encontramos entre las listas <code>apt</code>.</p>
-</div>
+<p> Por último, ejecutar <code>apt-get update</code> tras instalar la versión actualizada del paquete que encontramos entre las listas <code>apt</code>.
+</p>
 </div>

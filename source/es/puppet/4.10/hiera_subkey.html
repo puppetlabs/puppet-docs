@@ -1,35 +1,39 @@
+---
+title: "Hiera: Acceso a los elementos hash y array (key.subkey syntax)"
+---
+
 <div>
-<div class="title">Hiera: Acceso a los elementos hash y array (key.subkey syntax)</div>
 
 
-<div class="real-paragraph"> <p class="temp-sentence">En Puppet y Hiera, a menudo necesita trabajar con datos estructurados en<a href="/puppet/4.10/lang_data_hash.html">hashes</a> y <a href="/puppet/4.10/lang_data_array.html">arrays</a>.</p>
-</div>
 
-<div class="real-paragraph"> <p class="temp-sentence">En el lenguaje de marionetas, puede acceder a los elementos hash y array con corchetes, como<code>$facts['networking']['fqdn']</code>.</p> <p class="temp-sentence">Hiera no utiliza corchetes. En cambio, utiliza un key.subkey como <code>facts.networking.fqdn</code>.</p>
-</div>
+<p> En Puppet y Hiera, a menudo necesita trabajar con datos estructurados en<a href="/puppet/4.10/lang_data_hash.html">hashes</a> y <a href="/puppet/4.10/lang_data_array.html">arrays</a>.
+</p>
+
+<p> En el lenguaje de marionetas, puede acceder a los elementos hash y array con corchetes, como<code>$facts['networking']['fqdn']</code>. Hiera no utiliza corchetes. En cambio, utiliza un key.subkey como <code>facts.networking.fqdn</code>.
+</p>
 
 <h2 id="keysubkey-syntax">Key.subkey syntax</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">Para acceder a un solo miembro de una matriz o hash, utilice el nombre del valor seguido por un punto(<code>.</code>) y un subclave.</p>
-</div>
+<p> Para acceder a un solo miembro de una matriz o hash, utilice el nombre del valor seguido por un punto(<code>.</code>) y un subclave.
+</p>
 
 <ul>
 <li>Si el valor es una matriz, la subclave debe ser un entero, como <code>users.8</code>.</li>
   <li>Si el valor es un hash, la subclave debe ser el nombre de una clave en ese hash, como <code>facts.os</code>.</li>
 </ul>
-<div class="real-paragraph"> <p class="temp-sentence">Para acceder a valores en estructuras de datos anidadas, puede enlazar las subclaves.</p> <p class="temp-sentence">Por ejemplo, dado que el valor de <code>facts.system_uptime</code> es un hash, puede acceder a su  clave <code>hours</code> con <code>facts.system_uptime.hours</code>.</p>
-</div>
+<p> Para acceder a valores en estructuras de datos anidadas, puede enlazar las subclaves. Por ejemplo, dado que el valor de <code>facts.system_uptime</code> es un hash, puede acceder a su  clave <code>hours</code> con <code>facts.system_uptime.hours</code>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">A diferencia de la notación de corchetes del lenguaje de marionetas, la notación de Hiera no admite el uso de expresiones arbitrarias como subclaves; Sólo las claves literales son válidas.</p>
-</div>
+<p> A diferencia de la notación de corchetes del lenguaje de marionetas, la notación de Hiera no admite el uso de expresiones arbitrarias como subclaves; Sólo las claves literales son válidas.
+</p>
 
 <h3 id="quoting-subkeys">Citando subclaves</h3>
 
-<div class="real-paragraph"> <p class="temp-sentence">Es posible que un hash incluya puntos literales en el texto de una clave.</p> <p class="temp-sentence">Por ejemplo, el valor de <code>$trusted['extensions']</code> es un hash que contiene cualquier<a href="/puppet/4.10/ssl_attributes_extensions.html">extensiones de certificado</a> para un nodo, pero algunas de sus claves pueden cadenas de OID crudas como <code>'1.3.6.1.4.1.34380.1.2.1'</code>.</p>
-</div>
+<p> Es posible que un hash incluya puntos literales en el texto de una clave. Por ejemplo, el valor de <code>$trusted['extensions']</code> es un hash que contiene cualquier<a href="/puppet/4.10/ssl_attributes_extensions.html">extensiones de certificado</a> para un nodo, pero algunas de sus claves pueden cadenas de OID crudas como <code>'1.3.6.1.4.1.34380.1.2.1'</code>.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Puede acceder a esos valores en Hiera con key.subkey notation, pero debe poner comillas alrededor de la subclave afectada.</p> <p class="temp-sentence">Por ejemplo:</p>
-</div>
+<p> Puede acceder a esos valores en Hiera con key.subkey notation, pero debe poner comillas alrededor de la subclave afectada. Por ejemplo:
+</p>
 
 <pre><code class="language-yaml">hierarchy:
   # ...
@@ -38,11 +42,11 @@
   # ...
 </code></pre>
 
-<div class="real-paragraph"> <p class="temp-sentence">Puede usar comillas simples o dobles.</p>
-</div>
+<p> Puede usar comillas simples o dobles.
+</p>
 
-<div class="real-paragraph"> <p class="temp-sentence">Si se cita toda la clave compuesta (por ejemplo, según lo<code>lookup</code> <a href="/puppet/4.10/hiera_interpolation.html#using-interpolation-functions">función interpolación</a>), Debe utilizar el otro tipo de cotización para la subclave y también debe escapar cotizaciones (según lo necesite su formato de archivo de datos) para asegurarse de que no finalizar prematuramente la cadena completa.</p> <p class="temp-sentence">Por ejemplo:</p>
-</div>
+<p> Si se cita toda la clave compuesta (por ejemplo, según lo<code>lookup</code> <a href="/puppet/4.10/hiera_interpolation.html#using-interpolation-functions">función interpolación</a>), Debe utilizar el otro tipo de cotización para la subclave y también debe escapar cotizaciones (según lo necesite su formato de archivo de datos) para asegurarse de que no finalizar prematuramente la cadena completa. Por ejemplo:
+</p>
 
 <pre><code class="language-yaml">aliased_key: "%{lookup('other_key.\"dotted.subkey\"')}"
 # Or:
@@ -51,8 +55,8 @@ aliased_key: "%{lookup(\"other_key.'dotted.subkey'\")}"
 
 <h2 id="where-can-you-access-hash-and-array-elements">¿Dónde se puede acceder a los elementos hash y array?</h2>
 
-<div class="real-paragraph"> <p class="temp-sentence">Puede acceder a los elementos hash y array cuando:</p>
-</div>
+<p> Puede acceder a los elementos hash y array cuando:
+</p>
 
 <ul>
 <li>
