@@ -97,19 +97,21 @@ sudo dpkg -i pdk-1.0.0-wheezy.deb
 
 Download the appropriate Puppet Development Kit package for your platform and install it.
 
-### On Linux-based systems 
+{:.task}
+### Install PDK on Linux-based systems 
 
 1. Install the `puppet-pdk` package using the command appropriate to your system:
 
    * Apt: `sudo apt-get install puppet-pdk`
    * Yum: `sudo yum install puppet-pdk`
 
-### On OS X
+{:.task}
+### Install PDK on OS X
 
 1. Download the PDK package from [TODO link to the puppet-pdk package for OS X on the Puppet downloads site](downloads.puppetlabs.com).
 2. Double click on the downloaded package to install.
 
-### On Windows
+### Install PDK on Windows
 
 1. Download the PDK package from [TODO link to the puppet-pdk MSI on the Puppet downloads site](downloads.puppetlabs.com).
 2. Double click on the downloaded package to install.
