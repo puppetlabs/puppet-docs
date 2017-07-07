@@ -1,0 +1,141 @@
+<div>
+<div class="title">Hiera: Convertir un experimental (versión 4) hiera.yaml a la versión 5</div>
+
+
+<div class="real-paragraph"> <p class="temp-sentence">Si utilizó la versión experimental de la búsqueda de títeres (predecesor de Hiera 5), podría tener algunos <a href="./hiera_config_yaml_4.html">fichero hiera.yaml version 4</a> en sus entornos y módulos.</p> <p class="temp-sentence">Hiera 5 puede usar estos tal como está, y seguirán trabajando hasta el Puppet 6.</p> <p class="temp-sentence">Pero necesitará convertirlos eventualmente, especialmente si desea utilizar cualquier backends que no sea YAML o JSON.</p>
+</div>
+
+<div class="real-paragraph"> <p class="temp-sentence">Afortunadamente, estos formatos son muy similares, y convertirlos es simple.</p>
+</div>
+
+<div class="real-paragraph"> <p class="temp-sentence">Una versión 4 hiera.yaml normalmente se ve algo como esto:</p>
+</div>
+
+<pre><code class="language-yaml"># /etc/puppetlabs/code/environments/production/hiera.yaml
+---
+version: 4
+datadir: data
+hierarchy:
+  - name: "Nodes"
+    backend: yaml
+    path: "nodes/%{trusted.certname}"
+
+  - name: "Exported JSON nodes"
+    backend: json
+    paths:
+      - "nodes/%{trusted.certname}"
+      - "insecure_nodes/%{facts.networking.fqdn}"
+
+  - name: "virtual/%{facts.virtual}"
+    backend: yaml
+
+  - name: "common"
+    backend: yaml
+</code></pre>
+
+<div class="real-paragraph"> <p class="temp-sentence">Para convertirlo a la versión 5, realice los cambios siguientes:</p>
+</div>
+
+<ul>
+<li>Cambie el valor de la clave <code>version</code> a <code>5</code>.</li>
+  <li>Agregue una extensión de archivo a cada ruta de acceso de archivo — utilice <code>"common.yaml"</code>, no <code>"common"</code>. <strong>Esta es la cosa más fácil de perder.</strong>
+</li>
+  <li>Si los niveles de jerarquía falta un <code>path</code>, usted debe agregarlo. En la versión 5, <code>path</code> no mayor del valor por defecto de <code>name</code>.</li>
+  <li>
+    <div class="real-paragraph"> <p class="temp-sentence">Si hay un nivel superior clave <code>datadir</code>, cambie esto a <a href="./hiera_config_yaml_5.html#the-defaults-key">una clave <code>defaults</code> </a>.</p> <p class="temp-sentence">Mientras estás en ello, puedes establecer un backend predeterminado.</p> <p class="temp-sentence">Por ejemplo:</p>
+</div>
+
+    <pre><code class="language-yaml">defaults:
+  datadir: data
+  data_hash: yaml_data
+</code></pre>
+  </li>
+  <li>
+    <div class="real-paragraph"> <p class="temp-sentence">En cada nivel jerárquico, borre la clave <code>backend</code> y reemplacela con una clave <code>data_hash</code>.</p> <p class="temp-sentence">(Si establece un backend predeterminado en la clave <code>defaults</code>, puedes omitirlo aquí.</p> <p class="temp-sentence">)</p>
+</div>
+
+    <table>
+<thead><tr>
+<th>v4 backend</th>
+          <th>v5 equivalent</th>
+        </tr></thead>
+<tbody>
+<tr>
+<td><code>backend: yaml</code></td>
+          <td><code>data_hash: yaml_data</code></td>
+        </tr>
+<tr>
+<td><code>backend: json</code></td>
+          <td><code>data_hash: json_data</code></td>
+        </tr>
+</tbody>
+</table>
+</li>
+</ul>
+<div class="real-paragraph"> <p class="temp-sentence">Después de convertirse a la versión 5, el ejemplo de arriba se vería así:</p>
+</div>
+
+<pre><code class="language-yaml"># /etc/puppetlabs/code/environments/production/hiera.yaml
+---
+version: 5
+defaults:
+  datadir: data          # Datadir has moved into `defaults`.
+  data_hash: yaml_data   # Default backend: New feature in v5.
+hierarchy:
+  - name: "Nodes"        # Can omit `backend` if using the default.
+    path: "nodes/%{trusted.certname}.yaml"   # Add file extension!
+
+  - name: "Exported JSON nodes"
+    data_hash: json_data        # Specifying a non-default backend.
+    paths:
+      - "nodes/%{trusted.certname}.json"
+      - "insecure_nodes/%{facts.networking.fqdn}.json"
+
+  - name: "Virtualization platform"
+    path: "virtual/%{facts.virtual}.yaml"   # Name and path are now separated.
+
+  - name: "common"
+    path: "common.yaml"
+</code></pre>
+
+<div class="real-paragraph"> <p class="temp-sentence">Para obtener detalles completos de la sintaxis, consulte <a href="./hiera_config_yaml_5.html">el manual hiera.yaml version 5 </a>.</p>
+</div>
+
+<h2 id="delete-the-environmentdataprovider-and-dataprovider-settings">Elimine el <code>environment_data_provider</code> y la configuración <code>data_provider</code>
+</h2>
+
+<div class="real-paragraph"> <p class="temp-sentence">Si utilizó la versión experimental de búsqueda de títeres, tuvo que utilizar una configuración para habilitarla para un entorno o módulo.</p> <p class="temp-sentence">Hiera 5 no necesita estos ajustes, y puede eliminarlos.</p> <p class="temp-sentence">Elimine cualquiera de los siguientes:</p>
+</div>
+
+<ul>
+<li>
+<code>environment_data_provider</code> en puppet.conf.</li>
+  <li>
+<code>environment_data_provider</code> en environment.conf.</li>
+  <li>
+<code>data_provider</code> en un modulo de metadata.json.</li>
+</ul>
+<h2 id="what-about-experimental-style-data-provider-functions">¿Qué pasa con las funciones de proveedor de datos de estilo experimental?</h2>
+
+<div class="real-paragraph"> <p class="temp-sentence">EL Puppet lookup tenía algún soporte personalizado de backend personalizado, donde se podía establecer <code>data_provider = function</code> y crear una función con un nombre mágico que devolvió un hash.</p>
+</div>
+
+<div class="real-paragraph"> <p class="temp-sentence">Si realmente usó eso, no tiene que tirar su trabajo. Usted puede convertir su función a un Hiera 5 <code>data_hash</code> backend como sigue:</p>
+</div>
+
+<ul>
+<li>Su función original no tomó argumentos. Cambie su firma para aceptar dos argumentos: un <code>Hash</code> y un objeto <code>Puppet::LookupContext</code> . No tienes que hacer nada con esto. Sólo tiene que aceptarlos. Para más información, consulte<a href="/puppet/4.10/hiera_custom_data_hash.html">la documentación para data hash backends</a>.</li>
+  <li>Elimine la configuración del proveedor de datos, como se describe en la sección anterior.</li>
+  <li>
+    <div class="real-paragraph"> <p class="temp-sentence">Crear un fichero <a href="./hiera_config_yaml_5.html">version 5 hiera.yaml</a> para el entorno o módulo afectado y agregue un nivel de jerarquía de la siguiente manera:</p>
+</div>
+
+    <pre><code class="language-yaml">- name: &lt;ARBITRARY NAME&gt;
+  data_hash: &lt;NAME OF YOUR FUNCTION&gt;
+</code></pre>
+
+    <div class="real-paragraph"> <p class="temp-sentence">Si no necesita un <code>path</code>, <code>datadir</code>, o cualquier otra opción.</p>
+</div>
+  </li>
+</ul>
+</div>
