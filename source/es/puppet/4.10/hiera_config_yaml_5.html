@@ -263,7 +263,7 @@ defaults:
 </p>
   </li>
 </ul>
-<p> La única clave que soporta<a href="./hiera_interpolation.html">interpolación de variables</a> es la ruta del archivo.
+<p> La única clave que soporta<a href="/puppet/4.10/hiera_interpolation.html">interpolación de variables</a> es la ruta del archivo.
 </p>
 
 <h4 id="specifying-file-paths">Especificar de rutas de archivo</h4>
@@ -311,7 +311,7 @@ defaults:
 <p> Las rutas de archivo son <code>datadir</code>: Si el datadir  completo es <code>/etc/puppetlabs/code/environments/production/data</code> y el path del fichero esta establecido a <code>"nodes/%{trusted.certname}.yaml"</code>, la ruta completa al archivo es <code>/etc/puppetlabs/code/environments/production/data/nodes/&lt;NODE NAME&gt;.yaml</code>. (También se permiten rutas de archivo absolutas, pero rara vez son prácticas. )
 </p>
 
-<p> Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="/puppet/4.10/hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera. Para obtener más información sobre la creación de jerarquías útiles, consulte<a href="">Cómo funcionan las jerarquías</a>.
+<p> Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="/puppet/4.10/hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera. Para obtener más información sobre la creación de jerarquías útiles, consulte<a href="/puppet/4.10/hiera_hierarchy.html">Cómo funcionan las jerarquías</a>.
 </p>
 
 <p> Globs se implementan con <a href="ruby-doc.org/core/Dir.html#method-c-glob">El método Ruby<code>Dir.glob</code> </a>. En resumen:
@@ -328,8 +328,8 @@ defaults:
 <p> Ejemplo:
 </p>
 
-<pre><code class="language-yaml">  - name: "Domain or network segment"
-    glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"
+<pre><code class="language-yaml">{% raw %}  - name: "Domain or network segment"
+    glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"{% endraw %}
 </code></pre>
 
 <p> La clave <code>mapped_paths</code> debe contener tres cadenas, en el siguiente orden:
@@ -402,7 +402,7 @@ defaults:
 </p>
   </li>
 </ul>
-<p> La ruta del archivo y las opciones<a href="">interpolación variable</a>.
+<p> La ruta del archivo y las opciones<a href="/puppet/4.10/hiera_interpolation.html">interpolación variable</a>.
 </p>
 
 <p> An example hierarchy level:
@@ -565,7 +565,7 @@ hierarchy:
   <li>
 <code>datadir</code> —El directorio donde se guardan los archivos de datos. El camino es relativo al directorio de hiera.yaml.Sólo es necesario si el backend utiliza la <code>path(s)</code> y claves <code>glob(s)</code> y se puede omitir si establece un valor predeterminado.</li>
   <li>
-<code>options</code> — Un hash de opciones adicionales arbitrarias para el backend. Por ejemplo, las credenciales de la base de datos o la ubicación de una clave de descifrado. Vea la documentación del backend para más detalles.<strong>Todos los valores en las <code>opciones</code> hash <a href="">interpolación de la variable</a>de soporte.</strong>
+<code>options</code> — Un hash de opciones adicionales arbitrarias para el backend. Por ejemplo, las credenciales de la base de datos o la ubicación de una clave de descifrado. Vea la documentación del backend para más detalles.<strong>Todos los valores en las <code>opciones</code> hash <a href="/puppet/4.10/hiera_interpolation.html">interpolación de la variable</a>de soporte.</strong>
 </li>
 </ul>
 </div>
