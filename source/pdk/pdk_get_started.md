@@ -114,11 +114,11 @@ Related topics:
 {:.concept}
 ## Generating a class
 
-Generate classes for your module with the `pdk new class` command.
+Generate classes for your module on the command line with PDK.
 
-To define parameters in the class you are creating, specify them on the command line with the `pdk new class` command. Specify the values that parameter accepts, and optionally, specify parameter's data type. You can provide any number of parameters on the command line.
+Use the `pdk new class` to create new classes. To define parameters in the class you are creating, specify them on the command line at the same time you generate your class with the `pdk new class` command. Specify the values that parameter accepts, and optionally, specify parameter's data type. You can provide any number of parameters on the command line.
 
-If you add parameters with the `pdk new class` command, PDK creates the new class manifest and a test file template. You can then write tests in this template to validate your class's behavior.
+When you add parameters with the `pdk new class` command, PDK creates the new class manifest and a test template file. You can then write tests in this template to validate your class's behavior. If you add parameters *after* generating your class, PDK does not generate these test template files.
 
 For example, to create a new class named `hello_class` and define an `ensure` parameter for the class, run:
 
