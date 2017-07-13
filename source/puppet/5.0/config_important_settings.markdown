@@ -93,14 +93,6 @@ This page lists the most important ones. (We assume here that you're okay with d
 >
 > This is basically a historical accident. Due to the way Puppet's code is arranged, the settings system was always the easiest way to publish global constants that are dynamically initialized on startup. This means a lot of things have crept in there regardless of whether they needed to be configurable.
 
-## Getting new features early
-
-
-We've added improved behavior to Puppet, but some of it can't be enabled by default until a major version boundary, since it changes things that some users might be relying on. But if you know your site won't be affected, you can enable some of it today.
-
-* [`trusted_server_facts`][trusted_server_facts] (Puppet master/apply only) --- Set this setting to `true` to take advantage of the `$server_facts` variable, which contains a hash of server-side facts that cannot be overwritten by client-side facts.
-* [`strict_variables = true`][strict_variables] (Puppet master/apply only) --- This makes uninitialized variables cause parse errors, which can help squash difficult bugs by failing early instead of carrying undef values into places that don't expect them. This one has a strong chance of causing problems when you turn it on, so be wary, but it will eventually improve the general quality of Puppet code. This will be enabled by default in Puppet 5.0.
-
 ## Settings for agents (all nodes)
 
 
