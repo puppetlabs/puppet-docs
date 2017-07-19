@@ -4,7 +4,7 @@ title: Puppet documentation index
 toc: false
 ---
 
-This is the documentation for Puppet, as well as several related tools and applications.
+This is the documentation for Puppet, and its related tools and applications.
 
 Most of the content here applies equally to Puppet Enterprise and open source releases of Puppet, but make sure you're using the right docs version for your Puppet Enterprise version. If you get lost, check the version note in red text at the top of each page.
 
@@ -29,8 +29,8 @@ PuppetDB      | [Latest](/puppetdb/latest)                 | [Other versions](/p
 
 Small documents for getting help fast.
 
-* [Core Types Cheat Sheet](/puppet_core_types_cheatsheet.pdf) --- A double-sided reference to the most common resource types.
-* [Module Cheat Sheet](/module_cheat_sheet.pdf) --- A one-page reference to Puppet module layout, covering classes and defined types, files, templates, and plugins.
+* [Core types cheat sheet](/puppet_core_types_cheatsheet.pdf) --- A double-sided reference to the most common resource types.
+* [Module cheat sheet](/module_cheat_sheet.pdf) --- A one-page reference to Puppet module layout, covering classes and defined types, files, templates, and plugins.
 * [Glossary](/references/glossary.html)
 
 * * *
@@ -58,8 +58,8 @@ A concise reference to Puppet's usage and internals. Use the left sidebar of any
 
 ### Other reference material
 
-* [Versioned References](/references/) --- Inline reference docs from Puppet's past and present.
-* [History of the Puppet Language](/puppet/latest/language_history.html) --- A table showing which language features were added and removed in which Puppet versions.
+* [Versioned references](/references/) --- Inline reference docs from Puppet's past and present.
+* [History of the Puppet language](/puppet/latest/language_history.html) --- A table showing which language features were added and removed in which Puppet versions.
 
 
 * * *
@@ -73,35 +73,35 @@ Learn about different areas of Puppet, problem fixes, and design solutions.
 Get the latest version of Puppet up and running.
 
 * [Overview of Puppet's architecture](/puppet/latest/architecture.html)
-* [Installing Puppet 4 for Linux](/puppet/latest/install_linux.html)
-* [Installing Puppet 4 for Windows](/puppet/latest/install_windows.html)
-* Upgrading Puppet from 3.x to 4.x
+* [Installing Puppet 5 for Linux](/puppet/latest/install_linux.html)
+* [Installing Puppet 5 for Windows](/puppet/latest/install_windows.html)
+* Upgrading Puppet from 3.x
   * [Upgrading Puppet 3.x Agents](/puppet/latest/upgrade_agent.html)
   * [Upgrading Puppet 3.x Servers](/puppet/latest/upgrade_server.html)
 
 ### Previous install guides
 
-* [The Puppet 3.8 Installation Guide](puppet/3.8/pre_install.html)
+* [The Puppet 3.8 installation guide](puppet/3.8/pre_install.html)
 
 ### Building and using modules
 
-* [Module Fundamentals](/puppet/latest/modules_fundamentals.html) --- Nearly all of your Puppet code should be in modules.
-* [Installing Modules from the Puppet Forge](/puppet/latest/modules_installing.html) --- Save time by using pre-existing modules.
-* [Publishing Modules on the Puppet Forge](/puppet/latest/modules_publishing.html) --- Preparing your best modules to go public.
+* [Module fundamentals](/puppet/latest/modules_fundamentals.html) --- Nearly all of your Puppet code should be in modules.
+* [Installing modules from the Puppet Forge](/puppet/latest/modules_installing.html) --- Save time by using pre-existing modules.
+* [Publishing modules on the Puppet Forge](/puppet/latest/modules_publishing.html) --- Preparing your best modules to go public.
 
 ### Help with writing Puppet code
 
-* [Style Guide](/guides/style_guide.html) --- Puppet Language community conventions.
+* [Style guide](/guides/style_guide.html) --- Puppet Language community conventions.
 
 ### Using optional features
 
-* [Puppet File Serving](/puppet/latest/file_serving.html) --- Files in modules are automatically served; this explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
+* [Puppet file serving](/puppet/latest/file_serving.html) --- Files in modules are automatically served; this explains how to configure additional custom mount points for serving large files that shouldn't be kept in modules.
 
 ### Puppet on Windows
 
-You can manage Windows nodes side by side with your \*nix infrastructure, with Puppet 2.7 and higher (including Puppet Enterprise ≥ 2.5).
+With a *nix based Puppet master, you can manage Windows nodes side by side with your \*nix infrastructure or run Puppet masterless on Windows.
 
-* [Installing Puppet 4 for Windows](/puppet/latest/install_windows.html)
+* [Installing Puppet 5 for Windows](/puppet/latest/install_windows.html)
 * [Basic tasks and concepts in Windows](/pe/latest/windows_basic_tasks.html)
 * [Troubleshooting Puppet on Windows](/pe/latest/troubleshooting_windows.html)
 
@@ -120,16 +120,16 @@ Puppet's default configuration is meant for prototyping and designing a site. On
 
 ### Hacking and extending: Ruby plugins
 
-* [Plugins In Modules](/puppet/latest/reference/plugins_in_modules.html) --- Where to put plugins, and how to sync them to clients.
-* [Writing Custom Facts](/facter/latest/custom_facts.html)
-* [Writing Custom Functions](/guides/custom_functions.html)
-* [Writing Custom Types & Providers](/guides/custom_types.html)
-* [Complete Resource Example](/puppet/latest/complete_resource_example.html) --- More information on custom types & providers
-* [Provider Development](/guides/provider_development.html) --- More about providers.
+* [Plugins in modules](/puppet/latest/reference/plugins_in_modules.html) --- Where to put plugins, and how to sync them to clients.
+* [Writing custom facts](/facter/latest/custom_facts.html)
+* [Writing custom functions](/guides/custom_functions.html)
+* [Writing custom types & providers](/guides/custom_types.html)
+* [Complete resource example](/puppet/latest/complete_resource_example.html) --- More information on custom types & providers
+* [Provider development](/guides/provider_development.html) --- More about providers.
 
 
 * * *
 
 ## Other resources
 
-* [Puppet Bug Tracker](https://tickets.puppetlabs.com/browse/PUP)
+* [Puppet project ticket tracker](https://tickets.puppetlabs.com/browse/PUP)
