@@ -78,7 +78,7 @@ title: "Hiera: ¿Que es Hiera?"
 <p> No.
 </p>
 
-<p> Sus datos probablemente no necesitarán cambios, y Hiera 5 es compatible con su configuración anterior. Pero si quieres aprovechar al máximo las nuevas características de Hiera 5, tendrás que realizar algunas modificaciones de configuración para habilitarlas. Consulta <a href="/puppet/5.0/hiera_migrate.html">la guía de migración</a>para más detalles.
+<p> Sus datos probablemente no necesitarán cambios, y Hiera 5 es compatible con su configuración anterior. Pero si quieres aprovechar al máximo las nuevas características de Hiera 5, tendrás que realizar algunas modificaciones de configuración para habilitarlas. Consulta <a href="/puppet/5.0/hiera_migrate.html">la guía de migración</a> para más detalles.
 </p>
 
 <h3 id="i-use-a-custom-hiera-3-backend-can-i-use-hiera-5">Yo uso una costumbre Hiera 3 backend. ¿Puedo usar Hiera 5?</h3>
@@ -95,20 +95,20 @@ title: "Hiera: ¿Que es Hiera?"
 </p>
 
 <ul>
-<li>las <a href="/puppet/5.0/hiera_use_hiera_functions.html">funciones clásicas de<code>hiera_*</code>. (Han sido reemplazadas por la función <code>lookup</code>.)</a>
+<li>las <a href="/puppet/5.0/hiera_use_hiera_functions.html">funciones clásicas de <code>hiera_*</code>. (Han sido reemplazadas por la función <code>lookup</code>.)</a>
 </li>
   <li>La linea de comando <code>hiera</code>, que se utilizó para probar y explorar datos. (Es reemplazado por el comando <code>puppet lookup</code>, que entiende conceptos como nodos y entornos y puede obtener automáticamente datos de PuppetDB.)</li>
   <li>
 <a href="./hiera_config_yaml_3.html">Version 3</a> y <a href="./hiera_config_yaml_4.html">version 4</a> del fichero hiera.yaml.</li>
   <li>Los backends personalizados escritos para Hiera ≤ 3. Deben ser reescritos para el <a href="/puppet/5.0/hiera_custom_backends.html">Nuevo sistema de backend personalizado más sencillo</a>.</li>
   <li>Establecimiento de un comportamiento global de combinación de hash en hiera.yaml. (El comportamiento de combinación es ahora<a href="/puppet/5.0/hiera_merging.html">configurado per-key y per-lookup</a>.)</li>
-  <li>La configuración <code>data_binding_terminus</code>. Si utiliza una terminación personalizada, convierta<a href="/puppet/5.0/hiera_custom_backends.html">Hiera 5 backend personalizado</a>.</li>
+  <li>La configuración <code>data_binding_terminus</code>. Si utiliza una terminación personalizada, convierta <a href="/puppet/5.0/hiera_custom_backends.html">Hiera 5 backend personalizado</a>.</li>
   <li>Las siguientes pseudo-variables especiales:<ul>
 <li><code>calling_module</code></li>
       <li><code>calling_class</code></li>
       <li><code>calling_class_path</code></li>
     </ul>
-<p> Hiera 3 podría utilizar estos como un predictor hacky de los datos del módulo, pero todo lo que estaban haciendo con ellos es mejor logrado con <a href="./hiera_layers.html#the-module-layer">el módulo capa</a>. Puede continuar usando estos en un fichero <a href="./hiera_config_yaml_3.html">version 3 hiera.yaml </a>, Pero deberás eliminarlos una vez que hayas actualizado tu configuración global para <a href="./hiera_config_yaml_5.html">version 5</a>.
+<p> Hiera 3 podría utilizar estos como un predictor hacky de los datos del módulo, pero todo lo que estaban haciendo con ellos es mejor logrado con <a href="./hiera_layers.html#the-module-layer">el módulo capa</a>. Puede continuar usando estos en un fichero <a href="./hiera_config_yaml_3.html">version 3 hiera.yaml</a>, Pero deberás eliminarlos una vez que hayas actualizado tu configuración global para <a href="./hiera_config_yaml_5.html">version 5</a>.
 </p>
   </li>
 </ul>

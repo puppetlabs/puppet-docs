@@ -97,7 +97,7 @@ hierarchy:
 <p> La mayoría de las personas utilizan un backend para la mayoría de sus datos, y suele ser uno de los backends basados en archivos como YAML o JSON.
 </p>
 
-<p> Si es así como usa Hiera, <a href="./hiera_config_yaml_5.html#the-defaults-key">establece una clave <code>defaults</code> </a>, con valores para  <code>datadir</code> y una de las claves de backend:
+<p> Si es así como usa Hiera, <a href="./hiera_config_yaml_5.html#the-defaults-key">establece una clave <code>defaults</code></a>, con valores para  <code>datadir</code> y una de las claves de backend:
 </p>
 
 <pre><code class="language-yaml">defaults:
@@ -193,7 +193,7 @@ hierarchy:
   <li>
 <code>data_hash</code> — El backend para usar. <code>yaml_data</code> para YAML, <code>json_data</code> para JSON.</li>
   <li>
-<code>datadir</code> — El directorio de datos. En la versión 5, es relativo al directorio del archivo hiera.yaml, aunque en un<a href="./hiera_layers.html#the-global-layer">capa global</a> Config también puede ser un path absoluto.</li>
+<code>datadir</code> — El directorio de datos. En la versión 5, es relativo al directorio del archivo hiera.yaml, aunque en un <a href="./hiera_layers.html#the-global-layer">capa global</a> Config también puede ser un path absoluto.</li>
 </ul>
 <p> Si ha establecido valores predeterminados para <code>data_hash</code> y <code>datadir</code>, puede omitirlos.
 </p>
@@ -244,7 +244,7 @@ hierarchy:
 <p> Si no hay actualización y solo tienes la versión Hiera 3, puedes usarla en una jerarquía de la versión 5<strong> en la <a href="./hiera_layers.html#the-global-layer">capa global</a></strong> — No funcionará en la capa de entorno. Usted debe tratar de encontrar un reemplazo compatible con Hiera 5 tan pronto como sea posible, o <a href="/puppet/5.0/hiera_custom_backends.html">aprende a escribir Hiera 5</a>.
 </p>
 
-<p> Para obtener detalles completos sobre cómo configurar un backend heredado, consulte <a href="./hiera_config_yaml_5.html#configuring-a-hierarchy-level-legacy-hiera-3-backends">Configuración de un nivel de jerarquía (legado de Hiera 3 backends)</a>en la referencia hiera.yaml (versión 5).
+<p> Para obtener detalles completos sobre cómo configurar un backend heredado, consulte <a href="./hiera_config_yaml_5.html#configuring-a-hierarchy-level-legacy-hiera-3-backends">Configuración de un nivel de jerarquía (legado de Hiera 3 backends)</a> en la referencia hiera.yaml (versión 5).
 </p>
 
 <p> Al configurar un backend heredado, necesitará usar el valor anterior para sus configuraciones específicas de backend. En nuestro caso, la configuración v3 tenía la siguiente configuración para MongoDB:

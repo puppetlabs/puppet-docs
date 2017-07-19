@@ -256,14 +256,14 @@ defaults:
     <p> <code>datadir</code> — El directorio donde se guardan los archivos de datos. Puede omitirse si establece un valor predeterminado.
 </p>
 
-    <p> Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.
+    <p>Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.
 </p>
 
-    <p> En la capa global, puede configurar opcionalmente el datadir a una ruta absoluta. En las otras capas, debe ser siempre relativa.
+    <p>En la capa global, puede configurar opcionalmente el datadir a una ruta absoluta. En las otras capas, debe ser siempre relativa.
 </p>
   </li>
 </ul>
-<p> La única clave que soporta<a href="/puppet/5.0/hiera_interpolation.html">interpolación de variables</a> es la ruta del archivo.
+<p> La única clave que soporta <a href="/puppet/5.0/hiera_interpolation.html">interpolación de variables</a> es la ruta del archivo.
 </p>
 
 <h4 id="specifying-file-paths">Especificar de rutas de archivo</h4>
@@ -311,7 +311,7 @@ defaults:
 <p> Las rutas de archivo son <code>datadir</code>: Si el datadir  completo es <code>/etc/puppetlabs/code/environments/production/data</code> y el path del fichero esta establecido a <code>"nodes/%{trusted.certname}.yaml"</code>, la ruta completa al archivo es <code>/etc/puppetlabs/code/environments/production/data/nodes/&lt;NODE NAME&gt;.yaml</code>. (También se permiten rutas de archivo absolutas, pero rara vez son prácticas. )
 </p>
 
-<p> Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="/puppet/5.0/hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera. Para obtener más información sobre la creación de jerarquías útiles, consulte<a href="" .>Cómo funcionan las jerarquías</a>.
+<p> Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="/puppet/5.0/hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera. Para obtener más información sobre la creación de jerarquías útiles, consulte<a href="" .> Cómo funcionan las jerarquías</a>.
 </p>
 
 <p> Globs se implementan con <a href="ruby-doc.org/core/Dir.html#method-c-glob">El método Ruby<code>Dir.glob</code> </a>. En resumen:
@@ -352,7 +352,7 @@ defaults:
 
 <h3 id="configuring-a-hierarchy-level-hiera-eyaml">Configuración de un nivel de jerarquía (hiera-eyaml)</h3>
 
-<p> Hiera 5 (Puppet 4.9.3y posteriores) incluye una interfaz nativa para la extensión<a href="https://github.com/voxpupuli/hiera-eyaml">Hiera eyaml</a>, la cual mantiene la infomación encriptada en el disco, pero permite a Puppet leer la misma durante la compilación del catálogo.
+<p> Hiera 5 (Puppet 4.9.3y posteriores) incluye una interfaz nativa para la extensión <a href="https://github.com/voxpupuli/hiera-eyaml">Hiera eyaml</a>, la cual mantiene la infomación encriptada en el disco, pero permite a Puppet leer la misma durante la compilación del catálogo.
 </p>
 
 <p> Para aprender a crear claves y editar archivos cifrados, consulte <a href="https://github.com/voxpupuli/hiera-eyaml">La documentación de Hiera eyaml </a>.
@@ -565,7 +565,7 @@ hierarchy:
   <li>
 <code>datadir</code> —El directorio donde se guardan los archivos de datos. El camino es relativo al directorio de hiera.yaml.Sólo es necesario si el backend utiliza la <code>path(s)</code> y claves <code>glob(s)</code> y se puede omitir si establece un valor predeterminado.</li>
   <li>
-<code>options</code> — Un hash de opciones adicionales arbitrarias para el backend. Por ejemplo, las credenciales de la base de datos o la ubicación de una clave de descifrado. Vea la documentación del backend para más detalles.<strong>Todos los valores en las <code>opciones</code> hash <a href="">interpolación de la variable</a>de soporte.</strong>
+<code>options</code> — Un hash de opciones adicionales arbitrarias para el backend. Por ejemplo, las credenciales de la base de datos o la ubicación de una clave de descifrado. Vea la documentación del backend para más detalles. <strong>Todos los valores en las <code>opciones</code> hash <a href="">interpolación de la variable</a> de soporte.</strong>
 </li>
 </ul>
 </div>

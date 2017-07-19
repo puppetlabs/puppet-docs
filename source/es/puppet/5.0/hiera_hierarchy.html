@@ -9,7 +9,7 @@ title: "Hiera: Cómo funcionan las jerarquías"
 <p> Hiera busca datos con una <strong>jerarquía,</strong> que es una lista ordenada de fuentes de datos.
 </p>
 
-<p> Las jerarquías se configuran el fichero de configuración<a href="./hiera_config_yaml_5.html">hiera.yaml</a> . Normalmente, una jerarquía se parece a esto:
+<p> Las jerarquías se configuran el fichero de configuración <a href="./hiera_config_yaml_5.html">hiera.yaml</a> . Normalmente, una jerarquía se parece a esto:
 </p>
 
 <pre><code class="language-yaml">---
@@ -57,7 +57,7 @@ hierarchy:
 <ul>
 <li>La sintaxis de  percent-and-braces <code>%{variable}</code> syntax es un Hiera <a href="/puppet/5.0/hiera_interpolation.html">token de interpolacion</a> de Hiera.  Es similar al lenguaje de Puppet  <code>${expression}</code> tokens de interpolación.</li>
   <li>
-<code>facts.os.family</code> utiliza la notación Hiera<a href="./hiera_subkey.html">key.subkey</a> para acceder a elementos  hashes y arrays. Es equivalente a <code>$facts['os']['family']</code> en el lenguaje de Puppet.</li>
+<code>facts.os.family</code> utiliza la notación Hiera <a href="./hiera_subkey.html">key.subkey</a> para acceder a elementos  hashes y arrays. Es equivalente a <code>$facts['os']['family']</code> en el lenguaje de Puppet.</li>
   <li>Este ejemplo, al igual que la mayoría de las jerarquías de la vida real, utiliza <a href="/puppet/5.0/lang_facts_and_builtin_vars.html">facts</a> y <a href="/puppet/5.0/lang_facts_and_builtin_vars.html#trusted-facts">datos verificados</a>.</li>
   <li>Sólo puede interpolar los valores en ciertas partes del archivo de configuración. Para más información, consulte <a href="./hiera_config_yaml_5.html">el formato de referencia hiera.yaml</a>.</li>
 </ul>
@@ -117,7 +117,7 @@ hierarchy:
 
 <ul>
 <li>Devuelve el primer valor encontrado.</li>
-  <li>Buscar varios valores y combinarlos juntos. (Hay algunos comportamientos de fusión para elegir, para más detalles, consulte<a href="./hiera_merging.html">Fusión de datos de múltiples fuentes</a>.)</li>
+  <li>Buscar varios valores y combinarlos juntos. (Hay algunos comportamientos de fusión para elegir, para más detalles, consulte <a href="./hiera_merging.html">Fusión de datos de múltiples fuentes</a>.)</li>
 </ul>
 <p> En una búsqueda encontrada por primera vez, las fuentes de datos de mayor prioridad anulan completamente los valores de las fuentes de datos que se encuentran debajo de ellos. En una fusión de búsqueda, todos los niveles de la jerarquía pueden contribuir al valor final, aunque las fuentes de mayor prioridad ganan en el caso de un conflicto.
 </p>
