@@ -469,6 +469,14 @@ documents:
       facter: "3.6"
       hiera: "3.3"
       puppetserver: "2.7"
+  /es/puppet/5.0:
+    doc: puppet_es
+    version: "5.0"
+    nav: /_includes/_es_puppet_toc_50.html
+    my_versions:
+      facter: "3.7"
+      hiera: "3.4"
+      puppetserver: "5.0"
 
   /facter/3.7:
     doc: facter

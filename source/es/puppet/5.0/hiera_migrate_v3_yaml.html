@@ -1,0 +1,310 @@
+---
+title: "Hiera: Convertir una versión 3 hiera.yaml a version 5"
+---
+
+<div>
+
+
+
+<p> Hiera 5 soporta tres versiones del fichero hiera.yaml: <a href="./hiera_config_yaml_3.html">version 3</a>, <a href="./hiera_config_yaml_4.html">version 4</a> y  <a href="./hiera_config_yaml_5.html">version 5</a>. Si está utilizando Hiera 3, su configuración existente es un fichero <a href="./hiera_config_yaml_3.html">version 3</a> hiera.yaml en la <a href="./hiera_layers.html#the-global-layer">capa global</a>.
+</p>
+
+<p> Hay 2 <a href="/puppet/5.0/hiera_migrate.html">tareas de migración</a> que implican traducir una configuración de la versión 3 a una versión 5:
+</p>
+
+<ul>
+<li><a href="/puppet/5.0/hiera_migrate_environments.html">Creación de nuevos archivos hiera.yaml v5 para entornos.</a></li>
+  <li>Actualización de su configuración global para dar soporte a los backends de Hiera 5.</li>
+</ul>
+<p> Éstos son esencialmente el mismo proceso, aunque la jerarquía global tenga algunas capacidades especiales.
+</p>
+
+<h2 id="starting-configuration">Configuración inicial</h2>
+
+<p> Para ilustrar el proceso de conversión, utilizaremos este ejemplo archivo hiera.yaml (versión 3):
+</p>
+
+<pre><code class="language-yaml">:backends:
+  - mongodb
+  - eyaml
+  - yaml
+:yaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+:mongodb:
+  :connections:
+    :dbname: hdata
+    :collection: config
+    :host: localhost
+:eyaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+  :pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+  :pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+:hierarchy:
+  - "nodes/%{trusted.certname}"
+  - "location/%{facts.whereami}/%{facts.group}"
+  - "groups/%{facts.group}"
+  - "os/%{facts.os.family}"
+  - "common"
+:logger: console
+:merge_behavior: native
+:deep_merge_options: {}
+</code></pre>
+
+<h2 id="use-strings-instead-of-symbols-for-keys">Utilice cadenas en lugar de símbolos para las teclas</h2>
+
+<p> Hiera 3 requiere usar símbolos Ruby como llaves. (Los símbolos son cadenas cortas que comienzan con dos puntos, como <code>:hierarchy</code>. ) El formato de configuración de la versión 5 le permite usar cadenas regulares como claves, aunque no generará errores en los símbolos.
+</p>
+
+<p> Sigue adelante y elimina los dos puntos iniciales al hacer el resto de las ediciones.
+</p>
+
+<h2 id="remove-dead-settings">Eliminar la configuración muerta</h2>
+
+<p> Eliminar todo excepto la configuración <code>:hierarchy</code>.
+</p>
+
+<p> Elimine completamente los siguientes ajustes:
+</p>
+
+<ul>
+<li><code>:logger</code></li>
+  <li><code>:merge_behavior</code></li>
+  <li><code>:deep_merge_options</code></li>
+</ul>
+<p> Estos no tienen equivalente en una versión 5 de configuración, y ya no son necesarios. Bórrelos si están presentes. Si desea conocer cómo Hiera 5 soporta la fusión profunda de hash, consulte <a href="./hiera_merging.html">Fusión de datos de múltiples fuentes</a>.
+</p>
+
+<p> Elimine los siguientes ajustes, pero péguelos en un archivo temporal para referencia posterior:
+</p>
+
+<ul>
+<li><code>:backends</code></li>
+  <li>Cualquier sección de configuración específica del backend, como <code>:yaml</code> o <code>:mongodb</code>.</li>
+</ul>
+<h2 id="add-version-5">Agregar <code>version: 5</code>
+</h2>
+
+<p> El formato versión 5 requiere una clave <code>version</code>, con un valor de <code>5</code>.
+</p>
+
+<pre><code class="language-yaml">version: 5
+hierarchy:
+  # ...
+</code></pre>
+
+<h2 id="set-a-default-backend-and-datadir">Establecer un backend predeterminado y datadir</h2>
+
+<p> La mayoría de las personas utilizan un backend para la mayoría de sus datos, y suele ser uno de los backends basados en archivos como YAML o JSON.
+</p>
+
+<p> Si es así como usa Hiera, <a href="./hiera_config_yaml_5.html#the-defaults-key">establece una clave <code>defaults</code></a>, con valores para  <code>datadir</code> y una de las claves de backend:
+</p>
+
+<pre><code class="language-yaml">defaults:
+  datadir: data
+  data_hash: yaml_data
+</code></pre>
+
+<p> Recuerde que los nombres de los backends han cambiado para Hiera 5, y el setting <code>backend</code> ha sido dividido en tres partes:
+</p>
+
+<table>
+<thead><tr>
+<th>Hiera 3 backend</th>
+      <th>Hiera 5 backend setting</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>yaml</code></td>
+      <td><code>data_hash: yaml_data</code></td>
+    </tr>
+<tr>
+<td><code>json</code></td>
+      <td><code>data_hash: json_data</code></td>
+    </tr>
+<tr>
+<td><code>eyaml</code></td>
+      <td><code>lookup_key: eyaml_lookup_key</code></td>
+    </tr>
+</tbody>
+</table>
+<h2 id="translate-the-hierarchy">Traducir la jerarquía</h2>
+
+<p> Las jerarquías de las versiones 5 y 3 funcionan de forma totalmente diferente:
+</p>
+
+<ul>
+<li>En la versión 3, los niveles de jerarquía no tienen un backend asignado a ellos, y Hiera recorre toda la jerarquía para cada backend.</li>
+  <li>En la versión 5, cada nivel de jerarquía tiene un backend designado, así como su propia configuración independiente para ese backend.</li>
+</ul>
+<p> Esto significa que usted tendrá que poner algo de pensamiento en la traducción de su jerarquía. También deberá consultar los valores anteriores para claves <code>:backends</code> y cualquier configuración específica del backend.
+</p>
+
+<p> En nuestro ejemplo anterior, teníamos la siguiente jerarquía:
+</p>
+
+<pre><code class="language-yaml">:hierarchy:
+  - "nodes/%{trusted.certname}"
+  - "location/%{facts.whereami}/%{facts.group}"
+  - "groups/%{facts.group}"
+  - "os/%{facts.os.family}"
+  - "common"
+</code></pre>
+
+<p> y nosotros usamos <code>yaml</code>, <code>eyaml</code> y <code>mongodb</code> backends. Pero cuando nos registramos en él, nos enteramos de que nuestro negocio sólo utiliza Mongodb para los datos por nodo, y sólo utiliza eyaml para los datos por grupo. El resto de la jerarquía era irrelevante para estos backends.
+</p>
+
+<p> Así que solo necesitamos un nivel de Mongo y un nivel de eyaml, pero todavía queremos los cinco niveles en YAML. Esto significa que consultaremos múltiples backends para datos por nodo y por grupo. Después de pensar un poco, decidimos que queremos que la versión YAML de los datos por nodo sea autoritaria, por lo que lo pondremos antes de la versión Mongo. Nuestros datos de eyaml no se superponen en absoluto con los datos no cifrados por grupo, por lo que no importa tanto donde lo ponemos; Lo pondremos antes de los niveles de YAML, porque por qué no.
+</p>
+
+<p> Cuando traduzcas tu jerarquía, tendrás que hacer el mismo tipo de investigaciones y decisiones.
+</p>
+
+<h3 id="remove-hierarchy-levels-with-callingmodule-and-friends">Eliminar los niveles jerárquicos con <code>calling_module</code> y  similares</h3>
+
+<p> Hiera 3 podría utilizar tres pseudo-variables especiales (que no estaban disponibles en el código de Puppet) en su jerarquía:
+</p>
+
+<ul>
+<li><code>calling_module</code></li>
+  <li><code>calling_class</code></li>
+  <li><code>calling_class_path</code></li>
+</ul>
+<p> Hiera.yaml versión 5 no admite estos, por lo que debe eliminar cualquier nivel de jerarquía que interpolarlos.
+</p>
+
+<p> Estas variables se agregaron para soportar un predecesor hacky de datos de módulo. Todo lo que estuviera haciendo con ellos es mejor logrado con <a href="./hiera_layers.html#the-module-layer">la capa módulo </a>.
+</p>
+
+<h3 id="translating-built-in-backends">Traducción de backends integrados</h3>
+
+<p> En la versión 5 configs, la jerarquía se escribe como una matriz de hashes. Para los niveles de jerarquía que utilizan el backend incorporados (YAML y JSON, además del nuevo HOCON backend), usted la utilizará la clave <code>data_hash</code> para configurar el backend. Para obtener detalles completos de la sintaxis, consulte <a href="./hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends">Configuración de un nivel de jerarquía (backends integrados)</a> en el fichero hiera.yaml (versión 5).
+</p>
+
+<p> La versión corta es, es necesario configurar las siguientes claves:
+</p>
+
+<ul>
+<li>
+<code>name</code> — Un nombre legible por la humanidad.</li>
+  <li>
+<code>path</code> o <code>paths</code> — El camino que usaste en tu versión 3 jerarquía hiera.yaml, <strong>pero con una extensión de fichero.</strong>
+</li>
+  <li>
+<code>data_hash</code> — El backend para usar. <code>yaml_data</code> para YAML, <code>json_data</code> para JSON.</li>
+  <li>
+<code>datadir</code> — El directorio de datos. En la versión 5, es relativo al directorio del archivo hiera.yaml, aunque en un <a href="./hiera_layers.html#the-global-layer">capa global</a> Config también puede ser un path absoluto.</li>
+</ul>
+<p> Si ha establecido valores predeterminados para <code>data_hash</code> y <code>datadir</code>, puede omitirlos.
+</p>
+
+<pre><code class="language-yaml">version: 5
+defaults:
+  datadir: data
+  data_hash: yaml_data
+hierarchy:
+  - name: "Per-node data (yaml version)"
+    path: "nodes/%{trusted.certname}.yaml" # Add file extension.
+    # Omitting datadir and data_hash to use defaults.
+
+  - name: "Other YAML hierarchy levels"
+    paths: # Can specify an array of paths instead of one.
+      - "location/%{facts.whereami}/%{facts.group}.yaml"
+      - "groups/%{facts.group}.yaml"
+      - "os/%{facts.os.family}.yaml"
+      - "common.yaml"
+</code></pre>
+
+<h3 id="translating-hiera-eyaml">Traducción hiera-eyaml</h3>
+
+<p> El backend de hiera-eyaml trabaja sobre todo igual que los otros backends incorporados. Las únicas diferencias son:
+</p>
+
+<ul>
+<li>La gema <code>hiera-eyaml</code> tiene que ser instalado, y usted necesita un par de claves.</li>
+  <li>Hay un ajuste de backend diferente. En lugar de <code>data_hash: yaml</code>, utilize <code>lookup_key: eyaml_lookup_key</code>.</li>
+  <li>Cada nivel jerárquico necesita una clave <code>opciones</code> con caminos a las claves públicas/privadas. No se puede establecer un valor predeterminado global para esto.</li>
+</ul>
+<pre><code class="language-yaml">  - name: "Per-group secrets"
+    path: "groups/%{facts.group}.eyaml"
+    lookup_key: eyaml_lookup_key
+    options:
+      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+</code></pre>
+
+<p> Para más información, vea el <a href="./hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml">eyaml instrucciones de uso en el manual de sintaxis de hiera.yaml (v5)</a>.
+</p>
+
+<h3 id="translating-custom-hiera-3-backends">Traducción de Hiera 3 backends</h3>
+
+<p> En primer lugar, compruebe si el autor del backend ha publicado una actualización Hiera 5 para ello. Si es así, use eso. Consulte su documentación para obtener detalles sobre cómo configurar niveles de jerarquía para él.
+</p>
+
+<p> Si no hay actualización y solo tienes la versión Hiera 3, puedes usarla en una jerarquía de la versión 5<strong> en la <a href="./hiera_layers.html#the-global-layer">capa global</a></strong> — No funcionará en la capa de entorno. Usted debe tratar de encontrar un reemplazo compatible con Hiera 5 tan pronto como sea posible, o <a href="/puppet/5.0/hiera_custom_backends.html">aprende a escribir Hiera 5</a>.
+</p>
+
+<p> Para obtener detalles completos sobre cómo configurar un backend heredado, consulte <a href="./hiera_config_yaml_5.html#configuring-a-hierarchy-level-legacy-hiera-3-backends">Configuración de un nivel de jerarquía (legado de Hiera 3 backends)</a> en la referencia hiera.yaml (versión 5).
+</p>
+
+<p> Al configurar un backend heredado, necesitará usar el valor anterior para sus configuraciones específicas de backend. En nuestro caso, la configuración v3 tenía la siguiente configuración para MongoDB:
+</p>
+
+<pre><code class="language-yaml">:mongodb:
+  :connections:
+    :dbname: hdata
+    :collection: config
+    :host: localhost
+</code></pre>
+
+<p> Así que escribiríamos lo siguiente para nuestro nivel de jerarquía MongoDB por nodo:
+</p>
+
+<pre><code class="language-yaml">  - name: "Per-node data (MongoDB version)"
+    path: "nodes/%{trusted.certname}"      # No file extension
+    hiera3_backend: mongodb
+    options:    # Use old backend-specific options, changing keys to plain strings
+      connections:
+        dbname: hdata
+        collection: config
+        host: localhost
+</code></pre>
+
+<h2 id="final-configuration">Configuración final</h2>
+
+<p> Después de seguir estos pasos, hemos traducido nuestra configuración de ejemplo en la siguiente configuración v5:
+</p>
+
+<pre><code class="language-yaml">version: 5
+defaults:
+  datadir: data
+  data_hash: yaml_data
+hierarchy:
+  - name: "Per-node data (yaml version)"
+    path: "nodes/%{trusted.certname}.yaml" # Add file extension
+    # Omitting datadir and data_hash to use defaults.
+
+  - name: "Per-node data (MongoDB version)"
+    path: "nodes/%{trusted.certname}"      # No file extension
+    hiera3_backend: mongodb
+    options:    # Use old backend-specific options, changing keys to plain strings
+      connections:
+        dbname: hdata
+        collection: config
+        host: localhost
+
+  - name: "Per-group secrets"
+    path: "groups/%{facts.group}.eyaml"
+    lookup_key: eyaml_lookup_key
+    options:
+      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+
+  - name: "Other YAML hierarchy levels"
+    paths: # Can specify an array of paths instead of a single one.
+      - "location/%{facts.whereami}/%{facts.group}.yaml"
+      - "groups/%{facts.group}.yaml"
+      - "os/%{facts.os.family}.yaml"
+      - "common.yaml"
+</code></pre>
+</div>
