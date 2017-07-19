@@ -1,0 +1,118 @@
+---
+title: "Hiera: Cómo funcionan las tres capas de configuración"
+---
+
+<div>
+
+
+
+<p> Las versiones anteriores (Hiera 3 y anteriores) utilizaron un solo, archivo global hiera.yaml para configurar la <a href="./hiera_hierarchy.html">jerarquía</a>. Esta versión utiliza tres.
+</p>
+
+<h2 id="three-layers-global-environment-and-module">Tres capas: Global, entorno y módulo</h2>
+
+<p> Hiera utiliza tres sistemas independientes de <strong>capas</strong> de configuración. Cada capa tiene su propia jerarquía y se concatenan en una super-jerarquía antes de realizar una búsqueda.
+</p>
+
+<p> Las tres capas siempre van en este orden:
+</p>
+
+<ol>
+<li>Global</li>
+  <li>Entorno</li>
+  <li>Module</li>
+</ol>
+<p> Esto es: Hiera busca cada fuente de datos en la jerarquía de la capa global antes de verificar <em>cualquier</em> fuente en la capa de entorno.
+</p>
+
+<h3 id="why-are-there-three-layers-now">¿Por qué hay tres capas ahora?</h3>
+
+<p> Hiera ≤ 3 sólo utilizó un hiera.yaml global, y tuvo dos enormes problemas:
+</p>
+
+<ul>
+<li>
+<strong>Cada entorno tenía que utilizar la misma jerarquía.</strong> La mayoría de las personas mantiene los datos de configuración en sus entornos, pero como la jerarquía era global, no podía realizar cambios en ella sin cambiar <em>cualquier</em> ambiente al mismo tiempo. Dado que los entornos son a menudo utilizados para el desarrollo escalonado de los cambios de código, esto hizo que la jerarquía fuera una peligrosa excepción a los procesos normales de cambio.</li>
+  <li>
+<strong>Los datos del módulo eran imposibles.</strong> La mayoría de los módulos necesitan una cierta cantidad de datos predeterminados. Muchos de los autores de los módulos querían utilizar Hiera para proporcionarla, pero una jerarquía central no podía apoyarla.</li>
+</ul>
+<p> El sistema de tres capas soluciona esos problemas. Ahora puede desplegar los cambios de jerarquía en un entorno medioambiental, y los datos del módulo son simples y fáciles de usar. La capa global permanece en torno a las sustituciones temporales y otros casos especiales.
+</p>
+
+<h2 id="the-global-layer">La capa global</h2>
+
+<ul>
+<li>
+<strong>Config file:</strong> <a href="/puppet/5.0/dirs_confdir.html"><code>$confdir</code></a><code>/hiera.yaml</code> — puede ser modificada con la configuración de Puppet <code>hiera_config</code> .</li>
+  <li>
+<strong>Formatos de configuración compatibles:</strong> <a href="./hiera_config_yaml_5.html">hiera.yaml v5</a>, <a href="./hiera_config_yaml_3.html">hiera.yaml v3</a> (obsoleto).</li>
+</ul>
+<p> Hiera sólo tiene una jerarquía global. Dado que va antes de la capa de entorno, es útil para anulaciones temporales, cuando su equipo de operaciones necesita pasar por alto sus procesos normales de cambio.
+</p>
+
+<p> Es también el único lugar en el que se puede utilizar el legado Hiera 3 backends, por lo que es una parte importante del período de transición mientras todos están actualizando sus backends para apoyar a Hiera 5.
+</p>
+
+<p> Pero aparte de esos dos casos de uso, debe intentar evitar la capa global. Todos sus datos normales deben vivir en la capa de entorno.
+</p>
+
+<h2 id="the-environment-layer">La capa de entorno</h2>
+
+<ul>
+<li>
+<strong>Archivo de configuración:</strong> <a href="/puppet/5.0/environments.html"><code>&lt;ENVIRONMENT DIR&gt;</code></a><code>/hiera.yaml</code>
+</li>
+  <li>
+<strong>Formatos de configuración compatibles:</strong> <a href="./hiera_config_yaml_5.html">hiera.yaml v5</a>, <a href="./hiera_config_yaml_4.html">hiera.yaml v4</a> (obligatorio).</li>
+</ul>
+<p> Esta es la capa principal de Hiera.
+</p>
+
+<p> Cada <a href="/puppet/5.0/environments.html">variable de entorno</a> tiene su propia configuración de jerarquía, que se aplica a los nodos en ese entorno.
+</p>
+
+<h2 id="the-module-layer">La capa module</h2>
+
+<ul>
+<li>
+<strong>Fichero de configuración:</strong> <code>&lt;MODULE&gt;/hiera.yaml</code>
+</li>
+  <li>
+<strong>Formatos de configuración compatibles:</strong> <a href="./hiera_config_yaml_5.html">hiera.yaml v5</a>, <a href="./hiera_config_yaml_4.html">hiera.yaml v4</a> (obligatorio).</li>
+  <li>Sólo se utiliza para las claves de búsqueda con espacios de nombres (ejemplo <code>ntp::servers</code>).</li>
+</ul>
+<p> Esta capa puede establecer valores por defecto y combinar el comportamiento de los parámetros de clase de <a href="/puppet/5.0/modules_fundamentals.html">module</a>. Piense en ello como una alternativa <a href="./hiera_migrate_modules.html">al patrón params.pp</a>.
+</p>
+
+<p> La capa de módulo viene en último lugar, por lo que los datos de entorno establecidos por un usuario pasan a reemplazar los datos predeterminados establecidos por un autor de módulo.
+</p>
+
+<p> Cualquier <a href="/puppet/5.0/modules_fundamentals.html">module</a>puede tener su propia configuración de jerarquía. Jerarquía de un módulo <strong>Sólo afecta a las claves de búsqueda en su propio espacio de nombres.</strong> Por ejemplo:
+</p>
+
+<table>
+<thead><tr>
+<th>Clave de búsqueda</th>
+      <th>Jerarquía del módulo relevante</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>ntp::servers</code></td>
+      <td><code>ntp</code></td>
+    </tr>
+<tr>
+<td><code>jenkins::port</code></td>
+      <td><code>jenkins</code></td>
+    </tr>
+<tr>
+<td><code>secure_server</code></td>
+      <td>(none)</td>
+    </tr>
+</tbody>
+</table>
+<p> Hiera utiliza la jerarquía del módulo <code>ntp</code> cuando está buscando <code>ntp::servers</code>, pero utiliza la jerarquía del módulo <code>jenkins</code> cuando busca <code>jenkins::port</code>. Hiera nunca chequea el módulo <code>ntp</code> módulo para una clave <code>jenkins::</code>.
+</p>
+
+<p> Para las claves de búsqueda que no tienen un espacio de nombres (por ejemplo,, <code>secure_server</code>), o que no corresponden a un módulo existente, Hiera omite la capa del módulo.
+</p>
+</div>

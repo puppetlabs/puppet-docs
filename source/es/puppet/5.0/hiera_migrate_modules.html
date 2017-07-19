@@ -1,0 +1,202 @@
+---
+title: "Hiera: Agregue los datos de Hiera a un módulo existente"
+---
+
+<div>
+
+
+
+<p> Casi todos los módulos necesitan valores por defecto para sus parámetros de clase. Durante muchos años, la forma preferida de hacerlo ha sido el patrón "params.pp", pero Hiera 5 ofrece algunos otros enfoques que podría resultar más conveniente.
+</p>
+
+<p> Esta página es una breve ilustración de cómo reemplazar el patrón "params.pp" con los datos de Hiera en un módulo existente.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong> El patrón "params.pp" no va a ninguna parte - funciona bien, y todas las características en las que se basa son características permanentes de la marioneta. Pero si alguna vez has querido usar los datos de Hiera en su lugar, finalmente tienes esa opción.
+</p>
+</blockquote>
+
+<h2 id="module-data-with-the-paramspp-pattern">Datos del módulo con el patrón "params.pp"</h2>
+
+<p> El patrón "params.pp" es un elegante pequeño hack, que aprovecha del comportamiento de la  <a href="/puppet/5.0/lang_classes.html#inheritance">class inheritance</a> Puppet. En resumen:
+</p>
+
+<ul>
+<li>
+    <p> Una clase en su módulo no hace nada sino establecer variables para las otras clases. Por traición, esta clase es denominada <code>&lt;MODULE&gt;::params</code>(Así el apodo del patrón), pero no hay un comportamiento especial basado en ese nombre.
+</p>
+
+    <p> Esta clase puede usar el código de títeres normal para construir estos valores. Normalmente se basa en <a href="/puppet/5.0/lang_conditional.html">lógica condicional</a> en el sistema operativo de destino.
+</p>
+  </li>
+  <li>
+    <p> El resto de las clases en el módulo hereda de la clase params (o de otra clase que hereda de ella). En sus listas de parámetros, puede utilizar las variables de la clase params como valores predeterminados.
+</p>
+  </li>
+</ul>
+<p> Un ejemplo de clase params:
+</p>
+
+<pre><code class="language-puppet"># ntp/manifests/params.pp
+class ntp::params {
+  $autoupdate = false,
+  $default_service_name = 'ntpd',
+
+  case $facts['os']['family'] {
+    'AIX': {
+      $service_name = 'xntpd'
+    }
+    'Debian': {
+      $service_name = 'ntp'
+    }
+    'RedHat': {
+      $service_name = $default_service_name
+    }
+  }
+}
+</code></pre>
+
+<p> Una clase que hereda de la clase params y la utiliza para establecer valores de parámetros predeterminados:
+</p>
+
+<pre><code class="language-puppet"># ntp/manifests/init.pp
+class ntp (
+  $autoupdate   = $ntp::params::autoupdate,
+  $service_name = $ntp::params::service_name,
+) inherits ntp::params {
+ ...
+}
+</code></pre>
+
+<h2 id="module-data-with-a-one-off-custom-hiera-backend">Datos del módulo con un backend personalizado de Hiera</h2>
+
+<p>  <a href="/puppet/5.0/hiera_custom_backends.html">Sistema de backend personalizado</a> de Hiera 5 es mucho más simple que en versiones anteriores de Hiera. Aunque un backend de uso general todavía toma cierta cantidad de pensamiento, es realmente fácil escribir un backend que sólo necesita trabajar para un módulo. De hecho, puede convertir una clase de params existente en una <a href="/puppet/5.0/hiera_custom_data_dash.html">hash-based Hiera backend</a> en cuestión de minutos.
+</p>
+
+<p> Para crear un backend de Hiera, necesita una función de Puppet que devuelve un hash. Usted puede <a href="/puppet/5.0/lang_write_functions_in_puppet.html">escribir esa función en el lenguaje de títeres</a>, utilizando la clase params como punto de partida:
+</p>
+
+<pre><code class="language-puppet"># ntp/functions/params.pp
+function ntp::params(
+  Hash                  $options, # We ignore both of these arguments, but
+  Puppet::LookupContext $context, # the function still needs to accept them.
+) {
+  $base_params = {
+    'ntp::autoupdate'   =&gt; false,
+      # Keys have to start with the module's namespace, which in this case is `ntp::`.
+    'ntp::service_name' =&gt; 'ntpd',
+      # Use key names that work with automatic class parameter lookup. This
+      # key corresponds to the `ntp` class's `$service_name` parameter.
+  }
+
+  $os_params = case $facts['os']['family'] {
+    'AIX': {
+      { 'ntp::service_name' =&gt; 'xntpd' }
+    }
+    'Debian': {
+      { 'ntp::service_name' =&gt; 'ntp' }
+    }
+    default: {
+      {}
+    }
+  }
+
+  # Merge the hashes, overriding the service name if this platform uses a non-standard one:
+  $base_params + $os_params
+}
+</code></pre>
+
+<p> Tenga en cuenta que el <a href="/puppet/5.0/lang_expressions.html#merging">operador de combinación de hash</a> (<code>+</code>) es a menudo útil en estas funciones.
+</p>
+
+<p> Una vez que tenga una función, dígale a Hiera que la use agregándola a la <a href="./hiera_layers.html#the-module-layer">modulo-capa hiera.yaml</a>. Un backend simple como este no requiere claves <code>path</code>, <code>datadir</code> o <code>options</code>.
+</p>
+
+<pre><code class="language-yaml"># ntp/hiera.yaml
+---
+version: 5
+hierarchy:
+  - name: "NTP class parameter defaults"
+    data_hash: "ntp::params"
+  # We only need one hierarchy level, since one function provides all the data.
+</code></pre>
+
+<p> Ahora Hiera puede usar el propio backend de su módulo para <a href="./hiera_automatic.html">Búsqueda automática de parámetros de clase</a> — Si un usuario no establece su propio valor para un parámetro (ya sea en el código de marionetas o en sus propios datos Hiera), la función <code>ntp::params</code> puede proporcionar un valor predeterminado.
+</p>
+
+<p> Con los valores por defecto basados en Hiera, puede simplificar las clases principales de su módulo:
+</p>
+
+<ul>
+<li>No necesitan heredar de ninguna otra clase.</li>
+  <li>No es necesario establecer explícitamente un valor predeterminado con el operador <code>=</code> .</li>
+</ul>
+<pre><code class="language-puppet"># ntp/manifests/init.pp
+class ntp (
+  # default values are in ntp/functions/params.pp
+  $autoupdate,
+  $service_name,
+) {
+ ...
+}
+</code></pre>
+
+<h2 id="module-data-with-yaml-data-files">Datos del módulo con archivos de datos YAML</h2>
+
+<p> También puede administrar los datos predeterminados de su módulo con archivos Hiera YAML básicos.
+</p>
+
+<p> Establezca una jerarquía en su <a href="./hiera_layers.html#the-module-layer">module-layer hiera.yaml</a>:
+</p>
+
+<pre><code class="language-yaml"># ntp/hiera.yaml
+---
+version: 5
+defaults:
+  datadir: data
+  data_hash: yaml_data
+hierarchy:
+  - name: "OS family"
+    path: "os/%{facts.os.family}.yaml"
+
+  - name: "common"
+    path: "common.yaml"
+</code></pre>
+
+<p> Luego, coloque los archivos de datos necesarios en el datadir:
+</p>
+
+<pre><code class="language-yaml"># ntp/data/common.yaml
+---
+ntp::autoupdate: false
+ntp::service_name: ntpd
+
+# ntp/data/os/AIX.yaml
+---
+ntp::service_name: xntpd
+
+# ntp/data/os/Debian.yaml
+ntp::service_name: ntp
+</code></pre>
+
+<p> Con los valores por defecto basados en Hiera, puede simplificar las clases principales de su módulo:
+</p>
+
+<ul>
+<li>No necesitan heredar de ninguna otra clase.</li>
+  <li>No es necesario establecer explícitamente un valor predeterminado con el operador <code>=</code> .</li>
+</ul>
+<pre><code class="language-puppet"># ntp/manifests/init.pp
+class ntp (
+  # default values are in ntp/data
+  $autoupdate,
+  $service_name,
+) {
+ ...
+}
+</code></pre>
+
+<p> También puede utilizar cualquier otro backend de Hiera para proporcionar los datos de su módulo; Si desea utilizar un backend personalizado que se distribuya como un módulo independiente, puede marcar ese módulo como una dependencia.
+</p>
+</div>
