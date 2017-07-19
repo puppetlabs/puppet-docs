@@ -18,6 +18,37 @@ Read the [Puppet 5.0 release notes](/puppet/5.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.0.1
+
+Released July 19, 2017.
+
+This is a minor bug fix release following the major 5.0 release. 
+
+* [All issues fixed in Puppet 5.0.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+5.0.1%27)
+
+### Bug fixes
+
+The Hiera option `sort_merged_arrays` which is used to get sorted arrays when merging was silently ignored (no sorting took place).
+
+Previously, Puppet's vendored `semantic_puppet` implementation would reject pre-release module versions containing leading zeros with hex digits, for example, `00abc`. This has been updated so that the vendored `semantic_puppet` accepts them, and is the same fix as was applied to the external `semantic_puppet` gem. (Related: [MODULES-5159](https://tickets.puppetlabs.com/browse/MODULES-5159))
+
+The `Timestamp` data type could not correctly parse a string where date and time were separated by a space. To resolve this, a new default format that allows this has been added.
+
+### Regression fixes
+
+A regression in Puppet 4.7.0 made the command `epp render` fail loading 4.x functions when evaluating a template. The same template would work fine when used in a manifest.
+
+These regressions introduced in 5.0.0 have been resolved in Puppet 5.0.1:
+
+If a provider called `execpipe` the external command failed. Puppet now correctly processes the execution failure.
+
+When running `puppet module install` via bundler an issue occurred only if the Gemfile directly or indirectly expressed a dependency on the `semantic_puppet` gem. A common way for this to happen was if the module's Gemfile relied on the `metadata-json-lint` gem, which depends on `semantic_puppet`. This fix ensures Puppet works correctly when using either the external `semantic_puppet` gem or the vendored version in Puppet.
+
+On Centos 7, Puppet could not create a user and set the owner of a file to that user in the same run.
+
+In Puppet 5.0.0, `puppet resource` could not load custom types from modules when an explicit `modulepath` was specified.
+
+
 ## Puppet 5.0.0
 
 Released June 26, 2017.
@@ -57,7 +88,7 @@ Puppet now uses Ruby 2.4, which ships in the `puppet-agent` package. Reinstallat
 
 * Due to Ruby API changes between Ruby 2.1 and 2.4, any user-installed Puppet agent gems (Ruby gems installed using Puppet agent's gem binary) require re-installation following upgrade to Puppet agent 5.0.
 
-* Some gems may also require upgrade to versions that are compatible with Ruby 2.4.
+* Some gems may also require upgrades to versions that are compatible with Ruby 2.4.
 
 #### HOCON gem is now a dependency
 

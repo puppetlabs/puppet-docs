@@ -3,9 +3,15 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
+[Puppet 5.0.1]: /puppet/5.0/release_notes.html#puppet-501
+
 [Facter 3.7]: /facter/3.7/release_notes.html#facter-370
+[Facter 3.7.1]: /facter/3.7/release_notes.html#facter-371
 
 [MCollective 2.11.0]: /mcollective/releasenotes.html#2_11_0
+[MCollective 2.11.1]: /mcollective/releasenotes.html#2_11_1
+
+[pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
 This page lists changes to the `puppet-agent` package. For details about changes to components in a `puppet-agent` release, follow the links to those components in the package release's notes.
 
@@ -19,6 +25,15 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.0 release notes](./release_notes.html).
 
+## Puppet agent 5.0.1
+
+Released July 19, 2017.
+
+This is a minor bug fix release in the Puppet agent 5 series.
+
+### Component updates
+
+The components updated in this release are [Puppet 5.0.1][], Facter 3.7.1, [MCollective 2.11.1][], and pxp-agent 1.6.1.
 
 ## Puppet agent 5.0.0
 
