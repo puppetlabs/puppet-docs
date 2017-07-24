@@ -41,7 +41,7 @@ Question   | Default value
 ----------------|-------------------------
 What is your Puppet Forge username? | testuser
 Puppet uses Semantic Versioning (semver.org) to version modules. What version is this module? | 0.1.0
-Who wrote this module? | testuser
+Who wrote this module? | the logged-in username
 What license does this module code fall under? | Apache-2.0
 How would you describe this module in a single sentence? | (none)
 Where is this module's source code repository? | (none)
