@@ -365,7 +365,7 @@ lookup_options:
 </ul>
 <h3 id="matching-keys-with-regular-expressions">Combinación de claves con expresiones regulares</h3>
 
-<p> Puedes utilizar<a href="/puppet/5.0/lang_data_regexp.html">regular expressions</a> en <code>lookup_options</code> para configurar el comportamiento de combinación para muchas claves de búsqueda a la vez. Por ejemplo, una clave regexp como <code>'^profile::(.</code> *)::users$' puede establecer un comportamiento de fusión para <code>profile::server::users</code>, <code>profile::postgresql::users</code>, <code>profile::jenkins::master::users</code>, etc.
+<p> Puedes utilizar <a href="/puppet/5.0/lang_data_regexp.html">regular expressions</a> en <code>lookup_options</code> para configurar el comportamiento de combinación para muchas claves de búsqueda a la vez. Por ejemplo, una clave regexp como <code>'^profile::(.</code> *)::users$' puede establecer un comportamiento de fusión para <code>profile::server::users</code>, <code>profile::postgresql::users</code>, <code>profile::jenkins::master::users</code>, etc.
 </p>
 
 <p> Las opciones de Regexp lookup utiliza <a href="/puppet/5.0/lang_data_regexp.html">regexp support de Puppet</a>, que a su vez se basa en <a href="http://ruby-doc.org/core/Regexp.html"> regular expressions de Ruby</a>.
@@ -393,7 +393,7 @@ lookup_options:
 
 <ul>
 <li>Si hay una opción literal (no regexp) disponible, siempre gana.<ul>
-<li>Por ejemplo, si ha configurado las opciones de combinación para ambos<code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code>usará el primero.</li>
+<li>Por ejemplo, si ha configurado las opciones de combinación para ambos<code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code> usará el primero.</li>
     </ul>
 </li>
   <li>

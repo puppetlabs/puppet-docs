@@ -9,16 +9,16 @@ title: "Hiera: Interpolación de variables y otros valores"
 <p> En varios lugares de Hiera, puede insertar el valor de una <a href="/puppet/5.0/lang_variables.html">variable</a> en una cadena.
 </p>
 
-<p> Esto es como<a href="/puppet/5.0/lang_data_string.html#interpolation">interpolación de expresiones de Puppet</a>, pero utiliza una sintaxis diferente — <code>%{variable}</code>, en vez de <code>${expression}</code>.
+<p> Esto es como <a href="/puppet/5.0/lang_data_string.html#interpolation">interpolación de expresiones de Puppet</a>, pero utiliza una sintaxis diferente — <code>%{variable}</code>, en vez de <code>${expression}</code>.
 </p>
 
 <h2 id="where-hiera-uses-interpolation">Donde Hiera utiliza la interpolación</h2>
 
-<p> Hiera utiliza la interpolación en dos lugares: <a href="./hiera_hierarchy.html">jerarquía</a>y datos.
+<p> Hiera utiliza la interpolación en dos lugares: <a href="./hiera_hierarchy.html">jerarquía</a> y datos.
 </p>
 
 <ul>
-<li>En una <a href="./hiera_hierarchy.html">jerarquía</a>, puede interpolar las variables en el <code>path(s)</code>, <code>glob(s)</code>, <code>uri(s)</code> y <code>opciones</code> de un nivel de jerarquía. Esto permite que cada nodo obtenga una versión personalizada de la jerarquía. Para un nivel de explicación más profunda, consulte <a href="./hiera_hierarchy.html">Como funcionan las jerarquías</a>y  <a href="./hiera_config_yaml_5.html">hiera.yaml referencia de sintaxis</a>.</li>
+<li>En una <a href="./hiera_hierarchy.html">jerarquía</a>, puede interpolar las variables en el <code>path(s)</code>, <code>glob(s)</code>, <code>uri(s)</code> y <code>opciones</code> de un nivel de jerarquía. Esto permite que cada nodo obtenga una versión personalizada de la jerarquía. Para un nivel de explicación más profunda, consulte <a href="./hiera_hierarchy.html">Como funcionan las jerarquías</a> y  <a href="./hiera_config_yaml_5.html">hiera.yaml referencia de sintaxis</a>.</li>
   <li>En fuentes de datos, puede utilizar la interpolación para evitar repetirse. Esto usualmente toma una de dos formas:<ul>
 <li>Si algún valor siempre implica el valor de un <a href="/puppet/5.0/lang_facts_and_builtin_vars.html">fact</a> (por ejemplo, si necesita especificar un servidor de correo y tiene un servidor de correo con nombre predecible por dominio), puede hacer referencia al hecho directamente en lugar de manualmente la transcripción.</li>
       <li>Si varias claves necesitan compartir el mismo valor, puede escribirlo para uno de ellos y reutilizarlo para el resto con la interpolación de funciones<code>lookup</code> o <code>alias</code>. Esto puede hacer que sea más fácil mantener los datos actualizados, ya que sólo es necesario cambiar un valor dado en un solo lugar.</li>
@@ -34,7 +34,7 @@ title: "Hiera: Interpolación de variables y otros valores"
 <li>Un signo de porcentaje (<code>%</code>).</li>
   <li>Una corchete de apertura (<code>{</code>).</li>
   <li>Uno de:<ul>
-<li>Un nombre de variable, opcionalmente <a href="./hiera_subkey.html">key.subkey notation</a>para acceder a un miembro específico de un hash o array.</li>
+<li>Un nombre de variable, opcionalmente <a href="./hiera_subkey.html">key.subkey notation</a> para acceder a un miembro específico de un hash o array.</li>
       <li>Una función de interpolación (<a href="#using-interpolation-functions">see abajo</a>) y su argumento.</li>
     </ul>
 </li>
@@ -76,7 +76,7 @@ title: "Hiera: Interpolación de variables y otros valores"
 </p>
 
 <blockquote>
-  <p> <strong>Tip:</strong> La mayoría de las personas necesitan un nivel de jerarquía que haga referencia al nombre de un nodo. La mejor manera de obtener el nombre de un nodo es con <code>trusted.certname</code>. Si necesita hacer referencia a un nodo<a href="/puppet/5.0/environments.html">environment</a>, utilice <code>server_facts.environment</code>.
+  <p> <strong>Tip:</strong> La mayoría de las personas necesitan un nivel de jerarquía que haga referencia al nombre de un nodo. La mejor manera de obtener el nombre de un nodo es con <code>trusted.certname</code>. Si necesita hacer referencia a un nodo <a href="/puppet/5.0/environments.html">environment</a>, utilice <code>server_facts.environment</code>.
 </p>
 </blockquote>
 
@@ -190,7 +190,7 @@ profile::mysql::public_hostname: db-server-06.belfast.example.com
 profile::wordpress::database_server: "%{lookup('profile::mysql::public_hostname')}"
 </code></pre>
 
-<p> De esta manera, el valor de <code>profile::wordpress::database_server</code> es siempre el mismo que<code>profile::mysql::public_hostname</code>. Y aunque escribió el parámetro de WordPress en el <code>common.yaml</code>, sigue siendo específico de la ubicación, ya que el valor que hace referencia se estableció en los archivos de datos por ubicación.
+<p> De esta manera, el valor de <code>profile::wordpress::database_server</code> es siempre el mismo que <code>profile::mysql::public_hostname</code>. Y aunque escribió el parámetro de WordPress en el <code>common.yaml</code>, sigue siendo específico de la ubicación, ya que el valor que hace referencia se estableció en los archivos de datos por ubicación.
 </p>
 
 <p> El valor al que hace referencia la función <code>lookup</code> puede contener llamada a otro <code>lookup</code>. Si accidentalmente hace un bucle infinito, Hiera lo detecta y falla en lugar de colgar indefinidamente.
@@ -210,10 +210,10 @@ profile::wordpress::database_server: "%{lookup('profile::mysql::public_hostname'
 aliased: "%{alias('original')}"
 </code></pre>
 
-<p> Un lookup de<code>original</code>y un lookup de<code>aliased</code>podría devolver el valor de <code>['one', 'two']</code>.
+<p> Un lookup de <code>original</code>y un lookup de <code>aliased</code> podría devolver el valor de <code>['one', 'two']</code>.
 </p>
 
-<p> Cuando utilice la función<code>alias</code> function, Su símbolo de interpolación debe ser <strong>solo</strong> texto en una cadena. Por ejemplo, lo siguiente sería un error:
+<p> Cuando utilice la función <code>alias</code> function, Su símbolo de interpolación debe ser <strong>solo</strong> texto en una cadena. Por ejemplo, lo siguiente sería un error:
 </p>
 
 <pre><code class="language-yaml">aliased: "%{alias('original')} - 'three'"
@@ -230,7 +230,7 @@ aliased: "%{alias('original')}"
 <pre><code class="language-yaml">server_name_string: "%{literal('%')}{SERVER_NAME}"
 </code></pre>
 
-<p> El valor de<code>server_name_string</code> debería ser <code>%{SERVER_NAME}</code>, y Hiera no intentaría interpolar una variable llamada<code>SERVER_NAME</code>.
+<p> El valor de <code>server_name_string</code> debería ser <code>%{SERVER_NAME}</code>, y Hiera no intentaría interpolar una variable llamada<code>SERVER_NAME</code>.
 </p>
 
 <p> El único argumento legal para <code>literal</code> es un símbolo <code>%</code>.

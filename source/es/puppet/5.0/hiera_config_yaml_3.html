@@ -65,7 +65,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 
 <h2 id="format">Formato</h2>
 
-<p> hiera.yaml v3 debe ser un<a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a> hash.
+<p> hiera.yaml v3 debe ser un <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a> hash.
 </p>
 
 <p> Cada clave de nivel superior en el hash <strong>debe ser un símbolo Ruby con dos puntos (<code>:</code>) prefix.</strong> Los ajustes disponibles se enumeran a continuación, bajo <a href="#global-settings">“Global Settings”</a> y <a href="#backend-specific-settings">“Backend-Specific Settings”</a>.
@@ -156,7 +156,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 <code>noop</code> (mensajes silenciados)</li>
 </ul>
 <blockquote>
-  <p> <strong>Custom loggers:</strong> Usted puede hacer su propio logger proporcionando una clase llamada, e.g., <code>Hiera::Foo_logger</code> (en su caso el nombre interno de Hiera para el logger sería  <code>foo</code>), y facilita métodos de clase denominados <code>warn</code> y <code>debug</code>,cada uno de los cuales debe aceptar una sola cadena.
+  <p> <strong>Custom loggers:</strong> Usted puede hacer su propio logger proporcionando una clase llamada, e.g., <code>Hiera::Foo_logger</code> (en su caso el nombre interno de Hiera para el logger sería  <code>foo</code>), y facilita métodos de clase denominados <code>warn</code> y <code>debug</code>, cada uno de los cuales debe aceptar una sola cadena.
 </p>
 </blockquote>
 
@@ -165,7 +165,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 
 <h3 id="mergebehavior"><code>:merge_behavior</code></h3>
 
-<p> Qué combinación de comportamiento la función <code>hiera_hash</code>debería usar. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
+<p> Qué combinación de comportamiento la función <code>hiera_hash</code> debería usar. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
 </p>
 
 <p> Debe ser uno de los siguientes:
@@ -177,9 +177,9 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
   <li>
 <code>deep</code> — une recursivamente, en caso de conflicto de claves, permite valores de <strong>baja prioridad</strong> para ganar. Casi nunca quieres esto.</li>
   <li>
-<code>deeper</code> — fusiona recursivamente. En el caso de conflicto, permite valores de<strong>alta prioridad</strong> para ganar.</li>
+<code>deeper</code> — fusiona recursivamente. En el caso de conflicto, permite valores de <strong>alta prioridad</strong> para ganar.</li>
 </ul>
-<p> Cualquiercosa menos<code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si esta utilizando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/5.0/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instala la gema.
+<p> Cualquier cosa menos <code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si esta utilizando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/5.0/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instala la gema.
 </p>
 
 <p> Para obtener más información acerca de las estrategias de búsqueda de combinaciones hash, consulte <a href="./hiera_merging.html#hash">“Hash Merge”</a> y <a href="./hiera_merging.html#deep">“Deep Merging in Hiera”</a>.
@@ -206,7 +206,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 
 <h2 id="backend-specific-settings">Backend-specific configuración</h2>
 
-<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong>cuyas claves son las configuraciones que utiliza.
+<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong> cuyas claves son las configuraciones que utiliza.
 </p>
 
 <p> Las siguientes opciones de configuración están disponibles para backends integrados:

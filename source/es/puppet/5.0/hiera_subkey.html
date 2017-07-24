@@ -6,7 +6,7 @@ title: "Hiera: Acceso a los elementos hash y array (key.subkey syntax)"
 
 
 
-<p> En Puppet y Hiera, a menudo necesita trabajar con datos estructurados en<a href="/puppet/5.0/lang_data_hash.html">hashes</a> y <a href="/puppet/5.0/lang_data_array.html">arrays</a>.
+<p> En Puppet y Hiera, a menudo necesita trabajar con datos estructurados en <a href="/puppet/5.0/lang_data_hash.html">hashes</a> y <a href="/puppet/5.0/lang_data_array.html">arrays</a>.
 </p>
 
 <p> En el lenguaje de marionetas, puede acceder a los elementos hash y array con corchetes, como<code>$facts['networking']['fqdn']</code>. Hiera no utiliza corchetes. En cambio, utiliza un key.subkey como <code>facts.networking.fqdn</code>.
@@ -29,7 +29,7 @@ title: "Hiera: Acceso a los elementos hash y array (key.subkey syntax)"
 
 <h3 id="quoting-subkeys">Citando subclaves</h3>
 
-<p> Es posible que un hash incluya puntos literales en el texto de una clave. Por ejemplo, el valor de <code>$trusted['extensions']</code> es un hash que contiene cualquier<a href="/puppet/5.0/ssl_attributes_extensions.html">extensiones de certificado</a> para un nodo, pero algunas de sus claves pueden cadenas de OID crudas como <code>'1.3.6.1.4.1.34380.1.2.1'</code>.
+<p> Es posible que un hash incluya puntos literales en el texto de una clave. Por ejemplo, el valor de <code>$trusted['extensions']</code> es un hash que contiene cualquier <a href="/puppet/5.0/ssl_attributes_extensions.html">extensiones de certificado</a> para un nodo, pero algunas de sus claves pueden cadenas de OID crudas como <code>'1.3.6.1.4.1.34380.1.2.1'</code>.
 </p>
 
 <p> Puede acceder a esos valores en Hiera con key.subkey notation, pero debe poner comillas alrededor de la subclave afectada. Por ejemplo:
