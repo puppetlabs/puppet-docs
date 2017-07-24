@@ -48,14 +48,14 @@ hierarchy:
 
 <h2 id="most-hierarchies-interpolate-variables">La mayoría de las jerarquías interpolan variables</h2>
 
-<p> Observe que la mayoría de los niveles de esta jerarquía <a href="/puppet/5.0/hiera_interpolation.html">interpolar variables</a> en su configuración:
+<p> Observe que la mayoría de los niveles de esta jerarquía <a href="./hiera_interpolation.html">interpolar variables</a> en su configuración:
 </p>
 
 <pre><code class="language-yaml">    path: "os/%{facts.os.family}.yaml"
 </code></pre>
 
 <ul>
-<li>La sintaxis de  percent-and-braces <code>%{variable}</code> syntax es un Hiera <a href="/puppet/5.0/hiera_interpolation.html">token de interpolacion</a> de Hiera.  Es similar al lenguaje de Puppet  <code>${expression}</code> tokens de interpolación.</li>
+<li>La sintaxis de  percent-and-braces <code>%{variable}</code> syntax es un Hiera <a href="./hiera_interpolation.html">token de interpolacion</a> de Hiera.  Es similar al lenguaje de Puppet  <code>${expression}</code> tokens de interpolación.</li>
   <li>
 <code>facts.os.family</code> utiliza la notación Hiera <a href="./hiera_subkey.html">key.subkey</a> para acceder a elementos  hashes y arrays. Es equivalente a <code>$facts['os']['family']</code> en el lenguaje de Puppet.</li>
   <li>Este ejemplo, al igual que la mayoría de las jerarquías de la vida real, utiliza <a href="/puppet/5.0/lang_facts_and_builtin_vars.html">facts</a> y <a href="/puppet/5.0/lang_facts_and_builtin_vars.html#trusted-facts">datos verificados</a>.</li>
@@ -93,7 +93,7 @@ hierarchy:
 </td>
 </tr>
 </table>
-<p> Tenga en cuenta que ambos utilizan <code>data/groups/ops.yaml</code> (Ya que pertenecen al mismo grupo) y ambos utilizan<code>data/common.yaml</code> (Ya que ese nivel de la jerarquía no utiliza ninguna variable). Pero aparte de eso, usan fuentes de datos completamente diferentes.
+<p> Tenga en cuenta que ambos utilizan <code>data/groups/ops.yaml</code> (Ya que pertenecen al mismo grupo) y ambos utilizan <code>data/common.yaml</code> (Ya que ese nivel de la jerarquía no utiliza ninguna variable). Pero aparte de eso, usan fuentes de datos completamente diferentes.
 </p>
 
 <p> Es normal que algunos de estos archivos no existan, y Hiera maneja eso muy bien. La mayoría de los usuarios de Hiera tienen varios niveles opcionales en su jerarquía, que son importantes para algunas máquinas e irrelevantes para otros. (Por ejemplo, tal vez el equipo de operaciones utiliza una gran cantidad de datos específicos de la ubicación, pero el equipo de ingeniería de liberación es agnóstico de centro de datos. )

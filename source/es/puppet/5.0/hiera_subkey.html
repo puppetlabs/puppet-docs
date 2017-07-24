@@ -45,7 +45,7 @@ title: "Hiera: Acceso a los elementos hash y array (key.subkey syntax)"
 <p> Puede usar comillas simples o dobles.
 </p>
 
-<p> Si se cita toda la clave compuesta (por ejemplo, según lo <code>lookup</code> <a href="/puppet/5.0/hiera_interpolation.html#using-interpolation-functions">función interpolación</a>), Debe utilizar el otro tipo de cotización para la subclave y también debe escapar cotizaciones (según lo necesite su formato de archivo de datos) para asegurarse de que no finalizar prematuramente la cadena completa. Por ejemplo:
+<p> Si se cita toda la clave compuesta (por ejemplo, según lo<code>lookup</code> <a href="./hiera_interpolation.html#using-interpolation-functions">función interpolación</a>), Debe utilizar el otro tipo de cotización para la subclave y también debe escapar cotizaciones (según lo necesite su formato de archivo de datos) para asegurarse de que no finalizar prematuramente la cadena completa. Por ejemplo:
 </p>
 
 <pre><code class="language-yaml">aliased_key: "%{lookup('other_key.\"dotted.subkey\"')}"
@@ -60,8 +60,8 @@ aliased_key: "%{lookup(\"other_key.'dotted.subkey'\")}"
 
 <ul>
 <li>
-<a href="/puppet/5.0/hiera_interpolation.html">Interpolación de variables</a> en hiera.yaml o un archivo de datos. Muchas de las variables más utilizadas, como <code>facts</code> y <code>verificada</code>, son estructuras de datos profundamente anidadas.</li>
-  <li>Utilizando <a href="/puppet/5.0/hiera_use_function.html">la función <code>lookup</code> </a> o <a href="/puppet/5.0/hiera_use_cli.html">el comando <code>puppet lookup</code></a>. Si el valor de<code>lookup('some_key')</code> sería un hash o matriz, puede buscar un solo miembro de ella con <code>lookup('some_key.subkey')</code>.</li>
-  <li>Utilizando <a href="/puppet/5.0/hiera_interpolation.html#using-interpolation-functions">funciones de interpolación que hacen búsquedas Hiera</a>, como <code>lookup</code> y <code>alias</code>.</li>
+<a href="./hiera_interpolation.html">Interpolación de variables</a> en hiera.yaml o un archivo de datos. Muchas de las variables más utilizadas, como <code>facts</code> y <code>verificada</code>, son estructuras de datos profundamente anidadas.</li>
+  <li>Utilizando <a href="./hiera_use_function.html">la función <code>lookup</code> </a> o <a href="/puppet/5.0/hiera_use_cli.html">el comando <code>puppet lookup</code></a>. Si el valor de<code>lookup('some_key')</code> sería un hash o matriz, puede buscar un solo miembro de ella con <code>lookup('some_key.subkey')</code>.</li>
+  <li>Utilizando <a href="./hiera_interpolation.html#using-interpolation-functions">funciones de interpolación que hacen búsquedas Hiera</a>, como <code>lookup</code> y <code>alias</code>.</li>
 </ul>
 </div>

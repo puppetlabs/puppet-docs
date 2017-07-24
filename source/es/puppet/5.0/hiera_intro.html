@@ -101,14 +101,14 @@ title: "Hiera: ¿Que es Hiera?"
   <li>
 <a href="./hiera_config_yaml_3.html">Version 3</a> y <a href="./hiera_config_yaml_4.html">version 4</a> del fichero hiera.yaml.</li>
   <li>Los backends personalizados escritos para Hiera ≤ 3. Deben ser reescritos para el <a href="/puppet/5.0/hiera_custom_backends.html">Nuevo sistema de backend personalizado más sencillo</a>.</li>
-  <li>Establecimiento de un comportamiento global de combinación de hash en hiera.yaml. (El comportamiento de combinación es ahora<a href="/puppet/5.0/hiera_merging.html">configurado per-key y per-lookup</a>.)</li>
+  <li>Establecimiento de un comportamiento global de combinación de hash en hiera.yaml. (El comportamiento de combinación es ahora <a href="./hiera_merging.html">configurado per-key y per-lookup</a>.)</li>
   <li>La configuración <code>data_binding_terminus</code>. Si utiliza una terminación personalizada, convierta <a href="/puppet/5.0/hiera_custom_backends.html">Hiera 5 backend personalizado</a>.</li>
   <li>Las siguientes pseudo-variables especiales:<ul>
 <li><code>calling_module</code></li>
       <li><code>calling_class</code></li>
       <li><code>calling_class_path</code></li>
     </ul>
-<p> Hiera 3 podría utilizar estos como un predictor hacky de los datos del módulo, pero todo lo que estaban haciendo con ellos es mejor logrado con <a href="./hiera_layers.html#the-module-layer">el módulo capa</a>. Puede continuar usando estos en un fichero <a href="./hiera_config_yaml_3.html">version 3 hiera.yaml</a>, Pero deberás eliminarlos una vez que hayas actualizado tu configuración global para <a href="./hiera_config_yaml_5.html">version 5</a>.
+<p> Hiera 3 podría utilizar estos como un predictor hacky de los datos del módulo, pero todo lo que estaban haciendo con ellos es mejor logrado con <a href="./hiera_layers.html#the-module-layer">el módulo capa</a>. Puede continuar usando estos en un fichero <a href="./hiera_config_yaml_3.html">version 3 hiera.yaml </a>, Pero deberás eliminarlos una vez que hayas actualizado tu configuración global para <a href="./hiera_config_yaml_5.html">version 5</a>.
 </p>
   </li>
 </ul>

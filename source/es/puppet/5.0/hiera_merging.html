@@ -4,6 +4,8 @@ title: "Hiera: Fusión de datos de múltiples fuentes"
 
 <div>
 
+
+
 <p> Cuando busca una clave en Hiera, es común que varias fuentes de datos tengan diferentes valores para ella. De forma predeterminada, Hiera devuelve el primer valor que encuentra, pero también puede continuar buscando y combinar todos los valores encontrados.
 </p>
 
@@ -12,7 +14,7 @@ title: "Hiera: Fusión de datos de múltiples fuentes"
 
 <ul>
 <li>
-<strong>En el momento de la búsqueda.</strong> Esto trabaja con <a href="/puppet/5.0/hiera_use_function.html">la función <code>lookup</code></a>, pero no soporta <a href="/puppet/5.0/hiera_automatic.html">la clase automatica de parámetros lookup</a>.</li>
+<strong>En el momento de la búsqueda.</strong> Esto trabaja con <a href="./hiera_use_function.html">la función<code>lookup</code> </a>, pero no soporta <a href="/puppet/5.0/hiera_automatic.html">la clase automatica de parámetros lookup</a>.</li>
   <li>
 <strong>En Hiera data,</strong> con la clave <code>lookup_options</code>. Esto funciona para las búsquedas manuales y automáticas. También permite a los autores del módulo establecer el comportamiento predeterminado que los usuarios pueden anular.</li>
 </ul>
@@ -278,7 +280,7 @@ lookup('classes', {merge =&gt; 'unique'})
 <pre><code>$ puppet lookup classes --merge unique --environment production --explain
 </code></pre>
 
-<p> Para obtener más detalles acerca de la sintaxis, consulte <a href="/puppet/5.0/hiera_use_function.html">Utilice la función lookup</a> y <a href="/puppet/5.0/man/lookup.html">utilice el comando <code>puppet lookup</code> </a>.
+<p> Para obtener más detalles acerca de la sintaxis, consulte <a href="./hiera_use_function.html">Utilice la función lookup</a> y <a href="/puppet/5.0/man/lookup.html">utilice el comando <code>puppet lookup</code> </a>.
 </p>
 
 <p> Nótese que cada uno de <a href="/puppet/5.0/hiera_use_hiera_functions.html">las funciones  <code>hiera_*</code> </a> está bloqueado para un comportamiento de combinación particular. (<code>hiera</code> solo se encuentra primero, <code>hiera_array</code> sólo hace la fusión única, etc.)
@@ -358,7 +360,7 @@ lookup_options:
 
 <ul>
 <li>Cualquier fuente de datos puede anular <code>lookup_options</code> desde una fuente de baja prioridad. Desde que Hiera utiliza <a href="#hash">hash merge</a> en los valores <code>lookup_options</code>, los autores de módulos pueden configurar un comportamiento de fusión predeterminado para una clave determinada y los usuarios finales pueden anularla.</li>
-  <li>Cuando especifica un comportamiento de mezcla como un argumento para <a href="/puppet/5.0/hiera_use_function.html">la función <code>lookup</code> , siempre reemplaza cualquier comportamiento de combinación configurado.</a>
+  <li>Cuando especifica un comportamiento de mezcla como un argumento para <a href="./hiera_use_function.html">la función <code>lookup</code> , siempre reemplaza cualquier comportamiento de combinación configurado.</a>
 </li>
 </ul>
 <h3 id="matching-keys-with-regular-expressions">Combinación de claves con expresiones regulares</h3>
@@ -391,7 +393,7 @@ lookup_options:
 
 <ul>
 <li>Si hay una opción literal (no regexp) disponible, siempre gana.<ul>
-<li>Por ejemplo, si ha configurado las opciones de combinación para ambos<code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code>usará el primero.</li>
+<li>Por ejemplo, si ha configurado las opciones de combinación para ambos<code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code> usará el primero.</li>
     </ul>
 </li>
   <li>
