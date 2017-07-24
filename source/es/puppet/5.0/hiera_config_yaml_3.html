@@ -206,7 +206,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 
 <h2 id="backend-specific-settings">Backend-specific configuración</h2>
 
-<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong> cuyas claves son las configuraciones que utiliza.
+<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong>cuyas claves son las configuraciones que utiliza.
 </p>
 
 <p> Las siguientes opciones de configuración están disponibles para backends integrados:
@@ -221,7 +221,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 <p> El directorio en el que se encuentran los archivos de origen de datos. Debe ser un string.
 </p>
 
-<p> Usted puede <a href="/puppet/5.0/hiera_interpolation.html">Interpolar las variables</a> en el datadir utilizando<code>%{variable}</code>Tokens de interpolación. Esto le permite, por ejemplo, señalar a <code>"/etc/puppetlabs/code/hieradata/%{::environment}"</code> Para mantener sus datos de producción y desarrollo completamente separados.
+<p> Usted puede <a href="./hiera_interpolation.html">Interpolar las variables</a> en el datadir utilizando<code>%{variable}</code>Tokens de interpolación. Esto le permite, por ejemplo, señalar a <code>"/etc/puppetlabs/code/hieradata/%{::environment}"</code> Para mantener sus datos de producción y desarrollo completamente separados.
 </p>
 
 <p> <strong>Valor por defecto:</strong> <code>"/etc/puppetlabs/code/environments/%{environment}/hieradata"</code> en *nix, y <code>"C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"</code> en Windows.
