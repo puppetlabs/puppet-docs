@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
 title: 'Resource Type: selboolean'
 canonical: "/puppet/latest/types/selboolean.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:46 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500
 
 selboolean
 -----
@@ -74,4 +74,4 @@ Manage SELinux booleans using the getsebool and setsebool binaries.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:46 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500

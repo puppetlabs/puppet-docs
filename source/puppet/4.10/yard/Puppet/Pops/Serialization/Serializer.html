@@ -189,7 +189,7 @@ tabulating and disassembling complex objects.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(writer)  &#x21d2; Serializer </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(writer, options = EMPTY_HASH)  &#x21d2; Serializer </a>
     
 
     
@@ -396,7 +396,7 @@ tabulating and disassembling complex objects.</p>
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(writer)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Serialization::Serializer (class)">Serializer</a></span></tt> 
+    #<strong>initialize</strong>(writer, options = EMPTY_HASH)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Serialization::Serializer (class)">Serializer</a></span></tt> 
   
 
   
@@ -428,7 +428,47 @@ tabulating and disassembling complex objects.</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>{String, <span class='object_link'>Object</span>}</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>EMPTY_HASH</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>serialization options</p>
+</div>
+      
+    </li>
+  
 </ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:type_by_reference</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p><code>true</code> if Object types are serialized by name only.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
 
 
 </div><table class="source_code">
@@ -437,17 +477,19 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-15
-16
 17
-18</pre>
+18
+19
+20
+21</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 17</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_writer'>writer</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_writer'>writer</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='const'>EMPTY_HASH</span><span class='rparen'>)</span>
   <span class='ivar'>@written</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='ivar'>@writer</span> <span class='op'>=</span> <span class='id identifier rubyid_writer'>writer</span>
+  <span class='ivar'>@options</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -537,12 +579,12 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-22
-23
-24</pre>
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_finish'>finish</span>
   <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_finish'>finish</span>
@@ -600,12 +642,12 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-48
-49
-50</pre>
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_array'>start_array</span><span class='lparen'>(</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
   <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>ArrayStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -663,12 +705,12 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-55
-56
-57</pre>
+58
+59
+60</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 55</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_map'>start_map</span><span class='lparen'>(</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span>
   <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>MapStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_size'>size</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -726,12 +768,12 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-70
-71
-72</pre>
+73
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 70</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_object'>start_object</span><span class='lparen'>(</span><span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span>
   <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -804,12 +846,12 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-63
-64
-65</pre>
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 63</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_pcore_object'>start_pcore_object</span><span class='lparen'>(</span><span class='id identifier rubyid_type_ref'>type_ref</span><span class='comma'>,</span> <span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span>
   <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>PcoreObjectStart</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_type_ref'>type_ref</span><span class='comma'>,</span> <span class='id identifier rubyid_attr_count'>attr_count</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -848,12 +890,12 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-80
-81
-82</pre>
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_start_sensitive'>start_sensitive</span>
   <span class='ivar'>@writer</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='const'>Extension</span><span class='op'>::</span><span class='const'>SensitiveStart</span><span class='op'>::</span><span class='const'>INSTANCE</span><span class='rparen'>)</span>
@@ -907,9 +949,6 @@ tabulating and disassembling complex objects.</p>
       <pre class="lines">
 
 
-29
-30
-31
 32
 33
 34
@@ -921,10 +960,13 @@ tabulating and disassembling complex objects.</p>
 40
 41
 42
-43</pre>
+43
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 32</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write'>write</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_value'>value</span>
@@ -995,13 +1037,6 @@ of the same object will yield a write of a tabulation index instead.</p>
       <pre class="lines">
 
 
-88
-89
-90
-91
-92
-93
-94
 95
 96
 97
@@ -1022,10 +1057,17 @@ of the same object will yield a write of a tabulation index instead.</p>
 112
 113
 114
-115</pre>
+115
+116
+117
+118
+119
+120
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/serializer.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_tabulated_first_time'>write_tabulated_first_time</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_value'>value</span>
@@ -1065,9 +1107,9 @@ of the same object will yield a write of a tabulation index instead.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 17 16:09:22 2017 by
+  Generated on Wed Jul 26 14:46:06 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>
