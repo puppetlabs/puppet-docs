@@ -18,6 +18,31 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.5
+
+Release July 26, 2017. 
+
+This is a bug fix release for Puppet that includes new capabilities for string localization. It shipped with Puppet agent 1.10.5.
+
+### Module localization
+
+Puppet now supports module localization! You may have noticed some modules now have translated READMEs and metadata.json fields. The next step is translating certain log messages. This release modifies Puppet so it is capable of consuming and displaying these log translations as they become available across modules.
+
+### Bug fixes
+
+These issues have been resolved in Puppet 4.10.5:
+
+* A problem was found with the environment isolation solution `generate types` where a collection of a type would cause it to be loaded as a Ruby implementation instead of the generated metadata. This in turn could cause isolation problems if different environments had different versions of this type. This is now fixed so collectors also load the generated metadata form if present.
+
+* Puppet 4.10.2 and 5.0.0 introduced a regression if a provider called `execpipe` and the external command failed. It now correctly processes the execution failure.
+
+* A regression in Puppet 4.7.0 made the command `epp render` fail loading 4.x functions when evaluating a template. The same template would work fine when used in a manifest.
+
+* On CentOS 7, Puppet could not create a user and set the owner of a file to that user in the same run. This was a regression introduced in 4.10.2 and 5.0.0.
+
+* The Hiera option `sort_merged_arrays` which is used to get sorted arrays when merging was previously silently ignored (meaning no sorting took place).
+
+
 ## Puppet 4.10.4
 
 Released June 19, 2017.
