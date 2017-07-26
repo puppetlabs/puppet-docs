@@ -34,6 +34,22 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
 
+## Puppet agent 1.10.5
+
+Released July 26, 2017.
+
+### Component updates
+
+This release contains bug fixes in [Puppet 4.10.5][], and [Facter 3.6.6][] and [pxp-agent][] 1.5.3.
+
+### New platforms
+
+These platforms have been added as of Puppet agent 1.10.5:
+
+* Ubuntu 16.04 (ppc64le)
+* Enterprise Linux 7 (ppc64le)
+* Amazon Linux 2017.03 (by using packages for RHEL 6)
+
 ## Puppet agent 1.10.4
 
 Released June 19, 2017.
