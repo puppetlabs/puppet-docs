@@ -24,6 +24,9 @@ Release July 26, 2017.
 
 This is a bug fix release for Puppet that includes new capabilities for string localization. It shipped with Puppet agent 1.10.5.
 
+* [All issues fixed in Puppet 4.10.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.5%27)
+
+
 ### Module localization
 
 Puppet now supports module localization! You may have noticed some modules now have translated READMEs and metadata.json fields. The next step is translating certain log messages. This release modifies Puppet so it is capable of consuming and displaying these log translations as they become available across modules.
