@@ -42,7 +42,7 @@ Released July 26, 2017.
 
 ### Component updates
 
-This release contains bug fixes in [Puppet 4.10.5][], and [Facter 3.6.6][] and [pxp-agent][] 1.5.3.
+This release contains bug fixes in [Puppet 4.10.5][], and [Facter 3.6.6][] and [`pxp-agent`][] 1.5.3.
 
 ### New platforms
 
