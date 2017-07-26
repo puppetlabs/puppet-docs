@@ -6,10 +6,12 @@ title: "Puppet agent release notes"
 [Puppet 4.10.0]: /puppet/4.10/release_notes.html#puppet-4100
 [Puppet 4.10.1]: /puppet/4.10/release_notes.html#puppet-4101
 [Puppet 4.10.2]: /puppet/4.10/release_notes.html#puppet-4102
+[Puppet 4.10.5]: /puppet/4.10/release_notes.html#puppet-4105
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
 [Facter 3.6.5]: /facter/3.6/release_notes.html#facter-365
+[Facter 3.6.6]: /facter/3.6/release_notes.html#facter-366
 
 [Hiera 3.3.2]: /hiera/3.3/release_notes.html#hiera-332
 
