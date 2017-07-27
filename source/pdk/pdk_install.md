@@ -11,13 +11,13 @@ description: "Installing the Puppet Development Kit, the shortest path to develo
 Download and install the Puppet Development Kit to get started developing and testing Puppet modules.
 
 {:.concept}
-## Installing PDK
+## Installing the Puppet Development Kit
 
-Install the Puppet Development Kit as your first step in creating and testing Puppet modules.
+Install the Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
 
-The PDK package includes testing tools, a complete module skeleton, and command line tools to enable you to more easily create and test Puppet modules.
+The PDK package includes testing tools, a complete module skeleton, and command line tools to enable you to more easily create and test Puppet modules. PDK also includes all dependencies needed for its use.
 
-Specifically, the package includes the following tools:
+PDK includes the following tools:
 
 Tool   | Description
 ----------------|-------------------------
@@ -105,15 +105,19 @@ Download the appropriate Puppet Development Kit package for your platform and in
    * Apt: `sudo apt-get install pdk`
    * Yum: `sudo yum install pdk`
 
+2. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
+
 {:.task}
 ### Install PDK on OS X
 
 1. Download the PDK package from [TODO link to the puppet-pdk package for OS X on the Puppet downloads site](downloads.puppetlabs.com).
-2. Double click on the downloaded package to install.
+1. Double click on the downloaded package to install.
+1. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
 ### Install PDK on Windows
 
 1. Download the PDK package from [TODO link to the puppet-pdk MSI on the Puppet downloads site](downloads.puppetlabs.com).
-2. Double click on the downloaded package to install.
+1. Double click on the downloaded package to install.
+2. Open a new terminal or Powershell window to re-source your profile and make PDK available to your PATH.
  
 
