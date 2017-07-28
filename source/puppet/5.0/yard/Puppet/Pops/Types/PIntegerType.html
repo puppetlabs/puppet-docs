@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PIntegerType
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -80,7 +80,7 @@
           
             <li class="next"><span class='object_link'><a href="PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span></li>
           
-            <li class="next"><span class='object_link'><a href="PAbstractRangeType.html" title="Puppet::Pops::Types::PAbstractRangeType (class)">PAbstractRangeType</a></span></li>
+            <li class="next"><span class='object_link'><a href="PScalarDataType.html" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></li>
           
             <li class="next"><span class='object_link'><a href="PNumericType.html" title="Puppet::Pops::Types::PNumericType (class)">PNumericType</a></span></li>
           
@@ -195,14 +195,19 @@
   
   
   
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PNumericType.html" title="Puppet::Pops::Types::PNumericType (class)">PNumericType</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PNumericType.html#intersect%3F-instance_method" title="Puppet::Pops::Types::PNumericType#intersect? (method)">#intersect?</a></span></p>
+
   
   
   
   
   
   
-  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAbstractRangeType.html" title="Puppet::Pops::Types::PAbstractRangeType (class)">PAbstractRangeType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAbstractRangeType.html#intersect%3F-instance_method" title="Puppet::Pops::Types::PAbstractRangeType#intersect? (method)">#intersect?</a></span></p>
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PScalarDataType.html" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PScalarDataType.html#_assignable%3F-instance_method" title="Puppet::Pops::Types::PScalarDataType#_assignable? (method)">#_assignable?</a></span></p>
 
   
   
@@ -316,12 +321,12 @@
       <pre class="lines">
 
 
-948
-949
-950</pre>
+945
+946
+947</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 948</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 945</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_adjacent?'>adjacent?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>  <span class='lparen'>(</span><span class='ivar'>@to</span> <span class='op'>+</span> <span class='int'>1</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_from'>from</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span> <span class='op'>+</span> <span class='int'>1</span> <span class='op'>==</span> <span class='ivar'>@from</span><span class='rparen'>)</span>
@@ -393,18 +398,18 @@ are adjacent. When that&#39;s not the case, this method will return <code>nil</c
       <pre class="lines">
 
 
+955
+956
+957
 958
 959
 960
 961
 962
-963
-964
-965
-966</pre>
+963</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 958</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 955</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_intersect?'>intersect?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_adjacent?'>adjacent?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
@@ -425,9 +430,9 @@ are adjacent. When that&#39;s not the case, this method will return <code>nil</c
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:20 2017 by
+  Generated on Tue Jun 27 17:24:16 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

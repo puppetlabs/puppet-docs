@@ -133,7 +133,7 @@ To configure Puppet Server:
 
    ```
    cd /etc/puppetlabs/puppet/ssl/ca
-   cat ca_cert.pem root_crt.pem > ../certs/ca.pem
+   cat ca_crt.pem root_crt.pem > ../certs/ca.pem
    ```
 
    > Note: You also need to install a CRL file.  If you don't have one pre-generated from the root CA, you can easily create one by first running `puppet cert generate fakehost` and then revoking this certificate with `puppet cert clean fakehost`.  If you do have a pre-generated CRL, install it into `/etc/puppetlabs/puppet/ssl/ca/ca_crl.pem.

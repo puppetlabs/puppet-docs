@@ -543,16 +543,16 @@
       <pre class="lines">
 
 
-106
-107
-108
-109
-110
-111
-112</pre>
+118
+119
+120
+121
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='op'>[]</span><span class='lparen'>(</span><span class='id identifier rubyid_param'>param</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_param'>param</span> <span class='op'>==</span> <span class='symbol'>:debug</span>
@@ -615,18 +615,6 @@ or a Hash of settings key/value pairs.</p>
       <pre class="lines">
 
 
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
-239
-240
 241
 242
 243
@@ -642,10 +630,22 @@ or a Hash of settings key/value pairs.</p>
 253
 254
 255
-256</pre>
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_base_context'>base_context</span><span class='lparen'>(</span><span class='id identifier rubyid_settings'>settings</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_environmentpath'>environmentpath</span> <span class='op'>=</span> <span class='id identifier rubyid_settings'>settings</span><span class='lbracket'>[</span><span class='symbol'>:environmentpath</span><span class='rbracket'>]</span>
@@ -710,16 +710,16 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-261
-262
-263
-264
-265
-266
-267</pre>
+273
+274
+275
+276
+277
+278
+279</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 261</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 273</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bootstrap_context'>bootstrap_context</span>
   <span class='id identifier rubyid_root_environment'>root_environment</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Node</span><span class='op'>::</span><span class='const'>Environment</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span><span class='symbol'>:*root*</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Node</span><span class='op'>::</span><span class='const'>Environment</span><span class='op'>::</span><span class='const'>NO_MANIFEST</span><span class='rparen'>)</span>
@@ -780,12 +780,12 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-299
-300
-301</pre>
+311
+312
+313</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 299</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 311</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ignore'>ignore</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_ignore'>ignore</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -844,12 +844,12 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-179
-180
-181</pre>
+191
+192
+193</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 191</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_initialize_settings'>initialize_settings</span><span class='lparen'>(</span><span class='id identifier rubyid_args'>args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_do_initialize_settings_for_run_mode'>do_initialize_settings_for_run_mode</span><span class='lparen'>(</span><span class='symbol'>:user</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -888,12 +888,12 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-285
-286
-287</pre>
+297
+298
+299</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 285</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 297</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_lookup'>lookup</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -931,12 +931,12 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-310
-311
-312</pre>
+322
+323
+324</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 310</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 322</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_mark_context'>mark_context</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_mark'>mark</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1027,12 +1027,12 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-293
-294
-295</pre>
+305
+306
+307</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 293</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 305</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_override'>override</span><span class='lparen'>(</span><span class='id identifier rubyid_bindings'>bindings</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_override'>override</span><span class='lparen'>(</span><span class='id identifier rubyid_bindings'>bindings</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -1088,12 +1088,12 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-279
-280
-281</pre>
+291
+292
+293</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 279</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 291</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pop_context'>pop_context</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_pop'>pop</span>
@@ -1167,12 +1167,12 @@ initialization where the <span class='object_link'><a href="#base_context-class_
       <pre class="lines">
 
 
-272
-273
-274</pre>
+284
+285
+286</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 272</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 284</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_push_context'>push_context</span><span class='lparen'>(</span><span class='id identifier rubyid_overrides'>overrides</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_overrides'>overrides</span><span class='comma'>,</span> <span class='id identifier rubyid_description'>description</span><span class='rparen'>)</span>
@@ -1296,12 +1296,12 @@ file does not exist.</p>
       <pre class="lines">
 
 
-305
-306
-307</pre>
+317
+318
+319</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 305</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 317</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_restore'>restore</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_restore'>restore</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1339,12 +1339,12 @@ file does not exist.</p>
       <pre class="lines">
 
 
-315
-316
-317</pre>
+327
+328
+329</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 315</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 327</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_rollback_context'>rollback_context</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='ivar'>@context</span><span class='period'>.</span><span class='id identifier rubyid_rollback'>rollback</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1474,9 +1474,9 @@ $ ruby -r puppet -e &#39;puts Puppet.version&#39;
 </div>
 
       <div id="footer">
-  Generated on Wed May 17 16:09:09 2017 by
+  Generated on Wed Jul 26 14:45:44 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

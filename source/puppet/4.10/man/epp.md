@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
 title: 'Man Page: puppet epp'
 canonical: "/puppet/latest/man/epp.html"
 ---
@@ -285,7 +285,7 @@ $ puppet epp render -e '&lt;% $facts[osfamily] %>' --facts data.yaml
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2014 by Puppet Labs
+<p>Copyright 2014 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

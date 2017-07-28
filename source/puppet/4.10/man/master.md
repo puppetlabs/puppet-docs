@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
 title: 'Man Page: puppet master'
 canonical: "/puppet/latest/man/master.html"
 ---
@@ -89,6 +89,6 @@ following signals:</p>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2012 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
+<p>Copyright (c) 2012 Puppet Inc., LLC Licensed under the Apache 2.0 License</p>
 
 </div>

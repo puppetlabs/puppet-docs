@@ -38,7 +38,7 @@ Node definitions should go in [the main manifest][sitepp]. The main manifest can
 
 
 ``` puppet
-# /etc/puppetlabs/puppet/manifests/site.pp
+# <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests/site.pp
 node 'www1.example.com' {
   include common
   include apache

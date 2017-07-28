@@ -55,7 +55,7 @@ symlink_latest:
   - ja/pe
   - es/puppet
 lock_latest:
-  puppet: "4.10"
+
 
 document_names:
   pe: Puppet Enterprise
@@ -93,7 +93,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/glisan
+      commit: origin/pe2017.2.2
       subdirectory: source
     my_versions:
       puppet: "4.10"
@@ -138,7 +138,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.5
+      commit: origin/pe2016.4.6
       subdirectory: source
     my_versions:
       puppet: "4.10"
@@ -319,7 +319,6 @@ documents:
     doc: puppet
     version: "5.0"
     nav: ./_puppet_toc.html
-    hide: true                  # don't forget to REMOVE this at release
     my_versions:
       facter: "3.7"
       hiera: "3.4"
@@ -470,7 +469,19 @@ documents:
       facter: "3.6"
       hiera: "3.3"
       puppetserver: "2.7"
+  /es/puppet/5.0:
+    doc: puppet_es
+    version: "5.0"
+    nav: /_includes/_es_puppet_toc_50.html
+    my_versions:
+      facter: "3.7"
+      hiera: "3.4"
+      puppetserver: "5.0"
 
+  /facter/3.7:
+    doc: facter
+    version: "3.7"
+    nav: ./_facter_toc.html
   /facter/3.6:
     doc: facter
     version: "3.6"
@@ -549,6 +560,18 @@ documents:
     version: "1"
     nav: /_includes/hiera1.html
 
+  /puppetserver/5.0:
+    doc: puppetserver
+    version: "5.0"
+    nav: /puppet/5.0/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: be96921aab5d434cd8ddf5a87de40132dfa5bd43
+      subdirectory: documentation
+    my_versions:
+      puppet: "5.0"
+      facter: "3.7"
+      hiera: "3.4"
   /puppetserver/2.7:
     doc: puppetserver
     version: "2.7"
@@ -663,13 +686,21 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/5.0:
+    doc: puppetdb
+    version: "5.0"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/5.0.x
+      subdirectory: documentation
   /puppetdb/4.4:
     doc: puppetdb
     version: "4.4"
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/stable
+      commit: origin/4.4.x
       subdirectory: documentation
   /puppetdb/4.3:
     doc: puppetdb

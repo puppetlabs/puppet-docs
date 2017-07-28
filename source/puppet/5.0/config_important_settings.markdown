@@ -83,7 +83,7 @@ title: "Configuration: Short list of important settings"
 [puppetserver_ca]: {{puppetserver}}/puppet_conf_setting_diffs.html#cahttpsdocspuppetcompuppetlatestreferenceconfigurationhtmlca
 [service_bootstrap]: {{puppetserver}}/configuration.html#service-bootstrapping
 [trusted_server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
-
+[always_retry_plugins]: ./configuration.html#alwaysretryplugins
 
 Puppet has about 200 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 170 of those.
 
@@ -92,14 +92,6 @@ This page lists the most important ones. (We assume here that you're okay with d
 > **Why so many settings?** There are a lot of settings that are rarely useful but still make sense, but there are also at least a hundred that shouldn't be configurable at all.
 >
 > This is basically a historical accident. Due to the way Puppet's code is arranged, the settings system was always the easiest way to publish global constants that are dynamically initialized on startup. This means a lot of things have crept in there regardless of whether they needed to be configurable.
-
-## Getting new features early
-
-
-We've added improved behavior to Puppet, but some of it can't be enabled by default until a major version boundary, since it changes things that some users might be relying on. But if you know your site won't be affected, you can enable some of it today.
-
-* [`trusted_server_facts`][trusted_server_facts] (Puppet master/apply only) --- Set this setting to `true` to take advantage of the `$server_facts` variable, which contains a hash of server-side facts that cannot be overwritten by client-side facts.
-* [`strict_variables = true`][strict_variables] (Puppet master/apply only) --- This makes uninitialized variables cause parse errors, which can help squash difficult bugs by failing early instead of carrying undef values into places that don't expect them. This one has a strong chance of causing problems when you turn it on, so be wary, but it will eventually improve the general quality of Puppet code. This will be enabled by default in Puppet 5.0.
 
 ## Settings for agents (all nodes)
 
@@ -173,7 +165,7 @@ Puppet Server has [its own configuration files][puppetserver_config_files]; cons
 ### Rack related settings
 
 * [`ssl_client_header`][ssl_client_header] and [`ssl_client_verify_header`][ssl_client_verify_header] --- These are used when running Puppet master as a Rack application (e.g. under Passenger), which you should definitely be doing. See [the Passenger setup guide][passenger_headers] for more context about how these settings work; depending on how you configure your Rack server, you can usually leave these settings with their default values.
-* [`always_cache_features`][alwayscachefeatures] --- You should always set this to `true` in `[master]` for better performance. (Don't change the default value in `[main]`, because Puppet apply and Puppet agent both need this set to `false`.) Your `config.ru` file should forcibly set this, as done in the default `config.ru` file.
+* [`always_retry_plugins`][always_retry_plugins] --- If this setting is set to false, then types and features will only be checked once, and if they are not available, the negative result is cached and returned for all subsequent attempts to load the type or feature. This replaces the [`always_cache_features`][alwayscachefeatures] setting.
 
 ### Extensions
 

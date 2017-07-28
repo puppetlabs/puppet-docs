@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet agent'
 canonical: "/puppet/latest/man/agent.html"
 ---
@@ -142,6 +142,8 @@ not start for another half hour).</p>
 fingerprint and then exit. Use the '--digest' option to change the
 digest algorithm used.</p></dd>
 <dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
+<dt>--job-id</dt><dd><p>Attach the specified job id to the catalog request and the report used for
+this agent run. This option only works when '--onetime' is used.</p></dd>
 <dt>--logdest</dt><dd><p>Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'eventlog' (the Windows Event Log), 'console', or the path to a log
 file. If debugging or verbosity is enabled, this defaults to 'console'.
@@ -165,7 +167,7 @@ conjunction with the --no-daemonize option.
 prefix for boolean settings on the command line.)</p></dd>
 <dt class="flush">--test</dt><dd><p>Enable the most common options used for testing. These are 'onetime',
 'verbose', 'no-daemonize', 'no-usecacheonfailure', 'detailed-exitcodes',
-'no-splay', 'show_diff', and 'no-use_cached_catalog'.</p></dd>
+'no-splay', and 'show_diff'.</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--version</dt><dd><p>Print the puppet version number and exit.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
@@ -202,6 +204,6 @@ prefix for boolean settings on the command line.)</p></dd>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
+<p>Copyright (c) 2011 Puppet Inc., LLC Licensed under the Apache 2.0 License</p>
 
 </div>

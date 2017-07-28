@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Bindings
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -85,11 +85,6 @@
 
   
   
-  <dl>
-      <dt>Extended by:</dt>
-      <dd>Enumerable</dd>
-  </dl>
-  
   
   
   
@@ -119,7 +114,7 @@ second which uses a block.</p>
 If late evaluation is wanted, this can be achieved by binding a puppet expression.
 It is allowed to define methods in the block given to <code>newbindings</code>, these can be used when
 producing bindings. (Care should naturally be taken to not override any of the already defined methods).
-For all details see <span class='object_link'><a href="Pops/Binder/BindingsFactory.html" title="Puppet::Pops::Binder::BindingsFactory (module)">Pops::Binder::BindingsFactory</a></span>, which is used behind the scenes.</p>
+For all details see Pops::Binder::BindingsFactory, which is used behind the scenes.</p>
 
 
   </div>
@@ -249,6 +244,11 @@ end</code></pre>
 
 
   
+  
+  
+  
+  
+  
 
   <div id="class_method_details" class="method_details_list">
     <h2>Class Method Details</h2>
@@ -257,7 +257,7 @@ end</code></pre>
       <div class="method_details first">
   <h3 class="signature first" id="get-class_method">
   
-    .<strong>get</strong>(name)  &#x21d2; <tt>Proc</tt>, <tt><span class='object_link'><a href="Pops/Binder/Bindings/NamedBindings.html" title="Puppet::Pops::Binder::Bindings::NamedBindings (class)">Puppet::Pops::Binder::Bindings::NamedBindings</a></span></tt> 
+    .<strong>get</strong>(name)  &#x21d2; <tt>Proc</tt>, <tt>Puppet::Pops::Binder::Bindings::NamedBindings</tt> 
   
 
   
@@ -297,7 +297,7 @@ end</code></pre>
     <li>
       
       
-        <span class='type'>(<tt>Proc</tt>, <tt><span class='object_link'><a href="Pops/Binder/Bindings/NamedBindings.html" title="Puppet::Pops::Binder::Bindings::NamedBindings (class)">Puppet::Pops::Binder::Bindings::NamedBindings</a></span></tt>)</span>
+        <span class='type'>(<tt>Proc</tt>, <tt>Puppet::Pops::Binder::Bindings::NamedBindings</tt>)</span>
       
       
       
@@ -357,7 +357,7 @@ end</code></pre>
         <span class='name'>named_bindings</span>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="Pops/Binder/Bindings/NamedBindings.html" title="Puppet::Pops::Binder::Bindings::NamedBindings (class)">Puppet::Pops::Binder::Bindings::NamedBindings</a></span></tt>)</span>
+        <span class='type'>(<tt>Puppet::Pops::Binder::Bindings::NamedBindings</tt>)</span>
       
       
       
@@ -398,9 +398,9 @@ end</code></pre>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:17 2017 by
+  Generated on Tue Jun 27 17:24:10 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

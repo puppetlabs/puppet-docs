@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
 title: 'Puppet HTTP API: PSON'
 canonical: "/puppet/latest/http_api/pson.html"
 ---

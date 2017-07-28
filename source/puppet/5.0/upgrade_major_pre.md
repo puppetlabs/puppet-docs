@@ -1,9 +1,9 @@
 ---
 layout: default
-title: "Puppet 3.x to 4.x: Get upgrade-ready"
+title: "Puppet 3.8.x to 5.x: Get upgrade-ready"
 ---
 
-Puppet 4 is a major upgrade with lots of configuration and functionality changes. Because Puppet likely manages your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:
+Puppet 4 was a major upgrade from Puppet 3.8, with lots of configuration and functionality changes, and Puppet 5 removed a lot of features and settings that were deprecated in Puppet 4.x. Because Puppet likely manages your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:
 
 * Split the upgrade process into smaller tasks.
 * Confirm that your system remains functional after each task.
@@ -31,33 +31,33 @@ This page provides steps you should take before starting the upgrade to help pre
 
 [deprecations]: /puppet/3.8/reference/deprecated_summary.html
 
-Puppet 3.8 [deprecated several features][deprecations] which are either removed from Puppet 4 or require major workflow changes. Read our [lists of deprecated features][deprecations], and if you're using any of them, follow steps for migrating away from them.
+Puppet 3.8 [deprecated several features][deprecations] which are either removed from Puppet 4 and 5 or require major workflow changes. Read the [lists of deprecated features][deprecations], and if you're using any of them, follow steps for migrating away from them.
 
 ## Stop stringifying facts, and check for breakage
 
-Puppet 4 always uses proper [data types](./lang_data.html) for facts, but Puppet 3 converts all facts to Strings by default. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
+Puppet 5 always uses proper [data types](./lang_data.html) for facts, but Puppet 3 converts all facts to Strings by default. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
 
 If you've already set [`stringify_facts = false`](/puppet/3.8/reference/deprecated_settings.html#stringifyfacts--true) in `puppet.conf` on every node in your deployment, skip to the [next section](#enable-directory-environments-and-move-code-into-them). Otherwise:
 
 1. Check your Puppet code for any comparisons that _treat boolean facts like strings,_ like `if $::is_virtual == "true" {...}`, and change them so they'll work with true Boolean values.
-  - If you need to support Puppet 3 and 4 with the same code, you can instead use something like `if str2bool("$::is_virtual") {...}`.
+  - If you need to support Puppet 3 and 5 with the same code, you can instead use something like `if str2bool("$::is_virtual") {...}`.
 2. Next, set `stringify_facts = false` in `puppet.conf` on every node in your deployment. To have Puppet change this setting, use an [`inifile` resource](https://forge.puppetlabs.com/puppetlabs/inifile).
 3. Watch the next set of Puppet runs for any problems with your code.
 4. Repeat until all of your Puppet code is working correctly!
 
 ## Enable directory environments and move code into them
 
-Puppet 4 organizes all code into [directory environments](./environments.html), which are the only way to organize code now that [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated).
+Puppet now organizes all code into [directory environments](./environments.html), which are the only way to organize code now that [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated).
 
 [envs_config]: /puppet/3.8/reference/environments_configuring.html
 
 1. If you're using config file environments, [switch to directory environments.][envs_config]
 
-If you don't currently use environments, [enable directory environments][envs_config] and move everything into the default `production` environment.
+   If you don't currently use environments, [enable directory environments][envs_config] and move everything into the default `production` environment.
 
 ## Enable the future parser and fix broken code
 
-The [future parser](/puppet/3.8/reference/experiments_future.html) in Puppet 3 is the current parser in Puppet 4. If you haven't [enabled the future parser](/puppet/3.8/reference/experiments_future.html#enabling-the-future-parser) yet, do so now and check for problems in your current Puppet code during the next Puppet run.
+The [future parser](/puppet/3.8/reference/experiments_future.html) in Puppet 3 is the current parser in Puppet 5. If you haven't [enabled the future parser](/puppet/3.8/reference/experiments_future.html#enabling-the-future-parser) yet, do so now and check for problems in your current Puppet code during the next Puppet run.
 
 To change the parser per-environment:
 
@@ -76,13 +76,15 @@ Some of the changes to look out for include:
 - [Facts having additional data types](/puppet/3.8/reference/experiments_future.html#check-your-comparisons).
 - [Quoting required for octal numbers in `file` resources' `mode` attributes](/puppet/3.8/reference/experiments_future.html#quote-any-octal-numbers-in-file-modes).
 
-For a more complete list, see [Updating 3.x Manifests for Puppet 4.x.](./lang_updating_manifests.html)
+For a more complete list, see [Updating 3.x Manifests for Puppet 4+.](./lang_updating_manifests.html)
 
 Run Puppet for several runs with the future parser enabled to ensure you've got any kinks worked out.
 
-## Read the Puppet 4.x release notes
+## Read the release notes
 
-Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), [4.2](/puppet/4.2/reference/release_notes.html), [4.3](/puppet/4.3/reference/release_notes.html), [4.4](/puppet/4.4/reference/release_notes.html), and [4.5](./release_notes.html) and prepare accordingly.
+Puppet 4.0 introduced several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), [4.2](/puppet/4.2/reference/release_notes.html), [4.3](/puppet/4.3/reference/release_notes.html), [4.4](/puppet/4.4/reference/release_notes.html), and [4.5](./release_notes.html) and prepare accordingly.
+
+Also read the [Puppet 5 release notes](./release_notes.html) to see breaking changes since Puppet 4.
 
 ## You're ready!
 

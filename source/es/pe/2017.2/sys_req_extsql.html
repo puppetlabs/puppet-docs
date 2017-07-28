@@ -1,0 +1,81 @@
+---
+layout: default
+title: "Opción y preparación de PostgreSQL externo"
+---
+
+<div>
+
+
+<p> No es necesario proporcionar una base de datos PostgreSQL, pero si va a utilizar su propia instancia de PostgreSQL (a diferencia de la instancia que PE instala y gestiona), revise las notas siguientes. Su instancia externa de PostgreSQL debería ser 9.4.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong>El <a href="./install_pe_conf_param.html#external-postgresql-parameters"><code>pe.conf</code> parámetros de referencia</a> contiene los parámetros necesarios que debe agregar al realizar una instalación o actualización con una instancia externa de PostgreSQL.
+</p>
+</blockquote>
+
+<p> Referirse a <a href="/pe/2017.2/install_ssl_postgresql.html">Permitiendo SSL para PE y PostgreSQL externo</a> para conocer los pasos adicionales necesarios para garantizar que SSL esté correctamente configurado entre PE y su base de datos PostgreSQL.
+</p>
+
+<ol>
+<li>
+    <p> Cree bases de datos para el orchestrador, RBAC, servicio de actividad y el clasificador de nodos antes de instalar. Los comandos SQL para crear las bases de datos <strong>pueden ser</strong> los siguientes:
+</p>
+
+    <pre><code>CREATE TABLESPACE "pe-orchestrator" LOCATION '/opt/puppetlabs/server/data/postgresql/orchestrator';
+CREATE USER "pe-orchestrator" PASSWORD 'password';
+CREATE DATABASE "pe-orchestrator" OWNER "pe-orchestrator" TABLESPACE "pe-orchestrator" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+   
+CREATE TABLESPACE "pe-puppetdb" LOCATION '/opt/puppetlabs/server/data/postgresql/puppetdb';
+CREATE USER "pe-puppetdb" PASSWORD 'password';
+CREATE DATABASE "pe-puppetdb" OWNER "pe-puppetdb" TABLESPACE "pe-puppetdb" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+CREATE TABLESPACE "pe-activity" LOCATION '/opt/puppetlabs/server/data/postgresql/activity';
+CREATE USER "pe-activity" PASSWORD 'password';
+CREATE DATABASE "pe-activity" OWNER "pe-activity" TABLESPACE "pe-activity" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+CREATE TABLESPACE "pe-classifier" LOCATION '/opt/puppetlabs/server/data/postgresql/classifier';
+CREATE USER "pe-classifier" PASSWORD 'password';
+CREATE DATABASE "pe-classifier" OWNER "pe-classifier" TABLESPACE "pe-classifier" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+
+CREATE TABLESPACE "pe-rbac" LOCATION '/opt/puppetlabs/server/data/postgresql/rbac';
+CREATE USER "pe-rbac" PASSWORD 'password';
+CREATE DATABASE "pe-rbac" OWNER "pe-rbac" TABLESPACE "pe-rbac" ENCODING 'utf8' LC_CTYPE 'en_US.utf8' LC_COLLATE 'en_US.utf8' template template0;
+</code></pre>
+  </li>
+  <li>
+    <p> Active la <a href="http://www.postgresql.org/docs/9.4/static/citext.html">extensión citext</a> en la BBDD RBAC. Para ello, instale el paquete <code>postgresql-contrib</code> , Y luego desde dentro de la base de datos RBAC, ejecute los siguientes comandos:
+</p>
+
+    <pre><code>sudo -u postgres sh
+psql pe_rbac -c 'create extension citext'
+exit
+</code></pre>
+  </li>
+  <li>
+    <p> Instalar la <a href="http://www.postgresql.org/docs/9.4/static/pgcrypto.html">extensión <code>pgcrypto</code> </a> en el PuppetDB y la BBDD RBAC. Para instalar la extensión, ejecute los siguientes comandos:
+</p>
+
+    <pre><code>sudo -u postgres sh
+psql puppetdb -c 'create extension pgcrypto'
+psql pe_rbac -c 'create extension pgcrypto'
+exit
+</code></pre>
+  </li>
+  <li>
+    <p> Instalar la <a href="http://www.postgresql.org/docs/9.4/static/pgtrgm.html">extensión<code>pg_trgm</code> </a> en la BBDD PuppetDB. Esto puede requerir el paquete <code>postgresql-contrib</code> (o equivalente) dependiendo de su distribución. Para instalar la extensión, ejecute los siguientes comandos:
+</p>
+
+    <pre><code>sudo -u postgres sh
+psql puppetdb -c 'create extension pg_trgm'
+exit
+</code></pre>
+  </li>
+  <li>
+    <p> Establecer el PostgreSQL <code>max_connections</code> a 200.
+</p>
+  </li>
+</ol>
+<p> Consulte la  <a href="http://www.postgresql.org/docs/">Documentación PostgreSQL</a> para más información sobre configurar su BBDD PostgreSQL.
+</p>
+</div>

@@ -1,0 +1,88 @@
+---
+title: "Instalación Puppet: Tareas de Pre-instalación"
+---
+
+<div>
+
+
+
+<p> Para facilitar su instalación de Puppet, realice estas tareas antes de instalar el Puppet agent.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong> Este documento cubre los lanzamientos open source de Puppet. Para obtener instrucciones sobre cómo instalar Puppet Enterprise, consulte <a href="/pe/2017.2/install_basic.html">documentación de instalación</a>.
+</p>
+</blockquote>
+
+<ol>
+<li>
+    <p> Decidir el tipo de despliegue.
+</p>
+
+    <p> Generalmente Puppet utiliza una arquitectura agent/master (cliente/servidor), pero también puede ejecutar una arquitectura autónoma.  Su elección determinara los paquetes a instalar y la configuración extra necesaria.
+</p>
+
+    <p> Además, considere utilizar <a href="/puppetdb/5.0/">PuppetDB</a>, Que permite características adicionales de Puppet y hace que sea fácil consultar y analizar los datos de Puppet sobre su infraestructura.
+</p>
+
+    <p> <a href="/puppet/latest/reference/architecture.html">Aprenda más sobre la infraestructura Puppet aquí.</a>
+</p>
+  </li>
+  <li>
+    <p> Si elige la arquitectura estándar de agente / maestro, debe decidir qué servidor (s) actúa como el maestro de marionetas(y el servidor <a href="/puppetdb/5.0/">PuppetDB</a> , si usted elige usarlo).
+</p>
+
+    <p> Instale y configure completamente Puppet en cualquier Puppet masters y PuppetDB antes de instalarlo en cualquier nodo de agente. El master debe correr sobre algún *nix. El master no puede correr sobre máquinas Windows.
+</p>
+
+    <p> Un Puppet master es una máquina dedicada, por lo que debe ser accesible por hostname. Los nodo Agent consultarán por defecto al master con el hostname <code>puppet</code>. Si estás seguro que el hostname apunta al master, puede reducir el tiempo de setup realizando un cambio en <a href="/puppet/5.0/configuration.html#server">la configuración <code>server</code></a>.
+</p>
+  </li>
+  <li>
+    <p> Revise las versiones SO y requerimientos del sistema.
+</p>
+
+    <p> Consulta los <a href="/puppet/5.0/system_requirements.html">requerimientos de sistema</a> para la versión de Puppet a instalar, considerando los siguientes puntos:
+</p>
+
+    <ul>
+<li>Su Puppet master ha de ser capaz de gestionar el número total de agents a servir.</li>
+      <li>Los sistemas que proporcionamos paquetes oficiales tienen un path de instalación más fácil.</li>
+      <li>Los sistemas para los que no proporcionamos paquetes podrían seguir siendo capaces de ejecutar Puppet, siempre y cuando la versión de Ruby sea adecuada y los requisitos previos estén instalados, pero significa una ruta de instalación más compleja y que a veces consume mucho tiempo.</li>
+    </ul>
+</li>
+  <li>
+    <p> Compruebe la configuración de red.
+</p>
+
+    <p> En despliegues de agent/master, debes preparar tu red para soportar el tráfico de Puppet.
+</p>
+
+    <ul>
+<li>
+<strong>Firewalls:</strong> El Puppet master debe permitir las conexiones incoming en el puerto 8140, y los nodos agent  deben ser capaces de conectar con el master en este puerto.</li>
+      <li>
+<strong>Resolución de nombre:</strong> Todos los nodos, tienen un hostname único. <strong>Forward y reverse DNS</strong> debe estar configurado correctamente en ambos sentidos. Si su sitio carece de DNS, usted debería escribir cada nodo en el fichero <code>/etc/hosts</code>.<ul>
+<li>
+<strong>Nota:</strong> Por defecto el hostaname de Puppet master es <code>puppet</code>. Los nodos agent pueden estar configurados más rápido, si resuelven este hostname en el Puppet master.</li>
+        </ul>
+</li>
+    </ul>
+</li>
+  <li>
+    <p> Establezca el tiempo con precisión en su servidor Puppet master.
+</p>
+
+    <p> El tiempo debe establecerse con precisión en el servidor Puppet master que actúa como autoridad de certificación. Si el tiempo es incorrecto, puede emitir por error certificados de agentes de un pasado o futuro, que otros nodos tratan como caducado. Existen modules en el forge, como el module ntp que puede ayudar con esta tarea.
+</p>
+  </li>
+</ol>
+<p> Instala Puppet Server antes de instalar Puppet en los nodos agent. Si está usando PuppetDB, instálelo una vez que Puppet Server esté funcionando. Una vez usted ha completado estos pasos y ha configurado su master, usted puede instalar Puppet agent.
+</p>
+
+<ul>
+<li><a href="./install_linux.html">Cómo instalar Puppet agent en Linux</a></li>
+  <li><a href="/puppet/5.0/install_windows.html">Cómo instalar Puppet agent en Windows</a></li>
+  <li><a href="/puppet/5.0/install_osx.html">Cómo instalar Puppet agent en macOS</a></li>
+</ul>
+</div>

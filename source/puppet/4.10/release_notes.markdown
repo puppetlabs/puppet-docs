@@ -18,6 +18,120 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.5
+
+Release July 26, 2017. 
+
+This is a bug fix release for Puppet that includes new capabilities for string localization. It shipped with Puppet agent 1.10.5.
+
+* [All issues fixed in Puppet 4.10.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.5%27)
+
+
+### Module localization
+
+Puppet now supports module localization! You may have noticed some modules now have translated READMEs and metadata.json fields. The next step is translating certain log messages. This release modifies Puppet so it is capable of consuming and displaying these log translations as they become available across modules.
+
+### Bug fixes
+
+These issues have been resolved in Puppet 4.10.5:
+
+* A problem was found with the environment isolation solution `generate types` where a collection of a type would cause it to be loaded as a Ruby implementation instead of the generated metadata. This in turn could cause isolation problems if different environments had different versions of this type. This is now fixed so collectors also load the generated metadata form if present.
+
+* Puppet 4.10.2 and 5.0.0 introduced a regression if a provider called `execpipe` and the external command failed. It now correctly processes the execution failure.
+
+* A regression in Puppet 4.7.0 made the command `epp render` fail loading 4.x functions when evaluating a template. The same template would work fine when used in a manifest.
+
+* On CentOS 7, Puppet could not create a user and set the owner of a file to that user in the same run. This was a regression introduced in 4.10.2 and 5.0.0.
+
+* The Hiera option `sort_merged_arrays` which is used to get sorted arrays when merging was previously silently ignored (meaning no sorting took place).
+
+
+## Puppet 4.10.4
+
+Released June 19, 2017.
+
+This is a single issue release to resolve a regression introduced in Puppet 4.10.3. Resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references. ([PUP-7671](https://tickets.puppetlabs.com/browse/PUP-7671))
+
+* [Fixed in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.4%27)
+* [Introduced in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.4%27)
+
+## Puppet 4.10.3
+
+Released June 15, 2017.
+
+This is a minor bug fix release. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release resolves that issue. ([PUP-7658](https://tickets.puppetlabs.com/browse/PUP-7658))
+
+* [Fixed in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.3%27)
+* [Introduced in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.3%27)
+
+
+## Puppet 4.10.2
+
+Released June 13, 2017.
+
+* [Fixed in Puppet 4.10.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.2%27)
+* [Introduced in Puppet 4.10.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.2%27)
+
+This is a bug fix release included in Puppet agent 1.10.2, that also includes two new deprecations for Puppet.
+
+>Note: There is a known issue with this release when using ampersands in custom facts. You can revert back to 4.10.1, or upgrade to 4.10.4.
+
+### Deprecations
+
+#### Automatic string to numeric conversions deprecated
+
+Puppet's automatic string to numeric coercion now outputs a warning if `--strict` is set to `warning` or `error` whenever an automatic conversion is triggered directly by logic in a manifest, such as conversions performed by functions, or the runtime in general does not generate warnings. If you get a warning for something like `$numstr + 0` change your logic to any numeric, an integer, or a float (`Numeric($numstr), Integer($numstr), Float($numstr)`) depending on the expectations of the produced value. ([PUP-1795](https://tickets.puppetlabs.com/browse/PUP-1795))
+
+#### Virtual classes trigger warnings or errors
+
+Attempts to use `@class` or `@@class` to create virtual or exported classes were previously silently ignored. The attempted use now triggers either a warning or an error depending on the level you have set for `--strict`. ([PUP-1606](https://tickets.puppetlabs.com/browse/PUP-1606))
+
+### Bug fixes
+
+These issues have been resolved in Puppet 4.10.2:
+
+* [PUP-7436](https://tickets.puppetlabs.com/browse/PUP-7436): A default value expression for an EPP parameter of `undef` previously would not take effect, and the parameter was instead resolved against an outer scope. 
+
+* [PUP-7383](https://tickets.puppetlabs.com/browse/PUP-7383): All Puppet commands would fail when running Puppet as a gem or from source with system Ruby 2.4+ and OpenSSL 1.1.0+.
+
+* [PUP-7523](https://tickets.puppetlabs.com/browse/PUP-7523): In Puppet 4.10.1 a change was made that may prevent the Puppet gem (or Puppet run from source) from being able to load and run on Ruby 1.9.3 due to a bug in Bundler. This issue did not impact Puppet installed from packages.
+
+* [PUP-7485](https://tickets.puppetlabs.com/browse/PUP-7485): It was not possible to call a function defined in the main manifest from logic in a module. This now works for special occasions when it is actually needed, but the best practice is to autoload functions.
+
+* [PUP-7465](https://tickets.puppetlabs.com/browse/PUP-7465): When using `puppet generate types` for environment isolation, a type with a multipart namevar title would previously lead to an error of "Error: undefined method `call' for :top_level:Symbol".
+
+* [PUP-6656](https://tickets.puppetlabs.com/browse/PUP-6656): Puppet's yum package provider did not work for some versions of yum when both `enablerepo` and `disablerepo` options were specified, for example, to enable specific repos, and disable all others.
+
+* [PUP-6698](https://tickets.puppetlabs.com/browse/PUP-6698): The `create_resources` function did not understand that a leading `@@` in the resource name should be interpreted as "exported".
+
+* [PUP-3597](https://tickets.puppetlabs.com/browse/PUP-3597): Documentation for Ruby method `Scope#lookupvar` was updated to show that the symbol `:undefined_variable` is thrown if `strict_variables` is in effect and a variable is not found.
+
+* [PUP-7612](https://tickets.puppetlabs.com/browse/PUP-7612): It is now possible to dig into hashes with integer keys when using dot notation. For example, looking up "port.80.detail" in this hash: `{ port => { 80 => { detail => 'wanted value'}}}` failed earlier because an Integer key only worked when digging into Array values.
+
+* [PUP-7464](https://tickets.puppetlabs.com/browse/PUP-7464): A regression caused resource parameter values containing Array or Hash values with embedded `undef` values to report a warning "... will be converted to string" and the parameter value would end up being a String in the serialization of a catalog. This has changed so that `undef` values are serialized as a JSON compliant `nil` value.
+
+* [PUP-7475](https://tickets.puppetlabs.com/browse/PUP-7475): A literal regex for matching a backslash would previously cause a lexer error.
+
+#### Hiera
+
+* [PUP-7492](https://tickets.puppetlabs.com/browse/PUP-7492): In Hiera data, if you were aliasing a key and the value for that key contained escaped interpolations, those escaped interpolations would be taken as interpolations instead of keeping the aliased value intact.
+
+* [PUP-7594](https://tickets.puppetlabs.com/browse/PUP-7594): In Puppet 4.9 and greater, a regression converted integer or float keys in Hiera data to strings. The intended behavior was to filter out Ruby Symbol keys. Integer and Float keys in hashes now work as they should.
+
+* [PUP-7543](https://tickets.puppetlabs.com/browse/PUP-7543): When using eyaml and Hiera 5 and having multiple entries with different sets of options for eyaml, those options could previously override each other in an unpredictable way. 
+
+* [PUP-7554](https://tickets.puppetlabs.com/browse/PUP-7554): With the introduction of Hiera 5 there were errors if a module or environment root contained a hiera.yaml in the Hiera 3 format. These files were never used earlier, but now they are part of the Hiera 5 configuration. The issue is fixed by ignoring the files if they are version 3 and by logging a warning when encountered. Best practice is to migrate to Hiera 5, and otherwise to move those files out of the way.
+
+#### Windows
+
+* [PUP-7627](https://tickets.puppetlabs.com/browse/PUP-7627): Puppet's interface with the `CreateSymbolicLinkW` Windows API function previously defined an incorrect return type which could cause unexpected results in the case of an error.
+
+#### UTF-8
+
+* [PUP-1890](https://tickets.puppetlabs.com/browse/PUP-1890): In some scenarios Puppet could fail to manage file resources with UTF-8 file names because of incorrect character encoding and escaping when transforming requests into URI-compatible text.
+
+* [PUP-7498](https://tickets.puppetlabs.com/browse/PUP-7498): Prior to Puppet 4.10.2, if a user with non-ascii characters existed on the system in a non-UTF-8 encoding, and Puppet managed the same user in a UTF-8 encoding, `puppet resource user` would ignore one of the users and not present it as being on the system. Now `puppet resource user` correctly lists both users, separately, as existing on the system.
+
 
 ## Puppet 4.10.1
 
@@ -26,7 +140,7 @@ Released May 11, 2017.
 * [Fixed in Puppet 4.10.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.1%27)
 * [Introduced in Puppet 4.10.1](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.1%27)
 
-This is a critical security release, that also includes several bug fixes. An authenticated agent could make a catalog request with facts encoded in YAML. The Puppet master did not properly validate and reject the request, resulting in the server loading arbitrary objects, which could lead to remote code execution. ([PUP-7483](https://tickets.puppetlabs.com/browse/PUP-7483))
+This is a critical security release that also includes several bug fixes. An authenticated agent could make a catalog request with facts encoded in YAML. The Puppet master did not properly validate and reject the request, resulting in the server loading arbitrary objects, which could lead to remote code execution. ([PUP-7483](https://tickets.puppetlabs.com/browse/PUP-7483))
 
 ### Bug fixes
 

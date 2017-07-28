@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PFloatType
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -80,7 +80,7 @@
           
             <li class="next"><span class='object_link'><a href="PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span></li>
           
-            <li class="next"><span class='object_link'><a href="PAbstractRangeType.html" title="Puppet::Pops::Types::PAbstractRangeType (class)">PAbstractRangeType</a></span></li>
+            <li class="next"><span class='object_link'><a href="PScalarDataType.html" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></li>
           
             <li class="next"><span class='object_link'><a href="PNumericType.html" title="Puppet::Pops::Types::PNumericType (class)">PNumericType</a></span></li>
           
@@ -170,14 +170,19 @@
   
   
   
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PNumericType.html" title="Puppet::Pops::Types::PNumericType (class)">PNumericType</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PNumericType.html#intersect%3F-instance_method" title="Puppet::Pops::Types::PNumericType#intersect? (method)">#intersect?</a></span></p>
+
   
   
   
   
   
   
-  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAbstractRangeType.html" title="Puppet::Pops::Types::PAbstractRangeType (class)">PAbstractRangeType</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="PAbstractRangeType.html#intersect%3F-instance_method" title="Puppet::Pops::Types::PAbstractRangeType#intersect? (method)">#intersect?</a></span></p>
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PScalarDataType.html" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PScalarDataType.html#_assignable%3F-instance_method" title="Puppet::Pops::Types::PScalarDataType#_assignable? (method)">#_assignable?</a></span></p>
 
   
   
@@ -292,18 +297,18 @@ method will return <code>nil</code></p>
       <pre class="lines">
 
 
+1099
+1100
+1101
 1102
 1103
 1104
 1105
 1106
-1107
-1108
-1109
-1110</pre>
+1107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1102</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1099</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_intersect?'>intersect?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
@@ -324,9 +329,9 @@ method will return <code>nil</code></p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:20 2017 by
+  Generated on Tue Jun 27 17:24:16 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

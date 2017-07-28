@@ -13,14 +13,15 @@ title: "Installing Puppet agent: Linux"
 [modules]: ./modules_fundamentals.html
 [main manifest]: ./dirs_manifest.html
 [environments]: ./environments.html
-[Puppet Collection]: ./puppet_collections.html
 [`puppet-agent`]: ./about_agent.html
 
 Install the Puppet agent so that your master can communicate with your Linux nodes.
 
-**Before you begin**: Review the [pre-install tasks](./install_pre.html) and [installing Puppet Server][server_install]. If you're familiar with Puppet 3 and earlier, learn about new locations for many of the files and directories by reading a summary of [changes in Puppet 4][where] or referring to the [full specification of Puppet directories](https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md). Install the release package for your OS to enable [Puppet Collection][] repositories.
+**Before you begin**: Review the [pre-install tasks](./install_pre.html) and [installing Puppet Server][server_install].
 
-1. Confirm that you can run Puppet executables.
+1. Install a release package to [enable Puppet Platform repositories](./puppet_platform.html).
+
+2. Confirm that you can run Puppet executables.
 
    The location for Puppet's executables is `/opt/puppetlabs/bin/`, which is not in your `PATH` environment variable by default.
 
@@ -28,25 +29,25 @@ Install the Puppet agent so that your master can communicate with your Linux nod
 
    To quickly add the executable location to your `PATH` for your current terminal session, use the command `export PATH=/opt/puppetlabs/bin:$PATH`. You can also add this location wherever you configure your `PATH`, such as your `.profile` or `.bashrc` configuration files.
 
-   For more information, see details about [files and directories moved in Puppet 4][where].
+   For more information, see details about [file and directory locations][where].
 
-2. Install the `puppet-agent` package on your Puppet agent nodes using the command appropriate to your system:
+4. Install the `puppet-agent` package on your Puppet agent nodes using the command appropriate to your system:
 
    * Yum -- `sudo yum install puppet-agent`.
    * Apt -- `sudo apt-get install puppet-agent`.
 
-3. (Optional) Configure agent settings.
+5. (Optional) Configure agent settings.
 
    For example, if your master isn't reachable at the default address, `server = puppet`, set the `server` setting to your Puppet master's hostname.
 
    For other settings you might want to change, see a [list of agent-related settings][agent_settings].
 
-4. Start the `puppet` service: `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
+6. Start the `puppet` service: `sudo /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true`.
 
-5. (Optional) To see a sample of Puppet agent's output and verify any changes you may have made to your configuration settings in step 5, manually launch and watch a Puppet run:
+7. (Optional) To see a sample of Puppet agent's output and verify any changes you may have made to your configuration settings in step 5, manually launch and watch a Puppet run:
    `sudo /opt/puppetlabs/bin/puppet agent --test`
 
-6. Sign certificates on the certificate authority (CA) master.
+8. Sign certificates on the certificate authority (CA) master.
 
    On the Puppet master:
 

@@ -261,6 +261,8 @@ Instead of containing the `stacktrace` message, it now contains a deprecation wa
 
 The following bugs have been addressed and resolved:
 
+* [PUP-6759](https://tickets.puppetlabs.com/browse/PUP-6759): The systemd provider now considers services with the `indirect` enabled state to be disabled.
+
 * [PUP-6992](https://tickets.puppetlabs.com/browse/PUP-6992): The feature that allows functions to be defined in an environment in the `environment::` namespace has been modified because the implementation was inconsistent between Ruby and Puppet based functions in this respect. Now, a file containing the definition of a function in an environment is always under a directory reflecting the namespace.
 
 * [PUP-7061](https://tickets.puppetlabs.com/browse/PUP-7061): A regression introduced in Puppet 4.8.0 caused attempts to lookup a string containing more than one interpolation that in turn used interpolation function Hiera (for example, `%{hiera('some_key')}`) to fail when running with trace level set to `debug`. This regression is now fixed.

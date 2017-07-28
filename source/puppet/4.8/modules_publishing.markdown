@@ -1,23 +1,19 @@
 ---
 layout: default
 title: "Publishing modules on the Puppet Forge"
-canonical: "/puppet/latest/reference/modules_publishing.html"
 ---
 
 
 [installing]: ./modules_installing.html
 [fundamentals]: ./modules_fundamentals.html
 [plugins]: ./plugins_in_modules.html
-[forge]: https://forge.puppetlabs.com/
-[rspec]: http://rspec-puppet.com/
+[forge]: https://forge.puppet.com/
 [signup]: ./images/forge_signup.png
 [publishmodule]: ./images/forge_publish_module.png
 [uploadtarball]: ./images/forge_upload_tarball.png
 [uploadtarball2]: ./images/forge_upload_tarball2.png
 [forgenewrelease]: ./images/forge_new_release.png
 [documentation]: ./modules_documentation.html
-[errors]: ./modules_installing.html#errors
-[yourmodules]: ./images/yourmodules.png
 [selectrelease]: ./images/selectrelease.png
 [deletebutton]: ./images/deletebutton.png
 [deletionpage]: ./images/deletionpage.png
@@ -30,67 +26,92 @@ canonical: "/puppet/latest/reference/modules_publishing.html"
 [metadata]: ./modules_metadata.html
 
 
+To share your module with other Puppet users, get contributions to your modules, and maintain your module releases, publish your module on the Puppet Forge. The Forge is a community repository of modules, written and contributed by open source Puppet and Puppet Enterprise users.
 
-The Puppet Forge is a community repository of modules, written and contributed by  Puppet Open Source and Puppet Enterprise users. Using the Puppet Forge (Forge) is a great way to build on the work others have done and get updates and expansions on your own module work. This document describes how to publish your own modules to the Forge so that other users can [install][installing] them, as well as how to maintain your releases once published.
-
-
-* Continue reading to learn how to publish your modules to the Puppet Forge.
-* [See "Module Fundamentals"][fundamentals] for how to write and use your own Puppet modules.
-* [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
-* [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agent nodes.
-* [See "Documenting Modules"][documentation] for a README template and information on providing directions for your module.
-
-## Overview
-
-
-This guide assumes that you have already [written a useful Puppet module][fundamentals]. To publish your module, you will need to:
+To publish your module:
 
 1. Create a Puppet Forge account, if you don't already have one.
-2. Prepare your module.
-3. Write a metadata.json file with the required metadata.
+2. Prepare your module for packaging.
+3. Add module metadata in the `metadata.json` file.
 4. Build an uploadable tarball of your module.
 5. Upload your module using the Puppet Forge's web interface.
 
-### A note on module names
+{:.section}
+### Related topics
 
-Because many users have published their own versions of modules with common names ("mysql," "bacula," etc.), the Puppet Forge (Forge) requires module names to have a username prefix. That is, if a user named "puppetlabs" maintained a "mysql" module, it would be known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's [metadata.json file][inpage_metadata].**
+* [Module fundamentals][fundamentals]: How to write and use your own Puppet modules.
+* [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
+* [Using plugins][plugins]: How to arrange plugins (such as custom facts and custom resource types) in modules and sync them to agent nodes.
+* [Documenting modules][documentation]: How to write good documentation for your modules.
 
-However, your module's directory on disk must use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). Using the the build action will do the right thing as long as the metadata.json is correct.
+{:.concept}
+## Naming your module 
 
-### Another note on module names
+Your module has two names: a short name, like "mysql" and a long name that includes your Forge username, like "puppetlabs-mysql".
 
-Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. There isn't a good reason for this, and we are working on reconciling the two; in the meantime, be sure to always use the `username-module` style in your metadata files and when issuing commands.
+The Puppet Forge requires the module long name. This name is composed of your Forge username and the short name of your module. For example, the user named "puppetlabs" maintains a "mysql" module, which is known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's metadata.json file.** This helps disambiguate modules that might have common short names, such as "mysql" or "apache."
 
+However, your module directory on disk **must** use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). As long as you have the correct long name in your `metadata.json` file, the `puppet module build` command will use the correct names in the correct places.
+
+> **Note**: Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. Always use the `username-module` style in your metadata files and when issuing commands.
+
+Related topics:
+
+* [Module metadata](./modules_metadata.html)
+
+{:.task}
 ## Create a Puppet Forge account
 
-Before you begin, you should create a user account on the Puppet Forge (Forge). You will need to know your username when publishing any of your modules.
+To publish your modules to the Puppet Forge, you need to create a Puppet Forge account.
 
-1. Start by navigating to the [Forge website][forge] and clicking the "Sign Up" link in the sidebar:
+1. In your web browser, navigate to the [Forge website][forge] and click **Sign Up**.
 
-![The "sign up" link in the Puppet Forge sidebar][signup]
+2. Fill in your details. The username you pick will be the first part of your module long name (such as "bobcat/apache").
 
-2. Fill in your details. After you finish, you will be asked to verify your email address via a verification email. Once you have done so, you can publish modules to the Forge.
+3. After you sign up, you will receive a verification email. After you verify your email, you can publish modules to the Forge.
 
-## Prepare the module
+{:.concept}
+## Preparing your module 
 
+Before you build your module package for publishing, you'll need to make sure it's properly prepared.
 
-If you already have a Puppet module with the [correct directory layout][fundamentals], you can continue to the next step.
+To do this, you'll exclude unnecessary files from your package or repository, remove or ignore any symlinks your module contains, and make sure your `metadata.json` contains the correct metadata.
 
-Alternately, you can use the `puppet module generate` action to generate a template layout. Generating a module will provide you with a sample README and a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. It will also launch a series of questions that will create your metadata.json file.
+>**Note:** In order to successfully publish your module to the Puppet Forge and ensure that everything is rendered correctly, your README, license file, changelog, and metadata.json must be UTF-8 encoded. If you used `puppet module generate` to create your module, these files are UTF-8 encoded already.
 
-Follow the directions to [generate a new module](./modules_fundamentals.html#writing-modules).
+{:.section}
+### Excluding files from the package
 
->**Note:** In order to successfully publish your module to the Puppet Forge and ensure everything can be rendered correctly, your README, license file, changelog, and metadata.json must be UTF-8 encoded.
+To exclude certain files from your module build, include them in either a `.gitignore` or a `.pmtignore` file. This is useful for excluding files that are not needed to run the module, such as files generated by spec tests. The ignore file must be in the root directory.
 
-### Set files to be ignored
+#### .pmtignore example
 
-It's not unusual to have some files in your module that you want to exclude from your build. You can exclude files by including them in .gitgnore or .pmtignore. Your .pmtignore or .gitignore file must be in the module's root directory, and will be read during the build process.
+```
+import/
+/spec/fixtures/
+.tmp
+*.lock
+*.local
+.rbenv-gemsets
+.ruby-version
+build/
+docs/
+tests/
+log/
+junit/
+tmp/
+```
 
-If you have both a .pmtignore and a .gitignore file, the Puppet module tool will read the .pmtignore file over the .gitignore.
+The `.pmtignore` file excludes files during `puppet module build` only. For example, you might want spec tests in your source control but not in your module package, so you would list them in `.pmtignore`. To prevent files, such as those in temporary directories, from ever being checked into Git, use `.gitignore`.
 
-### Remove symlinks
+If you have both a `.pmtignore` and a `.gitignore` file, the `puppet module` command uses the `.pmtignore` file.
 
-Before you build your module, you must make sure that symlinks are either removed or set to be [ignored](#set-files-to-be-ignored). If you try to build a module with symlinks, you will recieve the following error:
+{:.section}
+### Removing symlinks from your module
+
+Symlinks in modules are unsupported. If your module contains symlinks, either remove them or ignore them before you build your module.
+
+If you try to build a module that contains symlinks, you will receive the following error:
 
 ```
 Warning: Symlinks in modules are unsupported. Please investigate symlink manifests/foo.pp->manifests/init.pp.
@@ -98,141 +119,91 @@ Error: Found symlinks. Symlinks in modules are not allowed, please remove them.
 Error: Try 'puppet help module build' for usage
 ```
 
-## Write a metadata.json file
+{:.concept}
+### Adding module metadata in `metadata.json`
 
-[inpage_metadata]: #write-a-metadatajson-file
+To publish your module on the Forge, it must contain required metadata in a `metadata.json` file.
 
-If you generated your module using the `puppet module generate` command, you'll already have a metadata.json file. Check it and make any necessary edits.
+If you generated your module using the `puppet module generate` command, you'll already have a `metadata.json` file. Check it and make any necessary edits.
 
-If you assembled your module manually, you must make sure that you have a metadata.json file in your module's main directory.
+If you assembled your module manually, you must make sure that you have a `metadata.json` file in your module's main directory. For details on writing or editing the `metadata.json` file, see the related topic about module metadata.
 
-[See the page about `metadata.json` for full details about its format.][metadata]
+{:.concept}
+#### Modulefiles
 
+If you maintain older modules, you might find the metadata stored in a Modulefile. Move any metadata contained in the Modulefile to the `metadata.json`. Modulefiles were deprecated in Puppet 3 and removed in Puppet 4. They are now treated like any other text file in the root directory of the module. 
 
-## Build your module
+Related topics:
 
-In order for your module to be successfully uploaded to and displayed on the Forge, your [metadata.json][metadata] file must include the following keys:
+* [Module metadata and `metadata.json`][metadata]
+* [Semantic versioning](http://semver.org/)
 
-* `name`
-* `version`
-* `author`
-* `license`
-* `summary`
-* `source`
-* `dependencies`
-* `project_page`
-* `operatingsystem_support`
-* `tags`
+{:.task}
+## Build your module 
 
-To build your module:
+To upload your module to the Puppet Forge, you first must build the module package.
 
-1. Run `# puppet module build <MODULE DIRECTORY>`. A .tar.gz package will be generated and saved in the module's pkg/ subdirectory. For example:
+1. From the command line, run `puppet module build <MODULE DIRECTORY>`. This command generates a `.tar.gz` package and saves it in the module's `pkg/` subdirectory.
 
-```
-# puppet module build /etc/puppetlabs/puppet/modules/mymodule
-Building /etc/puppetlabs/puppet/modules/mymodule for release
-/etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
-```
+   For example:
 
->**Note:**
->
->Throughout the Puppet 3.x series, deprecation warnings were issued for Modulefile. If you still have a Modulefile, it will be treated like any other text file in the root directory of the module. You will need to move any metadata contained in it to the [metadata.json][inpage_metadata].
+   ```
+   # puppet module build /etc/puppetlabs/puppet/modules/mymodule
+   Building /etc/puppetlabs/puppet/modules/mymodule for release
+   /etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
+   ```
 
-## Upload to the Puppet Forge
+{:.task}
+## Upload a module to the Forge
 
+To publish a new module release to the Puppet Forge, upload the module tarball to the Forge using the web interface.
 
-Now that you have a compiled `tar.gz` package, you can upload it to the Forge. There is currently no command line tool for publishing; you must use the Forge's web interface. *Note:* Your tarball must be 10MB or less.
-
-Whether you are uploading a brand new module or a new release of an existing module, follow the steps below to publish your release:
+Your module package should be a compiled `tar.gz` package of 10MB or less.
 
 1. In your web browser, navigate [to the Puppet Forge][forge] and log in.
 
-2. Click on "Publish" in the upper right hand corner of the screen.
+2. Click **Publish** in the upper right hand corner of the screen.
 
+4. On the upload page, click **Choose File** and use the file browser to locate and select the release tarball. Then click **Upload Release**.
 
-   ![publish a module][publishmodule]
+After a successful upload, your browser should load the new release page of your module, with any errors popping up on the same screen. Your module's README, Changelog,and License files are displayed on your module's Forge page.
 
-3. This will bring you to the upload page:
+{:.task}
+## Delete a module release from the Forge
 
+If you want to delete a release of your module, you can do so from the Puppet Forge's web interface.
 
-   ![upload a tarball][uploadtarball]
-
-4. Click "Choose File" and use the file browser to locate and select the release tarball you created with the `puppet module build` action. Then click the "Upload Release" link.
-
-5. A successful upload will result in you being taken to the new release page of your module. Any errors will come up on the same screen. Once your module has been published to the Puppet Forge, the Forge will pull your README, Changelog, and License files from your tarball to display on your module's page. To confirm that it was published correctly, you can [install it][installing] on a new system using the `puppet module install` action.
-
-
-#### Notes
-
-1. You must make sure that your [metadata][inpage_metadata] is correct and entirely located in metadata.json, otherwise your module will either not display correctly on the Forge or will error out during upload.
-2. When you release a new version of an already published module, you must increment the `version` field in the metadata.json file (ensuring you use a valid [semantic version](http://semver.org/)).
-3. You are highly encouraged to fix any problems or mistakes with your module by issuing another release.
-
-## Delete a release
-
-
-At some point, you might want to delete a release of your module. You can accomplish this easily from the Forge's web interface.
-
->**Note**
->
->A deleted release will still be downloadable via the Forge page or Puppet module tool (PMT) if a user requests the module by specific version. **You cannot delete a released version and upload a new version of the same release.**
-
-Follow the steps below to delete your release:
+A deleted release is still downloadable via the Forge page or `puppet module` command if a user requests the module by specific version. **You cannot delete a released version and upload a new version of the same release.**
 
 1. In your web browser, navigate [to the Puppet Forge][forge] and log in.
 
 2. Click **Your Modules**.
 
+3. Go to the module page of the module release you want to delete.
 
-   ![your modules button][yourmodules]
+4. Locate **Select another release**, choose the release you want from the drop-down list, and click **Delete**.
 
-3. Go to the module page of the module whose release you want to delete.
-
-4. Locate **Select another release**, choose the release you want from the drop down, and click **Delete**.
-
-
-   ![select the release to delete][selectrelease]
-
-
-   ![delete][deletebutton]
-
-5. You will be taken to a new page. On that page, you must supply a reason for the deletion. **Note:** Your reason will be visible to users on the Forge.
-
-
-   ![deletion page][deletionpage]
+5. A confirmation page will load, and you must supply a reason for the deletion. **Note:** Your reason will be visible to Forge users.
 
 6. Click **Yes, delete it.**
 
 7. On your module page, you will see a banner confirmation of the deletion.
 
+Related topics:
 
-   ![confirmation banner][deleteconfirmation]
+* [Finding and downloading deleted module](#finding-and-downloading-deleted-modules)
 
+{:.concept}
+## Finding and downloading deleted modules
 
-Once you receive the confirmation banner, your release is officially deleted!
+You can still search for and download a specific release of a module on the Puppet Forge, even if the release has been deleted.
 
-## Downloading a deleted release
+Normally, deleted modules do not appear in Forge search results. To include deleted modules in your search, check **Include deleted modules** in the Forge search filter panel.
 
-It is still possible to download a specific release of a module, even if it has been deleted. If you check the **Select another release** drop down, the release is still an option in the menu, but is marked as deleted.
+To download a deleted release of a specific module, select the release from the **Select another release** drop-down list on the module page. The release is marked as deleted but is still an option in the menu.
 
-   ![the deleted release is still there][deletedrelease]
+If you select the deleted release, a warning banner appears on the page with the reason for deletion. To download the deleted release anyway, click **Download** or install it with the `puppet module install` command.
 
-If you select the deleted release, a warning banner will appear on the page with the reason for deletion. However, you can still download the deleted release using the PMT or by clicking **Download**.
+Related topics:
 
-   ![download deleted release][delteddownloadwarning]
-
-## Searching for a deleted module
-
-If the only release of a module is deleted, or if all the releases of a module are deleted, the module will still show up in the Forge's search under some circumstances.
-
-For example, puppetlabs-appdirector has only one release. It is the only result when we search for the word 'appdirector'.
-
-   ![one module one release][onereleasesearch]
-
-If that one release is deleted and we search for the word 'appdirector', no results are found.
-
-   ![no module][noreleasesearch]
-
-However, if we check the box to **Include deleted modules** in our search, the appdirector module is found.
-
-  ![there it is][noreleasesearchfilter]
+* [Installing modules](./modules_installing.html#installing-modules)

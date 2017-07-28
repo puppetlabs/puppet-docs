@@ -141,14 +141,18 @@ Puppet is automatically aware of functions in a valid module and will autoload t
 
 ## Naming
 
+It's helpful to name your function appropriately based on what it does. For example, it's easy to remember or guess what `str_to_bool` might do, it converts a string to a boolean. There are some reserved words and characters that can't be used as function names.
+
 [The characters allowed in a function's name are listed here][naming].
 
 
 ## Calling a function
 
-The [function call][function_call] acts like a normal call to any built-in Puppet function, and resolves to the function's returned value.
+When you're ready to call your function, it acts like a normal call to any built-in Puppet function, and resolves to the function's returned value.
 
 Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest that lists the containing module as a dependency and from your [main manifest](./dirs_manifest.html). The arguments you pass to the function map to the parameters defined in the function's definition. You must pass arguments for the mandatory parameters, and can choose whether to pass in arguments for the optional ones.
+
+>**Note:** Functions are autoloaded and available to other modules unless those modules have specified dependencies. If a module has a list of dependencies in its [metadata.json](./modules_metadata.html) file, only custom functions from those specific dependencies are loaded.
 
 ## Complex function example
 

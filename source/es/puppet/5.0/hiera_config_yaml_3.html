@@ -1,0 +1,229 @@
+---
+title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
+---
+
+<div>
+
+
+
+<p> El fichero de configuración Hiera es denominado hiera.yaml. Esto configura la <a href="./hiera_hierarchy.html">jerarquía</a> para una  <a href="./hiera_layers.html">capa</a> de datos propuesta.
+</p>
+
+<p> Esta versión de Puppet soporta tres formatos para hiera.yaml — usted puede usar cualquiera de ellos, a pesar de que <a href="./hiera_config_yaml_4.html">v4</a> y v3 están obsoletos. Esta página está sobre la versión 3, la versión heredada.
+</p>
+
+<table>
+<thead><tr>
+<th>Formato</th>
+      <th>Permitido en</th>
+      <th>Descripción</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><a href="./hiera_config_yaml_5.html">v5</a></td>
+      <td>Las tres capas de datos</td>
+      <td>La versión principal de hiera.yaml, que admite todas las funciones de Hiera 5.</td>
+    </tr>
+<tr>
+<td><a href="./hiera_config_yaml_4.html">v4</a></td>
+      <td>Capas de entorno y módulo</td>
+      <td>Obsoleto. Un formato de transición, utilizado en el borrador de Hiera 5 (cuando lo llamábamos "Puppet lookup"). No admite backends personalizados.</td>
+    </tr>
+<tr>
+<td>v3</td>
+      <td>Capa Global</td>
+      <td>Obsoleto. La versión clásica de hiera.yaml, que tiene algunos problemas.</td>
+    </tr>
+</tbody>
+</table>
+<h2 id="important-version-3-is-deprecated">Importante: la versión 3 está obsoleta.</h2>
+
+<p> La versión 3 de hiera.yaml está obsoleta, y planeamos eliminar el soporte para ello en Puppet 6.
+</p>
+
+<p> Lo que es más importante, tiene algunos problemas importantes:
+</p>
+
+<ul>
+<li>La jerarquía combinatoria (ejecutar toda la jerarquía en un backend, luego ejecutar toda la jerarquía en el siguiente, entonces ...) era molesto para razonar, y hacía que algunos flujos de trabajo simples fueran más difíciles de lo necesario.</li>
+  <li>La configuración global del comportamiento de mezcla de hash profundo fue una idea terrible. Hiera 5 tiene <a href="./hiera_merging.html">mejores maneras de configurar con una base per-key</a>.</li>
+  <li>hiera.yaml v5 puede soportar backends v3, pero no viceversa.</li>
+</ul>
+<p> Debe actualizar su hiera.yaml a <a href="./hiera_config_yaml_5.html">version 5</a> cuando tengas la oportunidad.
+</p>
+
+<h2 id="location">Ubicación</h2>
+
+<p> El fichero v3 hiera.yaml pueden utilizarse solo <a href="./hiera_layers.html">capa de configuración global</a>.
+</p>
+
+<p> La ubicación predeterminada para el hiera.yaml es <a href="/puppet/5.0/dirs_confdir.html"><code>$confdir</code></a><code>/hiera.yaml</code>. Dependiendo de su plataforma, generalmente  de <code>/etc/puppetlabs/puppet/hiera.yaml</code> o <code>C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml</code>.
+</p>
+
+<p> Usted puede utilizar <a href="/puppet/5.0/configuration.html#hieraconfig">la configuración <code>hiera_config</code> </a> en <code>puppet.conf</code>para cambiar la ubicación del global hiera.yaml.
+</p>
+
+<h2 id="format">Formato</h2>
+
+<p> hiera.yaml v3 debe ser un <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a> hash.
+</p>
+
+<p> Cada clave de nivel superior en el hash <strong>debe ser un símbolo Ruby con dos puntos (<code>:</code>) prefix.</strong> Los ajustes disponibles se enumeran a continuación, bajo <a href="#global-settings">“Global Settings”</a> y <a href="#backend-specific-settings">“Backend-Specific Settings”</a>.
+</p>
+
+<h3 id="example-config-file">Ejemplo de archivo de configuración</h3>
+
+<pre><code class="language-yaml">---
+:backends:
+  - yaml
+  - json
+:yaml:
+  :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
+:json:
+  :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
+:hierarchy:
+  - "nodes/%{::trusted.certname}"
+  - "virtual/%{::virtual}"
+  - "common"
+</code></pre>
+
+<h3 id="default-config-values">Valores de configuración predeterminados</h3>
+
+<p> Si el archivo de configuración existe pero no tiene datos, Hiera utiliza las siguientes configuraciones predeterminadas:
+</p>
+
+<pre><code class="language-yaml">---
+:backends: yaml
+:yaml:
+  # on *nix:
+  :datadir: "/etc/puppetlabs/code/environments/%{environment}/hieradata"
+  # on Windows:
+  :datadir: "C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"
+:hierarchy:
+  - "nodes/%{::trusted.certname}"
+  - "common"
+:logger: console
+:merge_behavior: native
+:deep_merge_options: {}
+</code></pre>
+
+<h2 id="global-settings">Global settings</h2>
+
+<p> hiera.yaml v3 puede contener cualquiera de los siguientes ajustes. Si están ausentes, usan valores predeterminados como se muestra arriba. <strong>Tenga en cuenta que cada ajuste debe ser un símbolo Ruby con dos puntos (<code>:</code>) prefix.</strong>
+</p>
+
+<h3 id="hierarchy"><code>:hierarchy</code></h3>
+
+<p> Debe ser un <strong>string</strong> o un <strong>array de strings,</strong> donde cada cadena es el nombre de un data source estático o dinámico.  (Una fuente dinámica es simplemente una que contiene una <code>%{variable}</code> token de interpolación. <a href="./hiera_hierarchy.html">Consulte "Creación de jerarquías" para obtener más detalles</a>. )
+</p>
+
+<p> Las fuentes de información en la jerarquía son chequeadas en orden, de arriba hacia abajo.
+</p>
+
+<p> <strong>Valores por defecto:</strong> <code>["nodes/%{::trusted.certname}", "common"]</code>
+</p>
+
+<h3 id="backends"><code>:backends</code></h3>
+
+<p> Debe ser un <strong>string</strong> o un <strong>array de strings,</strong> donde cada cadena es el nombre de un backend disponible de Hiera. Los backends incorporados son <code>yaml</code> y <code>json</code>. Los backends adicionales están disponibles como complemento.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong> hiera.yaml v3 sólo soporta backends escritos para dar soporte a Hiera 3. Ver la documentación Hiera 3 acerca de <a href="/hiera/3.3/custom_backends.html">custom backends</a> para detalles.
+</p>
+</blockquote>
+
+<p> La lista de los backends se procesa en orden: en el <a href="#example-config-file">ejemplo anterior</a>, Hiera revisaría toda la jerarquía de la <strong>yaml</strong> backend antes de empezar de nuevo con el <strong>json</strong> backend.
+</p>
+
+<p> <strong>Valor por defecto:</strong> <code>"yaml"</code>
+</p>
+
+<h3 id="logger"><code>:logger</code></h3>
+
+<p> Debe ser el nombre de un registrador disponible, como <strong>string.</strong>
+</p>
+
+<p> Los loggers sólo controlan hacia dónde se direccionan las alertas y los mensajes de depuración. Puedes usar uno de los loggers inegrados o escribir el tuyo propio. Los loggers integrados son:
+</p>
+
+<ul>
+<li>
+<code>console</code> (mensajes directos a STDERR)</li>
+  <li>
+<code>puppet</code> (mensajes a Puppet’s logging system)</li>
+  <li>
+<code>noop</code> (mensajes silenciados)</li>
+</ul>
+<blockquote>
+  <p> <strong>Custom loggers:</strong> Usted puede hacer su propio logger proporcionando una clase llamada, e.g., <code>Hiera::Foo_logger</code> (en su caso el nombre interno de Hiera para el logger sería  <code>foo</code>), y facilita métodos de clase denominados <code>warn</code> y <code>debug</code>, cada uno de los cuales debe aceptar una sola cadena.
+</p>
+</blockquote>
+
+<p> <strong>Valor por defecto:</strong> <code>"console"</code>. Tenga en cuenta que Puppet anula esto y lo establece en <code>"puppet"</code>, independientemente de lo que contenga el archivo de configuración.
+</p>
+
+<h3 id="mergebehavior"><code>:merge_behavior</code></h3>
+
+<p> Qué combinación de comportamiento la función <code>hiera_hash</code> debería usar. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
+</p>
+
+<p> Debe ser uno de los siguientes:
+</p>
+
+<ul>
+<li>
+<code>native</code> (por defecto) — une solo top-level keys.</li>
+  <li>
+<code>deep</code> — une recursivamente, en caso de conflicto de claves, permite valores de <strong>baja prioridad</strong> para ganar. Casi nunca quieres esto.</li>
+  <li>
+<code>deeper</code> — fusiona recursivamente. En el caso de conflicto, permite valores de <strong>alta prioridad</strong> para ganar.</li>
+</ul>
+<p> Cualquier cosa menos <code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si esta utilizando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/5.0/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instala la gema.
+</p>
+
+<p> Para obtener más información acerca de las estrategias de búsqueda de combinaciones hash, consulte <a href="./hiera_merging.html#hash">“Hash Merge”</a> y <a href="./hiera_merging.html#deep">“Deep Merging in Hiera”</a>.
+</p>
+
+<h3 id="deepmergeoptions"><code>:deep_merge_options</code></h3>
+
+<p> Un hash de profundas opciones de fusión para <code>hiera_hash</code>, si <code>:merge_behavior</code> es establecido a<code>deeper</code> o <code>deep</code>. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
+</p>
+
+<p> Por ejemplo:
+</p>
+
+<pre><code>:merge_behavior: deeper
+:deep_merge_options:
+  :knockout_prefix: '--'
+</code></pre>
+
+<p> Las opciones disponibles están documentadas en <a href="https://github.com/danielsdeleo/deep_merge/blob/master/README.md">la gem <code>deep_merge</code> </a>.
+</p>
+
+<p> <strong>Valor por defecto:</strong> Un hash vacío de opciones.
+</p>
+
+<h2 id="backend-specific-settings">Backend-specific configuración</h2>
+
+<p> Cualquier backend puede definir sus propios ajustes y leerlos desde hiera.yaml. Si está presente, el valor de la clave de un backend dado debe ser <strong>hash,</strong> cuyas claves son las configuraciones que utiliza.
+</p>
+
+<p> Las siguientes opciones de configuración están disponibles para backends integrados:
+</p>
+
+<h3 id="yaml-and-json">
+<code>:yaml</code> y <code>:json</code>
+</h3>
+
+<h4 id="datadir"><code>:datadir</code></h4>
+
+<p> El directorio en el que se encuentran los archivos de origen de datos. Debe ser un string.
+</p>
+
+<p> Usted puede <a href="./hiera_interpolation.html">Interpolar las variables</a> en el datadir utilizando<code>%{variable}</code>Tokens de interpolación. Esto le permite, por ejemplo, señalar a <code>"/etc/puppetlabs/code/hieradata/%{::environment}"</code> Para mantener sus datos de producción y desarrollo completamente separados.
+</p>
+
+<p> <strong>Valor por defecto:</strong> <code>"/etc/puppetlabs/code/environments/%{environment}/hieradata"</code> en *nix, y <code>"C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"</code> en Windows.
+</p>
+</div>

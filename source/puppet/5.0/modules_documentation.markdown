@@ -13,30 +13,43 @@ title: "Documenting modules"
 [metadata.json]: ./modules_metadata.html
 
 
-We strongly encourage you to document any module you write, whether you intend the module solely for internal use or for publication on the [Puppet Forge][forge] (Forge). This guide details module documentation best practices and walks you through our module README template.
+You should document any module you write, whether you the module is for internal use only or for publication on the Puppet Forge. When you write module documentation, follow best practices and our module README template.
 
-* Continue reading to learn README best practices.
-* [See "Installing Modules"][installing] for how to install pre-built modules from the Puppet Forge.
-* [See "Publishing Modules"][publishing] for how to publish your modules to the Puppet Forge.
-* [See "Using Plugins"][plugins] for how to arrange plugins (like custom facts and custom resource types) in modules and sync them to agents.
+Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it. We recommend using Markdown and `.md` (or `.markdown`) files for your READMEs.
 
-Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it. We recommend using [Markdown][commonmark] and `.md` (or `.markdown`) files for your READMEs.
+We've constructed a README template that you can use for your own modules. This template helps you put together complete and clear documentation.
 
-We've constructed a [README template][template] that you can use for your own modules. This template helps you put together complete and clear documentation. Below, we'll walk through the template and go over some best practices to help with your documentation efforts.
+Related topics:
 
+* [Module fundamentals][fundamentals]: How to use and write Puppet modules.
+* [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
+* [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
+* [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
+* [Markdown][commonmark]
+* [README template][template]
+
+{:.concept}
 ## The README template
 
-If you used the `puppet module generate` command to generate your module skeleton, you already have a copy of the README template in `.md` format. You can also use the standalone [template][template] to guide you.
+The module README template helps you put together complete and clear documentation.
 
-## Create a table of contents
+If you used the `puppet module generate` command to generate your module, you already have a copy of the README template in `.md` format in your module. You can also use the standalone template to guide you.
+
+Related topics:
+
+* [README template][template]
+
+{:.concept}
+### Creating a table of contents
 
 The table of contents is a best practice, particularly for large or complicated modules.
 
-The section headings for each top-level section (following the numbered sections in the TOC) should be Level 2 Headings, with each subsection decreasing from there. Subsections can be included in the ToC if needed, as shown in the Setup subsections above.
+The module name should be a Level 1 heading at the top of the module, followed by a Table of Contents in a Level 4 heading.
 
-1. List the module's name as a Level 1 Heading.
-2. Add **Table of Contents** as a Level 4 Heading.
-3. Add a numbered list of your module sections, as shown in the example below.
+The section headings for each top-level section (following the numbered sections in the TOC) should be Level 2 headings, with each subsection decreasing from there. Subsections can be included in the ToC if needed, as shown in the example's Setup section.
+
+
+``` markdown
 
     # modulename
 
@@ -51,9 +64,10 @@ The section headings for each top-level section (following the numbered sections
     4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
     5. [Limitations - OS compatibility, etc.](#limitations)
     6. [Development - Guide for contributing to the module](#development)
+```
 
-
-## Write the module description
+{:.concept}
+### Writing the module description
 
 Write a module description that tells users what software the module is working with and what it does with that software.
 
@@ -61,7 +75,7 @@ This description helps the user decide if your module is what they want. Does yo
 
 A second paragraph can go into more depth on the "How?" and "What?" of a module, giving a user more information about what to expect from the module so they can assess whether they would like to use it or not.
 
-```
+``` markdown
 ## Module description
 
 The cat module installs, configures, and maintains your cat in both
@@ -73,40 +87,54 @@ environment's needs. Once installed and configured, the cat module
 automates maintenance of your cat through a series of resource types and providers.
 ```
 
-## Setup
+{:.concept}
+## Writing the Setup section
 
-Overall, the **Setup** section should give a user the basic steps to successfully get their module functioning. (Module installation instructions are covered both on the module's Forge page AND in the Puppet Reference Manual, so don't reiterate them here).
+The **Setup** section should give a user the basic steps to successfully get their module functioning.
 
-**What (modulename) affects** is used only if:
+Module installation instructions are covered both on the module's Forge page AND in the Puppet docs, so don't reiterate them here. In this section, include the following subsections, as applicable:
 
-* the module alters, overwrites, or otherwise touches files, packages, services, or operations other than the named software; OR
-* the module's general performance can overwrite, purge, or otherwise remove entries, files, or directories in a user's environment.
+* **What (modulename) affects**
 
-```
-## Setup
+  Include this section only if:
 
-### What cat affects
+  * The module alters, overwrites, or otherwise touches files, packages, services, or operations other than the named software; OR
+  * The module's general performance can overwrite, purge, or otherwise remove entries, files, or directories in a user's environment.
 
-* Your dog door might be overwritten if not secured before installation.
-```
+  For example:
+  
+  ``` markdown
+  ## Setup
 
-**Setup Requirements** is used only if the module requires additional software or some tweak to a user's environment. For instance, the firewall module uses Ruby-based providers which required pluginsync to be enabled.
+  ### What cat affects
 
-**Beginning with [modulename]** should cover the minimum steps required to get the module up and running in a user's environment. (Note: This does not necessarily mean it should be running in production. This step most often covers basic Proof of Concept use cases.) For very simple modules, this section is often just "Declare the main `::cat` class."
+  * Your dog door might be overwritten if not secured before installation.
+  ```
 
-```
-### Beginning with cat
+* **Setup Requirements**
 
-Declare the main `::cat` class.
-```
+  Include this section only if the module requires additional software or some tweak to a user's environment. For instance, the firewall module uses Ruby-based providers which required pluginsync to be enabled.
 
-## Usage
+* **Beginning with [modulename]**
 
-The **Usage** section should address how to solve some general problems with the module, and it should include code examples. If your module does a large number of things, you should put three to five examples of the most important or most common tasks a user can accomplish with your module.
+  Always include this section to explain the minimum steps required to get the module up and running in a user's environment. This section can show basic Proof of Concept use cases, so it doesn't have to necessarily be something you would run in production. For very simple modules, "Declare the main `::cat` class" may be enough.
+
+  ``` markdown
+  ### Beginning with cat
+
+  Declare the main `::cat` class.
+  ```
+
+{:.concept}
+### Writing the Usage section
+
+The **Usage** section should address how to solve some general problems with the module, and it should include code examples.
+
+If your module does many things, include three to five examples of the most important or most common tasks a user can accomplish with your module.
 
 How you structure this section depends on the structure of the module and how it works in the user's environment. Ask yourself questions such as, "What problems can users solve with this module?" or "What are a couple basic tasks a user can do to see how this module works in their environment?" to help get you started.
 
-```
+``` markdown
 ## Usage
 
 All interaction with your cat can be done through the main cat class. With
@@ -130,13 +158,23 @@ playtime at 3 a.m. local time.
     }
 ```
 
-## Reference
+{:.concept}
+### Writing the Reference section
 
-This section is where your users can find a complete list of your module's classes, types, defined types providers, facts, and functions, along with the parameters for each. Users refer to this section (hence the name "Reference") to find specific details; most users don't _read it_, per se. You can provide this list either via [Puppet Strings](#puppet-strings) or as a complete list in the README [**Reference**](#reference-list) section.
+This section is where your users can find a complete list of your module's classes, types, defined types providers, facts, and functions, along with the parameters for each.
 
-### Puppet Strings
+Users frequently refer to this section to find specific details; most users don't _read it_ as such. You can provide this list either via Puppet Strings or as a complete list in the README **Reference** section.
 
-Use [Puppet Strings](https://github.com/puppetlabs/puppet-strings) code comments to document your Puppet classes, defined types, functions, and resource types and providers. Strings processes both the README and comments from your code into HTML or JSON format documentation. This allows you and your users to generate detailed documentation for your module.
+Related topics:
+
+* [Puppet Strings](#puppet-strings)
+
+{:.section}
+#### Creating the Reference with Puppet Strings
+
+Use Puppet Strings comments in your code to document your Puppet classes, defined types, functions, and resource types and providers so that you and your users can generate the module's reference information.
+
+Puppet Strings processes both the README and comments from your code into HTML or JSON format documentation. This allows you and your users to generate detailed documentation for your module.
 
 Include comments for each element (classes, functions, defined types, parameters, and so on) in your module. These comments must precede the code for that element. Comments should contain the following information, arranged in this order:
 
@@ -146,17 +184,20 @@ Include comments for each element (classes, functions, defined types, parameters
 
 For example:
 
-```puppet
+``` puppet
 # @param config_epp Specifies a file to act as a EPP template for the config file. Valid options: a path (absolute, or relative to the module path). Example value: 'ntp/ntp.conf.epp'. A validation error is thrown if you supply both this param **and** the `config_template` param.
 ```
 
-If you use Strings to document your module, include information about it in your **Reference** section so that your users will know how to generate your module's documentation. See [Puppet Strings](https://github.com/puppetlabs/puppet-strings) documentation for details on usage, installation, and correctly writing documentation comments.
+If you use Strings to document your module, include information about it in your **Reference** section so that your users will know how to generate your module's documentation. See Puppet Strings documentation for details on usage, installation, and correctly writing documentation comments.
 
-### Reference list
+{:.section}
+#### Writing a Reference list
 
 If you aren't using Puppet Strings code comments to document your module, then include a Reference list of each of your classes, defined types, types, functions, and so on, along with their parameters.
 
-Generally, unless your module is very small (only 1 -- 4 classes or defined resource types), start with a small table of contents that first lists the classes, defined types, and resource types of your module. If your module contains both public and private classes, defined types, etc, list the public and the private separately. Include a brief description of what these items do in your module. It's especially helpful if you provide a link to each listed item.
+Generally, unless your module is very small (only 1 -- 4 classes or defined resource types), start your **Reference** section with a small table of contents that first lists the classes, defined types, and resource types of your module.
+
+If your module contains both public and private classes, defined types, etc, list the public and the private separately. Include a brief description of what these items do in your module. It's especially helpful if you provide a link to each listed item.
 
 ```
 ## Reference
@@ -215,9 +256,12 @@ Valid options: A hash with the following keys:
 * `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
 ```
 
-## Limitations and development
+{:.concept}
+### Writing the Limitations and development sections
 
-The **Limitations** section is the place to call out surprise incompatibilities.
+The **Limitations** section warns your users of issues, and the **Development** section tells your users how they can contribute to your module.
+
+In the **Limitations** section, list any incompatibilities, known issues, or other warnings.
 
 ```
 ## Limitations
@@ -225,32 +269,39 @@ The **Limitations** section is the place to call out surprise incompatibilities.
 This module cannot be used with the smallchild module.
 ```
 
-Since your module is awesome, other users will want to play with it. The **Development** section is where you let them know what the ground rules for contributing are.
+In the **Development** section, tell other users the ground rules for contributing to your project and how they should submit their work.
 
-## README style notes
+{:.concept}
+### README style notes
 
+To write a clear, concise, and comprehensible README, we recommend following a few principles, best practices, and style guidelines.
 
-## General principles of READMEs
+{:.section}
+#### General principles of READMEs
 
 1. Write for both web and terminal viewing. We recommend [Markdown][commonmark]. Above all else, your module must be easily readable and scannable.
 2. Limit the number of external links. Linking to anything on the web limits the usability of the module, particularly if a range of users might use it in various environments, such as in terminal. Also, links look gross in plain Markdown and make your README less readable.
 3. Scannability is key. READMEs are formulaic and repetitious for a reason. Repetition means that no matter the module, users know where to get the information they're looking for.
 
-## Style and formatting
+{:.section}
+#### Style and formatting
 
 1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
 2. *Public* classes and defined types are intended to be tweaked, changed, or otherwise interacted with by the user. **Private** classes and defined types do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.
 3. Every parameter should have a description that starts with an action verb if at all possible (such as, "Sets the...", "Enables...", "Determines...", "Specifies..."). The description should be followed, in the same paragraph, by valid options (such as, "Valid options: an array"). Valid options should be followed by any default, if applicable.
 
-    For example:
+   For example:
 
 
-        Specifies the type of meow the cat service uses at food distribution time. Valid options: 'bark', 'low', 'rumble', 'loud', or 'none'. Default: 'low'.
+   ``` markdown
+   Specifies the type of meow the cat service uses at food distribution time. Valid options: 'bark', 'low', 'rumble', 'loud', or 'none'. Default: 'low'.
+   ```
 
+   or
 
-    or
-
-        Sets the food intake limit for your cat service. Determined in grams. Valid options: Integer; maximum = 100g.
+   ``` markdown
+   Sets the food intake limit for your cat service. Determined in grams. Valid options: Integer; maximum = 100g.
+   ```
 
 4. List parameters in alphabetical order. This makes it **so much easier** for the user to find what they are looking for, not to mention how much easier it makes the readme to update.
 5. Specify the valid options (or inputs or values) for **every** parameter. This might be a string, integers, an array, or specific values.
@@ -259,13 +310,14 @@ Since your module is awesome, other users will want to play with it. The **Devel
 8. You don't need to comment out _ because neither GitHub nor the Forge's Markdown rendering hides _.
 9. The Forge's Markdown rendering is exactly the same as GitHub's rendering.
 
-## Documentation best practices
+{:.section}
+#### Documentation best practices
 
 If you really want your documentation to shine, following a few best practices can help make your documentation clear and readable.
 
 1. Use the second person; that is, write directly to the person reading your document. For example, “If you’re installing the cat module on Windows....”
-2. Use the imperative; that is, tell the user what they should do. For example, “Secure your dog door before installing the cat module.”
-3. Use the active voice whenever possible. For example, “We recommend that you install cat and bird modules on separate instances” rather than “It is recommended that you install cat and bird modules on separate instances."
+2. Use the imperative; that is, tell the user what they should do. For example, "Secure your dog door before installing the cat module."
+3. Use the active voice whenever possible. For example, "We recommend that you install cat and bird modules on separate instances" rather than "It is recommended that you install cat and bird modules on separate instances."
 4. Use the present tense, almost always. You seldom need the word "will," for example. Events that regularly occur should be present tense: "This parameter *sets* your cat to 'purebred'. The purebred cat *alerts* you for breakfast at 6 a.m." Only use future tense when you are specifically referring to something that takes place at a time in the future, such as "The `tail` parameter is deprecated and *will be* removed in a future version. Use `manx` instead."
 5. Lists, whether ordered or unordered, make things clearer for the reader. When steps should happen in a sequence, use an ordered list (1, 2, 3…). If order doesn’t matter, like in a list of options or requirements, use an unordered (bulleted) list.
 

@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:46 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:14 -0500
 
 ## About Resource Types
 
@@ -38,9 +38,9 @@ _title_ of the resource.
 Example:
 
     file { '/etc/passwd':
-      owner => root,
-      group => root,
-      mode  => 644
+      owner => 'root',
+      group => 'root',
+      mode  => '0644',
     }
 
 In this code, `/etc/passwd` is the _title_ of the file resource; other Puppet
@@ -729,7 +729,7 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-group">group</a>       =&gt; <em># The group to run the command as.  This seems to...</em>
   <a href="#exec-attribute-logoutput">logoutput</a>   =&gt; <em># Whether to log command output in addition to...</em>
   <a href="#exec-attribute-path">path</a>        =&gt; <em># The search path used for command execution...</em>
-  <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># How to refresh this command.  By default, the...</em>
+  <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># An alternate command to run when the `exec...</em>
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
@@ -805,10 +805,14 @@ can be specified as an array or as a '
 
 <h4 id="exec-attribute-refresh">refresh</h4>
 
-How to refresh this command.  By default, the exec is just
-called again when it receives an event from another resource,
-but this parameter allows you to define a different command
-for refreshing.
+An alternate command to run when the `exec` receives a refresh event
+from another resource. By default, Puppet runs the main command again.
+For more details, see the notes about refresh behavior above, in the
+description for this resource type.
+
+Note that this alternate command runs with the same `provider`, `path`,
+`user`, and `group` as the main command. If the `path` isn't set, you
+must fully qualify the command's name.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -8325,4 +8329,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:46 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:14 -0500

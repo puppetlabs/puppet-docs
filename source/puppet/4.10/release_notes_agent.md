@@ -5,13 +5,19 @@ title: "Puppet agent release notes"
 
 [Puppet 4.10.0]: /puppet/4.10/release_notes.html#puppet-4100
 [Puppet 4.10.1]: /puppet/4.10/release_notes.html#puppet-4101
+[Puppet 4.10.2]: /puppet/4.10/release_notes.html#puppet-4102
+[Puppet 4.10.5]: /puppet/4.10/release_notes.html#puppet-4105
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
+[Facter 3.6.5]: /facter/3.6/release_notes.html#facter-365
+[Facter 3.6.6]: /facter/3.6/release_notes.html#facter-366
 
+[Hiera 3.3.2]: /hiera/3.3/release_notes.html#hiera-332
 
 [MCollective 2.10.3]: /mcollective/releasenotes.html#2_10_3
 [MCollective 2.10.4]: /mcollective/releasenotes.html#2_10_4
+[MCollective 2.10.5]: /mcollective/releasenotes.html#2_10_5
 
 [`pxp-agent`]: https://github.com/puppetlabs/pxp-agent
 
@@ -30,6 +36,45 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
 
+## Puppet agent 1.10.5
+
+Released July 26, 2017.
+
+### Component updates
+
+This release contains bug fixes in [Puppet 4.10.5][], and [Facter 3.6.6][] and [`pxp-agent`][] 1.5.3.
+
+### New platforms
+
+These platforms have been added as of Puppet agent 1.10.5:
+
+* Ubuntu 16.04 (ppc64le)
+* Enterprise Linux 7 (ppc64le)
+* Amazon Linux 2017.03 (by using packages for RHEL 6)
+
+## Puppet agent 1.10.4
+
+Released June 19, 2017.
+
+### Component updates
+
+This release only affects Puppet. A regression in Puppet 4.10.3 where resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references.
+
+## Puppet agent 1.10.3
+
+Released June 15, 2017.
+
+### Component updates
+
+This release only affects Puppet. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release includes Puppet 4.10.3, which resolves that issue.
+
+## Puppet agent 1.10.2
+
+Released June 12, 2017.
+
+### Component updates
+
+This is a bug fix release with updates to several components, including [Puppet 4.10.2][], [Facter 3.6.5][], [Hiera 3.3.2][], [MCollective 2.10.5][], and [`pxp-agent`][] 1.5.3.
 
 ## Puppet agent 1.10.1
 

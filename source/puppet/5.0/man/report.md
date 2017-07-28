@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet report'
 canonical: "/puppet/latest/man/report.html"
 ---
@@ -13,7 +13,7 @@ canonical: "/puppet/latest/man/report.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>puppet report <var>action</var> [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet report <var>action</var> [--terminus _TERMINUS] [--extra HASH]</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
@@ -38,7 +38,7 @@ sometimes available.</dd>
 <dt>--extra HASH</dt><dd>A terminus can take additional arguments to refine the operation, which
 are passed as an arbitrary hash to the back-end.  Anything passed as
 the extra value is just send direct to the back-end.</dd>
-<dt>--terminus TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
+<dt>--terminus _TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
 subsystems are each able to retrieve and alter a specific type of data
 (with the familiar actions of <code>find</code>, <code>search</code>, <code>save</code>, and <code>destroy</code>)
 from an arbitrary number of pluggable backends. In Puppet parlance,
@@ -60,7 +60,7 @@ face's manpage for more details.</p></dd>
 <dl>
 <dt><code>info</code> - Print the default terminus class for this face.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet report info [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet report info [--terminus _TERMINUS] [--extra HASH]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -69,7 +69,7 @@ run modes may have different default termini; when in doubt, specify the
 run mode with the '--run_mode' option.</p></dd>
 <dt><code>save</code> - API only: submit a report.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet report save [--terminus TERMINUS] [--extra HASH] <var>report</var></p>
+<p>puppet report save [--terminus _TERMINUS] [--extra HASH] <var>report</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -82,7 +82,7 @@ from the command line.</p>
 <p>Nothing.</p></dd>
 <dt><code>submit</code> - API only: submit a report with error handling.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet report submit [--terminus TERMINUS] [--extra HASH] <var>report</var></p>
+<p>puppet report submit [--terminus _TERMINUS] [--extra HASH] <var>report</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -132,7 +132,7 @@ this face include:</p>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2011 by Puppet Labs
+<p>Copyright 2011 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

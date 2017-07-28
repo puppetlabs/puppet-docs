@@ -19,7 +19,7 @@ title: "Hiera: Quick start guide"
 [layers]: ./hiera_layers.html
 [merging]: ./hiera_merging.html
 
-If you've never used Hiera before, this page will introduce the basic concepts and give you a functioning Hiera configuration.
+This introduction to the basic concepts of Hiera gives you a functioning configuration to get started.
 
 ## The config file
 
@@ -71,7 +71,7 @@ More details:
 
 ### A test class
 
-Hiera is meant to be used with Puppet code, so before we go any further, let's create a Puppet class for testing. This class doesn't do anything interesting; it just writes the data it receives to a temporary file.
+Hiera is meant to be used with Puppet code, so before we go any further, create a Puppet class for testing. This class doesn't do anything interesting; it just writes the data it receives to a temporary file.
 
 Create this class in your `profile` module. If you don't already use [the roles and profiles method][r_n_p], create a module named `profile` at this time.
 

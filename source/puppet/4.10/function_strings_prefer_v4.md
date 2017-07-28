@@ -1,25 +1,29 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:46 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
 Functions are plugins you can call during catalog compilation. A call to any function is an expression that resolves to a value. For more information on how to call functions, see [the language reference page about function calls.](./lang_functions.html) 
 
-Many of these function descriptions include auto-detected _signatures,_ which are short reminders of the function's allowed arguments. Since these signatures are not exactly the same as the syntax you would use to call the function, they take a little extra practice to read, but they closely resemble a parameter list from a Puppet [class](./lang_classes.html), [defined resource type](./lang_defined_types.html), [function](./lang_write_functions_in_puppet.html), or [lambda](./lang_lambdas.html). The syntax of a signature is:
+Many of these function descriptions include auto-detected _signatures,_ which are short reminders of the function's allowed arguments. These signatures aren't identical to the syntax you use to call the function; instead, they resemble a parameter list from a Puppet [class](./lang_classes.html), [defined resource type](./lang_defined_types.html), [function](./lang_write_functions_in_puppet.html), or [lambda](./lang_lambdas.html). The syntax of a signature is:
 
 ```
 <FUNCTION NAME>(<DATA TYPE> <ARGUMENT NAME>, ...)
 ```
 
-The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `String` or `Optional[Array[String]]`. The `<ARGUMENT NAME>` is a descriptive name chosen by the function's author to indicate what the argument is used for. Any arguments with an `Optional` data type can be omitted from the function call.
+The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `String` or `Optional[Array[String]]`. The `<ARGUMENT NAME>` is a descriptive name chosen by the function's author to indicate what the argument is used for.
+
+* Any arguments with an `Optional` data type can be omitted from the function call.
+* Arguments that start with an asterisk (like `*$values`) can be repeated any number of times.
+* Arguments that start with an ampersand (like `&$block`) aren't normal arguments; they represent a code block, provided with [Puppet's lambda syntax.](./lang_lambdas.html)
 
 
 ## `alert`
@@ -438,7 +442,9 @@ Log a message on the server at level err.
 * `eyaml_lookup_key(String[1] $key, Hash[String[1],Any] $options, Puppet::LookupContext $context)`
     * Return type(s): `Any`. 
 
-
+The `eyaml_lookup_key` is a hiera 5 `lookup_key` data provider function.
+See [the configuration guide documentation](https://docs.puppet.com/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml) for
+how to use this function.
 
 ## `fail`
 
@@ -587,6 +593,11 @@ the generator.
 Performs a standard priority lookup of the hierarchy and returns the most specific value
 for a given key. The returned value can be any type of data.
 
+This function is deprecated in favor of the `lookup` function. While this function
+continues to work, it does **not** support:
+* `lookup_options` stored in the data
+* lookup across global, environment, and module layers
+
 The function takes up to three arguments, in this order:
 
 1. A string key that Hiera searches for in the hierarchy. **Required**.
@@ -652,8 +663,10 @@ The returned value's data type depends on the types of the results. In the examp
 above, Hiera matches the 'users' key and returns it as a hash.
 
 See
-[the documentation](https://docs.puppetlabs.com/hiera/latest/puppet.html#hiera-lookup-functions)
-for more information about Hiera lookup functions.
+[the 'Using the lookup function' documentation](https://docs.puppet.com/puppet/latest/hiera_use_function.html) for how to perform lookup of data.
+Also see
+[the 'Using the deprecated hiera functions' documentation](https://docs.puppet.com/puppet/latest/hiera_use_hiera_functions.html)
+for more information about the Hiera 3 functions.
 
 ## `hiera_array`
 
@@ -663,6 +676,11 @@ Finds all matches of a key throughout the hierarchy and returns them as a single
 array of unique values. If any of the matched values are arrays, they're flattened and
 included in the results. This is called an
 [array merge lookup](https://docs.puppetlabs.com/hiera/latest/lookup_types.html#array-merge).
+
+This function is deprecated in favor of the `lookup` function. While this function
+continues to work, it does **not** support:
+* `lookup_options` stored in the data
+* lookup across global, environment, and module layers
 
 The `hiera_array` function takes up to three arguments, in this order:
 
@@ -715,14 +733,22 @@ $allusers = hiera_array('users') | $key | { "Key \'${key}\' not found" }
 value is a hash, Puppet raises a type mismatch error.
 
 See
-[the documentation](https://docs.puppetlabs.com/hiera/latest/puppet.html#hiera-lookup-functions)
-for more information about Hiera lookup functions.
+[the 'Using the lookup function' documentation](https://docs.puppet.com/puppet/latest/hiera_use_function.html) for how to perform lookup of data.
+Also see
+[the 'Using the deprecated hiera functions' documentation](https://docs.puppet.com/puppet/latest/hiera_use_hiera_functions.html)
+for more information about the Hiera 3 functions.
 
 ## `hiera_hash`
 
 * `hiera_hash()`
 
 Finds all matches of a key throughout the hierarchy and returns them in a merged hash.
+
+This function is deprecated in favor of the `lookup` function. While this function
+continues to work, it does **not** support:
+* `lookup_options` stored in the data
+* lookup across global, environment, and module layers
+
 If any of the matched hashes share keys, the final hash uses the value from the
 highest priority match. This is called a
 [hash merge lookup](https://docs.puppetlabs.com/hiera/latest/lookup_types.html#hash-merge).
@@ -788,8 +814,10 @@ $allusers = hiera_hash('users') | $key | { "Key \'${key}\' not found" }
 found in the data sources are strings or arrays, Puppet raises a type mismatch error.
 
 See
-[the documentation](https://docs.puppetlabs.com/hiera/latest/puppet.html#hiera-lookup-functions)
-for more information about Hiera lookup functions.
+[the 'Using the lookup function' documentation](https://docs.puppet.com/puppet/latest/hiera_use_function.html) for how to perform lookup of data.
+Also see
+[the 'Using the deprecated hiera functions' documentation](https://docs.puppet.com/puppet/latest/hiera_use_hiera_functions.html)
+for more information about the Hiera 3 functions.
 
 ## `hiera_include`
 
@@ -798,6 +826,16 @@ for more information about Hiera lookup functions.
 Assigns classes to a node using an
 [array merge lookup](https://docs.puppetlabs.com/hiera/latest/lookup_types.html#array-merge)
 that retrieves the value for a user-specified key from Hiera's data.
+
+This function is deprecated in favor of the `lookup` function in combination with `include`.
+While this function continues to work, it does **not** support:
+* `lookup_options` stored in the data
+* lookup across global, environment, and module layers
+
+~~~puppet
+# In site.pp, outside of any node definitions and below any top-scope variables:
+lookup('classes', Array[String], 'unique').include
+~~~
 
 The `hiera_include` function requires:
 
@@ -861,16 +899,22 @@ hiera_include('classes') | $key | {"Key \'${key}\' not found" }
 # "Key 'classes' not found".
 ~~~
 
-See [the documentation](http://links.puppetlabs.com/hierainclude) for more information
-and a more detailed example of how `hiera_include` uses array merge lookups to classify
-nodes.
+See
+[the 'Using the lookup function' documentation](https://docs.puppet.com/puppet/latest/hiera_use_function.html) for how to perform lookup of data.
+Also see
+[the 'Using the deprecated hiera functions' documentation](https://docs.puppet.com/puppet/latest/hiera_use_hiera_functions.html)
+for more information about the Hiera 3 functions.
 
 ## `hocon_data`
 
 * `hocon_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
     * Return type(s): `Any`. 
 
+The `hocon_data` is a hiera 5 `data_hash` data provider function.
+See [the configuration guide documentation](https://docs.puppet.com/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
+how to use this function.
 
+Note that this function is not supported without a hocon library being present.
 
 ## `import`
 
@@ -960,7 +1004,9 @@ output is all concatenated and returned as the output of the function.
 * `json_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
     * Return type(s): `Any`. 
 
-
+The `json_data` is a hiera 5 `data_hash` data provider function.
+See [the configuration guide documentation](https://docs.puppet.com/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
+how to use this function.
 
 ## `lest`
 
@@ -1639,4 +1685,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:46 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500
