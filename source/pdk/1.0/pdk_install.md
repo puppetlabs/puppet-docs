@@ -53,7 +53,7 @@ If you used an early release version of PDK, we recommend you uninstall it befor
 {:.task}
 ## Enable the PDK repository on Linux
 
-Before you can download and install the PDK, enable the package repository to your respective Linux platform. 
+Before you can download and install the PDK, you must enable the package repository to your respective Linux platform. 
 
 {:.task}
 ### Enable PDK repo on Yum-based systems
