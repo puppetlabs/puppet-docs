@@ -22,7 +22,7 @@ To get started, you'll create and test a new module with PDK.
 
 These steps provide a basic workflow for development and testing with PDK. Then, as you add new code to your module, continue validating, testing, and iterating on your code as needed.
 
-Before you begin, you should already have installed the pdk package.
+Before you begin, install the pdk package.
 
 Related topics:
 
@@ -35,7 +35,9 @@ PDK generates the basic components of a new module and sets up the basic infrast
 
 When you create a new module with PDK, the `pdk new module` command asks you a series of questions, sets metadata based on your answers, and creates a `metadata.json` with the metadata for your new module. The new module that PDK creates includes all the infrastructure to use the other capabilities of `pdk`.
 
-Each question has a default response that PDK uses if you hit **Enter** to skip the question. To generate a module with only the default values, you can skip the interview step by running `pdk new module hello_module --skip-interview`.
+Each question has a default response that PDK uses if you hit **Enter** to skip the question. To generate a module with only the default values, you can skip the interview step by running `pdk new module module_name --skip-interview`.
+
+[TODO: what if they don't have a Forge username? Should a Forge account be a prerequisite?]
 
 Question   |Description   | Default value
 ----------------|-------------------------
@@ -44,17 +46,17 @@ Puppet uses Semantic Versioning (semver.org) to version modules. What version is
 Who wrote this module? | By default, this is the username with which you are logged into your machine. | username
 What license does this module code fall under? | The license under which your module is made available. This should be an identifier from https://spdk.org/licenses/. Common values are "Apache-2.0", "MIT", or "proprietary". | Apache-2.0
 How would you describe this module in a single sentence? | A short summary to help other Puppet users understand what your module does. | (none)
-Where is this module's source code repository? | The URL to your source code repository, usually on GitHub. | (none)
+Where is this module's source code repository? | The URL to your source code repository, most commonly on GitHub. This lets other users know where to go to contribute to your module. | (none)
 Where can others go to learn more about this module? | If you have a web site that offers full information about your module, provide the URL here. | (none)
 Where can others go to file issues about this module? | If you have a public bug tracker for your module, provide the URL here. | (none)
 
-PDK then displays the metadata information that it will use to generate the new module. For example, for a new module called hello_module, the `metadata.json` might look like this:
+PDK then displays the metadata information that it will use to generate the new module. A typical `metadata.json` might look like this:
 
 ``` json
 {
-  "name": "testuser-hello_module",
+  "name": "username-module_name",
   "version": "0.1.0",
-  "author": "testuser",
+  "author": "username",
   "summary": "",
   "license": "Apache-2.0",
   "source": "",
@@ -73,6 +75,8 @@ PDK then displays the metadata information that it will use to generate the new 
 If the information is correct, confirm the module generation with `Y`, and then PDK generates the module. If the information is incorrect, cancel with `n` and start over.
 
 After you generate a new module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module was correctly created.
+
+PDK does not generate any classes at module creation. To add classes to your module, use the `pdk new class` command.
 
 {:.concept}
 ### What is in the module PDK creates? <!--TODO Jean write a better title-->
@@ -108,12 +112,12 @@ To generate a new module with PDK's default template, use the `pdk new module` c
 1. From the command line, run the `pdk new module` command, specifying the name of the new module.
 
    ``` bash
-   pdk new module hello_module
+   pdk new module module_name
    ```
    
    Optionally, to skip the interview questions and generate the module with default values, use the ``skip-interview` flag when you generate the module:
 
-   `pdk new module foo --skip-interview`
+   `pdk new module module_name --skip-interview`
 
 1. Respond to the PDK dialog questions in the terminal. To accept the default value for any question, hit **Enter**.
 
@@ -129,18 +133,23 @@ Related topics:
 
 Generate classes for your module on the command line with PDK.
 
-Use the `pdk new class` to create new classes. To define parameters in the class you are creating, specify them on the command line at the same time you generate your class with the `pdk new class` command. Specify the values that parameter accepts, and optionally, specify parameter's data type. You can provide any number of parameters on the command line.
+To create a new class, run the `pdk new class` command, specifying the name of your new class. To generate an `init.pp` class, the main class of a module, generate a class with the same name as the module: `pdk new class module_name`.
+
+You can specify parameters for your new class on the command line at the same time you generate your class. Specify the values that parameter accepts, and optionally, specify parameter's data type. You can provide any number of parameters on the command line.
 
 When you add parameters with the `pdk new class` command, PDK creates the new class manifest and a test template file. You can then write tests in this template to validate your class's behavior. If you add parameters *after* generating your class, PDK does not generate these test template files.
 
-For example, to create a new class named `hello_class` and define an `ensure` parameter for the class, run:
+For example, to create a new class and define an `ensure` parameter for the class, run:
 
 ``` bash
-pdk new class hello_class "ensure:Enum['absent','present']"
+pdk new class class_name "ensure:Enum['absent','present']"
 ```
 
-This command creates a file in `hello_module/manifests` named `hello_class.pp`, with the ensure parameter defined. It also creates a test file in `hello_module/spec/class` named `hello_class_spec.rb`. This test file includes a basic template for writing your own unit tests.
+This command creates a file in `module_name/manifests` named `class_name.pp`, with the ensure parameter defined. It also creates a test file in `module_name/spec/class` named `class_name_spec.rb`. This test file includes a basic template for writing your own unit tests.
 
+Related topics:
+
+* [Data types](TODO: LINK)
 
 {:.task}
 ## Generate a new class
@@ -150,7 +159,7 @@ To generate a new class in your module, use the `pdk new class` command.
 1. From the command line, in your module's directory, run:
 
    ``` bash
-   pdk new class hello_class "ensure:Enum['absent','present']"
+   pdk new class class_name "ensure:Enum['absent','present']"
    ```
 
 {:.concept}
@@ -187,7 +196,7 @@ Related links:
 
 To validate that your module is well-formed with correct syntax, run the `pdk validate` command.
 
-1. Within your new module's directory, from the command line, run:
+1. In your new module's directory, from the command line, run:
 
    ``` bash
    pdk validate
@@ -210,7 +219,7 @@ To unit test your module, use the `pdk test unit` command. This command runs all
 
 Before you begin, you need to have written unit tests for your module. The exception to this is if you are testing an empty PDK-generated module. If you generated a module with PDK, and you have *not* added any new classes or code to it, PDK can test to make sure that the module was generated correctly.
 
-1. Within your new module's directory, from the command line, run:
+1. In your new module's directory, from the command line, run:
 
 ``` bash
 pdk test unit
