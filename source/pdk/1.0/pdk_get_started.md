@@ -37,10 +37,6 @@ When you create a new module with PDK, the `pdk new module` command asks you a s
 
 Each question has a default response that PDK uses if you hit **Enter** to skip the question. To generate a module with only the default values, you can skip the interview step by running `pdk new module hello_module --skip-interview`.
 
-
-content to support/expand on questionnaire responses
-
-
 Question   |Description   | Default value
 ----------------|-------------------------
 What is your Puppet Forge username? | This will be used when uploading your module to the Forge. You can opt out of this at any time. The Forge username to associate the module with. By default, this is the username with which you are logged into your machine. | username
@@ -76,24 +72,33 @@ PDK then displays the metadata information that it will use to generate the new 
 
 If the information is correct, confirm the module generation with `Y`, and then PDK generates the module. If the information is incorrect, cancel with `n` and start over.
 
-PDK creates a module with directories like this:
-
-``` bash
-hello_module/
-Gemfile
-appveyor.yml
-metadata.json
-
-hello_module/manifests:
-hello_module/spec:
-default_facts.yml
-spec_helper.rb
-
-hello_module/templates:
-
-```
-
 After you generate a new module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module was correctly created.
+
+{:.concept}
+### What is in the module PDK creates? <!--TODO Jean write a better title-->
+
+PDK generates a basic module, which is a directory with a specific structure. This module contains directories To learn the basics of what a Puppet module includes, see the related topic about module fundamentals.
+
+PDK creates the following files and directories for your module:
+
+
+Files and directories   | Description
+----------------|-------------------------
+Module directory | Directory with the same name as the module. Contains all of the module's files and directories.
+Gemfile | File describing Ruby gem dependencies.
+Rakefile | File listing tasks and dependencies.
+`appveyor.yml` | File containing configuration for Appveyor CI integration.
+`metadata.json` | File containing metadata for the module.
+`/manifests` | Directory containing module manifests, each of which defines one class or defined type. PDK creates manifests only when you generate them with the `pdk new class` command.
+`/spec` | Directory containing files and directories for spec testing.
+`/spec/spec_helper.rb` | File containing containing any ERB or EPP templates.
+`/spec/default_facts.yaml` | File containing default facts.
+`/spec/classes` | Directory containing testing templates for any classes you generate with the `pdk new class` command.
+`/templates` | Directory containing any ERB or EPP templates.
+
+Related topics:
+
+*[Module fundamentals](https://docs.puppet.com/puppet/5.0/modules_fundamentals.html)
 
 {:.task}
 ### Generate a new module with pdk
