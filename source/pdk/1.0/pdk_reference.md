@@ -84,24 +84,11 @@ Usage:
 pdk test unit [--list] [--tests=test_list] [--format=format[:target]] [runner_options]
 ```
 
-### `--list`
+Argument   | Description   | Values      | Default
+----------------|:---------------:|:------------------:|-------------------------
+`--list` | Displays a list of unit tests and their descriptions. Using this option lists the tests without running them. | None.    | No default.
+`--tests=test_list` | A comma-separated list of tests to run. Use this during development to pinpoint a single failing test. | See the `--list` output for allowed values.    | No default.
+`--format=format[:target]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format with the syntax:`--format=junit:report.xml`. Multiple `--format` options can be specified as long as they all have distinct output targets. | `junit` (JUnit XML), `text`(plain text).     | `text`
+`runner_options` | Specifies options to pass through to the actual test-runner. In the default template (and most commonly across modules), this is [rspec](https://relishapp.com/rspec/rspec-core/docs/command-line). | [TODO: options?    | [TODO: defaults?
 
-Displays a list of unit tests and their descriptions. Using this option lists the tests without running them.
-
-### `--tests=test_list`
-
-A comma-separated list of tests to run. Use this during development to pinpoint a single failing test. See the `--list` output for allowed values.
-
-### `--format=format[:target]`
-
-Specifies the format of the output. Valid values: `junit`, `text`. Default: `text`.
-
-Optionally, you can specify a target file for the given output format with the syntax: `--format=junit:report.xml`
-
-Multiple `--format` options can be specified as long as they all have distinct output targets.
-
-### `runner_options`
-
-<!-- this is a cop-out; alternatives are surfacing the real runner to advanced users, or completely wrapping the runner's interface -->
-
-Specifies options to pass through to the actual test-runner. In the default template (and most commonly across modules), this is [rspec](https://relishapp.com/rspec/rspec-core/docs/command-line).
+[TODO: Is `runner_options` going into 1.0, or is it coming out?] <!-- this is a cop-out; alternatives are surfacing the real runner to advanced users, or completely wrapping the runner's interface -->
