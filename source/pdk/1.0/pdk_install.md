@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Installing the Puppet Development Kit"
-canonical: "/pdk/pdk_install.html"
+canonical: "/pdk/1.0/pdk_install.html"
 description: "Installing the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 

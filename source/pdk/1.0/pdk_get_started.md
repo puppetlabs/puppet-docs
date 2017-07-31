@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Getting started with the Puppet Development Kit"
-canonical: "/pdk/pdk_get_started.html"
+canonical: "/pdk/1.0/pdk_get_started.html"
 description: "Getting started with the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
@@ -10,14 +10,14 @@ description: "Getting started with the Puppet Development Kit, the shortest path
 
 **Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
 
-Get started developing and testing Puppet modules with the Puppet Development Kit.
+Get started developing and testing Puppet modules with the Puppet Development Kit (PDK).
 
 PDK includes testing tools, a complete module skeleton, and command line tools to help you create, validate, and run tests on Puppet modules.
 
 To get started, you'll create and test a new module with PDK. 
 
 1. Generate a new module with PDK, using the `pdk new module` command.
-1. Validate and unit test your new module, to be sure that your freshly generated module was created correctly.
+1. Validate and unit test your new module, to verify that your new module was created correctly.
 1. Generate a new class for your module, using the `pdk new class` command.
 
 These steps provide a basic workflow for development and testing with PDK. Then, as you add new code to your module, continue validating, testing, and iterating on your code as needed.
@@ -29,7 +29,7 @@ Related topics:
 * [Installing the Puppet Development Kit][install]
 
 {:.concept}
-## Generating a new module with pdk
+## Generating a new module with PDK
 
 PDK generates the basic components of a new module and sets up the basic infrastructure you need to test your module.
 
@@ -40,7 +40,7 @@ Each question has a default response that PDK uses if you hit **Enter** to skip 
 [TODO: what if they don't have a Forge username? Should a Forge account be a prerequisite?]
 
 Question   |Description   | Default value
-----------------|-------------------------
+----------------|:------------------:|-------------------------
 What is your Puppet Forge username? | This will be used when uploading your module to the Forge. You can opt out of this at any time. The Forge username to associate the module with. By default, this is the username with which you are logged into your machine. | username
 Puppet uses Semantic Versioning (semver.org) to version modules. What version is this module? | The current version of your module. This should follow semantic versioning. | 0.1.0
 Who wrote this module? | By default, this is the username with which you are logged into your machine. | username
@@ -135,9 +135,17 @@ Generate classes for your module on the command line with PDK.
 
 To create a new class, run the `pdk new class` command, specifying the name of your new class. To generate an `init.pp` class, the main class of a module, generate a class with the same name as the module: `pdk new class module_name`.
 
-You can specify parameters for your new class on the command line at the same time you generate your class. Specify the values that parameter accepts, and optionally, specify parameter's data type. You can provide any number of parameters on the command line.
+If the class name is not inside the module namespace, then the module name is automatically prepended to the class name. For example, if the module name is `apt` and the class name is `source`, the class is named `apt::source`.
 
-When you add parameters with the `pdk new class` command, PDK creates the new class manifest and a test template file. You can then write tests in this template to validate your class's behavior. If you add parameters *after* generating your class, PDK does not generate these test template files.
+PDK creates the new class manifest and a test template file. You can then write tests in this template to validate your class's behavior.
+
+{:.concept}
+### Specifying class parameters
+
+If your new class should take parameters, specify them on the command line when you generate your class.
+
+Specify the values that parameter accepts, and optionally, specify the data type of the parameter with with the parameter name. You can provide any number of parameters on the command line.
+
 
 For example, to create a new class and define an `ensure` parameter for the class, run:
 
@@ -146,6 +154,8 @@ pdk new class class_name "ensure:Enum['absent','present']"
 ```
 
 This command creates a file in `module_name/manifests` named `class_name.pp`, with the ensure parameter defined. It also creates a test file in `module_name/spec/class` named `class_name_spec.rb`. This test file includes a basic template for writing your own unit tests.
+
+
 
 Related topics:
 
@@ -165,6 +175,8 @@ To generate a new class in your module, use the `pdk new class` command.
 {:.concept}
 ## Testing your module with PDK
 
+[KARI: Testing and validating the module are two separate tasks; should I treat them as two separate concepts as well? I thought it made sense to lump them together as two kinds of "testing", but I'm reconsidering that.]
+
 PDK provides tools to help you run unit tests on your module and validate your new module's metadata, syntax, and style.
 
 By default, the PDK module template includes tools that can:
@@ -177,7 +189,7 @@ By default, the PDK module template includes tools that can:
 
 The validations included in PDK run quickly, but they provide only a basic check of the well-formedness of the module and the syntax of its files. You do not need to write any tests for this validation.
 
-PDK can also run your unit tests on your module's Puppet code to validate that the resources declared will be included in the catalog. PDK cannot validate changes to the managed system or services.
+PDK can also run your unit tests on your module's Puppet code to verify that the resources declared will be included in the catalog. PDK cannot test changes to the managed system or services.
 
 PDK creates a unit test file when you generate a class with `pdk new class`. This test file, located in your module's `/spec/class` folder, includes a basic template for writing your unit tests. To learn more about how to write unit tests, see [rspec-puppet documentation](http://rspec-puppet.com/tutorial/).
 
@@ -192,7 +204,7 @@ Related links:
 * [Writing rspec-puppet tests](http://rspec-puppet.com/tutorial/)
 
 {:.task}
-## Validate your module with PDK 
+### Validate your module with PDK 
 
 To validate that your module is well-formed with correct syntax, run the `pdk validate` command.
 

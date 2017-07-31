@@ -1,9 +1,11 @@
 ---
 layout: default
 title: "Puppet Development Kit command reference"
-canonical: "/pdk/pdk_reference.html"
+canonical: "/pdk/1.0/pdk_reference.html"
 description: "Commands for the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
+
+**Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
 
 ## `pdk new module` command
 
@@ -17,33 +19,19 @@ pdk new module [--template-url=git_url] [--license=spdx_identifier] [--vcs=vcs_p
 
 The `pdk new module` command accepts the following arguments and options. Arguments are optional unless otherwise specified.
 
-### `--template-url=git_url`
-
-Overrides the template to use for this module. If possible, please contribute your improvements back to the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template).
-
-### `--license=spdx_identifier`
-
-Specifies the license this module is written under. See https://spdx.org/licenses/ for a list of open source licenses, or use `proprietary`. Defaults to `Apache-2.0`.
-
-### `--vcs=vcs_provider`
-
-Specifies the version control driver. Valid values: `git`, `none`. Default: `git`.
-
-### `--skip-interview`
-
-Suppress interactive queries for initial values. All questions will use the default values.
-
-### `module_name`
-
-**Required**. Specifies the name of the module being created, including the namespace. e.g.: `username-my_module`
-
-### `target_dir`
-
-Specifies the directory that the new module will be created in. Defaults to creating a new directory with the given `module_name` inside the current directory.
+Argument   | Description   | Values      | Default
+----------------|:---------------:|:------------------:|-------------------------
+`--template-url=git_url` | Overrides the template to use for this module. | A valid Git URL.    | No default.
+`--license=spdx_identifier` | Specifies the license this module is written under. | See https://spdx.org/licenses/ for a list of open source licenses, or use `proprietary`.    | Apache 2.0
+`--vcs=vcs_provider` | Specifies the version control driver. | `git`, `none`    | `git`
+`--skip-interview` | Suppress interactive queries for initial values. Metadata will be generated with default values for all questions.| None    | No default.
+`module_name` | **Required**. Specifies the name of the module being created.
+ | A module name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
+`target_dir` | Specifies the directory that the new module will be created in. | <# cell data #>    | Creates a directory with the given `module_name` inside the current directory.
 
 ## `pdk new class` command
 
-Generates a new class and skeleton test for it in the current module.
+Generates a new class and test templates for it in the current module.
 
 Usage:
 
@@ -51,58 +39,22 @@ Usage:
 pdk new class [--template-url=git_url] <class_name> [parameter_name[:parameter_type]] [parameter_name[:parameter_type]] ...
 ```
 
-e.g.
+For example:
 
 ```
 cd my_module
 pdk new class my_class "ensure:Enum['absent', 'present']" version:String
 ```
 
-### `--template-url`
-
-Overrides the template to use when generating this class. If this is not
-specified, the template used to generate the module will be used instead. If
+Argument   | Description   | Values      | Default
+----------------|:---------------:|:------------------:|-------------------------
+`--template-url` | Overrides the template to use when generating this class. | A valid URL to a class template. [TODO Is this correct?]    | Uses the template used to generate the module. If
 that template is not available, the default template at
 [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template)
-will be used.
-
-### `class_name`
-
-The name of the class to generate. If the class name is not inside the module
-namespace (e.g. module name is `apt` and the class name is `source`, then the
-module name will automatically be prepended to the class name (e.g.
-`apt::source`).
-
-### `parameter_name[:parameter_type]`
-
-If the class should take parameters, they can be specified on the command line
-to be added to the generated class. Optionally, the data type of the parameter
-can be specified along with the parameter name, separated by a colon. Any
-number of parameters can be provided on the command line.
-
-## `pdk add provider` command
-
-Adds a new resource provider to an existing module.
-
-Usage:
-
-```
-pdk add provider [--template-url=git_url] provider_name [data_type:attribute_name]*
-```
-
-The `pdk add provider` command accepts the following arguments. Arguments are optional unless specified.
-
-### `--template-url=git_url`
-
-Overrides the template to use for this module. If possible please contribute your improvements back to the default template at [puppetlabs/pdk](https://github.com/puppetlabs/pdk).
-
-### `provider_name`
-
-**Required**. Specifies the name of the resource provider being created.
-
-### `data_type:attribute_name`
-
-Specifies a list of attributes with their expected data types, such as `'Enum[absent, present]:ensure'`. If not specified, the data type will have no attributes.
+is used.
+`class_name` | [TODO: is this required?] The name of the class to generate. 
+ | A class name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
+`parameter_name[:parameter_type]` | Parameters for the generated class. Specify any number of parameters on the command line. | A valid parameter name, optionally with the parameter's data type.    | No default.
 
 ## `pdk validate` command
 
@@ -118,25 +70,22 @@ pdk validate --list
 pdk validate [--format=format[:target]] [validations] [targets*]
 ```
 
-### `--list`
+Argument   | Description   | Values      | Default
+----------------|:---------------:|:------------------:|-------------------------
+`--list` | Displays a list of available validations and their descriptions. Using this option lists the tests without running them. Optionally, you can specify a target file for the given output format with the syntax: `--format=junit:report.xml` Multiple `--format` options can be specified as long as they all have distinct output targets. | None.    | No default.
+`--format=format[:target]` | Specifies the format of the output. | `junit`, `text`    | `text`
+`validations` | Specifies a comma separated list of validations to run (or `all`) | See the `--list` output for a list of available validations.    | `all`
+`targets` | Specifies a list of directories or individual files to validate. Validations which are not applicable to individual files will be skipped for those files. | A list [TODO: comma separated? array?]    | Validates all available directories and files.
 
-Displays a list of available validations and their descriptions. Using this option lists the tests without running them.
+{:.concept}
+### Specify validation output target
 
-### `--format=format[:target]`
+To send module validation output to a file, use the `pdk validate` command with the option `--format=format[:target]`.
 
-Specifies the format of the output. Valid values: `junit`, `text`. Default: `text`.
-
-Optionally, you can specify a target file for the given output format with the syntax: `--format=junit:report.xml`
+This option specifies the output format and an output target file. For example, to create a report file `report.xml` in the JUnit format`--format=junit:report.xml`
 
 Multiple `--format` options can be specified as long as they all have distinct output targets.
 
-### `validations`
-
-Specifies a comma separated list of validations to run (or `all`). See the `--list` output for a list of available validations. Defaults to `all` if not supplied.
-
-### `targets`
-
-Specifies a list of directories or individual files to validate. Validations which are not applicable to individual files will be skipped for those files. Defaults to validating everything.
 
 ### Additional Examples
 
