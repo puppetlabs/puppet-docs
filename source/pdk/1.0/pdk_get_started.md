@@ -7,6 +7,7 @@ description: "Getting started with the Puppet Development Kit, the shortest path
 
 [install]: ./pdk_install.html
 
+[KARI: I'm starting to think I should break out the concepts and tasks below to their own pages, and make this doc an abbreviated quick start guide (kind of like the existing PE QSGs). I'd appreciate your thoughts before I go reworking the IA though.]
 
 **Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
 
@@ -21,6 +22,8 @@ To get started, you'll create and test a new module with PDK.
 1. Generate a new class for your module, using the `pdk new class` command.
 
 These steps provide a basic workflow for development and testing with PDK. Then, as you add new code to your module, continue validating, testing, and iterating on your code as needed.
+
+<!--TK: overview workflow graphic-->
 
 Before you begin, install the pdk package.
 
@@ -41,9 +44,9 @@ Each question has a default response that PDK uses if you hit **Enter** to skip 
 
 Question   |Description   | Default value
 ----------------|:------------------:|-------------------------
-What is your Puppet Forge username? | This will be used when uploading your module to the Forge. You can opt out of this at any time. The Forge username to associate the module with. By default, this is the username with which you are logged into your machine. | username
+What is your Puppet Forge username? | The username with which you upload your module to the Forge. | The username you use to log into your machine.
 Puppet uses Semantic Versioning (semver.org) to version modules. What version is this module? | The current version of your module. This should follow semantic versioning. | 0.1.0
-Who wrote this module? | By default, this is the username with which you are logged into your machine. | username
+Who wrote this module? | The module author's name. |  The username you use to log into your machine.
 What license does this module code fall under? | The license under which your module is made available. This should be an identifier from https://spdk.org/licenses/. Common values are "Apache-2.0", "MIT", or "proprietary". | Apache-2.0
 How would you describe this module in a single sentence? | A short summary to help other Puppet users understand what your module does. | (none)
 Where is this module's source code repository? | The URL to your source code repository, most commonly on GitHub. This lets other users know where to go to contribute to your module. | (none)
@@ -84,7 +87,6 @@ PDK does not generate any classes at module creation. To add classes to your mod
 PDK generates a basic module, which is a directory with a specific structure. This module contains directories To learn the basics of what a Puppet module includes, see the related topic about module fundamentals.
 
 PDK creates the following files and directories for your module:
-
 
 Files and directories   | Description
 ----------------|-------------------------
@@ -175,8 +177,6 @@ To generate a new class in your module, use the `pdk new class` command.
 {:.concept}
 ## Testing your module with PDK
 
-[KARI: Testing and validating the module are two separate tasks; should I treat them as two separate concepts as well? I thought it made sense to lump them together as two kinds of "testing", but I'm reconsidering that.]
-
 PDK provides tools to help you run unit tests on your module and validate your new module's metadata, syntax, and style.
 
 By default, the PDK module template includes tools that can:
@@ -187,7 +187,26 @@ By default, the PDK module template includes tools that can:
 * Validate Ruby code style.
 * Run unit tests.
 
-The validations included in PDK run quickly, but they provide only a basic check of the well-formedness of the module and the syntax of its files. You do not need to write any tests for this validation.
+### Validating modules
+
+The validations included in PDK provide a basic check of the well-formedness of the module and syntax and style of the module's files. You do not need to write any tests for this validation.
+
+By default, the `pdk validate` command validates metadata, Ruby, and Puppet code syntax and style. To run a specific validation, add the name as an argument.
+
+For example, to validate the module's metadata, run `pdk validate metadata`.
+
+To send module validation output to a file, use the `pdk validate` command with the option `--format=format[:target]`.
+
+This option specifies the output format and an output target file. For example, to create a report file `report.xml` in the JUnit format, run `pdk validate --format=junit:report.xml`.
+
+You can specify multiple `--format` options, as long as they all have distinct output targets.
+
+To run validations on a specific directory or file, pass the name of the file or directory as an argument with `pdk validate`.
+
+For example, to run all validations on the `/lib` directory only, run `pdk validate all lib/`. [TODO: what does the `all` do? Wouldn't `pdk validate lib/` run all of the validations?]
+
+{:.concept}
+### Unit testing modules
 
 PDK can also run your unit tests on your module's Puppet code to verify that the resources declared will be included in the catalog. PDK cannot test changes to the managed system or services.
 
@@ -204,7 +223,7 @@ Related links:
 * [Writing rspec-puppet tests](http://rspec-puppet.com/tutorial/)
 
 {:.task}
-### Validate your module with PDK 
+## Validate your module with PDK 
 
 To validate that your module is well-formed with correct syntax, run the `pdk validate` command.
 
@@ -225,7 +244,7 @@ Running validations on `hello_module`:
 
 
 {:.task}
-### Unit test your module with PDK
+## Unit test your module with PDK
 
 To unit test your module, use the `pdk test unit` command. This command runs all the unit tests in your module.
 
