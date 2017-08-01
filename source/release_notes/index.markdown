@@ -11,6 +11,7 @@ description: Links to Puppet and Puppet Enterprise release notes
 ### Current Releases
 
 - [Puppet 5.0][5.0]
+- [Puppet 4.10][4.10]
 - [Puppet 4.9][4.9]
 - [Puppet 4.8][4.8]
 - [Puppet 4.7][4.7]
@@ -89,6 +90,7 @@ The [Roadmap Tracker](https://tickets.puppetlabs.com/browse/PUP#selectedTab=com.
 
 [semver]: http://semver.org
 [5.0]: /puppet/5.0/reference/release_notes.html
+[4.10]: /puppet/4.10/reference/release_notes.html
 [4.9]: /puppet/4.9/reference/release_notes.html
 [4.8]: /puppet/4.8/reference/release_notes.html
 [4.7]: /puppet/4.7/reference/release_notes.html
