@@ -12,33 +12,33 @@ title: "Hiera: Interpolación de variables y otros valores"
 <p> Esto es como <a href="/puppet/5.0/lang_data_string.html#interpolation">interpolación de expresiones de Puppet</a>, pero utiliza una sintaxis diferente — <code>%{variable}</code>, en vez de <code>${expression}</code>.
 </p>
 
-<h2 id="where-hiera-uses-interpolation">Donde Hiera utiliza la interpolación</h2>
+<h2 id="where-hiera-uses-interpolation" data-tx-text="b9c983a38d4ac4ce598a78df34ca477c_se">Donde Hiera utiliza la interpolación</h2>
 
-<p> Hiera utiliza la interpolación en dos lugares: <a href="./hiera_hierarchy.html">jerarquía</a> y datos.
+<p> Hiera utiliza la interpolación en dos lugares: <a href="./hiera_hierarchy.html">jerarquía</a>y datos.
 </p>
 
 <ul>
-<li>En una <a href="./hiera_hierarchy.html">jerarquía</a>, puede interpolar las variables en el <code>path(s)</code>, <code>glob(s)</code>, <code>uri(s)</code> y <code>opciones</code> de un nivel de jerarquía. Esto permite que cada nodo obtenga una versión personalizada de la jerarquía. Para un nivel de explicación más profunda, consulte <a href="./hiera_hierarchy.html">Como funcionan las jerarquías</a> y  <a href="./hiera_config_yaml_5.html">hiera.yaml referencia de sintaxis</a>.</li>
-  <li>En fuentes de datos, puede utilizar la interpolación para evitar repetirse. Esto usualmente toma una de dos formas:<ul>
-<li>Si algún valor siempre implica el valor de un <a href="/puppet/5.0/lang_facts_and_builtin_vars.html">fact</a> (por ejemplo, si necesita especificar un servidor de correo y tiene un servidor de correo con nombre predecible por dominio), puede hacer referencia al hecho directamente en lugar de manualmente la transcripción.</li>
-      <li>Si varias claves necesitan compartir el mismo valor, puede escribirlo para uno de ellos y reutilizarlo para el resto con la interpolación de funciones<code>lookup</code> o <code>alias</code>. Esto puede hacer que sea más fácil mantener los datos actualizados, ya que sólo es necesario cambiar un valor dado en un solo lugar.</li>
+<li data-tx-text="174b8cd3cdb480803f4e89416f13d57e_se">En una <a href="./hiera_hierarchy.html">jerarquía</a>, puede interpolar las variables en el <code>path(s)</code>, <code>glob(s)</code>, <code>uri(s)</code> y <code>opciones</code> de un nivel de jerarquía. Esto permite que cada nodo obtenga una versión personalizada de la jerarquía. Para un nivel de explicación más profunda, consulte <a href="./hiera_hierarchy.html">Como funcionan las jerarquías</a>y  <a href="./hiera_config_yaml_5.html">hiera.yaml referencia de sintaxis</a>.</li>
+  <li data-tx-text="dc9ef169daac52a0b60e87aa34e99d90_se">En fuentes de datos, puede utilizar la interpolación para evitar repetirse. Esto usualmente toma una de dos formas:<ul>
+<li data-tx-text="297fdee3fd5da886d1bcbf5c497358f0_se">Si algún valor siempre implica el valor de un <a href="/puppet/5.0/lang_facts_and_builtin_vars.html">fact</a> (por ejemplo, si necesita especificar un servidor de correo y tiene un servidor de correo con nombre predecible por dominio), puede hacer referencia al hecho directamente en lugar de manualmente la transcripción.</li>
+      <li data-tx-text="e1fdcf4548e7d2370fdd1c14a08eabba_se">Si varias claves necesitan compartir el mismo valor, puede escribirlo para uno de ellos y reutilizarlo para el resto con la interpolación de funciones <code>lookup</code> o <code>alias</code>. Esto puede hacer que sea más fácil mantener los datos actualizados, ya que sólo es necesario cambiar un valor dado en un solo lugar.</li>
     </ul>
 </li>
 </ul>
-<h2 id="interpolation-token-syntax">Sintaxis de token de interpolación</h2>
+<h2 id="interpolation-token-syntax" data-tx-text="b7d8404f887e5b797d5eafc5a934601c_se">Sintaxis de token de interpolación</h2>
 
 <p> <strong>Tokens de interpolación</strong> parecen <code>%{trusted.certname}</code> o <code>%{alias("users")}</code>. Es decir, consisten en:
 </p>
 
 <ul>
-<li>Un signo de porcentaje (<code>%</code>).</li>
-  <li>Una corchete de apertura (<code>{</code>).</li>
-  <li>Uno de:<ul>
-<li>Un nombre de variable, opcionalmente <a href="./hiera_subkey.html">key.subkey notation</a> para acceder a un miembro específico de un hash o array.</li>
-      <li>Una función de interpolación (<a href="#using-interpolation-functions">see abajo</a>) y su argumento.</li>
+<li data-tx-text="6c4fbd98ef46f6b81881a545c893040b_se">Un signo de porcentaje (<code>%</code>).</li>
+  <li data-tx-text="288495581b358430f328be6c8b0917ed_se">Una corchete de apertura (<code>{</code>).</li>
+  <li data-tx-text="a9a6bb98cd13d24c8e4bc7fd9389fde6_se">Uno de:<ul>
+<li data-tx-text="503a2ca271f2c7d3e5b63e1dd71c0e43_se">Un nombre de variable, opcionalmente <a href="./hiera_subkey.html">key.subkey notation</a> para acceder a un miembro específico de un hash o array.</li>
+      <li data-tx-text="c01e483ca01c6dedf9490c0ea1058c64_se">Una función de interpolación (<a href="#using-interpolation-functions">see abajo</a>) y su argumento.</li>
     </ul>
 </li>
-  <li>Un cierre de rizo (<code>}</code>).</li>
+  <li data-tx-text="ad9473a1797221da29da8fade29f5104_se">Un cierre de rizo (<code>}</code>).</li>
 </ul>
 <blockquote>
   <p> <strong>Nota:</strong> A diferencia de los tokens de interpolación de Puppet, no se puede interpolar una expresión arbitraria. Hiera no es un lenguaje de programación, por lo que sus características de interpolación son más limitadas.
@@ -51,7 +51,7 @@ title: "Hiera: Interpolación de variables y otros valores"
 <p> En fichero YAML, <strong>cualquier cadena que contenga un token de interpolación debe ser citada.</strong> (La sintaxis YAML le permite ser perezoso con citas para cadenas simples, pero las cadenas con interpolación no son simples. )
 </p>
 
-<h2 id="interpolating-variables">Interpolación de variables</h2>
+<h2 id="interpolating-variables" data-tx-text="f2aa198128e59a47c91e11e9fe32da30_se">Interpolación de variables</h2>
 
 <p> La cosa más común a interpolar es el valor de una <a href="/puppet/5.0//lang_variables.html"> variable Puppet</a>. Para ello, utilice el nombre de la variable, omitiendo el signo de dólar principal (<code>$</code>).
 </p>
@@ -59,18 +59,18 @@ title: "Hiera: Interpolación de variables y otros valores"
 <p> Puesto que las variables más útiles son todos los hashes, usualmente usas <a href="./hiera_subkey.html">la notación key.subkey de Hiera</a> para acceder a un miembro de una estructura de datos. Por ejemplo, para interpolar el valor de <code>$facts['networking']['domain']</code>:
 </p>
 
-<pre><code class="language-yaml">smtpserver: "mail.%{facts.networking.domain}"
+<pre data-tx-text="fa41bcd260b6dbc8e9d7afd8aad3fc56_se"><code class="language-yaml">smtpserver: "mail.%{facts.networking.domain}"
 </code></pre>
 
-<h3 id="which-variables-should-you-use">¿Qué variables debe usar?</h3>
+<h3 id="which-variables-should-you-use" data-tx-text="be0d71acac037670748681ad6a9c05ec_se">¿Qué variables debe usar?</h3>
 
 <p> La mayoría de las personas sólo deben usar las siguientes variables:
 </p>
 
 <ul>
-<li><a href="/puppet/5.0/lang_facts_and_builtin_vars.html#the-factsfactname-hash">El hash <code>facts</code> </a></li>
-  <li><a href="/puppet/5.0/lang_facts_and_builtin_vars.html#trusted-facts">El hash <code>trusted</code> </a></li>
-  <li><a href="/puppet/5.0/lang_facts_and_builtin_vars.html#serverfacts-variable">El hash <code>server_facts</code> </a></li>
+<li data-tx-text="6143e656953830f2f99c4d660892182d_se"><a href="/puppet/5.0/lang_facts_and_builtin_vars.html#the-factsfactname-hash">El hash <code>facts</code> </a></li>
+  <li data-tx-text="2696d5073307aa1018ce95bb2db93214_se"><a href="/puppet/5.0/lang_facts_and_builtin_vars.html#trusted-facts">El hash <code>trusted</code> </a></li>
+  <li data-tx-text="f309d766f330ac9ddf77cb140205f71b_se"><a href="/puppet/5.0/lang_facts_and_builtin_vars.html#serverfacts-variable">El hash <code>server_facts</code> </a></li>
 </ul>
 <p> Estos tres hashes tienen toda la información que es más útil para Hiera. También se comportan de manera muy predecible, lo que los convierte en los más fáciles de trabajar.
 </p>
@@ -80,7 +80,7 @@ title: "Hiera: Interpolación de variables y otros valores"
 </p>
 </blockquote>
 
-<h4 id="avoid-local-variables">Evite las variables locales</h4>
+<h4 id="avoid-local-variables" data-tx-text="9cefc4dd06065726005038b8410b20ae_se">Evite las variables locales</h4>
 
 <p> Técnicamente, Hiera también puede acceder a todas las variables de títeres que sean visibles <em>en el ámbito en el que se realiza la búsqueda.</em> Esto incluye las variables locales y las variables de las clases clasificadas por nombres (siempre y cuando la clase en cuestión ya haya sido evaluada en el momento en que se realiza la búsqueda).
 </p>
@@ -89,13 +89,13 @@ title: "Hiera: Interpolación de variables y otros valores"
 </p>
 
 <ul>
-<li>Es difícil predecir cómo interactúan las variables locales con Hiera, y usarlas tiende a enredar el código y los datos de una manera poco saludable y difícil de mantener.</li>
-  <li>Si utiliza variables locales en la <a href="./hiera_hierarchy.html">jerarquía</a>, puede hacer que las búsquedas de Hiera sean significativamente más lentas.</li>
+<li data-tx-text="6061e939a48c1a8032c9037a76bf5d7f_se">Es difícil predecir cómo interactúan las variables locales con Hiera, y usarlas tiende a enredar el código y los datos de una manera poco saludable y difícil de mantener.</li>
+  <li data-tx-text="4084bcbf0ebb8908d242c31f6d7a047c_se">Si utiliza variables locales en la <a href="./hiera_hierarchy.html">jerarquía</a>, puede hacer que las búsquedas de Hiera sean significativamente más lentas.</li>
 </ul>
 <p> Tendrá un tiempo mucho mejor si se limita a las tres variables protegidas enumeradas anteriormente.
 </p>
 
-<h4 id="what-about-classic-factname-facts">¿Que hay del clásico <code>::fact_name</code> facts?</h4>
+<h4 id="what-about-classic-factname-facts" data-tx-text="71302a10a645023e95c9821ebbd585cc_se">¿Que hay del clásico <code>::fact_name</code> facts?</h4>
 
 <p> Puppet pone los hechos a disposición de dos maneras: agrupados en el <code>facts</code> hash (like <code>$facts['networking']</code>), y individualmente como variables de mayor alcance (como <code>$networking</code>).
 </p>
@@ -104,13 +104,13 @@ title: "Hiera: Interpolación de variables y otros valores"
 </p>
 
 <ul>
-<li>Bien: <code>%{::networking}</code>.</li>
-  <li>Mal: <code>%{networking}</code>.</li>
+<li data-tx-text="359fa1539e81f9f19245e8e8065531ea_se">Bien: <code>%{::networking}</code>.</li>
+  <li data-tx-text="e617e54580962f83f27f86e17e482fd0_se">Mal: <code>%{networking}</code>.</li>
 </ul>
 <p> Esto se debe a que los nombres de hechos individuales no están protegidos de la manera <code>$facts</code>, y los ámbitos locales pueden establecer variables no relacionadas con los mismos nombres. En la mayoría de títeres, no tienes que preocuparte por los ámbitos desconocidos que sobrepasan tus variables, pero en Hiera lo haces. Así que es mejor que use el hash <code>facts</code>en su lugar.
 </p>
 
-<h4 id="what-about-the-old-hiera-specific-pseudo-variables">¿Qué pasa con las viejas pseudo-variables específicas de Hiera?</h4>
+<h4 id="what-about-the-old-hiera-specific-pseudo-variables" data-tx-text="bb3cf57d67098b42528beb1156173b0f_se">¿Qué pasa con las viejas pseudo-variables específicas de Hiera?</h4>
 
 <p> En su mayoría se han ido. No las use.
 </p>
@@ -121,7 +121,7 @@ title: "Hiera: Interpolación de variables y otros valores"
 <p> Estas variables fueron una solución para la falta de una capa de datos del módulo. Ya que hay una capa de módulo real ahora, ya no debería necesitarlos.
 </p>
 
-<h2 id="using-interpolation-functions">Uso de funciones de interpolación</h2>
+<h2 id="using-interpolation-functions" data-tx-text="b78ec54bc24c5e2382f280ba4b906f3c_se">Uso de funciones de interpolación</h2>
 
 <p> En las fuentes de datos de Hiera, puede utilizar varias funciones especiales para insertar valores no variables. Estos no son los mismos que las funciones de títeres; Sólo están disponibles en las fichas de interpolación de Hiera.
 </p>
@@ -135,18 +135,18 @@ title: "Hiera: Interpolación de variables y otros valores"
 </p>
 
 <ul>
-<li>El nombre de la función.</li>
-  <li>Un paréntesis de apertura.</li>
-  <li>Un argumento a la función, incluido entre comillas simples o dobles.<ul>
-<li>Tenga en cuenta qué tipo de comillas de la cadena de inclusión utiliza, y utilizar lo contrario aquí. Esto asegura que las citas internas no terminen prematuramente la cadena.</li>
+<li data-tx-text="1919afa2bd282f702c84d41ff3c93ca8_se">El nombre de la función.</li>
+  <li data-tx-text="8785622338f897be10b919ab1c6e7b3a_se">Un paréntesis de apertura.</li>
+  <li data-tx-text="82bca6a5f6849a8c8b09a0b49e7809b3_se">Un argumento a la función, incluido entre comillas simples o dobles.<ul>
+<li data-tx-text="cf3d467a46a8267905fedeb8e114e56f_se">Tenga en cuenta qué tipo de comillas de la cadena de inclusión utiliza, y utilizar lo contrario aquí. Esto asegura que las citas internas no terminen prematuramente la cadena.</li>
     </ul>
 </li>
-  <li>Un paréntesis de cierre.</li>
+  <li data-tx-text="4a6cb2d53b32366cb6c3b9d9f0dcea0e_se">Un paréntesis de cierre.</li>
 </ul>
 <p> Por ejemplo:
 </p>
 
-<pre><code class="language-yaml">wordpress::database_server: "%{lookup('instances::mysql::public_hostname')}"
+<pre data-tx-text="a916f7662781fe2819ccf889a2cc6d6a_se"><code class="language-yaml">wordpress::database_server: "%{lookup('instances::mysql::public_hostname')}"
 </code></pre>
 
 <p> Tenga en cuenta que debe NO haber <strong>espacios</strong> entre estos elementos. La sintaxis para la interpolación de Hiera no es tan flexible como el lenguaje de títeres.
@@ -156,18 +156,18 @@ title: "Hiera: Interpolación de variables y otros valores"
 </p>
 
 <ul>
-<li>
+<li data-tx-text="dd45cfa5fcdab4062e13bc9e1267f88b_se">
 <a href="#lookup--hiera"><code>lookup</code></a> — busca una clave usando Hiera e interpola el valor en una cadena.</li>
-  <li>
+  <li data-tx-text="daa2d2097c9e4b93171561afc5d6f5ab_se">
 <a href="#lookup--hiera"><code>hiera</code></a> — un sinonimo para <code>lookup</code>.</li>
-  <li>
+  <li data-tx-text="c0d7f34ed94f55449cb2b40c1db9f73b_se">
 <a href="#alias"><code>alias</code></a> — busca una clave usando Hiera, y usa el valor como un <em>reemplazo</em> para la cadena de inclusión.</li>
-  <li>
+  <li data-tx-text="c2fa71d0097ab246e50cf261d96d40bf_se">
 <a href="#literal"><code>literal</code></a> — una forma de escribir un signo de porcentaje literal (<code>%</code>) sin interpolar accidentalmente algo.</li>
-  <li>
+  <li data-tx-text="c58666245df3c818c5076ccc82c98c5a_se">
 <a href="#scope"><code>scope</code></a> — una forma alternativa de interpolar una variable. No suele ser útil.</li>
 </ul>
-<h3 id="lookup--hiera">
+<h3 id="lookup--hiera" data-tx-text="a51e94f98d897a848648be2bac694b1d_se">
 <code>lookup</code> / <code>hiera</code>
 </h3>
 
@@ -180,7 +180,7 @@ title: "Hiera: Interpolación de variables y otros valores"
 <p> Por ejemplo, digamos que su perfil de WordPress necesita un servidor de base de datos, pero ya está configurando ese nombre de host en los datos porque el perfil MySQL lo necesita. Usted podría escribir algo como:
 </p>
 
-<pre><code class="language-yaml"># in location/pdx.yaml:
+<pre data-tx-text="d16e71a54cd2d2f0e264792914806bd0_se"><code class="language-yaml"># in location/pdx.yaml:
 profile::mysql::public_hostname: db-server-01.pdx.example.com
 
 # in location/bfs.yaml:
@@ -190,7 +190,7 @@ profile::mysql::public_hostname: db-server-06.belfast.example.com
 profile::wordpress::database_server: "%{lookup('profile::mysql::public_hostname')}"
 </code></pre>
 
-<p> De esta manera, el valor de <code>profile::wordpress::database_server</code> es siempre el mismo que <code>profile::mysql::public_hostname</code>. Y aunque escribió el parámetro de WordPress en el <code>common.yaml</code>, sigue siendo específico de la ubicación, ya que el valor que hace referencia se estableció en los archivos de datos por ubicación.
+<p> De esta manera, el valor de <code>profile::wordpress::database_server</code> es siempre el mismo que<code>profile::mysql::public_hostname</code>. Y aunque escribió el parámetro de WordPress en el <code>common.yaml</code>, sigue siendo específico de la ubicación, ya que el valor que hace referencia se estableció en los archivos de datos por ubicación.
 </p>
 
 <p> El valor al que hace referencia la función <code>lookup</code> puede contener llamada a otro <code>lookup</code>. Si accidentalmente hace un bucle infinito, Hiera lo detecta y falla en lugar de colgar indefinidamente.
@@ -199,44 +199,44 @@ profile::wordpress::database_server: "%{lookup('profile::mysql::public_hostname'
 <p> Note que las funciones de interpolación <code>lookup</code> y <code>hiera</code> no son las mismas que las funciones de Puppet de los mismos nombres. Lo más notable es que sólo toman un solo argumento.
 </p>
 
-<h3 id="alias"><code>alias</code></h3>
+<h3 id="alias" data-tx-text="4ecc82b051bae623872143024f64f142_se"><code>alias</code></h3>
 
 <p> La función de interpolación <code>lookup</code> sólo es útil para cadenas. La función <code>alias</code> le permite usar reutilizar valores de hash, array o boolean. Cuando se interpola en una cadena <code>alias</code>, Hiera reemplaza esa cadena entera con el valor de alias, utilizando su tipo de datos original. Por ejemplo:
 </p>
 
-<pre><code class="language-yaml">original:
+<pre data-tx-text="2eadd264f2cfc67368e33a8384398024_se"><code class="language-yaml">original:
   - 'one'
   - 'two'
 aliased: "%{alias('original')}"
 </code></pre>
 
-<p> Un lookup de <code>original</code>y un lookup de <code>aliased</code> podría devolver el valor de <code>['one', 'two']</code>.
+<p> Un lookup de <code>original</code> y un lookup de <code>aliased</code> podría devolver el valor de <code>['one', 'two']</code>.
 </p>
 
-<p> Cuando utilice la función <code>alias</code> function, Su símbolo de interpolación debe ser <strong>solo</strong> texto en una cadena. Por ejemplo, lo siguiente sería un error:
+<p> Cuando utilice la función<code>alias</code> function, Su símbolo de interpolación debe ser <strong>solo</strong> texto en una cadena. Por ejemplo, lo siguiente sería un error:
 </p>
 
-<pre><code class="language-yaml">aliased: "%{alias('original')} - 'three'"
+<pre data-tx-text="d80d2111ad5fca6a3ac6e720e9c29fc4_se"><code class="language-yaml">aliased: "%{alias('original')} - 'three'"
 </code></pre>
 
-<h3 id="literal"><code>literal</code></h3>
+<h3 id="literal" data-tx-text="ccfa69e1d5c3c848c46f24df85e35ea7_se"><code>literal</code></h3>
 
-<p> La función de interpolación <code>literal</code> Le permite escapar de un signo de porcentaje literal(<code>%</code>) en datos Hiera, para evitar el desencadenamiento de la interpolación donde no se desea. Esto es útil cuando se trata de cosas como archivos de configuración de Apache, que pueden incluir texto como <code>%{SERVER_NAME}</code>.
+<p> La función de interpolación <code>literal</code> Le permite escapar de un signo de porcentaje literal (<code>%</code>) en datos Hiera, para evitar el desencadenamiento de la interpolación donde no se desea. Esto es útil cuando se trata de cosas como archivos de configuración de Apache, que pueden incluir texto como <code>%{SERVER_NAME}</code>.
 </p>
 
 <p> Por ejemplo:
 </p>
 
-<pre><code class="language-yaml">server_name_string: "%{literal('%')}{SERVER_NAME}"
+<pre data-tx-text="30f947885d9d4e06a92fbbe12f9203b7_se"><code class="language-yaml">server_name_string: "%{literal('%')}{SERVER_NAME}"
 </code></pre>
 
-<p> El valor de <code>server_name_string</code> debería ser <code>%{SERVER_NAME}</code>, y Hiera no intentaría interpolar una variable llamada<code>SERVER_NAME</code>.
+<p> El valor de <code>server_name_string</code> debería ser <code>%{SERVER_NAME}</code>, y Hiera no intentaría interpolar una variable llamada <code>SERVER_NAME</code>.
 </p>
 
 <p> El único argumento legal para <code>literal</code> es un símbolo <code>%</code>.
 </p>
 
-<h3 id="scope"><code>scope</code></h3>
+<h3 id="scope" data-tx-text="60f250696eb6e8a3d236752ff2186ca5_se"><code>scope</code></h3>
 
 <p> La función de interpolación variable <code>scope</code>. Funciona de forma idéntica a la interpolación variable como se ha descrito anteriormente. El argumento de la función es el nombre de una variable.
 </p>
@@ -244,7 +244,7 @@ aliased: "%{alias('original')}"
 <p> Los dos valores siguientes serían idénticos:
 </p>
 
-<pre><code class="language-yaml">smtpserver: "mail.%{facts.domain}"
+<pre data-tx-text="5423cfeadd260526366ac164f0436b88_se"><code class="language-yaml">smtpserver: "mail.%{facts.domain}"
 smtpserver: "mail.%{scope('facts.domain')}"
 </code></pre>
 </div>

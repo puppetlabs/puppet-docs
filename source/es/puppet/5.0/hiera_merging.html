@@ -283,12 +283,12 @@ lookup('classes', {merge =&gt; 'unique'})
 <p> Para obtener más detalles acerca de la sintaxis, consulte <a href="./hiera_use_function.html">Utilice la función lookup</a> y <a href="/puppet/5.0/man/lookup.html">utilice el comando <code>puppet lookup</code> </a>.
 </p>
 
-<p> Nótese que cada uno de <a href="/puppet/5.0/hiera_use_hiera_functions.html">las funciones  <code>hiera_*</code> </a> está bloqueado para un comportamiento de combinación particular. (<code>hiera</code> solo se encuentra primero, <code>hiera_array</code> sólo hace la fusión única, etc.)
+<p> Nótese que cada uno de <a href="./hiera_use_hiera_functions.html">las funciones  <code>hiera_*</code> </a> está bloqueado para un comportamiento de combinación particular. (<code>hiera</code> solo se encuentra primero, <code>hiera_array</code> sólo hace la fusión única, etc.)
 </p>
 
 <h2 id="configuring-merge-behavior-in-hiera-data">Configurar el comportamiento de combinación en los datos de Hiera</h2>
 
-<p> En cualquier fuente de datos de Hiera (incluyendo <a href="./hiera_layers.html#the-module-layer">module data</a>), puede usar la clave especial <code>lookup_options</code> para configurar el comportamiento de combinación. Hiera utiliza el comportamiento de combinación configurado de una clave en cualquier búsqueda que no la anula explícitamente. (Nota  <a href="/puppet/5.0/hiera_use_hiera_functions.html">las funciones <code>hiera_*</code> </a> Siempre reemplaza explícitamente la combinación configurada. )
+<p> En cualquier fuente de datos de Hiera (incluyendo <a href="./hiera_layers.html#the-module-layer">module data</a>), puede usar la clave especial <code>lookup_options</code> para configurar el comportamiento de combinación. Hiera utiliza el comportamiento de combinación configurado de una clave en cualquier búsqueda que no la anula explícitamente. (Nota  <a href="./hiera_use_hiera_functions.html">las funciones <code>hiera_*</code> </a> Siempre reemplaza explícitamente la combinación configurada. )
 </p>
 
 <p> Por ejemplo:
@@ -393,7 +393,7 @@ lookup_options:
 
 <ul>
 <li>Si hay una opción literal (no regexp) disponible, siempre gana.<ul>
-<li>Por ejemplo, si ha configurado las opciones de combinación para ambos<code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code> usará el primero.</li>
+<li>Por ejemplo, si ha configurado las opciones de combinación para ambos<code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code>usará el primero.</li>
     </ul>
 </li>
   <li>
