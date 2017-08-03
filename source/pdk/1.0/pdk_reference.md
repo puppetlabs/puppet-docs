@@ -14,7 +14,7 @@ Generates a new module.
 Usage:
 
 ```
-pdk new module [--template-url=git_url] [--license=spdx_identifier] [--vcs=vcs_provider] module_name [target_dir]
+pdk new module [--template-url=git_url] [--license=spdx_identifier] module_name [target_dir]
 ```
 
 The `pdk new module` command accepts the following arguments and options. Arguments are optional unless otherwise specified.
@@ -23,7 +23,6 @@ Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
 `--template-url=git_url` | Overrides the template to use for this module. | A valid Git URL.    | No default.
 `--license=spdx_identifier` | Specifies the license this module is written under. | See https://spdx.org/licenses/ for a list of open source licenses, or use `proprietary`.    | Apache 2.0
-`--vcs=vcs_provider` | Specifies the version control driver. | `git`, `none`    | `git`
 `--skip-interview` | Suppress interactive queries for initial values. Metadata will be generated with default values for all questions.| None    | No default.
 `module_name` | **Required**. Specifies the name of the module being created. | A module name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
 `target_dir` | Specifies the directory that the new module will be created in. | <# cell data #>    | Creates a directory with the given `module_name` inside the current directory.
@@ -89,6 +88,3 @@ Argument   | Description   | Values      | Default
 `--list` | Displays a list of unit tests and their descriptions. Using this option lists the tests without running them. | None.    | No default.
 `--tests=test_list` | A comma-separated list of tests to run. Use this during development to pinpoint a single failing test. | See the `--list` output for allowed values.    | No default.
 `--format=format[:target]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format with the syntax:`--format=junit:report.xml`. Multiple `--format` options can be specified as long as they all have distinct output targets. | `junit` (JUnit XML), `text`(plain text).     | `text`
-`runner_options` | Specifies options to pass through to the actual test-runner. In the default template (and most commonly across modules), this is [rspec](https://relishapp.com/rspec/rspec-core/docs/command-line). | [TODO: options?    | [TODO: defaults?
-
-[TODO: Is `runner_options` going into 1.0, or is it coming out?] <!-- this is a cop-out; alternatives are surfacing the real runner to advanced users, or completely wrapping the runner's interface -->

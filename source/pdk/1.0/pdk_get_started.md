@@ -38,13 +38,11 @@ PDK generates the basic components of a new module and sets up the basic infrast
 
 When you create a new module with PDK, the `pdk new module` command asks you a series of questions, sets metadata based on your answers, and creates a `metadata.json` with the metadata for your new module. The new module that PDK creates includes all the infrastructure to use the other capabilities of `pdk`.
 
-Each question has a default response that PDK uses if you hit **Enter** to skip the question. To generate a module with only the default values, you can skip the interview step by running `pdk new module module_name --skip-interview`.
-
-[TODO: what if they don't have a Forge username? Should a Forge account be a prerequisite?]
+Each question has a default response that PDK uses if you hit **Enter** to skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module generations. To generate a module with only the default values, you can skip the interview step by running `pdk new module module_name --skip-interview`.
 
 Question   |Description   | Default value
 ----------------|:------------------:|-------------------------
-What is your Puppet Forge username? | The username with which you upload your module to the Forge. | The username you use to log into your machine.
+What is your Puppet Forge username? | The username with which you upload your module to the Forge. If you don't have a Forge username and you create one later, you'll need to manually update the metadata.json with the correct username, if it's different from the initial entry. | The username you use to log into your machine.
 Puppet uses Semantic Versioning (semver.org) to version modules. What version is this module? | The current version of your module. This should follow semantic versioning. | 0.1.0
 Who wrote this module? | The module author's name. |  The username you use to log into your machine.
 What license does this module code fall under? | The license under which your module is made available. This should be an identifier from https://spdk.org/licenses/. Common values are "Apache-2.0", "MIT", or "proprietary". | Apache-2.0
@@ -75,7 +73,7 @@ PDK then displays the metadata information that it will use to generate the new 
 }
 ```
 
-If the information is correct, confirm the module generation with `Y`, and then PDK generates the module. If the information is incorrect, cancel with `n` and start over.
+If the information is correct, confirm the module generation, and then PDK generates the module. If the information is incorrect, cancel with `n` and start over.
 
 After you generate a new module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module was correctly created.
 
@@ -191,7 +189,7 @@ By default, the PDK module template includes tools that can:
 
 The validations included in PDK provide a basic check of the well-formedness of the module and syntax and style of the module's files. You do not need to write any tests for this validation.
 
-By default, the `pdk validate` command validates metadata, Ruby, and Puppet code syntax and style. To run a specific validation, add the name as an argument.
+By default, the `pdk validate` command validates metadata, Puppet, and Ruby code syntax and style. To run a specific validation, add the name as an argument.
 
 For example, to validate the module's metadata, run `pdk validate metadata`.
 
@@ -203,7 +201,7 @@ You can specify multiple `--format` options, as long as they all have distinct o
 
 To run validations on a specific directory or file, pass the name of the file or directory as an argument with `pdk validate`.
 
-For example, to run all validations on the `/lib` directory only, run `pdk validate all lib/`. [TODO: what does the `all` do? Wouldn't `pdk validate lib/` run all of the validations?]
+For example, to run all validations on the `/lib` directory only, run `pdk validate lib/`. 
 
 {:.concept}
 ### Unit testing modules
