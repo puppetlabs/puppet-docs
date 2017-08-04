@@ -40,68 +40,33 @@ By default, PDK installs to:
 
 
 {:.task}
-## Enable the PDK repository on Linux
+## Install PDK
 
-Before you can download and install the PDK, you must enable the package repository to your respective Linux platform. 
+### Download PDK
 
-{:.task}
-### Enable PDK repo on Yum-based systems
+Download the appropriate Puppet Development Kit package for your platform.
 
-Before you can install the PDK package, enable the PDK release repository on your Yum-based system.
-
-1. Choose the package based on your operating system and version.
-
-   Packages are located in the [`yum.puppet.com/pdk`](https://yum.puppet.com/pdk) repository and are named using the PDK package name and version, followed by the OS abbreviation and version.
-
-   For instance, the PDK repository package for Red Hat Enterprise Linux 7 (RHEL 7) is `pdk-release-el7.rpm`.
-
-2. Install with `rpm` as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags.
-
-   For example:
-
-   `sudo rpm -Uvh https://yum.puppet.com/pdk/pdk-release-el7.rpm`
-
-{:.task}
-### Enable PDK repo on Apt-based systems
-
-Before you can install the PDK package, enable the PDK release repository on your Apt-based system.
-
-1. Choose the package based on your operating system and version.
-
-   The packages are located in the [`apt.puppet.com/pdk`](https://apt.puppet.com/pdk) and are named using the PDK package name and version, followed by the OS abbreviation and version.
-
-   For instance, the PDK repository package for on Debian 7 "Wheezy" is `pdk-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
-
-2. Download the PDK package and install it as root using `dpkg` and the `install` flag (`-i`):
-
-```
-wget https://apt.puppetlabs.com/pdk-release-wheezy.deb
-sudo dpkg -i pdk-release-wheezy.deb
-```
-
-3. Run `apt-get update` after installing the release package to update the `apt` package lists.
+1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 
 {:.task}
 ### Install PDK on Linux-based systems 
 
 1. Install the `pdk` package using the command appropriate to your system:
 
-   * Apt: `sudo apt-get install pdk`
-   * Yum: `sudo yum install pdk`
+   * RPM-based (Red Hat, SLES): `sudo rpm -ivh pdk-<version>-<platform>.rpm`
+   * Debian-based (Debian, Ubuntu): `sudo dpkg -i pdk-<version>-<platform>.rpm`
 
 2. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
 ### Install PDK on OS X
 
-1. Download the PDK package from [TODO link to the puppet-pdk package for OS X on the Puppet downloads site](downloads.puppetlabs.com).
 1. Double click on the downloaded package to install.
-1. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
+2. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
 ### Install PDK on Windows
 
-1. Download the PDK package from [TODO link to the puppet-pdk MSI on the Puppet downloads site](downloads.puppetlabs.com).
 1. Double click on the downloaded package to install.
 2. Open a new terminal or Powershell window to re-source your profile and make PDK available to your PATH.
  
