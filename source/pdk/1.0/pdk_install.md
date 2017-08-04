@@ -15,21 +15,10 @@ Download and install the Puppet Development Kit to get started developing and te
 
 Install the Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
 
-The PDK package includes testing tools, a complete module skeleton, and command line tools to enable you to more easily create and test Puppet modules. PDK also includes all dependencies needed for its use.
+Installs to /opt/puppetlabs/pdk/; C:\Program Files\Puppet Labs\DevelopmentKit
 
-PDK includes the following tools:
-
-Tool   | Description
-----------------|-------------------------
-pdk | Command line tool for generating and testing modules
-rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalog of Puppet resources.
-puppet-lint | Checks your Puppet code against the recommendations in the Puppet Language style guide.
-puppet-syntax | Checks for correct syntax in Puppet manifests, templates, and Hiera YAML.
-metadata-json-lint | Validates and lints `metadata.json` files in modules against  Puppet's module metadatastyle guidelines.
-rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
-puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code.
-
-PDK 1.0 is supported on:
+{:.reference}
+### Supported operating systems
 
 | Operating system | Version(s) | Arch | PkgType |
 | ---------------- | ---------- | ---- | ------- |
@@ -93,11 +82,6 @@ sudo dpkg -i pdk-release-wheezy.deb
 3. Run `apt-get update` after installing the release package to update the `apt` package lists.
 
 {:.task}
-## Install PDK
-
-Download the appropriate Puppet Development Kit package for your platform and install it.
-
-{:.task}
 ### Install PDK on Linux-based systems 
 
 1. Install the `pdk` package using the command appropriate to your system:
@@ -114,6 +98,7 @@ Download the appropriate Puppet Development Kit package for your platform and in
 1. Double click on the downloaded package to install.
 1. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
+{:.task}
 ### Install PDK on Windows
 
 1. Download the PDK package from [TODO link to the puppet-pdk MSI on the Puppet downloads site](downloads.puppetlabs.com).

@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "Getting started with the Puppet Development Kit"
+title: "Developing a module with the Puppet Development Kit"
 canonical: "/pdk/1.0/pdk_get_started.html"
-description: "Getting started with the Puppet Development Kit, the shortest path to developing better Puppet code."
+description: "Developing a module with the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
 [install]: ./pdk_install.html
@@ -15,10 +15,10 @@ Get started developing and testing Puppet modules with the Puppet Development Ki
 
 PDK includes testing tools, a complete module skeleton, and command line tools to help you create, validate, and run tests on Puppet modules.
 
-To get started, you'll create and test a new module with PDK. 
+To get started, you'll create and test a module with PDK. 
 
-1. Generate a new module with PDK, using the `pdk new module` command.
-1. Validate and unit test your new module, to verify that your new module was created correctly.
+1. Generate a module with PDK, using the `pdk new module` command.
+1. Validate and unit test your module, to verify that your module was created correctly.
 1. Generate a new class for your module, using the `pdk new class` command.
 
 These steps provide a basic workflow for development and testing with PDK. Then, as you add new code to your module, continue validating, testing, and iterating on your code as needed.
@@ -32,13 +32,13 @@ Related topics:
 * [Installing the Puppet Development Kit][install]
 
 {:.concept}
-## Generating a new module with PDK
+## Generating a module with PDK
 
-PDK generates the basic components of a new module and sets up the basic infrastructure you need to test your module.
+PDK generates the basic components of a module and sets up the basic infrastructure you need to test your module.
 
-When you create a new module with PDK, the `pdk new module` command asks you a series of questions, sets metadata based on your answers, and creates a `metadata.json` with the metadata for your new module. The new module that PDK creates includes all the infrastructure to use the other capabilities of `pdk`.
+When you create a module, PDK asks you a series of questions, sets metadata based on your answers, and creates a `metadata.json` with the metadata for your module. The module includes all the infrastructure to use the other capabilities of `pdk`.
 
-Each question has a default response that PDK uses if you hit **Enter** to skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module generations. To generate a module with only the default values, you can skip the interview step by running `pdk new module module_name --skip-interview`.
+Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module generations. Optionally, you can skip the interview step and use the default answers for all metadata.
 
 Question   |Description   | Default value
 ----------------|:------------------:|-------------------------
@@ -51,7 +51,7 @@ Where is this module's source code repository? | The URL to your source code rep
 Where can others go to learn more about this module? | If you have a web site that offers full information about your module, provide the URL here. | (none)
 Where can others go to file issues about this module? | If you have a public bug tracker for your module, provide the URL here. | (none)
 
-PDK then displays the metadata information that it will use to generate the new module. A typical `metadata.json` might look like this:
+PDK then displays the metadata information that it will use to generate the module. A typical `metadata.json` might look like this:
 
 ``` json
 {
@@ -75,12 +75,12 @@ PDK then displays the metadata information that it will use to generate the new 
 
 If the information is correct, confirm the module generation, and then PDK generates the module. If the information is incorrect, cancel with `n` and start over.
 
-After you generate a new module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module was correctly created.
+After you generate a module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module was correctly created.
 
 PDK does not generate any classes at module creation. To add classes to your module, use the `pdk new class` command.
 
-{:.concept}
-### What is in the module PDK creates? <!--TODO Jean write a better title-->
+{:.reference}
+### Module contents
 
 PDK generates a basic module, which is a directory with a specific structure. This module contains directories To learn the basics of what a Puppet module includes, see the related topic about module fundamentals.
 
@@ -105,11 +105,11 @@ Related topics:
 *[Module fundamentals](https://docs.puppet.com/puppet/5.0/modules_fundamentals.html)
 
 {:.task}
-### Generate a new module with pdk
+### Generate a module with pdk
 
-To generate a new module with PDK's default template, use the `pdk new module` command.
+To generate a module with PDK's default template, use the `pdk new module` command.
 
-1. From the command line, run the `pdk new module` command, specifying the name of the new module.
+1. From the command line, run the `pdk new module` command, specifying the name of the module.
 
    ``` bash
    pdk new module module_name
@@ -175,7 +175,7 @@ To generate a new class in your module, use the `pdk new class` command.
 {:.concept}
 ## Testing your module with PDK
 
-PDK provides tools to help you run unit tests on your module and validate your new module's metadata, syntax, and style.
+PDK provides tools to help you run unit tests on your module and validate your module's metadata, syntax, and style.
 
 By default, the PDK module template includes tools that can:
 
@@ -225,7 +225,7 @@ Related links:
 
 To validate that your module is well-formed with correct syntax, run the `pdk validate` command.
 
-1. In your new module's directory, from the command line, run:
+1. In your module's directory, from the command line, run:
 
    ``` bash
    pdk validate
@@ -248,7 +248,7 @@ To unit test your module, use the `pdk test unit` command. This command runs all
 
 Before you begin, you need to have written unit tests for your module. The exception to this is if you are testing an empty PDK-generated module. If you generated a module with PDK, and you have *not* added any new classes or code to it, PDK can test to make sure that the module was generated correctly.
 
-1. In your new module's directory, from the command line, run:
+1. In your module's directory, from the command line, run:
 
 ``` bash
 pdk test unit
