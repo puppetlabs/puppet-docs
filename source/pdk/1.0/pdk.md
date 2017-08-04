@@ -8,17 +8,6 @@ description: "About the Puppet Development Kit, the shortest path to developing 
 The Puppet Development Kit (PDK) is a package of development and testing tools to help you create great Puppet modules.
 
 The PDK includes key Puppet code development and testing tools for Linux, Windows, and OS X workstations, so you can install one package with the tools you need to create and validate new modules. PDK includes testing tools, a complete module skeleton, and command line tools to help you create, validate, and run tests on Puppet modules. PDK also includes all dependencies needed for its use.
-
-To get started, you'll create and test a module with PDK. 
-
-1. Generate a module with PDK, using the `pdk new module` command.
-1. Validate and unit test your module, to verify that the files and directories were created correctly.
-1. Generate a new class for your module, using the `pdk new class` command.
-
-These steps provide a basic workflow for development and testing with PDK. Then, as you add new code to your module, continue validating, testing, and iterating on your code as needed.
-
-<!--TK: overview workflow graphic-->
-
 PDK includes the following tools:
 
 Tool   | Description
@@ -31,11 +20,24 @@ metadata-json-lint | Validates and lints `metadata.json` files in modules agains
 rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
 puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code.
 
+## Getting started
+
+To get started, install the PDK, and then create and test a module.
+
+<!--TK: overview workflow graphic-->
+
+1. Generate a module using the `pdk new module` command.
+1. Validate your module, to verify that it is well-formed.
+1. Unit test your module, to verify that all dependencies and directories are present.
+1. Generate a class for your module, using the `pdk new class` command.
+1. Validate and unit test your module.
+
+PDK can unit test code that it generates, but for any other code you add, you'll need to write unit tests. As you add code to your module, be sure to validate and unit test your module both before and after adding code. This ensures that you are always developing on a clean, valid codebase.
 
 PDK docs:
 
 * Installing the PDK package
-* Getting started writing modules
-* Contributing to PDK
-* Sample module skeleton
+* Generating modules and classes
+* Testing modules
+* PDK Reference
 * Troubleshooting PDK

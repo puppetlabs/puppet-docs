@@ -8,14 +8,20 @@ description: "Installing the Puppet Development Kit, the shortest path to develo
 
 **Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
 
-Download and install the Puppet Development Kit to get started developing and testing Puppet modules.
-
-{:.concept}
-## Installing the Puppet Development Kit
 
 Install the Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
 
-Installs to /opt/puppetlabs/pdk/; C:\Program Files\Puppet Labs\DevelopmentKit
+{:.section}
+### Before you begin
+
+PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet. On Linux-based systems, you must enable the repository before you can download and install the package.
+
+If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
+
+By default, PDK installs to:
+
+* Linux and OS X systems: `/opt/puppetlabs/pdk/`
+* Windows systems: `C:\Program Files\Puppet Labs\DevelopmentKit`
 
 {:.reference}
 ### Supported operating systems
@@ -32,12 +38,6 @@ Installs to /opt/puppetlabs/pdk/; C:\Program Files\Puppet Labs\DevelopmentKit
 | Windows Server (Server OS) | 2008r2, 2012, 2012r2, 2012r2 Core, and 2016 | x86_64 | MSI |
 | Mac OS X | 10.11, 10.12 | x86_64 | N/A |
 
-{:.section}
-### Before you begin
-
-PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet. On Linux-based systems, you must enable the repository before you can download and install the package.
-
-If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
 
 {:.task}
 ## Enable the PDK repository on Linux

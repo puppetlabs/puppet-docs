@@ -16,14 +16,14 @@ When you create a module, PDK asks you a series of questions that it uses to cre
 
 Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module generations. Optionally, you can skip the interview step and use the default answers for all metadata.
 
-* What is your Puppet Forge username? If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value. 
-* What version is this module? We use and recommend semantic versioning for modules.
-* Who wrote this module? The module author's name.
-* What license does this module code fall under? | The license under which your module is made available. This should be an identifier from [SPDX License List](https://spdx.org/licenses/).
-* How would you describe this module in a single sentence? Provide a short summary to help other Puppet users understand what your module does.
-* Where is this module's source code repository? The URL to your source code repository, usually on GitHub, lets other users know where to go to contribute to your module.
-* Where can others go to learn more about this module? The URL to a web site that offers full information about your module, if you have one..
-* Where can others go to file issues about this module? The URL to the public bug tracker for your module, if you have one.
+* Your Puppet Forge username. If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value. 
+* Module version. We use and recommend semantic versioning for modules.
+* The module author's name.
+* The license under which your module is made available. This should be an identifier from [SPDX License List](https://spdx.org/licenses/).
+* A one-sentence summary about your module.
+* The URL to your module's source code repository, so that other users can contribute back to your module.
+* The URL to a web site that offers full information about your module, if you have one..
+* The URL to the public bug tracker for your module, if you have one.
 
 After you generate a module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
 
@@ -48,14 +48,14 @@ Before you begin, ensure that you've installed the PDK package.
    
    Optionally, to skip the interview questions and generate the module with default values, use the ``skip-interview` flag when you generate the module: `pdk new module module_name --skip-interview`
 
-1. Respond to the PDK dialog questions in the terminal. To accept the default value for any question, hit **Enter**.
+1. Respond to the PDK dialog questions in the terminal. Each question indicates the default value it will use if you just hit **Enter**.
 
-   1. Forge username: Enter your Forge username. If you don't have a Forge username, accept the default value with **Enter**.
+   1. Forge username: Enter your Forge username, if you have a Forge account.
    2. Version: Enter the semantic version of your module, such as "0.1.0".
    3. Author: Enter the name of the module author.
    4. License: If you want to specify a license other than "Apache-2.0," specify that here, such as "MIT", or "proprietary".
    5. Description: Enter a one-sentence summary that helps other users understand what your module does.
-   6. Source code repository: Enter an URL to your module's source code repository.
+   6. Source code repository: Enter the URL to your module's source code repository.
    7. Where others can learn more: If you have a website where users can learn more about your module, enter the URL.
    8. Where others can report issues: If you have a public bug tracker for your module, enter the URL.
 
