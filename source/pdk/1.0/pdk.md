@@ -8,6 +8,7 @@ description: "About the Puppet Development Kit, the shortest path to developing 
 The Puppet Development Kit (PDK) is a package of development and testing tools to help you create great Puppet modules.
 
 The PDK includes key Puppet code development and testing tools for Linux, Windows, and OS X workstations, so you can install one package with the tools you need to create and validate new modules. PDK includes testing tools, a complete module skeleton, and command line tools to help you create, validate, and run tests on Puppet modules. PDK also includes all dependencies needed for its use.
+
 PDK includes the following tools:
 
 Tool   | Description

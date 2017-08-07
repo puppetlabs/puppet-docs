@@ -20,6 +20,7 @@ title: "Module fundamentals"
 [forge]: http://forge.puppetlabs.com
 [file_function]: ./function.html#file
 [reserved names]: ./lang_reserved.html
+[pdk]: {{pdk}}/pdk.html
 
 Modules are self-contained bundles of code and data. These reusable, shareable units of Puppet code are a basic building block for Puppet.
 
@@ -33,6 +34,7 @@ Related topics:
 * [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
 * [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [Documenting modules][documentation]: A module README template and information on providing directions for your module.
+* [Puppet Development Kit][pdk]
 
 {:.concept}
 ## Using modules

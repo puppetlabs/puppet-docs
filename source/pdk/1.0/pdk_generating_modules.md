@@ -22,7 +22,7 @@ Each question has a default response that PDK uses if you skip the question. The
 * The license under which your module is made available. This should be an identifier from [SPDX License List](https://spdx.org/licenses/).
 * A one-sentence summary about your module.
 * The URL to your module's source code repository, so that other users can contribute back to your module.
-* The URL to a web site that offers full information about your module, if you have one..
+* The URL to a web site that offers full information about your module, if you have one.
 * The URL to the public bug tracker for your module, if you have one.
 
 After you generate a module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
