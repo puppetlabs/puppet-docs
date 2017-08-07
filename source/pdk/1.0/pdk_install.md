@@ -14,7 +14,7 @@ Install the Puppet Development Kit (PDK) as your first step in creating and test
 {:.section}
 ### Before you begin
 
-PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet. On Linux-based systems, you must enable the repository before you can download and install the package.
+PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet.
 
 If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
 
@@ -40,34 +40,29 @@ By default, PDK installs to:
 
 
 {:.task}
-## Install PDK
 
-### Download PDK
-
-Download the appropriate Puppet Development Kit package for your platform.
+## Download PDK
 
 1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 
 {:.task}
-### Install PDK on Linux-based systems 
+## Install PDK on Linux-based systems 
 
 1. Install the `pdk` package using the command appropriate to your system:
-
-   * RPM-based (Red Hat, SLES): `sudo rpm -ivh pdk-<version>-<platform>.rpm`
-   * Debian-based (Debian, Ubuntu): `sudo dpkg -i pdk-<version>-<platform>.rpm`
-
-2. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
+   * On RPM-based (Red Hat, SLES) systems, run `sudo rpm -ivh pdk-<version>-<platform>.rpm`
+   * On Debian-based (Debian, Ubuntu) systems: `sudo dpkg -i pdk-<version>-<platform>.rpm`
+1. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
-### Install PDK on OS X
+## Install PDK on OS X
 
 1. Double click on the downloaded package to install.
 2. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
-### Install PDK on Windows
+## Install PDK on Windows
 
 1. Double click on the downloaded package to install.
-2. Open a new terminal or Powershell window to re-source your profile and make PDK available to your PATH.
+1. Open a new terminal or Powershell window to re-source your profile and make PDK available to your PATH.
  
 
