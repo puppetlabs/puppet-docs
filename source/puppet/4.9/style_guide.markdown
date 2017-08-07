@@ -1102,7 +1102,7 @@ These special variable names are protected; because you cannot create local vari
 **Good:**
 
 ```puppet
-$facts[::operatingsystem]
+$facts['operatingsystem']
 ```
 
 **Bad:**
