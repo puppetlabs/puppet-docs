@@ -102,7 +102,7 @@ if $osfamily == 'redhat' {
 
 ### The `$facts['fact_name']` hash
 
-Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess]. Due to ambiguity with function invocation, the dot-separated access syntax that is available at the Facter command line is not available in manifests.
+Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess]. 
 
 Example, with the `os.family` fact:
 
@@ -114,7 +114,7 @@ if $facts['os']['family'] == 'redhat' {
 
 **Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
-**Drawbacks:** Only works with Puppet 3.5 or later. Disabled by default in open source releases prior to Puppet 4.0.
+**Drawbacks:** Due to ambiguity with function invocation, the dot-separated access syntax that is available at the Facter command line is not available with this variable. However, there is a `fact` function included in the `stdlib` module, that you can read about in [that module's README](https://github.com/puppetlabs/puppetlabs-stdlib#fact).
 
 ## Special variables added by Puppet
 
