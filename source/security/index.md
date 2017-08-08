@@ -306,6 +306,14 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party security announcements
 
+- [CVE-2017-7529 - Integer overflow in nginx](https://puppet.com/security/cve/cve-2017-7529)
+
+   Resolved in Puppet Enterprise 2017.2.3 and Puppet Enterprise 2016.4.7
+   
+- [Oracle Java July 2017 Security Fixes](https://puppet.com/security/cve/oracle-java-jul-2017-security-fixes)
+
+   Resolved in Puppet Enterprise 2017.2.3 and Puppet Enterprise 2016.4.7
+
 - [PostgreSQL 2017-05-11 update](https://puppet.com/security/cve/postgresql-may-2017-security-fixes)
 
    Resolved in Puppet Enterprise 2017.2.2 and Puppet Enterprise 2016.4.6
