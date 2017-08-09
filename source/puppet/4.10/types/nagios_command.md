@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Resource Type: nagios_command'
 canonical: "/puppet/latest/types/nagios_command.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:44:29 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500
 
 nagios_command
 -----
@@ -147,4 +147,4 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:44:29 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500

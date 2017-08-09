@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Man Page: puppet file'
 canonical: "/puppet/latest/man/file.html"
 ---
