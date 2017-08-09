@@ -18,9 +18,21 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.6
+
+Released August 9, 2017.
+
+This is a small bug fix release in the Puppet 4.10 series.
+
+* [All issues fixed in Puppet 4.10.6](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.6%27)
+
+### Bug fixes
+
+A regression introduced with Hiera 5 caused the setting of `data_binding_terminus=none` to turn off the `hiera_xxx` functions in addition to the expected disablement of Automatic Parameter Lookup (APL) from the global layer. This has been changed so that the `hiera_xxx` calls will continue to work. The `lookup` function will continue to return the same result as APL (if the terminus is disabled, then global Hiera is also turned off for lookup, while APL and lookup from environment and module layers is still enabled). The `data_binding_terminus` setting will eventually be deprecated and removed along with the Hiera 3 support. With the speedups and new features in Hiera 5, there should be no reason to turn off the `data_binding_terminus`.
+
 ## Puppet 4.10.5
 
-Release July 26, 2017. 
+Released July 26, 2017. 
 
 This is a bug fix release for Puppet that includes new capabilities for string localization. It shipped with Puppet agent 1.10.5.
 
