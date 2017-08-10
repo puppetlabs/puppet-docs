@@ -32,10 +32,13 @@ You can also send module validation output in either JUnit or text format to a f
 {:.task}
 ### Validate a module
 
-To validate that your module is well-formed with correct syntax, run the `pdk validate` command. Optionally, you can validate only certain files or directories, run a specific type of validations, such as metadata or Puppet validation, or send your validation output to a file.
+To validate that your module is well-formed with correct syntax, run the `pdk validate` command.
+
+Optionally, you can validate only certain files or directories, run a specific type of validations, such as metadata or Puppet validation, or send your validation output to a file.
 
 1. In your module's directory, from the command line, run `pdk validate`.
 
+   This command runs metadata validation first, then Puppet validation, then Ruby validation. To run all validations simultaneously, use the `--parallel` flag and run `pdk validate --parallel.
 
    * To run just one type of validation on the module, specify `puppet`, `ruby`, or `metadata`. For example, to validate the module's metadata, run `pdk validate metadata`.
 
