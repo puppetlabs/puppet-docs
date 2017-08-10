@@ -36,6 +36,25 @@ Related topics:
 * [Data types](TODO: LINK)
 * [Module metadata](TODO: LINK)
 
+### Running PDK behind a proxy
+
+If you are using PDK behind a proxy, you must set environment variables before running PDK commands to allow it to communicate.
+
+You can either set these variables on the command line before each working session or add them to your system configuration, which varies depending on the operating system.
+
+On Linux-based or OS X systems, set:
+
+```
+export http_proxy="http://user:password@proxy.domain.com:port"
+export https_proxy="http://user:password@proxy.domain.com:port"
+```
+
+On Windows systems, set:
+
+```
+$env:http_proxy="http://user:password@proxy.domain.com:port"
+$env:https_proxy="http://user:password@proxy.domain.com:port"
+```
 
 {:.task}
 ### Generate a module with pdk

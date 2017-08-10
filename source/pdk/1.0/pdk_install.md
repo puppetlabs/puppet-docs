@@ -50,7 +50,7 @@ By default, PDK installs to:
 
 1. Install the `pdk` package using the command appropriate to your system:
    * On RPM-based (Red Hat, SLES) systems, run `sudo rpm -ivh pdk-<version>-<platform>.rpm`
-   * On Debian-based (Debian, Ubuntu) systems: `sudo dpkg -i pdk-<version>-<platform>.rpm`
+   * On Debian-based (Debian, Ubuntu) systems, run `sudo dpkg -i pdk-<version>-<platform>.rpm`
 1. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
