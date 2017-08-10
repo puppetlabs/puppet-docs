@@ -1,30 +1,26 @@
 ---
 layout: default
-title: Module Smoke Testing
+title: Module smoke testing
 ---
 
-Module Smoke Testing
-====================
+You can smoke test your module manifests to check for compilation errors and to verify the changes your module will make to your system.
 
-Learn to write and run tests for each manifest in your Puppet module.
+For this kind of testing, you must be working with a system that has Puppet installed. Before you begin, ensure that your module is valid and well-formed, and that it passes unit tests.
 
-* * *
+For each class or defined type in your module, you'll write a corresponding example manifest that declares that class or defined type. These manifests are normally contained in the `examples\` directory of the module.
 
-Doing some basic "Has it exploded?" testing on your Puppet modules is extremely easy, has obvious benefits during development, and can serve as a condensed form of documentation.
+Then you'll apply those example manifests in a no-operation mode, to check for compilation errors and view a log of events, or in a virtual testing environment, to compare the resulting system state to the desired state.
 
-Testing in Brief
-----------------
+This form of testing is extremely basic, and you still have to examine the results and logs to determine whether the right events are being generated or the right system configuration is being enforced. 
 
-The baseline for module testing used by Puppet is that each manifest should have a corresponding test manifest that declares that class or defined type.
+{.:concept}
+## Writing example manifests
 
-Tests are then run by using `puppet apply --noop` (to check for compilation errors and view a log of events) or by fully applying the test in a virtual environment (to compare the resulting system state to the desired state).
+A well-formed Puppet module implements each of its classes or defined types in separate files in its `manifests\` directory. Thus, ensuring each class or type has an example manifest results in the `examples\` directory being a mirror image of the `manifests\` directory.
 
-Writing Tests
--------------
+Class manifests in the `examples\` directory are typically basic manifests that declare the class, such as `include apache::ssl`. For parameterized classes, the example manifest must declare the class with all of its required attributes set.
 
-A well-formed Puppet module implements each of its classes or defined types in separate files in its `manifests` directory. Thus, ensuring each class or type has a test will result in the `tests` directory being a complete mirror image of the `manifests` directory.
-
-A test for a class is just a manifest that declares the class. Often, this is going to be as simple as `include apache::ssl`. For parameterized classes, the test must declare the class with all of its required attributes set:
+For example: 
 
 ~~~ ruby
     class {'ntp':
@@ -32,7 +28,7 @@ A test for a class is just a manifest that declares the class. Often, this is go
     }
 ~~~
 
-Tests for defined resource types can increase test coverage by declaring multiple instances of the type, with varying values for their attributes:
+For defined resource types, you can increase test coverage by declaring multiple instances of the type, with varying values for their attributes:
 
 ~~~ ruby
     dotfiles::user {'root':
@@ -46,7 +42,7 @@ Tests for defined resource types can increase test coverage by declaring multipl
     }
 ~~~
 
-If a class (or type) depends on any other classes, the test will have to declare those as well:
+If a class or defined type depends on any other classes or resources, your example manifest must declare those as well:
 
 ~~~ ruby
     # git/manifests/gitosis.pp
@@ -62,28 +58,11 @@ If a class (or type) depends on any other classes, the test will have to declare
     class{'git::gitosis':}
 ~~~
 
-Running Tests
--------------
+{.:concept}
+## Running smoke tests
 
-Run tests by applying the test manifests with puppet apply.
+Smoke test your classes and defined types by applying the example manifests, either in no-operation mode or on a testing machine.
 
-For basic smoke testing, you can apply the manifest with `--noop`. This will ensure that a catalog can be properly compiled from your code, and it'll show a log of the RAL events that would have been performed; depending on how simple the class is, these are often enough to ensure that it's doing what you expect.
+For basic smoke testing, apply the manifest with the `--noop` flag. This flag makes no actual changes to your system, but ensures that a catalog can be properly compiled. It also displays a log of events that would have been performed in a real operation.
 
-For more advanced coverage, you can apply the manifest to a live system, preferably a VM. You can expand your coverage further by maintaining a stable of snapshot environments in various states, to ensure that your classes do what's expected in all the situations where they're likely to be applied.
-
-Automating all this is going to depend on your preferred tools and processes, and is thus left as an exercise for the reader.
-
-Reading Tests
--------------
-
-Since module tests declare their classes with all required attributes and with all prerequisites declared, they can serve as a form of drive-by documentation: if you're in a hurry, you can often figure out how to use a module (or just refresh your memory) by skimming through the tests directory.
-
-This doesn't get anyone off the hook for writing real documentation, but it's a good reason to write tests even if your module is already working as expected.
-
-Exploring Further
------------------
-
-This form of testing is extremely basic, and still requires a human reader to determine whether the right RAL events are being generated or the right system configuration is being enforced. For more advanced testing, you might want to investigate [cucumber-puppet][cukepup] or [cucumber-nagios][cukenag].
-
-[cukepup]: https://github.com/nistude/cucumber-puppet
-[cukenag]: http://auxesis.github.com/cucumber-nagios/
+For more advanced coverage, you can apply the manifest to a live system, preferably a virtual machine (VM). You can expand your coverage further by maintaining a stable of snapshot environments in various states, to ensure that your classes do what's expected in all the situations where they're likely to be applied.

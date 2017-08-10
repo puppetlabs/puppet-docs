@@ -6,12 +6,12 @@ title: "Module metadata and metadata.json"
 [module data]: ./hiera_layers.html
 [hiera_yaml_4]: ./hiera_config_yaml_4.html
 
-Your Puppet modules should always contain a `metadata.json` file, which tracks important information about the module and can configure certain features.
+Your modules should always contain a `metadata.json` file, which tracks important information about the module and can configure certain features.
 
 The `metadata.json` file is located in the module's main directory, outside any subdirectories. This file is used by several Puppet subsystems:
 
 * The `puppet module` command uses `metadata.json` to display module information and prepare modules for publishing.
-* The Puppet Forge requires `metadata.json` and uses it to create the module's info page and to provide dependency and other information to users installing the module.
+* The Forge requires `metadata.json` and uses it to create the module's info page and to provide dependency and other information to users installing the module.
 
 {:.example}
 ### metadata.json example 
@@ -184,7 +184,7 @@ The hash for each dependency must contain `"name"` and `"version_requirement"` k
 ]
 ```
 
-After you've generated your module and gone through the metadata dialog, you must manually edit the `metadata.json` file to include the dependency information. For information about how to format dependency versions, see the related topic about version specifiers in module metadata.
+After you've created your module and gone through the metadata dialog, you must manually edit the `metadata.json` file to include the dependency information. For information about how to format dependency versions, see the related topic about version specifiers in module metadata.
 
 Related topics:
 

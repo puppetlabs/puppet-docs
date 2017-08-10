@@ -5,7 +5,7 @@ title: Beginner's guide to writing modules
 
 [structure]: ./images/bgtmclassstructure.png
 [anchor]: ./lang_containment.html#anchor-pattern-containment-for-compatibility-with-puppet--340
-
+[pdk]: {{pdk}}/pdk.html
 
 Learn how to create fantastic modules by introducing module best practices [standards and architecture](./style_guide.html).
 
@@ -267,7 +267,7 @@ This means you must `include x` in the main class to ensure the dependency is in
 
 Ensure that the module works in a variety of conditions, and that the options and parameters of your module work together to an appropriate end result.
 
-We recommend several testing frameworks available to help you write unit and acceptance tests.
+We recommend several testing frameworks available to help you write unit and acceptance tests. Some of these tools are already included in the Puppet Development Kit (PDK; see the [PDK][pdk] documentation for details.
 
 {:.concept}
 ### rspec-puppet
@@ -300,7 +300,7 @@ require 'puppetlabs_spec_helper/rake_tasks'
 
 [Beaker-rspec](https://github.com/puppetlabs/beaker-rspec) is an acceptance/integration testing framework.
 
-It provisions one or more virtual machines on various hypervisors (such as [Vagrant](http://www.vagrantup.com/)) and then checks the result of applying your Puppet module in a realistic environment.
+It provisions one or more virtual machines on various hypervisors (such as [Vagrant](http://www.vagrantup.com/)) and then checks the result of applying your module in a realistic environment.
 
 {:.section}
 #### serverspec
@@ -336,20 +336,24 @@ We encourage you to publish your modules on the [Puppet Forge](http://forge.pupp
 
 Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules.
 
-Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module. If the Puppet community routinely releases and iterates on modules on the Forge, the quality of available Puppet modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Puppet Forge can be found [here](./modules_publishing.html).
+Additionally, publishing your modules to the Forge helps foster community among Puppet users, and allows other Puppet community members to download and use your module. If the Puppet community routinely releases and iterates on modules on the Forge, the quality of available modules increases dramatically and gives you access to more modules to download and modify for your own purposes. Details on how to publish modules to the Forge can be found [here](./modules_publishing.html).
 
 {:.concept}
 ## Community Resources
 
-For beginning Puppet module authors, a variety of community resources are available.
+For beginning module authors, a variety of community resources are available.
 
 [Module basics](./modules_fundamentals.html)
 
+[Puppet Development Kit][pdk]
+
 [Puppet Language Style Guide](./style_guide.html)
 
-[The Puppet Forge](http://forge.puppet.com)
+[The Forge](http://forge.puppet.com)
 
 The [puppet-users mailing list](https://groups.google.com/forum/#!forum/puppet-users)
 
 `#puppet` on IRC
+
+[Puppet Community on Slack](https://slack.puppet.com/)
 
