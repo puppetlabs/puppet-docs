@@ -12,6 +12,8 @@ Install the Puppet Development Kit (PDK) as your first step in creating and test
 
 PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet.
 
+On Windows, use PowerShell 2.0 or greater with PDK. PowerShell 1.0 is not supported.
+
 If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
 
 By default, PDK installs to:
@@ -36,14 +38,11 @@ By default, PDK installs to:
 
 
 {:.task}
+## Install PDK on Linux-based systems
 
-## Download PDK
+Download and install the PDK package for Linux-based systems.
 
 1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
-
-{:.task}
-## Install PDK on Linux-based systems 
-
 1. Install the `pdk` package using the command appropriate to your system:
    * On RPM-based (Red Hat, SLES) systems, run `sudo rpm -ivh pdk-<version>-<platform>.rpm`
    * On Debian-based (Debian, Ubuntu) systems, run `sudo dpkg -i pdk-<version>-<platform>.rpm`
@@ -52,15 +51,37 @@ By default, PDK installs to:
 {:.task}
 ## Install PDK on OS X
 
+Download and install the PDK package for Mac OS X systems.
+
+1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 1. Double click on the downloaded package to install.
 2. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
 ## Install PDK on Windows
 
+Download and install the PDK package for Windows systems.
+
+1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 1. Double click on the downloaded package to install.
 1. Open a new terminal or Powershell window to re-source your profile and make PDK available to your PATH.
- 
+
+With PowerShell 3.0 or later, PDK loads automatically and the `pdk` command is now available to the prompt. If you are using PDK in PowerShell 2.0, you'll need to load the module and set the correct permissions for PDK.
+
+{:.task}
+### Setting up PDK with PowerShell 2.0
+
+If you are running PowerShell 2.0, you must load the `PuppetDevelopmentKit` PowerShell module manually and adjust permissions to allow the PDK integration.
+
+Before you begin, download and install the PDK package for Windows.
+
+1. In your PowerShell window, load the `PuppetDevelopmentKit` module by running `Import-Module -Name PuppetDevelopmentKit`
+1. Set your script execution policy to at least [RemoteSigned](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.security/set-executionpolicy) by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
+   Alternatively, you can change the `Scope` parameter of the `ExecutionPolicy` to the current session only by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+For more information about PowerShell `ExecutionPolicies` or how to change them, see Microsoft documentation [about_Execution_Policies](http://go.microsoft.com/fwlink/?LinkID=135170).
+
+{:.concept}
 ## Setting up PDK behind a proxy
 
 If you are using PDK behind a proxy, you must set environment variables before running PDK commands to allow it to communicate.
