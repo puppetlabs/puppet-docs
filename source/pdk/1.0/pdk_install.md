@@ -5,10 +5,6 @@ canonical: "/pdk/1.0/pdk_install.html"
 description: "Installing the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-
-**Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
-
-
 Install the Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
 
 {:.section}
@@ -65,4 +61,22 @@ By default, PDK installs to:
 1. Double click on the downloaded package to install.
 1. Open a new terminal or Powershell window to re-source your profile and make PDK available to your PATH.
  
+## Setting up PDK behind a proxy
 
+If you are using PDK behind a proxy, you must set environment variables before running PDK commands to allow it to communicate.
+
+You can either set these variables on the command line before each working session or add them to your system configuration, which varies depending on the operating system.
+
+On Windows systems, run:
+
+```
+$env:http_proxy="http://user:password@proxy.domain.com:port"
+$env:https_proxy="http://user:password@proxy.domain.com:port"
+```
+
+On Linux-based or OS X systems, run:
+
+```
+export http_proxy="http://user:password@proxy.domain.com:port"
+export https_proxy="http://user:password@proxy.domain.com:port"
+```

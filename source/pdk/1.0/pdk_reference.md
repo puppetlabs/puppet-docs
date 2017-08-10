@@ -5,8 +5,6 @@ canonical: "/pdk/1.0/pdk_reference.html"
 description: "Commands for the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-**Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
-
 ## `pdk new module` command
 
 Generates a new module.
@@ -46,9 +44,7 @@ pdk new class my_class
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-`--template-url` | Overrides the template to use when generating this class. | A valid URL to a class template.    | Uses the template used to generate the module. If that template is not available, the default template at
-[puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template)
-is used.
+`--template-url` | Overrides the template to use when generating this class. | A valid URL to a class template.    | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
 `class_name` | **Required**. The name of the class to generate. | A class name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
 `parameter_name[:parameter_type]` | Parameters for the generated class. Specify any number of parameters on the command line. | A valid parameter name, optionally with the parameter's data type.    | No default.
 

@@ -5,8 +5,6 @@ canonical: "/pdk/1.0/pdk_testing.html"
 description: "Testing modules with the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-**Note: this page is a draft in progress and is neither technically reviewed nor edited. Do not rely on information in this draft.**
-
 {:.concept}
 ## Validating and testing your module with PDK
 
@@ -14,11 +12,13 @@ The Puppet Development Kit (PDK) provides tools to help you run unit tests on yo
 
 By default, the PDK module template includes tools that can:
 
-* Validate the `metadata.json`.
+* Validate the `metadata.json` file.
 * Validate Puppet syntax.
 * Validate Puppet code style.
 * Validate Ruby code style.
 * Run unit tests.
+
+If you are working behind a proxy, before you begin, ensure that you've added the correct environment variables. See [Running PDK behind a proxy](./pdk_install.hmtl#running-pdk-behind-a-proxy) for details.
 
 {:.concept}
 ### Validating modules
@@ -32,13 +32,13 @@ You can also send module validation output in either JUnit or text format to a f
 {:.task}
 ### Validate a module
 
-To validate that your module is well-formed with correct syntax, run the `pdk validate` command.
+To validate that your module is well-formed with correct syntax, run the `pdk validate` command. By default, this command runs metadata validation first, then Puppet validation, then Ruby validation. 
 
-Optionally, you can validate only certain files or directories, run a specific type of validations, such as metadata or Puppet validation, or send your validation output to a file.
+Optionally, you can validate only certain files or directories, run a specific type of validations, such as metadata or Puppet validation, or run all validations simultaneously. Additionally, you can send your validation output to a file in either JUnit or text format.
 
 1. In your module's directory, from the command line, run `pdk validate`.
 
-   This command runs metadata validation first, then Puppet validation, then Ruby validation. To run all validations simultaneously, use the `--parallel` flag and run `pdk validate --parallel.
+   * To run all validations simultaneously, use the `--parallel` flag and run `pdk validate --parallel.
 
    * To run just one type of validation on the module, specify `puppet`, `ruby`, or `metadata`. For example, to validate the module's metadata, run `pdk validate metadata`.
 
@@ -49,6 +49,10 @@ Optionally, you can validate only certain files or directories, run a specific t
    * To run validations on a specific directory or file, pass the name of the file or directory as an argument with `pdk validate`. For example, to run all validations on the `/lib` directory only, run `pdk validate lib/`. 
 
 See the PDK reference for a complete list of validation options.
+
+Related topics:
+
+* [PDK reference](./pdk_reference)
 
 {:.concept}
 ### Unit testing modules
@@ -75,7 +79,7 @@ Related links:
 
 To unit test your module, use the `pdk test unit` command. This command runs all the unit tests in your module.
 
-Before you begin, you need to have written unit tests for your module, unless you are unit testing a newly generated module with no classes or code in it.
+Before you begin, ensure that you have written unit tests for your module, unless you are unit testing a newly generated module with no classes or code in it.
 
 1. In your module's directory, from the command line, run:
 
@@ -83,7 +87,12 @@ Before you begin, you need to have written unit tests for your module, unless yo
 pdk test unit
 ```
 
-If there are no errors, this returns successfully (exit code 0) with no warnings or errors on 0 examples.
+If there are no errors, this returns successfully as `exit code 0`, with no warnings or errors on zero examples.
 
 See the PDK reference for a complete list of unit test options.
+
+Related topics:
+
+* [PDK reference](./pdk_reference)
+
 

@@ -6,6 +6,8 @@ description: "Developing a module with the Puppet Development Kit, the shortest 
 ---
 
 [install]: ./pdk_install.html
+[metadata]: {{puppet}}/modules_metadata.html
+[fundamentals]: {{puppet}}/modules_fundamentals.html
 
 {:.concept}
 ## Generating modules and classes with PDK
@@ -25,43 +27,22 @@ Each question has a default response that PDK uses if you skip the question. The
 * The URL to a web site that offers full information about your module, if you have one.
 * The URL to the public bug tracker for your module, if you have one.
 
-After you generate a module, we suggest validating and testing the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
+After you generate a module, validate and test the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
 
-PDK does not generate any classes at module creation. The `pdk new class` command creates a class manifest and a test template file for the class. When you run this command, PDK creates a class manifest and a test template file for the class. You can then write tests in this template to validate your class's behavior.
+PDK does not generate any classes at module creation. You'll generate new classes with the `pdk new class` command, which creates a class manifest and a test template file for the class. When you run this command, PDK creates a class manifest and a test template file for the class. You can then write tests in this template to validate your class's behavior.
 
 If your new class should take parameters, you can specify them, along with the parameter's data type and values, on the command line when you generate your class. You can provide any number of parameters on the command line.
 
 Related topics:
 
-* [Data types](TODO: LINK)
-* [Module metadata](TODO: LINK)
-
-### Running PDK behind a proxy
-
-If you are using PDK behind a proxy, you must set environment variables before running PDK commands to allow it to communicate.
-
-You can either set these variables on the command line before each working session or add them to your system configuration, which varies depending on the operating system.
-
-On Windows systems, run:
-
-```
-$env:http_proxy="http://user:password@proxy.domain.com:port"
-$env:https_proxy="http://user:password@proxy.domain.com:port"
-```
-
-On Linux-based or OS X systems, run:
-
-```
-export http_proxy="http://user:password@proxy.domain.com:port"
-export https_proxy="http://user:password@proxy.domain.com:port"
-```
+* [Module metadata][metadata]
 
 {:.task}
 ### Generate a module with pdk
 
 To generate a module with PDK's default template, use the `pdk new module` command.
 
-Before you begin, ensure that you've installed the PDK package.
+Before you begin, ensure that you've installed the PDK package. If you are running PDK behind a proxy, be sure you've added the correct environment variables. See [Running PDK behind a proxy](./pdk_install.hmtl#running-pdk-behind-a-proxy) for details.
 
 1. From the command line, run the `pdk new module` command, specifying the name of the module: `pdk new module module_name`
    
@@ -79,11 +60,6 @@ Before you begin, ensure that you've installed the PDK package.
    8. Where others can report issues: If you have a public bug tracker for your module, enter the URL.
 
 1. If the metadata that PDK displays is correct, confirm to generate the module. If it is incorrect, enter `n` to cancel and start over.
-
-Related topics:
-
-* Install PDK
-* Add a new resource provider with PDK
 
 {:.reference}
 ### Module contents
@@ -110,12 +86,12 @@ Rakefile | File listing tasks and dependencies.
 
 Related topics:
 
-*[Module fundamentals](./modules_fundamentals.html)
+* [Module fundamentals][fundamentals]
 
 {:.task}
-## Generate a new class
+## Generate a class
 
-To generate a new class in your module, use the `pdk new class` command, specifying the name of your new class.
+To generate a class in your module, use the `pdk new class` command, specifying the name of your new class.
 
 To generate the main class of the module, which is defined in an `init.pp` file, give the class the same name as the module.
 
