@@ -38,7 +38,7 @@ Optionally, you can validate only certain files or directories, run a specific t
 
 1. In your module's directory, from the command line, run `pdk validate`.
 
-   * To run all validations simultaneously, use the `--parallel` flag and run `pdk validate --parallel.
+   * To run all validations simultaneously, use the `--parallel` flag and run `pdk validate --parallel`.
 
    * To run just one type of validation on the module, specify `puppet`, `ruby`, or `metadata`. For example, to validate the module's metadata, run `pdk validate metadata`.
    
