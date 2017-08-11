@@ -64,6 +64,7 @@ pdk validate [--format=format[:target]] [validations] [targets*]
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
+`--auto-correct` | Automatically corrects some common code style problems | None.    | Off.
 `--list` | Displays a list of available validations and their descriptions. Using this option lists the tests without running them. | None.    | No default.
 `--format=format[:target]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format with the syntax: `--format=junit:report.xml` | Specifies the output format and an output target file. Multiple `--format` options can be specified as long as they all have distinct output targets. | `junit` (JUnit XML), `text`(plain text)    | `text`
 `--parallel` | Runs all validations simultaneously, using multiple threads. | None.    | No default.

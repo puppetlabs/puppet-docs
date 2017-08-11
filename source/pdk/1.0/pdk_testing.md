@@ -25,7 +25,7 @@ If you are working behind a proxy, before you begin, ensure that you've added th
 
 The validations included in PDK provide a basic check of the well-formedness of the module and syntax and style of the module's files. You do not need to write any tests for this validation.
 
-By default, the `pdk validate` command validates the module's metadata, Puppet code syntax and style, and Ruby code syntax and style. You can also validates specific directories or files in the module, or validate  only certain types of validation, such as metadata or Puppet code.
+By default, the `pdk validate` command validates the module's metadata, Puppet code syntax and style, and Ruby code syntax and style. Optionally, PDK can autocorrect some common code style problems. You can also validate specific directories or files in the module, or validate only certain types of validation, such as metadata or Puppet code.
 
 You can also send module validation output in either JUnit or text format to a file. You can specify multiple output formats and targets in the same command, as long as the targets are each unique.
 
@@ -43,6 +43,8 @@ Optionally, you can validate only certain files or directories, run a specific t
    * To run just one type of validation on the module, specify `puppet`, `ruby`, or `metadata`. For example, to validate the module's metadata, run `pdk validate metadata`.
    
    * To run validations on a specific directory or file, pass the name of the file or directory as an argument with `pdk validate`. For example, to run all validations on the `/lib` directory only, run `pdk validate lib/`.
+
+   * To automatically correct some common code style problems, run `pdk validate` with the `--auto-correct` option.
 
    * To send module validation output to a file, use the `pdk validate` command with the option `--format=format[:target]`. This option specifies the output format and an output target file. For example, to create a report file `report.txt`, run `pdk validate --format=txt:report.txt`.
 
