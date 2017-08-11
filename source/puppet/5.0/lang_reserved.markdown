@@ -190,7 +190,7 @@ Parameter names should match the following regular expression:
 
 Tag names should match the following regular expression:
 
-    \A[a-z0-9_][a-z0-9_:\.\-]*\Z
+    \A[[:alnum:]_][[:alnum:]_:.-]*\Z
 
 ### Resources
 
