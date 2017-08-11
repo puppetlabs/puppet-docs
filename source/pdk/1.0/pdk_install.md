@@ -14,8 +14,6 @@ Install the Puppet Development Kit (PDK) as your first step in creating and test
 
 PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet.
 
-On Windows, use PowerShell 2.0 or greater with PDK. PowerShell 1.0 is not supported.
-
 If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
 
 By default, PDK installs to:
@@ -24,7 +22,9 @@ By default, PDK installs to:
 * Windows systems: `C:\Program Files\Puppet Labs\DevelopmentKit`
 
 {:.reference}
-### Supported operating systems
+### Requirements and limitations
+
+PDK supports the following operating systems.
 
 | Operating system | Version(s) | Arch | PkgType |
 | ---------------- | ---------- | ---- | ------- |
@@ -38,6 +38,9 @@ By default, PDK installs to:
 | Windows Server (Server OS) | 2008r2, 2012, 2012r2, 2012r2 Core, and 2016 | x86_64 | MSI |
 | Mac OS X | 10.11, 10.12 | x86_64 | N/A |
 
+On Windows, PowerShell 2.0 or greater is supported.
+
+PDK functions, such as creating classes, testing, and validation, are supported only on modules created with PDK.
 
 {:.task}
 ## Install PDK on Linux-based systems

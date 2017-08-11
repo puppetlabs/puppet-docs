@@ -105,4 +105,4 @@ To generate a class in your module, use the `pdk new class` command, specifying 
    pdk new class class_name
    ```
 
-PDK creates the class in `manifests`. It also creates a test file (like `class_name_spec.rb`) in your module's `/spec/classes` directory. This test file includes a basic template for writing your own unit tests.
+PDK creates the new class manifest and a test file (as `class_name_spec.rb`) in your module's `/spec/classes` directory. This test template checks that your class compiles on all supported operating systems as listed in the `metadata.json`. You can then write additional tests in the provided file to validate your class's behavior.

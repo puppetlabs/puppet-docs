@@ -41,12 +41,14 @@ Optionally, you can validate only certain files or directories, run a specific t
    * To run all validations simultaneously, use the `--parallel` flag and run `pdk validate --parallel.
 
    * To run just one type of validation on the module, specify `puppet`, `ruby`, or `metadata`. For example, to validate the module's metadata, run `pdk validate metadata`.
+   
+   * To run validations on a specific directory or file, pass the name of the file or directory as an argument with `pdk validate`. For example, to run all validations on the `/lib` directory only, run `pdk validate lib/`.
 
-   * To send module validation output to a file, use the `pdk validate` command with the option `--format=format[:target]`. This option specifies the output format and an output target file. For example, to create a report file `report.xml` in the JUnit format, run `pdk validate --format=junit:report.xml`.
+   * To send module validation output to a file, use the `pdk validate` command with the option `--format=format[:target]`. This option specifies the output format and an output target file. For example, to create a report file `report.txt`, run `pdk validate --format=txt:report.txt`.
 
      You can specify multiple `--format` options, as long as they all have distinct output targets.
 
-   * To run validations on a specific directory or file, pass the name of the file or directory as an argument with `pdk validate`. For example, to run all validations on the `/lib` directory only, run `pdk validate lib/`. 
+   
 
 See the PDK reference for a complete list of validation options.
 
