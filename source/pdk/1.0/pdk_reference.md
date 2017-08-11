@@ -19,9 +19,9 @@ The `pdk new module` command accepts the following arguments and options. Argume
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-`--template-url=git_url` | Overrides the template to use for this module. | A valid Git URL.    | No default.
+`--template-url=git_url` | Overrides the template to use for this module. | A valid Git URL or path to a local template.    | Defaults to the current pdk-module-template.    | No default.
 `--license=spdx_identifier` | Specifies the license this module is written under. | See https://spdx.org/licenses/ for a list of open source licenses, or use `proprietary`.    | Apache-2.0
-`--skip-interview` | Suppress interactive queries for initial values. Metadata will be generated with default values for all questions.| None    | No default.
+`--skip-interview` | Suppress interactive queries for initial values. Metadata will be generated with default values for all questions.| None    | Ask questions.
 `module_name` | **Required**. Specifies the name of the module being created. | A module name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
 `target_dir` | Specifies the directory that the new module will be created in. | A valid directory path.    | Creates a directory with the given `module_name` inside the current directory.
 
@@ -44,7 +44,7 @@ pdk new class my_class
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-`--template-url` | Overrides the template to use when generating this class. | A valid URL to a class template.    | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
+`--template-url` | Overrides the template to use when generating this class. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
 `class_name` | **Required**. The name of the class to generate. | A class name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
 `parameter_name[:parameter_type]` | Parameters for the generated class. Specify any number of parameters on the command line. | A valid parameter name, optionally with the parameter's data type.    | No default.
 
@@ -66,7 +66,7 @@ Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
 `--list` | Displays a list of available validations and their descriptions. Using this option lists the tests without running them. | None.    | No default.
 `--format=format[:target]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format with the syntax: `--format=junit:report.xml` | Specifies the output format and an output target file. Multiple `--format` options can be specified as long as they all have distinct output targets. | `junit` (JUnit XML), `text`(plain text)    | `text`
-`--parallel` | Runs all validations simultaneously. | None.    | No default.
+`--parallel` | Runs all validations simultaneously, using multiple threads. | None.    | No default.
 `validations` | Specifies a comma-separated list of validations to run (or `all`) | See the `--list` output for a list of available validations.    | `all`
 `targets` | Specifies a list of directories or individual files to validate. Validations which are not applicable to individual files will be skipped for those files. | A space-separated list.    | Validates all available directories and files.
 

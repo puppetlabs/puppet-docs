@@ -5,6 +5,8 @@ canonical: "/pdk/1.0/pdk_install.html"
 description: "Installing the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
+[troubleshoot]: ./pdk_troubleshooting.html
+
 Install the Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
 
 {:.section}
@@ -64,22 +66,10 @@ Download and install the PDK package for Windows systems.
 
 1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 1. Double click on the downloaded package to install.
-1. Open a new terminal or Powershell window to re-source your profile and make PDK available to your PATH.
+1. Open a new Powershell window to re-source your profile and make PDK available to your PATH. If you are running PowerShell 3.0 or later, PDK loads automatically and the `pdk` command is now available to the prompt.
+1. If you are running PowerShell 2.0, load the module by running `Import-Module -Name PuppetDevelopmentKit` in your PowerShell window.
 
-With PowerShell 3.0 or later, PDK loads automatically and the `pdk` command is now available to the prompt. If you are using PDK in PowerShell 2.0, you'll need to load the module and set the correct permissions for PDK.
-
-{:.task}
-### Setting up PDK with PowerShell 2.0
-
-If you are running PowerShell 2.0, you must load the `PuppetDevelopmentKit` PowerShell module manually and adjust permissions to allow the PDK integration.
-
-Before you begin, download and install the PDK package for Windows.
-
-1. In your PowerShell window, load the `PuppetDevelopmentKit` module by running `Import-Module -Name PuppetDevelopmentKit`
-1. Set your script execution policy to at least [RemoteSigned](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.security/set-executionpolicy) by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
-   Alternatively, you can change the `Scope` parameter of the `ExecutionPolicy` to the current session only by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
-
-For more information about PowerShell `ExecutionPolicies` or how to change them, see Microsoft documentation [about_Execution_Policies](http://go.microsoft.com/fwlink/?LinkID=135170).
+On some Windows installations, you might get execution policy restriction errors when you try to run `pdk` commands. See the [PDK troubleshooting][troubleshoot] guide for help.
 
 {:.concept}
 ## Setting up PDK behind a proxy

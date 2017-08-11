@@ -14,9 +14,9 @@ description: "Developing a module with the Puppet Development Kit, the shortest 
 
 PDK generates the basic components of a module and sets up the basic infrastructure for testing it.
 
-When you create a module, PDK asks you a series of questions that it uses to create metadata for your module.
+To create module metadata, PDK asks you a series of questions. Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module generations. PDK also adds a default set of supported operating systems to your metadata, which you can manually edit after module creation.
 
-Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module generations. Optionally, you can skip the interview step and use the default answers for all metadata.
+Optionally, you can skip the interview step and use the default answers for all metadata.
 
 * Your Puppet Forge username. If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value. 
 * Module version. We use and recommend semantic versioning for modules.
@@ -29,9 +29,9 @@ Each question has a default response that PDK uses if you skip the question. The
 
 After you generate a module, validate and test the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
 
-PDK does not generate any classes at module creation. You'll generate new classes with the `pdk new class` command, which creates a class manifest and a test template file for the class. When you run this command, PDK creates a class manifest and a test template file for the class. You can then write tests in this template to validate your class's behavior.
+PDK does not generate any classes at module creation. You'll create new classes with the `pdk new class` command, which creates a class manifest, with the naming convention. `class_name.pp`. The exception to this is for a module's main class, which you create with the same name as the module, resulting in a manifest named `init.pp`.
 
-If your new class should take parameters, you can specify them, along with the parameter's data type and values, on the command line when you generate your class. You can provide any number of parameters on the command line.
+PDK also creates a test template file for the class. You can then write tests in this template to validate your class's behavior.
 
 Related topics:
 
@@ -76,13 +76,19 @@ Module directory | Directory with the same name as the module. Contains all of t
 Gemfile | File describing Ruby gem dependencies.
 Rakefile | File listing tasks and dependencies.
 `appveyor.yml` | File containing configuration for Appveyor CI integration.
-`metadata.json` | File containing metadata for the module.
+`.gitattributes` | Recommended defaults for using Git.
+`.gitignore` | File listing module files that Git should ignore.
 `/manifests` | Directory containing module manifests, each of which defines one class or defined type. PDK creates manifests only when you generate them with the `pdk new class` command.
+`metadata.json` | File containing metadata for the module.
+`.pmtignore` | File listing module files that the `puppet module` command should ignore. `.rspec` | File containing the default configuration for RSpec.
+`.rubocop.yml` | File containing recommended settings for Ruby style checking.
 `/spec` | Directory containing files and directories for spec testing.
 `/spec/spec_helper.rb` | File containing containing any ERB or EPP templates.
 `/spec/default_facts.yaml` | File containing default facts.
 `/spec/classes` | Directory containing testing templates for any classes you generate with the `pdk new class` command.
 `/templates` | Directory containing any ERB or EPP templates.
+Required when building a module to upload to the Forge.
+`.travis.yml` | File containing configuration for cloud-based testing on Linux and OSX. See [travis-ci](http://travis-ci.org/) for more information.
 
 Related topics:
 
@@ -91,16 +97,12 @@ Related topics:
 {:.task}
 ## Generate a class
 
-To generate a class in your module, use the `pdk new class` command, specifying the name of your new class.
+To generate a class in your module, use the `pdk new class` command, specifying the name of your new class. To generate the main class of the module, which is defined in an `init.pp` file, give the class the same name as the module.
 
-To generate the main class of the module, which is defined in an `init.pp` file, give the class the same name as the module.
-
-1. From the command line, in your module's directory, run `pdk new class class_name`. Optionally, along with this command, specify any parameters with their data type and values.
-
-   This example creates a new class and defines an `ensure` parameter, which is an Enum data type that accepts the values 'absent' and 'present'.
-
+1. From the command line, in your module's directory, run `pdk new class class_name`. 
+   
    ``` bash
-   pdk new class class_name "ensure:Enum['absent','present']"
+   pdk new class class_name
    ```
 
-PDK creates the class in `module_name/manifests`. It also creates a test file (like `class_name_spec.rb`) in your module's `/spec/class` directory. This test file includes a basic template for writing your own unit tests.
+PDK creates the class in `manifests`. It also creates a test file (like `class_name_spec.rb`) in your module's `/spec/classes` directory. This test file includes a basic template for writing your own unit tests.
