@@ -14,16 +14,16 @@ PDK includes the following tools:
 Tool   | Description
 ----------------|-------------------------
 pdk | Command line tool for generating and testing modules
-rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalog of Puppet resources.
+metadata-json-lint | Validates and lints `metadata.json` files in modules against  Puppet's module metadatastyle guidelines.
 puppet-lint | Checks your Puppet code against the recommendations in the Puppet Language style guide.
 puppet-syntax | Checks for correct syntax in Puppet manifests, templates, and Hiera YAML.
-metadata-json-lint | Validates and lints `metadata.json` files in modules against  Puppet's module metadatastyle guidelines.
-rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
 puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code.
+rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalog of Puppet resources.
+rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
 
 ## Getting started
 
-To get started, install the PDK, and then create and test a module.
+To get started, install the PDK, and then create a module, and then create, validate, and test a class.
 
 <!--TK: overview workflow graphic-->
 

@@ -68,6 +68,10 @@ Download and install the PDK package for Windows systems.
 
 With PowerShell 3.0 or later, PDK loads automatically and the `pdk` command is now available to the prompt. If you are using PDK in PowerShell 2.0, you'll need to load the module and set the correct permissions for PDK.
 
+In some Windows installations trying to run the `pdk` command will complain about execution policy restrictions. In that case set your script execution policy to at least [RemoteSigned](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.security/set-executionpolicy) by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`. Alternatively, you can change the `Scope` parameter of the `ExecutionPolicy` to the current session only by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+For more information about PowerShell `ExecutionPolicies` or how to change them, see Microsoft documentation [about_Execution_Policies](http://go.microsoft.com/fwlink/?LinkID=135170).
+
 {:.task}
 ### Setting up PDK with PowerShell 2.0
 
@@ -76,10 +80,6 @@ If you are running PowerShell 2.0, you must load the `PuppetDevelopmentKit` Powe
 Before you begin, download and install the PDK package for Windows.
 
 1. In your PowerShell window, load the `PuppetDevelopmentKit` module by running `Import-Module -Name PuppetDevelopmentKit`
-1. Set your script execution policy to at least [RemoteSigned](https://msdn.microsoft.com/en-us/powershell/reference/5.1/microsoft.powershell.security/set-executionpolicy) by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`
-   Alternatively, you can change the `Scope` parameter of the `ExecutionPolicy` to the current session only by running `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
-
-For more information about PowerShell `ExecutionPolicies` or how to change them, see Microsoft documentation [about_Execution_Policies](http://go.microsoft.com/fwlink/?LinkID=135170).
 
 {:.concept}
 ## Setting up PDK behind a proxy
