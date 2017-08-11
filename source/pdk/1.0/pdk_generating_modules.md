@@ -59,7 +59,11 @@ Before you begin, ensure that you've installed the PDK package. If you are runni
    7. Where others can learn more: If you have a website where users can learn more about your module, enter the URL.
    8. Where others can report issues: If you have a public bug tracker for your module, enter the URL.
 
+[DavidS: third time this is explained (in addition to copy in the pdk itself). Is that still useful?
+
 1. If the metadata that PDK displays is correct, confirm to generate the module. If it is incorrect, enter `n` to cancel and start over.
+
+[DavidS: not that a default set of supported operating systems is added, and that developers can/should edit those afterwards at will to provide correct information.]
 
 {:.reference}
 ### Module contents
@@ -84,6 +88,15 @@ Rakefile | File listing tasks and dependencies.
 `/spec/classes` | Directory containing testing templates for any classes you generate with the `pdk new class` command.
 `/templates` | Directory containing any ERB or EPP templates.
 
+[DavidS: there are a number of additional/hidden files that configure optional third-party services, and tools, that should be mentioned here: 
+* appveyor.yml https://www.appveyor.com/ Cloud-based testing on Windows
+* .gitattributes and .gitignore: recommended defaults for using git
+* .pmtignore: required defaults when building a module for the forge
+* .rspec: default config for rspec
+* .rubocop.yml: recommended settings for ruby style checking
+* .travis.yml: http://travis-ci.org/ Cloud-based testing on Linux, and OSX
+]
+
 Related topics:
 
 * [Module fundamentals][fundamentals]
@@ -93,14 +106,12 @@ Related topics:
 
 To generate a class in your module, use the `pdk new class` command, specifying the name of your new class.
 
-To generate the main class of the module, which is defined in an `init.pp` file, give the class the same name as the module.
+To generate the main class of the module, which is defined in an `init.pp` file, give the class the same name as the module. [DavidS: See updated content in the Getting Started Guide ]
 
-1. From the command line, in your module's directory, run `pdk new class class_name`. Optionally, along with this command, specify any parameters with their data type and values.
-
-   This example creates a new class and defines an `ensure` parameter, which is an Enum data type that accepts the values 'absent' and 'present'.
+1. From the command line, in your module's directory, run `pdk new class class_name`.
 
    ``` bash
-   pdk new class class_name "ensure:Enum['absent','present']"
+   pdk new class class_name
    ```
 
-PDK creates the class in `module_name/manifests`. It also creates a test file (like `class_name_spec.rb`) in your module's `/spec/class` directory. This test file includes a basic template for writing your own unit tests.
+PDK creates the class in the `manifests` directory. It also creates a test file (like `class_name_spec.rb`) in your module's `spec/classes` directory. This test file includes a basic template for writing your own unit tests.

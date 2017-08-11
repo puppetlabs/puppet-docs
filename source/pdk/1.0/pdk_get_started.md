@@ -20,6 +20,7 @@ To get started, you'll create and test a module with PDK.
 1. Generate a module with PDK, using the `pdk new module` command.
 1. Validate and unit test your module, to verify that your module was created correctly.
 1. Generate a new class for your module, using the `pdk new class` command.
+1. Validate and unit test your module, to verify that your class was created correctly.
 
 These steps provide a basic workflow for development and testing with PDK. Then, as you add new code to your module, continue validating, testing, and iterating on your code as needed.
 
@@ -82,7 +83,7 @@ PDK does not generate any classes at module creation. To add classes to your mod
 {:.reference}
 ### Module contents
 
-PDK generates a basic module, which is a directory with a specific structure. This module contains directories To learn the basics of what a Puppet module includes, see the related topic about module fundamentals.
+PDK generates a basic module, which is a directory with a specific structure. To learn the basics of what a Puppet module includes, see the related topic about module fundamentals. [DavidS: link up here, too?]
 
 PDK creates the following files and directories for your module:
 
@@ -102,7 +103,7 @@ Rakefile | File listing tasks and dependencies.
 
 Related topics:
 
-*[Module fundamentals](https://docs.puppet.com/puppet/5.0/modules_fundamentals.html)
+* [Module fundamentals](https://docs.puppet.com/puppet/5.0/modules_fundamentals.html)
 
 {:.task}
 ### Generate a module with pdk
@@ -115,51 +116,28 @@ To generate a module with PDK's default template, use the `pdk new module` comma
    pdk new module module_name
    ```
    
-   Optionally, to skip the interview questions and generate the module with default values, use the ``skip-interview` flag when you generate the module:
+   Optionally, to skip the interview questions and generate the module with default values, use the `skip-interview` flag when you generate the module:
 
    `pdk new module module_name --skip-interview`
 
 1. Respond to the PDK dialog questions in the terminal. To accept the default value for any question, hit **Enter**.
 
-1. If the metadata that PDK displays is correct, confirm with `Y` to generate the module. If it is incorrect, enter `n` to cancel and start over.
+1. If the metadata that PDK displays is correct, confirm with `y` to generate the module. If it is incorrect, enter `n` to cancel and start over.
 
 Related topics:
 
 * Install PDK
-* Add a new resource provider with PDK
 
 {:.concept}
 ## Generating a class
 
 Generate classes for your module on the command line with PDK.
 
-To create a new class, run the `pdk new class` command, specifying the name of your new class. To generate an `init.pp` class, the main class of a module, generate a class with the same name as the module: `pdk new class module_name`.
+To create a new class, run the `pdk new class` command, specifying the name of your new class. The command automatically handles puppet's naming conventions. So, `pdk new class module_name` creates a class named `module_name` in the `init.pp` file, while `pdk new class module_name::configs` creates the class in `configs.pp`.
 
 If the class name is not inside the module namespace, then the module name is automatically prepended to the class name. For example, if the module name is `apt` and the class name is `source`, the class is named `apt::source`.
 
-PDK creates the new class manifest and a test template file. You can then write tests in this template to validate your class's behavior.
-
-{:.concept}
-### Specifying class parameters
-
-If your new class should take parameters, specify them on the command line when you generate your class.
-
-Specify the values that parameter accepts, and optionally, specify the data type of the parameter with with the parameter name. You can provide any number of parameters on the command line.
-
-
-For example, to create a new class and define an `ensure` parameter for the class, run:
-
-``` bash
-pdk new class class_name "ensure:Enum['absent','present']"
-```
-
-This command creates a file in `module_name/manifests` named `class_name.pp`, with the ensure parameter defined. It also creates a test file in `module_name/spec/class` named `class_name_spec.rb`. This test file includes a basic template for writing your own unit tests.
-
-
-
-Related topics:
-
-* [Data types](TODO: LINK)
+PDK creates the new class manifest and a test file. The default test template checks that your class compiles on all supported operating systems (as stated in the `metadata.json`). You can then write additional tests in the provided file to validate your class's behavior. [DavidS: link to rspec-puppet.com tutorial?]
 
 {:.task}
 ## Generate a new class
@@ -169,7 +147,7 @@ To generate a new class in your module, use the `pdk new class` command.
 1. From the command line, in your module's directory, run:
 
    ``` bash
-   pdk new class class_name "ensure:Enum['absent','present']"
+   pdk new class class_name
    ```
 
 {:.concept}
@@ -193,6 +171,8 @@ By default, the `pdk validate` command validates metadata, Puppet, and Ruby code
 
 For example, to validate the module's metadata, run `pdk validate metadata`.
 
+[DavidS: this is advanced content, does it make sense to explain here? It might be enough to mention the possibility of junit.xml output for CI integration here, and link to the reference.]
+
 To send module validation output to a file, use the `pdk validate` command with the option `--format=format[:target]`.
 
 This option specifies the output format and an output target file. For example, to create a report file `report.xml` in the JUnit format, run `pdk validate --format=junit:report.xml`.
@@ -201,7 +181,7 @@ You can specify multiple `--format` options, as long as they all have distinct o
 
 To run validations on a specific directory or file, pass the name of the file or directory as an argument with `pdk validate`.
 
-For example, to run all validations on the `/lib` directory only, run `pdk validate lib/`. 
+For example, to run all validations on the `lib` directory only, run `pdk validate lib/`. 
 
 {:.concept}
 ### Unit testing modules
@@ -219,6 +199,7 @@ Related links:
 * [rspec](http://rspec.info/)
 * [rspec-puppet](https://github.com/rodjek/rspec-puppet/)
 * [Writing rspec-puppet tests](http://rspec-puppet.com/tutorial/)
+* [Guidelines to better rspecs](http://betterspecs.org/)
 
 {:.task}
 ## Validate your module with PDK 
@@ -234,10 +215,10 @@ To validate that your module is well-formed with correct syntax, run the `pdk va
 You should get a result like:
 
 ``` bash
-Running validations on `hello_module`:
-* ruby syntax: OK!
-* puppet syntax: OK!
-[...]
+pdk (INFO): Running all available validators...
+[✔] Checking metadata syntax (metadata.json)
+[✔] Checking metadata style (metadata.json)
+[✔] Checking Ruby code style
 ```
 
 
@@ -247,6 +228,7 @@ Running validations on `hello_module`:
 To unit test your module, use the `pdk test unit` command. This command runs all the unit tests in your module.
 
 Before you begin, you need to have written unit tests for your module. The exception to this is if you are testing an empty PDK-generated module. If you generated a module with PDK, and you have *not* added any new classes or code to it, PDK can test to make sure that the module was generated correctly.
+[DavidS: this seems backwards. Even if there are no tests, you can run `pdk test unit`. It'll just tell you that there were no tests. When generating a class using the PDK, you will get unit tests that already give you great confidence in that the code is semi-working. Additional tests can be added at the developer's deliberation.]
 
 1. In your module's directory, from the command line, run:
 
