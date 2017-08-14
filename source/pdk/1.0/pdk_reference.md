@@ -65,23 +65,23 @@ pdk validate [--format=<FORMAT>[:<TARGET_FILE>]] [<VALIDATIONS>] [<TARGETS>*]
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
 `--list` | Displays a list of available validations and their descriptions. Using this option lists the tests without running them. | None.    | No default.
-`--format=<FORMAT>[:<TARGET_FILE>]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format, for example: `--format=junit:report.xml` | Specifies the output format and an output target file. Valide formats are `junit` (JUnit XML), `text`(plain text). Multiple `--format` options can be specified as long as they all have distinct output targets.  | `text`
+`--format=<FORMAT>[:<TARGET_FILE>]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format, for example: `--format=junit:report.xml` Multiple `--format` options can be specified as long as they all have distinct output targets. | `junit` (JUnit XML), `text`(plain text).  | `text`
 `--parallel` | Runs all validations simultaneously, using multiple threads. | None.    | No default.
 `<VALIDATIONS>` | A comma-separated list of validations to run (or `all`) | See the `--list` output for a list of available validations.    | `all`
-`<TARGETS>` | A list of directories or individual files to validate. Validations which are not applicable to individual files will be skipped for those files. | A space-separated list fof directories or files.    | Validates all available directories and files.
+`<TARGETS>` | A list of directories or individual files to validate. Validations which are not applicable to individual files will be skipped for those files. | A space-separated list of directories or files.    | Validates all available directories and files.
 
 ## `pdk test unit` command
 
-Runs unit tests. Any errors are displayed to the console and reported in the report-file, if requested. The exitcode is non-zero when errors occur.
+Runs unit tests. Errors are displayed to the console and reported in the target file, if specified. The exit code is non-zero when errors occur.
 
 Usage:
 
 ```
-pdk test unit [--list] [--tests=test_list] [--format=format[:target]] [runner_options]
+pdk test unit [--list] [--tests=<TEST_LIST>] [--format=<FORMAT>[:<TARGET_FILE>]] [runner_options]
 ```
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
 `--list` | Displays a list of unit tests and their descriptions. Using this option lists the tests without running them. | None.    | No default.
-`--tests=test_list` | A comma-separated list of tests to run. Use this during development to pinpoint a single failing test. | See the `--list` output for allowed values.    | No default.
-`--format=format[:target]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format with the syntax:`--format=junit:report.xml`. Multiple `--format` options can be specified as long as they all have distinct output targets. | `junit` (JUnit XML), `text`(plain text).     | `text`
+`--tests=<TEST_LIST>` | A comma-separated list of tests to run. Use this during development to pinpoint a single failing test. | See the `--list` output for allowed values.    | No default.
+`--format=<FORMAT>[:<TARGET_FILE>]` | Specifies the format of the output. Optionally, you can specify a target file for the given output format, for example:`--format=junit:report.xml`. Multiple `--format` options can be specified as long as they all have distinct output targets. | `junit` (JUnit XML), `text`(plain text).     | `text`
