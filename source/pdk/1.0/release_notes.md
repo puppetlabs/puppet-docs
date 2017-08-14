@@ -7,11 +7,13 @@ Release notes for the Puppet Development Kit (PDK), a development kit containing
 
 ## Puppet Development Kit 1.0
 
-Released 15 August 2017.
+Released August 2017.
 
 This is the first major release of the Puppet Development Kit (PDK).
 
 ### New features
+
+PDK
 
 * Generates modules with a complete module skeleton, metadata, and README template.
 * Generates classes.
@@ -23,5 +25,11 @@ This is the first major release of the Puppet Development Kit (PDK).
 
 ### Known issues
 
-* [TICKET](link): This is the basic format for open source release notes.
+#### `pdk test unit --list` output lacks information
+
+The output from the command `pdk test unit --list` lacks detailed information, so tests appear duplicated and are presented with poor descriptions. To get the full text descriptions, execute the tests in JUnit format by running `pdk test unit --format=junit`.[PDK-374](https://tickets.puppetlabs.com/browse/PDK-374).
+
+#### PowerShell errors if you run `Remove-Item` on the module directory
+
+In PowerShell, `Remove-Item` on module folder errors because of a spec fixture symlink. To remove the module directory, use `-Force`: `Remove-Item -Recurse -Force <module_dir>`
 
