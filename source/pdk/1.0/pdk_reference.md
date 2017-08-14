@@ -77,7 +77,10 @@ Runs unit tests. Errors are displayed to the console and reported in the target 
 Usage:
 
 ```
-pdk test unit [--list] [--tests=<TEST_LIST>] [--format=<FORMAT>[:<TARGET_FILE>]] [runner_options]
+pdk test unit --list
+```
+or```
+pdk test unit [--tests=<TEST_LIST>] [--format=<FORMAT>[:<TARGET_FILE>]]
 ```
 
 Argument   | Description   | Values      | Default
