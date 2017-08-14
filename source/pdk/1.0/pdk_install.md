@@ -7,19 +7,16 @@ description: "Installing the Puppet Development Kit, the shortest path to develo
 
 [troubleshoot]: ./pdk_troubleshooting.html
 
-Install the Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
+Install Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
 
-{:.section}
-### Before you begin
+PDK is a stand-alone development kit and does not require Puppet installation.
 
-PDK is a stand-alone development kit and does not require a pre-existing installation of Puppet.
+If you used an early release version of PDK, uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
 
-If you used an early release version of PDK, we recommend you uninstall it before installing PDK 1.0. Use your platform's package manager to uninstall any PDK versions earlier than 1.0, and then install the updated 1.0 package.
+By default, PDK installs to the following location:
 
-By default, PDK installs to:
-
-* Linux and OS X systems: `/opt/puppetlabs/pdk/`
-* Windows systems: `C:\Program Files\Puppet Labs\DevelopmentKit`
+* On Linux and OS X systems: `/opt/puppetlabs/pdk/`
+* On Windows systems: `C:\Program Files\Puppet Labs\DevelopmentKit`
 
 {:.reference}
 ### Requirements and limitations
@@ -41,6 +38,8 @@ PDK supports the following operating systems.
 On Windows, PowerShell 2.0 or greater is supported.
 
 PDK functions, such as creating classes, testing, and validation, are supported only on modules created with PDK.
+
+Modules created with PDK are supported with all Puppet and Ruby version combinations currently under maintenance. See open source [Puppet](https://docs.puppet.com/puppet/latest/about_agent.html) and [Puppet Enterprise](https://puppet.com/misc/puppet-enterprise-lifecycle) lifecycle pages for details.
 
 {:.task}
 ## Install PDK on Linux-based systems
