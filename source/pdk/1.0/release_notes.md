@@ -3,7 +3,7 @@ layout: default
 title: "Puppet Development Kit release notes"
 ---
 
-Release notes for the Puppet Development Kit (PDK), a development kit containing key Puppet code development and testing tools.
+Release notes for the Puppet Development Kit (PDK), a development kit containing tools for developing and testing Puppet code.
 
 ## Puppet Development Kit 1.0
 
