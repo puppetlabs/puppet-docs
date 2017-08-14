@@ -14,7 +14,7 @@ The PDK includes the following tools:
 Tool   | Description
 ----------------|-------------------------
 metadata-json-lint | Validates and lints `metadata.json` files in modules against Puppet's module metadata style guidelines.
-pdk | Generats and tests modules from the command line.
+pdk | Generates and tests modules from the command line.
 puppet-lint | Checks your Puppet code against the recommendations in the Puppet Language style guide.
 puppet-syntax | Checks for correct syntax in Puppet manifests, templates, and Hiera YAML.
 puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code.
