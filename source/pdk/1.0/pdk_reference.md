@@ -2,7 +2,7 @@
 layout: default
 title: "Puppet Development Kit command reference"
 canonical: "/pdk/1.0/pdk_reference.html"
-description: "Commands for the Puppet Development Kit, the shortest path to developing better Puppet code."
+description: "Commands for Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
 ## `pdk new module` command
