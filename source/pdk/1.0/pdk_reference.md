@@ -12,18 +12,18 @@ Generates a new module.
 Usage:
 
 ```
-pdk new module [--template-url=git_url] [--license=spdx_identifier] module_name [target_dir]
+pdk new module [--template-url=<GIT_URL>] [--license=<IDENTIFIER>] <module_name> [<TARGET_DIR>]
 ```
 
-The `pdk new module` command accepts the following arguments and options. Arguments are optional unless otherwise specified.
+The `pdk new module` command accepts the following arguments and options. Arguments are optional unless the Description indicates it is **Required**.
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-`--template-url=git_url` | Overrides the template to use for this module. | A valid Git URL or path to a local template.    | Defaults to the current pdk-module-template.    | No default.
-`--license=spdx_identifier` | Specifies the license this module is written under. | See https://spdx.org/licenses/ for a list of open source licenses, or use `proprietary`.    | Apache-2.0
-`--skip-interview` | Suppress interactive queries for initial values. Metadata will be generated with default values for all questions.| None    | Ask questions.
-`module_name` | **Required**. Specifies the name of the module being created. | A module name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
-`target_dir` | Specifies the directory that the new module will be created in. | A valid directory path.    | Creates a directory with the given `module_name` inside the current directory.
+`--template-url=<GIT_URL>` | Overrides the template to use for this module. | A valid Git URL or path to a local template.    | Defaults to the current pdk-module-template.    | No default.
+`--license=<IDENTIFIER>` | Specifies the license for this module. | See https://spdx.org/licenses/ for a list of open source licenses, or use `proprietary`.    | `Apache-2.0`
+`--skip-interview` | Suppress interactive questions. Default values for all metadata.| None    | Ask questions.
+`<module_name>` | **Required**. Specifies the name of the module being created. | A module name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
+`<TARGET_DIR>` | Specifies the directory that the new module will be created in. | A valid directory path.    | Creates a directory with the given `module_name` inside the current directory.
 
 ## `pdk new class` command
 
@@ -32,7 +32,7 @@ Generates a new class and test templates for it in the current module.
 Usage:
 
 ```
-pdk new class [--template-url=git_url] <class_name>
+pdk new class [--template-url=<GIT_URL>] <class_name> [<parameter_name>[:<PARAMETER_TYPE>]]
 ```
 
 For example:
@@ -44,9 +44,9 @@ pdk new class my_class
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-`--template-url` | Overrides the template to use when generating this class. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
-`class_name` | **Required**. The name of the class to generate. | A class name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
-`parameter_name[:parameter_type]` | Parameters for the generated class. Specify any number of parameters on the command line. | A valid parameter name, optionally with the parameter's data type.    | No default.
+`--template-url=<GIT_URL>` | Overrides the template to use when generating this class. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
+`<class_name>` | **Required**. The name of the class to generate. | A class name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
+`<parameter_name>[:<PARAMETER_TYPE>]` | Parameters for the generated class. Specify any number of parameters on the command line. | A valid parameter name, optionally with the parameter's data type.    | No default.
 
 ## `pdk validate` command
 
