@@ -79,7 +79,8 @@ Usage:
 ```
 pdk test unit --list
 ```
-or```
+or
+```
 pdk test unit [--tests=<TEST_LIST>] [--format=<FORMAT>[:<TARGET_FILE>]]
 ```
 
