@@ -50,7 +50,7 @@ Download and install the PDK package for Linux-based systems.
 1. Install the `pdk` package using the command appropriate to your system:
    * On RPM-based (Red Hat, SLES) systems, run `sudo rpm -ivh pdk-<version>-<platform>.rpm`
    * On Debian-based (Debian, Ubuntu) systems, run `sudo dpkg -i pdk-<version>-<platform>.rpm`
-1. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
+1. Open a terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
 ## Install PDK on OS X
@@ -59,7 +59,7 @@ Download and install the PDK package for Mac OS X systems.
 
 1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 1. Double click on the downloaded package to install.
-2. Open a new terminal to re-source your shell profile and make PDK available to your PATH.
+2. Open a terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
 ## Install PDK on Windows
@@ -68,10 +68,10 @@ Download and install the PDK package for Windows systems.
 
 1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 1. Double click on the downloaded package to install.
-1. Open a new Powershell window to re-source your profile and make PDK available to your PATH. If you are running PowerShell 3.0 or later, PDK loads automatically and the `pdk` command is now available to the prompt.
+1. Open a Powershell window to re-source your profile and make PDK available to your PATH. If you are running PowerShell 3.0 or later, PDK loads automatically and the `pdk` command is now available to the prompt.
 1. If you are running PowerShell 2.0, load the module by running `Import-Module -Name PuppetDevelopmentKit` in your PowerShell window.
 
-On some Windows installations, you might get execution policy restriction errors when you try to run `pdk` commands. See the [PDK troubleshooting][troubleshoot] guide for help.
+If you get execution policy restriction errors when you try to run `pdk` commands, see [PDK troubleshooting][troubleshoot] for help.
 
 {:.concept}
 ## Setting up PDK behind a proxy
@@ -80,16 +80,16 @@ If you are using PDK behind a proxy, you must set environment variables before r
 
 You can either set these variables on the command line before each working session or add them to your system configuration, which varies depending on the operating system.
 
-On Windows systems, run:
-
-```
-$env:http_proxy="http://user:password@proxy.domain.com:port"
-$env:https_proxy="http://user:password@proxy.domain.com:port"
-```
-
 On Linux-based or OS X systems, run:
 
 ```
 export http_proxy="http://user:password@proxy.domain.com:port"
 export https_proxy="http://user:password@proxy.domain.com:port"
+```
+
+On Windows systems, run:
+
+```
+$env:http_proxy="http://user:password@proxy.domain.com:port"
+$env:https_proxy="http://user:password@proxy.domain.com:port"
 ```
