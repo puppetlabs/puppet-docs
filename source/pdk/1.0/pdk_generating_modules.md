@@ -18,7 +18,7 @@ To create module metadata, PDK asks you a series of questions. Each question has
 
 Optionally, you can skip the interview step and use the default answers for all metadata.
 
-When you run the `pdk new module` command, the tool asks the following questions:
+When you run the `pdk new module` command, the tool requests the following information:
 
 * Your Puppet Forge user name. If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value. 
 * Module version. We use and recommend semantic versioning for modules.
