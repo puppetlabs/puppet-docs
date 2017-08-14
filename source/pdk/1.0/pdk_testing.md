@@ -65,7 +65,7 @@ PDK includes tools for running unit tests, but it does not write unit tests itse
 
 After you've written your unit tests, run the `pdk test unit` command to run all of the tests you've included in your module.
 
-Test and validate your module anytime you are going to modify or add code, to verify that you are starting out with clean code. Then, as you create classes and write other code in your module, continue to write and run unit tests, and validate.
+Test and validate your module anytime you are going to modify or add code, to verify that you are starting out with clean code. Then, as you create classes and write other code in your module, continue to validate it, and to write and run unit tests.
 
 Related links:
 
