@@ -31,9 +31,7 @@ When you run the `pdk new module` command, the tool asks the following questions
 
 After you generate a module, validate and test the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
 
-After you create the module, create classes by running the `pdk new class` command. It creates a class manifest, with the naming convention `<CLASS_NAME>.pp`. For the module's main class, which has the same name as the module, the class manifest is named `init.pp`.
-
-The new class command also creates a test template file for the class. You can then write tests in this template to validate your class's behavior.
+When you have validated the module, create classes by running the `pdk new class` command. The new class command also creates a test template file for the class. You can then write tests in this template to validate your class's behavior.
 
 Related topics:
 
@@ -99,10 +97,10 @@ Related topics:
 {:.task}
 ## Generate a class with PDK
 
-Use the `pdk new class` command to generate a new class for the module.
+Use the `pdk new class` command to generate a new class for the module. It creates a class manifest file, with the naming convention `class_name.pp`.
 
 > **Note:** To generate the module's main class, which is defined in an `init.pp` file, give the class the same name as the module.
 
 1. From the command line, in your module's directory, run `pdk new class <CLASS_NAME>` 
 
-PDK creates the new class manifest and a test file (`class_name_spec.rb`) in your module's `/spec/classes` directory. This test template checks that your class compiles on all supported operating systems as listed in the `metadata.json`. You can then write additional tests in the provided file to validate your class's behavior.
+PDK creates the new class manifest (`class_name.pp`) and a test file (`class_name_spec.rb`) in your module's `/spec/classes` directory. The test template checks that your class compiles on all supported operating systems as listed in the `metadata.json`. You can then write additional tests in the provided file to validate your class's behavior.
