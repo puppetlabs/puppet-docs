@@ -46,7 +46,7 @@ Optionally, you can validate only certain files or directories, run a specific t
 
    * To automatically correct some common code style problems, run `pdk validate` with the `--auto-correct` option.
 
-   * To send module validation output to a file, use the option `--format=format[:target]`, which lets you specify the desired output format and target file. For example, to create a report file `report.txt`, run `pdk validate --format=txt:report.txt`
+   * To send module validation output to a file, use the option `--format=format[:target]`, which lets you specify the desired output format and target file. For example, to create a report file `report.txt`, run `pdk validate --format=text:report.txt`
    
      You can specify multiple `--format` options, provided they all have distinct output targets.
 
