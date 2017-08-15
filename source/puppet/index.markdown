@@ -88,6 +88,7 @@ Get the latest version of Puppet up and running.
 * [Module fundamentals](/puppet/latest/modules_fundamentals.html) --- Nearly all of your Puppet code should be in modules.
 * [Installing modules from the Puppet Forge](/puppet/latest/modules_installing.html) --- Save time by using pre-existing modules.
 * [Publishing modules on the Puppet Forge](/puppet/latest/modules_publishing.html) --- Preparing your best modules to go public.
+* [Developing modules with the Puppet Development Kit](/pdk/latest/pdk.html)
 
 ### Help with writing Puppet code
 
