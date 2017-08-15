@@ -4,21 +4,21 @@ title: "Puppet Enterprise Modules"
 canonical: "/forge/puppetenterprisemodules/index.html"
 ---
 
-# Puppet Enterprise Modules
+# Puppet Enterprise modules
 
-Puppet Enterprise modules are modules built by Puppet specifically for use with Puppet Enterprise (PE). These modules were launched with PE 3.7, and quickly and easily give PE users expanded functionality.
+Puppet Enterprise modules are modules built by Puppet specifically for use with Puppet Enterprise (PE). These modules were launched with PE 3.7, and quickly and give PE users expanded functionality.
 
-## Installing Puppet Enterprise Modules
+## Installing Puppet Enterprise modules
 
 To install a Puppet Enterprise module you must:
 
 * Use Puppet Enterprise 3.7 or higher.
 * Be logged in as the root user on your Puppet master node.
-* Use the [Puppet module tool (PMT)](https://docs.puppetlabs.com/pe/latest/modules_installing.html#using-the-module-tool).
+* Use the [`puppet module` command](https://docs.puppet.com/puppet/latest/modules_installing.html).
 * Install the module on a properly licensed Puppet node.
-* Have internet access on the node you are using to download the module.  
+* Have internet access on the node you are using to download the module.
 
-If all of these conditions are met, install the module by running `puppet module install puppetlabs-modulename`.
+Install the module by running `puppet module install puppetlabs-modulename`.
 
 ~~~
  # puppet module install puppetlabs-mssql
@@ -31,27 +31,27 @@ Notice: Installing -- do not interrupt ...
   └── puppetlabs-stdlib (v4.3.2)
 ~~~
 
-By default, your Puppet Enterprise module will be installed either in `/etc/puppetlabs/puppet/environments/production/modules` for fresh installations of PE 3.7 and higher, or `/etc/puppetlabs/puppet/modules` for upgraded installations.
+By default, your Puppet Enterprise module is installed in either `/etc/puppetlabs/puppet/environments/production/modules` for fresh installations of PE 3.7 and higher, or `/etc/puppetlabs/puppet/modules` for upgraded installations.
 
-## Managing Puppet Enterprise Modules
+## Managing Puppet Enterprise modules
 
 Once you've installed the module you can move the installed module to the directory, server, or version control system (VCS) repository of your choice. 
 
 If you are using [librarian-puppet](https://github.com/rodjek/librarian-puppet) or [r10k](https://github.com/adrienthebo/r10k), you must install the module with the PMT before committing it to your version control repository.
 
-### Upgrading Puppet Enterprise Modules
+### Upgrading Puppet Enterprise modules
 
 Upgrading a Puppet Enterprise module looks a lot like installing. You must:
 
 * Use Puppet Enterprise 3.7 or higher.
 * Be logged in as the root user on your Puppet master node.
-* Use the [Puppet module tool (PMT)](https://docs.puppetlabs.com/pe/latest/modules_installing.html#using-the-module-tool).
+* Use the [`puppet module` command](https://docs.puppet.com/puppet/latest/modules_installing.html).
 * Install the module on a properly licensed Puppet node.
 * Have internet access on the node you are using to download the module. 
 
 If these conditions are met, you upgrade the module by running `puppet module upgrade puppetlabs-modulename`.
 
-### Uninstalling Puppet Enterprise Modules
+### Uninstalling Puppet Enterprise modules
 
 You can uninstall a Puppet Enterprise module just like any other module by running `puppet module uninstall puppetlabs-modulename`.
 
@@ -60,8 +60,8 @@ You can uninstall a Puppet Enterprise module just like any other module by runni
 Removed /etc/puppetlabs/puppet/environments/production/modules/mssql (v1.0.0)
 ~~~
 
-## Feedback and Contributing
+## Feedback and contributing
 
 If you run into an issue with a Puppet Enterprise module, or if you would like to request a feature, please [file a ticket](https://tickets.puppetlabs.com/browse/MODULES/).
 
-If you are having problems getting a Puppet Enterprise module up and running, please contact [Support](http://puppetlabs.com/services/customer-support). 
+If you are having problems getting a Puppet Enterprise module up and running, please contact [Support](https://puppet.com/support-services/customer-support). 
