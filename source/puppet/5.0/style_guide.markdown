@@ -1297,7 +1297,7 @@ All publicly available modules should include the documentation covered below.
 {:.section}
 ### 17.1 README
 
-Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](./latest/READMEtemplate.txt) offers a basic format you can use. If you create modules with `puppet module generate`, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
+Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](./latest/READMEtemplate.txt) offers a basic format you can use. If you create modules with the Puppet Developer Kit or the `puppet module generate` command, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
 
 There's an entire [guide](./latest/modules_documentation.html) to writing a great README, but overall your README should:
 

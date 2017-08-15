@@ -11,6 +11,8 @@ title: "Documenting modules"
 [forge]: https://forge.puppetlabs.com/
 [commonmark]: http://commonmark.org/
 [metadata.json]: ./modules_metadata.html
+[pdk]: {{pdk}}/pdk.html
+
 
 
 You should document any module you write, whether you the module is for internal use only or for publication on the Puppet Forge. When you write module documentation, follow best practices and our module README template.
@@ -27,13 +29,15 @@ Related topics:
 * [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [Markdown][commonmark]
 * [README template][template]
+* [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
+
 
 {:.concept}
 ## The README template
 
 The module README template helps you put together complete and clear documentation.
 
-If you used the `puppet module generate` command to generate your module, you already have a copy of the README template in `.md` format in your module. You can also use the standalone template to guide you.
+If you used the Puppet Development Kit or the `puppet module generate` command to generate your module, you already have a copy of the README template in `.md` format in your module. You can also use the standalone template to guide you.
 
 Related topics:
 

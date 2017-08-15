@@ -24,13 +24,16 @@ title: "Installing modules"
 [supported]: https://forge.puppet.com/supported
 [score]: /forge/assessingmodulequality.html
 [environment]: ./environments.html
+[pdk]: {{pdk}}/pdk.html
+
 
 Install and manage Puppet Forge modules with the `puppet module` command.
 
-* [Module fundamentals][fundamentals]: How to use and write Puppet modules.
-* [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
+* [Module fundamentals][fundamentals]: How to use and write modules.
+* [Publishing modules][publishing]: How to publish your modules to the Forge.
 * [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [Documenting modules][documentation]: A module README template and information on providing directions for your module.
+* [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
 
 {:.concept}
 ## About `puppet module`
@@ -65,9 +68,9 @@ Alternatively, you can set these two proxy settings inside the `[user]` config s
 {:.concept}
 ## Finding Forge modules
 
-The Puppet Forge houses thousands of modules, which you can find by browsing the Puppet Forge on the web or by using the `puppet module search` command.
+The Puppet Forge houses thousands of modules, which you can find by browsing the Forge on the web or by using the `puppet module search` command.
 
-Some Forge modules are Puppet **supported** or **approved** modules. Puppet approved modules pass our specific quality and usability requirements. These modules are recommended by Puppet, but are not supported as part of a Puppet Enterprise license agreement. Puppet supported modules have been tested with Puppet Enterprise and are fully supported by Puppet. If there are no supported or approved modules for what you want to do, evaluate available modules by module score, compatibility, documentation, last release date, and number of downloads.
+Some Forge modules are Puppet **supported** or **approved** modules. Puppet approved modules pass our specific quality and usability requirements. We recommend these modules, but they are not supported as part of a Puppet Enterprise license agreement. Puppet supported modules have been tested with Puppet Enterprise and are fully supported. If there are no supported or approved modules for what you want to do, evaluate available modules by module score, compatibility, documentation, last release date, and number of downloads.
 
 Related topics:
 

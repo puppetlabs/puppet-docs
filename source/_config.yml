@@ -32,6 +32,7 @@ defaultnav:
   /mcollective: /_includes/mcollective_menu.html
   /mcollective1.2: /_includes/mcollective_1.2.html
   /upgrade: /upgrade/_upgrade_toc.html
+  /pdk: /_includes/pdk_1.0.html
 
 #Anatomy of an external source:
 #  /puppetdb/2.2:                                   # The absolute URL where the source's contents should be mounted in the final site.
@@ -51,6 +52,7 @@ symlink_latest:
   - puppetserver
   - hiera
   - facter
+  - pdk
   - pe
   - ja/pe
   - es/puppet
@@ -64,6 +66,7 @@ document_names:
   puppetdb: PuppetDB
   hiera: Hiera
   facter: Facter
+  pdk: Puppet Development Kit
   pe_ja: "Puppet Enterprise (日本語)"
   puppet_es: "Puppet (español)"
 
@@ -534,7 +537,10 @@ documents:
     doc: facter
     version: "1.6"
     nav: /_includes/facter16.html
-
+  /pdk/1.0:
+    doc: pdk
+    version: "1.0"
+    nav: ./_pdk_toc.html
   /hiera/3.3:
     doc: hiera
     version: "3.3"

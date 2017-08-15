@@ -20,6 +20,7 @@ title: "Module fundamentals"
 [forge]: http://forge.puppetlabs.com
 [file_function]: ./function.html#file
 [reserved names]: ./lang_reserved.html
+[pdk]: {{pdk}}/pdk.html
 
 Modules are self-contained bundles of code and data. These reusable, shareable units of Puppet code are a basic building block for Puppet.
 
@@ -33,6 +34,7 @@ Related topics:
 * [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
 * [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
 * [Documenting modules][documentation]: A module README template and information on providing directions for your module.
+* [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
 
 {:.concept}
 ## Using modules
@@ -186,80 +188,22 @@ So `template('my_module/component.erb')` would render the template `my_module/te
 {:.concept}
 ## Writing modules
 
-To write a module, use the `puppet module generate` command.
+Modules must have a specific directory structure and include a `metadata.json` file. You can write a module manually, but it's usually easier to use either the Puppet Development Kit or the built-in `puppet module generate` command.
 
-Specify the full name of the module, in the format `username-modulename`. For example:
+The Puppet Development Kit includes key development and testing tools, including a complete module skeleton and a command line tools to help you create, validate, and run unit tests on modules. PDK also includes all dependencies needed for its use. To get started with PDK, see the PDK documentation.
 
-`puppet module generate <USERNAME>-<MODULE NAME>`
+Puppet's built-in `puppet module generate` command can generate a basic module skeleton. To use the `puppet module generate` command, specify the full name of the module, in the format `username-modulename`. For example,`puppet module generate <USERNAME>-<MODULE NAME>.`
 
-When you run this command, the `puppet module` command asks a series of questions to gather metadata about your module, and then it creates a basic module structure for you.
+Both PDK and the `puppet module generate` command ask for metadata information to create a `metadata.json` file. You should have the following information ready:
 
-```bash
-$ puppet module generate examplecorp-mymodule
-
-We need to create a metadata.json file for this module.  Please answer the
-following questions; if the question is not applicable to this module, feel free
-to leave it blank.
-
-Puppet uses Semantic Versioning (semver.org) to version modules.
-What version is this module?  [0.1.0]
---> 0.1.0
-
-Who wrote this module?  [examplecorp]
---> Pat
-
-What license does this module code fall under?  [Apache 2.0]
---> Apache 2.0
-
-How would you describe this module in a single sentence?
---> It examples with Puppet.
-
-Where is this module's source code repository?
---> https://github.com/examplecorp/examplecorp-mymodule
-
-Where can others go to learn more about this module?
---> https://forge.puppetlabs.com/examplecorp/mymodule
-
-Where can others go to file issues about this module?
--->
-
-
-{
-  "name": "examplecorp-mymodule",
-  "version": "0.1.0",
-  "author": "Pat",
-  "summary": "It examples with Puppet.",
-  "license": "Apache 2.0",
-  "source": "https://github.com/examplecorp/examplecorp-mymodule",
-  "project_page": "(https://forge.puppetlabs.com/examplecorp/mymodule)",
-  "issues_url": null,
-  "dependencies": [
-    {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
-    }
-  ]
-}
-
-
-About to generate this metadata; continue? [n/Y]
---> Y
-
-Notice: Generating module at /Users/Pat/Development/mymodule...
-Notice: Populating ERB templates...
-Finished; module generated in mymodule.
-mymodule/manifests
-mymodule/manifests/init.pp
-mymodule/metadata.json
-mymodule/Rakefile
-mymodule/README.md
-mymodule/spec
-mymodule/spec/classes
-mymodule/spec/classes/init_spec.rb
-mymodule/spec/spec_helper.rb
-mymodule/examples
-mymodule/examples/init.pp
-```
+* Your Puppet Forge username. If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value. 
+* Module version. We use and recommend semantic versioning for modules.
+* The module author's name.
+* The license under which your module is made available. This should be an identifier from [SPDX License List](https://spdx.org/licenses/).
+* A one-sentence summary about your module.
+* The URL to your module's source code repository, so that other users can contribute back to your module.
+* The URL to a web site that offers full information about your module, if you have one..
+* The URL to the public bug tracker for your module, if you have one.
 
 Alternatively, you can manually write classes and defined types, placing them in properly named manifest files. However, if you take this route, you **must** ensure that your `metadata.json` file is properly formatted or your module **will not work**.
 
@@ -271,4 +215,5 @@ Related topics:
 * [Defined types][defined_types]
 * [Beginner's guide to writing modules](./bgtm.html)
 * [Puppet Language Style Guide](./style_guide.html)
+* [Puppet Development Kit][pdk]
 
