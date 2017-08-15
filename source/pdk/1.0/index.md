@@ -16,7 +16,7 @@ Tool   | Description
 metadata-json-lint | Validates and lints `metadata.json` files in modules against  Puppet's module metadata style guidelines.
 pdk | Generates and tests modules from the command line.
 puppet-lint | Checks your Puppet code against the recommendations in the Puppet Language style guide.
-puppet-syntax | Checks for correct syntax in Puppet manifests, templates, and Hiera YAML.
+puppet-syntax | Checks for correct syntax in Puppet manifests.
 puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with spec testing Puppet code.
 rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalog of Puppet resources.
 rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
