@@ -5,7 +5,7 @@ canonical: "/pdk/1.0/pdk.html"
 description: "About Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-[workflow]: (/pdk-workflow.png)
+[workflow]: ./images/pdk-workflow.png
 
 Puppet Development Kit (PDK) is a package of development and testing tools to help you create great Puppet modules.
 
