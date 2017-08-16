@@ -5,7 +5,7 @@ canonical: "/pdk/1.0/pdk.html"
 description: "About Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-[workflow]: (./images/pdk-workflow.png)
+[workflow]: (./pdk-workflow.png)
 
 Puppet Development Kit (PDK) is a package of development and testing tools to help you create great Puppet modules.
 
@@ -27,7 +27,7 @@ rspec-puppet-facts | Adds support for running rspec-puppet tests against the fac
 
 To get started, install PDK, create a module, and then create, validate, and test a class
 
-![pkd workflow][workflow]
+![pdk-workflow][workflow]
 
 1. Generate a module using the `pdk new module` command.
 1. Validate your module to verify that it is well-formed.
