@@ -5,7 +5,7 @@ title: "Puppet agent release notes"
 
 [Puppet 5.1.0]: /puppet/5.1/release_notes.html#puppet-510
 
-[Facter 3.8]: /facter/3.8/release_notes.html#facter-380
+[Facter 3.8.0]: /facter/3.8/release_notes.html#facter-380
 
 [MCollective 2.11.2]: /mcollective/releasenotes.html#2_11_2
 
@@ -26,3 +26,13 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.0 release
 ## Puppet agent 5.1.0
 
 Released August 17, 2017.
+
+### Component updates
+
+This release of `puppet-agent` includes component updates to [Puppet 5.1.0][], [Facter 3.8.0][], and [MCollective 2.11.2][].
+
+### New platforms
+
+Packages have been added in this release for:
+
+* Debian 9
