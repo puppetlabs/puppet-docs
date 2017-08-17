@@ -3,7 +3,7 @@ layout: default
 title: "Facter Release notes"
 ---
 
-This page documents the history of the Facter 3.7 series.
+This page documents the history of the Facter 3.8 series.
 
 ## Facter 3.8.0
 

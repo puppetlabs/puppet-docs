@@ -7,9 +7,7 @@ title: "Puppet agent release notes"
 
 [Facter 3.8]: /facter/3.8/release_notes.html#facter-380
 
-
-[MCollective 2.11.0]: /mcollective/releasenotes.html#2_11_0
-[MCollective 2.11.1]: /mcollective/releasenotes.html#2_11_1
+[MCollective 2.11.2]: /mcollective/releasenotes.html#2_11_2
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
