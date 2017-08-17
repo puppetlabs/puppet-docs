@@ -3,7 +3,7 @@ layout: default
 title: "Deprecated language features"
 ---
 
-These features of the Puppet language are deprecated in Puppet 5.0.
+These features of the Puppet language are deprecated in this version of Puppet.
 
 ## Hiera 3.x features
 

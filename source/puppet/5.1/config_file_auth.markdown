@@ -19,7 +19,7 @@ Access to Puppet's HTTPS API is configured in `auth.conf`.
 
 > ## **Important:** This is a deprecated config file
 >
-> Puppet Server has a [new HOCON-formatted `auth.conf` file][server_auth_conf], which is a full replacement for the old `auth.conf` format described on this page. The old `auth.conf` file will be removed in Puppet 5.0.
+> Puppet Server has a [new HOCON-formatted `auth.conf` file][server_auth_conf], which is a full replacement for the old `auth.conf` format described on this page. The old `auth.conf` file will be removed in a future release of Puppet.
 >
 > Until then, Puppet Server uses a combination of the new `auth.conf` file and this legacy `auth.conf` file:
 >

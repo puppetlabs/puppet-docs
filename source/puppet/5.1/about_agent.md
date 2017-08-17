@@ -34,7 +34,7 @@ Puppet Server is a separate application that, among other things, runs instances
 
 The `puppet-agent` package also has its own version number, which doesn't necessarily match the version of Puppet it installs.
 
-Order is important in the upgrade process. First, update Puppet Server, then you update `puppet-agent`. If you upgrade Puppet Server or PuppetDB to version 5, if you're on the master it will automatically upgrade the `puppet-agent` package to Puppet agent 5.0.0. Puppet Server 5 will also prevent you from installing anything lower than `puppet-agent` 5.0.0 on your agent nodes.
+Order is important in the upgrade process. First, update Puppet Server, then you update `puppet-agent`. If you upgrade Puppet Server or PuppetDB to version 5, if you're on the master it will automatically upgrade the `puppet-agent` package to Puppet agent 5.0.0 or newer. Puppet Server 5 will also prevent you from installing anything lower than `puppet-agent` 5.0.0 on your agent nodes.
 
 Since the `puppet-agent` package distributes several different pieces of software, its version number will frequently increase when Puppet's version does not --- for example, `puppet-agent` 1.2.0 and 1.2.1 shipped the same Puppet version but different Facter versions. Similarly, new versions of Puppet Server usually don't require updates to the core Puppet code.
 

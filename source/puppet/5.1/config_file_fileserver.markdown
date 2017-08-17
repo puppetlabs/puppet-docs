@@ -53,7 +53,7 @@ This `fileserver.conf` file would create a new mount point named `extra_files`.
 
 ### Deprecated security directives
 
-Before [`auth.conf`][auth_conf] existed, `fileserver.conf` could use `allow` and `deny` directives to control which nodes can access various files. This feature is now deprecated, and will be removed in Puppet 5.0.
+Before [`auth.conf`][auth_conf] existed, `fileserver.conf` could use `allow` and `deny` directives to control which nodes can access various files. This feature is now deprecated, and will be removed in a future release of Puppet.
 
 Instead, you can use `auth.conf` to control access to mount points. [The page on setting up mount points has details and examples.][mount_auth_examples]
 
