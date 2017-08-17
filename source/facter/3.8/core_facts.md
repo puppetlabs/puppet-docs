@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 7dc43beab20913e2aa1dc66f684e7846fa264575
+built_from_commit: 6d2e4df0c56141b265775d1de528aa7e15bf92cd
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
@@ -925,6 +925,25 @@ Return the version for ZFS.
 **Caveats:**
 
 * Solaris: the `zfs` utility must be present.
+
+([↑ Back to top](#page-nav))
+
+### `zpool_featureflags`
+
+**Type:** string
+
+**Purpose:**
+
+Return the comma-delimited feature flags for ZFS storage pools.
+
+
+**Resolution:**
+
+* Solaris: use the `zpool` utility to retrieve the feature numbers for ZFS storage pools
+
+**Caveats:**
+
+* Solaris: the `zpool` utility must be present.
 
 ([↑ Back to top](#page-nav))
 
