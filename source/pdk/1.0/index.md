@@ -27,12 +27,12 @@ rspec-puppet-facts | Adds support for running rspec-puppet tests against the fac
 
 To get started, install PDK, create a module, and then create, validate, and test a class
 
-![pdk-workflow][workflow]
-
 1. Generate a module using the `pdk new module` command.
 1. Validate your module to verify that it is well-formed.
 1. Unit test your module to verify that all dependencies and directories are present.
 1. Generate a class for your module, using the `pdk new class` command.
 1. Validate and unit test your module.
+
+![pdk-workflow][workflow]
 
 PDK can unit test code that it generates, but for any other code you add, you'll need to write unit tests. As you add code to your module, validate and unit test your module before and after adding code. This ensures that you are always developing on a clean, valid codebase.
