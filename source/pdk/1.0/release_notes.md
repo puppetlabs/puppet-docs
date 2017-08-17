@@ -5,9 +5,19 @@ title: "Puppet Development Kit release notes"
 
 Release notes for Puppet Development Kit (PDK), a development kit containing tools for developing and testing Puppet code.
 
-## Puppet Development Kit 1.0
+## PDK 1.0.1.0
 
-Released August 2017.
+Released 17 August 2017
+
+### Bug fixes
+
+#### PowerShell's PATH environment variable became corrupted
+
+This release fixes an issue where the PATH environment variable on Windows PowerShell became corrupted, breaking all other PDK commands.
+
+## Puppet Development Kit 1.0.0.1
+
+Released 15 August 2017.
 
 This is the first major release of Puppet Development Kit (PDK).
 
