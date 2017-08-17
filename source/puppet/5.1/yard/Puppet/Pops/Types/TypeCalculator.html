@@ -817,7 +817,7 @@ required.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>The type of all modules is PType.</p>
+    <span class="summary_desc"><div class='inline'><p>The type of all modules is PTypeType.</p>
 </div></span>
   
 </li>
@@ -890,7 +890,7 @@ required.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>The type of all types is PType.</p>
+    <span class="summary_desc"><div class='inline'><p>The type of all types is PTypeType.</p>
 </div></span>
   
 </li>
@@ -924,7 +924,7 @@ required.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#infer_PType-instance_method" title="#infer_PType (instance method)">#<strong>infer_PType</strong>(o)  &#x21d2; Object </a>
+      <a href="#infer_PTypeType-instance_method" title="#infer_PTypeType (instance method)">#<strong>infer_PTypeType</strong>(o)  &#x21d2; Object </a>
     
 
     
@@ -939,7 +939,7 @@ required.</p>
   <span class="private note title">private</span>
 
   
-    <span class="summary_desc"><div class='inline'><p>The type of all types is PType This is the metatype short circuit.</p>
+    <span class="summary_desc"><div class='inline'><p>The type of all types is PTypeType This is the metatype short circuit.</p>
 </div></span>
   
 </li>
@@ -2261,8 +2261,8 @@ Does not accept nil/undef unless the type accepts it.</p>
   <span class='kw'>end</span>
 
   <span class='comment'># when both are host-classes, reduce to PHostClass[] (since one was not assignable to the other)
-</span>  <span class='kw'>if</span> <span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PHostClassType.html" title="Puppet::Pops::Types::PHostClassType (class)">PHostClassType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_t2'>t2</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PHostClassType.html" title="Puppet::Pops::Types::PHostClassType (class)">PHostClassType</a></span></span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PHostClassType.html" title="Puppet::Pops::Types::PHostClassType (class)">PHostClassType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span>
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PClassType.html" title="Puppet::Pops::Types::PClassType (class)">PClassType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_t2'>t2</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PClassType.html" title="Puppet::Pops::Types::PClassType (class)">PClassType</a></span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PClassType.html" title="Puppet::Pops::Types::PClassType (class)">PClassType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span>
   <span class='kw'>end</span>
 
   <span class='comment'># when both are resources, reduce to Resource[T] or Resource[] (since one was not assignable to the other)
@@ -2341,8 +2341,8 @@ Does not accept nil/undef unless the type accepts it.</p>
   <span class='kw'>end</span>
 
   <span class='comment'># Meta types Type[Integer] + Type[String] =&gt; Type[Data]
-</span>  <span class='kw'>if</span> <span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_t2'>t2</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='rparen'>)</span>
-    <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_common_type'>common_type</span><span class='lparen'>(</span><span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_t2'>t2</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span><span class='rparen'>)</span>
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_t2'>t2</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_common_type'>common_type</span><span class='lparen'>(</span><span class='id identifier rubyid_t1'>t1</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_t2'>t2</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_common_rich_data?'>common_rich_data?</span><span class='lparen'>(</span><span class='id identifier rubyid_t1'>t1</span><span class='comma'>,</span><span class='id identifier rubyid_t2'>t2</span><span class='rparen'>)</span>
@@ -2965,7 +2965,7 @@ single common type of the elements (or keys and elements for a Hash).</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>The type of all modules is PType</p>
+<p>The type of all modules is PTypeType</p>
 
 
   </div>
@@ -2987,7 +2987,7 @@ single common type of the elements (or keys and elements for a Hash).</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 490</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_infer_Module'>infer_Module</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='op'>::</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PRuntimeType.html" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="PRuntimeType.html#initialize-instance_method" title="Puppet::Pops::Types::PRuntimeType#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:ruby</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='op'>::</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PRuntimeType.html" title="Puppet::Pops::Types::PRuntimeType (class)">PRuntimeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="PRuntimeType.html#initialize-instance_method" title="Puppet::Pops::Types::PRuntimeType#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='symbol'>:ruby</span><span class='comma'>,</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3109,7 +3109,7 @@ single common type of the elements (or keys and elements for a Hash).</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>The type of all types is PType</p>
+<p>The type of all types is PTypeType</p>
 
 
   </div>
@@ -3131,7 +3131,7 @@ single common type of the elements (or keys and elements for a Hash).</p>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 524</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_infer_PAnyType'>infer_PAnyType</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3225,9 +3225,9 @@ single common type of the elements (or keys and elements for a Hash).</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="infer_PType-instance_method">
+  <h3 class="signature " id="infer_PTypeType-instance_method">
   
-    #<strong>infer_PType</strong>(o)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+    #<strong>infer_PTypeType</strong>(o)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -3239,7 +3239,7 @@ single common type of the elements (or keys and elements for a Hash).</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>The type of all types is PType
+<p>The type of all types is PTypeType
 This is the metatype short circuit.</p>
 
 
@@ -3261,8 +3261,8 @@ This is the metatype short circuit.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 532</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_infer_PType'>infer_PType</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
-  <span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_infer_PTypeType'>infer_PTypeType</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -3400,7 +3400,7 @@ This is the metatype short circuit.</p>
 </span>  <span class='comment'># A mapping must be made to empty string. A nil value will result in an error later
 </span>  <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_title'>title</span>
   <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='symbol'>:undef</span> <span class='op'>==</span> <span class='id identifier rubyid_title'>title</span>
-  <span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PResourceType.html" title="Puppet::Pops::Types::PResourceType (class)">PResourceType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PResourceType.html" title="Puppet::Pops::Types::PResourceType (class)">PResourceType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span><span class='rparen'>)</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -4246,7 +4246,7 @@ from must be less than to, and from may not be less than 0</p>
   <span class='kw'>when</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>==</span> <span class='const'>FalseClass</span><span class='comma'>,</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>==</span> <span class='const'>TrueClass</span>
     <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="PBooleanType.html" title="Puppet::Pops::Types::PBooleanType (class)">PBooleanType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span>
   <span class='kw'>when</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>==</span> <span class='const'>Class</span>
-    <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="PType.html" title="Puppet::Pops::Types::PType (class)">PType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span>
+    <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="PTypeType.html" title="Puppet::Pops::Types::PTypeType (class)">PTypeType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span>
   <span class='kw'>when</span> <span class='id identifier rubyid_c'>c</span> <span class='op'>==</span> <span class='const'>Array</span>
     <span class='comment'># Assume array of any
 </span>    <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="PArrayType.html" title="Puppet::Pops::Types::PArrayType (class)">PArrayType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span>
@@ -4268,7 +4268,7 @@ from must be less than to, and from may not be less than 0</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 27 17:24:25 2017 by
+  Generated on Thu Aug 17 12:25:57 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.2.0).
 </div>

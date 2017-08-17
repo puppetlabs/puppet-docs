@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
+built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:41 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -33,6 +33,68 @@ The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `St
     * Return type(s): `Undef`. 
 
 Log a message on the server at level alert.
+
+## `all`
+
+* `all(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `all(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+    * Return type(s): `Any`. 
+* `all(Iterable $enumerable, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `all(Iterable $enumerable, Callable[1,1] &$block)`
+    * Return type(s): `Any`. 
+
+Runs a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+repeatedly using each value in a data structure until the lambda returns a non "truthy" value which
+makes the function return `false`, or if the end of the iteration is reached, `true` is returned.
+
+This function takes two mandatory arguments, in this order:
+
+1. An array, hash, or other iterable object that the function will iterate over.
+2. A lambda, which the function calls for each element in the first argument. It can
+request one or two parameters.
+
+`$data.all |$parameter| { <PUPPET CODE BLOCK> }`
+
+or
+
+`all($data) |$parameter| { <PUPPET CODE BLOCK> }`
+
+~~~ puppet
+# For the array $data, run a lambda that checks that all values are multiples of 10
+$data = [10, 20, 30]
+notice $data.all |$item| { $item % 10 == 0 }
+~~~
+
+Would notice `true`.
+
+When the first argument is a `Hash`, Puppet passes each key and value pair to the lambda
+as an array in the form `[key, value]`.
+
+~~~ puppet
+# For the hash $data, run a lambda using each item as a key-value array
+$data = { 'a_0'=> 10, 'b_1' => 20 }
+notice $data.all |$item| { $item[1] % 10 == 0  }
+~~~
+
+Would notice `true` if all values in the hash are multiples of 10.
+
+When the lambda accepts two arguments, the first argument gets the index in an array
+or the key from a hash, and the second argument the value.
+
+
+~~~ puppet
+# Check that all values are a multiple of 10 and keys start with 'abc'
+$data = {abc_123 => 10, abc_42 => 20, abc_blue => 30}
+notice $data.all |$key, $value| { $value % 10 == 0  and $key =~ /^abc/ }
+~~~
+
+Would notice true.
+
+For an general examples that demonstrates iteration, see the Puppet
+[iteration](https://docs.puppetlabs.com/puppet/latest/reference/lang_iteration.html)
+documentation.
 
 ## `annotate`
 
@@ -95,6 +157,73 @@ is initialized with the nested hash for the respective type. The annotated objec
     Mod::HobbiesAdapter => { 'hobbies' => ['Ham Radio', 'Philatelist'] }
   })
 ~~~
+
+## `any`
+
+* `any(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `any(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+    * Return type(s): `Any`. 
+* `any(Iterable $enumerable, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `any(Iterable $enumerable, Callable[1,1] &$block)`
+    * Return type(s): `Any`. 
+
+Runs a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+repeatedly using each value in a data structure until the lambda returns a "truthy" value which
+makes the function return `true`, or if the end of the iteration is reached, false is returned.
+
+This function takes two mandatory arguments, in this order:
+
+1. An array, hash, or other iterable object that the function will iterate over.
+2. A lambda, which the function calls for each element in the first argument. It can
+request one or two parameters.
+
+`$data.any |$parameter| { <PUPPET CODE BLOCK> }`
+
+or
+
+`any($data) |$parameter| { <PUPPET CODE BLOCK> }`
+
+~~~ puppet
+# For the array $data, run a lambda that checks if an unknown hash contains those keys
+$data = ["routers", "servers", "workstations"]
+$looked_up = lookup('somekey', Hash)
+notice $data.any |$item| { $looked_up[$item] }
+~~~
+
+Would notice `true` if the looked up hash had a value that is neither `false` nor `undef` for at least
+one of the keys. That is, it is equivalent to the expression
+`$lookued_up[routers] || $looked_up[servers] || $looked_up[workstations]`.
+
+When the first argument is a `Hash`, Puppet passes each key and value pair to the lambda
+as an array in the form `[key, value]`.
+
+~~~ puppet
+# For the hash $data, run a lambda using each item as a key-value array.
+$data = {"rtr" => "Router", "svr" => "Server", "wks" => "Workstation"}
+$looked_up = lookup('somekey', Hash)
+notice $data.any |$item| { $looked_up[$item[0]] }
+~~~
+
+Would notice `true` if the looked up hash had a value for one of the wanted key that is
+neither `false` nor `undef`.
+
+When the lambda accepts two arguments, the first argument gets the index in an array
+or the key from a hash, and the second argument the value.
+
+
+~~~ puppet
+# Check if there is an even numbered index that has a non String value
+$data = [key1, 1, 2, 2]
+notice $data.any |$index, $value| { $index % 2 == 0 and $value !~ String }
+~~~
+
+Would notice true as the index `2` is even and not a `String`
+
+For an general examples that demonstrates iteration, see the Puppet
+[iteration](https://docs.puppetlabs.com/puppet/latest/reference/lang_iteration.html)
+documentation.
 
 ## `assert_type`
 
@@ -475,7 +604,7 @@ Returns a hash value from a provided string using the digest_algorithm setting f
 * `each()`
     * Return type(s): `Any`. 
 
-Runs a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+Runs a [lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
 repeatedly using each value in a data structure, then returns the values unchanged.
 
 This function takes two mandatory arguments, in this order:
@@ -664,7 +793,7 @@ found, skipping any files that don't exist.
 * `filter()`
     * Return type(s): `Any`. 
 
-Applies a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
 to every value in a data structure and returns an array or hash containing any elements
 for which the lambda evaluates to `true`.
 
@@ -2069,6 +2198,16 @@ $ts = Timestamp('2016-08-24T12:13:14', default, 'PST')   # 2016-08-24 20:13:14.0
 
 ```
 
+Conversion to Type
+------------------
+A new `Type` can be create from its `String` representation.
+
+**Example:** Creating a type from a string
+
+```puppet
+$t = Type.new('Integer[10]')
+```
+
 Conversion to String
 --------------------
 
@@ -2366,6 +2505,32 @@ Accepts a single value as argument:
 * An `Iterable` is turned into an `Array` and then converted to hash as per the array rules
 * A `Hash` is simply returned
 
+Alternatively, a tree can be constructed by giving two values; an array of tuples on the form `[path, value]`
+(where the `path` is the path from the root of a tree, and `value` the value at that position in the tree), and
+either the option `'tree'` (do not convert arrays to hashes except the top level), or
+`'hash_tree'` (convert all arrays to hashes).
+
+The tree/hash_tree forms of Hash creation are suited for transforming the result of an iteration
+using `tree_each` and subsequent filtering or mapping.
+
+**Example:** Mapping a hash tree
+
+Mapping an arbitrary structure in a way that keeps the structure, but where some values are replaced
+can be done by using the `tree_each` function, mapping, and then constructing a new Hash from the result:
+
+```puppet
+# A hash tree with 'water' at different locations
+$h = { a => { b => { x => 'water'}}, b => { y => 'water'} }
+# a helper function that turns water into wine
+function make_wine($x) { if $x == 'water' { 'wine' } else { $x } }
+# create a flattened tree with water turned into wine
+$flat_tree = $h.tree_each.map |$entry| { [$entry[0], make_wine($entry[1])] }
+# create a new Hash and log it
+notice Hash($flat_tree, 'hash_tree')
+```
+
+Would notice the hash `{a => {b => {x => wine}}, b => {y => wine}}`
+
 Conversion to a `Struct` works exactly as conversion to a `Hash`, only that the constructed hash is
 asserted against the given struct type.
 
@@ -2526,6 +2691,37 @@ $b = binary_file('mymodule/mypicture.jpg')
 * Since 4.5.0
 * Binary type since 4.8.0
 
+Creating an instance of a `Type` using the `Init` type.
+-------
+
+The type `Init[T]` describes a value that can be used when instantiating a type. When used as the first argument in a call to `new`, it
+will dispatch the call to its contained type and optionally augment the parameter list with additional arguments.
+
+**Example:** Creating an instance of Integer using Init[Integer]
+
+```puppet
+# The following declaration
+$x = Init[Integer].new('128')
+# is exactly the same as
+$x = Integer.new('128')
+```
+
+or, with base 16 and using implicit new
+
+```puppet
+# The following declaration
+$x = Init[Integer,16]('80')
+# is exactly the same as
+$x = Integer('80', 16)
+```
+
+**Example:** Creating an instance of String using a predefined format
+
+```puppet
+$fmt = Init[String,'%#x']
+notice($fmt(256)) # will notice '0x100'
+```
+
 ## `next`
 
 * `next()`
@@ -2682,6 +2878,37 @@ $combine = $data.reduce( [d, 4] ) |$memo, $value| {
 # $combine contains [dabc, 10]
 ~~~
 
+**Example**: Using the `reduce` function to reduce a hash of hashes
+
+~~~ puppet
+# Reduce a hash of hashes $data, merging defaults into the inner hashes.
+$data = {
+  'connection1' => {
+    'username' => 'user1',
+    'password' => 'pass1',
+  },
+  'connection_name2' => {
+    'username' => 'user2',
+    'password' => 'pass2',
+  },
+}
+
+$defaults = {
+  'maxActive' => '20',
+  'maxWait'   => '10000',
+  'username'  => 'defaultuser',
+  'password'  => 'defaultpass',
+}
+
+$merged = $data.reduce( {} ) |$memo, $x| {
+  $memo + { $x[0] => $defaults + $data[$x[0]] }
+}
+# At the start of the lambda's first iteration, $memo is set to {}, and $x is set to
+# the first [key, value] tuple. The key in $data is, therefore, given by $x[0]. In
+# subsequent rounds, $memo retains the value returned by the expression, i.e.
+# $memo + { $x[0] => $defaults + $data[$x[0]] }.
+~~~
+
 - Since 4.0.0
 
 ## `regsubst`
@@ -2828,7 +3055,7 @@ Note that the returned value is ignored if used in a class or user defined type.
     * Return type(s): `Any`. 
 
 Reverses the order of the elements of something that is iterable and optionally runs a
-[lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) for each
+[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) for each
 element.
 
 This function takes one to two arguments:
@@ -3029,7 +3256,7 @@ The first parameter is format string describing how the rest of the parameters s
     * Return type(s): `Any`. 
 
 Provides stepping with given interval over elements in an iterable and optionally runs a
-[lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) for each
+[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) for each
 element.
 
 This function takes two to three arguments:
@@ -3391,6 +3618,57 @@ was not a String.
 
 * Since 4.5.0
 
+## `tree_each`
+
+* `tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[1,1] &$block)`
+    * Return type(s): `Any`. 
+* `tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options)`
+    * Return type(s): `Any`. 
+
+Any Puppet Type system data type can be used to filter what is
+considered to be a container, but it must be a narrower type than one of
+the default Array, Hash, Object types - for example it is not possible to make a
+`String` be a container type.
+
+~~~ puppet
+$data = [1, {a => 'hello', b => [100, 200]}, [3, [4, 5]]]
+$data.tree_each({container_type => Array, include_containers => false} |$v| { notice "$v" }
+~~~
+
+Would call the lambda 5 times with `1`, `{a => 'hello', b => [100, 200]}`, `3`, `4`, `5`
+
+**Chaining** When calling `tree_each` without a lambda the function produces an `Iterator`
+that can be chained into another iteration. Thus it is easy to use one of:
+
+* `reverse_each` - get "leaves before root" 
+* `filter` - prune the tree
+* `map` - transform each element
+* `reduce` - produce something else
+
+Note than when chaining, the value passed on is a `Tuple` with `[path, value]`.
+
+~~~ puppet
+# A tree of some complexity (here very simple for readability)
+$tree = [
+ { name => 'user1', status => 'inactive', id => '10'},
+ { name => 'user2', status => 'active', id => '20'}
+]
+notice $tree.tree_each.filter |$v| {
+ $value = $v[1]
+ $value =~ Hash and $value[status] == active
+}
+~~~
+
+Would notice `[[[1], {name => user2, status => active, id => 20}]]`, which can then be processed
+further as each filtered result appears as a `Tuple` with `[path, value]`.
+
+
+For general examples that demonstrates iteration see the Puppet
+[iteration](https://docs.puppetlabs.com/puppet/latest/reference/lang_iteration.html)
+documentation.
+
 ## `type`
 
 * `type()`
@@ -3618,4 +3896,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:41 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500

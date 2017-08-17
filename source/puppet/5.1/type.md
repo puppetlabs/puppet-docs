@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
+built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:24:28 -0500
 
 ## About Resource Types
 
@@ -7477,10 +7477,12 @@ libraries.
 
 <h4 id="package-provider-gem">gem</h4>
 
-Ruby Gem support.  If a URL is passed via `source`, then that URL is used as the
-remote gem repository; if a source is present but is not a valid URL, it will be
-interpreted as the path to a local gem file.  If source is not present at all,
-the gem will be installed from the default gem repositories.
+Ruby Gem support. If a URL is passed via `source`, then that URL is
+appended to the list of remote gem repositories; to ensure that only the
+specified source is used, also pass `--clear-sources` via `install_options`.
+If source is present but is not a valid URL, it will be interpreted as the
+path to a local gem file. If source is not present, the gem will be
+installed from the default gem repositories.
 
 This provider supports the `install_options` and `uninstall_options` attributes,
 which allow command-line flags to be passed to the gem command.
@@ -12363,4 +12365,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:24:28 -0500

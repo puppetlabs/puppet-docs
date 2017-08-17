@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
+built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
 title: 'Resource Type: whit'
 canonical: "/puppet/latest/types/whit.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:41 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
 
 whit
 -----
@@ -39,4 +39,4 @@ The name of the whit, because it must have one.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:41 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500

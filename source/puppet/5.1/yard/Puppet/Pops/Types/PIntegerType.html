@@ -321,12 +321,12 @@
       <pre class="lines">
 
 
-945
-946
-947</pre>
+970
+971
+972</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 945</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 970</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_adjacent?'>adjacent?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>  <span class='lparen'>(</span><span class='ivar'>@to</span> <span class='op'>+</span> <span class='int'>1</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_from'>from</span> <span class='op'>||</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_to'>to</span> <span class='op'>+</span> <span class='int'>1</span> <span class='op'>==</span> <span class='ivar'>@from</span><span class='rparen'>)</span>
@@ -398,18 +398,18 @@ are adjacent. When that&#39;s not the case, this method will return <code>nil</c
       <pre class="lines">
 
 
-955
-956
-957
-958
-959
-960
-961
-962
-963</pre>
+980
+981
+982
+983
+984
+985
+986
+987
+988</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 955</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 980</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_intersect?'>intersect?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_adjacent?'>adjacent?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
@@ -430,7 +430,7 @@ are adjacent. When that&#39;s not the case, this method will return <code>nil</c
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 27 17:24:16 2017 by
+  Generated on Thu Aug 17 12:25:50 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.2.0).
 </div>

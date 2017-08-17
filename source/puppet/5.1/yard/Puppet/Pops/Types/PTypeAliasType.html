@@ -170,7 +170,7 @@ is resolved since guarding against self recursive constructs is relatively expen
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#resolve-instance_method" title="#resolve (instance method)">#<strong>resolve</strong>(type_parser, loader)  &#x21d2; PTypeAliasType </a>
+      <a href="#resolve-instance_method" title="#resolve (instance method)">#<strong>resolve</strong>(loader)  &#x21d2; PTypeAliasType </a>
     
 
     
@@ -311,13 +311,13 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-3304
-3305
-3306
-3307</pre>
+3361
+3362
+3363
+3364</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3304</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3361</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>super</span> <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='const'>PTypeReferenceType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
@@ -376,19 +376,19 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-3310
-3311
-3312
-3313
-3314
-3315
-3316
-3317
-3318
-3319</pre>
+3367
+3368
+3369
+3370
+3371
+3372
+3373
+3374
+3375
+3376</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3310</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3367</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@self_recursion</span>
@@ -408,7 +408,7 @@ is resolved since guarding against self recursive constructs is relatively expen
       <div class="method_details ">
   <h3 class="signature " id="resolve-instance_method">
   
-    #<strong>resolve</strong>(type_parser, loader)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Types::PTypeAliasType (class)">PTypeAliasType</a></span></tt> &nbsp;<span class="private note title">private</span>
+    #<strong>resolve</strong>(loader)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Types::PTypeAliasType (class)">PTypeAliasType</a></span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -487,58 +487,60 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3236
-3237
-3238
-3239
-3240
-3241
-3242
-3243
-3244
-3245
-3246
-3247
-3248
-3249
-3250
-3251
-3252
-3253
-3254
-3255
-3256
-3257
-3258
-3259
-3260
-3261
-3262
-3263
-3264
-3265
-3266
-3267
-3268
-3269
-3270
-3271
-3272
-3273</pre>
+3292
+3293
+3294
+3295
+3296
+3297
+3298
+3299
+3300
+3301
+3302
+3303
+3304
+3305
+3306
+3307
+3308
+3309
+3310
+3311
+3312
+3313
+3314
+3315
+3316
+3317
+3318
+3319
+3320
+3321
+3322
+3323
+3324
+3325
+3326
+3327
+3328
+3329
+3330</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3236</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3292</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
+  <span class='ivar'>@loader</span> <span class='op'>=</span> <span class='id identifier rubyid_loader'>loader</span>
   <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='comment'># resolved to PTypeReferenceType::DEFAULT during resolve to avoid endless recursion
 </span>    <span class='ivar'>@resolved_type</span> <span class='op'>=</span> <span class='const'>PTypeReferenceType</span><span class='op'>::</span><span class='const'>DEFAULT</span>
     <span class='ivar'>@self_recursion</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='comment'># assumed while it being found out below
 </span>    <span class='kw'>begin</span>
       <span class='kw'>if</span> <span class='ivar'>@type_expr</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>PTypeReferenceType</span><span class='rparen'>)</span>
-        <span class='ivar'>@resolved_type</span> <span class='op'>=</span> <span class='ivar'>@type_expr</span><span class='period'>.</span><span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
+        <span class='ivar'>@resolved_type</span> <span class='op'>=</span> <span class='ivar'>@type_expr</span><span class='period'>.</span><span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
       <span class='kw'>else</span>
-        <span class='ivar'>@resolved_type</span> <span class='op'>=</span> <span class='id identifier rubyid_type_parser'>type_parser</span><span class='period'>.</span><span class='id identifier rubyid_interpret'>interpret</span><span class='lparen'>(</span><span class='ivar'>@type_expr</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_normalize'>normalize</span>
+        <span class='ivar'>@resolved_type</span> <span class='op'>=</span> <span class='const'>TypeParser</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='period'>.</span><span class='id identifier rubyid_interpret'>interpret</span><span class='lparen'>(</span><span class='ivar'>@type_expr</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_normalize'>normalize</span>
       <span class='kw'>end</span>
 
       <span class='comment'># Find out if this type is recursive. A recursive type has performance implications
@@ -563,7 +565,7 @@ checks and remembers if the resolve type contains self recursion.</p>
   <span class='kw'>else</span>
     <span class='comment'># An alias may appoint an Object type that isn&#39;t resolved yet. The default type
 </span>    <span class='comment'># reference is used to prevent endless recursion and should not be resolved here.
-</span>    <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='const'>PTypeReferenceType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
+</span>    <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='const'>PTypeReferenceType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='kw'>self</span>
 <span class='kw'>end</span></pre>
@@ -614,12 +616,12 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3294
-3295
-3296</pre>
+3351
+3352
+3353</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3294</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3351</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='const'><span class='object_link'><a href="TypeFormatter.html" title="Puppet::Pops::Types::TypeFormatter (class)">TypeFormatter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_singleton'><span class='object_link'><a href="TypeFormatter.html#singleton-class_method" title="Puppet::Pops::Types::TypeFormatter.singleton (method)">singleton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_alias_expanded_string'>alias_expanded_string</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -675,12 +677,12 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3323
-3324
-3325</pre>
+3380
+3381
+3382</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3323</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3380</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type_expr'>type_expr</span>
   <span class='kw'>nil</span>
@@ -695,7 +697,7 @@ checks and remembers if the resolve type contains self recursion.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 27 17:24:19 2017 by
+  Generated on Thu Aug 17 12:25:51 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.2.0).
 </div>

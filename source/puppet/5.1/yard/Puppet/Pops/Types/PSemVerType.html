@@ -135,7 +135,7 @@ The version type is parameterized with version ranges.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#new_function-class_method" title="new_function (class method)">.<strong>new_function</strong>(_, loader)  &#x21d2; Object </a>
+      <a href="#new_function-class_method" title="new_function (class method)">.<strong>new_function</strong>(type)  &#x21d2; Object </a>
     
 
     
@@ -241,7 +241,7 @@ The version type is parameterized with version ranges.</p>
       <div class="method_details first">
   <h3 class="signature first" id="new_function-class_method">
   
-    .<strong>new_function</strong>(_, loader)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+    .<strong>new_function</strong>(type)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -314,8 +314,8 @@ The version type is parameterized with version ranges.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_sem_ver_type.rb', line 58</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new_function'>new_function</span><span class='lparen'>(</span><span class='id identifier rubyid__'>_</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
-  <span class='cvar'>@@new_function</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Functions.html" title="Puppet::Functions (module)">Functions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'><span class='object_link'><a href="../../Functions.html#create_loaded_function-class_method" title="Puppet::Functions.create_loaded_function (method)">create_loaded_function</a></span></span><span class='lparen'>(</span><span class='symbol'>:new_Version</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>do</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_new_function'>new_function</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+  <span class='ivar'>@new_function</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../../Functions.html" title="Puppet::Functions (module)">Functions</a></span></span><span class='period'>.</span><span class='id identifier rubyid_create_loaded_function'><span class='object_link'><a href="../../Functions.html#create_loaded_function-class_method" title="Puppet::Functions.create_loaded_function (method)">create_loaded_function</a></span></span><span class='lparen'>(</span><span class='symbol'>:new_Version</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_local_types'>local_types</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>PositiveInteger = Integer[0,default]</span><span class='tstring_end'>&#39;</span></span>
       <span class='id identifier rubyid_type'>type</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>SemVerQualifier = Pattern[/\A(?&lt;part&gt;[0-9A-Za-z-]+)(?:\.\g&lt;part&gt;)*\Z/]</span><span class='tstring_end'>&#39;</span></span>
@@ -447,7 +447,7 @@ The version type is parameterized with version ranges.</p>
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 27 17:24:23 2017 by
+  Generated on Thu Aug 17 12:25:55 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.2.0).
 </div>

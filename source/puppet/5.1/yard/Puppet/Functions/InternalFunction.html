@@ -290,15 +290,15 @@ accessor method calls.</p>
       <pre class="lines">
 
 
+647
 648
-649
-650</pre>
+649</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 648</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 647</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_builder'>builder</span>
-  <span class='const'><span class='object_link'><a href="InternalDispatchBuilder.html" title="Puppet::Functions::InternalDispatchBuilder (class)">InternalDispatchBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="DispatcherBuilder.html#initialize-instance_method" title="Puppet::Functions::DispatcherBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'>TypeParser</span><span class='period'>.</span><span class='id identifier rubyid_singleton'>singleton</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="InternalDispatchBuilder.html" title="Puppet::Functions::InternalDispatchBuilder (class)">InternalDispatchBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="DispatcherBuilder.html#initialize-instance_method" title="Puppet::Functions::DispatcherBuilder#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_dispatcher'>dispatcher</span><span class='comma'>,</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Pops</span><span class='op'>::</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Pops/Types/PCallableType.html" title="Puppet::Pops::Types::PCallableType (class)">PCallableType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -404,12 +404,12 @@ scope. The callable functions are those visible to the same loader that loaded t
       <pre class="lines">
 
 
+661
 662
-663
-664</pre>
+663</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 662</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/functions.rb', line 661</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call_function_with_scope'>call_function_with_scope</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_internal_call_function'>internal_call_function</span><span class='lparen'>(</span><span class='id identifier rubyid_scope'>scope</span><span class='comma'>,</span> <span class='id identifier rubyid_function_name'>function_name</span><span class='comma'>,</span> <span class='id identifier rubyid_args'>args</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -424,7 +424,7 @@ scope. The callable functions are those visible to the same loader that loaded t
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 27 17:24:11 2017 by
+  Generated on Thu Aug 17 12:25:46 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.2.0).
 </div>

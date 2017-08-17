@@ -614,7 +614,7 @@ exit with status == 0 and <code>failonfail</code> is <code>true</code>.</p>
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_failonfail'>failonfail</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_exitstatus'>exitstatus</span> <span class='op'>!=</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">ExecutionFailure</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">ExecutionFailure</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_output'>output</span>
@@ -972,7 +972,60 @@ of the command.</p>
 242
 243
 244
-245</pre>
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 144</span>
@@ -1024,18 +1077,69 @@ of the command.</p>
 
   <span class='kw'>begin</span>
     <span class='id identifier rubyid_stdin'>stdin</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:stdinfile</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_null_file'>null_file</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>r</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_null_file'>null_file</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../FileSystem/Uniquefile.html" title="Puppet::FileSystem::Uniquefile (class)">Uniquefile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puppet</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='comment'># On Windows, continue to use the file-based approach to avoid breaking people&#39;s existing
+</span>    <span class='comment'># manifests. If they use a script that doesn&#39;t background cleanly, such as
+</span>    <span class='comment'># `start /b ping 127.0.0.1`, we couldn&#39;t handle it with pipes as there&#39;s no non-blocking
+</span>    <span class='comment'># read available.
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_null_file'>null_file</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_posix?'>posix?</span>
+      <span class='id identifier rubyid_reader'>reader</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>=</span> <span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_pipe'>pipe</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../FileSystem/Uniquefile.html" title="Puppet::FileSystem::Uniquefile (class)">Uniquefile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>puppet</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
     <span class='id identifier rubyid_stderr'>stderr</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:combine</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='id identifier rubyid_stdout'>stdout</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>FileSystem</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_null_file'>null_file</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>w</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
 
     <span class='id identifier rubyid_exec_args'>exec_args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
 
-    <span class='kw'>if</span> <span class='id identifier rubyid_execution_stub'>execution_stub</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>ExecutionStub</span><span class='period'>.</span><span class='id identifier rubyid_current_value'>current_value</span>
-      <span class='kw'>return</span> <span class='id identifier rubyid_execution_stub'>execution_stub</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_exec_args'>exec_args</span><span class='rparen'>)</span>
+    <span class='comment'># We close stdin/stdout/stderr immediately after fork/exec as they&#39;re no longer needed by
+</span>    <span class='comment'># this process. In most cases they could be closed later, but when `stdout` is the &quot;writer&quot;
+</span>    <span class='comment'># pipe we must close it or we&#39;ll never reach eof on the `reader` pipe.
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_execution_stub'>execution_stub</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>ExecutionStub</span><span class='period'>.</span><span class='id identifier rubyid_current_value'>current_value</span>
+      <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='id identifier rubyid_execution_stub'>execution_stub</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_exec_args'>exec_args</span><span class='rparen'>)</span>
+      <span class='lbracket'>[</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>rescue</span> <span class='kw'>nil</span><span class='rbrace'>}</span>
+      <span class='kw'>return</span> <span class='id identifier rubyid_child_pid'>child_pid</span>
     <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_posix?'>posix?</span>
       <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='kw'>nil</span>
       <span class='kw'>begin</span>
         <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='id identifier rubyid_execute_posix'>execute_posix</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_exec_args'>exec_args</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>=</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_waitpid2'>waitpid2</span><span class='lparen'>(</span><span class='id identifier rubyid_child_pid'>child_pid</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_exitstatus'>exitstatus</span>
+        <span class='lbracket'>[</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>rescue</span> <span class='kw'>nil</span><span class='rbrace'>}</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span>
+          <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>=</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_waitpid2'>waitpid2</span><span class='lparen'>(</span><span class='id identifier rubyid_child_pid'>child_pid</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_exitstatus'>exitstatus</span>
+        <span class='kw'>else</span>
+          <span class='comment'># Use non-blocking read to check for data. After each attempt,
+</span>          <span class='comment'># check whether the child is done. This is done in case the child
+</span>          <span class='comment'># forks and inherits stdout, as happens in `foo &amp;`.
+</span>          <span class='kw'>until</span> <span class='id identifier rubyid_results'>results</span> <span class='op'>=</span> <span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_waitpid2'>waitpid2</span><span class='lparen'>(</span><span class='id identifier rubyid_child_pid'>child_pid</span><span class='comma'>,</span> <span class='const'>Process</span><span class='op'>::</span><span class='const'>WNOHANG</span><span class='rparen'>)</span>
+
+            <span class='comment'># If not done, wait for data to read with a timeout
+</span>            <span class='comment'># This timeout is selected to keep activity low while waiting on
+</span>            <span class='comment'># a long process, while not waiting too long for the pathological
+</span>            <span class='comment'># case where stdout is never closed.
+</span>            <span class='id identifier rubyid_ready'>ready</span> <span class='op'>=</span> <span class='const'>IO</span><span class='period'>.</span><span class='id identifier rubyid_select'>select</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_reader'>reader</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='float'>0.1</span><span class='rparen'>)</span>
+            <span class='kw'>begin</span>
+              <span class='id identifier rubyid_output'>output</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='int'>4096</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ready'>ready</span>
+            <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span>
+            <span class='kw'>rescue</span> <span class='const'>EOFError</span>
+            <span class='kw'>end</span>
+          <span class='kw'>end</span>
+
+          <span class='comment'># Read any remaining data. Allow for but don&#39;t expect EOF.
+</span>          <span class='kw'>begin</span>
+            <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
+              <span class='id identifier rubyid_output'>output</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_read_nonblock'>read_nonblock</span><span class='lparen'>(</span><span class='int'>4096</span><span class='rparen'>)</span>
+            <span class='kw'>end</span>
+          <span class='kw'>rescue</span> <span class='const'>Errno</span><span class='op'>::</span><span class='const'>EAGAIN</span>
+          <span class='kw'>rescue</span> <span class='const'>EOFError</span>
+          <span class='kw'>end</span>
+
+          <span class='comment'># Force to external encoding to preserve prior behavior when reading a file.
+</span>          <span class='comment'># Wait until after reading all data so we don&#39;t encounter corruption when
+</span>          <span class='comment'># reading part of a multi-byte unicode character if default_external is UTF-8.
+</span>          <span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_force_encoding'>force_encoding</span><span class='lparen'>(</span><span class='const'>Encoding</span><span class='period'>.</span><span class='id identifier rubyid_default_external'>default_external</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>=</span> <span class='id identifier rubyid_results'>results</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_exitstatus'>exitstatus</span>
+        <span class='kw'>end</span>
         <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='kw'>nil</span>
       <span class='kw'>rescue</span> <span class='const'>Timeout</span><span class='op'>::</span><span class='const'>Error</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_e'>e</span>
         <span class='comment'># NOTE: For Ruby 2.1+, an explicit Timeout::Error class has to be
@@ -1052,28 +1156,30 @@ of the command.</p>
     <span class='kw'>elsif</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_microsoft_windows?'>microsoft_windows?</span>
       <span class='id identifier rubyid_process_info'>process_info</span> <span class='op'>=</span> <span class='id identifier rubyid_execute_windows'>execute_windows</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_exec_args'>exec_args</span><span class='rparen'>)</span>
       <span class='kw'>begin</span>
+        <span class='lbracket'>[</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>rescue</span> <span class='kw'>nil</span><span class='rbrace'>}</span>
         <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Windows</span><span class='op'>::</span><span class='const'>Process</span><span class='period'>.</span><span class='id identifier rubyid_wait_process'>wait_process</span><span class='lparen'>(</span><span class='id identifier rubyid_process_info'>process_info</span><span class='period'>.</span><span class='id identifier rubyid_process_handle'>process_handle</span><span class='rparen'>)</span>
+
+        <span class='comment'># read output in if required
+</span>        <span class='kw'>unless</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span>
+          <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_wait_for_output'>wait_for_output</span><span class='lparen'>(</span><span class='id identifier rubyid_stdout'>stdout</span><span class='rparen'>)</span>
+          <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not get output</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_output'>output</span>
+        <span class='kw'>end</span>
       <span class='kw'>ensure</span>
         <span class='const'>FFI</span><span class='op'>::</span><span class='const'>WIN32</span><span class='period'>.</span><span class='const'>CloseHandle</span><span class='lparen'>(</span><span class='id identifier rubyid_process_info'>process_info</span><span class='period'>.</span><span class='id identifier rubyid_process_handle'>process_handle</span><span class='rparen'>)</span>
         <span class='const'>FFI</span><span class='op'>::</span><span class='const'>WIN32</span><span class='period'>.</span><span class='const'>CloseHandle</span><span class='lparen'>(</span><span class='id identifier rubyid_process_info'>process_info</span><span class='period'>.</span><span class='id identifier rubyid_thread_handle'>thread_handle</span><span class='rparen'>)</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
 
-    <span class='lbracket'>[</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>rescue</span> <span class='kw'>nil</span><span class='rbrace'>}</span>
-
-    <span class='comment'># read output in if required
-</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span>
-      <span class='id identifier rubyid_output'>output</span> <span class='op'>=</span> <span class='id identifier rubyid_wait_for_output'>wait_for_output</span><span class='lparen'>(</span><span class='id identifier rubyid_stdout'>stdout</span><span class='rparen'>)</span>
-      <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warning'>warning</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not get output</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_output'>output</span>
-    <span class='kw'>end</span>
-
     <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:failonfail</span><span class='rbracket'>]</span> <span class='kw'>and</span> <span class='id identifier rubyid_exit_status'>exit_status</span> <span class='op'>!=</span> <span class='int'>0</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">ExecutionFailure</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Execution of &#39;%{str}&#39; returned %{exit_status}: %{output}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>str:</span> <span class='id identifier rubyid_command_str'>command_str</span><span class='comma'>,</span> <span class='label'>exit_status:</span> <span class='id identifier rubyid_exit_status'>exit_status</span><span class='comma'>,</span> <span class='label'>output:</span> <span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
   <span class='kw'>ensure</span>
-    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_stdout'>stdout</span>
-      <span class='comment'># if we opened a temp file for stdout, we need to clean it up.
-</span>      <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_close!'>close!</span>
+    <span class='comment'># Make sure all handles are closed in case an exception was thrown attempting to execute.
+</span>    <span class='lbracket'>[</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_io'>io</span><span class='op'>|</span> <span class='id identifier rubyid_io'>io</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>rescue</span> <span class='kw'>nil</span><span class='rbrace'>}</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:squelch</span><span class='rbracket'>]</span>
+      <span class='comment'># if we opened a pipe, we need to clean it up.
+</span>      <span class='id identifier rubyid_reader'>reader</span><span class='period'>.</span><span class='id identifier rubyid_close'>close</span> <span class='kw'>if</span> <span class='id identifier rubyid_reader'>reader</span>
+      <span class='id identifier rubyid_stdout'>stdout</span><span class='period'>.</span><span class='id identifier rubyid_close!'>close!</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_features'>features</span><span class='period'>.</span><span class='id identifier rubyid_microsoft_windows?'>microsoft_windows?</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
@@ -1113,51 +1219,51 @@ of the command.</p>
       <pre class="lines">
 
 
-268
-269
-270
-271
-272
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309</pre>
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 268</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 321</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execute_posix'>execute_posix</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_child_pid'>child_pid</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='period'>.</span><span class='id identifier rubyid_safe_posix_fork'>safe_posix_fork</span><span class='lparen'>(</span><span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -1235,19 +1341,19 @@ of the command.</p>
       <pre class="lines">
 
 
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326</pre>
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 317</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 370</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execute_windows'>execute_windows</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='comma'>,</span> <span class='id identifier rubyid_stdin'>stdin</span><span class='comma'>,</span> <span class='id identifier rubyid_stdout'>stdout</span><span class='comma'>,</span> <span class='id identifier rubyid_stderr'>stderr</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_part'>part</span><span class='op'>|</span>
@@ -1311,14 +1417,14 @@ it&#39;s not in the PATH... so this is slightly safer than just using Puppet::Ut
       <pre class="lines">
 
 
-252
-253
-254
-255
-256</pre>
+305
+306
+307
+308
+309</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 252</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 305</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ruby_path'>ruby_path</span><span class='lparen'>(</span><span class='rparen'>)</span>
   <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='const'>RbConfig</span><span class='op'>::</span><span class='const'>CONFIG</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>bindir</span><span class='tstring_end'>&#39;</span></span><span class='rbracket'>]</span><span class='comma'>,</span>
@@ -1359,33 +1465,33 @@ it&#39;s not in the PATH... so this is slightly safer than just using Puppet::Ut
       <pre class="lines">
 
 
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350
-351
-352
-353
-354
-355
-356
-357</pre>
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 334</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/util/execution.rb', line 387</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wait_for_output'>wait_for_output</span><span class='lparen'>(</span><span class='id identifier rubyid_stdout'>stdout</span><span class='rparen'>)</span>
   <span class='comment'># Make sure the file&#39;s actually been written.  This is basically a race
@@ -1421,7 +1527,7 @@ it&#39;s not in the PATH... so this is slightly safer than just using Puppet::Ut
 </div>
 
       <div id="footer">
-  Generated on Tue Jun 27 17:24:08 2017 by
+  Generated on Thu Aug 17 12:25:42 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.2.0).
 </div>
