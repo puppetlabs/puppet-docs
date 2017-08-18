@@ -43,7 +43,9 @@ Resource defaults are **evaluation-order independent** --- that is, a default wi
 
 ### Area of effect
 
-Puppet uses dynamic scoping for resource defaults, even though it no longer uses dynamic _variable_ lookup. This means that if you use a resource default statement in a class, it has the potential to affect any classes or defined types that class declares. Because of this, you should only set them in `site.pp`.
+Puppet uses dynamic scoping for resource defaults, even though it no longer uses dynamic _variable_ lookup. This means that if you use a resource default statement in a class, it has the potential to affect any classes or defined types that class declares.
+
+Because of this, they should not be set outside of `site.pp`. You should [use per-resource default attributes](./lang_resources_advanced.html#per-expression-default-attributes) when possible.
 
 ### Overriding defaults from parent scopes
 
