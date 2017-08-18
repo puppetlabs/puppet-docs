@@ -132,6 +132,7 @@ Puppet limits the characters you can use when naming language constructs.
 The names of classes and defined resource types can consist of one or more [namespace segments][namespace]. Each namespace segment **must begin with a lowercase letter** and can include:
 
 * Lowercase letters
+* Uppercase letters
 * Digits
 * Underscores
 
@@ -153,9 +154,10 @@ Additionally, you cannot use the name `<MODULE NAME>::init` for a class or defin
 
 ### Modules
 
-Module names obey the same rules as individual namespace segments (like in a class or defined type name). That is, they **must begin with a lowercase letter** and can include:
+Module names obey the same rules as individual namespace segments (like in a class or defined type name). That is, they **must** begin with a lowercase letter and can include:
 
 * Lowercase letters
+* Uppercase letters.
 * Digits
 * Underscores
 
@@ -167,9 +169,10 @@ Note that [reserved words](#reserved-words) and [reserved class names](#reserved
 
 ### Parameters
 
-Class and defined type parameters begin with a `$` (dollar sign), and their first non-`$` character **must be a lowercase letter.** They can include:
+Class and defined type parameters begin with a `$` (dollar sign), and their first non-`$` character **must** be a lowercase letter. They can include:
 
 * Lowercase letters
+* Uppercase letters
 * Digits
 * Underscores
 
@@ -179,9 +182,10 @@ Parameter names should match the following regular expression:
 
 ### Tags
 
-[Tags][] must begin with a lowercase letter, number, or underscore, and can include:
+[Tags][] **must** begin with a lowercase letter, number, or underscore, and can include:
 
 * Lowercase letters
+* Uppercase letters
 * Digits
 * Underscores
 * Colons
