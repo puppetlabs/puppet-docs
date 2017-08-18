@@ -11,7 +11,21 @@ title: "Language: Data types: Hashes"
 [data]: ./lang_data_abstract.html#data
 [scalar]: ./lang_data_abstract.html#scalar
 
-Hashes map keys to values, maintaining the order of the entries according to insertion order. When hashes are merged (using the `+` operator), the keys in the constructed hash have the same order as in the original hashes, with the left hash keys ordered first, followed by any keys that appeared only in the hash on the right side of the merge.
+Hashes map keys to values, maintaining the order of the entries according to insertion order.
+
+When hashes are merged (using the `+` operator), the keys in the constructed hash have the same order as in the original hashes, with the left hash keys ordered first, followed by any keys that appeared only in the hash on the right side of the merge.
+
+Where a key exists in both original hashes, the value of the key in the original hash to the right of the `+` operator that ends up in the resulting hash."
+
+For example:
+
+```
+$values = {'a' => 'a', 'b' => 'b'}
+$overrides = {'a' => 'overridden'}
+$result = $values + $overrides
+notice($result)
+-> {'a' => 'overridden', 'b' => 'b'}
+```
 
 ## Syntax
 
