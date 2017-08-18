@@ -488,7 +488,7 @@ documents:
       hiera: "3.4"
       puppetserver: "5.0"
 
-/facter/3.8:
+  /facter/3.8:
     doc: facter
     version: "3.8"
     nav: ./_facter_toc.html
