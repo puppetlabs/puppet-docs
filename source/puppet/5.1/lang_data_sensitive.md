@@ -18,11 +18,11 @@ The Sensitive type can be written as `Sensitive.new(val)`, or the shortform `Sen
 
 The full signature for `Sensitive` is:
 
-    Sensitive.new([<STRING VALUE>])
+    Sensitive.new([<ANY VALUE>])
 
-The Sensitive type is parameterized, but the parameterized type (the type of the value it contains) only retains the basic type as sensitive information about the length or details about the contained data value can otherwise be leaked.
+The Sensitive type is parameterized, but the parameterized type (the type of the value it contains) only retains the basic type, but sensitive information about the length or details about the contained data value can be leaked.
 
-It is therefore not possible to have detailed data types and expect that the data type match. For example, `Sensitive[Enum[red, blue, green]]` will fail if a value of `Sensitive('red')` is given. When a sensitive type is used, the type parameter must be generic, in this example a `Sensitive[String]` instead would match `Sensitive('red')`.
+Because of this, it's not possible to have detailed data types and expect that the data type match. For example, `Sensitive[Enum[red, blue, green]]` will fail if a value of `Sensitive('red')` is given. When a sensitive type is used, the type parameter must be generic, in this example a `Sensitive[String]` instead would match `Sensitive('red')`.
 
 ## Example
 
@@ -42,6 +42,7 @@ $secret = Sensitive('myPassword')
 $processed = $secret.unwrap
 notice $processed
 ```
+
 
 In future implementations, this info might be encrypted, removing access to the original data with this method, but it currently is not and therefore you should only use it as an aid for logs and reports.
 
