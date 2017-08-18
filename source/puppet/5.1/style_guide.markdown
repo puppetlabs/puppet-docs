@@ -473,9 +473,9 @@ file {
     mode     => '0644',
     contents => 'this is the content',;
 
-  '/opt/myapp:
+  '/opt/myapp':
     owner  => 'myapp-admin',
-    mode   => '0644'
+    mode   => '0644',
     source => 'puppet://<someurl>',;
 
   # etc
