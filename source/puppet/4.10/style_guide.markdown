@@ -1018,7 +1018,7 @@ class profile::myclass (
 
 ### 11.1. Class inheritance
 
-Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should only be used for params.pp, which is not recommended in Puppet 4. See the documentation about [automatic parameter lookup]({{puppet}}/hiera_automatic.html) for detailed information.
+Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should only be used for params.pp, which is not recommended in Puppet 4. See the documentation about [automatic parameter lookup](./hiera_automatic.html) for detailed information.
 
 For maintaining older modules, inheritance can be used, but must not be used across module
 namespaces. Cross-module dependencies should be satisfied in a more portable way, such as with include statements or relationship declarations. Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic. 
