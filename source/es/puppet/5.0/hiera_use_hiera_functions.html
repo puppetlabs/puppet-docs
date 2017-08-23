@@ -6,13 +6,13 @@ title: "Hiera: Utilizando las funciones de Hiera obsoletas"
 
 
 
-<p> Las funciones <code>hiera</code>, <code>hiera_array</code>, <code>hiera_hash</code> y <code>hiera_include</code> son la interfaz clásica de Hiera. Ellas preceden a la <a href="/puppet/5.0/hiera_automatic.html">automatic class parameter lookup</a> y <a href="./hiera_use_function.html">la función <code>lookup</code></a>.
+<p> Las funciones <code>hiera</code>, <code>hiera_array</code>, <code>hiera_hash</code> y <code>hiera_include</code> son la interfaz clásica de Hiera. Ellas preceden a la <a href="./hiera_automatic.html">automatic class parameter lookup</a> y <a href="./hiera_use_function.html">la función <code>lookup</code></a>.
 </p>
 
 <p> Las interfaces más nuevas son mejores, por lo que las funciones clásicas están ahora obsoletas. Se quitarán en el Puppet 6.
 </p>
 
-<p> Para más información de las funciones <code>hiera_*</code> para utilizar <code>lookup</code>, consulte <a href="/puppet/5.0/hiera_migrate_functions.html">Actualizar las clásicas llamadas de función hiera</a>.
+<p> Para más información de las funciones <code>hiera_*</code> para utilizar <code>lookup</code>, consulte <a href="./hiera_migrate_functions.html">Actualizar las clásicas llamadas de función hiera</a>.
 </p>
 
 <blockquote>
@@ -45,7 +45,7 @@ arriba de la jerarquía. Esto le permite modificar temporalmente la jerarquía p
 </li>
 </ol>
 <blockquote>
-  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="/puppet/5.0/hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
+  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="./hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
 </p>
 </blockquote>
 
@@ -123,7 +123,7 @@ arriba de la jerarquía. Esto le permite modificar temporalmente la jerarquía p
 </li>
 </ol>
 <blockquote>
-  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="/puppet/5.0/hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
+  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="./hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
 </p>
 </blockquote>
 
@@ -172,7 +172,7 @@ como un hash, Puppet genera un error de coincidencia de tipo.
 
 <h2 id="hierahash"><code>hiera_hash</code></h2>
 
-<p> Normalmente realiza un <a href="./hiera_merging.html#hash">hash merge</a> lookup. De todos modos, si la <a href="./hiera_layers.html#the-global-layer">capa global</a> utiliza un fichero <a href="./hiera_config_yaml_3.html">version 3 hiera.yaml</a> y la configuración<a href="./hiera_config_yaml_3.html#mergebehavior"><code>:merge_behavior</code></a> es establecida a <code>deeper</code>, en cambio esta función realiza un búsqueda <a href="./hiera_merging.html#deep">deep merge</a>. (Ten en cuenta que  la configuración <code>:merge_behavior</code> solo influye a <code>hiera_hash</code>. No afecta a búsqueda automática de parámetros de clase, la función <code>lookup</code>, o el comando <code>puppet lookup</code>. )
+<p> Normalmente realiza un <a href="./hiera_merging.html#hash">hash merge</a> lookup. De todos modos, si la <a href="./hiera_layers.html#the-global-layer">capa global</a> utiliza un fichero <a href="./hiera_config_yaml_3.html">version 3 hiera.yaml</a> y la configuración <a href="./hiera_config_yaml_3.html#mergebehavior"><code>:merge_behavior</code></a> es establecida a <code>deeper</code>, en cambio esta función realiza un búsqueda <a href="./hiera_merging.html#deep">deep merge</a>. (Ten en cuenta que  la configuración <code>:merge_behavior</code> solo influye a <code>hiera_hash</code>. No afecta a búsqueda automática de parámetros de clase, la función <code>lookup</code>, o el comando <code>puppet lookup</code>. )
 </p>
 
 <p> La función <code>hiera_hash</code> function toma hasta tres argumentos, en este orden:
@@ -195,7 +195,7 @@ arriba de la jerarquía. Esto le permite modificar temporalmente la jerarquía p
 </li>
 </ol>
 <blockquote>
-  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="/puppet/5.0/hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
+  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="./hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
 </p>
 </blockquote>
 
@@ -285,7 +285,7 @@ arriba de la jerarquía. Esto le permite modificar temporalmente la jerarquía p
 </li>
 </ol>
 <blockquote>
-  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="/puppet/5.0/hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
+  <p> <strong>Importante:</strong> Si la <a href="./hiera_layers.html#the-environment-layer">capa entorno</a> está activada, Hiera 5 no soporta el tercer argumento a esta función, y plantea un error si está presente. Consulta <a href="./hiera_migrate_environments.html#step-1-check-for-illegal-hierarchy-overrides">Activar la capa entorno</a> para más detalles.
 </p>
 </blockquote>
 

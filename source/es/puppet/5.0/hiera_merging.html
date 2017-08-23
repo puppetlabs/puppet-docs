@@ -9,12 +9,12 @@ title: "Hiera: Fusión de datos de múltiples fuentes"
 <p> Cuando busca una clave en Hiera, es común que varias fuentes de datos tengan diferentes valores para ella. De forma predeterminada, Hiera devuelve el primer valor que encuentra, pero también puede continuar buscando y combinar todos los valores encontrados.
 </p>
 
-<p> Puede establecer el comportamiento<strong>merge</strong> para una búsqueda de dos maneras:
+<p> Puede establecer el comportamiento <strong>merge</strong> para una búsqueda de dos maneras:
 </p>
 
 <ul>
 <li>
-<strong>En el momento de la búsqueda.</strong> Esto trabaja con <a href="./hiera_use_function.html">la función<code>lookup</code> </a>, pero no soporta <a href="/puppet/5.0/hiera_automatic.html">la clase automatica de parámetros lookup</a>.</li>
+<strong>En el momento de la búsqueda.</strong> Esto trabaja con <a href="./hiera_use_function.html">la función <code>lookup</code> </a>, pero no soporta <a href="./hiera_automatic.html">la clase automatica de parámetros lookup</a>.</li>
   <li>
 <strong>En Hiera data,</strong> con la clave <code>lookup_options</code>. Esto funciona para las búsquedas manuales y automáticas. También permite a los autores del módulo establecer el comportamiento predeterminado que los usuarios pueden anular.</li>
 </ul>
@@ -23,7 +23,7 @@ title: "Hiera: Fusión de datos de múltiples fuentes"
 
 <h2 id="list-of-merge-behaviors">Lista de comportamientos de fusión</h2>
 
-<p> Hay cuatro comportamientos de combinación para elegir: <a href="#first">first</a>, <a href="#unique">unique</a>, <a href="#hash">hash</a> y<a href="#deep">deep</a>.
+<p> Hay cuatro comportamientos de combinación para elegir: <a href="#first">first</a>, <a href="#unique">unique</a>, <a href="#hash">hash</a> y <a href="#deep">deep</a>.
 </p>
 
 <h3 id="syntax-summary">Resumen de sintaxis</h3>
@@ -33,7 +33,7 @@ title: "Hiera: Fusión de datos de múltiples fuentes"
 
 <ul>
 <li>
-<code>'first'</code>, <code>{'strategy' =&gt; 'first'}</code>,o nothing.</li>
+<code>'first'</code>, <code>{'strategy' =&gt; 'first'}</code>, o nothing.</li>
   <li>
 <code>'unique'</code> o <code>{'strategy' =&gt; 'unique'}</code>.</li>
   <li>
@@ -120,7 +120,7 @@ mykey:
   c: "other common value"
 </code></pre>
 
-<p> <code>lookup('mykey', {merge =&gt; 'hash'})</code>devolverá lo siguiente:
+<p> <code>lookup('mykey', {merge =&gt; 'hash'})</code> devolverá lo siguiente:
 </p>
 
 <pre><code class="language-puppet">{
@@ -254,7 +254,7 @@ site_users:
   <li>
 <code>{'strategy' =&gt; 'deep', &lt;OPTION&gt; =&gt; &lt;VALUE&gt;, ...}</code> — This form can adjust the merge behavior with some additional options:<ul>
 <li>
-<code>'knockout_prefix'</code> (cadena o  indefinido) — Un prefijo de cadena para indicar un valor debe ser<em>borrado</em> del resultado final. Por defecto a <code>undef</code>, desactiva esta opción.</li>
+<code>'knockout_prefix'</code> (cadena o  indefinido) — Un prefijo de cadena para indicar un valor debe ser <em>borrado</em> del resultado final. Por defecto a <code>undef</code>, desactiva esta opción.</li>
       <li>
 <code>'sort_merged_arrays'</code> (boleano) — Si desea ordenar todas los arrays que se combinan. Por defecto a <code>false</code>.</li>
       <li>
@@ -280,15 +280,15 @@ lookup('classes', {merge =&gt; 'unique'})
 <pre><code>$ puppet lookup classes --merge unique --environment production --explain
 </code></pre>
 
-<p> Para obtener más detalles acerca de la sintaxis, consulte <a href="./hiera_use_function.html">Utilice la función lookup</a> y <a href="/puppet/5.0/man/lookup.html">utilice el comando <code>puppet lookup</code> </a>.
+<p> Para obtener más detalles acerca de la sintaxis, consulte <a href="./hiera_use_function.html">Utilice la función lookup</a> y <a href="/puppet/5.0/man/lookup.html">utilice el comando <code>puppet lookup</code></a>.
 </p>
 
-<p> Nótese que cada uno de <a href="./hiera_use_hiera_functions.html">las funciones  <code>hiera_*</code> </a> está bloqueado para un comportamiento de combinación particular. (<code>hiera</code> solo se encuentra primero, <code>hiera_array</code> sólo hace la fusión única, etc.)
+<p> Nótese que cada uno de <a href="./hiera_use_hiera_functions.html">las funciones  <code>hiera_*</code></a> está bloqueado para un comportamiento de combinación particular. (<code>hiera</code> solo se encuentra primero, <code>hiera_array</code> sólo hace la fusión única, etc.)
 </p>
 
 <h2 id="configuring-merge-behavior-in-hiera-data">Configurar el comportamiento de combinación en los datos de Hiera</h2>
 
-<p> En cualquier fuente de datos de Hiera (incluyendo <a href="./hiera_layers.html#the-module-layer">module data</a>), puede usar la clave especial <code>lookup_options</code> para configurar el comportamiento de combinación. Hiera utiliza el comportamiento de combinación configurado de una clave en cualquier búsqueda que no la anula explícitamente. (Nota  <a href="./hiera_use_hiera_functions.html">las funciones <code>hiera_*</code> </a> Siempre reemplaza explícitamente la combinación configurada. )
+<p> En cualquier fuente de datos de Hiera (incluyendo <a href="./hiera_layers.html#the-module-layer">module data</a>), puede usar la clave especial <code>lookup_options</code> para configurar el comportamiento de combinación. Hiera utiliza el comportamiento de combinación configurado de una clave en cualquier búsqueda que no la anula explícitamente. (Nota  <a href="./hiera_use_hiera_functions.html">las funciones <code>hiera_*</code></a> Siempre reemplaza explícitamente la combinación configurada. )
 </p>
 
 <p> Por ejemplo:
@@ -360,8 +360,7 @@ lookup_options:
 
 <ul>
 <li>Cualquier fuente de datos puede anular <code>lookup_options</code> desde una fuente de baja prioridad. Desde que Hiera utiliza <a href="#hash">hash merge</a> en los valores <code>lookup_options</code>, los autores de módulos pueden configurar un comportamiento de fusión predeterminado para una clave determinada y los usuarios finales pueden anularla.</li>
-  <li>Cuando especifica un comportamiento de mezcla como un argumento para <a href="./hiera_use_function.html">la función <code>lookup</code> , siempre reemplaza cualquier comportamiento de combinación configurado.</a>
-</li>
+  <li>Cuando especifica un comportamiento de mezcla como un argumento para <a href="./hiera_use_function.html">la función <code>lookup</code></a>, siempre reemplaza cualquier comportamiento de combinación configurado.</li>
 </ul>
 <h3 id="matching-keys-with-regular-expressions">Combinación de claves con expresiones regulares</h3>
 
@@ -393,7 +392,7 @@ lookup_options:
 
 <ul>
 <li>Si hay una opción literal (no regexp) disponible, siempre gana.<ul>
-<li>Por ejemplo, si ha configurado las opciones de combinación para ambos<code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code>usará el primero.</li>
+<li>Por ejemplo, si ha configurado las opciones de combinación para ambos <code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code> usará el primero.</li>
     </ul>
 </li>
   <li>
@@ -401,7 +400,7 @@ lookup_options:
 </p>
 
     <blockquote>
-      <p> <strong>Nota:</strong> <code>lookup_options</code> se ensamblan con un <a href="#hash">hash merge</a>, que pone las claves de fuentes de datos de menor prioridad<strong>antes</strong> de aquellas de fuentes de mayor prioridad. Esto significa que si desea reemplazar el comportamiento de fusión configurado por regexp de un módulo, debe utilizar <strong>exactamente la mismo</strong> cadena de datos regexp de su entorno, para que<em>reemplaze</em> el valor de los módulos. Si utiliza un regex ligeramente diferente que coincida con la mayoría de las mismas claves, no funcionará porque la regex de menor prioridad va primero.
+      <p> <strong>Nota:</strong> <code>lookup_options</code> se ensamblan con un <a href="#hash">hash merge</a>, que pone las claves de fuentes de datos de menor prioridad <strong>antes</strong> de aquellas de fuentes de mayor prioridad. Esto significa que si desea reemplazar el comportamiento de fusión configurado por regexp de un módulo, debe utilizar <strong>exactamente la mismo</strong> cadena de datos regexp de su entorno, para que <em>reemplaze</em> el valor de los módulos. Si utiliza un regex ligeramente diferente que coincida con la mayoría de las mismas claves, no funcionará porque la regex de menor prioridad va primero.
 </p>
     </blockquote>
   </li>

@@ -43,7 +43,7 @@ hierarchy:
     path: "common.yaml"
 </code></pre>
 
-<p> Cana <strong>nivel</strong>de la jerarquía le dice a Hiera cómo acceder a algún tipo de fuente de datos. En este ejemplo, cada nivel configura la ruta de acceso a un archivo YAML en disco.
+<p> Cana <strong>nivel</strong> de la jerarquía le dice a Hiera cómo acceder a algún tipo de fuente de datos. En este ejemplo, cada nivel configura la ruta de acceso a un archivo YAML en disco.
 </p>
 
 <h2 id="most-hierarchies-interpolate-variables">La mayoría de las jerarquías interpolan variables</h2>
@@ -183,7 +183,7 @@ defaults:
 
 <ul>
 <li>Una jerarquía más corta es más fácil de razonar y hace que sus archivos de datos sean más fáciles de trabajar.</li>
-  <li>Utiliza el <a href="/pe/2017.2/r_n_p_intro.html"> método de perfiles y roles</a> para <em>gestionar menos datos en Hiera.</em> Ordenar miles de parámetros de clase es una pesadilla. Clasificar cientos de decisiones conscientes es bastante más fácil.</li>
+  <li>Utiliza el <a href="/es/pe/2017.2/r_n_p_intro.html"> método de perfiles y roles</a> para <em>gestionar menos datos en Hiera.</em> Ordenar miles de parámetros de clase es una pesadilla. Clasificar cientos de decisiones conscientes es bastante más fácil.</li>
   <li>Una jerarquía es una manera de reconocer <em>diferencias</em> en su infraestructura. ¡Piense en las diferencias que son más importantes para usted!. Si en los <a href="/puppet/5.0/lang_facts_and_builtin_vars.html">facts</a> incorporados no encuentra una forma sencia de representar esas diferencias, considere realizar <a href="/facter/3.7/custom_facts.html">facts personalizados</a> — por ejemplo, un <code>datacenter</code> fact que contiene el conocimiento institucional sobre el diseño de su red en una simple señal geográfica.</li>
   <li>¡No te adelantes! En los días de Hiera 3, cuando el cambio de una jerarquía era increíblemente costoso y las capas "muertas" colgaban para siempre, la gente hacía jerarquías realmente grandes en un esfuerzo por adivinar sus necesidades futuras. Pero ahora que puede cambiar las jerarquías en una base medio ambiente, puede ser mucho más ágil al respecto. Empiece pequeño e itera.</li>
 </ul>

@@ -211,7 +211,7 @@ end
 <p> Caché un valor, en una caché privada de origen de datos; También devuelve el valor almacenado en caché.
 </p>
 
-<p> En futuras búsquedas en este origen de datos, puede recuperar valores con <code>cached_value(key)</code>. Los valores almacenados en caché son inmutables, pero puede reemplazar el valor de una clave existente. Las claves del caché pueden ser cualquier cosa válida como clave para un hash Ruby. (Notable, Esto significa que puede utilizar <code>nil</code>como clave. )
+<p> En futuras búsquedas en este origen de datos, puede recuperar valores con <code>cached_value(key)</code>. Los valores almacenados en caché son inmutables, pero puede reemplazar el valor de una clave existente. Las claves del caché pueden ser cualquier cosa válida como clave para un hash Ruby. (Notable, Esto significa que puede utilizar <code>nil</code> como clave. )
 </p>
 
 <p> Por ejemplo, en su primera invocación para un archivo YAML dado, el backend built-in <code>eyaml_lookup_key</code> lee el fichero completo y lo guarda en la cache y luego descifra sólo el valor específico que se solicitó. En las búsquedas posteriores en ese archivo, obtiene el valor cifrado de la caché en lugar de leer el archivo desde el disco de nuevo. También almacena en caché valores descifrados, de modo que no tendrá que descifrar de nuevo si la misma clave se busca repetidamente.

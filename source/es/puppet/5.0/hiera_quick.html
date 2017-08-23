@@ -74,7 +74,7 @@ hierarchy:
 <p> Hiera está destinado a ser utilizado con el código de Puppet, por lo que antes de ir más lejos, vamos a crear una Puppet class para la prueba. Esta clase no hace nada interesante. Sólo escribe los datos que recibe en un archivo temporal.
 </p>
 
-<p> Cree esta clase en su módulo <code>profile</code>. Si aún no utiliza  <a href="/pe/2017.2/r_n_p_intro.html">el método de roles y perfiles</a>, cree un módulo llamado <code>profile</code>en este momento.
+<p> Cree esta clase en su módulo <code>profile</code>. Si aún no utiliza  <a href="/es/pe/2017.2/r_n_p_intro.html">el método de roles y perfiles</a>, cree un módulo llamado <code>profile</code> en este momento.
 </p>
 
 <pre><code class="language-puppet"># /etc/puppetlabs/code/environments/production/modules/profile/manifests/hiera_test.pp
@@ -98,7 +98,7 @@ class profile::hiera_test (
 }
 </code></pre>
 
-<p> Nuestra clase de prueba usa <a href="./lang_classes.html#class-parameters-and-variables">Parámetros de clase</a> para solicitar datos de configuración. Y Puppet <a href="/puppet/5.0/hiera_automatic.html">automáticamente busca parámetros de clase en Hiera</a>, utilizando <code>&lt;CLASS NAME&gt;::&lt;PARAMETER NAME&gt;</code> como la clave de búsqueda.
+<p> Nuestra clase de prueba usa <a href="./lang_classes.html#class-parameters-and-variables">Parámetros de clase</a> para solicitar datos de configuración. Y Puppet <a href="./hiera_automatic.html">automáticamente busca parámetros de clase en Hiera</a>, utilizando <code>&lt;CLASS NAME&gt;::&lt;PARAMETER NAME&gt;</code> como la clave de búsqueda.
 </p>
 
 <p> Así que para proporcionar valores para los siguientes parámetros de clase, podemos configurar las siguientes claves en nuestros datos de Hiera:
@@ -129,9 +129,9 @@ class profile::hiera_test (
 
 <ul>
 <li>
-<a href="/pe/2017.2/r_n_p_intro.html">El método de roles y perfiles</a>.</li>
+<a href="/es/pe/2017.2/r_n_p_intro.html">El método de roles y perfiles</a>.</li>
   <li>
-<a href="/puppet/5.0/hiera_automatic.html">Búsqueda automática de parámetros de clase</a>.</li>
+<a href="./hiera_automatic.html">Búsqueda automática de parámetros de clase</a>.</li>
 </ul>
 <h3 id="common-data">Datos común</h3>
 
@@ -143,10 +143,10 @@ class profile::hiera_test (
 
 <ul>
 <li>El directorio de entorno actual.</li>
-  <li>El <strong>data directory,</strong> Que es un subdirectorio del entorno. Por defecto es<code>&lt;ENVIRONMENT&gt;/data</code>.</li>
+  <li>El <strong>data directory,</strong> Que es un subdirectorio del entorno. Por defecto es <code>&lt;ENVIRONMENT&gt;/data</code>.</li>
   <li>La ruta del archivo especificada por el nivel de jerarquía.</li>
 </ul>
-<p> Así que en este caso, queremos<code>/etc/puppetlabs/code/environments/production/</code> + <code>data/</code> + <code>common.yaml</code>. Editaremos ese archivo YAML y estableceremos valores para dos de los parámetros de la clase.
+<p> Así que en este caso, queremos <code>/etc/puppetlabs/code/environments/production/</code> + <code>data/</code> + <code>common.yaml</code>. Editaremos ese archivo YAML y estableceremos valores para dos de los parámetros de la clase.
 </p>
 
 <pre><code class="language-yaml"># /etc/puppetlabs/code/environments/production/data/common.yaml
@@ -239,7 +239,7 @@ profile::hiera_test::backups_enabled: false
 
 <h2 id="test-data-on-the-command-line">Prueba de datos en la línea de comandos</h2>
 
-<p> Al configurar los datos de Hiera o reorganizar su jerarquía, a menudo es importante revisar los datos que un nodo dado recibirá. <a href="/puppet/5.0/man/lookup.html">El comando <code>puppet lookup</code> </a> puede ayudarle a probar datos interactivamente. Por ejemplo:
+<p> Al configurar los datos de Hiera o reorganizar su jerarquía, a menudo es importante revisar los datos que un nodo dado recibirá. <a href="/puppet/5.0/man/lookup.html">El comando <code>puppet lookup</code></a> puede ayudarle a probar datos interactivamente. Por ejemplo:
 </p>
 
 <pre><code>$ puppet lookup profile::hiera_test::backups_enabled --environment production --node jenkins-prod-03.example.com
@@ -261,7 +261,7 @@ profile::hiera_test::backups_enabled: false
 </ul>
 <h2 id="carry-on">¡Continuemos!</h2>
 
-<p> Hay mucho de lo que no te hemos hablado en este inicio rápido, como el <a href="./hiera_layers.html">capa global y capa módulo </a>, <a href="./hiera_merging.html">uniendo hash y array</a>, datos alternativos de backends, y más. Pero incluso con sólo la capa de entorno y algunos archivos YAML, puede lograr mucho.
+<p> Hay mucho de lo que no te hemos hablado en este inicio rápido, como el <a href="./hiera_layers.html">capa global y capa módulo</a>, <a href="./hiera_merging.html">uniendo hash y array</a>, datos alternativos de backends, y más. Pero incluso con sólo la capa de entorno y algunos archivos YAML, puede lograr mucho.
 </p>
 
 <p> Ya sabes lo suficiente para empezar a usar Hiera de verdad.

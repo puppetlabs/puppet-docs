@@ -177,7 +177,7 @@ defaults:
     <p> Para los backends incorporados (YAML, JSON, y HOCON), la clave es siempre <code>data_hash</code> y el valor es uno de <code>yaml_data</code>, <code>json_data</code>, o <code>hocon_data</code>. Si desea configurar un backend personalizado como predeterminado, tendrá que comprobar la documentación del backend.
 </p>
 
-    <p> Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/5.0/functions_basics.html">custom Puppet function</a> que implementa el backend. Para más detalles, vea <a href="/puppet/5.0/hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.
+    <p> Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/5.0/functions_basics.html">custom Puppet function</a> que implementa el backend. Para más detalles, vea <a href="./hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.
 </p>
   </li>
 </ul>
@@ -187,7 +187,7 @@ defaults:
 </p>
 
 <blockquote>
-  <p> La clave <code>default_hierarchy</code>es una clave de nivel superior como la clave<code>hierarchy</code>. Esto trabaja exactamente como la clave <code>hierarchy</code>, pero sus valores se utilizan sólo si las entradas de jerarquía normales en el mismo módulo, o  si en cualquiera de las capas de precedentes (entorno o global) no dan como resultado un valor. Dentro de esta jerarquía predeterminada, se aplican las reglas de fusión normales. De cualquier forma, la <code>default_hierarchy</code>no está permitido en ambientes o capas globales.
+  <p> La clave <code>default_hierarchy</code> es una clave de nivel superior como la clave<code>hierarchy</code>. Esto trabaja exactamente como la clave <code>hierarchy</code>, pero sus valores se utilizan sólo si las entradas de jerarquía normales en el mismo módulo, o  si en cualquiera de las capas de precedentes (entorno o global) no dan como resultado un valor. Dentro de esta jerarquía predeterminada, se aplican las reglas de fusión normales. De cualquier forma, la <code>default_hierarchy</code> no está permitido en ambientes o capas globales.
 </p>
 </blockquote>
 
@@ -226,7 +226,7 @@ defaults:
 <p> Hiera tiene tres backends estándar incorporados: <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a>, <a href="https://www.w3schools.com/js/js_json_syntax.asp">JSON</a> y <a href="https://github.com/typesafehub/config/blob/master/HOCON.md">HOCON</a>. Todos ellos utilizan archivos como fuentes de datos.
 </p>
 
-<p> Puede utilizar cualquier combinación de estos backends en una jerarquía y también puede combinarlos con backends personalizados. Pero si la mayoría de sus datos están en un formato de archivo, sea perezoso: <a href="#the-defaults-key">establezca los valores por defecto de sus <code>datadir</code> y claves <code>data_hash</code>.</a>
+<p> Puede utilizar cualquier combinación de estos backends en una jerarquía y también puede combinarlos con backends personalizados. Pero si la mayoría de sus datos están en un formato de archivo, sea perezoso: <a href="#the-defaults-key">establezca los valores por defecto de sus  <code>datadir</code> y claves <code>data_hash</code>.</a>
 </p>
 
 <p> Cada nivel de jerarquía YAML/JSON/HOCON   necesita las siguientes claves:
@@ -234,7 +234,7 @@ defaults:
 
 <ul>
 <li>
-<code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida<code>--explain</code>.</li>
+<code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida <code>--explain</code>.</li>
   <li>
     <p> <code>path</code>, <code>paths</code>, <code>glob</code>, <code>globs</code>, o <code>mapped_paths</code> (seleccione uno) — Los archivos de datos que se utilizarán para este nivel de jerarquía.
 </p>
@@ -256,7 +256,7 @@ defaults:
     <p> <code>datadir</code> — El directorio donde se guardan los archivos de datos. Puede omitirse si establece un valor predeterminado.
 </p>
 
-    <p> Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.
+    <p> Esta ruta de acceso es relativa al directorio de hiera.yaml: si el archivo de configuración está en <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code> y el datadir está configurado para <code>data</code>, La ruta completa al directorio de datos es <code>/etc/puppetlabs/code/environments/production/data</code>.
 </p>
 
     <p> En la capa global, puede configurar opcionalmente el datadir a una ruta absoluta. En las otras capas, debe ser siempre relativa.
@@ -311,10 +311,10 @@ defaults:
 <p> Las rutas de archivo son <code>datadir</code>: Si el datadir  completo es <code>/etc/puppetlabs/code/environments/production/data</code> y el path del fichero esta establecido a <code>"nodes/%{trusted.certname}.yaml"</code>, la ruta completa al archivo es <code>/etc/puppetlabs/code/environments/production/data/nodes/&lt;NODE NAME&gt;.yaml</code>. (También se permiten rutas de archivo absolutas, pero rara vez son prácticas. )
 </p>
 
-<p> Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="./hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera. Para obtener más información sobre la creación de jerarquías útiles, consulte <a href="" >Cómo funcionan las jerarquías</a>.
+<p> Sea cual sea el enfoque que elijas, la mayoría de tus niveles <a href="./hiera_interpolation.html">interpolan</a> variables en el path, ya que eso es lo que hace útil a Hiera. Para obtener más información sobre la creación de jerarquías útiles, consulte <a href="" .>Cómo funcionan las jerarquías</a>.
 </p>
 
-<p> Globs se implementan con <a href="ruby-doc.org/core/Dir.html#method-c-glob">El método Ruby<code>Dir.glob</code> </a>. En resumen:
+<p> Globs se implementan con <a href="ruby-doc.org/core/Dir.html#method-c-glob">El método Ruby <code>Dir.glob</code></a>. En resumen:
 </p>
 
 <ul>
@@ -355,7 +355,7 @@ defaults:
 <p> Hiera 5 (Puppet 4.9.3 y posteriores) incluye una interfaz nativa para la extensión <a href="https://github.com/voxpupuli/hiera-eyaml">Hiera eyaml</a>, la cual mantiene la infomación encriptada en el disco, pero permite a Puppet leer la misma durante la compilación del catálogo.
 </p>
 
-<p> Para aprender a crear claves y editar archivos cifrados, consulte <a href="https://github.com/voxpupuli/hiera-eyaml">La documentación de Hiera eyaml </a>.
+<p> Para aprender a crear claves y editar archivos cifrados, consulte <a href="https://github.com/voxpupuli/hiera-eyaml">La documentación de Hiera eyaml</a>.
 </p>
 
 <p> Dentro de hiera.yaml, el backend eyaml se parece sobre todo a los backends estándar incorporados, con algunas diferencias. (Utiliza <code>lookup_key</code> en vez de <code>data_hash</code>, y requiere una clave <code>options</code> para localizar claves de descifrado. )
@@ -376,7 +376,7 @@ defaults:
 
 <ul>
 <li>
-<code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida<code>--explain</code>.</li>
+<code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida <code>--explain</code>.</li>
   <li>
 <code>lookup_key</code> — Qué backend para usar. El valor debe ser <code>eyaml_lookup_key</code>. (Utilice este en vez de la configuración <code>data_hash</code>.)</li>
   <li>
@@ -402,7 +402,7 @@ defaults:
 </p>
   </li>
 </ul>
-<p> La ruta del archivo y las opciones <a href="">interpolación variable</a>.
+<p>La ruta del archivo y las opciones <a href="./hiera_interpolation.html">interpolación variable</a>.
 </p>
 
 <p> An example hierarchy level:
@@ -531,7 +531,7 @@ hierarchy:
 
 <ul>
 <li>
-<code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida<code>--explain</code>.</li>
+<code>name</code> — Un nombre para este nivel, mostrado a los humanos en mensajes de depuración y salida <code>--explain</code>.</li>
   <li>Una clave de backend, que debe ser una de:<ul>
 <li><code>data_hash</code></li>
       <li><code>lookup_key</code></li>
@@ -539,13 +539,13 @@ hierarchy:
       <li>
 <code>hiera3_backend</code> (solo capa global)</li>
     </ul>
-<p> El backend determina qué clave debe utilizar, por lo que tendrá que comprobar su documentación. En general, los backends basados en archivos normalmente usan <code>data_hash</code>, Los backends rápidos sin archivos usan usualmente <code>lookup_key</code>, Y los backends lentos que no son archivos normalmente usan <code>data_dig</code>.
+<p> El backend determina qué clave debe utilizar, por lo que tendrá que comprobar su documentación. En general, los backends basados en archivos normalmente usan<code>data_hash</code>, Los backends rápidos sin archivos usan usualmente <code>lookup_key</code>, Y los backends lentos que no son archivos normalmente usan <code>data_dig</code>.
 </p>
 
-    <p> Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/5.0/functions_basics.html">custom Puppet function</a> que implementa el backend. Para más detalles, vea <a href="/puppet/5.0/hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.
+    <p> Sea cual sea la clave que utilice, el valor debe ser el nombre de la <a href="/puppet/5.0/functions_basics.html">custom Puppet function</a> que implementa el backend. Para más detalles, vea <a href="./hiera_custom_backends.html">Cómo funcionan los backends personalizados</a>.
 </p>
   </li>
-  <li>Una ruta o clave URI (sólo si el backend lo requiere). <strong>Estas claves soportan <a href="">Interpolación de variables</a>.</strong> Las siguientes claves de ruta / URI están disponibles:<ul>
+  <li>Una ruta o clave URI (sólo si el backend lo requiere). <strong>Estas claves soportan <a href="" .>Interpolación de variables</a>.</strong> Las siguientes claves de ruta / URI están disponibles:<ul>
 <li><code>path</code></li>
       <li><code>paths</code></li>
       <li><code>glob</code></li>
@@ -559,11 +559,11 @@ hierarchy:
     <p> <code>uri</code> (string) y <code>uris</code> (array) puede representar cualquier tipo de fuente de datos. Hiera no asegura que los URIs sean solucionables antes de llamar al backend, y no necesita entender ningún esquema URI dado.
 </p>
 
-    <p> También es posible que un backend omita la clave de ruta / URI, y confíe completamente en el <code>options</code>para localizar sus datos.
+    <p> También es posible que un backend omita la clave de ruta / URI, y confíe completamente en el <code>options</code> para localizar sus datos.
 </p>
   </li>
   <li>
-<code>datadir</code> —El directorio donde se guardan los archivos de datos. El camino es relativo al directorio de hiera.yaml.Sólo es necesario si el backend utiliza la <code>path(s)</code> y claves <code>glob(s)</code> y se puede omitir si establece un valor predeterminado.</li>
+<code>datadir</code> —El directorio donde se guardan los archivos de datos. El camino es relativo al directorio de hiera.yaml. Sólo es necesario si el backend utiliza la <code>path(s)</code> y claves <code>glob(s)</code> y se puede omitir si establece un valor predeterminado.</li>
   <li>
 <code>options</code> — Un hash de opciones adicionales arbitrarias para el backend. Por ejemplo, las credenciales de la base de datos o la ubicación de una clave de descifrado. Vea la documentación del backend para más detalles.<strong>Todos los valores en las <code>opciones</code> hash <a href="./hiera_interpolation.html">interpolación de la variable</a> de soporte.</strong>
 </li>

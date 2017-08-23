@@ -23,7 +23,7 @@ siguiente orden:
 <code>&lt;MODULE NAME&gt;::&lt;SOMETHING&gt;</code>.</li>
 </ol>
 <blockquote>
-  <p> <strong>Nota</strong>: Hiera siempre comprueba la <a href="./hiera_layers.html#the-global-layer"> capa global </a>antes de la <a href="./hiera_layers.html#the-environment-layer">capa environment</a>. Si no se ha configurado ningún archivo hiera.yaml global, se utilizan los valores predeterminados de Hiera. Si no desea que utilice los valores predeterminados, puede crear un hiera.yaml vacío en <code>/etc/puppetlabs/puppet/data/</code>.
+  <p> <strong>Nota</strong>: Hiera siempre comprueba la <a href="./hiera_layers.html#the-global-layer">capa global</a> antes de la <a href="./hiera_layers.html#the-environment-layer">capa environment</a>. Si no se ha configurado ningún archivo hiera.yaml global, se utilizan los valores predeterminados de Hiera. Si no desea que utilice los valores predeterminados, puede crear un hiera.yaml vacío en <code>/etc/puppetlabs/puppet/data/</code>.
 </p>
 </blockquote>
 
@@ -55,17 +55,17 @@ primera clave, intentará de nuevo con las siguientes, recurriendo sólo a un
   <li>
 <code>&lt;VALUE TYPE&gt;</code> (data type) — A
 <a href="/puppet/5.0/lang_data_type.html">data type</a>
-que debe coincidir con el valor recuperado. Si no, la búsqueda (y el catálogo
+que debe coincidir con el valor recuperado. Si no, la búsqueda (y el catálogo 
 de compilación) fallara. Por defecto <code>Data</code> (acepta cualquier valor normal).
 </li>
   <li>
 <code>&lt;MERGE BEHAVIOR&gt;</code> (cadena o hash. Consulte <strong>“Comportamientos combinados”</strong> abajo) —
 Si (y cómo) combinar varios valores. Si está presente, esto anula cualquier
-fusión especificada en las fuentes de datos. Valor predeterminado sin valor, Hiera
+fusión especificada en las fuentes de datos. Valor predeterminado sin valor, Hiera 
 fusionará las fuentes de datos si están presentes, y de otro modo hará una
 lookup.</li>
   <li>
-<code>&lt;DEFAULT VALUE&gt;</code> (cualquier valor normal) — Si esta presente, <code>lookup</code>devuelve esto
+<code>&lt;DEFAULT VALUE&gt;</code> (cualquier valor normal) — Si esta presente, <code>lookup</code> devuelve esto
 cuando no puede encontrar un valor normal. Los valores predeterminados nunca se combinan con los valores encontrados.
 Al igual que un valor normal, el valor predeterminado debe coincidir con el tipo de valor. Por defecto
 sin valor. Si Hiera no puede encontrar un valor normal, lookup (y la compilación) fallará.</li>
@@ -90,7 +90,7 @@ siguientes claves:<ul>
  a un hash vacio.</li>
       <li>
 <code>'override'</code> (hash) — Un hash de las claves de búsqueda y valores de anulación. Puppet
- comprobará la clave solicitada en el hash del override <em>primero.</em> Si lo encuentra,
+ comprobará la clave solicitada en el hash del override <em>primero.</em> Si lo encuentra, 
  devolverá el valor <em>final</em> como valor, ignorando la fusión. Por defecto
  un hash vacío.</li>
     </ul>
@@ -109,8 +109,8 @@ pero también puede continuar buscando y fusionando todos los valores juntos.
 </p>
 
 <blockquote>
-  <p> <strong>Nota:</strong> Las fuentes de datos pueden la clave de metadata <code>lookup_options</code>
-solicita un comportamiento de fusión específico para una clave. La función <code>lookup</code> usará
+  <p> <strong>Nota:</strong> Las fuentes de datos pueden la clave de metadata <code>lookup_options</code> 
+solicita un comportamiento de fusión específico para una clave. La función <code>lookup</code> usará 
 comportamiento solicitado a menos que especifique explícitamente uno.
 </p>
 </blockquote>
@@ -144,7 +144,7 @@ comportamientos de fusión.</li>
 Pero puede ajustar la combinación con opciones adicionales. Las opciones disponibles son:<ul>
 <li>
 <code>'knockout_prefix'</code> (string o undef) —  Una cadena prefix para indicar un
-  valor debería <em>eliminar</em> desde el resultado final. Por defecto<code>undef</code>, que
+  valor debería <em>eliminar</em> desde el resultado final. Por defecto <code>undef</code>, que
   desactiva esta función.</li>
       <li>
 <code>'sort_merged_arrays'</code> (boleano) — Ya sea para ordenar todas los arrays que son
