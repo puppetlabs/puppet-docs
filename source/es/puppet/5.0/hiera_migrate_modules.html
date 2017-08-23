@@ -24,7 +24,7 @@ title: "Hiera: Agregue los datos de Hiera a un módulo existente"
 
 <ul>
 <li>
-    <p> Una clase en su módulo no hace nada sino establecer variables para las otras clases. Por traición, esta clase es denominada <code>&lt;MODULE&gt;::params</code>(Así el apodo del patrón), pero no hay un comportamiento especial basado en ese nombre.
+    <p> Una clase en su módulo no hace nada sino establecer variables para las otras clases. Por traición, esta clase es denominada <code>&lt;MODULE&gt;::params</code> (Así el apodo del patrón), pero no hay un comportamiento especial basado en ese nombre.
 </p>
 
     <p> Esta clase puede usar el código de títeres normal para construir estos valores. Normalmente se basa en <a href="/puppet/5.0/lang_conditional.html">lógica condicional</a> en el sistema operativo de destino.
@@ -71,7 +71,7 @@ class ntp (
 
 <h2 id="module-data-with-a-one-off-custom-hiera-backend">Datos del módulo con un backend personalizado de Hiera</h2>
 
-<p>  <a href="/puppet/5.0/hiera_custom_backends.html">Sistema de backend personalizado</a> de Hiera 5 es mucho más simple que en versiones anteriores de Hiera. Aunque un backend de uso general todavía toma cierta cantidad de pensamiento, es realmente fácil escribir un backend que sólo necesita trabajar para un módulo. De hecho, puede convertir una clase de params existente en una <a href="./hiera_custom_data_hash.html">hash-based Hiera backend</a> en cuestión de minutos.
+<p>  <a href="./hiera_custom_backends.html">Sistema de backend personalizado</a> de Hiera 5 es mucho más simple que en versiones anteriores de Hiera. Aunque un backend de uso general todavía toma cierta cantidad de pensamiento, es realmente fácil escribir un backend que sólo necesita trabajar para un módulo. De hecho, puede convertir una clase de params existente en una <a href="./hiera_custom_data_hash.html">hash-based Hiera backend</a> en cuestión de minutos.
 </p>
 
 <p> Para crear un backend de Hiera, necesita una función de Puppet que devuelve un hash. Usted puede <a href="/puppet/5.0/lang_write_functions_in_puppet.html">escribir esa función en el lenguaje de títeres</a>, utilizando la clase params como punto de partida:
@@ -122,7 +122,7 @@ hierarchy:
   # We only need one hierarchy level, since one function provides all the data.
 </code></pre>
 
-<p> Ahora Hiera puede usar el propio backend de su módulo para <a href="/puppet/5.0/hiera_automatic.html">Búsqueda automática de parámetros de clase</a> — Si un usuario no establece su propio valor para un parámetro (ya sea en el código de marionetas o en sus propios datos Hiera), la función <code>ntp::params</code> puede proporcionar un valor predeterminado.
+<p> Ahora Hiera puede usar el propio backend de su módulo para <a href="./hiera_automatic.html%22">Búsqueda automática de parámetros de clase</a> — Si un usuario no establece su propio valor para un parámetro (ya sea en el código de marionetas o en sus propios datos Hiera), la función <code>ntp::params</code> puede proporcionar un valor predeterminado.
 </p>
 
 <p> Con los valores por defecto basados en Hiera, puede simplificar las clases principales de su módulo:
