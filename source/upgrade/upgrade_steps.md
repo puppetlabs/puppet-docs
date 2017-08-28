@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Upgrading from Puppet 3 to Puppet 4: Summary of upgrade steps"
+title: "Upgrading from Puppet 3 to Puppet 4+: Summary of upgrade steps"
 canonical: "/upgrade/upgrade_steps.html"
 ---
 
@@ -18,16 +18,16 @@ _Node classification_ means determining which classes are applied to a given nod
 
 ### 2. Prepare your code
 
-One of the biggest changes in Puppet 4 is the new parser. It has been available through an option called `--parser future` since late 2013, but it's not the "future" anymore -- it's here. Most Puppet 3 code works just fine, but there are enough changes that you should test your codebase out. Here's how:
+One of the biggest changes in Puppet 4 was the new parser. It has been available through an option called `--parser future` since late 2013, but it's not the "future" anymore -- it's here. Most Puppet 3 code works just fine, but there are enough changes that you should test your codebase out. Here's how:
 
 * **Set up revision control:** If you're not already using version control on your Puppet code, now's the time to start. If you are (please, please say you are!), you'll make a new branch from your production branch, so you can test the code and commit fixes without affecting your business critical systems.
 
 * **Find and resolve problems:** Now it's time to dig into the `puppetlabs-catalog_preview` module. This module contains a command-line application which compiles two catalogs for nodes you specify: one using the 3.x parser and one using the new, rewritten parser. It then analyzes the differences between the catalogs and produces a report to show you the file and line number that caused each difference. After working through the output from the catalog preview module, you'll have a Puppet 4 compliant branch of code that will produce predictable, consistent results.
 
-We've got a detailed, step-by-step upgrade workflow document to walk you through using the catalog preview module, plus technical docs enumerating each of the changes between the 3.x and 4.x language:
+We've got a detailed, step-by-step upgrade workflow document to walk you through using the catalog preview module, plus technical docs enumerating each of the changes between the 3.x and 4.x and newer language:
 
   * [Code upgrade workflow walkthrough](/upgrade/upgrade_code_workflow.html)
-  * [Updating 3.x manifests for 4.x](/upgrade/updating_manifests.html)
+  * [Updating 3.x manifests for Puppet 4 and newer](/upgrade/updating_manifests.html)
   * [A PE-centric `catalog_preview` module walkthrough](https://docs.puppet.com/pe/latest/migrate_pe_catalog_preview.html)
 
 If you're feeling extra motivated, this is a great opportunity to implement r10k and its branch-per-environment workflow, but that's completely optional. One thing at a time.
