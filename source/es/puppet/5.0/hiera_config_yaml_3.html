@@ -60,7 +60,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 <p> La ubicación predeterminada para el hiera.yaml es <a href="/puppet/5.0/dirs_confdir.html"><code>$confdir</code></a><code>/hiera.yaml</code>. Dependiendo de su plataforma, generalmente  de <code>/etc/puppetlabs/puppet/hiera.yaml</code> o <code>C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml</code>.
 </p>
 
-<p> Usted puede utilizar <a href="/puppet/5.0/configuration.html#hieraconfig">la configuración <code>hiera_config</code> </a> en <code>puppet.conf</code>para cambiar la ubicación del global hiera.yaml.
+<p> Usted puede utilizar <a href="/puppet/5.0/configuration.html#hieraconfig">la configuración <code>hiera_config</code></a> en <code>puppet.conf</code>para cambiar la ubicación del global hiera.yaml.
 </p>
 
 <h2 id="format">Formato</h2>
@@ -156,7 +156,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 <code>noop</code> (mensajes silenciados)</li>
 </ul>
 <blockquote>
-  <p> <strong>Custom loggers:</strong> Usted puede hacer su propio logger proporcionando una clase llamada, e.g., <code>Hiera::Foo_logger</code> (en su caso el nombre interno de Hiera para el logger sería  <code>foo</code>), y facilita métodos de clase denominados <code>warn</code> y <code>debug</code>, cada uno de los cuales debe aceptar una sola cadena.
+  <p> <strong>Custom loggers:</strong> Usted puede hacer su propio logger proporcionando una clase llamada, e.g., <code>Hiera::Foo_logger</code> (en su caso el nombre interno de Hiera para el logger sería  <code>foo</code>), y facilita métodos de clase denominados <code>warn</code> y <code>debug</code>,cada uno de los cuales debe aceptar una sola cadena.
 </p>
 </blockquote>
 
@@ -179,7 +179,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
   <li>
 <code>deeper</code> — fusiona recursivamente. En el caso de conflicto, permite valores de <strong>alta prioridad</strong> para ganar.</li>
 </ul>
-<p> Cualquier cosa menos <code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si esta utilizando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/5.0/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instala la gema.
+<p> Cualquiercosa menos <code>native</code> requiere la  <code>deep_merge</code> de Ruby sea instalada. Si esta utilizando Puppet Server, necesitará utilizar el comando <a href="/puppetserver/5.0/gems.html#installing-and-removing-gems"><code>puppetserver gem</code></a> para instala la gema.
 </p>
 
 <p> Para obtener más información acerca de las estrategias de búsqueda de combinaciones hash, consulte <a href="./hiera_merging.html#hash">“Hash Merge”</a> y <a href="./hiera_merging.html#deep">“Deep Merging in Hiera”</a>.
@@ -187,7 +187,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 
 <h3 id="deepmergeoptions"><code>:deep_merge_options</code></h3>
 
-<p> Un hash de profundas opciones de fusión para <code>hiera_hash</code>, si <code>:merge_behavior</code> es establecido a<code>deeper</code> o <code>deep</code>. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
+<p> Un hash de profundas opciones de fusión para <code>hiera_hash</code>, si <code>:merge_behavior</code> es establecido a <code>deeper</code> o <code>deep</code>. <strong>Tenga en cuenta que esto no afecta a la búsqueda automática de parámetros de clase, función <code>lookup</code> o el comando <code>puppet lookup</code>.</strong>
 </p>
 
 <p> Por ejemplo:
@@ -221,7 +221,7 @@ title: "Hiera: Sintaxis del archivo de configuración legado (hiera.yaml v3)"
 <p> El directorio en el que se encuentran los archivos de origen de datos. Debe ser un string.
 </p>
 
-<p> Usted puede <a href="./hiera_interpolation.html">Interpolar las variables</a> en el datadir utilizando<code>%{variable}</code>Tokens de interpolación. Esto le permite, por ejemplo, señalar a <code>"/etc/puppetlabs/code/hieradata/%{::environment}"</code> Para mantener sus datos de producción y desarrollo completamente separados.
+<p> Usted puede <a href="./hiera_interpolation.html">Interpolar las variables</a> en el datadir utilizando <code>%{variable}</code>Tokens de interpolación. Esto le permite, por ejemplo, señalar a <code>"/etc/puppetlabs/code/hieradata/%{::environment}"</code> Para mantener sus datos de producción y desarrollo completamente separados.
 </p>
 
 <p> <strong>Valor por defecto:</strong> <code>"/etc/puppetlabs/code/environments/%{environment}/hieradata"</code> en *nix, y <code>"C:\ProgramData\PuppetLabs\code\environments\%{environment}\hieradata"</code> en Windows.

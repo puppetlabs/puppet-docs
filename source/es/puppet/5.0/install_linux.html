@@ -21,13 +21,13 @@ title: "Instalación Puppet agent: Linux"
     <p> Confirme que puede correr ejecutables de  Puppet.
 </p>
 
-    <p> La ubicación de los ejecutables de Puppet es<code>/opt/puppetlabs/bin/</code>, Que no está en su <code>PATH</code> de variables de entorno por defecto.
+    <p> La ubicación de los ejecutables de Puppet es <code>/opt/puppetlabs/bin/</code>, Que no está en su <code>PATH</code> de variables de entorno por defecto.
 </p>
 
     <p> El path ejecutable no importa para los servicios de Puppet - por ejemplo, <code>service puppet start</code> funciona independientemente del <code>PATH</code> — Pero si está ejecutando comandos <code>puppet</code>interactivos, debe agregar su ubicación a su <code>PATH</code> o ejecutarlos utilizando su ruta completa.
 </p>
 
-    <p> Para agregar rápidamente la ubicación del<code>PATH</code> para la sesión de terminal actual, utilice el comando <code>export PATH=/opt/puppetlabs/bin:$PATH</code>. También puede agregar esta localización donde configure el <code>PATH</code>, como pueden ser los ficheros de configuración <code>.profile</code> or <code>.bashrc</code>.
+    <p> Para agregar rápidamente la ubicación del <code>PATH</code> para la sesión de terminal actual, utilice el comando <code>export PATH=/opt/puppetlabs/bin:$PATH</code>. También puede agregar esta localización donde configure el <code>PATH</code>, como pueden ser los ficheros de configuración <code>.profile</code> or <code>.bashrc</code>.
 </p>
 
     <p> Para más información, consulte los detalles sobre <a href="/puppet/5.0/whered_it_go.html">localización de ficheros y directorios</a>.
@@ -46,10 +46,10 @@ title: "Instalación Puppet agent: Linux"
     <p> (Opcional) Configure la configuración del agent.
 </p>
 
-    <p> Por ejemplo, Si su maestro no es accesible en la dirección predeterminada,<code>server = puppet</code>, establecer la configuración <code>server</code>a su hostname de Puppet master.
+    <p> Por ejemplo, Si su maestro no es accesible en la dirección predeterminada, <code>server = puppet</code>, establecer la configuración <code>server</code> a su hostname de Puppet master.
 </p>
 
-    <p> Para otras configuraciones, es posible que desee cambiar, consulte <a href="/puppet/5.0/config_important_settings.html#settings-for-agents-all-nodes">Lista de ajustes relacionados con el agent</a>.
+    <p> Para otras configuraciones, es posible que desee cambiar, consulte <a href="/puppet/5.0/config_important_settings.html#settings-for-agents-all-nodes">lLista de ajustes relacionados con el agent</a>.
 </p>
   </li>
   <li>
