@@ -1,8 +1,8 @@
 ---
 layout: default
-title: "Troubleshooting the Puppet Development Kit"
+title: "Troubleshooting Puppet Development Kit"
 canonical: "/pdk/1.0/pdk_troubleshooting.html"
-description: "Troubleshooting the Puppet Development Kit, the shortest path to developing better Puppet code."
+description: "Troubleshooting Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
 
