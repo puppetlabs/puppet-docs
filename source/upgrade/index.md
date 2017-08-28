@@ -14,7 +14,11 @@ Follow the guide outlined on the [Upgrade steps page](/upgrade/upgrade_steps.htm
 
 **Note:** If you are looking for information about upgrading from Puppet 4.x to the latest feature release, see the [minor upgrades section of the Puppet documentation](./puppet/latest/reference/upgrade_minor.html). For upgrading PE to the latest from 2015.2 or newer, see [Upgrading PE: monolithic](/pe/latest/upgrade_mono.html).
 
-## What's so awesome about Puppet 4, anyway?
+## What's so awesome about newer versions of Puppet, anyway?
+
+Puppet 4 introduced several features, and deprecated others. Puppet 5 improved scalability and performance, and removed many deprecated cruft. 
+
+See the [Puppet 5 Platform announcement](https://puppet.com/blog/puppet-5-platform-released) and the [Puppet 5.0][/puppet/5.0/release_notes.html#puppet-500] release notes to learn about these improvements and removals.
 
 ### Scalability
 
