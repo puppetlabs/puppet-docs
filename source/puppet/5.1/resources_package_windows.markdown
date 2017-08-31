@@ -36,9 +36,9 @@ Both of these use the default `windows` package provider.
 
 ### Alternative providers
 
-If you've set up [Chocolatey](https://chocolatey.org/), there's a community-supported package provider for it.
+If you've set up [Chocolatey](https://chocolatey.org/), there's a Puppet-supported package provider for it.
 
-* [Chocolatey package provider on the Puppet Forge](https://forge.puppetlabs.com/chocolatey/chocolatey)
+* [Chocolatey package provider on the Puppet Forge](https://forge.puppet.com/puppetlabs/chocolatey)
 
 ## The `source` attribute is required
 
