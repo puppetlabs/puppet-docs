@@ -340,7 +340,7 @@ documents:
     my_versions:
       facter: "3.6"
       hiera: "3.3"
-      puppetserver: "2.7"
+      puppetserver: "2.8"
   /puppet/4.9:
     doc: puppet
     version: "4.9"
@@ -591,6 +591,14 @@ documents:
       puppet: "5.0"
       facter: "3.7"
       hiera: "3.4"
+  /puppetserver/2.8:
+    doc: puppetserver
+    version: "2.8"
+    nav: /puppet/4.10/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 7e572840b0fee18a5b18523625096b79ebd2eff0
+      subdirectory: documentation
   /puppetserver/2.7:
     doc: puppetserver
     version: "2.7"
