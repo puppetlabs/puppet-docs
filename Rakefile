@@ -345,6 +345,21 @@ task :build_and_mangle_html_fragments do
   end
 end
 
+desc "Build body-only HTML content (+ sidebar nav)"
+task :body_and_nav_html_only do
+  Rake::Task['check_git_dirty_status'].invoke
+  Dir.chdir("#{SOURCE_DIR}/_layouts") do
+    FileUtils.mv("default.html", "real_default.html")
+    FileUtils.mv("body_only.html", "default.html")
+  end
+  Rake::Task['generate'].invoke
+  
+  Dir.chdir("#{SOURCE_DIR}/_layouts") do
+    FileUtils.mv("default.html", "body_only.html")
+    FileUtils.mv("real_default.html", "default.html")
+  end
+end
+
 desc "List the available groups of references. Run `rake references:<GROUP>` to build."
 task :references do
   puts 'The following references are available:'
