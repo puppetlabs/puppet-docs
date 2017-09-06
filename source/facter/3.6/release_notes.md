@@ -5,6 +5,22 @@ title: "Facter 3.6 Release notes"
 
 This page documents the history of the Facter 3.6 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality. 
 
+## Facter 3.6.7
+
+Released September 6, 2017.
+
+This is a minor bug-fix and Windows security improvement release that shipped with Puppet agent 1.10.7.
+
+## Security improvement: Enable Data Execution Prevention (DEP)
+
+As part of security robustness measure, the Windows binaries for Facter 3.6.7 enable Data Execution Prevention (aka /NX) and address space layout randomization. There was no specific known vulnerability, but this improvement reduces the changes of unknown vulnerabilities being exploited.
+
+* [FACT-1730](https://tickets.puppetlabs.com/browse/FACT-1730)
+
+## Bug fixes
+
+* [FACT-1728](https://tickets.puppetlabs.com/browse/FACT-1728): Facter provides an improved error message when `facter -p` is specified but Puppet cannot be loaded.
+
 ## Facter 3.6.6
 
 Released July 26, 2017.

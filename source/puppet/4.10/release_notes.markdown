@@ -18,6 +18,20 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.7
+
+Released September 6, 2017.
+
+This is a small bug-fix release in the Puppet 4.10 series.
+
+* [All issues fixed in Puppet 4.10.7](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.7%27)
+
+### Bug fixes
+
+Previous versions of Puppet 4.10 on Windows could crash if a corrupt environment variable was set. Puppet 4.10.7 resolves this issue.
+
+* [PUP-7821](https://tickets.puppetlabs.com/browse/PUP-7821)
+
 ## Puppet 4.10.6
 
 Released August 9, 2017.
