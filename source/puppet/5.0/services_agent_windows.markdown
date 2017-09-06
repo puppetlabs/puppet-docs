@@ -143,11 +143,11 @@ Configure Puppet agent with [puppet.conf][], using the `[agent]` and/or `[main]`
 
 When running as a service, Puppet agent logs messages to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
 
-By default, Puppet logs to the `Application` event log, but optionally, Puppet may be configured to log to its own `Puppet` log instead. To enable the `Puppet` log requires creating a specific registry key to configure the new event log destination. This can be done using the `reg.exe` tool:
+By default, Puppet logs to the `Application` event log, but optionally, Puppet may be configured to log to a separate `Puppet` log instead. To enable the `Puppet` log, create the requisite registry key with the `reg.exe` tool:
 
     C:\> reg add HKLM\System\CurrentControlSet\Services\EventLog\Puppet\Puppet /v EventMessageFile /t REG_EXPAND_SZ /d "C:\Program Files\Puppet Labs\Puppet\bin\puppetres.dll"
 
-Alternatively, there is a PowerShell cmdlet `New-EventLog` that may be used to do the same thing:
+Alternatively, the PowerShell cmdlet `New-EventLog` will do the same thing:
 
     PS C:\> New-EventLog -Source Puppet -LogName Puppet -MessageResource "C:\Program Files\Puppet Labs\Puppet\bin\puppetres.dll"
 
