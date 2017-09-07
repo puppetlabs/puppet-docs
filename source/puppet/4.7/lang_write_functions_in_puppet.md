@@ -22,7 +22,7 @@ You can write your own functions in the Puppet language to transform data and co
 ## Syntax
 
 ``` puppet
-function <MODULE NAME>::<NAME>(<PARAMETER LIST>) >> <RETURN TYPE> {
+function <MODULE NAME>::<NAME>(<PARAMETER LIST>) {
   ... body of function ...
   final expression, which will be the returned value of the function
 }
@@ -31,7 +31,7 @@ function <MODULE NAME>::<NAME>(<PARAMETER LIST>) >> <RETURN TYPE> {
 {% capture bool2httpexample %}
 
 ``` puppet
-function apache::bool2http(Variant[String, Boolean] $arg) >> String {
+function apache::bool2http($arg) {
   case $arg {
     false, undef, /(?i:false)/ : { 'Off' }
     true, /(?i:true)/          : { 'On' }
@@ -57,14 +57,9 @@ The general form of a function written in Puppet language is:
         * An optional equals (`=`) sign and **default value** (which must match the data type, if one was specified).
     * An optional trailing comma after the last parameter.
     * A closing parenthesis.
-* An optional **return type**, which consists of:
-    * Two greater-than signs (`>>`).
-    * A [data type][literal_types] that matches every value the function could return.
 * An opening curly brace.
 * A block of Puppet code, ending with an expression whose value is returned.
 * A closing curly brace.
-
-
 ### Parameters
 
 Functions are passed arguments by **parameter position**. This means that the _order_ of parameters is important, and the parameter names will not affect the order they are passed.
