@@ -8,13 +8,13 @@ title: "Puppet agent release notes"
 [Puppet 4.10.2]: /puppet/4.10/release_notes.html#puppet-4102
 [Puppet 4.10.5]: /puppet/4.10/release_notes.html#puppet-4105
 [Puppet 4.10.6]: /puppet/4.10/release_notes.html#puppet-4106
-[Puppet 4.10.6]: /puppet/4.10/release_notes.html#puppet-4107
+[Puppet 4.10.7]: /puppet/4.10/release_notes.html#puppet-4107
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
 [Facter 3.6.5]: /facter/3.6/release_notes.html#facter-365
 [Facter 3.6.6]: /facter/3.6/release_notes.html#facter-366
-[Facter 3.6.6]: /facter/3.6/release_notes.html#facter-367
+[Facter 3.6.7]: /facter/3.6/release_notes.html#facter-367
 
 [Hiera 3.3.2]: /hiera/3.3/release_notes.html#hiera-332
 
@@ -45,7 +45,7 @@ Released September 6, 2017.
 
 ### Component updates
 
-This release contains a security improvement in the Windows package, and bug fixes in [Puppet 4.10.7][], [Facter 3.6.7][], and [`pxp-agent` 1.5.5][].
+This release contains a security improvement in the Windows package, and bug fixes in [Puppet 4.10.7][], [Facter 3.6.7][], and [`pxp-agent`][] 1.5.5.
 
 ### Security improvement: Enable Data Execution Prevention (DEP) support in Windows builds of `pxp-agent`
 
