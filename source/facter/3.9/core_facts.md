@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6d2e4df0c56141b265775d1de528aa7e15bf92cd
+built_from_commit: 1650f446b4b6076ab0e5937ef9e47a4523fc385b
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
@@ -263,6 +263,23 @@ Please see the [GCE metadata documentation](https://cloud.google.com/compute/doc
 **Caveats:**
 
 * All platforms: `libfacter` must be built with `libcurl` support.
+
+([↑ Back to top](#page-nav))
+
+### `hypervisors`
+
+**Type:** map
+
+**Purpose:**
+
+Experimental fact: Return the names of any detected hypervisors and any collected metadata about them.
+
+
+
+**Resolution:**
+
+* All platforms: Use the external `whereami` library to gather hypervisor data, if available.
+
 
 ([↑ Back to top](#page-nav))
 
