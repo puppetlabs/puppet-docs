@@ -1,75 +1,53 @@
 ---
 layout: default
 toc_levels: 1234
-title: "Puppet 5.1 Release Notes"
+title: "Puppet 5.2 Release Notes"
 ---
 
-This page lists the changes in Puppet 5.1 and its patch releases. You can also view [current known issues](known_issues.html) in this release.
+This page lists the changes in Puppet 5.2 and its patch releases. You can also view [current known issues](known_issues.html) in this release.
 
 Puppet's version numbers use the format X.Y.Z, where:
 
-* X must increase for major backwards-incompatible changes
-* Y can increase for backwards-compatible new functionality or significant bug fixes
-* Z can increase for bug fixes
+-   X must increase for major backward-incompatible changes
+-   Y can increase for backward-compatible new functionality or significant bug fixes
+-   Z can increase for bug fixes
 
 ## If you're upgrading from Puppet 4.x
 
 Read the [Puppet 5.0 release notes](/puppet/5.0/release_notes.html), because they cover breaking changes since Puppet 4.10.
 
+Read the [Puppet 5.1 release notes](/puppet/5.1/release_notes.html), because they cover important new features and changes since Puppet 5.0.
+
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
-## Puppet 5.1.0
+## Puppet 5.2.0
 
-Released August 17, 2017.
+Released September 12, 2017.
 
 This is a feature and improvement release in the Puppet 5 series that also includes several bug fixes.
 
-* [All issues resolved in Puppet 5.1.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.1.0%27)
+-   [All issues resolved in Puppet 5.2.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.2.0%27)
 
 ### New Features
 
-#### Module localization
-
-Puppet now supports module localization! You may have noticed some modules now have translated READMEs and `metadata.json` fields. The next step is translating certain log messages. This change modifies Puppet so that it is capable of consuming and displaying these log translations as they become available across modules.
-
-#### New data type `Init`
-
-The data type `Init[T]` has been added to the type system. This type matches a value that is a valid argument to `T.new`. The addition of this type is an enabler for features such as automatic data type conversion.
-
-#### New function `tree_each`
-
-The function `tree_each` has been added to allow convenient iteration, filtering, mapping, and reduction over complex structures. This function iterates recursively in a way that flattens a structure into a sequence, but that sequence retains information about the structure, making it possible to put it back together with possibly altered values. This was a difficult operation to do in Puppet language earlier and required a user to write a custom recursive function to achieve the same result.
-
-#### New functions `any` and `all`
-
-The functions `any` and `all` have been added to Puppet. They iterate over something iterable and can test if there is at least one element for which a lambda returns a truthy value (`any`) or if the lambda returns a truthy value for all elements (`all`).	
-
-### Improvements
-
-The `puppet master` command now listens on both IPv4 and IPv6. 
-
->NOTE: On macOS, the `puppet master` command may not work correctly. This can be fixed by setting `bindaddress` to `"0.0.0.0"` or `"::"`, depending on if you want to listen on IPv4 or IPv6.
-
-* The `Timestamp` data type could not correctly parse a string where date and time were separated by space. A new default format that allows this was added.
+-   [PUP-7645](https://tickets.puppetlabs.com/browse/PUP-7645): Puppet 5.2.0 ensures that translated strings can be loaded in the puppet gem.
 
 ### Bug fixes
 
-* A regression introduced with Hiera 5 caused the setting of `data_binding_terminus=none` to turn off the `hiera_xxx` functions in addition to the expected disablement of Automatic Parameter Lookup (APL) from the global layer. This is now changed so that the `hiera_xxx` calls continue to work. The `lookup` function continues to return the same result as APL (if the terminus is disabled, then global hiera is also turned off for lookup, while APL and lookup from environment and module layers is still enabled). The `data_binding_terminus` setting is planned to be deprecated and removed along with the Hiera 3 support in a future release. With the speedups and new features in Hiera 5, there should be no reason to turn off the `data_binding_terminus`.
+-   [PUP-7821](https://tickets.puppetlabs.com/browse/PUP-7821): Previous versions of Puppet 4.10 and Puppet 5.x on Windows could crash if a corrupt environment variable was set. Puppet 5.2.0 resolves this issue.
 
-* If a `Timestamp` was created from a string with trailing unrecognized characters, there would be no error and the produced `Timestamp` would be based on only the recognized part. This now instead raises an error.
+-   [PUP-7835](https://tickets.puppetlabs.com/browse/PUP-7835): In previous versions of Puppet 5, a type mismatch involving an aliased Struct type would cause an `undefined method 'from'` error during a Puppet run. Puppet 5.2.0 resolves this issue by producing a more accurate evaluation error message.
 
-* Dots in package names would cause Puppet to incorrectly parse the version and architecture of a package.
+-   [PUP-7804](https://tickets.puppetlabs.com/browse/PUP-7804): Previous versions of Puppet repeatedly attempted to fetch file metadata from the `server` setting when entries in `server_list` could not be reached. Puppet 5.2.0 resolves this issue by ignoring the `server` setting when `server_list` is present.
 
-* The `pip` command is now fully qualified on Windows to disambiguate between implementations.
+-   [PUP-7855](https://tickets.puppetlabs.com/browse/PUP-7855): When using the special value `default` as a value for something being serialized, such as a catalog, in previous versions of Puppet, Puppet would encode the value as a rich-data hash instead of transforming it to the string "default", even if the [`rich_data` setting](./configuration.html#richdata) was not enabled. Puppet 5.2.0 resolves this issue and produces a warning or error depending on the [`strict` setting](https://docs.puppet.com/puppet/latest/configuration.html#strict).
 
-* An issue where some commands run via `exec` or in providers would be prevented from running by selinux - because Puppet would redirect their output to a file in `/tmp`. Puppet now uses a pipe to get stdout from the executed process. This has one known side effect: on Windows if a Puppet agent run is killed, a new agent run will be prevented from starting by Puppet's lockfile until any subprocesses started by the previous agent run have completed.
+-   [PUP-7885](https://tickets.puppetlabs.com/browse/PUP-7885): In previous versions of Puppet, you could create an illegal specification of an Enum data type by providing numeric entries instead of string entries, such as `Enum\[blue, 42]`. This illegal Enum type would then either cause an error when attempting to use it, or would have undefined matching behavior. Puppet 5.2.0 resolves this issue by raising an error when encountering this illegal specification.
 
-* Puppet now provides a more accurate error message when a service resource lookup finds multiple versions of the resource.
+-   [PUP-7914](https://tickets.puppetlabs.com/browse/PUP-7914): [Puppet's event logging destination setting on Windows](./services_agent_windows.html), introduced in Puppet 5.0.0, is now documented.
 
-* The Pip package provider's `ensure=latest` is now done with pip, so it can be done with custom PyPI repositories.
+-   [PUP-7668](https://tickets.puppetlabs.com/browse/PUP-7668): Previous versions of Puppet could report an incorrect position in source code after optimizing a code block with a single expression. Puppet 5.2.0 resolves this issue.
 
-* Puppet could in some circumstances end the application of a catalog with the error `Cannot convert Puppet::Util::Log to integer` - this problem masked the real problem that Puppet tried to log information about.
+-   [PUP-7824](https://tickets.puppetlabs.com/browse/PUP-7824): When using the `String.new()` function in previous versions of Puppet, Puppet would accept unintended characters suffixed to format specifiers, such as `%s` and `%p`, without error. For instance, `%s` could be suffixed as `%strange`, which results in a nonsense specifier that Puppet would erroneously accept. Pupept 5.2.0 resolves this issue by more strictly validating format specifiers and producing an error when parsing an invalid specifier.
 
-* Overriding attributes of user defined resources after the resources have been evaluated leads to an inconsistent catalog in that the parameters shown are not the actual values used to produce the content of the resource. Now, the `--strict` flag helps find and correct these issues in manifests. A setting of `--strict=off` continues to behave as it did, a `--strict=warning` issues a warning for each override, and `--strict=error` causes the compilation to fail.
-
-* The gem provider now passes along the `HOME` environment variable.
+-   [PUP-7818](https://tickets.puppetlabs.com/browse/PUP-7818) and [PUP-6364](https://tickets.puppetlabs.com/browse/PUP-6364): Puppet 5.2.0 can correctly install packages with the AIX provider when a manifest also includes a package being removed with `ensure => absent`, and updates installed packages as expected when a manifest sets them to `ensure => latest`.

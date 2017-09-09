@@ -17,16 +17,14 @@ See the table for details about which components shipped in which `puppet-agent`
 
 {% partial /puppet-agent/_agent5.x.html %}
 
->**Note:** [Hiera 5](./hiera_intro.html) is a backwards-compatible evolution of Hiera, which is built into Puppet. To provide some backwards-compatible features, it uses the classic Hiera 3 codebase. This means "Hiera" is still shown as version 3.x in the table above, even though this Puppet version uses Hiera 5.
-
-
+> **Note:** [Hiera 5](./hiera_intro.html) is a backward-compatible evolution of Hiera, which is built into Puppet. To provide some backward-compatible features, it uses the classic Hiera 3 codebase. This means "Hiera" is still shown as version 3.x in the table above, even though this Puppet version uses Hiera 5.
 
 ### What `puppet-agent` and Puppet Server are
 
 We distribute Puppet as two core packages.
 
-- `puppet-agent` --- This package contains Puppet's main code and all of the dependencies needed to run it, including [Facter][], [Hiera][], and bundled versions of Ruby and OpenSSL. It also includes [MCollective][]. Once it's installed, you have everything you need to run [the Puppet agent service][agent] and the [`puppet apply` command][apply].
-- `puppetserver` --- This package depends on `puppet-agent`, and adds the JVM-based [Puppet Server][] application. Once it's installed, Puppet Server can serve catalogs to nodes running the Puppet agent service.
+-   `puppet-agent` --- This package contains Puppet's main code and all of the dependencies needed to run it, including [Facter][], [Hiera][], and bundled versions of Ruby and OpenSSL. It also includes [MCollective][]. Once it's installed, you have everything you need to run [the Puppet agent service][agent] and the [`puppet apply` command][apply].
+-   `puppetserver` --- This package depends on `puppet-agent`, and adds the JVM-based [Puppet Server][] application. Once it's installed, Puppet Server can serve catalogs to nodes running the Puppet agent service.
 
 ### How version numbers work
 
