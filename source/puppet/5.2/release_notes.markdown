@@ -42,6 +42,8 @@ This is a feature and improvement release in the Puppet 5 series that also inclu
 
 -   [PUP-7804](https://tickets.puppetlabs.com/browse/PUP-7804): Previous versions of Puppet repeatedly attempted to fetch file metadata from the `server` setting when entries in `server_list` could not be reached. Puppet 5.2.0 resolves this issue by ignoring the `server` setting when `server_list` is present.
 
+-   [PUP-7813](https://tickets.puppetlabs.com/browse/PUP-7813): In previous versions of Puppet, The `yum` package provider could crash if yum plugins generated valid but unexpected additional output. Puppet 5.2.0 resolves this issue.
+
 -   [PUP-7855](https://tickets.puppetlabs.com/browse/PUP-7855): When using the special value `default` as a value for something being serialized, such as a catalog, in previous versions of Puppet, Puppet would encode the value as a rich-data hash instead of transforming it to the string "default", even if the [`rich_data` setting](./configuration.html#richdata) was not enabled. Puppet 5.2.0 resolves this issue and produces a warning or error depending on the [`strict` setting](./configuration.html#strict).
 
 -   [PUP-7885](https://tickets.puppetlabs.com/browse/PUP-7885): In previous versions of Puppet, you could create an illegal specification of an Enum data type by providing numeric entries instead of string entries, such as `Enum\[blue, 42]`. This illegal Enum type would then either cause an error when attempting to use it, or would have undefined matching behavior. Puppet 5.2.0 resolves this issue by raising an error when encountering this illegal specification.
