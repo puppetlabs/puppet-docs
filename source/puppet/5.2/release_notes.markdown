@@ -22,7 +22,7 @@ Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.htm
 
 ## Puppet 5.2.0
 
-Released September 12, 2017.
+Released September 13, 2017.
 
 This is a feature and improvement release in the Puppet 5 series that also includes several bug fixes.
 

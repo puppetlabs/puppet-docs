@@ -25,7 +25,7 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.2](./rele
 
 ## Puppet agent 5.2.0
 
-Released September 12, 2017.
+Released September 13, 2017.
 
 ### Component updates
 
