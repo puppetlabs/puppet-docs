@@ -15,9 +15,9 @@ This is a feature and bug-fix release of Facter.
 
 ### New Features
 
--   [FACT-1742](https://tickets.puppetlabs.com/browse/FACT-1742): Facter 3.9.0 adds a new `hypervisors` fact for virtualization providers that uses [libwhereami](https://github.com/puppetlabs/libwhereami/), an optional new dependency enabled by default in Puppet Platform 5.2 builds of Facter.
+-   [FACT-1742](https://tickets.puppetlabs.com/browse/FACT-1742): Facter 3.9.0 adds a new [`hypervisors` fact](./core_facts.html#hypervisors) for virtualization providers that uses [libwhereami](https://github.com/puppetlabs/libwhereami/), an optional new dependency enabled by default in Puppet Platform 5.2 builds of Facter.
 
-    The new fact recognizes multiple hypervisors in nested virtualization environments, and includes metadata about each hypervisor where available. The `hypervisor` fact and libwhereami are the first steps toward improved virtualzation support in future releases of Facter. They also reduce its dependence on the external tool `virt-what`, which has a few detection bugs and requires root to run.
+    The new fact recognizes multiple hypervisors in nested virtualization environments, and includes metadata about each hypervisor where available. The `hypervisors` fact and libwhereami are the first steps toward improved virtualzation support in future releases of Facter. They also reduce its dependence on the external tool `virt-what`, which has a few detection bugs and requires root to run.
 
     This new feature should therefore also remediate discrepancies in Facter's output when run as root and as a non-root user under virtualized environments.
 
