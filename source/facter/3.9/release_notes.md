@@ -7,7 +7,7 @@ This page documents the history of the Facter 3.9 series.
 
 ## Facter 3.9.0
 
-Released August 17, 2017.
+Released September 13, 2017.
 
 This is a feature and bug-fix release of Facter.
 
