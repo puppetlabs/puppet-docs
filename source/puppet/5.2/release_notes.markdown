@@ -30,6 +30,8 @@ This is a feature and improvement release in the Puppet 5 series that also inclu
 
 ### New Features
 
+-   [PA-1104](https://tickets.puppetlabs.com/browse/PUP-7645): Puppet can output warning and error strings in Japanese on systems with a Japanese locale setting. For details about configuring locale settings for the Puppet agent service, see [Configuration: How Puppet is configured](./config_about_settings.html).
+
 -   [PUP-7645](https://tickets.puppetlabs.com/browse/PUP-7645): Puppet 5.2.0 ensures that translated strings can be loaded in the puppet gem.
 
 ### Bug fixes
@@ -40,7 +42,7 @@ This is a feature and improvement release in the Puppet 5 series that also inclu
 
 -   [PUP-7804](https://tickets.puppetlabs.com/browse/PUP-7804): Previous versions of Puppet repeatedly attempted to fetch file metadata from the `server` setting when entries in `server_list` could not be reached. Puppet 5.2.0 resolves this issue by ignoring the `server` setting when `server_list` is present.
 
--   [PUP-7855](https://tickets.puppetlabs.com/browse/PUP-7855): When using the special value `default` as a value for something being serialized, such as a catalog, in previous versions of Puppet, Puppet would encode the value as a rich-data hash instead of transforming it to the string "default", even if the [`rich_data` setting](./configuration.html#richdata) was not enabled. Puppet 5.2.0 resolves this issue and produces a warning or error depending on the [`strict` setting](https://docs.puppet.com/puppet/latest/configuration.html#strict).
+-   [PUP-7855](https://tickets.puppetlabs.com/browse/PUP-7855): When using the special value `default` as a value for something being serialized, such as a catalog, in previous versions of Puppet, Puppet would encode the value as a rich-data hash instead of transforming it to the string "default", even if the [`rich_data` setting](./configuration.html#richdata) was not enabled. Puppet 5.2.0 resolves this issue and produces a warning or error depending on the [`strict` setting](./configuration.html#strict).
 
 -   [PUP-7885](https://tickets.puppetlabs.com/browse/PUP-7885): In previous versions of Puppet, you could create an illegal specification of an Enum data type by providing numeric entries instead of string entries, such as `Enum\[blue, 42]`. This illegal Enum type would then either cause an error when attempting to use it, or would have undefined matching behavior. Puppet 5.2.0 resolves this issue by raising an error when encountering this illegal specification.
 
