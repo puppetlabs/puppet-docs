@@ -9,6 +9,7 @@ title: "Puppet agent release notes"
 [Puppet 4.10.5]: /puppet/4.10/release_notes.html#puppet-4105
 [Puppet 4.10.6]: /puppet/4.10/release_notes.html#puppet-4106
 [Puppet 4.10.7]: /puppet/4.10/release_notes.html#puppet-4107
+[Puppet 4.10.8]: /puppet/4.10/release_notes.html#puppet-4108
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
@@ -38,6 +39,20 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
+
+## Puppet agent 1.10.8
+
+Released September 14, 2017.
+
+### Component updates
+
+This release contains a bug fix in [Puppet 4.10.8][] and a versioning fix in the Windows package. No other components are updated.
+
+### Bug fix: Change NSSM version increment to avoid upgrade issues
+
+Previous versions of Puppet agent did not increment the version of NSSM in a manner expected by Microsoft Installer (MSI), leading to MSI unintentionally removing it upon upgrade. Puppet agent 1.10.8 resolves this issue by changing the versioning scheme for NSSM.
+
+* [PA-1504](https://tickets.puppetlabs.com/browse/PA-1504)
 
 ## Puppet agent 1.10.7
 
