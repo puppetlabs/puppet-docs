@@ -19,7 +19,7 @@ Installing PDK in a non-default location caused an error condition because the t
 
 #### PDK package installation created unnecessary directories
 
-PDK package installation created an unnecessary directory: `/etc/puppetlabs` on Linux, `/private/etc/puppetlabs` on OSX, `C:\Documents and Settings\$user\Application Data\PuppetLabs` on Windows. These directories are no longer created on installation
+PDK package installation created an unnecessary directory: `/etc/puppetlabs` on Linux, `/private/etc/puppetlabs` on OSX, `C:\Documents and Settings\$user\Application Data\PuppetLabs` on Windows. These directories are no longer created on installation. [PDK-424](https://tickets.puppetlabs.com/browse/PDK-424)
 
 #### Generated `.gitattributes` file caused Ruby validation failure
 
