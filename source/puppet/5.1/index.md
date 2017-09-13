@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 5.0 reference manual"
+title: "Puppet 5.1 reference manual"
 toc: false
 ---
 
@@ -48,8 +48,7 @@ This manual is split into several sections, which can be reached from the left s
     * The [Visual Index](./lang_visual_index.html), which can help you find docs for syntax when you know what it looks like but don't know what it's called.
 * The [Modules Fundamentals](./modules_fundamentals.html) guide explains how to organize Puppet manifests, install pre-built modules from the Puppet Forge, and share your own modules.
 
-
-### Uprading from Puppet 4
+### Upgrading from Puppet 4
 
 If you're already running Puppet 4, the [upgrade guide][] can help you update Puppet across your infrastructure.
 
