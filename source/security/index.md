@@ -8,9 +8,13 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2017-2299 - Possible TLS trust misconfiguration in puppetlabs-apache](https://puppet.com/security/cve/CVE-2017-2299)
+
+   Resolved in puppetlabs-apache 1.11.1 and 2.1.0.
+
 - [CVE-2017-2298 - mcollective-sshkey-security missing input sanitization](https://puppet.com/security/cve/cve-2017-2298)
 
-    Resolved in mcollective-sshkey-security 0.5.1
+   Resolved in mcollective-sshkey-security 0.5.1
 
 - [CVE-2017-2296 - RBAC and Classifier errors caused by specially crafted strings](https://puppet.com/security/cve/cve-2017-2296)
 
