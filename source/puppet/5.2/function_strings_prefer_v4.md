@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
+built_from_commit: 3ce801f143dd39528009524565033e0ca5d79da7
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -640,6 +640,9 @@ function like this:
 
 `epp('apache/vhost/_docroot.epp', { 'docroot' => '/var/www/html',
 'virtual_docroot' => '/var/www/example' })`
+
+This function can also accept an absolute path, which can load a template file
+from anywhere on disk.
 
 Puppet produces a syntax error if you pass more parameters than are declared in
 the template's parameter tag. When passing parameters to a template that
@@ -1346,7 +1349,8 @@ merge behaviors.
 * `{'strategy' => 'deep', <DEEP OPTION> => <VALUE>, ...}` --- Same as `'deep'`,
 but can adjust the merge with additional options. The available options are:
     * `'knockout_prefix'` (string or undef) --- A string prefix to indicate a
-    value should be _removed_ from the final result. Defaults to `undef`, which
+    value should be _removed_ from the final result. If a value is exactly equal
+    to the prefix, it will knockout the entire element. Defaults to `undef`, which
     disables this feature.
     * `'sort_merged_arrays'` (boolean) --- Whether to sort all arrays that are
     merged together. Defaults to `false`.
@@ -2067,4 +2071,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700

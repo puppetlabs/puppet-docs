@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
+built_from_commit: 3ce801f143dd39528009524565033e0ca5d79da7
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:24:28 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:04:47 -0700
 
 ## About Resource Types
 
@@ -7001,8 +7001,8 @@ resource will autorequire those files.
 <h3 id="package-attributes">Attributes</h3>
 
 <pre><code>package { 'resource title':
-  <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
+  <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-ensure">ensure</a>               =&gt; <em># What state the package should be in. On...</em>
   <a href="#package-attribute-adminfile">adminfile</a>            =&gt; <em># A file containing package defaults for...</em>
   <a href="#package-attribute-allow_virtual">allow_virtual</a>        =&gt; <em># Specifies if virtual package names are allowed...</em>
@@ -7024,6 +7024,42 @@ resource will autorequire those files.
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
+
+<h4 id="package-attribute-name">name</h4>
+
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The package name.  This is the name that the packaging
+system uses internally, which is sometimes (especially on Solaris)
+a name that is basically useless to humans.  If a package goes by
+several names, you can use a single title and then set the name
+conditionally:
+
+    # In the 'openssl' class
+    $ssl = $operatingsystem ? {
+      solaris => SMCossl,
+      default => openssl
+    }
+
+    package { 'openssl':
+      ensure => installed,
+      name   => $ssl,
+    }
+
+    . etc. .
+
+    $ssh = $operatingsystem ? {
+      solaris => SMCossh,
+      default => openssh
+    }
+
+    package { 'openssh':
+      ensure  => installed,
+      name    => $ssh,
+      require => Package['openssl'],
+    }
+
+([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-provider">provider</h4>
 
@@ -7074,42 +7110,6 @@ Available providers are:
 * [`windows`](#package-provider-windows)
 * [`yum`](#package-provider-yum)
 * [`zypper`](#package-provider-zypper)
-
-([↑ Back to package attributes](#package-attributes))
-
-<h4 id="package-attribute-name">name</h4>
-
-_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
-
-The package name.  This is the name that the packaging
-system uses internally, which is sometimes (especially on Solaris)
-a name that is basically useless to humans.  If a package goes by
-several names, you can use a single title and then set the name
-conditionally:
-
-    # In the 'openssl' class
-    $ssl = $operatingsystem ? {
-      solaris => SMCossl,
-      default => openssl
-    }
-
-    package { 'openssl':
-      ensure => installed,
-      name   => $ssl,
-    }
-
-    . etc. .
-
-    $ssh = $operatingsystem ? {
-      solaris => SMCossh,
-      default => openssh
-    }
-
-    package { 'openssh':
-      ensure  => installed,
-      name    => $ssh,
-      require => Package['openssl'],
-    }
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -10017,7 +10017,15 @@ specified as an array.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The key itself; generally a long string of uuencoded characters.
+The key itself; generally a long string of uuencoded characters. The `key`
+attribute may not contain whitespace.
+
+Make sure to omit the following in this attribute (and specify them in
+other attributes):
+
+* Key headers (e.g. 'ssh-rsa') --- put these in the `type` attribute.
+* Key identifiers / comments (e.g. 'joescomputer.local') --- put these in
+  the `name` attribute/resource title.
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
@@ -12365,4 +12373,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:24:28 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:04:47 -0700

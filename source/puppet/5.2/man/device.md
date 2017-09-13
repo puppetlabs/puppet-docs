@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
+built_from_commit: 3ce801f143dd39528009524565033e0ca5d79da7
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -13,50 +13,50 @@ canonical: "/puppet/latest/man/device.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>Retrieves all configurations from the puppet master and apply
-them to the remote devices configured in /etc/puppetlabs/puppet/device.conf.</p>
+<p>Retrieves catalogs from the Puppet master and applies them to remote devices.</p>
 
-<p>Currently must be run out periodically, using cron or something similar.</p>
+<p>This subcommand can be run manually; or periodically using cron,
+a scheduled task, or a similar tool.</p>
 
 <h2 id="USAGE">USAGE</h2>
 
 <p>  puppet device [-d|--debug] [--detailed-exitcodes] [--deviceconfig <var>file</var>]
                 [-h|--help] [-l|--logdest syslog|<var>file</var>|console]
                 [-v|--verbose] [-w|--waitforcert <var>seconds</var>]
-                [-t|--target <var>device</var>] [-V|--version]</p>
+                [-t|--target <var>device</var>] [--user=<var>user</var>] [-V|--version]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
-<p>Once the client has a signed certificate for a given remote device, it will
-retrieve its configuration and apply it.</p>
+<p>Devices require a proxy Puppet agent to request certificates, collect facts,
+retrieve and apply catalogs, and store reports.</p>
 
 <h2 id="USAGE-NOTES">USAGE NOTES</h2>
 
-<p>One need a /etc/puppetlabs/puppet/device.conf file with the following content:</p>
+<p>Devices managed by the puppet-device subcommand on a Puppet agent are
+configured in device.conf, which is located at $confdir/device.conf by default,
+and is configurable with the $deviceconfig setting.</p>
 
-<p>[remote.device.fqdn]
-type <var>type</var>
-url <var>url</var></p>
+<p>The device.conf file is an INI-like file, with one section per device:</p>
 
-<p>where:
- * type: the current device type (the only value at this time is cisco)
- * url: an url allowing to connect to the device</p>
+<p>[<var>DEVICE_CERTNAME</var>]
+type <var>TYPE</var>
+url <var>URL</var>
+debug</p>
 
-<p>Supported url must conforms to:
- scheme://user:password@hostname/?query</p>
+<p>The section name specifies the certname of the device.</p>
 
-<p> with:
-  * scheme: either ssh or telnet
-  * user: username, can be omitted depending on the switch/router configuration
-  * password: the connection password
-  * query: this is device specific. Cisco devices supports an enable parameter whose
-  value would be the enable password.</p>
+<p>The values for the type and url properties are specific to each type of device.</p>
+
+<p>The optional debug property specifies transport-level debugging,
+and is limited to telnet and ssh transports.</p>
+
+<p>See https://docs.puppet.com/puppet/latest/config_file_device.html for details.</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
-<p>Note that any setting that's valid in the configuration file
-is also a valid long argument.  For example, 'server' is a valid configuration
-parameter, so you can specify '--server <var>servername</var>' as an argument.</p>
+<p>Note that any setting that's valid in the configuration file is also a valid
+long argument. For example, 'server' is a valid configuration parameter, so
+you can specify '--server <var>servername</var>' as an argument.</p>
 
 <dl>
 <dt class="flush">--debug</dt><dd><p>Enable full debugging.</p></dd>
@@ -78,13 +78,14 @@ appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
 <dt>--target</dt><dd><p>Target a specific device/certificate in the device.conf. Doing so will perform a
 device run against only that device/certificate.</p></dd>
+<dt class="flush">--user</dt><dd><p>The user to run as. '--user=root' is required, even when run as root,
+for runs that create device certificates or keys.</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
 and it is enabled by default, with a value of 120 (seconds).  This causes
 +puppet agent+ to connect to the server every 2 minutes and ask it to sign a
 certificate request.  This is useful for the initial setup of a puppet
-client.  You can turn off waiting for certificates by specifying a time
-of 0.</p></dd>
+client.  You can turn off waiting for certificates by specifying a time of 0.</p></dd>
 </dl>
 
 

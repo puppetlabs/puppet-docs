@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
+built_from_commit: 3ce801f143dd39528009524565033e0ca5d79da7
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700
 
 ## About Resource Types
 
@@ -5901,7 +5901,15 @@ specified as an array.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The key itself; generally a long string of uuencoded characters.
+The key itself; generally a long string of uuencoded characters. The `key`
+attribute may not contain whitespace.
+
+Make sure to omit the following in this attribute (and specify them in
+other attributes):
+
+* Key headers (e.g. 'ssh-rsa') --- put these in the `type` attribute.
+* Key identifiers / comments (e.g. 'joescomputer.local') --- put these in
+  the `name` attribute/resource title.
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
@@ -8330,4 +8338,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700

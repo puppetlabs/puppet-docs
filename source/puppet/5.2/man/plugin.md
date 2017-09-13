@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
+built_from_commit: 3ce801f143dd39528009524565033e0ca5d79da7
 title: 'Man Page: puppet plugin'
 canonical: "/puppet/latest/man/plugin.html"
 ---

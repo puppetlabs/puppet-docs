@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e789e764fbc1944d9f1ba32a405fa4dd5e03754e
+built_from_commit: 3ce801f143dd39528009524565033e0ca5d79da7
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -571,7 +571,8 @@ defined('$tmp_file2')
 * `dig()`
     * Return type(s): `Any`. 
 
-Returns a value for a sequence of given keys/indexes into a structure.
+Returns a value for a sequence of given keys/indexes into a structure, such as
+an array or hash.
 This function is used to "dig into" a complex data structure by
 using a sequence of keys / indexes to access a value from which
 the next key/index is accessed recursively.
@@ -581,14 +582,22 @@ The first encountered `undef` value or key stops the "dig" and `undef` is return
 An error is raised if an attempt is made to "dig" into
 something other than an `undef` (which immediately returns `undef`), an `Array` or a `Hash`.
 
+
+
 **Example:** Using `dig`
 
 ```puppet
 $data = {a => { b => [{x => 10, y => 20}, {x => 100, y => 200}]}}
-notice $data.dig(a, b, 1, x)
+notice $data.dig('a', 'b', 1, 'x')
 ```
 
 Would notice the value 100.
+
+This is roughly equivalent to `$data['a']['b'][1]['x']`. However, a standard
+index will return an error and cause catalog compilation failure if any parent
+of the final key (`'x'`) is `undef`. The `dig` function will return undef,
+rather than failing catalog compilation. This allows you to check if data
+exists in a structure without mandating that it always exists.
 
 * Since 4.5.0
 
@@ -735,6 +744,9 @@ function like this:
 
 `epp('apache/vhost/_docroot.epp', { 'docroot' => '/var/www/html',
 'virtual_docroot' => '/var/www/example' })`
+
+This function can also accept an absolute path, which can load a template file
+from anywhere on disk.
 
 Puppet produces a syntax error if you pass more parameters than are declared in
 the template's parameter tag. When passing parameters to a template that
@@ -1944,7 +1956,7 @@ An exception is raised when no format was able to parse the given string.
 
 ```puppet
 function Timespan.new(
-  String $string, Variant[String[2],Array[String[2]], 1] $format = <default format>)
+  String $string, Variant[String[2],Array[String[2], 1]] $format = <default format>)
 )
 ```
 
@@ -1954,7 +1966,7 @@ the arguments may also be passed as a `Hash`:
 function Timespan.new(
   Struct[{
     string => String[1],
-    Optional[format] => Variant[String[2],Array[String[2]], 1]
+    Optional[format] => Variant[String[2],Array[String[2], 1]]
   }] $hash
 )
 ```
@@ -2039,7 +2051,7 @@ An exception is raised when no format was able to parse the given string.
 ```puppet
 function Timestamp.new(
   String $string,
-  Variant[String[2],Array[String[2]], 1] $format = <default format>,
+  Variant[String[2],Array[String[2], 1]] $format = <default format>,
   String $timezone = default)
 )
 ```
@@ -2050,7 +2062,7 @@ the arguments may also be passed as a `Hash`:
 function Timestamp.new(
   Struct[{
     string => String[1],
-    Optional[format] => Variant[String[2],Array[String[2]], 1],
+    Optional[format] => Variant[String[2],Array[String[2], 1]],
     Optional[timezone] => String[1]
   }] $hash
 )
@@ -2612,8 +2624,8 @@ The signatures are:
 ```puppet
 type SemVerRangeString = String[1]
 type SemVerRangeHash = Struct[{
-  min                   => Variant[default, SemVer],
-  Optional[max]         => Variant[default, SemVer],
+  min                   => Variant[Default, SemVer],
+  Optional[max]         => Variant[Default, SemVer],
   Optional[exclude_max] => Boolean
 }]
 
@@ -2622,8 +2634,8 @@ function SemVerRange.new(
 )
 
 function SemVerRange.new(
-  Variant[default,SemVer] $min
-  Variant[default,SemVer] $max
+  Variant[Default,SemVer] $min
+  Variant[Default,SemVer] $max
   Optional[Boolean]       $exclude_max = undef
 )
 
@@ -3896,4 +3908,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-17 12:25:09 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700
