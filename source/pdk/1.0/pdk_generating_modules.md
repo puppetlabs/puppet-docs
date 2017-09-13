@@ -24,6 +24,7 @@ When you run the `pdk new module` command, the tool requests the following infor
 * Module version. We use and recommend semantic versioning for modules.
 * Your name.
 * The license under which your module is made available, an identifier from [SPDX License List](https://spdx.org/licenses/).
+* A list of operating systems your module will support.
 * A one-sentence summary about your module.
 * The URL to your module's source code repository, so that other users can contribute back to your module.
 * The URL to a web site that offers full information about your module, if you have one.
@@ -54,6 +55,7 @@ Before you begin, ensure that you've installed the PDK package. If you are runni
    2. Version: Enter the semantic version of your module, such as "0.1.0".
    3. Author: Enter the name of the module author (you or someone else responsible for the module's content).
    4. License: If you want to specify a license other than "Apache-2.0," specify that here, such as "MIT", or "proprietary".
+   5. Operating System Support: Specify which operating systems your module will support via the interactive selection menu.
    5. Description: Enter a one-sentence summary that helps other users understand what your module does.
    6. Source code repository: Enter the URL to your module's source code repository.
    7. Where others can learn more: If you have a website where users can learn more about your module, enter the URL.
@@ -73,6 +75,7 @@ PDK creates the following files and directories for your module:
 Files and directories   | Description
 ----------------|-------------------------
 Module directory | Directory with the same name as the module. Contains all of the module's files and directories.
+README.md | File containing a README template for your module.
 Gemfile | File describing Ruby gem dependencies.
 Rakefile | File listing tasks and dependencies.
 `appveyor.yml` | File containing configuration for Appveyor CI integration.
@@ -104,5 +107,14 @@ Use the `pdk new class` command to generate a new class for the module. It creat
 1. From the command line, in your module's directory, run `pdk new class <CLASS_NAME>` 
 
 PDK creates the new class manifest and a test file (`class_name_spec.rb`) in your module's `/spec/classes` directory. The test template checks that your class compiles on all supported operating systems as listed in the `metadata.json`. You can then write additional tests in the provided file to validate your class's behavior.
+
+{:.task}
+## Generate a defined\_type with PDK
+
+Use the `pdk new defined_type` command to generate a new defined\_type for the module. It creates a defined\_typed manifest file, with the naming convention `defined_type_name.pp`.
+
+1. From the command line, in your module's directory, run `pdk new defined_type <DEFINED_TYPE_NAME>` 
+
+PDK creates the new defined\_type manifest and a test file (`defined_type_spec.rb`) in your module's `/spec/defines` directory. The test template checks that your defined\_type compiles on all supported operating systems as listed in the `metadata.json`. You can then write additional tests in the provided file to validate your defined\_type's behavior.
 
 
