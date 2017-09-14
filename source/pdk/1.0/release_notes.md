@@ -9,7 +9,31 @@ Release notes for Puppet Development Kit (PDK), a development kit containing too
 
 ## PDK 1.1.0.0
 
-Released September 2017
+Released 14 September 2017
+
+### New features
+
+#### Generation of defined types
+
+PDK can now generate new defined types in a module. Usage is almost identical to the class generation: `pdk new defined_type <name>`. For usage details, see [Generating modules](./pdk_generating_modules.html) and the PDK [Reference](./pdk_reference.html)
+
+#### Selection of Operating System support when creating a new module
+
+The module creation interview now asks which Operating Systems your module supports. You can select supported OSes from an interactive dialog menu.
+
+### Improvements
+
+#### Improved error output
+
+* The `pdk test unit` provides improved error messages when unit tests fail to better show what went wrong. [PDK-369](https://tickets.puppetlabs.com/browse/PDK-369)
+
+* Errors from `spec_prep` and `spec_clean` failures are improved to provide only relevant error information. [PDK-465](https://tickets.puppetlabs.com/browse/PDK-465)
+
+* If you try to create a class that already exists, PDK gives an error instead of a fatal error. [PDK-415](https://tickets.puppetlabs.com/browse/PDK-415)
+
+#### User-friendly help messages after generation of a module
+
+After module creation, PDK tells you where the new module is located and what steps you can take next. [PDK-365](https://tickets.puppetlabs.com/browse/PDK-365)
 
 ### Bug fixes
 

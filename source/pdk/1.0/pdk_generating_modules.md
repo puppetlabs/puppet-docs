@@ -55,7 +55,7 @@ Before you begin, ensure that you've installed the PDK package. If you are runni
    2. Version: Enter the semantic version of your module, such as "0.1.0".
    3. Author: Enter the name of the module author (you or someone else responsible for the module's content).
    4. License: If you want to specify a license other than "Apache-2.0," specify that here, such as "MIT", or "proprietary".
-   5. Operating System Support: Using the interactive selection menu, specify which operating systems your module supports.
+   5. Operating System Support: Select which operating systems your module supports, choosing from the dialog menu.
    5. Description: Enter a one-sentence summary that helps other users understand what your module does.
    6. Source code repository: Enter the URL to your module's source code repository.
    7. Where others can learn more: If you have a website where users can learn more about your module, enter the URL.
