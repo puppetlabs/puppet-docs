@@ -47,6 +47,28 @@ Argument   | Description   | Values      | Default
 `--template-url=<GIT_URL>` | Overrides the template to use when generating this class. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
 `<class_name>` | **Required**. The name of the class to generate. | A class name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
 
+## `pdk new defined_type` command
+
+Generates a new defined type and test templates for it in the current module.
+
+Usage:
+
+```
+pdk new defined_type [--template-url=<GIT_URL>] <defined_type_name> [<parameter_name>[:<PARAMETER_TYPE>]]
+```
+
+For example:
+
+```
+cd my_module
+pdk new defined_type my_defined_type
+```
+
+Argument   | Description   | Values      | Default
+----------------|:---------------:|:------------------:|-------------------------
+`--template-url=<GIT_URL>` | Overrides the template to use when generating this defined\_type. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
+`<defined_type_name>` | **Required**. The name of the defined type to generate. | A defined type name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
+
 ## `pdk validate` command
 
 Runs all static validations. Any errors are reported to the console in the format requested. The exit code is non-zero when errors occur.

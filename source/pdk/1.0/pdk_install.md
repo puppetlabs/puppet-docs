@@ -35,7 +35,7 @@ PDK supports the following operating systems.
 | Windows Server (Server OS) | 2008r2, 2012, 2012r2, 2012r2 Core, and 2016 | x86_64 | MSI |
 | Mac OS X | 10.11, 10.12 | x86_64 | N/A |
 
-On Windows, PowerShell 2.0 or greater is supported.
+On Windows, PowerShell 4.0 or greater is recommended, 2.0 or greater is supported.
 
 PDK functions, such as creating classes, testing, and validation, are supported only on modules created with PDK.
 
@@ -68,10 +68,26 @@ Download and install the PDK package for Windows systems.
 
 1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 1. Double click on the downloaded package to install.
-1. Open a Powershell window to re-source your profile and make PDK available to your PATH. If you are running PowerShell 3.0 or later, PDK loads automatically and the `pdk` command is now available to the prompt.
-1. If you are running PowerShell 2.0, load the module by running `Import-Module -Name PuppetDevelopmentKit` in your PowerShell window.
+1. Open a Powershell window to re-source your profile and make PDK available to your PATH.
 
-If you get execution policy restriction errors when you try to run `pdk` commands, see [PDK troubleshooting][troubleshoot] for help.
+On PowerShell 4.0 or later, PDK loads automatically and the `pdk` command is available to the prompt. On PowerShell 2.0 or 3.0, you'll need to add the PowerShell module to your profile.
+
+> If you encounter execution policy restriction errors when you try to run `pdk` commands, see [PDK troubleshooting][troubleshoot] for help.
+
+{:.task}
+### Add the PDK module to PowerShell 2.0 or 3.0
+
+PowerShell versions 2.0 and 3.0 cannot automatically discover and load the PDK PowerShell module. Add the module to your PowerShell profile to load it.
+
+1. Add the following line to your PowerShell profile:
+
+``` powershell
+`Import-Module -Name "$($env:ProgramFiles)\WindowsPowerShell\Modules\PuppetDevelopmentKit"`
+```
+
+2. Close and open PowerShell to re-source your profile.
+
+PDK will now automatically load every time you open PowerShell. 
 
 {:.concept}
 ## Setting up PDK behind a proxy
