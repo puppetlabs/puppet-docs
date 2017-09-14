@@ -81,9 +81,9 @@ PowerShell versions 2.0 and 3.0 cannot automatically discover and load the PDK P
 
 1. Add the following line to your PowerShell profile:
 
-``` powershell
-`Import-Module -Name "$($env:ProgramFiles)\WindowsPowerShell\Modules\PuppetDevelopmentKit"`
-```
+   ``` powershell
+   `Import-Module -Name "$($env:ProgramFiles)\WindowsPowerShell\Modules\PuppetDevelopmentKit"`
+   ```
 
 2. Close and open PowerShell to re-source your profile.
 
