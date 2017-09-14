@@ -317,6 +317,14 @@ documents:
       puppetserver: "2.7"
       puppetdb: "4.3"
 
+  /puppet/5.2:
+    doc: puppet
+    version: "5.2"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.9"
+      hiera: "3.4"
+      puppetserver: "5.1"
   /puppet/5.1:
     doc: puppet
     version: "5.1"
@@ -488,6 +496,10 @@ documents:
       hiera: "3.4"
       puppetserver: "5.0"
 
+  /facter/3.9:
+    doc: facter
+    version: "3.9"
+    nav: ./_facter_toc.html
   /facter/3.8:
     doc: facter
     version: "3.8"
@@ -579,6 +591,18 @@ documents:
     version: "1"
     nav: /_includes/hiera1.html
 
+  /puppetserver/5.1:
+    doc: puppetserver
+    version: "5.1"
+    nav: /puppet/5.2/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 
+      subdirectory: documentation
+    my_versions:
+      puppet: "5.2"
+      facter: "3.9"
+      hiera: "3.4"
   /puppetserver/5.0:
     doc: puppetserver
     version: "5.0"
