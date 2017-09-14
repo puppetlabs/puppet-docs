@@ -18,6 +18,20 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.8
+
+Released September 14, 2017.
+
+This is a small bug-fix release in the Puppet 4.10 series.
+
+* [All issues fixed in Puppet 4.10.8](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.8%27)
+
+### Bug fixes
+
+If illegal variables (with many or long name segments) had a segment with an initial uppercase letter in previous versions of Puppet 4, the parser could take an extremely long time to match the input. This caused very long compilation times and excessive CPU load. Puppet 4.10.8 resolves this issue by changing the relevant regular expression to avoid excessive backtracking to match the regular expression for variables.
+
+* [PUP-7848](https://tickets.puppetlabs.com/browse/PUP-7848)
+
 ## Puppet 4.10.7
 
 Released September 6, 2017.
