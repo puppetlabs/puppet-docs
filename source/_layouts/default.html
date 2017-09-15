@@ -66,6 +66,13 @@
         {% include template/version_note.html %}
         {% unless page.toc == 'false' or page.toc == false %}<nav class="in-page{% if page.toc == 'columns' %} multi-column{% endif %}" id="page-nav">{{ content | toc: page.toc_levels }}</nav>{% endunless %}
         <div id="rendered-markdown">
+
+          <!-- SURVEY -->
+          <script type="text/javascript">
+(function(d,e,j,h,f,c,b){d.SurveyGizmoBeacon=f;d[f]=d[f]||function(){(d[f].q=d[f].q||[]).push(arguments)};c=e.createElement(j),b=e.getElementsByTagName(j)[0];c.async=1;c.src=h;b.parentNode.insertBefore(c,b)})(window,document,'script','//d2bnxibecyz4h5.cloudfront.net/runtimejs/intercept/intercept.js','sg_beacon');
+sg_beacon('init','OTk2NDMtOThlOTUxNmE2ZjA1ODllMzVjZGIwMWVmZWEwN2M5NWI3NTA4NjJiNmVhYWI5ODI1ZmM=');
+          </script>
+          
           {{ content }}
         </div>
         <blockquote><p style="font-size: 1.3em; text-align: center;"><a href="#content">↑ Back to top</a></p></blockquote>
