@@ -87,7 +87,7 @@ Module directory | Directory with the same name as the module. Contains all of t
 `.rspec` | File containing the default configuration for RSpec.
 `.rubocop.yml` | File containing recommended settings for Ruby style checking.
 `/spec` | Directory containing files and directories for spec testing.
-`/spec/spec_helper.rb` | File containing containing any ERB or EPP templates.
+`/spec/spec_helper.rb` | Helper code to set up preconditions for spec tests.
 `/spec/default_facts.yaml` | File containing default facts.
 `/spec/classes` | Directory containing testing templates for any classes you generate with the `pdk new class` command.
 `/templates` | Directory containing any ERB or EPP templates. Required when building a module to upload to the Forge.
