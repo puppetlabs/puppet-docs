@@ -49,7 +49,7 @@ Download and install the PDK package for Linux-based systems.
 1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
 1. Install the `pdk` package using the command appropriate to your system:
    * On RPM-based (Red Hat, SLES) systems, run `sudo rpm -ivh pdk-<version>-<platform>.rpm`
-   * On Debian-based (Debian, Ubuntu) systems, run `sudo dpkg -i pdk-<version>-<platform>.rpm`
+   * On Debian-based (Debian, Ubuntu) systems, run `sudo dpkg -i pdk-<version>-<platform>.deb`
 1. Open a terminal to re-source your shell profile and make PDK available to your PATH.
 
 {:.task}
