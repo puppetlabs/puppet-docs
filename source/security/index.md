@@ -8,6 +8,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2017-7555 - Memory Corruption Vulnerability in augeas](https://puppet.com/security/cve/cve-2017-7555)
+  
+   Resolved in Puppet agent 1.10.7
+
 - [CVE-2017-2292 - MCollective Remote Code Execution Via YAML Deserialization](https://puppet.com/security/cve/cve-2017-2292)
 
    Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
@@ -297,6 +301,10 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in Puppet 0.25.2
 
 ## Third-party security announcements
+
+- [PostgreSQL August 2017 Security Fixes](https://puppet.com/security/cve/postgresql-aug-2017-security-fixes)
+
+   Puppet Enterprise 2017.2.4, Puppet Enterprise 2016.4.8
 
 - [OpenSSL January 2017 Security Fixes](https://puppet.com/security/cve/openssl-jan-2017-security-fixes)
 
