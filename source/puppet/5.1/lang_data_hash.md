@@ -29,7 +29,7 @@ notice($result)
 
 ## Syntax
 
-Hashes are written as a pair of curly braces containing any number of key/value pairs. Keys should be string encapsulated. A key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace.
+Hashes are written as a pair of curly braces containing any number of key/value pairs. Keys should be quoted with single or double quotes. A key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace.
 
 ``` puppet
 { 'key1' => 'val1', key2 => 'val2' }
@@ -37,7 +37,7 @@ Hashes are written as a pair of curly braces containing any number of key/value 
 { 'key1' => 'val1', key2 => 'val2', }
 ```
 
-Hash keys can be any data type, but you should generally only use strings or numbers. Hash values can be any data type.
+Hash keys can be any data type, but you should generally use only strings. You should not assign a hash with non-string keys to a resource attribute or class parameter, because Puppet cannot serialize non-string hash keys into the catalog.
 
 ```
 { 'key1' => ['val1','val2'], 
