@@ -37,6 +37,10 @@ After module creation, PDK tells you where the new module is located and what st
 
 ### Bug fixes
 
+#### Modules generated with PDK no longer depend on stdlib module by default
+
+This release removes an unnecessary dependency on the puppetlabs-stdlib module in a newly generated module's `metadata.json`. [PDK-450](https://tickets.puppetlabs.com/browse/PDK-450)
+
 #### Installing PDK in a non-default location caused an error
 
 Installing PDK in a non-default location caused an error condition because the template URL was saved into the answer file. With this release, the template URL is no longer saved into the answer file. [PDK-430](https://tickets.puppetlabs.com/browse/PDK-430)
