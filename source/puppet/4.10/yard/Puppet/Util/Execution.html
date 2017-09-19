@@ -616,7 +616,7 @@ exit with status == 0 and <code>failonfail</code> is <code>true</code>.</p>
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_failonfail'>failonfail</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_exitstatus'>exitstatus</span> <span class='op'>!=</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">ExecutionFailure</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">ExecutionFailure</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_output'>output</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_output'>output</span>
@@ -1423,9 +1423,9 @@ it&#39;s not in the PATH... so this is slightly safer than just using Puppet::Ut
 </div>
 
       <div id="footer">
-  Generated on Wed May 17 16:09:10 2017 by
+  Generated on Wed Aug  9 15:41:12 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

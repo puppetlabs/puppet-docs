@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Puppet HTTP API: File Content'
 canonical: "/puppet/latest/http_api/http_file_content.html"
 ---
@@ -32,7 +32,7 @@ GET
 
 ### Supported Response Formats
 
-binary (the raw binary content)
+`application/octet-stream`
 
 ### Parameters
 
@@ -45,7 +45,7 @@ None
 #### File found
 
     GET /puppet/v3/file_content/modules/example/my_file?environment=env
-    Accept: binary
+    Accept: application/octet-stream
 
     HTTP/1.1 200 OK
     Content-Type: application/octet-stream
@@ -57,7 +57,7 @@ None
 #### File not found
 
     GET /puppet/v3/file_content/modules/example/not_found?environment=env
-    Accept: binary
+    Accept: application/octet-stream
 
     HTTP/1.1 404 Not Found
     Content-Type: text/plain

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Resource Type: filebucket'
 canonical: "/puppet/latest/types/filebucket.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500
 
 filebucket
 -----
@@ -28,11 +28,6 @@ Filebuckets are used for the following features:
   details. These backups can be used for manual recovery of content, but
   are more commonly used to display changes and differences in a tool like
   Puppet Dashboard.
-- **Content distribution.** The optional static compiler populates the
-  puppet master's filebucket with the _desired_ content for each file,
-  then instructs the agent to retrieve the content for a specific
-  checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/puppet/latest/reference/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -98,4 +93,4 @@ This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500

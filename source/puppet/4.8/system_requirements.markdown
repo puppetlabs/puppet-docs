@@ -110,6 +110,13 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 * OpenBSD 4.1 and later
 * HP-UX
 
+>*Note:* While installing `puppet-agent` on Solaris, you may see an error like the following:
+>
+>  ERROR: attribute verification of </lib/svc/method/puppet.
+>    pathname does not exist
+>
+>This is because you must have Read-Write access on the filesystem to install `puppet-agent`.
+
 ## Basic requirements
 
 If you're installing Puppet via the official packages, you won't need to worry about these prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500
 
 file
 -----
@@ -292,6 +292,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The desired permissions mode for the file, in symbolic or numeric
 notation. This value **must** be specified as a string; do not use
 un-quoted numbers to represent file modes.
+
+If the mode is omitted (or explicitly set to `undef`), Puppet does not
+enforce permissions on existing files and creates new files with
+permissions of `0644`.
 
 The `file` type uses traditional Unix permission schemes and translates
 them to equivalent permissions for systems which represent permissions
@@ -752,4 +756,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500

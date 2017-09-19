@@ -891,7 +891,9 @@ class ntp (
 
 ### 10.7 Parameter defaults
 
-Adding default values to the parameters in classes and defined types makes your module easier to use. As of Puppet 4.9.0, use Hiera data in the module and rely on automatic parameter lookup for class parameters. For versions earlier than Puppet 4.9.0, use the "params.pp" pattern. In simple cases, you can also specify the default values directly in the class or defined type.
+Adding default values to the parameters in classes and defined types makes your module easier to use. As of Puppet 4.9.0, use Hiera data in the module and rely on automatic parameter lookup for class parameters.
+
+For versions earlier than Puppet 4.9.0, use the "params.pp" pattern. In simple cases, you can also specify the default values directly in the class or defined type.
 
 Take care to declare the data type of parameters, as this provides automatic type assertions.
 
@@ -1016,7 +1018,7 @@ class profile::myclass (
 
 ### 11.1. Class inheritance
 
-Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should only be used for params.pp, which is not recommended in Puppet 4.
+Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should only be used for params.pp, which is not recommended in Puppet 4. See the documentation about [automatic parameter lookup](./hiera_automatic.html) for detailed information.
 
 For maintaining older modules, inheritance can be used, but must not be used across module
 namespaces. Cross-module dependencies should be satisfied in a more portable way, such as with include statements or relationship declarations. Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic. 
@@ -1102,7 +1104,7 @@ These special variable names are protected; because you cannot create local vari
 **Good:**
 
 ```puppet
-$facts[::operatingsystem]
+$facts['operatingsystem']
 ```
 
 **Bad:**

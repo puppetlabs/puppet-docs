@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -94,7 +94,7 @@ of 0.</p></dd>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC
+<p>Copyright (c) 2011 Puppet Inc., LLC
 Licensed under the Apache 2.0 License</p>
 
 </div>

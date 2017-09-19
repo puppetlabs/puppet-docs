@@ -6,7 +6,7 @@
 <title>
   File: http_api_index
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -135,6 +135,10 @@ available and how to interact with it.</p>
 <p>These services are all directly used by the Puppet agent application, in order
 to manage the configuration of a node.</p>
 
+<p>These endpoints accept payload formats formatted as JSON or PSON (MIME types of
+<code>application/json</code> and <code>text/pson</code>, respectively) except for <code>File Content</code> and
+<code>File Bucket File</code> which always use <code>application/octet-stream</code>.</p>
+
 <ul>
 <li><a href="./http_catalog.md">Catalog</a></li>
 <li><a href="./http_node.md">Node</a></li>
@@ -150,7 +154,6 @@ to manage the configuration of a node.</p>
 tools.</p>
 
 <ul>
-<li><a href="./http_resource_type.md">Resource Type</a></li>
 <li><a href="./http_status.md">Status</a></li>
 </ul>
 
@@ -203,8 +206,6 @@ error responses will uniformly be a JSON object with the following properties:</
 <ul>
 <li><code>message</code>: (<code>String</code>) A human readable message explaining the error.</li>
 <li><code>issue_kind</code>: (<code>String</code>) A unique label to identify the error class.</li>
-<li><code>stacktrace</code> (only for 5xx errors): (<code>Array&lt;String&gt;</code>) A stacktrace to where
-the error occurred.</li>
 </ul>
 
 <p>A <a href="../schemas/error.json">JSON schema for the error objects</a> is also available.</p>
@@ -233,6 +234,10 @@ documents provide additional specification.</p>
 
 <h3>SSL Certificate Related Services</h3>
 
+<p>These endpoints only accept plain text payload formats. Historically, Puppet has
+used the MIME type <code>s</code> to mean <code>text/plain</code>. In Puppet 5, it will always use
+<code>text/plain</code>, but will continue to accept <code>s</code> to mean the same thing.</p>
+
 <ul>
 <li><a href="./http_certificate.md">Certificate</a></li>
 <li><a href="./http_certificate_request.md">Certificate Signing Requests</a></li>
@@ -246,15 +251,17 @@ documents provide additional specification.</p>
 REST services support all of the formats.</p>
 
 <ul>
+<li><a href="https://tools.ietf.org/html/rfc7159">JSON</a></li>
 <li><a href="./pson.md">PSON</a></li>
-<li><a href="http://www.yaml.org/spec/1.2/spec.html">YAML</a></li>
 </ul>
+
+<p><code>YAML</code> was supported in earlier versions of Puppet, but is no longer for security reasons.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Tue Jun 27 17:24:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

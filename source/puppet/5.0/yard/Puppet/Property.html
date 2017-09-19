@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Property
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -660,7 +660,7 @@ that is operated on.</p>
       <div class="method_details first">
   <h3 class="signature first" id="array_matching-class_method">
   
-    .<strong>array_matching</strong>  &#x21d2; <tt><span class='object_link'>Symbol</span></tt> &nbsp;<span class="note title readonly">DSL</span>
+    .<strong>array_matching</strong>  &#x21d2; <tt>Symbol</tt> &nbsp;<span class="note title readonly">DSL</span>
   
 
   
@@ -701,7 +701,7 @@ a value in <code>should</code>.</li>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
       
@@ -859,7 +859,7 @@ specified with a Regexp.</p>
         <span class='name'>name</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>, <tt>Regexp</tt>)</span>
       
       
       
@@ -898,7 +898,7 @@ specified with a Regexp.</p>
       
         <li>
           <span class="name">:event</span>
-          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>)</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
           <span class="default">
             
           </span>
@@ -910,7 +910,7 @@ specified with a Regexp.</p>
       
         <li>
           <span class="name">:invalidate_refreshes</span>
-          <span class="type">(<tt><span class='object_link'>Symbol</span></tt>)</span>
+          <span class="type">(<tt>Symbol</tt>)</span>
           <span class="default">
             
           </span>
@@ -1010,7 +1010,7 @@ argument).</p>
       <div class="method_details ">
   <h3 class="signature " id="value_name-class_method">
   
-    .<strong>value_name</strong>(name)  &#x21d2; <tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt> &nbsp;<span class="private note title">private</span>
+    .<strong>value_name</strong>(name)  &#x21d2; <tt>Symbol</tt>, <tt>Regexp</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -1054,7 +1054,7 @@ argument).</p>
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>, <tt>Regexp</tt>)</span>
       
       
       
@@ -1127,7 +1127,7 @@ argument).</p>
         <span class='name'>name</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>, <tt>Regexp</tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>, <tt>Regexp</tt>)</span>
       
       
       
@@ -1142,7 +1142,7 @@ argument).</p>
         <span class='name'>option</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
       
@@ -1824,7 +1824,6 @@ as a Puppet::Error. The original exception is wrapped and logged.</p>
       <pre class="lines">
 
 
-482
 483
 484
 485
@@ -1845,10 +1844,11 @@ as a Puppet::Error. The original exception is wrapped and logged.</p>
 500
 501
 502
-503</pre>
+503
+504</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 482</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 483</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='comment'># Set a name for looking up associated options like the event.
@@ -1954,7 +1954,6 @@ wanted values.</p>
       <pre class="lines">
 
 
-518
 519
 520
 521
@@ -1964,10 +1963,11 @@ wanted values.</p>
 525
 526
 527
-528</pre>
+528
+529</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 518</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 519</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_should'>should</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@should</span><span class='rparen'>)</span>
@@ -2048,17 +2048,17 @@ This method also sets the cached original <em>should</em> values returned by <sp
       <pre class="lines">
 
 
-538
 539
 540
 541
 542
 543
 544
-545</pre>
+545
+546</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 538</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 539</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_should='>should=</span><span class='lparen'>(</span><span class='id identifier rubyid_values'>values</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_values'>values</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_values'>values</span><span class='rbracket'>]</span> <span class='kw'>unless</span> <span class='id identifier rubyid_values'>values</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
@@ -2120,13 +2120,13 @@ If the developer uses a &#39;validate&#39; hook, this method will get overridden
       <pre class="lines">
 
 
-570
-571
-572
-573</pre>
+573
+574
+575
+576</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 570</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 573</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_unsafe_validate'>unsafe_validate</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>super</span>
@@ -2183,16 +2183,16 @@ If the developer uses a &#39;validate&#39; hook, this method will get overridden
       <pre class="lines">
 
 
-580
-581
-582
 583
 584
 585
-586</pre>
+586
+587
+588
+589</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 580</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 583</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_validate_features_per_value'>validate_features_per_value</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_features'>features</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_option'>value_option</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_value_name'>value_name</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:required_features</span><span class='rparen'>)</span>
@@ -2269,12 +2269,12 @@ This method also sets the cached original <em>should</em> values returned by <sp
       <pre class="lines">
 
 
-594
-595
-596</pre>
+597
+598
+599</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 594</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/property.rb', line 597</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value='>value=</span><span class='lparen'>(</span><span class='id identifier rubyid_values'>values</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_should'>should</span> <span class='op'>=</span> <span class='id identifier rubyid_values'>values</span>
@@ -2289,9 +2289,9 @@ This method also sets the cached original <em>should</em> values returned by <sp
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:17 2017 by
+  Generated on Tue Jun 27 17:24:10 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

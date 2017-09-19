@@ -535,7 +535,10 @@ resolving tabulations and assembling complex objects. The type of the complex ob
 61
 62
 63
-64</pre>
+64
+65
+66
+67</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 26</span>
@@ -564,10 +567,13 @@ resolving tabulations and assembling complex objects. The type of the complex ob
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='id identifier rubyid_val'>val</span><span class='period'>.</span><span class='id identifier rubyid_attribute_count'>attribute_count</span><span class='comma'>,</span> <span class='kw'>self</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Types</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Types/PObjectType.html" title="Puppet::Pops::Types::PObjectType (class)">PObjectType</a></span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_existing_type'>existing_type</span> <span class='op'>=</span> <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span><span class='lparen'>(</span><span class='symbol'>:type</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
-
-      <span class='comment'># Add result to the loader unless it is the exact same instance as the existing_type. The add
-</span>      <span class='comment'># will succeed when the existing_type is nil.
-</span>      <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_add_entry'>add_entry</span><span class='lparen'>(</span><span class='symbol'>:type</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='id identifier rubyid_existing_type'>existing_type</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_existing_type'>existing_type</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_existing_type'>existing_type</span>
+      <span class='kw'>else</span>
+        <span class='comment'># Add result to the loader unless it is equal to the existing_type. The add
+</span>        <span class='comment'># will only succeed when the existing_type is nil.
+</span>        <span class='id identifier rubyid_loader'>loader</span><span class='period'>.</span><span class='id identifier rubyid_add_entry'>add_entry</span><span class='lparen'>(</span><span class='symbol'>:type</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_result'>result</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_result'>result</span>
   <span class='kw'>when</span> <span class='const'>Extension</span><span class='op'>::</span><span class='const'>ObjectStart</span>
@@ -650,13 +656,13 @@ and that subsequent reads of a tabulation with that index should return the valu
       <pre class="lines">
 
 
-71
-72
-73
-74</pre>
+74
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/deserializer.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_remember'>remember</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='ivar'>@read</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_value'>value</span>
@@ -672,9 +678,9 @@ and that subsequent reads of a tabulation with that index should return the valu
 </div>
 
       <div id="footer">
-  Generated on Wed May 17 16:09:23 2017 by
+  Generated on Wed Aug  9 15:41:32 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

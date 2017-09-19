@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500
 
 file
 -----
@@ -207,7 +207,7 @@ standard escaped syntax --- \n for a newline, and \t for a tab.
 With very small files, you can construct content strings directly in
 the manifest...
 
-    define resolve(nameserver1, nameserver2, domain, search) {
+    define resolve($nameserver1, $nameserver2, $domain, $search) {
         $str = "search ${search}
             domain ${domain}
             nameserver ${nameserver1}
@@ -259,7 +259,7 @@ name or a group ID.
 On Windows, a user (such as "Administrator") can be set as a file's group
 and a group (such as "Administrators") can be set as a file's owner;
 however, a file's owner and group shouldn't be the same. (If the owner
-is also the group, files with modes like `0640` will cause log churn, as
+is also the group, files with modes like `"0640"` will cause log churn, as
 they will always appear out of sync.)
 
 ([↑ Back to file attributes](#file-attributes))
@@ -293,6 +293,10 @@ The desired permissions mode for the file, in symbolic or numeric
 notation. This value **must** be specified as a string; do not use
 un-quoted numbers to represent file modes.
 
+If the mode is omitted (or explicitly set to `undef`), Puppet does not
+enforce permissions on existing files and creates new files with
+permissions of `0644`.
+
 The `file` type uses traditional Unix permission schemes and translates
 them to equivalent permissions for systems which represent permissions
 differently, including Windows. For detailed ACL controls on Windows,
@@ -300,7 +304,7 @@ you can leave `mode` unmanaged and use
 [the puppetlabs/acl module.](https://forge.puppetlabs.com/puppetlabs/acl)
 
 Numeric modes should use the standard octal notation of
-`<SETUID/SETGID/STICKY><OWNER><GROUP><OTHER>` (e.g. '0644').
+`<SETUID/SETGID/STICKY><OWNER><GROUP><OTHER>` (for example, "0644").
 
 * Each of the "owner," "group," and "other" digits should be a sum of the
   permissions for that class of users, where read = 4, write = 2, and
@@ -330,7 +334,7 @@ permission clauses, in the form `<WHO><OP><PERM>`:
     * g (group's current permissions)
     * o (other's current permissions)
 
-Thus, mode `0664` could be represented symbolically as either `a=r,ug+w`
+Thus, mode `"0664"` could be represented symbolically as either `a=r,ug+w`
 or `ug=rw,o=r`.  However, symbolic modes are more expressive than numeric
 modes: a mode only affects the specified bits, so `mode => 'ug+w'` will
 set the user and group write bits, without affecting any other bits.
@@ -346,8 +350,8 @@ On Windows, permissions are translated as follows:
   `FILE_GENERIC_WRITE`, and `FILE_GENERIC_EXECUTE` access rights; a
   file's owner always has the `FULL_CONTROL` right
 * "Other" users can't have any permissions a file's group lacks,
-  and its group can't have any permissions its owner lacks; that is, 0644
-  is an acceptable mode, but 0464 is not.
+  and its group can't have any permissions its owner lacks; that is, "0644"
+  is an acceptable mode, but "0464" is not.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -370,7 +374,7 @@ user ID.
 On Windows, a group (such as "Administrators") can be set as a file's owner
 and a user (such as "Administrator") can be set as a file's group; however,
 a file's owner and group shouldn't be the same. (If the owner is also
-the group, files with modes like `0640` will cause log churn, as they
+the group, files with modes like `"0640"` will cause log churn, as they
 will always appear out of sync.)
 
 ([↑ Back to file attributes](#file-attributes))
@@ -752,4 +756,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500

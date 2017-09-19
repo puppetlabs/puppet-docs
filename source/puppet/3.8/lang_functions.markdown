@@ -6,7 +6,7 @@ canonical: "/puppet/latest/reference/lang_functions.html"
 
 [func_ref]: ./function.html
 [forge]: http://forge.puppetlabs.com
-[custom]: /guides/custom_functions.html
+[custom]: ./functions_legacy.html
 [stdlib]: http://forge.puppetlabs.com/puppetlabs/stdlib
 [resource]: ./lang_resources.html
 [custom_facts]: {{facter}}/custom_facts.html

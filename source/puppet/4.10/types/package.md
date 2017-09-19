@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500
 
 package
 -----
@@ -42,8 +42,8 @@ resource will autorequire those files.
 <h3 id="package-attributes">Attributes</h3>
 
 <pre><code>package { 'resource title':
-  <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
+  <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-ensure">ensure</a>               =&gt; <em># What state the package should be in. On...</em>
   <a href="#package-attribute-adminfile">adminfile</a>            =&gt; <em># A file containing package defaults for...</em>
   <a href="#package-attribute-allow_virtual">allow_virtual</a>        =&gt; <em># Specifies if virtual package names are allowed...</em>
@@ -65,42 +65,6 @@ resource will autorequire those files.
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
-
-<h4 id="package-attribute-name">name</h4>
-
-_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
-
-The package name.  This is the name that the packaging
-system uses internally, which is sometimes (especially on Solaris)
-a name that is basically useless to humans.  If a package goes by
-several names, you can use a single title and then set the name
-conditionally:
-
-    # In the 'openssl' class
-    $ssl = $operatingsystem ? {
-      solaris => SMCossl,
-      default => openssl
-    }
-
-    package { 'openssl':
-      ensure => installed,
-      name   => $ssl,
-    }
-
-    . etc. .
-
-    $ssh = $operatingsystem ? {
-      solaris => SMCossh,
-      default => openssh
-    }
-
-    package { 'openssh':
-      ensure  => installed,
-      name    => $ssh,
-      require => Package['openssl'],
-    }
-
-([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-provider">provider</h4>
 
@@ -151,6 +115,42 @@ Available providers are:
 * [`windows`](#package-provider-windows)
 * [`yum`](#package-provider-yum)
 * [`zypper`](#package-provider-zypper)
+
+([↑ Back to package attributes](#package-attributes))
+
+<h4 id="package-attribute-name">name</h4>
+
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The package name.  This is the name that the packaging
+system uses internally, which is sometimes (especially on Solaris)
+a name that is basically useless to humans.  If a package goes by
+several names, you can use a single title and then set the name
+conditionally:
+
+    # In the 'openssl' class
+    $ssl = $operatingsystem ? {
+      solaris => SMCossl,
+      default => openssl
+    }
+
+    package { 'openssl':
+      ensure => installed,
+      name   => $ssl,
+    }
+
+    . etc. .
+
+    $ssh = $operatingsystem ? {
+      solaris => SMCossh,
+      default => openssh
+    }
+
+    package { 'openssh':
+      ensure  => installed,
+      name    => $ssh,
+      require => Package['openssl'],
+    }
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -1419,4 +1419,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500

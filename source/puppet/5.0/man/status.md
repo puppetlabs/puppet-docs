@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet status'
 canonical: "/puppet/latest/man/status.html"
 ---
@@ -13,7 +13,7 @@ canonical: "/puppet/latest/man/status.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>puppet status <var>action</var> [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet status <var>action</var> [--terminus _TERMINUS] [--extra HASH]</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
@@ -38,7 +38,7 @@ sometimes available.</dd>
 <dt>--extra HASH</dt><dd>A terminus can take additional arguments to refine the operation, which
 are passed as an arbitrary hash to the back-end.  Anything passed as
 the extra value is just send direct to the back-end.</dd>
-<dt>--terminus TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
+<dt>--terminus _TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
 subsystems are each able to retrieve and alter a specific type of data
 (with the familiar actions of <code>find</code>, <code>search</code>, <code>save</code>, and <code>destroy</code>)
 from an arbitrary number of pluggable backends. In Puppet parlance,
@@ -60,7 +60,7 @@ face's manpage for more details.</p></dd>
 <dl>
 <dt><code>find</code> - Check status of puppet master server.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet status [--terminus TERMINUS] [--extra HASH] [<var>key</var>]</p>
+<p>puppet status [--terminus _TERMINUS] [--extra HASH] [<var>key</var>]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -88,7 +88,7 @@ facility, and it is turned off by default. See
 for more details.</p></dd>
 <dt><code>info</code> - Print the default terminus class for this face.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet status info [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet status info [--terminus _TERMINUS] [--extra HASH]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -120,7 +120,7 @@ this face include:</p>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2011 by Puppet Labs
+<p>Copyright 2011 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet certificate_request'
 canonical: "/puppet/latest/man/certificate_request.html"
 ---
@@ -13,7 +13,7 @@ canonical: "/puppet/latest/man/certificate_request.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>puppet certificate_request <var>action</var> [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet certificate_request <var>action</var> [--terminus _TERMINUS] [--extra HASH]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -42,7 +42,7 @@ sometimes available.</dd>
 <dt>--extra HASH</dt><dd>A terminus can take additional arguments to refine the operation, which
 are passed as an arbitrary hash to the back-end.  Anything passed as
 the extra value is just send direct to the back-end.</dd>
-<dt>--terminus TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
+<dt>--terminus _TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
 subsystems are each able to retrieve and alter a specific type of data
 (with the familiar actions of <code>find</code>, <code>search</code>, <code>save</code>, and <code>destroy</code>)
 from an arbitrary number of pluggable backends. In Puppet parlance,
@@ -64,7 +64,7 @@ face's manpage for more details.</p></dd>
 <dl>
 <dt><code>find</code> - Retrieve a single CSR.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet certificate_request find [--terminus TERMINUS] [--extra HASH] [<var>host</var>]</p>
+<p>puppet certificate_request find [--terminus _TERMINUS] [--extra HASH] [<var>host</var>]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -78,7 +78,7 @@ Puppet::SSL::CertificateRequest object.</p>
 <p>Defaults to the current nodes certname.</p></dd>
 <dt><code>info</code> - Print the default terminus class for this face.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet certificate_request info [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet certificate_request info [--terminus _TERMINUS] [--extra HASH]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -87,7 +87,9 @@ run modes may have different default termini; when in doubt, specify the
 run mode with the '--run_mode' option.</p></dd>
 <dt><code>save</code> - API only: submit a certificate signing request.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet certificate_request save [--terminus TERMINUS] [--extra HASH] <var>x509_CSR</var></p>
+<p>puppet certificate_request save [--terminus _TERMINUS]
+[--extra HASH]
+<var>x509_CSR</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -96,7 +98,7 @@ currently accept data from STDIN, save actions cannot currently be invoked
 from the command line.</p></dd>
 <dt><code>search</code> - Retrieve all outstanding CSRs.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet certificate_request search [--terminus TERMINUS]
+<p>puppet certificate_request search [--terminus _TERMINUS]
 [--extra HASH]
 <var>dummy_text</var></p>
 
@@ -147,7 +149,7 @@ this face include:</p>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2011 by Puppet Labs
+<p>Copyright 2011 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

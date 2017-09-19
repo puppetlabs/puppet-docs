@@ -77,11 +77,13 @@ The type system has been extended with two types that help working with time rel
 
 The functions `break()`, `next()` and `return()` have been added to make it possible to do an "early exit" from a block of code. In summary `break()` will break the innermost iteration, `next()` will return from a lambda/block/class or resource body and `return()` will return from a function or class or resource body. See the respective function for more details.
 
+* [PUP-4643](https://tickets.puppetlabs.com/browse/PUP-4643)
+
 #### Absolute support
 
-It is now possible to specify that an absolute (positive) value is wanted when creating a new Integer, Float, or abstractly via Numeric by passing a second optional boolean argument to the `new` function where `true` means that an absolute value is wanted. For example `Numeric.new($str, true)` which converts the numerical value in string form (with a possible leading minus) to an absolute value.
+It is now possible to specify that an absolute (positive) value is wanted when creating a new Integer, Float, or abstractly via Numeric by passing a second optional Boolean argument to the `new` function where `true` means that an absolute value is wanted. For example `Numeric.new($str, true)` which converts the numerical value in string form (with a possible leading minus) to an absolute value.
 
-* [PUP-4643](https://tickets.puppetlabs.com/browse/PUP-4643)
+* [PUP-6291](https://tickets.puppetlabs.com/browse/PUP-6291)
 
 #### Access to stacktrace
 

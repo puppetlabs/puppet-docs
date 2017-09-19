@@ -436,9 +436,9 @@ file {
     mode     => '0644',
     contents => 'this is the content',;
 
-  '/opt/myapp:
+  '/opt/myapp':
     owner  => 'myapp-admin',
-    mode   => '0644'
+    mode   => '0644',
     source => 'puppet://<someurl>',;
 
   # etc
@@ -1102,7 +1102,7 @@ These special variable names are protected; because you cannot create local vari
 **Good:**
 
 ```puppet
-$facts[::operatingsystem]
+$facts['operatingsystem']
 ```
 
 **Bad:**

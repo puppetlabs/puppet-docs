@@ -46,7 +46,7 @@ The `metadata.json` file is located in the module's main directory, outside any 
         "6",
         "7"
       ]
-    },
+    }
   ],
   "requirements": [
     {

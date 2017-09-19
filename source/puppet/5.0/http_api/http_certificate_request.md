@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Puppet HTTP API: Certificate Request'
 canonical: "/puppet/latest/http_api/http_certificate_request.html"
 ---
@@ -22,7 +22,7 @@ Find
 Get a submitted CSR
 
     GET /puppet-ca/v1/certificate_request/:nodename?environment=:environment
-    Accept: s
+    Accept: text/plain
 
 Save
 ----
@@ -46,7 +46,7 @@ Server doesn't support it, and we don't plan to add support in the future.
 List submitted CSRs
 
     GET /puppet-ca/v1/certificate_requests/:ignored_pattern?environment=:environment
-    Accept: s
+    Accept: text/plain
 
 The `:ignored_pattern` parameter is not used, but must still be provided.
 
@@ -56,7 +56,7 @@ Destroy
 Delete a submitted CSR
 
     DELETE /puppet-ca/v1/certificate_request/:nodename?environment=:environment
-    Accept: s
+    Accept: text/plain
 
 ### Supported HTTP Methods
 
@@ -68,7 +68,7 @@ GET, PUT, DELETE
 
 ### Supported Response Formats
 
-s (denotes a string of text)
+`text/plain`
 
 The returned CSR is always in the `.pem` format.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet module'
 canonical: "/puppet/latest/man/module.html"
 ---
@@ -120,6 +120,7 @@ execution of <code>puppet module generate</code>.</p>
 [--target-dir DIR | -i DIR]
 [--ignore-dependencies]
 [--version VER | -v VER]
+[--strict-semver]
 <var>name</var></p>
 
 <p><code>DESCRIPTION</code></p>
@@ -137,6 +138,9 @@ Implies --ignore-dependencies.</p>
 
 <p><var>--ignore-dependencies</var> -
 Do not attempt to install dependencies. Implied by --force.</p>
+
+<p><var>--strict-semver</var> -
+Whether version ranges should exclude pre-release versions</p>
 
 <p><var>--target-dir DIR</var> | <var>-i DIR</var> -
 The directory into which modules are installed; defaults to the first
@@ -156,7 +160,7 @@ eg '>= 1.0.3'. Defaults to latest version.</p>
 <p>Pathname object representing the path to the installed module.</p></dd>
 <dt><code>list</code> - List installed modules</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet module list [--tree]</p>
+<p>puppet module list [--tree] [--strict-semver]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -168,7 +172,10 @@ option to change which directories are scanned.</p>
 metadata, including version numbers and unmet module dependencies.</p>
 
 <p><code>OPTIONS</code>
-<var>--tree</var> -
+<var>--strict-semver</var> -
+Whether version ranges should exclude pre-release versions</p>
+
+<p><var>--tree</var> -
 Whether to show dependencies as a tree view</p>
 
 <p><code>RETURNS</code></p>
@@ -191,6 +198,7 @@ match the provided search term.</p>
 <p>puppet module uninstall [--force | -f]
 [--ignore-changes | -c]
 [--version=]
+[--strict-semver]
 <var>name</var></p>
 
 <p><code>DESCRIPTION</code></p>
@@ -206,6 +214,9 @@ changes or the possibility of causing broken dependencies.</p>
 <p><var>--ignore-changes</var> | <var>-c</var> -
 Uninstall an installed module even if there are local changes to it.  (Implied by --force.)</p>
 
+<p><var>--strict-semver</var> -
+Whether version ranges should exclude pre-release versions</p>
+
 <p><var>--version=</var> -
 The version of the module to uninstall. When using this option, a module
 matching the specified version must be installed or else an error is raised.</p>
@@ -219,6 +230,7 @@ matching the specified version must be installed or else an error is raised.</p>
 [--ignore-dependencies]
 [--ignore-changes | -c]
 [--version=]
+[--strict-semver]
 <var>name</var></p>
 
 <p><code>DESCRIPTION</code></p>
@@ -236,6 +248,9 @@ Upgrade an installed module even if there are local changes to it.  (Implied by 
 
 <p><var>--ignore-dependencies</var> -
 Do not attempt to install dependencies. Implied by --force.</p>
+
+<p><var>--strict-semver</var> -
+Whether version ranges should exclude pre-release versions</p>
 
 <p><var>--version=</var> -
 The version of the module to upgrade to.</p>
@@ -493,7 +508,7 @@ Removed /etc/puppetlabs/code/modules/ssh (v2.0.0)</p>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2012 by Puppet Labs
+<p>Copyright 2012 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

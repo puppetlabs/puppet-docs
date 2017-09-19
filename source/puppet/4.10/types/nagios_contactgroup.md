@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Resource Type: nagios_contactgroup'
 canonical: "/puppet/latest/types/nagios_contactgroup.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500
 
 nagios_contactgroup
 -----
@@ -165,4 +165,4 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-05-17 16:08:13 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500

@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PObjectType::PAttribute
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -122,11 +122,6 @@
   <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="PAnnotatedMember.html" title="Puppet::Pops::Types::PObjectType::PAnnotatedMember (class)">PAnnotatedMember</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="PAnnotatedMember.html#container-instance_method" title="Puppet::Pops::Types::PObjectType::PAnnotatedMember#container (method)">#container</a></span>, <span class='object_link'><a href="PAnnotatedMember.html#name-instance_method" title="Puppet::Pops::Types::PObjectType::PAnnotatedMember#name (method)">#name</a></span>, <span class='object_link'><a href="PAnnotatedMember.html#type-instance_method" title="Puppet::Pops::Types::PObjectType::PAnnotatedMember#type (method)">#type</a></span></p>
 
-  
-  
-  <h3 class="inherited">Attributes included from <span class='object_link'><a href="../Annotatable.html" title="Puppet::Pops::Types::Annotatable (module)">Annotatable</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Annotatable.html#annotations-instance_method" title="Puppet::Pops::Types::Annotatable#annotations (method)">#annotations</a></span></p>
-
 
   
     <h2>
@@ -173,31 +168,7 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#eql%3F-instance_method" title="#eql? (instance method)">#<strong>eql?</strong>(o)  &#x21d2; Boolean </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        
-<li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#i12n_hash-instance_method" title="#i12n_hash (instance method)">#<strong>i12n_hash</strong>  &#x21d2; Hash{String=&gt;Object} </a>
+      <a href="#_pcore_init_hash-instance_method" title="#_pcore_init_hash (instance method)">#<strong>_pcore_init_hash</strong>  &#x21d2; Hash{String=&gt;Object} </a>
     
 
     
@@ -222,7 +193,31 @@
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(name, container, i12n_hash)  &#x21d2; PAttribute </a>
+      <a href="#eql%3F-instance_method" title="#eql? (instance method)">#<strong>eql?</strong>(o)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(name, container, init_hash)  &#x21d2; PAttribute </a>
     
 
     
@@ -294,14 +289,14 @@
   
   
   <h3 class="inherited">Methods included from <span class='object_link'><a href="../Annotatable.html" title="Puppet::Pops::Types::Annotatable (module)">Annotatable</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="../Annotatable.html#annotatable_accept-instance_method" title="Puppet::Pops::Types::Annotatable#annotatable_accept (method)">#annotatable_accept</a></span>, <span class='object_link'><a href="../Annotatable.html#init_annotatable-instance_method" title="Puppet::Pops::Types::Annotatable#init_annotatable (method)">#init_annotatable</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="../Annotatable.html#annotatable_accept-instance_method" title="Puppet::Pops::Types::Annotatable#annotatable_accept (method)">#annotatable_accept</a></span>, <span class='object_link'><a href="../Annotatable.html#annotations-instance_method" title="Puppet::Pops::Types::Annotatable#annotations (method)">#annotations</a></span>, <span class='object_link'><a href="../Annotatable.html#init_annotatable-instance_method" title="Puppet::Pops::Types::Annotatable#init_annotatable (method)">#init_annotatable</a></span></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    #<strong>initialize</strong>(name, container, i12n_hash)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Types::PObjectType::PAttribute (class)">PAttribute</a></span></tt> 
+    #<strong>initialize</strong>(name, container, init_hash)  &#x21d2; <tt><span class='object_link'><a href="" title="Puppet::Pops::Types::PObjectType::PAttribute (class)">PAttribute</a></span></tt> 
   
 
   
@@ -350,7 +345,7 @@
   
     <li>
       
-        <span class='name'>i12n_hash</span>
+        <span class='name'>init_hash</span>
       
       
         <span class='type'>(<tt>Hash{String=&gt;<span class='object_link'>Object</span>}</tt>)</span>
@@ -372,7 +367,7 @@
     
     
     
-    <p class="tag_title">Options Hash (<tt>i12n_hash</tt>):</p>
+    <p class="tag_title">Options Hash (<tt>init_hash</tt>):</p>
     <ul class="option">
       
         <li>
@@ -421,14 +416,6 @@
       <pre class="lines">
 
 
-246
-247
-248
-249
-250
-251
-252
-253
 254
 255
 256
@@ -441,26 +428,34 @@
 263
 264
 265
-266</pre>
+266
+267
+268
+269
+270
+271
+272
+273
+274</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 254</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='rparen'>)</span>
-  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='const'>TypeAsserter</span><span class='period'>.</span><span class='id identifier rubyid_assert_instance_of'>assert_instance_of</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='const'>TYPE_ATTRIBUTE</span><span class='comma'>,</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>initializer for </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='ivar'>@kind</span> <span class='op'>=</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='lbracket'>[</span><span class='const'>KEY_KIND</span><span class='rbracket'>]</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='id identifier rubyid_init_hash'>init_hash</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='const'>TypeAsserter</span><span class='period'>.</span><span class='id identifier rubyid_assert_instance_of'>assert_instance_of</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='const'>TYPE_ATTRIBUTE</span><span class='comma'>,</span> <span class='id identifier rubyid_init_hash'>init_hash</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>initializer for </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_label'>label</span><span class='lparen'>(</span><span class='id identifier rubyid_container'>container</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='ivar'>@kind</span> <span class='op'>=</span> <span class='id identifier rubyid_init_hash'>init_hash</span><span class='lbracket'>[</span><span class='const'>KEY_KIND</span><span class='rbracket'>]</span>
   <span class='kw'>if</span> <span class='ivar'>@kind</span> <span class='op'>==</span> <span class='const'>ATTRIBUTE_KIND_CONSTANT</span> <span class='comment'># final is implied
-</span>    <span class='kw'>if</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>KEY_FINAL</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@final</span>
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_init_hash'>init_hash</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>KEY_FINAL</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@final</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_label'>label</span><span class='embexpr_end'>}</span><span class='tstring_content'> of kind &#39;constant&#39; cannot be combined with final =&gt; false</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
     <span class='ivar'>@final</span> <span class='op'>=</span> <span class='kw'>true</span>
   <span class='kw'>end</span>
 
-  <span class='kw'>if</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>KEY_VALUE</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_init_hash'>init_hash</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='const'>KEY_VALUE</span><span class='rparen'>)</span>
     <span class='kw'>if</span> <span class='ivar'>@kind</span> <span class='op'>==</span> <span class='const'>ATTRIBUTE_KIND_DERIVED</span> <span class='op'>||</span> <span class='ivar'>@kind</span> <span class='op'>==</span> <span class='const'>ATTRIBUTE_KIND_GIVEN_OR_DERIVED</span>
       <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_label'>label</span><span class='embexpr_end'>}</span><span class='tstring_content'> of kind &#39;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@kind</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39; cannot be combined with an attribute value</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
-    <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span><span class='lbracket'>[</span><span class='const'>KEY_VALUE</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_v'>v</span> <span class='op'>=</span> <span class='id identifier rubyid_init_hash'>init_hash</span><span class='lbracket'>[</span><span class='const'>KEY_VALUE</span><span class='rbracket'>]</span>
     <span class='ivar'>@value</span> <span class='op'>=</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>==</span> <span class='symbol'>:default</span> <span class='op'>?</span> <span class='id identifier rubyid_v'>v</span> <span class='op'>:</span> <span class='const'>TypeAsserter</span><span class='period'>.</span><span class='id identifier rubyid_assert_instance_of'>assert_instance_of</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_label'>label</span><span class='embexpr_end'>}</span><span class='tstring_content'> </span><span class='embexpr_beg'>#{</span><span class='const'>KEY_VALUE</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_label'>label</span><span class='embexpr_end'>}</span><span class='tstring_content'> of kind &#39;constant&#39; requires a value</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@kind</span> <span class='op'>==</span> <span class='const'>ATTRIBUTE_KIND_CONSTANT</span>
@@ -507,12 +502,12 @@
       <pre class="lines">
 
 
-308
-309
-310</pre>
+321
+322
+323</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 308</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 321</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_feature_type'>feature_type</span>
   <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>attribute</span><span class='tstring_end'>&#39;</span></span>
@@ -529,61 +524,9 @@
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="eql?-instance_method">
+  <h3 class="signature first" id="_pcore_init_hash-instance_method">
   
-    #<strong>eql?</strong>(o)  &#x21d2; <tt>Boolean</tt> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-273
-274
-275</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 273</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
-  <span class='kw'>super</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@kind</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_kind'>kind</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@value</span> <span class='op'>==</span> <span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value?'>value?</span> <span class='op'>?</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>:</span> <span class='symbol'>:undef</span><span class='rparen'>)</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="i12n_hash-instance_method">
-  
-    #<strong>i12n_hash</strong>  &#x21d2; <tt>Hash{String=&gt;<span class='object_link'>Object</span>}</tt> &nbsp;<span class="private note title">private</span>
+    #<strong>_pcore_init_hash</strong>  &#x21d2; <tt>Hash{String=&gt;<span class='object_link'>Object</span>}</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -626,20 +569,20 @@
       <pre class="lines">
 
 
-280
-281
-282
-283
-284
-285
-286
-287
-288</pre>
+288
+289
+290
+291
+292
+293
+294
+295
+296</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 280</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 288</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_i12n_hash'>i12n_hash</span>
+<span class='kw'>def</span> <span class='id identifier rubyid__pcore_init_hash'>_pcore_init_hash</span>
   <span class='id identifier rubyid_hash'>hash</span> <span class='op'>=</span> <span class='kw'>super</span>
   <span class='kw'>unless</span> <span class='ivar'>@kind</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
     <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='const'>KEY_KIND</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@kind</span>
@@ -647,6 +590,58 @@
 </span>  <span class='kw'>end</span>
   <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='const'>KEY_VALUE</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='ivar'>@value</span> <span class='kw'>unless</span> <span class='ivar'>@value</span> <span class='op'>==</span> <span class='symbol'>:undef</span>
   <span class='id identifier rubyid_hash'>hash</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="eql?-instance_method">
+  
+    #<strong>eql?</strong>(o)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+281
+282
+283</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 281</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_eql?'>eql?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='rparen'>)</span>
+  <span class='kw'>super</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@kind</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_kind'>kind</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@value</span> <span class='op'>==</span> <span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value?'>value?</span> <span class='op'>?</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_value'>value</span> <span class='op'>:</span> <span class='symbol'>:undef</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -713,14 +708,14 @@ is necessary since a defined value may be <code>nil</code>.</p>
       <pre class="lines">
 
 
-301
-302
-303
-304
-305</pre>
+314
+315
+316
+317
+318</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 301</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_object_type.rb', line 314</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='comment'># An error must be raised here since `nil` is a valid value and it would be bad to leak the :undef symbol
@@ -737,9 +732,9 @@ is necessary since a defined value may be <code>nil</code>.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:24 2017 by
+  Generated on Tue Jun 27 17:24:23 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

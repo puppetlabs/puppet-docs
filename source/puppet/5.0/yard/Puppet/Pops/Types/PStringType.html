@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PStringType
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -69,7 +69,7 @@
   <dl>
     <dt>Inherits:</dt>
     <dd>
-      <span class="inheritName"><span class='object_link'><a href="PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span></span>
+      <span class="inheritName"><span class='object_link'><a href="PScalarDataType.html" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></span>
       
         <ul class="fullTree">
           <li><span class='object_link'>Object</span></li>
@@ -79,6 +79,8 @@
             <li class="next"><span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></li>
           
             <li class="next"><span class='object_link'><a href="PScalarType.html" title="Puppet::Pops::Types::PScalarType (class)">PScalarType</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="PScalarDataType.html" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></li>
           
             <li class="next">Puppet::Pops::Types::PStringType</li>
           
@@ -195,6 +197,12 @@
   
   
   
+  
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#kind_of_callable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#kind_of_callable? (method)">#kind_of_callable?</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#normalize-instance_method" title="Puppet::Pops::Types::PAnyType#normalize (method)">#normalize</a></span>, <span class='object_link'><a href="PAnyType.html#really_instance%3F-instance_method" title="Puppet::Pops::Types::PAnyType#really_instance? (method)">#really_instance?</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span></p>
 
@@ -268,6 +276,8 @@
       <pre class="lines">
 
 
+1499
+1500
 1501
 1502
 1503
@@ -310,12 +320,10 @@
 1540
 1541
 1542
-1543
-1544
-1545</pre>
+1543</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1501</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1499</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='rparen'>)</span>
@@ -396,19 +404,19 @@
       <pre class="lines">
 
 
+1438
+1439
 1440
 1441
 1442
-1443
-1444
-1445</pre>
+1443</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1440</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1438</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_values'>values</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:strict</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='symbol'>:off</span>
-    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn_once'>warn_once</span><span class='lparen'>(</span><span class='symbol'>:deprecatation</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PStringType#values</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Method PStringType#values is deprecated. Use #value instead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn_once'>warn_once</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>deprecations</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PStringType#values</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Method PStringType#values is deprecated. Use #value instead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='ivar'>@value</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span>
 <span class='kw'>end</span></pre>
@@ -422,9 +430,9 @@
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:20 2017 by
+  Generated on Tue Jun 27 17:24:17 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

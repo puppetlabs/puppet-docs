@@ -311,13 +311,13 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-3306
-3307
-3308
-3309</pre>
+3322
+3323
+3324
+3325</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3306</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3322</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_arguments'>arguments</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>super</span> <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_equal?'>equal?</span><span class='lparen'>(</span><span class='const'>PTypeReferenceType</span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='rparen'>)</span>
@@ -376,19 +376,19 @@ is resolved since guarding against self recursive constructs is relatively expen
       <pre class="lines">
 
 
-3312
-3313
-3314
-3315
-3316
-3317
-3318
-3319
-3320
-3321</pre>
+3328
+3329
+3330
+3331
+3332
+3333
+3334
+3335
+3336
+3337</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3312</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3328</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_really_instance?'>really_instance?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@self_recursion</span>
@@ -487,22 +487,6 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3238
-3239
-3240
-3241
-3242
-3243
-3244
-3245
-3246
-3247
-3248
-3249
-3250
-3251
-3252
-3253
 3254
 3255
 3256
@@ -524,10 +508,26 @@ checks and remembers if the resolve type contains self recursion.</p>
 3272
 3273
 3274
-3275</pre>
+3275
+3276
+3277
+3278
+3279
+3280
+3281
+3282
+3283
+3284
+3285
+3286
+3287
+3288
+3289
+3290
+3291</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3238</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3254</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_resolve'>resolve</span><span class='lparen'>(</span><span class='id identifier rubyid_type_parser'>type_parser</span><span class='comma'>,</span> <span class='id identifier rubyid_loader'>loader</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@resolved_type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -614,12 +614,12 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3296
-3297
-3298</pre>
+3312
+3313
+3314</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3296</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3312</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_s'>to_s</span>
   <span class='const'><span class='object_link'><a href="TypeFormatter.html" title="Puppet::Pops::Types::TypeFormatter (class)">TypeFormatter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_singleton'><span class='object_link'><a href="TypeFormatter.html#singleton-class_method" title="Puppet::Pops::Types::TypeFormatter.singleton (method)">singleton</a></span></span><span class='period'>.</span><span class='id identifier rubyid_alias_expanded_string'>alias_expanded_string</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -675,12 +675,12 @@ checks and remembers if the resolve type contains self recursion.</p>
       <pre class="lines">
 
 
-3325
-3326
-3327</pre>
+3341
+3342
+3343</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3325</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 3341</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_type_expr'>type_expr</span>
   <span class='kw'>nil</span>
@@ -695,9 +695,9 @@ checks and remembers if the resolve type contains self recursion.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed May 17 16:09:16 2017 by
+  Generated on Wed Aug  9 15:41:20 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.4.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

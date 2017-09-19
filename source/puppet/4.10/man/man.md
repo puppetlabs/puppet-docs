@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Man Page: puppet man'
 canonical: "/puppet/latest/man/man.html"
 ---
@@ -81,7 +81,7 @@ text (e.g. for use in a pipeline), call this action with '--render-as s'.</p></d
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2011 by Puppet Labs
+<p>Copyright 2011 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet catalog'
 canonical: "/puppet/latest/man/catalog.html"
 ---
@@ -13,7 +13,7 @@ canonical: "/puppet/latest/man/catalog.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>puppet catalog <var>action</var> [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet catalog <var>action</var> [--terminus _TERMINUS] [--extra HASH]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -48,7 +48,7 @@ sometimes available.</dd>
 <dt>--extra HASH</dt><dd>A terminus can take additional arguments to refine the operation, which
 are passed as an arbitrary hash to the back-end.  Anything passed as
 the extra value is just send direct to the back-end.</dd>
-<dt>--terminus TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
+<dt>--terminus _TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
 subsystems are each able to retrieve and alter a specific type of data
 (with the familiar actions of <code>find</code>, <code>search</code>, <code>save</code>, and <code>destroy</code>)
 from an arbitrary number of pluggable backends. In Puppet parlance,
@@ -70,7 +70,7 @@ face's manpage for more details.</p></dd>
 <dl>
 <dt><code>apply</code> - Find and apply a catalog.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet catalog apply [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet catalog apply [--terminus _TERMINUS] [--extra HASH]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -83,7 +83,7 @@ the source of the catalog can be managed with the <code>--terminus</code> option
 Puppet::Transaction::Report object.</p></dd>
 <dt><code>download</code> - Download this node's catalog from the puppet master server.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet catalog download [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet catalog download [--terminus _TERMINUS] [--extra HASH]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -105,7 +105,7 @@ Puppet::Resource::Catalog.indirection.terminus_class set to yaml. The
 terminus must be explicitly re-set for subsequent catalog actions.</p></dd>
 <dt><code>find</code> - Retrieve the catalog for a node.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet catalog find [--terminus TERMINUS] [--extra HASH] <var>certname</var></p>
+<p>puppet catalog find [--terminus _TERMINUS] [--extra HASH] <var>certname</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -117,7 +117,7 @@ terminus must be explicitly re-set for subsequent catalog actions.</p></dd>
 Puppet::Resource::Catalog object.</p></dd>
 <dt><code>info</code> - Print the default terminus class for this face.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet catalog info [--terminus TERMINUS] [--extra HASH]</p>
+<p>puppet catalog info [--terminus _TERMINUS] [--extra HASH]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -126,7 +126,7 @@ run modes may have different default termini; when in doubt, specify the
 run mode with the '--run_mode' option.</p></dd>
 <dt><code>save</code> - API only: create or overwrite an object.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet catalog save [--terminus TERMINUS] [--extra HASH] <var>key</var></p>
+<p>puppet catalog save [--terminus _TERMINUS] [--extra HASH] <var>key</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -135,7 +135,7 @@ currently accept data from STDIN, save actions cannot currently be invoked
 from the command line.</p></dd>
 <dt><code>select</code> - Retrieve a catalog and filter it for resources of a given type.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet catalog select [--terminus TERMINUS]
+<p>puppet catalog select [--terminus _TERMINUS]
 [--extra HASH]
 <var>host</var> <var>resource_type</var></p>
 
@@ -213,7 +213,6 @@ this face include:</p>
 <li><code>json</code></li>
 <li><code>msgpack</code></li>
 <li><code>rest</code></li>
-<li><code>static_compiler</code></li>
 <li><code>store_configs</code></li>
 <li><code>yaml</code></li>
 </ul>
@@ -221,7 +220,7 @@ this face include:</p>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2011 by Puppet Labs
+<p>Copyright 2011 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

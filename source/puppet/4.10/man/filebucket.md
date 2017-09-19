@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Man Page: puppet filebucket'
 canonical: "/puppet/latest/man/filebucket.html"
 ---
@@ -122,6 +122,6 @@ d43a6ecaa892a1962398ac9170ea9bf2 2015-05-11 09:27:56 /tmp/TestFile
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
+<p>Copyright (c) 2011 Puppet Inc., LLC Licensed under the Apache 2.0 License</p>
 
 </div>

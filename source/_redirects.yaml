@@ -12,6 +12,38 @@
   at_version: 2016.4
   forward_only: false # This is optional, and should usually be omitted. Set it to true (and disable redirects in the older versions) if you delete a page and redirect it to an EXISTING page instead of a new one.
 
+
+# for the environment docs
+- in_doc: puppet
+  was: environments.html
+  became: environments_about.html
+  at_version: 4.10
+
+- in_doc: puppet
+  was: 
+    - environments_assigning.html
+    - environments_configuring.html
+    - environments_suggestions.html
+    - environments_limitations.html
+  became: environments_creating.html
+  at_version: 4.10
+
+- in_doc: puppet
+  was: environments_https.html
+  became: /http_api/http_environments.html
+  at_version: 4.10
+
+- in_doc: puppet
+  was: environments.html
+  became: environments_about.html
+  at_version: 4.10
+
+# name change away from PC1
+- in_doc: puppet
+  was: puppet_collections.html
+  became: puppet_platform.html
+  at_version: 5.0
+
 # the filename should reflect the content, so this was changed
 - in_doc: puppet
   was: deprecated_win2003.html

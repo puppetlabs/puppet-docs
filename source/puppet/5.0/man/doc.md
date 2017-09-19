@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet doc'
 canonical: "/puppet/latest/man/doc.html"
 ---
@@ -14,7 +14,7 @@ canonical: "/puppet/latest/man/doc.html"
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
 <p>Generates a reference for all Puppet types. Largely meant for internal
-Puppet Labs use. (Deprecated)</p>
+Puppet Inc. use. (Deprecated)</p>
 
 <h2 id="USAGE">USAGE</h2>
 
@@ -26,7 +26,7 @@ Puppet Labs use. (Deprecated)</p>
 <p>This deprecated command generates a Markdown document to stdout
 describing all installed Puppet types or all allowable arguments to
 puppet executables. It is largely meant for internal use and is used to
-generate the reference document available on the Puppet Labs web site.</p>
+generate the reference document available on the Puppet Inc. web site.</p>
 
 <p>For Puppet module documentation (and all other use cases) this command
 has been superseded by the "puppet-strings"
@@ -56,6 +56,6 @@ on puppet-strings.</p>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
+<p>Copyright (c) 2011 Puppet Inc., LLC Licensed under the Apache 2.0 License</p>
 
 </div>

@@ -18,6 +18,93 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.8
+
+Released September 14, 2017.
+
+This is a small bug-fix release in the Puppet 4.10 series.
+
+* [All issues fixed in Puppet 4.10.8](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.8%27)
+
+### Bug fixes
+
+If illegal variables (with many or long name segments) had a segment with an initial uppercase letter in previous versions of Puppet 4, the parser could take an extremely long time to match the input. This caused very long compilation times and excessive CPU load. Puppet 4.10.8 resolves this issue by changing the relevant regular expression to avoid excessive backtracking to match the regular expression for variables.
+
+* [PUP-7848](https://tickets.puppetlabs.com/browse/PUP-7848)
+
+## Puppet 4.10.7
+
+Released September 6, 2017.
+
+This is a small bug-fix release in the Puppet 4.10 series.
+
+* [All issues fixed in Puppet 4.10.7](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.7%27)
+
+### Bug fixes
+
+Previous versions of Puppet 4.10 on Windows could crash if a corrupt environment variable was set. Puppet 4.10.7 resolves this issue.
+
+* [PUP-7821](https://tickets.puppetlabs.com/browse/PUP-7821)
+
+## Puppet 4.10.6
+
+Released August 9, 2017.
+
+This is a small bug fix release in the Puppet 4.10 series.
+
+* [All issues fixed in Puppet 4.10.6](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.6%27)
+
+### Bug fixes
+
+A regression introduced with Hiera 5 caused the setting of `data_binding_terminus=none` to turn off the `hiera_xxx` functions in addition to the expected disablement of Automatic Parameter Lookup (APL) from the global layer. This has been changed so that the `hiera_xxx` calls will continue to work. The `lookup` function will continue to return the same result as APL (if the terminus is disabled, then global Hiera is also turned off for lookup, while APL and lookup from environment and module layers is still enabled). The `data_binding_terminus` setting will eventually be deprecated and removed along with the Hiera 3 support. With the speedups and new features in Hiera 5, there should be no reason to turn off the `data_binding_terminus`.
+
+## Puppet 4.10.5
+
+Released July 26, 2017. 
+
+This is a bug fix release for Puppet that includes new capabilities for string localization. It shipped with Puppet agent 1.10.5.
+
+* [All issues fixed in Puppet 4.10.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.5%27)
+
+
+### Module localization
+
+Puppet now supports module localization! You may have noticed some modules now have translated READMEs and metadata.json fields. The next step is translating certain log messages. This release modifies Puppet so it is capable of consuming and displaying these log translations as they become available across modules.
+
+### Bug fixes
+
+These issues have been resolved in Puppet 4.10.5:
+
+* A problem was found with the environment isolation solution `generate types` where a collection of a type would cause it to be loaded as a Ruby implementation instead of the generated metadata. This in turn could cause isolation problems if different environments had different versions of this type. This is now fixed so collectors also load the generated metadata form if present.
+
+* Puppet 4.10.2 and 5.0.0 introduced a regression if a provider called `execpipe` and the external command failed. It now correctly processes the execution failure.
+
+* A regression in Puppet 4.7.0 made the command `epp render` fail loading 4.x functions when evaluating a template. The same template would work fine when used in a manifest.
+
+* On CentOS 7, Puppet could not create a user and set the owner of a file to that user in the same run. This was a regression introduced in 4.10.2 and 5.0.0.
+
+* The Hiera option `sort_merged_arrays` which is used to get sorted arrays when merging was previously silently ignored (meaning no sorting took place).
+
+
+## Puppet 4.10.4
+
+Released June 19, 2017.
+
+This is a single issue release to resolve a regression introduced in Puppet 4.10.3. Resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references. ([PUP-7671](https://tickets.puppetlabs.com/browse/PUP-7671))
+
+* [Fixed in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.4%27)
+* [Introduced in Puppet 4.10.4](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.4%27)
+
+## Puppet 4.10.3
+
+Released June 15, 2017.
+
+This is a minor bug fix release. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release resolves that issue. ([PUP-7658](https://tickets.puppetlabs.com/browse/PUP-7658))
+
+* [Fixed in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27PUP+4.10.3%27)
+* [Introduced in Puppet 4.10.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.3%27)
+
+
 ## Puppet 4.10.2
 
 Released June 13, 2017.
@@ -26,6 +113,8 @@ Released June 13, 2017.
 * [Introduced in Puppet 4.10.2](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27PUP+4.10.2%27)
 
 This is a bug fix release included in Puppet agent 1.10.2, that also includes two new deprecations for Puppet.
+
+>Note: There is a known issue with this release when using ampersands in custom facts. You can revert back to 4.10.1, or upgrade to 4.10.4.
 
 ### Deprecations
 

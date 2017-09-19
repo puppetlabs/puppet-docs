@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Man Page: puppet certificate'
 canonical: "/puppet/latest/man/certificate.html"
 ---
@@ -13,7 +13,7 @@ canonical: "/puppet/latest/man/certificate.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>puppet certificate <var>action</var> [--terminus TERMINUS]
+<p>puppet certificate <var>action</var> [--terminus _TERMINUS]
 [--extra HASH]
 <var>--ca-location LOCATION</var></p>
 
@@ -52,7 +52,7 @@ remote puppet master. Allowed values are 'local' and 'remote.'</p>
 <dt>--extra HASH</dt><dd>A terminus can take additional arguments to refine the operation, which
 are passed as an arbitrary hash to the back-end.  Anything passed as
 the extra value is just send direct to the back-end.</dd>
-<dt>--terminus TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
+<dt>--terminus _TERMINUS</dt><dd><p>Indirector faces expose indirected subsystems of Puppet. These
 subsystems are each able to retrieve and alter a specific type of data
 (with the familiar actions of <code>find</code>, <code>search</code>, <code>save</code>, and <code>destroy</code>)
 from an arbitrary number of pluggable backends. In Puppet parlance,
@@ -75,7 +75,7 @@ face's manpage for more details.</p></dd>
 <li><p><code>destroy</code> - Delete a certificate.:
 <code>SYNOPSIS</code></p>
 
-<p>puppet certificate destroy [--terminus TERMINUS]
+<p>puppet certificate destroy [--terminus _TERMINUS]
 [--extra HASH]
 <var>--ca-location LOCATION</var>
 <var>host</var></p>
@@ -90,7 +90,7 @@ face's manpage for more details.</p></dd>
 <li><p><code>find</code> - Retrieve a certificate.:
 <code>SYNOPSIS</code></p>
 
-<p>puppet certificate find [--terminus TERMINUS]
+<p>puppet certificate find [--terminus _TERMINUS]
 [--extra HASH]
 <var>--ca-location LOCATION</var>
 <var>host</var></p>
@@ -108,7 +108,7 @@ certificate in Puppet's <code>ssldir</code>.</p></li>
 <li><p><code>generate</code> - Generate a new certificate signing request.:
 <code>SYNOPSIS</code></p>
 
-<p>puppet certificate generate [--terminus TERMINUS]
+<p>puppet certificate generate [--terminus _TERMINUS]
 [--extra HASH]
 <var>--ca-location LOCATION</var>
 [--dns-alt-names NAMES]
@@ -168,7 +168,7 @@ have them are Puppet Server nodes that you want other agents to trust.</p>
 <li><p><code>info</code> - Print the default terminus class for this face.:
 <code>SYNOPSIS</code></p>
 
-<p>puppet certificate info [--terminus TERMINUS]
+<p>puppet certificate info [--terminus _TERMINUS]
 [--extra HASH]
 <var>--ca-location LOCATION</var></p>
 
@@ -180,7 +180,7 @@ run mode with the '--run_mode' option.</p></li>
 <li><p><code>list</code> - List all certificate signing requests.:
 <code>SYNOPSIS</code></p>
 
-<p>puppet certificate list [--terminus TERMINUS]
+<p>puppet certificate list [--terminus _TERMINUS]
 [--extra HASH]
 <var>--ca-location LOCATION</var></p>
 
@@ -197,7 +197,7 @@ from the Ruby API.</p></li>
 <li><p><code>sign</code> - Sign a certificate signing request for HOST.:
 <code>SYNOPSIS</code></p>
 
-<p>puppet certificate sign [--terminus TERMINUS]
+<p>puppet certificate sign [--terminus _TERMINUS]
 [--extra HASH]
 <var>--ca-location LOCATION</var>
 [--[no-]allow-dns-alt-names]
@@ -247,7 +247,7 @@ this face include:</p>
 
 <h2 id="COPYRIGHT-AND-LICENSE">COPYRIGHT AND LICENSE</h2>
 
-<p>Copyright 2011 by Puppet Labs
+<p>Copyright 2011 by Puppet Inc.
 Apache 2 license; see COPYING</p>
 
 </div>

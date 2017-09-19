@@ -6,10 +6,16 @@ title: "Puppet agent release notes"
 [Puppet 4.10.0]: /puppet/4.10/release_notes.html#puppet-4100
 [Puppet 4.10.1]: /puppet/4.10/release_notes.html#puppet-4101
 [Puppet 4.10.2]: /puppet/4.10/release_notes.html#puppet-4102
+[Puppet 4.10.5]: /puppet/4.10/release_notes.html#puppet-4105
+[Puppet 4.10.6]: /puppet/4.10/release_notes.html#puppet-4106
+[Puppet 4.10.7]: /puppet/4.10/release_notes.html#puppet-4107
+[Puppet 4.10.8]: /puppet/4.10/release_notes.html#puppet-4108
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
 [Facter 3.6.5]: /facter/3.6/release_notes.html#facter-365
+[Facter 3.6.6]: /facter/3.6/release_notes.html#facter-366
+[Facter 3.6.7]: /facter/3.6/release_notes.html#facter-367
 
 [Hiera 3.3.2]: /hiera/3.3/release_notes.html#hiera-332
 
@@ -33,6 +39,76 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
+
+## Puppet agent 1.10.8
+
+Released September 14, 2017.
+
+### Component updates
+
+This release contains a bug fix in [Puppet 4.10.8][] and a versioning fix in the Windows package. No other components are updated.
+
+### Bug fix: Change NSSM version increment to avoid upgrade issues
+
+Previous versions of Puppet agent did not increment the version of NSSM in a manner expected by Microsoft Installer (MSI), leading to MSI unintentionally removing it upon upgrade. Puppet agent 1.10.8 resolves this issue by changing the versioning scheme for NSSM.
+
+* [PA-1504](https://tickets.puppetlabs.com/browse/PA-1504)
+
+## Puppet agent 1.10.7
+
+Released September 6, 2017.
+
+### Component updates
+
+This release contains a security improvement in the Windows package, and bug fixes in [Puppet 4.10.7][], [Facter 3.6.7][], and [`pxp-agent`][] 1.5.5.
+
+### Security improvement: Enable Data Execution Prevention (DEP) support in Windows builds of `pxp-agent`
+
+As part of security robustness measure, this version of the `puppet-agent` package for Windows enables data execution prevention (aka /NX) and address space layout randomization (ASLR) in third-party binaries, such as Ruby and OpenSSL, that are built along with Puppet Agent modules. There was no specific known vulnerability, but this improvement prevents potential exploits using the above concerns as attack vectors.
+
+* [PA-1406](https://tickets.puppetlabs.com/browse/PA-1406)
+* [PCP-775](https://tickets.puppetlabs.com/browse/PCP-775)
+* [FACT-1730](https://tickets.puppetlabs.com/browse/FACT-1730)
+
+## Puppet agent 1.10.6
+
+Released August 9, 2017.
+
+### Component updates
+
+The only component update in this Puppet agent release is [Puppet 4.10.6][].
+
+## Puppet agent 1.10.5
+
+Released July 26, 2017.
+
+### Component updates
+
+This release contains bug fixes in [Puppet 4.10.5][], and [Facter 3.6.6][] and [`pxp-agent`][] 1.5.4.
+
+### New platforms
+
+These platforms have been added as of Puppet agent 1.10.5:
+
+* Ubuntu 16.04 (ppc64le)
+* Enterprise Linux 7 (ppc64le)
+* Amazon Linux 2017.03 (by using packages for RHEL 6)
+
+## Puppet agent 1.10.4
+
+Released June 19, 2017.
+
+### Component updates
+
+This release only affects Puppet. A regression in Puppet 4.10.3 where resources created using the syntax `Resource[xx::yy]` would cause an error because Puppet would not find an existing `xx::yy` user defined resource type. This was caused by fixing another problem with inconsistent use of upper and lowercase in references.
+
+## Puppet agent 1.10.3
+
+Released June 15, 2017.
+
+### Component updates
+
+This release only affects Puppet. Using ampersands (&) in custom facts was causing Puppet runs to fail in Puppet 4.10.2. This release includes Puppet 4.10.3, which resolves that issue.
 
 ## Puppet agent 1.10.2
 

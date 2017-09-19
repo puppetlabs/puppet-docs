@@ -246,7 +246,7 @@ to `Facter::Core::Execution#execute`:
 Facter.add(:sleep) do
   setcode do
     begin
-      Facter::Core::Execution.execute('sleep 10', :timeout => 5)
+      Facter::Core::Execution.execute('sleep 10', options = {:timeout => 5})
       'did not timeout!'
     rescue Facter::Core::Execution::ExecutionFailure
       'timeout!'

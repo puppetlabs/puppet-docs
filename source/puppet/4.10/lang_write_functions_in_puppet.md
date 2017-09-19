@@ -98,7 +98,7 @@ An extra arguments parameter can also have a [data type][literal_types]. Puppet 
 
 ### Return types
 
-> **Note:** Return types only work with Puppet 4.7 and later. In earlier versions of Puppet, they cause an evaluation error.
+> **Note:** Return types only work with Puppet 4.8 and later. In earlier versions of Puppet, they cause an evaluation error.
 
 Between the parameter list and the function body, you can use `>>` and a [data type][literal_types] to specify the types of the values the function returns.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Updating 3.x Manifests for Puppet 4.x
+title: Updating 3.x Manifests for current versions of Puppet
 toc: false
 ---
 
@@ -13,7 +13,7 @@ toc: false
 [boolean]: /puppet/latest/reference/lang_data_boolean.html
 
 
-Several breaking changes were introduced in Puppet 4.0. If you previously used Puppet 3.x, your manifests will need to be updated for the new implementation. This page lists the most important steps to update your manifests to be 4.x compatible.
+Several breaking changes were introduced in Puppet 4.0. If you previously used Puppet 3.x, your manifests need to be updated for the new implementation. This page lists the most important steps to update your manifests to be 4.x compatible.
 
 
 ## Make sure everything is in the right place
@@ -34,7 +34,7 @@ Make sure this is what you want. You might want to set `noop => true` on the pur
 
 In Puppet 3, facts with boolean true/false values (like `$is_virtual`) were converted to strings unless the `stringify_facts` setting was disabled. This meant it was common to test for these facts with the `==` operator, like `if $is_virtual == 'true' { ... }`.
 
-In Puppet 4, boolean facts are never turned into strings, and those `==` comparisons will always evaluate to `false`. This can cause serious problems. Check your manifests for any comparisons that treat boolean facts like strings; if you need a manifest to work with both Puppet 3 and Puppet 4, you can convert a boolean to a string and then pass it to [the stdlib module's `str2bool` function][str2bool]:
+In current Puppet versions, boolean facts are never turned into strings, and those `==` comparisons will always evaluate to `false`. This can cause serious problems. Check your manifests for any comparisons that treat boolean facts like strings; if you need a manifest to work with both Puppet 3 and Puppet 4 and above, you can convert a boolean to a string and then pass it to [the stdlib module's `str2bool` function][str2bool]:
 
 ~~~ ruby
 if str2bool("$is_virtual") { ... }
@@ -72,7 +72,7 @@ $invalid = 40 + '0789' # invalid because '0789' can't be cast numerically
 
 ## Check your comparisons
 
-Some comparison operations have changed in Puppet 4. Read about [expressions and operators][expressions] for the full details.
+Some comparison operations have changed. Read about [expressions and operators][expressions] for the full details.
 
 ### Regular expressions against non-strings
 
@@ -90,7 +90,7 @@ case $securitylevel {
 
 Prior to Puppet 4.0, the first regex would match, and the notify { 'security low': } resource would be put into the catalog.
 
-Now, in Puppet 4.0, neither of the regexes would match because the value of `$securitylevel` is an integer, not a string, and so the default condition would match, resulting in the inclusion of notify `{ 'security high': }` in the catalog.
+Now, neither of the regexes would match because the value of `$securitylevel` is an integer, not a string, and so the default condition would match, resulting in the inclusion of notify `{ 'security high': }` in the catalog.
 
 ### Empty strings in boolean context are `true`
 
@@ -108,7 +108,7 @@ class empty_string_defaults (
 }
 ~~~
 
-Puppet's old behavior of evaluating the empty string as `false` would allow you to set the default based on a simple if-statement. In Puppet 4.x, this behavior is flipped and `$parameter_to_check_real` will be set to an empty string.
+Puppet's old behavior of evaluating the empty string as `false` would allow you to set the default based on a simple if-statement. This behavior is now flipped and `$parameter_to_check_real` will be set to an empty string.
 
 You can check your existing codebase for this behavior with a [puppet-lint plugin](https://github.com/puppet-community/puppet-lint-empty_string-check).
 
@@ -140,7 +140,7 @@ Naming conventions have changed and become more strict.
 
 ## Check for non-productive expressions
 
-Puppet 4.0.0 validates logic that has no effect and flags such expressions as being errors.
+Puppet now validates logic that has no effect and flags such expressions as being errors.
 
 An example of a non productive expression is:
 
@@ -180,7 +180,7 @@ Only certain functions are allowed to be called without parentheses. Read the [d
 
 ## Check your regular expressions for correct syntax
 
-Puppet 4 bundles its own copy of Ruby 2.x, and the regex syntax is slightly different than Ruby 1.8.7, which you may have been running prior to upgrade. Because the two versions of Ruby use differing regex engines, your results may vary.
+Current versions of Puppet bundles its own copy of Ruby 2.x, and the regex syntax is slightly different than Ruby 1.8.7, which you may have been running prior to upgrade. Because the two versions of Ruby use differing regex engines, your results may vary.
 
 ## Check YAML files used by Hiera, etc. for correct syntax
 
@@ -194,11 +194,11 @@ If the Ruby version changed since upgrade, the YAML parser will be more strict. 
 
 In Puppet 3, resources with `noop` set to true could escape no-op mode and cause changes if they received a refresh event (via the `notify` or `subscribe` metaparameters or the `~>` arrow).
 
-This is no longer possible in Puppet 4; no-op resources always stay no-op. For most users that's a win with no downside, but there's a slim chance that your configurations relied on this behavior, so look around to make sure.
+This is no longer possible in Puppet; no-op resources always stay no-op. For most users that's a win with no downside, but there's a slim chance that your configurations relied on this behavior, so look around to make sure.
 
 ## Check for removed features
 
-Several things were removed from Puppet 4, either because they no longer had practical use cases and were not being used, or there was a better work around.
+Several things were removed from Puppet, either because they no longer had practical use cases and were not being used, or there was a better work around.
 
 ### `import` statements and node inheritance
 
@@ -208,7 +208,7 @@ Node inheritance has also been removed. It is no longer possible to have node de
 
 ### Dynamic scoping in ERB
 
-In Puppet 4.0, dynamic scoping has been removed for variables in ERB templates.
+Dynamic scoping has been removed for variables in ERB templates.
 
 ~~~ ruby
 class outer {
@@ -223,9 +223,9 @@ class inner {
 include outer
 ~~~
 
-Prior to Puppet 4.x, the value supplied to `notice()` will resolve to the string dynamic.
+Prior to Puppet 4, the value supplied to `notice()` will resolve to the string dynamic.
 
-Now, in Puppet 4.x, the value supplied to `notice()` will resolve to an empty string.
+Now, the value supplied to `notice()` will resolve to an empty string.
 
 The behavior of resource defaults has not been changed.
 

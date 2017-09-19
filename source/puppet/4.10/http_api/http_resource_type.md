@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
 title: 'Puppet HTTP API: Resource Type'
 canonical: "/puppet/latest/http_api/http_resource_type.html"
 ---

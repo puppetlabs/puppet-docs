@@ -7,15 +7,9 @@ The following features of the Puppet language are deprecated, and will be remove
 
 ## Non-strict variables
 
-#### Now
-
 By default, you can access the value of a variable that was never assigned. The value of an unassigned variable is `undef`.
 
 If you set the `strict_variables` setting to true, Puppet will instead raise an error if you try to access an unassigned variable.
-
-#### In Puppet 5.0
-
-The `strict_variables` setting will be removed, and Puppet will always raise an error for accessing unassigned variables.
 
 #### Detecting and updating
 
