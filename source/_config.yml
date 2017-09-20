@@ -737,6 +737,14 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/5.1:
+    doc: puppetdb
+    version: "5.1"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/5.1.x
+      subdirectory: documentation
   /puppetdb/5.0:
     doc: puppetdb
     version: "5.0"
