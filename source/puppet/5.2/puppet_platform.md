@@ -13,12 +13,12 @@ Puppet publishes updates for operating systems starting from the time a package 
 
 See [The Puppet Enterprise Lifecycle](https://puppet.com/misc/puppet-enterprise-lifecycle) for information about phases of the Puppet Support Lifecycle.
 
-To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.0.0:
+To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.2.0:
 
 ```
 class { '::puppet_agent':
   collection      => 'latest',
-  package_version => '5.0.0',
+  package_version => '5.2.0',
 }
 ```
 
@@ -107,6 +107,12 @@ To enable the Puppet 5 Platform repository:
 
     wget https://apt.puppetlabs.com/puppet5-release-trusty.deb
     sudo dpkg -i puppet5-release-trusty.deb
+    sudo apt-get update
+
+#### Debian 9 Stretch
+
+    wget https://apt.puppetlabs.com/puppet5-release-stretch.deb
+    sudo dpkg -i puppet5-release-stretch.deb
     sudo apt-get update
 
 #### Debian 8 Jessie
