@@ -26,7 +26,13 @@ This is a feature and improvement release in the Puppet 5 series that also inclu
 
 * [All issues resolved in Puppet 5.1.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.1.0%27)
 
-### New Features
+### New platforms
+
+Packages have been added in this release for:
+
+* Debian 9 "Jessie"
+
+### New features
 
 #### Module localization
 

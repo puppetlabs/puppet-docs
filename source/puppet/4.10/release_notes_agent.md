@@ -78,6 +78,12 @@ Released August 9, 2017.
 
 The only component update in this Puppet agent release is [Puppet 4.10.6][].
 
+### New platforms
+
+These platforms have been added as of Puppet agent 1.10.6:
+
+* Debian 9 "Jessie"
+
 ## Puppet agent 1.10.5
 
 Released July 26, 2017.
