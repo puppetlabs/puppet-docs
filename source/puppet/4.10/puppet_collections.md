@@ -27,7 +27,6 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_f23.md %}
 
-
 ### Apt-based systems
 
 {% include puppet-collections/_puppet_collection_1_apt.md %}
@@ -37,6 +36,8 @@ Puppet Collection 1 contains the following components:
 {% include puppet-collections/_puppet_collection_1_u1404.md %}
 
 {% include puppet-collections/_puppet_collection_1_u1204.md %}
+
+{% include puppet-collections/_puppet_collection_1_d9.md %}
 
 {% include puppet-collections/_puppet_collection_1_d8.md %}
 

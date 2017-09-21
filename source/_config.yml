@@ -597,7 +597,7 @@ documents:
     nav: /puppet/5.2/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: ee651640958d3018e6ce4615bcdb7e5907c052f1
+      commit: 919ec59cfea9f6f43a734a940d9f3886267aacbe
       subdirectory: documentation
     my_versions:
       puppet: "5.2"
@@ -737,6 +737,14 @@ documents:
       commit: ce030bb
       subdirectory: documentation
 
+  /puppetdb/5.1:
+    doc: puppetdb
+    version: "5.1"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: origin/5.1.x
+      subdirectory: documentation
   /puppetdb/5.0:
     doc: puppetdb
     version: "5.0"
