@@ -8,10 +8,6 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
-- [CVE-2017-7555 - Memory Corruption Vulnerability in augeas](https://puppet.com/security/cve/cve-2017-7555)
-  
-   Resolved in Puppet agent 1.10.7
-
 - [CVE-2017-2299 - Possible TLS trust misconfiguration in puppetlabs-apache](https://puppet.com/security/cve/CVE-2017-2299)
 
    Resolved in puppetlabs-apache 1.11.1 and 2.1.0.
@@ -314,6 +310,10 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Third-party security announcements
 
+
+- [CVE-2017-7555 - Memory Corruption Vulnerability in augeas](https://puppet.com/security/cve/cve-2017-7555)
+  
+   Resolved in Puppet agent 1.10.7
 
 - [PostgreSQL August 2017 Security Fixes](https://puppet.com/security/cve/postgresql-aug-2017-security-fixes)
 
