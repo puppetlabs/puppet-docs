@@ -29,7 +29,8 @@ title: "Static catalogs"
 [file sync]: {{pe}}/cmgmt_filesync.html
 [Code Manager]: {{pe}}/code_mgr.html
 [`code_content`]: {{puppetserver}}/
-Puppet 4.4 and Puppet Server 2.3 introduced a new feature for [catalog compilation][catalogs]: **static catalogs**.
+
+Puppet 4.4.0 and Puppet Server 2.3.0 introduced a new feature for [catalog compilation][catalogs]: **static catalogs**.
 
 > #### What's a catalog?
 >
@@ -118,14 +119,14 @@ The script's standard output becomes the file's `code_content`, provided the scr
 
 ### Enabling or disabling static catalogs
 
-Starting in Puppet 4.4 and Puppet Server 2.3.0, the global `static_catalogs` setting is enabled by default, whether you upgrade Puppet or perform a clean installation. However, the default configuration doesn't include the `code-id-command` and `code-content-command` scripts or settings needed to produce static catalogs, and even when configured to produce static catalogs Puppet Server doesn't inline metadata for all types of file resources.
+Starting in Puppet 4.4.0 and Puppet Server 2.3.0, the global `static_catalogs` setting is enabled by default, whether you upgrade Puppet or perform a clean installation. However, the default configuration doesn't include the `code-id-command` and `code-content-command` scripts or settings needed to produce static catalogs, and even when configured to produce static catalogs Puppet Server doesn't inline metadata for all types of file resources.
 
 Static catalogs are produced only by Puppet Server. The Ruby Puppet master never produces static catalogs, even when served by WEBrick or Passenger.
 
 Puppet Server also won't produce static catalogs for an agent under the following circumstances:
 
 * If the Server's `code-id-command` and `code-content-command` settings and scripts are not configured, or if the `code-id-command` returns an empty string.
-* If the agent's `static_catalogs` setting is false, either globally in [`puppet.conf`][] or in the [`environment.conf`][] file for the environment under which the agent is requesting a catalog.
+* If the Server's `static_catalogs` setting is false, either globally in [`puppet.conf`][] or in the [`environment.conf`][] file for the environment under which the agent is requesting a catalog.
 * If the agent's version is older than 4.4.0.
 
 Additionally, Puppet Server only inlines metadata for [file resources][] if **all** of the following conditions are true:
