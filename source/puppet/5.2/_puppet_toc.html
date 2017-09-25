@@ -114,27 +114,37 @@
     * [Release notes]({{puppetserver}}/release_notes.html)
     * [Deprecated features]({{puppetserver}}/deprecated_features.html)
     * [Notable differences vs. the Apache/Passenger stack]({{puppetserver}}/puppetserver_vs_passenger.html)
-    * [Installation]({{puppetserver}}/install_from_packages.html)
+    * [Compatibility with Puppet agent]({{puppetserver}}/compatibility_with_puppet_agent.html)
+    * [Installing Puppet Server]({{puppetserver}}/install_from_packages.html)
+    * [Configuring Puppet Server]({{puppetserver}}/configuration.html)
     * [Differing behavior in puppet.conf]({{puppetserver}}/puppet_conf_setting_diffs.html)
-    * [Using Ruby gems]({{puppetserver}}/gems.html)
-    * [Subcommands]({{puppetserver}}/subcommands.html)
-    * [Backward compatibility with Puppet 3 agents]({{puppetserver}}/compatibility_with_puppet_agent.html)
-    * [Using an external CA]({{puppetserver}}/external_ca_configuration.html)
-    * [External SSL termination]({{puppetserver}}/external_ssl_termination.html)
-    * [Tuning guide]({{puppetserver}}/tuning_guide.html)
-    * [Restarting Puppet Server]({{puppetserver}}/restarting.html)
+    * **Using and extending Puppet Server**
+        * [Subcommands]({{puppetserver}}/subcommands.html)
+        * [Using Ruby gems]({{puppetserver}}/gems.html)
+        * [Using an external certificate authority]({{puppetserver}}/external_ca_configuration.html)
+        * [External SSL termination]({{puppetserver}}/external_ssl_termination.html)
+        * [Monitoring Puppet Server metrics]({{puppetserver}}/puppet_server_metrics.html)
+            * [HTTP client metrics]({{puppetserver}}/http_client_metrics.html)
+        * [Tuning guide]({{puppetserver}}/tuning_guide.html)
+        * [Applying metrics to improve performance]({{puppetserver}}/puppet_server_metrics_performance.html)
+        * [Scaling Puppet Server]({{puppetserver}}/scaling_puppet_server.html)
+        * [Restarting Puppet Server]({{puppetserver}}/restarting.html)
     * **Known issues and workarounds**
         * [Known issues]({{puppetserver}}/known_issues.html)
-        * [SSL problems with load-balanced PuppetDB servers ("server certificate change" error)]({{puppetserver}}/ssl_server_certificate_change_and_virtual_ips.html)
-    * **Administrative API**
+        * [SSL problems with load-balanced PuppetDB servers ("Server Certificate Change" error)]({{puppetserver}}/ssl_server_certificate_change_and_virtual_ips.html)
+    * **Administrative API endpoints**
         * [Environment cache]({{puppetserver}}/admin-api/v1/environment-cache.html)
         * [JRuby pool]({{puppetserver}}/admin-api/v1/jruby-pool.html)
-    * **Puppet API**
+    * **Server-specific Puppet API endpoints**
         * [Environment classes]({{puppetserver}}/puppet-api/v3/environment_classes.html)
+        * [Environment modules]({{puppetserver}}/puppet-api/v3/environment_modules.html)
         * [Static file content]({{puppetserver}}/puppet-api/v3/static_file_content.html)
-    * **Status API**
-        * [Services]({{puppetserver}}/status-api/v1/services.html)
-    * **Developer info**
+    * **Status API endpoints**
+        * [Status services]({{puppetserver}}/status-api/v1/services.html)
+    * **Metrics API endpoints**
+        * [v1 metrics]({{puppetserver}}/metrics-api/v1/metrics_api.html)
+        * [v2 (Jolokia) metrics]({{puppetserver}}/metrics-api/v2/metrics_api.html)
+    * **Developer information**
         * [Debugging]({{puppetserver}}/dev_debugging.html)
         * [Running from source]({{puppetserver}}/dev_running_from_source.html)
         * [Tracing code events]({{puppetserver}}/dev_trace_func.html)
