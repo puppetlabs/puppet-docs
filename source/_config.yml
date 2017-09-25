@@ -597,7 +597,7 @@ documents:
     nav: /puppet/5.2/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 919ec59cfea9f6f43a734a940d9f3886267aacbe
+      commit: c33e0e5adf91444c55b6679b9b856ae3f14f6fde
       subdirectory: documentation
     my_versions:
       puppet: "5.2"
