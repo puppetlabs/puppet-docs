@@ -348,6 +348,7 @@ end
 desc "Build body-only HTML content (+ sidebar nav)"
 task :body_and_nav_html_only do
   # Rake::Task['check_git_dirty_status'].invoke
+  # The reason this was breaking jjb was because every time the job runs, it starts with a new workspace, unlike our old jobs. If you're running this command locally, you may want to uncomment the above line.
   Dir.chdir("#{SOURCE_DIR}/_layouts") do
     FileUtils.mv("default.html", "real_default.html")
     FileUtils.mv("body_only.html", "default.html")
