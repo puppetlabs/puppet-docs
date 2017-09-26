@@ -347,7 +347,7 @@ end
 
 desc "Build body-only HTML content (+ sidebar nav)"
 task :body_and_nav_html_only do
-  Rake::Task['check_git_dirty_status'].invoke
+  # Rake::Task['check_git_dirty_status'].invoke
   Dir.chdir("#{SOURCE_DIR}/_layouts") do
     FileUtils.mv("default.html", "real_default.html")
     FileUtils.mv("body_only.html", "default.html")
