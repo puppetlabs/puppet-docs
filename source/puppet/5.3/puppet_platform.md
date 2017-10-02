@@ -13,12 +13,12 @@ Puppet publishes updates for operating systems starting from the time a package 
 
 See [The Puppet Enterprise Lifecycle](https://puppet.com/misc/puppet-enterprise-lifecycle) for information about phases of the Puppet Support Lifecycle.
 
-To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.2.0:
+To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.3.1:
 
 ```
 class { '::puppet_agent':
   collection      => 'latest',
-  package_version => '5.2.0',
+  package_version => '5.3.1',
 }
 ```
 
@@ -35,19 +35,17 @@ Package                              | Contents
 `puppetdb`                           | [PuppetDB](/puppetdb/)
 `puppetdb-termini`                   | Plugins to let [Puppet Server talk to PuppetDB](/puppetdb/latest/connect_puppet_master.html)
 
-
 ## Using Puppet 5 Platform
 
-The way you access Puppet 5 Platform  depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
+The way you access Puppet 5 Platform depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
 
 > **Note:** macOS and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/reference/about_agent.html). macOS `puppet-agent` packages are organized by Puppet Platform; for more information, see [the macOS installation instructions](./install_osx.html).
-
 
 ### Yum-based systems
 
 To enable the Puppet 5 Platform repository:
 
-1. Choose the package based on your operating system and version. The packages are located in the [`yum.puppet.com`](https://yum.puppet.com) repository and named using the following convention:
+1. Choose the package based on your operating system and version. The packages are located in the `puppet5` directory of the [`yum.puppet.com`](https://yum.puppet.com) repository and named using the following convention:
 
    `<PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm`
 
@@ -55,30 +53,36 @@ To enable the Puppet 5 Platform repository:
 
 2. Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
 
-    `sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm`
-
 #### Enterprise Linux 7
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
 
 #### Enterprise Linux 6
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-6.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-6.noarch.rpm
 
 #### Enterprise Linux 5
 
-    wget https://yum.puppetlabs.com/puppet5/puppet5-release-el-5.noarch.rpm
+    wget https://yum.puppet.com/puppet5/puppet5-release-el-5.noarch.rpm
     sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
 
+#### Fedora 26
+
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-26.noarch.rpm
+
 #### Fedora 25
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-25.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-25.noarch.rpm
 
-#### Fedora 24
+#### SuSE Enterprise Linux 12
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-24.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-sles-12.noarch.rpm
+
+#### SuSE Enterprise Linux 11
+
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-sles-11.noarch.rpm
 
 ### Apt-based systems
 
@@ -127,7 +131,6 @@ To enable the Puppet 5 Platform repository:
     sudo dpkg -i puppet5-release-wheezy.deb
     sudo apt-get update
 
-
 ### Windows and macOS systems
 
 While the [`puppet-agent` package](./about_agent.html) is the only component of the Puppet Platform available on macOS and Windows, you can still use Puppet Platform to ensure the version of `package-agent` you install is compatible with the rest of your infrastructure.
@@ -139,7 +142,6 @@ To download `puppet-agent` for Puppet 5 Platform on macOS:
 To download `puppet-agent` for Puppet 5 Platform on Windows:
 
 * [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet5/)
-
 
 ## Verifying Puppet packages
 
@@ -236,7 +238,6 @@ Puppet RPM packages include an embedded signature. To verify it, you must import
         MD5 digest: OK (4878909ccdd0af24fa9909790dd63a12)
    ~~~
 
-
 If you don't import the Puppet public key, you can still verify the package's integrity using `rpm -vK`. However, you won't be able to validate the package's origin:
 
     puppet-agent-1.5.1-1.el6.x86_64.rpm:
@@ -264,7 +265,6 @@ The tool confirms the signature and outputs fingerprints for each certificate in
            -----------------------------------------------------------------------------
         3. Apple Root CA
            SHA1 fingerprint: 61 1E 5B 66 2C 59 3A 08 FF 58 D1 4A E2 24 52 D1 98 DF 6C 60
-
 
 You can also confirm the certificate when installing the package by clicking the lock icon in the top-right corner of the installer:
 

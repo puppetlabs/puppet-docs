@@ -33,8 +33,9 @@ Install the Puppet agent so that your master can communicate with your Linux nod
 
 4. Install the `puppet-agent` package on your Puppet agent nodes using the command appropriate to your system:
 
-   * Yum -- `sudo yum install puppet-agent`.
-   * Apt -- `sudo apt-get install puppet-agent`.
+   * Yum -- `sudo yum install puppet-agent`
+   * Apt -- `sudo apt-get install puppet-agent`
+   * Zypper -- `sudo zypper install puppet-agent`
 
 5. (Optional) Configure agent settings.
 
