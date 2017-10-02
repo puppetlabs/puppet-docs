@@ -6,9 +6,10 @@ title: "Puppet agent release notes"
 [Puppet 5.0.0]: /puppet/5.0/release_notes.html#puppet-500
 [Puppet 5.1.0]: /puppet/5.1/release_notes.html#puppet-510
 [Puppet 5.2.0]: /puppet/5.2/release_notes.html#puppet-520
+[Puppet 5.3.1]: /puppet/5.2/release_notes.html#puppet-531
 
 [Facter 3.9.0]: /facter/3.9/release_notes.html#facter-390
-[Facter 3.9.1]: /facter/3.9/release_notes.html#facter-391
+[Facter 3.9.2]: /facter/3.9/release_notes.html#facter-392
 
 [MCollective 2.11.2]: /mcollective/releasenotes.html#2_11_2
 [MCollective 2.11.3]: /mcollective/releasenotes.html#2_11_3
@@ -27,10 +28,16 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
 
-## Puppet agent 5.3.0
+## Puppet agent 5.3.1
 
-Released September 26, 2017.
+Released October 2, 2017.
+
+This is a feature and bug-fix release of Puppet Platform that also adds new operating system packages. There was no packaged release of Puppet agent 5.3.0; version 5.3.1 is the first packaged release of the 5.3.x series.
 
 ### Component updates
 
-This release of `puppet-agent` includes component updates to [Puppet 5.3.0][], [Facter 3.9.1][], [MCollective 2.11.3][], and [pxp-agent][] 1.8.0.
+This release includes component updates to [Puppet 5.3.1][], [Facter 3.9.2][], [MCollective 2.11.3][], and [pxp-agent][] 1.8.0.
+
+### Platform updates
+
+This release adds packages for Fedora 26, and for SLES 12 on POWER architectures. It also removes packages for Fedora 24, which [entered end-of-life status on August 8, 2017](https://fedoraproject.org/wiki/End_of_life).
