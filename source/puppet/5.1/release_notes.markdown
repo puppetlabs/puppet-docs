@@ -30,7 +30,7 @@ This is a feature and improvement release in the Puppet 5 series that also inclu
 
 Packages have been added in this release for:
 
-* Debian 9 "Jessie"
+* Debian 9 "Stretch"
 
 ### New features
 
