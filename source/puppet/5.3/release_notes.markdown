@@ -20,33 +20,41 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
-## Puppet 5.3.0
+## Puppet 5.3.1
 
-Released September 26, 2017.
+Released October 2, 2017.
 
-This is a feature and improvement release in the Puppet 5 series that also includes several bug fixes.
+This is a feature, bug-fix, and improvement release in the Puppet 5 series. Puppet 5.3.0 was not packaged for release.
 
--   [All issues resolved in Puppet 5.3.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.0%27)
+-   [All issues resolved in Puppet 5.3.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.1%27)
 
-### New feature: Puppet agents retry requests on a configurable delay if Puppet Server is busy
+### New feature: Puppet agents can retry requests on a configurable delay if Puppet Server is busy
 
 When a group of Puppet agents start their Puppet runs together, they can form a "thundering herd" capable of exceeding Puppet Server's available resources. This results in a growing backlog of requests from Puppet agents waiting for a JRuby instance to become free before their request can be processed. If this backlog exceeds the size of the Server's Jetty thread pool, other requests (such as status checks) start timing out. (For more information about JRubies and Server performance, see [Applying metrics to improve performance]({{puppetserver}}/puppet_server_metrics_performance.html#measuring-capacity-with-jrubies).)
 
 In previous versions of Puppet Server, administrators had to manually remediate this situation by separating groups of agent requests, for instance through rolling restarts. In Server 5.1.0, administrators can optionally have Server return a 503 response containing a `Retry-After` header to requests when the JRuby backlog exceeds a certain limit, causing agents to pause before retrying the request.
 
-Both the backlog limit and `Retry-After` period are configurable, as the `max-queued-requests` and `max-retry-delay` settings respectively under the `jruby-puppet` configuration in [puppetserver.conf]({{puppetserver}}/config_file_puppetserver.html). Both settings' default values do not change Puppet Server's behavior compared to Server 5.0.0, so to take advantage of this feature in Puppet Server 5.1.0, you must specify your own values for `max-queued-requests` and `max-retry-delay`. For details, see the [puppetserver.conf]({{puppetserver}}/config_file_puppetserver.html) documentation. Also, Puppet agents must run Puppet 5.3.0 or newer to respect such headers.
+Both the backlog limit and `Retry-After` period are configurable, as the `max-queued-requests` and `max-retry-delay` settings respectively under the `jruby-puppet` configuration in [puppetserver.conf]({{puppetserver}}/config_file_puppetserver.html). Both settings' default values do not change Puppet Server's behavior compared to Server 5.0.0, so to take advantage of this feature in Puppet Server 5.1.0, you must specify your own values for `max-queued-requests` and `max-retry-delay`. For details, see the [puppetserver.conf]({{puppetserver}}/config_file_puppetserver.html) documentation. Also, Puppet agents must run Puppet 5.3.1 or newer to respect such headers.
 
 -   [PUP-7451](https://tickets.puppetlabs.com/browse/PUP-7902)
 -   [SERVER-1767](https://tickets.puppetlabs.com/browse/SERVER-1767)
 
+### New feature: End-entity certificate revocation checking
+
+Puppet 5.3.1 can be configured to perform end-entity certificate revocation checking.
+
+The [`certificate_revocation`](https://docs.puppet.com/puppet/latest/configuration.html#certificaterevocation) setting in the `[main]` section of `puppet.conf` (or specified on the command line) now supports being set to `chain` or `leaf`. When set to `chain` (equivalent to `true`, and the default setting in 5.3.1), Puppet checks every certificate in the chain against the certificate revocation list (CRL). When set to `leaf`, CRL checks are limited to the end-entity certificate. This allows for basic revocation checking when using an intermediate CA certificate with Puppet.
+
+-   [PUP-7845](https://tickets.puppetlabs.com/browse/PUP-7845)
+
 ### Regression fix: Allow trailing commas when specifying a type alias
 
-Puppet 5.2.0 would falsely report a syntax error when including an optional trailing comma in a type alias specification, such as `type X = Variant\[Integer,]`. Puppet 5.3.0 resolves this regression by allowing trailing commas as expected.
+Puppet 5.2.0 would falsely report a syntax error when including an optional trailing comma in a type alias specification, such as `type X = Variant\[Integer,]`. Puppet 5.3.1 resolves this regression by allowing trailing commas as expected.
 
 -   [PUP-7952](https://tickets.puppetlabs.com/browse/PUP-7952)
 
 ### Bug fix: Heredocs closed by `-END` removes only the last trailing newline in a heredoc as expected
 
-When a heredoc ended with a dash-prefixed tag (such as `-END`) to indicate that the final newline should be removed from the result, not only did Puppet remove the last newline, but it also reduced all multiple empty lines into single empty lines across the entire heredoc. Puppet 5.3.0 resolves this issue by removing only the single last trailing newline as expected.
+When a heredoc ended with a dash-prefixed tag (such as `-END`) to indicate that the final newline should be removed from the result, not only did Puppet remove the last newline, but it also reduced all multiple empty lines into single empty lines across the entire heredoc. Puppet 5.3.1 resolves this issue by removing only the single last trailing newline as expected.
 
 -   [PUP-7902](https://tickets.puppetlabs.com/browse/PUP-7902)
