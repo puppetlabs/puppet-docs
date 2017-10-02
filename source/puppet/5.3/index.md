@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 5.2 reference manual"
+title: "Puppet 5.3 reference manual"
 toc: false
 ---
 
