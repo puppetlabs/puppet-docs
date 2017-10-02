@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 3ce801f143dd39528009524565033e0ca5d79da7
+built_from_commit: bf21e710449e0f547daacd58df9685c937b7936e
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-10-02 13:43:53 -0700
 
 ## About Resource Types
 
@@ -8338,4 +8338,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-09-12 18:05:30 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-10-02 13:43:53 -0700
