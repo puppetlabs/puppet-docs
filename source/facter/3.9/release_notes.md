@@ -5,32 +5,36 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.9 series.
 
-## Facter 3.9.1
+## Facter 3.9.2
 
-Released September 26, 2017.
+Released October 2, 2017.
 
-This is a bug-fix release of Facter and libwhereami that addresses potential fatal errors in the new `hypervisors` fact.
+This is a bug-fix release of Facter and libwhereami that addresses potential fatal errors in the new `hypervisors` fact. Facter 3.9.1 was not publicly released.
 
--   [All issues resolved in Facter 3.9.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.1%27)
+-   [All issues resolved in Facter 3.9.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.2%27)
 -   [All issues resolved in libwhereami 0.1.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27whereami+0.1.2%27)
 
 ### Bug fix: Fix `hypervisors` fact resolution when run inside some Windows VMs
 
-When running Facter 3.9.0 in virtualized Windows environments where Windows Management Instrumentation (WMI) values were only partially available, for instance on an OpenStack VM, Facter exited with a fatal `unhandled exception: unable to get from empty array of objects` error. Facter 3.9.1 resolves this issue.
+When running Facter 3.9.0 in virtualized Windows environments where Windows Management Instrumentation (WMI) values were only partially available, for instance on an OpenStack VM, Facter exited with a fatal `unhandled exception: unable to get from empty array of objects` error. Facter 3.9.2 resolves this issue.
 
 -   [FACT-1749](https://tickets.puppetlabs.com/browse/FACT-1749)
 
 ### Bug fix: Prevent failed fact resolutions from stopping Facter
 
-In previous versions of Facter, a failed fact resolution could halt Facter. Facter 3.9.1 resolves this issue by displaying failures as warnings and continuing to resolve other facts.
+In previous versions of Facter, a failed fact resolution could halt Facter. Facter 3.9.2 resolves this issue by displaying failures as warnings and continuing to resolve other facts.
 
 -   [FACT-1750](https://tickets.puppetlabs.com/browse/FACT-1750)
 
 ### Bug fix: Allow `hypervisors` fact to be blocked
 
-The experimental `hypervisors` fact introduced in Facter 3.9.0 can cause Facter to fail in some virtualization environments. In Facter 3.9.1, you can block this fact in [`facter.conf`](./configuring_facter.html).
+The experimental `hypervisors` fact introduced in Facter 3.9.0 can cause Facter to fail in some virtualization environments. In Facter 3.9.2, you can block this fact in [`facter.conf`](./configuring_facter.html).
 
 -   [FACT-1751](https://tickets.puppetlabs.com/browse/FACT-1751)
+
+### Other bug fixes
+
+-   [FACT-1765](https://tickets.puppetlabs.com/browse/FACT-1765), [PA-1466](https://tickets.puppetlabs.com/browse/PA-1466): Don't report warnings about a missing dmidecode component on Power8 systems, which don't use dmidecode.
 
 ## Facter 3.9.0
 
