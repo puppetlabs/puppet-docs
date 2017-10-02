@@ -82,7 +82,7 @@ The only component update in this Puppet agent release is [Puppet 4.10.6][].
 
 These platforms have been added as of Puppet agent 1.10.6:
 
-* Debian 9 "Jessie"
+* Debian 9 "Stretch"
 
 ## Puppet agent 1.10.5
 
