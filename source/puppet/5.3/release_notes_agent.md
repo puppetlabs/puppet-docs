@@ -6,7 +6,7 @@ title: "Puppet agent release notes"
 [Puppet 5.0.0]: /puppet/5.0/release_notes.html#puppet-500
 [Puppet 5.1.0]: /puppet/5.1/release_notes.html#puppet-510
 [Puppet 5.2.0]: /puppet/5.2/release_notes.html#puppet-520
-[Puppet 5.3.1]: /puppet/5.2/release_notes.html#puppet-531
+[Puppet 5.3.1]: /puppet/5.3/release_notes.html#puppet-531
 
 [Facter 3.9.0]: /facter/3.9/release_notes.html#facter-390
 [Facter 3.9.2]: /facter/3.9/release_notes.html#facter-392
