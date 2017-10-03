@@ -91,7 +91,7 @@ The install class must be located in the `install.pp` file. It should contain al
 The install class must be named `module::install`, as in the `ntp` module:
 
 ``` ruby
-class ntp::install inherits ntp {
+class ntp::install {
 
   if $ntp::package_manage {
 
@@ -112,7 +112,7 @@ The resources related to configuring the installed software should be placed in 
 For example, see the `module::config` class in the `ntp` module:
 
 ``` ruby
-class ntp::config inherits ntp {
+class ntp::config {
 
   #The servers-netconfig file overrides NTP config on SLES 12, interfering with our configuration.
   if $facts['operatingsystem'] == 'SLES' and $facts['operatingsystemmajrelease'] == '12' {
@@ -154,7 +154,7 @@ The remaining service resources, and anything else related to the running state 
 For example:
 
 ``` ruby
-class ntp::service inherits ntp {
+class ntp::service {
 
   if ! ($ntp::service_ensure in [ 'running', 'stopped' ]) {
     fail('service_ensure parameter must be running or stopped')
@@ -191,7 +191,7 @@ Best practices recommend the pattern of `thing_property` for naming parameters.
 For example, in the `ntp` module
 
 ``` ruby
-class ntp::install inherits ntp {
+class ntp::install {
 
   if $ntp::package_manage {
 
@@ -332,7 +332,7 @@ For guidance, see our modules documentation [guide](./modules_documentation.html
 {:.concept}
 ## Releasing your module
 
-We encourage you to publish your modules on the [Puppet Forge](http://forge.puppet.com). 
+We encourage you to publish your modules on the [Puppet Forge](http://forge.puppet.com).
 
 Sharing your modules allows other users to write improvements to the modules you make available and contribute them back to you, effectively giving you free improvements to your modules.
 

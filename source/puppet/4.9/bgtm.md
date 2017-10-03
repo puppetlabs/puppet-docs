@@ -84,7 +84,7 @@ The install class must be located in the `install.pp` file. It should contain al
 The install class must be named `module::install`, as in the `ntp` module:
 
 ``` ruby
-class ntp::install inherits ntp {
+class ntp::install {
 
   if $ntp::package_manage {
 
@@ -104,7 +104,7 @@ The resources related to configuring the installed software should be placed in 
 For example, see the `module::config` class in the `ntp` module:
 
 ``` ruby
-class ntp::config inherits ntp {
+class ntp::config {
 
   #The servers-netconfig file overrides NTP config on SLES 12, interfering with our configuration.
   if $facts['operatingsystem'] == 'SLES' and $facts['operatingsystemmajrelease'] == '12' {
@@ -145,7 +145,7 @@ The remaining service resources, and anything else related to the running state 
 For example:
 
 ``` ruby
-class ntp::service inherits ntp {
+class ntp::service {
 
   if ! ($ntp::service_ensure in [ 'running', 'stopped' ]) {
     fail('service_ensure parameter must be running or stopped')
@@ -176,7 +176,7 @@ Naming consistency is imperative for community comprehension and assists in trou
 For example, in the `ntp` module
 
 ``` ruby
-class ntp::install inherits ntp {
+class ntp::install {
 
   if $ntp::package_manage {
 
