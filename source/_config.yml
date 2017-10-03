@@ -317,14 +317,6 @@ documents:
       puppetserver: "2.7"
       puppetdb: "4.3"
 
-  /puppet/5.3:
-    doc: puppet
-    version: "5.3"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.9"
-      hiera: "3.4"
-      puppetserver: "5.1"
   /puppet/5.2:
     doc: puppet
     version: "5.2"
