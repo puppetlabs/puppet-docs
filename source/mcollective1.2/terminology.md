@@ -70,7 +70,7 @@ Agents expose tasks, we call these tasks actions.  Each agent like a exim queue 
 expose many tasks like *mailq*, *rm*, *retry* etc.  These are al actions provided by an agent.
 
 ## Facts
-Discreet bits of information about your nodes. Examples could be the domain name, country,
+Discrete bits of information about your nodes. Examples could be the domain name, country,
 role, operating system release etc.
 
 Facts are provided by plugins of the type *MCollective::Facts*, you can read about writing
