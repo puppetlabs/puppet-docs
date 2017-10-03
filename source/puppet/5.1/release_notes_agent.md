@@ -35,4 +35,4 @@ This release of `puppet-agent` includes component updates to [Puppet 5.1.0][], [
 
 Packages have been added in this release for:
 
-* Debian 9 "Jessie"
+* Debian 9 "Stretch"
