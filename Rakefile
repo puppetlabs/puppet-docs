@@ -170,7 +170,7 @@ end
 desc "Clean up any crap left over from failed docs site builds"
 task :clean do
   # Get rid of external sources symlinks
-  pust "Deleting symlinks to external sources..."
+  puts "Deleting symlinks to external sources..."
   Rake::Task['externalsources:clean'].invoke
   Rake::Task['externalsources:clean'].reenable
   # Get rid of the amended config file we write for Jekyll
@@ -348,12 +348,27 @@ end
 desc "Build body-only HTML content (+ sidebar nav)"
 task :body_and_nav_html_only do
   # Rake::Task['check_git_dirty_status'].invoke
-  # The reason this was breaking jjb was because every time the job runs, it starts with a new workspace, unlike our old jobs. If you're running this command locally, you may want to uncomment the above line.
+  # The reason the above line was breaking jjb was because every time the job runs, it starts with a new workspace, unlike our old jobs. If you're running this command locally, you may want to uncomment the above line.
   Dir.chdir("#{SOURCE_DIR}/_layouts") do
     FileUtils.mv("default.html", "real_default.html")
     FileUtils.mv("body_only.html", "default.html")
   end
-  Rake::Task['generate'].invoke
+
+  # These steps below are the steps inside of :generate, minus the symlinks, and redirect tasks. Symlinks were doing weird things on Mikey's end, so I removed that task.
+  Rake::Task['externalsources:update'].invoke # Create external sources if necessary, and check out the required working directories
+  Rake::Task['externalsources:link'].invoke # Link docs folders from external sources into the source at the appropriate places.
+
+  system("mkdir -p #{OUTPUT_DIR}")
+  system("rm -rf #{OUTPUT_DIR}/*")
+  jekyll()
+
+  Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
+  Rake::Task['externalsources:clean'].reenable
+
+
+  if @config_data['preview'].class == Array && @config_data['preview'].length > 0
+    puts "THIS IS A PREVIEW VERSION, AND IT'S MISSING IMPORTANT STUFF. Do not deploy the site in this state; this is for local viewing only. To build a real version of the site, delete the `preview:` key from _config.yml."
+  end
   
   Dir.chdir("#{SOURCE_DIR}/_layouts") do
     FileUtils.mv("default.html", "body_only.html")
