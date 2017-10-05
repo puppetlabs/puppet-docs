@@ -179,4 +179,6 @@ Set-WinSystemLocale en-US
 {:.task}
 ### Disabling internationalized strings
 
-Puppet 5.3.2 adds the optional Boolean `disable_i18n` setting, which you can configure in the `[main]` section of `puppet.conf`. If set to `true`, Puppet disables localized strings in log messages, reports, and parts of the command-line interface. This can improve performance when using Puppet modules, especially if [environment caching](./environments_creating.markdown#environment_timeout) is disabled, and even if you don't need localized strings or the modules aren't localized. This setting is `false` by default in open source Puppet.
+Puppet 5.3.2 adds the optional Boolean `disable_i18n` setting, which you can configure in `puppet.conf`. If set to `true`, Puppet disables localized strings in log messages, reports, and parts of the command-line interface. This can improve performance when using Puppet modules, especially if [environment caching](./environments_creating.markdown#environment_timeout) is disabled, and even if you don't need localized strings or the modules aren't localized. This setting is `false` by default in open source Puppet.
+
+If you're experiencing performance issues, configure this setting in the `[master]` section of the Puppet master's `puppet.conf` file. To force unlocalized messages, which are in English by default, configure this section in a node's `[main]` or `[user]` sections of `puppet.conf`.
