@@ -86,7 +86,7 @@ Some default values are based on other settings --- when this is the case, the d
 {:.concept}
 ## Configuring locale settings
 
-Puppet 5.2.0 adds support for locale-specific strings in output, and it detects your locale from your system configuration.
+Puppet 5.2.0 added support for locale-specific strings in output, and it detects your locale from your system configuration. This provides localized strings, report messages, and log messages for the locale's language when available.
 
 Upon startup, Puppet looks for a set of environment variables on \*nix systems, or the code page setting on Windows. When Puppet finds one that is set, it uses that locale whether it is run from the command line or as a service.
 
@@ -109,7 +109,7 @@ LC_TIME="en_US.UTF-8"
 LC_ALL=
 ```
 
-To see which locales are supported by your system, run `locale -a`, which outputs a list of available locales. Note that Puppet might not have translated strings for every available locale.
+To see which locales are supported by your system, run `locale -a`, which outputs a list of available locales. Note that Puppet might not have localized strings for every available locale.
 
 To check the current status of environment variables that might conflict with or override your locale settings, use the `set` command. For example, this command lists the set environment variables and searches for those containing `LANG` or `LC_`:
 
@@ -175,3 +175,10 @@ On Windows 10, you can use PowerShell to set the system locale:
 ```
 Set-WinSystemLocale en-US
 ```
+
+{:.task}
+### Disabling internationalized strings
+
+Puppet 5.3.2 adds the optional Boolean `disable_i18n` setting, which you can configure in `puppet.conf`. If set to `true`, Puppet disables localized strings in log messages, reports, and parts of the command-line interface. This can improve performance when using Puppet modules, especially if [environment caching](./environments_creating.markdown#environment_timeout) is disabled, and even if you don't need localized strings or the modules aren't localized. This setting is `false` by default in open source Puppet.
+
+If you're experiencing performance issues, configure this setting in the `[master]` section of the Puppet master's `puppet.conf` file. To force unlocalized messages, which are in English by default, configure this section in a node's `[main]` or `[user]` sections of `puppet.conf`.

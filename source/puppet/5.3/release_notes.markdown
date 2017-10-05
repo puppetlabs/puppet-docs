@@ -20,6 +20,20 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.3.2
+
+Released October 5, 2017.
+
+This is a bug-fix release of Puppet Platform that adds a [new `puppet.conf` setting](./configuration_about_settings.html) to disable some internationalized strings for improved performance.
+
+-   [All issues resolved in Puppet 5.3.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.2%27)
+
+### New feature: Disabling internationalized strings
+
+Puppet 5.3.2 adds the optional Boolean `disable_i18n` setting, which you can configure in `puppet.conf`. If set to `true`, Puppet disables translated strings in log messages, reports, and parts of the command-line interface. This can improve performance, especially if you don't need all strings translated from English. This setting is `false` by default in open source Puppet.
+
+-   [PUP-8009](https://tickets.puppetlabs.com/browse/PUP-8009)
+
 ## Puppet 5.3.1
 
 Released October 2, 2017.

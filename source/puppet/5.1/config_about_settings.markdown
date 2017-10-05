@@ -84,3 +84,95 @@ If a setting isn't specified on the command line or in `puppet.conf`, it falls b
 
 Some default values are based on other settings --- when this is the case, the default is shown using the other setting as a variable (similar to `$ssldir/certs`).
 
+{:.concept}
+## Configuring locale settings
+
+Puppet 5.2.0 added support for locale-specific strings in output, and it detects your locale from your system configuration. This provides localized strings, report messages, and log messages for the locale's language when available.
+
+Upon startup, Puppet looks for a set of environment variables on \*nix systems, or the code page setting on Windows. When Puppet finds one that is set, it uses that locale whether it is run from the command line or as a service.
+
+For help setting your operating system's locale or adding new locales, consult its documentation. This section covers setting the locale for Puppet services.
+
+{:.task}
+### Checking your locale settings on \*nix and macOS
+
+To check your current locale settings, run the `locale` command. This outputs the settings used by your current shell.
+
+```
+$ locale
+LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_ALL=
+```
+
+To see which locales are supported by your system, run `locale -a`, which outputs a list of available locales. Note that Puppet might not have localized strings for every available locale.
+
+To check the current status of environment variables that might conflict with or override your locale settings, use the `set` command. For example, this command lists the set environment variables and searches for those containing `LANG` or `LC_`:
+
+```
+sudo set | egrep 'LANG|LC_'
+```
+
+{:.task}
+### Checking your locale settings on Windows
+
+To check your current locale setting, run the `Get-WinSystemLocale` command from PowerShell.
+
+```
+PS C:\> Get-WinSystemLocale
+LCID             Name             DisplayName
+----             ----             -----------
+1033             en-US            English (United States)
+```
+
+To check your system's current code page setting, run the `chcp` command.
+
+{:.task}
+### Setting your locale on *nix with an environment variable
+
+You can use environment variables to set your locale for processes started on the command line. For most Linux distributions, set the `LANG` variable to your preferred locale, and the `LANGUAGE` variable to an empty string. On SLES, also set the `LC_ALL` variable to an empty string.
+
+For example, to set the locale to Japanese for a terminal session on SLES:
+
+```
+export LANG=ja_JP.UTF-8
+export LANGUAGE=''
+export LC_ALL=''
+```
+
+To set the locale for the Puppet agent service, you can add these `export` statements to:
+
+-   `/etc/sysconfig/puppet` on RHEL and its derivatives
+-   `/etc/default/puppet` on Debian, Ubuntu, and their derivatives
+
+After updating the file, restart the Puppet service to apply the change.
+
+{:.task}
+### Setting your locale for the Puppet agent service on macOS
+
+To set the locale for the Puppet agent service on macOS, update the `LANG` setting in the `/Library/LaunchDaemons/com.puppetlabs.puppet.plist` file.
+
+```xml
+<dict>
+        <key>LANG</key>
+        <string>ja_JP.UTF-8</string>
+</dict>
+```
+
+After updating the file, restart the Puppet service to apply the change.
+
+{:.task}
+### Setting your locale on Windows
+
+On Windows, Puppet uses the `LANG` environment variable if it is set. If not, it uses the configured region, as set in the Administrator tab of the Region control panel.
+
+On Windows 10, you can use PowerShell to set the system locale:
+
+```
+Set-WinSystemLocale en-US
+```

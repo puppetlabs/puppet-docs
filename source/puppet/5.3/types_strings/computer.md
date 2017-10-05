@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: bf21e710449e0f547daacd58df9685c937b7936e
+built_from_commit: ab595327c42b4fbafdd669d8a0208ce081c03133
 title: 'Resource Type: computer'
 canonical: "/puppet/latest/types/computer.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-02 13:43:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:17:52 -0700
 
 computer
 -----
@@ -113,4 +113,4 @@ type as per other platforms.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-02 13:43:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:17:52 -0700
