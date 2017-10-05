@@ -87,7 +87,7 @@ Some default values are based on other settings --- when this is the case, the d
 {:.concept}
 ## Configuring locale settings
 
-Puppet 5.2.0 added support for locale-specific strings in output, and it detects your locale from your system configuration. This provides localized strings, report messages, and log messages for the locale's language when available.
+Puppet 5.1 adds support for locale-specific strings in output, and it detects your locale from your system configuration. This provides localized strings, report messages, and log messages for the locale's language when available.
 
 Upon startup, Puppet looks for a set of environment variables on \*nix systems, or the code page setting on Windows. When Puppet finds one that is set, it uses that locale whether it is run from the command line or as a service.
 
