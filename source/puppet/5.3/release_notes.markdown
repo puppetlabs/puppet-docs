@@ -20,6 +20,20 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.3.2
+
+Released October 5, 2017.
+
+This is a bug-fix release of Puppet Platform that adds a [new `puppet.conf` setting](./configuration_about_settings.html) to disable some internationalized strings for improved performance.
+
+-   [All issues resolved in Puppet 5.3.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.2%27)
+
+### New feature: Disabling internationalized strings
+
+Puppet 5.3.2 adds the optional Boolean `disable_i18n` setting, which you can configure in the `[main]` section of `puppet.conf`. If set to `true`, Puppet disables translated strings in log messages, reports, and parts of the command-line interface. This can improve performance, especially if you don't need all strings translated from English. This setting is `false` by default in open source Puppet.
+
+-   [
+
 ## Puppet 5.3.1
 
 Released October 2, 2017.
@@ -58,3 +72,9 @@ Puppet 5.2.0 would falsely report a syntax error when including an optional trai
 When a heredoc ended with a dash-prefixed tag (such as `-END`) to indicate that the final newline should be removed from the result, not only did Puppet remove the last newline, but it also reduced all multiple empty lines into single empty lines across the entire heredoc. Puppet 5.3.1 resolves this issue by removing only the single last trailing newline as expected.
 
 -   [PUP-7902](https://tickets.puppetlabs.com/browse/PUP-7902)
+
+### Known issue: Module performance can degrade if environment caching is not enabled
+
+[Puppet 5.2.0](/puppet/5.2/release_notes.html) introduced support for internationalized strings in Puppet modules. However, this feature can cause significant performance regressions if [environment caching](./environments_creating.markdown#environment_timeout) is disabled, for instance by setting `environment_timeout==0`, even if the module doesn't include internationalized content. Puppet 5.3.2 introduces an optional `disable_i18n` setting in `puppet.conf` to avoid using localized strings and restore degraded performance.
+
+-   [PUP-8002](https://tickets.puppetlabs.com/browse/PUP-8002)

@@ -28,6 +28,10 @@ This is a feature and improvement release in the Puppet 5 series that also inclu
 
 -   [All issues resolved in Puppet 5.2.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.2.0%27)
 
+### Known Issues
+
+-   [PUP-8002](https://tickets.puppetlabs.com/browse/PUP-8002): Puppet 5.2.0 introduces support for internationalized strings in Puppet modules. However, this feature can cause significant performance regressions if [environment caching](./environments_creating.markdown#environment_timeout) is disabled, for instance by setting `environment_timeout==0`, even if the module doesn't include internationalized content. Puppet 5.3.2 introduces an optional `disable_i18n` setting in `puppet.conf` to avoid using localized strings and restore degraded performance.
+
 ### New Features
 
 -   [PA-1104](https://tickets.puppetlabs.com/browse/PUP-7645): Puppet can output warning and error strings in Japanese on systems with a Japanese locale setting. For details about configuring locale settings for the Puppet agent service, see [Configuration: How Puppet is configured](./config_about_settings.html).
