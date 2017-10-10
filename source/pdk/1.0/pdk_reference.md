@@ -88,7 +88,7 @@ pdk new task my_task
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-`--template-url=<GIT_URL>` | Overrides the template to use when generating this task. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
+`--template-url=<GIT_URL>` | Overrides the template to use when generating this task. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not specified, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
 `<task_name>` | **Required**. The name of the task to generate. | A task name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
 
 ## `pdk validate` command

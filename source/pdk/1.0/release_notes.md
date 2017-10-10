@@ -17,13 +17,13 @@ Released 10 October 2017
 
 PDK can now create tasks in modules. Tasks allow you to perform ad hoc actions for on-demand infrastructure change. When you create a module, PDK creates an empty `./tasks` folder. When you create a task, PDK creates template files for the task (`<TASK>.sh`) and the task metadata (`<TASK.json`>. See the [Create a task](./pdk_creating_modules.html#create-a-task) topic for details.
 
-### PDK validates task metadata
+#### PDK validates task metadata
 
 When you run `pdk validate metadata`, PDK validates both module and task metadata files.
 
 ### Improvements
 
-#### CLI help is improve
+#### CLI help is improved
 
 This release adds more context to ambiguous help output from `pdk help`. [PDK-482](https://tickets.puppetlabs.com/browse/PDK-482)
 
@@ -33,7 +33,7 @@ The `pdk new module` command now creates `./examples` and `./files` subdirectori
 
 ### Bug fixes
 
-### Running PDK commands on Windows 7 failed
+#### Running PDK commands on Windows 7 failed
 
 Trying to use PDK on Windows 7 resulted in access errors and Ruby failure. This release fixes the issue. [PDK-461](https://tickets.puppetlabs.com/browse/PDK-461)
 

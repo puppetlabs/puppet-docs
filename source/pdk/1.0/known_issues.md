@@ -24,8 +24,6 @@ Passing a list with `pdk test unit --tests` is not working properly. Attempting 
 
 If you `Remove-Item` on a module folder, PowerShell errors because of a spec fixture symlink. To remove the module directory, use `-Force`: `Remove-Item -Recurse -Force <module_dir>` <!--SDK-316-->
 
-### PDK not added to PATH in some shells
-
-PDK is not automatically added to the PATH in some shells. To fix this, add the PATH to the affected shells:
+### PDK not in ZShell PATH on OS X
  
-* For zsh on OS X, add the PATH by adding the line `eval '/usr/libexec/path_helper -s'` to to the zsh resource file (`~/.zshrc`).
+With ZShell on OS X, PDK is not automatically added to the PATH. To fix this, add the PATH by adding the line `eval '/usr/libexec/path_helper -s'` to the zsh resource file (`~/.zshrc`).
