@@ -21,7 +21,6 @@ For the most part, we've integrated the Puppet Server documentation into [the Pu
 <li>
 <a href="{{base_url}}">{{real_name}} {{site.document_list[base_url].version}}</a>
 {% unless past_latest %}(not yet released){% endunless %}
-{% if site.document_version_index[this_doc].latest == base_url %}(latest){% endif %}
 {% if site.document_list[base_url].my_versions.pe != "latest" %}(Included in Puppet Enterprise {{site.document_list[base_url].my_versions.pe}}){% endif %}
 </li>
 {% endfor %}
