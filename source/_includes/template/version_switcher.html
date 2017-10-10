@@ -1,7 +1,7 @@
 {% if page.doc %}
 <div class="btn-group">
   <button type="button" class="btn btn-nav dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Version: {{ page.doc.version }}{% if site.document_version_index[page.doc.doc].latest == page.doc.base_url %} (latest){% endif %}
+    Version: {{ page.doc.version }}
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu">
@@ -11,11 +11,11 @@
     {% endif %}
     {% if base_url == page.doc.base_url %}
       <li class="active">
-        <a>Version {{page.doc.version}}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}</a>
+        <a>Version {{page.doc.version}}</a>
       </li>
       {% else %}
       <li>
-        <a href="{% change_baseurl page.url page.doc.base_url base_url %}">Version {{ site['document_list'][base_url]['version'] }}{% if site.document_version_index[page.doc.doc].latest == base_url %} (latest){% endif %}</a>
+        <a href="{% change_baseurl page.url page.doc.base_url base_url %}">Version {{ site['document_list'][base_url]['version'] }}</a>
       </li>
     {% endif %}
     {% endfor %}
