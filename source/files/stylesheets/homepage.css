@@ -143,7 +143,7 @@ body {
   font-weight: lighter;
   font-size: 1.225em;
 }
-.homepage-callout .hc-wrapper .hc-col-box a.homepage-button {
+.homepage-callout .hc-wrapper .hc-col-box a.homepage-button, .migration-message a.homepage-button {
   display: inline-block;
   border: 1px solid #d8d8d8;
   border-radius: 4px;
@@ -187,6 +187,28 @@ body {
   font-weight: lighter;
   margin-bottom: 0.5em;
   font-size: 0.9em;
+}
+
+/* additions for the migration message on the landing page */
+.homepage-callout .migration-message {
+  position: relative;
+  display: block;
+  margin: 15px auto;
+  padding: 10px;
+  background: #C0F7DC;
+  color: #222;
+  border: 1px solid #48926F;
+  border-radius: 12px;
+}
+
+.homepage-callout .migration-message h2 {
+  margin: 0;
+  padding: 0 0 20px 0;
+  color: #222;
+}
+
+.homepage-callout .migration-message p {
+  color: #222;
 }
 
 /* homepage-sub-footer */

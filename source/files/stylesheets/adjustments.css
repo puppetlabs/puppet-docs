@@ -131,6 +131,27 @@ img#search-icon {
   }
 }
 
+.header-msg {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 6px 0;
+  background: #ffae1a;
+}
+
+.header-msg h3 {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-size: 1.4em;
+}
+.header-msg .msg {
+  text-align: right;
+}
+.header-msg .msg span {
+  color: #000;
+}
+
 /* Site Footer */
 /* -------------------------------------- */
 .layout-footer {
@@ -249,4 +270,3 @@ img#search-icon {
   opacity: 1;
   transition: all 1s linear;
 }
-
