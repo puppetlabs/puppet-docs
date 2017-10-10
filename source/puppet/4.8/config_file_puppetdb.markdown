@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Config files: puppetdb.conf"
-canonical: "/puppet/latest/reference/config_file_puppetdb.html"
+canonical: "/puppet/latest/config_file_puppetdb.html"
 ---
 
 [puppetdb_connection]: {{puppetdb}}/puppetdb_connection.html

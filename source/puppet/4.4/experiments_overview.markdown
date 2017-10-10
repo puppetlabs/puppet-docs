@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Experimental Features: Overview"
-canonical: "/puppet/latest/reference/experiments_overview.html"
+canonical: "/puppet/latest/experiments_overview.html"
 ---
 
 

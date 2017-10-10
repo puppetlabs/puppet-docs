@@ -1,12 +1,12 @@
 ---
 layout: default
 title: "Puppet Agent Release Notes"
-canonical: "/puppet/latest/reference/release_notes_agent.html"
+canonical: "/puppet/latest/release_notes_agent.html"
 ---
 
-[Puppet 4.4.0]: /puppet/4.4/reference/release_notes.html#puppet-440
-[Puppet 4.4.1]: /puppet/4.4/reference/release_notes.html#puppet-441
-[Puppet 4.4.2]: /puppet/4.4/reference/release_notes.html#puppet-442
+[Puppet 4.4.0]: /puppet/4.4/release_notes.html#puppet-440
+[Puppet 4.4.1]: /puppet/4.4/release_notes.html#puppet-441
+[Puppet 4.4.2]: /puppet/4.4/release_notes.html#puppet-442
 
 [Facter 3.1.5]: /facter/3.1/release_notes.html#facter-315
 [Facter 3.1.6]: /facter/3.1/release_notes.html#facter-316
@@ -31,7 +31,7 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 ## If You're Upgrading from Puppet 3.x
 
-The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
+The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.4 release notes](./release_notes.html).
 
@@ -71,7 +71,7 @@ Includes [Puppet 4.4.0][], [Facter 3.1.5][], [Hiera 3.1.0][], [MCollective 2.8.8
 
 ### Component Updates
 
-* Updates [Puppet](/puppet/4.4/reference/), [Hiera](/hiera/3.1/), and [Facter](/facter/3.1/). This release also updates Mcollective and pxp-agent, but the updates to these components contain no functional changes.
+* Updates [Puppet](/puppet/4.4/), [Hiera](/hiera/3.1/), and [Facter](/facter/3.1/). This release also updates Mcollective and pxp-agent, but the updates to these components contain no functional changes.
 
 ### New Platforms
 
@@ -84,8 +84,8 @@ This release adds `puppet-agent` packages for Fedora 23. Windows packages will a
 
 ### 1.3.x and earlier
 
-For details on `puppet-agent` 1.3.x releases, see [their release notes](/puppet/4.3/reference/release_notes_agent.html).
+For details on `puppet-agent` 1.3.x releases, see [their release notes](/puppet/4.3/release_notes_agent.html).
 
-For details on `puppet-agent` 1.2.x releases, see [their release notes](/puppet/4.2/reference/release_notes_agent.html).
+For details on `puppet-agent` 1.2.x releases, see [their release notes](/puppet/4.2/release_notes_agent.html).
 
 For details on `puppet-agent` 1.1.x and earlier, see the [puppet-announce Google Group](https://groups.google.com/forum/#!forum/puppet-announce).

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x: Get Upgrade-Ready"
-canonical: "/puppet/latest/reference/upgrade_major_pre.html"
+canonical: "/puppet/latest/upgrade_major_pre.html"
 ---
 
 Puppet 4 is a major upgrade with lots of configuration and functionality changes. Since Puppet is likely managing your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:
@@ -19,7 +19,7 @@ Before upgrading from Puppet 3 to 4, make sure all your Puppet components are ru
 **Note**: PuppetDB remains optional, and you can skip it if you don't use it.
 
 - If you already use Puppet Server, update it across your infrastructure to the latest 1.1.x release.
-- If you're still using Rack or WEBrick to run your Puppet master, this is the best time to [switch to Puppet Server](/puppetserver/1.1/install_from_packages.html). Puppet Server is designed to be a better-performing drop-in replacement for Rack and WEBrick Puppet masters, which are [deprecated as of Puppet 4.1](/puppet/4.1/reference/release_notes.html#deprecated-rack-and-webrick-web-servers-for-puppet-master).
+- If you're still using Rack or WEBrick to run your Puppet master, this is the best time to [switch to Puppet Server](/puppetserver/1.1/install_from_packages.html). Puppet Server is designed to be a better-performing drop-in replacement for Rack and WEBrick Puppet masters, which are [deprecated as of Puppet 4.1](/puppet/4.1/release_notes.html#deprecated-rack-and-webrick-web-servers-for-puppet-master).
   - **This is a big change!** Make sure you can successfully switch to Puppet Server 1.1.x before tackling the Puppet 4 upgrade.
   - Check out [our overview](/puppetserver/latest/puppetserver_vs_passenger.html) of what sets Puppet Server apart from a Rack Puppet master.
   - Puppet Server uses 2GB of memory by default. Depending on your server's specs, you might have to adjust [how much memory you allocate](/puppetserver/1.1/install_from_packages.html#memory-allocation) to Puppet Server before you launch it.
@@ -30,7 +30,7 @@ Before upgrading from Puppet 3 to 4, make sure all your Puppet components are ru
 
 ## Check for Deprecated Features
 
-[deprecations]: /puppet/3.8/reference/deprecated_summary.html
+[deprecations]: /puppet/3.8/deprecated_summary.html
 
 Puppet 3.8 [deprecated several features][deprecations] which are either removed from Puppet 4 or require major workflow changes. Read our [lists of deprecated features][deprecations], and if you're using any of them, follow our advice for migrating away from them.
 
@@ -38,7 +38,7 @@ Puppet 3.8 [deprecated several features][deprecations] which are either removed 
 
 Puppet 4 always uses proper [data types](./lang_data.html) for facts, but Puppet 3 converts all facts to Strings by default. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
 
-If you've already set [`stringify_facts = false`](/puppet/3.8/reference/deprecated_settings.html#stringifyfacts--true) in `puppet.conf` on every node in your deployment, skip to the [next section](#enable-directory-environments-and-move-code-into-them). Otherwise:
+If you've already set [`stringify_facts = false`](/puppet/3.8/deprecated_settings.html#stringifyfacts--true) in `puppet.conf` on every node in your deployment, skip to the [next section](#enable-directory-environments-and-move-code-into-them). Otherwise:
 
 - Check your Puppet code for any comparisons that _treat boolean facts like strings,_ like `if $::is_virtual == "true" {...}`, and change them so they'll work with true Boolean values.
   - If you need to support Puppet 3 and 4 with the same code, you can instead use something like `if str2bool("$::is_virtual") {...}`.
@@ -48,9 +48,9 @@ If you've already set [`stringify_facts = false`](/puppet/3.8/reference/deprecat
 
 ## Enable Directory Environments and Move Code into Them
 
-Puppet 4 organizes all code into [directory environments](./environments.html), which are the only way to organize code now that [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated).
+Puppet 4 organizes all code into [directory environments](./environments.html), which are the only way to organize code now that [config file environments are removed](/puppet/3.8/environments_classic.html#config-file-environments-are-deprecated).
 
-[envs_config]: /puppet/3.8/reference/environments_configuring.html
+[envs_config]: /puppet/3.8/environments_configuring.html
 
 If you're using config file environments, [switch to directory environments now.][envs_config]
 
@@ -58,7 +58,7 @@ If you don't currently use environments, [enable directory environments][envs_co
 
 ## Enable the Future Parser and Fix Broken Code
 
-The [future parser](/puppet/3.8/reference/experiments_future.html) in Puppet 3 is the current parser in Puppet 4. If you haven't [enabled the future parser](/puppet/3.8/reference/experiments_future.html#enabling-the-future-parser) yet, do so now and check for problems in your current Puppet code during the next Puppet run.
+The [future parser](/puppet/3.8/experiments_future.html) in Puppet 3 is the current parser in Puppet 4. If you haven't [enabled the future parser](/puppet/3.8/experiments_future.html#enabling-the-future-parser) yet, do so now and check for problems in your current Puppet code during the next Puppet run.
 
 To change the parser per-environment:
 
@@ -70,18 +70,18 @@ To change the parser per-environment:
 
 Some of the changes to look out for include:
 
-- [Changes to comparison operators](/puppet/3.8/reference/experiments_future.html#check-your-comparisons), particularly
+- [Changes to comparison operators](/puppet/3.8/experiments_future.html#check-your-comparisons), particularly
   - The `in` operator ignoring case when comparing strings.
   - Incompatible data types no longer being comparable.
   - New rules for converting values to Boolean (for example, empty strings are now true).
-- [Facts having additional data types](/puppet/3.8/reference/experiments_future.html#check-your-comparisons).
-- [Quoting required for octal numbers in `file` resources' `mode` attributes](/puppet/3.8/reference/experiments_future.html#quote-any-octal-numbers-in-file-modes).
+- [Facts having additional data types](/puppet/3.8/experiments_future.html#check-your-comparisons).
+- [Quoting required for octal numbers in `file` resources' `mode` attributes](/puppet/3.8/experiments_future.html#quote-any-octal-numbers-in-file-modes).
 
 Run Puppet for a while with the future parser enabled to ensure you've got any kinks worked out.
 
 ## Read the Puppet 4.x Release Notes
 
-Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/reference/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/reference/release_notes.html), [4.1](/puppet/4.1/reference/release_notes.html), and [4.2](./release_notes.html) and prepare accordingly.
+Puppet 4.0 introduces several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/release_notes.html), [4.1](/puppet/4.1/release_notes.html), and [4.2](./release_notes.html) and prepare accordingly.
 
 ## You're Ready!
 

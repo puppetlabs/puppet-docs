@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Virtual resources"
-canonical: "/puppet/latest/reference/lang_virtual.html"
+canonical: "/puppet/latest/lang_virtual.html"
 ---
 
 [resources]: ./lang_resources.html

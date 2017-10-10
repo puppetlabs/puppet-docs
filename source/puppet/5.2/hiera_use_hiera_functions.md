@@ -277,7 +277,7 @@ hiera_include('classes', undef)
 ```
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
 takes one parameter.
 
 **Example**: Using `hiera_include` with a lambda

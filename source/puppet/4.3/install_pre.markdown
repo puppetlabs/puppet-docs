@@ -1,13 +1,13 @@
 ---
 layout: default
 title: "Installing Puppet: Pre-Install Tasks"
-canonical: "/puppet/latest/reference/install_pre.html"
+canonical: "/puppet/latest/install_pre.html"
 ---
 
 [peinstall]: /pe/latest/install_basic.html
 [sysreqs]: ./system_requirements.html
 [ruby]: ./system_requirements.html#basic-requirements
-[architecture]: /puppet/latest/reference/architecture.html
+[architecture]: /puppet/latest/architecture.html
 [puppetdb]: /puppetdb/latest
 [server_setting]: ./configuration.html#server
 

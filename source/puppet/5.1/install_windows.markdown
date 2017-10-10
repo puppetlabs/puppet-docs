@@ -93,10 +93,10 @@ MSI Property                    | Puppet Setting
 `PUPPET_AGENT_ACCOUNT_PASSWORD` |                 
 `PUPPET_AGENT_ACCOUNT_DOMAIN`   |              
 
-[s]: /puppet/latest/reference/configuration.html#server
-[c]: /puppet/latest/reference/configuration.html#caserver
-[r]: /puppet/latest/reference/configuration.html#certname
-[e]: /puppet/latest/reference/configuration.html#environment
+[s]: /puppet/latest/configuration.html#server
+[c]: /puppet/latest/configuration.html#caserver
+[r]: /puppet/latest/configuration.html#certname
+[e]: /puppet/latest/configuration.html#environment
 
 
 ### `INSTALLDIR`

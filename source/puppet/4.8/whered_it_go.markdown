@@ -4,10 +4,10 @@ title: "Where did everything go in Puppet 4.x?"
 ---
 
 
-[confdir]: /puppet/latest/reference/dirs_confdir.html
-[directory environments]: /puppet/latest/reference/environments.html
+[confdir]: /puppet/latest/dirs_confdir.html
+[directory environments]: /puppet/latest/environments.html
 [spec]: https://github.com/puppetlabs/puppet-specifications/blob/master/file_paths.md
-[main manifest]: /puppet/latest/reference/dirs_manifest.html
+[main manifest]: /puppet/latest/dirs_manifest.html
 
 In Puppet 4, we changed the locations of a lot of important config files and directories. We also changed Puppet's packaging to install different things in different places.
 

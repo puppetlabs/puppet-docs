@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Resources"
-canonical: "/puppet/latest/reference/lang_resources.html"
+canonical: "/puppet/latest/lang_resources.html"
 ---
 
 [realize]: ./lang_virtual.html#syntax
@@ -18,9 +18,9 @@ canonical: "/puppet/latest/reference/lang_resources.html"
 [class]: ./lang_classes.html
 [defined_type]: ./lang_defined_types.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[files]: /puppet/3.7/reference/type.html#file
-[cron jobs]: /puppet/3.7/reference/type.html#cron
-[services]: /puppet/3.7/reference/type.html#service
+[files]: /puppet/3.7/type.html#file
+[cron jobs]: /puppet/3.7/type.html#cron
+[services]: /puppet/3.7/type.html#service
 [custom_types]: /guides/custom_types.html
 [resource_advanced]: ./lang_resources_advanced.html
 [expressions]: ./lang_expressions.html
@@ -203,6 +203,6 @@ Some attributes in Puppet can be used with every resource type. These are called
 
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
-You can see the full list of all metaparameters in the [Metaparameter Reference](/puppet/3.7/reference/metaparameter.html).
+You can see the full list of all metaparameters in the [Metaparameter Reference](/puppet/3.7/metaparameter.html).
 
 

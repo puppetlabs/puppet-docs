@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Installing Puppet Agent: Microsoft Windows"
-canonical: "/puppet/latest/reference/install_windows.html"
+canonical: "/puppet/latest/install_windows.html"
 ---
 
 [downloads]: http://downloads.puppetlabs.com/windows
@@ -92,10 +92,10 @@ MSI Property                                                   | Puppet Setting 
 [`PUPPET_AGENT_ACCOUNT_PASSWORD`](#puppetagentaccountpassword) | n/a                | Puppet 3.4.0  / PE 3.2
 [`PUPPET_AGENT_ACCOUNT_DOMAIN`](#puppetagentaccountdomain)     | n/a                | Puppet 3.4.0  / PE 3.2
 
-[s]: /puppet/latest/reference/configuration.html#server
-[c]: /puppet/latest/reference/configuration.html#caserver
-[r]: /puppet/latest/reference/configuration.html#certname
-[e]: /puppet/latest/reference/configuration.html#environment
+[s]: /puppet/latest/configuration.html#server
+[c]: /puppet/latest/configuration.html#caserver
+[r]: /puppet/latest/configuration.html#certname
+[e]: /puppet/latest/configuration.html#environment
 
 
 

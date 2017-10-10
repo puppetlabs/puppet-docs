@@ -1,7 +1,7 @@
 ---
 title: "Language: Conditional Statements and Expressions"
 layout: default
-canonical: "/puppet/latest/reference/lang_conditional.html"
+canonical: "/puppet/latest/lang_conditional.html"
 ---
 
 

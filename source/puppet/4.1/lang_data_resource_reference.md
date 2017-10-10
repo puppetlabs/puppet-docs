@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Data Types: Resource and Class References"
-canonical: "/puppet/latest/reference/lang_data_resource_reference.html"
+canonical: "/puppet/latest/lang_data_resource_reference.html"
 ---
 
 [relationship]: ./lang_relationships.html

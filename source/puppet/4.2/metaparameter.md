@@ -3,7 +3,7 @@ layout: default
 built_from_commit: e49293167c2a4753e3db51df5585478e3d8c8877
 title: Metaparameter Reference
 toc: columns
-canonical: /puppet/latest/reference/metaparameter.html
+canonical: /puppet/latest/metaparameter.html
 ---
 
 
@@ -88,7 +88,7 @@ and the second run will log the edit made by Puppet.)
 ### before
 
 One or more resources that depend on this resource, expressed as
-[resource references](http://docs.puppetlabs.com/puppet/latest/reference/lang_data_resource_reference.html).
+[resource references](http://docs.puppetlabs.com/puppet/latest/lang_data_resource_reference.html).
 Multiple resources can be specified as an array of references. When this
 attribute is present:
 
@@ -97,7 +97,7 @@ attribute is present:
 This is one of the four relationship metaparameters, along with
 `require`, `notify`, and `subscribe`. For more context, including the
 alternate chaining arrow (`->` and `~>`) syntax, see
-[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html).
+[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/lang_relationships.html).
 
 ### loglevel
 
@@ -144,7 +144,7 @@ Valid values are `true`, `false`.
 ### notify
 
 One or more resources that depend on this resource, expressed as
-[resource references](http://docs.puppetlabs.com/puppet/latest/reference/lang_data_resource_reference.html).
+[resource references](http://docs.puppetlabs.com/puppet/latest/lang_data_resource_reference.html).
 Multiple resources can be specified as an array of references. When this
 attribute is present:
 
@@ -157,12 +157,12 @@ attribute is present:
 This is one of the four relationship metaparameters, along with
 `before`, `require`, and `subscribe`. For more context, including the
 alternate chaining arrow (`->` and `~>`) syntax, see
-[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html).
+[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/lang_relationships.html).
 
 ### require
 
 One or more resources that this resource depends on, expressed as
-[resource references](http://docs.puppetlabs.com/puppet/latest/reference/lang_data_resource_reference.html).
+[resource references](http://docs.puppetlabs.com/puppet/latest/lang_data_resource_reference.html).
 Multiple resources can be specified as an array of references. When this
 attribute is present:
 
@@ -171,7 +171,7 @@ attribute is present:
 This is one of the four relationship metaparameters, along with
 `before`, `notify`, and `subscribe`. For more context, including the
 alternate chaining arrow (`->` and `~>`) syntax, see
-[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html).
+[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/lang_relationships.html).
 
 ### schedule
 
@@ -223,7 +223,7 @@ For example:
 ### subscribe
 
 One or more resources that this resource depends on, expressed as
-[resource references](http://docs.puppetlabs.com/puppet/latest/reference/lang_data_resource_reference.html).
+[resource references](http://docs.puppetlabs.com/puppet/latest/lang_data_resource_reference.html).
 Multiple resources can be specified as an array of references. When this
 attribute is present:
 
@@ -236,7 +236,7 @@ attribute is present:
 This is one of the four relationship metaparameters, along with
 `before`, `require`, and `notify`. For more context, including the
 alternate chaining arrow (`->` and `~>`) syntax, see
-[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html).
+[the language page on relationships](http://docs.puppetlabs.com/puppet/latest/lang_relationships.html).
 
 ### tag
 

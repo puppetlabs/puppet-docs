@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "puppet-agent: What Is It, and What's In It?"
-canonical: "/puppet/latest/reference/about_agent.html"
+canonical: "/puppet/latest/about_agent.html"
 ---
 
 [Facter]: {{facter}}/
@@ -25,7 +25,7 @@ Starting with Puppet 4, we distribute Puppet as two core packages:
 - `puppet-agent` --- This package contains Puppet's main code and all of the dependencies needed to run it, including [Facter][], [Hiera][], and bundled versions of Ruby and OpenSSL. It also includes [MCollective][]. Once it's installed, you have everything you need to run [the Puppet agent service][agent] and the [`puppet apply` command][apply].
 - `puppetserver` --- This package depends on `puppet-agent`, and adds the JVM-based [Puppet Server][] application. Once it's installed, Puppet Server can serve catalogs to nodes running the Puppet agent service.
 
-> **Note:** For information about Puppet agent in Puppet 3, see the [Puppet 3 services documentation](/puppet/3.8/reference/services_commands.html#puppet-agent). To install Puppet agent on Puppet 3, see the [Puppet 3 installation documentation](/puppet/3.8/reference/pre_install.html#next-install-puppet).
+> **Note:** For information about Puppet agent in Puppet 3, see the [Puppet 3 services documentation](/puppet/3.8/services_commands.html#puppet-agent). To install Puppet agent on Puppet 3, see the [Puppet 3 installation documentation](/puppet/3.8/pre_install.html#next-install-puppet).
 
 ## What's Up With the Version Numbers?
 

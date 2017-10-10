@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Handling File Paths on Windows"
-canonical: "/puppet/latest/reference/lang_windows_file_paths.html"
+canonical: "/puppet/latest/lang_windows_file_paths.html"
 ---
 
 [template]: ./lang_template.html
@@ -59,7 +59,7 @@ Backslashes **MUST** be used in:
 
 ### Using Backslashes in Double-Quoted Strings
 
-Puppet supports two kinds of string quoting. See [the reference section about strings](/puppet/latest/reference/lang_data_string.html) for full details.
+Puppet supports two kinds of string quoting. See [the reference section about strings](/puppet/latest/lang_data_string.html) for full details.
 
 Strings surrounded by double quotes (`"`) allow many escape sequences that begin with backslashes. (For example, `\n` for a newline.) Any lone backslashes will be interpreted as part of an escape sequence.
 

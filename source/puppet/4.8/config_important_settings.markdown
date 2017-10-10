@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Configuration: Short list of important settings"
-canonical: "/puppet/latest/reference/config_important_settings.html"
+canonical: "/puppet/latest/config_important_settings.html"
 ---
 
 [cli_settings]: ./config_about_settings.html#settings-can-be-set-on-the-command-line

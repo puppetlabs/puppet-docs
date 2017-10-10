@@ -3,7 +3,7 @@ layout: default
 built_from_commit: 44f2fdad9d3a565123ceae69c267403981e0141a
 title: Indirection Reference
 toc: columns
-canonical: /puppet/latest/reference/indirection.html
+canonical: /puppet/latest/indirection.html
 ---
 
 

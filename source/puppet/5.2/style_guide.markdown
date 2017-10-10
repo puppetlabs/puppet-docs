@@ -270,7 +270,7 @@ Your metadata should follow the below format:
 }
 ```
 
-A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/reference/modules_publishing.html#write-a-metadatajson-file).
+A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/modules_publishing.html#write-a-metadatajson-file).
 
 {:.section}
 ### 8.1 Dependencies
@@ -863,7 +863,7 @@ You should help indicate to the user which classes are which by making sure all 
 {:.section}
 ### 10.4. Chaining arrow syntax
 
-Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
+Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
 
 **Good:** 
 
@@ -1000,7 +1000,7 @@ Exported resources should be opt-in rather than opt-out. Your module should not 
 
 When using exported resources, you should name the property `collect_exported`.
 
-Exported resources should be exported and collected selectively using a [search expression](https://docs.puppet.com/puppet/3.7/reference/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
+Exported resources should be exported and collected selectively using a [search expression](https://docs.puppet.com/puppet/3.7/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
 
 **Good:**
 

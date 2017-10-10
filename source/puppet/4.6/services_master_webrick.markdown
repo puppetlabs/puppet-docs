@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet's services: The WEBrick Puppet master"
-canonical: "/puppet/latest/reference/services_master_webrick.html"
+canonical: "/puppet/latest/services_master_webrick.html"
 ---
 
 [webrick]: http://ruby-doc.org/stdlib/libdoc/webrick/rdoc/WEBrick.html

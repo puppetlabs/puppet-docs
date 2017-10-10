@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Data types: Numbers"
-canonical: "/puppet/latest/reference/lang_data_number.html"
+canonical: "/puppet/latest/lang_data_number.html"
 ---
 
 [arithmetic]: ./lang_expressions.html#arithmetic-operators

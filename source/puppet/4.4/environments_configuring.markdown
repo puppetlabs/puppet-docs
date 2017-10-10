@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Configuring Environments"
-canonical: "/puppet/latest/reference/environments_configuring.html"
+canonical: "/puppet/latest/environments_configuring.html"
 ---
 
 [environmentpath]: ./configuration.html#environmentpath

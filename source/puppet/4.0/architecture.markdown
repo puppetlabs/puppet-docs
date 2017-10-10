@@ -9,7 +9,7 @@ title: "Overview of Puppet's Architecture"
 [master_http]: ./http_api/http_api_index.html
 [auth.conf]: ./conf_file_auth.html
 [catalog_compilation]: ./subsystem_catalog_compilation.html
-[report handlers]: /puppet/3.7/reference/report.html
+[report handlers]: /puppet/3.7/report.html
 [lang_basics]: ./lang_summary.html
 [apply]: ./services_apply.html
 [puppetdb]: /puppetdb/latest

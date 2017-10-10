@@ -7,10 +7,10 @@ title: "Installing Puppet: Microsoft Windows"
 [peinstall]: /pe/latest/install_windows.html
 [pre_install]: ./install_pre.html
 [where]: ./whered_it_go.html
-[puppet.conf]: /puppet/latest/reference/config_file_main.html
-[environment]: /puppet/latest/reference/environments.html
-[confdir]: /puppet/latest/reference/dirs_confdir.html
-[vardir]: /puppet/latest/reference/dirs_vardir.html
+[puppet.conf]: /puppet/latest/config_file_main.html
+[environment]: /puppet/latest/environments.html
+[confdir]: /puppet/latest/dirs_confdir.html
+[vardir]: /puppet/latest/dirs_vardir.html
 
 ## Review the Pre-Install Tasks
 
@@ -93,10 +93,10 @@ MSI Property                                                   | Puppet Setting 
 [`PUPPET_AGENT_ACCOUNT_PASSWORD`](#puppetagentaccountpassword) | n/a                | Puppet 3.4.0  / PE 3.2
 [`PUPPET_AGENT_ACCOUNT_DOMAIN`](#puppetagentaccountdomain)     | n/a                | Puppet 3.4.0  / PE 3.2
 
-[s]: /puppet/latest/reference/configuration.html#server
-[c]: /puppet/latest/reference/configuration.html#caserver
-[r]: /puppet/latest/reference/configuration.html#certname
-[e]: /puppet/latest/reference/configuration.html#environment
+[s]: /puppet/latest/configuration.html#server
+[c]: /puppet/latest/configuration.html#caserver
+[r]: /puppet/latest/configuration.html#certname
+[e]: /puppet/latest/configuration.html#environment
 
 
 

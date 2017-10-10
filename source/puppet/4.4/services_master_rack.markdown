@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet's Services: The Rack Puppet Master"
-canonical: "/puppet/latest/reference/services_master_rack.html"
+canonical: "/puppet/latest/services_master_rack.html"
 ---
 
 

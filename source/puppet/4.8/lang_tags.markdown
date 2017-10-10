@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Tags"
-canonical: "/puppet/latest/reference/lang_tags.html"
+canonical: "/puppet/latest/lang_tags.html"
 ---
 
 

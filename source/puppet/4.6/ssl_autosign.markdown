@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "SSL configuration: autosigning certificate requests"
-canonical: "/puppet/latest/reference/ssl_autosign.html"
+canonical: "/puppet/latest/ssl_autosign.html"
 ---
 
 [external_ca]: ./config_ssl_external_ca.html

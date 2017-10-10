@@ -1,7 +1,7 @@
 ---
 title: "Language: Defined Resource Types"
 layout: default
-canonical: "/puppet/latest/reference/lang_defined_types.html"
+canonical: "/puppet/latest/lang_defined_types.html"
 ---
 
 [literal_types]: ./lang_data_type.html

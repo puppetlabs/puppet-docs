@@ -3,7 +3,7 @@ layout: default
 built_from_commit: 08cb8b2d315a296fa404a4871f94b3703a819461
 title: Configuration Reference
 toc: columns
-canonical: /puppet/latest/reference/configuration.html
+canonical: /puppet/latest/configuration.html
 ---
 
 
@@ -138,7 +138,7 @@ POSIX path separator is ':', and the Windows path separator is ';'.)
 These are the modules that will be used by _all_ environments. Note that
 the `modules` directory of the active environment will have priority over
 any global directories. For more info, see
-http://docs.puppetlabs.com/puppet/latest/reference/environments.html
+http://docs.puppetlabs.com/puppet/latest/environments.html
 
 - *Default*: $codedir/modules:/opt/puppetlabs/puppet/modules
 
@@ -278,15 +278,15 @@ requests a certificate from the CA puppet master, it uses the value of the
 `certname` setting as its requested Subject CN.
 
 This is the name used when managing a node's permissions in
-[auth.conf](http://docs.puppetlabs.com/puppet/latest/reference/config_file_auth.html).
+[auth.conf](http://docs.puppetlabs.com/puppet/latest/config_file_auth.html).
 In most cases, it is also used as the node's name when matching
-[node definitions](http://docs.puppetlabs.com/puppet/latest/reference/lang_node_definitions.html)
+[node definitions](http://docs.puppetlabs.com/puppet/latest/lang_node_definitions.html)
 and requesting data from an ENC. (This can be changed with the `node_name_value`
 and `node_name_fact` settings, although you should only do so if you have
 a compelling reason.)
 
 A node's certname is available in Puppet manifests as `$trusted['certname']`. (See
-[Facts and Built-In Variables](http://docs.puppetlabs.com/puppet/latest/reference/lang_facts_and_builtin_vars.html)
+[Facts and Built-In Variables](http://docs.puppetlabs.com/puppet/latest/lang_facts_and_builtin_vars.html)
 for more details.)
 
 * For best compatibility, you should limit the value of `certname` to
@@ -389,7 +389,7 @@ reports, allowing you to correlate changes on your hosts to the source version o
 Setting a global value for config_version in puppet.conf is not allowed
 (but it can be overridden from the commandline). Please set a
 per-environment value in environment.conf instead. For more info, see
-http://docs.puppetlabs.com/puppet/latest/reference/environments.html
+http://docs.puppetlabs.com/puppet/latest/environments.html
 
 
 ### configprint
@@ -636,7 +636,7 @@ is ':', and the Windows path separator is ';'.)
 
 This setting must have a value set to enable **directory environments.** The
 recommended value is `$codedir/environments`. For more details, see
-http://docs.puppetlabs.com/puppet/latest/reference/environments.html
+http://docs.puppetlabs.com/puppet/latest/environments.html
 
 - *Default*: $codedir/environments
 
@@ -1031,7 +1031,7 @@ Setting a global value for `manifest` in puppet.conf is not allowed
 directory environments instead. If you need to use something other than the
 environment's `manifests` directory as the main manifest, you can set
 `manifest` in environment.conf. For more info, see
-http://docs.puppetlabs.com/puppet/latest/reference/environments.html
+http://docs.puppetlabs.com/puppet/latest/environments.html
 
 - *Default*: 
 
@@ -1127,7 +1127,7 @@ Setting a global value for `modulepath` in puppet.conf is not allowed
 directory environments instead. If you need to use something other than the
 default modulepath of `<ACTIVE ENVIRONMENT'S MODULES DIR>:$basemodulepath`,
 you can set `modulepath` in environment.conf. For more info, see
-http://docs.puppetlabs.com/puppet/latest/reference/environments.html
+http://docs.puppetlabs.com/puppet/latest/environments.html
 
 
 ### name

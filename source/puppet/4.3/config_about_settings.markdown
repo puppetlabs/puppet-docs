@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Configuration: How Puppet is Configured"
-canonical: "/puppet/latest/reference/config_about_settings.html"
+canonical: "/puppet/latest/config_about_settings.html"
 ---
 
 [short list]: ./config_important_settings.html

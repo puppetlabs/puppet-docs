@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x Agent Upgrades"
-canonical: "/puppet/latest/reference/upgrade_agent.html"
+canonical: "/puppet/latest/upgrade_agent.html"
 ---
 
 This guide will help you update your Puppet 3.x agents to Puppet 4.0.

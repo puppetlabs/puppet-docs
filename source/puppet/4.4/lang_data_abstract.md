@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Data Types: Abstract Data Types"
-canonical: "/puppet/latest/reference/lang_data_abstract.html"
+canonical: "/puppet/latest/lang_data_abstract.html"
 ---
 
 [types]: ./lang_data_type.html

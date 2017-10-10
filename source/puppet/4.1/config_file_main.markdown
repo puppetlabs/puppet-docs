@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Config Files: The Main Config File (puppet.conf)"
-canonical: "/puppet/latest/reference/config_file_main.html"
+canonical: "/puppet/latest/config_file_main.html"
 ---
 
 [conf_ref]: ./configuration.html
