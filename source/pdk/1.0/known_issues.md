@@ -7,6 +7,11 @@ description: "Puppet Development Kit known issues"
 
 ## Known issues
 
+
+### Running Windows unit tests on non-Windows platforms breaks unit tests
+
+Specifying "Windows 2008 R2" as a supported OS in `metadata.json` breaks running all unit tests. As a workaround, remove the Windows 2008 R2 support specification from your `metadata.json`. [PDK-583]
+
 ### `pdk test unit --list` output lacks information
 
 Output from `pdk test unit --list` lacks detailed information and tests appear duplicated. To get the full text descriptions, execute the tests in JUnit format by running `pdk test unit --format=junit`. [PDK-374](https://tickets.puppetlabs.com/browse/PDK-374).
@@ -19,3 +24,8 @@ Passing a list with `pdk test unit --tests` is not working properly. Attempting 
 
 If you `Remove-Item` on a module folder, PowerShell errors because of a spec fixture symlink. To remove the module directory, use `-Force`: `Remove-Item -Recurse -Force <module_dir>` <!--SDK-316-->
 
+### PDK not added to PATH in some shells
+
+PDK is not automatically added to the PATH in some shells. To fix this, add the PATH to the affected shells:
+ 
+* For zsh on OS X, add the PATH by adding the line `eval '/usr/libexec/path_helper -s'` to to the zsh resource file (`~/.zshrc`).

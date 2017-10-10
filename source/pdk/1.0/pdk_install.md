@@ -52,6 +52,7 @@ Download and install the PDK package for Linux-based systems.
    * On Debian-based (Debian, Ubuntu) systems, run `sudo dpkg -i pdk-<version>-<platform>.deb`
 1. Open a terminal to re-source your shell profile and make PDK available to your PATH.
 
+
 {:.task}
 ## Install PDK on OS X
 

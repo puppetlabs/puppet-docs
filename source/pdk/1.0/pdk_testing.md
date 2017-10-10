@@ -40,7 +40,7 @@ Optionally, you can validate only certain files or directories, run a specific t
 
    * To run all validations simultaneously, use the `--parallel` flag: `pdk validate --parallel`
 
-   * To run just one type of validation on the module, pass in `puppet`, `ruby`, or `metadata`. For example, to validate the module's metadata, run `pdk validate metadata`
+   * To run just one type of validation on the module, pass in `puppet`, `ruby`, or `metadata`. For example, to validate the module's metadata files (`metadata.json` and any task metadata), run `pdk validate metadata`
    
    * To run validations on a specific directory or file, pass in the name of the file or directory. For example, to run all validations on the `/lib` directory only, run `pdk validate lib/`
 
@@ -50,7 +50,6 @@ Optionally, you can validate only certain files or directories, run a specific t
    
      You can specify multiple `--format` options, provided they all have distinct output targets.
 
-   
 
 See the PDK reference for a complete list of validation command options.
 

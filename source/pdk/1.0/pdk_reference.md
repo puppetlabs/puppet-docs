@@ -71,7 +71,7 @@ Argument   | Description   | Values      | Default
 
 ## `pdk new task` command
 
-Generates a new task and task metadata in the current module.
+Generates a new task and task metadata in the current module. 
 
 Usage:
 

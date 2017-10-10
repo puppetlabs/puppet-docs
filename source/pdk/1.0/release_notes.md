@@ -5,7 +5,54 @@ canonical: "/pdk/1.0/release_notes.html"
 description: "Puppet Development Kit release notes"
 ---
 
-Release notes for Puppet Development Kit (PDK), a development kit containing tools for developing and testing Puppet code. For known issues, see PDK [known issues](./known_issues.html)
+Release notes for Puppet Development Kit (PDK), a development kit containing tools for developing and testing Puppet code. For known issues, see PDK [known issues](./known_issues.html).
+
+## PDK 1.2.0.0
+
+Released 10 October 2017
+
+### New features
+
+#### Creation of tasks
+
+PDK can now create tasks in modules. Tasks allow you to perform ad hoc actions for on-demand infrastructure change. When you create a module, PDK creates an empty `./tasks` folder. When you create a task, PDK creates template files for the task (`<TASK>.sh`) and the task metadata (`<TASK.json`>. See the [Create a task](./pdk_creating_modules.html#create-a-task) topic for details.
+
+### PDK validates task metadata
+
+When you run `pdk validate metadata`, PDK validates both module and task metadata files.
+
+### Improvements
+
+#### CLI help is improve
+
+This release adds more context to ambiguous help output from `pdk help`. [PDK-482](https://tickets.puppetlabs.com/browse/PDK-482)
+
+#### Module creation adds examples and files subdirectories
+
+The `pdk new module` command now creates `./examples` and `./files` subdirectories in the new module, to provide hints on what is possible and where these things should go. [PDK-479](https://tickets.puppetlabs.com/browse/PDK-479)
+
+### Bug fixes
+
+### Running PDK commands on Windows 7 failed
+
+Trying to use PDK on Windows 7 resulted in access errors and Ruby failure. This release fixes the issue. [PDK-461](https://tickets.puppetlabs.com/browse/PDK-461)
+
+#### Git version in PDK did not install some dependencies on Windows
+
+The version of Git included in the PDK packages did not work correctly with Bundler on Windows, so gem dependencies specified in a module's Gemfile with a Git source were not correctly installed. This release fixes this issue. [PDK-502](https://tickets.puppetlabs.com/browse/PDK-502)
+
+#### Module interview gave an incorrect licensing link
+
+This release fixes an incorrect link to the spdx.org website in the new module interview. [PDK-543](https://tickets.puppetlabs.com/browse/PDK-543)
+
+#### PDK validate failed to validate using Windows paths
+
+This release fixes an issue where `puppet-lint` was not properly escaping bundle commands in Windows. There is a note added to the help text in PDK. The root cause will be fixed in a `puppet-lint` release. [PDK-555](https://tickets.puppetlabs.com/browse/PDK-555)
+
+#### Validation stopped if errors were encountered
+
+The `pdk validate` now runs all possible validators, even if one of them reports an error.
+
 
 ## PDK 1.1.0.0
 
@@ -15,7 +62,7 @@ Released 14 September 2017
 
 #### Generation of defined types
 
-PDK can now generate new defined types in a module. Usage is almost identical to the class generation: `pdk new defined_type <name>`. For usage details, see [Generating modules](./pdk_generating_modules.html) and the PDK [Reference](./pdk_reference.html)
+PDK can now generate defined types in a module. Usage is almost identical to the class generation: `pdk new defined_type <name>`. For usage details, see [Generating modules](./pdk_generating_modules.html) and the PDK [Reference](./pdk_reference.html)
 
 #### Selection of Operating System support when creating a new module
 

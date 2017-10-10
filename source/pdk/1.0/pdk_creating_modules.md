@@ -32,11 +32,16 @@ When you run the `pdk new module` command, the tool requests the following infor
 
 After you create a module, validate and test the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
 
-When you have validated the module, create classes by running the `pdk new class` command. The new class command also creates a test template file for the class. You can then write tests in this template to validate your class's behavior.
+When you have validated the module, create classes, defined types, and tasks by running `pdk` commands.
+
+The new class and defined type commands create a test template file for the class or defined type, so you can write tests in this template to validate your class's behavior. The new task command creates task and task metadata templates.
+
+When you create a task, PDK creates a task file in shell (`<TASK>.sh`), but you can write tasks in any language the target nodes will run. For more information about tasks, see the documentation about writing tasks.
 
 Related topics:
 
 * [Module metadata][metadata]
+* [Writing tasks](https://puppet.com/docs/bolt/latest/writing_tasks_and_plans.html)
 
 {:.task}
 ### Create a module with PDK
@@ -90,6 +95,7 @@ Module directory | Directory with the same name as the module. Contains all of t
 `/spec/spec_helper.rb` | Helper code to set up preconditions for spec tests.
 `/spec/default_facts.yaml` | File containing default facts.
 `/spec/classes` | Directory containing testing templates for any classes you create with the `pdk new class` command.
+`/tasks` | Directory containing task files and task metadata files for any tasks you create with the `pdk new task` command.
 `/templates` | Directory containing any ERB or EPP templates. Required when building a module to upload to the Forge.
 `.travis.yml` | File containing configuration for cloud-based testing on Linux and OSX. See [travis-ci](http://travis-ci.org/) for more information.
 
@@ -98,7 +104,7 @@ Related topics:
 * [Module fundamentals][fundamentals]
 
 {:.task}
-## Create a class with PDK
+## Create a class
 
 Use the `pdk new class` command to create a new class for the module. It creates a class manifest file, with the naming convention `class_name.pp`.
 
@@ -109,7 +115,7 @@ Use the `pdk new class` command to create a new class for the module. It creates
 PDK creates the new class manifest and a test file (`class_name_spec.rb`) in your module's `/spec/classes` directory. The test template checks that your class compiles on all supported operating systems as listed in the `metadata.json`. You can then write additional tests in the provided file to validate your class's behavior.
 
 {:.task}
-## Create a defined type with PDK
+## Create a defined type
 
 Use the `pdk new defined_type` command to create a new defined type for the module. This creates a defined type manifest file, with the naming convention `defined_type_name.pp`.
 
@@ -117,4 +123,11 @@ Use the `pdk new defined_type` command to create a new defined type for the modu
 
 PDK creates the new defined type manifest and a test file (`defined_type_spec.rb`) in your module's `/spec/defines` directory. The test template checks that your defined type compiles on all supported operating systems as listed in the `metadata.json`. You can then write additional tests in the provided file to validate your defined type's behavior.
 
+{:.task}
+## Create a task
 
+Use the `pdk new task` command to create a new task in the module. 
+
+1. From the command line, in your module's directory, run `pdk new task <TASK_NAME>`
+
+This creates a task file, with the naming convention `task_name.sh` and a task metadata file, `task_name.json` in the `./tasks` directory. Although PDK creates a task template in shell, you can write tasks in any language the target nodes can run.
