@@ -526,32 +526,32 @@ documents:
     doc: facter
     version: "3.9"
     nav: ./_facter_toc.html
-  hide: true
+    hide: true
   /facter/3.8:
     doc: facter
     version: "3.8"
     nav: ./_facter_toc.html
-  hide: true
+    hide: true
   /facter/3.7:
     doc: facter
     version: "3.7"
     nav: ./_facter_toc.html
-  hide: true
+    hide: true
   /facter/3.6:
     doc: facter
     version: "3.6"
     nav: ./_facter_toc.html
-  hide: true
+    hide: true
   /facter/3.5:
     doc: facter
     version: "3.5"
     nav: ./_facter_toc.html
-  hide: true
+    hide: true
   /facter/3.4:
     doc: facter
     version: "3.4"
     nav: ./_facter_toc.html
-  hide: true
+    hide: true
 
   /facter/3.3:
     doc: facter
@@ -598,18 +598,18 @@ documents:
     doc: pdk
     version: "1.0"
     nav: ./_pdk_toc.html
-  hide: true
+    hide: true
 
   /hiera/3.3:
     doc: hiera
     version: "3.3"
     nav: ./_hiera_toc.html
-  hide: true
+    hide: true
   /hiera/3.2:
     doc: hiera
     version: "3.2"
     nav: ./_hiera_toc.html
-  hide: true
+    hide: true
   /hiera/3.1:
     doc: hiera
     version: "3.1"
