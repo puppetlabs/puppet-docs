@@ -47,7 +47,7 @@ The way you access Puppet 5 Platform  depends on your operating system, and its 
 
 To enable the Puppet 5 Platform repository:
 
-1. Choose the package based on your operating system and version. The packages are located in the [`yum.puppet.com`](https://yum.puppet.com) repository and named using the following convention:
+1. Choose the package based on your operating system and version. The packages are located in the [`yum.puppet.com`](https://yum.puppet.com/puppet5/) repository and named using the following convention:
 
    `<PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm`
 
