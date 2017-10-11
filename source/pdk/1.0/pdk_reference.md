@@ -32,7 +32,7 @@ Generates a new class and test templates for it in the current module.
 Usage:
 
 ```
-pdk new class [--template-url=<GIT_URL>] <class_name> [<parameter_name>[:<PARAMETER_TYPE>]]
+pdk new class [--template-url=<GIT_URL>] <class_name>
 ```
 
 For example:
@@ -54,7 +54,7 @@ Generates a new defined type and test templates for it in the current module.
 Usage:
 
 ```
-pdk new defined_type [--template-url=<GIT_URL>] <defined_type_name> [<parameter_name>[:<PARAMETER_TYPE>]]
+pdk new defined_type [--template-url=<GIT_URL>] <defined_type_name>
 ```
 
 For example:
@@ -68,6 +68,28 @@ Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
 `--template-url=<GIT_URL>` | Overrides the template to use when generating this defined\_type. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not available, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
 `<defined_type_name>` | **Required**. The name of the defined type to generate. | A defined type name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
+
+## `pdk new task` command
+
+Generates a new task and task metadata in the current module. 
+
+Usage:
+
+```
+pdk new task [--template-url=<GIT_URL>] <task_name>
+```
+
+For example:
+
+```
+cd my_module
+pdk new task my_task
+```
+
+Argument   | Description   | Values      | Default
+----------------|:---------------:|:------------------:|-------------------------
+`--template-url=<GIT_URL>` | Overrides the template to use when generating this task. | A valid Git URL or path to a local template.   | Uses the template used to generate the module. If that template is not specified, the default template at [puppetlabs/pdk-module-template](https://github.com/puppetlabs/pdk-module-template) is used.
+`<task_name>` | **Required**. The name of the task to generate. | A task name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
 
 ## `pdk validate` command
 
