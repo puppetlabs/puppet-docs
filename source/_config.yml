@@ -322,79 +322,88 @@ documents:
       puppetserver: "2.7"
       puppetdb: "4.3"
     hide: true
-#
-#  /puppet/5.3:
-#    doc: puppet
-#    version: "5.3"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.9"
-#      hiera: "3.4"
-#      puppetserver: "5.1"
-#  /puppet/5.2:
-#    doc: puppet
-#    version: "5.2"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.9"
-#      hiera: "3.4"
-#      puppetserver: "5.1"
-#  /puppet/5.1:
-#    doc: puppet
-#    version: "5.1"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.8"
-#      hiera: "3.4"
-#      puppetserver: "5.0"
-#  /puppet/5.0:
-#    doc: puppet
-#    version: "5.0"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.7"
-#      hiera: "3.4"
-#      puppetserver: "5.0"
-#  /puppet/4.10:
-#    doc: puppet
-#    version: "4.10"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.6"
-#      hiera: "3.3"
-#      puppetserver: "2.8"
-#  /puppet/4.9:
-#    doc: puppet
-#    version: "4.9"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.6"
-#      hiera: "3.3"
-#      puppetserver: "2.7"
-#  /puppet/4.8:
-#    doc: puppet
-#    version: "4.8"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.5"
-#      hiera: "3.2"
-#      puppetserver: "2.7"
-#  /puppet/4.7:
-#    doc: puppet
-#    version: "4.7"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.4"
-#      hiera: "3.2"
-#      puppetserver: "2.6"
-#  /puppet/4.6:
-#    doc: puppet
-#    version: "4.6"
-#    nav: ./_puppet_toc.html
-#    my_versions:
-#      facter: "3.4"
-#      hiera: "3.2"
-#      puppetserver: "2.6"
+
+  /puppet/5.3:
+    doc: puppet
+    version: "5.3"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.9"
+      hiera: "3.4"
+      puppetserver: "5.1"
+    hide: true
+  /puppet/5.2:
+    doc: puppet
+    version: "5.2"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.9"
+      hiera: "3.4"
+      puppetserver: "5.1"
+    hide: true
+  /puppet/5.1:
+    doc: puppet
+    version: "5.1"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.8"
+      hiera: "3.4"
+      puppetserver: "5.0"
+    hide: true
+  /puppet/5.0:
+    doc: puppet
+    version: "5.0"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.7"
+      hiera: "3.4"
+      puppetserver: "5.0"
+    hide: true
+  /puppet/4.10:
+    doc: puppet
+    version: "4.10"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.6"
+      hiera: "3.3"
+      puppetserver: "2.8"
+    hide: true
+  /puppet/4.9:
+    doc: puppet
+    version: "4.9"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.6"
+      hiera: "3.3"
+      puppetserver: "2.7"
+    hide: true
+  /puppet/4.8:
+    doc: puppet
+    version: "4.8"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.5"
+      hiera: "3.2"
+      puppetserver: "2.7"
+    hide: true
+  /puppet/4.7:
+    doc: puppet
+    version: "4.7"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.4"
+      hiera: "3.2"
+      puppetserver: "2.6"
+    hide: true
+  /puppet/4.6:
+    doc: puppet
+    version: "4.6"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.4"
+      hiera: "3.2"
+      puppetserver: "2.6"
+    hide: true
   /puppet/4.5:
     doc: puppet
     version: "4.5"
@@ -513,30 +522,36 @@ documents:
       puppetserver: "5.0"
     hide: true
 
-#  /facter/3.9:
-#    doc: facter
-#    version: "3.9"
-#    nav: ./_facter_toc.html
-#  /facter/3.8:
-#    doc: facter
-#    version: "3.8"
-#    nav: ./_facter_toc.html
-#  /facter/3.7:
-#    doc: facter
-#    version: "3.7"
-#    nav: ./_facter_toc.html
-#  /facter/3.6:
-#    doc: facter
-#    version: "3.6"
-#    nav: ./_facter_toc.html
-#  /facter/3.5:
-#    doc: facter
-#    version: "3.5"
-#    nav: ./_facter_toc.html
-#  /facter/3.4:
-#    doc: facter
-#    version: "3.4"
-#    nav: ./_facter_toc.html
+  /facter/3.9:
+    doc: facter
+    version: "3.9"
+    nav: ./_facter_toc.html
+  hide: true
+  /facter/3.8:
+    doc: facter
+    version: "3.8"
+    nav: ./_facter_toc.html
+  hide: true
+  /facter/3.7:
+    doc: facter
+    version: "3.7"
+    nav: ./_facter_toc.html
+  hide: true
+  /facter/3.6:
+    doc: facter
+    version: "3.6"
+    nav: ./_facter_toc.html
+  hide: true
+  /facter/3.5:
+    doc: facter
+    version: "3.5"
+    nav: ./_facter_toc.html
+  hide: true
+  /facter/3.4:
+    doc: facter
+    version: "3.4"
+    nav: ./_facter_toc.html
+  hide: true
 
   /facter/3.3:
     doc: facter
@@ -579,19 +594,22 @@ documents:
     version: "1.6"
     nav: /_includes/facter16.html
 
-#  /pdk/1.0:
-#    doc: pdk
-#    version: "1.0"
-#    nav: ./_pdk_toc.html
-#
-#  /hiera/3.3:
-#    doc: hiera
-#    version: "3.3"
-#    nav: ./_hiera_toc.html
-#  /hiera/3.2:
-#    doc: hiera
-#    version: "3.2"
-#    nav: ./_hiera_toc.html
+  /pdk/1.0:
+    doc: pdk
+    version: "1.0"
+    nav: ./_pdk_toc.html
+  hide: true
+
+  /hiera/3.3:
+    doc: hiera
+    version: "3.3"
+    nav: ./_hiera_toc.html
+  hide: true
+  /hiera/3.2:
+    doc: hiera
+    version: "3.2"
+    nav: ./_hiera_toc.html
+  hide: true
   /hiera/3.1:
     doc: hiera
     version: "3.1"
