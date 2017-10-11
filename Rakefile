@@ -191,7 +191,7 @@ task :generate do
   system("rm -rf #{OUTPUT_DIR}/*")
   jekyll()
 
-  Rake::Task['symlink_latest_versions'].invoke
+  # Rake::Task['symlink_latest_versions'].invoke
 
   Rake::Task['externalsources:clean'].invoke # The opposite of externalsources:link. Delete all symlinks in the source.
   Rake::Task['externalsources:clean'].reenable
