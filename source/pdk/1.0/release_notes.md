@@ -15,7 +15,7 @@ Released 10 October 2017
 
 #### Creation of tasks
 
-PDK can now create tasks in modules. Tasks allow you to perform ad hoc actions for on-demand infrastructure change. When you create a module, PDK creates an empty `./tasks` folder. When you create a task, PDK creates template files for the task (`<TASK>.sh`) and the task metadata (`<TASK.json`>. See the [Create a task](./pdk_creating_modules.html#create-a-task) topic for details.
+PDK can now create tasks in modules. Tasks allow you to perform ad hoc actions for on-demand infrastructure change. When you create a module, PDK creates an empty `./tasks` folder. When you create a task, PDK creates template files for the task (`<TASK>.sh`) and the task metadata (`<TASK.json`>. See the [Create a task](./pdk_generating_modules.html#create-a-task) topic for details.
 
 #### PDK validates task metadata
 
