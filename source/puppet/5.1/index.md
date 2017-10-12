@@ -9,7 +9,7 @@ toc: false
 [Facter]: {{facter}}/
 [Hiera]: ./hiera_intro.html
 [Puppet Server]: {{puppetserver}}/
-[PuppetDB]: {{puppetdb}}/
+[PuppetDB]: /puppetdb/5.0/
 [Linux installation]: ./install_linux.html
 [Windows installation]: ./install_windows.html
 [macOS installation]: ./install_osx.html
