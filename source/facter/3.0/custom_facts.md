@@ -6,9 +6,6 @@ title: "Facter 3.0: Custom Facts Walkthrough"
 [Facter 3.0.2 release notes]: ./release_notes.html#facter--p-restored
 [Plugins in Modules]: /guides/plugins_in_modules.html
 
-Custom Facts
-============
-
 Extend facter by writing your own custom facts to provide information to Puppet.
 
 ## Adding Custom Facts to Facter
@@ -99,8 +96,8 @@ This allows you to do something like this:
 
 Setting aside external facts for now, most facts have at least two elements:
 
-1. A call to `Facter.add('fact_name')`, which determines the name of the fact
-2. A `setcode` statement for simple resolutions, which is evaluated to determine the fact's value.
+1.  A call to `Facter.add('fact_name')`, which determines the name of the fact
+2.  A `setcode` statement for simple resolutions, which is evaluated to determine the fact's value.
 
 Facts *can* get a lot more complicated than that, but those two together are the most common implementation of a custom fact.
 
