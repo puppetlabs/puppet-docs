@@ -8,7 +8,7 @@ description: "Troubleshooting Puppet Development Kit, the shortest path to devel
 {:.concept}
 ## PDK not in ZShell PATH on OS X
  
-With ZShell on OS X, PDK is not automatically added to the PATH. To fix this, add the PATH by adding the line `eval '/usr/libexec/path_helper -s'` to the zsh resource file (`~/.zshrc`).
+With ZShell on OS X, PDK is not automatically added to the PATH. To fix this, add the PATH by adding the line `eval (/usr/libexec/path_helper -s)` to the zsh resource file (`~/.zshrc`).
 
 {:.concept}
 ## Windows: Execution policy restrictions
