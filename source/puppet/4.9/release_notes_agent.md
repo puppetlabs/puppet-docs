@@ -13,6 +13,7 @@ title: "Puppet agent release notes"
 [Facter 3.6.2]: /facter/3.6/release_notes.html#facter-362
 
 [Hiera 3.3.0]: /hiera/3.3/release_notes.html#hiera-330
+[Hiera 3.3.1]: /hiera/3.3/release_notes.html#hiera-331
 
 [MCollective 2.10.0]: /mcollective/releasenotes.html#2_10_0
 [MCollective 2.10.1]: /mcollective/releasenotes.html#2_10_1
@@ -43,7 +44,7 @@ Released March 9, 2017.
 
 ### Component updates
 
-This is a bug fix release that includes updated components [Puppet 4.9.4][], [Hiera 3.3.1][], [Facter 3.6.2][], and [MCollective 1.10.2][]. See their respective release note pages for individual bug fixes.
+This is a bug fix release that includes updated components [Puppet 4.9.4][], [Hiera 3.3.1][], [Facter 3.6.2][], and [MCollective 2.10.2][]. See their respective release note pages for individual bug fixes.
 
 ## Puppet agent 1.9.2
 

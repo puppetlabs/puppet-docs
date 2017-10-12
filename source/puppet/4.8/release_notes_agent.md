@@ -8,7 +8,6 @@ canonical: "/puppet/latest/release_notes_agent.html"
 [Puppet 4.8.1]: /puppet/4.8/release_notes.html#puppet-481
 [Puppet 4.8.2]: /puppet/4.8/release_notes.html#puppet-482
 
-
 [Facter 3.5.0]: /facter/3.5/release_notes.html#facter-350
 [Facter 3.5.1]: /facter/3.5/release_notes.html#facter-351
 

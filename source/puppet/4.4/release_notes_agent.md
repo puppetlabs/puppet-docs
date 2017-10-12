@@ -11,11 +11,9 @@ canonical: "/puppet/latest/release_notes_agent.html"
 [Facter 3.1.5]: /facter/3.1/release_notes.html#facter-315
 [Facter 3.1.6]: /facter/3.1/release_notes.html#facter-316
 
-
 [Hiera 3.1.0]: /hiera/3.1/release_notes.html#hiera-310
 [Hiera 3.1.1]: /hiera/3.1/release_notes.html#hiera-311
 [Hiera 3.1.2]: /hiera/3.1/release_notes.html#hiera-312
-
 
 [MCollective 2.8.8]: /mcollective/releasenotes.html#2_8_8
 
@@ -53,7 +51,6 @@ This release adds `puppet-agent` packages for Ubuntu 16.04 and Huawei devices.
 
 This release does not include packages for Debian 6, Fedora 21, and Ubuntu 15.04, and future releases of `puppet-agent` will also not include packages for these platforms.
 
-
 ## Puppet Agent 1.4.1
 
 Released March 24, 2016.
@@ -61,7 +58,6 @@ Released March 24, 2016.
 ### Component updates
 
 Includes critical bug fixes to Puppet in [Puppet 4.4.1][], and adds a new feature to Hiera in [Hiera 3.1.1][].
-
 
 ## Puppet Agent 1.4.0
 
