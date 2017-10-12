@@ -1,14 +1,14 @@
 ---
 layout: default
 title: "Config files: environment.conf"
-canonical: "/puppet/latest/reference/config_file_environment.html"
+canonical: "/puppet/latest/config_file_environment.html"
 ---
 
 [environment]: ./environments.html
 [environmentpath]: ./environments.html#about-environmentpath
-[modulepath]: /puppet/3.8/reference/configuration.html#modulepath
+[modulepath]: /puppet/3.8/configuration.html#modulepath
 [puppet.conf]: ./config_file_main.html
-[basemodulepath]: /puppet/3.8/reference/configuration.html#basemodulepath
+[basemodulepath]: /puppet/3.8/configuration.html#basemodulepath
 [main manifest]: ./dirs_manifest.html
 [configuring_timeout]: ./environments_configuring.html#environmenttimeout
 

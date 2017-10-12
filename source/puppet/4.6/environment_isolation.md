@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Environment Isolation"
-canonical: "/puppet/latest/reference/environment_isolation.html"
+canonical: "/puppet/latest/environment_isolation.html"
 ---
 
 

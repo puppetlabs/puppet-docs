@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 4.5 System Requirements"
-canonical: "/puppet/latest/reference/system_requirements.html"
+canonical: "/puppet/latest/system_requirements.html"
 ---
 
 > To install Puppet, first [view the pre-install tasks](./install_pre.html).

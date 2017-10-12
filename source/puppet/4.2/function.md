@@ -3,7 +3,7 @@ layout: default
 built_from_commit: e49293167c2a4753e3db51df5585478e3d8c8877
 title: Function Reference
 toc: columns
-canonical: /puppet/latest/reference/function.html
+canonical: /puppet/latest/function.html
 ---
 
 
@@ -272,12 +272,12 @@ result as a String.
 The first argument to this function should be a `<MODULE NAME>/<TEMPLATE FILE>`
 reference, which loads `<TEMPLATE FILE>` from `<MODULE NAME>`'s `templates`
 directory. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
+[hash](/puppet/latest/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/reference/lang_template.html) documentation
+- See the [template](/puppet/latest/lang_template.html) documentation
 for general template usage information.
-- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
+- See the [EPP syntax](/puppet/latest/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to call the apache module's `templates/vhost/_docroot.epp`
@@ -586,12 +586,12 @@ text result as a String.
 
 The first argument to this function should be a string containing an EPP
 template. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
+[hash](/puppet/latest/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/reference/lang_template.html) documentation
+- See the [template](/puppet/latest/lang_template.html) documentation
 for general template usage information.
-- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
+- See the [EPP syntax](/puppet/latest/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to evaluate an inline EPP template and pass it the `docroot` and
@@ -625,14 +625,14 @@ END
 ~~~
 
 - Since 3.5
-- Requires [future parser](/puppet/3.8/reference/experiments_future.html) in Puppet 3.5 to 3.8
+- Requires [future parser](/puppet/3.8/experiments_future.html) in Puppet 3.5 to 3.8
 
 - *Type*: rvalue
 
 inline_template
 ---------------
 Evaluate a template string and return its value.  See
-[the templating docs](http://docs.puppetlabs.com/puppet/latest/reference/lang_template.html) for
+[the templating docs](http://docs.puppetlabs.com/puppet/latest/lang_template.html) for
 more information. Note that if multiple template strings are specified, their
 output is all concatenated and returned as the output of the function.
 

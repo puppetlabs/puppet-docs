@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Installing Puppet Agent: Linux"
-canonical: "/puppet/latest/reference/install_linux.html"
+canonical: "/puppet/latest/install_linux.html"
 ---
 
 [master_settings]: ./config_important_settings.html#settings-for-puppet-master-servers

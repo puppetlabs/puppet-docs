@@ -135,7 +135,7 @@ Modules are directory trees. For this task, you'll create the following files:
 		    purge => true,
 		  }
 
-4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are [run in the correct order](https://docs.puppetlabs.com/puppet/latest/reference/lang_relationships.html) to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies the specified dependencies.
+4. Add the following Puppet code to your `site.pp` file. These defaults will ensure that the `pre` and `post` classes are [run in the correct order](https://docs.puppetlabs.com/puppet/latest/lang_relationships.html) to avoid locking you out of your box during the first Puppet run, and declaring `my_fw::pre` and `my_fw::post` satisfies the specified dependencies.
 
 		  Firewall {
 		    before  => Class['my_fw::post'],

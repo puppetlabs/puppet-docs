@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Data types: Regular expressions"
-canonical: "/puppet/latest/reference/lang_data_regexp.html"
+canonical: "/puppet/latest/lang_data_regexp.html"
 ---
 
 [regsubst]: ./function.html#regsubst

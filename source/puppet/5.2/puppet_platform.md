@@ -4,7 +4,7 @@ title: "About Puppet Platform and its packages"
 ---
 
 > **Note:** This document covers the Puppet Platform repository of open source Puppet 5-compatible software packages.
-> -   For Puppet 3.8 open source packages, see its [repository documentation](/puppet/3.8/reference/puppet_repositories.html).
+> -   For Puppet 3.8 open source packages, see its [repository documentation](/puppet/3.8/puppet_repositories.html).
 > -   For Puppet Enterprise installation tarballs, see its [installation documentation](/pe/latest/install_basic.html).
 
 Puppet maintains official Puppet 5 Platform package repositories for several operating systems and distributions. Puppet 5 Platform has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other.
@@ -40,7 +40,7 @@ Package                              | Contents
 
 The way you access Puppet 5 Platform  depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
 
-> **Note:** macOS and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/reference/about_agent.html). macOS `puppet-agent` packages are organized by Puppet Platform; for more information, see [the macOS installation instructions](./install_osx.html).
+> **Note:** macOS and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/about_agent.html). macOS `puppet-agent` packages are organized by Puppet Platform; for more information, see [the macOS installation instructions](./install_osx.html).
 
 
 ### Yum-based systems

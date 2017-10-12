@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet Lookup: Quick Intro to Module Data"
-canonical: "/puppet/latest/reference/lookup_quick_module.html"
+canonical: "/puppet/latest/lookup_quick_module.html"
 ---
 
 [hash merge operator]: ./lang_expressions.html#merging

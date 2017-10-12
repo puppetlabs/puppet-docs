@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Config Files: hiera.yaml"
-canonical: "/puppet/latest/reference/config_file_hiera.html"
+canonical: "/puppet/latest/config_file_hiera.html"
 ---
 
 [hiera]: /hiera/latest/

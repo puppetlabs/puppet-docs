@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Config Files: autosign.conf"
-canonical: "/puppet/latest/reference/config_file_autosign.html"
+canonical: "/puppet/latest/config_file_autosign.html"
 ---
 
 [autosigning]: ./ssl_autosign.html

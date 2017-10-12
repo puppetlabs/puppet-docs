@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Config Files: custom_trusted_oid_mapping.yaml"
-canonical: "/puppet/latest/reference/config_file_oid_map.html"
+canonical: "/puppet/latest/config_file_oid_map.html"
 ---
 
 [extensions]: ./ssl_attributes_extensions.html

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x Agent Upgrades"
-canonical: "/puppet/latest/reference/upgrade_agent.html"
+canonical: "/puppet/latest/upgrade_agent.html"
 ---
 
 This guide will help you update your Puppet 3.x agents to Puppet 4.x.
@@ -14,7 +14,7 @@ If you have currently running Puppet agents that you want to update to Puppet 4,
 * Note the current `ssldir` location by running (as root) `puppet agent --configprint ssldir`; you'll need this information to avoid re-issuing certificates.
 * Disable the previous Puppet Labs `products` and `devel` repositories.
 * Using your package manager, install the `puppet-agent` package for your operating system.
-* Modify the new, Puppet 4-compatible `/etc/puppetlabs/puppet/puppet.conf` file to include any local customizations from the old `/etc/puppet/puppet.conf` configuration file. You will need to set the `server` setting (and `ca_server`, if you've set up a separate Puppet 4 CA) to point at the hostname of your new Puppet 4 master. Be sure to check the Puppet 4.0 release notes for [deprecated and changed settings](/puppet/4.0/reference/release_notes.html#break-changed-defaults-for-settings) that should not be copied over. Notably, if you previously set `stringify_facts=false`, this is no longer necessary.  
+* Modify the new, Puppet 4-compatible `/etc/puppetlabs/puppet/puppet.conf` file to include any local customizations from the old `/etc/puppet/puppet.conf` configuration file. You will need to set the `server` setting (and `ca_server`, if you've set up a separate Puppet 4 CA) to point at the hostname of your new Puppet 4 master. Be sure to check the Puppet 4.0 release notes for [deprecated and changed settings](/puppet/4.0/release_notes.html#break-changed-defaults-for-settings) that should not be copied over. Notably, if you previously set `stringify_facts=false`, this is no longer necessary.  
 * Copy your SSL certificate tree from its previous location (from `puppet agent --configprint ssldir` above) to its new path (`/etc/puppetlabs/puppet/ssl`), making sure to preserve permissions and ownership. For example:
 
     `cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl`
@@ -29,4 +29,4 @@ If you have currently running Puppet agents that you want to update to Puppet 4,
 
 ## Windows Hosts
 
-The filesystem paths for configuration and certificates did not change from Puppet 3.x. Windows upgraders need to check individual settings that [may be deprecated or whose defaults have changed](/puppet/4.0/reference/release_notes.html#break-changed-defaults-for-settings).
+The filesystem paths for configuration and certificates did not change from Puppet 3.x. Windows upgraders need to check individual settings that [may be deprecated or whose defaults have changed](/puppet/4.0/release_notes.html#break-changed-defaults-for-settings).

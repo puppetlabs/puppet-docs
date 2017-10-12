@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Static Catalogs"
-canonical: "/puppet/latest/reference/static_catalogs.html"
+canonical: "/puppet/latest/static_catalogs.html"
 ---
 
 [catalogs]: ./subsystem_catalog_compilation.html

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 4.4 Reference Manual"
-canonical: "/puppet/latest/reference/index.html"
+canonical: "/puppet/latest/index.html"
 toc: false
 ---
 

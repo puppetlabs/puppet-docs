@@ -10,7 +10,7 @@ title: "Puppet 3.x to 4.x: Upgrade Puppet Server and PuppetDB"
 [Puppet Server compatibility documentation]: {{puppetserver}}/compatibility_with_puppet_agent.html
 [main manifest]: ./dirs_manifest.html
 [default_manifest]: ./configuration.html#defaultmanifest
-[retrieve and apply a catalog]: /puppet/latest/reference/man/agent.html#USAGE-NOTES
+[retrieve and apply a catalog]: /puppet/latest/man/agent.html#USAGE-NOTES
 [hiera.yaml]: {{hiera}}/configuring.html
 [Hiera]: {{hiera}}/
 [r10k]: {{pe}}/r10k.html
@@ -19,7 +19,7 @@ title: "Puppet 3.x to 4.x: Upgrade Puppet Server and PuppetDB"
 [upgrade PuppetDB]: {{puppetdb}}/install_via_module.html
 [puppetdb_module]: https://forge.puppetlabs.com/puppetlabs/puppetdb
 [PuppetDB 3.0 release notes]: /puppetdb/3.0/release_notes.html
-[future]: /puppet/3.8/reference/experiments_future.html
+[future]: /puppet/3.8/experiments_future.html
 
 Unlike the automated upgrades of Puppet agents, Puppet Server upgrades are a manual process because you need to make more decisions during the upgrade.
 
@@ -66,7 +66,7 @@ Repeat these steps for each Puppet Server until you're running a pure Puppet 4 a
 
    The [`puppet.conf`][puppet.conf] file moved to `/etc/puppetlabs/puppet/puppet.conf`, a lot of defaults were changed, and many settings have been removed. Compare the new `puppet.conf` to the old one, which by default lives at `/etc/puppet/puppet.conf`, and copy over the settings you need to keep.
 
-   If you are installing Puppet Server 4 onto a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. You can also remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting you enabled for the [future parser][future].
+   If you are installing Puppet Server 4 onto a new node, look at the [list of important settings](./config_important_settings.html#settings-for-puppet-master-servers) for stuff you might want to set now. You can also remove the now-unused [`parser`](/puppet/3.8/config_file_environment.html#parser) setting you enabled for the [future parser][future].
 
 4. Reconcile `auth.conf`
 
@@ -167,13 +167,13 @@ If this is a new Puppet master but _isn't_ serving as a certificate authority, u
 
 ### Moving code
 
-> **Note:** You should have already switched to [directory environments](/puppet/latest/reference/environments.html) in the pre-upgrade steps, because [config file environments are removed](/puppet/3.8/reference/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4.
+> **Note:** You should have already switched to [directory environments](/puppet/latest/environments.html) in the pre-upgrade steps, because [config file environments are removed](/puppet/3.8/environments_classic.html#config-file-environments-are-deprecated) in Puppet 4.
 
 Move the contents of your old `environments` directory to `/etc/puppetlabs/code/environments`. If you need multiple groups of environments, set the `environmentpath` in `puppet.conf`.
 
 If you're using a single [main manifest][] across all environments, move it to somewhere inside `/etc/puppetlabs/code` and confirm that [`default_manifest`][default_manifest] is correctly configured in `puppet.conf`.
 
-If you're configuring individual environments, check your `environment.conf` files. If you enabled the [future parser][future] in environments, remove the now-unused [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting.
+If you're configuring individual environments, check your `environment.conf` files. If you enabled the [future parser][future] in environments, remove the now-unused [`parser`](/puppet/3.8/config_file_environment.html#parser) setting.
 
 If you're using [r10k][] or another code deployment tool, change its configuration to use the new `environments` directory at `/etc/puppetlabs/code/environments`.
 

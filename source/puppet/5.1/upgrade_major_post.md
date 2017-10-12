@@ -21,7 +21,7 @@ Avoid maintenance and configuration confusion by deleting the old `/etc/puppet` 
 
 ## Delete the per-environment `parser` setting
 
-If you set the [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting in `environment.conf` as part of your [upgrade preparations](./upgrade_major_pre.html), remove it from all environments. The setting is  inert, but Puppet will log warnings until it's gone.
+If you set the [`parser`](/puppet/3.8/config_file_environment.html#parser) setting in `environment.conf` as part of your [upgrade preparations](./upgrade_major_pre.html), remove it from all environments. The setting is  inert, but Puppet will log warnings until it's gone.
 
 ## Unassign `puppet_agent` class from nodes
 

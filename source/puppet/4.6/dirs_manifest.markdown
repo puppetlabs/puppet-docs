@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Directories: The main manifest(s)"
-canonical: "/puppet/latest/reference/dirs_manifest.html"
+canonical: "/puppet/latest/dirs_manifest.html"
 ---
 
 [environment]: ./environments.html

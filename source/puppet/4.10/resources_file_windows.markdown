@@ -4,7 +4,7 @@ title: "Resource tips and examples: File on Windows"
 ---
 
 [file]: ./type.html#file
-[relationships]: /puppet/latest/reference/lang_relationships.html
+[relationships]: /puppet/latest/lang_relationships.html
 [acl_module]: https://forge.puppetlabs.com/puppetlabs/acl
 [mode]: ./type.html#file-attribute-mode
 

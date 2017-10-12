@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Environments and Puppet's HTTPS Interface"
-canonical: "/puppet/latest/reference/environments_https.html"
+canonical: "/puppet/latest/environments_https.html"
 ---
 
 [http_api]: ./http_api/http_api_index.html

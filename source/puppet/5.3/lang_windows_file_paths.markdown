@@ -58,7 +58,7 @@ Backslashes **MUST** be used in:
 
 ### Using backslashes in double-quoted strings
 
-Puppet supports two kinds of string quoting. See [the reference section about strings](/puppet/latest/reference/lang_data_string.html) for full details.
+Puppet supports two kinds of string quoting. See [the reference section about strings](/puppet/latest/lang_data_string.html) for full details.
 
 Strings surrounded by double quotes (`"`) allow many escape sequences that begin with backslashes. (For example, `\n` for a newline.) Any lone backslashes will be interpreted as part of an escape sequence.
 

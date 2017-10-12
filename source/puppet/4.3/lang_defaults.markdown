@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Resource Default Statements"
-canonical: "/puppet/latest/reference/lang_defaults.html"
+canonical: "/puppet/latest/lang_defaults.html"
 ---
 
 [sitemanifest]: ./dirs_manifest.html

@@ -3,15 +3,15 @@ layout: default
 title: "Installing Puppet: Linux"
 ---
 
-[master_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-puppet-master-servers
-[agent_settings]: /puppet/latest/reference/config_important_settings.html#settings-for-agents-all-nodes
+[master_settings]: /puppet/latest/config_important_settings.html#settings-for-puppet-master-servers
+[agent_settings]: /puppet/latest/config_important_settings.html#settings-for-agents-all-nodes
 [where]: ./whered_it_go.html
-[dns_alt_names]: /puppet/latest/reference/configuration.html#dnsaltnames
+[dns_alt_names]: /puppet/latest/configuration.html#dnsaltnames
 [server_heap]: /puppetserver/latest/install_from_packages.html#memory-allocation
 [puppetserver_confd]: /puppetserver/latest/configuration.html
-[modules]: /puppet/latest/reference/modules_fundamentals.html
-[main manifest]: /puppet/latest/reference/dirs_manifest.html
-[environments]: /puppet/latest/reference/environments.html
+[modules]: /puppet/latest/modules_fundamentals.html
+[main manifest]: /puppet/latest/dirs_manifest.html
+[environments]: /puppet/latest/environments.html
 
 
 ## Read the Pre-Install Tasks

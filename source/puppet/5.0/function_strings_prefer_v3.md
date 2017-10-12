@@ -102,9 +102,9 @@ is initialized with the nested hash for the respective type. The annotated objec
     * Return type(s): `Any`. 
 
 Returns the given value if it is of the given
-[data type](https://docs.puppetlabs.com/puppet/latest/reference/lang_data.html), or
+[data type](https://docs.puppetlabs.com/puppet/latest/lang_data.html), or
 otherwise either raises an error or executes an optional two-parameter
-[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html).
+[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html).
 
 The function takes two mandatory arguments, in this order:
 
@@ -149,7 +149,7 @@ $valid_username = assert_type(String[1], $raw_username) |$expected, $actual| {
 ~~~
 
 For more information about data types, see the
-[documentation](https://docs.puppetlabs.com/puppet/latest/reference/lang_data.html).
+[documentation](https://docs.puppetlabs.com/puppet/latest/lang_data.html).
 
 - Since 4.0.0
 
@@ -475,7 +475,7 @@ Returns a hash value from a provided string using the digest_algorithm setting f
 * `each()`
     * Return type(s): `Any`. 
 
-Runs a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+Runs a [lambda](http://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
 repeatedly using each value in a data structure, then returns the values unchanged.
 
 This function takes two mandatory arguments, in this order:
@@ -566,7 +566,7 @@ $data.each |$key, $value| {
 
 For an example that demonstrates how to create multiple `file` resources using `each`,
 see the Puppet
-[iteration](https://docs.puppetlabs.com/puppet/latest/reference/lang_iteration.html)
+[iteration](https://docs.puppetlabs.com/puppet/latest/lang_iteration.html)
 documentation.
 
 - Since 4.0.0
@@ -592,12 +592,12 @@ result as a String.
 The first argument to this function should be a `<MODULE NAME>/<TEMPLATE FILE>`
 reference, which loads `<TEMPLATE FILE>` from `<MODULE NAME>`'s `templates`
 directory. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
+[hash](/puppet/latest/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/reference/lang_template.html) documentation
+- See the [template](/puppet/latest/lang_template.html) documentation
 for general template usage information.
-- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
+- See the [EPP syntax](/puppet/latest/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to call the apache module's `templates/vhost/_docroot.epp`
@@ -664,7 +664,7 @@ found, skipping any files that don't exist.
 * `filter()`
     * Return type(s): `Any`. 
 
-Applies a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+Applies a [lambda](http://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
 to every value in a data structure and returns an array or hash containing any elements
 for which the lambda evaluates to `true`.
 
@@ -851,7 +851,7 @@ $users = hiera('users', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
 takes one parameter.
 
 **Example**: Using `hiera` with a lambda
@@ -936,7 +936,7 @@ $allusers = hiera_array('users', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
 takes one parameter.
 
 **Example**: Using `hiera_array` with a lambda
@@ -1029,7 +1029,7 @@ $allusers = hiera_hash('users', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
 takes one parameter.
 
 **Example**: Using `hiera_hash` with a lambda
@@ -1127,7 +1127,7 @@ hiera_include('classes', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
 takes one parameter.
 
 **Example**: Using `hiera_include` with a lambda
@@ -1234,12 +1234,12 @@ text result as a String.
 
 The first argument to this function should be a string containing an EPP
 template. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
+[hash](/puppet/latest/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/reference/lang_template.html) documentation
+- See the [template](/puppet/latest/lang_template.html) documentation
 for general template usage information.
-- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
+- See the [EPP syntax](/puppet/latest/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to evaluate an inline EPP template and pass it the `docroot` and
@@ -1257,7 +1257,7 @@ parameter tag without default values. Puppet produces an error if the
 `inline_epp` function fails to pass any required parameter.
 
 An inline EPP template should be written as a single-quoted string or
-[heredoc](/puppet/latest/reference/lang_data_string.html#heredocs).
+[heredoc](/puppet/latest/lang_data_string.html#heredocs).
 A double-quoted string is subject to expression interpolation before the string
 is parsed as an EPP template.
 
@@ -1273,7 +1273,7 @@ END
 ~~~
 
 - Since 3.5
-- Requires [future parser](/puppet/3.8/reference/experiments_future.html) in Puppet 3.5 to 3.8
+- Requires [future parser](/puppet/3.8/experiments_future.html) in Puppet 3.5 to 3.8
 
 ## `inline_template`
 
@@ -1281,7 +1281,7 @@ END
     * Return type(s): `Any`. 
 
 Evaluate a template string and return its value.  See
-[the templating docs](https://docs.puppetlabs.com/puppet/latest/reference/lang_template.html) for
+[the templating docs](https://docs.puppetlabs.com/puppet/latest/lang_template.html) for
 more information. Note that if multiple template strings are specified, their
 output is all concatenated and returned as the output of the function.
 
@@ -1299,7 +1299,7 @@ how to use this function.
 * `lest()`
     * Return type(s): `Any`. 
 
-Call a [lambda](https://docs.puppet.com/puppet/latest/reference/lang_lambdas.html)
+Call a [lambda](https://docs.puppet.com/puppet/latest/lang_lambdas.html)
 (which should accept no arguments) if the argument given to the function is `undef`.
 Returns the result of calling the lambda if the argument is `undef`, otherwise the
 given argument.
@@ -1376,7 +1376,7 @@ The arguments accepted by `lookup` are as follows:
     first key, it will try again with the subsequent ones, only resorting to a
     default value if none of them succeed.
 2. `<VALUE TYPE>` (data type) --- A
-[data type](https://docs.puppetlabs.com/puppet/latest/reference/lang_data_type.html)
+[data type](https://docs.puppetlabs.com/puppet/latest/lang_data_type.html)
 that must match the retrieved value; if not, the lookup (and catalog
 compilation) will fail. Defaults to `Data` (accepts any normal value).
 3. `<MERGE BEHAVIOR>` (string or hash; see **"Merge Behaviors"** below) ---
@@ -1476,7 +1476,7 @@ remove values by prefixing them with `--`:
 * `map()`
     * Return type(s): `Any`. 
 
-Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
 to every value in a data structure and returns an array containing the results.
 
 This function takes two mandatory arguments, in this order:
@@ -2586,7 +2586,7 @@ reference; e.g.: `realize User[luke]`.
 * `reduce()`
     * Return type(s): `Any`. 
 
-Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
 to every value in a data structure from the first argument, carrying over the returned
 value of each iteration, and returns the result of the lambda's final iteration. This
 lets you create a new value or data structure by combining values from the first
@@ -2828,7 +2828,7 @@ Note that the returned value is ignored if used in a class or user defined type.
     * Return type(s): `Any`. 
 
 Reverses the order of the elements of something that is iterable and optionally runs a
-[lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) for each
+[lambda](http://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) for each
 element.
 
 This function takes one to two arguments:
@@ -3029,7 +3029,7 @@ The first parameter is format string describing how the rest of the parameters s
     * Return type(s): `Any`. 
 
 Provides stepping with given interval over elements in an iterable and optionally runs a
-[lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) for each
+[lambda](http://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) for each
 element.
 
 This function takes two to three arguments:
@@ -3327,7 +3327,7 @@ return their outputs concatenated into a single string.
 * `then()`
     * Return type(s): `Any`. 
 
-Call a [lambda](https://docs.puppet.com/puppet/latest/reference/lang_lambdas.html)
+Call a [lambda](https://docs.puppet.com/puppet/latest/lang_lambdas.html)
 with the given argument unless the argument is undef. Return `undef` if argument is
 `undef`, and otherwise the result of giving the argument to the lambda.
 
@@ -3591,9 +3591,9 @@ Log a message on the server at level notice.
 * `with()`
     * Return type(s): `Any`. 
 
-Call a [lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
+Call a [lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
 with the given arguments and return the result. Since a lambda's scope is
-[local](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html#lambda-scope)
+[local](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html#lambda-scope)
 to the lambda, you can use the `with` function to create private blocks of code within a
 class using variables whose values cannot be accessed outside of the lambda.
 

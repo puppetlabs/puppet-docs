@@ -1,7 +1,7 @@
 ---
 title: "Subsystems: Agent/master HTTPS communications"
 layout: default
-canonical: "/puppet/latest/reference/subsystem_agent_master_comm.html"
+canonical: "/puppet/latest/subsystem_agent_master_comm.html"
 ---
 
 [http_api]: ./http_api/http_api_index.html

@@ -18,9 +18,9 @@ Puppet's version numbers use the format X.Y.Z, where:
 
 ## If you're upgrading from Puppet 3.x
 
-Read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover breaking changes since Puppet 3.8.
+Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they cover breaking changes since Puppet 3.8.
 
-Also of interest: the [Puppet 4.6 release notes](/puppet/4.6/reference/release_notes.html) and [Puppet 4.5 release notes](/puppet/4.5/reference/release_notes.html).
+Also of interest: the [Puppet 4.6 release notes](/puppet/4.6/release_notes.html) and [Puppet 4.5 release notes](/puppet/4.5/release_notes.html).
 
 
 >**Note**: This version of Puppet is included in the Long Term Support release [Puppet Enterprise 2016.4][], so while there may be [newer versions of Puppet](/puppet/latest) available (and sometimes referenced in these release notes), we will continue updating this version until Puppet Enterprise 2016.4 reaches end of life.

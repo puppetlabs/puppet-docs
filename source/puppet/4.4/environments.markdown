@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "About Environments"
-canonical: "/puppet/latest/reference/environments.html"
+canonical: "/puppet/latest/environments.html"
 ---
 
 

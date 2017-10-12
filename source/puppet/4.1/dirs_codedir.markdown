@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Code and Data Directory (codedir)"
-canonical: "/puppet/latest/reference/dirs_codedir.html"
+canonical: "/puppet/latest/dirs_codedir.html"
 ---
 
 Puppet's `codedir` is the main directory for Puppet code and data. It contains environments (which contain your manifests and modules), a global modules directory for all environments, and your Hiera data.
