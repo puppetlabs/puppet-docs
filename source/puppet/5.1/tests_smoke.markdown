@@ -12,16 +12,16 @@ For each class or defined type in your module, you'll write a corresponding exam
 
 Then you'll apply those example manifests in either a no-operation mode, to check for compilation errors and view a log of events, or in a virtual testing environment, to compare the resulting system state to the desired state.
 
-This form of testing gives less assurance than full acceptance testing, but you can still examine the results and logs to determine whether the right events are being generated or the right system configuration is being enforced. 
+This form of testing gives less assurance than full acceptance testing, but you can still examine the results and logs to determine whether the right events are being generated or the right system configuration is being enforced.
 
-{.:concept}
+{:.concept}
 ## Writing example manifests
 
 A well-formed Puppet module implements each of its classes or defined types in separate files in its `manifests\` directory. Thus, ensuring each class or type has an example manifest results in the `examples\` directory being a mirror image of the `manifests\` directory.
 
 Class manifests in the `examples\` directory are typically basic manifests that declare the class, such as `include apache::ssl`. For parameterized classes, the example manifest must declare the class with all of its required parameters set.
 
-For example: 
+For example:
 
 ~~~ ruby
     class {'ntp':
@@ -59,7 +59,7 @@ If a class or defined type depends on any other classes or resources, your examp
     class{'git::gitosis':}
 ~~~
 
-{.:concept}
+{:.concept}
 ## Running smoke tests
 
 Smoke test your classes and defined types by applying the example manifests, either in no-operation mode or on a testing machine.

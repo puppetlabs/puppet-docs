@@ -31,7 +31,7 @@ Access to Puppet's HTTPS API is configured in `auth.conf`.
 >
 > The default location of the new `auth.conf` is `/etc/puppetlabs/puppetserver/conf.d/auth.conf`. See [the Puppet Server `auth.conf` docs][server_auth_conf] for details.
 
-{.:concept}
+{:.concept}
 ## Puppet's HTTPS API
 
 The Puppet agent service requests configurations over HTTPS, and the Puppet master application provides several HTTPS endpoints to support this. (For example, requesting a catalog uses a different endpoint than submitting a report.) There are also a few endpoints that aren't used by Puppet agent.
