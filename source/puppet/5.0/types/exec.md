@@ -386,7 +386,9 @@ Windows --- a command must explicitly invoke the shell:
 
 Advanced example:
 
-```command   => 'cmd.exe /c "C:\\Program Files (x86)\\Java\\jre1.8.0_144\\bin\\java.exe" -version > C:\\logfile.txt 2>&1'```
+```
+command   => 'cmd.exe /c "C:\\Program Files (x86)\\Java\\jre1.8.0_144\\bin\\java.exe" -version > C:\\logfile.txt 2>&1'
+```
 
 If no extension is specified for a command, Windows will use the `PATHEXT`
 environment variable to locate the executable.
