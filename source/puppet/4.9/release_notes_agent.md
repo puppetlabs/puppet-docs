@@ -72,7 +72,7 @@ This release includes updates to multiple components: [Puppet 4.9.0][], [Facter 
 
 #### pxp-agent 1.4.0 new features
 
-You can now configure `pxp-agent` to write an access log of messages received by the agent. See [https://github.com/puppetlabs/pxp-agent#pcp-access-logging][] for details. ([PCP-387](https://tickets.puppetlabs.com/browse/PCP-387))
+You can now configure `pxp-agent` to write an access log of messages received by the agent. See https://github.com/puppetlabs/pxp-agent#pcp-access-logging for details. ([PCP-387](https://tickets.puppetlabs.com/browse/PCP-387))
 
 This release supports PCP version 2, an update that changes to a simpler text-based protocol that only supports immediate delivery (no message expiration) to a single target. It can be enabled by setting the `pcp-version` option to `2` and connecting it to a version of pcp-broker supporting PCP v2. ([PCP-647](https://tickets.puppetlabs.com/browse/PCP-647))
 
