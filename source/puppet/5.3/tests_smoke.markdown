@@ -14,7 +14,7 @@ Then you'll apply those example manifests in either a no-operation mode, to chec
 
 This form of testing gives less assurance than full acceptance testing, but you can still examine the results and logs to determine whether the right events are being generated or the right system configuration is being enforced. 
 
-{.:concept}
+{:.concept}
 ## Writing example manifests
 
 A well-formed Puppet module implements each of its classes or defined types in separate files in its `manifests\` directory. Thus, ensuring each class or type has an example manifest results in the `examples\` directory being a mirror image of the `manifests\` directory.
@@ -59,7 +59,7 @@ If a class or defined type depends on any other classes or resources, your examp
     class{'git::gitosis':}
 ~~~
 
-{.:concept}
+{:.concept}
 ## Running smoke tests
 
 Smoke test your classes and defined types by applying the example manifests, either in no-operation mode or on a testing machine.

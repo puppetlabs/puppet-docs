@@ -15,11 +15,9 @@ canonical: "/puppet/latest/release_notes_agent.html"
 
 [Hiera 3.2.0]: /hiera/3.2/release_notes.html#hiera-320
 
-
 [MCollective 2.8.8]: /mcollective/releasenotes.html#2_8_8
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
-
 
 This page lists changes to the `puppet-agent` package. For details about changes to components in a `puppet-agent` release, follow the links to those components in the package release's notes.
 
@@ -35,16 +33,15 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.5 release notes](./release_notes.html).
 
-
 ## Puppet agent 1.5.3
 
 Released July 20, 2016.
 
 ### Component updates
 
-This was a minor release which included releases of [Puppet 4.5.3][], [Facter 3.3.0][], and pxp-agent 1.1.4.
+This was a minor release which included releases of [Puppet 4.5.3][], [Facter 3.3.0][], and [pxp-agent] 1.1.4.
 
->**Note:** Despite the jump in y-version number from 3.1.8, Facter 3.3.0 is a minor bug fix release. Facter 3.2.0 was skipped intentionally to avoid confusion, as Facter 3.1.7 and Facter 3.1.8 incorrectly self identified as Facter 3.2.0 ([FACT-1425](https://tickets.puppetlabs.com/browse/FACT-1425)) when using `facter --version` as well as `facter facterversion`.
+> **Note:** Despite the jump in y-version number from 3.1.8, Facter 3.3.0 is a minor bug fix release. Facter 3.2.0 was skipped intentionally to avoid confusion, as Facter 3.1.7 and Facter 3.1.8 incorrectly self identified as Facter 3.2.0 ([FACT-1425](https://tickets.puppetlabs.com/browse/FACT-1425)) when using `facter --version` as well as `facter facterversion`.
 
 ### New platform
 
@@ -78,9 +75,9 @@ Released May 17, 2016.
 
 Includes [Puppet 4.5.0][], [Facter 3.1.7][], and [Hiera 3.2.0][].
 
-Ruby has been updated to 2.1.9, on all platforms except Windows. 
+Ruby has been updated to 2.1.9, on all platforms except Windows.
 
-### Path change 
+### Path change
 
 The default location of hiera.yaml has changed from the `$codedir` to the `$confdir`. Updating to `puppet-agent 1.5.0` will not move your existing file, but new installations will place it in this location. You should move the file to `$confdir`.
 
