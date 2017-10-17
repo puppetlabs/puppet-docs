@@ -5,7 +5,8 @@ canonical: "/pdk/1.0/pdk_install.html"
 description: "Installing the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-[troubleshoot]: https://puppet.com/download-puppet-development-kit
+[troubleshoot]: ./pdk_troubleshooting
+[download]: https://puppet.com/download-puppet-development-kit
 
 Install Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
 
@@ -46,7 +47,7 @@ Modules created with PDK are supported with all Puppet and Ruby version combinat
 
 Download and install the PDK package for Linux-based systems.
 
-1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
+1. Download the PDK package from [PDK downloads site][download].
 1. Install the `pdk` package using the command appropriate to your system:
    * On RPM-based (Red Hat, SLES) systems, run `sudo rpm -ivh pdk-<version>-<platform>.rpm`
    * On Debian-based (Debian, Ubuntu) systems, run `sudo dpkg -i pdk-<version>-<platform>.deb`
@@ -58,7 +59,7 @@ Download and install the PDK package for Linux-based systems.
 
 Download and install the PDK package for Mac OS X systems.
 
-1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
+1. Download the PDK package from [PDK downloads site][download].
 1. Double click on the downloaded package to install.
 2. Open a terminal to re-source your shell profile and make PDK available to your PATH.
 
@@ -67,7 +68,7 @@ Download and install the PDK package for Mac OS X systems.
 
 Download and install the PDK package for Windows systems.
 
-1. Download the PDK package from [PDK downloads site](https://puppet.com/download-puppet-development-kit).
+1. Download the PDK package from [PDK downloads site][download].
 1. Double click on the downloaded package to install.
 1. Open a Powershell window to re-source your profile and make PDK available to your PATH.
 
