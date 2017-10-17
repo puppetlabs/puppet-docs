@@ -55,7 +55,7 @@ See the PDK reference for a complete list of validation command options.
 
 Related topics:
 
-* [PDK reference](./pdk_reference)
+* [PDK reference](./pdk_reference.html)
 
 {:.concept}
 ### Unit testing modules
@@ -92,6 +92,6 @@ See the PDK reference for a complete list of unit test options.
 
 Related topics:
 
-* [PDK reference](./pdk_reference)
+* [PDK reference](./pdk_reference.html)
 
 
