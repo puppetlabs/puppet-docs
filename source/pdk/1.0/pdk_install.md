@@ -5,7 +5,7 @@ canonical: "/pdk/1.0/pdk_install.html"
 description: "Installing the Puppet Development Kit, the shortest path to developing better Puppet code."
 ---
 
-[troubleshoot]: ./pdk_troubleshooting
+[troubleshoot]: ./pdk_troubleshooting.html
 [download]: https://puppet.com/download-puppet-development-kit
 
 Install Puppet Development Kit (PDK) as your first step in creating and testing Puppet modules.
