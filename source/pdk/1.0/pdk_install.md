@@ -22,7 +22,7 @@ By default, PDK installs to the following location:
 {:.reference}
 ### Requirements and limitations
 
-PDK supports the following operating systems.
+PDK supports Puppet 4 and the following operating systems:
 
 | Operating system | Version(s) | Arch | PkgType |
 | ---------------- | ---------- | ---- | ------- |
@@ -36,11 +36,11 @@ PDK supports the following operating systems.
 | Windows Server (Server OS) | 2008r2, 2012, 2012r2, 2012r2 Core, and 2016 | x86_64 | MSI |
 | Mac OS X | 10.11, 10.12 | x86_64 | N/A |
 
-On Windows, PowerShell 4.0 or greater is recommended, 2.0 or greater is supported.
+On Windows, PowerShell 2.0 or greater is supported, but we recommend 4.0 or greater.
 
 PDK functions, such as creating classes, testing, and validation, are supported only on modules created with PDK.
 
-Modules created with PDK are supported with all Puppet and Ruby version combinations currently under maintenance. See open source [Puppet](https://docs.puppet.com/puppet/latest/about_agent.html) and [Puppet Enterprise](https://puppet.com/misc/puppet-enterprise-lifecycle) lifecycle pages for details.
+Modules created with PDK are supported with all Puppet and Ruby version combinations currently under maintenance. See open source [Puppet](https://docs.puppet.com/puppet/latest/about_agent.html) and [Puppet Enterprise](https://puppet.com/misc/puppet-enterprise-lifecycle) lifecycle pages for 
 
 {:.task}
 ## Install PDK on Linux-based systems
