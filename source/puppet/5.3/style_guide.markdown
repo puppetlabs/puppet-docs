@@ -8,6 +8,8 @@ The Puppet Language Style Guide
 
 This style guide applies to Puppet 4 and later. Puppet 3 is no longer supported, but this style guide includes some Puppet 3 guidelines for those who need to maintain older code.
 
+> A new function section has been added to the style guide at section 15. This changes the numbering from this section forward.
+
 {:.concept}
 ## 1. Terminology
 
@@ -1275,12 +1277,17 @@ case $::operatingsystem {
 When setting the default case, keep in mind that the default case should cause the catalog compilation to fail if the resulting behavior cannot be predicted on the platforms the module was built to be used on.
 
 {:.concept}
-## 15. Hiera
+## 15. Functions
+
+Avoid the `inline_template()` and `inline_epp()` functions for templates of more than one line, because these functions don't permit template validation. Instead, use the `template()` and `epp()` functions to read a template from the module. This method allows for syntax validation.
+
+{:.concept}
+## 16. Hiera
 
 You should avoid using calls to Hiera functions in modules meant for public consumption, because not all users have implemented Hiera. Instead, we recommend using parameters that can be overridden with Hiera.
 
 {:.concept}
-## 16. Examples in modules
+## 17. Examples in modules
 
 Major use cases for your module should have corresponding example manifests in the module's `/examples` directory.
 
@@ -1291,12 +1298,12 @@ modulepath/apache/examples/{usecase}.pp
 The example manifest should provide a clear example of how to declare the class or defined resource type. The example manifest should also declare any classes required by the corresponding class to ensure `puppet apply` works in a limited, standalone manner.
 
 {:.concept}
-## 17. Module documentation
+## 18. Module documentation
 
 All publicly available modules should include the documentation covered below.
 
 {:.section}
-### 17.1 README
+### 18.1 README
 
 Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](./latest/READMEtemplate.txt) offers a basic format you can use. If you create modules with the Puppet Developer Kit or the `puppet module generate` command, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
 
@@ -1309,7 +1316,7 @@ There's an entire [guide](./latest/modules_documentation.html) to writing a grea
 * Include usage examples and code samples for the common use cases for your module.
 
 {:.section}
-### 17.2 Documenting Puppet code
+### 18.2 Documenting Puppet code
 
 Use [Puppet Strings](https://github.com/puppetlabs/puppet-strings) code comments to document your Puppet classes, defined types, functions, and resource types and providers. Strings processes the README and comments from your code into HTML or JSON format documentation. This allows you and your users to generate detailed documentation for your module.
 
@@ -1347,7 +1354,7 @@ Default value: 'present'.
 See our module documentation [guide](./latest/modules_documentation.html) for more details and examples.
 
 {:.section}
-### 17.3 CHANGELOG
+### 18.3 CHANGELOG
 
 Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG should: 
 
@@ -1356,7 +1363,7 @@ Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG
 * Specifically call out backwards-incompatible changes
 
 {:.concept}
-## 18. Verification and testing
+## 19. Verification and testing
 
 We recommend several community tools for testing your code and style.
 
