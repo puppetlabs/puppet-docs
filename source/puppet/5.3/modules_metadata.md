@@ -204,11 +204,11 @@ Specify requirements in the following format:
 
 ```json
 "requirements": [
-  {"name": "pe”, “version_requirement”: “3.x”}
+  {"name": "puppet”, “version_requirement”: ">= 4.5.0 < 5.0.0"}
 ]
 ```
 
-For Puppet Enterprise versions, specify the core Puppet version of that version of Puppet Enterprise. For example, Puppet Enterprise 2017.1 contained Puppet 4.9. We do not recommend expressing requirements for Puppet versions earlier than 3.0, because they do not follow semver.
+For Puppet Enterprise versions, specify the core Puppet version of that version of Puppet Enterprise. For example, Puppet Enterprise 2017.1 contained Puppet 4.9. We do not recommend expressing requirements for Puppet versions earlier than 3.0, because they do not follow semantic versioning.
 
 For information about formatting version requirements, see the related topic about version specifiers in module metadata.
 
