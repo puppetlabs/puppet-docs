@@ -22,7 +22,9 @@ By default, PDK installs to the following location:
 {:.reference}
 ### Requirements and limitations
 
-PDK supports Puppet 4 and the following operating systems:
+PDK works with Puppet 4 or later.
+
+PDK has been tested with the following operating systems:
 
 | Operating system | Version(s) | Arch | PkgType |
 | ---------------- | ---------- | ---- | ------- |

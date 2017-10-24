@@ -14,7 +14,7 @@ description: "Creating a module with the Puppet Development Kit, the shortest pa
 
 PDK creates the basic components of a module and sets up an infrastructure for testing it.
 
-To create module metadata, PDK asks you a series of questions. Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module creations. PDK also adds a default set of supported operating systems to your metadata, which you can manually edit after module creation.
+To create module metadata, PDK asks you a series of questions. Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module creations. PDK also adds a default set of supported operating systems to your metadata, which you can manually edit after module creation. For details about editing `metadata.json`, see the related topic about module metadata.
 
 Optionally, you can skip the interview step and use the default answers for all metadata.
 

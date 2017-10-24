@@ -74,8 +74,8 @@ Related links:
 
 * [rspec](http://rspec.info/)
 * [rspec-puppet](https://github.com/rodjek/rspec-puppet/)
+* [Puppet spec helper](https://github.com/puppetlabs/puppetlabs_spec_helper)
 * [Writing rspec-puppet tests](http://rspec-puppet.com/tutorial/)
-
 
 {:.task}
 ## Unit test your module
