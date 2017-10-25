@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Updating 3.x Manifests for Puppet 4.x"
+title: "Updating Puppet 3.x manifests"
 ---
 
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
@@ -11,9 +11,7 @@ title: "Updating 3.x Manifests for Puppet 4.x"
 [expressions]: ./lang_expressions.html
 [boolean]: ./lang_data_boolean.html
 
-
-Several breaking changes were introduced in Puppet 4.0. If you previously used Puppet 3.x, your manifests will need to be updated for the new implementation. This page lists the most important steps to update your manifests to be 4.x compatible.
-
+Several breaking changes were introduced in Puppet 4.0, which remain true in Puppet 5.x. If you are upgrading from Puppet 3.x, update your manifests with new implementations introduced by those changes. This page lists the most important steps to update your manifests to be compatible with Puppet 5.
 
 ## Make sure everything is in the right place
 
@@ -21,7 +19,7 @@ The locations of code directories and important config files have changed. Read 
 
 ## Double-check to make sure it's safe before purging `cron` resources
 
-Previously, using [`resources {'cron': purge => true}`](./type.html#resources) to purge `cron` resources would only purge jobs belonging to the current user performing the Puppet run (usually `root`). [In Puppet 4](/puppet/4.0/release_notes.html), this action is more aggressive and causes **all** unmanaged cron jobs to be purged.
+Previously, using [`resources {'cron': purge => true}`](./type.html#resources) to purge `cron` resources would only purge jobs belonging to the current user performing the Puppet run (usually `root`). [In Puppet 4.0](/puppet/4.0/release_notes.html), this action is more aggressive and causes **all** unmanaged cron jobs to be purged.
 
 Make sure this is what you want. You might want to set `noop => true` on the purge resource to keep an eye on it.
 
@@ -43,14 +41,14 @@ if str2bool("$is_virtual") { ... }
 
 For full details, [see the language page about numeric values.][numeric]
 
-Previously, Puppet would convert everything to strings, then attempt to convert those strings back into numbers when they were used in a numeric context. In Puppet 4, numbers in the DSL are parsed and maintained internally as numbers. The following examples would have been equivalent in Puppet 3, but are now different:
+Previously, Puppet converted everything to strings, then attempted to convert those strings back into numbers when they were used in a numeric context. Since Puppet 4.0, numbers in the DSL are parsed and maintained internally as numbers. The following examples would have been equivalent in Puppet 3, but are now different:
 
 ``` puppet
 $port_a = 80   # Parsed and maintained as a number, errors if NOT a number
 $port_b = '80' # Parsed and maintained as a string
 ```
 
-The difference now is that Puppet will STRICTLY enforce numerics and will throw errors if values that begin with a number are not valid numbers.
+The difference now is that Puppet strictly enforces numerics and throws errors if values that begin with a number are not valid numbers.
 
 ``` puppet
 node 1name {} # invalid because 1name is not a valid decimal number; you would need to quote this name
@@ -60,7 +58,7 @@ $a = 1 + 0789 # invalid because 0789 is not a valid octal number
 
 ### Arithmetic expressions
 
-Mathematical expressions still convert strings to numeric values. If a value begins with 0 or 0x, it will be interpreted as an octal or hex number, respectively.  An error is raised if either side in an arithmetic expression is not a number or a string that can be converted to a number.  For example:
+Mathematical expressions still convert strings to numeric values. If a value begins with 0 or 0x, Puppet interprets it as an octal or hex number, respectively. Puppet raises an error if either side in an arithmetic expression is not a number or a string that can be converted to a number. For example:
 
 ``` puppet
 $valid = 40 + 50       # valid because both values are numeric
@@ -71,7 +69,7 @@ $invalid = 40 + '0789' # invalid because '0789' can't be cast numerically
 
 ## Check your comparisons
 
-Some comparison operations have changed in Puppet 4. Read about [expressions and operators][expressions] for the full details.
+Some comparison operations have changed starting with Puppet 4.0. Read about [expressions and operators][expressions] for the full details.
 
 ### Regular expressions against non-strings
 
@@ -87,9 +85,9 @@ case $securitylevel {
 }
 ```
 
-Prior to Puppet 4.0, the first regex would match, and the notify { 'security low': } resource would be put into the catalog.
+Prior to Puppet 4.0, the first regex would match, and the `notify { 'security low': }` resource would be cataloged.
 
-Now, in Puppet 4.0, neither of the regexes would match because the value of `$securitylevel` is an integer, not a string, and so the default condition would match, resulting in the inclusion of notify `{ 'security high': }` in the catalog.
+Since Puppet 4.0, neither of the regexes would match because the value of `$securitylevel` is an integer, not a string, and so the default condition would match, resulting in the inclusion of `notify { 'security high': }` in the catalog.
 
 ### Empty strings in boolean context are `true`
 
@@ -107,11 +105,11 @@ class empty_string_defaults (
 }
 ```
 
-Puppet's old behavior of evaluating the empty string as `false` would allow you to set the default based on a simple if-statement. In Puppet 4.x, this behavior is flipped and `$parameter_to_check_real` will be set to an empty string.
+Puppet's old behavior of evaluating the empty string as `false` allowed you to set the default based on a simple if-statement. Since Puppet 4.0, this behavior is flipped and `$parameter_to_check_real` is set to an empty string.
 
 You can check your existing codebase for this behavior with a [puppet-lint plugin](https://github.com/puppet-community/puppet-lint-empty_string-check).
 
-See [the language page on boolean values][boolean] for more info.
+See [the language page on boolean values][boolean] for more information.
 
 ### The `in` operator is slightly different
 
@@ -127,19 +125,19 @@ Different [data types](./lang_data.html) can't be compared as if they're the sam
 
 The `\\` escape now works properly in single-quoted strings. Previously, there was no way to end a single-quoted string with a backslash.
 
-This will change any existing strings that are supposed to have literal double backslashes in them; you'll need to change them to quadruple backslashes. Read more about this behavior in the [language page about strings](./lang_data_string.html#single-quoted-strings).
+This changes any existing strings that are supposed to have literal double backslashes in them, which must be changed to quadruple backslashes. Read more about this behavior in the [language page about strings](./lang_data_string.html#single-quoted-strings).
 
 ## Check names of variables, classes, functions, defined types, etc.
 
 Naming conventions have changed and become more strict.
 
-* Capitalized bare words as un-quoted strings are no longer allowed.
-* Variables must not start with capital letters.
-* Classes, defined types, functions must not include hyphens or begin with digits.
+-   Capitalized bare words as un-quoted strings are no longer allowed.
+-   Variables must not start with capital letters.
+-   Classes, defined types, functions must not include hyphens or begin with digits.
 
 ## Check for non-productive expressions
 
-Puppet 4.0.0 validates logic that has no effect and flags such expressions as being errors.
+Since Puppet 4.0, Puppet validates logic that has no effect and flags such expressions as errors.
 
 An example of a non productive expression is:
 
@@ -148,10 +146,9 @@ if true { } # non productive
 $a = 10
 ```
 
-The `if` expression produces a value of `undef`, which is then thrown away. Note that expressions are never considered non-productive when they are the last in a manifest or block of code, as that is also the value of the sequence.
+The `if` expression produces a value of `undef`, which is then thrown away. Expressions are never considered non-productive when they are the last in a manifest or block of code, as that is also the value of the sequence.
 
 If Puppet raises a non-productive expression error about your code, you should be able to remove the offending statements without changing the code's behavior.
-
 
 ## Check for bare words that might now be reserved
 
@@ -159,17 +156,12 @@ More reserved words were added in Puppet 4.0, so check your manifests for any un
 
 ## Check for excess spaces when accessing hashes and arrays
 
-The space between a value and a left bracket is significant, and Puppet will output different results if there is a space.
+The space between a value and a left bracket is significant, and Puppet outputs different results if there is a space.
 
-Bad:
+For example:
 
 ``` puppet
 $a [3]  # first the value of a, then a literal array with the single value 3 in it
-```
-
-Good:
-
-``` puppet
 $a[3]   # index 3 in the array referenced by $a
 ```
 
@@ -179,11 +171,11 @@ Only certain functions are allowed to be called without parentheses. Read the [d
 
 ## Check your regular expressions for correct syntax
 
-Puppet 4 bundles its own copy of Ruby 2.x, and the regex syntax is slightly different than Ruby 1.8.7, which you might have been running prior to upgrade. Because the two versions of Ruby use differing regex engines, your results might vary.
+Puppet 5 bundles its own copy of Ruby 2.x, and the regular expressions syntax is slightly different than Ruby 1.8.7, which you might have been running prior to upgrade. Because the two versions of Ruby use different regular expression engines, your results might change after the upgrade.
 
 ## Check YAML files used by Hiera, etc. for correct syntax
 
-If the Ruby version changed since upgrade, the YAML parser will be more strict. Ensure strings containing a `%` are quoted.
+If the Ruby version changed since upgrading, the YAML parser will be more strict. Ensure strings containing a `%` are quoted.
 
 ## Check the `mode` attribute of any file resources
 
@@ -193,11 +185,11 @@ If the Ruby version changed since upgrade, the YAML parser will be more strict. 
 
 In Puppet 3, resources with `noop` set to true could escape no-op mode and cause changes if they received a refresh event (via the `notify` or `subscribe` metaparameters or the `~>` arrow).
 
-This is no longer possible in Puppet 4; no-op resources always stay no-op. For most users that's a win with no downside, but there's a slim chance that your configurations relied on this behavior, so look around to make sure.
+This is no longer possible in Puppet 4; no-op resources always stay no-op. For most users, there's no downside to this change. However, you should confirm that your Puppet 3.x manifests did not rely on this unintended behavior.
 
 ## Check for removed features
 
-Several things were removed from Puppet 4, either because they no longer had practical use cases and were not being used, or there was a better work around.
+Several features were removed in Puppet 4, either because they no longer had practical use cases and were not being used, or there was a better workaround.
 
 ### `import` statements and node inheritance
 
@@ -207,7 +199,7 @@ Node inheritance has also been removed. It is no longer possible to have node de
 
 ### Dynamic scoping in ERB
 
-In Puppet 4.0, dynamic scoping has been removed for variables in ERB templates.
+Since Puppet 4.0, dynamic scoping has been removed for variables in ERB templates.
 
 ``` puppet
 class outer {
@@ -222,17 +214,16 @@ class inner {
 include outer
 ```
 
-Prior to Puppet 4.x, the value supplied to `notice()` will resolve to the string dynamic.
+Prior to Puppet 4.0, the value supplied to `notice()` resolved to the string dynamic.
 
-Now, in Puppet 4.x, the value supplied to `notice()` will resolve to an empty string.
+Since Puppet 4.x, the value supplied to `notice()` resolves to an empty string.
 
 The behavior of resource defaults has not been changed.
 
 ### += and -=
 
-These operators have been removed. You can run the puppet-lint plugin to check your existing code base for them.
+The `+=` and `-=` operators were removed in Puppet 4.0. You can run the puppet-lint plugin to check your existing code for them.
 
 ### Modules using the Ruby DSL
 
-Finally, the long-deprecated Ruby DSL has been fully removed from Puppet.
-
+Finally, the long-deprecated Ruby DSL was fully removed from Puppet 4.0.
