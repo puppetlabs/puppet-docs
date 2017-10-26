@@ -10,6 +10,7 @@ title: "Language: Facts and built-in variables"
 [facter]: {{facter}}
 [customfacts]: {{facter}}/custom_facts.html
 [external facts]: {{facter}}/custom_facts.html#external-facts
+[facterconfig]: {{facter}}/configuring_facter.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
 [noop]: ./configuration.html#noop
 [environment_setting]: ./configuration.html#environment
@@ -102,7 +103,7 @@ if $osfamily == 'redhat' {
 
 ### The `$facts['fact_name']` hash
 
-Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess]. 
+Facts also appear in a `$facts` hash. They can be accessed in manifests as `$facts['fact_name']`. The variable name `$facts` is reserved, so local scopes cannot re-use it. Structured facts show up as a nested structure inside the `$facts` namespace, and can be accessed using Puppet's normal [hash access syntax][hashaccess].
 
 Example, with the `os.family` fact:
 
@@ -115,6 +116,12 @@ if $facts['os']['family'] == 'redhat' {
 **Benefits:** More readable and maintainable code, by making facts visibly distinct from other variables. Eliminates possible confusion if you use a local variable whose name happens to match that of a common fact.
 
 **Drawbacks:** Due to ambiguity with function invocation, the dot-separated access syntax that is available at the Facter command line is not available with this variable. However, there is a `fact` function included in the `stdlib` module, that you can read about in [that module's README](https://github.com/puppetlabs/puppetlabs-stdlib#fact).
+
+### Improving performance by blocking or caching built-in facts
+
+If Facter is taking a long time and slowing down your code, you can try configuring Facter to block or cache built-in facts. When a system has a lot of something --- for example, mount points or disks --- Facter can take a long time to collect the facts from each one. When this is a problem, you can speed up Facter's collection by either blocking facts you're uninterested in, or caching ones you don't need retrieved frequently.
+
+For information about blocking and caching built-in facts, see [Configuring Facter with facter.conf][facterconfig].
 
 ## Special variables added by Puppet
 
