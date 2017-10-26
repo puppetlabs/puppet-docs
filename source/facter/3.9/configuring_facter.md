@@ -53,6 +53,8 @@ Settings:
 
   * Cached facts are stored as JSON in `/opt/puppetlabs/facter/cache/cached_facts` on *nix and `C:\ProgramData\PuppetLabs\facter\cache\cached_facts` on Windows.
 
+Caching and blocking facts is useful when Facter is taking a long time and slowing down your code. When a system has a lot of something --- for example, mount points or disks --- Facter can take a long time to collect the facts from each one. When this is a problem, you can speed up Facter's collection by either blocking facts you're uninterested in, or caching ones you don't need retrieved frequently.
+
 #### Example
 
 To see a list of valid group names, from the command line, run `facter --list-block-groups` or `facter --list-cache-groups`. The output shows the fact group at the top level, with all facts in that group nested below.
@@ -68,7 +70,7 @@ file system
   - partitions
 ~~~
 
-If you want to block any of these groups, add the group name to the `facts` section of `facter.conf`, with the `blocklist` setting. 
+If you want to block any of these groups, add the group name to the `facts` section of `facter.conf`, with the `blocklist` setting.
 
 
 ~~~
@@ -82,19 +84,19 @@ Here, the "file system" group has been added, so the `mountpoints`, `filesystems
 
 ### `global`
 
-The `global` section of `facter.conf` contains settings to control how Facter interacts with its external elements on your system. 
+The `global` section of `facter.conf` contains settings to control how Facter interacts with its external elements on your system.
 
 Setting        | Effect                                                        | Default
 ---------------|---------------------------------------------------------------|--------
-`external-dir` | A list of directories to search for external facts.           |  
-`custom-dir`   | A list of directories to search for custom facts.             |    
+`external-dir` | A list of directories to search for external facts.           |
+`custom-dir`   | A list of directories to search for custom facts.             |
 `no-external`* | If true, prevents Facter from searching for external facts.   | `false`
 `no-custom`*   | If true, prevents Facter from searching for custom facts.     | `false`
 `no-ruby`*     | If true, prevents Facter from loading its Ruby functionality. | `false`
 
 \*Not available when you run Facter from the Ruby API.
 
-### `cli` 
+### `cli`
 
 The `cli` section of `facter.conf` contains settings that affect Facter’s command line output. All of these settings are ignored when you run Facter from the Ruby API.
 
