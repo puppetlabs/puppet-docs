@@ -53,7 +53,7 @@ Settings:
 
   * Cached facts are stored as JSON in `/opt/puppetlabs/facter/cache/cached_facts` on *nix and `C:\ProgramData\PuppetLabs\facter\cache\cached_facts` on Windows.
 
-Caching and blocking facts is useful when Facter is taking a long time and slowing down your code. When a system has a lot of something --- for example, mount points or disks --- Facter can take a long time to collect the facts from each one. When this is a problem, you can speed up Facter's collection by either blocking facts you're uninterested in, or caching ones you don't need retrieved frequently.
+Caching and blocking facts is useful when Facter is taking a long time and slowing down your code. When a system has a lot of something --- for example, mount points or disks --- Facter can take a long time to collect the facts from each one. When this is a problem, you can speed up Facter’s collection by either blocking facts you’re uninterested in (`blocklist`), or caching ones you don’t need retrieved frequently (`ttls`).
 
 #### Example
 
