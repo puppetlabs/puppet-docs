@@ -7,7 +7,19 @@ description: "Puppet Development Kit release notes"
 
 Release notes for Puppet Development Kit (PDK), a development kit containing tools for developing and testing Puppet code. For known issues, see PDK [known issues](./known_issues.html).
 
-## PDK 1.2.0.0
+## PDK 1.2.1
+
+Released 26 Oct 2017
+
+This is a security release that updates several components and dependencies bundled in PDK. For the complete list of resolved issues, see the [PDK project](https://tickets.puppetlabs.com/browse/PDK/fixforversion/27912).
+
+### Bug fixes
+
+#### `pdk validate` failed if the module directory and name did not match
+
+When validating a module, validation for the `autoloader_layout` check failed if the module directory was not the exact module name. That is, if validating an ntp module, Puppet Lint passed `/path/ntp` but failed `/path/puppetlabs-ntp`. This release fixes the issue so that either of the examples would pass. [PDK PR 325](https://github.com/puppetlabs/pdk/pull/325)
+
+## PDK 1.2.0
 
 Released 10 October 2017
 
@@ -54,7 +66,7 @@ This release fixes an issue where `puppet-lint` was not properly escaping bundle
 The `pdk validate` now runs all possible validators, even if one of them reports an error.
 
 
-## PDK 1.1.0.0
+## PDK 1.1.0
 
 Released 14 September 2017
 
@@ -116,7 +128,7 @@ This release improves the PowerShell integration so that PDK works on PowerShell
 
 PDK was not automatically added to the PATH in some shells, including zsh on Mac OS X and Debian. This issue is now resolved on our supported OSes. [PDK-446](https://tickets.puppetlabs.com/browse/PDK-446)
 
-## PDK 1.0.1.0
+## PDK 1.0.1
 
 Released 17 August 2017
 
