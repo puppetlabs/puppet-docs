@@ -23,9 +23,11 @@ puppetlabs_spec_helper | Provides classes, methods, and Rake tasks to help with 
 rspec-puppet | Tests the behavior of Puppet when it compiles your manifests into a catalog of Puppet resources.
 rspec-puppet-facts | Adds support for running rspec-puppet tests against the facts for your supported operating systems.
 
+> We are always trying to improve PDK to better suit the needs of our users --- and we would love to get your help. To help us plan the future of the PDK and get early exposure to new releases and features, register as a [PDK tester](https://www.surveygizmo.com/s3/3798001/pdk)
+
 ## Getting started
 
-To get started, install PDK, create a module, and then create, validate, and test a class
+To get started, install PDK, create a module, and then create, validate, and test a class.
 
 1. Generate a module using the `pdk new module` command.
 1. Validate your module to verify that it is well-formed.

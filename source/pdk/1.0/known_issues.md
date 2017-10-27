@@ -7,10 +7,9 @@ description: "Puppet Development Kit known issues"
 
 ## Known issues
 
-
 ### Running Windows unit tests on non-Windows platforms breaks unit tests
 
-Specifying "Windows 2008 R2" as a supported OS in `metadata.json` breaks running all unit tests. As a workaround, remove the Windows 2008 R2 support specification from your `metadata.json`. [PDK-583]
+Specifying "Windows 2008 R2" as a supported OS in `metadata.json` breaks running all unit tests. As a workaround, remove the Windows 2008 R2 support specification from your `metadata.json`. [PDK-583](https://tickets.puppetlabs.com/browse/PDK-583)
 
 ### `pdk test unit --list` output lacks information
 
