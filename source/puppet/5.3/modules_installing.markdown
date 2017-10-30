@@ -72,6 +72,8 @@ The Puppet Forge houses thousands of modules, which you can find by browsing the
 
 Some Forge modules are Puppet **supported** or **approved** modules. Puppet approved modules pass our specific quality and usability requirements. We recommend these modules, but they are not supported as part of a Puppet Enterprise license agreement. Puppet supported modules have been tested with Puppet Enterprise and are fully supported. If there are no supported or approved modules for what you want to do, evaluate available modules by module score, compatibility, documentation, last release date, and number of downloads.
 
+>If you need to whitelist the Forge to interact with it, the IP is 52.10.130.237. This IP is subject to change without notice.
+
 Related topics:
 
 * [Approved modules][approved]
