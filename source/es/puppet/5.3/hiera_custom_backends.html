@@ -1,0 +1,53 @@
+---
+title: "Hiera: Cómo funcionan los backends personalizados"
+---
+
+<div>
+
+
+
+<p> Puede extender Hiera para buscar valores en casi cualquier tipo de base de datos, por ejemplo, una tabla de base de datos PostgreSQL, una aplicación Web personalizada o un nuevo tipo de archivo de datos estructurado.
+</p>
+
+<p> Para enseñarle a Hiera cómo hablar con otras fuentes de datos, necesitará escribir un backend personalizado.
+</p>
+
+<h2 id="hiera-backends-are-puppet-functions">Los backends de Hiera son funciones de Puppets</h2>
+
+<p> En esta versión de Hiera, un backend es simplemente una <a href="/puppet/5.3/functions_basics.html">función Puppet personalizada</a> Que acepta un conjunto particular de argumentos y cuyo valor devuelto obedece a un formato particular. La función puede hacer lo que sea necesario para localizar sus datos.
+</p>
+
+<p> Una función de backend puede utilizar <a href="/puppet/5.3/functions_ruby_overview.html">las funciones API modernas Ruby</a> o <a href="/puppet/5.3/lang_write_functions_in_puppet.html">el lenguaje Puppet</a>. (No pueden usar la API de funciones Ruby heredada.). Entre otras cosas, esto significa que puede utilizar diferentes versiones de un backend de Hiera en diferentes entornos, y puede distribuir los backends de Hiera en los módulos Puppet.
+</p>
+
+<p> Esta es una interfaz más sencilla que en las versiones anteriores de Hiera, donde los backends personalizados eran clases Ruby de carga global que tenían que definir métodos particulares.
+</p>
+
+<h2 id="three-kinds-of-backends">Tres tipos de backends</h2>
+
+<p> Diferentes tipos de datos tienen diferentes características de rendimiento. Para asegurarse de que Hiera funciona bien con cada tipo de fuente de datos, soporta tres tipos de backends:
+</p>
+
+<table>
+<thead><tr>
+<th>Tipo de backend</th>
+      <th>Propósito</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><a href="./hiera_custom_data_hash.html"><code>data_hash</code></a></td>
+      <td>Para fuentes de datos donde es barato leer todo el contenido a la vez, como archivos simples en disco.</td>
+    </tr>
+<tr>
+<td><a href="./hiera_custom_lookup_key.html"><code>lookup_key</code></a></td>
+      <td>Para fuentes de datos en las que buscar una clave es relativamente cara, como una API HTTPS.</td>
+    </tr>
+<tr>
+<td><a href="./hiera_custom_data_dig.html"><code>data_dig</code></a></td>
+      <td>Para fuentes de datos que pueden acceder a elementos arbitrarios de valores de hash o array <em>antes</em> de pasar algo de vuelta a Hiera, como una base de datos.</td>
+    </tr>
+</tbody>
+</table>
+<p> Como ejemplo: todos los backends YAML/JSON/HOCON son funciones <code>data_hash</code>, Porque cada fuente de datos es un archivo único, que puede ser deserializado a bajo costo. Pero el backend de hiera-eyaml es una función <code>lookup_key</code> function, porque el descifrado es relativamente costoso. Ya que un nodo dado sólo usa un subconjunto de los secretos disponibles, tiene sentido sólo descifrar bajo demanda.
+</p>
+</div>

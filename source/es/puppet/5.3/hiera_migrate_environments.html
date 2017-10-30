@@ -1,0 +1,161 @@
+---
+title: "Hiera: Habilitar la capa de entorno para los datos existentes de Hiera"
+---
+
+<div>
+
+
+
+<p> El título de Hiera 5 es <a href="./hiera_layers.html">configuración de jerarquía por entorno</a>. Dado que la mayoría de la gente ya almacena datos en entornos, los archivos hiera.yaml locales son mucho más lógicos y convenientes que una única jerarquía global.
+</p>
+
+<p> You can enable the environment layer gradually. En los entornos migrados, el <a href="./hiera_use_hiera_functions.html">funciones heredadas <code>hiera</code></a> cambian perfectamente al modo Hiera 5, para que puedan acceder a los datos del entorno y del módulo sin requerir ningún cambio de código.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong> Antes de migrar los datos del entorno a Hiera 5, lea <a href="./hiera_migrate.html">Introducción a la migración de configuraciones Hiera</a>. En particular, tenga en cuenta que si confía en backends personalizados de Hiera 3, debe actualizarlos para Hiera 5 o prepararse para un trabajo extra durante la migración.
+</p>
+
+  <p> Si su único backend personalizado es hiera-eyaml, usted es bueno para ir - Puppet 4.9.3 y superior incluyen un Hiera 5 eyaml backend. Vea el <a href="./hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml">instrucciones de uso en la referencia de sintaxis hiera.yaml (v5)</a>.
+</p>
+</blockquote>
+
+<h2 id="summary">Sumario</h2>
+
+<p> En cada <a href="/puppet/5.3/environments.html">entorno</a>, haga lo siguiente:
+</p>
+
+<ul>
+<li>Añadir un fichero local <a href="./hiera_config_yaml_5.html">hiera.yaml (v5)</a>, para activar la capa entorno.</li>
+  <li>Cambie el nombre del directorio de datos, para excluir ese entorno de la configuración global.</li>
+</ul>
+<p> Este proceso no tiene límite de tiempo específico y no debe implicar ningún tiempo de inactividad. Una vez migrados todos sus entornos, puede eliminar progresivamente la jerarquía global (o reducirla en gran medida).
+</p>
+
+<blockquote>
+  <h3 id="why-rename-the-data-directory">Por que renombrar el directorio de  datos?</h3>
+
+  <p> Dado que los entornos no migrados dependen de la jerarquía global, no pueden cambiar hasta que se migren.
+</p>
+
+  <p> El problema para entornos <em>migrados</em>, por que Hiera siempre verifica la <a href="./hiera_layers.html#the-global-layer">capa global</a>  antes de la  <a href="./hiera_layers.html#the-environment-layer">capa entorno</a>. Así que si ambas capas usan el mismo datadir, la capa global llega primero. La capa de entorno podría estar habilitada, pero no tendrá la oportunidad de hacer nada. Eso está bien si las jerarquías global y de entorno son idénticas, pero causa problemas la primera vez que edita la jerarquía de un entorno. Efectivamente, no obtendrás los beneficios de la configuración por entorno hasta que hayas migrado <em>todos</em> los entornos.
+</p>
+
+  <p> Mover el datadir evita ese problema, ya que el datadir global ya no existe en un entorno migrado, Hiera omite esos orígenes de datos y procede a la jerarquía de entorno.
+</p>
+</blockquote>
+
+<h2 id="step-1-check-for-illegal-hierarchy-overrides">Paso 1: Comprobar si hay anulaciones de jerarquía ilegales</h2>
+
+<p> Antes de añadir hiera.yaml a un entorno, compruebe su código de Puppet y asegúrese de que ninguna de sus llamadas a las clásicas funciones <code>hiera</code> tienen un tercer argumento.
+</p>
+
+<p> Las funciones clásicas de Hiera (<code>hiera</code>, <code>hiera_array</code>, <code>hiera_hash</code> y <code>hiera_include</code>) solían aceptar tres argumentos:
+</p>
+
+<ol>
+<li>Una clave de búsqueda.</li>
+  <li>Un valor predeterminado opcional.</li>
+  <li>Una anulación de jerarquía, que casi nadie utiliza.</li>
+</ol>
+<p> En Hiera 5, ese tercer argumento es un error; Debe eliminarlo al migrar un entorno. Es probable que no se vean afectados, pero compruebe para asegurarse.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong> Si la mayoría de sus entornos son similares entre sí, es posible que sólo tenga que comprobar cada llamada <code>hiera</code> una vez. Esto no es algo que es probable que varíe ampliamente entre las versiones de código.
+</p>
+</blockquote>
+
+<p> Hay dos maneras de manejar este paso: buscar el código, o simplemente pasar al siguiente paso y detectar los errores a medida que suben.
+</p>
+
+<h3 id="search-the-code">Buscar en el código</h3>
+
+<p> No tenemos una manera perfecta de encontrar tres argumentos de llamada <code>hiera</code>, pero podemos encontrar la mayoría de las llamadas <code>hiera</code> con <em>dos o más comas.</em> Esto incluye algunos falsos positivos (por ejemplo, cuando el valor por defecto es un array, hash o una llamada a una función), pero debe ser una lista lo suficientemente pequeña para comprobar manualmente.
+</p>
+
+<p> Busque su base de código con la siguiente expresión regular:
+</p>
+
+<pre><code>hiera(_array|_hash|_include)?\(([^,\)]*,){2,}[^\)]*\)
+</code></pre>
+
+<p> Si alguno de los resultados incluye un tercer argumento, elimínelo.
+</p>
+
+<h3 id="catch-errors-as-they-arise">Errores de captura a medida que surgen</h3>
+
+<p> Si utiliza entornos de pruebas para test de código, es probable que esté migrando una su rama temporal de su <a href="https://puppet.com/docs/pe/2017.3/code_management/code_mgr_config.html#test-the-control-repo">control repo</a> primero, luego señalando algunos nodos de prueba en él para asegurarse de que todo funciona como se esperaba.
+</p>
+
+<p> Si usted piensa que nunca ha utilizado la función de anulación de jerarquía, estará comprobando esa suposición de todos modos cuando ejecute sus nodos de prueba. Si encuentra algún error, puede corregirlos antes de fusionar su rama con la producción, de la misma manera que lo haría con cualquier código de producción.
+</p>
+
+<h2 id="step-2-choose-a-new-datadir-name">Paso 2: Elija un nuevo nombre de datadir</h2>
+
+<p> Necesita un nuevo nombre para su datadir en los próximos dos pasos, por lo que debe decidir sobre él ahora.
+</p>
+
+<p> El datadir predeterminado en Hiera 3 fue <code>&lt;ENVIRONMENT&gt;/hieradata</code>, y el valor predeterminado en Hiera 5 es <code>&lt;ENVIRONMENT&gt;/data</code>. Por lo tanto, si utilizó el valor predeterminado anterior, utilice el nuevo valor predeterminado.Si ya estabas usando <code>data</code>, tendrás que elegir algo diferente.
+</p>
+
+<h2 id="step-3-add-a-hierayaml-v5-file-to-the-environment">Paso 3: Agregue un archivo hiera.yaml (v5) al entorno</h2>
+
+<p> Cada entorno necesita un archivo de configuración de Hiera que funcione con sus datos existentes.
+</p>
+
+<ul>
+<li>Si este es el primer entorno que está migrando, siga nuestras instrucciones para <a href="./hiera_migrate_v3_yaml.html">convertir una versión 3 de hiera.yaml a version 5</a>. Asegúrese de hacer referencia al nuevo datadir. Guarde el archivo resultado como <code>&lt;ENVIRONMENT&gt;/hiera.yaml</code>. (Por ejemplo, <code>/etc/puppetlabs/code/environments/production/hiera.yaml</code>.)</li>
+  <li>Si ya ha migrado al menos un entorno, copie el archivo hiera.yaml de un entorno anterior y realice los cambios necesarios.</li>
+</ul>
+<blockquote>
+  <p> <strong>Importante:</strong> La capa de entorno no es compatible con los backends de Hiera 3. Si alguno de sus datos utiliza un backend personalizado que no se ha portado a Hiera 5, debe omitir esos niveles de jerarquía de la configuración de entorno y seguir utilizando la capa global para esos datos.
+</p>
+
+  <p> Dado que la capa global va antes que la capa de entorno, es posible que se encuentre en situaciones en las que aún no se pueden migrar datos a la capa de entorno. Por ejemplo: si su antigua configuración <code>:backends</code> era <code>['custom_backend', 'yaml']</code>, Usted puede hacer una migración parcial, porque de todo modos, los datos personalizados fueron todos antes datos YAML. Pero si <code>:backends</code> era <code>['yaml', 'custom_backend']</code>, Y usted utilizaba frecuentemente datos YAML para datos personalizados, no podrá migrar hasta que tenga una versión Hiera 5 de ese backend personalizado.
+</p>
+
+  <p> Si se encuentra con una situación como esa, tendrá que obtener un backend actualizado antes de habilitar la capa de entorno.
+</p>
+</blockquote>
+
+<h2 id="step-4-install-any-custom-hiera-5-backends">Paso 4: Instale cualquier backend personalizado de Hiera 5</h2>
+
+<p> Si alguno de sus datos se basa en <a href="./hiera_custom_backends.html">backends personalizados</a> que han sido portados a Hiera 5, instalelos en el entorno ahora.
+</p>
+
+<p> Hiera 5 backends se distribuyen como los módulos de títeres, por lo que cada entorno puede utilizar su propia versión de ellos.
+</p>
+
+<h2 id="step-5-move-the-environments-datadir">Paso 5: Mover el datadir del entorno</h2>
+
+<p> Cambiar el nombre del datadir de su nombre antiguo (probable <code>hieradata</code>) a su nuevo nombre (probable <code>data</code>).
+</p>
+
+<ul>
+<li>Si sólo utiliza Hiera 5 backends basados en archivos, eso es todo lo que tiene que hacer.</li>
+  <li>
+    <p> If you only use file-based Hiera 5 backends, that’s all you have to do.
+</p>
+
+    <p> Tendrás que ordenar los archivos: los datos de Hiera 5 se moverán al nuevo datadir y los datos de Hiera 3 permanecerán en el datadir antiguo. A continuación, cuando tenga versiones Hiera 5 de sus backends personalizados, puede mover los archivos restantes al nuevo datadir.
+</p>
+  </li>
+  <li>Si utiliza cualquier backend que no sea de archivo (por ejemplo, MongoDB): estos no tienen necesariamente que ser un "datadir" per se, y usted tendrá que decidir cómo manejar eso. Dado que estos son relativamente poco comunes en comparación con los archivos sin formato YAML, no tenemos un plan de migración para todos ellos. A grandes rasgos, sus opciones son:<ul>
+<li>Decida que la jerarquía global es el lugar correcto para configurar estos datos y dejarlos ahí permanentemente.</li>
+      <li>Hacer algo equivalente a mover el datadir. Por ejemplo, crear una nueva tabla de base de datos para los datos migrados y mover valores en su lugar a medida que migre entornos.</li>
+      <li>Permita que las capas global y de entorno utilicen la configuración duplicada para estos datos hasta que se realice la migración. Esto no es ideal, pero es sencillo y probablemente sea inofensivo si termina de migrar entornos con bastante rapidez.</li>
+    </ul>
+</li>
+</ul>
+<h2 id="repeat-then-prune-the-global-hierarchy">Repetir, luego podar la jerarquía global</h2>
+
+<p> Continúe migrando entornos hasta que todos estén usando sus propias configuraciones de Hiera.
+</p>
+
+<p> Los entornos de muchas personas se asignan a las <a href="/pe/2017.2/cmgmt_control_repo.html">control repo</a>. Si gestiona su código de este modo, probablemente puede migrar la mayoría de sus entornos utilizando las herramientas de fusión del sistema de control de versiones. Puedes fusionar tu rama <code>production</code> en cualquier rama que eventualmente volverá a unirse a ella con ramas que nunca volverán a unirse <code>production</code>, usted puede hacer su selección particular. Si tiene un montón de entornos muertos o misteriosos, este podría ser un buen momento para eliminar algunos de ellos.
+</p>
+
+<p> Una vez que haya migrado los entornos con poblaciones de nodos activas, puede eliminar todas las partes de la jerarquía global que ha transferido a las jerarquías de entorno.
+</p>
+</div>

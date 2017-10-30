@@ -520,6 +520,15 @@ documents:
       hiera: "3.4"
       puppetserver: "5.0"
     hide: true
+  /es/puppet/5.3:
+    doc: puppet_es
+    version: "5.3"
+    nav: /_includes/_es_puppet_toc_53.html
+    my_versions:
+      facter: "3.9"
+      hiera: "3.4"
+      puppetserver: "5.1"
+    hide: true
 
   /facter/3.9:
     doc: facter
