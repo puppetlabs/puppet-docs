@@ -1,0 +1,408 @@
+---
+title: "Hiera: Fusión de datos de múltiples fuentes"
+---
+
+<div>
+
+
+
+<p> Cuando busca una clave en Hiera, es común que varias fuentes de datos tengan diferentes valores para ella. De forma predeterminada, Hiera devuelve el primer valor que encuentra, pero también puede continuar buscando y combinar todos los valores encontrados.
+</p>
+
+<p> Puede establecer el comportamiento <strong>merge</strong> para una búsqueda de dos maneras:
+</p>
+
+<ul>
+<li>
+<strong>En el momento de la búsqueda.</strong> Esto trabaja con <a href="./hiera_use_function.html">la función <code>lookup</code> </a>, pero no soporta <a href="./hiera_automatic.html">la clase automatica de parámetros lookup</a>.</li>
+  <li>
+<strong>En Hiera data,</strong> con la clave <code>lookup_options</code>. Esto funciona para las búsquedas manuales y automáticas. También permite a los autores del módulo establecer el comportamiento predeterminado que los usuarios pueden anular.</li>
+</ul>
+<p> Con ambos métodos, puede especificar un comportamiento de combinación como una cadena (como <code>'first'</code>) o un hash (como <code>{'strategy' =&gt; 'first'}</code>). La sintaxis hash sólo es útil para  funciones<code>deep</code> merges (donde puede establecer algunas opciones adicionales), pero funciona con los otros tipos de combinación por motivos de coherencia.
+</p>
+
+<h2 id="list-of-merge-behaviors">Lista de comportamientos de fusión</h2>
+
+<p> Hay cuatro comportamientos de combinación para elegir: <a href="#first">first</a>, <a href="#unique">unique</a>, <a href="#hash">hash</a> y <a href="#deep">deep</a>.
+</p>
+
+<h3 id="syntax-summary">Resumen de sintaxis</h3>
+
+<p> Al especificar un comportamiento de combinación, utilice uno de los siguientes identificadores:
+</p>
+
+<ul>
+<li>
+<code>'first'</code>, <code>{'strategy' =&gt; 'first'}</code>, o nada.</li>
+  <li>
+<code>'unique'</code> o <code>{'strategy' =&gt; 'unique'}</code>.</li>
+  <li>
+<code>'hash'</code> o <code>{'strategy' =&gt; 'hash'}</code>.</li>
+  <li>
+<code>'deep'</code> o <code>{'strategy' =&gt; 'deep', &lt;OPTION&gt; =&gt; &lt;VALUE&gt;, ...}</code>. Opciones válidas:<ul>
+<li>
+<code>'knockout_prefix'</code> (string or undef; por defecto es <code>undef</code>)</li>
+      <li>
+<code>'sort_merged_arrays'</code> (boolean; por defecto <code>false</code>)</li>
+      <li>
+<code>'merge_hash_arrays'</code> (boolean; por defecto es <code>false</code>)</li>
+    </ul>
+</li>
+</ul>
+<h3 id="first">First</h3>
+
+<p> Una primera búsqueda encontrada no combina nada; Devuelve el primer valor encontrado e ignora el resto. Este es el comportamiento por defecto de Hiera.
+</p>
+
+<p> Especifique este comportamiento de combinación con uno de los siguientes:
+</p>
+
+<ul>
+<li><code>'first'</code></li>
+  <li><code>{'strategy' =&gt; 'first'}</code></li>
+  <li>Nada (ya que es el valor predeterminado)</li>
+</ul>
+<h3 id="unique">Unique</h3>
+
+<p> Una fusión unique (puntualmente denominado “array merge”). Combina cualquier número de array y escalable (string/number/boolean) valores para devolver una matriz fusionada, aplastada con todos los valores duplicados eliminados. La búsqueda falla si alguno de los valores son hashes. El resultado se ordena de la más alta prioridad a la más baja.
+</p>
+
+<p> Por ejemplo:
+</p>
+
+<pre><code class="language-yaml"># location/pdx.yaml
+profile::server::time_servers: time.pdx.example.com
+# common.yaml
+profile::server::time_servers:
+  - 0.pool.ntp.org
+  - 1.pool.ntp.org
+</code></pre>
+
+<p> <code>lookup('profile::server::time_servers', {merge =&gt; 'unique'})</code> devolverá lo siguiente:
+</p>
+
+<pre><code class="language-puppet">[
+  'time.pdx.example.com',
+  '0.pool.ntp.org',
+  '1.pool.ntp.org',
+]
+</code></pre>
+
+<p> Especifique este comportamiento de combinación con uno de los siguientes:
+</p>
+
+<ul>
+<li><code>'unique'</code></li>
+  <li><code>{'strategy' =&gt; 'unique'}</code></li>
+</ul>
+<h3 id="hash">Hash</h3>
+
+<p> Una combinación de hash combina las claves y los valores de cualquier número de hashes para devolver un hash combinado. La búsqueda falla si alguno de los valores no son hashes.
+</p>
+
+<p> Si varios hashes de origen tienen una clave dada, Hiera utiliza el valor del origen de datos de prioridad más alta. No combinará recursivamente los valores.
+</p>
+
+<p> Hashes in Puppet conserva el orden en que sus claves están escritas. Cuando unimos los hashes, Hiera comienza con los data-source de  <em>menor prioridad</em>. Para cada fuente de mayor prioridad, agrega nuevas claves al final del hash y actualiza las claves existentes en el lugar.
+</p>
+
+<p> Por ejemplo:
+</p>
+
+<pre><code class="language-yaml"># web01.example.com.yaml
+mykey:
+  d: "per-node value"
+  b: "per-node override"
+# common.yaml
+mykey:
+  a: "common value"
+  b: "default value"
+  c: "other common value"
+</code></pre>
+
+<p> <code>lookup('mykey', {merge =&gt; 'hash'})</code> devolverá lo siguiente:
+</p>
+
+<pre><code class="language-puppet">{
+  a =&gt; "common value",
+  b =&gt; "per-node override", # Using value from the higher-priority source, but
+                            # preserving the order of the lower-priority source.
+  c =&gt; "other common value",
+  d =&gt; "per-node value",
+}
+</code></pre>
+
+<p> Especifique este comportamiento de combinación con uno de los siguientes:
+</p>
+
+<ul>
+<li><code>'hash'</code></li>
+  <li><code>{'strategy' =&gt; 'hash'}</code></li>
+</ul>
+<h3 id="deep">Deep</h3>
+
+<p> Como una combinación de hash, una combinación total combina las claves y los valores de cualquier número de hashes para devolver un hash combinado. Pero si la misma clave existe en múltiples hashes de origen, Hiera <strong>recursivamente los fusiona:</strong>
+</p>
+
+<ul>
+<li>Los valores de hash se combinan con otra combinación total.</li>
+  <li>Los valores del array se combinan. Esto difiere de la fusión única normal como sigue:<ul>
+<li>El resultado se ordena desde la prioridad más baja hasta la más alta, que es el inverso del orden de la fusión única.</li>
+      <li>El resultado no es aplanado, por lo que puede contener matrices anidadas.</li>
+      <li>Las opciones <code>merge_hash_arrays</code> y <code>sort_merged_arrays</code> pueden agregar cambios adicionales en el resultado.</li>
+    </ul>
+</li>
+  <li>Los valores escalares (cadena / número / booleano) utilizan el valor de prioridad más alta, como en una búsqueda encontrada por primera vez.</li>
+</ul>
+<blockquote>
+  <p> <strong>Nota:</strong> A diferencia de una combinación de hash, una combinación profunda también puede aceptar matrices como los valores raíz. Se fusiona con su matriz normal de fusión de comportamiento, que difiere de una combinación única como se describe anteriormente.
+</p>
+
+  <p> Esto no se aplica a la función <code>hiera_hash</code>, que puede ser configurado para realizar fusiones profundas pero no puede aceptar matrices.
+</p>
+</blockquote>
+
+<blockquote>
+  <p> <strong>Nota:</strong> La combinación profunda de Hiera 5 es equivalente a la combinación "más profunda" de Hiera 3.
+</p>
+</blockquote>
+
+<p> En este ejemplo, tenga en cuenta lo que sucede al usuario <code>bob</code> en un hash combinado vs. un combinado total: En el primero, todos sus atributos provienen de la fuente de mayor prioridad, pero en el segundo, se combinan.
+</p>
+
+<table>
+<tr>
+<th>Data sources</th> <th>Hash combinado</th> <th>Combinado total</th>
+</tr>
+<tr>
+<td>
+
+<pre><code class="language-yaml"># groups/ops.yaml
+site_users:
+  jen:
+    uid: 503
+    shell: /bin/zsh
+    group: ops
+  bob:
+    uid: 1000
+    group: ops
+
+# common.yaml
+site_users:
+  bob:
+    uid: 501
+    shell: /bin/bash
+  ash:
+    uid: 502
+    shell: /bin/zsh
+    group: common
+</code></pre>
+
+</td>
+
+<td>
+
+<pre><code class="language-puppet">{
+  "bob"=&gt;{
+    group=&gt;"ops",
+    uid=&gt;1000,
+  },
+  "jen"=&gt;{
+    group=&gt;"ops",
+    uid=&gt;503
+    shell=&gt;"/bin/zsh",
+  },
+  "ash"=&gt;{
+    group=&gt;"common",
+    uid=&gt;502,
+    shell=&gt;"/bin/zsh"
+  }
+}
+</code></pre>
+
+</td>
+
+<td>
+
+<pre><code class="language-puppet">{
+  "bob"=&gt;{
+    group=&gt;"ops",
+    uid=&gt;1000,
+    shell=&gt;"/bin/bash"
+  },
+  "jen"=&gt;{
+    group=&gt;"ops",
+    uid=&gt;503
+    shell=&gt;"/bin/zsh",
+  },
+  "ash"=&gt;{
+    group=&gt;"common",
+    uid=&gt;502,
+    shell=&gt;"/bin/zsh"
+  }
+}
+</code></pre>
+
+</td>
+</tr>
+</table>
+<p> Especifique este comportamiento de combinación con uno de los siguientes:
+</p>
+
+<ul>
+<li><code>'deep'</code></li>
+  <li>
+<code>{'strategy' =&gt; 'deep', &lt;OPTION&gt; =&gt; &lt;VALUE&gt;, ...}</code> — Este formulario puede configurar las uniones con algunas opciones adicionales:<ul>
+<li>
+<code>'knockout_prefix'</code> (cadena o  indefinido) — Un prefijo de cadena para indicar un valor debe ser <em>borrado</em> del resultado final. Por defecto a <code>undef</code>, desactiva esta opción.</li>
+      <li>
+<code>'sort_merged_arrays'</code> (boleano) — Si desea ordenar todas los arrays que se combinan. Por defecto a <code>false</code>.</li>
+      <li>
+<code>'merge_hash_arrays'</code> (boleano) — Si se fusionan profundamente hashes dentro de arreglos, por posición. Por ejemplo, <code>[ {a =&gt; high}, {b =&gt; high} ]</code> y <code>[ {c =&gt; low}, {d =&gt; low} ]</code> debería ser combinado como <code>[ {c =&gt; low, a =&gt; high}, {d =&gt; low, b =&gt; high} ]</code>. Por defecto a <code>false</code>.</li>
+    </ul>
+</li>
+</ul>
+<h2 id="setting-merge-behavior-at-lookup-time">Establecer el comportamiento de fusión en el tiempo de búsqueda</h2>
+
+<p> Con la función <code>lookup</code> y el comando <code>puppet lookup</code>, puede proporcionar un comportamiento de combinación como un argumento o un indicador. Esto reemplaza cualquier comportamiento de combinación preconfigurado para esa clave.
+</p>
+
+<p> Ejemplo de función:
+</p>
+
+<pre><code class="language-puppet"># Merge several arrays of class names into one array:
+lookup('classes', {merge =&gt; 'unique'})
+</code></pre>
+
+<p> ejemplo CLI:
+</p>
+
+<pre><code>$ puppet lookup classes --merge unique --environment production --explain
+</code></pre>
+
+<p> Para obtener más detalles acerca de la sintaxis, consulte <a href="./hiera_use_function.html">Utilice la función lookup</a> y <a href="/puppet/5.3/man/lookup.html">utilice el comando <code>puppet lookup</code></a>.
+</p>
+
+<p> Nótese que cada uno de <a href="./hiera_use_hiera_functions.html">las funciones  <code>hiera_*</code></a> está bloqueado para un comportamiento de combinación particular. (<code>hiera</code> solo se encuentra primero, <code>hiera_array</code> sólo hace la fusión única, etc.)
+</p>
+
+<h2 id="configuring-merge-behavior-in-hiera-data">Configurar el comportamiento de combinación en los datos de Hiera</h2>
+
+<p> En cualquier fuente de datos de Hiera (incluyendo <a href="./hiera_layers.html#the-module-layer">module data</a>), puede usar la clave especial <code>lookup_options</code> para configurar el comportamiento de combinación. Hiera utiliza el comportamiento de combinación configurado de una clave en cualquier búsqueda que no la anula explícitamente. (Nota  <a href="./hiera_use_hiera_functions.html">las funciones <code>hiera_*</code></a> Siempre reemplaza explícitamente la combinación configurada. )
+</p>
+
+<p> Por ejemplo:
+</p>
+
+<pre><code class="language-yaml"># &lt;ENVIRONMENT&gt;/data/common.yaml
+lookup_options:
+  ntp::servers:     # Name of key
+    merge: unique   # Merge behavior as a string
+  "^profile::(.*)::users$": # Regexp: `$users` parameter of any profile class
+    merge:          # Merge behavior as a hash
+      strategy: deep
+      merge_hash_arrays: true
+</code></pre>
+
+<p> En este ejemplo, Hiera utilizaría los comportamientos de combinación configurados para estas claves como sigue:
+</p>
+
+<table>
+<thead><tr>
+<th>Escenario</th>
+      <th>Comportamiento de la fusión</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td>Búsqueda automatica para <code>ntp</code>  <code>$servers</code> param de clase</td>
+      <td>Unique</td>
+    </tr>
+<tr>
+<td><code>lookup('ntp::servers')</code></td>
+      <td>Unique</td>
+    </tr>
+<tr>
+<td><code>lookup('ntp::servers', {merge =&gt; first})</code></td>
+      <td>Primero (debido a la anulación)</td>
+    </tr>
+<tr>
+<td>Búsqueda automática para <code>profile::server</code> <code>$users</code> param </td>
+      <td>Total, con <code>merge_hash_arrays</code>
+</td>
+    </tr>
+</tbody>
+</table>
+<h3 id="lookupoptions-format"> formato <code>lookup_options</code>
+</h3>
+
+<p> El valor de <code>lookup_options</code> es un hash con el siguiente formato:
+</p>
+
+<pre><code class="language-yaml">lookup_options:
+  &lt;NAME or REGEXP&gt;:
+    merge: &lt;MERGE BEHAVIOR&gt;
+</code></pre>
+
+<p> Esto es:
+</p>
+
+<ul>
+<li>Cada clave es el nombre completo de una clave de búsqueda (como <code>ntp::servers</code>) o un <a href="/puppet/5.3/lang_data_regexp.html">regular expression</a> (como <code>'^profile::(.*)::users$'</code>).<ul>
+<li>En los datos de un módulo, sólo puede configurar las claves de búsqueda en el espacio de nombres de ese módulo. (Por lo que el módulo <code>ntp</code> puede establecer opciones para <code>ntp::servers</code>, pero no puede para el módulo <code>apache</code>.)</li>
+    </ul>
+</li>
+  <li>Cada valor es un hash con una clave <code>merge</code>. <a href="#syntax-summary">como se muestra arriba</a>, Un comportamiento de una combinación puede ser una cadena o un hash.</li>
+</ul>
+<p> <strong><code>lookup_options</code> es una clave reservada</strong> — Usted no puede poner otros tipos de datos en él, y usted no puede mirarlo para arriba directamente. Esta es la única llave reservada de Hiera.
+</p>
+
+<h3 id="overriding-merge-behavior">Anulación del comportamiento de fusión</h3>
+
+<ul>
+<li>Cualquier fuente de datos puede anular <code>lookup_options</code> desde una fuente de baja prioridad. Desde que Hiera utiliza <a href="#hash">hash merge</a> en los valores <code>lookup_options</code>, los autores de módulos pueden configurar un comportamiento de fusión predeterminado para una clave determinada y los usuarios finales pueden anularla.</li>
+  <li>Cuando especifica un comportamiento de mezcla como un argumento para <a href="./hiera_use_function.html">la función <code>lookup</code></a>, siempre reemplaza cualquier comportamiento de combinación configurado.</li>
+</ul>
+<h3 id="matching-keys-with-regular-expressions">Combinación de claves con expresiones regulares</h3>
+
+<p> Puedes utilizar <a href="/puppet/5.3/lang_data_regexp.html">regular expressions</a> en <code>lookup_options</code> para configurar el comportamiento de combinación para muchas claves de búsqueda a la vez. Por ejemplo, una clave regexp como <code>'^profile::(.</code> *)::users$' puede establecer un comportamiento de fusión para <code>profile::server::users</code>, <code>profile::postgresql::users</code>, <code>profile::jenkins::master::users</code>, etc.
+</p>
+
+<p> Las opciones de Regexp lookup utiliza <a href="/puppet/5.3/lang_data_regexp.html">regexp support de Puppet</a>, que a su vez se basa en <a href="http://ruby-doc.org/core/Regexp.html"> regular expressions de Ruby</a>.
+</p>
+
+<p> Para utilizar un expresión regular en <code>lookup_options</code>:
+</p>
+
+<ul>
+<li>Escriba el patrón como una cadena entre comillas. No utilice la barra inclinada del lenguaje de Puppet (<code>/.../</code>) delimitadores regexp.</li>
+  <li>Empiece el patrón con el metacaracter de inicio de línea (<code>^</code>).<ul>
+<li>SI<code>^</code> no es el primer caracter, Hiera lo trata como un nombre de clave literal en lugar de un regex.</li>
+    </ul>
+</li>
+  <li>Si esta fuente de datos está en un módulo, <code>^</code> con el espacio de nombres del módulo — Su nombre completo, más el <code>::</code>Separador de espacio de nombres.<ul>
+<li>Por ejemplo, todas las opciones de búsqueda de regex del módulo <code>ntp</code> deben empezar con <code>^ntp::</code> — comenzar con cualquier otra cosa produce un error.</li>
+    </ul>
+</li>
+</ul>
+<p> El comportamiento de combinación definido para ese patrón se aplica a todas las claves de búsqueda que coincidan con él.
+</p>
+
+<p> En los casos en que se pueden aplicar múltiples opciones de búsqueda a la misma clave, Hiera resuelve el conflicto de la siguiente manera:
+</p>
+
+<ul>
+<li>Si hay una opción literal (no regexp) disponible, siempre gana.<ul>
+<li>Por ejemplo, si ha configurado las opciones de combinación para ambos <code>profile::server::users</code> y <code>'^profile::(.*)::users$'</code>, búsquedas para <code>profile::server::users</code>usará el primero.</li>
+    </ul>
+</li>
+  <li>
+    <p> De lo contrario, Hiera utiliza <strong>primero</strong> expresiones regulares que coincidan con la clave de búsqueda, utilizando el orden en el que están escritas.
+</p>
+
+    <blockquote>
+      <p> <strong>Nota:</strong> <code>lookup_options</code> se ensamblan con un <a href="#hash">hash merge</a>, que pone las claves de fuentes de datos de menor prioridad <strong>antes</strong> de aquellas de fuentes de mayor prioridad. Esto significa que si desea reemplazar el comportamiento de fusión configurado por regexp de un módulo, debe utilizar <strong>exactamente la mismo</strong> cadena de datos regexp de su entorno, para que <em>reemplaze</em> el valor de los módulos. Si utiliza un regex ligeramente diferente que coincida con la mayoría de las mismas claves, no funcionará porque la regex de menor prioridad va primero.
+</p>
+    </blockquote>
+  </li>
+</ul>
+</div>
