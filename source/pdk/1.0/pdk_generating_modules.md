@@ -48,7 +48,7 @@ Related topics:
 
 To create a module with a default template, use the `pdk new module` command.
 
-Before you begin, ensure that you've installed the PDK package. If you are running PDK behind a proxy, be sure you've added the correct environment variables. See [Running PDK behind a proxy](./pdk_install.hmtl#running-pdk-behind-a-proxy) for details.
+Before you begin, ensure that you've installed the PDK package. If you are running PDK behind a proxy, be sure you've added the correct environment variables. See [Running PDK behind a proxy](./pdk_install.html#running-pdk-behind-a-proxy) for details.
 
 1. From the command line, run the new module command, specifying the name of the module: `pdk new module <MODULE_NAME>`
    
