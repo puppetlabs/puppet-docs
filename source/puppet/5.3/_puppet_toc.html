@@ -211,38 +211,14 @@
         * [Special features in implementation methods]({{puppet}}/functions_ruby_implementation.html)
         * [Documenting Ruby functions]({{puppet}}/functions_ruby_documenting.html)
     * [Writing functions (legacy Ruby API --- avoid)]({{puppet}}/functions_legacy.html)
-* **Hiera: using configuration data**
-    * [What is Hiera?]({{puppet}}/hiera_intro.html)
-    * [Quick start guide]({{puppet}}/hiera_quick.html)
-    * [How hierarchies work]({{puppet}}/hiera_hierarchy.html)
-    * [How the three config layers work]({{puppet}}/hiera_layers.html)
-    * **Upgrading to Hiera 5**
-        * [Overview: Migrating existing Hiera configurations to Hiera 5]({{puppet}}/hiera_migrate.html)
-        * [Enable the environment layer]({{puppet}}/hiera_migrate_environments.html)
-        * [Convert a v3 hiera.yaml to v5]({{puppet}}/hiera_migrate_v3_yaml.html)
-        * [Convert an experimental (v4) hiera.yaml to v5]({{puppet}}/hiera_migrate_v4_yaml.html)
-        * [Update classic Hiera function calls]({{puppet}}/hiera_migrate_functions.html)
-        * [Add Hiera data to an existing module]({{puppet}}/hiera_migrate_modules.html)
-    * **Configuring Hiera (the hiera.yaml file)**
-        * [hiera.yaml v5 syntax]({{puppet}}/hiera_config_yaml_5.html)
-        * [Interpolating variables and functions]({{puppet}}/hiera_interpolation.html)
-        * [hiera.yaml v3 syntax (deprecated)]({{puppet}}/hiera_config_yaml_3.html)
-        * [hiera.yaml v4 syntax (deprecated)]({{puppet}}/hiera_config_yaml_4.html)
-    * **Looking up data**
-        * [Automatic class parameter lookup]({{puppet}}/hiera_automatic.html)
-        * [Using the `lookup` function]({{puppet}}/hiera_use_function.html)
-        * [Merging data from multiple sources]({{puppet}}/hiera_merging.html)
-        * [Accessing hash and array elements (key.subkey notation)]({{puppet}}/hiera_subkey.html)
-        * [Using the deprecated `hiera` functions]({{puppet}}/hiera_use_hiera_functions.html)
-        * [Using the `puppet lookup` command]({{puppet}}/man/lookup.html)
-    * **Creating and editing data**
-        * [Merging data from multiple sources]({{puppet}}/hiera_merging.html)
-        * [Interpolating variables and functions]({{puppet}}/hiera_interpolation.html)
-    * **Writing new data backends**
-        * [How custom backends work]({{puppet}}/hiera_custom_backends.html)
-        * [Implementing a `data_hash` backend]({{puppet}}/hiera_custom_data_hash.html)
-        * [Implementing a `lookup_key` backend]({{puppet}}/hiera_custom_lookup_key.html)
-        * [Implementing a `data_dig` backend]({{puppet}}/hiera_custom_data_dig.html)
+* **Hiera**
+    * [Hiera]({{puppet}}/hiera_intro.html)
+    * [Getting started with Hiera]({{puppet}}/hiera_quick.html)
+    * [Configuring Hiera]({{puppet}}/hiera_config_yaml_5.html)
+    * [Creating and editing data]({{puppet}}/hiera_merging.html)
+    * [Looking up data with Hiera]({{puppet}}/hiera_automatic.html)
+    * [Writing new data backends]({{puppet}}/hiera_custom_backends.html)
+    * [Upgrading to Hiera 5]({{puppet}}/hiera_migrate.html)
 * [Facter]({{facter}}/index.html)
     * [Facter release notes]({{facter}}/release_notes.html)
     * [Core facts]({{facter}}/core_facts.html)
@@ -250,7 +226,6 @@
     * [Custom fact walkthrough]({{facter}}/custom_facts.html)
     * [External facts]({{facter}}/custom_facts.html#external-facts)
     * [Configuring Facter with facter.conf]({{facter}}/configuring_facter.html)
-
 * **Resource types**
     * [All resource types (single-page reference)]({{puppet}}/type.html)
     * [Core types cheat sheet]({{puppet}}/cheatsheet_core_types.html)
