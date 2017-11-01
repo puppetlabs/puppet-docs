@@ -3,7 +3,7 @@ title: "Configuring Hiera"
 ---
 
 [hierarchy]: ./hiera_intro.html#Hiera-hierarchies
-[layers]: ./hiera_intro.html#Hiera’s-three-config-layers 
+[layers]: ./hiera_intro.html#Hiera’s-three-config-layers
 [confdir]: ./dirs_confdir.html
 [module]: ./modules_fundamentals.html
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
@@ -16,35 +16,35 @@ title: "Configuring Hiera"
 [custom puppet function]: ./functions_basics.html
 [backends]: ./hiera_custom_backends.html
 
-{:.overview} 
+{:.overview}
 # Configuring Hiera: the hiera.yaml file
 
 The Hiera configuration file is called hiera.yaml. It configures the hierarchy for a given layer of data.
 
 Related topics: [hierarchy][hierarchy], [layers][layers].
 
-{:.reference} 
+{:.reference}
 ## Location of hiera.yaml files
 
 There are several hiera.yaml files in a typical deployment — Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances.
- 
+
 The configuration file locations for each layer:
 
 Layer       | Location                                        | Example
 ------------|-------------------------------------------------|--------
 Global      | [`$confdir`][confdir]`/hiera.yaml`              | `/etc/puppetlabs/puppet/hiera.yaml`, `C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml`
-Environment | [`<ENVIRONMENT>`][environment]`/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml`, `C:\ProgramData\PuppetLabs\code\environments\production\hiera.yaml` 
+Environment | [`<ENVIRONMENT>`][environment]`/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml`, `C:\ProgramData\PuppetLabs\code\environments\production\hiera.yaml`
 Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml`, `C:\ProgramData\PuppetLabs\code\environments\production\modules\ntp\hiera.yaml`
 
 > Note: You can change the location for the global layer's hiera.yaml with Puppet’s `hiera_config` setting.
- 
-Related topics: [$confdir][confdir], [<MODULE>][module]. 
+
+Related topics: [$confdir][confdir], [<MODULE>][module].
 
 {:.concept}
 ## Config file syntax (hiera.yaml v5)
 
 `hiera.yaml` is a YAML file, containing a hash with up to four top-level keys:
- 
+
 * `version` - Required. Must be the number 5, with no quotes.
 * `hierarchy` - An array of hashes, which configures the levels of the hierarchy.
 * `default_hierarchy` - An array of hashes, which sets a default hierarchy to be used only if the normal hierarchy entries do not result in a value. Only allowed in a module's hiera.yaml.
@@ -101,12 +101,12 @@ defaults:
 
 These defaults are only used if the file is present and specifies `version: 5`. If hiera.yaml is absent, it disables Hiera for that layer. If it specifies a different version, different defaults apply.
 
-{:.concept} 
+{:.concept}
 ## The defaults key
 
 The `defaults` key sets default values for the `backend` and `datadir` keys, which lets you omit those keys in your hierarchy levels.
- 
-The value of `defaults` must be a hash, which can have up to three keys: `datadir`, a`backend` key, and `options`. 
+
+The value of `defaults` must be a hash, which can have up to three keys: `datadir`, a`backend` key, and `options`.
 
 ### datadir
 
@@ -121,27 +121,27 @@ Used for any hierarchy level that doesn’t specify its own. This must be one of
 * `data_dig` - produces values key by key (for more advanced backends)
 * `hiera3_backend` - global layer only
 
-For the built-in backends - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom backend as the default, see the backend’s documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the backend. 
+For the built-in backends - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom backend as the default, see the backend’s documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the backend.
 
 ### options
 
 A default value for options, used for any hierarchy level that does not specify its own.
 
-Related topics: How custom backends work,  custom Puppet function. 
+Related topics: How custom backends work,  custom Puppet function.
 
-{:.concept} 
+{:.concept}
 ## The hierarchy key
 
 The `hierarchy` key configures the levels of the hierarchy.
 
-{:.concept} 
+{:.concept}
 ## The default_hierarchy key
- 
-The `default_hierarchy` key is a top-level key. It works exactly like the hierarchy key, but its values are used only if the normal hierarchy entries in the same module, or any of the higher precedence layers (environment or global) does not result in a value. Within this default hierarchy, the normal merging rules apply. However, the `default_hierarchy` is not permitted in environment or global layers.
- 
-Related topics: How hierarchies work. 
 
-{:.task} 
+The `default_hierarchy` key is a top-level key. It works exactly like the hierarchy key, but its values are used only if the normal hierarchy entries in the same module, or any of the higher precedence layers (environment or global) does not result in a value. Within this default hierarchy, the normal merging rules apply. However, the `default_hierarchy` is not permitted in environment or global layers.
+
+Related topics: How hierarchies work.
+
+{:.task}
 ## The Hierarchy key: write an array of hashes
 
 The value of `hierarchy` must be an array of hashes.
@@ -152,7 +152,7 @@ The value of `hierarchy` must be an array of hashes.
 	* A hyphen (`-`).
 	* Another space after the hyphen.
 	* The first key of that level’s hash.
-	
+
 2. Indent the rest of the hash’s keys by four spaces, so they line up with the first key.
 
 3. Put an empty line between hashes, to visually distinguish them.
@@ -164,17 +164,17 @@ The value of `hierarchy` must be an array of hashes.
   - name: "Per-datacenter business group data"
     path: "location/%{facts.whereami}/%{facts.group}.yaml"```
 
-{:.reference} 
+{:.reference}
 ## Configuring a hierarchy level: built-in backends
 
 Hiera has three built-in backends: YAML, JSON, and HOCON. All of these use files as data sources.
- 
+
 You can use any combination of these backends in a hierarchy, and can also combine them with custom backends. But if most of your data is in one file format, set default values for the `datadir` and `data_hash` keys.
- 
+
 Each YAML/JSON/HOCON hierarchy level needs the following keys:
 
 * `name` — A name for this level, shown in debug messages and `--explain` output.
-* `path`, `paths`, `glob`, `globs`, or `mapped_paths` (choose one) — The data files to use for this hierarchy level. 
+* `path`, `paths`, `glob`, `globs`, or `mapped_paths` (choose one) — The data files to use for this hierarchy level.
 	* These paths are relative to the datadir, they support variable interpolation, and they require a file extension. See “Specifying file paths” for more details.
 * `data_hash` — Which backend to use. Can be omitted if you set a default. The value must be one of the following:
 	* `yaml_data` for YAML.
@@ -183,12 +183,12 @@ Each YAML/JSON/HOCON hierarchy level needs the following keys:
 * `datadir` — The directory where data files are kept. Can be omitted if you set a default.
 	* This path is relative to hiera.yaml’s directory: if the config file is at `/etc/puppetlabs/code/environments/production/hiera.yaml` and the datadir is set to data, the full path to the data directory is `/etc/puppetlabs/code/environments/production/data`.
 	* In the global layer, you can optionally set the datadir to an absolute path; in the other layers, it must always be relative.
-	
-Related topics: [variable interpolation][variables], [YAML][yaml_data], [JSON][json_data], [HOCON][hocon_data].  
+
+Related topics: [variable interpolation][variables], [YAML][yaml_data], [JSON][json_data], [HOCON][hocon_data].
 
 ### Specifying file paths
 
-Options for specifying a file path: 
+Options for specifying a file path:
 
 Key     | Data type | Expected value
 --------|-----------|---------------
@@ -200,10 +200,10 @@ Key     | Data type | Expected value
 
 > Note: You can only use one of these keys in a given hierarchy level.
 
-Explicit file extensions are required, for example, `common.yaml`, not `common`. 
+Explicit file extensions are required, for example, `common.yaml`, not `common`.
 
-File paths are relative to the `datadir`: if the full datadir is `/etc/puppetlabs/code/environments/production/data` and the file path is set to `"nodes/%{trusted.certname}.yaml"`, the full path to the file is `/etc/puppetlabs/code/environments/production/data/nodes/<NODE NAME>.yaml`. 
- 
+File paths are relative to the `datadir`: if the full datadir is `/etc/puppetlabs/code/environments/production/data` and the file path is set to `"nodes/%{trusted.certname}.yaml"`, the full path to the file is `/etc/puppetlabs/code/environments/production/data/nodes/<NODE NAME>.yaml`.
+
 >Note: Hierarchy levels should interpolate variables into the path.
 
 Globs are implemented with Ruby’s `Dir.glob` method:
@@ -215,10 +215,14 @@ Globs are implemented with Ruby’s `Dir.glob` method:
 * Sets of characters in square brackets (`[abcd]`) match any character in the set.
 * A backslash (`\`) escapes special characters.
 
- Example:
+Example:
 
-``` - name: "Domain or network segment"
-    glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"```
+```
+{% raw %}
+- name: "Domain or network segment"
+    glob: "network/**/{%{facts.networking.domain},%{facts.networking.interfaces.en0.bindings.0.network}}.yaml"
+{% endraw %]
+```
 
 The `mapped_paths` key must contain three string elements, in the following order:
 
@@ -227,28 +231,30 @@ The `mapped_paths` key must contain three string elements, in the following orde
 * A template where that variable can be used in interpolation expressions.
 
 For example, a fact named `$services` contains the array `[“a”, “b”, “c”]`. The following configuration has the same results as if paths had been specified to be `[service/a/common.yaml, service/b/common.yaml, service/c/common.yaml]`.
- 
-`- name: Example`
-  `mapped_paths: [services, tmp, "service/%{tmp}/common.yaml"]`
+
+```
+- name: Example
+    mapped_paths: [services, tmp, "service/%{tmp}/common.yaml"]
+```
 
 Related topics: [interpolate][interpolation], [How hierarchies work][hierarchy].
 
-{:.reference} 
+{:.reference}
 ## Configuring a hierarchy level: hiera-eyaml
 
 Hiera 5 (Puppet 4.9.3 and later) includes a native interface for the Hiera eyaml extension, which keeps data encrypted on disk but lets Puppet read it during catalog compilation.
- 
+
 To learn how to create keys and edit encrypted files, see the Hiera eyaml documentation.
- 
+
 Within `hiera.yaml`, the eyaml backend resembles the standard built-in backends, with a few differences: it uses `lookup_key` instead of `data_hash`, and requires an `options` key to locate decryption keys. Note that the eyaml backend can read regular yaml files as well as yaml files with encrypted data.
- 
+
 > **Important**: To use the eyaml backend, you must have the `hiera-eyaml` gem installed where Puppet can use it. You’ll need to install it twice:
- 
+
 * To enable eyaml with Puppet Server, use `sudo /opt/puppetlabs/bin/puppetserver gem install hiera-eyaml`.
 * To enable eyaml on the command line and with `puppet apply`, use `sudo /opt/puppetlabs/puppet/bin/gem install hiera-eyaml`.
 
 Each eyaml hierarchy level needs the following keys:
- 
+
 * `name` — A name for this level, shown to humans in debug messages and `--explain` output.
 * `lookup_key` — Which backend to use. The value must be `eyaml_lookup_key`. Use this instead of the `data_hash` setting.
 * `path`, `paths`, `mapped_paths`, `glob`, or `globs` (choose one) — The data files to use for this hierarchy level.These paths are relative to the datadir, they support variable interpolation, and they require a file extension. In this case, you’ll usually use `.eyaml`. They work the same way they do for the standard backends.
@@ -258,9 +264,9 @@ Each eyaml hierarchy level needs the following keys:
 	* `pkcs7_public_key` — The location of the PKCS7 public key to use.
 	* If you use an alternate encryption plugin, its docs should specify which options to set. Set an `encrypt_method` option, plus some plugin-specific options to replace the `pkcs7` ones.
 	* You can use normal strings as keys in this hash; you don’t need to use :symbols.
- 
+
 The file path key and the options key both support variable interpolation.
- 
+
 An example hierarchy level:
 
 ```
@@ -271,17 +277,17 @@ hierarchy:
     options:
       pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
       pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
-      ```
- 
+```
+
 Related topics: [Hiera eyaml][eyaml], [variable interpolation][interpolation].
- 
-{:.reference} 
+
+{:.reference}
 ## Configuring a hierarchy level: legacy Hiera 3 backends
 
-> Note: This feature is a temporary measure to let you start using new features while waiting for backend updates. 
+> Note: This feature is a temporary measure to let you start using new features while waiting for backend updates.
 
 If you rely on custom data backends designed for Hiera 3, you can use them in your global hierarchy. They are not supported at the environment or module layers.
- 
+
 Each legacy hierarchy level needs the following keys:
 
 * `name` — A name for this level, shown  in debug messages and `--explain` output.
@@ -340,13 +346,13 @@ hierarchy:
       - "%{trusted.certname}.xml"
       - common.xml```
 
-{:.reference} 
+{:.reference}
 ## Configuring a hierarchy level: general format
 
 Hiera supports custom backends.
- 
+
 See the backend’s documentation for configuring hierarchy levels.
- 
+
 Each hierarchy level is represented by a hash, which needs the following keys:
 
 * `name` — A name for this level, shown in debug messages and `--explain` output.
