@@ -15,14 +15,11 @@ title: "Writing new data backends"
 [struct]: ./lang_data_abstract.html#struct
 [functions]: ./lang_functions.html
 
-{:.overview} 
-# Writing new data backends 
-
 You can extend Hiera to look up values in data stores, for example, a PostgreSQL database table, a custom web app, or a new kind of structured data file.
  
 To teach Hiera how to talk to other data sources, write a custom backend.
 
-> **important**: Writing a custom backend is an advanced topic. Before proceeding, make sure you really need it. It is also worth asking the puppet-dev mailing list or Slack channel to see whether there is one you can re-use, rather than starting from scratch. 
+> **Important**: Writing a custom backend is an advanced topic. Before proceeding, make sure you really need it. It is also worth asking the puppet-dev mailing list or Slack channel to see whether there is one you can re-use, rather than starting from scratch. 
  
 {:.concept} 
 ## Custom backends overview
@@ -47,8 +44,8 @@ For more information, please the see data_hash backends reference.
 ### lookup_key
  
 For data sources where looking up a key is relatively expensive, performance-wise, like an HTTPS API. We suggest using the `lookup_key` backend type if:
-The data set is big, but only a small portion is used
-The result can vary during the compilation
+* The data set is big, but only a small portion is used
+* The result can vary during the compilation
  
 The `hiera-eyaml` backend is a `lookup_key` function, because decryption tends to affect performance; as a given node uses only a subset of the available secrets, it makes sense to decrypt only on-demand.
  
@@ -77,7 +74,7 @@ The built-in YAML, JSON, and HOCON backends are all `data_hash` functions. You c
 Hiera calls a `data_hash` function with two arguments:
  
 * A hash of options
-	* The options hash will contain a  `path` when the entry in hiera.yaml is using `path`/`paths`,`glob`/`globs`, or `mapped_paths`, and the backend will receive one call per path to an existing file. When the entry in hiera.yaml is using `uri`/`uris`, the options hash will have a `uri` key, and the backend function is called once per given uri. When `uri`/`uris` are used, hiera does not perform an existence check. It is up to the function to type the options parameter as wanted (for example, to accept only `path`, or only a `uri`, or none; if returning a constant map, or both). 
+	* The options hash will contain a  `path` when the entry in hiera.yaml is using `path`/`paths`,`glob`/`globs`, or `mapped_paths`, and the backend will receive one call per path to an existing file. When the entry in hiera.yaml is using `uri`/`uris`, the options hash will have a `uri` key, and the backend function is called once per given uri. When `uri`/`uris` are used, hiera does not perform an existence check. It is up to the function to type the options parameter as wanted.
 * A `Puppet::LookupContext` object 
  
 ### Return type
@@ -91,17 +88,18 @@ function mymodule::hiera_backend(
   Hash                  $options,
   Puppet::LookupContext $context,
 )
-
+```
 
 Ruby example signature:
+
+```
 dispatch :hiera_backend do
   param 'Hash', :options
   param 'Puppet::LookupContext', :context
 end
 ```
 
-The returned hash can include the `lookup_options` key to configure merge behavior for other keys. See Configuring merge behavior in Hiera data for more information.
-Values in the returned hash can include Hiera interpolation tokens like `%{variable}` or `%{lookup('key')}`; Hiera interpolates values as needed. This is a significant difference between `data_hash` and the other two backend types; `lookup_key` and `data_dig` functions have to explicitly handle interpolation.
+The returned hash can include the `lookup_options` key to configure merge behavior for other keys. See Configuring merge behavior in Hiera data for more information. Values in the returned hash can include Hiera interpolation tokens like `%{variable}` or `%{lookup('key')}`; Hiera interpolates values as needed. This is a significant difference between `data_hash` and the other two backend types; `lookup_key` and `data_dig` functions have to explicitly handle interpolation.
  
 Related topics: [Configuring merge behavior in Hiera data][merging].
 
@@ -140,9 +138,9 @@ dispatch :hiera_backend do
 end
 ```
 
-A `lookup_key` function can return a hash for the  the `lookup_options` key to configure merge behavior for other keys. See Configuring merge behavior in Hiera data for more info.
-To support Hiera interpolation tokens, for example, `%{variable}` or `%{lookup('key')}` in your data, call `context.interpolate` on your values before returning them.
-Related topics: Configuring merge behavior in Hiera data,  Hiera interpolation tokens, Hiera calling conventions for backend functions, The options hash, `Puppet::LookupContext` object.
+A `lookup_key` function can return a hash for the  the `lookup_options` key to configure merge behavior for other keys. See Configuring merge behavior in Hiera data for more information. To support Hiera interpolation tokens, for example, `%{variable}` or `%{lookup('key')}` in your data, call `context.interpolate` on your values before returning them.
+
+Related topics: [interpolation][interpolation], [Hiera calling conventions for backend functions][puppet_functions].
 
 {:.reference} 
 ##  `data_dig` backend
@@ -165,6 +163,7 @@ Hiera calls a `data_dig` function with three arguments:
 
 The function must either call the context object’s `not_found` method, or return a value for the requested sequence of key segments. Note that returning undef (nil in Ruby) means that the key was found but that the value for that key was specified to be undef. 
 Puppet language example signature:
+
 ```
 function mymodule::hiera_backend(
   Array[Variant[String, Numeric]] $segments,
@@ -172,7 +171,9 @@ function mymodule::hiera_backend(
   Puppet::LookupContext           $context,
 )
 ```
+
 Ruby example signature:
+
 ```
 dispatch :hiera_backend do
   param 'Array[Variant[String, Numeric]]', :segments
@@ -259,7 +260,7 @@ Tells Hiera to halt this lookup and move on to the next data source. Call this m
 
 For `data_hash` backends, return an empty hash. The empty hash will result in `not_found`, and will prevent further calls to the provider. Missing data sources are not an issue when using `path(s)/glob(s)`, but are important for backends that locate their own data sources.
 
-For `lookup_key` and `data_dig` backends, use `not_found` when a requested key is not present in the data source or the data source does not exist. Do not return `undef` or `nil` for missing keys, as that is a legal value that can be set in data.
+For `lookup_key` and `data_dig` backends, use `not_found` when a requested key is not present in the data source or the data source does not exist. Do not return `undef` or `nil` for missing keys, as these are legal values that can be set in data.
 
 ### interpolate(value)
 
