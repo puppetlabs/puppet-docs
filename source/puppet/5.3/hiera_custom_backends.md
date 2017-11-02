@@ -144,7 +144,7 @@ A `lookup_key` function can return a hash for the  the `lookup_options` key to c
 Related topics: [interpolation][interpolation], [Hiera calling conventions for backend functions][puppet_functions].
 
 {:.reference} 
-##  `data_dig` backend
+##  data_dig backend
 
 A `data_dig` backend function is similar to a `lookup_key` function, but instead of looking up a single key, it looks up a single sequence of keys and subkeys.
 Hiera lets you look up individual members of hash and array values using `key.subkey` notation. Use `data_dig` types in cases where:
