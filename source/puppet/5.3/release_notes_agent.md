@@ -8,12 +8,15 @@ title: "Puppet agent release notes"
 [Puppet 5.2.0]: /puppet/5.2/release_notes.html#puppet-520
 [Puppet 5.3.1]: /puppet/5.3/release_notes.html#puppet-531
 [Puppet 5.3.2]: /puppet/5.3/release_notes.html#puppet-532
+[Puppet 5.3.3]: /puppet/5.3/release_notes.html#puppet-533
 
 [Facter 3.9.0]: /facter/3.9/release_notes.html#facter-390
 [Facter 3.9.2]: /facter/3.9/release_notes.html#facter-392
+[Facter 3.9.3]: /facter/3.9/release_notes.html#facter-393
 
 [MCollective 2.11.2]: /mcollective/releasenotes.html#2_11_2
 [MCollective 2.11.3]: /mcollective/releasenotes.html#2_11_3
+[MCollective 2.11.4]: /mcollective/releasenotes.html#2_11_4
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -28,6 +31,16 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
+
+## Puppet agent 5.3.3
+
+Released November 6, 2017.
+
+This release of Puppet Platform that contains several Puppet and Facter bug fixes.
+
+### Component updates
+
+This release includes component updates to [Puppet 5.3.3][], [Facter 3.9.3][], [MCollective 2.11.4][], pcp-client 1.5.5, and [pxp-agent][] 1.8.1.
 
 ## Puppet agent 5.3.2
 
