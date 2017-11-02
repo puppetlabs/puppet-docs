@@ -296,18 +296,23 @@ Hiera creates a separate cache for each combination of inputs for a function cal
 If any inputs to a function change, for example, a path interpolates a local variable whose value changes between lookups, Hiera uses a fresh cache.
 
 ### cache_all(hash)
+
 Caches all the key-value pairs from a given hash. Returns `undef` (in Puppet) or `nil` (in Ruby).
 
 ### cached_value(key)
+
 Returns a previously cached value from the per-data-source private cache. Returns `undef` or `nil` if no value with this name has been cached. 
 
 ### cache_has_key(key)
+
 Checks whether the cache has a value for a given key yet. Returns `true` or `false`.
 
 ### cached_entries()
+
 Returns everything in the `per-data-source` cache as an iterable object. The returned object is not a hash. If you want a hash, use `Hash($context.all_cached())` in the Puppet language or `Hash[context.all_cached()]` in Ruby.
 
-### `cached_file_data(path)`
+### cached_file_data(path)
+
 Puppet syntax:
 
 `cached_file_data(path) |content| { ... }`
