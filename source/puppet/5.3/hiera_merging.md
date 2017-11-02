@@ -42,7 +42,7 @@ When specifying a merge behavior, use one of the following identifiers:
 
 ### First
  
-A first-found lookup doesn’t merge anything; it returns the first value found, and ignores the rest. This is Hiera’s default behavior.
+A first-found lookup doesn’t merge anything: it returns the first value found, and ignores the rest. This is Hiera’s default behavior.
  
 Specify this merge behavior with one of these:
 * `'first'`
@@ -51,7 +51,7 @@ Specify this merge behavior with one of these:
 
 ### Unique
  
-A unique merge (also called array merge) combines any number of array and scalar (string, number, boolean) values to return a merged, flattened array with all duplicate values removed. The lookup fails if any of the values are hashes. The result is ordered from highest priority to lowest.
+A unique merge (also called an array merge) combines any number of array and scalar (string, number, boolean) values to return a merged, flattened array with all duplicate values removed. The lookup fails if any of the values are hashes. The result is ordered from highest priority to lowest.
  
 Specify this merge behavior with one of these:
 * `'unique'`
@@ -61,7 +61,7 @@ Specify this merge behavior with one of these:
 
 A hash merge combines the keys and values of any number of hashes to return a merged hash. The lookup fails if any of the values aren’t hashes.
  
-If multiple source hashes have a given key, Hiera uses the value from the highest priority data source; it won’t recursively merge the values.
+If multiple source hashes have a given key, Hiera uses the value from the highest priority data source: it won’t recursively merge the values.
  
 Hashes in Puppet preserve the order in which their keys are written. When merging hashes, Hiera starts with the lowest priority data source. For each higher priority source, it appends new keys at the end of the hash and updates existing keys in place.
  
