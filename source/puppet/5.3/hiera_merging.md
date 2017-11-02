@@ -96,11 +96,6 @@ Specify this merge behavior with one of these:
 * `'hash'`
 * `{'strategy' => 'hash'}`
 
-Specify this merge behavior with one of these:
-
-* `'hash'`
-* `{'strategy' => 'hash'}`
-
 ### Deep
 
 A deep merge combines the keys and values of any number of hashes to return a merged hash. If the same key exists in multiple source hashes, Hiera recursively merges them:
