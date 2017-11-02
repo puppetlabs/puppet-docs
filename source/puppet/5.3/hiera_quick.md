@@ -2,8 +2,8 @@
 title: "Getting started with Hiera"
 ---
 
-[Hiera’s three config layers]: ./hiera_intro.html#Hiera’s-three-config-layers
-[merging]: ./hiera_merging.html
+[Hiera’s three config layers]: ./hiera_intro.html#the-global-layer
+[merging]: ./hiera_merging.html#merge-behaviors
 [v5]: ./hiera_config_yaml_5.html
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
 [hierarchies]: ./hiera_intro.html#Hiera-hierarchies 
@@ -49,7 +49,7 @@ hierarchy:
 
 This file is in a format called YAML, which is used extensively throughout Hiera. 
  
-Related topics: [The hiera.yaml (v5) reference,][v5], [YAML Cookbook][yaml].
+Related topics: [The hiera.yaml (v5) reference][v5], [YAML Cookbook][yaml].
 
 {:.concept} 
 ## The hierarchy
@@ -125,7 +125,7 @@ Related topics:  [the roles and profiles method][r_n_p], [Automatic class parame
  
 Set values in your common data - the level at the bottom of your hierarchy.
  
-This hierarchy level uses the YAML backend for data, which means the data goes into a YAML file. To know where to put that file, combine a few pieces of information:
+This hierarchy level uses the YAML backend for data, which means the data goes into a YAML file. To know where to put that file, combine the following pieces of information:
  
 * The current environment’s directory.
 * The data directory, which is a subdirectory of the environment. By default, it’s `<ENVIRONMENT>/data`.
@@ -149,11 +149,11 @@ The third parameter, `$site_alias`, has a default value defined in code, so you 
  
 The second level of the hierarchy uses the `os` fact to locate its data file. This means it can use different data files depending on the operating system of the current node.
  
-For this example, suppose that your developers use MacBook laptops, which have an OS family of `Darwin`. If a developer is running an app instance on their laptop, it shouldn’t send data to your production backup server, so set `$backups_enabled` to `false`.
+For this example, suppose that your developers use MacBook laptops, which have an OS family of `Darwin`. If a developer is running an app instance on their laptop, it should not send data to your production backup server, so set `$backups_enabled` to `false`.
  
-If you do not run Puppet on any Mac laptops, choose an OS family that is meaningful for your infrastructure. 
+If you do not run Puppet on any Mac laptops, choose an OS family that is meaningful to your infrastructure. 
 
-1. Locate the data file, by replacing `%{facts.os.family}` with the value you’re targeting:
+1. Locate the data file, by replacing `%{facts.os.family}` with the value you are targeting:
  
 `/etc/puppetlabs/code/environments/production/data/` + `os/` + `Darwin` + .`yaml`.
  
@@ -212,8 +212,8 @@ To use the `puppet lookup` command effectively:
 * The node you are testing against should have contacted the server at least once as this makes the facts for that node available to the lookup command (otherwise you will need to supply the facts yourself on the command line).
 * Make sure the command uses the global `confdir` and `codedir`, so it has access to your live data. If you’re not running `puppet lookup` as root user, specify `--codedir` and `--confdir` on the command line.
 * If you use PuppetDB, you can use any node’s facts in a lookup by specifying `--node <NAME>`. Hiera can automatically get that node’s real facts and use them to resolve data.
-* If you do not use PuppetDB, or if you want to test for a set of facts that doesn’t exist, provide facts in a YAML or JSON file and specify that file as part of the command, with `--facts <FILE>`. To get a file full of facts, rather than creating one from scratch, run `facter -p --json > facts.json` on a node that is similar to the node you want to examine, copy the `facts.json` file to your Puppet Server node, and edit it as needed.
+* If you do not use PuppetDB, or if you want to test for a set of facts that don't exist, provide facts in a YAML or JSON file and specify that file as part of the command with `--facts <FILE>`. To get a file full of facts, rather than creating one from scratch, run `facter -p --json > facts.json` on a node that is similar to the node you want to examine, copy the `facts.json` file to your Puppet Server node, and edit it as needed.
 	*	The PDK toolset comes with predefined fact sets for a variety of platforms. You can use those if you  want to test against platforms you do not have, or if you want "typical facts" for a kind of platform.
-* If you are not getting the values you expect, try re-running the command with `--explain`. The `--explain` flag  makes Hiera output a full explanation for which data sources it searched and what it found in them.
+* If you are not getting the values you expect, try re-running the command with `--explain`. The `--explain` flag  makes Hiera output a full explanation of which data sources it searched and what it found in them.
 
 Related topics: [The puppet lookup command][cli], [confdir][confdir], [codedir][codedir]. 
