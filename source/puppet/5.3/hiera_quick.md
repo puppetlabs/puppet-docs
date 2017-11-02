@@ -72,48 +72,48 @@ Hiera is used with Puppet code, so the first step is to create a Puppet class fo
 
 3. Add the following code you your heira_test.pp file:
 
-``` 
-# /etc/puppetlabs/code/environments/production/modules/profile/manifests/hiera_test.pp
-class profile::hiera_test (
-  Boolean             $ssl,
-  Boolean             $backups_enabled,
-  Optional[String[1]] $site_alias = undef,
-) {
-  file { '/tmp/hiera_test.txt':
-    ensure  => file,
-    content => @("END"),
-               Data from profile::hiera_test
-               -----
-               profile::hiera_test::ssl: ${ssl}
-               profile::hiera_test::backups_enabled: ${backups_enabled}
-               profile::hiera_test::site_alias: ${site_alias}
-               |END
-    owner   => root,
-    mode    => '0644',
-  }
-}
-```
+   ``` 
+   # /etc/puppetlabs/code/environments/production/modules/profile/manifests/hiera_test.pp
+   class profile::hiera_test (
+     Boolean             $ssl,
+     Boolean             $backups_enabled,
+     Optional[String[1]] $site_alias = undef,
+   ) {
+     file { '/tmp/hiera_test.txt':
+       ensure  => file,
+       content => @("END"),
+                  Data from profile::hiera_test
+                  -----
+                  profile::hiera_test::ssl: ${ssl}
+                  profile::hiera_test::backups_enabled: ${backups_enabled}
+                  profile::hiera_test::site_alias: ${site_alias}
+                  |END
+       owner   => root,
+       mode    => '0644',
+     }
+   }
+   ```
 
-The test class uses class parameters to request configuration data. Puppet looks up class parameters in Hiera, using `<CLASS NAME>::<PARAMETER NAME>` as the lookup key.
+   The test class uses class parameters to request configuration data. Puppet looks up class parameters in Hiera, using `<CLASS NAME>::<PARAMETER NAME>` as the lookup key.
  
 4. Make a manifest that includes the class:
  
-```puppet
-# site.pp
-include profile::hiera_test
-```
+   ```puppet
+   # site.pp
+   include profile::hiera_test
+   ```
  
 5. Compile the catalog and observe that this fails because there are required values.
 
 6. To provide values for the missing class parameters, set the following keys in your Hiera data:
 
-Parameter          | Hiera key
--------------------|---------------------------------------
-`$ssl`             | `profile::hiera_test::ssl`
-`$backups_enabled` | `profile::hiera_test::backups_enabled`
-`$site_alias`      | `profile::hiera_test::site_alias`
+   Parameter          | Hiera key
+   -------------------|---------------------------------------
+   `$ssl`             | `profile::hiera_test::ssl`
+   `$backups_enabled` | `profile::hiera_test::backups_enabled`
+   `$site_alias`      | `profile::hiera_test::site_alias`
 
-7. Compile again and observe that the parameters are now automatically looked up
+   7. Compile again and observe that the parameters are now automatically looked up
 
 Related topics:  [the roles and profiles method][r_n_p], [Automatic class parameter lookup][automatic].
  
@@ -132,14 +132,14 @@ In this case, `/etc/puppetlabs/code/environments/production/` + `data/` + `commo
 
 1. Open that YAML file in an editor, and set values for two of the class’s parameters.
 
-```
-# /etc/puppetlabs/code/environments/production/data/common.yaml
----
-profile::hiera_test::ssl: false
-profile::hiera_test::backups_enabled: true
-```
+   ```
+   # /etc/puppetlabs/code/environments/production/data/common.yaml
+   ---
+   profile::hiera_test::ssl: false
+   profile::hiera_test::backups_enabled: true
+   ```
 
-The third parameter, `$site_alias`, has a default value defined in code, so you can omit it from the data.
+   The third parameter, `$site_alias`, has a default value defined in code, so you can omit it from the data.
 
 {:.task} 
 ## Write data: Set per-operating system data
@@ -152,15 +152,15 @@ If you do not run Puppet on any Mac laptops, choose an OS family that is meaning
 
 1. Locate the data file, by replacing `%{facts.os.family}` with the value you are targeting:
  
-`/etc/puppetlabs/code/environments/production/data/` + `os/` + `Darwin` + .`yaml`.
+   `/etc/puppetlabs/code/environments/production/data/` + `os/` + `Darwin` + .`yaml`.
  
 2. Add the following contents:
 
-```
-# /etc/puppetlabs/code/environments/production/data/os/Darwin.yaml
----
-profile::hiera_test::backups_enabled: false
-```
+   ```
+   # /etc/puppetlabs/code/environments/production/data/os/Darwin.yaml
+   ---
+   profile::hiera_test::backups_enabled: false
+   ```
 
 3. Compile to observe that the override takes effect.
 
@@ -175,16 +175,16 @@ This example supposes you have a  server named `jenkins-prod-03.example.com`, an
 
 1. To locate the data file, replace `%{trusted.certname}` with the node name you’re targeting:
 
-`/etc/puppetlabs/code/environments/production/data/` + `nodes/` + `jenkins-prod-03.example.com` + `.yaml`
+   `/etc/puppetlabs/code/environments/production/data/` + `nodes/` + `jenkins-prod-03.example.com` + `.yaml`
 
 2. Open that file in an editor and add the following contents:
 
-```
-# /etc/puppetlabs/code/environments/production/data/nodes/jenkins-prod-03.example.com.yaml
----
-profile::hiera_test::ssl: true
-profile::hiera_test::site_alias: ci.example.com
-```
+   ```
+   # /etc/puppetlabs/code/environments/production/data/nodes/jenkins-prod-03.example.com.yaml
+   ---
+   profile::hiera_test::ssl: true
+   profile::hiera_test::site_alias: ci.example.com
+   ```
 
 3. Compile to observe that the override takes effect.
 
