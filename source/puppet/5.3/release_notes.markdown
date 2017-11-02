@@ -20,6 +20,51 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.3.3
+
+Released November 6, 2017.
+
+This is a bug-fix release of Puppet Platform.
+
+-   [All issues resolved in Puppet 5.3.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.3%27)
+
+### Bug fix: Puppet can install Forge modules with many available versions
+
+Previous versions of Puppet could fail to install modules from the Puppet Forge that had many available versions. Puppet 5.3.3 resolves this issue by improving URL encoding in paginated Forge results.
+
+-   [PUP-8008](https://tickets.puppetlabs.com/browse/PUP-8008)
+
+### Bug fix: Puppet consistently uses the system's locale
+
+Previous versions of Puppet failed to consistently initialize its internationalization functionality using the system's locale. Puppet 5.3.3 resolves this issue, resulting in consistent presentation of localized messages when available.
+
+-   [PUP-8040](https://tickets.puppetlabs.com/browse/PUP-8040)
+
+### Bug fix: Puppet logs warnings about internationalization initialization failures only once
+
+Previous versions of Puppet that failed to initialize its internationalization functionality, typically due to a missing `gettext` gem, would log a warning each time each module on the system was loaded. This overwhelmed logs with redundant error messages. Puppet 5.3.3 resolves this issue by logging that warning only once.
+
+-   [PUP-8039](https://tickets.puppetlabs.com/browse/PUP-8039)
+
+### Bug fix: Identical files can co-exist in a single filebucket
+
+In previous versions of Puppet, backing up the same file content to a filebucket more than once could result in a mistaken error warning suggesting that the files had the same checksum value but different contents, which indicated a potential (but false) hash collision. Puppet 5.3.3 correctly handles duplicate files in a filebucket.
+
+-   [PUP-7951](https://tickets.puppetlabs.com/browse/PUP-7951)
+
+### Bug fix: Refresh events propagate to all tagged resources correctly
+
+Previous versions of Puppet failed to propagate tags with included classes, which could break class notifications when running Puppet with tags enabled. Puppet 5.3.3 resolves this issue; refresh events are now correctly propagated to all tagged resources when running with tags, and some confusing debug and warning messages have been eliminated.
+
+-   [PUP-7308](https://tickets.puppetlabs.com/browse/PUP-7308)
+
+### Additional bug fixes
+
+-   [PUP-8083](https://tickets.puppetlabs.com/browse/PUP-8083): Previous versions of Puppet did not correctly resolve the path to Windows reparse points that are mount points, rather than symbolic links. This could impact accessing paths on DFS shares. Puppet 5.3.3 resolves this issue.
+-   [PUP-6986](https://tickets.puppetlabs.com/browse/PUP-6986): The `service` provider could fail with a stacktrace in previous versions of Puppet if the process line for any given service contained UTF-8 characters and Puppet was not running in UTF-8. Puppet 5.3.3 avoids this error by more gracefully handling these characters in order to match running services to the managed service name.
+-   [PUP-3713](https://tickets.puppetlabs.com/browse/PUP-3713): To set the `volsize` property when creating a ZFS volume, Puppet 5.3.3 correctly uses the `-V` flag for the `zfs create` command, instead of the `-o` flag used in previous versions.
+-   [PUP-3368](https://tickets.puppetlabs.com/browse/PUP-3368): Puppet 5.3.3 can parse Nagios files containing Unicode content more consistently.
+
 ## Puppet 5.3.2
 
 Released October 5, 2017.
