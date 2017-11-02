@@ -638,10 +638,10 @@ documents:
   /puppetserver/5.1:
     doc: puppetserver
     version: "5.1"
-    nav: /puppet/5.2/_puppet_toc.html
+    nav: /puppet/5.3/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: origin/5.1.x
+      commit: f6ae54abeaba6e16e5b13b91054c68fa1f82a8dc
       subdirectory: documentation
     my_versions:
       puppet: "5.2"
