@@ -16,9 +16,6 @@ title: "Getting started with Hiera"
 [confdir]: ./dirs_confdir.html
 [codedir]: ./dirs_codedir.html
 
-{:.overview} 
-# Getting started with Hiera
-
 This page introduces the basic concepts and tasks to get you started with Hiera, including how to create a hiera.yaml config file and write data. It is the foundation for understanding the more advanced topics described in the rest of the Hiera documentation. 
 
 Related topics: [global layer and module layer][Hiera’s three config layers], [hash and array merging][merging].
