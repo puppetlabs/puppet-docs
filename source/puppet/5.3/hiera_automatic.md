@@ -6,15 +6,12 @@ title: "Looking up data with Hiera"
 [data_type]: ./lang_data_type.html
 [editing_data]: ./hiera_merging.html
 
-{:.overview} 
-# Looking up data with Hiera
-
 {:.Concept}
 ## Class parameters 
   
 Puppet looks up the values for class parameters in Hiera, using the fully-qualified name of the parameter (`myclass::parameter_one`) as a lookup key.
 
-Most classes need configuration, and you can specify them as parameters to a class as this will lookup the needed data if not directly given when the class is included in a catalog There are several ways Puppet sets values for class parameters, in this order:
+Most classes need configuration, and you can specify them as parameters to a class as this will lookup the needed data if not directly given when the class is included in a catalog. There are several ways Puppet sets values for class parameters, in this order:
 
 1. If you’re doing a resource-like declaration, Puppet uses parameters that are explicitly set (if explicitly setting undef, a looked up value or default will be used).
 
@@ -26,11 +23,13 @@ Most classes need configuration, and you can specify them as parameters to a cla
 
 For example, you can set servers for the `NTP` class like this:
 
-```# /etc/puppetlabs/code/production/data/nodes/web01.example.com.yaml
+```
+# /etc/puppetlabs/code/production/data/nodes/web01.example.com.yaml
 ---
 ntp::servers:
   - time.example.com
-  - 0.pool.ntp.org```
+  - 0.pool.ntp.org
+  ```
 
 > Note: The best way to manage this is to use the roles and profiles method, which allows you to store a smaller amount of more meaningful data in Hiera. 
 
@@ -83,14 +82,16 @@ A unique merge lookup of class names, then adding all of those classes to the ca
 `lookup('classes', Array[String], 'unique').include`
 
 
-A deep hash merge lookup of user data, but letting higher priority sources remove values by prefixing them with --:
+A deep hash merge lookup of user data, but letting higher priority sources remove values by prefixing them with:
 
-```lookup( { 'name'  => 'users',
+```
+lookup( { 'name'  => 'users',
           'merge' => {
             'strategy'        => 'deep',
             'knockout_prefix' => '--',
           },
-})```
+})
+```
 
 {:.Reference}
 ## Arguments accepted by lookup 
@@ -102,7 +103,7 @@ This can also be an array of keys. If Hiera doesn’t find anything for the firs
 * `<VALUE TYPE>` (data Type) - A data type that must match the retrieved value; if not, the lookup (and catalog compilation) will fail. Defaults to `Data`  which accepts any normal value.
 * `<MERGE BEHAVIOR>` (String or Hash; see “Merge Behaviors”) -  Whether and how to combine multiple values. If present, this overrides any merge behavior specified in the data sources. Defaults to no value; Hiera will use merge behavior from the data sources if present, and will otherwise do a first-found lookup.
 * `<DEFAULT VALUE>` (any normal value) - If present, lookup returns this when it can’t find a normal value. Default values are never merged with found values. Like a normal value, the default must match the value type. Defaults to no value; if Hiera can’t find a normal value, the lookup (and compilation) will fail.
-* `<OPTIONS HASH>` (Hash) - Alternate way to set the arguments above, plus some less-common additional options. If you pass an options hash, you can’t combine it with any regular arguments (except `<NAME>`). An options hash can have the following keys:
+* `<OPTIONS HASH>` (Hash) - Alternate way to set the arguments above, plus some less common additional options. If you pass an options hash, you can’t combine it with any regular arguments (except `<NAME>`). An options hash can have the following keys:
 	* `'name'` - Same as `<NAME>` (argument 1). You can pass this as an argument or in the hash, but not both.
 	* `'value_type'` - Same as `<VALUE TYPE>`.
 	* `'merge'` - Same as `<MERGE BEHAVIOR>`.
@@ -114,7 +115,7 @@ This can also be an array of keys. If Hiera doesn’t find anything for the firs
 Related topics: [Data type][data_type]
 
 {:.concept} 
-## Using `puppet lookup`
+## Using puppet lookup
 
 The `puppet lookup` command is the command line interface (CLI) for Puppet’s lookup function.
 
@@ -155,7 +156,7 @@ To see an explanation of how the value for 'key_name' would be found, using agen
 `$ puppet lookup --node agent.local --explain key_name`
 
 {:.reference} 
-## puppet lookup command options
+## Puppet lookup command options
 
 The `puppet lookup` command has the following  command options. 
 
@@ -164,15 +165,15 @@ The `puppet lookup` command has the following  command options.
 * --node <NODE-NAME>: Specify which node to look up data for; defaults to the node where the command is run. The purpose of Hiera is to provide different values for different nodes; use specific node facts to explore your data. If the node where you're running this command is configured to talk to PuppetDB, the command will use the requested node's most recent facts. Otherwise, override facts with the '--facts' option.
 * --facts <FILE>: Specify a JSON or YAML file that contains key-value mappings to override the facts for this lookup. Any facts not specified in this file maintain their original value.
 * --environment <ENV>: Specify an environment. Different environments can have different Hiera data.
-* --merge first|unique|hash|deep: Specify the merge behavior, overriding any merge behavior from the data's `lookup_options`.
+* --merge first/unique/hash/deep: Specify the merge behavior, overriding any merge behavior from the data's `lookup_options`.
 * --knock-out-prefix <PREFIX-STRING>: Used with 'deep' merge. Specifies a prefix to indicate a value should be removed from the final result.
 * --sort-merged-arrays: Used with 'deep' merge. When this flag is used, all merged arrays are sorted.
-* --merge-hash-arrays:Used with the 'deep' merge strategy. When this flag is used, hashes within arrays are deep-merged with their counterparts by position.
+* --merge-hash-arrays: Used with the 'deep' merge strategy. When this flag is used, hashes within arrays are deep-merged with their counterparts by position.
 * --explain-options: Explain whether a `lookup_options` hash affects this lookup, and how that hash was assembled. (`lookup_options` is how Hiera configures merge behavior in data.)
 * --default <VALUE>: A value to return if Hiera can't find a value in data. Useful for emulating a call to the `lookup function that includes a default.
 * --type <TYPESTRING>: Assert that the value has the specified type. Useful for emulating a call to the `lookup` function that includes a data type.
 * --compile: Perform a full catalog compilation prior to the lookup. If your hierarchy and data only use the `$facts`, `$trusted`, and `$server_facts` variables, you don't need this option. If your Hiera configuration uses arbitrary variables set by a Puppet manifest, you need this to get accurate data. The lookup command doesn’t cause catalog compilation unless this flag is given.
-* --render-as s|json|yaml|binary|msgpack: Specify the output format of the results; `s` means plain text. The default when producing a value is `yaml` and the default when producing an explanation is `s`.
+* --render-as s/json/yaml/binary/msgpack: Specify the output format of the results; `s` means plain text. The default when producing a value is `yaml` and the default when producing an explanation is `s`.
 
 Related topics: [Creating and editing data with Hiera][editing_data]
 
@@ -198,13 +199,15 @@ To access a single member of an array or hash:
 
 The Hiera dotted notation does not support arbitrary expressions for subkeys; only literal keys are valid. 
 
-A hash can include literal dots in the text of a key. For example, the value of `$trusted['extensions']` is a hash containing any certificate extensions for a node, but some of its keys can raw OID strings like '1.3.6.1.4.1.34380.1.2.1'. You can access those values in Hiera with the `key.subkey` notation, but you must put quotation marks - single or double - around the affected subkey. If the entire compound key is quoted (for example, as required by the lookup interpolation function), use the other kind of quote for the subkey, and escape quotes (as needed by your data file format) to ensure that you don’t prematurely terminate the whole string. 
+A hash can include literal dots in the text of a key. For example, the value of `$trusted['extensions']` is a hash containing any certificate extensions for a node, but some of its keys can be raw OID strings like '1.3.6.1.4.1.34380.1.2.1'. You can access those values in Hiera with the `key.subkey` notation, but you must put quotation marks - single or double - around the affected subkey. If the entire compound key is quoted (for example, as required by the lookup interpolation function), use the other kind of quote for the subkey, and escape quotes (as needed by your data file format) to ensure that you don’t prematurely terminate the whole string. 
 
 For example:
 
-```aliased_key: "%{lookup('other_key.\"dotted.subkey\"')}"
+```
+aliased_key: "%{lookup('other_key.\"dotted.subkey\"')}"
 # Or:
-aliased_key: "%{lookup(\"other_key.'dotted.subkey'\")}"```
+aliased_key: "%{lookup(\"other_key.'dotted.subkey'\")}"
+```
 
 
 > Note: Using extra quotes prevents digging into dotted keys. For example, if the lookup key contains a dot (`.`) then the entire key must be enclosed within single quotes within double quotes, for example, `lookup("'has.dot'")`.
