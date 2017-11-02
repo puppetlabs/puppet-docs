@@ -57,7 +57,7 @@ For data sources that can access arbitrary elements of hash or array values befo
  
 For more information, please the see data_dig backend reference.
  
-Related topics: custom Puppet function, the modern Ruby functions API, the Puppet language.
+Related topics: [custom Puppet function][puppet_functions], [the modern Ruby functions API][ruby_functions].
 
 {:.reference} 
 # data_hash backends
@@ -119,6 +119,7 @@ Hiera calls a `lookup_key` function with three arguments:
 ### Return type
 
 The function must either call the context object’s `not_found` method, or return a value for the requested key. It may return undef as a value.
+
 Puppet language example signature:
 
 ```
