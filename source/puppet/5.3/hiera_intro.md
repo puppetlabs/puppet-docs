@@ -71,7 +71,8 @@ Each layer can configure its own independent hierarchy. Before a lookup, Hiera c
 Assume the example above is an environment hierarchy (in the production environment). If we also had the following global hierarchy:
 
 ---
-```version: 5
+```
+version: 5
 hierarchy:
   - name: "Data exported from our old self-service config tool"
     path: "selfserve/%{trusted.certname}.json"
@@ -81,7 +82,8 @@ hierarchy:
 And the NTP module had the following hierarchy for default data:
 
 ---
-```version: 5
+```
+version: 5
 hierarchy:
   - name: "OS values"
     path: "os/%{facts.os.name}.yaml"
@@ -91,6 +93,7 @@ defaults:
   data_hash: yaml_data
   datadir: data
 ```
+
 Then in a lookup for the `ntp::servers` key, `thrush.example.com` would use the following combined hierarchy:
 
 * `<CONFDIR>/data/selfserve/thrush.example.com.json`
