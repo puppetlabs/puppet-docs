@@ -24,7 +24,7 @@ Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.htm
 
 Released November 6, 2017.
 
-This is a bug-fix release of Puppet Platform.
+This is a bug-fix release of Puppet.
 
 -   [All issues resolved in Puppet 5.3.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.3%27)
 
