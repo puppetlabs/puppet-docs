@@ -124,7 +124,7 @@ For the built-in backends - YAML, JSON, and HOCON - the key is always `data_hash
 
 A default value for options, used for any hierarchy level that does not specify its own.
 
-Related topics: [custom backends][backends], [custom Puppet function][custom puppet function].
+Related topics: [custom backends][backends], [custom Puppet function][].
 
 {:.concept}
 ## The hierarchy key
@@ -154,7 +154,8 @@ The value of `hierarchy` must be an array of hashes.
 
 3. Put an empty line between hashes, to visually distinguish them.
 
-   ```hierarchy:
+   ```
+   hierarchy:
      - name: "Per-node data"
        path: "nodes/%{trusted.certname}.yaml"
 
@@ -301,7 +302,8 @@ You can use normal strings as keys. Hiera converts them to symbols for the backe
 
 The following example shows roughly equivalent v3 and v5 hiera.yaml files using legacy backends:
 
-```# hiera.yaml v3
+```
+# hiera.yaml v3
 ---
 :backends:
   - mongodb
