@@ -177,10 +177,10 @@ Each YAML/JSON/HOCON hierarchy level needs the following keys:
     -   These paths are relative to the datadir, they support variable interpolation, and they require a file extension. See “Specifying file paths” for more details.
 -   `data_hash` — Which backend to use. Can be omitted if you set a default. The value must be one of the following:
     -   `yaml_data` for YAML.
-	  -   `json_data` for JSON.
-	  -   `hocon_data` for HOCON.
+    -   `json_data` for JSON.
+    -   `hocon_data` for HOCON.
 -   `datadir` — The directory where data files are kept. Can be omitted if you set a default.
-	  -   This path is relative to hiera.yaml's directory: if the config file is at `/etc/puppetlabs/code/environments/production/hiera.yaml` and the datadir is set to data, the full path to the data directory is `/etc/puppetlabs/code/environments/production/data`.
+    -   This path is relative to hiera.yaml's directory: if the config file is at `/etc/puppetlabs/code/environments/production/hiera.yaml` and the datadir is set to data, the full path to the data directory is `/etc/puppetlabs/code/environments/production/data`.
     -   In the global layer, you can optionally set the datadir to an absolute path; in the other layers, it must always be relative.
 
 Related topics: [variable interpolation][variables], [YAML][yaml_data], [JSON][json_data], [HOCON][hocon_data].
