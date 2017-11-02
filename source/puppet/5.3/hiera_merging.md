@@ -76,10 +76,9 @@ mykey:
   a: "common value"
   b: "default value"
   c: "other common value"
+ ```
 
-
-`lookup('mykey', {merge => 'hash'})
-```
+`lookup('mykey', {merge => 'hash'})`
 
 Returns the following:
 
@@ -120,11 +119,11 @@ Specify this merge behavior with one of these:
 	
 > Note: Unlike a hash merge, a deep merge can also accept arrays as the root values. It merges them with its normal array merging behavior, which differs from a unique merge as described above. This does not apply to the deprecated hiera 3 `hiera_hash` function, which can be configured to do deep merges but can’t accept arrays.
 
-### {'strategy' => 'first|unique|hash'}
+### `{'strategy' => 'first|unique|hash'}`
 
 Same as the string versions of these merge behaviors.
 
-### {'strategy' => 'deep', <DEEP OPTION> => <VALUE>, ...}
+### `{'strategy' => 'deep', <DEEP OPTION> => <VALUE>, ...}`
 
 Same as 'deep', but can adjust the merge with additional options. The available options are:
 
@@ -182,7 +181,7 @@ Hiera uses the configured merge behaviors for these keys.
 > Note: the `hiera_*` functions always override configured merge behavior.
 
 {:.reference}
-## lookup_options format
+## `lookup_options` format
 
 The value of `lookup_options` is a hash. 
  
@@ -207,7 +206,7 @@ Any data source overrides individual `lookup_options` from a lower priority sour
 When you specify a merge behavior as an argument to the `lookup` function, it overrides the configured merge behavior.
 
 {:.task}
-## Use a regular expression in lookup_options
+## Use a regular expression in `lookup_options`
 
 You can use regular expressions in `lookup_options` to configure merge behavior for many lookup keys at once.
 
@@ -278,7 +277,7 @@ Avoid using local variables, namespaced variables from classes (unless the class
  
 If you are using hiera 3 pseudo-variables, see Puppet variables passed to Hiera. 
 
-### classic ::<fact_name> facts
+### classic `::<fact_name>` facts
  
 Puppet makes facts available in two ways: grouped together in the `facts` hash ( `$facts['networking']`), and individually as top-scope variables ( `$networking`).
  
@@ -308,7 +307,7 @@ There are five interpolation functions:
 * `literal` —-a way to write a literal percent sign (`%`) without accidentally interpolating something.
 * `scope` - an alternate way to interpolate a variable. Not generally useful.
 
-### lookup and hiera
+### `lookup` and `hiera`
 
 The `lookup` and `hiera` interpolation functions look up a key and return the resulting value. The result of the lookup must be a string; any other result causes an error.
 
@@ -333,7 +332,7 @@ The value referenced by the lookup function can contain another call to lookup; 
 
 > Note: the lookup and hiera interpolation functions aren’t the same as the Puppet functions of the same names. They only take a single argument.
 
-### alias
+### `alias`
 
 The  `alias` function lets you use reuse Hash, Array, or Boolean values. When you interpolate  `alias` in a string, Hiera replaces that entire string with the aliased value, using its original data type. For example:
 
@@ -350,7 +349,7 @@ When you use the `alias` function, its interpolation token must be the only text
 
 `aliased: "%{alias('original')} - 'three'"`
 
-### literal
+### `literal`
 
 The `literal` interpolation function lets you escape a literal percent sign (`%`) in Hiera data, to avoid triggering interpolation where it isn’t wanted. This is useful when dealing with Apache config files, for example, which might include text such as `%{SERVER_NAME}`.
 
@@ -362,7 +361,7 @@ The value of `server_name_string` would be `%{SERVER_NAME}`, and Hiera would not
 
 The only legal argument for `literal` is a single `%` sign.
 
-### scope
+### `scope`
 
 The `scope` interpolation function interpolates variables. It works identically to variable interpolation. The function’s argument is the name of a variable.
 
