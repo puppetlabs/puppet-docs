@@ -8,7 +8,7 @@ title: "Hiera"
 [v3]: ./hiera_config_yaml_3.html
 [v4]: ./hiera_config_yaml_4.html
 [v5]: ./hiera_config_yaml_5.html
-[r_n_p]: {{pe}}/r_n_p_intro.html
+[r_n_p]: {{pe}}/r_n_p_full_example.html
 
 Hiera is a key/value lookup used for separating data from Puppet code. 
 
