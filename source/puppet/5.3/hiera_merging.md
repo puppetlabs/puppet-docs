@@ -12,9 +12,6 @@ title: "Creating and editing data"
 [server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
 [environment]: ./environments.html
 
-{:.overview} 
-# Creating and editing data with Hiera
-
 {:.Task}
 ## Setting the merge behavior for a lookup 
 
@@ -81,7 +78,8 @@ mykey:
   c: "other common value"
 
 
-`lookup('mykey', {merge => 'hash'})``` 
+`lookup('mykey', {merge => 'hash'})
+```
 
 Returns the following:
 
@@ -92,11 +90,12 @@ Returns the following:
   c => "other common value",
   d => "per-node value",
 }
-
+```
 
 Specify this merge behavior with one of these:
-`'hash'`
-`{'strategy' => 'hash'}```
+
+* `'hash'`
+* `{'strategy' => 'hash'}`
 
 Specify this merge behavior with one of these:
 
@@ -121,11 +120,11 @@ Specify this merge behavior with one of these:
 	
 > Note: Unlike a hash merge, a deep merge can also accept arrays as the root values. It merges them with its normal array merging behavior, which differs from a unique merge as described above. This does not apply to the deprecated hiera 3 `hiera_hash` function, which can be configured to do deep merges but can’t accept arrays.
 
-### `{'strategy' => 'first|unique|hash'}`
+### {'strategy' => 'first|unique|hash'}
 
 Same as the string versions of these merge behaviors.
 
-### `{'strategy' => 'deep', <DEEP OPTION> => <VALUE>, ...}`
+### {'strategy' => 'deep', <DEEP OPTION> => <VALUE>, ...}
 
 Same as 'deep', but can adjust the merge with additional options. The available options are:
 
@@ -189,9 +188,11 @@ The value of `lookup_options` is a hash.
  
 It follows this format:
 
+```
  lookup_options:
   <NAME or REGEXP>:
     merge: <MERGE BEHAVIOR>
+```
 
 Each key is either the full name of a lookup key (like `ntp::servers`) or a regular expression (like `'^profile::(.*)::users$'`). In a module’s data, you can configure lookup keys only within that module’s namespace:the ntp module can set options for `ntp::servers`, but the `apache` module can’t.
 
@@ -277,7 +278,7 @@ Avoid using local variables, namespaced variables from classes (unless the class
  
 If you are using hiera 3 pseudo-variables, see Puppet variables passed to Hiera. 
 
-### classic `::<fact_name>` facts
+### classic ::<fact_name> facts
  
 Puppet makes facts available in two ways: grouped together in the `facts` hash ( `$facts['networking']`), and individually as top-scope variables ( `$networking`).
  
@@ -307,7 +308,7 @@ There are five interpolation functions:
 * `literal` —-a way to write a literal percent sign (`%`) without accidentally interpolating something.
 * `scope` - an alternate way to interpolate a variable. Not generally useful.
 
-### `lookup` and `hiera`
+### lookup and hiera
 
 The `lookup` and `hiera` interpolation functions look up a key and return the resulting value. The result of the lookup must be a string; any other result causes an error.
 
@@ -315,14 +316,16 @@ This is useful in the Hiera data sources. If you need to use the same value for 
 
 For example, suppose your WordPress profile needs a database server, and you’re already configuring that hostname in data because the MySQL profile needs it. You could write:
 
-```# in location/pdx.yaml:
+```
+# in location/pdx.yaml:
 profile::mysql::public_hostname: db-server-01.pdx.example.com
 
 # in location/bfs.yaml:
 profile::mysql::public_hostname: db-server-06.belfast.example.com
 
 # in common.yaml:
-profile::wordpress::database_server: "%{lookup('profile::mysql::public_hostname')}" ```
+profile::wordpress::database_server: "%{lookup('profile::mysql::public_hostname')}"
+```
 
 The value of `profile::wordpress::database_server` is always the same as `profile::mysql::public_hostname`. Even though you wrote the WordPress parameter in the  `common.yaml` data, it’s location-specific, as the value it references was set in your per-location data files.
 
@@ -334,10 +337,12 @@ The value referenced by the lookup function can contain another call to lookup; 
 
 The  `alias` function lets you use reuse Hash, Array, or Boolean values. When you interpolate  `alias` in a string, Hiera replaces that entire string with the aliased value, using its original data type. For example:
 
-```original:
+```
+original:
   - 'one'
   - 'two'
-aliased: "%{alias('original')}"```
+aliased: "%{alias('original')}"
+```
 
 A lookup of original and a lookup of aliased would both return the value `['one', 'two']`.
 
@@ -363,8 +368,10 @@ The `scope` interpolation function interpolates variables. It works identically 
 
 The following two values would be identical:
 
-```smtpserver: "mail.%{facts.domain}"
-smtpserver: "mail.%{scope('facts.domain')}"```
+```
+smtpserver: "mail.%{facts.domain}"
+smtpserver: "mail.%{scope('facts.domain')}"
+```
 
 Related topics: [lookup][lookup_command].
 
