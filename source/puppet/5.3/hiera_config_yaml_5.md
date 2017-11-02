@@ -154,13 +154,13 @@ The value of `hierarchy` must be an array of hashes.
 
 3. Put an empty line between hashes, to visually distinguish them.
 
-```hierarchy:
-  - name: "Per-node data"
-    path: "nodes/%{trusted.certname}.yaml"
+   ```hierarchy:
+     - name: "Per-node data"
+       path: "nodes/%{trusted.certname}.yaml"
 
-  - name: "Per-datacenter business group data"
-    path: "location/%{facts.whereami}/%{facts.group}.yaml"
-  ```
+     - name: "Per-datacenter business group data"
+       path: "location/%{facts.whereami}/%{facts.group}.yaml"
+     ```
 
 {:.reference}
 ## Configuring a hierarchy level: built-in backends
