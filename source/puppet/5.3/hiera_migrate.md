@@ -198,14 +198,14 @@ To convert this version 3 file to version 5:
    `json`          | `data_hash: json_data`
    `eyaml`         | `lookup_key: eyaml_lookup_key`
 
-5.  Translate the hierarchy
- 
+5.  Translate the hierarchy.
+
    The version 5 and version 3 hierarchies work differently:
-   * In version 3, hierarchy levels don’t have a backend assigned to them, and Hiera loops through the entire hierarchy for each backend.
-   * In version 5, each hierarchy level has one designated backend, as well as its own independent configuration for that backend.
+      * In version 3, hierarchy levels don’t have a backend assigned to them, and Hiera loops through the entire hierarchy for each backend.
+      * In version 5, each hierarchy level has one designated backend, as well as its own independent configuration for that backend.
 
    Consult the previous values for the `:backends` key and any backend-specific settings.
- 
+   
    In the example above, we used `yaml`, `eyaml`, and `mongodb` backends.  Your business only uses Mongo for per-node data, and uses eyaml for per-group data. The rest of the hierarchy is irrelevant to these backends. You need one Mongo level and one eyaml level, but still want all five levels in YAML. This means Hiera will consult multiple backends for per-node and per-group data. You want the YAML version of per-node data to be authoritative, so put it before the Mongo version. The eyaml data does not overlap with the unencrypted per-group data, so it doesn’t matter where you put it. Put it before the YAML levels. When you translate your hierarchy, you will have to make the same kinds of investigations and decisions.
  
 6. Remove hierarchy levels that use `calling_module`, `calling_class`, and `calling_class_path`, which were allowed pseudo-variables in Hiera 3.
