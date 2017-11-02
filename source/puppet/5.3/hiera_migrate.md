@@ -23,29 +23,13 @@ title: "Upgrading to Hiera 5"
 [custom backend system]: ./hiera_custom_backends.html
 [functions_puppet]: ./lang_write_functions_in_puppet.html
 
-
-[layers]: ./hiera_layers.html
-[migrate_environment]: ./hiera_migrate_environments.html
-[migrate_v3]: ./hiera_migrate_v3_yaml.html
-[migrate_v4]: ./hiera_migrate_v4_yaml.html
-[migrate_functions]: ./hiera_migrate_functions.html
-[migrate_modules]: ./hiera_migrate_modules.html
-[legacy_backend]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-legacy-hiera-3-backends
-[backends]: ./hiera_custom_backends.html
-[puppet.conf]: ./config_file_main.html
-[automatic]: ./hiera_automatic.html
-[eyaml_v5]: ./hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml
-
-{:.overview} 
-# Upgrading to Hiera 5
-
-Upgrading to Hiera 5 offers some major advantages: A real environment data layer means changes to your hierarchy are now routine and testable; using multiple backends in your hierarchy is easier; and you can make a custom backend.
+Upgrading to Hiera 5 offers some major advantages. A real environment data layer means changes to your hierarchy are now routine and testable, using multiple backends in your hierarchy is easier and you can make a custom backend.
  
 > Note: If you’re already a Hiera user, you can use your current code with Hiera 5 without any changes to it. Hiera 5 is fully backwards-compatible with Hiera 3, and we won’t remove any legacy features until Puppet 6. You can even start using some Hiera 5 features - like module data - without upgrading anything.
 
 Hiera 5 uses the same built-in data formats as Hiera 3. You don’t need to do mass edits of any data files. 
 
-Updating your code to take advantage of Hiera 5 features involves following tasks:
+Updating your code to take advantage of Hiera 5 features involves the following tasks:
 
 Task | Benefit
 -----|--------
@@ -96,8 +80,7 @@ The process of enabling the environment layer involves the following steps, each
 
 This process has no particular time limit and shouldn’t involve any downtime. Once all of your environments are migrated, you can phase out or greatly reduce the global hierarchy.
 
-> **Important**: The environment layer does not support Hiera 3 backends. If any of your data uses a custom backend that has not been ported to Hiera 5, omit those hierarchy levels from the environment config and continue to use the global layer for that data.
-Because the global layer is checked before the environment layer, it’s possible to run into situations where you cannot migrate data to the environment layer yet. For example, if your old `:backends` setting was [`custom_backend`, 'yaml'], you can do a partial migration, because the custom data was all going before the YAML data anyway. But if `:backends` was [`yaml`, `custom_backend`], and you frequently use YAML data to override the custom data, you can’t migrate until you have a Hiera 5 version of that custom backend. If you run into a situation like this, get an upgraded backend before enabling the environment layer.
+> **Important**: The environment layer does not support Hiera 3 backends. If any of your data uses a custom backend that has not been ported to Hiera 5, omit those hierarchy levels from the environment config and continue to use the global layer for that data. Because the global layer is checked before the environment layer, it’s possible to run into situations where you cannot migrate data to the environment layer yet. For example, if your old `:backends` setting was [`custom_backend`, 'yaml'], you can do a partial migration, because the custom data was all going before the YAML data anyway. But if `:backends` was [`yaml`, `custom_backend`], and you frequently use YAML data to override the custom data, you can’t migrate until you have a Hiera 5 version of that custom backend. If you run into a situation like this, get an upgraded backend before enabling the environment layer.
 
 5. Check your Puppet code for classic Hiera functions (`hiera`, `hiera_array`, `hiera_hash`, and `hiera_include`) that are passing the optional hierarchy override argument, and remove the argument.
 
@@ -105,7 +88,7 @@ In Hiera 5, the hierarchy override argument is an error.
 
 A quick way to find instances of using this argument is to search for calls with two or more commas. Search your codebase using the following regular expression:
 
-```hiera(_array|_hash|_include)?\(([^,\)]*,){2,}[^\)]*\)```
+`hiera(_array|_hash|_include)?\(([^,\)]*,){2,}[^\)]*\)`
 
 This will result in some false positives, but will help find the errors before you run the code. 
 
@@ -113,19 +96,17 @@ Alternatively, continue to the next step and fix errors as they come up. If you 
 
 > Note: If your environments are similar to each other, you might only need to check for the hierarchy override argument in function calls  in one environment. If you find none, likely the others won’t have many either.
 
- 6. Choose a new data directory name, which you will use  in the next two steps. The default data directory name in Hiera 3 was `<ENVIRONMENT>/hieradata`, and the default in Hiera 5 is `<ENVIRONMENT>/data`. If you used the old default, use the new default. If you were already using `data`, choose something different.
+6. Choose a new data directory name, which you will use  in the next two steps. The default data directory name in Hiera 3 was `<ENVIRONMENT>/hieradata`, and the default in Hiera 5 is `<ENVIRONMENT>/data`. If you used the old default, use the new default. If you were already using `data`, choose something different.
 
 7. Add a Hiera 5 `hiera.yaml` file to the environment.
 
-Each environment needs a Hiera config file that works with its existing data.
-* If this is the first environment you’re migrating, see converting a version 3 hiera.yaml to version 5. Make sure to reference the new `datadir` name. If you’ve already migrated at least one environment, copy the `hiera.yaml` file from a migrated environment and make changes to it if necessary.
+Each environment needs a Hiera config file that works with its existing data. If this is the first environment you’re migrating, see converting a version 3 hiera.yaml to version 5. Make sure to reference the new `datadir` name. If you’ve already migrated at least one environment, copy the `hiera.yaml` file from a migrated environment and make changes to it if necessary.
 
 Save the resulting file as `<ENVIRONMENT>/hiera.yaml`. For example, `/etc/puppetlabs/code/environments/production/hiera.yaml`.
 
 8. If any of your data relies on custom backends that have been ported to Hiera 5, install them in the environment. Hiera 5 backends are distributed as Puppet modules, so each environment can use its own version of them.
 
 9. If you use only file-based Hiera 5 backends, move the environment’s data directory by renaming it from its old name (`hieradata`) to its new name (`data`). If you use custom file-based Hiera 3 backends, the global layer still needs access to their data, so you need to sort the files: Hiera 5 data moves to the new data directory, and Hiera 3 data stays in the old data directory. When you have Hiera 5 versions of your custom backends, you can move the remaining files to the new datadir.
-
 
 If you use non-file backends that don’t have a data directory:
 * Decide that the global hierarchy is the right place for configuring this data, and leave it there permanently.
@@ -153,7 +134,9 @@ There are two migration tasks that involve translating a version 3 config to a v
 These are essentially the same process, although the global hierarchy has a few special capabilities.
 
 Consider this example `hiera.yaml` version 3 file:
-```:backends:
+
+```
+:backends:
   - mongodb
   - eyaml
   - yaml
@@ -176,8 +159,8 @@ Consider this example `hiera.yaml` version 3 file:
   - "common"
 :logger: console
 :merge_behavior: native
-:deep_merge_options: {}```
-
+:deep_merge_options: {}
+```
 
 To convert this version 3 file to version 5:
 
@@ -199,9 +182,12 @@ For information on how Hiera 5 supports deep hash merging, see Merging data from
 	* Any backend-specific setting sections, like `:yaml` or `:mongodb`
  
 3. Add a `version` key, with a value of `5`:
-```version: 5
+
+```
+version: 5
 hierarchy:
-  # ...```
+  # ...
+  ```
 
 4. Set a default backend and data directory
  
@@ -223,7 +209,6 @@ The version 5 and version 3 hierarchies work differently:
 
 Consult the previous values for the `:backends` key and any backend-specific settings.
  
- 
 In the example above, we used `yaml`, `eyaml`, and `mongodb` backends.  Your business only uses Mongo for per-node data, and uses eyaml for per-group data. The rest of the hierarchy is irrelevant to these backends. You need one Mongo level and one eyaml level, but still want all five levels in YAML. This means Hiera will consult multiple backends for per-node and per-group data. You want the YAML version of per-node data to be authoritative, so put it before the Mongo version. The eyaml data does not overlap with the unencrypted per-group data, so it doesn’t matter where you put it. Put it before the YAML levels. When you translate your hierarchy, you will have to make the same kinds of investigations and decisions.
  
 6. Remove hierarchy levels that use `calling_module`, `calling_class`, and `calling_class_path`, which were allowed pseudo-variables in Hiera 3.
@@ -242,7 +227,8 @@ Set the following keys:
 
 If you have set default values for `data_hash` and `datadir`, you can omit them.
 
-```version: 5
+```
+version: 5
 defaults:
   datadir: data
   data_hash: yaml_data
@@ -256,9 +242,10 @@ hierarchy:
       - "location/%{facts.whereami}/%{facts.group}.yaml"
       - "groups/%{facts.group}.yaml"
       - "os/%{facts.os.family}.yaml"
-      - "common.yaml"```
+      - "common.yaml"
+ ```
       
-8. Translate hiera-eyaml backends, which work in a similar way to the other built-in backends. The differences are:
+ 8. Translate hiera-eyaml backends, which work in a similar way to the other built-in backends. The differences are:
  
 The `hiera-eyaml` gem has to be installed, and you need a key-pair.
 a different backend setting. Instead of `data_hash: yaml`, use `lookup_key: eyaml_lookup_key`.
@@ -270,7 +257,8 @@ Each hierarchy level needs an `options` key with paths to the public and private
     lookup_key: eyaml_lookup_key
     options:
       pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
-      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem```
+      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+ ```
       
 9. Translate custom Hiera 3 backends
  
@@ -282,11 +270,13 @@ For details on how to configure a legacy backend, see Configuring a hierarchy le
  
 When configuring a legacy backend, use the previous value for its backend-specific settings. In the example, the version 3 config had the following settings for MongoDB:
  
-```:mongodb:
+```
+:mongodb:
   :connections:
     :dbname: hdata
     :collection: config
-    :host: localhost```
+    :host: localhost
+ ```
 
 So, write the following for a per-node MongoDB hierarchy level:
 
@@ -298,13 +288,14 @@ So, write the following for a per-node MongoDB hierarchy level:
       connections:
         dbname: hdata
         collection: config
-        host: localhost```
+        host: localhost
+```
  
  
 After following these steps, you’ve translated the example configuration into the following v5 config:
  
-
-```version: 5
+```
+version: 5
 defaults:
   datadir: data
   data_hash: yaml_data
@@ -334,7 +325,8 @@ hierarchy:
       - "location/%{facts.whereami}/%{facts.group}.yaml"
       - "groups/%{facts.group}.yaml"
       - "os/%{facts.os.family}.yaml"
-      - "common.yaml"```
+      - "common.yaml"
+  ```
 
 Related topics: [version 3][v3], [version 4][v4], [version 5][v3],  [global layer][layers], [Merging data from multiple sources][merging],  [set a defaults key][v5_defaults], [Configuring a hierarchy level (built-in backends)][v5_builtin], [Hiera 5 backends][backends], [eyaml usage instructions in the hiera.yaml (v5) syntax reference][eyaml_v5].
 
@@ -365,7 +357,8 @@ hierarchy:
     backend: yaml
 
   - name: "common"
-    backend: yaml```
+    backend: yaml
+ ```
     
 To convert to version 5, make the following changes:
 
@@ -380,7 +373,8 @@ To convert to version 5, make the following changes:
 ```
 defaults:
   datadir: data
-  data_hash: yaml_data```
+  data_hash: yaml_data
+```
   
 5. In each hierarchy level, delete the `backend` key and replace it with a `data_hash` key. (If you set a default backend in the `defaults` key, you can omit it here.)
 
@@ -400,7 +394,8 @@ You’ll find these settings in the following locations:
 
 After being converted to version 5, the example looks like this:
 
-```# /etc/puppetlabs/code/environments/production/hiera.yaml
+```
+# /etc/puppetlabs/code/environments/production/hiera.yaml
 ---
 version: 5
 defaults:
@@ -420,7 +415,8 @@ hierarchy:
     path: "virtual/%{facts.virtual}.yaml"   # Name and path are now separated.
 
   - name: "common"
-    path: "common.yaml"```
+    path: "common.yaml"
+ ```
 
 For full syntax details, see the `hiera.yaml` version 5 reference.
 
@@ -472,10 +468,10 @@ Modules need default values for their class parameters. Before, the preferred wa
 
 The “params.pp” pattern takes advantage of the Puppet class inheritance behavior. In short:
 
-* One class in your module does nothing but set variables for the other classes. This class is called `<MODULE>::params.
+* One class in your module does nothing but set variables for the other classes. This class is called `<MODULE>::params`.
 * This class uses Puppet code to construct values; it uses conditional logic based on the target operating system.
 * The rest of the classes in the module inherit from the params class. In their parameter lists, you can use the params class’s variables as default values.
-* When using "params.pp" pattern, the values set in the "params.pp" defined class cannot be used in lookup merges and Automatic Parameter Lookup (APL) - when using this pattern these are only used for defaults when there are no values found in hiera.
+* When using "params.pp" pattern, the values set in the "params.pp" defined class cannot be used in lookup merges and Automatic Parameter Lookup (APL) - when using this pattern these are only used for defaults when there are no values found in Hiera.
 
 An example params class:
  
@@ -498,6 +494,7 @@ class ntp::params {
   }
 }
 ```
+
 A class that inherits from the params class and uses it to set default parameter values:
  
 ```
@@ -549,7 +546,7 @@ function ntp::params(
 
 > Note: The hash merge operator (`+`) is useful in these functions.
 
-Once you have a function, tell Hiera to use it by adding it to the module layer `hiera.yaml`. A simple backend like this one doesn’t require `path`, `datadir`, or `options` keys. You have a choice of adding it to the `default_hierarch` if you want the exact same behaviour as with the earlier "params.pp" pattern, and use the regular `hierarchy` if you want the values to be merged with values of higher priority when a merging lookup is specified. You may want to split up the key/values so that some are in the `hierarchy`, and some in the `default_hierarchy`, depending on whether it ever makes sense to merge a value of not.
+Once you have a function, tell Hiera to use it by adding it to the module layer `hiera.yaml`. A simple backend like this one doesn’t require `path`, `datadir`, or `options` keys. You have a choice of adding it to the `default_hierarch` if you want the exact same behaviour as with the earlier "params.pp" pattern, and use the regular `hierarchy` if you want the values to be merged with values of higher priority when a merging lookup is specified. You may want to split up the key/values so that some are in the `hierarchy`, and some in the `default_hierarchy`, depending on whether it makes sense to merge a value of not.
  
 Here we add it to the regular hierarchy:
 
@@ -566,7 +563,7 @@ hierarchy:
 With Hiera-based defaults, you can simplify your module’s main classes:
 * They do not need to inherit from any other class.
 * You do not need to explicitly set a default value with the `=` operator.
-* Instead APL comes into effect for each parameter without a given value. In the example, the function ntp::params will be called to get the default params, and those can then be either overridden or merged, just as with all values in hiera.
+* Instead APL comes into effect for each parameter without a given value. In the example, the function ntp::params will be called to get the default params, and those can then be either overridden or merged, just as with all values in Hiera.
 
 ```# ntp/manifests/init.pp
 class ntp (
