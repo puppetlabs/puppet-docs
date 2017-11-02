@@ -112,9 +112,7 @@ The process of enabling the environment layer involves the following steps, each
    * Do something equivalent to moving the datadir; for example, make a new database table for migrated data and move values  into place as you migrate environments.
    * Allow the global and environment layers to use duplicated configuration for this data until the migration is done. 
 
-10. Repeat these steps for each environment.
-
-   If you manage your code by mapping environments to branches in a control repo, you can migrate most of your environments using your version control system’s merging tools. 
+10. Repeat these steps for each environment. If you manage your code by mapping environments to branches in a control repo, you can migrate most of your environments using your version control system’s merging tools. 
 
 11. After you have migrated the environments that have active node populations, delete the parts of your global hierarchy that you transferred into environment hierarchies.
 
