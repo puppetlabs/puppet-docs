@@ -36,7 +36,7 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.2.0][], [
 
 Released November 6, 2017.
 
-This release of Puppet Platform that contains several Puppet and Facter bug fixes.
+This release of Puppet Platform contains several Puppet and Facter bug fixes.
 
 ### Component updates
 
