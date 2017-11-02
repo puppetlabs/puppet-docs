@@ -146,9 +146,9 @@ The value of `hierarchy` must be an array of hashes.
 1.  Begin each level of the hierarchy with:
 
     -   Two spaces of indentation.
-	  -   A hyphen (`-`).
-	  -   Another space after the hyphen.
-	  -   The first key of that level's hash.
+    -   A hyphen (`-`).
+    -   Another space after the hyphen.
+    -   The first key of that level's hash.
 
 2.  Indent the rest of the hash's keys by four spaces, so they line up with the first key.
 
