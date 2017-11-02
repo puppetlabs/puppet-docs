@@ -8,7 +8,6 @@ title: "Hiera"
 [v3]: ./hiera_config_yaml_3.html
 [v4]: ./hiera_config_yaml_4.html
 [v5]: ./hiera_config_yaml_5.html
-[r_n_p]: {{pe}}/r_n_p_full_example.html
 
 Hiera is a key/value lookup used for separating data from Puppet code. 
 
@@ -114,7 +113,7 @@ The combined hierarchy works the same way as a layer hierarchy.  Hiera skips emp
 * If the built-in facts don’t provide an easy way to represent differences in your infrastructure, make custom facts. For example, create a custom datacenter fact that is based on information particular to your network layout so that each datacenter is uniquely identifiable.
 * Give each environment -- production, test, development -- its own hierarchy.
 
-Related topics: [codedir][codedir], [confdir][confdir], [hiera.yaml][v5], [roles and profiles method][r_n_p.]
+Related topics: [codedir][codedir], [confdir][confdir], [hiera.yaml][v5.]
 
 {:.concept}
 ## Hiera’s three config layers 
