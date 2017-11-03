@@ -11,7 +11,7 @@ Released November 6, 2017.
 
 This is a bug-fix release of Facter.
 
--   [All issues resolved in Facter 3.9.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.2%27)
+-   [All issues resolved in Facter 3.9.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.3%27)
 
 ### Bug fix: Accurate CPU facts on Power8 architectures
 
