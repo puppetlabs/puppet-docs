@@ -22,6 +22,12 @@ Also, previous versions of Facter used the wrong fields of `/proc/cpu/info` on P
 -   [FACT-1759](https://tickets.puppetlabs.com/browse/FACT-1759)
 -   [FACT-1642](https://tickets.puppetlabs.com/browse/FACT-1642)
 
+### Bug fix: Facter evaluates custom facts only once
+
+Since Facter 3.6, Facter evaluated custom facts from Puppet twice. Facter 3.9.3 resolves this issue by evaluating them only once, significantly reducing the time required to evaluate facts.
+
+-   [FACT-1778](https://tickets.puppetlabs.com/browse/FACT-1778)
+
 ## Facter 3.9.2
 
 Released October 2, 2017.
