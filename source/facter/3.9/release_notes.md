@@ -9,24 +9,19 @@ This page documents the history of the Facter 3.9 series.
 
 Released November 6, 2017.
 
-This is a bug-fix release of Facter.
+This is a bug-fix release that shipped with Puppet Platform 5.3.3.
 
 -   [All issues resolved in Facter 3.9.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.3%27)
 
-### Bug fix: Accurate CPU facts on Power8 architectures
+### Bug fixes
 
-On Power8 architectures, previous versions of Facter reported inaccurate counts of logical and physical processors in the `processors` fact. Facter 3.9.3 resolves the issue by using the `/sys/devices/system/cpu` directory to compute only the physical CPU count, and computes the logical CPU count by incrementing the number of processor entries in `/proc/cpuinfo`.
+Facter 3.9.3 resolves issues on Power8 architectures and with custom fact evaluation.
 
-Also, previous versions of Facter used the wrong fields of `/proc/cpu/info` on Power8 architectures when determining the CPU model and clock speed. Facter 3.9.3 correctly uses the `cpu` and `clock` fields when populating relevant facts.
+-   On Power8 architectures, previous versions of Facter reported inaccurate counts of logical and physical processors in the `processors` fact. Facter 3.9.3 resolves the issue by using the `/sys/devices/system/cpu` directory to compute only the physical CPU count, and computes the logical CPU count by incrementing the number of processor entries in `/proc/cpuinfo`.
 
--   [FACT-1759](https://tickets.puppetlabs.com/browse/FACT-1759)
--   [FACT-1642](https://tickets.puppetlabs.com/browse/FACT-1642)
+    Also, previous versions of Facter used the wrong fields of `/proc/cpu/info` on Power8 architectures when determining the CPU model and clock speed. Facter 3.9.3 correctly uses the `cpu` and `clock` fields when populating relevant facts.
 
-### Bug fix: Facter evaluates custom facts only once
-
-Since Facter 3.6, Facter evaluated custom facts from Puppet twice. Facter 3.9.3 resolves this issue by evaluating them only once, significantly reducing the time required to evaluate facts.
-
--   [FACT-1778](https://tickets.puppetlabs.com/browse/FACT-1778)
+-   Since Facter 3.6, Facter evaluated custom facts from Puppet twice. Facter 3.9.3 resolves this issue by evaluating them only once, which significantly reduces the time required to evaluate facts.
 
 ## Facter 3.9.2
 

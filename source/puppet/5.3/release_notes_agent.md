@@ -40,7 +40,24 @@ This release of Puppet Platform contains several Puppet and Facter bug fixes.
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.3.3][], [Facter 3.9.3][], [MCollective 2.11.4][], pcp-client 1.5.5, and [pxp-agent][] 1.8.1.
+This release includes component updates to [Puppet 5.3.3][], [Facter 3.9.3][], [MCollective 2.11.4][], pcp-client 1.5.5, and [pxp-agent][] 1.8.1. It also updates Puppet's vendored cURL to v7.56.1, and updates its certificate authority (CA) certificate bundle.
+
+This release also updates Puppet's vendored Ruby to version 2.4.2, which addresses the following security vulnerabilities:
+
+-   CVE-2017-0898
+-   CVE-2017-10784
+-   CVE-2017-14033
+-   CVE-2017-14064
+
+### Bug fixes
+
+-   When running Facter from previous versions of the Puppet agent package on a machine with a Power8 architecture, `dmesg` would produce an error message:
+
+    ```
+    Program dmidecode tried to access /dev/mem between f0000->100000.
+    ```
+
+    Puppet agent 5.3.3 resolves this issue by not including a vendored `dmidecode` in packages targeting Power8 architectures.
 
 ## Puppet agent 5.3.2
 
