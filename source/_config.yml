@@ -641,10 +641,10 @@ documents:
     nav: /puppet/5.3/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: f6ae54abeaba6e16e5b13b91054c68fa1f82a8dc
+      commit: origin/5.1.x
       subdirectory: documentation
     my_versions:
-      puppet: "5.2"
+      puppet: "5.3"
       facter: "3.9"
       hiera: "3.4"
     hide: true
