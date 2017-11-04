@@ -40,7 +40,7 @@ This release of Puppet Platform contains several Puppet and Facter bug fixes.
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.3.3][], [Facter 3.9.3][], [MCollective 2.11.4][], pcp-client 1.5.5, and [pxp-agent][] 1.8.1. It also updates Puppet's vendored cURL to v7.56.1, and updates its certificate authority (CA) certificate bundle.
+This release includes component updates to [Puppet 5.3.3][], [Facter 3.9.3][], and [MCollective 2.11.4][]. It also updates Puppet's vendored cURL to v7.56.1, and updates its certificate authority (CA) certificate bundle.
 
 This release also updates Puppet's vendored Ruby to version 2.4.2, which addresses the following security vulnerabilities:
 
