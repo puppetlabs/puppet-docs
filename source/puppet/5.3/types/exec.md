@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: ab595327c42b4fbafdd669d8a0208ce081c03133
+built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:16:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:09:48 -0700
 
 exec
 -----
@@ -384,12 +384,6 @@ Windows --- a command must explicitly invoke the shell:
       command => 'cmd.exe /c echo "foo"',
     }
 
-Advanced example:
-
-```
-command   => 'cmd.exe /c "C:\\Program Files (x86)\\Java\\jre1.8.0_144\\bin\\java.exe" -version > C:\\logfile.txt 2>&1'
-```
-
 If no extension is specified for a command, Windows will use the `PATHEXT`
 environment variable to locate the executable.
 
@@ -408,4 +402,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:16:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:09:48 -0700

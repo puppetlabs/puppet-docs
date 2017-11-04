@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: ab595327c42b4fbafdd669d8a0208ce081c03133
+built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
 title: 'Man Page: puppet lookup'
 canonical: "/puppet/latest/man/lookup.html"
 ---

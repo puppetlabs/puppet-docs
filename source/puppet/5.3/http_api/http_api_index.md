@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: ab595327c42b4fbafdd669d8a0208ce081c03133
+built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
 title: 'Puppet HTTP API: Index'
 canonical: "/puppet/latest/http_api/http_api_index.html"
 ---
@@ -43,18 +43,17 @@ the letter `v`, and the version number of the API).
 
 ### Authorization
 
-Authorization for `/puppet` endpoints in deprecated Rack servers is still
-controlled with Puppet's [legacy `auth.conf`](./config_file_auth.html)
+Authorization for `/puppet` endpoints is still controlled with Puppet's `auth.conf`
 authorization system.
 
-By default, Puppet Server 5.0.0 and newer ignore the legacy `auth.conf`
-in favor of its own, differently structured
-[`auth.conf`](/puppetserver/latest/config_file_auth.html) file, which was
-introduced as an optional setting in Puppet Server 2.2.0.
+Puppet Server ignores `auth.conf` for `/puppet-ca` endpoints. Access to the
+`certificate_status` endpoint is configured in Puppet Server's `ca.conf` file,
+and the remaining CA endpoints are always accessible. Rack Puppet master servers
+still use `auth.conf` for `/puppet-ca`.
 
-When specifying authorization in the legacy `auth.conf` file, the prefix
-and version number (such as `/puppet/v3`) on the paths must be retained, since
-Puppet matches authorization rules against the full request path.
+When specifying authorization in `auth.conf`, the prefix and the version number
+(e.g. `/puppet/v3`) on the paths must be retained, since Puppet matches
+authorization rules against the full request path.
 
 Puppet V3 HTTP API
 ------------------

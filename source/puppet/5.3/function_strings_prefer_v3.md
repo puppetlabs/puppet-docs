@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: ab595327c42b4fbafdd669d8a0208ce081c03133
+built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:17:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:10:37 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -1012,7 +1012,7 @@ The returned value's data type depends on the types of the results. In the examp
 above, Hiera matches the 'users' key and returns it as a hash.
 
 The `hiera` function is deprecated in favor of using `lookup` and will be removed in 6.0.0.
-See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -1096,7 +1096,7 @@ $allusers = hiera_array('users') | $key | { "Key \'${key}\' not found" }
 value is a hash, Puppet raises a type mismatch error.
 
 `hiera_array` is deprecated in favor of using `lookup` and will be removed in 6.0.0.
-See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -1190,7 +1190,7 @@ $allusers = hiera_hash('users') | $key | { "Key \'${key}\' not found" }
 found in the data sources are strings or arrays, Puppet raises a type mismatch error.
 
 `hiera_hash` is deprecated in favor of using `lookup` and will be removed in 6.0.0.
-See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -1285,7 +1285,7 @@ hiera_include('classes') | $key | {"Key \'${key}\' not found" }
 ~~~
 
 `hiera_include` is deprecated in favor of using a combination of `include`and `lookup` and will be
-removed in 6.0.0. See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+removed in 6.0.0. See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -3908,4 +3908,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:17:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:10:37 -0700
