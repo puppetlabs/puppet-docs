@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 217f9f045824d95847bfb820dffb69ce7e7b8783
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: 'Resource Type: zone'
 canonical: "/puppet/latest/types/zone.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
 
 zone
 -----
@@ -243,4 +243,4 @@ Provider for Solaris Zones.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-08-09 15:40:07 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
