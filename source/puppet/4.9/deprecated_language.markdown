@@ -78,10 +78,28 @@ $ sudo ls -la /etc/inetd.conf
 lrwxrwxrwx 1 root root 10 Nov  9 20:53 /etc/inetd.conf -> filer
 ```
 
-#### In Puppet 5.0
+To update, confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.
 
-This behavior will be removed. If the value of `ensure` isn't one of its allowed values, the Puppet run will fail with an error instead of attempting to create a symlink.
+Likewise, using the `source` parameter with `ensure => link` can result in unexpected behavior, depending on the content of the `source` parameter's value. The result of this example is a regular file --- not a symlink --- being created at `/etc/inetd.conf` with the copied contents of `/tmp/inetd.conf`:
 
-#### Detecting and updating
+``` puppet
+file { "/etc/inetd.conf":
+  ensure => link,
+  links  => manage,
+  source => "file:///tmp/inetd.conf",
+}
+```
 
-Confirm that the `ensure` attribute of your `file` resources has one of its allowed values. If you rely on this implicit symlinking behavior, change the value of `ensure` to `link` and add a `target` attribute that contains the target path as its value.
+Alternatively, this example creates a broken symlink --- not a file --- to whatever path `inetd_file` points to on the Puppet master, but only if a file doesn't exist at the same path on the agent:
+
+``` puppet
+file { "/etc/inetd.conf":
+  ensure => link,
+  links  => manage,
+  source => 'puppet:///modules/inetd/inetd_file',
+}
+```
+
+These behaviors should not be allowed; `ensure => link` and `source` should be mutually exclusive.
+
+For details and examples of more deprecated symlink behavior, see JIRA ticket [PUP-5830](https://tickets.puppetlabs.com/browse/PUP-5830).
