@@ -96,7 +96,7 @@ defaults:
 
 Then in a lookup for the `ntp::servers` key, `thrush.example.com` would use the following combined hierarchy:
 
-* `<CONFDIR>/data/selfserve/thrush.example.com.json`
+* `<CODEDIR>/data/selfserve/thrush.example.com.json`
 * `<CODEDIR>/environments/production/data/nodes/thrush.example.com.yaml`
 * `<CODEDIR>/environments/production/data/location/belfast/ops.yaml`
 * `<CODEDIR>/environments/production/data/groups/ops.yaml`
