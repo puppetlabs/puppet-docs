@@ -1,46 +1,88 @@
-Thank you for helping us improve our docs! Here are some non-obvious things you might need to know when committing to this repo:
 
-* Beware of source/references/VERSION
-* MCollective doesn't live here
-* PuppetDB doesn't live here
+We welcome community contributions to the documentation! You can help by reporting errors and typos, or by contributing new or updated sections. This topic describes the two main ways to contribute to the docs, and provides guidance on writing good documentation.
 
-# Please don't do drive-by edits to references
+## Two ways to improve the Puppet documentation
 
-These files are all **automatically generated** from strings in the Puppet source code. If you edit the old frozen versions, we will generate a fresh page of "wrong" text when the next version of Puppet comes out!
+### Filing a ticket
 
-Instead, please edit the text [in the Puppet source code](https://github.com/puppetlabs/puppet) (see below for a list of locations) and submit a pull request to the Puppet project. Be careful about quoting and escaping, and be sure to read Puppet's [contributing guidelines](https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md). For minor docs edits, you can skip filing a JIRA ticket and instead begin your commit message with `(docs)`.
+The Puppet documentation is managed like a software project, and you can file bug reports and feature requests in its
+[issue tracker](https://tickets.puppetlabs.com/browse/DOCUMENT). You'll need to create a [JIRA account](https://tickets.puppetlabs.com/secure/Signup!default.jspa) if you don't already have one.
 
-## Locations of Docs text in the Puppet source
+In your ticket, provide as much information as possible about what's missing, what's inaccurate, or what's outdated. Include URLs to the affected pages. Describe your best understanding of what the documentation _should_ say. We'll begin looking into the problem, and you can follow our progress in the ticket.
 
-* For configuration.html, look in `lib/puppet/defaults.rb`.
-* For function.html, look in `lib/puppet/parser/functions/NAME.rb`.
-* For indirection.html, look in `lib/puppet/indirector/INDIRECTION/TERMINUS.rb`.
-* For metaparameter.html, look in `lib/puppet/type.rb` and search for `newmetaparam(:NAME)`.
-* For report.html, look in `lib/puppet/reports/NAME.rb`.
-* For type.html, look in `lib/puppet/type/NAME.rb` or `lib/puppet/provider/NAME/PROVIDER.rb`.
-    * If you find something wrong with the **provider features** (the big tables with Xs in them), please just file a bug report instead; fixing them is kind of complicated. 
+### Emailing us
 
-## Should I also edit the old frozen versions?
+If you spot a typo or other minor error and don't want to go through the overhead of filing a ticket or editing the documentation, you can report it by email to <docs@puppet.com>.
 
-Only sometimes. Most of our readers only care about the most recent version in the release series they're using.
 
-* If you're fixing an error that could actually ruin someone's day, that's pretty important! We would love a patch to the old versions.
-* If it's just a "nice to have" fix that clarifies something confusing, please don't patch everything back to 0.24.5. We would love a patch to _just the most recent versions_ in the current and maintenance release series.
+## Puppet documentation guidelines
 
-# MCollective docs don't live here
+If you'd like to help contribute edits or new topics to the documentation, use these guidelines to create your content and then attach it when you file a ticket, either in the body of the ticket or as a separate markdown or text file.
 
-The MCollective docs live in the `website` directory in [the main MCollective GitHub repo](https://github.com/puppetlabs/marionette-collective); whenever we update docs.puppetlabs.com, we pull in the latest content from the `master` branch. Please submit pull requests there.
+### Writing new topics from scratch
 
-The navigation sidebar DOES live here, at `source/_includes/mcollective_menu.html`.
+Each topic file should cover a single subject area. If the Puppet docs already have topics that discuss this area, modify those existing topics rather than creating a new one.
 
-# PuppetDB docs don't live here
+If you're writing a new topic, start with an overview:
 
-Although we host the PuppetDB 0.9 and 1.0 manuals, the docs for version 1.1 and later were moved into the `documentation` directory in [the main PuppetDB GitHub repo](https://github.com/puppetlabs/puppetdb). Whenever we update docs.puppetlabs.com, we pull in the latest content from the versioned branches.
+- Provide definitions and descriptions that introduce the subject and place it within the context of the rest of Puppet.
+- Provide diagrams if they help clarify relationships and structures. 
+- Your goal is to help people solve problems and get things done. Avoid too much background information.
 
-To edit the PuppetDB docs, submit a pull request to **the earliest** `major.minor.x` branch that has the problem you're trying to fix. In your pull request message, you should request that the change be merged forward.
+Next, describe things that the person *does*:
 
-The navigation sidebars DO live here, at `source/_includes/puppetdb<VERSION>.html`.
+- Create a section for each major task that a person does. These should describe how to get results people want, not just things the tools require them to do.
+- List prerequisites, if any. 
+- Use a numbered list to list the actions the person does to accomplish the task. 
+- Finish by stating what the outcome is, and what the person might do next. 
+- Provide code or command examples that show what to do for common scenarios.
+- If there are multiple ways of doing something, describe only one: the most straight-forward way for the given context. 
+- Use screen captures minimally (ideally not at all), and only to illustrate things that are otherwise impractical to describe. 
+- Avoid mixing lengthy conceptual descriptions in with task steps. Put those in your overview section instead.
 
-## Should I also edit the 0.9/1.0 Docs?
+For reference information for a command line tool or an API, follow the layout patterns in similar existing Puppet documentation. If this is lengthy, split it into its own Markdown file.
 
-No.
+Provide links to related Puppet documentation topics, or other resources.
+
+### Updating existing documentation topics
+
+Sometimes our docs are missing useful information that you can provide:
+
+- Basic-level concepts the original author took for granted, but are helpful for new people
+- Missing overviews, steps, or links
+- Missing prerequisites for tasks
+- Clarifying definitions for terms that Puppet is using differently than other technologies (for example, "class")
+- Helpful code or command line examples
+- Troubleshooting tips
+
+### Tone
+
+- Strive to be friendly and authoritative.
+- Use simple, direct language. Avoid passive voice and implications.
+- Be consise, but not terse.
+- Use second-person almost always: "Open the file in your favorite text editor."
+- Use inclusive, gender-neutral language.
+- Avoid patronizing language, often indicated by words like _clearly_, _actually_, or _obviously_.
+- Be honest but not negative about our product or competitors.
+
+### Grammar, idiom, and spelling
+
+- Metaphors, analogies, and certain turns of phrase might not translate into languages or cultures other than your own. Stick to comparisons that are relatively innocuous and universal.
+- Almost always, follow Associated Press (AP) Style and choose [Webster's dictionary](http://www.merriam-webster.com/) spelling (American): _color_, _specialize_.
+- Use the serial comma. In a list with three or more items, include a comma after the second-last item, before the conjunction: "... is supported on Unix, Linux, and Windows."
+
+### Headings
+
+Use headings to increase the scanability of your content, and to make separate sections for conceptual information, each task, and reference information. 
+
+- Nest H3s (markdown: `### `) inside H2s (`## `). Nest H4s (`#### `) inside H3s. 
+- For conceptual information, use a noun phrase that accurately describes the content (for example, "Defined resource types"). 
+- For task section headings, use a verb phrase that indicates the goal (for example, "Deploying your code"), but also differentiates it from other tasks (so maybe, "Deploying your code to a test environment").
+
+### Formatting
+
+- For file names and directories, use `monospace`.
+- When citing text that appears in the GUI, use **bold**.
+- For commands and code examples, use `monospace`. Short commands can be included as part of the paragraph. Longer examples or code should be set in a separate paragraph, enclosed within three tildes (`~~~`).
+- For user input on the command line, use `monospace`. For user input on a GUI, use _italics_.
+- To indicate text in code that should be replaced, use angle-brackets and all-caps (and, if in a code example, monospace): `<TEST_HOSTNAME>`
