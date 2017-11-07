@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:52 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -420,6 +420,9 @@ function like this:
 
 `epp('apache/vhost/_docroot.epp', { 'docroot' => '/var/www/html',
 'virtual_docroot' => '/var/www/example' })`
+
+This function can also accept an absolute path, which can load a template file
+from anywhere on disk.
 
 Puppet produces a syntax error if you pass more parameters than are declared in
 the template's parameter tag. When passing parameters to a template that
@@ -1685,4 +1688,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:52 -0700

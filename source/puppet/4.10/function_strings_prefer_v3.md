@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: f0a5a11ef180b0d40dbdccd5faa4dc5bf2b20221
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:52 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -516,6 +516,9 @@ function like this:
 `epp('apache/vhost/_docroot.epp', { 'docroot' => '/var/www/html',
 'virtual_docroot' => '/var/www/example' })`
 
+This function can also accept an absolute path, which can load a template file
+from anywhere on disk.
+
 Puppet produces a syntax error if you pass more parameters than are declared in
 the template's parameter tag. When passing parameters to a template that
 contains a parameter tag, use the same names as the tag's declared parameters.
@@ -780,7 +783,7 @@ The returned value's data type depends on the types of the results. In the examp
 above, Hiera matches the 'users' key and returns it as a hash.
 
 The `hiera` function is deprecated in favor of using `lookup` and will be removed in 6.0.0.
-See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -864,7 +867,7 @@ $allusers = hiera_array('users') | $key | { "Key \'${key}\' not found" }
 value is a hash, Puppet raises a type mismatch error.
 
 `hiera_array` is deprecated in favor of using `lookup` and will be removed in 6.0.0.
-See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -958,7 +961,7 @@ $allusers = hiera_hash('users') | $key | { "Key \'${key}\' not found" }
 found in the data sources are strings or arrays, Puppet raises a type mismatch error.
 
 `hiera_hash` is deprecated in favor of using `lookup` and will be removed in 6.0.0.
-See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -1053,7 +1056,7 @@ hiera_include('classes') | $key | {"Key \'${key}\' not found" }
 ~~~
 
 `hiera_include` is deprecated in favor of using a combination of `include`and `lookup` and will be
-removed in 6.0.0. See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/reference/deprecated_language.html.
+removed in 6.0.0. See  https://docs.puppet.com/puppet/#{Puppet.minor_version}/deprecated_language.html.
 Replace the calls as follows:
 
 | from  | to |
@@ -3445,4 +3448,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-07-26 14:45:15 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:52 -0700

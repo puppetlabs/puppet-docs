@@ -267,13 +267,13 @@ to hold a sequence of bytes in the range 0 to 255.</p>
       <pre class="lines">
 
 
-86
-87
-88
-89</pre>
+93
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_binary_type.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_binary_type.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_bin'>bin</span><span class='rparen'>)</span>
   <span class='comment'># TODO: When Ruby 1.9.3 support is dropped change this to `bin.b` for binary encoding instead of force_encoding
@@ -341,12 +341,12 @@ wanted, a copy should be given to this method.</p>
       <pre class="lines">
 
 
-50
-51
-52</pre>
+57
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_binary_type.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_binary_type.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_binary_string'>from_binary_string</span><span class='lparen'>(</span><span class='id identifier rubyid_bin'>bin</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_bin'>bin</span><span class='rparen'>)</span>
@@ -424,19 +424,19 @@ wanted, a copy should be given to this method.</p>
       <pre class="lines">
 
 
-67
-68
-69
-70
-71
-72
-73
 74
 75
-76</pre>
+76
+77
+78
+79
+80
+81
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_binary_type.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/p_binary_type.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_from_string'>from_string</span><span class='lparen'>(</span><span class='id identifier rubyid_encoded_string'>encoded_string</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_enc'>enc</span> <span class='op'>=</span> <span class='id identifier rubyid_encoded_string'>encoded_string</span><span class='period'>.</span><span class='id identifier rubyid_encoding'>encoding</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span>
@@ -458,7 +458,7 @@ wanted, a copy should be given to this method.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Oct  4 17:19:02 2017 by
+  Generated on Fri Nov  3 18:11:20 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.9 (ruby-2.3.3).
 </div>

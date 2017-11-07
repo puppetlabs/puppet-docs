@@ -10,35 +10,73 @@ title: "Puppet agent release notes"
 [Puppet 4.10.6]: /puppet/4.10/release_notes.html#puppet-4106
 [Puppet 4.10.7]: /puppet/4.10/release_notes.html#puppet-4107
 [Puppet 4.10.8]: /puppet/4.10/release_notes.html#puppet-4108
+[Puppet 4.10.9]: /puppet/4.10/release_notes.html#puppet-4109
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
 [Facter 3.6.5]: /facter/3.6/release_notes.html#facter-365
 [Facter 3.6.6]: /facter/3.6/release_notes.html#facter-366
 [Facter 3.6.7]: /facter/3.6/release_notes.html#facter-367
+[Facter 3.6.8]: /facter/3.6/release_notes.html#facter-368
 
 [Hiera 3.3.2]: /hiera/3.3/release_notes.html#hiera-332
 
 [MCollective 2.10.3]: /mcollective/releasenotes.html#2_10_3
 [MCollective 2.10.4]: /mcollective/releasenotes.html#2_10_4
 [MCollective 2.10.5]: /mcollective/releasenotes.html#2_10_5
+[MCollective 2.10.6]: /mcollective/releasenotes.html#2_10_6
 
 [`pxp-agent`]: https://github.com/puppetlabs/pxp-agent
-
 
 This page lists changes to the `puppet-agent` package. For details about changes to components in a `puppet-agent` release, follow the links to those components in the package release's notes.
 
 The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
-* X must increase for major backwards-incompatible changes
-* Y may increase for backwards-compatible new functionality
-* Z may increase for bug fixes
+-   X must increase for major backwards-incompatible changes
+-   Y may increase for backwards-compatible new functionality
+-   Z may increase for bug fixes
 
 ## If you're upgrading from Puppet 3.x
 
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
+
+## Puppet agent 1.10.9
+
+Released November 6, 2017.
+
+### Component updates
+
+This release contains bug fixes in [Puppet 4.10.9][], [Facter 3.6.8][], and [MCollective 2.10.6][], updates its vendored cURL to v7.56.1, and updates its certificate authority (CA) certificate bundle.
+
+This release also updates Puppet's vendored Ruby to version 2.1.9, which addresses the following security vulnerabilities:
+
+-   CVE-2017-0898
+-   CVE-2017-10784
+-   CVE-2017-14033
+-   CVE-2017-14064
+
+It also updates rubygems to version 2.6.13, which addresses the following security vulnerabilities:
+
+-   CVE-2017-0902
+-   CVE-2017-0899
+-   CVE-2017-0900
+-   CVE-2017-0901
+
+### Bug fixes
+
+-   When running Facter from previous versions of the Puppet agent package on a machine with a Power8 architecture, `dmesg` would produce an error message:
+
+    ```
+    Program dmidecode tried to access /dev/mem between f0000->100000.
+    ```
+
+    Puppet agent 1.10.9 resolves this issue by not including a vendored `dmidecode` in packages targeting Power8 architectures.
+
+### Improvements
+
+-   The `mcollective` service is no longer configured to kill all child processes when stopped under systemd. It will now only kill the `mcollective` service, letting agent subprocesses continue to completion. As a result, MCollective can now upgrade puppet-agent.
 
 ## Puppet agent 1.10.8
 

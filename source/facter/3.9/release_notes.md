@@ -5,6 +5,24 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.9 series.
 
+## Facter 3.9.3
+
+Released November 6, 2017.
+
+This is a bug-fix release that shipped with Puppet Platform 5.3.3.
+
+-   [All issues resolved in Facter 3.9.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.3%27)
+
+### Bug fixes
+
+Facter 3.9.3 resolves issues on Power8 architectures and with custom fact evaluation.
+
+-   On Power8 architectures, previous versions of Facter reported inaccurate counts of logical and physical processors in the `processors` fact. Facter 3.9.3 resolves the issue by using the `/sys/devices/system/cpu` directory to compute only the physical CPU count, and computes the logical CPU count by incrementing the number of processor entries in `/proc/cpuinfo`.
+
+    Also, previous versions of Facter used the wrong fields of `/proc/cpu/info` on Power8 architectures when determining the CPU model and clock speed. Facter 3.9.3 correctly uses the `cpu` and `clock` fields when populating relevant facts.
+
+-   Since Facter 3.6, Facter evaluated custom facts from Puppet twice. Facter 3.9.3 resolves this issue by evaluating them only once, which significantly reduces the time required to evaluate facts.
+
 ## Facter 3.9.2
 
 Released October 2, 2017.

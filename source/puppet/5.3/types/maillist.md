@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: ab595327c42b4fbafdd669d8a0208ce081c03133
+built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
 title: 'Resource Type: maillist'
 canonical: "/puppet/latest/types/maillist.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:16:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:09:48 -0700
 
 maillist
 -----
@@ -102,4 +102,4 @@ The name of the host providing web archives and the administrative interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-10-04 17:16:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:09:48 -0700

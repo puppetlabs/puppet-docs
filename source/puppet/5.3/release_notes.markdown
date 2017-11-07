@@ -20,6 +20,36 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.3.3
+
+Released November 6, 2017.
+
+This is a bug-fix release of Puppet.
+
+-   [All issues resolved in Puppet 5.3.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.3%27)
+
+### Bug fixes
+
+This release resolves issues with tag propagation, internationalization features and Unicode support, filebuckets, Windows reparse point path resolution, and ZFS volume creation.
+
+-   Previous versions of Puppet could fail to install modules from the Puppet Forge that had many available versions. Puppet 5.3.3 resolves this issue by improving URL encoding in paginated Forge results.
+
+-   Previous versions of Puppet failed to consistently initialize its internationalization functionality using the system's locale. Puppet 5.3.3 resolves this issue, resulting in consistent presentation of localized messages when available.
+
+-   Previous versions of Puppet that failed to initialize its internationalization functionality, typically due to a missing `gettext` gem, would log a warning each time each module on the system was loaded. This overwhelmed logs with redundant error messages. Puppet 5.3.3 resolves this issue by logging that warning only once.
+
+-   In previous versions of Puppet, backing up the same file content to a filebucket more than once could result in a mistaken error warning suggesting that the files had the same checksum value but different contents, which indicated a potential (but false) hash collision. Puppet 5.3.3 correctly handles duplicate files in a filebucket.
+
+-   Previous versions of Puppet failed to propagate tags with included classes, which could break class notifications when running Puppet with tags enabled. Puppet 5.3.3 resolves this issue; refresh events are now correctly propagated to all tagged resources when running with tags, and some confusing debug and warning messages have been eliminated.
+
+-   Previous versions of Puppet did not correctly resolve the path to Windows reparse points that are mount points, rather than symbolic links. This could prevent access to paths on DFS shares.
+
+-   The `service` provider could fail with a stacktrace in previous versions of Puppet if the process line for any given service contained UTF-8 characters and Puppet was not running in UTF-8. Puppet 5.3.3 avoids this error by more gracefully handling these characters in order to match running services to the managed service name.
+
+-   To set the `volsize` property when creating a ZFS volume, Puppet 5.3.3 correctly uses the `-V` flag for the `zfs create` command, instead of the `-o` flag used in previous versions.
+
+-   This version of Puppet can parse Nagios files containing Unicode content more consistently than previous versions.
+
 ## Puppet 5.3.2
 
 Released October 5, 2017.

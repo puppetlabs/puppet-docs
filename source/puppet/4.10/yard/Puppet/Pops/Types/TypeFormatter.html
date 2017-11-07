@@ -4676,7 +4676,7 @@ type or literal <em>t</em>.</p>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_formatter.rb', line 510</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_string_Regexp'>string_Regexp</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>       <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_t'>t</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='id identifier rubyid_string_Regexp'>string_Regexp</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span>       <span class='semicolon'>;</span> <span class='ivar'>@bld</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="PRegexpType.html" title="Puppet::Pops::Types::PRegexpType (class)">PRegexpType</a></span></span><span class='period'>.</span><span class='id identifier rubyid_regexp_to_s_with_delimiters'>regexp_to_s_with_delimiters</span><span class='lparen'>(</span><span class='id identifier rubyid_t'>t</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -5070,9 +5070,9 @@ method to allow override.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Aug  9 15:41:26 2017 by
+  Generated on Fri Nov  3 18:19:34 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.2.0).
+  0.9.9 (ruby-2.3.3).
 </div>
 
     </div>
