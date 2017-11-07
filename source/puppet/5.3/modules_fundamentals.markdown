@@ -196,7 +196,7 @@ Puppet's built-in `puppet module generate` command can generate a basic module s
 
 Both PDK and the `puppet module generate` command ask for metadata information to create a `metadata.json` file. You should have the following information ready:
 
-* Your Puppet Forge username. If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value. 
+* Your Puppet Forge username. If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value.
 * Module version. We use and recommend semantic versioning for modules.
 * The module author's name.
 * The license under which your module is made available. This should be an identifier from [SPDX License List](https://spdx.org/licenses/).
@@ -213,6 +213,7 @@ Related topics:
 
 * [Classes][classes]
 * [Defined types][defined_types]
+* [Type aliases](./lang_type_aliases.html)
 * [Beginner's guide to writing modules](./bgtm.html)
 * [Puppet Language Style Guide](./style_guide.html)
 * [Puppet Development Kit][pdk]
