@@ -10,15 +10,21 @@ Type aliases allow you to create reusable and descriptive data and resource type
 
 ## Creating type aliases
 
-Type aliases are written as `type <NAME> = <TYPE DEFINITION>`. The alias `<NAME>` begins with a capital letter and must not be a [reserved word][reserved].
+Type aliases are written as:
 
-This example makes the type alias `MyType` equivalent to the `Integer` data type:
+``` puppet
+type <ALIAS NAME> = <TYPE DEFINITION>
+```
+
+The `<ALIAS NAME>` begins with a capital letter and must not be a [reserved word][reserved].
+
+For example, you can create a type alias named `MyType` that is equivalent to the `Integer` data type:
 
 ``` puppet
 type MyType = Integer
 ```
 
-You can then declare a parameter using the alias as though it were a unique type:
+You can then declare a parameter using the alias as though it were a unique data type:
 
 ``` puppet
 MyType $example = 10
@@ -29,26 +35,24 @@ By using type aliases, you can:
 -   Give a type a descriptive name, such as `IPv6Addr`, instead of creating or using a complex pattern-based type.
 -   Shorten and move complex type expressions.
 -   Improve code quality by reusing existing types instead of inventing new types.
--   Test type definitions separately.
+-   Test type definitions separately from manifests.
 
 ### Type alias transparency
 
-Puppet language aliases are transparent. This example's `notice` returns `true`:
+Type aliases are transparent, which means they are fully equivalent to the types of which they are aliases. For instance, this example's `notice` returns `true` because `MyType` is an alias of the `Integer` type:
 
 ``` puppet
-type MyInteger = Integer
-notice MyInteger == Integer
+type MyType = Integer
+notice MyType == Integer
 ```
 
-> **Note:** The internal types `TypeReference` and `TypeAlias` are never values in a Puppet program.
+> **Note:** The internal types `TypeReference` and `TypeAlias` are never values in Puppet code.
 
 ## Organizing type alias defintiions
 
-Store type aliases in your module's `types` directory, which is a top-level directory and sibling of the `manifests` and `lib` directories. Define only one alias per file.
+If you define type aliases inside of manifests that contain other Puppet code, you make it more difficult to find where and how they are defined. It's easier to maintain and diagnose problems with type aliases by placing them into files within their own directory of your Puppet module.
 
-The name of the `.pp` file defining the alias must be the same as the alias name, in all lower case and without underscore separators inserted at camel case positions. For example, `MyType` is expected to be loaded from a file named `mytype.pp`.
-
-> **Warning:** For production Puppet deployments, do not define type aliases inside of other manifests. Keep type aliases organized into their own files within the `types` directory.
+Store type aliases as `.pp` files in your module's `types` directory, which is a top-level directory and sibling of the `manifests` and `lib` directories. Define only one alias per file, and name the file after the type alias name converted to lowercase. For example, `MyType` is expected to be loaded from a file named `mytype.pp`.
 
 ## Creating recursive types
 
@@ -58,7 +62,7 @@ You can create recursive types:
 type Tree = Array[Variant[Data, Tree]]
 ```
 
-This type definition allows a tree built out of arrays that contain data, or a tree:
+This `Tree` type alias is defined as a being built out of Arrays that contain Data, or a Tree:
 
 ```
 [1,2 [3], [4, [5, 6], [[[[1,2,3]]]]]]
@@ -66,7 +70,7 @@ This type definition allows a tree built out of arrays that contain data, or a t
 
 A recursive alias can refer to the alias being declared, or to other types.
 
-This is a very powerful mechanism that allows higher quality type definitions that don't require you to use the `Any` type.
+This powerful mechanism allows you to define complex, descriptive type definitions instead of using the `Any` type.
 
 ## Aliasing resource types
 
@@ -76,7 +80,7 @@ You can also create aliases to resource types.
 type MyFile = File
 ```
 
-Use the resource type's short form, such as `File`, instead of `Resource[File]`.
+When defining an alias to a resource type, use its short form (such as `File`) instead of its long form (such as `Resource[File]`).
 
 ## Related topics
 
