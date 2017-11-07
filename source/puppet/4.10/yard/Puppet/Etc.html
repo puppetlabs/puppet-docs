@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Etc
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -89,14 +89,35 @@
   <strong>This module is part of a private API.</strong>
   You should avoid using this module if possible, as it may be removed or be changed in the future.
 </p>
-<p>Wrapper around Ruby Etc module allowing us to manage encoding in a single
-place.
-This represents a subset of Ruby&#39;s Etc module, only the methods required by Puppet.
-Etc returns strings in variable encoding depending on
-environment. For Puppet we specifically want UTF-8 as our input from the Etc
-module - which is our input for many resource instance &#39;is&#39; values. The
-associated &#39;should&#39; value will basically always be coming from Puppet in
-UTF-8. Etc is defined for Windows but calls to it return nil.</p>
+<p>On Ruby 2.1.0 and later, Etc returns strings in variable encoding depending on
+environment. The string returned will be labeled with the environment&#39;s
+encoding (Encoding.default_external), with one exception: If the environment
+encoding is 7-bit ASCII, and any individual character bit representation is
+equal to or greater than 128 - \x80 - 0b10000000 - signifying the smallest
+8-bit big-endian value, the returned string will be in BINARY encoding instead
+of environment encoding.</p>
+
+<p>Barring that exception, the returned string will be labeled as encoding
+Encoding.default_external, regardless of validity or byte-width. For example,
+ruby will label a string containing a four-byte characters such as &quot;\u2070E&quot;
+as EUC_KR even though EUC_KR is a two-byte width encoding.</p>
+
+<p>On Ruby 2.0.x and earlier, Etc will always return string values in BINARY,
+ignoring encoding altogether.</p>
+
+<p>For Puppet we specifically want UTF-8 as our input from the Etc module - which
+is our input for many resource instance &#39;is&#39; values. The associated &#39;should&#39;
+value will basically always be coming from Puppet in UTF-8 - and written to
+disk as UTF-8. Etc is defined for Windows but the majority calls to it return
+nil and Puppet does not use it.</p>
+
+<p>That being said, we have cause to retain the original, pre-override string
+values. <code>puppet resource user</code>
+(Puppet::Resource::User.indirection.search(&#39;User&#39;, {})) uses self.instances to
+query for user(s) and then iterates over the results of that query again to
+obtain state for each user. If we&#39;ve overridden the original user name and not
+retained the original, we&#39;ve lost the ability to query the system for it
+later. Hence the Puppet::Etc::Passwd and Puppet::Etc::Group structs.</p>
 
 <p>We only use Etc for retrieving existing property values from the system. For
 setting property values, providers leverage system tools (i.e., <code>useradd</code>)</p>
@@ -126,7 +147,7 @@ setting property values, providers leverage system tools (i.e., <code>useradd</c
 <li class="private ">
   <span class="summary_signature">
     
-      <a href="#convert_array_values_to_utf8!-class_method" title="convert_array_values_to_utf8! (class method)">.<strong>convert_array_values_to_utf8!</strong>(string_array)  &#x21d2; Array </a>
+      <a href="#override_field_values_to_utf8-class_method" title="override_field_values_to_utf8 (class method)">.<strong>override_field_values_to_utf8</strong>(struct)  &#x21d2; Puppet::Etc::Passwd or Puppet::Etc::Group struct </a>
     
 
     
@@ -141,7 +162,7 @@ setting property values, providers leverage system tools (i.e., <code>useradd</c
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Helper method for ::convert_field_values_to_utf8!.</p>
+    <span class="summary_desc"><div class='inline'><p>Utility method for overriding the String values of a struct returned by the Etc module to UTF-8.</p>
 </div></span>
   
 </li>
@@ -151,7 +172,7 @@ setting property values, providers leverage system tools (i.e., <code>useradd</c
 <li class="private ">
   <span class="summary_signature">
     
-      <a href="#convert_field_values_to_utf8!-class_method" title="convert_field_values_to_utf8! (class method)">.<strong>convert_field_values_to_utf8!</strong>(struct)  &#x21d2; Etc::Passwd or Etc::Group struct </a>
+      <a href="#puppet_etc_group_class-class_method" title="puppet_etc_group_class (class method)">.<strong>puppet_etc_group_class</strong>  &#x21d2; Object </a>
     
 
     
@@ -166,7 +187,32 @@ setting property values, providers leverage system tools (i.e., <code>useradd</c
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Utility method for converting the String values of a struct returned by the Etc module to UTF-8.</p>
+    <span class="summary_desc"><div class='inline'><p>Defines Puppet::Etc::Group struct class.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="private ">
+  <span class="summary_signature">
+    
+      <a href="#puppet_etc_passwd_class-class_method" title="puppet_etc_passwd_class (class method)">.<strong>puppet_etc_passwd_class</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  <span class="note title private">private</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Defines Puppet::Etc::Passwd struct class.</p>
 </div></span>
   
 </li>
@@ -182,98 +228,9 @@ setting property values, providers leverage system tools (i.e., <code>useradd</c
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="convert_array_values_to_utf8!-class_method">
+  <h3 class="signature first" id="override_field_values_to_utf8-class_method">
   
-    .<strong>convert_array_values_to_utf8!</strong>(string_array)  &#x21d2; <tt>Array</tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note private">
-  <strong>This method is part of a private API.</strong>
-  You should avoid using this method if possible, as it may be removed or be changed in the future.
-</p>
-<p>Helper method for ::convert_field_values_to_utf8!</p>
-
-<p>Warning! This is a destructive method - the array passed is modified!</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  <p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class='name'>object</span>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>containing String values to convert to UTF-8</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Array</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>original Array with String values converted to UTF-8 if
-convertible, or original, unmodified values if not.</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-115
-116
-117
-118
-119
-120</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/etc.rb', line 115</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_convert_array_values_to_utf8!'>convert_array_values_to_utf8!</span><span class='lparen'>(</span><span class='id identifier rubyid_string_array'>string_array</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_string_array'>string_array</span><span class='period'>.</span><span class='id identifier rubyid_map!'>map!</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_elem'>elem</span><span class='op'>|</span>
-    <span class='id identifier rubyid_converted'>converted</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>CharacterEncoding</span><span class='period'>.</span><span class='id identifier rubyid_convert_to_utf_8!'>convert_to_utf_8!</span><span class='lparen'>(</span><span class='id identifier rubyid_elem'>elem</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_converted'>converted</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='id identifier rubyid_elem'>elem</span> <span class='op'>:</span> <span class='id identifier rubyid_converted'>converted</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="convert_field_values_to_utf8!-class_method">
-  
-    .<strong>convert_field_values_to_utf8!</strong>(struct)  &#x21d2; <tt>Etc::Passwd or Etc::Group struct</tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+    .<strong>override_field_values_to_utf8</strong>(struct)  &#x21d2; <tt>Puppet::Etc::Passwd or Puppet::Etc::Group struct</tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
   
 
   
@@ -285,15 +242,10 @@ convertible, or original, unmodified values if not.</p>
   <strong>This method is part of a private API.</strong>
   You should avoid using this method if possible, as it may be removed or be changed in the future.
 </p>
-<p>Utility method for converting the String values of a struct returned by
+<p>Utility method for overriding the String values of a struct returned by
 the Etc module to UTF-8. Structs returned by the ruby Etc module contain
 members with fields of type String, Integer, or Array of Strings, so we
 handle these types. Otherwise ignore fields.</p>
-
-<p>NOTE: If a string cannot be converted to UTF-8, this leaves the original
-string string intact in the Struct.</p>
-
-<p>Warning! This is a destructive method - the struct passed is modified!</p>
 
 
   </div>
@@ -321,13 +273,16 @@ string string intact in the Struct.</p>
     <li>
       
       
-        <span class='type'>(<tt>Etc::Passwd or Etc::Group struct</tt>)</span>
+        <span class='type'>(<tt>Puppet::Etc::Passwd or Puppet::Etc::Group struct</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>the original struct with values
-converted to UTF-8 if possible, or the original value intact if not</p>
+        <div class='inline'><p>a new struct
+object with the original struct values overidden to UTF-8, if valid. For
+invalid values originating in UTF-8, invalid characters are replaced with
+&#39;?&#39;. For each member the struct also contains a corresponding
+:canonical_<member name> struct member.</p>
 </div>
       
     </li>
@@ -340,31 +295,139 @@ converted to UTF-8 if possible, or the original value intact if not</p>
       <pre class="lines">
 
 
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105</pre>
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/etc.rb', line 95</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/etc.rb', line 140</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_convert_field_values_to_utf8!'>convert_field_values_to_utf8!</span><span class='lparen'>(</span><span class='id identifier rubyid_struct'>struct</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_override_field_values_to_utf8'>override_field_values_to_utf8</span><span class='lparen'>(</span><span class='id identifier rubyid_struct'>struct</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid_each_with_index'>each_with_index</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='comma'>,</span> <span class='id identifier rubyid_index'>index</span><span class='op'>|</span>
+  <span class='id identifier rubyid_new_struct'>new_struct</span> <span class='op'>=</span> <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Etc (module)">Etc</a></span></span><span class='op'>::</span><span class='const'>Passwd</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_puppet_etc_passwd_class'>puppet_etc_passwd_class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='op'>:</span> <span class='id identifier rubyid_puppet_etc_group_class'>puppet_etc_group_class</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+  <span class='id identifier rubyid_struct'>struct</span><span class='period'>.</span><span class='id identifier rubyid_each_pair'>each_pair</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_member'>member</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_converted'>converted</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>CharacterEncoding</span><span class='period'>.</span><span class='id identifier rubyid_convert_to_utf_8!'>convert_to_utf_8!</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-        <span class='id identifier rubyid_struct'>struct</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_converted'>converted</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_converted'>converted</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+      <span class='id identifier rubyid_new_struct'>new_struct</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>canonical_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span>
+      <span class='id identifier rubyid_new_struct'>new_struct</span><span class='lbracket'>[</span><span class='id identifier rubyid_member'>member</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>CharacterEncoding</span><span class='period'>.</span><span class='id identifier rubyid_scrub'>scrub</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>CharacterEncoding</span><span class='period'>.</span><span class='id identifier rubyid_override_encoding_to_utf_8'>override_encoding_to_utf_8</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span><span class='rparen'>)</span>
     <span class='kw'>elsif</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Array</span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_struct'>struct</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_convert_array_values_to_utf8!'>convert_array_values_to_utf8!</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_new_struct'>new_struct</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>canonical_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_acc'>acc</span><span class='comma'>,</span> <span class='id identifier rubyid_elem'>elem</span><span class='op'>|</span> <span class='id identifier rubyid_acc'>acc</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_elem'>elem</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span> <span class='rbrace'>}</span>
+      <span class='id identifier rubyid_new_struct'>new_struct</span><span class='lbracket'>[</span><span class='id identifier rubyid_member'>member</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inject'>inject</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_acc'>acc</span><span class='comma'>,</span> <span class='id identifier rubyid_elem'>elem</span><span class='op'>|</span> <span class='id identifier rubyid_acc'>acc</span> <span class='op'>&lt;&lt;</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>CharacterEncoding</span><span class='period'>.</span><span class='id identifier rubyid_scrub'>scrub</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>CharacterEncoding</span><span class='period'>.</span><span class='id identifier rubyid_override_encoding_to_utf_8'>override_encoding_to_utf_8</span><span class='lparen'>(</span><span class='id identifier rubyid_elem'>elem</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_new_struct'>new_struct</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>canonical_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
+      <span class='id identifier rubyid_new_struct'>new_struct</span><span class='lbracket'>[</span><span class='id identifier rubyid_member'>member</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
+  <span class='id identifier rubyid_new_struct'>new_struct</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="puppet_etc_group_class-class_method">
+  
+    .<strong>puppet_etc_group_class</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Defines Puppet::Etc::Group struct class. Contains all of the original
+member fields of Etc::Group, and additional &quot;canonical_&quot; versions of these
+fields as well. API compatible with Etc::Group. Because Struct.new
+defines a new Class object, we memoize to avoid superfluous extra Class
+instantiations.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+124
+125
+126</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/etc.rb', line 124</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_puppet_etc_group_class'>puppet_etc_group_class</span>
+  <span class='ivar'>@group_class</span> <span class='op'>||=</span> <span class='const'>Struct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='const'><span class='object_link'><a href="" title="Puppet::Etc (module)">Etc</a></span></span><span class='op'>::</span><span class='const'>Group</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span><span class='comma'>,</span> <span class='op'>*</span><span class='const'><span class='object_link'><a href="" title="Puppet::Etc (module)">Etc</a></span></span><span class='op'>::</span><span class='const'>Group</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_member'>member</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>canonical_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="puppet_etc_passwd_class-class_method">
+  
+    .<strong>puppet_etc_passwd_class</strong>  &#x21d2; <tt><span class='object_link'>Object</span></tt>  <span class="extras">(private)</span>&nbsp;<span class="note title private">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Defines Puppet::Etc::Passwd struct class. Contains all of the original
+member fields of Etc::Passwd, and additional &quot;canonical_&quot; versions of
+these fields as well. API compatible with Etc::Passwd. Because Struct.new
+defines a new Class object, we memozie to avoid superfluous extra Class
+instantiations.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/etc.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_puppet_etc_passwd_class'>puppet_etc_passwd_class</span>
+  <span class='ivar'>@password_class</span> <span class='op'>||=</span> <span class='const'>Struct</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='op'>*</span><span class='const'><span class='object_link'><a href="" title="Puppet::Etc (module)">Etc</a></span></span><span class='op'>::</span><span class='const'>Passwd</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span><span class='comma'>,</span> <span class='op'>*</span><span class='const'><span class='object_link'><a href="" title="Puppet::Etc (module)">Etc</a></span></span><span class='op'>::</span><span class='const'>Passwd</span><span class='period'>.</span><span class='id identifier rubyid_members'>members</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_member'>member</span><span class='op'>|</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>canonical_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_member'>member</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span> <span class='rbrace'>}</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -376,9 +439,9 @@ converted to UTF-8 if possible, or the original value intact if not</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Fri Nov  3 18:19:21 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.3.3).
 </div>
 
     </div>

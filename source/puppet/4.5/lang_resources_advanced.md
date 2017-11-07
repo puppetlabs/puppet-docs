@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Resources (advanced)"
-canonical: "/puppet/latest/reference/lang_resources_advanced.html"
+canonical: "/puppet/latest/lang_resources_advanced.html"
 ---
 
 

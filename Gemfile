@@ -19,6 +19,8 @@ group(:generate_references) do
   gem 'ronn'
   gem 'yard'
   gem 'rdoc'
+  gem 'puppet-strings', :git => 'https://github.com/puppetlabs/puppet-strings.git', :tag => '1.1.0'
+  gem 'puppet'
   gem 'nokogiri'
   gem 'pragmatic_segmenter'
   gem 'punkt-segmenter'

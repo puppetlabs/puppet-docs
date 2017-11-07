@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 4.4 System Requirements"
-canonical: "/puppet/latest/reference/system_requirements.html"
+canonical: "/puppet/latest/system_requirements.html"
 ---
 
 [pe-requirements]: {{pe}}/install_system_requirements.html#supported-operating-systems

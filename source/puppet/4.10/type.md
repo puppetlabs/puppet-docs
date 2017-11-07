@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
 
 ## About Resource Types
 
@@ -38,9 +38,9 @@ _title_ of the resource.
 Example:
 
     file { '/etc/passwd':
-      owner => root,
-      group => root,
-      mode  => 644
+      owner => 'root',
+      group => 'root',
+      mode  => '0644',
     }
 
 In this code, `/etc/passwd` is the _title_ of the file resource; other Puppet
@@ -755,17 +755,17 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-environment">environment</a> =&gt; <em># Any additional environment variables you want to </em>
   <a href="#exec-attribute-group">group</a>       =&gt; <em># The group to run the command as.  This seems to...</em>
   <a href="#exec-attribute-logoutput">logoutput</a>   =&gt; <em># Whether to log command output in addition to...</em>
-  <a href="#exec-attribute-onlyif">onlyif</a>      =&gt; <em># If this parameter is set, then this `exec` will...</em>
+  <a href="#exec-attribute-onlyif">onlyif</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-path">path</a>        =&gt; <em># The search path used for command execution...</em>
   <a href="#exec-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `exec...</em>
-  <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># How to refresh this command.  By default, the...</em>
+  <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># An alternate command to run when the `exec...</em>
   <a href="#exec-attribute-refreshonly">refreshonly</a> =&gt; <em># The command should only be run as a refresh...</em>
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
   <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between...</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
-  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># If this parameter is set, then this `exec` will...</em>
+  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  Note that if...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -844,28 +844,29 @@ Valid values are `true`, `false`, `on_failure`.
 
 <h4 id="exec-attribute-onlyif">onlyif</h4>
 
-If this parameter is set, then this `exec` will only run if
-the command has an exit code of 0.  For example:
+A test command that checks the state of the target system and restricts
+when the `exec` can run. If present, Puppet runs this test command
+first, and only runs the main command if the test has an exit code of 0
+(success). For example:
 
     exec { 'logrotate':
-      path   => '/usr/bin:/usr/sbin:/bin',
-      onlyif => 'test `du /var/log/messages | cut -f1` -gt 100000',
+      path     => '/usr/bin:/usr/sbin:/bin',
+      provider => shell,
+      onlyif   => 'test `du /var/log/messages | cut -f1` -gt 100000',
     }
 
-This would run `logrotate` only if that test returned true.
+This would run `logrotate` only if that test returns true.
 
-Note that this command follows the same rules as the main command,
-such as which user and group it's run as.
-This also means it must be fully qualified if the path is not set.
+Note that this test command runs with the same `provider`, `path`,
+`user`, and `group` as the main command. If the `path` isn't set, you
+must fully qualify the command's name.
 
-It also uses the same provider as the main command, so any behavior
-that differs by provider will match.
-
-Also note that onlyif can take an array as its value, e.g.:
+This parameter can also take an array of commands. For example:
 
     onlyif => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
-This will only run the exec if _all_ conditions in the array return true.
+This `exec` would only run if every command in the array has an
+exit code of 0 (success).
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -893,10 +894,14 @@ Available providers are:
 
 <h4 id="exec-attribute-refresh">refresh</h4>
 
-How to refresh this command.  By default, the exec is just
-called again when it receives an event from another resource,
-but this parameter allows you to define a different command
-for refreshing.
+An alternate command to run when the `exec` receives a refresh event
+from another resource. By default, Puppet runs the main command again.
+For more details, see the notes about refresh behavior above, in the
+description for this resource type.
+
+Note that this alternate command runs with the same `provider`, `path`,
+`user`, and `group` as the main command. If the `path` isn't set, you
+must fully qualify the command's name.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -987,8 +992,10 @@ Sets the umask to be used while executing this command
 
 <h4 id="exec-attribute-unless">unless</h4>
 
-If this parameter is set, then this `exec` will run unless
-the command has an exit code of 0.  For example:
+A test command that checks the state of the target system and restricts
+when the `exec` can run. If present, Puppet runs this test command
+first, then runs the main command unless the test has an exit code of 0
+(success). For example:
 
     exec { '/bin/echo root >> /usr/lib/cron/cron.allow':
       path   => '/usr/bin:/usr/sbin:/bin',
@@ -998,17 +1005,16 @@ the command has an exit code of 0.  For example:
 This would add `root` to the cron.allow file (on Solaris) unless
 `grep` determines it's already there.
 
-Note that this command follows the same rules as the main command,
-such as which user and group it's run as.
-This also means it must be fully qualified if the path is not set.
-It also uses the same provider as the main command, so any behavior
-that differs by provider will match.
+Note that this test command runs with the same `provider`, `path`,
+`user`, and `group` as the main command. If the `path` isn't set, you
+must fully qualify the command's name.
 
-Also note that unless can take an array as its value, e.g.:
+This parameter can also take an array of commands. For example:
 
     unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
-This will only run the exec if _all_ conditions in the array return false.
+This `exec` would only run if every command in the array has a
+non-zero exit code.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -1200,7 +1206,7 @@ path to another file as the ensure value, it is equivalent to specifying
 
 However, we recommend using `link` and `target` explicitly, since this
 behavior can be harder to read and is
-[deprecated](https://docs.puppetlabs.com/puppet/4.3/reference/deprecated_language.html)
+[deprecated](https://docs.puppetlabs.com/puppet/4.3/deprecated_language.html)
 as of Puppet 4.3.0.
 
 Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
@@ -1294,8 +1300,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](https://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
-or [file](https://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
+[template](https://docs.puppetlabs.com/puppet/latest/function.html#template)
+or [file](https://docs.puppetlabs.com/puppet/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -1366,6 +1372,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The desired permissions mode for the file, in symbolic or numeric
 notation. This value **must** be specified as a string; do not use
 un-quoted numbers to represent file modes.
+
+If the mode is omitted (or explicitly set to `undef`), Puppet does not
+enforce permissions on existing files and creates new files with
+permissions of `0644`.
 
 The `file` type uses traditional Unix permission schemes and translates
 them to equivalent permissions for systems which represent permissions
@@ -1853,7 +1863,7 @@ Filebuckets are used for the following features:
   puppet master's filebucket with the _desired_ content for each file,
   then instructs the agent to retrieve the content for a specific
   checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/puppet/latest/reference/indirection.html#catalog).
+  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/puppet/latest/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -6996,8 +7006,8 @@ resource will autorequire those files.
 <h3 id="package-attributes">Attributes</h3>
 
 <pre><code>package { 'resource title':
-  <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
+  <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-ensure">ensure</a>               =&gt; <em># What state the package should be in. On...</em>
   <a href="#package-attribute-adminfile">adminfile</a>            =&gt; <em># A file containing package defaults for...</em>
   <a href="#package-attribute-allow_virtual">allow_virtual</a>        =&gt; <em># Specifies if virtual package names are allowed...</em>
@@ -7019,6 +7029,42 @@ resource will autorequire those files.
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
+
+<h4 id="package-attribute-name">name</h4>
+
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The package name.  This is the name that the packaging
+system uses internally, which is sometimes (especially on Solaris)
+a name that is basically useless to humans.  If a package goes by
+several names, you can use a single title and then set the name
+conditionally:
+
+    # In the 'openssl' class
+    $ssl = $operatingsystem ? {
+      solaris => SMCossl,
+      default => openssl
+    }
+
+    package { 'openssl':
+      ensure => installed,
+      name   => $ssl,
+    }
+
+    . etc. .
+
+    $ssh = $operatingsystem ? {
+      solaris => SMCossh,
+      default => openssh
+    }
+
+    package { 'openssh':
+      ensure  => installed,
+      name    => $ssh,
+      require => Package['openssl'],
+    }
+
+([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-provider">provider</h4>
 
@@ -7069,42 +7115,6 @@ Available providers are:
 * [`windows`](#package-provider-windows)
 * [`yum`](#package-provider-yum)
 * [`zypper`](#package-provider-zypper)
-
-([↑ Back to package attributes](#package-attributes))
-
-<h4 id="package-attribute-name">name</h4>
-
-_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
-
-The package name.  This is the name that the packaging
-system uses internally, which is sometimes (especially on Solaris)
-a name that is basically useless to humans.  If a package goes by
-several names, you can use a single title and then set the name
-conditionally:
-
-    # In the 'openssl' class
-    $ssl = $operatingsystem ? {
-      solaris => SMCossl,
-      default => openssl
-    }
-
-    package { 'openssl':
-      ensure => installed,
-      name   => $ssl,
-    }
-
-    . etc. .
-
-    $ssh = $operatingsystem ? {
-      solaris => SMCossh,
-      default => openssh
-    }
-
-    package { 'openssh':
-      ensure  => installed,
-      name    => $ssh,
-      require => Package['openssl'],
-    }
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -8480,7 +8490,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
+[`schedule`](https://docs.puppetlabs.com/puppet/latest/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -8791,8 +8801,7 @@ A trigger can contain the following keys:
     * `months` --- Which months the task should run, as an array. Defaults to
       all months. Each month must be an integer between 1 and 12.
     * `on` **(Required)** --- Which days of the month the task should run,
-      as an array. Each day must be either an integer between 1 and 31,
-      or the special value `last,` which is always the last day of the month.
+      as an array. Each day must be an integer between 1 and 31.
 * For `monthly` (by weekday) triggers:
     * `months` --- Which months the task should run, as an array. Defaults to
       all months. Each month must be an integer between 1 and 12.
@@ -8801,19 +8810,19 @@ A trigger can contain the following keys:
       `tues`, `wed`, `thurs`, `fri`, `sat`, `sun`, or `all`.
     * `which_occurrence` **(Required)** --- The occurrence of the chosen weekday
       when the task should run. Must be one of `first`, `second`, `third`,
-      `fourth`, `fifth`, or `last`.
+      `fourth`, or `fifth`.
 
 
 Examples:
 
-    # Run at 8am on the 1st, 15th, and last day of the month in January, March,
+    # Run at 8am on the 1st and 15th days of the month in January, March,
     # May, July, September, and November, starting after August 31st, 2011.
     trigger => {
       schedule   => monthly,
       start_date => '2011-08-31',   # Defaults to current date
       start_time => '08:00',        # Must be specified
       months     => [1,3,5,7,9,11], # Defaults to all
-      on         => [1, 15, last],  # Must be specified
+      on         => [1, 15],        # Must be specified
     }
 
     # Run at 8am on the first Monday of the month for January, March, and May,
@@ -10063,7 +10072,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
+[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -12354,4 +12363,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700

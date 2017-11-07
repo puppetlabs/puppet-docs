@@ -1,7 +1,7 @@
 ---
 title: "Language: Lambdas (Code Blocks)"
 layout: default
-canonical: "/puppet/latest/reference/lang_lambdas.html"
+canonical: "/puppet/latest/lang_lambdas.html"
 ---
 
 [define_unique]: ./lang_defined_types.html#resource-uniqueness

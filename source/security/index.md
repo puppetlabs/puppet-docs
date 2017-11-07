@@ -8,6 +8,18 @@ This page contains information about security fixes from both Puppet and third-p
 
 ## Internal security announcements
 
+- [CVE-2017-2299 - Possible TLS trust misconfiguration in puppetlabs-apache](https://puppet.com/security/cve/CVE-2017-2299)
+
+   Resolved in puppetlabs-apache 1.11.1 and 2.1.0.
+
+- [CVE-2017-2298 - mcollective-sshkey-security missing input sanitization](https://puppet.com/security/cve/cve-2017-2298)
+
+   Resolved in mcollective-sshkey-security 0.5.1
+
+- [CVE-2017-2296 - RBAC and Classifier errors caused by specially crafted strings](https://puppet.com/security/cve/cve-2017-2296)
+
+   Resolved in Puppet Enterprise 2017.2.2
+
 - [CVE-2017-2292 - MCollective Remote Code Execution Via YAML Deserialization](https://puppet.com/security/cve/cve-2017-2292)
 
    Resolved in Puppet agent 1.10.1, Puppet Enterprise 2017.2.1, and Puppet Enterprise 2016.4.5
@@ -297,6 +309,31 @@ This page contains information about security fixes from both Puppet and third-p
    Resolved in Puppet 0.25.2
 
 ## Third-party security announcements
+
+
+- [CVE-2017-7555 - Memory Corruption Vulnerability in augeas](https://puppet.com/security/cve/cve-2017-7555)
+  
+   Resolved in Puppet agent 1.10.7
+
+- [PostgreSQL August 2017 Security Fixes](https://puppet.com/security/cve/postgresql-aug-2017-security-fixes)
+
+   Puppet Enterprise 2017.2.4, Puppet Enterprise 2016.4.8
+
+- [CVE-2017-7529 - Integer overflow in nginx](https://puppet.com/security/cve/cve-2017-7529)
+
+   Resolved in Puppet Enterprise 2017.2.3 and Puppet Enterprise 2016.4.7
+   
+- [Oracle Java July 2017 Security Fixes](https://puppet.com/security/cve/oracle-java-jul-2017-security-fixes)
+
+   Resolved in Puppet Enterprise 2017.2.3 and Puppet Enterprise 2016.4.7
+
+- [PostgreSQL 2017-05-11 update](https://puppet.com/security/cve/postgresql-may-2017-security-fixes)
+
+   Resolved in Puppet Enterprise 2017.2.2 and Puppet Enterprise 2016.4.6
+   
+- [libxslt updates](https://puppet.com/security/cve/libxslt-may-2017-security-fixes)
+
+   Resolved in Puppet agent 1.10.2  
 
 - [OpenSSL January 2017 Security Fixes](https://puppet.com/security/cve/openssl-jan-2017-security-fixes)
 

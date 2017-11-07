@@ -6,7 +6,7 @@
 <title>
   File: http_file_metadata
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -74,8 +74,8 @@ the following three types:</p>
 <p>The endpoint path includes a <code>:mount</code> which can be one of the following types:</p>
 
 <ul>
-<li>Custom file serving mounts as specified in fileserver.conf --- see <a href="https://docs.puppet.com/puppet/latest/reference/file_serving.html">the docs on configuring mount points</a>.</li>
-<li><code>modules/&lt;MODULE&gt;</code> --- a semi-magical mount point which allows access to the <code>files</code> subdirectory of <code>&lt;MODULE&gt;</code> --- see <a href="https://docs.puppet.com/puppet/latest/reference/file_serving.html">the docs on file serving</a>.</li>
+<li>Custom file serving mounts as specified in fileserver.conf --- see <a href="https://docs.puppet.com/puppet/latest/file_serving.html">the docs on configuring mount points</a>.</li>
+<li><code>modules/&lt;MODULE&gt;</code> --- a semi-magical mount point which allows access to the <code>files</code> subdirectory of <code>&lt;MODULE&gt;</code> --- see <a href="https://docs.puppet.com/puppet/latest/file_serving.html">the docs on file serving</a>.</li>
 <li><code>plugins</code> --- a highly magical mount point which merges the <code>lib</code>  directory of every module together. Used for syncing plugins; not intended for general consumption. Per-module sub-paths can not be specified.</li>
 <li><code>pluginfacts</code> --- a highly magical mount point which merges the <code>facts.d</code> directory of every module together. Used for syncing external facts; not intended for general consumption. Per-module sub-paths can not be specified.</li>
 </ul>
@@ -446,9 +446,9 @@ Content-Type: text/pson
 </div></div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Fri Nov  3 18:19:21 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.3.3).
 </div>
 
     </div>

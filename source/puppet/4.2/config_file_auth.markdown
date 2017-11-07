@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Config Files: auth.conf"
-canonical: "/puppet/latest/reference/config_file_auth.html"
+canonical: "/puppet/latest/config_file_auth.html"
 ---
 
 [rest_authconfig]: ./configuration.html#restauthconfig

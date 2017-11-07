@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: 'Puppet HTTP API: Resource Type'
 canonical: "/puppet/latest/http_api/http_resource_type.html"
 ---
@@ -9,7 +9,7 @@ Resource Type
 =============
 
 > **Deprecation note:** This endpoint was
-[deprecated](https://docs.puppet.com/puppet/4.5/reference/deprecated_api.html) in Puppet
+[deprecated](https://docs.puppet.com/puppet/4.5/deprecated_api.html) in Puppet
 4.5.0 in favor of the
 [`environment_classes`](https://docs.puppet.com/puppetserver/2.5/puppet-api/v3/environment_classes.html)
 endpoint provided by Puppet Server 2.3.0 and later.

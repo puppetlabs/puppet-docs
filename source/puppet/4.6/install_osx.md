@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Installing Puppet agent: OS X"
-canonical: "/puppet/latest/reference/install_osx.html"
+canonical: "/puppet/latest/install_osx.html"
 ---
 
 [server_install]: {{puppetserver}}/install_from_packages.html

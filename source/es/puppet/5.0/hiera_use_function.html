@@ -1,0 +1,184 @@
+---
+title: "Hiera: Uso de la función de búsqueda"
+---
+
+<div>
+
+
+
+<p> La función <code>lookup</code> utiliza Hiera para recuperar un valor para una clave determinada. Por defecto,
+Esto devuelve el primer valor encontrado (y falla la compilación si no hay valores
+disponibles), pero puede configurarlo para combinar varios valores en uno, mostrar errores
+y más.
+</p>
+
+<p> Al buscar una llave, Hiera busca hasta tres niveles de datos, en el
+siguiente orden:
+</p>
+
+<ol>
+<li>Hiera.</li>
+  <li>El proveedor de datos de entorno actual.</li>
+  <li>El proveedor de datos del módulo indicado, si la clave es del formulario
+<code>&lt;MODULE NAME&gt;::&lt;SOMETHING&gt;</code>.</li>
+</ol>
+<blockquote>
+  <p> <strong>Nota</strong>: Hiera siempre comprueba la <a href="./hiera_layers.html#the-global-layer">capa global</a> antes de la <a href="./hiera_layers.html#the-environment-layer">capa environment</a>. Si no se ha configurado ningún archivo hiera.yaml global, se utilizan los valores predeterminados de Hiera. Si no desea que utilice los valores predeterminados, puede crear un hiera.yaml vacío en <code>/etc/puppetlabs/puppet/data/</code>.
+</p>
+</blockquote>
+
+<h2 id="arguments">Argumentos</h2>
+
+<p> Debe proporcionar el nombre de una clave para buscar y, opcionalmente, puede proporcionar otros
+argumentos. Puede combinar estos argumentos de las siguientes maneras:
+</p>
+
+<ul>
+<li><code>lookup( &lt;NAME&gt;, [&lt;VALUE TYPE&gt;], [&lt;MERGE BEHAVIOR&gt;], [&lt;DEFAULT VALUE&gt;] )</code></li>
+  <li><code>lookup( [&lt;NAME&gt;], &lt;OPTIONS HASH&gt; )</code></li>
+  <li><code>lookup( como anteriormente) |$key| { # Lambda devuelve un valor predeterminado }</code></li>
+</ul>
+<p> Argumentos en <code>[square brackets]</code> son opcionales.
+</p>
+
+<p> Los argumentos aceptados por <code>lookup</code> son como siguen:
+</p>
+
+<ol>
+<li>
+<code>&lt;NAME&gt;</code> (string o array) — El nombre de la clave para buscar.<ul>
+<li>Esto también puede ser una matriz de claves. Si Hiera no encuentra nada para la
+primera clave, intentará de nuevo con las siguientes, recurriendo sólo a un
+ valor predeterminado si ninguno de ellos tiene éxito.</li>
+    </ul>
+</li>
+  <li>
+<code>&lt;VALUE TYPE&gt;</code> (data type) — A
+<a href="/puppet/5.0/lang_data_type.html">data type</a>
+que debe coincidir con el valor recuperado. Si no, la búsqueda (y el catálogo 
+de compilación) fallara. Por defecto <code>Data</code> (acepta cualquier valor normal).
+</li>
+  <li>
+<code>&lt;MERGE BEHAVIOR&gt;</code> (cadena o hash. Consulte <strong>“Comportamientos combinados”</strong> abajo) —
+Si (y cómo) combinar varios valores. Si está presente, esto anula cualquier
+fusión especificada en las fuentes de datos. Valor predeterminado sin valor, Hiera 
+fusionará las fuentes de datos si están presentes, y de otro modo hará una
+lookup.</li>
+  <li>
+<code>&lt;DEFAULT VALUE&gt;</code> (cualquier valor normal) — Si esta presente, <code>lookup</code> devuelve esto
+cuando no puede encontrar un valor normal. Los valores predeterminados nunca se combinan con los valores encontrados.
+Al igual que un valor normal, el valor predeterminado debe coincidir con el tipo de valor. Por defecto
+sin valor. Si Hiera no puede encontrar un valor normal, lookup (y la compilación) fallará.</li>
+  <li>
+<code>&lt;OPTIONS HASH&gt;</code> (hash) — Alternativa para establecer los argumentos anteriores, más algunas opciones extra menos comunes. Si pasa un hash de opciones, no puede combinarlo
+con cualquier argumento regular (excepto <code>&lt;NAME&gt;</code>). Un hash de opciones puede tener las
+siguientes claves:<ul>
+<li>
+<code>'name'</code> — Igual que <code>&lt;NAME&gt;</code> (argumento 1). Puede pasar esto como un
+ argumento o en el hash, pero no ambos.</li>
+      <li>
+<code>'value_type'</code> — Igual que <code>&lt;VALUE TYPE&gt;</code> (argumento 2).</li>
+      <li>
+<code>'merge'</code> — Igual que <code>&lt;MERGE BEHAVIOR&gt;</code> (argumento 3).</li>
+      <li>
+<code>'default_value'</code> — Igual que <code>&lt;DEFAULT VALUE&gt;</code> (argumento 4).</li>
+      <li>
+<code>'default_values_hash'</code> (hash) — Un hash de las claves de búsqueda y el valor predeterminado.
+ Si Hiera no puede encontrar un valor normal, comprobará este hash para la
+ clave solicitada antes de darse por vencido. Puedes combinar esto con<code>default_value</code> o
+ un lambda, que se utilizará si la clave no está presente en este hash. Por defecto
+ a un hash vacio.</li>
+      <li>
+<code>'override'</code> (hash) — Un hash de las claves de búsqueda y valores de anulación. Puppet
+ comprobará la clave solicitada en el hash del override <em>primero.</em> Si lo encuentra, 
+ devolverá el valor <em>final</em> como valor, ignorando la fusión. Por defecto
+ un hash vacío.</li>
+    </ul>
+</li>
+</ol>
+<p> Finalmente, <code>lookup</code> puede seleccionar un lambda, que debe aceptar un solo parámetro. Esta es otra forma de establecer un valor predeterminado para la búsqueda. Si no hay resultados,
+ Puppet pasará la clave solicitada a la lambda y utiliza el resultado como
+el valor por defecto.
+</p>
+
+<h2 id="merge-behaviors">Comportamientos del merge</h2>
+
+<p> Hiera utiliza una jerarquía de fuentes de datos, y una clave determinada puede tener
+valores en múltiples fuentes. Por defecto, Hiera devuelve el primer valor que encuentra,
+pero también puede continuar buscando y fusionando todos los valores juntos.
+</p>
+
+<blockquote>
+  <p> <strong>Nota:</strong> Las fuentes de datos pueden la clave de metadata <code>lookup_options</code> 
+solicita un comportamiento de fusión específico para una clave. La función <code>lookup</code> usará 
+comportamiento solicitado a menos que especifique explícitamente uno.
+</p>
+</blockquote>
+
+<p> Los comportamientos de fusión válidos son:
+</p>
+
+<ul>
+<li>
+<code>'first'</code> — Devuelve el primer valor encontrado, sin fusión.
+Comportamiento por defecto de Hiera.</li>
+  <li>
+<code>'unique'</code> (denominado “array merge” en el Hiera clásico) — Combina cualquier número de
+arrays y valores escalar para devolver un array fusionada con todos los valores duplicados
+eliminados. La búsqueda fallará si se encuentran valores de hash.</li>
+  <li>
+<code>'hash'</code> — Combina las claves y los valores de cualquier número de hashes para devolver un
+hash fusionado. Si la misma clave existe en varios hashes de origen, Hiera usará
+el valor de la fuente de datos de mayor prioridad. No se fusionará recursivamente los
+valores.</li>
+  <li>
+<code>'deep'</code> — Combina las claves y los valores de cualquier número de hashes para devolver un
+hash fusionado. Si existe la misma clave en varios hashes de origen, Hiera
+combinará recursivamente los valores hash o array (con valores duplicados eliminados de
+arrays). Para conflictos de valores escalares, el valor de mayor prioridad ganará.</li>
+  <li>
+<code>{'strategy' =&gt; 'first|unique|hash'}</code> — Lo mismo que las versiones de cuerdas de estos
+comportamientos de fusión.</li>
+  <li>
+<code>{'strategy' =&gt; 'deep', &lt;DEEP OPTION&gt; =&gt; &lt;VALUE&gt;, ...}</code> — Igual que <code>'deep'</code>,
+Pero puede ajustar la combinación con opciones adicionales. Las opciones disponibles son:<ul>
+<li>
+<code>'knockout_prefix'</code> (string o undef) —  Una cadena prefix para indicar un
+  valor debería <em>eliminar</em> desde el resultado final. Por defecto <code>undef</code>, que
+  desactiva esta función.</li>
+      <li>
+<code>'sort_merged_arrays'</code> (boleano) — Ya sea para ordenar todas los arrays que son
+  fusionados juntos. Por defecto, <code>false</code>.</li>
+      <li>
+<code>'merge_hash_arrays'</code> (boleano) — Ya sea para combinar hashes dentro de arrays.
+  Por defecto, <code>false</code>.</li>
+    </ul>
+</li>
+</ul>
+<h2 id="examples">Ejemplos</h2>
+
+<p> Busque una clave y devuelva el primer valor encontrado:
+</p>
+
+<pre><code>lookup('ntp::service_name')
+</code></pre>
+
+<p> Realice una búsqueda de combinación de nombres de clase única y, a continuación, agregue todas esas clases a la clase
+catálogo (como <code>hiera_include</code>):
+</p>
+
+<pre><code>lookup('classes', Array[String], 'unique').include
+</code></pre>
+
+<p> Realice una búsqueda profunda de combinaciones hash de datos de usuario, pero deje que las fuentes de mayor prioridad
+eliminen los valores prefijándolos con <code>--</code>:
+</p>
+
+<pre><code>lookup( { 'name'  =&gt; 'users',
+          'merge' =&gt; {
+            'strategy'        =&gt; 'deep',
+            'knockout_prefix' =&gt; '--',
+          },
+})
+</code></pre>
+</div>

@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Adapters::LoaderAdapter
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -146,30 +146,6 @@ object is adapted with the correct loader.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#find_file-class_method" title="find_file (class method)">.<strong>find_file</strong>(instance)  &#x21d2; Object </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-  <span class="private note title">private</span>
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        
-<li class="public ">
-  <span class="summary_signature">
-    
       <a href="#find_module_for_dir-class_method" title="find_module_for_dir (class method)">.<strong>find_module_for_dir</strong>(environment, paths, dir)  &#x21d2; Object </a>
     
 
@@ -194,7 +170,7 @@ object is adapted with the correct loader.</p>
 <li class="public ">
   <span class="summary_signature">
     
-      <a href="#loader_name_by_source-class_method" title="loader_name_by_source (class method)">.<strong>loader_name_by_source</strong>(environment, instance, file)  &#x21d2; Object </a>
+      <a href="#loader_name_by_source-class_method" title="loader_name_by_source (class method)">.<strong>loader_name_by_source</strong>(environment, instance, file)  &#x21d2; String </a>
     
 
     
@@ -231,52 +207,7 @@ object is adapted with the correct loader.</p>
 
     
       <div class="method_details first">
-  <h3 class="signature first" id="find_file-class_method">
-  
-    .<strong>find_file</strong>(instance)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    <p class="note private">
-  <strong>This method is part of a private API.</strong>
-  You should avoid using this method if possible, as it may be removed or be changed in the future.
-</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-186
-187
-188
-189</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 186</span>
-
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_file'>find_file</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_source_pos'>source_pos</span> <span class='op'>=</span> <span class='const'>Utils</span><span class='period'>.</span><span class='id identifier rubyid_find_closest_positioned'>find_closest_positioned</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_source_pos'>source_pos</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_source_pos'>source_pos</span><span class='period'>.</span><span class='id identifier rubyid_locator'>locator</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="find_module_for_dir-class_method">
+  <h3 class="signature first" id="find_module_for_dir-class_method">
   
     .<strong>find_module_for_dir</strong>(environment, paths, dir)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
   
@@ -303,26 +234,26 @@ object is adapted with the correct loader.</p>
       <pre class="lines">
 
 
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183</pre>
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 167</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 119</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_find_module_for_dir'>find_module_for_dir</span><span class='lparen'>(</span><span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='id identifier rubyid_paths'>paths</span><span class='comma'>,</span> <span class='id identifier rubyid_dir'>dir</span><span class='rparen'>)</span>
   <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_dir'>dir</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -349,7 +280,7 @@ object is adapted with the correct loader.</p>
       <div class="method_details ">
   <h3 class="signature " id="loader_name_by_source-class_method">
   
-    .<strong>loader_name_by_source</strong>(environment, instance, file)  &#x21d2; <tt><span class='object_link'>Object</span></tt> &nbsp;<span class="private note title">private</span>
+    .<strong>loader_name_by_source</strong>(environment, instance, file)  &#x21d2; <tt>String</tt> &nbsp;<span class="private note title">private</span>
   
 
   
@@ -378,12 +309,16 @@ will then be adapted to the private loader for that module and that adapter is r
   
     <li>
       
-        <span class='name'>scope</span>
+        <span class='name'>environment</span>
       
       
-        <span class='type'></span>
+        <span class='type'>(<tt><span class='object_link'>Puppet::Node::Environment</span></tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>the current environment</p>
+</div>
       
     </li>
   
@@ -392,14 +327,50 @@ will then be adapted to the private loader for that module and that adapter is r
         <span class='name'>instance</span>
       
       
-        <span class='type'></span>
+        <span class='type'>(<tt><span class='object_link'>Model::PopsObject</span></tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>the AST for the code</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>file</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the path to the file for the code or <code>nil</code></p>
+</div>
       
     </li>
   
 </ul>
 
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the name of the loader associated with the source</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -407,27 +378,27 @@ will then be adapted to the private loader for that module and that adapter is r
       <pre class="lines">
 
 
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164</pre>
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/adapters.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_loader_name_by_source'>loader_name_by_source</span><span class='lparen'>(</span><span class='id identifier rubyid_environment'>environment</span><span class='comma'>,</span> <span class='id identifier rubyid_instance'>instance</span><span class='comma'>,</span> <span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='id identifier rubyid_find_file'>find_file</span><span class='lparen'>(</span><span class='id identifier rubyid_instance'>instance</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_file'>file</span> <span class='op'>=</span> <span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_file'>file</span> <span class='kw'>if</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_file'>file</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='const'>EMPTY_STRING</span> <span class='op'>==</span> <span class='id identifier rubyid_file'>file</span>
   <span class='id identifier rubyid_pn_adapter'>pn_adapter</span> <span class='op'>=</span> <span class='const'>PathsAndNameCacheAdapter</span><span class='period'>.</span><span class='id identifier rubyid_adapt'>adapt</span><span class='lparen'>(</span><span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='op'>|</span>
     <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_paths'>paths</span> <span class='op'>||=</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_modulepath'>modulepath</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_p'>p</span><span class='op'>|</span> <span class='const'>Pathname</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_p'>p</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
     <span class='id identifier rubyid_a'>a</span><span class='period'>.</span><span class='id identifier rubyid_cache'>cache</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -449,9 +420,9 @@ will then be adapted to the private loader for that module and that adapter is r
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:19 2017 by
+  Generated on Tue Jun 27 17:24:12 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

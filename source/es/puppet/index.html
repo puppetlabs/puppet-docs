@@ -1,10 +1,10 @@
 ---
-layout: default
-title: Índice de documentación de Puppet
-toc: false
+title: "Índice de documentación de Puppet"
 ---
 
 <div>
+
+
 <p> Esta es la documentación para Puppet, así como varias herramientas y aplicaciones relacionadas.
 </p>
 
@@ -25,7 +25,7 @@ toc: false
 <tbody>
 <tr>
 <td>Puppet</td>
-      <td><a href="./4.10/index.html">Última versión</a></td>
+      <td><a href="./5.3/index.html">Última versión</a></td>
       <td><a href="#puppet-reference-manuals">Versiones anteriores</a></td>
     </tr>
 <tr>
@@ -40,7 +40,7 @@ toc: false
     </tr>
 <tr>
 <td>Hiera</td>
-      <td><a href="/hiera/latest">Última versión</a></td>
+      <td><a href="./5.3/hiera_intro.html">Latest</a></td>
       <td><a href="/hiera">Versiones anteriores</a></td>
     </tr>
 <tr>
@@ -70,10 +70,23 @@ toc: false
 </p>
 
 <ul>
+<li><a href="./5.3/index.html">Puppet 5.3</a></li>
+
+
+<li><a href="/puppet/5.2/index.html">Puppet 5.2</a></li>
+
+
+<li><a href="/puppet/5.1/index.html">Puppet 5.1</a></li>
+
+
+<li><a href="./5.0/index.html">Puppet 5.0</a></li>
+
+
 <li>
 <a href="./4.10/index.html">Puppet 4.10</a>
 
-(Última versión)</li>
+
+(Incluido en Puppet Enterprise 2017.2)</li>
 
 
 <li>
@@ -91,11 +104,7 @@ toc: false
 (Incluido en Puppet Enterprise 2016.5)</li>
 
 
-<li>
-<a href="/puppet/4.7">Puppet 4.7</a>
-
-
-(Incluido en  Puppet Enterprise 2016.4)</li>
+<li><a href="/puppet/4.7">Puppet 4.7</a></li>
 
 
 <li><a href="/puppet/4.6">Puppet 4.6</a></li>
@@ -204,9 +213,9 @@ toc: false
 
 <ul>
 <li><a href="/puppet/latest/architecture.html">Resumen de la arquitectura Puppet</a></li>
-  <li><a href="./4.10/install_linux.html">Cómo instalar Puppet 4 en Linux</a></li>
-  <li><a href="/puppet/latest/install_windows.html">Como instalar Puppet 4 en Windows</a></li>
-  <li>Cómo actualizar Puppet de 3.x a 4.x<ul>
+  <li><a href="./5.3/install_linux.html">Instalación Puppet agent: Linux</a></li>
+  <li><a href="/puppet/latest/install_windows.html">Como instalar Puppet 5 en Windows</a></li>
+  <li>Cómo actualizar desde Puppet 3<ul>
 <li><a href="/puppet/latest/upgrade_agent.html">Cómo actualizar Puppet 3.x Agents</a></li>
       <li><a href="/puppet/latest/upgrade_server.html">Cómo actualizar Puppet 3.x Servers</a></li>
     </ul>
@@ -215,7 +224,7 @@ toc: false
 <h3 id="previous-install-guides">Guías de instalación anteriores</h3>
 
 <ul>
-<li><a href="puppet/3.8/pre_install.html">Guía de instalación de Puppet 3.8</a></li>
+<li><a href="/puppet/3.8/pre_install.html">Guía de instalación de Puppet 3.8</a></li>
 </ul>
 <h3 id="building-and-using-modules">Cómo construir y usar "modules"</h3>
 
@@ -225,7 +234,8 @@ toc: false
   <li>
 <a href="/puppet/latest/modules_installing.html">Cómo instalar "modules" desde Puppet Forge</a> — Ahorra tiempo utilizando "modules" programados .</li>
   <li>
-<a href="/puppet/latest/modules_publishing.html">Cómo publicar "Modules" en Puppet Forge</a> — Como presentar tus mejores "modules" al público.</li>
+<a href="/puppet/latest/modules_publishing.html">Cómo publicar "Modules" en Puppet Forge</a> — como presentar tus mejores "modules" al público.</li>
+  <li><a href="/pdk/latest/pdk.html">Desarrollar módulos con el Kit de desarrollo de Puppet</a></li>
 </ul>
 <h3 id="help-with-writing-puppet-code">Ayuda para escribir código Puppet</h3>
 
@@ -241,11 +251,11 @@ toc: false
 </ul>
 <h3 id="puppet-on-windows">Puppet sobre Windows</h3>
 
-<p> Puedes utilizar nodos Windows junto con tu infraestrucutura *nix con Puppet 2.7 o superior (incluyendo Puppet Enterprise  ≥ 2.5).
+<p> Con un Puppet master basado en * nix, puede administrar los nodos de Windows con su infraestructura * nix o ejecutar Puppet masterless en Windows.
 </p>
 
 <ul>
-<li><a href="/puppet/latest/install_windows.html">Como instalar Puppet 4 en Windows</a></li>
+<li><a href="/puppet/latest/install_windows.html">Como instalar Puppet 5 en Windows</a></li>
   <li><a href="/pe/latest/windows_basic_tasks.html">Tareas básicas y conceptos en Windows</a></li>
   <li><a href="/pe/latest/troubleshooting_windows.html">Diagnóstico de errores de Puppet en Windows</a></li>
 </ul>
@@ -279,7 +289,7 @@ toc: false
   <li><a href="/guides/custom_functions.html">Cómo escribir Functions personalizadas</a></li>
   <li><a href="/guides/custom_types.html">Cómo escribir Types &amp; Providers personalizados</a></li>
   <li>
-<a href="/puppet/latest/complete_resource_example.html">Ejemplo completo de Recursos</a> — Más información en types &amp; providers personalizados</li>
+<a href="/guides/complete_resource_example.html">Ejemplo completo de Recursos</a> — Más información en types &amp; providers personalizados</li>
   <li>
 <a href="/guides/provider_development.html">Desarrollo de Provider</a> — Más sobre providers.</li>
 </ul>
@@ -287,6 +297,6 @@ toc: false
 <h2 id="other-resources">Otras fuentes de información</h2>
 
 <ul>
-<li><a href="https://tickets.puppetlabs.com/browse/PUP">Puppet Bug Tracker</a></li>
+<li><a href="https://tickets.puppetlabs.com/browse/PUP">Puppet project seguimiento de ticket</a></li>
 </ul>
 </div>

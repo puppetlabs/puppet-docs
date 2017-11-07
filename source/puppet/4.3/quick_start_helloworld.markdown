@@ -30,9 +30,9 @@ Modules are directory trees. For this task, you'll create the following structur
       - `init.pp` (manifest file that contains the `helloworld` class)
       - `motd.pp` (manifest file that contains a file resource that ensures the creation of the motd)
 
-Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](https://docs.puppetlabs.com/puppet/latest/reference/lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `helloworld`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>`, or in this case, `helloworld::motd`.
+Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](https://docs.puppetlabs.com/puppet/latest/lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `helloworld`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>`, or in this case, `helloworld::motd`.
 
-* For more on how modules work, see [Module Fundamentals](/puppet/3.8/reference/modules_fundamentals.html) in the Puppet documentation.
+* For more on how modules work, see [Module Fundamentals](/puppet/3.8/modules_fundamentals.html) in the Puppet documentation.
 * For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
 * For a more detailed guided tour, also see [the module chapters of Learning Puppet](/learning/modules1.html).
 

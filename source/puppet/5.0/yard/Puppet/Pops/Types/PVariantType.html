@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PVariantType
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -90,11 +90,6 @@
   
   
   
-  
-  <dl>
-      <dt>Includes:</dt>
-      <dd>Enumerable</dd>
-  </dl>
   
   
 
@@ -324,6 +319,11 @@
   
   
   
+  
+  
+  
+  
+  
   <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PAnyType.html" title="Puppet::Pops::Types::PAnyType (class)">PAnyType</a></span></h3>
   <p class="inherited"><span class='object_link'><a href="PAnyType.html#alter_type_array-instance_method" title="Puppet::Pops::Types::PAnyType#alter_type_array (method)">#alter_type_array</a></span>, <span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">#assignable?</a></span>, <span class='object_link'><a href="PAnyType.html#callable_args%3F-instance_method" title="Puppet::Pops::Types::PAnyType#callable_args? (method)">#callable_args?</a></span>, <span class='object_link'><a href="PAnyType.html#check_self_recursion-instance_method" title="Puppet::Pops::Types::PAnyType#check_self_recursion (method)">#check_self_recursion</a></span>, <span class='object_link'><a href="PAnyType.html#iterable_type-instance_method" title="Puppet::Pops::Types::PAnyType#iterable_type (method)">#iterable_type</a></span>, <span class='object_link'><a href="PAnyType.html#name-instance_method" title="Puppet::Pops::Types::PAnyType#name (method)">#name</a></span>, <span class='object_link'><a href="PAnyType.html#resolve-instance_method" title="Puppet::Pops::Types::PAnyType#resolve (method)">#resolve</a></span>, <span class='object_link'><a href="PAnyType.html#tuple_entry_at-instance_method" title="Puppet::Pops::Types::PAnyType#tuple_entry_at (method)">#tuple_entry_at</a></span></p>
 
@@ -419,13 +419,13 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2670
-2671
-2672
-2673</pre>
+2675
+2676
+2677
+2678</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2670</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2675</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_maybe_create'>maybe_create</span><span class='lparen'>(</span><span class='id identifier rubyid_types'>types</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_types'>types</span> <span class='op'>=</span> <span class='id identifier rubyid_flatten_variants'>flatten_variants</span><span class='lparen'>(</span><span class='id identifier rubyid_types'>types</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -483,7 +483,6 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
-2793
 2794
 2795
 2796
@@ -500,23 +499,18 @@ that type is instead returned.</p>
 2807
 2808
 2809
-2810
-2811
-2812</pre>
+2810</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2793</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2794</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-  <span class='comment'># Data is a specific variant
-</span>  <span class='id identifier rubyid_o'>o</span> <span class='op'>=</span> <span class='const'>DATA</span> <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></span><span class='rparen'>)</span>
     <span class='comment'># A variant is assignable if all of its options are assignable to one of this type&#39;s options
 </span>    <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='kw'>self</span> <span class='op'>==</span> <span class='id identifier rubyid_o'>o</span>
     <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_other'>other</span><span class='op'>|</span>
       <span class='comment'># if the other is a Variant, all of its options, but be assignable to one of this type&#39;s options
-</span>      <span class='id identifier rubyid_other'>other</span> <span class='op'>=</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PDataType.html" title="Puppet::Pops::Types::PDataType (class)">PDataType</a></span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='const'>DATA</span> <span class='op'>:</span> <span class='id identifier rubyid_other'>other</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></span><span class='rparen'>)</span>
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_other'>other</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PVariantType (class)">PVariantType</a></span></span><span class='rparen'>)</span>
         <span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
       <span class='kw'>else</span>
         <span class='id identifier rubyid_types'>types</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_option_t'>option_t</span><span class='op'>|</span> <span class='id identifier rubyid_option_t'>option_t</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'>assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_other'>other</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
@@ -560,6 +554,8 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
+2827
+2828
 2829
 2830
 2831
@@ -569,12 +565,10 @@ that type is instead returned.</p>
 2835
 2836
 2837
-2838
-2839
-2840</pre>
+2838</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2829</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2827</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_enums'>merge_enums</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -621,17 +615,17 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
+2855
+2856
 2857
 2858
 2859
 2860
 2861
-2862
-2863
-2864</pre>
+2862</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2857</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2855</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_numbers'>merge_numbers</span><span class='lparen'>(</span><span class='id identifier rubyid_clazz'>clazz</span><span class='comma'>,</span> <span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -674,6 +668,8 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
+2841
+2842
 2843
 2844
 2845
@@ -683,12 +679,10 @@ that type is instead returned.</p>
 2849
 2850
 2851
-2852
-2853
-2854</pre>
+2852</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2843</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2841</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_patterns'>merge_patterns</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -735,6 +729,8 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
+2874
+2875
 2876
 2877
 2878
@@ -750,12 +746,10 @@ that type is instead returned.</p>
 2888
 2889
 2890
-2891
-2892
-2893</pre>
+2891</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2876</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2874</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_ranges'>merge_ranges</span><span class='lparen'>(</span><span class='id identifier rubyid_ranges'>ranges</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -808,6 +802,8 @@ that type is instead returned.</p>
       <pre class="lines">
 
 
+2813
+2814
 2815
 2816
 2817
@@ -817,12 +813,10 @@ that type is instead returned.</p>
 2821
 2822
 2823
-2824
-2825
-2826</pre>
+2824</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2815</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 2813</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_swap_not_undefs'>swap_not_undefs</span><span class='lparen'>(</span><span class='id identifier rubyid_array'>array</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_array'>array</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span> <span class='op'>&gt;</span> <span class='int'>1</span>
@@ -846,9 +840,9 @@ that type is instead returned.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:20 2017 by
+  Generated on Tue Jun 27 17:24:18 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

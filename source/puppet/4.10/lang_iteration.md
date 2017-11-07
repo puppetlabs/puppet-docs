@@ -16,11 +16,9 @@ layout: default
 [defined types]: ./lang_defined_types.html
 [array_titles]: ./lang_resources_advanced.html#arrays-of-titles
 
-
 The Puppet language has looping and iteration features, which can help you write more succinct code and use data more effectively.
 
 ## Basics
-
 
 In Puppet, iteration features are implemented as [functions][] that accept blocks of code ([lambdas][]).
 
@@ -29,7 +27,6 @@ That is, you write a block of code (lambda) that requires some kind of extra inf
 This differs from some other languages where looping constructs are special keywords; in Puppet, they're just functions.
 
 ## List of iteration functions
-
 
 The following functions can accept a block of code and run it in some special way. See each function's documentation for more details.
 
@@ -41,7 +38,6 @@ The following functions can accept a block of code and run it in some special wa
 * [`with`][with] --- Evaluate a block of code once, isolating it in its own local scope. Doesn't iterate, but has a family resemblance to the iteration functions.
 
 ## Syntax
-
 
 * See [the functions page][functions] for the syntax of function calls.
 * See [the lambdas page][lambdas] for the syntax of code blocks that can be passed to functions.
@@ -63,7 +59,7 @@ For example:
 ['a','b','c'].each |Integer $index, String $value| { notice("${index} = ${value}") }
 ```
 
-This will result in:
+This results in:
 
     Notice: Scope(Class[main]): 0 = a
     Notice: Scope(Class[main]): 1 = b
@@ -71,9 +67,9 @@ This will result in:
 
 The [`slice`][slice] and [`reduce`][reduce] functions handle parameters differently; see their docs for details.
 
+Hashes preserve the order in which their keys and values were written. When iterating over a hash's members, the loops occur in the order that they are written. When interpolating a hash into a string, the resulting string is also constructed in the same order.
 
 ## Examples
-
 
 ### Declaring resources
 

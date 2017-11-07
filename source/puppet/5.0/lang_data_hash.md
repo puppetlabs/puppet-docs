@@ -11,21 +11,43 @@ title: "Language: Data types: Hashes"
 [data]: ./lang_data_abstract.html#data
 [scalar]: ./lang_data_abstract.html#scalar
 
-Hashes map keys to values, maintaining the order of the entries according to insertion order. When hashes are merged (using the `+` operator), the keys in the constructed hash have the same order as in the original hashes, with the left hash keys ordered first, followed by any keys that appeared only in the hash on the right side of the merge.
+Hashes map keys to values, maintaining the order of the entries according to insertion order.
+
+When hashes are merged (using the `+` operator), the keys in the constructed hash have the same order as in the original hashes, with the left hash keys ordered first, followed by any keys that appeared only in the hash on the right side of the merge.
+
+Where a key exists in both original hashes, the value of the key in the original hash to the right of the `+` operator that ends up in the resulting hash."
+
+For example:
+
+```
+$values = {'a' => 'a', 'b' => 'b'}
+$overrides = {'a' => 'overridden'}
+$result = $values + $overrides
+notice($result)
+-> {'a' => 'overridden', 'b' => 'b'}
+```
 
 ## Syntax
 
 Hashes are written as a pair of curly braces containing any number of key/value pairs. A key is separated from its value by a `=>` (arrow, fat comma, or hash rocket), and adjacent pairs are separated by commas. An optional trailing comma is allowed between the final value and the closing curly brace.
 
 ``` puppet
-{ key1 => 'val1', key2 => 'val2' }
+{ 'key1' => 'val1', key2 => 'val2' }
 # Equivalent:
-{ key1 => 'val1', key2 => 'val2', }
+{ 'key1' => 'val1', key2 => 'val2', }
 ```
 
-Hash keys can be any data type, but you should generally only use strings or numbers.
+Hash keys can be any data type, but generally, you should use only strings. You should quote any keys that are strings. You should not assign a hash with non-string keys to a resource attribute or class parameter, because Puppet cannot serialize non-string hash keys into the catalog.
 
-Hash values can be any data type.
+
+```
+{ 'key1' => ['val1','val2'], 
+   key2 => {  'key3' =>  'val3',  }, 
+  'key4' => true,
+  'key5' => 12345,
+ }
+```
+
 
 ## Accessing values
 

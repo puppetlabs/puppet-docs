@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Using Templates"
-canonical: "/puppet/latest/reference/lang_template.html"
+canonical: "/puppet/latest/lang_template.html"
 ---
 
 [interpolate]: ./lang_data_string.html#interpolation

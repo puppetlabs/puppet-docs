@@ -1,0 +1,47 @@
+---
+title: "Hiera: Actualiza las llamadas clásicas de la función Hiera"
+---
+
+<div>
+
+
+
+<p> Las funciones <code>hiera</code>, <code>hiera_array</code>, <code>hiera_hash</code> y <code>hiera_include</code> están obsoletas y serán eliminadas en Puppet 6.
+</p>
+
+<p> <a href="./hiera_use_function.html">La función <code>lookup</code></a> es un reemplazo completo para todos estos:
+</p>
+
+<table>
+<thead><tr>
+<th>Función Hiera</th>
+      <th>Equivalente llamada <code>lookup</code>
+</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>hiera('secure_server')</code></td>
+      <td><code>lookup('secure_server')</code></td>
+    </tr>
+<tr>
+<td><code>hiera_array('ntp::servers')</code></td>
+      <td><code>lookup('ntp::servers', {merge =&gt; unique})</code></td>
+    </tr>
+<tr>
+<td><code>hiera_hash('users')</code></td>
+      <td>
+<code>lookup('users', {merge =&gt; hash})</code> or <code>lookup('users', {merge =&gt; deep})</code>
+</td>
+    </tr>
+<tr>
+<td><code>hiera_include('classes')</code></td>
+      <td><code>lookup('classes', {merge =&gt; unique}).include</code></td>
+    </tr>
+</tbody>
+</table>
+<p> Para asegurarse de que está listo para Puppet 6 y más allá, revise sus módulos de títeres para reemplazar las funciones <code>hiera_*</code> con <code>lookup</code>. <strong>Esto es puramente para prepararse para el futuro:</strong> puede adoptar todas las nuevas funciones de Hiera 5 sin actualizar estas llamadas de función.
+</p>
+
+<p> Mientras está revisando, considere refactorizar algún código para usarlo <a href="./hiera_automatic.html">Búsqueda automática de parámetros de clase</a> en vez de funciones — desde lookups  automáticos <a href="./hiera_merging.html">Ahora puede hacer fusiones únicas y hash</a>, el <code>hiera_array</code> y las funciones <code>hiera_hash</code> no son tan importantes como solían ser.
+</p>
+</div>

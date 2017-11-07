@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Publishing Modules on the Puppet Forge"
-canonical: "/puppet/latest/reference/modules_publishing.html"
+canonical: "/puppet/latest/modules_publishing.html"
 ---
 
 
@@ -78,7 +78,7 @@ If you already have a Puppet module with the [correct directory layout][fundamen
 
 Alternately, you can use the `puppet module generate` action to generate a template layout. Generating a module will provide you with a sample README and a copy of the `spec_helper` tool for writing [rspec-puppet][rspec] tests. It will also launch a series of questions that will create your metadata.json file.
 
-Follow the directions to [generate a new module](https://docs.puppetlabs.com/puppet/latest/reference/modules_fundamentals.html#writing-modules)
+Follow the directions to [generate a new module](https://docs.puppetlabs.com/puppet/latest/modules_fundamentals.html#writing-modules)
 
 ### Set files to be ignored
 

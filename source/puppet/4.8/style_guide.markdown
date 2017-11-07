@@ -243,7 +243,7 @@ Every module must have metadata defined in the metadata.json file.  Your metadat
 }
 ```
 
-A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/reference/modules_publishing.html#write-a-metadatajson-file).
+A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/modules_publishing.html#write-a-metadatajson-file).
 
 ### 8.1 Dependencies
 
@@ -806,7 +806,7 @@ You should help indicate to the user which classes are which by making sure all 
 
 ### 10.4. Chaining arrow syntax
 
-Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
+Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
 
 **Good:** 
 
@@ -933,7 +933,7 @@ class my_module (
 
 Exported resources should be opt-in rather than opt-out. Your module should not be written to use exported resources to function by default unless it is expressly required. When using exported resources, you should name the property `collect_exported`.
 
-Exported resources should be exported and collected selectively using a [search expression](https://docs.puppet.com/puppet/3.7/reference/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
+Exported resources should be exported and collected selectively using a [search expression](https://docs.puppet.com/puppet/3.7/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
 
 **Good:**
 
@@ -1162,9 +1162,9 @@ All publicly available modules should include the documentation covered below.
 
 ### 17.1 README
 
-Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](https://docs.puppet.com/puppet/latest/reference/READMEtemplate.txt) offers a basic format you can use. If you create modules with `puppet module generate`, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
+Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](https://docs.puppet.com/puppet/latest/READMEtemplate.txt) offers a basic format you can use. If you create modules with `puppet module generate`, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
 
-There's an entire [guide](https://docs.puppet.com/puppet/latest/reference/modules_documentation.html) to writing a great README, but overall your README should:
+There's an entire [guide](https://docs.puppet.com/puppet/latest/modules_documentation.html) to writing a great README, but overall your README should:
 
 * Summarize what your module does.
 * Note any setup requirements or limitations (such as "This module requires the puppetlabs-apache module and only works on Ubuntu.").

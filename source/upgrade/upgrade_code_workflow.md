@@ -5,9 +5,9 @@ canonical: "/upgrade/upgrade_code_workflow.html"
 ---
 
 
-Preparing your Puppet code for an upgrade from Puppet 3 to Puppet 4 involves checking the code with the new parser to see if it breaks, and iteratively testing your changes to confirm they do what you want. You can do this any number of ways, but here's a step-by-step workflow for accomplishing the updates using Git and modules specifically built for this task, `catalog_preview` and `preview_report`.
+Preparing your Puppet code for an upgrade from Puppet 3 to Puppet 4 or higher involves checking the code with the new parser to see if it breaks, and iteratively testing your changes to confirm they do what you want. You can do this any number of ways, but here's a step-by-step workflow for accomplishing the updates using Git and modules specifically built for this task, `catalog_preview` and `preview_report`.
 
-The `catalog_preview` module shows the differences between how your code is compiled in Puppet 3 and Puppet 4, and the `preview_report` module presents the data in an easier to read format.
+The `catalog_preview` module shows the differences between how your code is compiled in Puppet 3 and Puppet 4 or higher, and the `preview_report` module presents the data in an easier to read format.
 
 ## Prerequisites
 
@@ -32,12 +32,12 @@ git checkout -b future_production
 cd "$(git rev-parse --show-toplevel)"
 echo "parser=future" >> environment.conf
 git add environment.conf
-git commit -m "Enable the Puppet 4 parser in future_production"
+git commit -m "Enable the current parser in future_production"
 ```
 
 3. Set up a 3.8 master
 
-   You need a PE 3.8 master as it uses a version of Puppet (3.8.x) that can run with the Puppet 3 or 4 parser.
+   You need a PE 3.8 master as it uses a version of Puppet (3.8.x) that can run with the Puppet 3 or current parser.
 
    A quick way to create the Puppet master is to use the [Puppet Debugging Kit and spin up its 3.8.5 master](https://github.com/Sharpie/puppet-debugging-kit/blob/83871b9afffa4ca14f011bfd4c2489725eb1bb31/config/vms.yaml.example#L31-L40) in Vagrant on your laptop:
 
@@ -150,7 +150,7 @@ The first run is to generate a list of issues to solve.
 sudo puppet preview \
   --baseline-environment production \
   --preview-environment future_production \
-  --migrate 3.8/4.0 \
+  --migrate 3.8/5.0 \
   --nodes nodes.txt \
   --view overview-json | tee ~/catalog_preview_overview-baseline.json
 ```
@@ -208,11 +208,11 @@ Start by fixing the issues that are most common or the ones that affect the most
 
 ### 1. Identify your biggest issue
 
-Start with the issue that is causing the most catalog compilation failures. For example, in Puppet 3, the `=~` operator works if the left item is `undef`, in Puppet 4 it causes a compilation failure.
+Start with the issue that is causing the most catalog compilation failures. For example, in Puppet 3, the `=~` operator works if the left item is `undef`, in Puppet 4 and above it causes a compilation failure.
 
 ```puppet
 $foo = undef
-if $foo =~ 'bar' { do something } # This works in Puppet 3, but not Puppet 4.
+if $foo =~ 'bar' { do something } # This works in Puppet 3, but not Puppet 4 and above.
 ```
 
 ### 2. Create a branch
@@ -247,7 +247,7 @@ Fix regex operators to support Puppet 4
 
 Prior to this, when using the =~ operator to compare strings in Puppet 3,
 if the left operand was undef the operation would succeed with the expected
-output. In Puppet 4, if the left operand is undef, a catalog compilation
+output. In Puppet 4 and above, if the left operand is undef, a catalog compilation
 failure occurs.
 
 https://docs.puppet.com/puppet/latest/reference/lang_expressions.html#regex-or-data-type-match
@@ -375,15 +375,15 @@ From this point, you can push `future_production` to `origin` and create a PR th
 
 ## Example issues and their fixes
 
-The catalog preview module maintains [a list of common breaking changes](https://github.com/puppetlabs/puppetlabs-catalog_preview#migration-warnings) that you should be aware of when moving from Puppet 3 to Puppet 4.
+The catalog preview module maintains [a list of common breaking changes](https://github.com/puppetlabs/puppetlabs-catalog_preview#migration-warnings) that you should be aware of when moving from Puppet 3 to Puppet 4 and above.
 
-You should also run through the checklist on [updating 3.x manifests for 4.x](./updating_manifests.html).
+You should also run through the checklist on [updating 3.x manifests for 4.x and above](./updating_manifests.html).
 
 Here are some real-world examples of common types of issues you may encounter, and examples for how to fix them.
 
 ### Example: Unquoted file modes (`MIGRATE4_AMBIGUOUS_NUMBER`)
 
-File modes need to go in quotes in Puppet 4. If you do a `puppet-lint` run with the `--fix` option, it automatically updates these for you.
+File modes now need to go in quotes. If you do a `puppet-lint` run with the `--fix` option, it automatically updates these for you.
 
 ### Example: File "source" of a single-item array
 
@@ -398,7 +398,7 @@ file { '/etc/flarghies.conf':
 
 ### Example: Regular expressions against numbers
 
-Sometimes, code does a regular expression match against a number, for instance, to see if the OS release begins with a particular digit, or a package is of at least some version. Trying to do a match against a number breaks in Puppet 4.
+Sometimes, code does a regular expression match against a number, for instance, to see if the OS release begins with a particular digit, or a package is of at least some version. Trying to do a match against a number now breaks.
 
 A regular expression against numbers makes catalog compilation fail entirely.
 
@@ -410,7 +410,7 @@ Empty strings used to evaluate to false, and now they don't. If you can't change
 
 ### Example: Variables must start with lower case letter
 
-Puppet 4 thinks a capital letter refers to a constant. Lowercase your variables.
+Current versions of Puppet intepret a capital letter as referring to a constant. Lowercase your variables.
 
 Uppercased variable names make catalog compilation fail entirely.
 
@@ -440,7 +440,7 @@ else {
 
 ### Example: Class names can't have hyphens
 
-In Puppet 2.7, the acceptability of hyphenated class names changed a few times. The root problem is that hyphens are not distinguishable from arithmetic subtraction operations in Puppet's syntax. In Puppet 3, class names with hyphens were deprecated but not completely removed. In Puppet 4, they are completely illegal because arithmetical expressions can appear in more places.
+In Puppet 2.7, the acceptability of hyphenated class names changed a few times. The root problem is that hyphens are not distinguishable from arithmetic subtraction operations in Puppet's syntax. In Puppet 3, class names with hyphens were deprecated but not completely removed. In current versions of Puppet, they are completely illegal because arithmetical expressions can appear in more places.
 
 A class name with a hyphen makes catalog compilation fail entirely.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: 'Man Page: puppet describe'
 canonical: "/puppet/latest/man/describe.html"
 ---
@@ -43,6 +43,6 @@ $ puppet describe user -s -m
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
+<p>Copyright (c) 2011 Puppet Inc., LLC Licensed under the Apache 2.0 License</p>
 
 </div>

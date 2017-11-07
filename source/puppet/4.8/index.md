@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 4.8 reference manual"
-canonical: "/puppet/latest/reference/index.html"
+canonical: "/puppet/latest/index.html"
 toc: false
 ---
 
@@ -10,7 +10,7 @@ toc: false
 [Facter 3]: {{facter}}/
 [Hiera 3]: {{hiera}}/
 [Puppet Server]: {{puppetserver}}/
-[PuppetDB 4]: {{puppetdb}}/
+[PuppetDB]: /puppetdb/4.2/
 [Linux installation]: ./install_linux.html
 [Windows installation]: ./install_windows.html
 [OSX installation]: ./install_osx.html
@@ -34,7 +34,7 @@ Puppet 4.8 consists of:
 
 * A `puppet-agent` "All-in-One" package that installs Puppet, Ruby, [Facter 3][], [Hiera 3][], and supporting code.
 * A `puppetserver` package that installs [Puppet Server][].
-* A `puppetdb` package that installs [PuppetDB 4][].
+* A `puppetdb` package that installs [PuppetDB][].
 
 To install these, read the [pre-install instructions][], then see the Puppet installation guides for [Linux][Linux installation], [Windows][Windows installation], and [Mac OS X][OSX installation].
 

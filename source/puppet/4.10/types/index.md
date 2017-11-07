@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: 'Resource Types: Index'
 canonical: "/puppet/latest/types/index.html"
 ---
@@ -85,9 +85,9 @@ _title_ of the resource.
 Example:
 
     file { '/etc/passwd':
-      owner => root,
-      group => root,
-      mode  => 644
+      owner => 'root',
+      group => 'root',
+      mode  => '0644',
     }
 
 In this code, `/etc/passwd` is the _title_ of the file resource; other Puppet

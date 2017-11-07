@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Installing Puppet Agent: Microsoft Windows"
-canonical: "/puppet/latest/reference/install_windows.html"
+canonical: "/puppet/latest/install_windows.html"
 ---
 
 [downloads]: https://downloads.puppetlabs.com/windows/

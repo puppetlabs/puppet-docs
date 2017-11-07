@@ -6,7 +6,7 @@
 <title>
   File: http_certificate_revocation_list
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -76,7 +76,7 @@ change the auth rules, but it will have no effect on the response.)</p>
 <p>Get the submitted CRL</p>
 
 <pre class="code ruby"><code class="ruby">GET /puppet-ca/v1/certificate_revocation_list/:nodename?environment=:environment
-Accept: s
+Accept: text/plain
 </code></pre>
 
 <h3>Supported HTTP Methods</h3>
@@ -85,7 +85,7 @@ Accept: s
 
 <h3>Supported Response Formats</h3>
 
-<p>s (denotes a string of text)</p>
+<p><code>text/plain</code></p>
 
 <p>The returned CRL is always in the <code>.pem</code> format.</p>
 
@@ -254,9 +254,9 @@ standard scheme such as json/pson/yaml, so no schema is applicable.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:14 2017 by
+  Generated on Tue Jun 27 17:24:07 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

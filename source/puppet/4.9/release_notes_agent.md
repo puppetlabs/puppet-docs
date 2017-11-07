@@ -13,6 +13,7 @@ title: "Puppet agent release notes"
 [Facter 3.6.2]: /facter/3.6/release_notes.html#facter-362
 
 [Hiera 3.3.0]: /hiera/3.3/release_notes.html#hiera-330
+[Hiera 3.3.1]: /hiera/3.3/release_notes.html#hiera-331
 
 [MCollective 2.10.0]: /mcollective/releasenotes.html#2_10_0
 [MCollective 2.10.1]: /mcollective/releasenotes.html#2_10_1
@@ -33,7 +34,7 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 ## If you're upgrading from Puppet 3.x
 
-The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
+The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.9 release notes](./release_notes.html).
 
@@ -43,7 +44,7 @@ Released March 9, 2017.
 
 ### Component updates
 
-This is a bug fix release that includes updated components [Puppet 4.9.4][], [Hiera 3.3.1][], [Facter 3.6.2][], and [MCollective 1.10.2][]. See their respective release note pages for individual bug fixes.
+This is a bug fix release that includes updated components [Puppet 4.9.4][], [Hiera 3.3.1][], [Facter 3.6.2][], and [MCollective 2.10.2][]. See their respective release note pages for individual bug fixes.
 
 ## Puppet agent 1.9.2
 
@@ -71,7 +72,7 @@ This release includes updates to multiple components: [Puppet 4.9.0][], [Facter 
 
 #### pxp-agent 1.4.0 new features
 
-You can now configure `pxp-agent` to write an access log of messages received by the agent. See [https://github.com/puppetlabs/pxp-agent#pcp-access-logging][] for details. ([PCP-387](https://tickets.puppetlabs.com/browse/PCP-387))
+You can now configure `pxp-agent` to write an access log of messages received by the agent. See https://github.com/puppetlabs/pxp-agent#pcp-access-logging for details. ([PCP-387](https://tickets.puppetlabs.com/browse/PCP-387))
 
 This release supports PCP version 2, an update that changes to a simpler text-based protocol that only supports immediate delivery (no message expiration) to a single target. It can be enabled by setting the `pcp-version` option to `2` and connecting it to a version of pcp-broker supporting PCP v2. ([PCP-647](https://tickets.puppetlabs.com/browse/PCP-647))
 

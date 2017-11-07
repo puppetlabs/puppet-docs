@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Data types: Abstract data types"
-canonical: "/puppet/latest/reference/lang_data_abstract.html"
+canonical: "/puppet/latest/lang_data_abstract.html"
 ---
 
 [types]: ./lang_data_type.html
@@ -214,7 +214,7 @@ Struct[{mode => Enum[read, write, update],
         path => Optional[String[1]]}]
 ```
 
-This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]`.
+This data type would match the same values as the previous example, but the `path` key is optional. If present, `path` must match `String[1]` or Undef.
 
 ``` puppet
 Struct[{mode            => Enum[read, write, update],

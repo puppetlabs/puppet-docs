@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet Agent 1.2.x Release Notes"
-canonical: "/puppet/latest/reference/release_notes_agent.html"
+canonical: "/puppet/latest/release_notes_agent.html"
 ---
 
 [Puppet 4.2.0]: ./release_notes.html#puppet-420
@@ -30,7 +30,7 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 ## If You're Upgrading from Puppet 3.x
 
-The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/reference/release_notes.html), since they cover any breaking changes since Puppet 3.8.
+The `puppet-agent` package installs Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 4.2 release notes](./release_notes.html).
 

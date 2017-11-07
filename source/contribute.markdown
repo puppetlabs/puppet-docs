@@ -3,9 +3,9 @@ layout: default
 title: Contribute
 ---
 
-We welcome community contributions to the documentation! You can help by reporting errors and typos, or by contributing new or updated sections. This topic describes the three main ways to contribute to the docs, and provides guidance on writing good documentation.
+We welcome community contributions to the documentation! You can help by reporting errors and typos, or by contributing new or updated sections. This topic describes the two main ways to contribute to the docs, and provides guidance on writing good documentation.
 
-## Three ways to improve the Puppet documentation
+## Two ways to improve the Puppet documentation
 
 ### Filing a ticket
 
@@ -18,26 +18,10 @@ In your ticket, provide as much information as possible about what's missing, wh
 
 If you spot a typo or other minor error and don't want to go through the overhead of filing a ticket or editing the documentation, you can report it by email to <docs@puppet.com>.
 
-### Sending a Github pull request
-
-If there's a hole in the documentation and you know just what needs to be added, and if you're [familiar with Github](http://learn.github.com/), you can contribute directly to our open source project. Use your [GitHub](http://github.com) account to fork the [puppet-docs](http://github.com/puppetlabs/puppet-docs) repository, make your changes, and submit a pull request. To reduce editing churn and have your PR quickly accepted, follow the Puppet documentation guidelines, below.
-
-Documentation source files for certain Puppet-related components, such as Puppet language reference, MCollective, and PuppetDB, are kept in other repositories. See the [Contributing ReadMe](https://github.com/puppetlabs/puppet-docs/blob/master/CONTRIBUTING.md) for details.
 
 ## Puppet documentation guidelines
 
-### Source files
-
-Puppet documentation is written in [Markdown format](https://daringfireball.net/projects/markdown/syntax), and stored in the `source` directory of the [puppet-docs](http://github.com/puppetlabs/puppet-docs) Github repository. Our build converts it to HTML and publishes it to <https://docs.puppet.com/puppet/>. 
-
-Each documentation `.markdown` or `.md` file starts with a (non-Markdown) header section, where you provide the topic title:
-
-```
----
-layout: default
-title: My topic title
----
-```
+If you'd like to help contribute edits or new topics to the documentation, use these guidelines to create your content and then attach it when you file a ticket, either in the body of the ticket or as a separate markdown or text file.
 
 ### Writing new topics from scratch
 

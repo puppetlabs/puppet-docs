@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Provider
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -286,7 +286,7 @@ class of Resource or a specific Type).</li>
 
       
         
-<li class="public ">
+<li class="public deprecated">
   <span class="summary_signature">
     
       <a href="#execfail-class_method" title="execfail (class method)">.<strong>execfail</strong>(*args)  &#x21d2; Puppet::Util::Execution::ProcessOutput </a>
@@ -300,12 +300,11 @@ class of Resource or a specific Type).</li>
   
   
   
-  
+  <span class="deprecated note title">deprecated</span>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Wraps execution of <span class='object_link'><a href="#execute-class_method" title="Puppet::Provider.execute (method)">Provider.execute</a></span> with mapping of exception to given exception (and output as argument).</p>
-</div></span>
+    <span class="summary_desc"><strong>Deprecated.</strong> <div class='inline'></div></span>
   
 </li>
 
@@ -643,8 +642,6 @@ class of Resource or a specific Type).</li>
       <pre class="lines">
 
 
-136
-137
 138
 139
 140
@@ -655,10 +652,12 @@ class of Resource or a specific Type).</li>
 145
 146
 147
-148</pre>
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 136</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 138</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_command'>command</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_intern'>intern</span>
@@ -740,14 +739,14 @@ be executing on the system. Each command is specified with a name and the path o
       <pre class="lines">
 
 
-163
-164
 165
 166
-167</pre>
+167
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 165</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_commands'>commands</span><span class='lparen'>(</span><span class='id identifier rubyid_command_specs'>command_specs</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_command_specs'>command_specs</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='op'>|</span>
@@ -788,8 +787,6 @@ be executing on the system. Each command is specified with a name and the path o
       <pre class="lines">
 
 
-415
-416
 417
 418
 419
@@ -798,10 +795,12 @@ be executing on the system. Each command is specified with a name and the path o
 422
 423
 424
-425</pre>
+425
+426
+427</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 415</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 417</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_create_class_and_instance_method'>create_class_and_instance_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_singleton_class'>singleton_class</span><span class='period'>.</span><span class='id identifier rubyid_method_defined?'>method_defined?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -872,8 +871,6 @@ be executing on the system. Each command is specified with a name and the path o
       <pre class="lines">
 
 
-278
-279
 280
 281
 282
@@ -883,10 +880,12 @@ be executing on the system. Each command is specified with a name and the path o
 286
 287
 288
-289</pre>
+289
+290
+291</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 278</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 280</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_default_match'>default_match</span>
   <span class='ivar'>@defaults</span><span class='period'>.</span><span class='id identifier rubyid_find'>find</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_default'>default</span><span class='op'>|</span>
@@ -908,7 +907,7 @@ be executing on the system. Each command is specified with a name and the path o
       <div class="method_details ">
   <h3 class="signature " id="execfail-class_method">
   
-    .<strong>execfail</strong>(*args)  &#x21d2; <tt><span class='object_link'><a href="Util/Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt> 
+    .<strong>execfail</strong>(*args)  &#x21d2; <tt><span class='object_link'><a href="Util/Execution/ProcessOutput.html" title="Puppet::Util::Execution::ProcessOutput (class)">Puppet::Util::Execution::ProcessOutput</a></span></tt> &nbsp;<span class="deprecated note title">deprecated</span>
   
 
   
@@ -916,7 +915,8 @@ be executing on the system. Each command is specified with a name and the path o
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Wraps execution of <span class='object_link'><a href="#execute-class_method" title="Puppet::Provider.execute (method)">execute</a></span> with mapping of exception to given exception (and output as argument).</p>
+    <div class="note deprecated"><strong>Deprecated.</strong> <div class='inline'></div></div>
+<p>Wraps execution of <span class='object_link'><a href="#execute-class_method" title="Puppet::Provider.execute (method)">execute</a></span> with mapping of exception to given exception (and output as argument).</p>
 
 
   </div>
@@ -964,12 +964,12 @@ be executing on the system. Each command is specified with a name and the path o
       <pre class="lines">
 
 
-127
-128
-129</pre>
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 127</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_execfail'>execfail</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Util/Execution.html" title="Puppet::Util::Execution (module)">Execution</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execfail'><span class='object_link'><a href="Util/Execution.html#execfail-class_method" title="Puppet::Util::Execution.execfail (method)">execfail</a></span></span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
@@ -1065,7 +1065,7 @@ Exception on failure or not.</p>
         <span class='name'>pipe</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>IO</span></tt>)</span>
+        <span class='type'>(<tt>IO</tt>)</span>
       
       
       
@@ -1345,7 +1345,7 @@ when it is invoked.</p>
         <span class='name'>name</span>
       
       
-        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+        <span class='type'>(<tt>Symbol</tt>)</span>
       
       
       
@@ -1396,8 +1396,6 @@ when it is invoked.</p>
       <pre class="lines">
 
 
-213
-214
 215
 216
 217
@@ -1406,10 +1404,12 @@ when it is invoked.</p>
 220
 221
 222
-223</pre>
+223
+224
+225</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 213</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 215</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_has_command'>has_command</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_intern'>intern</span>
@@ -1484,16 +1484,16 @@ be executing on the system. Each command is specified with a name and the path o
       <pre class="lines">
 
 
-179
-180
 181
 182
 183
 184
-185</pre>
+185
+186
+187</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 179</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 181</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_optional_commands'>optional_commands</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_hash'>hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_target'>target</span><span class='op'>|</span>
@@ -1558,7 +1558,7 @@ whether the resources are changed or not and even if resource failures occur.</p
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 582</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 584</span>
 
 </pre>
     </td>
@@ -1620,7 +1620,7 @@ fetched state (i.e. what is returned from the <span class='object_link'>instance
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 572</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 574</span>
 
 </pre>
     </td>
@@ -1700,12 +1700,12 @@ fetched state (i.e. what is returned from the <span class='object_link'>instance
       <pre class="lines">
 
 
-487
-488
-489</pre>
+489
+490
+491</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 487</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 489</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_command'>command</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_command'>command</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
@@ -1749,7 +1749,7 @@ applied to the managed entity&#39;s current state.</p>
 </pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 593</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/provider.rb', line 595</span>
 
 </pre>
     </td>
@@ -1762,9 +1762,9 @@ applied to the managed entity&#39;s current state.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:17 2017 by
+  Generated on Tue Jun 27 17:24:11 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

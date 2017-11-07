@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x agent upgrades"
-canonical: "/puppet/latest/reference/upgrade_major_agent.html"
+canonical: "/puppet/latest/upgrade_major_agent.html"
 ---
 
 [Hiera]: /hiera/
@@ -81,7 +81,7 @@ On \*nix systems, we [moved][] [`puppet.conf`](./config_file_main.html) from `/e
 Examine the new `puppet.conf` regardless of your operating system and confirm that:
 
 * It includes any necessary modifications.
-* It excludes any settings that were [removed in Puppet 4.0](/puppet/3.8/reference/deprecated_settings.html). Notably, if you set `stringify_facts=false` [before upgrading](./upgrade_major_pre.html), remove this setting.
+* It excludes any settings that were [removed in Puppet 4.0](/puppet/3.8/deprecated_settings.html). Notably, if you set `stringify_facts=false` [before upgrading](./upgrade_major_pre.html), remove this setting.
 * All [important settings](./config_important_settings.html#settings-for-puppet-master-servers) are correctly configured for your site.
 
 ### Start service or update cron job

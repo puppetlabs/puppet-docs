@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Data types: Sensitive"
-canonical: "/puppet/latest/reference/lang_data_sensitive.html"
+canonical: "/puppet/latest/lang_data_sensitive.html"
 ---
 
 [arithmetic]: ./lang_expressions.html#arithmetic-operators

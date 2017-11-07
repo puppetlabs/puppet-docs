@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Installing Puppet: Pre-Install Tasks"
-canonical: "/puppet/latest/reference/install_pre.html"
+canonical: "/puppet/latest/install_pre.html"
 ---
 
 [peinstall]: {{pe}}/install_basic.html

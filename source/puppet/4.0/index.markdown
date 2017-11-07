@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 4.0 Reference Manual"
-canonical: "/puppet/latest/reference/index.html"
+canonical: "/puppet/latest/index.html"
 toc: false
 ---
 
@@ -33,7 +33,7 @@ In order to get this release into the world as quickly as possible we had to mak
 
 ## Previous Versions
 
-- [Puppet 3.7](/puppet/3.7/reference)
-- [Puppet 3.6](/puppet/3.6/reference)
-- [Puppet 3.5](/puppet/3.5/reference)
+- [Puppet 3.7](/puppet/3.7)
+- [Puppet 3.6](/puppet/3.6)
+- [Puppet 3.5](/puppet/3.5)
 - [Puppet 3.0 through 3.4](/puppet/3/reference)

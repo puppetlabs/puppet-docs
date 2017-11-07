@@ -13,10 +13,6 @@ By default, you can access the value of a variable that was never assigned. The 
 
 If you set the `strict_variables` setting to true, Puppet will instead raise an error if you try to access an unassigned variable.
 
-#### In Puppet 5.0
-
-The `strict_variables` setting will be removed, and Puppet will always raise an error for accessing unassigned variables.
-
 #### Detecting and Updating
 
 Enable `strict_variables` on your Puppet master, run as normal for a while, and look for compilation errors.
@@ -25,7 +21,7 @@ Enable `strict_variables` on your Puppet master, run as normal for a while, and 
 
 #### Now
 
-Puppet doesn't validate the value of the [`ensure` attribute in `file` resources](/puppet/latest/reference/type.html#file-attribute-ensure). If the value is not `present`, `absent`, `file`, `directory`, or `link`, Puppet treats the value as an arbitrary path and creates a symbolic link to that path.
+Puppet doesn't validate the value of the [`ensure` attribute in `file` resources](/puppet/latest/type.html#file-attribute-ensure). If the value is not `present`, `absent`, `file`, `directory`, or `link`, Puppet treats the value as an arbitrary path and creates a symbolic link to that path.
 
 For example, these resource declarations are equivalent:
 

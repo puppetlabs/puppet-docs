@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
 
 file
 -----
@@ -126,7 +126,7 @@ path to another file as the ensure value, it is equivalent to specifying
 
 However, we recommend using `link` and `target` explicitly, since this
 behavior can be harder to read and is
-[deprecated](https://docs.puppetlabs.com/puppet/4.3/reference/deprecated_language.html)
+[deprecated](https://docs.puppetlabs.com/puppet/4.3/deprecated_language.html)
 as of Puppet 4.3.0.
 
 Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
@@ -220,8 +220,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](https://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
-or [file](https://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
+[template](https://docs.puppetlabs.com/puppet/latest/function.html#template)
+or [file](https://docs.puppetlabs.com/puppet/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -292,6 +292,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The desired permissions mode for the file, in symbolic or numeric
 notation. This value **must** be specified as a string; do not use
 un-quoted numbers to represent file modes.
+
+If the mode is omitted (or explicitly set to `undef`), Puppet does not
+enforce permissions on existing files and creates new files with
+permissions of `0644`.
 
 The `file` type uses traditional Unix permission schemes and translates
 them to equivalent permissions for systems which represent permissions
@@ -752,4 +756,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700

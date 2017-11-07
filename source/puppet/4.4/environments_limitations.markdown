@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Environments: Limitations of Environments"
-canonical: "/puppet/latest/reference/environments_limitations.html"
+canonical: "/puppet/latest/environments_limitations.html"
 ---
 
 [env_var]: ./environments.html#referencing-the-environment-in-manifests

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Module Metadata and metadata.json"
-canonical: "/puppet/latest/reference/modules_metadata.html"
+canonical: "/puppet/latest/modules_metadata.html"
 ---
 
 [puppet lookup]: ./lookup_quick.html

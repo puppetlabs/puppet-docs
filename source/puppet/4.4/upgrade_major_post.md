@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x: Post-Upgrade Clean-Up"
-canonical: "/puppet/latest/reference/upgrade_major_post.html"
+canonical: "/puppet/latest/upgrade_major_post.html"
 ---
 
 [moved]: ./whered_it_go.html
@@ -22,7 +22,7 @@ Avoid maintenance and configuration confusion by deleting the old `/etc/puppet` 
 
 ## Delete the Per-Environment `parser` Setting
 
-If you set the [`parser`](/puppet/3.8/reference/config_file_environment.html#parser) setting in `environment.conf` as part of your [upgrade preparations](./upgrade_major_pre.html), remove it from all environments. The setting is  inert, but Puppet will log warnings until it's gone.
+If you set the [`parser`](/puppet/3.8/config_file_environment.html#parser) setting in `environment.conf` as part of your [upgrade preparations](./upgrade_major_pre.html), remove it from all environments. The setting is  inert, but Puppet will log warnings until it's gone.
 
 ## Unassign `puppet_agent` Class from Nodes
 

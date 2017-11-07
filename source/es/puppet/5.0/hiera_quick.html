@@ -1,0 +1,269 @@
+---
+title: "Hiera: Guía de inicio rápido"
+---
+
+<div>
+
+
+
+<p> Si nunca has utilizado Hiera antes, esta página introducirá los conceptos básicos y te dará una configuración Hiera funcional.
+</p>
+
+<h2 id="the-config-file">El fichero de configuración</h2>
+
+<p> El fichero de configuración de Hiera es denominado <a href="./hiera_config_yaml_5.html">hiera.yaml</a>. Cada <a href="/puppet/5.0/environments.html">entorno</a> tiene su propio fichero hiera.yaml.
+</p>
+
+<p> En el directorio principal de uno de sus <a href="/puppet/5.0/environments.html">entornos</a>, cree un nuevo fichero denominado <code>hiera.yaml</code>. Pegue los siguientes contenidos en él:
+</p>
+
+<pre><code class="language-yaml"># &lt;ENVIRONMENT&gt;/hiera.yaml
+---
+version: 5
+
+defaults:  # Used for any hierarchy level that omits these keys.
+  datadir: data  # This path is relative to the environment -- &lt;ENVIRONMENT&gt;/data
+  data_hash: yaml_data  # Use the built-in YAML backend.
+
+hierarchy:
+  - name: "Per-node data"                   # Human-readable name.
+    path: "nodes/%{trusted.certname}.yaml"  # File path, relative to datadir.
+                                   # ^^^ IMPORTANT: include the file extension!
+
+  - name: "Per-OS defaults"
+    path: "os/%{facts.os.family}.yaml"
+
+  - name: "Common data"
+    path: "common.yaml"
+</code></pre>
+
+<p> Este fichero está en formato denominado <a href="http://www.yaml.org/YAML_for_ruby.html">YAML</a>, que se utiliza extensamente a través de Hiera. Si quieres, puedes leer <a href="http://www.yaml.org/YAML_for_ruby.html">un resumen de la sintaxis YAML’s</a>, o usted puede apenas seguir adelante.
+</p>
+
+<p> Más detalles:
+</p>
+
+<ul>
+<li>
+<a href="./hiera_config_yaml_5.html">El manual de referencia hiera.yaml (v5)</a>.</li>
+</ul>
+<h3 id="the-hierarchy">La jerarquía</h3>
+
+<p> hiera.yaml’s el trabajo principal es configurar una <a href="./hiera_hierarchy.html">jerarquía</a>, que es una lista ordenada de fuentes de datos. Hiera busca estas fuentes en el orden en que están escritas, por lo que las fuentes de mayor prioridad pueden anular las prioritarias.
+</p>
+
+<p> La mayoría de niveles de jerarquía <a href="./hiera_interpolation.html">utiliza variables</a> para localizar un data source, de manera que diferentes nodos obtengan datos diferentes.
+</p>
+
+<p> Detenga y vuelva a leer esos dos párrafos, ya que este es el concepto central de Hiera: un patrón de valores predeterminados con anulación para la búsqueda de datos, utilizando una lista específica de nodos de fuentes de datos.
+</p>
+
+<p> Más detalles:
+</p>
+
+<ul>
+<li>
+<a href="./hiera_hierarchy.html">Como trabajan las jerarquías</a>.</li>
+  <li>
+<a href="./hiera_interpolation.html">Interpolación de variables y otros valores</a>.</li>
+</ul>
+<h2 id="write-some-data">Escriba algunos datos</h2>
+
+<h3 id="a-test-class">Una clase test</h3>
+
+<p> Hiera está destinado a ser utilizado con el código de Puppet, por lo que antes de ir más lejos, vamos a crear una Puppet class para la prueba. Esta clase no hace nada interesante. Sólo escribe los datos que recibe en un archivo temporal.
+</p>
+
+<p> Cree esta clase en su módulo <code>profile</code>. Si aún no utiliza  <a href="/es/pe/2017.2/r_n_p_intro.html">el método de roles y perfiles</a>, cree un módulo llamado <code>profile</code> en este momento.
+</p>
+
+<pre><code class="language-puppet"># /etc/puppetlabs/code/environments/production/modules/profile/manifests/hiera_test.pp
+class profile::hiera_test (
+  Boolean             $ssl,
+  Boolean             $backups_enabled,
+  Optional[String[1]] $site_alias = undef,
+) {
+  file { '/tmp/hiera_test.txt':
+    ensure  =&gt; file,
+    content =&gt; @("END"),
+               Data from profile::hiera_test
+               -----
+               profile::hiera_test::ssl: ${ssl}
+               profile::hiera_test::backups_enabled: ${backups_enabled}
+               profile::hiera_test::site_alias: ${site_alias}
+               |END
+    owner   =&gt; root,
+    mode    =&gt; '0644',
+  }
+}
+</code></pre>
+
+<p> Nuestra clase de prueba usa <a href="./lang_classes.html#class-parameters-and-variables">Parámetros de clase</a> para solicitar datos de configuración. Y Puppet <a href="./hiera_automatic.html">automáticamente busca parámetros de clase en Hiera</a>, utilizando <code>&lt;CLASS NAME&gt;::&lt;PARAMETER NAME&gt;</code> como la clave de búsqueda.
+</p>
+
+<p> Así que para proporcionar valores para los siguientes parámetros de clase, podemos configurar las siguientes claves en nuestros datos de Hiera:
+</p>
+
+<table>
+<thead><tr>
+<th>Parámetros</th>
+      <th>Clave Hiera</th>
+    </tr></thead>
+<tbody>
+<tr>
+<td><code>$ssl</code></td>
+      <td><code>profile::hiera_test::ssl</code></td>
+    </tr>
+<tr>
+<td><code>$backups_enabled</code></td>
+      <td><code>profile::hiera_test::backups_enabled</code></td>
+    </tr>
+<tr>
+<td><code>$site_alias</code></td>
+      <td><code>profile::hiera_test::site_alias</code></td>
+    </tr>
+</tbody>
+</table>
+<p> Más detalles:
+</p>
+
+<ul>
+<li>
+<a href="/es/pe/2017.2/r_n_p_intro.html">El método de roles y perfiles</a>.</li>
+  <li>
+<a href="./hiera_automatic.html">Búsqueda automática de parámetros de clase</a>.</li>
+</ul>
+<h3 id="common-data">Datos común</h3>
+
+<p> Vamos a establecer algunos valores básicos de fallback en nuestros datos comunes: el nivel en la parte inferior de nuestra jerarquía.
+</p>
+
+<p> Este nivel de jerarquía (como el resto de nuestra jerarquía) utiliza el backend YAML para los datos, lo que significa que los datos van a un archivo YAML. Para saber dónde colocar ese archivo, debemos combinar algunas piezas de información:
+</p>
+
+<ul>
+<li>El directorio de entorno actual.</li>
+  <li>El <strong>data directory,</strong> Que es un subdirectorio del entorno. Por defecto es <code>&lt;ENVIRONMENT&gt;/data</code>.</li>
+  <li>La ruta del archivo especificada por el nivel de jerarquía.</li>
+</ul>
+<p> Así que en este caso, queremos <code>/etc/puppetlabs/code/environments/production/</code> + <code>data/</code> + <code>common.yaml</code>. Editaremos ese archivo YAML y estableceremos valores para dos de los parámetros de la clase.
+</p>
+
+<pre><code class="language-yaml"># /etc/puppetlabs/code/environments/production/data/common.yaml
+---
+profile::hiera_test::ssl: false
+profile::hiera_test::backups_enabled: true
+</code></pre>
+
+<p> El tercer parámetro (<code>$site_alias</code>) tiene un valor predeterminado definido en código, por lo que podemos omitirlo de los datos.
+</p>
+
+<h3 id="per-os-data">Datos por OS</h3>
+
+<p> El segundo nivel de nuestra jerarquía <a href="/facter/3.7/core_facts.html#os">el <code>os</code> fact</a> para localizar su fichero de datos. Esto significa que puede utilizar diferentes archivos de datos dependiendo del sistema operativo del nodo actual.
+</p>
+
+<p> Para este ejemplo, asumiremos que nuestros desarrolladores utilizan portátiles MacBook, que tienen una familia de SO de <code>Darwin</code>. Si un ingeniero ejecuta una instancia de aplicación en su computadora portátil, no debe enviar datos a nuestro servidor de copia de seguridad de producción, así que estableceremos <code>$backups_enabled</code> a <code>false</code>.
+</p>
+
+<p> Si no ejecuta Puppet en cualquier computadora portátil Mac, elija una familia de sistemas operativos que sea significativa para su infraestructura. Recuerde, esto es sólo una ilustración.
+</p>
+
+<p> Para localizar el archivo de datos, necesitamos <code>%{facts.os.family}</code> con el valor que estamos apuntando. Asi que:
+</p>
+
+<p> <code>/etc/puppetlabs/code/environments/production/data/</code> + <code>os/</code> + <code>Darwin</code> + <code>.yaml</code>.
+</p>
+
+<pre><code class="language-yaml"># /etc/puppetlabs/code/environments/production/data/os/Darwin.yaml
+---
+profile::hiera_test::backups_enabled: false
+</code></pre>
+
+<h3 id="per-node-data">Datos por nodo</h3>
+
+<p> El nivel más alto de nuestra jerarquía utiliza el valor de <a href="/puppet/5.0/lang_facts_and_builtin_vars.html#trusted-facts"><code>$trusted['certname']</code></a> para localizar su archivo de datos, por lo que puede establecer datos por nombre para cada nodo individual.
+</p>
+
+<p> Por ejemplo, asumimos que el nombre de un servidor es <code>jenkins-prod-03.example.com</code>, y lo configuraremos para usar SSL y servir esta aplicación en el nombre de host <code>ci.example.com</code>. En sus propios datos, elija el nombre de un servidor real en el que puede ejecutar Puppet.
+</p>
+
+<p> Para localizar el fichero de datos, necesitamos reemplazar <code>%{trusted.certname}</code> con el nombre del nodo al que estamos apuntando. Así que:
+</p>
+
+<p> <code>/etc/puppetlabs/code/environments/production/data/</code> + <code>nodes/</code> + <code>jenkins-prod-03.example.com</code> + <code>.yaml</code>
+</p>
+
+<pre><code class="language-yaml"># /etc/puppetlabs/code/environments/production/data/nodes/jenkins-prod-03.example.com.yaml
+---
+profile::hiera_test::ssl: true
+profile::hiera_test::site_alias: ci.example.com
+</code></pre>
+
+<h2 id="different-nodes-get-different-data">Los diferentes nodos obtienen datos diferentes</h2>
+
+<p> Ahora puede seguir adelante y probar sus datos de Hiera en una variedad de nodos en la infraestructura de Puppet. Asignar la clase <code>profile::hiera_test</code> a múltiples máquinas, y ejecutar Puppet en ellas (Asegurándose de especificar el entorno en el que ha realizado estas modificaciones). Luego, compruebe el contenido del fichero <code>/tmp/hiera_test.txt</code> .
+</p>
+
+<p> En el servidor <code>jenkins-prod-03.example.com</code>, Usted vería algo como:
+</p>
+
+<pre><code>Data from profile::hiera_test
+-----
+profile::hiera_test::ssl: true
+profile::hiera_test::backups_enabled: true
+profile::hiera_test::site_alias: ci.example.com
+</code></pre>
+
+<ul>
+<li>Valores por nodo para <code>$ssl</code> y <code>$site_alias</code>.</li>
+  <li>No hay datos por SO.</li>
+  <li>El valor <code>$backups_enabled</code> de common.yaml.</li>
+</ul>
+<p> Por otro lado, una laptop desarrollador tendría algo como esto:
+</p>
+
+<pre><code>Data from profile::hiera_test
+-----
+profile::hiera_test::ssl: false
+profile::hiera_test::backups_enabled: false
+</code></pre>
+
+<ul>
+<li>No hay datos por nodo.</li>
+  <li>Un valor por SO para <code>$backups_enabled</code>.</li>
+  <li>El valor <code>$ssl</code> para common.yaml.</li>
+</ul>
+<p> Intente escribir más datos y probarlo con diferentes tipos de nodos. Entonces, intente agregar más niveles a la jerarquía en hiera.yaml — copiar el formato existente y utilizar los hechos que son más importantes para su infraestructura.
+</p>
+
+<h2 id="test-data-on-the-command-line">Prueba de datos en la línea de comandos</h2>
+
+<p> Al configurar los datos de Hiera o reorganizar su jerarquía, a menudo es importante revisar los datos que un nodo dado recibirá. <a href="/puppet/5.0/man/lookup.html">El comando <code>puppet lookup</code></a> puede ayudarle a probar datos interactivamente. Por ejemplo:
+</p>
+
+<pre><code>$ puppet lookup profile::hiera_test::backups_enabled --environment production --node jenkins-prod-03.example.com
+
+--- true
+</code></pre>
+
+<p> Para utilizar el comando con eficacia, tenga en cuenta estas sugerencias:
+</p>
+
+<ul>
+<li>Ejecute el comando en un nodo Puppet Server o en otro nodo que tenga acceso a una comprobación completa de su código y configuración de Puppet.</li>
+  <li>Asegúrese utilizar el comando global  <a href="/puppet/5.0/dirs_confdir.html">confdir</a> y <a href="/puppet/5.0/dirs_codedir.html">codedir</a>, por lo que tiene acceso a sus datos en vivo. Si no estás corriendo <code>puppet lookup</code> como root, especifica <code>--codedir</code> y <code>--confdir</code> en la línea de comando.</li>
+  <li>Si utiliza PuppetDB, puede utilizar los hechos de cualquier nodo en una búsqueda especificando <code>--node &lt;NAME&gt;</code>. Hiera puede obtener automáticamente los hechos reales de ese nodo y usarlos para resolver los datos.<ul>
+<li>Si no utiliza PuppetDB, o si desea probar un conjunto de hechos que aún no existe, puede proporcionar facts en un archivo YAML o JSON con <code>--facts &lt;FILE&gt;</code>.  La mejor forma de obtener un fichero lleno de facts es ejecutar <code>facter -p --json &gt; facts.json</code> en un nodo similar al nodo que desea examinar, copie el archivo en su nodo Puppet Server y edítalo según sea necesario.</li>
+    </ul>
+</li>
+  <li>Si no obtiene los valores que espera, intente volver a ejecutar el comando con <code>--explain</code>. Esto hace que Hiera dé una explicación completa de las fuentes de datos que buscó y de lo que encontró en ellas.</li>
+</ul>
+<h2 id="carry-on">¡Continuemos!</h2>
+
+<p> Hay mucho de lo que no te hemos hablado en este inicio rápido, como el <a href="./hiera_layers.html">capa global y capa módulo</a>, <a href="./hiera_merging.html">uniendo hash y array</a>, datos alternativos de backends, y más. Pero incluso con sólo la capa de entorno y algunos archivos YAML, puede lograr mucho.
+</p>
+
+<p> Ya sabes lo suficiente para empezar a usar Hiera de verdad.
+</p>
+</div>

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Facts and built-in variables"
-canonical: "/puppet/latest/reference/lang_facts_and_builtin_vars.html"
+canonical: "/puppet/latest/lang_facts_and_builtin_vars.html"
 ---
 
 [definedtype]: ./lang_defined_types.html

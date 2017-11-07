@@ -1,13 +1,13 @@
 ---
 layout: default
 title: "Language: Embedded Puppet (EPP) Template Syntax"
-canonical: "/puppet/latest/reference/lang_template_epp.html"
+canonical: "/puppet/latest/lang_template_epp.html"
 ---
 
 [erb]: ./lang_template_erb.html
-[epp]: /puppet/latest/reference/function.html#epp
+[epp]: /puppet/latest/function.html#epp
 [ntp]: https://forge.puppetlabs.com/puppetlabs/ntp
-[inline_epp]: /puppet/latest/reference/function.html#inlineepp
+[inline_epp]: /puppet/latest/function.html#inlineepp
 [functions]: ./lang_functions.html
 [hash]: ./lang_data_hash.html
 [local scope]: ./lang_scope.html

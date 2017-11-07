@@ -1,13 +1,13 @@
 ---
 layout: default
 title: "Installing Puppet agent: Linux"
-canonical: "/puppet/latest/reference/install_linux.html"
+canonical: "/puppet/latest/install_linux.html"
 ---
 
 [master_settings]: ./config_important_settings.html#settings-for-puppet-master-servers
 [agent_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 [where]: ./whered_it_go.html
-[dns_alt_names]: /puppet/latest/reference/configuration.html#dnsaltnames
+[dns_alt_names]: /puppet/latest/configuration.html#dnsaltnames
 [server_heap]: {{puppetserver}}/install_from_packages.html#memory-allocation
 [puppetserver_confd]: {{puppetserver}}/configuration.html
 [server_install]: {{puppetserver}}/install_from_packages.html

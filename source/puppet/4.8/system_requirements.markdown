@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet system requirements"
-canonical: "/puppet/latest/reference/system_requirements.html"
+canonical: "/puppet/latest/system_requirements.html"
 ---
 
 > To install Puppet, first [view the pre-install tasks](./install_pre.html).
@@ -35,7 +35,7 @@ Puppet and all of its prerequisites run on the following platforms, and Puppet p
 
 ### Red Hat Enterprise Linux (and derivatives)
 
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Red Hat Enterprise Linux (RHEL):
+We publish and test official [`puppet-agent`](/puppet/latest/about_agent.html) packages for the following versions of Red Hat Enterprise Linux (RHEL):
 
 * Enterprise Linux 7
 * Enterprise Linux 6
@@ -59,14 +59,14 @@ We also publish and test official `puppet-agent` packages for the following vers
 
 ### Fedora
 
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Fedora:
+We publish and test official [`puppet-agent`](/puppet/latest/about_agent.html) packages for the following versions of Fedora:
 
 * Fedora 24
 * Fedora 23
 
 ### Windows
 
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following versions of Windows:
+We publish and test official [`puppet-agent`](/puppet/latest/about_agent.html) packages for the following versions of Windows:
 
 * Windows Server 2012 R2
 * Windows Server 2008 R2
@@ -83,7 +83,7 @@ We also publish, but do not automatically test `puppet-agent` packages for the f
 
 ### OS X
 
-We publish and test official [`puppet-agent`](/puppet/latest/reference/about_agent.html) packages for the following OS X versions:
+We publish and test official [`puppet-agent`](/puppet/latest/about_agent.html) packages for the following OS X versions:
 
 * 10.11 El Capitan
 * 10.10 Yosemite
@@ -109,6 +109,13 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 * FreeBSD 4.7 and later
 * OpenBSD 4.1 and later
 * HP-UX
+
+>*Note:* While installing `puppet-agent` on Solaris, you may see an error like the following:
+>
+>  ERROR: attribute verification of </lib/svc/method/puppet.
+>    pathname does not exist
+>
+>This is because you must have Read-Write access on the filesystem to install `puppet-agent`.
 
 ## Basic requirements
 

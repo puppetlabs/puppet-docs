@@ -1,13 +1,13 @@
 ---
 layout: default
 title: "Language: Embedded Puppet (EPP) Template Syntax"
-canonical: "/puppet/latest/reference/lang_template_epp.html"
+canonical: "/puppet/latest/lang_template_epp.html"
 ---
 
 [erb]: ./lang_template_erb.html
-[epp]: /puppet/latest/reference/function.html#epp
+[epp]: /puppet/latest/function.html#epp
 [ntp]: https://forge.puppetlabs.com/puppetlabs/ntp
-[inline_epp]: /puppet/latest/reference/function.html#inlineepp
+[inline_epp]: /puppet/latest/function.html#inlineepp
 [functions]: ./lang_functions.html
 [hash]: ./lang_data_hash.html
 [local scope]: ./lang_scope.html
@@ -17,7 +17,7 @@ canonical: "/puppet/latest/reference/lang_template_epp.html"
 [variable_names]: ./lang_variables.html#naming
 [typed]: ./lang_data_type.html
 
-Embedded Puppet (EPP) is a templating language based on the [Puppet language](./lang_summary.html). You can use EPP in Puppet 4 and higher, as well as Puppet 3.5 through 3.8 with the [future parser](/puppet/3.8/reference/experiments_future.html) enabled.
+Embedded Puppet (EPP) is a templating language based on the [Puppet language](./lang_summary.html). You can use EPP in Puppet 4 and higher, as well as Puppet 3.5 through 3.8 with the [future parser](/puppet/3.8/experiments_future.html) enabled.
 
 Puppet can evaluate EPP templates with the [`epp`][epp] and [`inline_epp`][inline_epp] functions.
 

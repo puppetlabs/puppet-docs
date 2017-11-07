@@ -78,7 +78,7 @@ The rewritten parser includes new capabilities like iteration and type-checking 
 
 ## BREAK: Directory Environments Replace Config File Environments
 
-Starting with Puppet 3.6, Directory Environments started taking over from Dynamic Environments as Puppet's mechanism for serving different versions of modules and code. In Puppet 4, they're the default and other environment support is gone. Read more about directory environments in the [environments section of the docs](/puppet/latest/reference/environments.html).
+Starting with Puppet 3.6, Directory Environments started taking over from Dynamic Environments as Puppet's mechanism for serving different versions of modules and code. In Puppet 4, they're the default and other environment support is gone. Read more about directory environments in the [environments section of the docs](/puppet/latest/environments.html).
 
 * [PUP-3268: Remove non-directory environment support](https://tickets.puppetlabs.com/browse/PUP-3268)
 * [PUP-3567: Remove current_environment check in Puppet::Indirector::Request#environment=](https://tickets.puppetlabs.com/browse/PUP-3567)

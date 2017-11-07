@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Reserved Words and Acceptable Names"
-canonical: "/puppet/latest/reference/lang_reserved.html"
+canonical: "/puppet/latest/lang_reserved.html"
 ---
 
 [settings]: ./config_about_settings.html

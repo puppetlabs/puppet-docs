@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Installing Modules"
-canonical: "/puppet/latest/reference/modules_installing.html"
+canonical: "/puppet/latest/modules_installing.html"
 ---
 
 [forge]: https://forge.puppetlabs.com
@@ -256,7 +256,7 @@ By default, the tool won't uninstall a module that other modules depend on, or w
 
 #### Upgrade/Uninstall
 
-The PMT from Puppet 3.6 has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](/puppet/3.7/reference/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
+The PMT from Puppet 3.6 has a known issue wherein modules that were published to the Puppet Forge that had not performed the [migration steps](/puppet/3.7/modules_publishing.html#build-your-module) before publishing will have erroneous checksum information in their metadata.json. These checksums will cause errors that prevent you from upgrading or uninstalling the module.
 
 You might see an error similar to the following when upgrading or uninstalling:
 

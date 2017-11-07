@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500
 
 exec
 -----
@@ -72,17 +72,17 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-environment">environment</a> =&gt; <em># Any additional environment variables you want to </em>
   <a href="#exec-attribute-group">group</a>       =&gt; <em># The group to run the command as.  This seems to...</em>
   <a href="#exec-attribute-logoutput">logoutput</a>   =&gt; <em># Whether to log command output in addition to...</em>
-  <a href="#exec-attribute-onlyif">onlyif</a>      =&gt; <em># If this parameter is set, then this `exec` will...</em>
+  <a href="#exec-attribute-onlyif">onlyif</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-path">path</a>        =&gt; <em># The search path used for command execution...</em>
   <a href="#exec-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `exec...</em>
-  <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># How to refresh this command.  By default, the...</em>
+  <a href="#exec-attribute-refresh">refresh</a>     =&gt; <em># An alternate command to run when the `exec...</em>
   <a href="#exec-attribute-refreshonly">refreshonly</a> =&gt; <em># The command should only be run as a refresh...</em>
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
   <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between...</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
-  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># If this parameter is set, then this `exec` will...</em>
+  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  Note that if...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -161,28 +161,29 @@ Valid values are `true`, `false`, `on_failure`.
 
 <h4 id="exec-attribute-onlyif">onlyif</h4>
 
-If this parameter is set, then this `exec` will only run if
-the command has an exit code of 0.  For example:
+A test command that checks the state of the target system and restricts
+when the `exec` can run. If present, Puppet runs this test command
+first, and only runs the main command if the test has an exit code of 0
+(success). For example:
 
     exec { 'logrotate':
-      path   => '/usr/bin:/usr/sbin:/bin',
-      onlyif => 'test `du /var/log/messages | cut -f1` -gt 100000',
+      path     => '/usr/bin:/usr/sbin:/bin',
+      provider => shell,
+      onlyif   => 'test `du /var/log/messages | cut -f1` -gt 100000',
     }
 
-This would run `logrotate` only if that test returned true.
+This would run `logrotate` only if that test returns true.
 
-Note that this command follows the same rules as the main command,
-such as which user and group it's run as.
-This also means it must be fully qualified if the path is not set.
+Note that this test command runs with the same `provider`, `path`,
+`user`, and `group` as the main command. If the `path` isn't set, you
+must fully qualify the command's name.
 
-It also uses the same provider as the main command, so any behavior
-that differs by provider will match.
-
-Also note that onlyif can take an array as its value, e.g.:
+This parameter can also take an array of commands. For example:
 
     onlyif => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
-This will only run the exec if _all_ conditions in the array return true.
+This `exec` would only run if every command in the array has an
+exit code of 0 (success).
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -210,10 +211,14 @@ Available providers are:
 
 <h4 id="exec-attribute-refresh">refresh</h4>
 
-How to refresh this command.  By default, the exec is just
-called again when it receives an event from another resource,
-but this parameter allows you to define a different command
-for refreshing.
+An alternate command to run when the `exec` receives a refresh event
+from another resource. By default, Puppet runs the main command again.
+For more details, see the notes about refresh behavior above, in the
+description for this resource type.
+
+Note that this alternate command runs with the same `provider`, `path`,
+`user`, and `group` as the main command. If the `path` isn't set, you
+must fully qualify the command's name.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -304,8 +309,10 @@ Sets the umask to be used while executing this command
 
 <h4 id="exec-attribute-unless">unless</h4>
 
-If this parameter is set, then this `exec` will run unless
-the command has an exit code of 0.  For example:
+A test command that checks the state of the target system and restricts
+when the `exec` can run. If present, Puppet runs this test command
+first, then runs the main command unless the test has an exit code of 0
+(success). For example:
 
     exec { '/bin/echo root >> /usr/lib/cron/cron.allow':
       path   => '/usr/bin:/usr/sbin:/bin',
@@ -315,17 +322,16 @@ the command has an exit code of 0.  For example:
 This would add `root` to the cron.allow file (on Solaris) unless
 `grep` determines it's already there.
 
-Note that this command follows the same rules as the main command,
-such as which user and group it's run as.
-This also means it must be fully qualified if the path is not set.
-It also uses the same provider as the main command, so any behavior
-that differs by provider will match.
+Note that this test command runs with the same `provider`, `path`,
+`user`, and `group` as the main command. If the `path` isn't set, you
+must fully qualify the command's name.
 
-Also note that unless can take an array as its value, e.g.:
+This parameter can also take an array of commands. For example:
 
     unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
-This will only run the exec if _all_ conditions in the array return false.
+This `exec` would only run if every command in the array has a
+non-zero exit code.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -378,6 +384,12 @@ Windows --- a command must explicitly invoke the shell:
       command => 'cmd.exe /c echo "foo"',
     }
 
+Advanced example:
+
+```
+command   => 'cmd.exe /c "C:\\Program Files (x86)\\Java\\jre1.8.0_144\\bin\\java.exe" -version > C:\\logfile.txt 2>&1'
+```
+
 If no extension is specified for a command, Windows will use the `PATHEXT`
 environment variable to locate the executable.
 
@@ -396,4 +408,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-04-05 16:21:47 -0500
+> **NOTE:** This page was generated from the Puppet source code on 2017-06-27 17:23:02 -0500

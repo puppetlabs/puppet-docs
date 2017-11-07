@@ -133,7 +133,7 @@ To configure deep merging, use the [`:merge_behavior` setting][mergebehavior], w
 
 [create]: /puppet/latest/reference/function.html#createresources
 [mergebehavior]: ./configuring.html#mergebehavior
-[deepmerge]: https://github.com/peritor/deep_merge
+[deepmerge]: https://github.com/danielsdeleo/deep_merge
 [puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems
 [deepmerge_options]: ./configuring.html#deepmergeoptions
 

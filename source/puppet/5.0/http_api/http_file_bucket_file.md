@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: edcda126535bd31439280bcf21402a4a4f126f71
 title: 'Puppet HTTP API: File Bucket File'
 canonical: "/puppet/latest/http_api/http_file_bucket_file.html"
 ---
@@ -57,7 +57,7 @@ GET, HEAD, PUT
 
 ### Supported Response Formats
 
-`binary` or `application/octet-stream` (a string of the raw file contents)
+`application/octet-stream`
 
 ### Parameters
 
@@ -80,7 +80,7 @@ None
 #### Retrieving a file
 
     > GET /puppet/v3/file_bucket_file/md5/4949e56d376cc80ce5387e8e89a75396//home/user/myfile.txt?environment=production HTTP/1.1
-    > Accept: binary
+    > Accept: application/octet-stream
 
 
     < HTTP/1.1 200 OK
@@ -91,7 +91,7 @@ None
 #### Wrong file name
 
     > GET /puppet/v3/file_bucket_file/md5/4949e56d376cc80ce5387e8e89a75396//home/user/wrong_name?environment=production HTTP/1.1
-    > Accept: binary
+    > Accept: application/octet-stream
 
 
     < HTTP/1.1 404 Not Found

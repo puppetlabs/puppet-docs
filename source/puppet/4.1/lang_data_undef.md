@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Data Types: Undef"
-canonical: "/puppet/latest/reference/lang_data_undef.html"
+canonical: "/puppet/latest/lang_data_undef.html"
 ---
 
 

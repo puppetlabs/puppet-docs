@@ -4,9 +4,9 @@ title: "Installing Puppet: Pre-Install Tasks"
 ---
 
 [peinstall]: /pe/latest/install_basic.html
-[sysreqs]: /puppet/4.1/reference/system_requirements.html
-[ruby]: /puppet/4.1/reference/system_requirements.html#basic-requirements
-[architecture]: /puppet/latest/reference/architecture.html
+[sysreqs]: /puppet/4.1/system_requirements.html
+[ruby]: /puppet/4.1/system_requirements.html#basic-requirements
+[architecture]: /puppet/latest/architecture.html
 
 > **Note:** This document covers open source releases of Puppet. [See here for instructions on installing Puppet Enterprise.][peinstall]
 

@@ -243,7 +243,7 @@ Every module must have metadata defined in the metadata.json file.  Your metadat
 }
 ```
 
-A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/reference/modules_publishing.html#write-a-metadatajson-file).
+A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/modules_publishing.html#write-a-metadatajson-file).
 
 ### 8.1 Dependencies
 
@@ -814,7 +814,7 @@ You should help indicate to the user which classes are which by making sure all 
 
 ### 10.4. Chaining arrow syntax
 
-Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/reference/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
+Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
 
 **Good:** 
 
@@ -891,7 +891,9 @@ class ntp (
 
 ### 10.7 Parameter defaults
 
-Adding default values to the parameters in classes and defined types makes your module easier to use. As of Puppet 4.9.0, use Hiera data in the module and rely on automatic parameter lookup for class parameters. For versions earlier than Puppet 4.9.0, use the "params.pp" pattern. In simple cases, you can also specify the default values directly in the class or defined type.
+Adding default values to the parameters in classes and defined types makes your module easier to use. As of Puppet 4.9.0, use Hiera data in the module and rely on automatic parameter lookup for class parameters.
+
+For versions earlier than Puppet 4.9.0, use the "params.pp" pattern. In simple cases, you can also specify the default values directly in the class or defined type.
 
 Take care to declare the data type of parameters, as this provides automatic type assertions.
 
@@ -943,7 +945,7 @@ class my_module (
 
 Exported resources should be opt-in rather than opt-out. Your module should not be written to use exported resources to function by default unless it is expressly required. When using exported resources, you should name the property `collect_exported`.
 
-Exported resources should be exported and collected selectively using a [search expression](https://docs.puppet.com/puppet/3.7/reference/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
+Exported resources should be exported and collected selectively using a [search expression](https://docs.puppet.com/puppet/3.7/lang_collectors.html#search-expressions), ideally allowing user-defined tags as parameters so tags can be used to selectively collect by environment or custom fact.
 
 **Good:**
 
@@ -1016,7 +1018,7 @@ class profile::myclass (
 
 ### 11.1. Class inheritance
 
-Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should only be used for params.pp, which is not recommended in Puppet 4.
+Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should only be used for params.pp, which is not recommended in Puppet 4. See the documentation about [automatic parameter lookup](./hiera_automatic.html) for detailed information.
 
 For maintaining older modules, inheritance can be used, but must not be used across module
 namespaces. Cross-module dependencies should be satisfied in a more portable way, such as with include statements or relationship declarations. Class inheritance should only be used for `myclass::params` parameter defaults. Other use cases can be accomplished through the addition of parameters or conditional logic. 
@@ -1102,7 +1104,7 @@ These special variable names are protected; because you cannot create local vari
 **Good:**
 
 ```puppet
-$facts[::operatingsystem]
+$facts['operatingsystem']
 ```
 
 **Bad:**

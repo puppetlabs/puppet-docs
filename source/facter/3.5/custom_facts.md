@@ -6,7 +6,6 @@ title: "Custom facts walkthrough"
 [Facter 3.0.2 release notes]: /facter/3.0/release_notes.html#facter--p-restored
 [Plugins in Modules]: /guides/plugins_in_modules.html
 
-
 You can add custom facts by writing snippets of Ruby code on the Puppet master. Puppet then uses [Plugins in Modules][] to distribute the facts to the client.
 
 ## Adding custom facts to Facter
@@ -21,9 +20,9 @@ Since you can't include arbitrary Ruby code in your manifests, the best solution
 
 Facter offers multiple methods of loading facts:
 
-* `$LOAD\_PATH`, or the Ruby library load path
-* The `--custom-dir` command line option
-* The environment variable 'FACTERLIB'
+-   `$LOAD\_PATH`, or the Ruby library load path
+-   The `--custom-dir` command line option
+-   The environment variable 'FACTERLIB'
 
 You can use these methods to do things like test files locally before distributing them, or you can arrange to have a specific set of facts available on certain machines.
 
@@ -83,8 +82,8 @@ This allows you to do something like this:
 
 Most facts have at least two elements:
 
-1. A call to `Facter.add('fact_name')`, which determines the name of the fact.
-2. A `setcode` statement for simple resolutions, which is evaluated to determine the fact's value.
+1.  A call to `Facter.add('fact_name')`, which determines the name of the fact.
+2.  A `setcode` statement for simple resolutions, which is evaluated to determine the fact's value.
 
 Facts *can* get a lot more complicated than that, but those two together are the most common implementation of a custom fact.
 
@@ -95,10 +94,10 @@ get that information is by executing shell commands. You can then parse and mani
 output from those commands using standard Ruby code. The Facter API gives you a few ways to
 execute shell commands:
 
-* If all you want to do is run the command and use the output verbatim, as your fact's value,
+-   If all you want to do is run the command and use the output verbatim, as your fact's value,
 you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
-* If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')` from within the `setcode do`...`end` block. Whatever the `setcode` statement returns is used as the fact's value.
-* In any case, remember that your shell command is also a Ruby string, so you'll need to escape special characters if you want to pass them through.
+-   If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')` from within the `setcode do`...`end` block. Whatever the `setcode` statement returns is used as the fact's value.
+-   In any case, remember that your shell command is also a Ruby string, so you'll need to escape special characters if you want to pass them through.
 
 It's important to note that *not everything that works in the terminal works in a fact*. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements do not work. The best way to handle this limitation is to write your conditional logic in Ruby.
 
@@ -106,8 +105,9 @@ It's important to note that *not everything that works in the terminal works in 
 
 To get the output of `uname --hardware-platform` to single out a specific type of workstation, you would create a new custom fact.
 
-1. Start by giving the fact a name, in this case, `hardware_platform`.
-2. Create your new fact in a file, `hardware_platform.rb` on the Puppet master server:
+1.  Start by giving the fact a name, in this case, `hardware_platform`.
+
+2.  Create your new fact in a file, `hardware_platform.rb` on the Puppet master server:
 
     ``` ruby
     # hardware_platform.rb
@@ -119,7 +119,7 @@ To get the output of `uname --hardware-platform` to single out a specific type o
     end
     ```
 
-3. Use the instructions in the [Plugins in Modules][] page to copy the new fact to a module and distribute it. During your next Puppet run, the value of the new fact will be available to use in your manifests and templates.
+3.  Use the instructions in the [Plugins in Modules][] page to copy the new fact to a module and distribute it. During your next Puppet run, the value of the new fact will be available to use in your manifests and templates.
 
 ## Using other facts
 
@@ -228,7 +228,7 @@ to `Facter::Core::Execution#execute`:
 Facter.add(:sleep) do
   setcode do
     begin
-      Facter::Core::Execution.execute('sleep 10', :timeout => 5)
+      Facter::Core::Execution.execute('sleep 10', options = {:timeout => 5})
       'did not timeout!'
     rescue Facter::Core::Execution::ExecutionFailure
       'timeout!'
@@ -325,6 +325,8 @@ When running as a non-root / non-Administrator user:
 
     <HOME DIRECTORY>/.facter/facts.d/
 
+> **Note:** You can only use custom facts as a non-root user if you have first [configured non-root user access]({{pe}}/deploy_nonroot-agent.html) and previously run Puppet agent as that same user.
+
 ### Executable facts --- Unix
 
 Executable facts on Unix work by dropping an executable file into the standard
@@ -358,9 +360,9 @@ Using this format, a single script can return multiple facts.
 
 Executable facts on Windows work by dropping an executable file into the external fact path for your version of Windows. Unlike with Unix, the external facts interface expects Windows scripts to end with a known extension. Line endings can be either `LF` or `CRLF`. At the moment the following extensions are supported:
 
-- `.com` and `.exe`: binary executables
-- `.bat` and `.cmd`: batch scripts
-- `.ps1`: PowerShell scripts
+-   `.com` and `.exe`: binary executables
+-   `.bat` and `.cmd`: batch scripts
+-   `.ps1`: PowerShell scripts
 
 As with Unix facts, each script must return key/value pairs on STDOUT in the format:
 
@@ -450,8 +452,8 @@ As with executable facts, structured data files can set multiple facts at once.
 
 All of the above types are supported on Windows with the following caveats:
 
-* The line endings can be either `LF` or `CRLF`.
-* The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
+-   The line endings can be either `LF` or `CRLF`.
+-   The file encoding must be either `ANSI` or `UTF8 without BOM` (Byte Order Mark).
 
 ### Troubleshooting
 
@@ -488,6 +490,6 @@ found in the stdlib module.
 
 While external facts provide a mostly-equal way to create variables for Puppet, they have a few drawbacks:
 
-* An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
-* External executable facts are forked instead of executed within the same process.
-* Distributing executable facts through pluginsync requires Puppet 3.4.0 or greater.
+-   An external fact cannot internally reference another fact. However, due to parse order, you can reference an external fact from a Ruby fact.
+-   External executable facts are forked instead of executed within the same process.
+-   Distributing executable facts through pluginsync requires Puppet 3.4.0 or greater.

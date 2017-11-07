@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6ff9b4626a7ffa75e145e1e91f879dfda897989b
+built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
 title: 'Man Page: puppet inspect'
 canonical: "/puppet/latest/man/inspect.html"
 ---
@@ -38,7 +38,7 @@ from cron.</p>
 <p>Any configuration setting which is valid in the configuration file is
 also a valid long argument, e.g. '--server=master.domain.com'. See the
 configuration file documentation at
-https://docs.puppetlabs.com/puppet/latest/reference/configuration.html for
+https://docs.puppetlabs.com/puppet/latest/configuration.html for
 the full list of acceptable settings.</p>
 
 <dl>
@@ -51,10 +51,10 @@ archive_files is set.  The default value is '$server'.</p></dd>
 
 <h2 id="AUTHOR">AUTHOR</h2>
 
-<p>Puppet Labs</p>
+<p>Puppet Inc.</p>
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Labs, LLC Licensed under the Apache 2.0 License</p>
+<p>Copyright (c) 2011 Puppet Inc., LLC Licensed under the Apache 2.0 License</p>
 
 </div>

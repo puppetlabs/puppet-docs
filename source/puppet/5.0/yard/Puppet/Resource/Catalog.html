@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Resource::Catalog
   
-    &mdash; Documentation by YARD 0.9.8
+    &mdash; Documentation by YARD 0.9.9
   
 </title>
 
@@ -225,6 +225,12 @@ catalog, including the resources and the relationships between them.</p>
   
   
   
+  
+  
+  
+  
+  
+  
 
   <div id="instance_method_details" class="method_details_list">
     <h2>Instance Method Details</h2>
@@ -255,7 +261,7 @@ catalog, including the resources and the relationships between them.</p>
         <span class='name'>options</span>
       
       
-        <span class='type'>(<tt>Hash{<span class='object_link'>Symbol</span> =&gt; <span class='object_link'>Object</span>}</tt>)</span>
+        <span class='type'>(<tt>Hash{Symbol =&gt; <span class='object_link'>Object</span>}</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>{}</tt>)</em>
@@ -285,43 +291,6 @@ catalog, including the resources and the relationships between them.</p>
             &mdash; <div class='inline'><p>The report object to log this transaction to. This is optional,
 and the resulting transaction will create a report if not
 supplied.</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:tags</span>
-          <span class="type">(<tt>Array[String]</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'><p>Tags used to filter the transaction. If supplied then only
-resources tagged with any of these tags will be evaluated.</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:ignoreschedules</span>
-          <span class="type">(<tt>Boolean</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'><p>Ignore schedules when evaluating resources</p>
-</div>
-          
-        </li>
-      
-        <li>
-          <span class="name">:for_network_device</span>
-          <span class="type">(<tt>Boolean</tt>)</span>
-          <span class="default">
-            
-          </span>
-          
-            &mdash; <div class='inline'><p>Whether this catalog is for a network device</p>
 </div>
           
         </li>
@@ -367,9 +336,6 @@ application</p>
       <pre class="lines">
 
 
-215
-216
-217
 218
 219
 220
@@ -385,10 +351,13 @@ application</p>
 230
 231
 232
-233</pre>
+233
+234
+235
+236</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 215</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 218</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply'>apply</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
@@ -475,12 +444,12 @@ application</p>
       <pre class="lines">
 
 
-126
-127
-128</pre>
+129
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 126</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 129</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_container_of'>container_of</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_adjacent'>adjacent</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:direction</span> <span class='op'>=&gt;</span> <span class='symbol'>:in</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -552,16 +521,16 @@ being determined by the <code>ordering</code> setting.</p>
       <pre class="lines">
 
 
-243
-244
-245
 246
 247
 248
-249</pre>
+249
+250
+251
+252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 243</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 246</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_relationship_graph'>relationship_graph</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -580,9 +549,9 @@ being determined by the <code>ordering</code> setting.</p>
 </div>
 
       <div id="footer">
-  Generated on Wed Apr  5 16:22:21 2017 by
+  Generated on Tue Jun 27 17:24:19 2017 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.8 (ruby-2.2.0).
+  0.9.9 (ruby-2.2.0).
 </div>
 
     </div>

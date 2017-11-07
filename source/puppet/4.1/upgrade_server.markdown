@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Puppet 3.x to 4.x Server Upgrades"
-canonical: "/puppet/latest/reference/upgrade_server.html"
+canonical: "/puppet/latest/upgrade_server.html"
 ---
 
 This guide is for sites that have all master-related functions (Puppet master, certificate authority, file server) on one system.
@@ -62,7 +62,7 @@ If you're not using r10k, or not using environments at all, put your `site.pp` a
 
 The default settings written into this version of puppet.conf should work for most people. If your old puppet.conf had settings related to environments (especially static "config file environments" that use the `[environmentname]` stanzas in puppet.conf, these will either become global (such as adjusting `basemodulepath` [as described here](./environments_configuring.html#basemodulepath]) or move into an environment-specific config file, [documented in the environment.conf section](./environments_creating.html#the-environmentconf-file).
 
-Read through the [Puppet 4 Release Notes](/puppet/4.0/reference/release_notes.html) for more detail on other settings that were removed or whose defaults may have changed.
+Read through the [Puppet 4 Release Notes](/puppet/4.0/release_notes.html) for more detail on other settings that were removed or whose defaults may have changed.
 
 ## Start Running the Puppet Server
 

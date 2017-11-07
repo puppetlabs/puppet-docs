@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "Language: Run stages"
-canonical: "/puppet/latest/reference/lang_run_stages.html"
+canonical: "/puppet/latest/lang_run_stages.html"
 ---
 
 [metaparameter]: ./lang_resources.html#metaparameters
