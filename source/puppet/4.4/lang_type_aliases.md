@@ -1,82 +1,84 @@
 ---
 layout: default
 title: "Language: Type Aliases"
-canonical: "/puppet/latest/reference/lang_type_aliases.html"
+canonical: "/puppet/latest/lang_type_aliases.html"
 ---
 
 [reserved]: ./lang_reserved.html
 
+Type aliases allow you to create reusable and descriptive data and resource types.
 
-Type aliases allow you to create reusable and descriptive types.
+## Creating type aliases
 
-## Syntax
+Type aliases are written as `type <NAME> = <TYPE DEFINITION>`. The alias `<NAME>` begins with a capital letter and must not be a [reserved word][reserved].
 
-Type aliases are written as `type <NAME> = <TYPE DEFINITION>`, the alias `<NAME>` beginning with a capital letter. The alias name must not be a [reserved word][reserved]. 
+This example makes the type alias `MyType` equivalent to the `Integer` data type:
 
-As an example:
-
-~~~
+``` puppet
 type MyType = Integer
-~~~
+```
 
-Makes `MyType` equivalent to `Integer`.
+You can then declare a parameter using the alias as though it were a unique type:
 
-This mechanism is used for several reasons:
+``` puppet
+MyType $example = 10
+```
 
-* Gives a type a descriptive name such as `IPv6Addr`, rather than just using a complex pattern based type.
-* Shortens complex type expressions and moves them "out of the way".
-* Reuse of types increases the quality, as not everyone has to invent types like `IPv6Addr`.
-* Type definitions can be tested separately.
+By using type aliases, you can:
 
+-   Give a type a descriptive name, such as `IPv6Addr`, instead of creating or using a complex pattern-based type.
+-   Shorten and move complex type expressions.
+-   Improve code quality by reusing existing types instead of inventing new types.
+-   Test type definitions separately.
 
-## Location
+### Type alias transparency
 
-Store the type aliases you write in your modules' `types` folder, which is a top-level directory, a sibling of `manifests` and `lib`. Define only one alias per file.
+Puppet language aliases are transparent. This example's `notice` returns `true`:
 
-The name of the `.pp` file defining the alias must be the alias name in all lower case without underscore separators inserted at camel case positions. For example, `MyType` is expected to be loaded from a file named `"mytype.pp"`.
+``` puppet
+type MyInteger = Integer
+notice MyInteger == Integer
+```
 
->**Note:** It is okay to use type aliases in manifests when showing examples, or doing experiments, but best practices dictate you should define them as outlined above in production scenarios.
+> **Note:** The internal types `TypeReference` and `TypeAlias` are never values in a Puppet program.
 
+## Organizing type alias defintiions
 
-## Recursive types
+Store type aliases in your module's `types` directory, which is a top-level directory and sibling of the `manifests` and `lib` directories. Define only one alias per file.
 
-Creating recursive types is allowed:
+The name of the `.pp` file defining the alias must be the same as the alias name, in all lower case and without underscore separators inserted at camel case positions. For example, `MyType` is expected to be loaded from a file named `mytype.pp`.
 
-~~~
+> **Warning:** For production Puppet deployments, do not define type aliases inside of other manifests. Keep type aliases organized into their own files within the `types` directory.
+
+## Creating recursive types
+
+You can create recursive types:
+
+``` puppet
 type Tree = Array[Variant[Data, Tree]]
-~~~
+```
 
-This type definition allows a tree that is built out of arrays that contain data, or a tree 
+This type definition allows a tree built out of arrays that contain data, or a tree:
 
-~~~
+```
 [1,2 [3], [4, [5, 6], [[[[1,2,3]]]]]]
-~~~
+```
 
-A recursive alias may refer to the alias being declared, or other types.
+A recursive alias can refer to the alias being declared, or to other types.
 
-This is a very powerful mechanism that allows higher quality type definitions. Earlier references like these were impossible, the only option was to use `Any`.
-
+This is a very powerful mechanism that allows higher quality type definitions that don't require you to use the `Any` type.
 
 ## Aliasing resource types
 
-It is also possible to create aliases to resource types.
+You can also create aliases to resource types.
 
-~~~
+``` puppet
 type MyFile = File
-~~~
+```
 
-When doing this, use the short form such as `File` instead of `Resource[File]`.
+Use the resource type's short form, such as `File`, instead of `Resource[File]`.
 
+## Related topics
 
-## Type aliases and type references are transparent
-
-The Puppet language aliases are transparent:
-
-~~~
-type MyInteger = Integer
-notice MyInteger == Integer
-~~~
-
-The above notices `true`.
-
-The internal type system types `TypeReference` and `TypeAlias` are never values in a Puppet program.
+-   [Data types](./lang_data_types.md)
+-   [Resources](./lang_resources.md)

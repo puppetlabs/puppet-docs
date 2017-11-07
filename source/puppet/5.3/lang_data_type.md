@@ -205,3 +205,6 @@ Position | Parameter        | Data Type | Default Value | Description
 * `Type[String]` --- matches the data type `String`, as well as any of its more specific subtypes like `String[3]` or `Enum["running", "stopped"]`.
 * `Type[Resource]` --- matches any `Resource` data type --- that is, any resource reference.
 
+## Related topics
+
+-   [Type aliases](./lang_type_aliases.md)
