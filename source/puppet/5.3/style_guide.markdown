@@ -945,7 +945,7 @@ class ntp (
 {:.section}
 ### 10.7 Parameter defaults
 
-Adding default values to the parameters in classes and defined types makes your module easier to use. As of Puppet 4.9.0, use Hiera data in the module and rely on automatic parameter lookup for class parameters. See the documentation about [automatic parameter lookup](,/hiera_automatic.html) for detailed information.
+Adding default values to the parameters in classes and defined types makes your module easier to use. As of Puppet 4.9.0, use Hiera data in the module and rely on automatic parameter lookup for class parameters. See the documentation about [automatic parameter lookup](https://puppet.com/docs/puppet/5.3/hiera_automatic.html#puppet-lookup) for detailed information.
 
 For versions earlier than Puppet 4.9.0, use the "params.pp" pattern. In simple cases, you can also specify the default values directly in the class or defined type.
 
