@@ -1351,7 +1351,7 @@ Whether to install the NTP package, and what version to install. Values: 'presen
 Default value: 'present'.
 ```
 
-See our module documentation [guide](./latest/modules_documentation.html) for more details and examples.
+See our module documentation [guide](https://puppet.com/docs/puppet/5.3/modules_documentation.html) for more details and examples.
 
 {:.section}
 ### 18.3 CHANGELOG
