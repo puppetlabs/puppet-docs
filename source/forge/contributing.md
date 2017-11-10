@@ -11,7 +11,7 @@ canonical: "/forge/contributing.html"
 [dev]:           https://groups.google.com/forum/?fromgroups#!forum/puppet-dev
 
 
-# Contributing to Puppet Modules
+# Contributing to Puppet modules
 
 ## How to contribute
 
@@ -20,7 +20,7 @@ Puppet modules on the Puppet Forge are open projects and community contributions
 We want to keep it as easy as possible to contribute changes so that our modules work in your environment. There are a few guidelines that we need contributors to follow so that we can have a chance of keeping on top of things.
 
 
-### Getting Started
+### Getting started
 
 * Make sure you have a [GitHub account](https://github.com/signup/free).
 * Submit [a ticket](https://jira.puppetlabs.com/browse/MODULES) for your issue, assuming one does not already exist.
@@ -35,7 +35,7 @@ We want to keep it as easy as possible to contribute changes so that our modules
  [puppet-users mailing list][puppet-users] before getting started on code.
 
 
-### How to Get Help
+### How to get help
 
 We really want it to be simple to contribute to modules, so you can
 get started quickly. A big part of that is being available to help you figure
@@ -48,7 +48,7 @@ You can always reach out and ask for help:
 * by IRC, through [#puppet][irc] on [the FreeNode IRC network][freenode].
 
 
-### Discuss Your Change
+### Discuss your change
 
 You should start by discussing your change in public:
 
@@ -67,7 +67,7 @@ code does not guarantee it will be merged. This is why we encourage discussion
 prior to code submissions.
 
 
-### Making Changes
+### Making changes
 
 * Create a topic branch for your work.
    * You should branch off the `master` branch unless otherwise specified by the specific module.
@@ -102,7 +102,7 @@ prior to code submissions.
    * You can *always* ask for help getting the tests working or with writing tests.
    * Furthermore, if you aren't up to writing tests for your work, indicate it clearly in your pull request. You won't be rejected for a lack of tests, but someone else will need to add those tests before we can merge your contribution.
 
-#### Branch and Version Compatibility
+#### Branch and version compatibility
 
 Any change to a module should strive as much as possible to be compatible
 with all released versions of Puppet. We want to avoid multiple incompatible
@@ -112,7 +112,7 @@ We are willing to accept backward-incompatible changes if there is
 no possible way around it. Those changes MUST provide a migration strategy
 and, if possible, deprecation warnings about the older functionality. Ask for help from the community or a Puppet employee if you'd like some advice on approaches here.
 
-### Submitting Changes
+### Submitting changes
 
 * Push your changes to a topic branch in your fork of the repository.
 * Submit a pull request to the repository in the puppetlabs organization.
@@ -151,7 +151,13 @@ code before any discussion happened.
    1. Committers are trusted to do the right thing - you can merge your own code, but you should make sure you get appropriate independent review.
    2. Most changes should not merge unless a code review has been completed.
 
-### Becoming a Committer
+### Responding to feedback on a pull request
+
+We might sometimes request changes or fixes on your PR before we accept it. When making requested changes, push them to the same topic branch. This automatically updates the PR. 
+
+If you do not respond to our comments or questions, we might not accept your PR and eventually, we might even close it. This doesn't mean we don't value your contribution; if you choose to address our comments or questions later, reopen the ticket or create a new PR.
+
+### Becoming a committer
 
 Puppet modules are an open project: any contributor can become a committer.  Being a committer comes with great responsibility: your decisions directly shape the community, as well as the effectiveness of Puppet Forge modules. You will probably invest more and produce less as a committer than a regular developer
 submitting pull requests.
