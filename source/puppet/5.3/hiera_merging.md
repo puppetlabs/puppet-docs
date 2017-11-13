@@ -32,13 +32,13 @@ Related topics: [lookup][lookup_command], [automatic class parameter lookup][aut
 There are four merge behaviors to choose from: `first`, `unique`, `hash`, and `deep`.
 When specifying a merge behavior, use one of the following identifiers:
 
-`'first'`, `{'strategy' => 'first'}`, or nothing.
-`'unique'` or `{'strategy' => 'unique'}`.
-`'hash'` or `{'strategy' => 'hash'}`.
-`'deep'` or `{'strategy' => 'deep', <OPTION> => <VALUE>, ...}`. Valid options:
-`'knockout_prefix'` - string or undef; default is `undef`
-`'sort_merged_arrays'` - Boolean; default is `false`
-`'merge_hash_arrays'` - boolean; default is `false`
+* `'first'`, `{'strategy' => 'first'}`, or nothing.
+* `'unique'` or `{'strategy' => 'unique'}`.
+* `'hash'` or `{'strategy' => 'hash'}`.
+* `'deep'` or `{'strategy' => 'deep', <OPTION> => <VALUE>, ...}`. Valid options:
+	* `'knockout_prefix'` - string or undef; default is `undef`
+	* `'sort_merged_arrays'` - Boolean; default is `false`
+	* `'merge_hash_arrays'` - boolean; default is `false`
 
 ### First
  
@@ -67,7 +67,8 @@ Hashes in Puppet preserve the order in which their keys are written. When mergin
  
 For example:
 
-```# web01.example.com.yaml
+```
+# web01.example.com.yaml
 mykey:
   d: "per-node value"
   b: "per-node override"
@@ -76,13 +77,15 @@ mykey:
   a: "common value"
   b: "default value"
   c: "other common value"
- ```
+ 
 
-`lookup('mykey', {merge => 'hash'})`
+`lookup('mykey', {merge => 'hash'})
+```
 
 Returns the following:
 
-```{
+```
+{
   a => "common value",
   b => "per-node override", # Using value from the higher-priority source, but
                             # preserving the order of the lower-priority source.
