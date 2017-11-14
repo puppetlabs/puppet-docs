@@ -205,4 +205,4 @@ The easiest migration path to upgrade is to compensate for redirection, using th
 
 The installer specifically stores information in different areas of the registry to allow rolling back to the 32bit agent.
 
-For more information, see [compensating for redirection] (https://puppet.com/docs/puppet/5.3/lang_windows_file_paths.html#compensating-for-redirection).
+For more information, see [compensating for redirection](https://puppet.com/docs/puppet/5.3/lang_windows_file_paths.html#compensating-for-redirection).
