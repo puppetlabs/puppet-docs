@@ -1221,7 +1221,7 @@ We recommend not mixing conditionals with resource declarations. When you use co
 **Good:**
 
 ```puppet
-$file_mode = $::operatingsystem ? {
+$file_mode = $facts['operatingsystem'] ? {
   'debian' => '0007',
   'redhat' => '0776',
    default => '0700',
@@ -1240,7 +1240,7 @@ file { '/tmp/readme.txt':
 file { '/tmp/readme.txt':
   ensure  => file,
   content => "Hello World\n",
-  mode    => $::operatingsystem ? {
+  mode    => $facts['operatingsystem'] ? {
     'debian' => '0777',
     'redhat' => '0776',
     default  => '0700',
@@ -1261,7 +1261,7 @@ Selectors should omit default selections only if you explicitly want catalog com
 **Good:**
 
 ```
-case $::operatingsystem {
+case $facts['operatingsystem'] {
   'centos': {
     $version = '1.2.3'
   }
