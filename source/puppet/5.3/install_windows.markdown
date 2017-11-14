@@ -185,7 +185,7 @@ The domain of the Puppet agent's user account. See the notes under [`PUPPET_AGEN
 **Default:** `.`
 
 {:.task}
-## Downgrades and Uninstalling
+## Downgrade from 64-bit of Puppet to 32-bit Puppet
 
 If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package.
 
@@ -196,4 +196,13 @@ To uninstall Puppet from the command line, you must have the original MSI file o
     msiexec /qn /norestart /x puppet-agent-1.3.0-x64.msi
     msiexec /qn /norestart /x <PRODUCT CODE>
 
-When you uninstall Puppet, the uninstaller removes Puppet's program directory, the Puppet agent service, and all related registry keys. It leaves the `$confdir`, `$codedir`, and `$vardir` intact, including any SSL keys. To completely remove Puppet from the system, manually delete the `$confdir`, `$codedir`, and `$vardir`.
+When you uninstall Puppet, the uninstaller removes Puppet's program directory, the Puppet Agent services, and all related registry keys. It leaves the [`$confdir`](https://puppet.com/docs/puppet/5.3/dirs_confdir.html), [`$codedir`](https://puppet.com/docs/puppet/5.3/dirs_codedir.html), and [`$vardir`](https://puppet.com/docs/puppet/5.3/dirs_vardir.html) intact, including any SSL keys. To completely remove Puppet from the system, manually delete the `$confdir`, `$codedir`, and `$vardir`.
+
+{:.task}
+## Upgrade from 32-bit Puppet to 64-bit Puppet on Windows
+
+The easiest migration path to upgrade is to compensate for redirection, using the `$system32` fact,  available in [Puppet 3.7.3](https://docs.puppet.com/puppet/3.7/release_notes.html#puppet-373) and later. This fact automatically compensates for file system redirection. You need to ensure any manifests also use this fact, and that any modules you are using are not affected by redirection. The best way to do this is to check the READMEs for the module.
+
+The installer specifically stores information in different areas of the registry to allow rolling back to the 32bit agent.
+
+For more information, see [compensating for redirection] (https://puppet.com/docs/puppet/5.3/lang_windows_file_paths.html#compensating-for-redirection).
