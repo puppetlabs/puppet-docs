@@ -185,7 +185,7 @@ The domain of the Puppet agent's user account. See the notes under [`PUPPET_AGEN
 **Default:** `.`
 
 {:.task}
-## Downgrade from 64-bit of Puppet to 32-bit Puppet
+## Downgrade from 64-bit Puppet to 32-bit Puppet
 
 If you need to replace a 64-bit version of Puppet with a 32-bit version, you must **uninstall** Puppet before installing the new package.
 
