@@ -617,6 +617,20 @@ The environment Puppet is running in.  For clients
 is used to find modules and much more.  For servers (i.e., `puppet master`)
 this provides the default environment for nodes we know nothing about.
 
+When environment is defined in the `[agent]` section, this refers to the
+environment the agent will request from the master. The environment is not
+required to exist on the local filesystem, as it is fetched from the master.
+This definition is used when running `puppet agent`. When defined in the
+`[user]` section, environment refers to the path that Puppet uses to search for
+code and modules related to its execution. This requires the environment to
+exist locally on the filesystem where puppet is being executed. This definition
+is used by various puppet subcommands, including `puppet module` and
+`puppet apply`.
+
+Given the varying contexts in which the environment definition is used based on
+which [config section](https://puppet.com/docs/puppet/latest/config_file_main.html#config-sections)
+it is defined in, it should not be set globally.
+
 - *Default*: production
 
 ### environment_data_provider
