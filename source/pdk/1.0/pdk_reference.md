@@ -19,7 +19,7 @@ The `pdk new module` command accepts the following arguments and options. Argume
 
 Argument   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-`--template-url=<GIT_URL>` | Overrides the template to use for this module. | A valid Git URL or path to a local template.    | Defaults to the current pdk-module-template.    | The current pdk-module-template.
+`--template-url=<GIT_URL>` | Overrides the template to use for this module. | A valid Git URL or path to a local template.    | Defaults to the current pdk-module-template.
 `--license=<IDENTIFIER>` | Specifies the license for this module is written under. | See https://spdx.org/licenses/ for a list of open source licenses, or use `proprietary`.    | `Apache-2.0`
 `--skip-interview` | questions. Default values for all metadata. | None    | Ask questions.
 `<module_name>` | **Required**. Specifies the name of the module being created. | A module name beginning with a lowercase letter and including only lowercase letters, digits, and underscores.    | No default.
