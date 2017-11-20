@@ -68,7 +68,7 @@ Most people should only use the following variables:
 
 These three hashes have all the information that's most useful to Hiera. They also behave very predictably, which makes them the easiest to work with.
 
-> **Tip:** Most people need a hierarchy level that references the name of a node. The best way to get a node's name is with `trusted.certname`. If you need to reference a node's [environment][], use `server_facts.environment`.
+> **Tip:** Most people need a hierarchy level that references the name of a node. The best way to get a node's name is with `trusted.certname`. If you need to reference a node's [environment][], use `environment`.
 
 #### Avoid local variables
 
