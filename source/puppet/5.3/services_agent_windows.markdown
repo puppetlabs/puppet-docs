@@ -163,3 +163,6 @@ When started with the `--logdest <FILE>` option, Puppet agent logs to the file s
 
 In addition to local logging, Puppet agent submits a [report][] to the Puppet master after each run. (This can be disabled by setting [`report = false`](./configuration.html#report) in [puppet.conf][].)
 
+### Setting Puppet Agent CPU priority
+
+When CPU usage is high, try lowering the priority of the Puppet Agent service. This can be achieved using the [process priority setting](https://puppet.com/docs/puppet/5.3/configuration.html#priority), a cross platform configuration option. This can also be set in the Puppet Master. 
