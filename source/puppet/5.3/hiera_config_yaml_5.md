@@ -30,7 +30,7 @@ The configuration file locations for each layer:
 Layer       | Location                                        | Example
 ------------|-------------------------------------------------|--------
 Global      | [`$confdir`][confdir]`/hiera.yaml`              | `/etc/puppetlabs/puppet/hiera.yaml` `C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml`
-Environment | [`<ENVIRONMENT>`][environment]`/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\hiera.yaml`
+Environment | [`<ENVIRONMENT>`](https://puppet.com/docs/puppet/latest/environments_about.html) `/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\hiera.yaml`
 Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\modules\ntp\hiera.yaml`
 
 > Note: You can change the location for the global layer's hiera.yaml with Puppet's `hiera_config` setting.
