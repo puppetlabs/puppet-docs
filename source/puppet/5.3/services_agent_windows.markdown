@@ -165,4 +165,4 @@ In addition to local logging, Puppet agent submits a [report][] to the Puppet ma
 
 ### Setting Puppet Agent CPU priority
 
-When CPU usage is high, try lowering the priority of the Puppet Agent service. This can be achieved using the [process priority setting](https://puppet.com/docs/puppet/5.3/configuration.html#priority), a cross platform configuration option. This can also be set in the Puppet Master. 
+When CPU usage is high, try lowering the priority of the Puppet Agent service. This can be achieved using the [process priority setting](https://puppet.com/docs/puppet/latest/configuration.html#priority), a cross platform configuration option. This can also be set in the Puppet Master. 
