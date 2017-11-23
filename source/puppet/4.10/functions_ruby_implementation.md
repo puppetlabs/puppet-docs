@@ -77,28 +77,28 @@ end
 
 ## Calling other functions
 
-If you want to call another Puppet function (like `include`) from inside a function, use the special `call_function(name, args, &block)` method.
+If you want to call another Puppet function (like `include`) from inside a function, use the special `call_function(name, *args, &block)` method.
 
 ``` ruby
 # Flatten an array of arrays of strings, then pass it to include:
 def include_nested(array_of_arrays)
-  call_function('include', array_of_arrays.flatten)
+  call_function('include', *array_of_arrays.flatten)
 end
 ```
 
 * The first argument must be the name of the function to call, as a string.
-* The second argument must be an array containing any arguments to the function.
-* The third argument can be a Ruby Proc, or a Puppet [lambda][lambdas] previously captured as a Proc (see above). You can also provide a block of Ruby code using the normal block syntax.
+* The next arguments can be any data type that the called function accepts. They will be passed as arguments to the called function.
+* The last argument may be a Ruby Proc, or a Puppet [lambda][lambdas] previously captured as a Proc (see above). You can also provide a block of Ruby code using the normal block syntax.
 
 ``` ruby
 def my_function1(a, b, &block)
   # passing given Proc
-  call_function('my_other_function', [a, b], &block)
+  call_function('my_other_function', a, b, &block)
 end
 
 def my_function2(a, b)
   # using a Ruby block
-  call_function('my_other_function', [a, b]) { |x| ... }
+  call_function('my_other_function', a, b) { |x| ... }
 end
 ```
 
