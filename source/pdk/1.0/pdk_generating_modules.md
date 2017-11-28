@@ -6,6 +6,7 @@ description: "Creating a module with the Puppet Development Kit, the shortest pa
 ---
 
 [install]: ./pdk_install.html
+[interview]: ./pdk_metadata_interview.html
 [metadata]: {{puppet}}/modules_metadata.html
 [fundamentals]: {{puppet}}/modules_fundamentals.html
 
@@ -14,21 +15,9 @@ description: "Creating a module with the Puppet Development Kit, the shortest pa
 
 PDK creates the basic components of a module and sets up an infrastructure for testing it.
 
-To create module metadata, PDK asks you a series of questions. Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module creations. PDK also adds a default set of supported operating systems to your metadata, which you can manually edit after module creation. For details about editing `metadata.json`, see the related topic about module metadata.
+To create module metadata, PDK asks you a series of questions. Each question has a default response that PDK uses if you skip the question. The answers you provide to these questions are stored and used as the new defaults for subsequent module creations.
 
-Optionally, you can skip the interview step and use the default answers for all metadata.
-
-When you run the `pdk new module` command, the tool requests the following information:
-
-* Your Puppet Forge user name. If you don't have a Forge account, you can accept the default value for this question. If you create a Forge account later, edit the module metadata manually with the correct value. 
-* Module version. We use and recommend semantic versioning for modules.
-* Your name.
-* The license under which your module is made available, an identifier from [SPDX License List](https://spdx.org/licenses/).
-* A list of operating systems your module supports.
-* A one-sentence summary about your module.
-* The URL to your module's source code repository, so that other users can contribute back to your module.
-* The URL to a web site that offers full information about your module, if you have one.
-* The URL to the public bug tracker for your module, if you have one.
+For more detailed information on the interview process, please see [the interview documentation][interview].
 
 After you create a module, validate and test the module _before_ you add classes or write new code in it. This allows you to verify that the module files and directories were correctly created.
 
@@ -56,15 +45,16 @@ Before you begin, ensure that you've installed the PDK package. If you are runni
 
 1. Respond to the PDK dialog questions. Each question indicates the default value it will use if you just press **Enter**.
 
-   1. Forge username: Enter your Forge username, if you have a Forge account.
-   2. Version: Enter the semantic version of your module, such as "0.1.0".
-   3. Author: Enter the name of the module author (you or someone else responsible for the module's content).
-   4. License: If you want to specify a license other than "Apache-2.0," specify that here, such as "MIT", or "proprietary".
-   5. Operating System Support: Select which operating systems your module supports, choosing from the dialog menu.
-   5. Description: Enter a one-sentence summary that helps other users understand what your module does.
-   6. Source code repository: Enter the URL to your module's source code repository.
-   7. Where others can learn more: If you have a website where users can learn more about your module, enter the URL.
-   8. Where others can report issues: If you have a public bug tracker for your module, enter the URL.
+   1. Module name: If there is no module name currently present, this question is skipped otherwise.
+   2. Forge username: Enter your Forge username, if you have a Forge account.
+   3. Version: Enter the semantic version of your module, such as "0.1.0".
+   4. Author: Enter the name of the module author (you or someone else responsible for the module's content).
+   5. License: If you want to specify a license other than "Apache-2.0," specify that here, such as "MIT", or "proprietary".
+   6. Operating System Support: Select which operating systems your module supports, choosing from the dialog menu.
+   7. Description: Enter a one-sentence summary that helps other users understand what your module does.
+   8. Source code repository: Enter the URL to your module's source code repository.
+   9. Where others can learn more: If you have a website where users can learn more about your module, enter the URL.
+   10. Where others can report issues: If you have a public bug tracker for your module, enter the URL.
 
 1. If the metadata that PDK displays is correct, confirm to create the module. If it is incorrect, cancel and start over.
 
