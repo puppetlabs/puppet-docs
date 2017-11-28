@@ -45,7 +45,7 @@ When you create an environment, you give it the following structure:
 {:.Concept}
 ## Environment resources
  
-An environment specifies resources that the Puppet master will use when compiling catalogs for agent nodes. The `modulepath`, the main manifest, hiera data, and the config version script, can all be specified in `envronment.conf`. 
+An environment specifies resources that the Puppet master will use when compiling catalogs for agent nodes. The `modulepath`, the main manifest, hiera data, and the config version script, can all be specified in `environment.conf`. 
  
 ### The `modulepath`
 
