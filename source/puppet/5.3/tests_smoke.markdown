@@ -8,7 +8,7 @@ You can smoke test your module manifests to check for compilation errors and to 
 
 For this kind of testing, you must be working with a system that has Puppet installed and is equivalent to your production environment. Before you begin, ensure that your module is valid and well-formed, and that it passes unit tests.
 
-For each class or defined type in your module, you'll write a corresponding example manifest that declares that class or defined type. These manifests are normally contained in the `examples\` directory of the module.
+For each class or defined type in your module, you'll write a corresponding example manifest that declares that class or defined type. These manifests are normally contained in the `/examples` directory of the module.
 
 Then you'll apply those example manifests in either a no-operation mode, to check for compilation errors and view a log of events, or in a virtual testing environment, to compare the resulting system state to the desired state.
 
@@ -17,9 +17,9 @@ This form of testing gives less assurance than full acceptance testing, but you 
 {:.concept}
 ## Writing example manifests
 
-A well-formed Puppet module implements each of its classes or defined types in separate files in its `manifests\` directory. Thus, ensuring each class or type has an example manifest results in the `examples\` directory being a mirror image of the `manifests\` directory.
+A well-formed Puppet module implements each of its classes or defined types in separate files in its `/manifests` directory. Thus, ensuring each class or type has an example manifest results in the `/examples` directory being a mirror image of the `/manifests` directory.
 
-Class manifests in the `examples\` directory are typically basic manifests that declare the class, such as `include apache::ssl`. For parameterized classes, the example manifest must declare the class with all of its required parameters set.
+Class manifests in the `/examples` directory are typically basic manifests that declare the class, such as `include apache::ssl`. For parameterized classes, the example manifest must declare the class with all of its required parameters set.
 
 For example: 
 
