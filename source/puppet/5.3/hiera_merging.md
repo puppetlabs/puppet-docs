@@ -6,7 +6,6 @@ title: "Creating and editing data"
 [automatic]: ./hiera_automatic.html
 [data types]: ./lang_data.html
 [interpolation_puppet]: ./lang_data_string.html#interpolation
-[automatic]: ./hiera_automatic.htmlAccess#hash-and-array-elements-using-a-key.subkey-notation
 [facts_hash]: ./lang_facts_and_builtin_vars.html#the-factsfactname-hash
 [trusted]: ./lang_facts_and_builtin_vars.html#trusted-facts
 [server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
