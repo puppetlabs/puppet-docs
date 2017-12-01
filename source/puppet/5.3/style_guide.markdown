@@ -3,7 +3,6 @@ layout: default
 title: The Puppet Language Style Guide
 ---
 
-{:.overview}
 The Puppet Language Style Guide
 ===========
 
@@ -680,7 +679,7 @@ define apache::listen {
 ```
 
 {:.concept}
-## 10. Classes and defined types
+## Classes and defined types
 
 Classes and defined types should follow scope and organization guidelines.
 
@@ -1086,7 +1085,7 @@ class wordpress inherits apache { ... }
 When declaring classes in publicly available modules, you should use `include`, `contain`, or `require` rather than class resource declaration. This avoids duplicate class declarations and vendor lock-in.
 
 {:.concept}
-## 13. Variables
+## Variables
 
 Reference variables in a clear, unambiguous way that is consistent with Puppet style.
 
