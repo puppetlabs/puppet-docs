@@ -1,4 +1,4 @@
-In this version of Puppet, the environment.conf file is only allowed to override five settings:
+In this version of Puppet, the environment.conf file is only allowed to override four settings:
 
 * `modulepath`
 * `manifest`
