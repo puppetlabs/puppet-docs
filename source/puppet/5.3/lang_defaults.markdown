@@ -11,6 +11,7 @@ title: "Language: Resource default statements"
 
 Resource default statements let you set default attribute values for a given resource type. Any resource declaration within the area of effect that omits those attributes will inherit the default values.
 
+{:.concept}
 ## Syntax
 
 
@@ -32,6 +33,7 @@ The general form of resource defaults is:
 
 You can specify defaults for any resource type in Puppet, including [defined types][definedtypes].
 
+{:.concept}
 ## Behavior
 
 
@@ -41,12 +43,14 @@ Attributes that are set explicitly in a resource declaration will always overrid
 
 Resource defaults are **evaluation-order independent** --- that is, a default will affect resource declarations written both above and below it.
 
+{:.section}
 ### Area of effect
 
 Puppet uses dynamic scoping for resource defaults, even though it no longer uses dynamic _variable_ lookup. This means that if you use a resource default statement in a class, it has the potential to affect any classes or defined types that class declares.
 
 Because of this, they should not be set outside of `site.pp`. You should [use per-resource default attributes](./lang_resources_advanced.html#per-expression-default-attributes) when possible.
 
+{:.section}
 ### Overriding defaults from parent scopes
 
 Resource defaults declared in the local scope override any defaults received from parent scopes.
