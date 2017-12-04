@@ -25,6 +25,7 @@ Resource collectors (AKA the spaceship operator) select a group of resources by 
 
 Collectors have an irregular syntax that lets them function as both a statement and a value.
 
+{:.concept}
 ## Syntax
 
 
@@ -44,6 +45,7 @@ The general form of a resource collector is:
 
 Note that exported resource collectors have a slightly different syntax; [see below](#exported-resource-collectors).
 
+{:.section}
 ### Search expressions
 
 Collectors can search the values of resource titles and attributes using a special expression syntax. This resembles the normal syntax for [Puppet expressions][expressions], but is not the same.
@@ -59,6 +61,7 @@ Parentheses can be used to improve readability, and to modify the priority/group
 - [`and`](#and)
 - [`or`](#or)
 
+{:.section}
 #### `==` (equality search)
 
 This operator is non-symmetric:
@@ -68,6 +71,7 @@ This operator is non-symmetric:
 
 For a given resource, this operator will **match** if the value of the attribute (or one of the value's members, if the value is an array) is identical to the search key.
 
+{:.section}
 #### `!=` (non-equality search)
 
 This operator is non-symmetric:
@@ -79,6 +83,7 @@ For a given resource, this operator will **match** if the value of the attribute
 
 > Note: This operator will always match if the attribute's value is an array.
 
+{:.section}
 #### `and`
 
 Both operands must be valid search expressions.
@@ -87,6 +92,7 @@ For a given resource, this operator will **match** if **both** of the operands w
 
 This operator has higher priority than `or`.
 
+{:.section}
 #### `or`
 
 Both operands must be valid search expressions.
@@ -95,8 +101,8 @@ For a given resource, this operator will **match** if **either** of the operands
 
 This operator has lower priority than `and`.
 
+{:.concept}
 ## Location
-
 
 Resource collectors can be used as independent statements, as the operand of a [chaining statement][chaining], or in a [collector attribute block][amend] for amending resource attributes.
 
@@ -107,7 +113,7 @@ Notably, collectors **cannot** be used in the following contexts:
 - Within an array or hash
 - As the operand of an expression other than a chaining statement
 
-
+{:.concept}
 ## Behavior
 
 
@@ -122,11 +128,13 @@ In addition to realizing, collectors can function as a value in two places:
 
 Note again that collectors used as values will also realize any matching virtual resources. If you use virtualized resources, you must use care when chaining collectors or using them for overrides.
 
+{:.concept}
 ## Exported resource collectors
 
 
 An **exported resource collector** uses a modified syntax that realizes [exported resources][exported].
 
+{:.section}
 ### Syntax
 
 Exported resource collectors are identical to collectors, except that their angle brackets are doubled.
@@ -142,6 +150,7 @@ The general form of an exported resource collector is:
 * Optionally, a search expression ([see above](#search-expressions))
 * `|>>` --- A pipe character and two closing angle brackets (greater-than signs)
 
+{:.section}
 ### Behavior
 
 Exported resource collectors exist only to import resources that were published by other nodes. To use them, you need to have catalog storage and searching (storeconfigs) enabled. See [Exported Resources][exported] for more details. To enable exported resources, follow the [installation instructions][puppetdb_install] and [Puppet configuration instructions][puppetdb_connect] in [the PuppetDB manual][puppetdb].
