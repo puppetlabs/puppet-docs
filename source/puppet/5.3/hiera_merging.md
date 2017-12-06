@@ -116,18 +116,6 @@ Specify this merge behavior with one of these:
 	
 > Note: Unlike a hash merge, a deep merge can also accept arrays as the root values. It merges them with its normal array merging behavior, which differs from a unique merge as described above. This does not apply to the deprecated hiera 3 `hiera_hash` function, which can be configured to do deep merges but can’t accept arrays.
 
-### `{'strategy' => 'first|unique|hash'}`
-
-Same as the string versions of these merge behaviors.
-
-### `{'strategy' => 'deep', <DEEP OPTION> => <VALUE>, ...}`
-
-Same as 'deep', but can adjust the merge with additional options. The available options are:
-
-* `'knockout_prefix'` (string or undef) — A string prefix to indicate a value should be removed from the final result. Defaults to `undef`, which means no values will be removed.
-* `'sort_merged_arrays'` (Boolean) — Whether to sort all arrays - alphabetically using the semantics of Ruby Array#sort - that are merged together. Defaults to false.
-* `'merge_hash_arrays'` (Boolean) — Whether to merge hashes within arrays. Defaults to false.
-
 {:.task}
 ## Set merge behavior at lookup time
  
