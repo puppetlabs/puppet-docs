@@ -60,7 +60,7 @@ For more information, please the see data_dig backend reference.
 Related topics: [custom Puppet function][puppet_functions], [the modern Ruby functions API][ruby_functions].
 
 {:.reference} 
-# data_hash backends
+## data_hash backends
  
 A `data_hash` backend function reads an entire data source at once, and returns its contents as a hash.
  
