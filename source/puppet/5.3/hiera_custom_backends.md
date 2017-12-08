@@ -16,73 +16,73 @@ title: "Writing new data backends"
 [functions]: ./lang_functions.html
 
 You can extend Hiera to look up values in data stores, for example, a PostgreSQL database table, a custom web app, or a new kind of structured data file.
- 
+
 To teach Hiera how to talk to other data sources, write a custom backend.
 
-> **Important**: Writing a custom backend is an advanced topic. Before proceeding, make sure you really need it. It is also worth asking the puppet-dev mailing list or Slack channel to see whether there is one you can re-use, rather than starting from scratch. 
- 
-{:.concept} 
+> **Important**: Writing a custom backend is an advanced topic. Before proceeding, make sure you really need it. It is also worth asking the puppet-dev mailing list or Slack channel to see whether there is one you can re-use, rather than starting from scratch.
+
+{:.concept}
 ## Custom backends overview
- 
+
 A backend is a custom Puppet function that accepts a particular set of arguments and whose return value obeys a particular format. The function can do whatever is necessary to locate its data.
- 
+
 A backend function uses the modern Ruby functions API or the Puppet language. This means you can use different versions of a Hiera backend in different environments, and you can distribute Hiera backends in Puppet modules.
- 
+
 Different types of data have different performance characteristics. To make sure Hiera performs well with every type of data source, it supports three types of backends: `data_hash`, `lookup_key` and `data_dig`.
 
 ### data_hash
- 
+
 For data sources where it’s inexpensive, performance-wise, to read the entire contents at once, like simple files on disk. We suggest using the `data_hash` backend type if:
 * The cache is alive for the duration of one compilation
 * The data is small
 * The data can be retrieved all at once
 * Most of the data gets used
 * The data is static
- 
-For more information, please the see data_hash backends reference. 
+
+For more information, please the see data_hash backends reference.
 
 ### lookup_key
- 
+
 For data sources where looking up a key is relatively expensive, performance-wise, like an HTTPS API. We suggest using the `lookup_key` backend type if:
 * The data set is big, but only a small portion is used
 * The result can vary during the compilation
- 
+
 The `hiera-eyaml` backend is a `lookup_key` function, because decryption tends to affect performance; as a given node uses only a subset of the available secrets, it makes sense to decrypt only on-demand.
- 
+
 For more information, please the see lookup_key backend reference.
- 
+
 ### data_dig
- 
+
 For data sources that can access arbitrary elements of hash or array values before passing anything back to Hiera, like a database.
- 
+
 For more information, please the see data_dig backend reference.
- 
+
 Related topics: [custom Puppet function][puppet_functions], [the modern Ruby functions API][ruby_functions].
 
-{:.reference} 
+{:.reference}
 ## data_hash backends
- 
+
 A `data_hash` backend function reads an entire data source at once, and returns its contents as a hash.
- 
+
 The built-in YAML, JSON, and HOCON backends are all `data_hash` functions. You can view their source on GitHub:
 * [`yaml_data.rb`][yaml_data]
 * [`json_data.rb`][json_data]
 * [`hocon_data.rb`][hocon_data]
- 
+
 ### Arguments
- 
+
 Hiera calls a `data_hash` function with two arguments:
- 
+
 * A hash of options
 	* The options hash will contain a  `path` when the entry in hiera.yaml is using `path`/`paths`,`glob`/`globs`, or `mapped_paths`, and the backend will receive one call per path to an existing file. When the entry in hiera.yaml is using `uri`/`uris`, the options hash will have a `uri` key, and the backend function is called once per given uri. When `uri`/`uris` are used, hiera does not perform an existence check. It is up to the function to type the options parameter as wanted.
-* A `Puppet::LookupContext` object 
- 
+* A `Puppet::LookupContext` object
+
 ### Return type
- 
+
 The function must either call the context object’s `not_found` method, or return a hash of lookup keys and their associated values. The hash can be empty.
- 
+
 Puppet language example signature:
- 
+
 ```
 function mymodule::hiera_backend(
   Hash                  $options,
@@ -100,10 +100,10 @@ end
 ```
 
 The returned hash can include the `lookup_options` key to configure merge behavior for other keys. See Configuring merge behavior in Hiera data for more information. Values in the returned hash can include Hiera interpolation tokens like `%{variable}` or `%{lookup('key')}`; Hiera interpolates values as needed. This is a significant difference between `data_hash` and the other two backend types; `lookup_key` and `data_dig` functions have to explicitly handle interpolation.
- 
+
 Related topics: [Configuring merge behavior in Hiera data][merging].
 
-{:.reference} 
+{:.reference}
 ## lookup_key backends
 
 A `lookup_key` backend function looks up a single key and returns its value.
@@ -113,7 +113,7 @@ For example, the built-in `hiera_eyaml` backend is a `lookup_key` function. You 
 
 Hiera calls a `lookup_key` function with three arguments:
 1. A key to look up.
-2. A hash of options. 
+2. A hash of options.
 3. A Puppet::LookupContext object.
 
 ### Return type
@@ -143,7 +143,7 @@ A `lookup_key` function can return a hash for the  the `lookup_options` key to c
 
 Related topics: [interpolation][interpolation], [Hiera calling conventions for backend functions][puppet_functions].
 
-{:.reference} 
+{:.reference}
 ##  data_dig backend
 
 A `data_dig` backend function is similar to a `lookup_key` function, but instead of looking up a single key, it looks up a single sequence of keys and subkeys.
@@ -157,12 +157,12 @@ Hiera lets you look up individual members of hash and array values using `key.su
 Hiera calls a `data_dig` function with three arguments:
 
 1. An array of lookup key segments, made by splitting the requested lookup key on the dot (`.`) subkey separator. For example, a lookup for `users.dbadmin.uid` results in `['users', 'dbadmin', 'uid']`. Positive base-10 integer subkeys (for accessing array members) are converted to Integer objects, but other number subkeys remain as strings.
-2. A hash of options. 
-3. A `Puppet::LookupContext` object. 
+2. A hash of options.
+3. A `Puppet::LookupContext` object.
 
 ### Return type
 
-The function must either call the context object’s `not_found` method, or return a value for the requested sequence of key segments. Note that returning undef (nil in Ruby) means that the key was found but that the value for that key was specified to be undef. 
+The function must either call the context object’s `not_found` method, or return a value for the requested sequence of key segments. Note that returning undef (nil in Ruby) means that the key was found but that the value for that key was specified to be undef.
 Puppet language example signature:
 
 ```
@@ -188,7 +188,7 @@ To support Hiera interpolation tokens like `%{variable}` or `%{lookup('key')}` i
 
 Related topics: [key.subkey notation][automatic], [Configuring merge behavior in Hiera data][merging].
 
-{:.concept} 
+{:.concept}
 ## Hiera calling conventions for backend functions
 
 Hiera uses the following conventions when calling backend functions:
@@ -205,20 +205,20 @@ However, a given hierarchy level can refer to multiple data sources with the `pa
 
 Hiera can call a function again for a given data source, if the inputs change. For example, if `hiera.yaml` interpolates a local variable in a file path, Hiera calls the function again for scopes where that variable has a different value. This has a significant performance impact, and so you should  interpolate only facts, trusted facts, and server facts in the hierarchy.
 
-{:.concept} 
+{:.concept}
 ## The options hash
- 
+
 Hierarchy levels are configured in the `hiera.yaml` file. When calling a backend function, Hiera passes a modified version of that configuration as a hash.
- 
+
 The options hash may contain (depending on whether `path`/`glob`/`uri`/`mapped_paths` have been set) the following keys:
 * `path` - The absolute path to a file on disk. It is present only if `path`, `paths`, `glob`, `globs`, or `mapped_paths` is present in the hierarchy. Hiera will never call the function unless the file is present.
 * `uri` - A uri that your function can use to locate a data source. It is present only if `uri` or `uris` is present in the hierarchy. Hiera does not verify the URI before passing it to the function.
 * Every key from the hierarchy level’s `options` setting. List any options your backend requires or accepts. The `path` and `uri` keys are reserved.
- 
+
 > Note: If your backend uses data files, use the context object’s `cached_file_data` method to read them.
- 
+
 For example, the following hierarchy level in `hiera.yaml` results in several different options hashes, depending on such things as the current node’s facts and whether the files exist:
- 
+
 ```
 - name: "Secret data: per-node, per-datacenter, common"
     lookup_key: eyaml_lookup_key # eyaml backend
@@ -231,7 +231,7 @@ For example, the following hierarchy level in `hiera.yaml` results in several di
       pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
       pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
 ```
- 
+
 The various hashes  would all be similar to this:
 
 ```
@@ -244,7 +244,7 @@ The various hashes  would all be similar to this:
 
 In your function’s signature, you can validate the options hash by using the Struct data type to restrict its contents. In particular, note you can disable all of the `path(s)` and `glob(s)` settings for your backend by disallowing the `path` key in the options hash.
 
-Related topics: [Configuring merge behavior in Hiera data][merging], [Hiera interpolation tokens][interpolation], [hiera.yaml][hiera.yaml], [the Struct data type][struct]. 
+Related topics: [Configuring merge behavior in Hiera data][merging], [Hiera interpolation tokens][interpolation], [hiera.yaml][hiera.yaml], [the Struct data type][struct].
 
 {:.reference}
 ## The Puppet::LookupContext object and methods
@@ -253,7 +253,7 @@ To support caching and other backends needs, Hiera provides a `Puppet::LookupCon
 
 In Ruby functions, the context object  is a normal Ruby object of class `Puppet::LookupContext`, and you can call methods with standard Ruby syntax, for example `context.not_found`.
 
-In Puppet language functions, the context object appears as the special data type `Puppet::LookupContext`, that has methods attached.You can call the context’s methods using Puppet’s chained function call syntax with the method name instead of a normal function call syntax, for example, `$context.not_found`. For methods that take a block, use Puppet’s lambda syntax (parameters outside block) instead of Ruby’s block syntax (parameters inside block). 
+In Puppet language functions, the context object appears as the special data type `Puppet::LookupContext`, that has methods attached.You can call the context’s methods using Puppet’s chained function call syntax with the method name instead of a normal function call syntax, for example, `$context.not_found`. For methods that take a block, use Puppet’s lambda syntax (parameters outside block) instead of Ruby’s block syntax (parameters inside block).
 
 ### not_found()
 
@@ -301,7 +301,7 @@ Caches all the key-value pairs from a given hash. Returns `undef` (in Puppet) or
 
 ### cached_value(key)
 
-Returns a previously cached value from the per-data-source private cache. Returns `undef` or `nil` if no value with this name has been cached. 
+Returns a previously cached value from the per-data-source private cache. Returns `undef` or `nil` if no value with this name has been cached.
 
 ### cache_has_key(key)
 
@@ -324,8 +324,8 @@ Ruby syntax:
 For best performance, use this method to read files in Hiera backends.
 
 `cached_file_data(path) {|content| ...}` returns the content of the specified file as a string. If an optional block is provided, it passes the content to the block and returns the block’s return value. For example, the built-in JSON backend uses a block to parse JSON and return a hash:
- 
-```   
+
+```
 context.cached_file_data(path) do |content|
       begin
         JSON.parse(content)
