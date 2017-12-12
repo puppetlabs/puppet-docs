@@ -3,9 +3,6 @@ layout: default
 title: The Puppet Language Style Guide
 ---
 
-The Puppet Language Style Guide
-===========
-
 This style guide applies to Puppet 4 and later. Puppet 3 is no longer supported, but this style guide includes some Puppet 3 guidelines for those who need to maintain older code.
 
 > A new function section has been added to the style guide at section 15. This changes the numbering from this section forward.
