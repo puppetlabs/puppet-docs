@@ -460,7 +460,7 @@ file { '/var/log/syslog':
 * POSIX symbolic notation must be a string.
 * You should not use file mode with Windows; instead use the [acl module](https://forge.puppet.com/puppetlabs/acl).
 * You should use numeric notation whenever possible.
-* The file mode attribute should always be a quoted string, never an integer.
+* The file mode attribute should always be a quoted string or (unquoted) variable, never an integer.
 
 **Good:**
 
