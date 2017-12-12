@@ -9,19 +9,19 @@ title: "Hiera"
 [v4]: ./hiera_config_yaml_4.html
 [v5]: ./hiera_config_yaml_5.html
 
-Hiera is a key/value lookup used for separating data from Puppet code. 
+Hiera is a key/value lookup used for separating data from Puppet code.
 
-{:.concept} 
+{:.concept}
 ## About Hiera
 
 Hiera is Puppet’s built-in key-value configuration data lookup system.
 
-Puppet’s strength is in reusable code. Code that serves many needs must be configurable: put site-specific information in external configuration data files, rather than in the code itself. 
+Puppet’s strength is in reusable code. Code that serves many needs must be configurable: put site-specific information in external configuration data files, rather than in the code itself.
 
-Puppet uses Hiera to do two things: 
+Puppet uses Hiera to do two things:
 
 * Store the configuration data in key-value pairs
-* Look up what data a particular module needs for a given node during catalog compilation. 
+* Look up what data a particular module needs for a given node during catalog compilation.
 
 This is done via:
 
@@ -35,11 +35,11 @@ Hiera 5 comes with support for JSON, YAML, and EYAML files.
 Related topics: [Automatic Parameter Lookup][auto_lookup]
 
 {:.concept}
-## Hiera hierarchies 
+## Hiera hierarchies
 
 Hiera looks up data by following a hierarchy - an ordered list of data sources.
 
-Hierarchies are configured in a `hiera.yaml` configuration file. Each level of the hierarchy tells Hiera how to access some kind of data source. 
+Hierarchies are configured in a `hiera.yaml` configuration file. Each level of the hierarchy tells Hiera how to access some kind of data source.
 
 ### Hierarchies interpolate variables
 
@@ -50,11 +50,11 @@ Most levels of a hierarchy interpolate variables into their configuration:
 * The percent-and-braces `%{variable}` syntax is a Hiera interpolation token. It is similar to the Puppet language’s `${expression}` interpolation tokens. Wherever you use an interpolation token, Hiera determines the variable’s value and inserts it into the hierarchy.
 * `facts.os.family` uses the Hiera special `key.subkey` notation for accessing elements of hashes and arrays. It is equivalent to `$facts['os']['family']` in the Puppet language but the 'dot' notation will produce an empty string instead of raising an error if parts of the data is missing. Make sure that an empty interpolation does not end up matching an unintended path.
 * You can only interpolate values into certain parts of the config file. For more info, see the hiera.yaml format reference.
-* With node-specific variables, each node gets a customized set of paths to data. The hierarchy is always the same. 
+* With node-specific variables, each node gets a customized set of paths to data. The hierarchy is always the same.
 
 ### Hiera searches the hierarchy in order
 
-Once Hiera replaces the variables to make a list of concrete data sources, it checks those data sources in the order they were written. Generally, if a data source doesn’t exist, or doesn’t specify a value for the current key, Hiera skips it and moves on to the next source, until it finds one that exists - then it uses it. Note that this is the default merge strategy, but does not always apply, for example, Hiera can use data from all data sources and merge the result. 
+Once Hiera replaces the variables to make a list of concrete data sources, it checks those data sources in the order they were written. Generally, if a data source doesn’t exist, or doesn’t specify a value for the current key, Hiera skips it and moves on to the next source, until it finds one that exists - then it uses it. Note that this is the default merge strategy, but does not always apply, for example, Hiera can use data from all data sources and merge the result.
 
 Earlier data sources have priority over later ones. In the example above, the node-specific data has the highest priority, and can override data from any other level. Business group data is separated into local and global sources, with the local one overriding the global one. Common data used by all nodes always goes last.
 
@@ -62,11 +62,11 @@ That’s how Hiera’s “defaults, with overrides” approach to data works - y
 
 ### Layered hierarchies
 
-Hiera uses layers of data with a `hiera.yaml` for each layer. 
+Hiera uses layers of data with a `hiera.yaml` for each layer.
 
 Each layer can configure its own independent hierarchy. Before a lookup, Hiera combines them into a single super-hierarchy: global → environment → module.
 
-> Note: There is a fourth layer - `default_hierarchy` - that can be used in a module's `hiera.yaml`. It only comes into effect when there is no data for a key in any of the other regular hierarchies 
+> Note: There is a fourth layer - `default_hierarchy` - that can be used in a module's `hiera.yaml`. It only comes into effect when there is no data for a key in any of the other regular hierarchies
 
 Assume the example above is an environment hierarchy (in the production environment). If we also had the following global hierarchy:
 
@@ -107,7 +107,7 @@ Then in a lookup for the `ntp::servers` key, `thrush.example.com` would use the 
 
 The combined hierarchy works the same way as a layer hierarchy.  Hiera skips empty data sources, and either returns the first found value or merges all found values.
 
-> Note: By default, datadir refers to the directory named 'data' next to the `hiera.yaml`. 
+> Note: By default, datadir refers to the directory named 'data' next to the `hiera.yaml`.
 
 ### Tips for making a good hierarchy
 
@@ -119,7 +119,7 @@ The combined hierarchy works the same way as a layer hierarchy.  Hiera skips emp
 Related topics: [codedir][codedir], [confdir][confdir], [hiera.yaml][v5.]
 
 {:.concept}
-## Hiera’s three config layers 
+## Hiera’s three config layers
 
 Hiera uses three independent layers of configuration. Each layer has its own hierarchy, and they’re linked into one super-hierarchy before doing a lookup.
 
@@ -133,14 +133,14 @@ The three layers are searched in the following order: global → environment →
 * The global layer supports the following config formats: hiera.yaml v5, hiera.yaml v3 (deprecated).
 * Other than the above use cases, try to avoid the global layer. All normal data should be specified in the environment layer.
 
-### The environment layer 
+### The environment layer
 
 * The configuration file for the global layer is located, by default, `<ENVIRONMENT DIR>/hiera.yaml`.
 * The environment layer is where most of your Hiera data hierarchy definition happens.
 * Every Puppet environment has its own hierarchy configuration, which applies to nodes in that environment.
 Supported config formats: hiera.yaml v5,  hiera.yaml v5, hiera.yaml v3  (deprecated).
 
-### The module layer 
+### The module layer
 
 * The configuration file for a module layer is located, by default, in a module's `<MODULE>/hiera.yaml`.
 * The module layer sets default values and merge behavior for a module’s class parameters. It is a convenient alternative to the `params.pp` pattern.
@@ -155,8 +155,8 @@ secure_server	(none)
 ```
 
 * Hiera uses the `ntp` module’s hierarchy when looking up `ntp::servers`, but uses the `jenkins` module’s hierarchy when looking up `jenkins::port`. Hiera never checks the `ntp` module for a key beginning with `jenkins::`.
-* When you use the lookup function for keys that don’t have a namespace (for example, `secure_server`), the module layer is not consulted. 
+* When you use the lookup function for keys that don’t have a namespace (for example, `secure_server`), the module layer is not consulted.
 
-The three-layer system means that each environment has its own hierarchy, and so do modules. You can make hierarchy changes on an environment-by-environment basis. Module data is also customizable. 
+The three-layer system means that each environment has its own hierarchy, and so do modules. You can make hierarchy changes on an environment-by-environment basis. Module data is also customizable.
 
-Related topics: [version 3][v3], [version 4][v4], [version 5][v5]. 
+Related topics: [version 3][v3], [version 4][v4], [version 5][v5].

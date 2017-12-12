@@ -10,24 +10,21 @@ This style guide applies to Puppet 4 and later. Puppet 3 is no longer supported,
 
 > A new function section has been added to the style guide at section 15. This changes the numbering from this section forward.
 
-{:.concept}
-## 1. Terminology
+{:.section}
+## Purpose
+
+The purpose of this style guide is to promote consistent formatting in the Puppet Language, especially across modules, giving users and developers of Puppet modules a common pattern, design, and style to follow. Additionally, consistency in code and module structure makes continued development and contributions easier.
+
+We recommend using [puppet-lint](http://puppet-lint.com/) and [metadata-json-lint](https://github.com/voxpupuli/metadata-json-lint) within your module to check for compliance with the style guide.
+
+{:.section}
+## Terminology and guiding principles
 
 Unless explicitly called out, everything discussed here applies specifically to Puppet (that is, Puppet modules, Puppet classes, etc.). The name 'Puppet' is not appended to every topic discussed.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED",  "MAY", and "OPTIONAL" in this document are to be
 interpreted as described in [RFC 2119](http://www.faqs.org/rfcs/rfc2119.html).
-
-{:.concept}
-## 2. Purpose
-
-The purpose of this style guide is to promote consistent formatting in the Puppet Language, especially across modules, giving users and developers of Puppet modules a common pattern, design, and style to follow. Additionally, consistency in code and module structure makes continued development and contributions easier.
-
-We recommend using [puppet-lint](http://puppet-lint.com/) and [metadata-json-lint](https://github.com/voxpupuli/metadata-json-lint) within your module to check for compliance with the style guide.
-
-{:.concept}
-## 3. Guiding principles
 
 We can never cover every circumstance you might run into when developing Puppet code. When you need to make a judgement call, keep in mind a few general principles.
 
@@ -44,18 +41,10 @@ We can never cover every circumstance you might run into when developing Puppet 
    At least, you should treat it that way. When it comes to making decisions, choose the option that is easier to maintain in the long term.
 
 {:.concept}
-## 4. Versioning
+## Module design practices
 
-Your module must be versioned. We recommend semantic versioning.
-
-Semantic versioning, or [SemVer](http://semver.org), means that in a version number given as x.y.z:
-
-* An increase in 'x' indicates major changes: backwards incompatible changes or a complete rewrite.
-* An increase in 'y' indicates minor changes: the non-breaking addition of new features.
-* An increase in 'z' indicates a patch: non-breaking bug fixes.
-
-{:.concept}
-## 5. Spacing, indentation, and whitespace
+{:.section}
+### Spacing, indentation, and whitespace
 
 Module manifests should follow best practices for spacing, indentation, and whitespace.
 
@@ -92,7 +81,7 @@ file     { '/tmp/foo':
 * May align hash rockets (`=>`) within blocks of attributes, one space after the longest resource key, arranging hashes for maximum readability first.
 
 {:.section}
-### 5.1: Arrays and hashes
+### Arrays and hashes
 
 To increase readability of arrays and hashes, it is almost always beneficial to break up the elements on separate lines.
 
@@ -152,8 +141,8 @@ service { 'foo':
 }
 ```
 
-{:.concept}
-## 6. Quoting
+{:.section}
+### Quoting
 
 All strings must be enclosed in single quotes, with some exceptions.
 
@@ -193,7 +182,7 @@ warning('Class[\'apache\'] parameter purge_vdir is deprecated in favor of purge_
   ```
 
 {:.section}
-### 6.1. Escape characters
+### Escape characters
 
 Puppet uses backslash as an escape character.
 
@@ -203,8 +192,8 @@ Do not rely on unrecognized escaped characters as a method for including the bac
 
 Unicode character escapes using fewer than 4 hex digits, as in `\u040`, results in a backslash followed by the string `u040`. (This also causes a warning for the unrecognized escape.) To use a number of hex digits not equal to 4, use the longer `u{digits}` format.
 
-{:.concept}
-## 7. Comments
+{:.section}
+### Comments
 
 Comments must be hash comments (`# This is a comment`). Comments should explain the **why**, not the **how**, of your code.
 
@@ -225,71 +214,26 @@ file { '/etc/ntp.conf': ... }
 ```
 
 {:.section}
-### 7.1 Documentation comments
+#### Documentation comments
 
 Documentation comments for Puppet Strings should be included for each of your classes, defined types, functions, and resource types and providers.
 
 See the [documentation section](#documenting-puppet-code) of this guide for complete documentation recommendations. If used, documentation comments must precede the name of the element.
 
-{:.concept}
-## 8. Module metadata
-
-Every module must have metadata defined in the `metadata.json` file.
-
-Your metadata should follow the below format:
-
-```json
-{
-  "name": "examplecorp-mymodule",
-  "version": "0.1.0",
-  "author": "Pat",
-  "license": "Apache-2.0",
-  "summary": "A module for a thing",
-  "source": "https://github.com/examplecorp/examplecorp-mymodule",
-  "project_page": "https://github.com/examplecorp/examplecorp-mymodule",
-  "issues_url": "https://github.com/examplecorp/examplecorp-mymodules/issues",
-  "tags": ["things", "stuff"],
-  "operatingsystem_support": [
-    {
-      "operatingsystem":"RedHat",
-      "operatingsystemrelease": [
-        "5.0",
-        "6.0"
-      ]
-    },
-    {
-      "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ 
-        "12.04",
-        "10.04"
-     ]
-    }
-  ],
-  "dependencies": [
-    { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 <5.0.0" },
-    { "name": "puppetlabs/firewall", "version_requirement": ">= 0.4.0 <5.0.0" },
-  ]
-}
-```
-
-A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/modules_publishing.html#write-a-metadatajson-file).
-
 {:.section}
-### 8.1 Dependencies
+### Functions
 
-Hard dependencies must be declared explicitly in your module's metadata.json file.
+Avoid the `inline_template()` and `inline_epp()` functions for templates of more than one line, because these functions don't permit template validation. Instead, use the `template()` and `epp()` functions to read a template from the module. This method allows for syntax validation.
 
-Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://forge.puppet.com/puppetlabs/rabbitmq#module-dependencies).)
-
-Your hard dependency declarations should not be unbounded.
+You should avoid using calls to Hiera functions in modules meant for public consumption, because not all users have implemented Hiera. Instead, we recommend using parameters that can be overridden with Hiera.
 
 {:.concept}
-## 9. Resources
+## Resources
 
 Resources are the fundamental unit for modeling system configurations. Resource declarations have a lot of possible features, so your code's readability is crucial.
 
 {:.section}
-### 9.1. Resource names
+### Resource names
 
 All resource names or titles must be quoted. If you are using an array of titles you must quote each title in the array, but cannot quote the array itself.
 
@@ -308,7 +252,7 @@ package { openssh: ensure => present }
 These quoting requirements do not apply to expressions that evaluate to strings.
 
 {:.section}
-### 9.2. Arrow alignment
+### Arrow alignment
 
 Hash rockets (`=>`) in a resource's attribute/value list may
 be aligned. The hash rockets should be placed one space ahead of the longest
@@ -355,7 +299,7 @@ file { "/path/to/my-filename.txt":
 ```
 
 {:.section}
-### 9.3. Attribute ordering
+### Attribute ordering
 
 If a resource declaration includes an `ensure` attribute, it should be the
 first attribute specified so that a user can quickly see if the resource is being created or deleted.
@@ -389,7 +333,7 @@ file { '/etc/passwd':
 ```
 
 {:.section}
-### 9.4. Resource arrangement
+### Resource arrangement
 
 Within a manifest, resources should be grouped by logical relationship to each other, rather than by resource type.
 
@@ -491,7 +435,7 @@ You cannot set any attribute more than once for a given resource; if you try, Pu
 * To use some attributes from a hash and override others, either use a hash to set per-expression defaults, or use the `+` (merging) operator to combine attributes from two hashes (with the right-hand hash overriding the left-hand one).
 
 {:.section}
-### 9.5. Symbolic links
+### Symbolic links
 
 Symbolic links must be declared with an ensure value of `ensure => link` and explicitly specify a value for the `target` attribute. Doing so more explicitly informs the user that a link is being created.
 
@@ -513,7 +457,7 @@ file { '/var/log/syslog':
 ```
 
 {:.section}
-### 9.6. File modes
+### File modes
 
 * POSIX numeric notation must be represented as 4 digits.
 * POSIX symbolic notation must be a string.
@@ -540,7 +484,7 @@ file { '/var/log/syslog':
 ```
 
 {:.section}
-### 9.6.5 Multiple resources
+### Multiple resources
 
 Multiple resources declared in a single block should be used only when there is also a default set of options for the resource type.
 
@@ -617,7 +561,7 @@ file { $array_of_paths:
 ```
 
 {:.section}
-### 9.7 Legacy style defaults
+### Legacy style defaults
 
 Avoid legacy style defaults. If you do use them, they should occur only at top scope in your site manifest. This is because resource defaults propagate through dynamic scope, which can have unpredictable effects far away from where the default was declared.
 
@@ -648,7 +592,7 @@ concat { $config_file_path:
 ```
 
 {:.section}
-### 9.8 Resource attribute indentation and alignment
+### Attribute alignment
 
 Resource attributes must be uniformly indented in two spaces from the title.
 
@@ -701,14 +645,46 @@ file {
     owner  => 'root',
 }
 ```
+{:.section}
+### Defined resource types
+
+Since defined resource types can have multiple instances, resource names must have a unique variable to avoid duplicate declarations.
+
+**Good:**
+
+```puppet
+define apache::listen {
+  $listen_addr_port = $name
+
+  # Template uses: $listen_addr_port
+  concat::fragment { "Listen ${listen_addr_port}":
+    ensure  => present,
+    target  => $::apache::ports_file,
+    content => template('apache/listen.erb'),
+  }
+}
+```
+
+**Bad:**
+
+```puppet
+define apache::listen {
+  # Template uses: $name
+  concat::fragment { 'Listen port':
+    ensure  => present,
+    target  => $::apache::ports_file,
+    content => template('apache/listen.erb'),
+  }
+}
+```
 
 {:.concept}
-## 10. Classes and defined types
+## Classes and defined types
 
 Classes and defined types should follow scope and organization guidelines.
 
 {:.section}
-### 10.1. Separate files
+### Separate files
 
 All classes and resource type definitions (defined types) must be separate files in the `manifests` directory of the module. Each separate file in the manifest directory of the module should contain nothing other than the class or resource type definition.
 
@@ -749,7 +725,7 @@ include bar
 ```
 
 {:.section}
-### 10.2. Internal organization of classes and defined types
+### Internal organization of classes and defined types
 
 Classes and defined types must be structured to accomplish one task. Below is a line-by-line general layout of what lines of code should come first, second, and so on. 
 
@@ -856,14 +832,14 @@ myservice::package_list:
 ```
 
 {:.section}
-### 10.3. Public and private
+### Public and private
 
 We recommend that you split your module into public and private classes and defined types where possible. Public classes or defined types should contain the parts of the module meant to be configured or customized by the user, while private classes should contain things you do not expect the user to change via parameters. Separating into public and private classes or defined types helps build reusable and readable code.
 
 You should help indicate to the user which classes are which by making sure all public classes have complete [comments](#comments) and denoting public and private classes in your documentation. Use the documentation tags "@api private" and "@api public" to make this clear.
 
 {:.section}
-### 10.4. Chaining arrow syntax
+### Chaining arrow syntax
 
 Most of the time, use [relationship metaparameters](https://docs.puppet.com/puppet/latest/lang_relationships.html#relationship-metaparameters) rather than [chaining arrows](https://docs.puppet.com/puppet/latest/lang_relationships.html#chaining-arrows). When you have many [interdependent or order-specific items](https://github.com/puppetlabs/puppetlabs-mysql/blob/3.1.0/manifests/server.pp#L64-L72), chaining syntax may be used. A chain operator should appear on the same line as its right-hand operand. Chaining arrows must be used left to right.
 
@@ -892,7 +868,7 @@ Service['httpd']
 ```
 
 {:.section}
-### 10.5. Nested classes or defined types
+### Nested classes or defined types
 
 Classes and defined resource types must not be defined within other classes or defined types. Classes and defined types should be declared as close to node scope as possible. If you have a class or defined type which requires another class or defined type, graceful failures must be in place if those required classes or defined types are not declared elsewhere. 
 
@@ -914,7 +890,7 @@ class apache {
 ```
 
 {:.section}
-### 10.6. Display order of parameters
+### Display order of parameters
 
 In parameterized class and defined type declarations, required parameters must be listed before optional parameters (that is, parameters with defaults). Required parameters are parameters which are not set to anything, including undef. For example, parameters such as passwords or IP addresses might not have reasonable default values.
 
@@ -943,7 +919,7 @@ class ntp (
 ```
 
 {:.section}
-### 10.7 Parameter defaults
+### Parameter defaults
 
 Adding default values to the parameters in classes and defined types makes your module easier to use. As of Puppet 4.9.0, use Hiera data in the module and rely on automatic parameter lookup for class parameters. See the documentation about [automatic parameter lookup](https://puppet.com/docs/puppet/5.3/hiera_automatic.html#puppet-lookup) for detailed information.
 
@@ -996,7 +972,7 @@ class my_module (
 ```
 
 {:.section}
-### 10.8 Exported resources
+### Exported resources
 
 Exported resources should be opt-in rather than opt-out. Your module should not be written to use exported resources to function by default unless it is expressly required.
 
@@ -1024,7 +1000,7 @@ define haproxy::frontend (
 ```
 
 {:.section}
-### 10.9 Parameter indentation and alignment
+### Parameter indentation and alignment
 
 Parameters to classes or defined types must be uniformly indented in two spaces from the title. The equals sign should be aligned.
 
@@ -1072,13 +1048,10 @@ class profile::myclass (
 
 ```
 
-{:.concept}
-## 11. Classes
+{:.section}
+### Class inheritance
 
 In addition to scope and organization, there are some additional guidelines for handling classes in your module.
-
-{:.section}
-### 11.1. Class inheritance
 
 Class inheritance should not be used. Use data binding instead of params.pp pattern. Inheritance should be used only for params.pp, which is not recommended in Puppet 4.
 
@@ -1107,57 +1080,24 @@ class wordpress inherits apache { ... }
 
 
 {:.section}
-### 11.2 About publicly available modules
+### Public modules
 
 When declaring classes in publicly available modules, you should use `include`, `contain`, or `require` rather than class resource declaration. This avoids duplicate class declarations and vendor lock-in.
 
 {:.concept}
-## 12. Defined resource types
-
-Since defined resource types can have multiple instances, resource names must have a unique variable to avoid duplicate declarations.
-
-**Good:**
-
-```puppet
-define apache::listen {
-  $listen_addr_port = $name
-
-  # Template uses: $listen_addr_port
-  concat::fragment { "Listen ${listen_addr_port}":
-    ensure  => present,
-    target  => $::apache::ports_file,
-    content => template('apache/listen.erb'),
-  }
-}
-```
-
-**Bad:**
-
-```puppet
-define apache::listen {
-  # Template uses: $name
-  concat::fragment { 'Listen port':
-    ensure  => present,
-    target  => $::apache::ports_file,
-    content => template('apache/listen.erb'),
-  }
-}
-```
-
-{:.concept}
-## 13. Variables
+## Variables
 
 Reference variables in a clear, unambiguous way that is consistent with Puppet style.
 
 {:.section}
-### 13.1 Referencing facts
+### Referencing facts
 
 When referencing facts, prefer the `$facts` hash to plain top-scope variables (such as `$::operatingsystem`).
 
 Although plain top-scope variables are easier to write, the `$facts` hash is clearer, easier to read, and distinguishes facts from other top-scope variables.
 
 {:.section}
-### 13.2. Namespacing variables
+### Namespacing variables
 
 When referencing top-scope variables other than facts, explicitly specify absolute namespaces for clarity and improved readability. This includes top-scope variables set by the node classifier and in the main manifest.
  
@@ -1188,7 +1128,7 @@ $operatingsystem
 ```
 
 {:.section}
-### 13.3. Variable format
+### Variable format
 
 When defining variables you must only use numbers, lowercase letters, and underscores. Do not use uppercased letters within a word, such as "CamelCase", as it introduces inconsistency in style. You must not use dashes, as they are not syntactically valid.
 
@@ -1209,12 +1149,12 @@ $foo-bar123
 ```
 
 {:.concept}
-## 14. Conditionals
+## Conditionals
 
 Conditional statements should follow Puppet code guidelines.
 
 {:.section}
-### 14.1. Keep resource declarations simple
+### Simple resource declarations
 
 We recommend not mixing conditionals with resource declarations. When you use conditionals for data assignment, you should separate conditional code from the resource declarations.
 
@@ -1249,7 +1189,7 @@ file { '/tmp/readme.txt':
 ```
 
 {:.section}
-### 14.2. Defaults for case statements and selectors
+### Defaults for case statements and selectors
 
 Case statements must have default cases. If you want the default case to be "do nothing," you must include it as an explicit `default: {}` for clarity's sake.
 
@@ -1277,33 +1217,78 @@ case $facts['operatingsystem'] {
 When setting the default case, keep in mind that the default case should cause the catalog compilation to fail if the resulting behavior cannot be predicted on the platforms the module was built to be used on.
 
 {:.concept}
-## 15. Functions
+## Modules
 
-Avoid the `inline_template()` and `inline_epp()` functions for templates of more than one line, because these functions don't permit template validation. Instead, use the `template()` and `epp()` functions to read a template from the module. This method allows for syntax validation.
+{:.section}
+### Versioning
 
-{:.concept}
-## 16. Hiera
+Your module must be versioned. We recommend semantic versioning.
 
-You should avoid using calls to Hiera functions in modules meant for public consumption, because not all users have implemented Hiera. Instead, we recommend using parameters that can be overridden with Hiera.
+Semantic versioning, or [SemVer](http://semver.org), means that in a version number given as x.y.z:
 
-{:.concept}
-## 17. Examples in modules
+* An increase in 'x' indicates major changes: backwards incompatible changes or a complete rewrite.
+* An increase in 'y' indicates minor changes: the non-breaking addition of new features.
+* An increase in 'z' indicates a patch: non-breaking bug fixes.
 
-Major use cases for your module should have corresponding example manifests in the module's `/examples` directory.
+{:.section}
+### Module metadata
 
+Every module must have metadata defined in the `metadata.json` file.
+
+Your metadata should follow the below format:
+
+```json
+{
+  "name": "examplecorp-mymodule",
+  "version": "0.1.0",
+  "author": "Pat",
+  "license": "Apache-2.0",
+  "summary": "A module for a thing",
+  "source": "https://github.com/examplecorp/examplecorp-mymodule",
+  "project_page": "https://github.com/examplecorp/examplecorp-mymodule",
+  "issues_url": "https://github.com/examplecorp/examplecorp-mymodules/issues",
+  "tags": ["things", "stuff"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem":"RedHat",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [ 
+        "12.04",
+        "10.04"
+     ]
+    }
+  ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 <5.0.0" },
+    { "name": "puppetlabs/firewall", "version_requirement": ">= 0.4.0 <5.0.0" },
+  ]
+}
 ```
-modulepath/apache/examples/{usecase}.pp
-```
 
-The example manifest should provide a clear example of how to declare the class or defined resource type. The example manifest should also declare any classes required by the corresponding class to ensure `puppet apply` works in a limited, standalone manner.
+A more complete guide to the metadata.json format can be found in the [docs](http://docs.puppet.com/puppet/latest/modules_publishing.html#write-a-metadatajson-file).
 
-{:.concept}
-## 18. Module documentation
+{:.section}
+### Dependencies
+
+Hard dependencies must be declared explicitly in your module's metadata.json file.
+
+Soft dependencies should be called out in the README.md, and must not be enforced as a hard requirement in your metadata.json. A soft dependency is a dependency that is only required in a specific set of use cases. (As an example, see the [rabbitmq module](https://forge.puppet.com/puppetlabs/rabbitmq#module-dependencies).)
+
+Your hard dependency declarations should not be unbounded.
+
+{:.section}
+### Documentation
 
 All publicly available modules should include the documentation covered below.
 
 {:.section}
-### 18.1 README
+#### README
 
 Your module should have a README in .md (or .markdown) format. READMEs help users of your module get the full benefit of your work. The [Puppet README template](https://puppet.com/sites/default/files/assets/docs/puppet/5.3/READMEtemplate.txt) offers a basic format you can use. If you create modules with the Puppet Developer Kit or the `puppet module generate` command, the generated README includes the template. Using the .md/.markdown format allows your README to be parsed and displayed by Puppet Strings, GitHub, and the Puppet Forge.
 
@@ -1316,7 +1301,7 @@ There's an entire [guide](https://puppet.com/docs/puppet/5.3/modules_documentati
 * Include usage examples and code samples for the common use cases for your module.
 
 {:.section}
-### 18.2 Documenting Puppet code
+#### Documenting Puppet code
 
 Use [Puppet Strings](https://github.com/puppetlabs/puppet-strings) code comments to document your Puppet classes, defined types, functions, and resource types and providers. Strings processes the README and comments from your code into HTML or JSON format documentation. This allows you and your users to generate detailed documentation for your module.
 
@@ -1354,7 +1339,7 @@ Default value: 'present'.
 See our module documentation [guide](https://puppet.com/docs/puppet/5.3/modules_documentation.html) for more details and examples.
 
 {:.section}
-### 18.3 CHANGELOG
+#### CHANGELOG
 
 Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG should: 
 
@@ -1362,8 +1347,19 @@ Your module should have a CHANGELOG in .md (or .markdown) format. Your CHANGELOG
 * List bugfixes and features included in the release. 
 * Specifically call out backwards-incompatible changes
 
-{:.concept}
-## 19. Verification and testing
+{:.section}
+### Examples
+
+Major use cases for your module should have corresponding example manifests in the module's `/examples` directory.
+
+```
+modulepath/apache/examples/{usecase}.pp
+```
+
+The example manifest should provide a clear example of how to declare the class or defined resource type. The example manifest should also declare any classes required by the corresponding class to ensure `puppet apply` works in a limited, standalone manner.
+
+{:.section}
+### Testing
 
 We recommend several community tools for testing your code and style.
 

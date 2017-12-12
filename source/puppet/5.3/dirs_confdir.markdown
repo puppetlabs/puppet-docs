@@ -7,6 +7,7 @@ title: "Directories: Config directory (confdir)"
 
 Puppet's `confdir` is the main directory for Puppet's configuration. It contains config files and SSL data.
 
+{:.concept}
 ## Location
 
 Puppet's confdir can be found at one of the following locations:
@@ -21,18 +22,21 @@ The system confdir is what you usually want to use, since you will usually run P
 
 > **Note:** When Puppet master is running as a Rack application, the `config.ru` file must explicitly set `--confdir` to the system confdir. The example `config.ru` file provided with the Puppet source does this.
 
+{:.section}
 ### Configuration
 
 Puppet's confdir can be specified on the command line with the `--confdir` option, but it can't be set via puppet.conf. (This is because it needs the `confdir` to even find the config file.) If `--confdir` isn't specified when a Puppet application is started, it will always use the default confdir location.
 
 Puppet Server uses the `jruby-puppet.master-conf-dir` setting [in puppetserver.conf][puppetserver_conf] to configure its confdir. Note that if you're using a non-default confdir, you must also specify `--confdir` whenever you run commands like `puppet module` or `puppet cert` to ensure they use the same directories as Puppet Server.
 
+{:.concept}
 ## Interpolation of `$confdir`
 
 Since the value of the confdir is discovered before other settings, you can safely reference it (with the `$confdir` variable) in the value of any other setting in puppet.conf.
 
 If you need to set nonstandard values for some settings, this allows you to avoid absolute paths and keep your Puppet-related files together.
 
+{:.concept}
 ## Contents
 
 Puppet's confdir contains several config files and the SSL data. Their locations can be changed with settings, but most users should use the default layout.
@@ -41,10 +45,12 @@ Almost everything in the confdir has its own page of documentation.
 
 Items labeled "master only" below can also be present on standalone Puppet apply nodes, since they act as both masters and agents.
 
+{:.section}
 ### SSL Data
 
 * [`ssl`](./dirs_ssldir.html) --- contains each node's certificate infrastructure. (All nodes.)
 
+{:.section}
 ### Config files
 
 * [`puppet.conf`](./config_file_main.html) --- Puppet's main config file. (Any node.)

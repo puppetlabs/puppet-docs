@@ -20,14 +20,17 @@ Puppet always starts compiling with either a single manifest file or a directory
 
 For more information on how the site manifest is used in catalog compilation, see [the reference page on catalog compilation][catalog_compilation].
 
+{:.concept}
 ## Location
 
+{:.section}
 ### With Puppet apply
 
 The `puppet apply` command requires a manifest as an argument on the command line. (For example: `puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp`.) It can be a single file or a directory of files.
 
 The `puppet apply` command does not automatically use an environment's manifest. Instead, it always uses the manifest you pass to it.
 
+{:.section}
 ### With Puppet master
 
 Puppet master always uses the main manifest set by the current node's [environment][]. The main manifest can be a single file or a directory of `.pp` files.
@@ -45,6 +48,7 @@ For more details, see:
 
 To check the manifest your Puppet master will use for a given environment, [run `puppet config print manifest --section master --environment <ENVIRONMENT>`][print_settings].
 
+{:.concept}
 ## Directory behavior (vs. single file)
 
 If the main manifest is a directory, Puppet parses every `.pp` file in the directory in alphabetical order and evaluate the combined manifest. It descends into all subdirectories of the manifest directory and loads files in depth-first order. (For example, if the manifest directory contains a directory named `01` and a file named `02.pp`, it will parse all the files in `01` before `02`.)

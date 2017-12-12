@@ -27,6 +27,7 @@ title: "Language: Exported resources"
 
 An **exported resource declaration** specifies a desired state for a resource, **does not** manage the resource on the target system, and publishes the resource for use by **other nodes.** Any node (including the node that exported it) can then **collect** the exported resource and manage its own copy of it.
 
+{:.concept}
 ## Purpose
 
 
@@ -36,11 +37,11 @@ Exported resources allow the Puppet compiler to share information among nodes by
 
 The most common use cases are monitoring and backups. A class that manages a service like PostgreSQL can export a [`nagios_service`][nagios_service] resource describing how to monitor the service, including information like its hostname and port. The Nagios server can then collect every `nagios_service` resource, and will automatically start monitoring the Postgres server.
 
-
+{:.concept}
 ## Syntax
 
 
-Using exported resources requires two steps: declaring and collecting.
+Using exported resources requires two steps: declaring and collecting. In the following example, every node with the `ssh` class exports its own SSH host key and then collects the SSH host key of every node (including its own). This causes every node in the site to trust SSH connections from every other node.
 
 ``` puppet
 class ssh {
@@ -54,8 +55,7 @@ class ssh {
 }
 ```
 
-In the example above, every node with the `ssh` class will export its own SSH host key and then collect the SSH host key of every node (including its own). This will cause every node in the site to trust SSH connections from every other node.
-
+{:.section}
 ### Declaring an exported resource
 
 To declare an exported resource, prepend `@@` (a double "at" sign) to the **resource type** of a standard [resource declaration][resources]:
@@ -71,6 +71,7 @@ To declare an exported resource, prepend `@@` (a double "at" sign) to the **reso
 }
 ```
 
+{:.section}
 ### Collecting exported resources
 
 To collect exported resources you must use an [exported resource collector][exported_collector]:
@@ -88,9 +89,8 @@ Since any node could be exporting a resource, it is difficult to predict what th
 
 See [Exported Resource Collectors][exported_collector] for more detail on the collector syntax and search expressions.
 
-
+{:.concept}
 ## Behavior
-
 
 When catalog storage and searching (AKA storeconfigs) are enabled, the Puppet master will send a copy of every [catalog][] it compiles to [PuppetDB][]. PuppetDB retains the most recent catalog for every node and provides the Puppet master with a search interface to those catalogs.
 
@@ -98,6 +98,7 @@ Declaring an exported resource causes that resource to be added to the catalog a
 
 Collecting an exported resource causes the Puppet master to send a search query to PuppetDB. PuppetDB will respond with every exported resource that matches the [search expression][search], and the Puppet master will add those resources to the catalog.
 
+{:.section}
 ### Timing
 
 An exported resource becomes available to other nodes as soon as PuppetDB finishes storing the catalog that contains it. This is a multi-step process and might not happen immediately:
@@ -105,16 +106,19 @@ An exported resource becomes available to other nodes as soon as PuppetDB finish
 * The Puppet master must have compiled a given node's catalog at least once before its resources become available.
 * When the Puppet master submits a catalog to PuppetDB, it is added to a queue and stored as soon as possible. Depending on the PuppetDB server's workload, there might be a slight delay between a node's catalog being compiled and its resources becoming available.
 
+{:.section}
 ### Uniqueness
 
 Every exported resource must be **globally unique** across every single node. If two nodes export resources with the same [title][] or same [name/namevar][namevar] and you attempt to collect both, **the compilation will fail.** (Note: Some pre-1.0 versions of PuppetDB will not fail in this case. This is a bug.)
 
 To ensure uniqueness, every resource you export should include a substring unique to the node exporting it into its title and name/namevar. The most expedient way is to use the [`hostname`][hostname] or [`fqdn`][fqdn] [facts][].
 
+{:.section}
 ### Exported resource collectors
 
 Exported resource collectors do not collect normal or virtual resources. In particular, they cannot retrieve non-exported resources from other nodes' catalogs.
 
+{:.section}
 ### Exported resources with Nagios
 
 The following example shows Puppet native types for managing Nagios configuration

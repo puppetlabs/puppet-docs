@@ -18,7 +18,8 @@ layout: default
 
 The Puppet language has looping and iteration features, which can help you write more succinct code and use data more effectively.
 
-## Basics
+{:.concept}
+## Introduction
 
 In Puppet, iteration features are implemented as [functions][] that accept blocks of code ([lambdas][]).
 
@@ -26,7 +27,8 @@ That is, you write a block of code (lambda) that requires some kind of extra inf
 
 This differs from some other languages where looping constructs are special keywords; in Puppet, they're just functions.
 
-## List of iteration functions
+{:.concept}
+## Iteration functions
 
 The following functions can accept a block of code and run it in some special way. See each function's documentation for more details.
 
@@ -37,6 +39,7 @@ The following functions can accept a block of code and run it in some special wa
 * [`reduce`][reduce] --- Use a block of code to create a new value or data structure by combining values from a provided data structure.
 * [`with`][with] --- Evaluate a block of code once, isolating it in its own local scope. Doesn't iterate, but has a family resemblance to the iteration functions.
 
+{:.concept}
 ## Syntax
 
 * See [the functions page][functions] for the syntax of function calls.
@@ -44,6 +47,7 @@ The following functions can accept a block of code and run it in some special wa
 
 In general, the iteration functions take an [array][] or a [hash][] as their main argument, then iterate over its values.
 
+{:.reference}
 ### Common lambda arguments
 
 The [`each`][each], [`filter`][filter], and [`map`][map] functions can accept a lambda with either one or two parameters. The values they pass into a lambda will vary, depending on the number of parameters and the type of data structure you're iterating over:
@@ -70,8 +74,10 @@ The [`slice`][slice] and [`reduce`][reduce] functions handle parameters differen
 Hashes preserve the order in which their keys and values were written. When iterating over a hash's members, the loo
 ps occur in the order that they are written. When interpolating a hash into a string, the resulting string is also constructed in the same order.
 
+{:.concept}
 ## Examples
 
+{:.section}
 ### Declaring resources
 
 Since the focus of the Puppet language is declaring resources, most people will want to use iteration to declare many similar resources at once:
@@ -90,6 +96,7 @@ $binaries.each |String $binary| {
 
 In this example, we have an array of command names that we want to use in each symlink's path and target. The `each` function makes this very easy and succinct.
 
+{:.section}
 ### Old-style iteration with defined resource types
 
 In earlier versions of Puppet, when there were no iteration functions and lambdas weren't supported, you could achieve a clunkier form of iteration by writing [defined resource types][defined types] and [using arrays as resource titles.][array_titles] To do the same thing as the previous example:
@@ -117,6 +124,7 @@ The main problems with this approach were:
 
 In general, the modern style of iteration is much better, but you'll often see existing code using this old style, and might have to use it yourself to target older versions of Puppet.
 
+{:.section}
 ### Using iteration to transform data
 
 You can also use iteration to transform data into more useful forms. For example:
