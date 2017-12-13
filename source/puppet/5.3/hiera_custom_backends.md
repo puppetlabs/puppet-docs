@@ -59,6 +59,10 @@ For more information, please the see data_dig backend reference.
 
 Related topics: [custom Puppet function][puppet_functions], [the modern Ruby functions API][ruby_functions].
 
+#### The `RichDataKey` and `RichData` types
+
+To simplify backend function signatures, you can use two extra data type aliases: `RichDataKey`, and `RichData`. These are only available to backend functions called by Hiera; normal functions and Puppet code can not use them.
+
 {:.reference}
 ## data_hash backends
 
