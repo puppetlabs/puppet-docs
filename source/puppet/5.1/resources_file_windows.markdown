@@ -88,7 +88,6 @@ Windows usually uses CRLF line endings instead of \*nix's LF line endings. In mo
 
 * If a file resource uses the `content` or `source` attributes, Puppet will write the file in "binary" mode, using whatever line endings are present in the content.
     * If the manifest, template, or source file is saved with CRLF line endings, Puppet will use those endings in the destination file.
-    * If the manifest, template, or source file is saved with LF line endings, you can use the `\r\n` escape sequence to create literal CRLFs.
 * Non-`file` resource types that make partial edits to a system file (most notably the [`host`](./type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
     > Note: When writing your own resource types, you can get this same behavior by using the `flat` filetype.
