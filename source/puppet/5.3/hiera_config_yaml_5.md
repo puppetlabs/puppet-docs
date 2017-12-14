@@ -47,6 +47,25 @@ Related topics: [$confdir][confdir], [`<MODULE>`][module].
 -   `default_hierarchy` - An array of hashes, which sets a default hierarchy to be used only if the normal hierarchy entries do not result in a value. Only allowed in a module's hiera.yaml.
 -   `defaults` - A hash, which can set a default datadir, backend, and options for hierarchy levels.
 
+Example of an environment hiera.yaml file:
+
+```
+---
+version: 5
+
+defaults:
+  datadir: "data"
+
+hierarchy:
+  - name: 'Yaml backend'
+    data_hash: yaml_data
+    paths:
+      - "nodes/%{trusted.certname}.yaml"
+      - 'common.yaml'
+```
+
+Options for tweaking the hiera.yaml file:
+
 ``` yaml
 ---
 version: 5
