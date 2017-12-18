@@ -9,7 +9,7 @@ Anatomy of a Facter Fact
 A typical Facter fact is a fairly simple assemblage of just a few different elements.
 This page is an example-driven tour of those elements, and is intended as a quick primer or reference
 for authors of custom facts. You'll need some familiarity with Ruby to understand most of these examples.
-For a gentler introduction, check out the [Custom Facts Walkthrough](custom_facts.html).
+For a gentler introduction, check out the [Custom Facts Walkthrough](./custom_facts.html).
 
 First off, it's important to distinguish between **facts** and **resolutions**. A fact is a piece of information about a given node,
 while a resolution is a way of obtaining that information from the system. That means that every fact needs to have **at least one**
@@ -93,7 +93,7 @@ Simple facts are typically made up of the following parts:
 Facter 2.0 introduced **structured facts**, which can take the form of hashes or arrays. You don't have to do anything special to mark the fact as structured --- if your fact returns a hash or array, Facter will recognize it as a structured fact. Structured facts can have [simple](#main-components-of-simple-resolutions) or [aggregate resolutions](#main-components-of-aggregate-resolutions).
 
 > **Note:** Structured facts are supported in Puppet 3.3 and greater, but they aren't enabled by default. To enable structured facts, set the [stringify_facts](/puppet/latest/reference/configuration.html#stringifyfacts) option to `false` in the `[main]` section of puppet.conf on all machines, whether they are agents, masters, or standalone nodes running `puppet apply`.
-> 
+>
 > Puppet Enterprise 3.7 and later has structured facts enabled by default, as will Puppet 4.0.
 
 ### Example: returning an array of network interfaces

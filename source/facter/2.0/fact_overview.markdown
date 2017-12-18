@@ -9,7 +9,7 @@ Anatomy of a Facter Fact
 A typical Facter fact is a fairly simple assemblage of just a few different elements.
 This page is an example-driven tour of those elements, and is intended as a quick primer or reference
 for authors of custom facts. You'll need some familiarity with Ruby to understand most of these examples.
-For a gentler introduction, check out the [Custom Facts Walkthrough](custom_facts.html).
+For a gentler introduction, check out the [Custom Facts Walkthrough](./custom_facts.html).
 
 First off, it's important to distinguish between **facts** and **resolutions**. A fact is a piece of information about a given node,
 while a resolution is a way of obtaining that information from the system. That means that every fact needs to have **at least one**
