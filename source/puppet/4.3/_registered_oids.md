@@ -27,8 +27,3 @@ Numeric ID              | Short Name         | Descriptive Name
 1.3.6.1.4.1.34380.1.1.23 | `pp_cloudplatform` | Puppet Node Cloud Platform Name
 1.3.6.1.4.1.34380.1.1.24 | `pp_apptier`      | Puppet Node Application Tier
 1.3.6.1.4.1.34380.1.1.25 | `pp_hostname`     | Puppet Node Hostname
-
-The "ppAuthCertExt" OID range contains the following OIDs:
-
-1.3.6.1.4.1.34380.1.3.1  | `pp_authorization` | Certificate Extension Authorization
-1.3.6.1.4.1.34380.1.3.13 | `pp_auth_role` | Puppet Node Role Name for Authorization
