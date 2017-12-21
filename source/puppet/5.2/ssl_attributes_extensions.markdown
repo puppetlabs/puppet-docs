@@ -55,7 +55,7 @@ See the respective sections below for information about how each hash is used an
 
 ### Default behavior
 
-By default, Puppet's CA tools don't do anything with custom attributes. The `puppet cert list` command doesn't display custom attributes for pending CSRs, and [basic autosigning (autosign.conf)][autosign_basic] doesn't check them before signing.
+The `puppet cert list` command doesn't display custom attributes for pending CSRs, and [basic autosigning (autosign.conf)][autosign_basic] doesn't check them before signing.
 
 ### Configurable behavior
 
@@ -64,6 +64,8 @@ If you use [policy-based autosigning][autosign_policy], your policy executable r
 The simplest use is to embed a pre-shared key of some kind in the custom attributes. A policy executable can compare it to a list of known keys and autosign certificates for any pre-authorized nodes.
 
 A more complex use might be to embed an instance-specific ID and write a policy executable that can check it against a list of your recently requested instances on a public cloud, like EC2 or GCE.
+
+If you use Puppet Server 2.5.0 or newer, you can also sign requests using authorization extensions and the `--allow-authorization-extensions` flag for `puppet cert sign`.
 
 ### Manually checking for custom attributes in CSRs
 
@@ -109,7 +111,7 @@ Visibility of extensions is somewhat limited:
 * The `puppet cert list` command _does not_ display custom attributes for any pending CSRs, and [basic autosigning (autosign.conf)][autosign_basic] doesn't check them before signing. Either use [policy-based autosigning][autosign_policy] or inspect CSRs manually with the `openssl` command (see below).
 * The `puppet cert print` command _does_ display any extensions in a signed certificate, under the "X509v3 extensions" section.
 
-Puppet's authorization system (`auth.conf`) does not use certificate extensions.
+Puppet's authorization system (`auth.conf`) does not use certificate extensions, but [Puppet Server's authorization system](/puppetserver/latest/config_file_auth.html), which is based on `trapperkeeper-authorization`, can use extensions in the ppAuthCertExt OID range, and requires them for requests to write access rules.
 
 ### Configurable behavior
 
@@ -163,9 +165,11 @@ X509v3 extensions:
 
 ### Recommended OIDs for extensions
 
-Extension request OIDs **must** be under the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`) or "ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`) OID arcs.
+Extension request OIDs **must** be under the "ppRegCertExt" (`1.3.6.1.4.1.34380.1.1`), "ppPrivCertExt" (`1.3.6.1.4.1.34380.1.2`), or "ppAuthCertExt" (`1.3.6.1.4.1.34380.1.3`) OID arcs.
 
-Puppet provides several registered OIDs (under "ppRegCertExt") for the most common kinds of extension information, as well as a private OID range ("ppPrivCertExt") for site-specific extension information. There are several benefits to using the registered OIDs:
+Puppet provides several registered OIDs (under "ppRegCertExt") for the most common kinds of extension information, a private OID range ("ppPrivCertExt") for site-specific extension information, and an OID range for safe authorization to Puppet Server ("ppAuthCertExt").
+
+There are several benefits to using the registered OIDs:
 
 * You can reference them in `csr_attributes.yaml` with their short names instead of their numeric IDs.
 * You can access them in `$trusted[extensions]` with their short names instead of their numeric IDs.
