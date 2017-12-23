@@ -67,8 +67,6 @@ document_names:
   pdk: Puppet Development Kit
   pe_ja: "Puppet Enterprise (日本語)"
   puppet_es: "Puppet (español)"
-  pipelines_onprem: "Puppet Pipelines on Premise Documentation"
-  pipelines_europa: "Puppet Container Registry"
 
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
@@ -89,6 +87,7 @@ document_names:
 #      puppetdb: "3.2"
 
 documents:
+
 
   /pe/2017.3:
     doc: pe
@@ -989,24 +988,6 @@ documents:
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: origin/master
       subdirectory: documentation
-
-  /pipelines/onprem:
-    doc: pipelines_onprem
-    nav: ./leftnav-onprem.html
-    external_source:
-      repo: git@github.com:puppetlabs/DistelliHugoDocs.git
-      commit: origin/copyedit-dec17
-      subdirectory: content/docs/onprem
-    hide: true
-
-  /pipelines/europa:
-    doc: pipelines_europa
-    nav: ./leftnav-europa.html
-    external_source:
-      repo: git@github.com:puppetlabs/DistelliHugoDocs.git
-      commit: origin/copyedit-dec17
-      subdirectory: content/docs/europa
-    hide: true
 
 
 
