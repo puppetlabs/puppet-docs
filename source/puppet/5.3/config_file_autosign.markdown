@@ -10,7 +10,7 @@ The `autosign.conf` file can allow certain certificate requests to be automatica
 
 ## More about autosigning
 
-Puppet also provides a policy-based interface for autosigning, which can be more flexible and secure. The `autosign.conf` file is the simpler and less secure method.
+Since any host can request any certname, autosigning with `autosign.conf` is essentially insecure. Puppet also provides a policy-based interface for autosigning, which can be more flexible and secure but more complex to set up and configure.
 
 For more details, see [the reference page about certificate autosigning][autosigning].
 
@@ -30,7 +30,4 @@ The `autosign.conf` file is a list of certnames or domain name globs (one per li
     *.scratch.example.com
     *.local
 
-Note that domain name globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.
-
-**Note:** Since any host can request any certname, autosigning with `autosign.conf` is essentially insecure. See [the reference page about certificate autosigning][autosigning] for more context.
-
+Note that domain name globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.)
