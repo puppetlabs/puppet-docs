@@ -37,4 +37,4 @@ Domain name globs do not function as normal globs: an asterisk can only represen
 
 > **Note:** The `autosign.conf` file can safely be an empty file or not-existent, even if the `autosign` setting is enabled. An empty or non-existent `autosign.conf` file is an empty whitelist, meaning that Puppet does not autosign any requests. If you create `autosign.conf` as a non-executable file and add certnames to it, Puppet then automatically uses the file to whitelist incoming requests without needing to modify `puppet.conf`.
 >
-> To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of `puppet.conf`.
+>  +To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of the CA Puppet master's `puppet.conf`, which disables CA autosigning even if `autosign.conf` or a custom policy executable exists.

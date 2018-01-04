@@ -26,7 +26,7 @@ By default, the `autosign` setting in the `[master]` section of the CA Puppet ma
 
 If the `autosign.conf` file is empty or doesn't exist, the whitelist is empty. The CA Puppet master therefore doesn't autosign any certificates until the `autosign.conf` file contains a whitelist or is a custom policy executable, or until the `autosign` setting is pointed at a whitelist file or custom policy executable.
 
-To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of the CA Puppet master's `puppet.conf`, which disables CA autosigning even if autosign.conf or a custom policy executable exists.
+To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of the CA Puppet master's `puppet.conf`, which disables CA autosigning even if `autosign.conf` or a custom policy executable exists.
 
 For more information about the different autosigning methods, see [basic autosigning][inpage_basic] and [policy-based autosigning][inpage_policy]. For more information about the `autosign` setting in `puppet.conf`, see the [configuration reference](./configuration.html#autosign).
 
@@ -40,7 +40,7 @@ To enable naïve autosigning, set `autosign = true` in the `[master]` section of
 
 ### Security implications of naïve autosigning
 
-**You should never do this in a production deployment.** Naïve autosigning is only suitable for temporary test deployments that are incapable of serving catalogs containing sensitive information.
+**Never do this in a production deployment.** Naïve autosigning is suitable only for temporary test deployments incapable of serving catalogs containing sensitive information.
 
 ## Basic autosigning (autosign.conf)
 
