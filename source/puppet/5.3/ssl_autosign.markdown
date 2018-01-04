@@ -54,9 +54,9 @@ The `autosign.conf` whitelist file's location and contents are described in [its
 
 Puppet looks for `autosign.conf` at the path configured in the [`autosign` setting][autosign setting] in the `[master]` section of `puppet.conf`. The default path is `$confdir/autosign.conf`, and the default `confdir` path depends on your operating system. [See the confdir documentation for more information.](./dirs_confdir.html)
 
-> **Note:** In open source Puppet, no `autosign.conf` file exists by default. In Puppet Enterprise, the file exists but is empty. In both cases, basic autosigning is enabled by default but doesn't autosign any certificates because an blank or non-existent whitelist is considered empty and no hostnames are whitelisted by default.
+> **Note:** In open source Puppet, no `autosign.conf` file exists by default. In Puppet Enterprise, the file exists by default but might be empty. In both cases, basic autosigning is enabled by default but doesn't autosign any certificates because an blank or non-existent whitelist is considered empty and no hostnames are whitelisted by default.
 
-The `autosign.conf` file must not be executable by the Puppet master's user account. If the `autosign` setting points to an executable file, Puppet instead treats it like a custom policy executable even if it contains a valid `autosign.conf` whitelist.
+The `autosign.conf` file must not be executable by the Puppet master's user account. If the `autosign` setting points to an executable file, Puppet instead attempts to execute it as a custom policy executable even if it contains a valid `autosign.conf` whitelist.
 
 ### Security implications of basic autosigning
 
@@ -99,8 +99,7 @@ The API for policy executables is as follows:
 
 -   **Run environment:** The executable will be run once for each incoming CSR.
     -   It will be executed by the Puppet master process and will run as the same user as the Puppet master.
-    -   The Puppet master process will _block until the executable finishes running._ We expect policy executables to finish in a timely fashion; if they do not, it's possible for them to tie up all available Puppet master threads and deny service to other agent nodes. If an executable needs to perform network requests or other potentially expensive operations, the author is in charge of implementing any necessary timeouts, possibly bailing and exiting non-zero in the event of failure.
-    -   (Note that under a Rack server like Passenger, there are generally multiple Puppet master processes available at any given time, so policy executables have a little bit of leeway.)
+    -   The Puppet master process will _block until the executable finishes running._ We expect policy executables to finish in a timely fashion; if they do not, it's possible for them to tie up all available Puppet master threads and deny service to other agents. If an executable needs to perform network requests or other potentially expensive operations, the author is in charge of implementing any necessary timeouts, possibly bailing and exiting non-zero in the event of failure. Alternatively, signing requests consume JRubies on a Puppet Server master but might not block all requests while the pool contains available JRubies, and won't block non-Ruby requests.
 -   **Arguments:** The executable must allow a single command line argument. This argument will be the Subject CN (certname) of the incoming CSR.
     -   No other command line arguments should be provided.
     -   The Puppet master should never fail to provide this argument.
