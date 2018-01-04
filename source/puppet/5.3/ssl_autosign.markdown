@@ -18,9 +18,13 @@ Alternately, you can configure the CA Puppet master to automatically sign certai
 
 ## Disabling autosigning
 
-By default, the CA Puppet master will use the `$confdir/autosign.conf` file as a whitelist; [see "Basic Autosigning" below][inpage_basic]. Since this file doesn't exist by default, autosigning is implicitly disabled, and the CA will not autosign any certificates.
+By default, the CA Puppet master's `autosign` setting defaults to `$confdir/autosign.conf`.
 
-To _explicitly_ disable autosigning, you can set `autosign = false` in the `[master]` section of the CA Puppet master's puppet.conf. This will cause the CA to never autosign even if an autosign.conf file is written later.
+In open source Puppet, this file doesn't exist by default. In Puppet Enterprise, it exists but is empty by default. In either case, the autosigning feature is enabled but the whitelist is empty, so the CA Puppet master doesn't autosign any certificates. In other words, the feature is implicity disabled until the `autosign.conf` file contains a whitelist or is a custom policy executable. For more information, see [basic autosigning][inpage_basic] and [policy-based autosigning][inpage_policy].
+
+To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of the CA Puppet master's `puppet.conf`, which disables CA autosigning even if autosign.conf or a custom policy executable exists.
+
+For more information about the `autosign` setting, see the [configuration reference](./configuration.html#autosign).
 
 ## Naïve autosigning
 
@@ -28,13 +32,13 @@ Naïve autosigning causes the CA to autosign **all** CSRs.
 
 ### Enabling naïve autosigning
 
-To enable naïve autosigning, set `autosign = true` in the `[master]` section of the CA Puppet master's puppet.conf.
+To enable naïve autosigning, set `autosign = true` in the `[master]` section of the CA Puppet master's `puppet.conf`.
 
 ### Security implications of naïve autosigning
 
 **You should never do this in a production deployment.** Naïve autosigning is only suitable for temporary test deployments that are incapable of serving catalogs containing sensitive information.
 
-## Basic Autosigning (autosign.conf)
+## Basic autosigning (autosign.conf)
 
 [inpage_basic]: #basic-autosigning-autosignconf
 
@@ -42,33 +46,29 @@ In basic autosigning, the CA uses a config file containing a whitelist of certif
 
 ### Enabling basic autosigning
 
-To enable basic autosigning, set `autosign = <whitelist file>` in the `[master]` section of the CA Puppet master's puppet.conf. The whitelist file must **not** be executable by the same user as the Puppet master; otherwise it will be treated as a policy executable.
+The `autosign.conf` whitelist file's location and contents are described in [its documentation](./conf_file_autosign.html).
 
-> **Note:** Basic autosigning is enabled by default and looks for a whitelist located at `$confdir/autosign.conf`. For more info, see [the page on the confdir](./dirs_confdir.html).
+Puppet looks for `autosign.conf` at the path configured in the [`autosign` setting][autosign setting] in the `[master]` section of `puppet.conf`. The default path is `$confdir/autosign.conf`, and the default `confdir` path depends on your operating system. [See the confdir documentation for more information.](./dirs_confdir.html)
 
-### The `autosign.conf` file
+> **Note:** In open source Puppet, no `autosign.conf` file exists by default. In Puppet Enterprise, the file exists but is empty. In both cases, basic autosigning is enabled by default but doesn't autosign any certificates because an blank or non-existent whitelist is considered empty and no hostnames are whitelisted by default.
 
-The `autosign.conf` whitelist file is a list of certnames or domain name globs (one per line) whose certificate requests will automatically be signed.
-
-    rebuilt.example.com
-    *.scratch.example.com
-    *.local
-
-Note that domain name globs do not function as normal globs: an asterisk can only represent one or more subdomains at the front of a certname that resembles a fully-qualified domain name. (That is, if your certnames don't look like FQDNs, you can't use `autosign.conf` to full effect.)
+The `autosign.conf` file must not be executable by the Puppet master's user account. If the `autosign` setting points to an executable file, Puppet instead treats it like a custom policy executable even if it contains a valid `autosign.conf` whitelist.
 
 ### Security implications of basic autosigning
 
-Since any host can provide any certname when requesting a certificate, basic autosigning should only be used in situations where you fully trust any computer able to connect to the Puppet master.
+Because any host can provide any certname when requesting a certificate, basic autosigning is essentially **insecure**. Use it only when you fully trust any computer capable of connecting to the Puppet master.
 
-With basic autosigning enabled, an attacker able to guess an unused certname allowed by `autosign.conf` would be able to obtain a signed agent certificate from the Puppet master. They would then be able to obtain a configuration catalog, which might or might not contain sensitive information (depending on your deployment's Puppet code and node classification).
+With basic autosigning enabled, an attacker that guesses an unused certname allowed by `autosign.conf` can obtain a signed agent certificate from the Puppet master. The attacker could then obtain a configuration catalog, which can contain sensitive information depending on your deployment's Puppet code and node classification.
 
 ## Policy-based autosigning
+
+[inpage_policy]: #policy-based-autosigning
 
 In policy-based autosigning, the CA will run an external policy executable every time it receives a CSR. This executable will examine the CSR and tell the CA whether the certificate is approved for autosigning. If the executable approves, the certificate is autosigned; if not, it is left for manual review.
 
 ### Enabling policy-based autosigning
 
-To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` section of the CA Puppet master's puppet.conf.
+To enable policy-based autosigning, set `autosign = <policy executable file>` in the `[master]` section of the CA Puppet master's `puppet.conf`.
 
 The policy executable file **must be executable by the same user as the Puppet master.** If not, it will be treated as a certname whitelist file.
 
