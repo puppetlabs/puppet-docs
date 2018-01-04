@@ -27,7 +27,7 @@ The default `confdir` path depends on your operating system. [See the confdir do
 
 ## Format
 
-The `autosign.conf` file is a line-separated list of certnames or domain name globs. Each line represents a node name or group of node names whose certificate requests that the CA Puppet master should automatically sign upon receipt.
+The `autosign.conf` file is a line-separated list of certnames or domain name globs. Each line represents a node name or group of node names whose certificate requests that the CA Puppet master automatically signs upon receipt.
 
     rebuilt.example.com
     *.scratch.example.com

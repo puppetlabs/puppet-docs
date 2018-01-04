@@ -18,13 +18,17 @@ Alternately, you can configure the CA Puppet master to automatically sign certai
 
 ## Disabling autosigning
 
-By default, the CA Puppet master's `autosign` setting defaults to `$confdir/autosign.conf`.
+By default, the `autosign` setting in the `[master]` section of the CA Puppet master's `puppet.conf` file is set to `$confdir/autosign.conf`, which means the basic autosigning functionality is enabled upon installation. However, depending on your installation method, there might not be a whitelist at that location once the Puppet master is running.
 
-In open source Puppet, this file doesn't exist by default. In Puppet Enterprise, it exists but is empty by default. In either case, the autosigning feature is enabled but the whitelist is empty, so the CA Puppet master doesn't autosign any certificates. In other words, the feature is implicity disabled until the `autosign.conf` file contains a whitelist or is a custom policy executable. For more information, see [basic autosigning][inpage_basic] and [policy-based autosigning][inpage_policy].
+-   In open source Puppet, `autosign.conf` doesn't exist by default.
+-   In monolithic Puppet Enterprise (PE) installations, where all required services run on one server, `autosign.conf` exists on the master, but it is empty by default because the master doesn't need to whitelist other servers.
+-   In split PE installations, where services like PuppetDB can run on different servers, `autosign.conf` exists on the CA master and contains a whitelist of other required hosts.
+
+If the `autosign.conf` file is empty or doesn't exist, the whitelist is empty. The CA Puppet master therefore doesn't autosign any certificates until the `autosign.conf` file contains a whitelist or is a custom policy executable, or until the `autosign` setting is pointed at a whitelist file or custom policy executable.
 
 To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of the CA Puppet master's `puppet.conf`, which disables CA autosigning even if autosign.conf or a custom policy executable exists.
 
-For more information about the `autosign` setting, see the [configuration reference](./configuration.html#autosign).
+For more information about the different autosigning methods, see [basic autosigning][inpage_basic] and [policy-based autosigning][inpage_policy]. For more information about the `autosign` setting in `puppet.conf`, see the [configuration reference](./configuration.html#autosign).
 
 ## Naïve autosigning
 
