@@ -24,9 +24,9 @@ By default, the `autosign` setting in the `[master]` section of the CA Puppet ma
 -   In monolithic Puppet Enterprise (PE) installations, where all required services run on one server, `autosign.conf` exists on the master, but it is empty by default because the master doesn't need to whitelist other servers.
 -   In split PE installations, where services like PuppetDB can run on different servers, `autosign.conf` exists on the CA master and contains a whitelist of other required hosts.
 
-If the `autosign.conf` file is empty or doesn't exist, the whitelist is effectively empty. The CA Puppet master therefore doesn't autosign any certificates until the `autosign.conf` file contains a whitelist or is a custom policy executable, or until the `autosign` setting is pointed at a whitelist file with properly formatted content or a custom policy executable that the Puppet user has permission to run.
+If the `autosign.conf` file is empty or doesn't exist, the whitelist is effectively empty. The CA Puppet master therefore doesn't autosign any certificates until the default `autosign.conf` file, or the `autosign` setting's path if configured, is a non-executable whitelist file with properly formatted content or a custom policy executable that the Puppet user has permission to run.
 
-To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of the CA Puppet master's `puppet.conf`, which disables CA autosigning even if `autosign.conf` or a custom policy executable exists.
+To _explicitly_ disable autosigning, set `autosign = false` in the `[master]` section of the CA Puppet master's `puppet.conf`, which disables CA autosigning even if the `autosign.conf` file or a custom policy executable exists.
 
 For more information about the different autosigning methods, see [basic autosigning][inpage_basic] and [policy-based autosigning][inpage_policy]. For more information about the `autosign` setting in `puppet.conf`, see the [configuration reference](./configuration.html#autosign).
 
