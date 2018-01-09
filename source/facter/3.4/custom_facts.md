@@ -3,8 +3,8 @@ layout: default
 title: "Custom facts walkthrough"
 ---
 
-[Facter 3.0.2 release notes]: /facter/3.0/release_notes.html#facter--p-restored
-[Plugins in Modules]: /guides/plugins_in_modules.html
+[Facter 3.0.2 release notes]: ../3.0/release_notes.html#facter--p-restored
+[Plugins in Modules]: /puppet/latest/plugins_in_modules.html
 
 Extend Facter by writing your own custom facts to provide information to Puppet.
 
@@ -255,7 +255,7 @@ end
 
 ## Structured facts
 
-While the norm is for a fact to return a single string, Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement. You can see some relevant examples in the [writing structured facts](fact_overview.html#writing-structured-facts) section of the [Fact Overview](fact_overview.html).
+While the norm is for a fact to return a single string, Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement. You can see some relevant examples in the [writing structured facts](./fact_overview.html#writing-structured-facts) section of the [Fact Overview](./fact_overview.html).
 
 ## Aggregate resolutions
 
@@ -299,7 +299,7 @@ end
 
 If the `chunk` blocks either all return arrays or all return hashes, you can omit the `aggregate` block. If you do, Facter automatically merges all of your data into one array or hash and use that as the fact's value.
 
-For more examples of aggregate resolutions, see the [aggregate resolutions](fact_overview.html#writing-facts-with-aggregate-resolutions) section of the [Fact Overview](fact_overview.html) page.
+For more examples of aggregate resolutions, see the [aggregate resolutions](./fact_overview.html#writing-facts-with-aggregate-resolutions) section of the [Fact Overview](./fact_overview.html) page.
 
 ## Viewing fact values
 
