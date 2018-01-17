@@ -30,8 +30,6 @@ title: "Language: Basics"
 
 Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
 
-> To see how the Puppet language's features have evolved over time, see [History of the Puppet Language](./language_history.html).
-
 ## Resources, classes, and nodes
 
 The core of the Puppet language is **declaring [resources][].** Every other part of the language exists to add flexibility and convenience to the way resources are declared.
