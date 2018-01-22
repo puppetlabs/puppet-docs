@@ -180,6 +180,8 @@ When you use the `alias` function, its interpolation token must be the **only** 
 aliased: "%{alias('original')} - 'three'"
 ```
 
+> Note: A lookup resulting in an interpolation of `alias` referencing a non-existant key will return an empty string, not a Hiera "not found" condition.
+
 ### `literal`
 
 [inpage_literal]: #literal
