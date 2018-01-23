@@ -31,7 +31,7 @@ To ease your Puppet installation, complete these tasks before installing Puppet 
 
 3. Check OS versions and system requirements.
 
-   See the [system requirements](system_requirements.html) for the version of Puppet you are installing, and consider the following:
+   See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
 
    * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
    * Systems we provide official packages for have an easier install path.
