@@ -15,7 +15,7 @@ Type aliases are written as:
 type <MODULE NAME>::<ALIAS NAME> = <TYPE DEFINITION>
 ```
 
-The `<MODULE NAME>` must be named after the module that contains the Type Alias, and both the `<MODULE NAME>` and `<ALIAS NAME>` begin with a capital letter and must not be a [reserved word][reserved].
+The `<MODULE NAME>` must be named after the module that contains the type alias, and both the `<MODULE NAME>` and `<ALIAS NAME>` begin with a capital letter and must not be a [reserved word][reserved].
 
 For example, you can create a type alias named `MyType` that is equivalent to the `Integer` data type:
 
