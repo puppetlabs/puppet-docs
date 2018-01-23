@@ -40,7 +40,7 @@ These instructions cover installing Puppet agent on macOS machines.
 
     This doesn't matter for Puppet services, so enabling or disabling Puppet agent with `launchctl` works fine. However, if you're running any interactive `puppet` commands, you need to either add the location to your `PATH` or refer to the executables by their full locations.
 
-    > **Note: If upgrading from Puppet 3, see [our page about which files and directories moved in Puppet 4 and later][where].
+    > **Note:** If upgrading from Puppet 3, see [our page about which files and directories moved in Puppet 4 and later][where].
 
 4.  Install Puppet.
 
