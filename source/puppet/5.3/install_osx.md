@@ -25,6 +25,8 @@ These instructions cover installing Puppet agent on macOS machines.
 
     `puppet-agent-1.3.2.osx10.11.dmg`
 
+    Note that the filename uses "osx" on newer versions of the operating system, which are called macOS.
+
     To see which versions of Puppet and its related tools and components are in a given `puppet-agent` release, as well as release notes for each release, [see About Puppet agent](./about_agent.html).
 
     > **Previous package names**
