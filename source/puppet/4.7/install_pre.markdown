@@ -36,7 +36,7 @@ A Puppet master should be a dedicated machine. It must also be reachable at a re
 
 ## Check OS versions and system requirements
 
-See the [system requirements](system_requirements.html) for the version of Puppet you are installing, and consider the following:
+See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
 
 * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
 * Systems we provide official packages for will have an easier install path.

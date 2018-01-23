@@ -31,7 +31,7 @@ Complete these tasks before installing Puppet agent.
 
 3. Check OS versions and system requirements.
 
-   See the [system requirements](system_requirements.html) for the version of Puppet you are installing, and consider the following:
+   See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
 
    * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
    * Systems we provide official packages for have an easier install path.
@@ -47,7 +47,7 @@ Complete these tasks before installing Puppet agent.
 
 5. Check timekeeping on your Puppet master server.
 
-   The time must be set accurately on the Puppet master server that acts as the certificate authority. If the time is wrong, it can mistakenly issue agent certificates from the distant past or future, which other nodes treat as expired. 
+   The time must be set accurately on the Puppet master server that acts as the certificate authority. If the time is wrong, it can mistakenly issue agent certificates from the distant past or future, which other nodes treat as expired.
 
 
 Install Puppet Server before installing Puppet on your agent nodes. If you're using PuppetDB, install it once Puppet server is up and running. Then you can install Puppet agent.
