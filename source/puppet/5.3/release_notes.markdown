@@ -20,6 +20,68 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.3.4
+
+Released January 31, 2018.
+
+This is a bug-fix and feature release of Puppet.
+
+-   [All issues resolved in Puppet 5.3.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.4%27)
+
+### Bug fixes
+
+-   Exceptions in prefetch were not marked as failed in the report under previous versions of Puppet, leading to reports incorrectly suggesting that an agent run with errors was fully successful. Puppet 5.3.4 marks only transactions that finish processing as successful.
+
+-   Puppet 5.3.4 no longer returns "invalid byte sequence" errors when parsing module translation files in non-UTF-8 environments.
+
+-   Running `puppet apply` or `puppet resource` to modify state in previous versions of Puppet would update the transaction.yaml file used to determine corrective vs. intentional change. This could lead to Puppet reporting an unexpected correctional change status. Puppet 5.3.4 resolves this by updating transaction.yaml only during an agent run.
+
+-   The validation of `uris` in a Hiera 5 `hiera.yaml` file by previous versions of Puppet did not allow reference or partial URIs, such as those containing only a path, despite the documentation stating that Hiera doesn't ensure that URIs are resolvable. Puppet 5.3.4 relaxes the implemented URI checking to remove these constraints.
+
+-   The `break()` function did not break the iteration over a hash, and instead would break the container in which a lambda called `break()`. This resulted in an error about a break from an illegal context if the container was something other than a function, and would lead to early exit when invoked from a function. Puppet 5.3.4 resolves this by having the function behave like a break in an array iteration.
+
+-   Puppet 5.3.4 updates the command used to start services on Solaris, preventing Puppet from abandoning certain services before they are properly started.
+
+-   A regression in Puppet 5.0.0 made it impossible to reference fully qualified variables in the default value expression for a parameter. Puppet 5.3.4 resolves this issue.
+
+-   Previous versions of Puppet required that `--user=root` be passed to `puppet device` when creating certificates, even if the command was being executed by root. Puppet 5.3.4 no longer requires the flag.
+
+-   When providing facts with the `--facts` command line option of the `puppet lookup` command in previous versions of Puppet, those facts would not appear in the `$facts` variable. Puppet 5.3.4 resolves this issue.
+
+### New features
+
+-   Puppet 5.3.4 adds the `sourceaddress` setting, which specifies the interface that the agent should use for outbound HTTP requests. This setting might be necessary for agents on systems with multiple network interfaces.
+
+-   Puppet 5.3.4 adds the `runtimeout` setting, which can cancel agent runs after the specified period. The setting defaults to 0, which preserves the behavior in previous version of Puppet of allowing an unlimited amount of time for agent runs to complete.
+
+-   Puppet 5.3.4 allows agents to download each module's translations from the master during pluginsync, along with the rest of the module's files. This downloads all available translations for all languages, not only those for the agent's locale, and does so for the version of the module in the requested environment only. If a master runs an older version of Puppet (Puppet 5.3.3, Puppet Server 5.1.3, or PE 2017.3.2), the 5.3.4 agent detects this and will not request locale files.
+
+-   A type alias to an iterable type did not allow the alias to be iterated in previous versions of Puppet. Puppet 5.3.4 resolves this issue.
+
+-   Previous versions of Puppet did not support using named format arguments for `sprintf`. Puppet 5.3.4 lets you use a hash with string values as the `sprintf` format argument.
+
+    For example, `notice sprintf("%<x>s : %<y>d", { 'x' => 'value is', 'y' => 42 })` would produce a notice of `value is : 42`.
+
+### Improvements
+
+-   Puppet 5.3.4 can retrieve file sources from web servers when the associated MIME type is not "binary". This particularly affects IIS webservers.
+
+-   When setting the day of the week with the `schedule` type, previous versions of Puppet required a quoted string value even if you wanted to represent the day as a numeric value. In Puppet 5.3.4, `scheudle` accepts an integer representation of the day in addition to a string or array value.
+
+-   Certain Puppet subcommands, such as `puppet help` and `puppet config`, no longer require a local environment to exist in Puppet 5.3.4. They now can fall back to assuming the defined environment exists on the master filesystem after checking for the local environment.
+
+-   If `environment.conf` contains unknown settings, Puppet 5.3.4 warns only once per unknown setting.
+
+-   Puppet 5.3.4 sorts the output of `puppet config` lexicographically.
+
+-   More warning and error messages are translated for Japanese locales.
+
+-   Error messages from `Puppet::Face` objects now include the face's name and version number.
+
+-   Error messages now provide simpler text when identifying error locations, such as line and character numbers, which makes them easier and clearer to translate.
+
+-   To specify an environment when running Puppet from the command line, Puppet 5.3.4 lets you use the short flag `-E` in addition to the long flag `--environment`.
+
 ## Puppet 5.3.3
 
 Released November 6, 2017.
