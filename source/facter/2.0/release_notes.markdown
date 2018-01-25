@@ -60,6 +60,10 @@ API changes:
 - Fact values can now only be accessed using the `Facter.value` method. See [Using other facts](custom_facts.html#using-other-facts) in the Custom Facts Walkthrough for more information and examples. Facts that refer to other facts with the deprecated `Facter.fact_name` notation will have to be updated.
 - Previously, Facter would treat the empty string as `nil` (a falsey value). Because Facter 2 allows resolutions to return `nil` directly, the empty string is now treated just like any other string (i.e., truthy). Custom facts that relied on this behavior in the past will need to be updated. The only exception is the string form of the `setcode` method (e.g., `setcode 'lsb_release -a'`), which still treats the empty string (or a non-zero exit code) as `nil`.
 
+### Deprecated Methods
+
+- The `Facter.execution.exec` method is deprecated and can be replaced with `Facter.execution.execute`. ([FACT-409](https://tickets.puppetlabs.com/browse/FACT-409))
+
 ### Other Features
 
 [FACT-134: Perform basic sanity checks on Facter output](https://tickets.puppetlabs.com/browse/FACT-134)

@@ -40,7 +40,7 @@ Facter.add(:jruby_installed) do
   confine :kernel => "Linux"
 
   setcode do
-    jruby_path = Facter::Core::Execution.exec('which jruby')
+    jruby_path = Facter::Core::Execution.execute('which jruby')
     # if 'which jruby' exits with an error, jruby_path will be an empty string
     if jruby_path == ""
       false
