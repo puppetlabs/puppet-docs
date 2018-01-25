@@ -95,7 +95,7 @@ output from those commands using standard Ruby code. The Facter API gives you a 
 execute shell commands:
 
 -   To run a command and use the output verbatim, as your fact's value, you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
--   If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')` from within the `setcode do`...`end` block. Whatever the `setcode` statement returns is used as the fact's value.
+-   If your fact is more complicated than that, you can call `Facter::Core::Execution.execute('uname --hardware-platform')` from within the `setcode do`...`end` block. Whatever the `setcode` statement returns is used as the fact's value.
 -   Your shell command is also a Ruby string, so you need to escape special characters if you want to pass them through.
 
 >**Note:** Not everything that works in the terminal works in a fact. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements do not work. The best way to handle this limitation is to write your conditional logic in Ruby.
@@ -113,7 +113,7 @@ To get the output of `uname --hardware-platform` to single out a specific type o
 
     Facter.add('hardware_platform') do
       setcode do
-        Facter::Core::Execution.exec('/bin/uname --hardware-platform')
+        Facter::Core::Execution.execute('/bin/uname --hardware-platform')
       end
     end
     ```
@@ -158,7 +158,7 @@ An example of the confine statement would be something like the following:
 Facter.add(:powerstates) do
   confine :kernel => 'Linux'
   setcode do
-    Facter::Core::Execution.exec('cat /sys/power/states')
+    Facter::Core::Execution.execute('cat /sys/power/states')
   end
 end
 ```
