@@ -311,10 +311,6 @@ properly redacted when the command fails. This supports using data from Puppet l
 
 * A small performance optimization was made in the time it takes to initialize the compiler. While there is a noticeable speedup in initializing the compiler itself - the user observable actions of `puppet apply` have so many other things going on that this is dwarfed and is therefore almost unnoticeable (in the 1-2% range), it does make a difference in benchmarks (finding the real code to optimize), and has a positive effect on running tests involving the compiler. ([PUP-7313](https://tickets.puppetlabs.com/browse/PUP-7313))
 
-### Deprecation
-
-The `puppet inspect` command is deprecated in Puppet 4.10, along with the related `audit` resource metaparameter. The command will be removed and the `audit` parameter will be ignored in manifests in a future release (planned for Puppet 5). ([PUP-893](https://tickets.puppetlabs.com/browse/PUP-893))
-
 ### Bug Fixes
 
 * [PUP-7336](https://tickets.puppetlabs.com/browse/PUP-7336): This was a regression in 4.9.4 from 4.9.3 that in some very rare cases could cause a version 5 `hiera.yaml` file to ignore certain hierarchy levels. This only happened for hierarchy levels that interpolated a top-scope variable whose value was set after the _first_ Hiera lookup. Even then, it only occurred if the variable was an array or hash, the hierarchy level accessed one of its members with key.subkey notation, _and_ the variable was referenced with the top-scope namespace (`::attributes.role`).
