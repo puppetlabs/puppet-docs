@@ -18,6 +18,58 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.10
+
+Released January 31, 2018.
+
+This is a bug-fix and feature release of Puppet.
+
+-   [All issues resolved in Puppet 4.10.10](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.10%27)
+
+### Bug fixes
+
+-   The deprecated WEBrick Puppet master did not work in previous versions of Puppet when running Ruby 2.3.6, or 2.4.3 and later. Puppet 4.10.10 resolves this issue, but WEBrick users should move to Puppet Server.
+
+-   In Puppet 4.10.9, non-existent Solaris SMF services reported a state of `:absent` instead of `:stopped`, which could break some workflows. Puppet 4.10.10 reverts this behavior and reports non-existent Solaris SMF services as `:stopped`.
+
+-   The {{audit}} resource metaparameter is no longer deprecated, and we've removed warning messages suggesting that it has been deprecated.
+
+-   Exceptions in prefetch were not marked as failed in the report under previous versions of Puppet, leading to reports incorrectly suggesting that an agent run with errors was fully successful. Puppet 4.10.10 marks only transactions that finish processing as successful.
+
+-   The validation of `uris` in a Hiera 5 `hiera.yaml` file by previous versions of Puppet did not allow reference or partial URIs, such as those containing only a path, despite the documentation stating that Hiera doesn't ensure that URIs are resolvable. Puppet 4.10.10 relaxes the implemented URI checking to remove these constraints.
+
+-   The `break()` function did not break the iteration over a hash, and instead would break the container in which a lambda called `break()`. This resulted in an error about a break from an illegal context if the container was something other than a function, and would lead to early exit when invoked from a function. Puppet 4.10.10 resolves this by having the function behave like a break in an array iteration.
+
+-   Previous versions of Puppet required that `--user=root` be passed to `puppet device` when creating certificates, even if the command was being executed by root. Puppet 4.10.10 no longer requires the flag.
+
+-   When providing facts with the `--facts` command line option of the `puppet lookup` command in previous versions of Puppet, those facts would not appear in the `$facts` variable. Puppet 4.10.10 resolves this issue.
+
+### New features
+
+-   Systemd is the default service provider in Amazon Linux 2.
+
+-   Puppet 4.10.10 adds the `sourceaddress` setting, which specifies the interface that the agent should use for outbound HTTP requests. This setting might be necessary for agents on systems with multiple network interfaces.
+
+-   Puppet 4.10.10 adds the `runtimeout` setting, which can cancel agent runs after the specified period. The setting defaults to 0, which preserves the behavior in previous version of Puppet of allowing an unlimited amount of time for agent runs to complete.
+
+-   A type alias to an iterable type did not allow the alias to be iterated in previous versions of Puppet. Puppet 4.10.10 resolves this issue.
+
+-   Previous versions of Puppet did not support using named format arguments for `sprintf`. Puppet 4.10.10 lets you use a hash with string values as the `sprintf` format argument.
+
+    For example, `notice sprintf("%<x>s : %<y>d", { 'x' => 'value is', 'y' => 42 })` would produce a notice of `value is : 42`.
+
+### Improvements
+
+-   Puppet 4.10.10 can retrieve file sources from web servers when the associated MIME type is not "binary". This particularly affects IIS webservers.
+
+-   Certain Puppet subcommands, such as `puppet help` and `puppet config`, no longer require a local environment to exist in Puppet 4.10.10. They now can fall back to assuming the defined environment exists on the master filesystem after checking for the local environment.
+
+-   If `environment.conf` contains unknown settings, Puppet 4.10.10 warns only once per unknown setting.
+
+-   Error messages from `Puppet::Face` objects now include the face's name and version number.
+
+-   To specify an environment when running Puppet from the command line, Puppet 4.10.10 lets you use the short flag `-E` in addition to the long flag `--environment`.
+
 ## Puppet 4.10.9
 
 Released November 6, 2017.
