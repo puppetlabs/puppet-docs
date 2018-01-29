@@ -32,7 +32,7 @@ This is a bug-fix and feature release of Puppet.
 
 -   In Puppet 4.10.9, non-existent Solaris SMF services reported a state of `:absent` instead of `:stopped`, which could break some workflows. Puppet 4.10.10 reverts this behavior and reports non-existent Solaris SMF services as `:stopped`.
 
--   The {{audit}} resource metaparameter is no longer deprecated, and we've removed warning messages suggesting that it has been deprecated.
+-   The `audit` resource metaparameter is no longer deprecated, and we've removed warning messages suggesting that it has been deprecated.
 
 -   Exceptions in prefetch were not marked as failed in the report under previous versions of Puppet, leading to reports incorrectly suggesting that an agent run with errors was fully successful. Puppet 4.10.10 marks only transactions that finish processing as successful.
 
