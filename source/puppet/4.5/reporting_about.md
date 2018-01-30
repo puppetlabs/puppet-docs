@@ -15,7 +15,7 @@ Puppet creates a report about its actions and your infrastructure each time it a
 
 In a client/server configuration, a Puppet agent sends its report to the Puppet master for processing. In a standalone configuration, the `puppet apply` command processes the node's own reports.
 
-In both configurations, report processor plugins handle recieved reports. If you enable multiple report processors, Puppet runs all of them for each report.
+In both configurations, report processor plugins handle received reports. If you enable multiple report processors, Puppet runs all of them for each report.
 
 Each processor typically does one of two things with the report:
 
