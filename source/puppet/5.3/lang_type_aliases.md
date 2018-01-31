@@ -83,5 +83,5 @@ When defining an alias to a resource type, use its short form (such as `File`) i
 
 ## Related topics
 
--   [Data types](./lang_data_types.md)
+-   [Data types](./lang_data_type.md)
 -   [Resources](./lang_resources.md)
