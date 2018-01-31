@@ -50,7 +50,7 @@ In basic autosigning, the CA uses a config file containing a whitelist of certif
 
 ### Enabling basic autosigning
 
-The `autosign.conf` whitelist file's location and contents are described in [its documentation](./conf_file_autosign.html).
+The `autosign.conf` whitelist file's location and contents are described in [its documentation](./config_file_autosign.html).
 
 Puppet looks for `autosign.conf` at the path configured in the [`autosign` setting][autosign setting] in the `[master]` section of `puppet.conf`. The default path is `$confdir/autosign.conf`, and the default `confdir` path depends on your operating system. [See the confdir documentation for more information.](./dirs_confdir.html)
 
