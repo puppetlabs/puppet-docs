@@ -369,7 +369,7 @@ Each hierarchy level is represented by a hash which needs the following keys:
     -   `globs`
     -   `uri`
     -   `uris` - these paths or URIs work the same way they do for the built-in backends. Hiera handles the work of locating files, so any backend that supports `path` automatically supports `paths`, `glob`, and `globs`. `uri` (string) and `uris` (array) can represent any kind of data source. Hiera does not ensure URIs are resolvable before calling the backend, and does not need to understand any given URI schema. A backend can omit the path/URI key, and rely wholly on the `options` key to locate its data.
--   `datadir` — The directory where data files are kept: the path is relative to hiera.yaml's directory. Only required if the backend uses the `path(s)` and `glob(s)` keys, and can be omitted if you set a default.
+-   `datadir` — The directory where data files are kept: the path is relative to hiera.yaml's directory. Only required if the backend uses the `path`, `paths`, `glob`, and `globs` keys, and can be omitted if you set a default.
 -   `options` — A hash of extra options for the backend; for example, database credentials or the location of a decryption key. All values in the `options` hash support variable interpolation.
 
 Whichever key you use, the value must be the name of a function that implements the backend API. Note that the choice here is made by the implementer of the particular backend, not the user.

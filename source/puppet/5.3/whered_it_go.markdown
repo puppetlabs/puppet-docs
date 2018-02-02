@@ -14,7 +14,7 @@ This page is a summary, to quickly orient users arriving from Puppet 3.
 
 > For details, [we've written a specification of the directories used by all of Puppet's tools.][spec]
 
-## New all-in-One `puppet-agent` package
+## New all-in-one `puppet-agent` package
 
 On managed \*nix systems, install `puppet-agent` instead of `puppet`. (This package also provides `puppet apply`, suitable for standalone Puppet systems.)
 
