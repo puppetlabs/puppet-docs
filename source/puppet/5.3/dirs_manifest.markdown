@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Directories: The main manifest(s)"
+title: "Directories: The main manifest"
 ---
 
 [environment]: ./environments.html
