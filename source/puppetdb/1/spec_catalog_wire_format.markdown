@@ -19,7 +19,7 @@ canonical: "/puppetdb/latest/api/wire_format/catalog_format.html"
 [type]: /puppet/latest/reference/lang_resources.html#type
 [attributes]: /puppet/latest/reference/lang_resources.html#attributes
 
-PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](./connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format. 
+PuppetDB receives catalogs from puppet masters in the following wire format. This format is subtly different from the internal format used by Puppet so catalogs are converted by the [PuppetDB terminus plugins](./connect_puppet_master.html) before they are sent. [See below][below] for the justification for this separate format.
 
 Catalog Interchange Format
 -----
@@ -34,7 +34,7 @@ The entire catalog is serialized as JSON, which requires strict UTF-8 encoding. 
 
 ### Main Data Type: Catalog
 
-A catalog is a JSON object with two keys: `"metadata"` and `"data"`. 
+A catalog is a JSON object with two keys: `"metadata"` and `"data"`.
 
     {"metadata": {
         "type": "catalog",
@@ -64,7 +64,7 @@ The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"v
 
 `"version"`
 
-: String. An arbitrary string that uniquely identifies this specific catalog across time for a single node. This is controlled by Puppet's [`config_version` setting](/puppet/latest/reference/configuration.html#configversion) and is usually the seconds elapsed since the epoch. 
+: String. An arbitrary string that uniquely identifies this specific catalog across time for a single node. This is controlled by Puppet's [`config_version` setting](/puppet/latest/reference/configuration.html#configversion) and is usually the seconds elapsed since the epoch.
 
 `"classes"`
 
@@ -72,22 +72,22 @@ The value of the `"data"` key must be a JSON object with six keys: `"name"`, `"v
 
 `"tags"`
 
-: > **Deprecated:** This key is slated for removal in a future version of the catalog format. 
+: > **Deprecated:** This key is slated for removal in a future version of the catalog format.
 
-  List of strings. This key has no current documented use and only exists for historical reasons. It is a list of a subset of the tags that exist on resources in the catalog, but it is not guaranteed to be complete. 
+  List of strings. This key has no current documented use and only exists for historical reasons. It is a list of a subset of the tags that exist on resources in the catalog, but it is not guaranteed to be complete.
 
 `"edges"`
 
-: List of [`<edge>` objects](#data-type-edge). **Every** [relationship][] between any two resources in the catalog, which may have been made with [chaining arrows][chain], [metaparameters][], or [the `require` function][require]. 
+: List of [`<edge>` objects](#data-type-edge). **Every** [relationship][] between any two resources in the catalog, which may have been made with [chaining arrows][chain], [metaparameters][], or [the `require` function][require].
 
   > **Notes:**
   >
   > * "Autorequire" relationships are not currently encoded in the catalog.
-  > * This key is significantly different from its equivalent in Puppet's internal catalog format, which only encodes containment edges. 
+  > * This key is significantly different from its equivalent in Puppet's internal catalog format, which only encodes containment edges.
 
 `"resources"`
 
-: List of [`<resource>` objects](#data-type-resource). Contains **every** resource in the catalog. 
+: List of [`<resource>` objects](#data-type-resource). Contains **every** resource in the catalog.
 
 
 ### Data Type: `<string>`
@@ -112,7 +112,7 @@ A JSON object of the following form, which represents a [relationship][] between
 
 All edges are normalized so that the "source" resource is managed **before** the "target" resource. To do this, the Puppet language's "require" and "subscribe" [relationship types][relationship] are munged into "required-by" and "subscription-of" when they are converted into edges.
 
-The keys of an edge are `source`, `target`, and `relationship`, all of which are required. 
+The keys of an edge are `source`, `target`, and `relationship`, all of which are required.
 
 `source`
 
@@ -175,7 +175,7 @@ A JSON object of the following form, which represents a [Puppet resource][resour
                     ...}
     }
 
-The eight keys in a resource object are `type`, `title`, `aliases`, `exported`, `file`, `line`, `tags` and `parameters`. All of them are **required.** 
+The eight keys in a resource object are `type`, `title`, `aliases`, `exported`, `file`, `line`, `tags` and `parameters`. All of them are **required.**
 
 `type`
 
@@ -195,19 +195,19 @@ The eight keys in a resource object are `type`, `title`, `aliases`, `exported`, 
 
 `file`
 
-: String. The manifest file in which the resource definition is located. 
+: String. The manifest file in which the resource definition is located.
 
 `line`
 
-: Positive integer. The line (of the containing manifest file) at which the resource definition can be found. 
+: Positive integer. The line (of the containing manifest file) at which the resource definition can be found.
 
 `tags`
 
-: List of strings. Includes every tag the resource has. This is a normalized superset of the value of the resource's `tag` attribute. 
+: List of strings. Includes every tag the resource has. This is a normalized superset of the value of the resource's `tag` attribute.
 
 `parameters`
 
-: JSON object. Includes all of the resource's [attributes][] and their associated values. The value of an attribute may be any JSON data type, but Puppet will only provide booleans, strings, arrays, and hashes --- [resource references][resource_ref] and [numbers][] in attributes are converted to strings before being inserted into the catalog. Attributes with [undef][] values are not added to the catalog. 
+: JSON object. Includes all of the resource's [attributes][] and their associated values. The value of an attribute may be any JSON data type, but Puppet will only provide booleans, strings, arrays, and hashes --- [resource references][resource_ref] and [numbers][] in attributes are converted to strings before being inserted into the catalog. Attributes with [undef][] values are not added to the catalog.
 
 
 
@@ -233,10 +233,10 @@ In general, for communication between master and agent, it's useful to have the 
 
 ### Differences from Current Wire Format
 
-1. The format is fully documented here. 
+1. The format is fully documented here.
 2.  Information that previously had to be deduced by Puppet is now codified inside of the wire format. All possible aliases for a resource are listed as attributes of that resource. The list of edges now contains edges of all types, not just containment edges. And that list of edges is normalized to refer to the `Type` and `Title` of a resource, as opposed to referring to it by any of its aliases.
 3. The new format is explicitly versioned. This format is version 1.0.0, unambiguously.
-4. Catalogs will be explictly transformed into this format. Currently, the behavior of `#to_pson` is simply expected to "Do The Right Thing" in terms of serialization.
+4. Catalogs will be explicitly transformed into this format. Currently, the behavior of `#to_pson` is simply expected to "Do The Right Thing" in terms of serialization.
 
 ### Future Development Goals
 

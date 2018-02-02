@@ -205,7 +205,7 @@ Notable features:
   catalogs, new facts, etc) before it's automatically deactivated
   during a garbage-collection run.
 
-  The default behavior, if that config setting is ommitted, is the
+  The default behavior, if that config setting is omitted, is the
   same as in previous releases: no automatic deactivation of anything.
 
   This feature is useful for those who have a non-trivial amount of
