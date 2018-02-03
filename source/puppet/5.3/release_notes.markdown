@@ -22,7 +22,7 @@ Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.htm
 
 ## Puppet 5.3.4
 
-Released January 31, 2018.
+Released February 5, 2018.
 
 This is a bug-fix and feature release of Puppet.
 
