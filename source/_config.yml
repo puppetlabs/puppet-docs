@@ -810,7 +810,8 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/5.1.x
+      commit: 4e7472f278b93ad3bc2ec0a1071f28e06cc0d8da
+      # commit: origin/5.1.x
       subdirectory: documentation
     hide: true
   /puppetdb/5.0:
