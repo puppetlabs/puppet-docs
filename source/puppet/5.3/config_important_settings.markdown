@@ -84,6 +84,7 @@ title: "Configuration: Short list of important settings"
 [service_bootstrap]: {{puppetserver}}/configuration.html#service-bootstrapping
 [trusted_server_facts]: ./lang_facts_and_builtin_vars.html#serverfacts-variable
 [always_retry_plugins]: ./configuration.html#alwaysretryplugins
+[sourceaddress]: ./configuration.html#sourceaddress
 
 Puppet has about 200 settings, all of which are listed in the [configuration reference][config_reference]. Most users can ignore about 170 of those.
 
@@ -106,6 +107,7 @@ Roughly in order of importance. Most of these can go in either `[main]` or `[age
     * For best compatibility, you should limit the value of `certname` to only use letters, numbers, periods, underscores, and dashes. (That is, it should match `/\A[a-z0-9._-]+\Z/`.)
     * The special value `ca` is reserved, and can't be used as the certname for a normal node.
 * [`environment`][environment] --- The [environment][environments] to request when contacting the Puppet master. It's only a request, though; the master's [ENC][] can override this if it chooses. Defaults to `production`.
+* [`sourceaddress`][sourceaddress] --- The address on a multihomed host to use for the agent's communication with the master server.
 
 {% partial ./_nodename_certname.md %}
 
