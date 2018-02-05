@@ -5,6 +5,20 @@ title: "Facter 3.6 Release notes"
 
 This page documents the history of the Facter 3.6 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality.
 
+## Facter 3.6.9
+
+Released January 31, 2018.
+
+This is a bug-fix release that shipped with Puppet agent 1.10.10.
+
+-   [All issues resolved in Facter 3.6.9](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.6.9%27)
+
+### Bug fixes
+
+-   Facter no longer attempts to check the `dmidecode` fact in Linux systems running on POWER architectures.
+
+-   Facter 3.6.9 can interpret YAML or JSON output from external facts written in Powershell as structured facts.
+
 ## Facter 3.6.8
 
 Released November 6, 2017.
