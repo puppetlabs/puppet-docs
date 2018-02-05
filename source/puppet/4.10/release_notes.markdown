@@ -20,7 +20,7 @@ Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html)
 
 ## Puppet 4.10.10
 
-Released January 31, 2018.
+Released February 5, 2018.
 
 This is a bug-fix and feature release of Puppet.
 
