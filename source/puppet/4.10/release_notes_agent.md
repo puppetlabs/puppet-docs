@@ -42,6 +42,18 @@ The `puppet-agent` package installs the latest version of Puppet 4. Also read th
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
 
+## Puppet agent 1.10.10
+
+Released February 5, 2018.
+
+### Component updates
+
+This release contains bug fixes in [Puppet 4.10.10][] and [Facter 3.6.9][].
+
+### Platform updates
+
+This release adds packages for RHEL 7 on ARM and macOS 10.13 High Sierra.
+
 ## Puppet agent 1.10.9
 
 Released November 6, 2017.
