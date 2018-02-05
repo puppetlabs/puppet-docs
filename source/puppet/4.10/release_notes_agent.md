@@ -11,6 +11,7 @@ title: "Puppet agent release notes"
 [Puppet 4.10.7]: /puppet/4.10/release_notes.html#puppet-4107
 [Puppet 4.10.8]: /puppet/4.10/release_notes.html#puppet-4108
 [Puppet 4.10.9]: /puppet/4.10/release_notes.html#puppet-4109
+[Puppet 4.10.10]: /puppet/4.10/release_notes.html#puppet-4110
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
@@ -18,6 +19,7 @@ title: "Puppet agent release notes"
 [Facter 3.6.6]: /facter/3.6/release_notes.html#facter-366
 [Facter 3.6.7]: /facter/3.6/release_notes.html#facter-367
 [Facter 3.6.8]: /facter/3.6/release_notes.html#facter-368
+[Facter 3.6.9]: /facter/3.6/release_notes.html#facter-369
 
 [Hiera 3.3.2]: /hiera/3.3/release_notes.html#hiera-332
 
