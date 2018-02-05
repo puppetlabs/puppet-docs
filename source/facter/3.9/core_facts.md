@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: ded4b790aecf346856e9bbca1f0f970c04249ae4
+built_from_commit: b621acc0e7e1557e91c51f055212953c6a810355
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
@@ -263,6 +263,23 @@ Please see the [GCE metadata documentation](https://cloud.google.com/compute/doc
 **Caveats:**
 
 * All platforms: `libfacter` must be built with `libcurl` support.
+
+([↑ Back to top](#page-nav))
+
+### `hypervisors`
+
+**Type:** map
+
+**Purpose:**
+
+Experimental fact: Return the names of any detected hypervisors and any collected metadata about them.
+
+
+
+**Resolution:**
+
+* All platforms: Use the external `whereami` library to gather hypervisor data, if available.
+
 
 ([↑ Back to top](#page-nav))
 
@@ -925,6 +942,25 @@ Return the version for ZFS.
 **Caveats:**
 
 * Solaris: the `zfs` utility must be present.
+
+([↑ Back to top](#page-nav))
+
+### `zpool_featureflags`
+
+**Type:** string
+
+**Purpose:**
+
+Return the comma-delimited feature flags for ZFS storage pools.
+
+
+**Resolution:**
+
+* Solaris: use the `zpool` utility to retrieve the feature numbers for ZFS storage pools
+
+**Caveats:**
+
+* Solaris: the `zpool` utility must be present.
 
 ([↑ Back to top](#page-nav))
 
