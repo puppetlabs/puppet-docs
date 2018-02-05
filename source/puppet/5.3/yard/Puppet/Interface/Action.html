@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Interface::Action
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -583,12 +583,12 @@ which is available on <span class='object_link'><a href="../Interface.html" titl
       <pre class="lines">
 
 
-137
-138
-139</pre>
+147
+148
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_render_as'>render_as</span>
   <span class='ivar'>@render_as</span>
@@ -633,12 +633,12 @@ which is available on <span class='object_link'><a href="../Interface.html" titl
       <pre class="lines">
 
 
-371
-372
-373</pre>
+388
+389
+390</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 371</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 388</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
   <span class='ivar'>@face</span><span class='period'>.</span><span class='id identifier rubyid___send__'>__send__</span> <span class='symbol'>:__add_method</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span>
@@ -723,12 +723,12 @@ which is available on <span class='object_link'><a href="../Interface.html" titl
       <pre class="lines">
 
 
-129
-130
-131</pre>
+139
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___render_method_name_for'>__render_method_name_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='symbol'>:#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>_when_rendering_</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -796,35 +796,55 @@ which is available on <span class='object_link'><a href="../Interface.html" titl
 122
 123
 124
-125</pre>
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface/action.rb', line 95</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_rendering_method_for'>set_rendering_method_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Proc</span>
-    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The second argument to set_rendering_method_for must be a Proc</span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, not </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+            <span class='comment'>#TRANSLATORS &#39;set_rendering_method_for&#39; and &#39;Proc&#39; should not be translated
+</span>            <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The second argument to set_rendering_method_for must be a Proc</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+          <span class='kw'>else</span>
+            <span class='comment'>#TRANSLATORS &#39;set_rendering_method_for&#39; and &#39;Proc&#39; should not be translated
+</span>            <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The second argument to set_rendering_method_for must be a Proc, not %{class_name}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span>
+                <span class='lbrace'>{</span> <span class='label'>class_name:</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span>
+          <span class='kw'>end</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span>
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>!=</span> <span class='int'>1</span> <span class='kw'>and</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>!=</span> <span class='lparen'>(</span><span class='ivar'>@positional_arg_count</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span>  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>the when_rendering method for the </span><span class='embexpr_beg'>#{</span><span class='ivar'>@face</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> face </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'> action </span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>takes either just one argument, the result of when_invoked, </span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>or the result plus the </span><span class='embexpr_beg'>#{</span><span class='ivar'>@positional_arg_count</span><span class='embexpr_end'>}</span><span class='tstring_content'> arguments passed </span><span class='tstring_end'>&quot;</span></span>
-    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>to the when_invoked block, not </span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='kw'>then</span>
-      <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a variable number</span><span class='tstring_end'>&quot;</span></span>
-    <span class='kw'>else</span>
-      <span class='id identifier rubyid_msg'>msg</span> <span class='op'>+=</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
-    <span class='kw'>end</span>
+    <span class='id identifier rubyid_msg'>msg</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>&lt;</span> <span class='int'>0</span> <span class='kw'>then</span>
+            <span class='comment'>#TRANSLATORS &#39;when_rendering&#39;, &#39;when_invoked&#39; are method names and should not be translated
+</span>            <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The when_rendering method for the %{face} face %{name} action takes either just one argument,</span><span class='tstring_end'>&quot;</span></span>\
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> the result of when_invoked, or the result plus the %{arg_count} arguments passed to the</span><span class='tstring_end'>&quot;</span></span>\
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> when_invoked block, not a variable number</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span>
+                <span class='lbrace'>{</span> <span class='label'>face:</span> <span class='ivar'>@face</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>arg_count:</span> <span class='ivar'>@positional_arg_count</span> <span class='rbrace'>}</span>
+          <span class='kw'>else</span>
+            <span class='comment'>#TRANSLATORS &#39;when_rendering&#39;, &#39;when_invoked&#39; are method names and should not be translated
+</span>            <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The when_rendering method for the %{face} face %{name} action takes either just one argument,</span><span class='tstring_end'>&quot;</span></span>\
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> the result of when_invoked, or the result plus the %{arg_count} arguments passed to the</span><span class='tstring_end'>&quot;</span></span>\
+                <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> when_invoked block, not %{string}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span>
+                <span class='lbrace'>{</span> <span class='label'>face:</span> <span class='ivar'>@face</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>arg_count:</span> <span class='ivar'>@positional_arg_count</span><span class='comma'>,</span> <span class='label'>string:</span> <span class='id identifier rubyid_proc'>proc</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='rbrace'>}</span>
+          <span class='kw'>end</span>
     <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid_msg'>msg</span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The rendering format must be a symbol, not </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The rendering format must be a symbol, not %{class_name}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>class_name:</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='ivar'>@when_rendering</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_type'>type</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You can&#39;t define a rendering method for </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'> twice</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You can&#39;t define a rendering method for %{type} twice</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>type:</span> <span class='id identifier rubyid_type'>type</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='comment'># Now, the ugly bit.  We add the method to our interface object, and
 </span>  <span class='comment'># retrieve it, to rotate through the dance of getting a suitable method
@@ -885,7 +905,7 @@ which is available on <span class='object_link'><a href="../Interface.html" titl
 
 <span class='kw'>def</span> <span class='id identifier rubyid_when_rendering'>when_rendering</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>Symbol</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The rendering format must be a symbol, not </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The rendering format must be a symbol, not %{class_name}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>class_name:</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='comment'># Do we have a rendering hook for this name?
 </span>  <span class='kw'>return</span> <span class='ivar'>@when_rendering</span><span class='lbracket'>[</span><span class='id identifier rubyid_type'>type</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_bind'>bind</span><span class='lparen'>(</span><span class='ivar'>@face</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='ivar'>@when_rendering</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span> <span class='id identifier rubyid_type'>type</span>
@@ -907,9 +927,9 @@ which is available on <span class='object_link'><a href="../Interface.html" titl
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:17 2017 by
+  Generated on Mon Feb  5 12:35:59 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

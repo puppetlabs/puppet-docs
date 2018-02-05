@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Interface::OptionBuilder
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -477,27 +477,37 @@
       <pre class="lines">
 
 
-57
-58
-59
-60
-61
 62
 63
 64
 65
-66</pre>
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_builder.rb', line 57</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_builder.rb', line 62</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_after_action'>after_action</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_block'>block</span> <span class='kw'>or</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@option</span><span class='embexpr_end'>}</span><span class='tstring_content'> after_action requires a block</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span>
+    <span class='comment'>#TRANSLATORS &#39;after_action&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} after_action requires a block</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='ivar'>@option</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='ivar'>@option</span><span class='period'>.</span><span class='id identifier rubyid_after_action'>after_action</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@option</span><span class='embexpr_end'>}</span><span class='tstring_content'> already has an after_action set</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'>#TRANSLATORS &#39;after_action&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} already has an after_action set</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='ivar'>@option</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>==</span> <span class='int'>3</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>after_action takes three arguments, action, args, and options</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'>#TRANSLATORS &#39;after_action&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>after_action takes three arguments, action, args, and options</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@option</span><span class='period'>.</span><span class='id identifier rubyid_after_action'>after_action</span> <span class='op'>=</span> <span class='id identifier rubyid_block'>block</span>
 <span class='kw'>end</span></pre>
@@ -606,18 +616,28 @@ invoked</p>
 48
 49
 50
-51</pre>
+51
+52
+53
+54
+55
+56</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_builder.rb', line 42</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_before_action'>before_action</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_block'>block</span> <span class='kw'>or</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@option</span><span class='embexpr_end'>}</span><span class='tstring_content'> before_action requires a block</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span>
+    <span class='comment'>#TRANSLATORS &#39;before_action&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} before_action requires a block</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='ivar'>@option</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='ivar'>@option</span><span class='period'>.</span><span class='id identifier rubyid_before_action'>before_action</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@option</span><span class='embexpr_end'>}</span><span class='tstring_content'> already has a before_action set</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'>#TRANSLATORS &#39;before_action&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} already has a before_action set</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='ivar'>@option</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>==</span> <span class='int'>3</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>before_action takes three arguments, action, args, and options</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'>#TRANSLATORS &#39;before_action&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>before_action takes three arguments, action, args, and options</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@option</span><span class='period'>.</span><span class='id identifier rubyid_before_action'>before_action</span> <span class='op'>=</span> <span class='id identifier rubyid_block'>block</span>
 <span class='kw'>end</span></pre>
@@ -668,27 +688,35 @@ should take no arguments.</p>
       <pre class="lines">
 
 
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90</pre>
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_builder.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_builder.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_default_to'>default_to</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_block'>block</span> <span class='kw'>or</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@option</span><span class='embexpr_end'>}</span><span class='tstring_content'> default_to requires a block</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span>
+    <span class='comment'>#TRANSLATORS &#39;default_to&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} default_to requires a block</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='ivar'>@option</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='ivar'>@option</span><span class='period'>.</span><span class='id identifier rubyid_has_default?'>has_default?</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@option</span><span class='embexpr_end'>}</span><span class='tstring_content'> already has a default value</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} already has a default value</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='ivar'>@option</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>==</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@option</span><span class='embexpr_end'>}</span><span class='tstring_content'> default_to block should not take any arguments</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'>#TRANSLATORS &#39;default_to&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} default_to block should not take any arguments</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='ivar'>@option</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='ivar'>@option</span><span class='period'>.</span><span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='id identifier rubyid_block'>block</span>
 <span class='kw'>end</span></pre>
@@ -738,12 +766,12 @@ defaults to setting it as a required option.</p>
       <pre class="lines">
 
 
-72
-73
-74</pre>
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_builder.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_builder.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_required'>required</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='ivar'>@option</span><span class='period'>.</span><span class='id identifier rubyid_required'>required</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -758,9 +786,9 @@ defaults to setting it as a required option.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:20 2017 by
+  Generated on Mon Feb  5 12:36:01 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

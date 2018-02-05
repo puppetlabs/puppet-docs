@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PStringType
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -276,11 +276,6 @@
       <pre class="lines">
 
 
-1538
-1539
-1540
-1541
-1542
 1543
 1544
 1545
@@ -320,10 +315,15 @@
 1579
 1580
 1581
-1582</pre>
+1582
+1583
+1584
+1585
+1586
+1587</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1538</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1543</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='rparen'>)</span>
@@ -404,19 +404,21 @@
       <pre class="lines">
 
 
-1481
-1482
-1483
-1484
 1485
-1486</pre>
+1486
+1487
+1488
+1489
+1490
+1491</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1481</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1485</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_values'>values</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:strict</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='symbol'>:off</span>
-    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn_once'>warn_once</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>deprecations</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PStringType#values</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Method PStringType#values is deprecated. Use #value instead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='comment'>#TRANSLATORS &#39;PStringType#values&#39; and &#39;#value&#39; are classes and method names and should not be translated
+</span>    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn_once'>warn_once</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>deprecations</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PStringType#values</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Method PStringType#values is deprecated. Use #value instead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='ivar'>@value</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span>
 <span class='kw'>end</span></pre>
@@ -430,9 +432,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:18 2017 by
+  Generated on Mon Feb  5 12:35:59 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

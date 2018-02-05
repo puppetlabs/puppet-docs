@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
+built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -78,8 +78,7 @@ appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
 <dt>--target</dt><dd><p>Target a specific device/certificate in the device.conf. Doing so will perform a
 device run against only that device/certificate.</p></dd>
-<dt class="flush">--user</dt><dd><p>The user to run as. '--user=root' is required, even when run as root,
-for runs that create device certificates or keys.</p></dd>
+<dt class="flush">--user</dt><dd><p>The user to run as.</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
 and it is enabled by default, with a value of 120 (seconds).  This causes

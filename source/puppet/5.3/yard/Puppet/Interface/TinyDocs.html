@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Interface::TinyDocs
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -245,7 +245,6 @@ documentation attributes.</p>
       <pre class="lines">
 
 
-71
 72
 73
 74
@@ -284,10 +283,11 @@ documentation attributes.</p>
 107
 108
 109
-110</pre>
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/documentation.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/documentation.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_build_synopsis'>build_synopsis</span><span class='lparen'>(</span><span class='id identifier rubyid_face'>face</span><span class='comma'>,</span> <span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_arguments'>arguments</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='const'>PrettyPrint</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_s'>s</span><span class='op'>|</span>
@@ -393,10 +393,10 @@ documentation attributes.</p>
       <pre class="lines">
 
 
-68</pre>
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/documentation.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/documentation.rb', line 69</span>
 
 <span class='id identifier rubyid_attr_doc'>attr_doc</span> <span class='symbol'>:description</span></pre>
     </td>
@@ -448,14 +448,16 @@ documentation attributes.</p>
 58
 59
 60
-61</pre>
+61
+62</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface/documentation.rb', line 57</span>
 
 <span class='id identifier rubyid_attr_doc'>attr_doc</span> <span class='symbol'>:summary</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
   <span class='id identifier rubyid_value'>value</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\n</span><span class='regexp_end'>/</span></span> <span class='kw'>and</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Face summary should be a single line; put the long text in &#39;description&#39; instead.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='comment'>#TRANSLATORS &#39;Face&#39; refers to a programming API in Puppet, &#39;summary&#39; and &#39;description&#39; are specifc attribute names and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Face summary should be a single line; put the long text in &#39;description&#39; instead.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_value'>value</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -468,9 +470,9 @@ documentation attributes.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:14 2017 by
+  Generated on Mon Feb  5 12:35:55 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

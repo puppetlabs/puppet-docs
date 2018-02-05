@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Interface::Option
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -326,7 +326,10 @@ to its actions). Options should be constructed by calling
 69
 70
 71
-72</pre>
+72
+73
+74
+75</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface/option.rb', line 11</span>
@@ -341,7 +344,7 @@ to its actions). Options should be constructed by calling
   <span class='id identifier rubyid_declaration'>declaration</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span> <span class='const'>String</span> <span class='kw'>and</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^-</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
       <span class='kw'>unless</span> <span class='id identifier rubyid_item'>item</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^-[a-z]\b</span><span class='regexp_end'>/</span></span> <span class='kw'>or</span> <span class='id identifier rubyid_item'>item</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^--[^-]</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
-        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>: long options need two dashes (--)</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option}: long options need two dashes (--)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='rbrace'>}</span>
       <span class='kw'>end</span>
       <span class='ivar'>@optparse</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_item'>item</span>
 
@@ -356,20 +359,21 @@ to its actions). Options should be constructed by calling
 </span>      <span class='comment'># jeffweiss 17 april 2012
 </span>      <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_optparse_to_optionname'>optparse_to_optionname</span><span class='lparen'>(</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
       <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_name'>name</span> <span class='kw'>then</span>
-        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>: already defined in puppet</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option}: already defined in puppet</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='rbrace'>}</span>
       <span class='kw'>end</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_dup'>dup</span> <span class='op'>=</span> <span class='id identifier rubyid_dups'>dups</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='kw'>then</span>
-        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'>: duplicates existing alias </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_dup'>dup</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> in </span><span class='embexpr_beg'>#{</span><span class='ivar'>@parent</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option}: duplicates existing alias %{duplicate} in %{parent}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span>
+            <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='comma'>,</span> <span class='label'>duplicate:</span> <span class='id identifier rubyid_dup'>dup</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='comma'>,</span> <span class='label'>parent:</span> <span class='ivar'>@parent</span> <span class='rbrace'>}</span>
       <span class='kw'>else</span>
         <span class='id identifier rubyid_dups'>dups</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_item'>item</span>
       <span class='kw'>end</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> is not valid for an option argument</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{option} is not valid for an option argument</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='id identifier rubyid_item'>item</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
 
   <span class='kw'>if</span> <span class='ivar'>@optparse</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No option declarations found while building</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No option declarations found while building</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Now, infer the name from the options; we prefer the first long option as
@@ -382,15 +386,17 @@ to its actions). Options should be constructed by calling
 </span>  <span class='comment'># relax this rule later if we find a valid use case for it. --daniel 2011-03-30
 </span>  <span class='ivar'>@argument</span> <span class='op'>=</span> <span class='ivar'>@optparse</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[ =]</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span>
   <span class='kw'>if</span> <span class='ivar'>@argument</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='ivar'>@optparse</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[ =]</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option </span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is inconsistent about taking an argument</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option %{name} is inconsistent about taking an argument</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='ivar'>@name</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Is our argument optional?  The rules about consistency apply here, also,
 </span>  <span class='comment'># just like they do to taking arguments at all. --daniel 2011-03-30
 </span>  <span class='ivar'>@optional_argument</span> <span class='op'>=</span> <span class='ivar'>@optparse</span><span class='period'>.</span><span class='id identifier rubyid_any?'>any?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span><span class='op'>=~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[ =]\[</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span>
-  <span class='ivar'>@optional_argument</span> <span class='kw'>and</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Options with optional arguments are not supported</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='ivar'>@optional_argument</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Options with optional arguments are not supported</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='ivar'>@optional_argument</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='ivar'>@optparse</span><span class='period'>.</span><span class='id identifier rubyid_all?'>all?</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_o'>o</span><span class='op'>|</span> <span class='id identifier rubyid_o'>o</span><span class='op'>=~</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[ =]\[</span><span class='regexp_end'>/</span></span> <span class='rbrace'>}</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option </span><span class='embexpr_beg'>#{</span><span class='ivar'>@name</span><span class='embexpr_end'>}</span><span class='tstring_content'> is inconsistent about the argument being optional</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option %{name} is inconsistent about the argument being optional</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='ivar'>@name</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -433,18 +439,22 @@ to its actions). Options should be constructed by calling
       <pre class="lines">
 
 
-91
-92
-93
 94
-95</pre>
+95
+96
+97
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_optparse_to_name'>optparse_to_name</span><span class='lparen'>(</span><span class='id identifier rubyid_declaration'>declaration</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_optparse_to_optionname'>optparse_to_optionname</span><span class='lparen'>(</span><span class='id identifier rubyid_declaration'>declaration</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_tr'>tr</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>-</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>_</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> is an invalid option name</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[a-z]\w*$</span><span class='regexp_end'>/</span></span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[a-z]\w*$</span><span class='regexp_end'>/</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{name} is an invalid option name</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
   <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -480,19 +490,19 @@ to its actions). Options should be constructed by calling
       <pre class="lines">
 
 
-83
-84
-85
 86
 87
-88</pre>
+88
+89
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option.rb', line 83</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_optparse_to_optionname'>optparse_to_optionname</span><span class='lparen'>(</span><span class='id identifier rubyid_declaration'>declaration</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='id identifier rubyid_declaration'>declaration</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^-+(?:\[no-\])?([^ =]+)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t find a name in the declaration </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_declaration'>declaration</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Can&#39;t find a name in the declaration %{declaration}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>declaration:</span> <span class='id identifier rubyid_declaration'>declaration</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
   <span class='id identifier rubyid_found'>found</span><span class='period'>.</span><span class='id identifier rubyid_captures'>captures</span><span class='period'>.</span><span class='id identifier rubyid_first'>first</span>
 <span class='kw'>end</span></pre>
@@ -506,9 +516,9 @@ to its actions). Options should be constructed by calling
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:17 2017 by
+  Generated on Mon Feb  5 12:35:59 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

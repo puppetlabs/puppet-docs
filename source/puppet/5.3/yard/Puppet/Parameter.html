@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parameter
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -981,7 +981,7 @@ the name of the attribute to set, and the value as the value to set.</p>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resource'>resource</span> <span class='op'>=</span> <span class='id identifier rubyid_resource'>resource</span>
     <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_delete'>delete</span><span class='lparen'>(</span><span class='symbol'>:resource</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No resource set for </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>No resource set for %{name}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>name:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_set_options'>set_options</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -2664,7 +2664,7 @@ A protected validation method that only ever raises useful exceptions.</p>
   <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Error</span><span class='comma'>,</span> <span class='const'>TypeError</span>
     <span class='id identifier rubyid_raise'>raise</span>
   <span class='kw'>rescue</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_detail'>detail</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Validate method failed for class </span><span class='embexpr_beg'>#{</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='embexpr_end'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_detail'>detail</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_detail'>detail</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>DevError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Validate method failed for class %{class_name}: %{detail}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>class_name:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='label'>detail:</span> <span class='id identifier rubyid_detail'>detail</span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_detail'>detail</span><span class='period'>.</span><span class='id identifier rubyid_backtrace'>backtrace</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -2677,9 +2677,9 @@ A protected validation method that only ever raises useful exceptions.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:16 2017 by
+  Generated on Mon Feb  5 12:35:58 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

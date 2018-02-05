@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Serialization::AbstractWriter
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -673,12 +673,12 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-115
 116
-117</pre>
+117
+118</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 116</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='id identifier rubyid_extension_number'>extension_number</span><span class='comma'>,</span> <span class='id identifier rubyid_payload_class'>payload_class</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='ivar'>@packer</span><span class='period'>.</span><span class='id identifier rubyid_register_type'>register_type</span><span class='lparen'>(</span><span class='id identifier rubyid_extension_number'>extension_number</span><span class='comma'>,</span> <span class='id identifier rubyid_payload_class'>payload_class</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -716,7 +716,6 @@ and, by using extensions, also</li>
       <pre class="lines">
 
 
-120
 121
 122
 123
@@ -800,10 +799,11 @@ and, by using extensions, also</li>
 201
 202
 203
-204</pre>
+204
+205</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_types'>register_types</span>
   <span class='comment'># 0x00 - 0x0F are reserved for low-level serialization / tabulation extensions
@@ -1026,13 +1026,15 @@ and, by using extensions, also</li>
 109
 110
 111
-112</pre>
+112
+113</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/pops/serialization/abstract_writer.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_write_tpl'>write_tpl</span><span class='lparen'>(</span><span class='id identifier rubyid_ep'>ep</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Internal error. Integers cannot be tabulated in extension payload</span><span class='tstring_end'>&#39;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span>
+  <span class='comment'>#TRANSLATORS &#39;Integers&#39; is a Ruby class for numbers and should not be translated
+</span>  <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>Internal error. Integers cannot be tabulated in extension payload</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@tabulate</span>
     <span class='id identifier rubyid_index'>index</span> <span class='op'>=</span> <span class='ivar'>@written</span><span class='lbracket'>[</span><span class='id identifier rubyid_value'>value</span><span class='rbracket'>]</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_index'>index</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -1101,9 +1103,9 @@ and, by using extensions, also</li>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:25 2017 by
+  Generated on Mon Feb  5 12:36:05 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

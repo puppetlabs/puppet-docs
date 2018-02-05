@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Resource::Catalog
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -336,28 +336,28 @@ application</p>
       <pre class="lines">
 
 
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229
-230
 231
 232
 233
 234
 235
-236</pre>
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 218</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_apply'>apply</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Util</span><span class='op'>::</span><span class='const'>Storage</span><span class='period'>.</span><span class='id identifier rubyid_load'>load</span> <span class='kw'>if</span> <span class='id identifier rubyid_host_config?'>host_config?</span>
@@ -444,12 +444,12 @@ application</p>
       <pre class="lines">
 
 
-129
-130
-131</pre>
+135
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_container_of'>container_of</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_adjacent'>adjacent</span><span class='lparen'>(</span><span class='id identifier rubyid_resource'>resource</span><span class='comma'>,</span> <span class='symbol'>:direction</span> <span class='op'>=&gt;</span> <span class='symbol'>:in</span><span class='rparen'>)</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -521,16 +521,16 @@ being determined by the <code>ordering</code> setting.</p>
       <pre class="lines">
 
 
-246
-247
-248
-249
-250
-251
-252</pre>
+259
+260
+261
+262
+263
+264
+265</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 246</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/resource/catalog.rb', line 259</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_relationship_graph'>relationship_graph</span><span class='lparen'>(</span><span class='id identifier rubyid_given_prioritizer'>given_prioritizer</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@relationship_graph</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
@@ -549,9 +549,9 @@ being determined by the <code>ordering</code> setting.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:19 2017 by
+  Generated on Mon Feb  5 12:36:00 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>
