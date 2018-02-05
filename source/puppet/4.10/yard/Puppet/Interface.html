@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Interface
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -901,13 +901,13 @@
       <pre class="lines">
 
 
-236
 237
 238
-239</pre>
+239
+240</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 236</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 237</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_define_method'>define_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
@@ -1245,13 +1245,13 @@ version to get the most recent available version.</p>
       <pre class="lines">
 
 
-229
 230
 231
-232</pre>
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 230</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___add_method'>__add_method</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_meta_def'>meta_def</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_proc'>proc</span><span class='rparen'>)</span>
@@ -1290,7 +1290,6 @@ version to get the most recent available version.</p>
       <pre class="lines">
 
 
-208
 209
 210
 211
@@ -1307,10 +1306,11 @@ version to get the most recent available version.</p>
 222
 223
 224
-225</pre>
+225
+226</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 208</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface.rb', line 209</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid___invoke_decorations'>__invoke_decorations</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_action'>action</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_args'>passed_args</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_passed_options'>passed_options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='lbracket'>[</span><span class='symbol'>:before</span><span class='comma'>,</span> <span class='symbol'>:after</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_member?'>member?</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span> <span class='kw'>or</span> <span class='id identifier rubyid_fail'>fail</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>unknown decoration type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
@@ -1446,9 +1446,9 @@ options.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:19:26 2017 by
+  Generated on Mon Feb  5 13:47:39 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

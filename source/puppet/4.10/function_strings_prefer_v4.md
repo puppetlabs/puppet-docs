@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -42,9 +42,9 @@ Log a message on the server at level alert.
     * Return type(s): `Any`. 
 
 Returns the given value if it is of the given
-[data type](https://docs.puppetlabs.com/puppet/latest/lang_data.html), or
+[data type](https://docs.puppetlabs.com/puppet/latest/reference/lang_data.html), or
 otherwise either raises an error or executes an optional two-parameter
-[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html).
+[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html).
 
 The function takes two mandatory arguments, in this order:
 
@@ -85,7 +85,7 @@ $valid_username = assert_type(String[1], $raw_username) |$expected, $actual| {
 ~~~
 
 For more information about data types, see the
-[documentation](https://docs.puppetlabs.com/puppet/latest/lang_data.html).
+[documentation](https://docs.puppetlabs.com/puppet/latest/reference/lang_data.html).
 
 ## `binary_file`
 
@@ -301,7 +301,7 @@ Returns a hash value from a provided string using the digest_algorithm setting f
 * `each(Iterable $enumerable, Callable[1,1] &$block)`
     * Return type(s): `Any`. 
 
-Runs a [lambda](http://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
+Runs a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
 repeatedly using each value in a data structure, then returns the values unchanged.
 
 This function takes two mandatory arguments, in this order:
@@ -382,7 +382,7 @@ $data.each |$key, $value| {
 
 For an example that demonstrates how to create multiple `file` resources using `each`,
 see the Puppet
-[iteration](https://docs.puppetlabs.com/puppet/latest/lang_iteration.html)
+[iteration](https://docs.puppetlabs.com/puppet/latest/reference/lang_iteration.html)
 documentation.
 
 ## `emerg`
@@ -406,12 +406,12 @@ result as a String.
 The first argument to this function should be a `<MODULE NAME>/<TEMPLATE FILE>`
 reference, which loads `<TEMPLATE FILE>` from `<MODULE NAME>`'s `templates`
 directory. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/lang_data_hash.html) that contains parameters to
+[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/lang_template.html) documentation
+- See the [template](/puppet/latest/reference/lang_template.html) documentation
 for general template usage information.
-- See the [EPP syntax](/puppet/latest/lang_template_epp.html)
+- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to call the apache module's `templates/vhost/_docroot.epp`
@@ -485,7 +485,7 @@ found, skipping any files that don't exist.
 * `filter(Iterable $enumerable, Callable[1,1] &$block)`
     * Return type(s): `Any`. 
 
-Applies a [lambda](http://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
+Applies a [lambda](http://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
 to every value in a data structure and returns an array or hash containing any elements
 for which the lambda evaluates to `true`.
 
@@ -648,7 +648,7 @@ $users = hiera('users', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
 takes one parameter.
 
 ~~~ puppet
@@ -719,7 +719,7 @@ $allusers = hiera_array('users', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
 takes one parameter.
 
 ~~~ puppet
@@ -799,7 +799,7 @@ $allusers = hiera_hash('users', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
 takes one parameter.
 
 ~~~ puppet
@@ -888,7 +888,7 @@ hiera_include('classes', undef)
 ~~~
 
 You can optionally generate the default value with a
-[lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html) that
+[lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html) that
 takes one parameter.
 
 ~~~ puppet
@@ -954,12 +954,12 @@ text result as a String.
 
 The first argument to this function should be a string containing an EPP
 template. In most cases, the last argument is optional; if used, it should be a
-[hash](/puppet/latest/lang_data_hash.html) that contains parameters to
+[hash](/puppet/latest/reference/lang_data_hash.html) that contains parameters to
 pass to the template.
 
-- See the [template](/puppet/latest/lang_template.html) documentation
+- See the [template](/puppet/latest/reference/lang_template.html) documentation
 for general template usage information.
-- See the [EPP syntax](/puppet/latest/lang_template_epp.html)
+- See the [EPP syntax](/puppet/latest/reference/lang_template_epp.html)
 documentation for examples of EPP.
 
 For example, to evaluate an inline EPP template and pass it the `docroot` and
@@ -977,7 +977,7 @@ parameter tag without default values. Puppet produces an error if the
 `inline_epp` function fails to pass any required parameter.
 
 An inline EPP template should be written as a single-quoted string or
-[heredoc](/puppet/latest/lang_data_string.html#heredocs).
+[heredoc](/puppet/latest/reference/lang_data_string.html#heredocs).
 A double-quoted string is subject to expression interpolation before the string
 is parsed as an EPP template.
 
@@ -998,7 +998,7 @@ END
     * Return type(s): `Any`. 
 
 Evaluate a template string and return its value.  See
-[the templating docs](https://docs.puppetlabs.com/puppet/latest/lang_template.html) for
+[the templating docs](https://docs.puppetlabs.com/puppet/latest/reference/lang_template.html) for
 more information. Note that if multiple template strings are specified, their
 output is all concatenated and returned as the output of the function.
 
@@ -1062,7 +1062,7 @@ The arguments accepted by `lookup` are as follows:
     first key, it will try again with the subsequent ones, only resorting to a
     default value if none of them succeed.
 2. `<VALUE TYPE>` (data type) --- A
-[data type](https://docs.puppetlabs.com/puppet/latest/lang_data_type.html)
+[data type](https://docs.puppetlabs.com/puppet/latest/reference/lang_data_type.html)
 that must match the retrieved value; if not, the lookup (and catalog
 compilation) will fail. Defaults to `Data` (accepts any normal value).
 3. `<MERGE BEHAVIOR>` (string or hash; see **"Merge Behaviors"** below) ---
@@ -1124,8 +1124,8 @@ values.
 merged hash. If the same key exists in multiple source hashes, Puppet will
 recursively merge hash or array values (with duplicate values removed from
 arrays). For conflicting scalar values, the highest-priority value will win.
-* `{'strategy' => 'first|unique|hash'}` --- Same as the string versions of these
-merge behaviors.
+* `{'strategy' => 'first'}`, `{'strategy' => 'unique'}`,
+or `{'strategy' => 'hash'}` --- Same as the string versions of these merge behaviors.
 * `{'strategy' => 'deep', <DEEP OPTION> => <VALUE>, ...}` --- Same as `'deep'`,
 but can adjust the merge with additional options. The available options are:
     * `'knockout_prefix'` (string or undef) --- A string prefix to indicate a
@@ -1147,7 +1147,7 @@ but can adjust the merge with additional options. The available options are:
 * `map(Iterable $enumerable, Callable[1,1] &$block)`
     * Return type(s): `Any`. 
 
-Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
+Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
 to every value in a data structure and returns an array containing the results.
 
 This function takes two mandatory arguments, in this order:
@@ -1287,7 +1287,7 @@ reference; e.g.: `realize User[luke]`.
 * `reduce(Iterable $enumerable, Any $memo, Callable[2,2] &$block)`
     * Return type(s): `Any`. 
 
-Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html)
+Applies a [lambda](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html)
 to every value in a data structure from the first argument, carrying over the returned
 value of each iteration, and returns the result of the lambda's final iteration. This
 lets you create a new value or data structure by combining values from the first
@@ -1375,6 +1375,35 @@ $combine = $data.reduce( [d, 4] ) |$memo, $value| {
 # At the start of the lambda's first iteration, $memo contains [d, 4] and $value
 # contains [a, 1].
 # $combine contains [dabc, 10]
+~~~
+
+~~~ puppet
+# Reduce a hash of hashes $data, merging defaults into the inner hashes.
+$data = {
+  'connection1' => {
+    'username' => 'user1',
+    'password' => 'pass1',
+  },
+  'connection_name2' => {
+    'username' => 'user2',
+    'password' => 'pass2',
+  },
+}
+
+$defaults = {
+  'maxActive' => '20',
+  'maxWait'   => '10000',
+  'username'  => 'defaultuser',
+  'password'  => 'defaultpass',
+}
+
+$merged = $data.reduce( {} ) |$memo, $x| {
+  $memo + { $x[0] => $defaults + $data[$x[0]] }
+}
+# At the start of the lambda's first iteration, $memo is set to {}, and $x is set to
+# the first [key, value] tuple. The key in $data is, therefore, given by $x[0]. In
+# subsequent rounds, $memo retains the value returned by the expression, i.e.
+# $memo + { $x[0] => $defaults + $data[$x[0]] }.
 ~~~
 
 ## `regsubst`
@@ -1525,7 +1554,8 @@ brackets; a backslash will also escape a single character.
 
 Perform printf-style formatting of text.
 
-The first parameter is format string describing how the rest of the parameters should be formatted.  See the documentation for the `Kernel::sprintf` function in Ruby for all the details.
+The first parameter is format string describing how the rest of the parameters should be formatted.
+See the documentation for the `Kernel::sprintf` function in Ruby for all the details.
 
 ## `step`
 
@@ -1665,9 +1695,9 @@ Log a message on the server at level notice.
 * `with(Any *$arg, Callable &$block)`
     * Return type(s): `Any`. 
 
-Call a [lambda](https://docs.puppet.com/puppet/latest/lang_lambdas.html)
+Call a [lambda](https://docs.puppet.com/puppet/latest/reference/lang_lambdas.html)
 with the given arguments and return the result. Since a lambda's scope is
-[local](https://docs.puppetlabs.com/puppet/latest/lang_lambdas.html#lambda-scope)
+[local](https://docs.puppetlabs.com/puppet/latest/reference/lang_lambdas.html#lambda-scope)
 to the lambda, you can use the `with` function to create private blocks of code within a
 class using variables whose values cannot be accessed outside of the lambda.
 
@@ -1688,4 +1718,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800

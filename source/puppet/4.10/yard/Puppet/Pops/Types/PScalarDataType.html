@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PScalarDataType
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -249,15 +249,23 @@
       <pre class="lines">
 
 
-700
-701
-702</pre>
+739
+740
+741
+742
+743
+744
+745</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 700</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 739</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_o'>o</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="" title="Puppet::Pops::Types::PScalarDataType (class)">PScalarDataType</a></span></span><span class='rparen'>)</span> <span class='op'>||</span>
+    <span class='const'><span class='object_link'><a href="PStringType.html" title="Puppet::Pops::Types::PStringType (class)">PStringType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'><span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">assignable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='op'>||</span>
+    <span class='const'><span class='object_link'><a href="PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'><span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">assignable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='op'>||</span>
+    <span class='const'><span class='object_link'><a href="PFloatType.html" title="Puppet::Pops::Types::PFloatType (class)">PFloatType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'><span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">assignable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span> <span class='op'>||</span>
+    <span class='const'><span class='object_link'><a href="PBooleanType.html" title="Puppet::Pops::Types::PBooleanType (class)">PBooleanType</a></span></span><span class='op'>::</span><span class='const'>DEFAULT</span><span class='period'>.</span><span class='id identifier rubyid_assignable?'><span class='object_link'><a href="PAnyType.html#assignable%3F-instance_method" title="Puppet::Pops::Types::PAnyType#assignable? (method)">assignable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -269,9 +277,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jul 31 15:40:35 2017 by
+  Generated on Mon Feb  5 12:35:59 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.2.0).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

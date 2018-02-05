@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:51 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800
 
 service
 -----
@@ -496,7 +496,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`
-* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "7"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "[\"8\", \"stretch/sid\", \"9\", \"buster/sid\"]"]`, `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"15.04\",\"15.10\",\"16.04\",\"16.10\"]"]`, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\"]"]`
+* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "7"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "amazon"] == ["operatingsystemmajrelease", "[\"2\"]"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "[\"8\", \"stretch/sid\", \"9\", \"buster/sid\"]"]`, `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"15.04\",\"15.10\",\"16.04\",\"16.10\"]"]`, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\"]"]`
 
 <h4 id="service-provider-upstart">upstart</h4>
 
@@ -509,7 +509,7 @@ see <http://upstart.ubuntu.com/>.
 * Confined to: `any == [
     Facter.value(:operatingsystem) == 'Ubuntu',
     (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
-    Facter.value(:operatingsystem) == 'Amazon',
+    (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
     Facter.value(:operatingsystem) == 'LinuxMint',
   ]`
 * Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`
@@ -716,4 +716,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:51 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800

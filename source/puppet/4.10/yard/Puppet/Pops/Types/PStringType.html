@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::PStringType
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -268,8 +268,6 @@
       <pre class="lines">
 
 
-1505
-1506
 1507
 1508
 1509
@@ -312,10 +310,12 @@
 1546
 1547
 1548
-1549</pre>
+1549
+1550
+1551</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1505</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1507</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid__assignable?'>_assignable?</span><span class='lparen'>(</span><span class='id identifier rubyid_o'>o</span><span class='comma'>,</span> <span class='id identifier rubyid_guard'>guard</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='ivar'>@size_type_or_value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PIntegerType.html" title="Puppet::Pops::Types::PIntegerType (class)">PIntegerType</a></span></span><span class='rparen'>)</span>
@@ -396,19 +396,19 @@
       <pre class="lines">
 
 
-1444
-1445
 1446
 1447
 1448
-1449</pre>
+1449
+1450
+1451</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1444</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/types.rb', line 1446</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_values'>values</span>
   <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='lbracket'>[</span><span class='symbol'>:strict</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='symbol'>:off</span>
-    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn_once'>warn_once</span><span class='lparen'>(</span><span class='symbol'>:deprecatation</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PStringType#values</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Method PStringType#values is deprecated. Use #value instead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='const'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_warn_once'>warn_once</span><span class='lparen'>(</span><span class='symbol'>:deprecation</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PStringType#values</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Method PStringType#values is deprecated. Use #value instead</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lbracket'>[</span><span class='ivar'>@value</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="../Types.html#EMPTY_ARRAY-constant" title="Puppet::Pops::Types::EMPTY_ARRAY (constant)">EMPTY_ARRAY</a></span></span>
 <span class='kw'>end</span></pre>
@@ -422,9 +422,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:19:28 2017 by
+  Generated on Mon Feb  5 13:47:41 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:46:06 -0800
 
 ## About Resource Types
 
@@ -1206,7 +1206,7 @@ path to another file as the ensure value, it is equivalent to specifying
 
 However, we recommend using `link` and `target` explicitly, since this
 behavior can be harder to read and is
-[deprecated](https://docs.puppetlabs.com/puppet/4.3/deprecated_language.html)
+[deprecated](https://docs.puppetlabs.com/puppet/4.3/reference/deprecated_language.html)
 as of Puppet 4.3.0.
 
 Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
@@ -1300,8 +1300,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](https://docs.puppetlabs.com/puppet/latest/function.html#template)
-or [file](https://docs.puppetlabs.com/puppet/latest/function.html#file)
+[template](https://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
+or [file](https://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -1863,7 +1863,7 @@ Filebuckets are used for the following features:
   puppet master's filebucket with the _desired_ content for each file,
   then instructs the agent to retrieve the content for a specific
   checksum. For more details,
-  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/puppet/latest/indirection.html#catalog).
+  [see the `static_compiler` section in the catalog indirection docs](https://docs.puppetlabs.com/puppet/latest/reference/indirection.html#catalog).
 
 To use a central filebucket for backups, you will usually want to declare
 a filebucket resource and a resource default for the `backup` attribute
@@ -8490,7 +8490,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/puppet/latest/metaparameter.html#schedule)
+[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -9580,7 +9580,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`.
-* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `amazon` and `operatingsystemmajrelease` == `2`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
 * Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
@@ -10072,7 +10072,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/metaparameter.html#stage).
+[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -10292,7 +10292,7 @@ user resource will autorequire those role accounts.
   <a href="#user-attribute-key_membership">key_membership</a>       =&gt; <em># Whether specified key/value pairs should be...</em>
   <a href="#user-attribute-keys">keys</a>                 =&gt; <em># Specify user attributes in an array of key ...</em>
   <a href="#user-attribute-loginclass">loginclass</a>           =&gt; <em># The name of login class to which the user...</em>
-  <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when...</em>
+  <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when Puppet </em>
   <a href="#user-attribute-membership">membership</a>           =&gt; <em># If `minimum` is specified, Puppet will ensure...</em>
   <a href="#user-attribute-password">password</a>             =&gt; <em># The user's password, in whatever encrypted...</em>
   <a href="#user-attribute-password_max_age">password_max_age</a>     =&gt; <em># The maximum number of days a password may be...</em>
@@ -10514,9 +10514,15 @@ Requires features manages_loginclass.
 
 <h4 id="user-attribute-managehome">managehome</h4>
 
-Whether to manage the home directory when managing the user.
-This will create the home directory when `ensure => present`, and
-delete the home directory when `ensure => absent`. Defaults to `false`.
+Whether to manage the home directory when Puppet creates or removes the user.
+This creates the home directory if Puppet also creates the user account, and deletes the
+home directory if Puppet also removes the user account. Defaults to `false`.
+
+This parameter has no effect unless Puppet is also creating or removing the user in the
+resource at the same time. For instance, Puppet creates a home directory for a managed
+user if `ensure => present` and the user does not exist at the time of the Puppet run.
+If the home directory is then deleted manually, Puppet will not recreate it on the next
+run.
 
 Valid values are `true`, `false`, `yes`, `no`.
 
@@ -12363,4 +12369,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:46:06 -0800

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: 'Resource Type: macauthorization'
 canonical: "/puppet/latest/types/macauthorization.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:46:06 -0800
 
 macauthorization
 -----
@@ -230,4 +230,4 @@ Manage Mac OS X authorization database rules and rights.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:17:52 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:46:06 -0800
