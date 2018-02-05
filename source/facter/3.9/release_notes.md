@@ -7,7 +7,7 @@ This page documents the history of the Facter 3.9 series.
 
 ## Facter 3.9.4
 
-Released January 31, 2018.
+Released February 5, 2018.
 
 This is a bug-fix release that shipped with Puppet Platform 5.3.4.
 
