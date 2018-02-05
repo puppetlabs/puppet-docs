@@ -32,6 +32,20 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
 
+## Puppet agent 5.3.4
+
+Released February 5, 2018.
+
+This release of Puppet Platform contains several Puppet bug fixes, and security fixes for Puppet and Facter.
+
+### Component updates
+
+This release includes component updates to [Puppet 5.3.4][] and [Facter 3.9.4][].
+
+### Platform updates
+
+This release adds packages for RHEL 7 on ARM architectures, macOS 10.13 High Sierra, and Amazon Linux 2 (as RHEL 7).
+
 ## Puppet agent 5.3.3
 
 Released November 6, 2017.
