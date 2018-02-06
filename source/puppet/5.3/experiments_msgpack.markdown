@@ -25,4 +25,4 @@ Enabling msgpack is easy, but first it must be installed, as we don't include th
     * On Puppet Server, use `puppetserver gem install msgpack`, and then restart the Puppet Server service.
 2. On any number of agent nodes, set [the `preferred_serialization_format` setting](./configuration.html#preferredserializationformat) to `msgpack` (in the `[agent]` or `[main]` section of puppet.conf).
 
-Once this is configured, the Puppet master server(s) will use msgpack when serving any agents that have `preferred_serialization_format` set to `msgpack`. Any agents without that setting will continue to receive PSON as normal.
+Once this is configured, the Puppet master server will use msgpack when serving any agents that have `preferred_serialization_format` set to `msgpack`. Any agents without that setting will continue to receive PSON as normal.
