@@ -179,7 +179,7 @@ After a successful upload, your browser should load the new release page of your
 You can automatically publish new versions of your module to the Forge using Travis CI.
 
 {:.task}
-## Set up Travis CI for automatic publishing
+### Set up Travis CI for automatic publishing
 
 1. Enable Travis CI for the module repository.
 2. Generate a Travis-encrypted Forge password string. For instructions, see the Travis CI [encryption keys docs](https://docs.travis-ci.com/user/encryption-keys/).
@@ -205,6 +205,17 @@ deploy:
 3. Push the commit and tag to your Git repository.
 
 Travis CI will build and publish the module.
+
+{:.task}
+## Deprecate a module on the Forge
+
+To let your module users know that you are no longer maintaining your module and that they should cease using it, deprecate your module on the Forge.
+
+1. File a [FORGE](https://tickets.puppetlabs.com/projects/FORGE) ticket in our JIRA project. The ticket should include:
+
+   * The full name of the module to be deprecated, such as `puppetlabs-apache`.
+   * Optionally, the reason for the deprecation. The reason will be publicly displayed on the Forge.
+    * Optionally, a recommended alternative module or workaround.
 
 {:.task}
 ## Delete a module release from the Forge

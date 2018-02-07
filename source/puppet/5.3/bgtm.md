@@ -11,7 +11,7 @@ Learn how to create fantastic modules by introducing module best practices [stan
 
 Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
-Before you begin, you should be familiar with Puppet such that you have a basic understanding of the Puppet [language](./lang_summary.html), you know what constitutes a [class](./lang_classes.html), and you know how to put together a [basic module](./modules_fundamentals.html).
+Before you begin, you should be familiar with Puppet such that you have a basic understanding of the Puppet [language](./lang_summary.html), you know what constitutes a [class](./lang_classes.html), and you understand the basic module [structure](./modules_fundamentals.html).
 
 {:.concept}
 ## Giving your module purpose
@@ -94,7 +94,6 @@ The install class must be named `module::install`, as in the `ntp` module:
 class ntp::install {
 
   if $ntp::package_manage {
-
     package { $ntp::package_name:
       ensure => $ntp::package_ensure,
     }
@@ -194,7 +193,6 @@ For example, in the `ntp` module
 class ntp::install {
 
   if $ntp::package_manage {
-
     package { $ntp::package_name:
       ensure => $ntp::package_ensure,
     }
