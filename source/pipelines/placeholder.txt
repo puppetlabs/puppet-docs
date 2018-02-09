@@ -1,0 +1,1 @@
+This is a placeholder file for externally sourced docs that are generated from a private repository.

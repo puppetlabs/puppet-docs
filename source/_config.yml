@@ -67,6 +67,8 @@ document_names:
   pdk: Puppet Development Kit
   pe_ja: "Puppet Enterprise (日本語)"
   puppet_es: "Puppet (español)"
+  pipelines_for_apps: "Pipelines for Applications"
+  pipelines_images: "Pipelines documentation images"
 
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
@@ -88,6 +90,23 @@ document_names:
 
 documents:
 
+  /pipelines/for-apps:
+    doc: pipelines_for_apps
+    nav: ./_pfa_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/DistelliHugoDocs.git
+      commit: origin/master
+      subdirectory: for-apps
+    hide: true
+
+  /pipelines/images:
+    doc: pipelines_images
+    nav: ./placeholder.html
+    external_source:
+      repo: git@github.com:puppetlabs/DistelliHugoDocs.git
+      commit: origin/master
+      subdirectory: themes/distelli/static/docs/assets/images
+    hide: true
 
   /pe/2017.3:
     doc: pe
