@@ -245,6 +245,7 @@ These are **not** available in the `$facts` hash.
 * `$serverip` --- the Puppet master's IP address.
 * `$serverversion` --- the current version of Puppet on the Puppet master.
 * `$settings::<name of setting>` (also available to `puppet apply`) --- the value of any of the master's [settings](./config_about_settings.html). This is implemented as a special namespace and these variables must be referred to by their qualified names. Note that, other than `$environment` and `$clientnoop`, the agent node's settings are **not** available in manifests. If you wish to expose them to the master in this version of Puppet, you will have to create a custom fact.
+* `$settings::all_local` --- contains all variables in the `$settings` namespace as a Hash of `<SETTING-NAME> => <SETTING-VALUE>`. This helps you reference settings that might be missing, because a direct reference to such a missing setting raises an error when `--strict_variables` is enabled.
 
 ### Compiler variables
 

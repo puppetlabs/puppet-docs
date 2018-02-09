@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
+built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:09:48 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:34:37 -0800
 
 schedule
 -----
@@ -15,7 +15,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/puppet/latest/metaparameter.html#schedule)
+[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -164,9 +164,9 @@ Defaults to 1; must be an integer.
 <h4 id="schedule-attribute-weekday">weekday</h4>
 
 The days of the week in which the schedule should be valid.
-You may specify the full day name (Tuesday), the three character
-abbreviation (Tue), or a number corresponding to the day of the
-week where 0 is Sunday, 1 is Monday, etc. Multiple days can be specified
+You may specify the full day name 'Tuesday', the three character
+abbreviation 'Tue', or a number (as a string or as an integer) corresponding to the day of the
+week where 0 is Sunday, 1 is Monday, and so on. Multiple days can be specified
 as an array. If not specified, the day of the week will not be
 considered in the schedule.
 
@@ -189,4 +189,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:09:48 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:34:37 -0800

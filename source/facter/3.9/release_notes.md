@@ -5,6 +5,22 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.9 series.
 
+## Facter 3.9.4
+
+Released February 5, 2018.
+
+This is a bug-fix release that shipped with Puppet Platform 5.3.4.
+
+-   [All issues resolved in Facter 3.9.4](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.4%27)
+
+### Bug fixes
+
+-   Facter correctly reports the `is_virtual` and `virtual` facts on FreeBSD Proxmox virtual machines.
+
+-   Facter no longer attempts to check the `dmidecode` fact in Linux systems running on POWER architectures.
+
+-   Facter can interpret YAML or JSON output from external facts written in Powershell as structured facts.
+
 ## Facter 3.9.3
 
 Released November 6, 2017.

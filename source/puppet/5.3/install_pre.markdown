@@ -10,7 +10,6 @@ title: "Installing Puppet: Pre-install tasks"
 [puppetdb]: {{puppetdb}}/
 [server_setting]: ./configuration.html#server
 
-
 To ease your Puppet installation, complete these tasks before installing Puppet agent.
 
 > **Note:** This document covers open source releases of Puppet. For instructions on installing Puppet Enterprise, see [its installation documentation][peinstall].
@@ -23,7 +22,7 @@ To ease your Puppet installation, complete these tasks before installing Puppet 
 
    [Learn more about Puppet's architectures here.][architecture]
 
-2. If you choose the standard agent/master architecture, you need to decide which server(s) acts as the Puppet master (and the [PuppetDB][] server, if you choose to use it).
+2. If you choose the standard agent/master architecture, you need to decide which servers act as the Puppet master (and the [PuppetDB][] server, if you choose to use it).
 
    Completely install and configure Puppet on any Puppet masters and PuppetDB servers before installing on any agent nodes. The master must be running some kind of \*nix. Windows machines can't be masters.
 
@@ -31,9 +30,9 @@ To ease your Puppet installation, complete these tasks before installing Puppet 
 
 3. Check OS versions and system requirements.
 
-   See the [system requirements](system_requirements.html) for the version of Puppet you are installing, and consider the following:
+   See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
 
-   * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
+   * Your Puppet masters should be able to handle the amount of agents they'll need to serve.
    * Systems we provide official packages for have an easier install path.
    * Systems we don't provide packages for might still be able to run Puppet, as long as the version of Ruby is suitable and the prerequisites are installed, but it means a more complex and often time consuming install path.
 
@@ -48,7 +47,6 @@ To ease your Puppet installation, complete these tasks before installing Puppet 
 5. Set timekeeping on your Puppet master server.
 
    The time must be set accurately on the Puppet master server that acts as the certificate authority. If the time is wrong, it can mistakenly issue agent certificates from the distant past or future, which other nodes treat as expired. There are modules in the forge, such as the ntp module that can help you with this.
-
 
 Install Puppet Server before installing Puppet on your agent nodes. If you're using PuppetDB, install it once Puppet Server is up and running. Once you have completed these steps and configured your master, you can install Puppet agent.
 

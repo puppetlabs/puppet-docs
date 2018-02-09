@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: 'Puppet HTTP API: Report'
 canonical: "/puppet/latest/http_api/http_report.html"
 ---
@@ -9,7 +9,7 @@ Report
 ======
 This document describes the Puppet master's report endpoint and the schema for
 Report Format 6 in technical term. Also see the
-[documentation](https://docs.puppetlabs.com/puppet/latest/format_report.html).
+[documentation](https://docs.puppetlabs.com/puppet/latest/reference/format_report.html).
 
 The `report` endpoint allows clients to send reports to the master via `http`
 or `https`. Once received by the master they are processed by the *report

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -74,8 +74,7 @@ enabled, this defaults to 'console'. Otherwise, it defaults to 'syslog'.</p>
 log file will not have an ending ']' automatically written to it due to the
 appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
-<dt class="flush">--user</dt><dd><p>The user to run as. '--user=root' is required, even when run as root,
-for runs that create device certificates or keys.</p></dd>
+<dt class="flush">--user</dt><dd><p>The user to run as.</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
 and it is enabled by default, with a value of 120 (seconds).  This causes

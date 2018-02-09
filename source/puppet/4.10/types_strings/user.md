@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:51 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800
 
 user
 -----
@@ -51,7 +51,7 @@ user resource will autorequire those role accounts.
   <a href="#user-attribute-key_membership">key_membership</a>       =&gt; <em># Whether specified key/value pairs should be...</em>
   <a href="#user-attribute-keys">keys</a>                 =&gt; <em># Specify user attributes in an array of key ...</em>
   <a href="#user-attribute-loginclass">loginclass</a>           =&gt; <em># The name of login class to which the user...</em>
-  <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when...</em>
+  <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when Puppet </em>
   <a href="#user-attribute-membership">membership</a>           =&gt; <em># If `minimum` is specified, Puppet will ensure...</em>
   <a href="#user-attribute-password">password</a>             =&gt; <em># The user's password, in whatever encrypted...</em>
   <a href="#user-attribute-password_max_age">password_max_age</a>     =&gt; <em># The maximum number of days a password may be...</em>
@@ -280,9 +280,15 @@ The name of login class to which the user belongs.
 
 <h4 id="user-attribute-managehome">managehome</h4>
 
-Whether to manage the home directory when managing the user.
-This will create the home directory when `ensure => present`, and
-delete the home directory when `ensure => absent`. Defaults to `false`.
+Whether to manage the home directory when Puppet creates or removes the user.
+This creates the home directory if Puppet also creates the user account, and deletes the
+home directory if Puppet also removes the user account. Defaults to `false`.
+
+This parameter has no effect unless Puppet is also creating or removing the user in the
+resource at the same time. For instance, Puppet creates a home directory for a managed
+user if `ensure => present` and the user does not exist at the time of the Puppet run.
+If the home directory is then deleted manually, Puppet will not recreate it on the next
+run.
 
 Default: `false`
 
@@ -756,4 +762,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:51 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800

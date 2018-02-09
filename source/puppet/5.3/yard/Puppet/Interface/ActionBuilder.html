@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Interface::ActionBuilder
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -533,12 +533,12 @@ within the context of a new instance of this class.</p>
       <pre class="lines">
 
 
-101
-102
-103</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_default'>default</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='ivar'>@action</span><span class='period'>.</span><span class='id identifier rubyid_default'>default</span> <span class='op'>=</span> <span class='op'>!</span><span class='op'>!</span><span class='id identifier rubyid_value'>value</span>
@@ -580,12 +580,12 @@ within the context of a new instance of this class.</p>
       <pre class="lines">
 
 
-106
-107
-108</pre>
+108
+109
+110</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 106</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_display_global_options'>display_global_options</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='ivar'>@action</span><span class='period'>.</span><span class='id identifier rubyid_add_display_global_options'>add_display_global_options</span> <span class='id identifier rubyid_args'>args</span>
@@ -688,13 +688,13 @@ and in the example.</p>
       <pre class="lines">
 
 
-92
-93
 94
-95</pre>
+95
+96
+97</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_option'>option</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_option'>option</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="OptionBuilder.html" title="Puppet::Interface::OptionBuilder (class)">OptionBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_build'><span class='object_link'><a href="OptionBuilder.html#build-class_method" title="Puppet::Interface::OptionBuilder.build (method)">build</a></span></span><span class='lparen'>(</span><span class='ivar'>@action</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -734,8 +734,6 @@ and in the example.</p>
       <pre class="lines">
 
 
-113
-114
 115
 116
 117
@@ -743,17 +741,27 @@ and in the example.</p>
 119
 120
 121
-122</pre>
+122
+123
+124
+125
+126
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 113</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_render_as'>render_as</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>and</span> <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You must give a rendering format to render_as</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='comment'>#TRANSLATORS &#39;render_as&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You must give a rendering format to render_as</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 
   <span class='id identifier rubyid_formats'>formats</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Network</span><span class='op'>::</span><span class='const'>FormatHandler</span><span class='period'>.</span><span class='id identifier rubyid_formats'>formats</span>
   <span class='kw'>unless</span> <span class='id identifier rubyid_formats'>formats</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_value'>value</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='embexpr_end'>}</span><span class='tstring_content'> is not a valid rendering format: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_formats'>formats</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%{value} is not a valid rendering format: %{formats_list}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span>
+        <span class='lbrace'>{</span> <span class='label'>value:</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_inspect'>inspect</span><span class='comma'>,</span> <span class='label'>formats_list:</span> <span class='id identifier rubyid_formats'>formats</span><span class='period'>.</span><span class='id identifier rubyid_sort'>sort</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>, </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
   <span class='ivar'>@action</span><span class='period'>.</span><span class='id identifier rubyid_render_as'>render_as</span> <span class='op'>=</span> <span class='id identifier rubyid_value'>value</span>
@@ -927,17 +935,21 @@ returning a more capable object.</p>
 55
 56
 57
-58</pre>
+58
+59
+60</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface/action_builder.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_when_rendering'>when_rendering</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>then</span>           <span class='comment'># the default error message sucks --daniel 2011-04-18
-</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You must give a rendering format to when_rendering</span><span class='tstring_end'>&#39;</span></span>
+</span>    <span class='comment'>#TRANSLATORS &#39;when_rendering&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You must give a rendering format to when_rendering</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>then</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You must give a block to when_rendering</span><span class='tstring_end'>&#39;</span></span>
+    <span class='comment'>#TRANSLATORS &#39;when_rendering&#39; is a method name and should not be translated
+</span>    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>You must give a block to when_rendering</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
   <span class='ivar'>@action</span><span class='period'>.</span><span class='id identifier rubyid_set_rendering_method_for'>set_rendering_method_for</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='comma'>,</span> <span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -951,9 +963,9 @@ returning a more capable object.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:20 2017 by
+  Generated on Mon Feb  5 12:36:01 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

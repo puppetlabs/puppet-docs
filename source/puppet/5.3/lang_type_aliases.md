@@ -1,7 +1,6 @@
 ---
 layout: default
 title: "Language: Type Aliases"
-canonical: "/puppet/latest/lang_type_aliases.html"
 ---
 
 [reserved]: ./lang_reserved.html
@@ -13,21 +12,21 @@ Type aliases allow you to create reusable and descriptive data and resource type
 Type aliases are written as:
 
 ``` puppet
-type <ALIAS NAME> = <TYPE DEFINITION>
+type <MODULE NAME>::<ALIAS NAME> = <TYPE DEFINITION>
 ```
 
-The `<ALIAS NAME>` begins with a capital letter and must not be a [reserved word][reserved].
+The `<MODULE NAME>` must be named after the module that contains the type alias, and both the `<MODULE NAME>` and `<ALIAS NAME>` begin with a capital letter and must not be a [reserved word][reserved].
 
 For example, you can create a type alias named `MyType` that is equivalent to the `Integer` data type:
 
 ``` puppet
-type MyType = Integer
+type MyModule::MyType = Integer
 ```
 
 You can then declare a parameter using the alias as though it were a unique data type:
 
 ``` puppet
-MyType $example = 10
+MyModule::MyType $example = 10
 ```
 
 By using type aliases, you can:
@@ -42,8 +41,8 @@ By using type aliases, you can:
 Type aliases are transparent, which means they are fully equivalent to the types of which they are aliases. For instance, this example's `notice` returns `true` because `MyType` is an alias of the `Integer` type:
 
 ``` puppet
-type MyType = Integer
-notice MyType == Integer
+type MyModule::MyType = Integer
+notice MyModule::MyType == Integer
 ```
 
 > **Note:** The internal types `TypeReference` and `TypeAlias` are never values in Puppet code.
@@ -59,7 +58,7 @@ Store type aliases as `.pp` files in your module's `types` directory, which is a
 You can create recursive types:
 
 ``` puppet
-type Tree = Array[Variant[Data, Tree]]
+type MyModule::Tree = Array[Variant[Data, Tree]]
 ```
 
 This `Tree` type alias is defined as a being built out of Arrays that contain Data, or a Tree:
@@ -77,12 +76,12 @@ This powerful mechanism allows you to define complex, descriptive type definitio
 You can also create aliases to resource types.
 
 ``` puppet
-type MyFile = File
+type MyModule::MyFile = File
 ```
 
 When defining an alias to a resource type, use its short form (such as `File`) instead of its long form (such as `Resource[File]`).
 
 ## Related topics
 
--   [Data types](./lang_data_types.md)
+-   [Data types](./lang_data_type.md)
 -   [Resources](./lang_resources.md)

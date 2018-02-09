@@ -11,7 +11,9 @@ title: "puppet-agent: What is it, and what's in it?"
 [Puppet Server]: {{puppetserver}}/
 [release notes]: ./release_notes_agent.html
 
-### Release contents of `puppet-agent` 1.x
+The `puppet-agent` package helps you install Puppet and other required and related tools.
+
+## Release contents of `puppet-agent` 1.x
 
 See the table for details about which components shipped in which `puppet-agent` release, and the [package-specific release notes][release notes] for more information about packaging and installation fixes and features.
 
@@ -25,8 +27,7 @@ See the table for details about which components shipped in which `puppet-agent`
 >
 >* Windows `puppet-agent` versions 1.4.2 through 1.5.2 shipped with Ruby 2.1.8.
 
-
-### What `puppet-agent` and Puppet Server are
+## What `puppet-agent` and Puppet Server are
 
 Starting with Puppet 4, we distribute Puppet as two core packages.
 
@@ -35,7 +36,13 @@ Starting with Puppet 4, we distribute Puppet as two core packages.
 
 > **Note:** For information about Puppet agent in Puppet 3, see the [Puppet 3 services documentation](/puppet/3.8/services_commands.html#puppet-agent).
 
-### How version numbers work
+## How version numbers work
+
+Puppet's version numbers use the format X.Y.Z, where:
+
+-   X must increase for major backwards-incompatible changes
+-   Y can increase for backwards-compatible new functionality
+-   Z can increase for bug fixes
 
 Puppet Server is a separate application that, among other things, runs instances of the Puppet master application. It has its own version number separate from the version of Puppet it runs, and can usually work with several nearby Puppet versions.
 

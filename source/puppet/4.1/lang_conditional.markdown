@@ -279,7 +279,7 @@ If you use regular expression cases, any captures from parentheses in the patter
 
 ``` puppet
 case $trusted['hostname'] {
-  /www(d+)/: { notice("Welcome to web server number ${1}"); include role::web }
+  /www(\d+)/: { notice("Welcome to web server number ${1}"); include role::web }
   default:   { include role::generic }
 }
 ```

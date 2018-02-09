@@ -13,7 +13,6 @@ title: Plug-ins in Modules
 [puppet_functions]: ./lang_write_functions_in_puppet.html
 [custom augeas lenses]: https://github.com/hercules-team/augeas/wiki/Create-a-lens-from-bottom-to-top
 
-
 Puppet supports several kinds of **plug-ins,** which can be distributed in modules. These plug-ins enable new features for managing your nodes. Plug-ins are often included in modules downloaded from the Puppet Forge, and you can also develop your own.
 
 {:.concept}
@@ -28,27 +27,32 @@ Some plug-ins are used by Puppet Server, which can load them directly from modul
 
 To enable this, Puppet agent automatically downloads plug-ins from the server at the start of each agent run. Those plug-ins are then available during the run.
 
-Puppet agent syncs plug-in files from _every_ module in its environment's modulepath, regardless of whether that node uses any classes from a given module. In other words, even if you don't declare any classes from the `stdlib` module, nodes will still use `stdlib`'s custom facts.
+Puppet agent syncs plug-in files from _every_ module in its environment's modulepath, regardless of whether that node uses any classes from a given module, as well as any translations available for each module regardless of the agent's or master's locale.
+
+In other words, even if you don't declare any classes from the `stdlib` module, nodes will still use `stdlib`'s custom facts. Also, even if your agent's locale is set to en-US, if the module has translations for other locales, the agent will download all of those translations.
+
+> **Note:** Puppet 5.3.4 added pluginsync of module translations. Agents running Puppet 5.3.4 that connect to masters running older versions of Puppet do not automatically download translations.
 
 {:.concept}
 ### Technical details of pluginsync
 
 Pluginsync takes advantage of the same file serving features used by the `file` resource type.
 
-Puppet Server creates two special file server mount points for pluginsync, and populates them with the aggregate contents of certain subdirectories of modules. Before doing an agent run, Puppet agent recursively manages the contents of those mount points into two cache directories on disk. The agent performs the following functions:
+Puppet Server creates special file server mount points for pluginsync, and populates them with the aggregate contents of certain subdirectories of modules. Before doing an agent run, Puppet agent recursively manages the contents of those mount points into cache directories on disk. The agent performs the following functions:
 
-1. Sends a GET request to `/puppet/v3/file_metadatas/<MOUNT POINT>`,
-2. Compares the resulting checksums and ownership info to local files
-3. Deletes any unmanaged files, 
+1. Sends GET requests to `/puppet/v3/file_metadatas/<MOUNT POINT>`,
+2. Compares the resulting checksums and ownership info to local files,
+3. Deletes any unmanaged files,
 4. Retrieves content data for any missing or out-of-date files, and
 5. Sets permissions as needed.
 
-The following table shows the corresponding module subdirectories, mount points, and agent-side directories for each kind of plug-in:
+The following table shows the corresponding module subdirectories, mount points, and agent-side directories for each kind of plug-in, as well as module translations:
 
-Plug-in type        | Module subdirectory | Mount point   | Agent directory
+Plug-in type       | Module subdirectory | Mount point   | Agent directory
 -------------------|---------------------|---------------|----------------------------------------
 [External facts][] | `<MODULE>/facts.d`  | `pluginfacts` | `<VARDIR>/facts.d`
-Ruby plug-ins       | `<MODULE>/lib`      | `plugins`     | `<VARDIR>/lib`
+Ruby plug-ins      | `<MODULE>/lib`      | `plugins`     | `<VARDIR>/lib`
+Translations       | `<MODULE>/locales`  | `locales`     | `<VARDIR>/locales`
 
 (`<VARDIR>` is Puppet agent's [cache directory][vardir], which is located at `/var/opt/puppetlabs/puppet/cache`, `%PROGRAMDATA%\PuppetLabs\puppet\cache`, or `~/.puppetlabs/opt/puppet/cache`.)
 
@@ -87,29 +91,29 @@ In all cases, you must name files and additional subdirectories according to the
 
 To illustrate, a module that included every type of plug-in would have a directory structure like this:
 
-* `mymodule` (the module's top-level directory; this module is named `mymodule`.)
-    * `lib`
-        * `facter`
-            * `my_custom_fact.rb`
-        * `puppet`
-            * `functions`
-                * `modern_function.rb`
-            * `parser`
-                * `functions`
-                    * `classic_function.rb`
-            * `type`
-                * `mymodule_instance.rb`
-            * `provider`
-                * `exec`
-                    * `powershell.rb`
-        * `augeas`
-            * `lenses`
-                * `custom.lns`
-    * `functions`
-        * `convertdata.pp` (contains a function named `mymodule::convertdata`.)
-    * `facts.d`
-        * `datacenter.py` (an executable script that returns fact data.)
-
+-   `mymodule` (the module's top-level directory; this module is named `mymodule`.)
+    -   `lib`
+        -   `facter`
+            -   `my_custom_fact.rb`
+        -   `puppet`
+            -   `functions`
+                -   `modern_function.rb`
+            -   `parser`
+                -   `functions`
+                    -   `classic_function.rb`
+            -   `type`
+                -   `mymodule_instance.rb`
+            -   `provider`
+                -   `exec`
+                    -   `powershell.rb`
+        -   `augeas`
+            -   `lenses`
+                -   `custom.lns`
+    -   `functions`
+        -   `convertdata.pp` (contains a function named `mymodule::convertdata`.)
+    -   `facts.d`
+        -   `datacenter.py` (an executable script that returns fact data.)
+    -   `locales`
 
 {:.concept}
 ## Issues with server-side plug-ins

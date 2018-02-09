@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Pops::Types::TypeMismatchDescriber
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -239,12 +239,12 @@
       <pre class="lines">
 
 
-1051
-1052
-1053</pre>
+1064
+1065
+1066</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1051</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1064</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_max'>max</span><span class='lparen'>(</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span> <span class='id identifier rubyid_b'>b</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_a'>a</span> <span class='op'>&gt;=</span> <span class='id identifier rubyid_b'>b</span> <span class='op'>?</span> <span class='id identifier rubyid_a'>a</span> <span class='op'>:</span> <span class='id identifier rubyid_b'>b</span>
@@ -282,13 +282,13 @@
       <pre class="lines">
 
 
-1056
-1057
-1058
-1059</pre>
+1069
+1070
+1071
+1072</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1056</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1069</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_optional'>optional</span><span class='lparen'>(</span><span class='id identifier rubyid_index'>index</span><span class='comma'>,</span> <span class='id identifier rubyid_required_count'>required_count</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_count'>count</span> <span class='op'>=</span> <span class='id identifier rubyid_index'>index</span> <span class='op'>+</span> <span class='int'>1</span>
@@ -328,19 +328,6 @@
       <pre class="lines">
 
 
-998
-999
-1000
-1001
-1002
-1003
-1004
-1005
-1006
-1007
-1008
-1009
-1010
 1011
 1012
 1013
@@ -377,10 +364,23 @@
 1044
 1045
 1046
-1047</pre>
+1047
+1048
+1049
+1050
+1051
+1052
+1053
+1054
+1055
+1056
+1057
+1058
+1059
+1060</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 998</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_mismatch_describer.rb', line 1011</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_signature_string'>signature_string</span><span class='lparen'>(</span><span class='id identifier rubyid_signature'>signature</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_param_types'>param_types</span> <span class='op'>=</span> <span class='id identifier rubyid_signature'>signature</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='period'>.</span><span class='id identifier rubyid_param_types'>param_types</span>
@@ -442,9 +442,9 @@
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:25 2017 by
+  Generated on Mon Feb  5 12:36:06 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

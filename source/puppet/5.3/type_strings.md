@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 5394fec815410e8d381306918d9e17ba162bddb4
+built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:10:37 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
 
 ## About Resource Types
 
@@ -4383,7 +4383,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/puppet/latest/metaparameter.html#schedule)
+[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -4545,9 +4545,9 @@ Default: `1`
 <h4 id="schedule-attribute-weekday">weekday</h4>
 
 The days of the week in which the schedule should be valid.
-You may specify the full day name (Tuesday), the three character
-abbreviation (Tue), or a number corresponding to the day of the
-week where 0 is Sunday, 1 is Monday, etc. Multiple days can be specified
+You may specify the full day name 'Tuesday', the three character
+abbreviation 'Tue', or a number (as a string or as an integer) corresponding to the day of the
+week where 0 is Sunday, 1 is Monday, and so on. Multiple days can be specified
 as an array. If not specified, the day of the week will not be
 considered in the schedule.
 
@@ -5453,7 +5453,7 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`
-* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "7"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "[\"8\", \"stretch/sid\", \"9\", \"buster/sid\"]"]`, `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"15.04\",\"15.10\",\"16.04\",\"16.10\"]"]`, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\"]"]`
+* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "7"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "amazon"] == ["operatingsystemmajrelease", "[\"2\"]"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "[\"8\", \"stretch/sid\", \"9\", \"buster/sid\"]"]`, `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"15.04\",\"15.10\",\"16.04\",\"16.10\"]"]`, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\"]"]`
 
 <h4 id="service-provider-upstart">upstart</h4>
 
@@ -5466,7 +5466,7 @@ see <http://upstart.ubuntu.com/>.
 * Confined to: `any == [
     Facter.value(:operatingsystem) == 'Ubuntu',
     (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
-    Facter.value(:operatingsystem) == 'Amazon',
+    (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
     Facter.value(:operatingsystem) == 'LinuxMint',
   ]`
 * Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`
@@ -5963,7 +5963,7 @@ stage
 A resource type for creating new run stages.  Once a stage is available,
 classes can be assigned to it by declaring them with the resource-like syntax
 and using
-[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/metaparameter.html#stage).
+[the `stage` metaparameter](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#stage).
 
 Note that new stages are not useful unless you also declare their order
 in relation to the default `main` stage.
@@ -6199,7 +6199,7 @@ user resource will autorequire those role accounts.
   <a href="#user-attribute-key_membership">key_membership</a>       =&gt; <em># Whether specified key/value pairs should be...</em>
   <a href="#user-attribute-keys">keys</a>                 =&gt; <em># Specify user attributes in an array of key ...</em>
   <a href="#user-attribute-loginclass">loginclass</a>           =&gt; <em># The name of login class to which the user...</em>
-  <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when...</em>
+  <a href="#user-attribute-managehome">managehome</a>           =&gt; <em># Whether to manage the home directory when Puppet </em>
   <a href="#user-attribute-membership">membership</a>           =&gt; <em># If `minimum` is specified, Puppet will ensure...</em>
   <a href="#user-attribute-password">password</a>             =&gt; <em># The user's password, in whatever encrypted...</em>
   <a href="#user-attribute-password_max_age">password_max_age</a>     =&gt; <em># The maximum number of days a password may be...</em>
@@ -6428,9 +6428,15 @@ The name of login class to which the user belongs.
 
 <h4 id="user-attribute-managehome">managehome</h4>
 
-Whether to manage the home directory when managing the user.
-This will create the home directory when `ensure => present`, and
-delete the home directory when `ensure => absent`. Defaults to `false`.
+Whether to manage the home directory when Puppet creates or removes the user.
+This creates the home directory if Puppet also creates the user account, and deletes the
+home directory if Puppet also removes the user account. Defaults to `false`.
+
+This parameter has no effect unless Puppet is also creating or removing the user in the
+resource at the same time. For instance, Puppet creates a home directory for a managed
+user if `ensure => present` and the user does not exist at the time of the Puppet run.
+If the home directory is then deleted manually, Puppet will not recreate it on the next
+run.
 
 Default: `false`
 
@@ -8337,4 +8343,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:10:37 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800

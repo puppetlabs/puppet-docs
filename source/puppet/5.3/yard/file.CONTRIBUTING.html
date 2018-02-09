@@ -6,7 +6,7 @@
 <title>
   File: CONTRIBUTING
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -148,7 +148,7 @@ for the translators.</p>
 
 <ul>
 <li>Use full sentences. Strings built up out of concatenated bits are hard to translate.</li>
-<li>Use string formatting instead of interpolation.
+<li>Use string formatting instead of interpolation. Use the hash format and give good names to the placeholder values that can be used by translators to understand the meaning of the formatted values.
 Ex. <code>_(&#39;Creating new user %{name}.&#39;) % { name: user.name }</code></li>
 <li>Use <code>n_()</code> for pluralization. (see gettext gem docs linked above for details)</li>
 </ul>
@@ -241,9 +241,9 @@ be resolved within one business day.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:12 2017 by
+  Generated on Mon Feb  5 12:35:54 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

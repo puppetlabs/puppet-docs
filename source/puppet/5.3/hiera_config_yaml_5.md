@@ -55,7 +55,7 @@ defaults:  # Used for any hierarchy level that omits these keys.
   data_hash: yaml_data  # Use the built-in YAML backend.
 
 hierarchy:
-  - name: "Per-node data"                   # Human-readable name.
+  - name: "Per-node data"                   # Unique human-readable name.
     path: "nodes/%{trusted.certname}.yaml"  # File path, relative to datadir.
                                    # ^^^ IMPORTANT: include the file extension!
 
@@ -172,7 +172,7 @@ You can use any combination of these backends in a hierarchy, and can also combi
 
 Each YAML/JSON/HOCON hierarchy level needs the following keys:
 
--   `name` — A name for this level, shown in debug messages and `--explain` output.
+-   `name` — A unique name for this level, shown in debug messages and `--explain` output.
 -   `path`, `paths`, `glob`, `globs`, or `mapped_paths` (choose one) — The data files to use for this hierarchy level.
     -   These paths are relative to the datadir, they support variable interpolation, and they require a file extension. See “Specifying file paths” for more details.
 -   `data_hash` — Which backend to use. Can be omitted if you set a default. The value must be one of the following:
@@ -254,7 +254,7 @@ Within `hiera.yaml`, the eyaml backend resembles the standard built-in backends,
 
 Each eyaml hierarchy level needs the following keys:
 
--   `name` — A name for this level, shown in debug messages and `--explain` output.
+-   `name` — A unique name for this level, shown in debug messages and `--explain` output.
 -   `lookup_key` — Which backend to use. The value must be `eyaml_lookup_key`. Use this instead of the `data_hash` setting.
 -   `path`, `paths`, `mapped_paths`, `glob`, or `globs` (choose one) — The data files to use for this hierarchy level. These paths are relative to the datadir, they support variable interpolation, and they require a file extension. In this case, you'll usually use `.eyaml`. They work the same way they do for the standard backends.
 -   `datadir` — The directory where data files are kept. Can be omitted if you set a default. Works the same way it does for the standard backends.
@@ -289,7 +289,7 @@ If you rely on custom data backends designed for Hiera 3, you can use them in yo
 
 Each legacy hierarchy level needs the following keys:
 
--   `name` — A name for this level, shown  in debug messages and `--explain` output.
+-   `name` — A unique name for this level, shown in debug messages and `--explain` output.
 -   `path` or `paths` (choose one) — The data files to use for this hierarchy level.
     -   For file-based backends, include the file extension, even though you would have omitted it in the v3 hiera.yaml file.
     -   For non-file backends, don't use a file extension.
@@ -355,7 +355,7 @@ See the backend's documentation for configuring hierarchy levels.
 
 Each hierarchy level is represented by a hash which needs the following keys:
 
--   `name` — A name for this level, shown in debug messages and `--explain` output.
+-   `name` — A unique name for this level, shown in debug messages and `--explain` output.
 -   A backend key, which must be one of:
     -   `data_hash`
     -   `lookup_key`
@@ -369,7 +369,7 @@ Each hierarchy level is represented by a hash which needs the following keys:
     -   `globs`
     -   `uri`
     -   `uris` - these paths or URIs work the same way they do for the built-in backends. Hiera handles the work of locating files, so any backend that supports `path` automatically supports `paths`, `glob`, and `globs`. `uri` (string) and `uris` (array) can represent any kind of data source. Hiera does not ensure URIs are resolvable before calling the backend, and does not need to understand any given URI schema. A backend can omit the path/URI key, and rely wholly on the `options` key to locate its data.
--   `datadir` — The directory where data files are kept: the path is relative to hiera.yaml's directory. Only required if the backend uses the `path(s)` and `glob(s)` keys, and can be omitted if you set a default.
+-   `datadir` — The directory where data files are kept: the path is relative to hiera.yaml's directory. Only required if the backend uses the `path`, `paths`, `glob`, and `globs` keys, and can be omitted if you set a default.
 -   `options` — A hash of extra options for the backend; for example, database credentials or the location of a decryption key. All values in the `options` hash support variable interpolation.
 
 Whichever key you use, the value must be the name of a function that implements the backend API. Note that the choice here is made by the implementer of the particular backend, not the user.

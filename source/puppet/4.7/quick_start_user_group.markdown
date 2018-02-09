@@ -72,10 +72,11 @@ Puppet uses some defaults for unspecified user and group attributes, so all you'
 
 10. Copy all of the code, and save and exit the file.
 
-11. Paste the code from Step 10 into your default node in `site.pp`. It should look like this:
+11. Paste the code from Step 1 into your default node in `site.pp`. It should look like this:
 
 			user { 'jargyle':
  			  ensure           => 'present',
+			  gid              => '501',
 			  home             => '/home/jargyle',
 			  comment           => 'Judy Argyle',
 			  groups            => 'web',

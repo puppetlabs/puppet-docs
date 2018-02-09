@@ -3,8 +3,8 @@ layout: default
 title: "Facter 3.0: Custom Facts Walkthrough"
 ---
 
-[Facter 3.0.2 release notes]: ./release_notes.html#facter--p-restored
-[Plugins in Modules]: /guides/plugins_in_modules.html
+[Facter 3.0.2 release notes]: ../3.0/release_notes.html#facter--p-restored
+[Plugins in Modules]: /puppet/latest/plugins_in_modules.html
 
 Extend facter by writing your own custom facts to provide information to Puppet.
 
@@ -110,7 +110,7 @@ execute shell commands:
 
 * If all you want to do is run the command and use the output, verbatim, as your fact's value,
 you can pass the command into `setcode` directly. For example: `setcode 'uname --hardware-platform'`
-* If your fact is more complicated than that, you can call `Facter::Core::Execution.exec('uname --hardware-platform')`
+* If your fact is more complicated than that, you can call `Facter::Core::Execution.execute('uname --hardware-platform')`
 from within the `setcode do`...`end` block. As always, whatever the `setcode` statement returns is used as the fact's value.
 * In any case, remember that your shell command is also a Ruby string, so you'll need to escape special characters if you want to pass them through.
 
@@ -129,7 +129,7 @@ Puppet master server:
 
 Facter.add('hardware_platform') do
   setcode do
-    Facter::Core::Execution.exec('/bin/uname --hardware-platform')
+    Facter::Core::Execution.execute('/bin/uname --hardware-platform')
   end
 end
 ~~~
@@ -176,7 +176,7 @@ An example of the confine statement would be something like the following:
 Facter.add(:powerstates) do
   confine :kernel => 'Linux'
   setcode do
-    Facter::Core::Execution.exec('cat /sys/power/states')
+    Facter::Core::Execution.execute('cat /sys/power/states')
   end
 end
 ~~~
@@ -256,7 +256,7 @@ end
 
 ## Structured Facts
 
-While the norm is for a fact to return a single string, Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement. You can see some relevant examples in the [writing structured facts](fact_overview.html#writing-structured-facts) section of the [Fact Overview](fact_overview.html).
+While the norm is for a fact to return a single string, Facter 2.0 introduced **structured facts**, which take the form of either a hash or an array. All you need to do to create a structured fact is return a hash or an array from the `setcode` statement. You can see some relevant examples in the [writing structured facts](./fact_overview.html#writing-structured-facts) section of the [Fact Overview](./fact_overview.html).
 
 ## Aggregate Resolutions
 
@@ -300,7 +300,7 @@ end
 
 If the `chunk` blocks either all return arrays or all return hashes, you can omit the `aggregate` block. If you do, Facter automatically merges all of your data into one array or hash and use that as the fact's value.
 
-For more examples of aggregate resolutions, see the [aggregate resolutions](fact_overview.html#writing-facts-with-aggregate-resolutions) section of the [Fact Overview](fact_overview.html) page.
+For more examples of aggregate resolutions, see the [aggregate resolutions](./fact_overview.html#writing-facts-with-aggregate-resolutions) section of the [Fact Overview](./fact_overview.html) page.
 
 ## Viewing Fact Values
 

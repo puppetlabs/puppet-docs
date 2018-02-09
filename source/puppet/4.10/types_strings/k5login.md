@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e10e5d5cf16dbce72250e685d262d9877605c7ed
+built_from_commit: 46e5188e3d20d712525caf5566fa2214e524637d
 title: 'Resource Type: k5login'
 canonical: "/puppet/latest/types/k5login.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:51 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800
 
 k5login
 -----
@@ -71,4 +71,4 @@ The principals present in the `.k5login` file. This should be specified as an ar
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2017-11-03 18:18:51 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 13:47:04 -0800

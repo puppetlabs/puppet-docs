@@ -6,7 +6,7 @@
 <title>
   Class: Puppet::Parser::TemplateWrapper
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -589,7 +589,7 @@ the scope objects.</p>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_file='>file=</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='ivar'>@__file__</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>Parser</span><span class='op'>::</span><span class='const'>Files</span><span class='period'>.</span><span class='id identifier rubyid_find_template'>find_template</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_compiler'>compiler</span><span class='period'>.</span><span class='id identifier rubyid_environment'>environment</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find template &#39;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_filename'>filename</span><span class='embexpr_end'>}</span><span class='tstring_content'>&#39;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'>ParseError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Could not find template &#39;%{filename}&#39;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>filename:</span> <span class='id identifier rubyid_filename'>filename</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -704,7 +704,8 @@ the scope objects.</p>
 93
 94
 95
-96</pre>
+96
+97</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/parser/templatewrapper.rb', line 70</span>
@@ -720,7 +721,8 @@ the scope objects.</p>
   <span class='comment'># Expose all the variables in our scope as instance variables of the
 </span>  <span class='comment'># current object, making it possible to access them without conflict
 </span>  <span class='comment'># to the regular methods.
-</span>  <span class='id identifier rubyid_benchmark'>benchmark</span><span class='lparen'>(</span><span class='symbol'>:debug</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bound template variables for %{template_source}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>template_source:</span> <span class='id identifier rubyid_template_source'>template_source</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span>
+</span>  <span class='id identifier rubyid_escaped_template_source'>escaped_template_source</span> <span class='op'>=</span> <span class='id identifier rubyid_template_source'>template_source</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>%</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>%%</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_benchmark'>benchmark</span><span class='lparen'>(</span><span class='symbol'>:debug</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Bound template variables for %{template_source} in %%{seconds} seconds</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>template_source:</span> <span class='id identifier rubyid_escaped_template_source'>escaped_template_source</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_scope'>scope</span><span class='period'>.</span><span class='id identifier rubyid_to_hash'>to_hash</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='op'>|</span>
       <span class='id identifier rubyid_realname'>realname</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[^\w]</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>_</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
       <span class='id identifier rubyid_instance_variable_set'>instance_variable_set</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>@</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_realname'>realname</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
@@ -728,7 +730,7 @@ the scope objects.</p>
   <span class='kw'>end</span>
 
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>nil</span>
-  <span class='id identifier rubyid_benchmark'>benchmark</span><span class='lparen'>(</span><span class='symbol'>:debug</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Interpolated template %{template_source}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>template_source:</span> <span class='id identifier rubyid_template_source'>template_source</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span>
+  <span class='id identifier rubyid_benchmark'>benchmark</span><span class='lparen'>(</span><span class='symbol'>:debug</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Interpolated template %{template_source} in %%{seconds} seconds</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>template_source:</span> <span class='id identifier rubyid_escaped_template_source'>escaped_template_source</span> <span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_template'>template</span> <span class='op'>=</span> <span class='const'>ERB</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_string'>string</span><span class='comma'>,</span> <span class='int'>0</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='ivar'>@__file__</span>
     <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_template'>template</span><span class='period'>.</span><span class='id identifier rubyid_result'>result</span><span class='lparen'>(</span><span class='id identifier rubyid_binding'>binding</span><span class='rparen'>)</span>
@@ -923,9 +925,9 @@ the scope objects.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:19 2017 by
+  Generated on Mon Feb  5 12:36:01 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

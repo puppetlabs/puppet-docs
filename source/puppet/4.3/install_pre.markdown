@@ -36,7 +36,7 @@ A Puppet master should be a dedicated machine with a fast processor, lots of RAM
 
 ## Check OS Versions and System Requirements
 
-See the [system requirements](system_requirements.html) for the version of Puppet you are installing, and consider the following:
+See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
 
 * Your Puppet master(s) should be able to handle the amount of agents they'll need to serve.
 * Systems we provide official packages for will have an easier install path.

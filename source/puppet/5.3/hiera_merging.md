@@ -334,6 +334,8 @@ When you use the `alias` function, its interpolation token must be the only text
 
 `aliased: "%{alias('original')} - 'three'"`
 
+> Note: A lookup resulting in an interpolation of `alias` referencing a non-existant key will return an empty string, not a Hiera "not found" condition.
+
 ### `literal`
 
 The `literal` interpolation function lets you escape a literal percent sign (`%`) in Hiera data, to avoid triggering interpolation where it isn’t wanted. This is useful when dealing with Apache config files, for example, which might include text such as `%{SERVER_NAME}`.

@@ -6,7 +6,7 @@
 <title>
   Module: Puppet::Interface::OptionManager
   
-    &mdash; Documentation by YARD 0.9.9
+    &mdash; Documentation by YARD 0.9.12
   
 </title>
 
@@ -326,9 +326,6 @@ as part of the Faces DSL (i.e. from within a
       <pre class="lines">
 
 
-46
-47
-48
 49
 50
 51
@@ -352,10 +349,15 @@ as part of the Faces DSL (i.e. from within a
 69
 70
 71
-72</pre>
+72
+73
+74
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_option'>add_option</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
   <span class='comment'># @options collects the added options in the order they&#39;re declared.
@@ -365,13 +367,15 @@ as part of the Faces DSL (i.e. from within a
 
   <span class='id identifier rubyid_option'>option</span><span class='period'>.</span><span class='id identifier rubyid_aliases'>aliases</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_name'>name</span><span class='op'>|</span>
     <span class='kw'>if</span> <span class='id identifier rubyid_conflict'>conflict</span> <span class='op'>=</span> <span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>then</span>
-      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'> conflicts with existing option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conflict'>conflict</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option %{option} conflicts with existing option %{conflict}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span>
+          <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='label'>conflict:</span> <span class='id identifier rubyid_conflict'>conflict</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_actions'>actions</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_action'>action</span><span class='op'>|</span>
       <span class='id identifier rubyid_action'>action</span> <span class='op'>=</span> <span class='id identifier rubyid_get_action'>get_action</span><span class='lparen'>(</span><span class='id identifier rubyid_action'>action</span><span class='rparen'>)</span>
       <span class='kw'>if</span> <span class='id identifier rubyid_conflict'>conflict</span> <span class='op'>=</span> <span class='id identifier rubyid_action'>action</span><span class='period'>.</span><span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span> <span class='kw'>then</span>
-        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_option'>option</span><span class='embexpr_end'>}</span><span class='tstring_content'> conflicts with existing option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_conflict'>conflict</span><span class='embexpr_end'>}</span><span class='tstring_content'> on </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_action'>action</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Option %{option} conflicts with existing option %{conflict} on %{action}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span>
+            <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='id identifier rubyid_option'>option</span><span class='comma'>,</span> <span class='label'>conflict:</span> <span class='id identifier rubyid_conflict'>conflict</span><span class='comma'>,</span> <span class='label'>action:</span> <span class='id identifier rubyid_action'>action</span> <span class='rbrace'>}</span>
       <span class='kw'>end</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -429,7 +433,10 @@ as part of the Faces DSL (i.e. from within a
 14
 15
 16
-17</pre>
+17
+18
+19
+20</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 9</span>
@@ -437,7 +444,10 @@ as part of the Faces DSL (i.e. from within a
 <span class='kw'>def</span> <span class='id identifier rubyid_display_global_options'>display_global_options</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='ivar'>@display_global_options</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='lbracket'>[</span><span class='id identifier rubyid_args'>args</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flatten'>flatten</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_refopt'>refopt</span><span class='op'>|</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Global option </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_refopt'>refopt</span><span class='embexpr_end'>}</span><span class='tstring_content'> does not exist in Puppet.settings</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_refopt'>refopt</span>
+    <span class='kw'>unless</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='period'>.</span><span class='id identifier rubyid_settings'>settings</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_refopt'>refopt</span><span class='rparen'>)</span>
+      <span class='comment'>#TRANSLATORS &#39;Puppet.settings&#39; references to the Puppet settings options and should not be translated
+</span>      <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='id identifier rubyid__'>_</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Global option %{option} does not exist in Puppet.settings</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>%</span> <span class='lbrace'>{</span> <span class='label'>option:</span> <span class='id identifier rubyid_refopt'>refopt</span> <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
     <span class='ivar'>@display_global_options</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_refopt'>refopt</span> <span class='kw'>if</span> <span class='id identifier rubyid_refopt'>refopt</span>
   <span class='kw'>end</span>
   <span class='ivar'>@display_global_options</span><span class='period'>.</span><span class='id identifier rubyid_uniq!'>uniq!</span>
@@ -476,11 +486,6 @@ as part of the Faces DSL (i.e. from within a
       <pre class="lines">
 
 
-80
-81
-82
-83
-84
 85
 86
 87
@@ -489,10 +494,15 @@ as part of the Faces DSL (i.e. from within a
 90
 91
 92
-93</pre>
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 80</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_option'>get_option</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_with_inherited_options'>with_inherited_options</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
   <span class='ivar'>@options_hash</span> <span class='op'>||=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -555,12 +565,12 @@ details.</p>
       <pre class="lines">
 
 
-41
-42
-43</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_option'>option</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_add_option'>add_option</span> <span class='const'><span class='object_link'><a href="../../Puppet.html" title="Puppet (module)">Puppet</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="../Interface.html" title="Puppet::Interface (class)">Interface</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="OptionBuilder.html" title="Puppet::Interface::OptionBuilder (class)">OptionBuilder</a></span></span><span class='period'>.</span><span class='id identifier rubyid_build'><span class='object_link'><a href="OptionBuilder.html#build-class_method" title="Puppet::Interface::OptionBuilder.build (method)">build</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_declaration'>declaration</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -611,12 +621,12 @@ details.</p>
       <pre class="lines">
 
 
-96
-97
-98</pre>
+101
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 96</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_option?'>option?</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
@@ -654,12 +664,12 @@ details.</p>
       <pre class="lines">
 
 
-75
-76
-77</pre>
+80
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 80</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
   <span class='id identifier rubyid_walk_inheritance_tree'>walk_inheritance_tree</span><span class='lparen'>(</span><span class='ivar'>@options</span><span class='comma'>,</span> <span class='symbol'>:options</span><span class='rparen'>)</span>
@@ -697,18 +707,18 @@ details.</p>
       <pre class="lines">
 
 
-25
-26
-27
 28
 29
 30
 31
 32
-33</pre>
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 25</span>
+      <pre class="code"><span class="info file"># File 'lib/puppet/interface/option_manager.rb', line 28</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_walk_inheritance_tree'>walk_inheritance_tree</span><span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span><span class='comma'>,</span> <span class='id identifier rubyid_sym'>sym</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_start'>start</span> <span class='op'>||=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -729,9 +739,9 @@ details.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  3 18:11:14 2017 by
+  Generated on Mon Feb  5 12:35:55 2018 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.9 (ruby-2.3.3).
+  0.9.12 (ruby-2.3.3).
 </div>
 
     </div>

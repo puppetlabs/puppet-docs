@@ -47,6 +47,10 @@ Puppet Collection 1 contains the following components:
 
 {% include puppet-collections/_puppet_collection_1_osx.md %}
 
+{% include puppet-collections/_puppet_collection_1_osx1013.md %}
+
+{% include puppet-collections/_puppet_collection_1_osx1012.md %}
+
 {% include puppet-collections/_puppet_collection_1_osx1011.md %}
 
 {% include puppet-collections/_puppet_collection_1_osx1010.md %}
