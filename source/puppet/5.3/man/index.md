@@ -7,9 +7,9 @@ canonical: "/puppet/latest/man/index.html"
 
 
 
-Puppet's command line tools consist of a single `puppet` binary with many subcommands. The following subcommands are available in this version of Puppet:
+Puppet's command line tool set consists of a single `puppet` binary that includes multiple subcommands. The following subcommands are available in this version of Puppet:
 
-Core Tools
+Core Subcommands
 -----
 
 These subcommands form the core of Puppet's tool set, and every user should understand what they do.
@@ -23,10 +23,10 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 - [puppet lookup](./lookup.html)
 
 
-Occasionally Useful Subcommands
+Useful Subcommands
 -----
 
-Many or most users will need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
+Most users need to use these subcommands at some point, but they aren't required for daily use the way the core tools are.
 
 - [puppet config](./config.html)
 - [puppet describe](./describe.html)
