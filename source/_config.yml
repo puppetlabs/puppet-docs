@@ -68,6 +68,8 @@ document_names:
   pe_ja: "Puppet Enterprise (日本語)"
   puppet_es: "Puppet (español)"
   pipelines_for_apps: "Pipelines for Applications"
+  pipelines_for_containers: "Pipelines for Containers"
+  puppet_container_reg: "Puppet Container Registry"
 
 # Anatomy of a document:
 #  /pe/2015.3:                    # Base URL for this doc, starting from the root of the site.
@@ -97,6 +99,26 @@ documents:
       repo: git@github.com:puppetlabs/DistelliHugoDocs.git
       commit: origin/master
       subdirectory: for-apps
+    hide: true
+
+  /pipelines/for-containers/enterprise:
+    doc: pipelines_for_containers
+    nav: ./_pfa_toc.html
+    version: "Enterprise"
+    external_source:
+      repo: git@github.com:puppetlabs/DistelliHugoDocs.git
+      commit: origin/master
+      subdirectory: for-containers
+    hide: true
+
+  /pipelines/container-reg/enterprise:
+    doc: puppet_container_reg
+    nav: ./_pfa_toc.html
+    version: "Enterprise"
+    external_source:
+      repo: git@github.com:puppetlabs/DistelliHugoDocs.git
+      commit: origin/master
+      subdirectory: container_reg
     hide: true
 
   /pe/2017.3:
