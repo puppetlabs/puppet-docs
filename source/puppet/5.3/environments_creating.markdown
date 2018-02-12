@@ -215,7 +215,7 @@ Related topics: [default_manifest setting][default_manifest].
 {:.task}
 ## Configuring `environment_timeout`
 
-`enviroment_timeout` is how often the Puppet master should cache the data it loads from an environment. For best performance, change the settings once you have a mature code deployment process.
+`environment_timeout` is how often the Puppet master should cache the data it loads from an environment. For best performance, change the settings once you have a mature code deployment process.
 
 1. Set `environment_timeout = unlimited` in `puppet.conf`.
 2. Change your code deployment process to refresh the Puppet master whenever you deploy updated code. (For example, set a postrun command in your r10k config or add a step to your continuous integration job.)
