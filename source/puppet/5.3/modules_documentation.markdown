@@ -17,7 +17,7 @@ title: "Documenting modules"
 
 You should document any module you write, whether you the module is for internal use only or for publication on the Puppet Forge. When you write module documentation, follow best practices and our module README template.
 
-Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it. We recommend using Markdown and `.md` (or `.markdown`) files for your READMEs.
+Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it. Use Markdown and `.md` (or `.markdown`) files for your READMEs.
 
 We've constructed a README template that you can use for your own modules. This template helps you put together complete and clear documentation.
 
@@ -37,7 +37,7 @@ Related topics:
 
 The module README template helps you put together complete and clear documentation.
 
-If you used the Puppet Development Kit or the `puppet module generate` command to generate your module, you already have a copy of the README template in `.md` format in your module. You can also use the standalone template to guide you.
+If you used the Puppet Development Kit (or the deprecated `puppet module generate` command) to generate your module, you already have a copy of the README template in `.md` format in your module. You can also use the standalone template to guide you.
 
 Related topics:
 

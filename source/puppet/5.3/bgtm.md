@@ -11,16 +11,16 @@ Learn how to create fantastic modules by introducing module best practices [stan
 
 Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
-Before you begin, you should be familiar with Puppet such that you have a basic understanding of the Puppet [language](./lang_summary.html), you know what constitutes a [class](./lang_classes.html), and you know how to put together a [basic module](./modules_fundamentals.html).
+Before you begin, you should be familiar with Puppet such that you have a basic understanding of the Puppet [language](./lang_summary.html), you know what constitutes a [class](./lang_classes.html), and you understand the basic module [structure](./modules_fundamentals.html).
 
 {:.concept}
 ## Giving your module purpose
 
-Before you begin writing your module, you must define what it will do.
+Before you begin writing your module, you must define what it will do. Defining the range of your module's work helps you create concise modules that are easy to work with.
 
-Defining the range of your module's work helps you avoid accidentally creating a sprawling monster of a module that is unwieldy and difficult to work with. Your module should have one area of responsibility. For example, a good module addresses installing MySQL but **does not address** installing another program/service that requires MySQL.
+Your module should have one area of responsibility. For example, a good module addresses installing MySQL but **does not address** installing another program/service that requires MySQL.
 
-To help plan your module appropriately, ask yourself some questions:
+To help plan your module appropriately, consider:
 
 * What task do you need your module to accomplish?
 * What work is your module addressing?
@@ -28,16 +28,14 @@ To help plan your module appropriately, ask yourself some questions:
 
 > **Tip**: If you describe the function of your module and you find yourself using the word 'and', it's time to split the module at the 'and'.
 
-It is standard practice for Puppet users to have upwards of 200 modules in their environment. Each module in your environment should contain related resources that enable it to accomplish a task, the simpler the better. We strongly recommend creating multiple modules when and where applicable. The practice of having many small, focused modules is encouraged, as it promotes code reuse and turns modules into building blocks rather than full solutions.
+It is standard practice for Puppet users to have 200 or more modules in an environment. Simple is better. Each module in your environment should contain related resources that enable it to accomplish a task. Create multiple modules for more complex needs. The practice of having many small, focused modules promotes code reuse and turns modules into building blocks.
 
-As an example, let's take a look at the [puppetlabs/puppetdb](http://forge.puppet.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [puppetlabs/postgresql](http://forge.puppet.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the puppetdb module needs to manipulate puppet.conf in order to operate PuppetDB. Instead of having the puppetdb module handle it internally, the author took advantage of the [puppetlabs/inifile](http://forge.puppet.com/puppetlabs/inifile) module to enable puppetdb to make only the required edits to puppet.conf.
+As an example, let's take a look at the [`puppetlabs-puppetdb`](http://forge.puppet.com/puppetlabs/puppetdb) module. This module deals solely with the the setup, configuration, and management of PuppetDB. However, PuppetDB stores its data in a PostgreSQL database. Rather than having the module manage PostgreSQL, the author included the [`puppetlabs-postgresql`](http://forge.puppet.com/puppetlabs/postgresql) module as a dependency, leveraging the postgresql module's classes and resources to build out the right configuration for PuppetDB. Similarly, the `puppetdb-module` needs to manipulate the `puppet.conf` file in order to operate PuppetDB. Instead of having the `puppetdb-module` handle `puppet.conf` changes internally, the author used the [`puppetlabs-inifile`](http://forge.puppet.com/puppetlabs/inifile) module to enable `puppetlabs-puppetdb` to make only the required edits to `puppet.conf`.
 
 {:.concept}
 ## Structuring your module
 
 The ideal module manages a single piece of software from installation through setup, configuration, and service management.
-
-We acknowledge that there are many variations in software that modules can manage. A large majority of modules should be able to follow this best practices structure. However, we acknowledge that this structure might not be appropriate for some. Where possible, we call out this incompatibility and recommend best practice alternatives.
 
 This section covers:
 
@@ -46,7 +44,7 @@ This section covers:
 * [2c. How best to order your classes (rather than resources)](#c-ordering).
 * [2d. How to leverage and utilize dependencies](#d-dependencies).
 
-To demonstrate a real-world best practices standard module, we will walk through the structure of the [puppetlabs/ntp](http://forge.puppet.com/puppetlabs/ntp) module.
+To demonstrate a real-world best practices standard module, we will walk through the structure of the [puppetlabs-ntp](http://forge.puppet.com/puppetlabs/ntp) module.
 
 {:.concept}
 ### Class design
@@ -94,7 +92,6 @@ The install class must be named `module::install`, as in the `ntp` module:
 class ntp::install {
 
   if $ntp::package_manage {
-
     package { $ntp::package_name:
       ensure => $ntp::package_ensure,
     }
@@ -194,7 +191,6 @@ For example, in the `ntp` module
 class ntp::install {
 
   if $ntp::package_manage {
-
     package { $ntp::package_name:
       ensure => $ntp::package_ensure,
     }
@@ -217,7 +213,7 @@ You must not hardcode data in your modules, and having more parameters is the be
 
 Avoid adding parameters that allow you to override templates. When your parameters allow  template overrides, users can override your template with a custom template that contains additional hardcoded parameters. Hardcoded parameters in templates inhibits flexibility over time. It is far better to create more parameters and then modify the original template, or have a parameter which accepts an arbitrary chunk of text added to the template, than it is to override the template with a customized one.
 
-For an example of a module that capitalizes on offering many parameters, please see [puppetlabs/apache](http://forge.puppet.com/puppetlabs/apache).
+For an example of a module that capitalizes on offering many parameters, please see [puppetlabs-apache](http://forge.puppet.com/puppetlabs/apache).
 
 {:.concept}
 ### Ordering
@@ -260,7 +256,7 @@ Containment is supported in Puppet 3.4 and later. To support versions prior to P
 
 If your module's functionality depends on another module, then you must list these dependencies and include them directly.
 
-This means you must `include x` in the main class to ensure the dependency is included in the catalog. You must also add the dependency to the module's [metadata.json](./style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by rspec to pull in dependencies required to successfully run unit tests.)
+This means you must `include x` in the main class to ensure the dependency is included in the catalog. You must also add the dependency to the module's [metadata.json](./style_guide.html#module-metadata) and `.fixtures.yml`. (`.fixtures.yml` is a file used exclusively by RSpec to pull in dependencies required to successfully run unit tests.)
 
 {:.concept}
 ## Testing your module
@@ -272,7 +268,7 @@ We recommend several testing frameworks available to help you write unit and acc
 {:.concept}
 ### rspec-puppet
 
-RSpec-Puppet provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing. You can write tests, as in the below example, to test that aspects of your module work as intended.
+The `rspec-puppet` gem provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing. You can write tests, as in the below example, to test that aspects of your module work as intended.
 
 ```
 it { should contain_file('configuration') }
@@ -282,14 +278,14 @@ RSpec lets you provide facts, like `osfamily`, in order to test the module in va
 
 A typical use of RSpec is to iterate over a list of operating systems, asserting that the package and service should exist in the catalog for every operating system your module supports.
 
-You can read more at [http://rspec-puppet.com/](http://rspec-puppet.com/).
+To learn more, see [http://rspec-puppet.com/](http://rspec-puppet.com/).
 
 {:.concept}
 ### puppetlabs-spec-helper
 
-The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) is a gem that automates some of the tasks required to test modules.
+The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) gem automates some of the tasks required to test modules.
 
-It's particularly useful in conjunction with rspec-puppet. Puppet-spec-helper provides default rake tasks that allow you to standardize testing across modules, and it provides some glue code between rspec-puppet and actual modules. Usually, you only need to add it to the Gemfile of the project, and then add the following the to the Rakefile:
+This is especially useful in conjunction with `rspec-puppet`, as `puppetlabs-spec-helper` provides default Rake tasks that allow you to standardize testing across modules. It also provides some code to connect `rspec-puppet` with modules. Add it to the Gemfile of the project, and then add the following line to the Rakefile:
 
 ```
 require 'puppetlabs_spec_helper/rake_tasks'
@@ -316,11 +312,11 @@ It then knows how to translate `be_running` into shell commands for different di
 {:.concept}
 ## Versioning your module
 
-Modules, like any other piece of software, must be versioned and released when changes are made. We use and recommend semantic versioning, which sets out specific rules for when to increment major and minor versions.
+Modules, like any other piece of software, must be versioned and released when changes are made. Use semantic versioning, which sets out specific rules for when to increment major and minor versions.
 
-After you've decided on the new version number, you must increase the version number in the metadata.json.
+After you've decided on the new version number, adjust the version number in the `metadata.json` file.
 
-This allows you to create a list of dependencies in the metadata.json of your modules with specific versions of dependent modules, which ensures your module isn't used with an old dependency that won't work. Versioning also enables workflow management by allowing you to easily use different versions of modules in different environments.
+This allows you to create a list of dependencies in the `metadata.json` file of your modules with specific versions of dependent modules, which ensures your module isn't used with an old dependency that won't work. Versioning also enables workflow management by allowing you to easily use different versions of modules in different environments.
 
 {:.concept}
 ## Documenting your module
