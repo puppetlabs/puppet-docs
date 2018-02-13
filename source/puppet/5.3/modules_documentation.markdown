@@ -37,7 +37,7 @@ Related topics:
 
 The module README template helps you put together complete and clear documentation.
 
-If you used the Puppet Development Kit or the `puppet module generate` command to generate your module, you already have a copy of the README template in `.md` format in your module. You can also use the standalone template to guide you.
+If you used the Puppet Development Kit (or the deprecated `puppet module generate` command) to generate your module, you already have a copy of the README template in `.md` format in your module. You can also use the standalone template to guide you.
 
 Related topics:
 

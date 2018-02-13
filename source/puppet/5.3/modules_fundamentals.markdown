@@ -22,46 +22,24 @@ title: "Module fundamentals"
 [reserved names]: ./lang_reserved.html
 [pdk]: {{pdk}}/pdk.html
 
-Puppet modules are reusable, shareable bundles of Puppet code and data. Modules are the basic building block of Puppet code and allow you to automate tasks such as setting up a database or web server.
+Modules are self-contained bundles of code and data with a specific directory structure. These reusable, shareable units of Puppet code are a basic building block for Puppet.
 
-Nearly all Puppet manifests are kept in modules. The only manifest not kept in a module is the main `site.pp` manifest, which contains site-wide and node-specific code.
+Modules must have a [valid name](#allowed-module-names) and be located in [modulepath][modulepath]. Puppet automatically loads all content from every module in the modulepath, making classes, defined types, and plug-ins (such as custom types or facts) available. To learn more about how to classes, defined types, and plug-ins, see the related topics.
 
-You can install modules from the Puppet Forge or write your own modules. Most likely, you'll do both. The Forge has thousands of modules to help manage your infrastructure, but most Puppet users write some simple modules.
+You can download and install modules written by Puppet or the Puppet community from the Puppet Forge. Every Puppet user should also expect to write at least some of their own modules.
 
-
-To use classes or defined types from modules, you'll declare them in a manifest or from an external node classifier (ENC).
-
-``` puppet
-# /etc/puppetlabs/code/environments/production/manifests/site.pp
-
-node default {
-  include apache
-
-  class {'ntp':
-    enable => false;
-  }
-
-  apache::vhost {'personal_site':
-    port    => 80,
-    docroot => '/var/www/personal',
-    options => 'Indexes MultiViews',
-  }
-}
-```
-
-You can also use custom resource types, functions, or custom facts from modules. See the related topic about using plug-ins for more details.
 
 Related topics:
 
-* [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
-* [Publishing modules][publishing]: How to publish your modules to the Puppet Forge.
-* [Using plug-ins][plugins]: How to arrange plug-ins (like custom facts and custom resource types) in modules and sync them to agent nodes.
-* [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
+* [Installing modules][installing]
+* [The Forge][forge]
 * [Classes][classes]
 * [Defined types][defined_types]
+* [Module plug-ins][plugins]
+* [Declaring classes and defined types][declare]
 * [External node classifiers (ENC)][enc]
-* [External facts][]
-* [Custom facts][]
+* [Using plug-ins][plugins]
+
 
 {:.concept}
 ## Module structure
@@ -89,6 +67,12 @@ Each module subdirectory has a specific function. Not all directories are requir
     * `functions`
     * `types`
     * `tasks`
+
+Related topics: 
+
+* [Classes][classes]
+* [Defined types][defined_types]
+* [Type aliases](./lang_type_aliases.html)
 
 {:.example}
 ### Example
@@ -136,9 +120,9 @@ Certain module names are disallowed; see the list of [reserved words and names][
 {:.section}
 ### Manifests
 
-Each manifest in a module's `manifests` folder should contain one class or defined type. The file names of manifests map to the names of the classes and defined types they contain.
+Each manifest in a module's `manifests` folder should contain only one class or defined type. The file names of manifests map predictably to the names of the classes and defined types they contain.
 
-The `init.pp` manifest is special and always contains a class with the same name as the module. You cannot have a class named `init`.
+The `init.pp` manifest is special and always contains a class with the same name as the module. You cannot name a class `init`.
 
 Every other manifest contains a class or defined type named as follows:
 
@@ -157,9 +141,11 @@ The double colon that divides the sections of a class's name is called the *name
 {:.section}
 ### Files in modules
 
-Files in a module's `files` directory can be served to agent nodes. They can be downloaded by using `puppet:///` URLs in a [`file`][file] resource's `source` attribute.
+You can serve files in a module's `files` directory to agent nodes.
 
-You can also access module files with [the `file` function][file_function]. This function takes a `<MODULE NAME>/<FILE NAME>` reference and returns the content of the requested file from the module's `files` directory.
+Download files by using `puppet:///` URLs in the `source` attribute of a [`file`][file] resource. You can also access module files with [the `file` function][file_function]. This function takes a `<MODULE NAME>/<FILE NAME>` reference and returns the content of the requested file from the module's `files` directory.
+
+Puppet URLs work the same for both `puppet agent` and `puppet apply`; in either case they retrieve the correct file from a module.
 
 [file]: ./type.html#file
 
@@ -174,9 +160,9 @@ So `puppet:///modules/my_module/service.conf` would map to `my_module/files/serv
 {:.section}
 ### Templates in modules
 
-Any ERB or EPP template can be rendered in a manifest.
+Any ERB or EPP template can be rendered in a manifest. Templates combine code, data, and literal text to produce a final rendered output. The template output is a string, which can be used as the content attribute of a `file` resource or as the value of a variable.
 
-For ERB templates, which use Ruby, use the `template` function. For EPP templates, which use the Puppet language, use the `epp` function. The output of the template is a string, which can be used as the content attribute of a `file` resource or as the value of a variable.
+For ERB templates, which use Ruby, use the `template` function. For EPP templates, which use the Puppet language, use the `epp` function. See [templates][templates] for detailed information.
 
 The `template` and `epp` functions can look up templates identified by shorthand:
 
@@ -192,7 +178,7 @@ See the [templates][templates] topic for more details.
 {:.concept}
 ## Writing modules
 
-Every Puppet user should expect to write at least some of their own modules. Modules must have a specific directory structure and include metadata. The Puppet Development Kit provides tools for writing, validating, and testing modules.
+Every Puppet user should expect to write at least some of their own modules. Modules must have a specific directory structure and include correctly formatted metadata. The Puppet Development Kit provides tools for writing, validating, and testing modules.
 
 The Puppet Development Kit creates a complete module skeleton and includes command line tools for creating classes, defined types, and tasks in your module. It can also validate and run unit tests on modules. PDK can be downloaded and installed on any development machine; a Puppet installation is not required. See the PDK documentation to get started.
 
@@ -202,10 +188,9 @@ For help getting started writing modules, see our Beginner's guide to writing mo
 
 Related topics:
 
-* [Classes][classes]
-* [Defined types][defined_types]
-* [Type aliases](./lang_type_aliases.html)
+* [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
 * [Beginner's guide to writing modules](./bgtm.html)
 * [Puppet Language Style Guide](./style_guide.html)
-* [Puppet Development Kit][pdk]
+* [Publishing modules][publishing]
+* [Documenting modules][documentation]
 

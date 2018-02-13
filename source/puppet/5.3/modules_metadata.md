@@ -6,9 +6,9 @@ title: "Module metadata and metadata.json"
 [module data]: ./hiera_layers.html
 [hiera_yaml_4]: ./hiera_config_yaml_4.html
 
-Your modules should always contain a `metadata.json` file, which tracks important information about the module and can configure certain features.
+Your modules must contain a `metadata.json` file, which tracks important information about the module and can configure certain features. This file is located in the module's main directory, outside any subdirectories.
 
-The `metadata.json` file is located in the module's main directory, outside any subdirectories. This file is used by several Puppet subsystems:
+If you created your module with Puppet Development Kit, the `metadata.json` is completed with information you provided during the module creation interview or, if you skipped the interview, with PDK default values. You can manually edit the values in the `metadata.json` file as needed. The `metadata.json` file is used by several Puppet subsystems:
 
 * The `puppet module` command uses `metadata.json` to display module information and prepare modules for publishing.
 * The Forge requires `metadata.json` and uses it to create the module's info page and to provide dependency and other information to users installing the module.
@@ -283,12 +283,12 @@ When you specify versions for dependencies or requirements, set the upper versio
 
 Without this upper bound, users might run into compatibility issues across major version boundaries, where incompatible changes occur. It is better to be conservative and set an upper bound, and then release a newer version of your module after a major version release of the dependency. Otherwise, you could suddenly have to fix broken dependencies.
 
-If your module is compatible with only one major or minor version, you can use the semantic major/minor version shorthand (e.g., `1.x`). If your module is compatible with versions crossing major version boundaries, such as with stdlib, you can set your supported version range to the next unreleased major version. For example:
+If your module is compatible with only one major or minor version, you can use the semantic major/minor version shorthand (e.g., `1.x`). If your module is compatible with versions crossing major version boundaries, such as with `stdlib`, you can set your supported version range to the next unreleased major version. For example:
 
 ```json
   "dependencies": [
 { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" }
 ```
 
-In this example, the current version of stdlib is 4.8.0, and version 5.0.0 is not yet released. Under the rules of semantic versioning, 5.0.0 is likely to have incompatibilities, but every version of 4.x should be compatible. We don't know yet if the module will be compatible with 5.x. So we set the upper bound of the version dependency to less than the next known incompatible release (or major version).
+In this example, the current version of `stdlib` is 4.8.0, and version 5.0.0 is not yet released. Under the rules of semantic versioning, 5.0.0 is likely to have incompatibilities, but every version of 4.x should be compatible. We don't know yet if the module will be compatible with 5.x. So we set the upper bound of the version dependency to less than the next known incompatible release (or major version).
 

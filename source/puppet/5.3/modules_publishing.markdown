@@ -50,11 +50,11 @@ To publish your module:
 {:.concept}
 ## Naming your module 
 
-Your module has two names: a short name, like "mysql" and a long name that includes your Forge username, like "puppetlabs-mysql".
+Your module has two names: a short name, like "mysql", and a long name that includes your Forge username, like "puppetlabs-mysql".
 
-The Puppet Forge requires the module long name. This name is composed of your Forge username and the short name of your module. For example, the user named "puppetlabs" maintains a "mysql" module, which is known to the Forge as "puppetlabs-mysql". **Be sure to use this long name in your module's metadata.json file.** This helps disambiguate modules that might have common short names, such as "mysql" or "apache."
+To upload to the Forge, you must use the module long name. This name is composed of your Forge username and the short name of your module. For example, the user named "puppetlabs" maintains a "mysql" module, which is known to the Forge as "puppetlabs-mysql". Use this long name in your module's `metadata.json` file. This helps disambiguate modules that might have common short names, such as "mysql" or "apache."
 
-However, your module directory on disk **must** use the short name, without the username prefix. (Module directory names cannot contain dashes or periods; only letters, numbers, and underscores). As long as you have the correct long name in your `metadata.json` file, the `puppet module build` command uses the correct names in the correct places.
+However, your module directory on disk must use the short name, without the username prefix. Module directory names cannot contain dashes or periods; only letters, numbers, and underscores. As long as you have the correct long name in your `metadata.json` file, the `puppet module build` command uses the correct names in the correct places.
 
 > **Note**: Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. Always use the `username-module` style in your metadata files and when issuing commands.
 
@@ -74,13 +74,13 @@ To publish your modules to the Forge, you need to create a Forge account.
 3. After you sign up, you will receive a verification email. After you verify your email, you can publish modules to the Forge.
 
 {:.concept}
-## Preparing your module 
+## Preparing your module for publishing
 
 Before you build your module package for publishing, you'll need to make sure it's properly prepared.
 
 To do this, you'll exclude unnecessary files from your package or repository, remove or ignore any symlinks your module contains, and make sure your `metadata.json` contains the correct information.
 
->**Note:** In order to successfully publish your module to the Puppet Forge and ensure that everything is rendered correctly, your README, license file, changelog, and metadata.json must be UTF-8 encoded. If you used the Puppet Development Kit or the `puppet module generate` command to create your module, these files are already UTF-8 encoded.
+>**Note:** In order to successfully publish your module to the Puppet Forge and ensure that everything is rendered correctly, your README, license file, changelog, and metadata.json must be UTF-8 encoded. If you used the Puppet Development Kit (or the deprecated `puppet module generate` command) to create your module, these files are already UTF-8 encoded.
 
 {:.section}
 ### Excluding files from the package
@@ -123,19 +123,18 @@ Error: Found symlinks. Symlinks in modules are not allowed, please remove them.
 Error: Try 'puppet help module build' for usage
 ```
 
-{:.concept}
+{:.section}
 ### Adding module metadata in `metadata.json`
 
 To publish your module on the Forge, it must contain required metadata in a `metadata.json` file.
 
-If you generated your module using the Puppet Development Kit or the `puppet module generate` command, you'll already have a `metadata.json` file. Check it and make any necessary edits.
+If you generated your module using the Puppet Development Kit or the deprecated `puppet module generate` command, you'll already have a `metadata.json` file. Check it and make any necessary edits.
 
 If you assembled your module manually, you must make sure that you have a `metadata.json` file in your module's main directory. For details on writing or editing the `metadata.json` file, see the related topic about module metadata.
 
-{:.concept}
-#### Modulefiles
-
-If you maintain older modules, you might find the metadata stored in a Modulefile. Move any metadata contained in the Modulefile to the `metadata.json`. Modulefiles were deprecated in Puppet 3 and removed in Puppet 4. They are now treated like any other text file in the root directory of the module. 
+> **Modulefiles**
+>
+> If you maintain older modules, you might find the metadata stored in a Modulefile. Move any metadata contained in the Modulefile to the `metadata.json`. Modulefiles were deprecated in Puppet 3 and removed in Puppet 4. They are now treated like any other text file in the root directory of the module. 
 
 Related topics:
 
@@ -173,8 +172,8 @@ Your module package should be a compiled `tar.gz` package of 10MB or less.
 
 After a successful upload, your browser should load the new release page of your module, with any errors popping up on the same screen. Your module's README, Changelog,and License files are displayed on your module's Forge page.
 
-{:.concept}
-## Publishing to the Forge automatically with Travis CI
+{:.task}
+## Publish to the Forge automatically with Travis CI
 
 You can automatically publish new versions of your module to the Forge using Travis CI.
 
