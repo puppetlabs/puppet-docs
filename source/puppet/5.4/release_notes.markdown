@@ -22,9 +22,9 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 ## Puppet 5.4.0
 
-Released February 13, 2018.
+Released February 14, 2018.
 
-This is a bug-fix and feature release of Puppet.
+This is a feature and bug-fix release of Puppet.
 
 -   [All issues resolved in Puppet 5.4.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.4.0%27)
 

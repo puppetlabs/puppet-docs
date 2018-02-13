@@ -29,7 +29,7 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.3.1][], [
 
 ## Puppet agent 5.4.0
 
-Released February 13, 2018.
+Released February 14, 2018.
 
 This release of Puppet Platform contains several new features and bug fixes.
 
