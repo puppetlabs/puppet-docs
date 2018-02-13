@@ -4,7 +4,7 @@ toc_levels: 1234
 title: "Puppet 5.3 Release Notes"
 ---
 
-This page lists the changes in Puppet 5.3 and its patch releases. You can also view [current known issues](known_issues.html) in this release.
+This page lists the changes in Puppet 5.3 and its patch releases. You can also view [known issues](known_issues.html) in this release.
 
 Puppet's version numbers use the format X.Y.Z, where:
 
@@ -19,6 +19,40 @@ Read the [Puppet 5.0 release notes](/puppet/5.0/release_notes.html), because the
 Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release notes](/puppet/5.2/release_notes.html), because they cover important new features and changes since Puppet 5.0.
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
+
+## Puppet 5.3.5
+
+Released February 13, 2018.
+
+This is a bug-fix and feature release of Puppet.
+
+-   [All issues resolved in Puppet 5.3.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.5%27)
+
+### Bug fixes
+
+-   Pupet 5.3.3 introduced a regression that prevented `puppet apply` from downloading files from HTTP sources when the response was compressed. (The `puppet agent` command was unaffected.) Puppet 5.3.5 resolves the issue.
+
+-   If the `noop` metaparameter is set to true on a `tidy` resource, Puppet 5.3.5 won't purge its children.
+
+-   Previous versions of Puppet would fail to clean a certificate signing request when running `puppet cert clean` because it would try to revoke the certificate. In Puppet 5.3.5, `puppet cert clean` correctly cleans certificate signing requests.
+
+-   When using `puppet types generate` for environment isolation, and a resource type had customized title patterns, previous versions of Puppet would not use those. Puppet 5.3.5 resolves this issue.
+
+-   The `puppet apply` command in Puppet 5.3.5 no longer attempts to enforce the server-side requirements around environment directories when retrieving its node information from the server. In previous versions of Puppet, this check could cause multiple catalog retrievals during a single run.
+
+-   In previous versions of Puppet, calling `tree_each` without a lambda returned an `Iterable` that could not be converted to an `Array` using the new or splat operators. Puppet 5.3.5 resolves this issue.
+
+-   Puppet 5.3.5 only excludes `*.pot` files when downloading translations from the `locales` mount point, instead of for all pluginsync-related mount points.
+
+-   Puppet 5.3.5 lets you use cached catalogs in `puppet apply` and `puppet agent` runs with the `--noop` flag. The cached catalog isn't updated if one already exists, and isn't created if there's no previously cached catalog.
+
+-   A gem installation of previous versions of Puppet had unnecessary gem dependencies. The Puppet 5.3.5 gem requires `fast_gettext ~> 1.1.2`, since that is what Puppet uses.
+
+-   Previous versions of Puppet attempted to include the default text from `gem list` as a part of the package name, resulting in failed gem installations. Puppet 5.3.5 strips the `default: ` text to allow searches for the version number only.
+
+### New features
+
+-   Puppet 5.3.5 uses DNF as the default package provider on Fedora 26 and newer.
 
 ## Puppet 5.3.4
 
@@ -66,7 +100,7 @@ This is a bug-fix and feature release of Puppet.
 
 -   Puppet 5.3.4 can retrieve file sources from web servers when the associated MIME type is not "binary". This particularly affects IIS webservers.
 
--   When setting the day of the week with the `schedule` type, previous versions of Puppet required a quoted string value even if you wanted to represent the day as a numeric value. In Puppet 5.3.4, `scheudle` accepts an integer representation of the day in addition to a string or array value.
+-   When setting the day of the week with the `schedule` type, previous versions of Puppet required a quoted string value even if you wanted to represent the day as a numeric value. In Puppet 5.3.4, `schedule` accepts an integer representation of the day in addition to a string or array value.
 
 -   Certain Puppet subcommands, such as `puppet help` and `puppet config`, no longer require a local environment to exist in Puppet 5.3.4. They now can fall back to assuming the defined environment exists on the master filesystem after checking for the local environment.
 
