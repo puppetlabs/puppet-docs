@@ -3157,7 +3157,7 @@
           ],
           [
             "operatingsystemmajrelease",
-            "['22', '23', '24', '25']"
+            "(22..30).to_a"
           ]
         ]
       ],
@@ -12161,7 +12161,7 @@
           }
         ]
       },
-      "source": "Puppet::Functions.create_function(:strftime) do\n  dispatch :format_timespan do\n    param 'Timespan', :time_object\n    param 'String', :format\n  end\n\n  dispatch :format_timestamp do\n    param 'Timestamp', :time_object\n    param 'String', :format\n    optional_param 'String', :timezone\n  end\n\n  dispatch :legacy_strftime do\n    param 'String', :format\n    optional_param 'String', :timezone\n  end\n\n  def format_timespan(time_object, format)\n    time_object.format(format)\n  end\n\n  def format_timestamp(time_object, format, timezone = nil)\n    time_object.format(format, timezone)\n  end\n\n  def legacy_strftime(format, timezone = nil)\n    stacktrace = Puppet::Pops::PuppetStack.stacktrace()\n    if stacktrace.size > 0\n      file, line = stacktrace[0]\n    else\n      file = nil\n      line = nil\n    end\n    Puppet.warn_once('deprecations', 'legacy#strftime',\n      _('The argument signature (String format, [String timezone]) is deprecated for #strfime. See #strftime documentation and Timespan type for more info'),\n      file, line)\n    Puppet::Pops::Time::Timestamp.format_time(format, Time.now.utc, timezone)\n  end\nend"
+      "source": "Puppet::Functions.create_function(:strftime) do\n  dispatch :format_timespan do\n    param 'Timespan', :time_object\n    param 'String', :format\n  end\n\n  dispatch :format_timestamp do\n    param 'Timestamp', :time_object\n    param 'String', :format\n    optional_param 'String', :timezone\n  end\n\n  dispatch :legacy_strftime do\n    param 'String', :format\n    optional_param 'String', :timezone\n  end\n\n  def format_timespan(time_object, format)\n    time_object.format(format)\n  end\n\n  def format_timestamp(time_object, format, timezone = nil)\n    time_object.format(format, timezone)\n  end\n\n  def legacy_strftime(format, timezone = nil)\n    stacktrace = Puppet::Pops::PuppetStack.stacktrace()\n    if stacktrace.size > 0\n      file, line = stacktrace[0]\n    else\n      file = nil\n      line = nil\n    end\n    Puppet.warn_once('deprecations', 'legacy#strftime',\n      _('The argument signature (String format, [String timezone]) is deprecated for #strftime. See #strftime documentation and Timespan type for more info'),\n      file, line)\n    Puppet::Pops::Time::Timestamp.format_time(format, Time.now.utc, timezone)\n  end\nend"
     },
     {
       "name": "strftime",

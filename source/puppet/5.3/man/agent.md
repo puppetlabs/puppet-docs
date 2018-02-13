@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
+built_from_commit: a6789531f5d7efbde2f8e526f80e71518121b397
 title: 'Man Page: puppet agent'
 canonical: "/puppet/latest/man/agent.html"
 ---
@@ -13,24 +13,24 @@ canonical: "/puppet/latest/man/agent.html"
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p>Retrieve the client configuration from the puppet master and apply it to
+<p>Retrieves the client configuration from the puppet master and applies it to
 the local host.</p>
 
-<p>Run this service as a daemon, run periodically using cron (or something
+<p>This service may be run as a daemon, run periodically using cron (or something
 similar), or run interactively for testing purposes.</p>
 
 <h2 id="USAGE">USAGE</h2>
 
-<p><code>puppet agent [--certname <var>NAME</var>] [-D|--daemonize|--no-daemonize]
+<p>puppet agent [--certname <var>NAME</var>] [-D|--daemonize|--no-daemonize]
   [-d|--debug] [--detailed-exitcodes] [--digest <var>DIGEST</var>] [--disable [MESSAGE]] [--enable]
   [--fingerprint] [-h|--help] [-l|--logdest syslog|eventlog|<var>ABS FILEPATH</var>|console]
   [--masterport <var>PORT</var>] [--noop] [-o|--onetime] [--sourceaddress <var>IP_ADDRESS</var>] [-t|--test]
-  [-v|--verbose] [-V|--version] [-w|--waitforcert <var>SECONDS</var>]</code></p>
+  [-v|--verbose] [-V|--version] [-w|--waitforcert <var>SECONDS</var>]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
 <p>This is the main puppet client. Its job is to retrieve the local
-machine configuration from a remote server and apply it. In order to
+machine's configuration from a remote server and apply it. In order to
 successfully communicate with the remote server, the client must have a
 certificate signed by a certificate authority that the server trusts;
 the recommended method for this, at the moment, is to run a certificate
@@ -43,33 +43,33 @@ configuration and apply it.</p>
 
 <h2 id="USAGE-NOTES">USAGE NOTES</h2>
 
-<p><code>puppet agent</code> does its best to find a compromise between interactive
+<p>'puppet agent' does its best to find a compromise between interactive
 use and daemon use. Run with no arguments and no configuration, it will
 go into the background, attempt to get a signed certificate, and retrieve
 and apply its configuration every 30 minutes.</p>
 
 <p>Some flags are meant specifically for interactive use -- in particular,
-<code>test</code>, <code>tags</code> and <code>fingerprint</code> are useful.</p>
+'test', 'tags' and 'fingerprint' are useful.</p>
 
-<p><code>--test</code> does a single run in the foreground with verbose logging, then exits.
+<p>'--test' does a single run in the foreground with verbose logging, then exits.
 It will also exit if it can't get a valid catalog. The exit code after running
-with <code>--test</code> is 0 if the catalog was successfully applied, and 1 if the run
+with '--test' is 0 if the catalog was successfully applied, and 1 if the run
 either failed or wasn't attempted (due to another run already in progress).</p>
 
-<p><code>--tags</code> enables you to specify what portions of a configuration you want
+<p>'--tags' allows you to specify what portions of a configuration you want
 to apply. Puppet elements are tagged with all of the class or definition
-names that contain them, and you can use the '<code>tags</code> flag to specify one
+names that contain them, and you can use the 'tags' flag to specify one
 of these names, causing only configuration elements contained within
 that class or definition to be applied. This is very useful when you are
 testing new configurations -- for instance, if you are just starting to
-manage <code>ntpd</code>, you would put all of the new elements into an <code>ntpd</code>
-class, and call puppet with <code>--tags ntpd</code>, which would only apply that
+manage 'ntpd', you would put all of the new elements into an 'ntpd'
+class, and call puppet with '--tags ntpd', which would only apply that
 small portion of the configuration during your testing, rather than
 applying the whole thing.</p>
 
-<p><code>--fingerprint</code> is a one-time flag. In this mode <code>puppet agent</code> will run
+<p>'--fingerprint' is a one-time flag. In this mode 'puppet agent' will run
 once and display on the console (and in the log) the current certificate
-(or certificate request) fingerprint. Providing the <code>--digest</code> option
+(or certificate request) fingerprint. Providing the '--digest' option
 allows to use a different digest algorithm to generate the fingerprint.
 The main use is to verify that before signing a certificate request on
 the master, the certificate request the master received is the same as
@@ -80,8 +80,8 @@ when signing certificates).</p>
 
 <p>Note that any Puppet setting that's valid in the configuration file is also a
 valid long argument. For example, 'server' is a valid setting, so you can
-specify <code>--server <var>servername</var></code> as an argument. Boolean settings translate into
-<code>--setting</code> and <code>--no-setting' pairs</code>.</p>
+specify '--server <var>servername</var>' as an argument. Boolean settings translate into
+'--setting' and '--no-setting' pairs.</p>
 
 <p>See the configuration file documentation at
 https://docs.puppetlabs.com/puppet/latest/reference/configuration.html for the
@@ -89,96 +89,96 @@ full list of acceptable settings. A commented list of all settings can also be
 generated by running puppet agent with '--genconfig'.</p>
 
 <dl>
-<dt><code>--certname</code></dt><dd><p>Set the certname (unique ID) of the client. The master reads this
+<dt>--certname</dt><dd><p>Set the certname (unique ID) of the client. The master reads this
 unique identifying string, which is usually set to the node's
 fully-qualified domain name, to determine which configurations the
 node will receive. Use this option to debug setup problems or
 implement unusual node identification schemes.
 (This is a Puppet setting, and can go in puppet.conf.)</p></dd>
-<dt><code>--daemonize</code></dt><dd><p>Send the process into the background. This is the default.
-(This is a Puppet setting, and can go in puppet.conf. Note the special <code>no-</code>
+<dt>--daemonize</dt><dd><p>Send the process into the background. This is the default.
+(This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
 prefix for boolean settings on the command line.)</p></dd>
-<dt><code>--no-daemonize</code></dt><dd><p>Do not send the process into the background.
-(This is a Puppet setting, and can go in puppet.conf. Note the special <code>no-</code>
+<dt>--no-daemonize</dt><dd><p>Do not send the process into the background.
+(This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
 prefix for boolean settings on the command line.)</p></dd>
-<dt class="flush"><code>--debug</code></dt><dd><p>Enable full debugging.</p></dd>
-<dt><code>--detailed-exitcodes</code></dt><dd><p>Provide extra information about the run via exit codes; only works if <code>--test</code>
-or <code>--onetime</code> is also specified. If enabled, <code>puppet agent</code> will use the
+<dt class="flush">--debug</dt><dd><p>Enable full debugging.</p></dd>
+<dt>--detailed-exitcodes</dt><dd><p>Provide extra information about the run via exit codes; only works if '--test'
+or '--onetime' is also specified. If enabled, 'puppet agent' will use the
 following exit codes:</p>
 
-0</code>: The run succeeded with no changes or failures; the system was already in
+<p>0: The run succeeded with no changes or failures; the system was already in
 the desired state.</p>
 
-<p><code>1</code>: The run failed, or wasn't attempted due to another run already in progress.</p>
+<p>1: The run failed, or wasn't attempted due to another run already in progress.</p>
 
-<p><code>2</code>: The run succeeded, and some resources were changed.</p>
+<p>2: The run succeeded, and some resources were changed.</p>
 
-<p><code>4</code>: The run succeeded, and some resources failed.</p>
+<p>4: The run succeeded, and some resources failed.</p>
 
-<p><code>6</code>: The run succeeded, and included both changes and failures.</p></dd>
-<dt><code>--digest</code></dt><dd><p>Change the certificate fingerprinting digest algorithm. The default is
+<p>6: The run succeeded, and included both changes and failures.</p></dd>
+<dt>--digest</dt><dd><p>Change the certificate fingerprinting digest algorithm. The default is
 SHA256. Valid values depends on the version of OpenSSL installed, but
 will likely contain MD5, MD2, SHA1 and SHA256.</p></dd>
-<dt><code>--disable</code></dt><dd><p>Disable working on the local system. This puts a lock file in place,
-causing <code>puppet agent</code> not to work on the system until the lock file
+<dt>--disable</dt><dd><p>Disable working on the local system. This puts a lock file in place,
+causing 'puppet agent' not to work on the system until the lock file
 is removed. This is useful if you are testing a configuration and do
 not want the central configuration to override the local state until
 everything is tested and committed.</p>
 
 <p>Disable can also take an optional message that will be reported by the
-<code>puppet agent</code> at the next disabled run.</p>
+'puppet agent' at the next disabled run.</p>
 
-<p><code>puppet agent</code> uses the same lock file while it is running, so no more
-than one <code>puppet agent</code> process is working at a time.</p>
+<p>'puppet agent' uses the same lock file while it is running, so no more
+than one 'puppet agent' process is working at a time.</p>
 
-<p><code>puppet agent</code> exits after executing this.</p></dd>
-<dt><code>--enable</code></dt><dd><p>Enable working on the local system. This removes any lock file,
-causing <code>puppet agent</code> to start managing the local system again
+<p>'puppet agent' exits after executing this.</p></dd>
+<dt>--enable</dt><dd><p>Enable working on the local system. This removes any lock file,
+causing 'puppet agent' to start managing the local system again
 (although it will continue to use its normal scheduling, so it might
 not start for another half hour).</p>
 
-<p><code>puppet agent</code> exits after executing this.</p></dd>
-<dt><code>--fingerprint</code></dt><dd><p>Display the current certificate or certificate signing request
-fingerprint and then exit. Use the <code>--digest</code> option to change the
+<p>'puppet agent' exits after executing this.</p></dd>
+<dt>--fingerprint</dt><dd><p>Display the current certificate or certificate signing request
+fingerprint and then exit. Use the '--digest' option to change the
 digest algorithm used.</p></dd>
-<dt class="flush"><code>--help</code></dt><dd><p>Print this help message</p></dd>
-<dt><code>--job-id</code></dt><dd><p>Attach the specified job id to the catalog request and the report used for
-this agent run. This option only works when <code>--onetime</code> is used.</p></dd>
-<dt><code>--logdest</code></dt><dd><p>Where to send log messages. Choose between <code>syslog</code> (the POSIX syslog
-service), <code>eventlog</code> (the Windows Event Log), <code>console</code>, or the path to a log
-file. If debugging or verbosity is enabled, this defaults to <code>console</code>.
-Otherwise, it defaults to <code>syslog</code> on POSIX systems and <code>eventlog</code> on Windows.</p>
+<dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
+<dt>--job-id</dt><dd><p>Attach the specified job id to the catalog request and the report used for
+this agent run. This option only works when '--onetime' is used.</p></dd>
+<dt>--logdest</dt><dd><p>Where to send log messages. Choose between 'syslog' (the POSIX syslog
+service), 'eventlog' (the Windows Event Log), 'console', or the path to a log
+file. If debugging or verbosity is enabled, this defaults to 'console'.
+Otherwise, it defaults to 'syslog' on POSIX systems and 'eventlog' on Windows.</p>
 
-<p>A path ending with <code>.json</code> will receive structured output in JSON format. The
-log file will not have an ending <code>]</code> automatically written to it due to the
+<p>A path ending with '.json' will receive structured output in JSON format. The
+log file will not have an ending ']' automatically written to it due to the
 appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
-<dt><code>--masterport</code></dt><dd><p>The port on which to contact the puppet master.
+<dt>--masterport</dt><dd><p>The port on which to contact the puppet master.
 (This is a Puppet setting, and can go in puppet.conf.)</p></dd>
-<dt class="flush"><code>--noop</code></dt><dd><p>Use <code>noop</code> mode where the daemon runs in a no-op or dry-run mode. This
+<dt class="flush">--noop</dt><dd><p>Use 'noop' mode where the daemon runs in a no-op or dry-run mode. This
 is useful for seeing what changes Puppet will make without actually
 executing the changes.
-(This is a Puppet setting, and can go in puppet.conf. Note the special <code>no-</code>
+(This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
 prefix for boolean settings on the command line.)</p></dd>
-<dt><code>--onetime</code></dt><dd><p>Run the configuration once. Runs a single (normally daemonized) Puppet
+<dt>--onetime</dt><dd><p>Run the configuration once. Runs a single (normally daemonized) Puppet
 run. Useful for interactively running puppet agent when used in
-conjunction with the <code>--no-daemonize</code> option.
-(This is a Puppet setting, and can go in puppet.conf. Note the special <code>no-</code>
+conjunction with the --no-daemonize option.
+(This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
 prefix for boolean settings on the command line.)</p></dd>
-<dt><code>--sourceaddress</code></dt><dd><p>Set the source IP address for transactions. This defaults to automatically selected.
+<dt>--sourceaddress</dt><dd><p>Set the source IP address for transactions. This defaults to automatically selected.
 (This is a Puppet setting, and can go in puppet.conf.)</p></dd>
-<dt class="flush"><code>--test</code></dt><dd><p>Enable the most common options used for testing. These are <code>onetime</code>,
-<code>verbose</code>, <code>no-daemonize</code>, <code>no-usecacheonfailure</code>, <code>detailed-exitcodes</code>,
-<code>no-splay</code>, and <code>show_diff</code>.</p></dd>
-<dt><code>--verbose</code></dt><dd><p>Turn on verbose reporting.</p></dd>
-<dt><code>--version</code></dt><dd><p>Print the puppet version number and exit.</p></dd>
-<dt><code>--waitforcert</code></dt><dd><p>This option only matters for daemons that do not yet have certificates
+<dt class="flush">--test</dt><dd><p>Enable the most common options used for testing. These are 'onetime',
+'verbose', 'no-daemonize', 'no-usecacheonfailure', 'detailed-exitcodes',
+'no-splay', and 'show_diff'.</p></dd>
+<dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
+<dt>--version</dt><dd><p>Print the puppet version number and exit.</p></dd>
+<dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
 and it is enabled by default, with a value of 120 (seconds). This
-causes <code>puppet agent</code> to connect to the server every 2 minutes and ask
+causes 'puppet agent' to connect to the server every 2 minutes and ask
 it to sign a certificate request. This is useful for the initial setup
 of a puppet client. You can turn off waiting for certificates by
-specifying a time of <code>0</code>.
-(This is a Puppet setting, and can go in puppet.conf. Note the special <code>no-</code>
+specifying a time of 0.
+(This is a Puppet setting, and can go in puppet.conf. Note the special 'no-'
 prefix for boolean settings on the command line.)</p></dd>
 </dl>
 
@@ -193,10 +193,10 @@ prefix for boolean settings on the command line.)</p></dd>
 <p>Puppet agent accepts the following signals:</p>
 
 <dl>
-<dt class="flush"><code>SIGHUP</code></dt><dd>Restart the puppet agent daemon.</dd>
-<dt><code>SIGINT</code> and <code>SIGTERM</code></dt><dd>Shut down the puppet agent daemon.</dd>
-<dt class="flush"><code>SIGUSR1</code></dt><dd>Immediately retrieve and apply configurations from the puppet master.</dd>
-<dt class="flush"><code>SIGUSR2</code></dt><dd>Close file descriptors for log files and reopen them. Used with logrotate.</dd>
+<dt class="flush">SIGHUP</dt><dd>Restart the puppet agent daemon.</dd>
+<dt>SIGINT and SIGTERM</dt><dd>Shut down the puppet agent daemon.</dd>
+<dt class="flush">SIGUSR1</dt><dd>Immediately retrieve and apply configurations from the puppet master.</dd>
+<dt class="flush">SIGUSR2</dt><dd>Close file descriptors for log files and reopen them. Used with logrotate.</dd>
 </dl>
 
 
