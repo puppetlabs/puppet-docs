@@ -3,15 +3,9 @@ layout: default
 title: Provider Development
 ---
 
-Provider Development
-====================
-
 Information about writing providers to provide implementation for types.
 
-* * *
-
-About
------
+## About
 
 The core of Puppet's cross-platform support is via Resource
 Providers, which are essentially back-ends that implement support
@@ -40,12 +34,12 @@ resource type. The `provide` method takes three arguments plus a block:
 * The optional `:source` argument should be a symbol.
 * The block takes no arguments, and implements the behavior of the provider.
 
-### Parent Classes
+### Parent classes
 
 When declaring a provider, you can specify a
 parent class. There are several different kinds of parent you can use.
 
-#### Base Provider
+#### Base provider
 
 A provider can inherit from a base provider, which is never used alone and only exists for other providers to inherit from. Use the full name of the class.
 
@@ -61,7 +55,7 @@ Note the call to the `desc` method; this sets the documentation for this
 provider, and should include everything necessary for someone to
 use this provider.
 
-#### Another Provider of the Same Resource Type
+#### Another provider of the same resource type
 
 Providers can also specify another provider as their parent. If it's a provider for the same resource type, you can use the name of that provider as a symbol.
 
@@ -76,13 +70,13 @@ each provider type. Puppet defaults to creating a new source for
 each provider type, so you have to specify when a provider subclass
 shares a source with its parent class.
 
-#### A Provider of Any Resource Type
+#### A provider of any resource type
 
 Providers can also specify a provider of any resource type as their parent. Use the `Puppet::Type.type(<NAME>).provider(<NAME>)` methods to locate the provider.
 
 For example, the `ini_setting` type's `ruby` provider (from the [puppetlabs/inifile](https://forge.puppetlabs.com/puppetlabs/inifile) module) can be re-used to implement new resource types that act like INI settings:
 
-~~~ ruby
+``` ruby
     # my_module/lib/puppet/provider/glance_api_config/ini_setting.rb
     Puppet::Type.type(:glance_api_config).provide(
       :ini_setting,
@@ -102,7 +96,7 @@ For example, the `ini_setting` type's `ruby` provider (from the [puppetlabs/inif
         '/etc/glance/glance-api.conf'
       end
     end
-~~~
+```
 
 ## Suitability
 
@@ -186,10 +180,14 @@ method. For instance, this is the apt provider's declaration:
 
     defaultfor :operatingsystem => :debian
 
-The same fact matching functionality is used, so again case does
-not matter.
+The same fact matching functionality as confinement is used, with one addition.
+As of Puppet 5.4.0, it is also acceptable to supply a regex value to match
+against a fact value. This is useful, for example, in the case of providers
+that should only be default for a specific range of operating system versions:
 
-## Provider/Resource API
+    defaultfor :operatingsystemmajrelease => /^[5-7]$/
+
+## Provider/resource API
 
 Providers never do anything on their own; all of their action is
 triggered through an associated resource (or, in special cases,
@@ -229,7 +227,7 @@ returns a list of provider instances, one for each existing
 instance of that provider. For instance, the dpkg provider should
 return a provider instance for every package in the dpkg database.
 
-## Provider Methods
+## Provider methods
 
 By default, you have to define all of your getter and setter
 methods. For simple cases, this is sufficient --- you just implement
@@ -253,7 +251,7 @@ for every property being managed. Note that it also means that
 providers are often getting replaced, so you cannot maintain state
 in a provider.
 
-### Resource Methods
+### Resource methods
 
 For providers that directly modify the system when a setter method
 is called, there's no substitute for defining them manually. But
