@@ -186,8 +186,12 @@ method. For instance, this is the apt provider's declaration:
 
     defaultfor :operatingsystem => :debian
 
-The same fact matching functionality is used, so again case does
-not matter.
+The same fact matching functionality as confinement is used, with one addition.
+As of Puppet 5.4.0, it is also acceptable to supply a regex value to match
+against a fact value. This is useful, for example, in the case of providers
+that should only be default for a specific range of operating system versions:
+
+    defaultfor :operatingsystemmajrelease => /^[5-7]$/
 
 ## Provider/Resource API
 
