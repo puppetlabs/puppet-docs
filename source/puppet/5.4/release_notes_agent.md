@@ -7,11 +7,11 @@ title: "Puppet agent release notes"
 [Puppet 5.1.0]: /puppet/5.1/release_notes.html#puppet-510
 [Puppet 5.2.0]: /puppet/5.2/release_notes.html#puppet-520
 [Puppet 5.3.1]: /puppet/5.3/release_notes.html#puppet-531
-[Puppet 5.4.0]: /puppet/5.3/release_notes.html#puppet-540
+[Puppet 5.4.0]: /puppet/5.4/release_notes.html#puppet-540
 
-[Facter 3.9.4]: /facter/3.9/release_notes.html#facter-394
+[Facter 3.9.5]: /facter/3.9/release_notes.html#facter-395
 
-[MCollective 2.11.4]: /mcollective/releasenotes.html#2_11_4
+[MCollective 2.12.0]: /mcollective/current/releasenotes.html#2_12_0
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -35,8 +35,8 @@ This release of Puppet Platform contains several new features and bug fixes.
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.4.0][] and [Facter ...
+This release includes component updates to [Puppet 5.4.0][], [MCollective 2.12.0][], and [pxp-agent][] 1.9.0.
 
 ### Platform updates
 
-This release adds packages for
+This release adds packages for FIPS-compliant platforms.
