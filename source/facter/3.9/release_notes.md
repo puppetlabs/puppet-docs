@@ -9,7 +9,7 @@ This page documents the history of the Facter 3.9 series.
 
 Released February 14, 2018.
 
-This is a bug-fix release that shipped with Puppet agent 5.3.5.
+This is a bug-fix release that shipped with Puppet Platform 5.3.5.
 
 -   [All issues resolved in Facter 3.9.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.5%27)
 
