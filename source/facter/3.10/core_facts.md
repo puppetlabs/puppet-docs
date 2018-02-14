@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: b621acc0e7e1557e91c51f055212953c6a810355
+built_from_commit: 65bc820596fabce75de9c244bde710a21bf77a5a
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
@@ -242,6 +242,25 @@ Return the usable file systems for block or disk devices.
 
 * Linux: The proc file system must be mounted.
 * Mac OSX: The usable file systems is limited to the file system of mounted devices.
+
+([↑ Back to top](#page-nav))
+
+### `fips_enabled`
+
+**Type:** boolean
+
+**Purpose:**
+
+Return whether the platform is in FIPS mode
+
+
+**Resolution:**
+
+* Linux: parse the contents of `/proc/sys/crypto/fips_enabled` which if non-zero indicates fips mode has been enabled.
+
+**Caveats:**
+
+* Linux: Limited to linux redhat family only
 
 ([↑ Back to top](#page-nav))
 
