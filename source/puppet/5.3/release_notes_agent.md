@@ -44,7 +44,7 @@ This release of Puppet Platform contains several Puppet bug fixes, and security 
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.3.5][] and [Facter 3.9.5][].
+This release includes component updates to [Puppet 5.3.5][], [Facter 3.9.5][], and [pxp-agent][] 1.8.2.
 
 ### Platform updates
 
