@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
+built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
 title: 'Puppet HTTP API: Report'
 canonical: "/puppet/latest/http_api/http_report.html"
 ---
@@ -62,9 +62,10 @@ example is formatted for readability)
      "job_id"=>null,
      "catalog_uuid"=>"827a74c8-cf98-44da-9ff7-18c5e4bee41e",
      "catalog_format"=>1,
-     "report_format"=>7,
+     "report_format"=>8,
      "puppet_version"=>"5.0.0",
      "status"=>"unchanged",
+     "transaction_completed"=>true,
      "noop"=>false,
      "noop_pending"=>false,
      "environment"=>"test_environment",
