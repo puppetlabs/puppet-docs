@@ -588,6 +588,11 @@ documents:
       puppetserver: "5.1"
     hide: true
 
+  /facter/3.10:
+    doc: facter
+    version: "3.10"
+    nav: ./_facter_toc.html
+    hide: true
   /facter/3.9:
     doc: facter
     version: "3.9"
