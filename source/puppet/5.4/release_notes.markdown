@@ -56,7 +56,7 @@ This is a feature and bug-fix release of Puppet.
 
 ### Bug fixes
 
--   Pupet 5.3.3 introduced a regression that prevented `puppet apply` from downloading files from HTTP sources when the response was compressed. (The `puppet agent` command was unaffected.) Puppet 5.4.0 resolves the issue.
+-   Pupet 5.3.4 introduced a regression that prevented `puppet apply` from downloading files from HTTP sources when the response was compressed. (The `puppet agent` command was unaffected.) Puppet 5.4.0 resolves the issue.
 
 -   In previous versions of Puppet, if you tried to add a value to an existing setting that had no value using `puppet config`, Puppet would place the value on the following line of puppet.conf. Attempting to edit any other setting in the file with `puppet config` would then result in a ParseError and add even more extra blank lines to the setting. Puppet 5.4.0 strips any existing newline characters on the setting before attempting to set the value.
 
@@ -178,7 +178,7 @@ This is a feature and bug-fix release of Puppet.
 
 -   The `ldap` node terminus in Puppet 5.4.0 allows Puppet Server to retrieve node classes, parameters, and environments from LDAP.
 
--   Puppet 5.4.0 adds SHA224, 256, 384, and 512 hash algorithms for file checksums and digital signatures.
+-   Puppet 5.4.0 adds SHA224, 256, 384, and 512 hash algorithms for file checksums.
 
 -   Puppet 5.4.0 lets you use the `user` resource attribute `password_warn_days` when creating or updating a Linux user's shadow password settings.
 
