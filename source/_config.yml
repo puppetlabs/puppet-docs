@@ -705,7 +705,8 @@ documents:
       puppet: "5.4"
       facter: "3.10"
       hiera: "3.4"
-    hide: true  /puppetserver/5.1:
+    hide: true
+  /puppetserver/5.1:
     doc: puppetserver
     version: "5.1"
     nav: /puppet/5.3/_puppet_toc.html
