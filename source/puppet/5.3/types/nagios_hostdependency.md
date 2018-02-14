@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
+built_from_commit: a6789531f5d7efbde2f8e526f80e71518121b397
 title: 'Resource Type: nagios_hostdependency'
 canonical: "/puppet/latest/types/nagios_hostdependency.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:34:37 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-13 10:53:05 -0800
 
 nagios_hostdependency
 -----
@@ -210,4 +210,4 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:34:37 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-13 10:53:05 -0800

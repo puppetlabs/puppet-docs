@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
+built_from_commit: a6789531f5d7efbde2f8e526f80e71518121b397
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-13 10:55:25 -0800
 
 package
 -----
@@ -446,7 +446,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`
-* Default for: `["operatingsystem", "fedora"] == ["operatingsystemmajrelease", "['22', '23', '24', '25']"]`
+* Default for: `["operatingsystem", "fedora"] == ["operatingsystemmajrelease", "(22..30).to_a"]`
 
 <h4 id="package-provider-dpkg">dpkg</h4>
 
@@ -1364,4 +1364,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-13 10:55:25 -0800

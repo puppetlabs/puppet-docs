@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
+built_from_commit: a6789531f5d7efbde2f8e526f80e71518121b397
 title: 'Resource Type: selmodule'
 canonical: "/puppet/latest/types/selmodule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-13 10:55:25 -0800
 
 selmodule
 -----
@@ -106,4 +106,4 @@ Manage SELinux policy modules using the semodule binary.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-13 10:55:25 -0800

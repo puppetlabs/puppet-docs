@@ -5,6 +5,18 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.9 series.
 
+## Facter 3.9.5
+
+Released February 13, 2018.
+
+This is a bug-fix release that shipped with Puppet agent 5.3.5 and Puppet Platform 5.4.0.
+
+-   [All issues resolved in Facter 3.9.5](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.5%27)
+
+### Bug fixes
+
+-   Facter 3.9.5 updates its virtualization resolvers to recognize the SMBIOS data reported by Amazon's newer kvm-based hypervisor, which is used with c5 instances. Facter now reports the hypervisor as `kvm` for these cases, allowing c5 instances to be detected as virtual and filling the `ec2_metadata` fact.
+
 ## Facter 3.9.4
 
 Released February 5, 2018.
