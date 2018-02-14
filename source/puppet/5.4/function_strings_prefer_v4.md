@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
+built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:13:04 -0800
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -138,7 +138,7 @@ $annotation = annotate(Mod::NickNameAdapter.annotate, o, { 'nick_name' => 'Buddy
 ~~~
 
 With three arguments, an `Annotation` type, an object, and an the string `clear`, the function will
-clear the annotatation of the given type in the given object. The old annotation is returned if
+clear the annotation of the given type in the given object. The old annotation is returned if
 it existed.
 
 ~~~ puppet
@@ -194,7 +194,7 @@ notice $data.any |$item| { $looked_up[$item] }
 
 Would notice `true` if the looked up hash had a value that is neither `false` nor `undef` for at least
 one of the keys. That is, it is equivalent to the expression
-`$lookued_up[routers] || $looked_up[servers] || $looked_up[workstations]`.
+`$looked_up[routers] || $looked_up[servers] || $looked_up[workstations]`.
 
 When the first argument is a `Hash`, Puppet passes each key and value pair to the lambda
 as an array in the form `[key, value]`.
@@ -330,6 +330,27 @@ functions.
 Called within a class definition, establishes a containment
 relationship with another class
 For documentation, see the 3.x stub
+
+## `convert_to`
+
+* `convert_to(Any $value, Type $type, Optional[Callable[1,1]] &$block)`
+    * Return type(s): `Any`. 
+
+The `convert_to(value, type)` is a convenience function does the same as `new(type, value)`.
+The difference in the argument ordering allows it to be used in chained style for
+improved readability "left to right".
+
+When the function is given a lambda, it is called with the converted value, and the function
+returns what the lambda returns, otherwise the converted value.
+
+~~~ puppet
+  # using new operator - that is "calling the type" with operator ()
+  Hash(Array("abc").map |$i,$v| { [$i, $v] })
+
+  # using 'convert_to'
+  "abc".convert_to(Array).map |$i,$v| { [$i, $v] }.convert_to(Hash)
+
+~~~
 
 ## `create_resources`
 
@@ -1466,6 +1487,29 @@ $matches = ["abc123","def456"].match(/([a-z]+)([1-9]+)/)
 
 Returns a MD5 hash value from a provided string.
 
+## `module_directory`
+
+* `module_directory(String *$names)`
+    * Return type(s): `Any`. 
+* `module_directory(Array[String] *$names)`
+    * Return type(s): `Any`. 
+
+Finds an existing module and returns the path to its root directory.
+
+The argument to this function should be a module name String
+For example, the reference `mysql` will search for the
+directory `<MODULES DIRECTORY>/mysql` and return the first
+found on the modulepath.
+
+This function can also accept:
+
+* Multiple String arguments, which will return the path of the **first** module
+ found, skipping non existing modules.
+* An array of module names, which will return the path of the **first** module
+ found from the given names in the array, skipping non existing modules.
+
+The function returns `undef` if none of the given modules were found
+
 ## `new`
 
 * `new(Type $type, Any *$args, Optional[Callable] &$block)`
@@ -1694,6 +1738,13 @@ You can also optionally pass a lambda to scanf, to do additional validation or p
     * Return type(s): `Any`. 
 
 Returns a SHA1 hash value from a provided string.
+
+## `sha256`
+
+* `sha256()`
+    * Return type(s): `Any`. 
+
+Returns a SHA256 hash value from a provided string.
 
 ## `shellquote`
 
@@ -2072,4 +2123,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:13:04 -0800

@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: efc61e00b8b0683ac74815af8e978cd8de6e53ed
+built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
 title: Resource Type Reference (Single-Page)
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:13:03 -0800
 
 ## About Resource Types
 
@@ -437,7 +437,7 @@ not part of the actual job, the name is stored in a comment beginning with
 by Puppet with cron resources.
 
 If an existing crontab entry happens to match the scheduling and command of a
-cron resource that has never been synched, Puppet will defer to the existing
+cron resource that has never been synced, Puppet will defer to the existing
 crontab entry and will not create a new entry tagged with the `# Puppet Name: `
 comment.
 
@@ -725,7 +725,7 @@ exec resource will autorequire that user.
 <pre><code>exec { 'resource title':
   <a href="#exec-attribute-command">command</a>     =&gt; <em># <strong>(namevar)</strong> The actual command to execute.  Must either be...</em>
   <a href="#exec-attribute-cwd">cwd</a>         =&gt; <em># The directory from which to run the command.  If </em>
-  <a href="#exec-attribute-environment">environment</a> =&gt; <em># Any additional environment variables you want to </em>
+  <a href="#exec-attribute-environment">environment</a> =&gt; <em># An array of any additional environment variables </em>
   <a href="#exec-attribute-group">group</a>       =&gt; <em># The group to run the command as.  This seems to...</em>
   <a href="#exec-attribute-logoutput">logoutput</a>   =&gt; <em># Whether to log command output in addition to...</em>
   <a href="#exec-attribute-path">path</a>        =&gt; <em># The search path used for command execution...</em>
@@ -761,10 +761,11 @@ this directory does not exist, the command will fail.
 
 <h4 id="exec-attribute-environment">environment</h4>
 
-Any additional environment variables you want to set for a
-command.  Note that if you use this to set PATH, it will override
-the `path` attribute.  Multiple environment variables should be
-specified as an array.
+An array of any additional environment variables you want to set for a
+command. e.g.: `[ 'HOME=/root', 'MAIL=root@example.com']`
+Note that if you use this to set PATH, it will override the `path`
+attribute. Multiple environment variables should be specified as an
+array.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -1443,7 +1444,7 @@ a group record.
 
 <pre><code>group { 'resource title':
   <a href="#group-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The group name. While naming limitations vary by </em>
-  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Allowed values:  ...</em>
+  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Default: `present`  </em>
   <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs. Defaults to...</em>
   <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># AIX only. Configures the behavior of the...</em>
   <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes, as an array of...</em>
@@ -1475,6 +1476,8 @@ referring to a given group.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Create or remove the group.
+
+Default: `present`
 
 Allowed values:
 
@@ -2051,6 +2054,10 @@ the `.k5login` file as the name, and an array of principals as the
   <a href="#k5login-attribute-ensure">ensure</a>     =&gt; <em># The basic property that the resource should be...</em>
   <a href="#k5login-attribute-mode">mode</a>       =&gt; <em># The desired permissions mode of the `.k5login...</em>
   <a href="#k5login-attribute-principals">principals</a> =&gt; <em># The principals present in the `.k5login` file...</em>
+  <a href="#k5login-attribute-selrange">selrange</a>   =&gt; <em># What the SELinux range component of the context...</em>
+  <a href="#k5login-attribute-selrole">selrole</a>    =&gt; <em># What the SELinux role component of the context...</em>
+  <a href="#k5login-attribute-seltype">seltype</a>    =&gt; <em># What the SELinux type component of the context...</em>
+  <a href="#k5login-attribute-seluser">seluser</a>    =&gt; <em># What the SELinux user component of the context...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -2093,6 +2100,55 @@ The principals present in the `.k5login` file. This should be specified as an ar
 
 ([↑ Back to k5login attributes](#k5login-attributes))
 
+<h4 id="k5login-attribute-selrange">selrange</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+What the SELinux range component of the context of the file should be.
+Any valid SELinux range component is accepted.  For example `s0` or
+`SystemHigh`.  If not specified it defaults to the value returned by
+matchpathcon for the file, if any exists.  Only valid on systems with
+SELinux support enabled and that have support for MCS (Multi-Category
+Security).
+
+([↑ Back to k5login attributes](#k5login-attributes))
+
+<h4 id="k5login-attribute-selrole">selrole</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+What the SELinux role component of the context of the file should be.
+Any valid SELinux role component is accepted.  For example `role_r`.
+If not specified it defaults to the value returned by matchpathcon for
+the file, if any exists.  Only valid on systems with SELinux support
+enabled.
+
+([↑ Back to k5login attributes](#k5login-attributes))
+
+<h4 id="k5login-attribute-seltype">seltype</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+What the SELinux type component of the context of the file should be.
+Any valid SELinux type component is accepted.  For example `tmp_t`.
+If not specified it defaults to the value returned by matchpathcon for
+the file, if any exists.  Only valid on systems with SELinux support
+enabled.
+
+([↑ Back to k5login attributes](#k5login-attributes))
+
+<h4 id="k5login-attribute-seluser">seluser</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+What the SELinux user component of the context of the file should be.
+Any valid SELinux user component is accepted.  For example `user_u`.
+If not specified it defaults to the value returned by matchpathcon for
+the file, if any exists.  Only valid on systems with SELinux support
+enabled.
+
+([↑ Back to k5login attributes](#k5login-attributes))
+
 
 
 
@@ -2108,7 +2164,7 @@ macauthorization
 <h3 id="macauthorization-description">Description</h3>
 
 Manage the Mac OS X authorization database. See the
-[Apple developer site](https://developer.apple.com/documentation/Security/Conceptual/Security_Overview/Security_Services/chapter_4_section_5.html)
+[Apple developer site](https://developer.apple.com/library/content/documentation/Security/Conceptual/Security_Overview/AuthenticationAndAuthorization/AuthenticationAndAuthorization.html)
 for more information.
 
 Note that authorization store directives with hyphens in their names have
@@ -2784,8 +2840,12 @@ operating system.  This is a required option.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 A single string containing options for the mount, as they would
-appear in fstab. For many platforms this is a comma delimited string.
-Consult the fstab(5) man page for system-specific details.
+appear in fstab on Linux. For many platforms this is a comma-delimited
+string. Consult the fstab(5) man page for system-specific details.
+AIX options other than dev, nodename, or vfs can be defined here. If
+specified, AIX options of account, boot, check, free, mount, size,
+type, vol, log, and quota must be ordered alphabetically at the end of
+the list.
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -3347,7 +3407,7 @@ These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--
 or an array where each element is either a string or a hash.
 
 * Required binaries: `dnf`, `rpm`
-* Default for: `["operatingsystem", "fedora"] == ["operatingsystemmajrelease", "['22', '23', '24', '25']"]`
+* Default for: `["operatingsystem", "fedora"] == ["operatingsystemmajrelease", "(22..30).to_a"]`
 
 <h4 id="package-provider-dpkg">dpkg</h4>
 
@@ -3381,7 +3441,7 @@ appended to the list of remote gem repositories; to ensure that only the
 specified source is used, also pass `--clear-sources` via `install_options`.
 If source is present but is not a valid URL, it will be interpreted as the
 path to a local gem file. If source is not present, the gem will be
-installed from the default gem repositories.
+installed from the default gem repositories. Note that to modify this for Windows, it has to be a valid URL.
 
 This provider supports the `install_options` and `uninstall_options` attributes,
 which allow command-line flags to be passed to the gem command.
@@ -5301,10 +5361,9 @@ Standard `init`-style service management.
 This provider manages jobs with `launchd`, which is the default service
 framework for Mac OS X (and may be available for use on other platforms).
 
-For `launchd` documentation, see:
+For more information, see the `launchd` man page:
 
-* <https://developer.apple.com/macosx/launchd.html>
-* <http://launchd.macosforge.org/>
+* <https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/launchd.8.html>
 
 This provider reads plists out of the following directories:
 
@@ -6189,7 +6248,7 @@ user resource will autorequire those role accounts.
   <a href="#user-attribute-auth_membership">auth_membership</a>      =&gt; <em># Whether specified auths should be considered the </em>
   <a href="#user-attribute-auths">auths</a>                =&gt; <em># The auths the user has.  Multiple auths should...</em>
   <a href="#user-attribute-comment">comment</a>              =&gt; <em># A description of the user.  Generally the user's </em>
-  <a href="#user-attribute-expiry">expiry</a>               =&gt; <em># The expiry date for this user. Must be provided...</em>
+  <a href="#user-attribute-expiry">expiry</a>               =&gt; <em># The expiry date for this user. Provide as either </em>
   <a href="#user-attribute-forcelocal">forcelocal</a>           =&gt; <em># Forces the management of local accounts when...</em>
   <a href="#user-attribute-gid">gid</a>                  =&gt; <em># The user's primary group.  Can be specified...</em>
   <a href="#user-attribute-groups">groups</a>               =&gt; <em># The groups to which the user belongs.  The...</em>
@@ -6204,6 +6263,7 @@ user resource will autorequire those role accounts.
   <a href="#user-attribute-password">password</a>             =&gt; <em># The user's password, in whatever encrypted...</em>
   <a href="#user-attribute-password_max_age">password_max_age</a>     =&gt; <em># The maximum number of days a password may be...</em>
   <a href="#user-attribute-password_min_age">password_min_age</a>     =&gt; <em># The minimum number of days a password must be...</em>
+  <a href="#user-attribute-password_warn_days">password_warn_days</a>   =&gt; <em># The number of days before a password is going to </em>
   <a href="#user-attribute-profile_membership">profile_membership</a>   =&gt; <em># Whether specified roles should be treated as the </em>
   <a href="#user-attribute-profiles">profiles</a>             =&gt; <em># The profiles the user has.  Multiple profiles...</em>
   <a href="#user-attribute-project">project</a>              =&gt; <em># The name of the project associated with a...</em>
@@ -6319,10 +6379,9 @@ A description of the user.  Generally the user's full name.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The expiry date for this user. Must be provided in
-a zero-padded YYYY-MM-DD format --- e.g. 2010-02-19.
-If you want to ensure the user account never expires,
-you can pass the special value `absent`.
+The expiry date for this user. Provide as either the special
+value `absent` to ensure that the account never expires, or as
+a zero-padded YYYY-MM-DD format -- for example, 2010-02-19.
 
 Allowed values:
 
@@ -6509,6 +6568,14 @@ The maximum number of days a password may be used before it must be changed.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The minimum number of days a password must be used before it may be changed.
+
+([↑ Back to user attributes](#user-attributes))
+
+<h4 id="user-attribute-password_warn_days">password_warn_days</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+The number of days before a password is going to expire (see the maximum password age) during which the user should be warned.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -7066,6 +7133,7 @@ existence of files listed in the `include` attribute.
   <a href="#yumrepo-attribute-metalink">metalink</a>                     =&gt; <em># Metalink for mirrors.  Allowed values:  * `/.*/` </em>
   <a href="#yumrepo-attribute-mirrorlist">mirrorlist</a>                   =&gt; <em># The URL that holds the list of mirrors for this...</em>
   <a href="#yumrepo-attribute-mirrorlist_expire">mirrorlist_expire</a>            =&gt; <em># Time (in seconds) after which the mirrorlist...</em>
+  <a href="#yumrepo-attribute-payload_gpgcheck">payload_gpgcheck</a>             =&gt; <em># Whether to check the GPG signature of the...</em>
   <a href="#yumrepo-attribute-priority">priority</a>                     =&gt; <em># Priority of this repository from 1-99. Requires...</em>
   <a href="#yumrepo-attribute-protect">protect</a>                      =&gt; <em># Enable or disable protection for this...</em>
   <a href="#yumrepo-attribute-proxy">proxy</a>                        =&gt; <em># URL of a proxy server that Yum should use when...</em>
@@ -7413,6 +7481,19 @@ Allowed values:
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
+<h4 id="yumrepo-attribute-payload_gpgcheck">payload_gpgcheck</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+Whether to check the GPG signature of the packages payload.
+
+Allowed values:
+
+* `YUM_BOOLEAN`
+* `absent`
+
+([↑ Back to yumrepo attributes](#yumrepo-attributes))
+
 <h4 id="yumrepo-attribute-priority">priority</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -7678,6 +7759,7 @@ parent zfs instances, the zfs resource will autorequire them.
   <a href="#zfs-attribute-ensure">ensure</a>         =&gt; <em># The basic property that the resource should be...</em>
   <a href="#zfs-attribute-aclinherit">aclinherit</a>     =&gt; <em># The aclinherit property. Valid values are...</em>
   <a href="#zfs-attribute-aclmode">aclmode</a>        =&gt; <em># The aclmode property. Valid values are...</em>
+  <a href="#zfs-attribute-acltype">acltype</a>        =&gt; <em># The acltype propery. Valid values are 'noacl...</em>
   <a href="#zfs-attribute-atime">atime</a>          =&gt; <em># The atime property. Valid values are `on`...</em>
   <a href="#zfs-attribute-canmount">canmount</a>       =&gt; <em># The canmount property. Valid values are `on`...</em>
   <a href="#zfs-attribute-checksum">checksum</a>       =&gt; <em># The checksum property. Valid values are `on`...</em>
@@ -7746,6 +7828,14 @@ The aclinherit property. Valid values are `discard`, `noallow`, `restricted`, `p
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The aclmode property. Valid values are `discard`, `groupmask`, `passthrough`.
+
+([↑ Back to zfs attributes](#zfs-attributes))
+
+<h4 id="zfs-attribute-acltype">acltype</h4>
+
+_(**Property:** This attribute represents concrete state on the target system.)_
+
+The acltype propery. Valid values are 'noacl' and 'posixacl'. Only supported on Linux.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -8343,4 +8433,4 @@ Provider for zpool.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-05 12:35:27 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:13:03 -0800
