@@ -28,9 +28,9 @@ This is a feature and bug-fix release of Puppet.
 
 -   [All issues resolved in Puppet 5.4.0](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.4.0%27)
 
-### Breaking changes
+### Breaking changes (Bolt)
 
--   In previous versions of Puppet, tasks were Types, and you could call the `run_task()` function with a reference to the Type or an instance of the Type. Puppet 5.4.0 requires you to refer to tasks by their lowercase task names.
+-   In previous versions of Puppet, tasks were Types, and you could call the `run_task()` function with a reference to the Type or an instance of the Type. Puppet 5.4.0 requires you to refer to tasks by their lowercase task names. This affects Bolt users only.
 
     For example, the following invocations are no longer valid:
 
