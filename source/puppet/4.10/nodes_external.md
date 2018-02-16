@@ -44,11 +44,16 @@ When compiling a node's catalog, Puppet includes **all** of the following:
 
 ## Connecting an ENC
 
-To tell Puppet Server to use an ENC, you need to set two [settings](./config_about_settings.html): `node_terminus` has to be set to "exec", and `external_nodes` must have the path to the executable.
+To tell Puppet Server to use an ENC, you need to set two [settings](./config_about_settings.html) in the Puppet master's `puppet.conf` file: `node_terminus` has to be set to "exec", and `external_nodes` must have the path to the executable.
 
     [master]
       node_terminus = exec
       external_nodes = /usr/local/bin/puppet_node_classifier
+
+### Related topics
+
+-   [`node_terminus`](./configuration.html#nodeterminus)
+-   [`external_nodes`](./configuration.html#externalnodes)
 
 
 ## ENC output format
