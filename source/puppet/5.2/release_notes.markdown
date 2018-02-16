@@ -14,7 +14,7 @@ Puppet's version numbers use the format X.Y.Z, where:
 
 ## If you're upgrading from Puppet 4.x
 
-Read the [Puppet 5.0 release notes](/puppet/5.0/release_notes.html), because they cover breaking changes since Puppet 4.10.
+Read the [Puppet 5.0.0 release notes](/puppet/5.0/release_notes.html#puppet-500), because they cover breaking changes since Puppet 4.10.
 
 Read the [Puppet 5.1 release notes](/puppet/5.1/release_notes.html), because they cover important new features and changes since Puppet 5.0.
 

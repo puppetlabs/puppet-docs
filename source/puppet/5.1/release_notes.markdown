@@ -14,7 +14,7 @@ Puppet's version numbers use the format X.Y.Z, where:
 
 ## If you're upgrading from Puppet 4.x
 
-Read the [Puppet 5.0 release notes](/puppet/5.0/release_notes.html), because they cover breaking changes since Puppet 4.10.
+Read the [Puppet 5.0.0 release notes](/puppet/5.0/release_notes.html#puppet-500), because they cover breaking changes since Puppet 4.10.
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
@@ -48,11 +48,11 @@ The function `tree_each` has been added to allow convenient iteration, filtering
 
 #### New functions `any` and `all`
 
-The functions `any` and `all` have been added to Puppet. They iterate over something iterable and can test if there is at least one element for which a lambda returns a truthy value (`any`) or if the lambda returns a truthy value for all elements (`all`).	
+The functions `any` and `all` have been added to Puppet. They iterate over something iterable and can test if there is at least one element for which a lambda returns a truthy value (`any`) or if the lambda returns a truthy value for all elements (`all`).
 
 ### Improvements
 
-The `puppet master` command now listens on both IPv4 and IPv6. 
+The `puppet master` command now listens on both IPv4 and IPv6.
 
 >NOTE: On macOS, the `puppet master` command may not work correctly. This can be fixed by setting `bindaddress` to `"0.0.0.0"` or `"::"`, depending on if you want to listen on IPv4 or IPv6.
 
