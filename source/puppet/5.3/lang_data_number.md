@@ -89,7 +89,8 @@ The [arithmetic operators][arithmetic] will automatically convert strings to num
 
 In all other contexts (resource attributes, function arguments, etc.), Puppet _won't_ automatically convert strings to numbers, but you can:
 
-* Add 0 to manually convert a string to a number. (For example, `$mystring = "85"; $mynum = 0 + $mystring`.)
+* Use the `Integer` data type to recast the string, such as `$mynum = Integer($mystring)`. The default radix of this conversion is base 10.
+* Add 0 to manually convert a string to a number. (For example, `$mystring = "85"; $mynum = 0 + $mystring`.) Note that this can fail as part of [Bolt plans](/bolt/latest/writing_plans.html).
 * Use [the `scanf` function](./function.html#scanf) to manually extract numbers from strings. This function can also account for surrounding non-numerical text.
 
 
