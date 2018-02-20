@@ -80,7 +80,7 @@ $value = 0xLSD  # Error, invalid hex
 
 Numbers are automatically converted to strings when interpolated into a string. The automatic conversion uses decimal (base 10) notation.
 
-If you need to convert numbers to non-decimal string representations, you can use [the `sprintf` function.](./function.html#sprintf)
+To convert numbers to non-decimal string representations, you can use the [`sprintf` function](./function.html#sprintf), or you can create a new string object with the `new()` function and [specify its format](./function.html#conversion-to-string).
 
 ## Converting strings to numbers
 
@@ -88,9 +88,23 @@ If you need to convert numbers to non-decimal string representations, you can us
 
 In all other contexts (resource attributes, function arguments, etc.), Puppet _won't_ automatically convert strings to numbers, but you can:
 
--   Use the `Integer` data type to recast the string, such as `$mynum = Integer($mystring)`. The default radix of this conversion is base 10.
--   Add 0 to manually convert a string to a number. (For example, `$mystring = "85"; $mynum = 0 + $mystring`.) Note that this can fail as part of [Bolt plans](/bolt/latest/writing_plans.html).
+-   Create a new `Integer` or `Float` object using the string as a parameter, such as `$mynum = Integer($mystring)`. This invokes the type's `new()` function, which can convert objects of other types --- including Strings --- into [Integers](./function.html#conversion-to-integer) and [Floats](./function.html#conversion-to-float).
+
+    The default radix of this conversion is base 10, but you can specify others.
 -   Use [the `scanf` function](./function.html#scanf) to manually extract numbers from strings. This function can also account for surrounding non-numerical text.
+
+> **Deprecation note:** Puppet 4.10.2 deprecated numeric coercion, which silently and automatically converted strings into numbers by adding a number to a string (for example, `$mynum = '10' + 0` would result in `$mynum` being assigned the number 10.) This now logs a Warning, or generates an Error if `--strict` is enabled.
+>
+> To ensure that your code works with future versions of Puppet, create new instances of numeric objects to convert String values to numeric types.
+
+### Examples
+
+Converting a string to an integer and float:
+
+    $mystring = '10';                  # $mystring == '10'
+    $myinteger = Integer($mystring);   # $myinteger == 10
+    $myfloat = Integer($mystring);     # $myfloat == 10.0
+    $myhexint = Integer($mystring, 16) # $myhexint == 16; '10' in base 16
 
 ## The `Integer` data type
 
