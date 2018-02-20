@@ -107,7 +107,8 @@ Root certificate revocation list  | `puppet config print hostcrl --section agent
 Puppet Server can operate as an intermediate CA to an external root CA.  (The server cannot be an intermediate to an intermediate.)  In this mode, the Puppet CA is left enabled; it can automatically accept CSRs and distribute certificates to agents, and can use the standard `puppet cert` command to sign certificates. However, there are some limitations:
 
 * Agent-side CRL checking is not possible, although Puppet Server still verifies the CRL.
-* The CA certificate bundle (the external root CA combined with the intermediate CA certificate) must be distributed to the agents manually, ideally before puppet runs
+* The CA certificate bundle (the external root CA combined with the intermediate CA certificate) must be distributed to the agents manually, ideally before puppet runs.
+* Puppet Server does not support a passphrase-protected CA key.
 
 ### Puppet Server
 
@@ -127,7 +128,7 @@ To configure Puppet Server:
 
    > Note: Although root_crt.pem can be named anything (since Puppet Server doesn't use it directly), the file needs to be stored in the location shown.
 
-   > Note: ca_key.pem must not have a passphrase, since the Puppet CA cannot provide one when using the key.
+   > **Note:** ca_key.pem must not have a passphrase, because the Puppet Server CA cannot provide one when using the key. This is a limitation in Puppet Server.
 
 2. Generate the CA bundle, which you'll place on the server and on every agent node.  Combine the root CA and intermediate CA certificates into one PEM file:
 
