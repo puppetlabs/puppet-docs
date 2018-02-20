@@ -54,13 +54,13 @@ This configuration is all-or-nothing rather than mix-and-match. When using an ex
 
 Additionally, Puppet cannot automatically distribute certificates in this configurations --- you must have your own complete system for issuing and distributing certificates.
 
-### Puppet server
+### Puppet Server
 
 Configure Puppet Server in three steps:
 
-* Disable the internal CA service
-* Ensure that the certname will never change
-* Put certificates/keys in place on disk
+* Disable the internal CA service.
+* Ensure that the certname will never change.
+* Put certificates/keys in place on disk.
 
 1. Edit Puppet Server's `/etc/puppetlabs/puppetserver/services.d/ca.cfg` file to disable the internal CA. Comment out the line following "To enable the CA service..." and uncomment the line following "To disable the CA service...", as follows:
 
@@ -102,9 +102,9 @@ Agent SSL certificate private key | `puppet config print hostprivkey --section a
 Root CA certificate               | `puppet config print localcacert --section agent`
 Root certificate revocation list  | `puppet config print hostcrl --section agent`
 
-## Option 2: Puppet server functioning as an intermediate CA
+## Option 2: Puppet Server functioning as an intermediate CA
 
-Puppet Server can operate as an intermediate CA to an external root CA.  (The server cannot be an intermediate to an intermediate.)  In this mode, the Puppet CA is left enabled; it can automatically accept CSRs and distribute certificates to agents, and can use the standard `puppet cert` command to sign certificates. However, there are some limitations:
+Puppet Server can operate as an intermediate CA to an external root CA. (The server cannot be an intermediate to an intermediate.)  In this mode, the Puppet CA is left enabled; it can automatically accept CSRs and distribute certificates to agents, and can use the standard `puppet cert` command to sign certificates. However, there are some limitations:
 
 * Agent-side CRL checking is not possible, although Puppet Server still verifies the CRL.
 * The CA certificate bundle (the external root CA combined with the intermediate CA certificate) must be distributed to the agents manually, ideally before puppet runs.
@@ -112,7 +112,9 @@ Puppet Server can operate as an intermediate CA to an external root CA.  (The se
 
 ### Puppet Server
 
-Before configuring Puppet Server, you must obtain the intermediate CA certificate from your external root CA.  Generating the intermediate CA cert is outside the scope of this guide, since it depends on your external certificate authority solution.  This guide assumes you are either starting with a fresh installation or have removed all SSL files from your existing server and are starting over.  Also, you should stop all Puppet related services on the server before this process.
+Before configuring Puppet Server, you must obtain the intermediate CA certificate from your external root CA. Generating the intermediate CA cert is outside the scope of this guide, since it depends on your external certificate authority solution. This guide assumes you are either starting with a fresh installation or have removed all SSL files from your existing server and are starting over.
+
+> **Warning:** Stop all Puppet-related services on the server before beginning this process.
 
 To configure Puppet Server:
 
@@ -126,7 +128,7 @@ To configure Puppet Server:
 
    All of these files should be owned by `puppet:puppet` and have permissions of `0600`.
 
-   > Note: Although root_crt.pem can be named anything (since Puppet Server doesn't use it directly), the file needs to be stored in the location shown.
+   > **Note:** Although root_crt.pem can be named anything (since Puppet Server doesn't use it directly), the file needs to be stored in the location shown.
 
    > **Note:** ca_key.pem must not have a passphrase, because the Puppet Server CA cannot provide one when using the key. This is a limitation in Puppet Server.
 
@@ -137,7 +139,7 @@ To configure Puppet Server:
    cat ca_crt.pem root_crt.pem > ../certs/ca.pem
    ```
 
-   > Note: You also need to install a CRL file.  If you don't have one pre-generated from the root CA, you can easily create one by first running `puppet cert generate fakehost` and then revoking this certificate with `puppet cert clean fakehost`.  If you do have a pre-generated CRL, install it into `/etc/puppetlabs/puppet/ssl/ca/ca_crl.pem.
+   > **Note:** You also need to install a CRL file.  If you don't have one pre-generated from the root CA, you can easily create one by first running `puppet cert generate fakehost` and then revoking this certificate with `puppet cert clean fakehost`.  If you do have a pre-generated CRL, install it into `/etc/puppetlabs/puppet/ssl/ca/ca_crl.pem.
 
 3. Generate a new certificate for Puppet Server to use.  Remember to include the `dns_alt_names` that this server will need to service.
 
