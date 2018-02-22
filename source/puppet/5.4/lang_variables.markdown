@@ -128,7 +128,7 @@ By default, you can access variables that have never had values assigned to them
 
 This is usually not what you want, because using an unassigned variable is often an accident or a typo.
 
-If you'd rather have unassigned variable usage throw an error, so you can get warned early and fix the problem, you can enable strict mode. Set [`strict_variables = true`][strict_variables] in [puppet.conf][] on your Puppet master(s) and any nodes that run Puppet apply.
+If you'd rather have unassigned variable usage throw an error, so you can get warned early and fix the problem, you can enable strict mode. Set [`strict_variables = true`][strict_variables] in [puppet.conf][] on your Puppet master and any nodes that run Puppet apply.
 
 ### No reassignment
 

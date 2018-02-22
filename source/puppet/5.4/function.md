@@ -2144,7 +2144,7 @@ is exceeded, each element will be indented.
 | h         | Formats with `{ }` delimiters, `,` element separator and ` => ` inner element separator unless overridden by flags.
 | s         | Same as h.
 | p         | Same as h.
-| a         | Converts the hash to an array of [k,v] tuples and formats it using array rule(s).
+| a         | Converts the hash to an array of [k,v] tuples and formats it using array rules.
 
 See "Flags" `<[({|` for formatting of delimiters, and "Additional parameters for containers; Array and Hash" for
 more information about options.

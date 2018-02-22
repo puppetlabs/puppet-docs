@@ -128,7 +128,7 @@ A class definition statement isn't an expression and can't be used where a value
 >
 > Most users should **only** put classes in individual files in modules. However, it's technically possible to put classes in the following additional locations and still load the class by name:
 >
-> * [The main manifest][sitedotpp]. If you do so, they can be placed anywhere in the main manifest file(s) and are not evaluation-order dependent. (That is, you can safely declare a class before it's defined.)
+> * [The main manifest][sitedotpp]. If you do so, they can be placed anywhere in the main manifest file and are not evaluation-order dependent. (That is, you can safely declare a class before it's defined.)
 > * A file in the same module whose corresponding class name is a truncated version of this class's name. That is, the class `first::second::third` could be put in `first::second`'s file, `first/manifests/second.pp`.
 > * Lexically inside another class definition. This puts the interior class under the exterior class's [namespace][], causing its real name to be something other than the name with which it was defined. (For example: in `class first { class second { ... } }`, the interior class's real name is `first::second`.) Note that this doesn't cause the interior class to be automatically declared along with the exterior class.
 >

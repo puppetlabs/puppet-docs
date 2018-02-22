@@ -54,7 +54,7 @@ In the example above, only `www1.example.com` would receive the apache and squid
 Node definitions look like class definitions. The general form of a node definition is:
 
 * The `node` keyword
-* The name(s) of the node(s), separated by commas (with an optional final trailing comma)
+* The name of each node, separated by commas (with an optional final trailing comma)
 * An opening curly brace
 * Any mixture of class declarations, variables, resource declarations, collectors, conditional statements, chaining relationships, and functions
 * A closing curly brace
