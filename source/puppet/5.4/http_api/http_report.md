@@ -26,7 +26,7 @@ The http(s) endpoint for sending reports to the master is:
 
 PUT
 
-### Supported Format(s)
+### Supported Formats
 
 `application/json`, `text/pson`
 
