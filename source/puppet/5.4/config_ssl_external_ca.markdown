@@ -108,7 +108,7 @@ Puppet Server can operate as an intermediate CA to an external root CA. (The ser
 
 * Agent-side CRL checking is not possible, although Puppet Server still verifies the CRL.
 * The CA certificate bundle (the external root CA combined with the intermediate CA certificate) must be distributed to the agents manually, ideally before puppet runs.
-* Puppet Server does not support a passphrase-protected CA key.
+* Puppet Server does not support a passphrase-protected intermediate CA private key.
 
 ### Puppet Server
 
