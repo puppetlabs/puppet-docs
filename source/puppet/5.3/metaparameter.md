@@ -92,7 +92,7 @@ One or more resources that depend on this resource, expressed as
 Multiple resources can be specified as an array of references. When this
 attribute is present:
 
-* This resource will be applied _before_ the dependent resource(s).
+* This resource will be applied _before_ the dependent resources.
 
 This is one of the four relationship metaparameters, along with
 `require`, `notify`, and `subscribe`. For more context, including the
@@ -107,7 +107,7 @@ The value of this parameter must be a reference to a capability resource,
 or an array of such references. Each capability resource referenced here
 must have been exported by another resource in the same environment.
 
-The referenced capability resource(s) will be looked up, added to the
+The referenced capability resources will be looked up, added to the
 current node catalog, and processed following the underlying consumes
 clause.
 
@@ -195,7 +195,7 @@ One or more resources that depend on this resource, expressed as
 Multiple resources can be specified as an array of references. When this
 attribute is present:
 
-* This resource will be applied _before_ the notified resource(s).
+* This resource will be applied _before_ the notified resources.
 * If Puppet makes changes to this resource, it will cause all of the
   notified resources to _refresh._ (Refresh behavior varies by resource
   type: services will restart, mounts will unmount and re-mount, etc. Not
@@ -213,7 +213,7 @@ One or more resources that this resource depends on, expressed as
 Multiple resources can be specified as an array of references. When this
 attribute is present:
 
-* The required resource(s) will be applied **before** this resource.
+* The required resources will be applied **before** this resource.
 
 This is one of the four relationship metaparameters, along with
 `before`, `notify`, and `subscribe`. For more context, including the

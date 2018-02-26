@@ -141,7 +141,7 @@ You should have already initialized a CA and created the Puppet master's credent
 
 Your SSL termination must be configured as follows:
 
-* It must use a set of cyphers and protocols compatible with the version(s) of OpenSSL that your Puppet agent nodes are using.
+* It must use a set of cyphers and protocols compatible with the version of OpenSSL that your Puppet agent nodes are using.
 * It must trust the Puppet CA certificate as its CA. (If you are using an intermediate or split external CA, this is somewhat more complicated; see [the external CA reference][external_ca] for details.)
 * It must identify itself to clients using the Puppet master's certificate and private key.
 * It must have [client authentication][] enabled but optional.

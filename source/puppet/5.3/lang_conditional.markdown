@@ -124,7 +124,7 @@ The value of an `if` expression is the value of the last expression in the execu
 
 ### Conditions
 
-The condition(s) of an "if" statement can be any expression that resolves to a boolean value. This includes:
+The conditions of an "if" statement can be any expression that resolves to a Boolean value. This includes:
 
 * [Variables][]
 * [Expressions][], including arbitrarily nested `and` and `or` expressions
@@ -185,7 +185,7 @@ The value of an `unless` expression is the value of the last expression in the e
 
 ### Conditions
 
-The condition(s) of an "unless" statement can be any expression that resolves to a boolean value. This includes:
+The conditions of an "unless" statement can be any expression that resolves to a Boolean value. This includes:
 
 * [Variables][]
 * [Expressions][], including arbitrarily nested `and` and `or` expressions

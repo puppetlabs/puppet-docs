@@ -19,7 +19,7 @@ And it can be modified:
     $ augtool
     augtool> set /files/etc/ssh/sshd_config/PermitRootLogin no
     augtool> save
-    Saved 1 file(s)
+    Saved 1 file
     $ grep PermitRootLogin /etc/ssh/sshd_config
     PermitRootLogin no
 
@@ -102,7 +102,7 @@ So, to add a new entry, you'd do something like this:
     augtool> set /files/etc/exports/dir[last()]/client/option[1] ro
     augtool> set /files/etc/exports/dir[last()]/client/option[2] all_squash
     augtool> save
-    Saved 1 file(s)
+    Saved 1 file
 
 Which creates the line:
 

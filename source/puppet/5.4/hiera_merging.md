@@ -215,7 +215,7 @@ In Hiera you can insert, or interpolate, the value of a variable into a string, 
 
 Hiera uses interpolation in two places:
 
-* Hierarchies: you can interpolate variables into the `path(s)`, `glob(s)`, `uri(s)`, `datadir`, `mapped_paths` and `options` of a hierarchy level. This lets each node get a customized version of the hierarchy.
+* Hierarchies: you can interpolate variables into the `path`, `glob`, `uri`, `datadir`, `mapped_paths` and `options` of a hierarchy level. This lets each node get a customized version of the hierarchy.
 * Data: you can use interpolation to avoid repetition. This takes one of two forms:
 	* If some value always involves the value of a fact (for example, if you need to specify a mail server and you have one predictably-named mail server per domain), reference the fact directly instead of manually transcribing it.
 	* If multiple keys need to share the same value, write it out for one of them and reuse it for the rest with the `lookup` or `alias` interpolation functions. This make it easier to keep data up to date, as you only need to change a given value in one place.

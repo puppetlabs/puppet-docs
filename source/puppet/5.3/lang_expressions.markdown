@@ -74,7 +74,7 @@ Expressions can be used almost everywhere, including:
 * The control expression of a [case statement][case] or [selector statement][selector]
 * The assignment value of a variable
 * The value of a resource attribute
-* The argument(s) of a [function][] call
+* The arguments of a [function][] call
 * The title of a resource
 * An entry in an array or a key or value of a hash
 

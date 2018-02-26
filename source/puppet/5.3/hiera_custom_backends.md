@@ -201,10 +201,10 @@ Hiera uses the following conventions when calling backend functions:
 * Hiera calls `lookup_key` functions once per data source for every unique key lookup.
 * Hiera calls `data_dig` functions once per data source for every unique sequence of key segments.
 
-However, a given hierarchy level can refer to multiple data sources with the `path(s)`, `uri(s)`, and `glob(s)` settings. Hiera handles each hierarchy level as follows:
+However, a given hierarchy level can refer to multiple data sources with the `path`, `uri`, and `glob` settings. Hiera handles each hierarchy level as follows:
 
-* If the `path(s)` or `glob(s)` settings are used, Hiera determines which files exist and calls the function once for each. If no files were found, the function will not be called.
-* If the `uri(s)` settings are used, Hiera calls the function once per URI.
+* If the `path` or `glob` settings are used, Hiera determines which files exist and calls the function once for each. If no files were found, the function will not be called.
+* If the `uri` settings are used, Hiera calls the function once per URI.
 * If none of those settings are used, Hiera calls the function once.
 
 Hiera can call a function again for a given data source, if the inputs change. For example, if `hiera.yaml` interpolates a local variable in a file path, Hiera calls the function again for scopes where that variable has a different value. This has a significant performance impact, and so you should  interpolate only facts, trusted facts, and server facts in the hierarchy.
@@ -246,7 +246,7 @@ The various hashes  would all be similar to this:
 }
 ```
 
-In your function’s signature, you can validate the options hash by using the Struct data type to restrict its contents. In particular, note you can disable all of the `path(s)` and `glob(s)` settings for your backend by disallowing the `path` key in the options hash.
+In your function’s signature, you can validate the options hash by using the Struct data type to restrict its contents. In particular, note you can disable all of the `path` and `glob` settings for your backend by disallowing the `path` key in the options hash.
 
 Related topics: [Configuring merge behavior in Hiera data][merging], [Hiera interpolation tokens][interpolation], [hiera.yaml][hiera.yaml], [the Struct data type][struct].
 
@@ -263,7 +263,7 @@ In Puppet language functions, the context object appears as the special data typ
 
 Tells Hiera to halt this lookup and move on to the next data source. Call this method when your function cannot find a matching key or a given lookup. This method returns no value.
 
-For `data_hash` backends, return an empty hash. The empty hash will result in `not_found`, and will prevent further calls to the provider. Missing data sources are not an issue when using `path(s)/glob(s)`, but are important for backends that locate their own data sources.
+For `data_hash` backends, return an empty hash. The empty hash will result in `not_found`, and will prevent further calls to the provider. Missing data sources are not an issue when using `path/glob`, but are important for backends that locate their own data sources.
 
 For `lookup_key` and `data_dig` backends, use `not_found` when a requested key is not present in the data source or the data source does not exist. Do not return `undef` or `nil` for missing keys, as these are legal values that can be set in data.
 

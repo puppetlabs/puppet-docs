@@ -41,7 +41,7 @@ Deploying and Using Types and Providers
 
 To use new types and providers, two conditions must be met:
 
-1. The type and providers must be present in a [module][] on the puppet master server(s). Like other types of plugin (such as [custom functions][custom_functions] and [custom facts][custom_facts]), they should go in the module's `lib` directory:
+1. The type and providers must be present in a [module][] on the Puppet master servers. Like other types of plugin (such as [custom functions][custom_functions] and [custom facts][custom_facts]), they should go in the module's `lib` directory:
     * Type files should be located at `lib/puppet/type/<TYPE NAME>.rb`.
     * Provider files should be located at `lib/puppet/provider/<TYPE NAME>/<PROVIDER NAME>.rb`.
 2. If you are using an agent/master Puppet deployment, each agent node must have its [`pluginsync` setting][pluginsync] in puppet.conf set to `true`.

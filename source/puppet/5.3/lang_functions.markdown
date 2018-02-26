@@ -190,7 +190,7 @@ The built-in statement functions are:
 * [`require`](./function.html#require) --- includes given classes in the catalog and adds them as a dependency of the current class or defined resource
 * [`contain`](./function.html#contain) --- includes given classes in the catalog and contains them in the current class
 * [`realize`](./function.html#realize) --- makes a virtual resource real
-* [`tag`](./function.html#tag) --- adds the specified tag(s) to the containing class or defined resource
+* [`tag`](./function.html#tag) --- adds the specified tags to the containing class or defined resource
 
 ### Logging statements
 

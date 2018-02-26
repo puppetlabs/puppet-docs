@@ -107,7 +107,7 @@ The Puppet agent command can start a long-lived daemon process, which does confi
      runinterval = 2h
    ```
 
-   If you don't need an aggressive schedule of configuration runs, a longer run interval lets your Puppet master server(s) handle many more agent nodes.
+   If you don't need an aggressive schedule of configuration runs, a longer run interval lets your Puppet master servers handle many more agent nodes.
 
 ### Run Puppet agent as a cron job
 

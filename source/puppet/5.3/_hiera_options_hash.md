@@ -35,4 +35,4 @@ For example: this hierarchy level in hiera.yaml...
 }
 ```
 
-In your function's signature, you can validate the options hash by using [the Struct data type](./lang_data_abstract.html#struct) to restrict its contents. In particular, note that you can disable all of the `path(s)` and `glob(s)` settings for your backend by disallowing the `path` key in the options hash.
+In your function's signature, you can validate the options hash by using [the Struct data type](./lang_data_abstract.html#struct) to restrict its contents. In particular, note that you can disable all of the `path` and `glob` settings for your backend by disallowing the `path` key in the options hash.

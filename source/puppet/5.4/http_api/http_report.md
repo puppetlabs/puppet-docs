@@ -18,7 +18,7 @@ example, storing reports in PuppetDB is handled by one such report processor.
 
 Save
 ----
-The http(s) endpoint for sending reports to the master is:
+The HTTP or HTTPS endpoint for sending reports to the master is:
 
     PUT /puppet/v3/report/:nodename?environment=:environment
 

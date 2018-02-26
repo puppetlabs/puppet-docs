@@ -28,7 +28,7 @@ The following methods are available:
 
 Tells Hiera to move on to the next data source. Call this method when your function can't find a value for a given lookup. **This method does not return.**
 
-For `data_hash` backends, use this when the requested data source doesn't exist. (If it exists and is empty, return an empty hash.) Missing data sources aren't an issue when using `path(s)`/`glob(s)`, but are important for backends that locate their own data sources.
+For `data_hash` backends, use this when the requested data source doesn't exist. (If it exists and is empty, return an empty hash.) Missing data sources aren't an issue when using `path`/`glob`, but are important for backends that locate their own data sources.
 
 For `lookup_key` and `data_dig` backends, use this when a requested key isn't present in the data source or the data source doesn't exist. Don't return `undef`/`nil` for missing keys, since that's a legal value that can be set in data.
 
