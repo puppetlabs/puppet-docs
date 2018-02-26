@@ -6,6 +6,7 @@ canonical: "/puppet/latest/config_file_hiera.html"
 
 [hiera]: {{hiera}}/
 [hiera_config]: ./configuration.html#hieraconfig
+[confdir]: {{puppet}}/dirs_confdir.html
 
 The `hiera.yaml` file is used to configure [Hiera][], which Puppet can use to look up data.
 
