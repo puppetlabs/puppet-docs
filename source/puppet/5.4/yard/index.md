@@ -51,8 +51,8 @@ To generate YARD content, you must have a local copy of the Puppet code reposito
     yard doc
     ```
 
-    The YARD tool will generate the content into a new `doc` folder inside your current working directory. The `doc` directory is already in the Puppet repository's `.gitignore` file, so they should not be exposed to git's workspace if you generate them inside of the repository.
+    The YARD tool will generate the content into a new `doc` folder inside your current working directory. The `doc` directory is already in the Puppet repository's `.gitignore` file, so they should not be exposed to git's workspace if you generate them inside of the repository. To generate the docs to a specific directory, use the `--output-dir <PATH>` option.
+    
+    YARD generates many warning messages. To silence these messages, run `yard doc` with the `-q` (quiet) option.
 
-    To generate the docs to a specific directory, use the `--output-dir <PATH>` option.
-
-6.  Open the generated HTML in your workstation's web browser. The `_index.html` file is a navigational index, and `index.html` is the YARD-rendered output of the Puppet repo's README file.
+6.  Open the generated HTML in your workstation's web browser. The `_index.html` file is an alphabetical index, and `index.html` is the YARD-rendered output of the Puppet repo's README file. Both are good starting points for navigating the YARD content.
