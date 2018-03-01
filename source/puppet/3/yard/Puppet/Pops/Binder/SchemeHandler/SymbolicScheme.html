@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Binder::SchemeHandler::SymbolicScheme
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../../';
+  framesUrl = "../../../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span> &raquo; <span class='title'><span class='object_link'>SchemeHandler</span></span>
+     &raquo; 
+    <span class="title">SymbolicScheme</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Binder::SchemeHandler::SymbolicScheme
+  <span class="abstract note title">Abstract</span>
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="../../../../Puppetx/Puppet/BindingsSchemeHandler.html" title="Puppetx::Puppet::BindingsSchemeHandler (class)">Puppetx::Puppet::BindingsSchemeHandler</a></span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'><a href="../../../../Puppetx/Puppet/BindingsSchemeHandler.html" title="Puppetx::Puppet::BindingsSchemeHandler (class)">Puppetx::Puppet::BindingsSchemeHandler</a></span></li>
+          
+            <li class="next">Puppet::Pops::Binder::SchemeHandler::SymbolicScheme</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/binder/scheme_handler/symbolic_scheme.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <div class="note abstract">
+  <strong>This class is abstract.</strong>
+  <div class='inline'>
+</div>
+</div>
+<p>Abstract base class for schemes based on symbolic names of bindings.
+This class helps resolve symbolic names by computing a path from a fully qualified name (fqn).
+There are also helper methods do determine if the symbolic name contains a wild-card ('<em>') in the first
+portion of the fqn (with the convention that '</em>' means 'any module').</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contributed_bindings-instance_method" title="#contributed_bindings (instance method)">- (Object) <strong>contributed_bindings</strong>(uri, scope, composer) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Shared implementation for module: and confdir: since the distinction is only in checks if a symbolic name exists as a loadable file or not.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fqn_from_path-instance_method" title="#fqn_from_path (instance method)">- (Object) <strong>fqn_from_path</strong>(uri) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#has_wildcard%3F-instance_method" title="#has_wildcard? (instance method)">- (Boolean) <strong>has_wildcard?</strong>(uri) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#is_optional%3F-instance_method" title="#is_optional? (instance method)">- (Boolean) <strong>is_optional?</strong>(uri) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>True if super thinks it is optional or if it contains a wildcard.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="../../../../Puppetx/Puppet/BindingsSchemeHandler.html" title="Puppetx::Puppet::BindingsSchemeHandler (class)">Puppetx::Puppet::BindingsSchemeHandler</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="../../../../Puppetx/Puppet/BindingsSchemeHandler.html#expand_excluded-instance_method" title="Puppetx::Puppet::BindingsSchemeHandler#expand_excluded (method)">#expand_excluded</a></span>, <span class='object_link'><a href="../../../../Puppetx/Puppet/BindingsSchemeHandler.html#expand_included-instance_method" title="Puppetx::Puppet::BindingsSchemeHandler#expand_included (method)">#expand_included</a></span></p>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="contributed_bindings-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>contributed_bindings</strong>(uri, scope, composer) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Shared implementation for module: and confdir: since the distinction is only in checks if a symbolic name
+exists as a loadable file or not. Once this method is called it is assumed that the name is relative
+and that it should exist relative to some loadable ruby location.</p>
+
+<p>TODO: this needs to be changed once ARM-8 Puppet DSL concrete syntax is also supported.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20
+21
+22
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/scheme_handler/symbolic_scheme.rb', line 18</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_contributed_bindings identifier id'>contributed_bindings</span><span class='lparen token'>(</span><span class='rubyid_uri identifier id'>uri</span><span class='comma token'>,</span> <span class='rubyid_scope identifier id'>scope</span><span class='comma token'>,</span> <span class='rubyid_composer identifier id'>composer</span><span class='rparen token'>)</span>
+  <span class='rubyid_fqn identifier id'>fqn</span> <span class='assign token'>=</span> <span class='rubyid_fqn_from_path identifier id'>fqn_from_path</span><span class='lparen token'>(</span><span class='rubyid_uri identifier id'>uri</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span>
+  <span class='rubyid_bindings identifier id'>bindings</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Binder constant id'>Binder</span><span class='colon2 op'>::</span><span class='rubyid_BindingsLoader constant id'>BindingsLoader</span><span class='dot token'>.</span><span class='rubyid_provide identifier id'>provide</span><span class='lparen token'>(</span><span class='rubyid_scope identifier id'>scope</span><span class='comma token'>,</span> <span class='rubyid_fqn identifier id'>fqn</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Cannot load bindings '#{uri}' - no bindings found.&quot;</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_bindings identifier id'>bindings</span>
+  <span class='comment val'># Must clone as the the rest mutates the model</span>
+  <span class='rubyid_cloned_bindings identifier id'>cloned_bindings</span> <span class='assign token'>=</span> <span class='rubyid_Marshal constant id'>Marshal</span><span class='dot token'>.</span><span class='rubyid_load identifier id'>load</span><span class='lparen token'>(</span><span class='rubyid_Marshal constant id'>Marshal</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_bindings identifier id'>bindings</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='comment val'># Give no effective categories (i.e. ok with whatever categories there is)</span>
+  <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Binder constant id'>Binder</span><span class='colon2 op'>::</span><span class='rubyid_BindingsFactory constant id'>BindingsFactory</span><span class='dot token'>.</span><span class='rubyid_contributed_bindings identifier id'>contributed_bindings</span><span class='lparen token'>(</span><span class='rubyid_fqn identifier id'>fqn</span><span class='comma token'>,</span> <span class='rubyid_cloned_bindings identifier id'>cloned_bindings</span><span class='comma token'>,</span> <span class='rubyid_nil nil kw'>nil</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fqn_from_path-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>fqn_from_path</strong>(uri) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/scheme_handler/symbolic_scheme.rb', line 29</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_fqn_from_path identifier id'>fqn_from_path</span><span class='lparen token'>(</span><span class='rubyid_uri identifier id'>uri</span><span class='rparen token'>)</span>
+  <span class='rubyid_split_path identifier id'>split_path</span> <span class='assign token'>=</span> <span class='rubyid_uri identifier id'>uri</span><span class='dot token'>.</span><span class='rubyid_path identifier id'>path</span><span class='dot token'>.</span><span class='rubyid_split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>'/'</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_split_path identifier id'>split_path</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span> <span class='gt op'>&gt;</span> <span class='integer val'>1</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_split_path identifier id'>split_path</span><span class='lbrack token'>[</span><span class='integer val'>-1</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_empty? fid id'>empty?</span>
+    <span class='rubyid_split_path identifier id'>split_path</span><span class='dot token'>.</span><span class='rubyid_delete_at identifier id'>delete_at</span><span class='lparen token'>(</span><span class='integer val'>-1</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_fqn identifier id'>fqn</span> <span class='assign token'>=</span> <span class='rubyid_split_path identifier id'>split_path</span><span class='lbrack token'>[</span> <span class='integer val'>1</span> <span class='rbrack token'>]</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;Module scheme binding reference has no name.&quot;</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_fqn identifier id'>fqn</span>
+  <span class='rubyid_split_name identifier id'>split_name</span> <span class='assign token'>=</span> <span class='rubyid_fqn identifier id'>fqn</span><span class='dot token'>.</span><span class='rubyid_split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>'::'</span><span class='rparen token'>)</span>
+  <span class='comment val'># drop leading '::'</span>
+  <span class='rubyid_split_name identifier id'>split_name</span><span class='dot token'>.</span><span class='rubyid_shift identifier id'>shift</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_split_name identifier id'>split_name</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_split_name identifier id'>split_name</span><span class='lbrack token'>[</span><span class='integer val'>0</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_empty? fid id'>empty?</span>
+  <span class='lbrack token'>[</span><span class='rubyid_split_name identifier id'>split_name</span><span class='comma token'>,</span> <span class='rubyid_split_name identifier id'>split_name</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>'::'</span><span class='rparen token'>)</span><span class='rbrack token'>]</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="has_wildcard?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>has_wildcard?</strong>(uri) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/scheme_handler/symbolic_scheme.rb', line 51</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_has_wildcard? fid id'>has_wildcard?</span><span class='lparen token'>(</span><span class='rubyid_uri identifier id'>uri</span><span class='rparen token'>)</span>
+  <span class='lparen token'>(</span><span class='rubyid_path identifier id'>path</span> <span class='assign token'>=</span> <span class='rubyid_uri identifier id'>uri</span><span class='dot token'>.</span><span class='rubyid_path identifier id'>path</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_path identifier id'>path</span><span class='dot token'>.</span><span class='rubyid_split identifier id'>split</span><span class='lparen token'>(</span><span class='string val'>'/'</span><span class='rparen token'>)</span><span class='lbrack token'>[</span><span class='integer val'>1</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_start_with? fid id'>start_with?</span><span class='lparen token'>(</span><span class='string val'>'*::'</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="is_optional?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_optional?</strong>(uri) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>True if super thinks it is optional or if it contains a wildcard.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>true if the uri represents an optional set of bindings.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+46
+47
+48</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/scheme_handler/symbolic_scheme.rb', line 46</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_is_optional? fid id'>is_optional?</span><span class='lparen token'>(</span><span class='rubyid_uri identifier id'>uri</span><span class='rparen token'>)</span>
+  <span class='rubyid_super super kw'>super</span><span class='lparen token'>(</span><span class='rubyid_uri identifier id'>uri</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='rubyid_has_wildcard? fid id'>has_wildcard?</span><span class='lparen token'>(</span><span class='rubyid_uri identifier id'>uri</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:57 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

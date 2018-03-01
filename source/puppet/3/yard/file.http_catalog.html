@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  File: http_catalog
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: http_catalog</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Catalog</h1>
+
+<p>The <code>catalog</code> endpoint returns a catalog for the specified node name given the provided facts.</p>
+
+<h2>Find</h2>
+
+<p>Retrieve a catalog.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_POST constant id'>POST</span> <span class='regexp val'>/:environment/</span><span class='rubyid_catalog identifier id'>catalog</span><span class='div op'>/</span><span class='symbol val'>:nodename</span>
+<span class='rubyid_GET constant id'>GET</span> <span class='regexp val'>/:environment/</span><span class='rubyid_catalog identifier id'>catalog</span><span class='div op'>/</span><span class='symbol val'>:nodename</span>
+</code></pre>
+
+<h3>Supported HTTP Methods</h3>
+
+<p>POST, GET</p>
+
+<h3>Supported Response Formats</h3>
+
+<p>PSON</p>
+
+<h3>Notes</h3>
+
+<p>The POST and GET methods are functionally equivalent. Both provide the 3 parameters specified below: the POST in the
+request body, the GET in the query string.</p>
+
+<p>Puppet originally used GET; POST was added because some web servers have a maximum URI length of
+1024 bytes (which is easily exceeded with the <code>facts</code> parameter).</p>
+
+<p>The examples below use the POST method.</p>
+
+<h3>Parameters</h3>
+
+<p>Three parameters should be provided to the POST or GET:
+- <code>facts_format</code>: must be <code>pson</code>
+- <code>facts</code>: serialized pson of the facts hash.  One odd note: due to a long-ago misunderstanding in the code, this is
+           doubly-escaped (it should just be singly-escaped).  To keep backward compatibility, the extraneous
+           escaping is still used/supported.
+- <code>transaction_uuid</code>: a transaction uuid identifying the entire transaction (shows up in the report as well)</p>
+
+<h3>Example Response</h3>
+
+<h4>Catalog found</h4>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_POST constant id'>POST</span> <span class='regexp val'>/env/</span><span class='rubyid_catalog identifier id'>catalog</span><span class='div op'>/</span><span class='rubyid_elmo identifier id'>elmo</span><span class='dot token'>.</span><span class='rubyid_mydomain identifier id'>mydomain</span><span class='dot token'>.</span><span class='rubyid_com identifier id'>com</span>
+
+<span class='rubyid_facts_format identifier id'>facts_format</span><span class='assign token'>=</span><span class='rubyid_pson identifier id'>pson</span><span class='bitand op'>&amp;</span><span class='rubyid_facts identifier id'>facts</span><span class='assign token'>=</span><span class='integer val'>7</span><span class='rubyid_B constant id'>B</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='rubyid_name identifier id'>name</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='mod op'>%</span><span class='integer val'>3</span><span class='rubyid_A constant id'>A</span><span class='mod op'>%</span><span class='float val'>22e</span><span class='rubyid_lmo identifier id'>lmo</span><span class='dot token'>.</span><span class='rubyid_mydomain identifier id'>mydomain</span><span class='dot token'>.</span><span class='rubyid_com identifier id'>com</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='mod op'>%</span><span class='integer val'>2</span><span class='rubyid_C constant id'>C</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='rubyid_values identifier id'>values</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='mod op'>%</span><span class='integer val'>3</span><span class='rubyid_A constant id'>A</span><span class='mod op'>%</span><span class='integer val'>7</span><span class='rubyid_B constant id'>B</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='rubyid_architecture identifier id'>architecture</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='mod op'>%</span><span class='integer val'>3</span><span class='rubyid_A constant id'>A</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='rubyid_x86_64 identifier id'>x86_64</span><span class='mod op'>%</span><span class='integer val'>22</span><span class='mod op'>%</span><span class='integer val'>7</span><span class='rubyid_D constant id'>D</span><span class='bitand op'>&amp;</span><span class='rubyid_transaction_uuid identifier id'>transaction_uuid</span><span class='assign token'>=</span><span class='rubyid_aff261a2 identifier id'>aff261a2</span><span class='minus op'>-</span><span class='integer val'>1</span><span class='rubyid_a34 identifier id'>a34</span><span class='minus op'>-</span><span class='integer val'>4647</span><span class='minus op'>-</span><span class='integer val'>8</span><span class='rubyid_c20 identifier id'>c20</span><span class='minus op'>-</span><span class='rubyid_ff662ec11c4c identifier id'>ff662ec11c4c</span>
+
+<span class='rubyid_HTTP constant id'>HTTP</span> <span class='integer val'>200</span> <span class='rubyid_OK constant id'>OK</span>
+<span class='rubyid_Content constant id'>Content</span><span class='minus op'>-</span><span class='rubyid_Type constant id'>Type</span><span class='colon op'>:</span> <span class='rubyid_text identifier id'>text</span><span class='div op'>/</span><span class='rubyid_pson identifier id'>pson</span>
+
+<span class='lbrace token'>{</span>
+  <span class='string val'>&quot;document_type&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Catalog&quot;</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;data&quot;</span><span class='colon op'>:</span> <span class='lbrace token'>{</span>
+    <span class='string val'>&quot;tags&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+      <span class='string val'>&quot;settings&quot;</span><span class='comma token'>,</span>
+      <span class='string val'>&quot;multi_param_class&quot;</span><span class='comma token'>,</span>
+      <span class='string val'>&quot;class&quot;</span>
+    <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;name&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;elmo.mydomain.com&quot;</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;version&quot;</span><span class='colon op'>:</span> <span class='integer val'>1377473054</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;environment&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;production&quot;</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;resources&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;type&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Stage&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;title&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;main&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;tags&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+          <span class='string val'>&quot;stage&quot;</span>
+        <span class='rbrack token'>]</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;exported&quot;</span><span class='colon op'>:</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;parameters&quot;</span><span class='colon op'>:</span> <span class='lbrace token'>{</span>
+          <span class='string val'>&quot;name&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;main&quot;</span>
+        <span class='rbrace token'>}</span>
+      <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;type&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Class&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;title&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Settings&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;tags&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+          <span class='string val'>&quot;class&quot;</span><span class='comma token'>,</span>
+          <span class='string val'>&quot;settings&quot;</span>
+        <span class='rbrack token'>]</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;exported&quot;</span><span class='colon op'>:</span> <span class='rubyid_false false kw'>false</span>
+      <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;type&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Class&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;title&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;main&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;tags&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+          <span class='string val'>&quot;class&quot;</span>
+        <span class='rbrack token'>]</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;exported&quot;</span><span class='colon op'>:</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;parameters&quot;</span><span class='colon op'>:</span> <span class='lbrace token'>{</span>
+          <span class='string val'>&quot;name&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;main&quot;</span>
+        <span class='rbrace token'>}</span>
+      <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;type&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Class&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;title&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Multi_param_class&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;tags&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+          <span class='string val'>&quot;class&quot;</span><span class='comma token'>,</span>
+          <span class='string val'>&quot;multi_param_class&quot;</span>
+        <span class='rbrack token'>]</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;line&quot;</span><span class='colon op'>:</span> <span class='integer val'>10</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;exported&quot;</span><span class='colon op'>:</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;parameters&quot;</span><span class='colon op'>:</span> <span class='lbrace token'>{</span>
+          <span class='string val'>&quot;one&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;hello&quot;</span><span class='comma token'>,</span>
+          <span class='string val'>&quot;two&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;world&quot;</span>
+        <span class='rbrace token'>}</span>
+      <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;type&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Notify&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;title&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;foo&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;tags&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+          <span class='string val'>&quot;notify&quot;</span><span class='comma token'>,</span>
+          <span class='string val'>&quot;foo&quot;</span><span class='comma token'>,</span>
+          <span class='string val'>&quot;class&quot;</span><span class='comma token'>,</span>
+          <span class='string val'>&quot;multi_param_class&quot;</span>
+        <span class='rbrack token'>]</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;line&quot;</span><span class='colon op'>:</span> <span class='integer val'>4</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;exported&quot;</span><span class='colon op'>:</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;parameters&quot;</span><span class='colon op'>:</span> <span class='lbrace token'>{</span>
+          <span class='string val'>&quot;message&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;One is hello, two is world&quot;</span>
+        <span class='rbrace token'>}</span>
+      <span class='rbrace token'>}</span>
+    <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;edges&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;source&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Stage[main]&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;target&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Class[Settings]&quot;</span>
+      <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;source&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Stage[main]&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;target&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Class[main]&quot;</span>
+      <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;source&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Stage[main]&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;target&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Class[Multi_param_class]&quot;</span>
+      <span class='rbrace token'>}</span><span class='comma token'>,</span>
+      <span class='lbrace token'>{</span>
+        <span class='string val'>&quot;source&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Class[Multi_param_class]&quot;</span><span class='comma token'>,</span>
+        <span class='string val'>&quot;target&quot;</span><span class='colon op'>:</span> <span class='string val'>&quot;Notify[foo]&quot;</span>
+      <span class='rbrace token'>}</span>
+    <span class='rbrack token'>]</span><span class='comma token'>,</span>
+    <span class='string val'>&quot;classes&quot;</span><span class='colon op'>:</span> <span class='lbrack token'>[</span>
+      <span class='string val'>&quot;settings&quot;</span><span class='comma token'>,</span>
+      <span class='string val'>&quot;multi_param_class&quot;</span>
+    <span class='rbrack token'>]</span>
+  <span class='rbrace token'>}</span><span class='comma token'>,</span>
+  <span class='string val'>&quot;metadata&quot;</span><span class='colon op'>:</span> <span class='lbrace token'>{</span>
+    <span class='string val'>&quot;api_version&quot;</span><span class='colon op'>:</span> <span class='integer val'>1</span>
+  <span class='rbrace token'>}</span>
+<span class='rbrace token'>}</span>
+</code></pre>
+
+<h2>Schema</h2>
+
+<p>In the POST request body (or the GET query), the facts parameter should adhere to the
+<a href="file.facts.html" title="api/schemas/facts.json">api/schemas/facts.json</a> schema.</p>
+
+<p>A catalog response body should adhere to the <a href="file.catalog.html" title="api/schemas/catalog.json">api/schemas/catalog.json</a> schema.</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:51:59 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

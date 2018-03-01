@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppetx::Puppetlabs::SyntaxCheckers::Json
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (J)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppetx.html" title="Puppetx (module)">Puppetx</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../../Puppetlabs.html" title="Puppetx::Puppetlabs (module)">Puppetlabs</a></span></span> &raquo; <span class='title'><span class='object_link'><a href="../SyntaxCheckers.html" title="Puppetx::Puppetlabs::SyntaxCheckers (module)">SyntaxCheckers</a></span></span>
+     &raquo; 
+    <span class="title">Json</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppetx::Puppetlabs::SyntaxCheckers::Json
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Puppetx::Puppet::SyntaxChecker</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next"><span class='object_link'>Puppetx::Puppet::SyntaxChecker</span></li>
+          
+            <li class="next">Puppetx::Puppetlabs::SyntaxCheckers::Json</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppetx/puppetlabs/syntax_checkers/json.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>A syntax checker for JSON.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check-instance_method" title="#check (instance method)">- (Boolean) <strong>check</strong>(text, syntax, acceptor, location_info = {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks the text for JSON syntax issues and reports them to the given acceptor.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="check-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>check</strong>(text, syntax, acceptor, location_info = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Checks the text for JSON syntax issues and reports them to the given acceptor.
+This implementation is abstract, it raises NotImplementedError since a subclass should have implemented the
+method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>text</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The text to check</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>syntax</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The syntax identifier in mime style (e.g. 'json', 'json-patch+json', 'xml', 'myapp+xml'</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>location_info</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Hash</span></tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>a customizable set of options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>location_info</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:file</span>
+          <span class="type">(<tt><span class='object_link'>String</span></tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The filename where the string originates</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:line</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The line number identifying the location where the string is being used/checked</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:position</span>
+          <span class="type">(<tt>Integer</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The position on the line identifying the location where the string is being used/checked</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Whether the checked string had issues (warnings and/or errors) or not.</p>
+</div>
+      
+    </li>
+  
+</ul>
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppetx/puppetlabs/syntax_checkers/json.rb', line 17</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_check identifier id'>check</span><span class='lparen token'>(</span><span class='rubyid_text identifier id'>text</span><span class='comma token'>,</span> <span class='rubyid_syntax identifier id'>syntax</span><span class='comma token'>,</span> <span class='rubyid_acceptor identifier id'>acceptor</span><span class='comma token'>,</span> <span class='rubyid_location_info identifier id'>location_info</span><span class='assign token'>=</span><span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;Json syntax checker: the text to check must be a String.&quot;</span><span class='rparen token'>)</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_text identifier id'>text</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_String constant id'>String</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;Json syntax checker: the syntax identifier must be a String, e.g. json, data+json&quot;</span><span class='rparen token'>)</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_syntax identifier id'>syntax</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_String constant id'>String</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='dstring node'>&quot;Json syntax checker: invalid Acceptor, got: '#{acceptor.class.name}'.&quot;</span><span class='rparen token'>)</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_acceptor identifier id'>acceptor</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Validation constant id'>Validation</span><span class='colon2 op'>::</span><span class='rubyid_Acceptor constant id'>Acceptor</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;Json syntax checker: location_info must be a Hash&quot;</span><span class='rparen token'>)</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_info identifier id'>info</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Hash constant id'>Hash</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_begin begin kw'>begin</span>
+    <span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_parse identifier id'>parse</span><span class='lparen token'>(</span><span class='rubyid_text identifier id'>text</span><span class='rparen token'>)</span>
+  <span class='rubyid_rescue rescue kw'>rescue</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_e identifier id'>e</span>
+    <span class='comment val'># Cap the message to 100 chars and replace newlines</span>
+    <span class='rubyid_msg identifier id'>msg</span> <span class='assign token'>=</span> <span class='dstring node'>&quot;Json syntax checker:: Cannot parse invalid JSON string. \&quot;#{e.message().slice(0,100).gsub(/\r?\n/, &quot;\\n&quot;)}\&quot;&quot;</span>
+
+    <span class='comment val'># TODO: improve the pops API to allow simpler diagnostic creation while still maintaining capabilities</span>
+    <span class='comment val'># and the issue code. (In this case especially, where there is only a single error message being issued).</span>
+    <span class='comment val'>#</span>
+    <span class='rubyid_issue identifier id'>issue</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Issues constant id'>Issues</span><span class='colon2 op'>::</span><span class='rubyid_issue identifier id'>issue</span><span class='lparen token'>(</span><span class='symbol val'>:ILLEGAL_JSON</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='rubyid_msg identifier id'>msg</span> <span class='rbrace token'>}</span>
+    <span class='rubyid_source_pos identifier id'>source_pos</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Adapters constant id'>Adapters</span><span class='colon2 op'>::</span><span class='rubyid_SourcePosAdapter constant id'>SourcePosAdapter</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_source_pos identifier id'>source_pos</span><span class='dot token'>.</span><span class='rubyid_line identifier id'>line</span> <span class='assign token'>=</span> <span class='rubyid_location_info identifier id'>location_info</span><span class='lbrack token'>[</span><span class='symbol val'>:line</span><span class='rbrack token'>]</span>
+    <span class='rubyid_source_pos identifier id'>source_pos</span><span class='dot token'>.</span><span class='rubyid_pos identifier id'>pos</span> <span class='assign token'>=</span> <span class='rubyid_location_info identifier id'>location_info</span><span class='lbrack token'>[</span><span class='symbol val'>:pos</span><span class='rbrack token'>]</span>
+    <span class='rubyid_acceptor identifier id'>acceptor</span><span class='dot token'>.</span><span class='rubyid_accept identifier id'>accept</span><span class='lparen token'>(</span><span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Validation constant id'>Validation</span><span class='colon2 op'>::</span><span class='rubyid_Diagnostic constant id'>Diagnostic</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='symbol val'>:error</span><span class='comma token'>,</span> <span class='rubyid_issue identifier id'>issue</span><span class='comma token'>,</span> <span class='rubyid_location_info identifier id'>location_info</span><span class='lbrack token'>[</span><span class='symbol val'>:file</span><span class='rbrack token'>]</span><span class='comma token'>,</span> <span class='rubyid_source_pos identifier id'>source_pos</span><span class='comma token'>,</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:56 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

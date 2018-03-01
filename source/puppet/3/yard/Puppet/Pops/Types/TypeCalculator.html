@@ -1,0 +1,4245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Types::TypeCalculator
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../';
+  framesUrl = "../../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../_index.html">Index (T)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'><a href="../Types.html" title="Puppet::Pops::Types (module)">Types</a></span></span>
+     &raquo; 
+    <span class="title">TypeCalculator</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Types::TypeCalculator
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Pops::Types::TypeCalculator</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/types/type_calculator.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+  <div class="note notetag">
+    <strong>Note:</strong>
+    <div class='inline'><p>In general, new instances of the wanted type should be created as they are assigned to models using containment, and a
+contained object can only be in one container at a time. Also, the type system may include more details in each type
+instance, such as if it may be nil, be empty, contain a certain count etc. Or put differently, the puppet types are not
+singletons.</p>
+</div>
+  </div>
+
+<p>The TypeCalculator can answer questions about puppet types.</p>
+
+<p>The Puppet type system is primarily based on sub-classing. When asking the type calculator to infer types from Ruby in general, it
+may not provide the wanted answer; it does not for instance take module inclusions and extensions into account. In general the type
+system should be unsurprising for anyone being exposed to the notion of type. The type <code>Data</code> may require a bit more explanation; this
+is an abstract type that includes all literal types, as well as Array with an element type compatible with Data, and Hash with key
+compatible with Literal and elements compatible with Data. Expressed differently; Data is what you typically express using JSON (with
+the exception that the Puppet type system also includes Pattern (regular expression) as a literal.</p>
+
+<h2>Inference</h2>
+
+<p>The <code>infer(o)</code> method infers a Puppet type for literal Ruby objects, and for Arrays and Hashes.</p>
+
+<h2>Assignability</h2>
+
+<p>The <code>assignable?(t1, t2)</code> method answers if t2 conforms to t1. The type t2 may be an instance, in which case
+its type is inferred, or a type.</p>
+
+<h2>Instance?</h2>
+
+<p>The <code>instance?(t, o)</code> method answers if the given object (instance) is an instance that is assignable to the given type.</p>
+
+<h2>String</h2>
+
+<p>Creates a string representation of a type.</p>
+
+<h2>Creation of Type instances</h2>
+
+<p>Instance of the classes in the <span class='object_link'><a href="../Types.html" title="Puppet::Pops::Types (module)">type model</a></span> are used to denote a specific type. It is most convenient
+to use the <span class='object_link'><a href="TypeFactory.html" title="Puppet::Pops::Types::TypeFactory (module)">TypeFactory</a></span> when creating instances.</p>
+
+<h2>Equality and Hash</h2>
+
+<p>Type instances are equal in terms of Ruby eql? and <code>==</code> if they describe the same type, but they are not <code>equal?</code> if they are not
+the same type instance. Two types that describe the same type have identical hash - this makes them usable as hash keys.</p>
+
+<h2>Types and Subclasses</h2>
+
+<p>In general, the type calculator should be used to answer questions if a type is a subtype of another (using <span class='object_link'><a href="#assignable%3F-instance_method" title="Puppet::Pops::Types::TypeCalculator#assignable? (method)">#assignable?</a></span>, or
+<span class='object_link'><a href="#instance%3F-instance_method" title="Puppet::Pops::Types::TypeCalculator#instance? (method)">#instance?</a></span> if the question is if a given object is an instance of a given type (or is a subtype thereof).
+Many of the types also have a Ruby subtype relationship; e.g. PHashType and PArrayType are both subtypes of PCollectionType, and
+PIntegerType, PFloatType, PStringType,... are subtypes of PLiteralType. Even if it is possible to answer certain questions about
+type by looking at the Ruby class of the types this is considered an implementation detail, and such checks should in general
+be performed by the type_calculator which implements the type system semantics.</p>
+
+<h2>The PRubyType</h2>
+
+<p>The PRubyType corresponds to a Ruby Class, except for the puppet types that are specialized (i.e. PRubyType should not be
+used for Integer, String, etc. since there are specialized types for those).
+When the type calculator deals with PRubyTypes and checks for assignability, it determines the "common ancestor class" of two classes.
+This check is made based on the superclasses of the two classes being compared. In order to perform this, the classes must be present
+(i.e. they are resolved from the string form in the PRubyType to a loaded, instantiated Ruby Class). In general this is not a problem,
+since the question to produce the common super type for two objects means that the classes must be present or there would have been
+no instances present in the first place. If however the classes are not present, the type calculator will fall back and state that
+the two types at least have Object in common.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+  <p class="tag_title">See Also:</p>
+  <ul class="see">
+    
+      <li><span class='object_link'><a href="TypeFactory.html" title="Puppet::Pops::Types::TypeFactory (module)">TypeFactory for how to create instances of types</a></span></li>
+    
+      <li><span class='object_link'><a href="TypeParser.html" title="Puppet::Pops::Types::TypeParser (class)">TypeParser how to construct a type instance from a String</a></span></li>
+    
+      <li><span class='object_link'><a href="../Types.html" title="Puppet::Pops::Types (module)">Types for details about the type model</a></span></li>
+    
+  </ul>
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable%3F-instance_method" title="#assignable? (instance method)">- (Boolean) <strong>assignable?</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers 'can an instance of type t2 be assigned to a variable of type t'.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_Object-instance_method" title="#assignable_Object (instance method)">- (Object) <strong>assignable_Object</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>False in general type calculator.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PArrayType-instance_method" title="#assignable_PArrayType (instance method)">- (Object) <strong>assignable_PArrayType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Array is assignable if t2 is an Array and t2's element type is assignable.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PBooleanType-instance_method" title="#assignable_PBooleanType (instance method)">- (Object) <strong>assignable_PBooleanType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PCollectionType-instance_method" title="#assignable_PCollectionType (instance method)">- (Object) <strong>assignable_PCollectionType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PDataType-instance_method" title="#assignable_PDataType (instance method)">- (Object) <strong>assignable_PDataType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Data is assignable by other Data and by Array[Data] and Hash[Literal, Data].</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PFloatType-instance_method" title="#assignable_PFloatType (instance method)">- (Object) <strong>assignable_PFloatType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PHashType-instance_method" title="#assignable_PHashType (instance method)">- (Object) <strong>assignable_PHashType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Hash is assignable if t2 is a Hash and t2's key and element types are assignable.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PIntegerType-instance_method" title="#assignable_PIntegerType (instance method)">- (Object) <strong>assignable_PIntegerType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PLiteralType-instance_method" title="#assignable_PLiteralType (instance method)">- (Object) <strong>assignable_PLiteralType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PNumericType-instance_method" title="#assignable_PNumericType (instance method)">- (Object) <strong>assignable_PNumericType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PObjectType-instance_method" title="#assignable_PObjectType (instance method)">- (Object) <strong>assignable_PObjectType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PPatternType-instance_method" title="#assignable_PPatternType (instance method)">- (Object) <strong>assignable_PPatternType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PRubyType-instance_method" title="#assignable_PRubyType (instance method)">- (Object) <strong>assignable_PRubyType</strong>(t1, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>Assignable if t2's ruby class is same or subclass of t1's ruby class.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assignable_PStringType-instance_method" title="#assignable_PStringType (instance method)">- (Object) <strong>assignable_PStringType</strong>(t, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#common_type-instance_method" title="#common_type (instance method)">- (Object) <strong>common_type</strong>(t1, t2) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers, 'What is the common type of t1 and t2?'.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer-instance_method" title="#infer (instance method)">- (Object) <strong>infer</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers 'what is the Puppet Type of o'.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_and_reduce_type-instance_method" title="#infer_and_reduce_type (instance method)">- (Object) <strong>infer_and_reduce_type</strong>(enumerable) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Reduce an enumerable of objects to a single common type.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_Array-instance_method" title="#infer_Array (instance method)">- (Object) <strong>infer_Array</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_Class-instance_method" title="#infer_Class (instance method)">- (Object) <strong>infer_Class</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The type of all classes is PType.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_FalseClass-instance_method" title="#infer_FalseClass (instance method)">- (Object) <strong>infer_FalseClass</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_Float-instance_method" title="#infer_Float (instance method)">- (Object) <strong>infer_Float</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_Hash-instance_method" title="#infer_Hash (instance method)">- (Object) <strong>infer_Hash</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_Integer-instance_method" title="#infer_Integer (instance method)">- (Object) <strong>infer_Integer</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_NilClass-instance_method" title="#infer_NilClass (instance method)">- (Object) <strong>infer_NilClass</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_Object-instance_method" title="#infer_Object (instance method)">- (Object) <strong>infer_Object</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_PObjectType-instance_method" title="#infer_PObjectType (instance method)">- (Object) <strong>infer_PObjectType</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The type of all types is PType.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_PType-instance_method" title="#infer_PType (instance method)">- (Object) <strong>infer_PType</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>The type of all types is PType This is the metatype short circuit.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_Regexp-instance_method" title="#infer_Regexp (instance method)">- (Object) <strong>infer_Regexp</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_String-instance_method" title="#infer_String (instance method)">- (Object) <strong>infer_String</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#infer_TrueClass-instance_method" title="#infer_TrueClass (instance method)">- (Object) <strong>infer_TrueClass</strong>(o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (TypeCalculator) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of TypeCalculator.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#injectable_class-instance_method" title="#injectable_class (instance method)">- (Class<sup>?</sup>) <strong>injectable_class</strong>(klazz) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers the question 'is it possible to inject an instance of the given class' A class is injectable if it has a special <em>assisted inject</em> class method called <code>inject</code> taking an injector and a scope as argument, or if it has a zero args <code>initialize</code> method.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#instance%3F-instance_method" title="#instance? (instance method)">- (Boolean) <strong>instance?</strong>(t, o) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers 'is o an instance of type t'.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#is_pnil%3F-instance_method" title="#is_pnil? (instance method)">- (Boolean) <strong>is_pnil?</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers if t represents the puppet type PNilType.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#is_ptype%3F-instance_method" title="#is_ptype? (instance method)">- (Boolean) <strong>is_ptype?</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers if t is a puppet type.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#reduce_type-instance_method" title="#reduce_type (instance method)">- (Object) <strong>reduce_type</strong>(enumerable) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Reduces an enumerable of types to a single common type.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string-instance_method" title="#string (instance method)">- (Object) <strong>string</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Produces a string representing the type.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PArrayType-instance_method" title="#string_PArrayType (instance method)">- (Object) <strong>string_PArrayType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PBooleanType-instance_method" title="#string_PBooleanType (instance method)">- (Object) <strong>string_PBooleanType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PDataType-instance_method" title="#string_PDataType (instance method)">- (Object) <strong>string_PDataType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PFloatType-instance_method" title="#string_PFloatType (instance method)">- (Object) <strong>string_PFloatType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PHashType-instance_method" title="#string_PHashType (instance method)">- (Object) <strong>string_PHashType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PIntegerType-instance_method" title="#string_PIntegerType (instance method)">- (Object) <strong>string_PIntegerType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PLiteralType-instance_method" title="#string_PLiteralType (instance method)">- (Object) <strong>string_PLiteralType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PNumericType-instance_method" title="#string_PNumericType (instance method)">- (Object) <strong>string_PNumericType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PObjectType-instance_method" title="#string_PObjectType (instance method)">- (Object) <strong>string_PObjectType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PPatternType-instance_method" title="#string_PPatternType (instance method)">- (Object) <strong>string_PPatternType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PRubyType-instance_method" title="#string_PRubyType (instance method)">- (Object) <strong>string_PRubyType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PStringType-instance_method" title="#string_PStringType (instance method)">- (Object) <strong>string_PStringType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#string_PType-instance_method" title="#string_PType (instance method)">- (Object) <strong>string_PType</strong>(t) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#type-instance_method" title="#type (instance method)">- (Object) <strong>type</strong>(c) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Answers 'what is the Puppet Type corresponding to the given Ruby class'.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Types::TypeCalculator (class)">TypeCalculator</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a new instance of TypeCalculator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 75</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_initialize identifier id'>initialize</span>
+  <span class='rubyid_@@assignable_visitor ivar id'>@@assignable_visitor</span> <span class='opasgn op'>||=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Visitor constant id'>Visitor</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span><span class='string val'>&quot;assignable&quot;</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='comma token'>,</span><span class='integer val'>1</span><span class='rparen token'>)</span>
+  <span class='rubyid_@@infer_visitor ivar id'>@@infer_visitor</span> <span class='opasgn op'>||=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Visitor constant id'>Visitor</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span><span class='string val'>&quot;infer&quot;</span><span class='comma token'>,</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>0</span><span class='rparen token'>)</span>
+  <span class='rubyid_@@string_visitor ivar id'>@@string_visitor</span> <span class='opasgn op'>||=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Visitor constant id'>Visitor</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span><span class='string val'>&quot;string&quot;</span><span class='comma token'>,</span><span class='integer val'>0</span><span class='comma token'>,</span><span class='integer val'>0</span><span class='rparen token'>)</span>
+
+  <span class='rubyid_da identifier id'>da</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PArrayType constant id'>PArrayType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_da identifier id'>da</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PDataType constant id'>PDataType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_@data_array ivar id'>@data_array</span> <span class='assign token'>=</span> <span class='rubyid_da identifier id'>da</span>
+
+  <span class='rubyid_h identifier id'>h</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PHashType constant id'>PHashType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_h identifier id'>h</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PDataType constant id'>PDataType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_h identifier id'>h</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PLiteralType constant id'>PLiteralType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_@data_hash ivar id'>@data_hash</span> <span class='assign token'>=</span> <span class='rubyid_h identifier id'>h</span>
+
+  <span class='rubyid_@data_t ivar id'>@data_t</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PDataType constant id'>PDataType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_@literal_t ivar id'>@literal_t</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PLiteralType constant id'>PLiteralType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_@numeric_t ivar id'>@numeric_t</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNumericType constant id'>PNumericType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_@t ivar id'>@t</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PObjectType constant id'>PObjectType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="assignable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>assignable?</strong>(t, t2) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers 'can an instance of type t2 be assigned to a variable of type t'</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 128</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+   <span class='comment val'># nil is assignable to anything</span>
+   <span class='rubyid_if if kw'>if</span> <span class='rubyid_is_pnil? fid id'>is_pnil?</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+     <span class='rubyid_return return kw'>return</span> <span class='rubyid_true true kw'>true</span>
+   <span class='rubyid_end end kw'>end</span>
+
+   <span class='rubyid_if if kw'>if</span> <span class='rubyid_t identifier id'>t</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Class constant id'>Class</span><span class='rparen token'>)</span>
+     <span class='rubyid_t identifier id'>t</span> <span class='assign token'>=</span> <span class='rubyid_type identifier id'>type</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>
+   <span class='rubyid_end end kw'>end</span>
+
+   <span class='rubyid_if if kw'>if</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Class constant id'>Class</span><span class='rparen token'>)</span>
+     <span class='rubyid_t2 identifier id'>t2</span> <span class='assign token'>=</span> <span class='rubyid_type identifier id'>type</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+   <span class='rubyid_end end kw'>end</span>
+
+   <span class='rubyid_@@assignable_visitor ivar id'>@@assignable_visitor</span><span class='dot token'>.</span><span class='rubyid_visit_this identifier id'>visit_this</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='comma token'>,</span> <span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_Object-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_Object</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>False in general type calculator</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+412
+413
+414</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 412</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_Object identifier id'>assignable_Object</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_false false kw'>false</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PArrayType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PArrayType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Array is assignable if t2 is an Array and t2's element type is assignable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+463
+464
+465
+466</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 463</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PArrayType identifier id'>assignable_PArrayType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_false false kw'>false</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PArrayType constant id'>PArrayType</span><span class='rparen token'>)</span>
+  <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PBooleanType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PBooleanType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+447
+448
+449</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 447</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PBooleanType identifier id'>assignable_PBooleanType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PBooleanType constant id'>PBooleanType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PCollectionType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PCollectionType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+457
+458
+459</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 457</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PCollectionType identifier id'>assignable_PCollectionType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PCollectionType constant id'>PCollectionType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PDataType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PDataType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Data is assignable by other Data and by Array[Data] and Hash[Literal, Data]</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+477
+478
+479</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 477</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PDataType identifier id'>assignable_PDataType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PDataType constant id'>PDataType</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_@data_array ivar id'>@data_array</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_@data_hash ivar id'>@data_hash</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PFloatType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PFloatType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+442
+443
+444</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 442</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PFloatType identifier id'>assignable_PFloatType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PFloatType constant id'>PFloatType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PHashType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PHashType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Hash is assignable if t2 is a Hash and t2's key and element types are assignable</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+470
+471
+472
+473</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 470</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PHashType identifier id'>assignable_PHashType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_false false kw'>false</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PHashType constant id'>PHashType</span><span class='rparen token'>)</span>
+  <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PIntegerType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PIntegerType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+432
+433
+434</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 432</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PIntegerType identifier id'>assignable_PIntegerType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PIntegerType constant id'>PIntegerType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PLiteralType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PLiteralType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+422
+423
+424</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 422</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PLiteralType identifier id'>assignable_PLiteralType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PLiteralType constant id'>PLiteralType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PNumericType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PNumericType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+427
+428
+429</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 427</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PNumericType identifier id'>assignable_PNumericType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNumericType constant id'>PNumericType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PObjectType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PObjectType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+417
+418
+419</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 417</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PObjectType identifier id'>assignable_PObjectType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PObjectType constant id'>PObjectType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PPatternType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PPatternType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+452
+453
+454</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 452</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PPatternType identifier id'>assignable_PPatternType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PPatternType constant id'>PPatternType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PRubyType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PRubyType</strong>(t1, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>Assignable if t2's ruby class is same or subclass of t1's ruby class</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+483
+484
+485
+486
+487
+488
+489</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 483</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PRubyType identifier id'>assignable_PRubyType</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_false false kw'>false</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='rparen token'>)</span>
+  <span class='rubyid_c1 identifier id'>c1</span> <span class='assign token'>=</span> <span class='rubyid_class_from_string identifier id'>class_from_string</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_ruby_class identifier id'>ruby_class</span><span class='rparen token'>)</span>
+  <span class='rubyid_c2 identifier id'>c2</span> <span class='assign token'>=</span> <span class='rubyid_class_from_string identifier id'>class_from_string</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_ruby_class identifier id'>ruby_class</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_false false kw'>false</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_c1 identifier id'>c1</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Class constant id'>Class</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_c2 identifier id'>c2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Class constant id'>Class</span><span class='rparen token'>)</span>
+  <span class='notop op'>!</span><span class='notop op'>!</span><span class='lparen token'>(</span><span class='rubyid_c2 identifier id'>c2</span> <span class='leq op'>&lt;=</span> <span class='rubyid_c1 identifier id'>c1</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="assignable_PStringType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>assignable_PStringType</strong>(t, t2) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+437
+438
+439</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 437</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_assignable_PStringType identifier id'>assignable_PStringType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PStringType constant id'>PStringType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="common_type-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>common_type</strong>(t1, t2) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers, 'What is the common type of t1 and t2?'</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 217</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_common_type identifier id'>common_type</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>'two types expected'</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='lparen token'>(</span><span class='rubyid_is_ptype? fid id'>is_ptype?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='rubyid_is_pnil? fid id'>is_pnil?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='lparen token'>(</span><span class='rubyid_is_ptype? fid id'>is_ptype?</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='rubyid_is_pnil? fid id'>is_pnil?</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+
+  <span class='comment val'># if either is nil, the common type is the other</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_is_pnil? fid id'>is_pnil?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_t2 identifier id'>t2</span>
+  <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_is_pnil? fid id'>is_pnil?</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_t1 identifier id'>t1</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># Simple case, one is assignable to the other</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_t1 identifier id'>t1</span>
+  <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='comma token'>,</span> <span class='rubyid_t1 identifier id'>t1</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_t2 identifier id'>t2</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># when both are arrays, return an array with common element type</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PArrayType constant id'>PArrayType</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PArrayType constant id'>PArrayType</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PArrayType constant id'>PArrayType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_common_type identifier id'>common_type</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_type identifier id'>type</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># when both are hashes, return a hash with common key- and element type</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PHashType constant id'>PHashType</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PHashType constant id'>PHashType</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PHashType constant id'>PHashType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span> <span class='assign token'>=</span> <span class='rubyid_common_type identifier id'>common_type</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_common_type identifier id'>common_type</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_type identifier id'>type</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># Common abstract types, from most specific to most general</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_common_numeric? fid id'>common_numeric?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNumericType constant id'>PNumericType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_common_literal? fid id'>common_literal?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PLiteralType constant id'>PLiteralType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_common_data? fid id'>common_data?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='comma token'>,</span><span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PDataType constant id'>PDataType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='rparen token'>)</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_t1 identifier id'>t1</span><span class='dot token'>.</span><span class='rubyid_ruby_class identifier id'>ruby_class</span> <span class='eq op'>==</span> <span class='rubyid_t2 identifier id'>t2</span><span class='dot token'>.</span><span class='rubyid_ruby_class identifier id'>ruby_class</span>
+      <span class='rubyid_return return kw'>return</span> <span class='rubyid_t1 identifier id'>t1</span>
+    <span class='rubyid_end end kw'>end</span>
+    <span class='comment val'># finding the common super class requires that names are resolved to class</span>
+    <span class='rubyid_c1 identifier id'>c1</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_ClassLoader constant id'>ClassLoader</span><span class='dot token'>.</span><span class='rubyid_provide_from_type identifier id'>provide_from_type</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='rparen token'>)</span>
+    <span class='rubyid_c2 identifier id'>c2</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_ClassLoader constant id'>ClassLoader</span><span class='dot token'>.</span><span class='rubyid_provide_from_type identifier id'>provide_from_type</span><span class='lparen token'>(</span><span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_c1 identifier id'>c1</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_c2 identifier id'>c2</span>
+      <span class='rubyid_c2_superclasses identifier id'>c2_superclasses</span> <span class='assign token'>=</span> <span class='rubyid_superclasses identifier id'>superclasses</span><span class='lparen token'>(</span><span class='rubyid_c2 identifier id'>c2</span><span class='rparen token'>)</span>
+      <span class='rubyid_superclasses identifier id'>superclasses</span><span class='lparen token'>(</span><span class='rubyid_c1 identifier id'>c1</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_each identifier id'>each</span> <span class='rubyid_do do kw'>do</span><span class='bitor op'>|</span><span class='rubyid_c1_super identifier id'>c1_super</span><span class='bitor op'>|</span>
+        <span class='rubyid_c2_superclasses identifier id'>c2_superclasses</span><span class='dot token'>.</span><span class='rubyid_each identifier id'>each</span> <span class='rubyid_do do kw'>do</span> <span class='bitor op'>|</span><span class='rubyid_c2_super identifier id'>c2_super</span><span class='bitor op'>|</span>
+          <span class='rubyid_if if kw'>if</span> <span class='rubyid_c1_super identifier id'>c1_super</span> <span class='eq op'>==</span> <span class='rubyid_c2_super identifier id'>c2_super</span>
+            <span class='rubyid_result identifier id'>result</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+            <span class='rubyid_result identifier id'>result</span><span class='dot token'>.</span><span class='rubyid_ruby_class identifier id'>ruby_class</span> <span class='assign token'>=</span> <span class='rubyid_c1_super identifier id'>c1_super</span><span class='dot token'>.</span><span class='rubyid_name identifier id'>name</span>
+            <span class='rubyid_return return kw'>return</span> <span class='rubyid_result identifier id'>result</span>
+          <span class='rubyid_end end kw'>end</span>
+        <span class='rubyid_end end kw'>end</span>
+      <span class='rubyid_end end kw'>end</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='comment val'># If both are RubyObjects</span>
+
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_common_pobject? fid id'>common_pobject?</span><span class='lparen token'>(</span><span class='rubyid_t1 identifier id'>t1</span><span class='comma token'>,</span> <span class='rubyid_t2 identifier id'>t2</span><span class='rparen token'>)</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PObjectType constant id'>PObjectType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer</strong>(o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers 'what is the Puppet Type of o'</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+189
+190
+191</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 189</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer identifier id'>infer</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_@@infer_visitor ivar id'>@@infer_visitor</span><span class='dot token'>.</span><span class='rubyid_visit_this identifier id'>visit_this</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='comma token'>,</span> <span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_and_reduce_type-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_and_reduce_type</strong>(enumerable) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Reduce an enumerable of objects to a single common type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+316
+317
+318</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 316</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_and_reduce_type identifier id'>infer_and_reduce_type</span><span class='lparen token'>(</span><span class='rubyid_enumerable identifier id'>enumerable</span><span class='rparen token'>)</span>
+  <span class='rubyid_reduce_type identifier id'>reduce_type</span><span class='lparen token'>(</span><span class='rubyid_enumerable identifier id'>enumerable</span><span class='dot token'>.</span><span class='rubyid_collect identifier id'>collect</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_o identifier id'>o</span><span class='bitor op'>|</span> <span class='rubyid_infer identifier id'>infer</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_Array-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_Array</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+385
+386
+387
+388
+389
+390
+391
+392
+393</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 385</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_Array identifier id'>infer_Array</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PArrayType constant id'>PArrayType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_if if kw'>if</span> <span class='rubyid_o identifier id'>o</span><span class='dot token'>.</span><span class='rubyid_empty? fid id'>empty?</span>
+    <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNilType constant id'>PNilType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_infer_and_reduce_type identifier id'>infer_and_reduce_type</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_type identifier id'>type</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_Class-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_Class</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The type of all classes is PType</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+323
+324
+325</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 323</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_Class identifier id'>infer_Class</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PType constant id'>PType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_FalseClass-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_FalseClass</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+380
+381
+382</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 380</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_FalseClass identifier id'>infer_FalseClass</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PBooleanType constant id'>PBooleanType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_Float-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_Float</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+355
+356
+357</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 355</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_Float identifier id'>infer_Float</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PFloatType constant id'>PFloatType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_Hash-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_Hash</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 396</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_Hash identifier id'>infer_Hash</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PHashType constant id'>PHashType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_o identifier id'>o</span><span class='dot token'>.</span><span class='rubyid_empty? fid id'>empty?</span>
+    <span class='rubyid_ktype identifier id'>ktype</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNilType constant id'>PNilType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_etype identifier id'>etype</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNilType constant id'>PNilType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_ktype identifier id'>ktype</span> <span class='assign token'>=</span> <span class='rubyid_infer_and_reduce_type identifier id'>infer_and_reduce_type</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='dot token'>.</span><span class='rubyid_keys identifier id'>keys</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+    <span class='rubyid_etype identifier id'>etype</span> <span class='assign token'>=</span> <span class='rubyid_infer_and_reduce_type identifier id'>infer_and_reduce_type</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='dot token'>.</span><span class='rubyid_values identifier id'>values</span><span class='lparen token'>(</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span> <span class='assign token'>=</span> <span class='rubyid_ktype identifier id'>ktype</span>
+  <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_etype identifier id'>etype</span>
+  <span class='rubyid_type identifier id'>type</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_Integer-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_Integer</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+360
+361
+362</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 360</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_Integer identifier id'>infer_Integer</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PIntegerType constant id'>PIntegerType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_NilClass-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_NilClass</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+370
+371
+372</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 370</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_NilClass identifier id'>infer_NilClass</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNilType constant id'>PNilType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_Object-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_Object</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+328
+329
+330
+331
+332</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 328</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_Object identifier id'>infer_Object</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_ruby_class identifier id'>ruby_class</span> <span class='assign token'>=</span> <span class='rubyid_o identifier id'>o</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_name identifier id'>name</span>
+  <span class='rubyid_type identifier id'>type</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_PObjectType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_PObjectType</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The type of all types is PType</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+337
+338
+339</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 337</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_PObjectType identifier id'>infer_PObjectType</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PType constant id'>PType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_PType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_PType</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>The type of all types is PType
+This is the metatype short circuit.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+345
+346
+347</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 345</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_PType identifier id'>infer_PType</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PType constant id'>PType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_Regexp-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_Regexp</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+365
+366
+367</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 365</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_Regexp identifier id'>infer_Regexp</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PPatternType constant id'>PPatternType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_String-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_String</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+350
+351
+352</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 350</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_String identifier id'>infer_String</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PStringType constant id'>PStringType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="infer_TrueClass-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>infer_TrueClass</strong>(o) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+375
+376
+377</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 375</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_infer_TrueClass identifier id'>infer_TrueClass</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PBooleanType constant id'>PBooleanType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="injectable_class-instance_method">
+  
+    - (<tt><span class='object_link'>Class</span></tt><sup>?</sup>) <strong>injectable_class</strong>(klazz) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers the question 'is it possible to inject an instance of the given class'
+A class is injectable if it has a special <em>assisted inject</em> class method called <code>inject</code> taking
+an injector and a scope as argument, or if it has a zero args <code>initialize</code> method.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>klazz</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Class</span></tt>, <tt><span class='object_link'><a href="PRubyType.html" title="Puppet::Pops::Types::PRubyType (class)">PRubyType</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the class/type to check if it is injectable</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Class</span></tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the injectable Class, or nil if not injectable</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 110</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_injectable_class identifier id'>injectable_class</span><span class='lparen token'>(</span><span class='rubyid_klazz identifier id'>klazz</span><span class='rparen token'>)</span>
+  <span class='comment val'># Handle case when we get a PType instead of a class</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_klazz identifier id'>klazz</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='rparen token'>)</span>
+    <span class='rubyid_klazz identifier id'>klazz</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Pops constant id'>Pops</span><span class='colon2 op'>::</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_ClassLoader constant id'>ClassLoader</span><span class='dot token'>.</span><span class='rubyid_provide identifier id'>provide</span><span class='lparen token'>(</span><span class='rubyid_klazz identifier id'>klazz</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># data types can not be injected (check again, it is not safe to assume that given RubyType klazz arg was ok)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_false false kw'>false</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_type identifier id'>type</span><span class='lparen token'>(</span><span class='rubyid_klazz identifier id'>klazz</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='lparen token'>(</span><span class='rubyid_klazz identifier id'>klazz</span><span class='dot token'>.</span><span class='rubyid_respond_to? fid id'>respond_to?</span><span class='lparen token'>(</span><span class='symbol val'>:inject</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_klazz identifier id'>klazz</span><span class='dot token'>.</span><span class='rubyid_method identifier id'>method</span><span class='lparen token'>(</span><span class='symbol val'>:inject</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_arity identifier id'>arity</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='integer val'>-4</span><span class='rparen token'>)</span> <span class='orop op'>||</span> <span class='rubyid_klazz identifier id'>klazz</span><span class='dot token'>.</span><span class='rubyid_instance_method identifier id'>instance_method</span><span class='lparen token'>(</span><span class='symbol val'>:initialize</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_arity identifier id'>arity</span><span class='lparen token'>(</span><span class='rparen token'>)</span> <span class='eq op'>==</span> <span class='integer val'>0</span>
+    <span class='rubyid_klazz identifier id'>klazz</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_nil nil kw'>nil</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="instance?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>instance?</strong>(t, o) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers 'is o an instance of type t'</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+196
+197
+198</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 196</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_instance? fid id'>instance?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span>
+  <span class='rubyid_assignable? fid id'>assignable?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='comma token'>,</span> <span class='rubyid_infer identifier id'>infer</span><span class='lparen token'>(</span><span class='rubyid_o identifier id'>o</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="is_pnil?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_pnil?</strong>(t) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers if t represents the puppet type PNilType</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+210
+211
+212</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 210</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_is_pnil? fid id'>is_pnil?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_t identifier id'>t</span><span class='dot token'>.</span><span class='rubyid_nil? fid id'>nil?</span> <span class='orop op'>||</span> <span class='rubyid_t identifier id'>t</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNilType constant id'>PNilType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="is_ptype?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_ptype?</strong>(t) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers if t is a puppet type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+203
+204
+205</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 203</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_is_ptype? fid id'>is_ptype?</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_t identifier id'>t</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PObjectType constant id'>PObjectType</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="reduce_type-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>reduce_type</strong>(enumerable) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Reduces an enumerable of types to a single common type.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+309
+310
+311</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 309</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_reduce_type identifier id'>reduce_type</span><span class='lparen token'>(</span><span class='rubyid_enumerable identifier id'>enumerable</span><span class='rparen token'>)</span>
+  <span class='rubyid_enumerable identifier id'>enumerable</span><span class='dot token'>.</span><span class='rubyid_reduce identifier id'>reduce</span><span class='lparen token'>(</span><span class='rubyid_nil nil kw'>nil</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span><span class='bitor op'>|</span><span class='rubyid_memo identifier id'>memo</span><span class='comma token'>,</span> <span class='rubyid_t identifier id'>t</span><span class='bitor op'>|</span> <span class='rubyid_common_type identifier id'>common_type</span><span class='lparen token'>(</span><span class='rubyid_memo identifier id'>memo</span><span class='comma token'>,</span> <span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string</strong>(t) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Produces a string representing the type</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+301
+302
+303</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 301</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string identifier id'>string</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>
+  <span class='rubyid_@@string_visitor ivar id'>@@string_visitor</span><span class='dot token'>.</span><span class='rubyid_visit_this identifier id'>visit_this</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='comma token'>,</span> <span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PArrayType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PArrayType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+525
+526
+527</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 525</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PArrayType identifier id'>string_PArrayType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>
+  <span class='dstring node'>&quot;Array[#{string(t.element_type)}]&quot;</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PBooleanType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PBooleanType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+498</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 498</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PBooleanType identifier id'>string_PBooleanType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='string val'>&quot;Boolean&quot;</span>  <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PDataType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PDataType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+504</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 504</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PDataType identifier id'>string_PDataType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>    <span class='semicolon token'>;</span> <span class='string val'>&quot;Data&quot;</span>     <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PFloatType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PFloatType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+513</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 513</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PFloatType identifier id'>string_PFloatType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>   <span class='semicolon token'>;</span> <span class='string val'>&quot;Float&quot;</span>    <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PHashType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PHashType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+530
+531
+532</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 530</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PHashType identifier id'>string_PHashType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>
+  <span class='dstring node'>&quot;Hash[#{string(t.key_type)}, #{string(t.element_type)}]&quot;</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PIntegerType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PIntegerType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+510</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 510</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PIntegerType identifier id'>string_PIntegerType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='string val'>&quot;Integer&quot;</span>  <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PLiteralType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PLiteralType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+501</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 501</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PLiteralType identifier id'>string_PLiteralType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='string val'>&quot;Literal&quot;</span>  <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PNumericType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PNumericType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+507</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 507</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PNumericType identifier id'>string_PNumericType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='string val'>&quot;Numeric&quot;</span>  <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PObjectType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PObjectType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+495</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 495</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PObjectType identifier id'>string_PObjectType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>  <span class='semicolon token'>;</span> <span class='string val'>&quot;Object&quot;</span>   <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PPatternType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PPatternType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+516</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 516</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PPatternType identifier id'>string_PPatternType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span> <span class='semicolon token'>;</span> <span class='string val'>&quot;Pattern&quot;</span>  <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PRubyType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PRubyType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+522</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 522</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PRubyType identifier id'>string_PRubyType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>   <span class='semicolon token'>;</span> <span class='dstring node'>&quot;Ruby[#{t.ruby_class}]&quot;</span>   <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PStringType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PStringType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+519</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 519</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PStringType identifier id'>string_PStringType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>  <span class='semicolon token'>;</span> <span class='string val'>&quot;String&quot;</span>   <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="string_PType-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>string_PType</strong>(t) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+492</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 492</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_string_PType identifier id'>string_PType</span><span class='lparen token'>(</span><span class='rubyid_t identifier id'>t</span><span class='rparen token'>)</span>        <span class='semicolon token'>;</span> <span class='string val'>&quot;Type&quot;</span>     <span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="type-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>type</strong>(c) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Answers 'what is the Puppet Type corresponding to the given Ruby class'</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>c</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Class</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the class for which a puppet type is wanted</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>ArgumentError</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/types/type_calculator.rb', line 149</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_type identifier id'>type</span><span class='lparen token'>(</span><span class='rubyid_c identifier id'>c</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;Argument must be a Class&quot;</span> <span class='rubyid_unless unless_mod kw'>unless</span> <span class='rubyid_c identifier id'>c</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span> <span class='rubyid_Class constant id'>Class</span>
+
+  <span class='comment val'># Can't use a visitor here since we don't have an instance of the class</span>
+  <span class='rubyid_case case kw'>case</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='leq op'>&lt;=</span> <span class='rubyid_Integer constant id'>Integer</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PIntegerType constant id'>PIntegerType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_Float constant id'>Float</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PFloatType constant id'>PFloatType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_Numeric constant id'>Numeric</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNumericType constant id'>PNumericType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_String constant id'>String</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PStringType constant id'>PStringType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_Regexp constant id'>Regexp</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PPatternType constant id'>PPatternType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_NilClass constant id'>NilClass</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PNilType constant id'>PNilType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_FalseClass constant id'>FalseClass</span><span class='comma token'>,</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_TrueClass constant id'>TrueClass</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PBooleanType constant id'>PBooleanType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_Class constant id'>Class</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PType constant id'>PType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_Array constant id'>Array</span>
+    <span class='comment val'># Assume array of data values</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PArrayType constant id'>PArrayType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PDataType constant id'>PDataType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_c identifier id'>c</span> <span class='eq op'>==</span> <span class='rubyid_Hash constant id'>Hash</span>
+    <span class='comment val'># Assume hash with literal keys and data values</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PHashType constant id'>PHashType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_key_type identifier id'>key_type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PLiteralType constant id'>PLiteralType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_element_type identifier id'>element_type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PDataType constant id'>PDataType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_type identifier id'>type</span> <span class='assign token'>=</span> <span class='rubyid_Types constant id'>Types</span><span class='colon2 op'>::</span><span class='rubyid_PRubyType constant id'>PRubyType</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_type identifier id'>type</span><span class='dot token'>.</span><span class='rubyid_ruby_class identifier id'>ruby_class</span> <span class='assign token'>=</span> <span class='rubyid_c identifier id'>c</span><span class='dot token'>.</span><span class='rubyid_name identifier id'>name</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_type identifier id'>type</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:44 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

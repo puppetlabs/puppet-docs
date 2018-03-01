@@ -1,0 +1,815 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Puppet::Pops::Binder::Config::BinderConfig
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../../../../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../../../../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../../../../';
+  framesUrl = "../../../../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../../../../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../../../../_index.html">Index (B)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../../../../Puppet.html" title="Puppet (module)">Puppet</a></span></span> &raquo; <span class='title'><span class='object_link'>Pops</span></span> &raquo; <span class='title'><span class='object_link'>Binder</span></span> &raquo; <span class='title'><span class='object_link'>Config</span></span>
+     &raquo; 
+    <span class="title">BinderConfig</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../../../../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../../../../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../../../../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Puppet::Pops::Binder::Config::BinderConfig
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'>Object</span></span>
+      
+        <ul class="fullTree">
+          <li><span class='object_link'>Object</span></li>
+          
+            <li class="next">Puppet::Pops::Binder::Config::BinderConfig</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/puppet/pops/binder/config/binder_config.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Class holding the Binder Configuration
+The configuration is obtained from the file 'binder_config.yaml'
+that must reside in the root directory of the site</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#categorization-instance_method" title="#categorization (instance method)">- (Array&lt;Array(String, String)&gt;) <strong>categorization</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Array of Category tuples where Strings are not evaluated.</p>
+</div></span>
+  
+</li>
+
+    
+      
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#layering_config-instance_method" title="#layering_config (instance method)">- (Array&lt;Hash&lt;String, String&gt;, Hash&lt;String, Array&lt;String&gt;&gt;]) <strong>layering_config</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The bindings hierarchy is an array of categorizations where the array for each category has exactly three elements - the categorization name, category value, and the path that is later used by the backend to read the bindings for that category.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_categories-instance_method" title="#default_categories (instance method)">- (Object) <strong>default_categories</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_hiera_backends_extensions-instance_method" title="#default_hiera_backends_extensions (instance method)">- (Object) <strong>default_hiera_backends_extensions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_layers-instance_method" title="#default_layers (instance method)">- (Object) <strong>default_layers</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#default_scheme_extensions-instance_method" title="#default_scheme_extensions (instance method)">- (Object) <strong>default_scheme_extensions</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (BinderConfig) <strong>initialize</strong>(diagnostics) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new Config.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Puppet::Pops::Binder::Config::BinderConfig (class)">BinderConfig</a></span></tt>) <strong>initialize</strong>(diagnostics) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new Config. The configuration is loaded from the file 'binder_config.yaml' which
+is expected to be found in confdir.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>diagnostics</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>DiagnosticProducer</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>collector of diagnostics</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/config/binder_config.rb', line 64</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='rubyid_diagnostics identifier id'>diagnostics</span><span class='rparen token'>)</span>
+  <span class='rubyid_@config_file ivar id'>@config_file</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_settings identifier id'>settings</span><span class='lbrack token'>[</span><span class='symbol val'>:binder_config</span><span class='rbrack token'>]</span>
+  <span class='comment val'># if file is stated, it must exist</span>
+  <span class='comment val'># otherwise it is optional $confdir/binder_conf.yaml</span>
+  <span class='comment val'># and if that fails, the default</span>
+  <span class='rubyid_case case kw'>case</span> <span class='rubyid_@config_file ivar id'>@config_file</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_NilClass constant id'>NilClass</span>
+    <span class='comment val'># use the config file if it exists</span>
+    <span class='rubyid_rootdir identifier id'>rootdir</span> <span class='assign token'>=</span> <span class='rubyid_confdir identifier id'>confdir</span>
+    <span class='rubyid_if if kw'>if</span> <span class='rubyid_rootdir identifier id'>rootdir</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_String constant id'>String</span><span class='rparen token'>)</span>
+      <span class='rubyid_expanded_config_file identifier id'>expanded_config_file</span> <span class='assign token'>=</span> <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_expand_path identifier id'>expand_path</span><span class='lparen token'>(</span><span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='rubyid_rootdir identifier id'>rootdir</span><span class='comma token'>,</span> <span class='string val'>'/binder_config.yaml'</span><span class='rparen token'>)</span><span class='rparen token'>)</span>
+      <span class='rubyid_if if kw'>if</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_FileSystem constant id'>FileSystem</span><span class='colon2 op'>::</span><span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='rubyid_expanded_config_file identifier id'>expanded_config_file</span><span class='rparen token'>)</span>
+        <span class='rubyid_@config_file ivar id'>@config_file</span> <span class='assign token'>=</span> <span class='rubyid_expanded_config_file identifier id'>expanded_config_file</span>
+      <span class='rubyid_end end kw'>end</span>
+    <span class='rubyid_else else kw'>else</span>
+      <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='string val'>&quot;No Puppet settings 'confdir', or it is not a String&quot;</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_when when kw'>when</span> <span class='rubyid_String constant id'>String</span>
+    <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_FileSystem constant id'>FileSystem</span><span class='colon2 op'>::</span><span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='rubyid_@config_file ivar id'>@config_file</span><span class='rparen token'>)</span>
+      <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;Cannot find the given binder configuration file '#{@config_file}'&quot;</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_raise identifier id'>raise</span> <span class='rubyid_ArgumentError constant id'>ArgumentError</span><span class='comma token'>,</span> <span class='dstring node'>&quot;The setting binder_config is expected to be a String, got: #{@config_file.class.name}.&quot;</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_@config_file ivar id'>@config_file</span><span class='dot token'>.</span><span class='rubyid_is_a? fid id'>is_a?</span><span class='lparen token'>(</span><span class='rubyid_String constant id'>String</span><span class='rparen token'>)</span> <span class='andop op'>&amp;&amp;</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_FileSystem constant id'>FileSystem</span><span class='colon2 op'>::</span><span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='rubyid_@config_file ivar id'>@config_file</span><span class='rparen token'>)</span>
+    <span class='rubyid_@config_file ivar id'>@config_file</span> <span class='assign token'>=</span> <span class='rubyid_nil nil kw'>nil</span> <span class='comment val'># use defaults</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_validator identifier id'>validator</span> <span class='assign token'>=</span> <span class='rubyid_BinderConfigChecker constant id'>BinderConfigChecker</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_diagnostics identifier id'>diagnostics</span><span class='rparen token'>)</span>
+  <span class='rubyid_begin begin kw'>begin</span>
+    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='rubyid_@config_file ivar id'>@config_file</span> <span class='question op'>?</span> <span class='rubyid_YAML constant id'>YAML</span><span class='dot token'>.</span><span class='rubyid_load_file identifier id'>load_file</span><span class='lparen token'>(</span><span class='rubyid_@config_file ivar id'>@config_file</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_default_config identifier id'>default_config</span><span class='lparen token'>(</span><span class='rparen token'>)</span>
+    <span class='rubyid_validator identifier id'>validator</span><span class='dot token'>.</span><span class='rubyid_validate identifier id'>validate</span><span class='lparen token'>(</span><span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='rubyid_@config_file ivar id'>@config_file</span><span class='rparen token'>)</span>
+  <span class='rubyid_rescue rescue kw'>rescue</span> <span class='rubyid_Errno constant id'>Errno</span><span class='colon2 op'>::</span><span class='rubyid_ENOENT constant id'>ENOENT</span>
+    <span class='rubyid_diagnostics identifier id'>diagnostics</span><span class='dot token'>.</span><span class='rubyid_accept identifier id'>accept</span><span class='lparen token'>(</span><span class='rubyid_Issues constant id'>Issues</span><span class='colon2 op'>::</span><span class='rubyid_CONFIG_FILE_NOT_FOUND constant id'>CONFIG_FILE_NOT_FOUND</span><span class='comma token'>,</span> <span class='rubyid_@config_file ivar id'>@config_file</span><span class='rparen token'>)</span>
+  <span class='rubyid_rescue rescue kw'>rescue</span> <span class='rubyid_Errno constant id'>Errno</span><span class='colon2 op'>::</span><span class='rubyid_ENOTDIR constant id'>ENOTDIR</span>
+    <span class='rubyid_diagnostics identifier id'>diagnostics</span><span class='dot token'>.</span><span class='rubyid_accept identifier id'>accept</span><span class='lparen token'>(</span><span class='rubyid_Issues constant id'>Issues</span><span class='colon2 op'>::</span><span class='rubyid_CONFIG_FILE_NOT_FOUND constant id'>CONFIG_FILE_NOT_FOUND</span><span class='comma token'>,</span> <span class='rubyid_@config_file ivar id'>@config_file</span><span class='rparen token'>)</span>
+  <span class='rubyid_rescue rescue kw'>rescue</span> <span class='colon2 op'>::</span><span class='rubyid_SyntaxError constant id'>SyntaxError</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_e identifier id'>e</span>
+    <span class='rubyid_diagnostics identifier id'>diagnostics</span><span class='dot token'>.</span><span class='rubyid_accept identifier id'>accept</span><span class='lparen token'>(</span><span class='rubyid_Issues constant id'>Issues</span><span class='colon2 op'>::</span><span class='rubyid_CONFIG_FILE_SYNTAX_ERROR constant id'>CONFIG_FILE_SYNTAX_ERROR</span><span class='comma token'>,</span> <span class='rubyid_@config_file ivar id'>@config_file</span><span class='comma token'>,</span> <span class='symbol val'>:detail</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_e identifier id'>e</span><span class='dot token'>.</span><span class='rubyid_message identifier id'>message</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_unless unless kw'>unless</span> <span class='rubyid_diagnostics identifier id'>diagnostics</span><span class='dot token'>.</span><span class='rubyid_errors? fid id'>errors?</span>
+    <span class='rubyid_@layering_config ivar id'>@layering_config</span>   <span class='assign token'>=</span> <span class='rubyid_data identifier id'>data</span><span class='lbrack token'>[</span><span class='string val'>'layers'</span><span class='rbrack token'>]</span> <span class='rubyid_or or kw'>or</span> <span class='rubyid_default_layers identifier id'>default_layers</span>
+    <span class='rubyid_@categorization ivar id'>@categorization</span>    <span class='assign token'>=</span> <span class='rubyid_data identifier id'>data</span><span class='lbrack token'>[</span><span class='string val'>'categories'</span><span class='rbrack token'>]</span> <span class='rubyid_or or kw'>or</span> <span class='rubyid_default_categories identifier id'>default_categories</span>
+    <span class='rubyid_@scheme_extensions ivar id'>@scheme_extensions</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_data identifier id'>data</span><span class='lbrack token'>[</span><span class='string val'>'extensions'</span><span class='rbrack token'>]</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_data identifier id'>data</span><span class='lbrack token'>[</span><span class='string val'>'extensions'</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>'scheme_handlers'</span><span class='rbrack token'>]</span> <span class='rubyid_or or kw'>or</span> <span class='rubyid_default_scheme_extensions identifier id'>default_scheme_extensions</span><span class='rparen token'>)</span>
+    <span class='rubyid_@hiera_backends ivar id'>@hiera_backends</span>    <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_data identifier id'>data</span><span class='lbrack token'>[</span><span class='string val'>'extensions'</span><span class='rbrack token'>]</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_data identifier id'>data</span><span class='lbrack token'>[</span><span class='string val'>'extensions'</span><span class='rbrack token'>]</span><span class='lbrack token'>[</span><span class='string val'>'hiera_backends'</span><span class='rbrack token'>]</span> <span class='rubyid_or or kw'>or</span> <span class='rubyid_default_hiera_backends_extensions identifier id'>default_hiera_backends_extensions</span><span class='rparen token'>)</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_@layering_config ivar id'>@layering_config</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span>
+    <span class='rubyid_@categorization ivar id'>@categorization</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='rubyid_@scheme_extensions ivar id'>@scheme_extensions</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+    <span class='rubyid_@hiera_backends ivar id'>@hiera_backends</span> <span class='assign token'>=</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="categorization-instance_method">
+  
+    - (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span>(<span class='object_link'>String</span>, <span class='object_link'>String</span>)&gt;</tt>) <strong>categorization</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns Array of Category tuples where Strings are not evaluated.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Array</span>(<span class='object_link'>String</span>, <span class='object_link'>String</span>)&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Array of Category tuples where Strings are not evaluated.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/config/binder_config.rb', line 22</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_categorization identifier id'>categorization</span>
+  <span class='rubyid_@categorization ivar id'>@categorization</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="layering_config-instance_method">
+  
+    - (<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Hash</span>&lt;<span class='object_link'>String</span>, <span class='object_link'>String</span>&gt;, <span class='object_link'>Hash</span>&lt;<span class='object_link'>String</span>, <span class='object_link'>Array</span>&lt;<span class='object_link'>String</span>&gt;&gt;]</tt>) <strong>layering_config</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The bindings hierarchy is an array of categorizations where the
+array for each category has exactly three elements - the categorization name,
+category value, and the path that is later used by the backend to read
+the bindings for that category</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>Hash</span>&lt;<span class='object_link'>String</span>, <span class='object_link'>String</span>&gt;, <span class='object_link'>Hash</span>&lt;<span class='object_link'>String</span>, <span class='object_link'>Array</span>&lt;<span class='object_link'>String</span>&gt;&gt;]</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Array&lt;Hash&lt;String, String>, Hash&lt;String, Array<String>>]</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/config/binder_config.rb', line 17</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_layering_config identifier id'>layering_config</span>
+  <span class='rubyid_@layering_config ivar id'>@layering_config</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="default_categories-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>default_categories</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+125
+126
+127</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/config/binder_config.rb', line 125</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_default_categories identifier id'>default_categories</span>
+  <span class='rubyid_DEFAULT_CATEGORIES constant id'>DEFAULT_CATEGORIES</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="default_hiera_backends_extensions-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>default_hiera_backends_extensions</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+135
+136
+137</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/config/binder_config.rb', line 135</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_default_hiera_backends_extensions identifier id'>default_hiera_backends_extensions</span>
+  <span class='rubyid_DEFAULT_HIERA_BACKENDS_EXTENSIONS constant id'>DEFAULT_HIERA_BACKENDS_EXTENSIONS</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="default_layers-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>default_layers</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+120
+121
+122</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/config/binder_config.rb', line 120</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_default_layers identifier id'>default_layers</span>
+  <span class='rubyid_DEFAULT_LAYERS constant id'>DEFAULT_LAYERS</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="default_scheme_extensions-instance_method">
+  
+    - (<tt><span class='object_link'>Object</span></tt>) <strong>default_scheme_extensions</strong> &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/pops/binder/config/binder_config.rb', line 130</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_default_scheme_extensions identifier id'>default_scheme_extensions</span>
+  <span class='rubyid_DEFAULT_SCHEME_EXTENSIONS constant id'>DEFAULT_SCHEME_EXTENSIONS</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:56 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

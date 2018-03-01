@@ -1,0 +1,906 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  File: README_DEVELOPER
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README_DEVELOPER</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Developer README</h1>
+
+<p>This file is intended to provide a place for developers and contributors to
+document what other developers need to know about changes made to Puppet.</p>
+
+<h1>Internal Structures</h1>
+
+<h2>Two Types of Catalog</h2>
+
+<p>When working on subsystems of Puppet that deal with the catalog it is important
+to be aware of the two different types of Catalog.  Developers will often find
+this difference while working on the static compiler and types and providers.</p>
+
+<p>The two different types of catalog becomes relevant when writing spec tests
+because we frequently need to wire up a fake catalog so that we can exercise
+types, providers, or termini that filter the catalog.</p>
+
+<p>The two different types of catalogs are so-called "resource" catalogs and "RAL"
+(resource abstraction layer) catalogs.  At a high level, the resource catalog
+is the in-memory object we serialize and transfer around the network.  The
+compiler terminus is expected to produce a resource catalog.  The agent takes a
+resource catalog and converts it into a RAL catalog.  The RAL catalog is what
+is used to apply the configuration model to the system.</p>
+
+<p>Resource dependency information is most easily obtained from a RAL catalog by
+walking the graph instance produced by the <code>relationship_graph</code> method.</p>
+
+<h3>Resource Catalog</h3>
+
+<p>If you're writing spec tests for something that deals with a catalog "server
+side," a new catalog terminus for example, then you'll be dealing with a
+resource catalog.  You can produce a resource catalog suitable for spec tests
+using something like this:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_let identifier id'>let</span><span class='lparen token'>(</span><span class='symbol val'>:catalog</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+  <span class='rubyid_catalog identifier id'>catalog</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Resource constant id'>Resource</span><span class='colon2 op'>::</span><span class='rubyid_Catalog constant id'>Catalog</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;node-name-val&quot;</span><span class='rparen token'>)</span> <span class='comment val'># NOT certname!</span>
+  <span class='rubyid_rsrc identifier id'>rsrc</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Resource constant id'>Resource</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='string val'>&quot;file&quot;</span><span class='comma token'>,</span> <span class='string val'>&quot;sshd_config&quot;</span><span class='comma token'>,</span>
+    <span class='symbol val'>:parameters</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='lbrace token'>{</span>
+      <span class='symbol val'>:ensure</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'file'</span><span class='comma token'>,</span>
+      <span class='symbol val'>:source</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'puppet:///modules/filetest/sshd_config'</span><span class='comma token'>,</span>
+    <span class='rbrace token'>}</span>
+  <span class='rparen token'>)</span>
+  <span class='rubyid_rsrc identifier id'>rsrc</span><span class='dot token'>.</span><span class='rubyid_file identifier id'>file</span> <span class='assign token'>=</span> <span class='string val'>'site.pp'</span>
+  <span class='rubyid_rsrc identifier id'>rsrc</span><span class='dot token'>.</span><span class='rubyid_line identifier id'>line</span> <span class='assign token'>=</span> <span class='integer val'>21</span>
+  <span class='rubyid_catalog identifier id'>catalog</span><span class='dot token'>.</span><span class='rubyid_add_resource identifier id'>add_resource</span><span class='lparen token'>(</span><span class='rubyid_rsrc identifier id'>rsrc</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>The resources in this catalog may be accessed using <code>catalog.resources</code>.
+Resource dependencies are not easily walked using a resource catalog however.
+To walk the dependency tree convert the catalog to a RAL catalog as described
+in</p>
+
+<h3>RAL Catalog</h3>
+
+<p>The resource catalog may be converted to a RAL catalog using <code>catalog.to_ral</code>.
+The RAL catalog contains <code>Puppet::Type</code> instances instead of <code>Puppet::Resource</code>
+instances as is the case with the resource catalog.</p>
+
+<p>One very useful feature of the RAL catalog are the methods to work with
+resource relationships.  For example:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_irb identifier id'>irb</span><span class='gt op'>&gt;</span> <span class='rubyid_catalog identifier id'>catalog</span> <span class='assign token'>=</span> <span class='rubyid_catalog identifier id'>catalog</span><span class='dot token'>.</span><span class='rubyid_to_ral identifier id'>to_ral</span>
+<span class='rubyid_irb identifier id'>irb</span><span class='gt op'>&gt;</span> <span class='rubyid_graph identifier id'>graph</span> <span class='assign token'>=</span> <span class='rubyid_catalog identifier id'>catalog</span><span class='dot token'>.</span><span class='rubyid_relationship_graph identifier id'>relationship_graph</span>
+<span class='rubyid_irb identifier id'>irb</span><span class='gt op'>&gt;</span> <span class='rubyid_pp identifier id'>pp</span> <span class='rubyid_graph identifier id'>graph</span><span class='dot token'>.</span><span class='rubyid_edges identifier id'>edges</span>
+<span class='lbrack token'>[</span><span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_20 identifier id'>file_20</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_21 identifier id'>file_21</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_22 identifier id'>file_22</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_23 identifier id'>file_23</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_24 identifier id'>file_24</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_25 identifier id'>file_25</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_26 identifier id'>file_26</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_27 identifier id'>file_27</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_28 identifier id'>file_28</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_alpha identifier id'>alpha</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_29 identifier id'>file_29</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_20 identifier id'>file_20</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_21 identifier id'>file_21</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_22 identifier id'>file_22</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_23 identifier id'>file_23</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_24 identifier id'>file_24</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_25 identifier id'>file_25</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_26 identifier id'>file_26</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_27 identifier id'>file_27</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_28 identifier id'>file_28</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='comma token'>,</span>
+ <span class='lbrace token'>{</span> <span class='rubyid_File constant id'>File</span><span class='lbrack token'>[</span><span class='regexp val'>/tmp/</span><span class='rubyid_file_29 identifier id'>file_29</span><span class='dot token'>.</span><span class='rubyid_txt identifier id'>txt</span><span class='rbrack token'>]</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Notify constant id'>Notify</span><span class='lbrack token'>[</span><span class='rubyid_omega identifier id'>omega</span><span class='rbrack token'>]</span> <span class='rbrace token'>}</span><span class='rbrack token'>]</span>
+</code></pre>
+
+<p>If the <code>relationship_graph</code> method is throwing exceptions at you, there's a
+good chance the catalog is not a RAL catalog.</p>
+
+<h2>Settings Catalog</h2>
+
+<p>Be aware that Puppet creates a mini catalog and applies this catalog locally to
+manage file resource from the settings.  This behavior made it difficult and
+time consuming to track down a race condition in
+<a href="http://projects.puppetlabs.com/issues/2888">2888</a>.</p>
+
+<p>Even more surprising, the <code>File[puppetdlockfile]</code> resource is only added to the
+settings catalog if the file exists on disk.  This caused the race condition as
+it will exist when a separate process holds the lock while applying the
+catalog.</p>
+
+<p>It may be sufficient to simply be aware of the settings catalog and the
+potential for race conditions it presents.  An effective way to be reasonably
+sure and track down the problem is to wrap the File.open method like so:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment val'># We're wrapping ourselves around the File.open method.</span>
+<span class='comment val'># As described at: http://goo.gl/lDsv6</span>
+<span class='rubyid_class class kw'>class</span> <span class='rubyid_File constant id'>File</span>
+  <span class='rubyid_WHITELIST constant id'>WHITELIST</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span> <span class='regexp val'>/pidlock.rb:39/</span> <span class='rbrack token'>]</span>
+
+  <span class='rubyid_class class kw'>class</span> <span class='lshft op'>&lt;&lt;</span> <span class='rubyid_self self kw'>self</span>
+    <span class='rubyid_alias alias kw'>alias</span> <span class='rubyid_xxx_orig_open identifier id'>xxx_orig_open</span> <span class='rubyid_open identifier id'>open</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_open identifier id'>open</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='rubyid_rest identifier id'>rest</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+    <span class='comment val'># Check the whitelist for any &quot;good&quot; File.open calls against the #</span>
+    <span class='rubyid_puppetdlock identifier id'>puppetdlock</span> <span class='rubyid_file identifier id'>file</span>
+    <span class='rubyid_white_listed identifier id'>white_listed</span> <span class='assign token'>=</span> <span class='rubyid_caller identifier id'>caller</span><span class='lparen token'>(</span><span class='integer val'>0</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_find identifier id'>find</span> <span class='rubyid_do do kw'>do</span> <span class='bitor op'>|</span><span class='rubyid_line identifier id'>line</span><span class='bitor op'>|</span>
+      <span class='rubyid_JJM_WHITELIST constant id'>JJM_WHITELIST</span><span class='dot token'>.</span><span class='rubyid_find identifier id'>find</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rubyid_re identifier id'>re</span><span class='bitor op'>|</span> <span class='rubyid_re identifier id'>re</span><span class='dot token'>.</span><span class='rubyid_match identifier id'>match</span><span class='lparen token'>(</span><span class='rubyid_line identifier id'>line</span><span class='rparen token'>)</span> <span class='rbrace token'>}</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='comment val'># If you drop into IRB here, take a look at your caller, it might be</span>
+    <span class='comment val'># the ghost in the machine you're looking for.</span>
+    <span class='rubyid_binding identifier id'>binding</span><span class='dot token'>.</span><span class='rubyid_pry identifier id'>pry</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_name identifier id'>name</span> <span class='match op'>=~</span> <span class='regexp val'>/puppetdlock/</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_white_listed identifier id'>white_listed</span>
+    <span class='rubyid_xxx_orig_open identifier id'>xxx_orig_open</span><span class='lparen token'>(</span><span class='rubyid_name identifier id'>name</span><span class='comma token'>,</span> <span class='mult op'>*</span><span class='rubyid_rest identifier id'>rest</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>The settings catalog is populated by the <code>Puppet::Util::Settings#to\_catalog</code>
+method.</p>
+
+<h1>Ruby Dependencies</h1>
+
+<p>To install the dependencies run:</p>
+
+<pre class="code ruby"><code class="ruby">$ <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_install identifier id'>install</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_path identifier id'>path</span> <span class='dot token'>.</span><span class='rubyid_bundle identifier id'>bundle</span><span class='div op'>/</span><span class='rubyid_gems identifier id'>gems</span><span class='div op'>/</span>
+</code></pre>
+
+<p>Once this is done, you can interact with puppet through bundler using <code>bundle
+exec &lt;command&gt;</code> which will ensure that <code>&lt;command&gt;</code> is executed in the context
+of puppet's dependencies.</p>
+
+<p>For example to run the specs:</p>
+
+<pre class="code ruby"><code class="ruby">$ <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_rake identifier id'>rake</span> <span class='rubyid_spec identifier id'>spec</span>
+</code></pre>
+
+<p>To run puppet itself (for a resource lookup say):</p>
+
+<pre class="code ruby"><code class="ruby">$ <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_puppet identifier id'>puppet</span> <span class='rubyid_resource identifier id'>resource</span> <span class='rubyid_host identifier id'>host</span> <span class='rubyid_localhost identifier id'>localhost</span>
+</code></pre>
+
+<p>which should return something like:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_host identifier id'>host</span> <span class='lbrace token'>{</span> <span class='string val'>'localhost'</span><span class='colon op'>:</span>
+  <span class='rubyid_ensure ensure kw'>ensure</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'present'</span><span class='comma token'>,</span>
+  <span class='rubyid_ip identifier id'>ip</span>     <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'127.0.0.1'</span><span class='comma token'>,</span>
+  <span class='rubyid_target identifier id'>target</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>'/etc/hosts'</span><span class='comma token'>,</span>
+<span class='rbrace token'>}</span>
+</code></pre>
+
+<h1>Running Tests</h1>
+
+<p>Puppet Labs projects use a common convention of using Rake to run unit tests.
+The tests can be run with the following rake task:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_rake identifier id'>rake</span> <span class='rubyid_spec identifier id'>spec</span>
+</code></pre>
+
+<p>This allows the Rakefile to set up the environment beforehand if needed. This
+method is how the unit tests are run in <a href="https://jenkins.puppetlabs.com">Jenkins</a>.</p>
+
+<p>Under the hood Puppet's tests use <code>rspec</code>.  To run all of them, you can directly
+use 'rspec':</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_rspec identifier id'>rspec</span>
+</code></pre>
+
+<p>To run a single file's worth of tests (much faster!), give the filename, and use
+the nested format to see the descriptions:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_rspec identifier id'>rspec</span> <span class='rubyid_spec identifier id'>spec</span><span class='div op'>/</span><span class='rubyid_unit identifier id'>unit</span><span class='div op'>/</span><span class='rubyid_ssl identifier id'>ssl</span><span class='div op'>/</span><span class='rubyid_host_spec identifier id'>host_spec</span><span class='dot token'>.</span><span class='rubyid_rb identifier id'>rb</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_format identifier id'>format</span> <span class='rubyid_nested identifier id'>nested</span>
+</code></pre>
+
+<h2>Testing dependency version requirements</h2>
+
+<p>Puppet is only compatible with certain versions of RSpec and Mocha. If you are
+not using Bundler to install the required test libraries you must ensure that
+you are using the right library versions. Using unsupported versions of Mocha
+and RSpec will probably display many spurious failures. The supported versions
+of RSpec and Mocha can be found in the project Gemfile.</p>
+
+<h1>A brief introduction to testing in Puppet</h1>
+
+<p>Puppet relies heavily on automated testing to ensure that Puppet behaves as
+expected and that new features don't interfere with existing behavior. There are
+three primary sets of tests that Puppet uses: <em>unit tests</em>, <em>integration tests</em>,
+and <em>acceptance tests</em>.</p>
+
+<hr />
+
+<p>Unit tests are used to test the individual components of Puppet to ensure that
+they function as expected in isolation. Unit tests are designed to hide the
+actual system implementations and provide canned information so that only the
+intended behavior is tested, rather than the targeted code and everything else
+connected to it. Unit tests should never affect the state of the system that's
+running the test.</p>
+
+<hr />
+
+<p>Integration tests serve to test different units of code together to ensure that
+they interact correctly. While individual methods might perform correctly, when
+used with the rest of the system they might fail, so integration tests are a
+higher level version of unit tests that serve to check the behavior of
+individual subsystems.</p>
+
+<p>All of the unit and integration tests for Puppet are kept in the spec/ directory.</p>
+
+<hr />
+
+<p>Acceptance tests are used to test high level behaviors of Puppet that deal with
+a number of concerns and aren't easily tested with normal unit tests. Acceptance
+tests function by changing system state and checking the system after
+the fact to make sure that the intended behavior occurred. Because of this
+acceptance tests can be destructive, so the systems being tested should be
+throwaway systems.</p>
+
+<p>All of the acceptance tests for Puppet are kept in the acceptance/tests/
+directory.</p>
+
+<h2>Puppet Continuous integration</h2>
+
+<ul>
+<li>Travis-ci (unit tests only): <a href="https://travis-ci.org/puppetlabs/puppet/">https://travis-ci.org/puppetlabs/puppet/</a></li>
+<li>Jenkins (unit and acceptance tests): <a href="https://jenkins.puppetlabs.com/view/Puppet%20FOSS/">https://jenkins.puppetlabs.com/view/Puppet%20FOSS/</a></li>
+</ul>
+
+
+<h2>RSpec</h2>
+
+<p>Puppet uses RSpec to perform unit and integration tests. RSpec handles a number
+of concerns to make testing easier:</p>
+
+<ul>
+<li>Executing examples and ensuring the actual behavior matches the expected behavior (examples)</li>
+<li>Grouping tests (describe and contexts)</li>
+<li>Setting up test environments and cleaning up afterwards (before and after blocks)</li>
+<li>Isolating tests (mocks and stubs)</li>
+</ul>
+
+
+<h4>Examples and expectations</h4>
+
+<p>At the most basic level, RSpec provides a framework for executing tests (which
+are called examples) and ensuring that the actual behavior matches the expected
+behavior (which are done with expectations)</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment val'># This is an example; it sets the test name and defines the test to run</span>
+<span class='rubyid_specify identifier id'>specify</span> <span class='string val'>&quot;one equals one&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='comment val'># 'should' is an expectation; it adds a check to make sure that the left argument</span>
+  <span class='comment val'># matches the right argument</span>
+  <span class='float val'>1</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='eq op'>==</span> <span class='integer val'>1</span>
+<span class='rubyid_end end kw'>end</span>
+
+<span class='comment val'># Examples can be declared with either 'it' or 'specify'</span>
+<span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;one doesn't equal two&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='float val'>1</span><span class='dot token'>.</span><span class='rubyid_should_not identifier id'>should_not</span> <span class='eq op'>==</span> <span class='integer val'>2</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>Good examples generally do as little setup as possible and only test one or two
+things; it makes tests easier to understand and easier to debug.</p>
+
+<p>More complete documentation on expectations is available at <a href="https://www.relishapp.com/rspec/rspec-expectations/docs">https://www.relishapp.com/rspec/rspec-expectations/docs</a></p>
+
+<h3>Example groups</h3>
+
+<p>Example groups are fairly self explanatory; they group similar examples into a
+set.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;the number one&quot;</span> <span class='rubyid_do do kw'>do</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;is larger than zero&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='float val'>1</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='rubyid_be identifier id'>be</span> <span class='gt op'>&gt;</span> <span class='integer val'>0</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;is an odd number&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='float val'>1</span><span class='dot token'>.</span><span class='rubyid_odd? fid id'>odd?</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='rubyid_be identifier id'>be</span> <span class='rubyid_true true kw'>true</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;is not nil&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='float val'>1</span><span class='dot token'>.</span><span class='rubyid_should_not identifier id'>should_not</span> <span class='rubyid_be_nil identifier id'>be_nil</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>Example groups have a number of uses that we'll get into later, but one of the
+simplest demonstrations of what they do is how they help to format
+documentation:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_rspec identifier id'>rspec</span> <span class='rubyid_ex identifier id'>ex</span><span class='dot token'>.</span><span class='rubyid_rb identifier id'>rb</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_format identifier id'>format</span> <span class='rubyid_documentation identifier id'>documentation</span>
+
+<span class='rubyid_the identifier id'>the</span> <span class='rubyid_number identifier id'>number</span> <span class='rubyid_one identifier id'>one</span>
+  <span class='rubyid_is identifier id'>is</span> <span class='rubyid_larger identifier id'>larger</span> <span class='rubyid_than identifier id'>than</span> <span class='rubyid_zero identifier id'>zero</span>
+  <span class='rubyid_is identifier id'>is</span> <span class='rubyid_an identifier id'>an</span> <span class='rubyid_odd identifier id'>odd</span> <span class='rubyid_number identifier id'>number</span>
+  <span class='rubyid_is identifier id'>is</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_nil nil kw'>nil</span>
+
+<span class='rubyid_Finished constant id'>Finished</span> <span class='rubyid_in in kw'>in</span> <span class='integer val'>0</span><span class='integer val'>.00516</span> <span class='rubyid_seconds identifier id'>seconds</span>
+<span class='integer val'>3</span> <span class='rubyid_examples identifier id'>examples</span><span class='comma token'>,</span> <span class='integer val'>0</span> <span class='rubyid_failures identifier id'>failures</span>
+</code></pre>
+
+<h3>Setting up and tearing down tests</h3>
+
+<p>Examples may require some setup before they can run, and might need to clean up
+afterwards. <code>before</code> and <code>after</code> blocks can be used before this, and can be
+used inside of example groups to limit how many examples they affect.</p>
+
+<pre class="code ruby"><code class="ruby">
+<span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;something that could warn&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='rubyid_before identifier id'>before</span> <span class='symbol val'>:each</span> <span class='rubyid_do do kw'>do</span>
+    <span class='comment val'># Disable warnings for this test</span>
+    <span class='rubyid_$VERBOSE gvar id'>$VERBOSE</span> <span class='assign token'>=</span> <span class='rubyid_nil nil kw'>nil</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_after identifier id'>after</span> <span class='rubyid_do do kw'>do</span>
+    <span class='comment val'># Enable warnings afterwards</span>
+    <span class='rubyid_$VERBOSE gvar id'>$VERBOSE</span> <span class='assign token'>=</span> <span class='rubyid_true true kw'>true</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;doesn't generate a warning&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_MY_CONSTANT constant id'>MY_CONSTANT</span> <span class='assign token'>=</span> <span class='integer val'>1</span>
+    <span class='comment val'># reassigning a normally prints out 'warning: already initialized constant FOO'</span>
+    <span class='rubyid_MY_CONSTANT constant id'>MY_CONSTANT</span> <span class='assign token'>=</span> <span class='integer val'>2</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<h3>Setting up helper data</h3>
+
+<p>Some examples may require setting up data before hand and making it available to
+tests. RSpec provides helper methods with the <code>let</code> method call that can be used
+inside of tests.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;a helper object&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='comment val'># This creates an array with three elements that we can retrieve in tests. A</span>
+  <span class='comment val'># new copy will be made for each test.</span>
+  <span class='rubyid_let identifier id'>let</span><span class='lparen token'>(</span><span class='symbol val'>:my_helper</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='lbrack token'>[</span><span class='string val'>'foo'</span><span class='comma token'>,</span> <span class='string val'>'bar'</span><span class='comma token'>,</span> <span class='string val'>'baz'</span><span class='rbrack token'>]</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;should be an array&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='rubyid_be_a_kind_of identifier id'>be_a_kind_of</span> <span class='rubyid_Array constant id'>Array</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;should have three elements&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='rubyid_have identifier id'>have</span><span class='lparen token'>(</span><span class='integer val'>3</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_items identifier id'>items</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>Like <code>before</code> blocks, helper objects like this are used to avoid doing a lot of
+setup in individual examples and share setup between similar tests.</p>
+
+<h3>Isolating tests with stubs</h3>
+
+<p>RSpec allows you to provide fake data during testing to make sure that
+individual tests are only running the code being tested. You can stub out entire
+objects, or just stub out individual methods on an object. When a method is
+stubbed the method itself will never be called.</p>
+
+<p>While RSpec comes with its own stubbing framework, Puppet uses the Mocha
+framework.</p>
+
+<p>A brief usage guide for Mocha is available at <a href="http://gofreerange.com/mocha/docs/#Usage,">http://gofreerange.com/mocha/docs/#Usage,</a>
+and an overview of Mocha expectations is available at <a href="http://gofreerange.com/mocha/docs/Mocha/Expectation.html">http://gofreerange.com/mocha/docs/Mocha/Expectation.html</a></p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;stubbing a method on an object&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='rubyid_let identifier id'>let</span><span class='lparen token'>(</span><span class='symbol val'>:my_helper</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='lbrack token'>[</span><span class='string val'>'foo'</span><span class='comma token'>,</span> <span class='string val'>'bar'</span><span class='comma token'>,</span> <span class='string val'>'baz'</span><span class='rbrack token'>]</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>'should have three items before being stubbed'</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='eq op'>==</span> <span class='integer val'>3</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_describe identifier id'>describe</span> <span class='string val'>'when stubbing the size'</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_before identifier id'>before</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:size</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_returns identifier id'>returns</span> <span class='integer val'>10</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='rubyid_it identifier id'>it</span> <span class='string val'>'should have the stubbed value for size'</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='eq op'>==</span> <span class='integer val'>10</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>Entire objects can be stubbed as well.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;stubbing an object&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='rubyid_let identifier id'>let</span><span class='lparen token'>(</span><span class='symbol val'>:my_helper</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_stub identifier id'>stub</span><span class='lparen token'>(</span><span class='symbol val'>:not_an_array</span><span class='comma token'>,</span> <span class='symbol val'>:size</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='integer val'>10</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>'should have the stubbed size'</span>
+    <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='eq op'>==</span> <span class='integer val'>10</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<h3>Adding expectations with mocks</h3>
+
+<p>It's possible to combine the concepts of stubbing and expectations so that a
+method has to be called for the test to pass (like an expectation), and can
+return a fixed value (like a stub).</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;mocking a method on an object&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='rubyid_let identifier id'>let</span><span class='lparen token'>(</span><span class='symbol val'>:my_helper</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='lbrack token'>[</span><span class='string val'>'foo'</span><span class='comma token'>,</span> <span class='string val'>'bar'</span><span class='comma token'>,</span> <span class='string val'>'baz'</span><span class='rbrack token'>]</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;when mocking the size&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_before identifier id'>before</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:size</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_returns identifier id'>returns</span> <span class='integer val'>10</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;adds an expectation that a method was called&quot;</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_my_helper identifier id'>my_helper</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>Like stubs, entire objects can be mocked.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;mocking an object&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='rubyid_let identifier id'>let</span><span class='lparen token'>(</span><span class='symbol val'>:my_helper</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_mock identifier id'>mock</span><span class='lparen token'>(</span><span class='symbol val'>:not_an_array</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_before identifier id'>before</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_not_an_array identifier id'>not_an_array</span><span class='dot token'>.</span><span class='rubyid_expects identifier id'>expects</span><span class='lparen token'>(</span><span class='symbol val'>:size</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_returns identifier id'>returns</span> <span class='integer val'>10</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;adds an expectation that the method was called&quot;</span> <span class='rubyid_do do kw'>do</span>
+    <span class='rubyid_not_an_array identifier id'>not_an_array</span><span class='dot token'>.</span><span class='rubyid_size identifier id'>size</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<h3>Writing tests without side effects</h3>
+
+<p>When properly written each test should be able to run in isolation, and tests
+should be able to be run in any order. This makes tests more reliable and allows
+a single test to be run if only that test is failing, instead of running all
+17000+ tests each time something is changed. However, there are a number of ways
+that can make tests fail when run in isolation or out of order.</p>
+
+<h4>Using instance variables</h4>
+
+<p>Puppet has a number of older tests that use <code>before</code> blocks and instance
+variables to set up fixture data, instead of <code>let</code> blocks. These can retain
+state between tests, which can lead to test failures when tests are run out of
+order.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment val'># test.rb</span>
+<span class='rubyid_RSpec constant id'>RSpec</span><span class='dot token'>.</span><span class='rubyid_configure identifier id'>configure</span> <span class='rubyid_do do kw'>do</span> <span class='bitor op'>|</span><span class='rubyid_c identifier id'>c</span><span class='bitor op'>|</span>
+  <span class='rubyid_c identifier id'>c</span><span class='dot token'>.</span><span class='rubyid_mock_framework identifier id'>mock_framework</span> <span class='assign token'>=</span> <span class='symbol val'>:mocha</span>
+<span class='rubyid_end end kw'>end</span>
+
+<span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;fixture data&quot;</span> <span class='rubyid_do do kw'>do</span>
+  <span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;using instance variables&quot;</span> <span class='rubyid_do do kw'>do</span>
+
+    <span class='comment val'># BAD</span>
+    <span class='rubyid_before identifier id'>before</span> <span class='symbol val'>:all</span> <span class='rubyid_do do kw'>do</span>
+      <span class='comment val'># This fixture will be created only once and will retain the `foo` stub</span>
+      <span class='comment val'># between tests.</span>
+      <span class='rubyid_@fixture ivar id'>@fixture</span> <span class='assign token'>=</span> <span class='rubyid_stub identifier id'>stub</span> <span class='string val'>'test data'</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;can be stubbed&quot;</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_@fixture ivar id'>@fixture</span><span class='dot token'>.</span><span class='rubyid_stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:foo</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_returns identifier id'>returns</span> <span class='symbol val'>:bar</span>
+      <span class='rubyid_@fixture ivar id'>@fixture</span><span class='dot token'>.</span><span class='rubyid_foo identifier id'>foo</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='eq op'>==</span> <span class='symbol val'>:bar</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;should not keep state between tests&quot;</span> <span class='rubyid_do do kw'>do</span>
+      <span class='comment val'># The foo stub was added in the previous test and shouldn't be present</span>
+      <span class='comment val'># in this test.</span>
+      <span class='rubyid_expect identifier id'>expect</span> <span class='lbrace token'>{</span> <span class='rubyid_@fixture ivar id'>@fixture</span><span class='dot token'>.</span><span class='rubyid_foo identifier id'>foo</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='rubyid_to identifier id'>to</span> <span class='rubyid_raise_error identifier id'>raise_error</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='rubyid_describe identifier id'>describe</span> <span class='string val'>&quot;using `let` blocks&quot;</span> <span class='rubyid_do do kw'>do</span>
+
+    <span class='comment val'># GOOD</span>
+    <span class='comment val'># This will be recreated between tests so that state isn't retained.</span>
+    <span class='rubyid_let identifier id'>let</span><span class='lparen token'>(</span><span class='symbol val'>:fixture</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='rubyid_stub identifier id'>stub</span> <span class='string val'>'test data'</span> <span class='rbrace token'>}</span>
+
+    <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;can be stubbed&quot;</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_fixture identifier id'>fixture</span><span class='dot token'>.</span><span class='rubyid_stubs identifier id'>stubs</span><span class='lparen token'>(</span><span class='symbol val'>:foo</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_returns identifier id'>returns</span> <span class='symbol val'>:bar</span>
+      <span class='rubyid_fixture identifier id'>fixture</span><span class='dot token'>.</span><span class='rubyid_foo identifier id'>foo</span><span class='dot token'>.</span><span class='rubyid_should identifier id'>should</span> <span class='eq op'>==</span> <span class='symbol val'>:bar</span>
+    <span class='rubyid_end end kw'>end</span>
+
+    <span class='rubyid_it identifier id'>it</span> <span class='string val'>&quot;should not keep state between tests&quot;</span> <span class='rubyid_do do kw'>do</span>
+      <span class='comment val'># since let blocks are regenerated between tests, the foo stub added in</span>
+      <span class='comment val'># the previous test will not be present here.</span>
+      <span class='rubyid_expect identifier id'>expect</span> <span class='lbrace token'>{</span> <span class='rubyid_fixture identifier id'>fixture</span><span class='dot token'>.</span><span class='rubyid_foo identifier id'>foo</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='rubyid_to identifier id'>to</span> <span class='rubyid_raise_error identifier id'>raise_error</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_rspec identifier id'>rspec</span> <span class='rubyid_test identifier id'>test</span><span class='dot token'>.</span><span class='rubyid_rb identifier id'>rb</span> <span class='minus op'>-</span><span class='rubyid_fd identifier id'>fd</span>
+
+<span class='rubyid_fixture identifier id'>fixture</span> <span class='rubyid_data identifier id'>data</span>
+  <span class='rubyid_using identifier id'>using</span> <span class='rubyid_instance identifier id'>instance</span> <span class='rubyid_variables identifier id'>variables</span>
+    <span class='rubyid_can identifier id'>can</span> <span class='rubyid_be identifier id'>be</span> <span class='rubyid_stubbed identifier id'>stubbed</span>
+    <span class='rubyid_should identifier id'>should</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_keep identifier id'>keep</span> <span class='rubyid_state identifier id'>state</span> <span class='rubyid_between identifier id'>between</span> <span class='rubyid_tests identifier id'>tests</span> <span class='lparen token'>(</span><span class='rubyid_FAILED constant id'>FAILED</span> <span class='minus op'>-</span> <span class='integer val'>1</span><span class='rparen token'>)</span>
+  <span class='rubyid_using identifier id'>using</span> <span class='xstring val'>`let`</span> <span class='rubyid_blocks identifier id'>blocks</span>
+    <span class='rubyid_can identifier id'>can</span> <span class='rubyid_be identifier id'>be</span> <span class='rubyid_stubbed identifier id'>stubbed</span>
+    <span class='rubyid_should identifier id'>should</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_keep identifier id'>keep</span> <span class='rubyid_state identifier id'>state</span> <span class='rubyid_between identifier id'>between</span> <span class='rubyid_tests identifier id'>tests</span>
+
+<span class='rubyid_Failures constant id'>Failures</span><span class='colon op'>:</span>
+
+  <span class='integer val'>1</span><span class='rparen token'>)</span> <span class='rubyid_fixture identifier id'>fixture</span> <span class='rubyid_data identifier id'>data</span> <span class='rubyid_using identifier id'>using</span> <span class='rubyid_instance identifier id'>instance</span> <span class='rubyid_variables identifier id'>variables</span> <span class='rubyid_should identifier id'>should</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_keep identifier id'>keep</span> <span class='rubyid_state identifier id'>state</span> <span class='rubyid_between identifier id'>between</span> <span class='rubyid_tests identifier id'>tests</span>
+     <span class='rubyid_Failure constant id'>Failure</span><span class='div op'>/</span><span class='rubyid_Error constant id'>Error</span><span class='colon op'>:</span> <span class='rubyid_expect identifier id'>expect</span> <span class='lbrace token'>{</span> <span class='rubyid_@fixture ivar id'>@fixture</span><span class='dot token'>.</span><span class='rubyid_foo identifier id'>foo</span> <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='rubyid_to identifier id'>to</span> <span class='rubyid_raise_error identifier id'>raise_error</span>
+       <span class='rubyid_expected identifier id'>expected</span> <span class='rubyid_Exception constant id'>Exception</span> <span class='rubyid_but identifier id'>but</span> <span class='rubyid_nothing identifier id'>nothing</span> <span class='rubyid_was identifier id'>was</span> <span class='rubyid_raised identifier id'>raised</span>
+     <span class='comment val'># ./test.rb:17:in `block (3 levels) in &lt;top (required)&gt;'</span>
+
+<span class='rubyid_Finished constant id'>Finished</span> <span class='rubyid_in in kw'>in</span> <span class='integer val'>0</span><span class='integer val'>.00248</span> <span class='rubyid_seconds identifier id'>seconds</span>
+<span class='integer val'>4</span> <span class='rubyid_examples identifier id'>examples</span><span class='comma token'>,</span> <span class='integer val'>1</span> <span class='rubyid_failure identifier id'>failure</span>
+
+<span class='rubyid_Failed constant id'>Failed</span> <span class='label val'>examples:</span>
+
+<span class='rubyid_rspec identifier id'>rspec</span> <span class='dot token'>.</span><span class='div op'>/</span><span class='rubyid_test identifier id'>test</span><span class='dot token'>.</span><span class='label val'>rb:</span><span class='integer val'>16</span> <span class='comment val'># fixture data using instance variables should not keep state between tests</span>
+</code></pre>
+
+<h3>RSpec references</h3>
+
+<ul>
+<li>RSpec core docs: <a href="https://www.relishapp.com/rspec/rspec-core/docs">https://www.relishapp.com/rspec/rspec-core/docs</a></li>
+<li>RSpec guidelines with Ruby: <a href="http://betterspecs.org/">http://betterspecs.org/</a></li>
+</ul>
+
+
+<h3>Puppet-acceptance</h3>
+
+<p>Puppet has a custom acceptance testing framework called
+<a href="https://github.com/puppetlabs/puppet-acceptance">puppet-acceptance</a> for running acceptance tests.
+Puppet-acceptance runs the tests by configuring one or more VMs, copying the
+test cases onto the VMs, performing the tests and collecting the results, and
+ensuring that the results match the intended behavior. It uses
+<a href="http://test-unit.rubyforge.org/">test::unit</a> to perform the actual assertions.</p>
+
+<h1>UTF-8 Handling</h1>
+
+<p>As Ruby 1.9 becomes more commonly used with Puppet, developers should be aware
+of major changes to the way Strings and Regexp objects are handled.
+Specifically, every instance of these two classes will have an encoding
+attribute determined in a number of ways.</p>
+
+<ul>
+<li>If the source file has an encoding specified in the magic comment at the
+top, the instance will take on that encoding.</li>
+<li>Otherwise, the encoding will be determined by the LC_LANG or LANG
+environment variables.</li>
+<li>Otherwise, the encoding will default to ASCII-8BIT</li>
+</ul>
+
+
+<h2>References</h2>
+
+<p>Excellent information about the differences between encodings in Ruby 1.8 and
+Ruby 1.9 is published in this blog series:
+<a href="http://links.puppetlabs.com/understanding_m17n">Understanding M17n</a></p>
+
+<h2>Encodings of Regexp and String instances</h2>
+
+<p>In general, please be aware that Ruby 1.9 regular expressions need to be
+compatible with the encoding of a string being used to match them.  If they are
+not compatible you can expect to receive and error such as:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_Encoding constant id'>Encoding</span><span class='colon2 op'>::</span><span class='rubyid_CompatibilityError constant id'>CompatibilityError</span><span class='colon op'>:</span> <span class='rubyid_incompatible identifier id'>incompatible</span> <span class='rubyid_encoding identifier id'>encoding</span> <span class='rubyid_regexp identifier id'>regexp</span> <span class='rubyid_match identifier id'>match</span> <span class='lparen token'>(</span><span class='rubyid_ASCII constant id'>ASCII</span><span class='minus op'>-</span><span class='integer val'>8</span><span class='rubyid_BIT constant id'>BIT</span>
+<span class='rubyid_regexp identifier id'>regexp</span> <span class='rubyid_with identifier id'>with</span> <span class='rubyid_UTF constant id'>UTF</span><span class='minus op'>-</span><span class='integer val'>8</span> <span class='rubyid_string identifier id'>string</span><span class='rparen token'>)</span>
+</code></pre>
+
+<p>In addition, some escape sequences were valid in Ruby 1.8 are no longer valid
+in 1.9 if the regular expression is not marked as an ASCII-8BIT object.  You
+may expect errors like this in this situation:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_SyntaxError constant id'>SyntaxError</span><span class='colon op'>:</span> <span class='lparen token'>(</span><span class='rubyid_irb identifier id'>irb</span><span class='rparen token'>)</span><span class='symbol val'>:7</span><span class='colon op'>:</span> <span class='rubyid_invalid identifier id'>invalid</span> <span class='rubyid_multibyte identifier id'>multibyte</span> <span class='label val'>escape:</span> <span class='regexp val'>/\xFF/</span>
+</code></pre>
+
+<p>This error is particularly common when serializing a string to other
+representations like JSON or YAML.  To resolve the problem you can explicitly
+mark the regular expression as ASCII-8BIT using the /n flag:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='string val'>&quot;a&quot;</span> <span class='match op'>=~</span> <span class='regexp val'>/\342\230\203/n</span>
+</code></pre>
+
+<p>Finally, any time you're thinking of a string as an array of bytes rather than
+an array of characters, common when escaping a string, you should work with
+everything in ASCII-8BIT.  Changing the encoding will not change the data
+itself and allow the Regexp and the String to deal with bytes rather than
+characters.</p>
+
+<p>Puppet provides a monkey patch to String which returns an encoding suitable for
+byte manipulations:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment val'># Example of how to escape non ASCII printable characters for YAML.</span>
+<span class='rshft op'>&gt;&gt;</span> <span class='rubyid_snowman identifier id'>snowman</span> <span class='assign token'>=</span> <span class='string val'>&quot;☃&quot;</span>
+<span class='rshft op'>&gt;&gt;</span> <span class='rubyid_snowman identifier id'>snowman</span><span class='dot token'>.</span><span class='rubyid_to_ascii8bit identifier id'>to_ascii8bit</span><span class='dot token'>.</span><span class='rubyid_gsub identifier id'>gsub</span><span class='lparen token'>(</span><span class='regexp val'>/([\x80-\xFF])/n</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rubyid_x identifier id'>x</span><span class='bitor op'>|</span> <span class='dstring node'>&quot;\\x#{x.unpack(&quot;C&quot;)[0].to_s(16)} }
+=&gt; &quot;</span>\\<span class='rubyid_xe2 identifier id'>xe2</span>\\<span class='rubyid_x98 identifier id'>x98</span>\\<span class='rubyid_x83 identifier id'>x83</span><span class='string val'>&quot;
+</span></code></pre>
+
+<p>If the Regexp is not marked as ASCII-8BIT using /n, then you can expect the
+SyntaxError, invalid multibyte escape as mentioned above.</p>
+
+<h1>Windows</h1>
+
+<p>If you'd like to run Puppet from source on Windows platforms, the
+include <code>ext/envpuppet.bat</code> will help.</p>
+
+<p>To quickly run Puppet from source, assuming you already have Ruby installed
+from <a href="http://rubyinstaller.org">rubyinstaller.org</a>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_C constant id'>C</span><span class='symbol val'>:\</span><span class='gt op'>&gt;</span> <span class='rubyid_cd identifier id'>cd</span> <span class='rubyid_C constant id'>C</span><span class='symbol val'>:\</span><span class='rubyid_work identifier id'>work</span>\<span class='rubyid_puppet identifier id'>puppet</span>
+<span class='rubyid_C constant id'>C</span><span class='symbol val'>:\</span><span class='rubyid_work identifier id'>work</span>\<span class='rubyid_puppet identifier id'>puppet</span><span class='gt op'>&gt;</span> <span class='rubyid_set identifier id'>set</span> <span class='rubyid_PATH constant id'>PATH</span><span class='assign token'>=</span><span class='rubyid_PATH constant id'>PATH</span><span class='mod op'>%</span><span class='semicolon token'>;</span><span class='rubyid_C constant id'>C</span><span class='symbol val'>:\</span><span class='rubyid_work identifier id'>work</span>\<span class='rubyid_puppet identifier id'>puppet</span>\<span class='rubyid_ext identifier id'>ext</span>
+<span class='rubyid_C constant id'>C</span><span class='symbol val'>:\</span><span class='rubyid_work identifier id'>work</span>\<span class='rubyid_puppet identifier id'>puppet</span><span class='gt op'>&gt;</span> <span class='rubyid_envpuppet identifier id'>envpuppet</span> <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_install identifier id'>install</span>
+<span class='rubyid_C constant id'>C</span><span class='symbol val'>:\</span><span class='rubyid_work identifier id'>work</span>\<span class='rubyid_puppet identifier id'>puppet</span><span class='gt op'>&gt;</span> <span class='rubyid_envpuppet identifier id'>envpuppet</span> <span class='rubyid_puppet identifier id'>puppet</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_version identifier id'>version</span>
+<span class='float val'>2.7</span><span class='integer val'>.9</span>
+</code></pre>
+
+<p>When writing a test that cannot possibly run on Windows, e.g. there is
+no mount type on windows, do the following:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_describe identifier id'>describe</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_MyClass constant id'>MyClass</span><span class='comma token'>,</span> <span class='symbol val'>:unless</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_features identifier id'>features</span><span class='dot token'>.</span><span class='rubyid_microsoft_windows? fid id'>microsoft_windows?</span> <span class='rubyid_do do kw'>do</span>
+  <span class='dot2 op'>..</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>If the test doesn't currently pass on Windows, e.g. due to on going porting, then use an rspec conditional pending block:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_pending identifier id'>pending</span><span class='lparen token'>(</span><span class='string val'>&quot;porting to Windows&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:if</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_features identifier id'>features</span><span class='dot token'>.</span><span class='rubyid_microsoft_windows? fid id'>microsoft_windows?</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+  <span class='lt op'>&lt;</span><span class='rubyid_example1 identifier id'>example1</span><span class='gt op'>&gt;</span>
+<span class='rubyid_end end kw'>end</span>
+
+<span class='rubyid_pending identifier id'>pending</span><span class='lparen token'>(</span><span class='string val'>&quot;porting to Windows&quot;</span><span class='comma token'>,</span> <span class='symbol val'>:if</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_features identifier id'>features</span><span class='dot token'>.</span><span class='rubyid_microsoft_windows? fid id'>microsoft_windows?</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span>
+  <span class='lt op'>&lt;</span><span class='rubyid_example2 identifier id'>example2</span><span class='gt op'>&gt;</span>
+<span class='rubyid_end end kw'>end</span>
+</code></pre>
+
+<p>Then run the test as:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_C constant id'>C</span><span class='symbol val'>:\</span><span class='rubyid_work identifier id'>work</span>\<span class='rubyid_puppet identifier id'>puppet</span><span class='gt op'>&gt;</span> <span class='rubyid_envpuppet identifier id'>envpuppet</span> <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_rspec identifier id'>rspec</span> <span class='rubyid_spec identifier id'>spec</span>
+</code></pre>
+
+<h2>Common Issues</h2>
+
+<ul>
+<li><p>Don't assume file paths start with '/', as that is not a valid path on
+Windows.  Use Puppet::Util.absolute_path? to validate that a path is fully
+qualified.</p></li>
+<li><p>Use File.expand_path('/tmp') in tests to generate a fully qualified path
+that is valid on POSIX and Windows.  In the latter case, the current working
+directory will be used to expand the path.</p></li>
+<li><p>Always use binary mode when performing file I/O, unless you explicitly want
+Ruby to translate between unix and dos line endings.  For example, opening an
+executable file in text mode will almost certainly corrupt the resulting
+stream, as will occur when using:</p>
+
+<p>  IO.open(path, 'r') { |f| ... }
+  IO.read(path)</p>
+
+<p>If in doubt, specify binary mode explicitly:</p>
+
+<p>  IO.open(path, 'rb')</p></li>
+<li><p>Don't assume file paths are separated by ':'.  Use <code>File::PATH_SEPARATOR</code>
+instead, which is ':' on POSIX and ';' on Windows.</p></li>
+<li><p>On Windows, <code>File::SEPARATOR</code> is '/', and <code>File::ALT_SEPARATOR</code> is '\'.  On
+POSIX systems, <code>File::ALT_SEPARATOR</code> is nil.  In general, use '/' as the
+separator as most Windows APIs, e.g. CreateFile, accept both types of
+separators.</p></li>
+<li><p>Don't use waitpid/waitpid2 if you need the child process' exit code,
+as the child process may exit before it has a chance to open the
+child's HANDLE and retrieve its exit code.  Use Puppet::Util.execute.</p></li>
+<li><p>Don't assume 'C' drive.  Use environment variables to look these up:</p>
+
+<p> "#ENV['windir']/system32/netsh.exe"</p></li>
+</ul>
+
+
+<h1>Configuration Directory</h1>
+
+<p>In Puppet 3.x we've simplified the behavior of selecting a configuration file
+to load.  The intended behavior of reading <code>puppet.conf</code> is:</p>
+
+<ol>
+<li>Use the explicit configuration provided by --confdir or --config if present</li>
+<li>If running as root (<code>Puppet.features.root?</code>) then use the system
+<code>puppet.conf</code></li>
+<li>Otherwise, use <code>~/.puppet/puppet.conf</code>.</li>
+</ol>
+
+
+<p>When Puppet master is started from Rack, Puppet 3.x will read from
+~/.puppet/puppet.conf by default.  This is intended behavior.  Rack
+configurations should start Puppet master with an explicit configuration
+directory using <code>ARGV &lt;&lt; "--confdir" &lt;&lt; "/etc/puppet"</code>.  Please see the
+<code>ext/rack/config.ru</code> file for an up-to-date example.</p>
+
+<h1>Determining the Puppet Version</h1>
+
+<p>If you need to programmatically work with the Puppet version, please use the
+following:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_require identifier id'>require</span> <span class='string val'>'puppet/version'</span>
+<span class='comment val'># Get the version baked into the sourcecode:</span>
+<span class='rubyid_version identifier id'>version</span> <span class='assign token'>=</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_version identifier id'>version</span>
+<span class='comment val'># Set the version (e.g. in a Rakefile based on `git describe`)</span>
+<span class='rubyid_Puppet constant id'>Puppet</span><span class='dot token'>.</span><span class='rubyid_version identifier id'>version</span> <span class='assign token'>=</span> <span class='string val'>'2.3.4'</span>
+</code></pre>
+
+<p>Please do not monkey patch the constant <code>Puppet::PUPPETVERSION</code> or obtain the
+version using the constant.  The only supported way to set and get the Puppet
+version is through the accessor methods.</p>
+
+<h1>Static Compiler</h1>
+
+<p>The static compiler was added to Puppet in the 2.7.0 release.
+<a href="http://links.puppetlabs.com/static-compiler-announce">1</a></p>
+
+<p>The static compiler is intended to provide a configuration catalog that
+requires a minimal amount of network communication in order to apply the
+catalog to the system.  As implemented in Puppet 2.7.x and Puppet 3.0.x this
+intention takes the form of replacing all of the source parameters of File
+resources with a content parameter containing an address in the form of a
+checksum.  The expected behavior is that the process applying the catalog to
+the node will retrieve the file content from the FileBucket instead of the
+FileServer.</p>
+
+<p>The high level approach can be described as follows.  The <code>StaticCompiler</code> is a
+terminus that inserts itself between the "normal" compiler terminus and the
+request.  The static compiler takes the resource catalog produced by the
+compiler and filters all File resources.  Any file resource that contains a
+source parameter with a value starting with 'puppet://' is filtered in the
+following way in a "standard" single master / networked agents deployment
+scenario:</p>
+
+<ol>
+<li>The content, owner, group, and mode values are retrieved from th
+ FileServer by the master.</li>
+<li>The file content is stored in the file bucket on the master.</li>
+<li>The source parameter value is stripped from the File resource.</li>
+<li>The content parameter value is set in the File resource using the form
+'XXX1234567890' which can be thought of as a content address indexed by
+checksum.</li>
+<li>The owner, group and mode values are set in the File resource if they are
+not already set.</li>
+<li>The filtered catalog is returned in the response.</li>
+</ol>
+
+
+<p>In addition to the catalog terminus, the process requesting the catalog needs
+to obtain the file content.  The default behavior of <code>puppet agent</code> is to
+obtain file contents from the local client bucket.  The method we expect users
+to employ to reconfigure the agent to use the server bucket is to declare the
+<code>Filebucket[puppet]</code> resource with the address of the master. For example:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='rubyid_node identifier id'>node</span> <span class='rubyid_default identifier id'>default</span> <span class='lbrace token'>{</span>
+  <span class='rubyid_filebucket identifier id'>filebucket</span> <span class='lbrace token'>{</span> <span class='label val'>puppet:</span>
+    <span class='rubyid_server identifier id'>server</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_$server gvar id'>$server</span><span class='comma token'>,</span>
+    <span class='rubyid_path identifier id'>path</span>   <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span>
+  <span class='rbrace token'>}</span>
+  <span class='rubyid_class class kw'>class</span> <span class='lbrace token'>{</span> <span class='label val'>filetest:</span> <span class='rbrace token'>}</span>
+<span class='rbrace token'>}</span>
+</code></pre>
+
+<p>This special filebucket resource named "puppet" will cause the agent to fetch
+file contents specified by checksum from the remote filebucket instead of the
+default clientbucket.</p>
+
+<h2>Trying out the Static Compiler</h2>
+
+<p>Create a module that recursively downloads something.  The jeffmccune-filetest
+module will recursively copy the rubygems source tree.</p>
+
+<pre class="code ruby"><code class="ruby">$ <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_puppet identifier id'>puppet</span> <span class='rubyid_module module kw'>module</span> <span class='rubyid_install identifier id'>install</span> <span class='rubyid_jeffmccune identifier id'>jeffmccune</span><span class='minus op'>-</span><span class='rubyid_filetest identifier id'>filetest</span>
+</code></pre>
+
+<p>Start the master with the StaticCompiler turned on:</p>
+
+<pre class="code ruby"><code class="ruby">$ <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_puppet identifier id'>puppet</span> <span class='rubyid_master identifier id'>master</span> \
+    <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_catalog_terminus identifier id'>catalog_terminus</span><span class='assign token'>=</span><span class='rubyid_static_compiler identifier id'>static_compiler</span> \
+    <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_verbose identifier id'>verbose</span> \
+    <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_no identifier id'>no</span><span class='minus op'>-</span><span class='rubyid_daemonize identifier id'>daemonize</span>
+</code></pre>
+
+<p>Add the special Filebucket[puppet] resource:</p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment val'># site.pp</span>
+<span class='rubyid_node identifier id'>node</span> <span class='rubyid_default identifier id'>default</span> <span class='lbrace token'>{</span>
+  <span class='rubyid_filebucket identifier id'>filebucket</span> <span class='lbrace token'>{</span> <span class='label val'>puppet:</span> <span class='rubyid_server identifier id'>server</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_$server gvar id'>$server</span><span class='comma token'>,</span> <span class='rubyid_path identifier id'>path</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_false false kw'>false</span> <span class='rbrace token'>}</span>
+  <span class='rubyid_class class kw'>class</span> <span class='lbrace token'>{</span> <span class='label val'>filetest:</span> <span class='rbrace token'>}</span>
+<span class='rbrace token'>}</span>
+</code></pre>
+
+<p>Get the static catalog:</p>
+
+<pre class="code ruby"><code class="ruby">$ <span class='rubyid_bundle identifier id'>bundle</span> <span class='rubyid_exec identifier id'>exec</span> <span class='rubyid_puppet identifier id'>puppet</span> <span class='rubyid_agent identifier id'>agent</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_test identifier id'>test</span>
+</code></pre>
+
+<p>You should expect all file metadata to be contained in the catalog, including a
+checksum representing the content.  When managing an out of sync file resource,
+the real contents should be fetched from the server instead of the
+clientbucket.</p>
+
+<h1>Package Maintainers</h1>
+
+<h2>Software Version API</h2>
+
+<p>Please see the public API regarding the software version as described in
+<code>lib/puppet/version.rb</code>.  Puppet provides the means to easily specify the exact
+version of the software packaged using the VERSION file, for example:</p>
+
+<pre class="code ruby"><code class="ruby">$ <span class='rubyid_git identifier id'>git</span> <span class='rubyid_describe identifier id'>describe</span> <span class='minus op'>-</span><span class='minus op'>-</span><span class='rubyid_match identifier id'>match</span> <span class='string val'>&quot;3.0.*&quot;</span> <span class='gt op'>&gt;</span> <span class='rubyid_lib identifier id'>lib</span><span class='div op'>/</span><span class='rubyid_puppet identifier id'>puppet</span><span class='div op'>/</span><span class='rubyid_VERSION constant id'>VERSION</span>
+$ <span class='rubyid_ruby identifier id'>ruby</span> <span class='minus op'>-</span><span class='rubyid_r identifier id'>r</span> <span class='rubyid_puppet identifier id'>puppet</span><span class='div op'>/</span><span class='rubyid_version identifier id'>version</span> <span class='minus op'>-</span><span class='rubyid_e identifier id'>e</span> <span class='string val'>'puts Puppet.version'</span>
+<span class='float val'>3.0</span><span class='integer val'>.1</span><span class='minus op'>-</span><span class='integer val'>260</span><span class='minus op'>-</span><span class='rubyid_g9ca4e54 identifier id'>g9ca4e54</span>
+</code></pre>
+
+<p>EOF</p>
+</div></div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:51:59 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

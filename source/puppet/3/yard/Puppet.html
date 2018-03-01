@@ -1,0 +1,596 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Module: Puppet
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">Puppet</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Module: Puppet
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/puppet.rb<span class="defines">,<br />
+  lib/puppet/util.rb,<br /> lib/puppet/pops.rb,<br /> lib/puppet/type.rb,<br /> lib/puppet/error.rb,<br /> lib/puppet/vendor.rb,<br /> lib/puppet/version.rb,<br /> lib/puppet/defaults.rb,<br /> lib/puppet/type/zfs.rb,<br /> lib/puppet/type/exec.rb,<br /> lib/puppet/type/host.rb,<br /> lib/puppet/type/user.rb,<br /> lib/puppet/type/zpool.rb,<br /> lib/puppet/type/group.rb,<br /> lib/puppet/type/mount.rb,<br /> lib/puppet/module_tool.rb,<br /> lib/puppet/type/sshkey.rb,<br /> lib/puppet/application.rb,<br /> lib/puppet/type/router.rb,<br /> lib/puppet/type/notify.rb,<br /> lib/puppet/type/package.rb,<br /> lib/puppet/type/service.rb,<br /> lib/puppet/parser/files.rb,<br /> lib/puppet/type/yumrepo.rb,<br /> lib/puppet/parser/lexer.rb,<br /> lib/puppet/util/plugins.rb,<br /> lib/puppet/parser/parser.rb,<br /> lib/puppet/parser/parser.rb,<br /> lib/puppet/property/list.rb,<br /> lib/puppet/util/run_mode.rb,<br /> lib/puppet/util/classgen.rb,<br /> lib/puppet/util/platform.rb,<br /> lib/puppet/type/schedule.rb,<br /> lib/puppet/type/maillist.rb,<br /> lib/puppet/type/mailalias.rb,<br /> lib/puppet/type/file/type.rb,<br /> lib/puppet/util/execution.rb,<br /> lib/puppet/type/file/mode.rb,<br /> lib/puppet/resource/status.rb,<br /> lib/puppet/type/file/ctime.rb,<br /> lib/puppet/type/file/mtime.rb,<br /> lib/puppet/type/selboolean.rb,<br /> lib/puppet/type/file/owner.rb,<br /> lib/puppet/type/filebucket.rb,<br /> lib/puppet/type/file/group.rb,<br /> lib/puppet/type/file/target.rb,<br /> lib/puppet/type/file/source.rb,<br /> lib/puppet/type/file/ensure.rb,<br /> lib/puppet/ssl/configuration.rb,<br /> lib/puppet/pops/parser/lexer.rb,<br /> lib/puppet/property/keyvalue.rb,<br /> lib/puppet/util/command_line.rb,<br /> lib/puppet/network/authstore.rb,<br /> lib/puppet/type/file/content.rb,<br /> lib/puppet/network/authconfig.rb,<br /> lib/puppet/pops/parser/eparser.rb,<br /> lib/puppet/pops/parser/eparser.rb,<br /> lib/puppet/type/file/selcontext.rb,<br /> lib/puppet/property/ordered_list.rb,<br /> lib/puppet/parser/parser_factory.rb,<br /> lib/puppet/util/symbolic_file_mode.rb,<br /> lib/puppet/util/constant_inflector.rb,<br /> lib/puppet/parser/e_parser_adapter.rb,<br /> lib/puppet/type/ssh_authorized_key.rb,<br /> lib/puppet/util/command_line/trollop.rb,<br /> lib/puppet/module_tool/install_directory.rb,<br /> lib/puppet/ssl/certificate_authority/interface.rb,<br /> lib/puppet/util/command_line/puppet_option_parser.rb</span>
+</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>The main Puppet class. Everything is contained here.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Puppet/Coercion.html" title="Puppet::Coercion (module)">Coercion</a></span>, <span class='object_link'><a href="Puppet/MetaType.html" title="Puppet::MetaType (module)">MetaType</a></span>, <span class='object_link'><a href="Puppet/Parser.html" title="Puppet::Parser (module)">Parser</a></span>
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="Puppet/Bindings.html" title="Puppet::Bindings (class)">Bindings</a></span>, <span class='object_link'><a href="Puppet/Daemon.html" title="Puppet::Daemon (class)">Daemon</a></span>, <span class='object_link'><a href="Puppet/ExecutionFailure.html" title="Puppet::ExecutionFailure (class)">ExecutionFailure</a></span>, <span class='object_link'><a href="Puppet/Interface.html" title="Puppet::Interface (class)">Interface</a></span>, <span class='object_link'><a href="Puppet/Parameter.html" title="Puppet::Parameter (class)">Parameter</a></span>, <span class='object_link'><a href="Puppet/Property.html" title="Puppet::Property (class)">Property</a></span>, <span class='object_link'><a href="Puppet/Provider.html" title="Puppet::Provider (class)">Provider</a></span>, <span class='object_link'><a href="Puppet/Reports.html" title="Puppet::Reports (class)">Reports</a></span>, <span class='object_link'><a href="Puppet/Resource.html" title="Puppet::Resource (class)">Resource</a></span>, <span class='object_link'><a href="Puppet/Transaction.html" title="Puppet::Transaction (class)">Transaction</a></span>, <span class='object_link'><a href="Puppet/Type.html" title="Puppet::Type (class)">Type</a></span>
+    
+  
+</p>
+
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#%5B%5D-class_method" title="[] (class method)">+ (Object) <strong>[]</strong>(param) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get the value for a setting.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize_settings-class_method" title="initialize_settings (class method)">+ <strong>initialize_settings</strong>(args = []) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Initialize puppet's settings.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#read_version_file-class_method" title="read_version_file (class method)">+ (String) <strong>read_version_file</strong>(path) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  <span class="private note title">private</span>
+
+  
+    <span class="summary_desc"><div class='inline'><p>read_version_file reads the content of the "VERSION" file that lives in the same directory as this source code file.</p>
+</div></span>
+  
+</li>
+
+      
+        
+<li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#version-class_method" title="version (class method)">+ (String) <strong>version</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>version is a public API method intended to always provide a fast and lightweight way to determine the version of Puppet.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'>Util</span></h3>
+  <p class="inherited"><span class='object_link'><a href="Puppet/Util.html#exit_on_fail-class_method" title="Puppet::Util.exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Puppet/Util.html#exit_on_fail-instance_method" title="Puppet::Util#exit_on_fail (method)">exit_on_fail</a></span>, <span class='object_link'><a href="Puppet/Util.html#which-class_method" title="Puppet::Util.which (method)">which</a></span>, <span class='object_link'><a href="Puppet/Util.html#which-instance_method" title="Puppet::Util#which (method)">which</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="[]-class_method">
+  
+    + (<tt><span class='object_link'>Object</span></tt>) <strong>[]</strong>(param) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get the value for a setting</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>param</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Symbol</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>the setting to retrieve</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66
+67
+68
+69
+70</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 64</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='lparen token'>(</span><span class='rubyid_param identifier id'>param</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_param identifier id'>param</span> <span class='eq op'>==</span> <span class='symbol val'>:debug</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_Puppet constant id'>Puppet</span><span class='colon2 op'>::</span><span class='rubyid_Util constant id'>Util</span><span class='colon2 op'>::</span><span class='rubyid_Log constant id'>Log</span><span class='dot token'>.</span><span class='rubyid_level identifier id'>level</span> <span class='eq op'>==</span> <span class='symbol val'>:debug</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_return return kw'>return</span> <span class='rubyid_@@settings ivar id'>@@settings</span><span class='lbrack token'>[</span><span class='rubyid_param identifier id'>param</span><span class='rbrack token'>]</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="initialize_settings-class_method">
+  
+    + <strong>initialize_settings</strong>(args = []) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Initialize puppet's settings. This is intended only for use by external tools that are not
+ built off of the Faces API or the Puppet::Util::Application class. It may also be used
+ to initialize state so that a Face may be used programatically, rather than as a stand-alone
+ command-line tool.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>args</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>Array</span>&lt;<span class='object_link'>String</span>&gt;</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>[]</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>the command line arguments to use for initialization</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+133
+134
+135</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet.rb', line 133</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_initialize_settings identifier id'>initialize_settings</span><span class='lparen token'>(</span><span class='rubyid_args identifier id'>args</span> <span class='assign token'>=</span> <span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span>
+  <span class='rubyid_do_initialize_settings_for_run_mode identifier id'>do_initialize_settings_for_run_mode</span><span class='lparen token'>(</span><span class='symbol val'>:user</span><span class='comma token'>,</span> <span class='rubyid_args identifier id'>args</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="read_version_file-class_method">
+  
+    + (<tt><span class='object_link'>String</span></tt>) <strong>read_version_file</strong>(path) &nbsp;<span class="private note title">private</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note private">
+  <strong>This method is part of a private API.</strong>
+  You should avoid using this method if possible, as it may be removed or be changed in the future.
+</p>
+<p>read_version_file reads the content of the "VERSION" file that lives in the
+same directory as this source code file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>for example: "1.6.14-6-gea42046" or nil if the VERSION
+file does not exist.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/version.rb', line 83</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_read_version_file identifier id'>read_version_file</span><span class='lparen token'>(</span><span class='rubyid_path identifier id'>path</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_exist? fid id'>exist?</span><span class='lparen token'>(</span><span class='rubyid_path identifier id'>path</span><span class='rparen token'>)</span>
+    <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_read identifier id'>read</span><span class='lparen token'>(</span><span class='rubyid_path identifier id'>path</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_chomp identifier id'>chomp</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="version-class_method">
+  
+    + (<tt><span class='object_link'>String</span></tt>) <strong>version</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>version is a public API method intended to always provide a fast and
+lightweight way to determine the version of Puppet.</p>
+
+<p>The intent is that software external to Puppet be able to determine the
+Puppet version with no side-effects.  The expected use is:</p>
+
+<pre class="code ruby18"><code class="ruby18">require 'puppet/version'
+version = Puppet.version
+</code></pre>
+
+<p>This function has the following ordering precedence.  This precedence list
+is designed to facilitate automated packaging tasks by simply writing to
+the VERSION file in the same directory as this source file.</p>
+
+<ol>
+<li>If a version has been explicitly assigned using the Puppet.version=
+method, return that version.</li>
+<li>If there is a VERSION file, read the contents, trim any
+trailing whitespace, and return that version string.</li>
+<li>Return the value of the Puppet::PUPPETVERSION constant hard-coded into
+the source code.</li>
+</ol>
+
+
+<p>If there is no VERSION file, the method must return the version string of
+the nearest parent version that is an officially released version.  That is
+to say, if a branch named 3.1.x contains 25 patches on top of the most
+recent official release of 3.1.1, then the version method must return the
+string "3.1.1" if no "VERSION" file is present.</p>
+
+<p>By design the version identifier is <em>not</em> intended to vary during the life
+a process.  There is no guarantee provided that writing to the VERSION file
+while a Puppet process is running will cause the version string to be
+updated.  On the contrary, the contents of the VERSION are cached to reduce
+filesystem accesses.</p>
+
+<p>The VERSION file is intended to be used by package maintainers who may be
+applying patches or otherwise changing the software version in a manner
+that warrants a different software version identifier.  The VERSION file is
+intended to be managed and owned by the release process and packaging
+related tasks, and as such should not reside in version control.  The
+PUPPETVERSION constant is intended to be version controlled in history.</p>
+
+<p>Ideally, this behavior will allow package maintainers to precisely specify
+the version of the software they're packaging as in the following example:</p>
+
+<pre class="code ruby18"><code class="ruby18">$ git describe --match &quot;3.0.*&quot; &gt; lib/puppet/VERSION
+$ ruby -r puppet -e 'puts Puppet.version'
+3.0.1-260-g9ca4e54
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'>String</span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>containing the puppet version, e.g. "3.0.1"</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/puppet/version.rb', line 62</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_version identifier id'>version</span>
+  <span class='rubyid_version_file identifier id'>version_file</span> <span class='assign token'>=</span> <span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='rubyid_File constant id'>File</span><span class='dot token'>.</span><span class='rubyid_dirname identifier id'>dirname</span><span class='lparen token'>(</span><span class='rubyid___FILE__ __file__ kw'>__FILE__</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='string val'>'VERSION'</span><span class='rparen token'>)</span>
+  <span class='rubyid_return return kw'>return</span> <span class='rubyid_@puppet_version ivar id'>@puppet_version</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_@puppet_version ivar id'>@puppet_version</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_version identifier id'>version</span> <span class='assign token'>=</span> <span class='rubyid_read_version_file identifier id'>read_version_file</span><span class='lparen token'>(</span><span class='rubyid_version_file identifier id'>version_file</span><span class='rparen token'>)</span>
+    <span class='rubyid_@puppet_version ivar id'>@puppet_version</span> <span class='assign token'>=</span> <span class='rubyid_version identifier id'>version</span>
+  <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_@puppet_version ivar id'>@puppet_version</span> <span class='opasgn op'>||=</span> <span class='rubyid_PUPPETVERSION constant id'>PUPPETVERSION</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:52:01 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>

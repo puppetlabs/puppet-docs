@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  File: CONTRIBUTING
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: CONTRIBUTING</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>How to contribute</h1>
+
+<p>Third-party patches are essential for keeping puppet great. We simply can't
+access the huge number of platforms and myriad configurations for running
+puppet. We want to keep it as easy as possible to contribute changes that
+get things working in your environment. There are a few guidelines that we
+need contributors to follow so that we can have a chance of keeping on
+top of things.</p>
+
+<h2>Getting Started</h2>
+
+<ul>
+<li>Make sure you have a <a href="http://projects.puppetlabs.com">Redmine account</a></li>
+<li>Make sure you have a <a href="https://github.com/signup/free">GitHub account</a></li>
+<li>Submit a ticket for your issue, assuming one does not already exist.
+
+<ul>
+<li>Clearly describe the issue including steps to reproduce when it is a bug.</li>
+<li>Make sure you fill in the earliest version that you know has the issue.</li>
+</ul>
+</li>
+<li>Fork the repository on GitHub</li>
+</ul>
+
+
+<h2>Making Changes</h2>
+
+<ul>
+<li>Create a topic branch from where you want to base your work.
+
+<ul>
+<li>This is usually the master branch.</li>
+<li>Only target release branches if you are certain your fix must be on that
+branch.</li>
+<li>To quickly create a topic branch based on master; <code>git branch
+fix/master/my_contribution master</code> then checkout the new branch with <code>git
+checkout fix/master/my_contribution</code>.  Please avoid working directly on the
+<code>master</code> branch.</li>
+</ul>
+</li>
+<li>Make commits of logical units.</li>
+<li>Check for unnecessary whitespace with <code>git diff --check</code> before committing.</li>
+<li>Make sure your commit messages are in the proper format.</li>
+</ul>
+
+
+<pre class="code ruby"><code class="ruby">    <span class='lparen token'>(</span><span class='comment val'>#99999) Make the example in CONTRIBUTING imperative and concrete</span>
+
+    <span class='rubyid_Without constant id'>Without</span> <span class='rubyid_this identifier id'>this</span> <span class='rubyid_patch identifier id'>patch</span> <span class='rubyid_applied identifier id'>applied</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_example identifier id'>example</span> <span class='rubyid_commit identifier id'>commit</span> <span class='rubyid_message identifier id'>message</span> <span class='rubyid_in in kw'>in</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_CONTRIBUTING constant id'>CONTRIBUTING</span>
+    <span class='rubyid_document identifier id'>document</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_not not kw'>not</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_concrete identifier id'>concrete</span> <span class='rubyid_example identifier id'>example</span><span class='dot token'>.</span>  <span class='rubyid_This constant id'>This</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_problem identifier id'>problem</span> <span class='rubyid_because identifier id'>because</span> <span class='rubyid_the identifier id'>the</span>
+    <span class='rubyid_contributor identifier id'>contributor</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_left identifier id'>left</span> <span class='rubyid_to identifier id'>to</span> <span class='rubyid_imagine identifier id'>imagine</span> <span class='rubyid_what identifier id'>what</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_commit identifier id'>commit</span> <span class='rubyid_message identifier id'>message</span> <span class='rubyid_should identifier id'>should</span> <span class='rubyid_look identifier id'>look</span> <span class='rubyid_like identifier id'>like</span>
+    <span class='rubyid_based identifier id'>based</span> <span class='rubyid_on identifier id'>on</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_description identifier id'>description</span> <span class='rubyid_rather identifier id'>rather</span> <span class='rubyid_than identifier id'>than</span> <span class='rubyid_an identifier id'>an</span> <span class='rubyid_example identifier id'>example</span><span class='dot token'>.</span>  <span class='rubyid_This constant id'>This</span> <span class='rubyid_patch identifier id'>patch</span> <span class='rubyid_fixes identifier id'>fixes</span> <span class='rubyid_the identifier id'>the</span>
+    <span class='rubyid_problem identifier id'>problem</span> <span class='rubyid_by identifier id'>by</span> <span class='rubyid_making identifier id'>making</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_example identifier id'>example</span> <span class='rubyid_concrete identifier id'>concrete</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_imperative identifier id'>imperative</span><span class='dot token'>.</span>
+
+    <span class='rubyid_The constant id'>The</span> <span class='rubyid_first identifier id'>first</span> <span class='rubyid_line identifier id'>line</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_real identifier id'>real</span> <span class='rubyid_life identifier id'>life</span> <span class='rubyid_imperative identifier id'>imperative</span> <span class='rubyid_statement identifier id'>statement</span> <span class='rubyid_with identifier id'>with</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_ticket identifier id'>ticket</span> <span class='rubyid_number identifier id'>number</span>
+    <span class='rubyid_from identifier id'>from</span> <span class='rubyid_our identifier id'>our</span> <span class='rubyid_issue identifier id'>issue</span> <span class='rubyid_tracker identifier id'>tracker</span><span class='dot token'>.</span>  <span class='rubyid_The constant id'>The</span> <span class='rubyid_body identifier id'>body</span> <span class='rubyid_describes identifier id'>describes</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_behavior identifier id'>behavior</span> <span class='rubyid_without identifier id'>without</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_patch identifier id'>patch</span><span class='comma token'>,</span>
+    <span class='rubyid_why identifier id'>why</span> <span class='rubyid_this identifier id'>this</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_problem identifier id'>problem</span><span class='comma token'>,</span> <span class='rubyid_and and kw'>and</span> <span class='rubyid_how identifier id'>how</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_patch identifier id'>patch</span> <span class='rubyid_fixes identifier id'>fixes</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_problem identifier id'>problem</span> <span class='rubyid_when when kw'>when</span> <span class='rubyid_applied identifier id'>applied</span><span class='dot token'>.</span>
+</code></pre>
+
+<ul>
+<li>Make sure you have added the necessary tests for your changes.</li>
+<li>Run <em>all</em> the tests to assure nothing else was accidentally broken.</li>
+</ul>
+
+
+<h2>Making Trivial Changes</h2>
+
+<h3>Documentation</h3>
+
+<p>For changes of a trivial nature to comments and documentation, it is not
+always necessary to create a new ticket in Redmine. In this case, it is
+appropriate to start the first line of a commit with '(doc)' instead of
+a ticket number.</p>
+
+<pre class="code ruby"><code class="ruby">    <span class='lparen token'>(</span><span class='rubyid_doc identifier id'>doc</span><span class='rparen token'>)</span> <span class='rubyid_Add constant id'>Add</span> <span class='rubyid_documentation identifier id'>documentation</span> <span class='rubyid_commit identifier id'>commit</span> <span class='rubyid_example identifier id'>example</span> <span class='rubyid_to identifier id'>to</span> <span class='rubyid_CONTRIBUTING constant id'>CONTRIBUTING</span>
+
+    <span class='rubyid_There constant id'>There</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_no identifier id'>no</span> <span class='rubyid_example identifier id'>example</span> <span class='rubyid_for for kw'>for</span> <span class='rubyid_contributing identifier id'>contributing</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_documentation identifier id'>documentation</span> <span class='rubyid_commit identifier id'>commit</span>
+    <span class='rubyid_to identifier id'>to</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_Puppet constant id'>Puppet</span> <span class='rubyid_repository identifier id'>repository</span><span class='dot token'>.</span> <span class='rubyid_This constant id'>This</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_problem identifier id'>problem</span> <span class='rubyid_because identifier id'>because</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_contributor identifier id'>contributor</span>
+    <span class='rubyid_is identifier id'>is</span> <span class='rubyid_left identifier id'>left</span> <span class='rubyid_to identifier id'>to</span> <span class='rubyid_assume identifier id'>assume</span> <span class='rubyid_how identifier id'>how</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_commit identifier id'>commit</span> <span class='rubyid_of identifier id'>of</span> <span class='rubyid_this identifier id'>this</span> <span class='rubyid_nature identifier id'>nature</span> <span class='rubyid_may identifier id'>may</span> <span class='rubyid_appear identifier id'>appear</span><span class='dot token'>.</span>
+
+    <span class='rubyid_The constant id'>The</span> <span class='rubyid_first identifier id'>first</span> <span class='rubyid_line identifier id'>line</span> <span class='rubyid_is identifier id'>is</span> <span class='rubyid_a identifier id'>a</span> <span class='rubyid_real identifier id'>real</span> <span class='rubyid_life identifier id'>life</span> <span class='rubyid_imperative identifier id'>imperative</span> <span class='rubyid_statement identifier id'>statement</span> <span class='rubyid_with identifier id'>with</span> <span class='string val'>'(doc)'</span> <span class='rubyid_in in kw'>in</span>
+    <span class='rubyid_place identifier id'>place</span> <span class='rubyid_of identifier id'>of</span> <span class='rubyid_what identifier id'>what</span> <span class='rubyid_would identifier id'>would</span> <span class='rubyid_have identifier id'>have</span> <span class='rubyid_been identifier id'>been</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_ticket identifier id'>ticket</span> <span class='rubyid_number identifier id'>number</span> <span class='rubyid_in in kw'>in</span> <span class='rubyid_a identifier id'>a</span> 
+    <span class='rubyid_non identifier id'>non</span><span class='minus op'>-</span><span class='rubyid_documentation identifier id'>documentation</span> <span class='rubyid_related identifier id'>related</span> <span class='rubyid_commit identifier id'>commit</span><span class='dot token'>.</span> <span class='rubyid_The constant id'>The</span> <span class='rubyid_body identifier id'>body</span> <span class='rubyid_describes identifier id'>describes</span> <span class='rubyid_the identifier id'>the</span> <span class='rubyid_nature identifier id'>nature</span> <span class='rubyid_of identifier id'>of</span>
+    <span class='rubyid_the identifier id'>the</span> <span class='rubyid_new identifier id'>new</span> <span class='rubyid_documentation identifier id'>documentation</span> <span class='rubyid_or or kw'>or</span> <span class='rubyid_comments identifier id'>comments</span> <span class='rubyid_added identifier id'>added</span><span class='dot token'>.</span>
+</code></pre>
+
+<h2>Submitting Changes</h2>
+
+<ul>
+<li>Sign the <a href="http://links.puppetlabs.com/cla">Contributor License Agreement</a>.</li>
+<li>Push your changes to a topic branch in your fork of the repository.</li>
+<li>Submit a pull request to the repository in the puppetlabs organization.</li>
+<li>Update your Redmine ticket to mark that you have submitted code and are ready for it to be reviewed.
+
+<ul>
+<li>Include a link to the pull request in the ticket</li>
+</ul>
+</li>
+</ul>
+
+
+<h1>Additional Resources</h1>
+
+<ul>
+<li><a href="http://links.puppetlabs.com/contribute-to-puppet">More information on contributing</a></li>
+<li><a href="http://projects.puppetlabs.com">Bug tracker (Redmine)</a></li>
+<li><a href="http://links.puppetlabs.com/cla">Contributor License Agreement</a></li>
+<li><a href="http://help.github.com/">General GitHub documentation</a></li>
+<li><a href="http://help.github.com/send-pull-requests/">GitHub pull request documentation</a></li>
+<li><h1>puppet-dev IRC channel on freenode.org</h1></li>
+</ul>
+
+</div></div>
+
+    <div id="footer">
+  Generated on Wed Feb 19 13:51:59 2014 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-1.8.7).
+</div>
+
+  </body>
+</html>
