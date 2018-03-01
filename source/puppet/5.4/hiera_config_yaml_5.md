@@ -243,8 +243,6 @@ Related topics: [interpolate][interpolation], [hierarchies][hierarchy].
 
 Hiera 5 (Puppet 4.9.3 and later) includes a native interface for the Hiera eyaml extension, which keeps data encrypted on disk but lets Puppet read it during catalog compilation.
 
-To learn how to create keys and edit encrypted files, see the Hiera eyaml documentation.
-
 Within `hiera.yaml`, the eyaml backend resembles the standard built-in backends, with a few differences: it uses `lookup_key` instead of `data_hash`, and requires an `options` key to locate decryption keys. Note that the eyaml backend can read regular yaml files as well as yaml files with encrypted data.
 
 > **Important**: To use the eyaml backend, you must have the `hiera-eyaml` gem installed where Puppet can use it. You'll need to install it twice:
