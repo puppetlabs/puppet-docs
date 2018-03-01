@@ -181,9 +181,13 @@ See the [templates][templates] topic for more details.
 
 Every Puppet user should expect to write at least some of their own modules. Modules must have a specific directory structure and include correctly formatted metadata. The Puppet Development Kit provides tools for writing, validating, and testing modules.
 
-The Puppet Development Kit creates a complete module skeleton and includes command line tools for creating classes, defined types, and tasks in your module. It can also validate and run unit tests on modules. PDK can be downloaded and installed on any development machine; a Puppet installation is not required. See the PDK documentation to get started.
+Puppet Development Kit creates a complete module skeleton and includes command line tools for creating classes, defined types, and tasks in your module.
 
-The `puppet module generate` command is deprecated and will be removed in a future version of Puppet.
+To test your modules, use PDK to run unit tests and to validate your module's metadata, syntax, and style. 
+
+PDK can be downloaded and installed on any development machine; a Puppet installation is not required. See the PDK documentation to get started.
+
+> **Note:** The `puppet module generate` command is deprecated and will be removed in a future version of Puppet.
 
 For help getting started writing modules, see our Beginner's guide to writing modules. For details on best practices and code style, see the Puppet Language Style Guide.
 
