@@ -173,7 +173,7 @@ To configure LDAP nodes, set the `node_terminus` to `ldap`:
     ldapserver = ldapserver.yourdomain.com
     ldapbase = dc=puppet
 
-The only other required setting is `ldapbase`, which specifies where to search for LDAP nodes. It's a good idea to specify the Hosts tree as your search base (e.g., `ldapbase = ou=Hosts,dc=madstop,dc=com`).
+The only other required setting is `ldapbase`, which specifies where to search for LDAP nodes. Specify the Hosts tree as your search base, such as `ldapbase = ou=Hosts,dc=madstop,dc=com`.
 
 However, you'll probably also want to specify several other settings, including where to find the server, how to authenticate to it, and more. The following is a full list of settings related to LDAP nodes; click any of them for descriptions in the configuration reference.
 
