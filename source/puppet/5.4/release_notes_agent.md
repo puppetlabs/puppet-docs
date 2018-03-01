@@ -11,7 +11,7 @@ title: "Puppet agent release notes"
 
 [Facter 3.10.0]: /facter/3.10/release_notes.html#facter-3100
 
-[MCollective 2.12.0]: /mcollective/current/releasenotes.html#2_12_0
+[MCollective 2.11.4]: /mcollective/current/releasenotes.html#2_11_4
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -35,7 +35,7 @@ This release of Puppet Platform contains several new features and bug fixes.
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.4.0][], [MCollective 2.12.0][], and [pxp-agent][] 1.8.2.
+This release includes component updates to [Puppet 5.4.0][], [MCollective 2.11.4][], and [pxp-agent][] 1.8.2.
 
 ### Platform updates
 
