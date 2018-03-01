@@ -21,6 +21,7 @@ title: "Module fundamentals"
 [file_function]: ./function.html#file
 [reserved names]: ./lang_reserved.html
 [pdk]: {{pdk}}/pdk.html
+[declare]: {{puppet}}/lang_classes.html#declaring-classes
 
 Modules are self-contained bundles of code and data with a specific directory structure. These reusable, shareable units of Puppet code are a basic building block for Puppet.
 
