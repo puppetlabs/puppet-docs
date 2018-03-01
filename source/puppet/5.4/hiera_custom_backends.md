@@ -39,7 +39,7 @@ For data sources where it’s inexpensive, performance-wise, to read the entire 
 * Most of the data gets used
 * The data is static
 
-For more information, please the see data_hash backends reference.
+For more information,see [data_hash backends](https://puppet.com/docs/puppet/5.4/hiera_custom_backends.html#datahash-backends)
 
 ### lookup_key
 
@@ -49,19 +49,19 @@ For data sources where looking up a key is relatively expensive, performance-wis
 
 The `hiera-eyaml` backend is a `lookup_key` function, because decryption tends to affect performance; as a given node uses only a subset of the available secrets, it makes sense to decrypt only on-demand.
 
-For more information, please the see lookup_key backend reference.
+For more information, please the see [lookup_key backends](https://puppet.com/docs/puppet/5.4/hiera_custom_backends.html#lookupkey-backends).
 
 ### data_dig
 
 For data sources that can access arbitrary elements of hash or array values before passing anything back to Hiera, like a database.
 
-For more information, please the see data_dig backend reference.
-
-Related topics: [custom Puppet function][puppet_functions], [the modern Ruby functions API][ruby_functions].
+For more information, see [data_dig backends](https://puppet.com/docs/puppet/5.4/hiera_custom_backends.html#datadig-backend).
 
 #### The `RichDataKey` and `RichData` types
 
 To simplify backend function signatures, you can use two extra data type aliases: `RichDataKey`, and `RichData`. These are only available to backend functions called by Hiera; normal functions and Puppet code can not use them.
+
+Related topics: [custom Puppet function][puppet_functions], [the modern Ruby functions API][ruby_functions].
 
 {:.reference}
 ## data_hash backends
@@ -148,7 +148,7 @@ A `lookup_key` function can return a hash for the  the `lookup_options` key to c
 Related topics: [interpolation][interpolation], [Hiera calling conventions for backend functions][puppet_functions].
 
 {:.reference}
-##  data_dig backend
+##  data_dig backends
 
 A `data_dig` backend function is similar to a `lookup_key` function, but instead of looking up a single key, it looks up a single sequence of keys and subkeys.
 Hiera lets you look up individual members of hash and array values using `key.subkey` notation. Use `data_dig` types in cases where:
