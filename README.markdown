@@ -47,6 +47,7 @@ Building and viewing
         $ rake serve
 
     (You can use `rake run` to combine these steps.)
+    Note that you will get errors because two repos, git@github.com:puppetlabs/DistelliHugoDocs.git and git@github.com:puppetlabs/pe-docs-private.git, are private. Remove these two references from the source/_config.yml file to fix the issue.
 
 Errors and omissions
 --------------------
@@ -56,17 +57,6 @@ think something important is missing, please [submit a ticket][1] to
 [the "DOCUMENTATION" project][1] (not to Puppet itself).  The best way
 to get your change in is to contribute it; see the next section for
 details.
-
-
-Contributing changes
---------------------
-
-1. Fork the project (we recommend [GitHub][3])
-2. Make sure you read the writing guide (README_WRITING.markdown) and the
-style and usage guide, which are both in the root of this project.
-3. Make your documentation addition/fix -- preferably in a branch.
-4. Commit, do not mess with the README, LICENSE, etc.
-5. Open a pull request to the puppet-docs repo, requesting your contribution be added.
 
 [1]: http://tickets.puppetlabs.com/browse/DOCUMENT
 [3]: http://github.com
