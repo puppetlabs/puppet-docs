@@ -16,6 +16,16 @@ Because you can't include arbitrary Ruby code in your manifests, the best soluti
 
 > **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` fails with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
 
+### Structured and flat facts
+
+A typical fact extracts a piece of information about a system and returns it as either as a simple value ("flat" fact) or data organized as a hash or array ("structured" fact). There are several types of facts classified by how they collect information, including:
+
+-   [Core facts](./core_facts.html), which are built into Facter and are common to almost all systems
+-   [Custom facts](#loading-custom-facts), which run Ruby code to produce a value
+-   [External facts](#external-facts), which return values from pre-defined static data, or the result of an executable script or program
+
+All fact types can produce flat or structured values.
+
 ## Loading custom facts
 
 Facter offers multiple methods of loading facts:
@@ -290,8 +300,6 @@ For more examples of aggregate resolutions, see the [aggregate resolutions](./fa
 If your Puppet masters are configured to use [PuppetDB][puppetdb], you can view and search all of the facts for any node, including custom facts. See [the PuppetDB docs][puppetdb] for more info.
 
 ## External facts
-
-### What are external facts?
 
 External facts provide a way to use arbitrary executables or scripts as facts, or set facts statically with structured data. If you've ever wanted to write a custom fact in Perl, C, or a one-line text file, this is how.
 
