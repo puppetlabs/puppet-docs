@@ -3,8 +3,9 @@ layout: default
 title: "Overview of custom facts with examples"
 ---
 
+A typical fact in Facter is an assemblage of a few different elements and composed either
+as a simple value ("flat" fact) or structured data ("structured" fact).
 
-A typical fact in Facter is a fairly simple assemblage of just a few different elements.
 This page is an example-driven tour of those elements, and is intended as a quick primer or reference
 for authors of custom facts. You need some familiarity with Ruby to understand most of these examples.
 For a gentler introduction, check out the [Custom Facts Walkthrough](./custom_facts.html).
