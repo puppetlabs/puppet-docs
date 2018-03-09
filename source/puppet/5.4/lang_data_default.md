@@ -33,10 +33,10 @@ Instead of creating a resource and adding it to the catalog, the special `defaul
 ``` puppet
 file {
   default:
+    ensure => file,
     mode   => '0600',
     owner  => 'root',
     group  => 'root',
-    ensure => file,
   ;
   '/etc/ssh_host_dsa_key':
   ;
@@ -57,7 +57,7 @@ All of the resources in the block above will inherit attributes from `default` u
 
 Several [data types][data type] take parameters that have default values. In some cases, like minimum and maximum sizes, the default value can be difficult or impossible to refer to using the available literal values in the Puppet language. For example, the default value of [the `String` type][string]'s max length parameter is infinity, which can't be represented in the Puppet language.
 
-These parameters will often let you provide a value of `default` to say you want the otherwise-unwieldy default value.
+These parameters often let you provide a value of `default` to say you want the otherwise-unwieldy default value.
 
 ### Anywhere else
 
