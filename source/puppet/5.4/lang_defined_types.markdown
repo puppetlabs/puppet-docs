@@ -186,8 +186,7 @@ A define statement isn't an expression, and can't be used where a value is expec
 
 You can also put define statements in [the main manifest][sitedotpp]. If you do so, they can be placed anywhere in the file and are not evaluation-order dependent.
 
-Define statements can also be placed inside class definitions; however, this limits their availability to that class and is not recommended for any purpose. This is not formally deprecated in this version of Puppet, but might become so in a future release.
-
+Define statements may also be placed inside class definitions; this gives the user defined type a name in the class' namespace (a user defined type 'mytype' inside the class 'myclass' is given the name 'myclass::mytype'. Placing a defined type (or a class) inside of another class is not formally deprecated in this version of Puppet, but may become so in a future release.
 
 ## Naming
 
