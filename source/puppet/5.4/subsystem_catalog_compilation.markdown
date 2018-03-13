@@ -68,10 +68,10 @@ All of these sources are used by both agent/master deployments and by stand-alon
 
 When agents request a catalog, they send four pieces of information to the Puppet master:
 
-* Their **name,** which is embedded in the request URL. (e.g. `/puppet/v3/catalog/web01.example.com?environment=production`) This is almost always the same as the [certname][].
+* Their **name**, which is embedded in the request URL (such as `/puppet/v3/catalog/web01.example.com?environment=production`). This is almost always the same as the [certname][].
 * Their **certificate,** which contains their [certname][] and possibly some [extra information][cert_extensions]. (This is the one item not used by Puppet apply.)
 * Their [**facts.**][facts]
-* Their requested [environment][], which is embedded in the request URL. (e.g. `/puppet/v3/catalog/web01.example.com?environment=production`) Before requesting a catalog, agents will ask the master which environment they should be in, but they will use the environment in their own config file if the master doesn't have an opinion.
+* Their requested [environment][], which is embedded in the request URL (such as `/puppet/v3/catalog/web01.example.com?environment=production`). Before requesting a catalog, agents will ask the master which environment they should be in, but they will use the environment in their own config file if the master doesn't have an opinion.
 
 
 ### External data
@@ -86,7 +86,7 @@ Puppet can use external data at several stages when compiling, but there are two
     * [Exported resources][] queried from [PuppetDB][]
     * The results of [functions][], which can access arbitrary data sources including Hiera or an external CMDB
 
-### Puppet manifests, templates, etc.
+### Puppet manifests and modules
 
 This is the heart of a Puppet deployment. It can include:
 
@@ -96,7 +96,7 @@ This is the heart of a Puppet deployment. It can include:
 
 ## The process of catalog compilation
 
-This description is simplified. It doesn't delve into the internals of the parser, model, evaluator, etc., and some items are presented out of order for the sake of conceptual clarity.
+This description is simplified. It doesn't delve into the internals of the parser, model, evaluator, and so on. Some items are presented out of order for the sake of conceptual clarity.
 
 For practical purposes, you can treat Puppet apply nodes as simply a combined agent and master.
 
