@@ -28,7 +28,7 @@ POST, GET
 
 ### Notes
 
-The POST and GET methods are functionally equivalent. Both provide the 3 parameters specified below: the POST in the
+The POST and GET methods are functionally equivalent. Both provide the three parameters specified below: the POST in the
 request body, the GET in the query string.
 
 Puppet originally used GET; POST was added because some web servers have a maximum URI length of
