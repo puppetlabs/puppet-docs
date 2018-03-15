@@ -101,28 +101,28 @@ These defaults are only used if the file is present and specifies `version: 5`. 
 {:.concept}
 ## The defaults key
 
-The `defaults` key sets default values for the `backend` and `datadir` keys, which lets you omit those keys in your hierarchy levels.
+The `defaults` key sets default values for the lookup function and `datadir` keys, which lets you omit those keys in your hierarchy levels.
 
-The value of `defaults` must be a hash, which can have up to three keys: `datadir`, a`backend` key, and `options`.
+The value of `defaults` must be a hash, which can have up to three keys: `datadir`, `options`, and one of the mutually exclusive lookup function keys.
 
 ### datadir
 
 A default value for `datadir`, used for any file-based hierarchy level that doesn't specify its own. If not given, the `datadir` is the directory `data` in the same directory as the `hiera.yaml` configuration file.
 
-### Backend key
+### options
+
+A default value for options, used for any hierarchy level that does not specify its own.
+
+### The lookup function keys
 
 Used for any hierarchy level that doesn't specify its own. This must be one of:
 
 -   `data_hash` - produces a hash of key-value pairs (typically from a data file)
--   `lookup_key` - produces values key by key (typically for a custom backend)
--   `data_dig` - produces values key by key (for more advanced backends)
--   `hiera3_backend` - global layer only
+-   `lookup_key` - produces values key by key (typically for a custom data provider)
+-   `data_dig` - produces values key by key (for a more advanced data provider)
+-   `hiera3_backend` - a data provider that calls out to a legacy Hiera 3 backend (global layer only)
 
-For the built-in backends - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom backend as the default, see the backend's documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the backend.
-
-### options
-
-A default value for options, used for any hierarchy level that does not specify its own.
+For the built-in data providers - YAML, JSON, and HOCON - the key is always `data_hash` and the value is one of `yaml_data`, `json_data`, or `hocon_data`. To set a custom data provider as the default, see the data provider documentation. Whichever key you use, the value must be the name of the custom Puppet function that implements the the lookup function.
 
 Related topics: [custom backends][backends], [custom Puppet function][].
 
