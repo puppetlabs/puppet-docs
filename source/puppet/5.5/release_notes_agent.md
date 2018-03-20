@@ -37,7 +37,7 @@ This release of Puppet Platform contains several new features and bug fixes.
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.4.0][], [Facter 3.11.0][], [MCollective 2.12.0][], and [pxp-agent][] 1.9.0.
+This release includes component updates to [Puppet 5.5.0][], [Facter 3.11.0][], [MCollective 2.12.0][], and [pxp-agent][] 1.9.0.
 
 ### Platform updates
 
