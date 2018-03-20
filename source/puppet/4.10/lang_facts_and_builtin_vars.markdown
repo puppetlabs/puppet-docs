@@ -77,7 +77,7 @@ All facts appear in Puppet as [top-scope variables][topscope]. They can be acces
 Example, with the osfamily fact:
 
 ``` puppet
-if $osfamily == 'redhat' {
+if $osfamily == 'RedHat' {
   # ...
 }
 ```
@@ -108,7 +108,7 @@ Facts also appear in a `$facts` hash. They can be accessed in manifests as `$fac
 Example, with the `os.family` fact:
 
 ``` puppet
-if $facts['os']['family'] == 'redhat' {
+if $facts['os']['family'] == 'RedHat' {
   # ...
 }
 ```
