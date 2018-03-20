@@ -68,7 +68,7 @@ To enable the Puppet 5 Platform repository:
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
 
-#### Fedora 26
+#### Fedora 27
 
     sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-27.noarch.rpm
 
