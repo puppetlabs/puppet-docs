@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 65bc820596fabce75de9c244bde710a21bf77a5a
+built_from_commit: 2362981147dd2e1989804beaf2e30a92682e7cef
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
@@ -84,7 +84,7 @@ Return the disk (block) devices attached to the system.
 * `<devicename>` (map) --- Represents a disk or block device.
     * `model` (string) --- The model of the disk or block device.
     * `product` (string) --- The product name of the disk or block device.
-    * `size` (string) --- The display size of the disk or block device (e.g. "1 GiB").
+    * `size` (string) --- The display size of the disk or block device, such as "1 GiB".
     * `size_bytes` (integer) --- The size of the disk or block device, in bytes.
     * `vendor` (string) --- The vendor of the disk or block device.
 
@@ -463,21 +463,21 @@ Return the system memory information.
 **Elements:**
 
 * `swap` (map) --- Represents information about swap memory.
-    * `available` (string) --- The display size of the available amount of swap memory (e.g. "1 GiB").
+    * `available` (string) --- The display size of the available amount of swap memory, such as "1 GiB".
     * `available_bytes` (integer) --- The size of the available amount of swap memory, in bytes.
     * `capacity` (string) --- The capacity percentage (0% is empty, 100% is full).
     * `encrypted` (boolean) --- True if the swap is encrypted or false if not.
-    * `total` (string) --- The display size of the total amount of swap memory (e.g. "1 GiB").
+    * `total` (string) --- The display size of the total amount of swap memory, such as "1 GiB".
     * `total_bytes` (integer) --- The size of the total amount of swap memory, in bytes.
-    * `used` (string) --- The display size of the used amount of swap memory (e.g. "1 GiB").
+    * `used` (string) --- The display size of the used amount of swap memory, such as "1 GiB".
     * `used_bytes` (integer) --- The size of the used amount of swap memory, in bytes.
 * `system` (map) --- Represents information about system memory.
-    * `available` (string) --- The display size of the available amount of system memory (e.g. "1 GiB").
+    * `available` (string) --- The display size of the available amount of system memory, such as "1 GiB".
     * `available_bytes` (integer) --- The size of the available amount of system memory, in bytes.
     * `capacity` (string) --- The capacity percentage (0% is empty, 100% is full).
-    * `total` (string) --- The display size of the total amount of system memory (e.g. "1 GiB").
+    * `total` (string) --- The display size of the total amount of system memory, such as "1 GiB".
     * `total_bytes` (integer) --- The size of the total amount of system memory, in bytes.
-    * `used` (string) --- The display size of the used amount of system memory (e.g. "1 GiB").
+    * `used` (string) --- The display size of the used amount of system memory, such as "1 GiB".
     * `used_bytes` (integer) --- The size of the used amount of system memory, in bytes.
 
 
@@ -502,15 +502,15 @@ Return the current mount points of the system.
 **Elements:**
 
 * `<mountpoint>` (map) --- Represents a mount point.
-    * `available` (string) --- The display size of the available space (e.g. "1 GiB").
+    * `available` (string) --- The display size of the available space, such as "1 GiB".
     * `available_bytes` (integer) --- The size of the available space, in bytes.
     * `capacity` (string) --- The capacity percentage (0% is empty, 100% is full).
     * `device` (string) --- The name of the mounted device.
     * `filesystem` (string) --- The file system of the mounted device.
     * `options` (array) --- The mount options.
-    * `size` (string) --- The display size of the total space (e.g. "1 GiB").
+    * `size` (string) --- The display size of the total space, such as "1 GiB".
     * `size_bytes` (integer) --- The size of the total space, in bytes.
-    * `used` (string) --- The display size of the used space (e.g. "1 GiB").
+    * `used` (string) --- The display size of the used space, such as "1 GiB".
     * `used_bytes` (integer) --- The size of the used space, in bytes.
 
 
@@ -646,7 +646,7 @@ Return the disk partitions of the system.
     * `mount` (string) --- The mount point of the partition (if mounted).
     * `partlabel` (string) --- The label of a GPT partition.
     * `partuuid` (string) --- The unique identifier of a GPT partition.
-    * `size` (string) --- The display size of the partition (e.g. "1 GiB").
+    * `size` (string) --- The display size of the partition, such as "1 GiB".
     * `size_bytes` (integer) --- The size of the partition, in bytes.
     * `uuid` (string) --- The unique identifier of a partition.
     * `backing_file` (string) --- The path to the file backing the partition.
@@ -693,7 +693,7 @@ Return information about the system's processors.
 * `isa` (string) --- The processor instruction set architecture.
 * `models` (array) --- The processor model strings (one for each logical processor).
 * `physicalcount` (integer) --- The count of physical processors.
-* `speed` (string) --- The speed of the processors (e.g. "2.0 GHz").
+* `speed` (string) --- The speed of the processors, such as "2.0 GHz".
 
 
 **Resolution:**
@@ -774,21 +774,25 @@ Return SSH public keys and fingerprints.
         * `sha1` (string) --- The SHA1 fingerprint of the public key.
         * `sha256` (string) --- The SHA256 fingerprint of the public key.
     * `key` (string) --- The DSA public key.
+    * `type` (string) --- The exact type of the key, i.e. "ssh-dss".
 * `ecdsa` (map) --- Represents the public key and fingerprints for the ECDSA algorithm.
     * `fingerprints` (map) --- Represents fingerprint information.
         * `sha1` (string) --- The SHA1 fingerprint of the public key.
         * `sha256` (string) --- The SHA256 fingerprint of the public key.
     * `key` (string) --- The ECDSA public key.
+    * `type` (string) --- The exact type of the key, e.g. "ecdsa-sha2-nistp256".
 * `ed25519` (map) --- Represents the public key and fingerprints for the Ed25519 algorithm.
     * `fingerprints` (map) --- Represents fingerprint information.
         * `sha1` (string) --- The SHA1 fingerprint of the public key.
         * `sha256` (string) --- The SHA256 fingerprint of the public key.
     * `key` (string) --- The Ed25519 public key.
+    * `type` (string) --- The exact type of the key, i.e. "ssh-ed25519".
 * `rsa` (map) --- Represents the public key and fingerprints for the RSA algorithm.
     * `fingerprints` (map) --- Represents fingerprint information.
         * `sha1` (string) --- The SHA1 fingerprint of the public key.
         * `sha256` (string) --- The SHA256 fingerprint of the public key.
     * `key` (string) --- The RSA public key.
+    * `type` (string) --- The exact type of the key, i.e. "ssh-rsa".
 
 
 **Resolution:**
@@ -1935,7 +1939,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the display size of the free system memory (e.g. "1 GiB").
+Return the display size of the free system memory, such as "1 GiB".
 
 
 **Resolution:**
@@ -1977,7 +1981,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the display size of the total system memory (e.g. "1 GiB").
+Return the display size of the total system memory, such as "1 GiB".
 
 
 **Resolution:**
@@ -2245,7 +2249,7 @@ Return the major release of the operating system.
 
 **Caveats:**
 
-* Linux: for Ubuntu, the major release is X.Y (e.g. "10.4").
+* Linux: for Ubuntu, the major release is X.Y, such as "10.4".
 
 ([↑ Back to top](#page-nav))
 
@@ -2284,7 +2288,7 @@ Return the family of the operating system.
 **Resolution:**
 
 * All platforms: default to the kernel name.
-* Linux: map various Linux distributions to their base distribution (e.g. Ubuntu is a "Debian" distro).
+* Linux: map various Linux distributions to their base distribution. For example, Ubuntu is a "Debian" distro.
 * Solaris: map various Solaris-based operating systems to the "Solaris" family.
 * Windows: use "windows" as the family name.
 
@@ -2664,7 +2668,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the display size of the free swap memory (e.g. "1 GiB").
+Return the display size of the free swap memory, such as "1 GiB".
 
 
 **Resolution:**
@@ -2704,7 +2708,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 
 **Purpose:**
 
-Return the display size of the total swap memory (e.g. "1 GiB").
+Return the display size of the total swap memory, such as "1 GiB".
 
 
 **Resolution:**
