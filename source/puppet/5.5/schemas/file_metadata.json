@@ -1,0 +1,53 @@
+{
+    "$schema":     "http://json-schema.org/draft-04/schema#",
+    "title":       "File Metadata",
+    "description": "Metadata about a file, directory, or symbolic link",
+    "type":        "object",
+    "properties": {
+        "path": {
+            "type": "string"
+        },
+        "relative_path": {
+            "oneOf": [{"type": "string"}, {"type": "null"}]
+        },
+        "links": {
+            "enum": ["manage", "follow"]
+        },
+        "owner": {
+            "type": "integer"
+        },
+        "group": {
+            "type": "integer"
+        },
+        "mode": {
+            "type": "integer"
+        },
+        "type": {
+            "enum": ["file", "directory", "link"]
+        },
+        "destination": {
+            "oneOf": [{"type": "string"}, {"type": "null"}]
+        },
+        "checksum": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "enum": ["md5", "sha256", "ctime"]
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "required": ["type", "value"],
+            "additionalProperties": false
+        },
+        "source": {
+            "type": "string"
+        },
+        "content_uri": {
+            "type": "string"
+        }
+    },
+    "required": ["path", "relative_path", "links", "owner", "group", "mode", "type", "destination", "checksum"],
+    "additionalProperties": false
+}
