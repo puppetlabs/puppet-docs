@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: mailalias'
 canonical: "/puppet/latest/types/mailalias.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 mailalias
 -----
@@ -23,7 +23,6 @@ Creates an email alias in the local alias database.
   <a href="#mailalias-attribute-name">name</a>      =&gt; <em># <strong>(namevar)</strong> The alias...</em>
   <a href="#mailalias-attribute-ensure">ensure</a>    =&gt; <em># The basic property that the resource should be...</em>
   <a href="#mailalias-attribute-file">file</a>      =&gt; <em># A file containing the alias's contents.  The...</em>
-  <a href="#mailalias-attribute-provider">provider</a>  =&gt; <em># The specific backend to use for this `mailalias` </em>
   <a href="#mailalias-attribute-recipient">recipient</a> =&gt; <em># Where email should be sent.  Multiple values...</em>
   <a href="#mailalias-attribute-target">target</a>    =&gt; <em># The file in which to store the aliases.  Only...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
@@ -43,7 +42,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to mailalias attributes](#mailalias-attributes))
 
@@ -53,18 +57,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 A file containing the alias's contents.  The file and the
 recipient entries are mutually exclusive.
-
-([↑ Back to mailalias attributes](#mailalias-attributes))
-
-<h4 id="mailalias-attribute-provider">provider</h4>
-
-The specific backend to use for this `mailalias`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`aliases`](#mailalias-provider-aliases)
 
 ([↑ Back to mailalias attributes](#mailalias-attributes))
 
@@ -97,4 +89,4 @@ those providers that write to disk.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

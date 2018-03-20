@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: cron'
 canonical: "/puppet/latest/types/cron.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 cron
 -----
@@ -74,9 +74,8 @@ that user.
   <a href="#cron-attribute-environment">environment</a> =&gt; <em># Any environment settings associated with this...</em>
   <a href="#cron-attribute-hour">hour</a>        =&gt; <em># The hour at which to run the cron job. Optional; </em>
   <a href="#cron-attribute-minute">minute</a>      =&gt; <em># The minute at which to run the cron job...</em>
-  <a href="#cron-attribute-month">month</a>       =&gt; <em># The month of the year.  Optional; if specified...</em>
+  <a href="#cron-attribute-month">month</a>       =&gt; <em># The month of the year. Optional; if specified...</em>
   <a href="#cron-attribute-monthday">monthday</a>    =&gt; <em># The day of the month on which to run the...</em>
-  <a href="#cron-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `cron...</em>
   <a href="#cron-attribute-special">special</a>     =&gt; <em># A special value such as 'reboot' or 'annually'...</em>
   <a href="#cron-attribute-target">target</a>      =&gt; <em># The name of the crontab file in which the cron...</em>
   <a href="#cron-attribute-user">user</a>        =&gt; <em># The user who owns the cron job.  This user must...</em>
@@ -104,7 +103,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to cron attributes](#cron-attributes))
 
@@ -140,7 +144,7 @@ then Puppet will keep those settings in the same place in the file,
 but will not associate them with a specific job.
 
 Settings should be specified exactly as they should appear in
-the crontab, e.g., `PATH=/bin:/usr/bin:/usr/sbin`.
+the crontab, like `PATH=/bin:/usr/bin:/usr/sbin`.
 
 ([↑ Back to cron attributes](#cron-attributes))
 
@@ -166,8 +170,11 @@ Optional; if specified, must be between 0 and 59, inclusive.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The month of the year.  Optional; if specified
-must be between 1 and 12 or the month name (e.g., December).
+The month of the year. Optional; if specified,
+must be either:
+
+-   A number between 1 and 12, inclusive, with 1 being January
+-   The name of the month, such as 'December'.
 
 ([↑ Back to cron attributes](#cron-attributes))
 
@@ -177,18 +184,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The day of the month on which to run the
 command.  Optional; if specified, must be between 1 and 31.
-
-([↑ Back to cron attributes](#cron-attributes))
-
-<h4 id="cron-attribute-provider">provider</h4>
-
-The specific backend to use for this `cron`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`crontab`](#cron-provider-crontab)
 
 ([↑ Back to cron attributes](#cron-attributes))
 
@@ -238,9 +233,11 @@ the user account specified by this property.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The weekday on which to run the command.
-Optional; if specified, must be between 0 and 7, inclusive, with
-0 (or 7) being Sunday, or must be the name of the day (e.g., Tuesday).
+The weekday on which to run the command. Optional; if specified,
+must be either:
+
+-   A number between 0 and 7, inclusive, with 0 or 7 being Sunday
+-   The name of the day, such as 'Tuesday'.
 
 ([↑ Back to cron attributes](#cron-attributes))
 
@@ -249,9 +246,11 @@ Optional; if specified, must be between 0 and 7, inclusive, with
 
 <h4 id="cron-provider-crontab">crontab</h4>
 
-* Required binaries: `crontab`.
+
+
+* Required binaries: `crontab`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

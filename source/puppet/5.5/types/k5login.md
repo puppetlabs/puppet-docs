@@ -1,17 +1,16 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: k5login'
 canonical: "/puppet/latest/types/k5login.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 k5login
 -----
 
 * [Attributes](#k5login-attributes)
-* [Providers](#k5login-providers)
 
 <h3 id="k5login-description">Description</h3>
 
@@ -26,7 +25,6 @@ the `.k5login` file as the name, and an array of principals as the
   <a href="#k5login-attribute-ensure">ensure</a>     =&gt; <em># The basic property that the resource should be...</em>
   <a href="#k5login-attribute-mode">mode</a>       =&gt; <em># The desired permissions mode of the `.k5login...</em>
   <a href="#k5login-attribute-principals">principals</a> =&gt; <em># The principals present in the `.k5login` file...</em>
-  <a href="#k5login-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `k5login...</em>
   <a href="#k5login-attribute-selrange">selrange</a>   =&gt; <em># What the SELinux range component of the context...</em>
   <a href="#k5login-attribute-selrole">selrole</a>    =&gt; <em># What the SELinux role component of the context...</em>
   <a href="#k5login-attribute-seltype">seltype</a>    =&gt; <em># What the SELinux type component of the context...</em>
@@ -48,7 +46,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to k5login attributes](#k5login-attributes))
 
@@ -65,18 +68,6 @@ The desired permissions mode of the `.k5login` file. Defaults to `644`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The principals present in the `.k5login` file. This should be specified as an array.
-
-([↑ Back to k5login attributes](#k5login-attributes))
-
-<h4 id="k5login-attribute-provider">provider</h4>
-
-The specific backend to use for this `k5login`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`k5login`](#k5login-provider-k5login)
 
 ([↑ Back to k5login attributes](#k5login-attributes))
 
@@ -130,14 +121,7 @@ enabled.
 ([↑ Back to k5login attributes](#k5login-attributes))
 
 
-<h3 id="k5login-providers">Providers</h3>
-
-<h4 id="k5login-provider-k5login">k5login</h4>
-
-The k5login provider is the only provider for the k5login
-type.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

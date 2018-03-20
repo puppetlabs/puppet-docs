@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: mount'
 canonical: "/puppet/latest/types/mount.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 mount
 -----
@@ -44,7 +44,6 @@ point, the mount resource will autobefore them.
   <a href="#mount-attribute-fstype">fstype</a>      =&gt; <em># The mount type.  Valid values depend on the...</em>
   <a href="#mount-attribute-options">options</a>     =&gt; <em># A single string containing options for the...</em>
   <a href="#mount-attribute-pass">pass</a>        =&gt; <em># The pass in which the mount is...</em>
-  <a href="#mount-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `mount...</em>
   <a href="#mount-attribute-remounts">remounts</a>    =&gt; <em># Whether the mount can be remounted  `mount -o...</em>
   <a href="#mount-attribute-target">target</a>      =&gt; <em># The file in which to store the mount table....</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
@@ -70,7 +69,13 @@ the filesystem from the fstab.  Set to `mounted` to add it to the
 fstab and mount it. Set to `present` to add to fstab but not change
 mount/unmount status.
 
-Valid values are `defined` (also called `present`), `unmounted`, `absent`, `mounted`.
+Allowed values:
+
+* `defined`
+* `present`
+* `unmounted`
+* `absent`
+* `mounted`
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -111,8 +116,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Whether to dump the mount.  Not all platform support this.
 Valid values are `1` or `0` (or `2` on FreeBSD). Default is `0`.
 
-Values can match `/(0|1)/`.
-
 ([↑ Back to mount attributes](#mount-attributes))
 
 <h4 id="mount-attribute-fstype">fstype</h4>
@@ -146,25 +149,16 @@ The pass in which the mount is checked.
 
 ([↑ Back to mount attributes](#mount-attributes))
 
-<h4 id="mount-attribute-provider">provider</h4>
-
-The specific backend to use for this `mount`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`parsed`](#mount-provider-parsed)
-
-([↑ Back to mount attributes](#mount-attributes))
-
 <h4 id="mount-attribute-remounts">remounts</h4>
 
 Whether the mount can be remounted  `mount -o remount`.  If
 this is false, then the filesystem will be unmounted and remounted
 manually, which is prone to failure.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -182,8 +176,9 @@ those providers that write to disk.
 
 <h4 id="mount-provider-parsed">parsed</h4>
 
-* Required binaries: `mount`, `umount`.
-* Supported features: `refreshable`.
+
+
+* Required binaries: `mount`, `umount`
 
 <h3 id="mount-provider-features">Provider Features</h3>
 
@@ -203,11 +198,11 @@ Provider support:
   <tbody>
     <tr>
       <td>parsed</td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

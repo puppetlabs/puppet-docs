@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 group
 -----
@@ -28,7 +28,7 @@ a group record.
 
 <pre><code>group { 'resource title':
   <a href="#group-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The group name. While naming limitations vary by </em>
-  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Valid values are...</em>
+  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Default: `present`  </em>
   <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs. Defaults to...</em>
   <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># AIX only. Configures the behavior of the...</em>
   <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes, as an array of...</em>
@@ -37,7 +37,6 @@ a group record.
   <a href="#group-attribute-gid">gid</a>                  =&gt; <em># The group ID.  Must be specified numerically....</em>
   <a href="#group-attribute-ia_load_module">ia_load_module</a>       =&gt; <em># The name of the I&A module to use to manage this </em>
   <a href="#group-attribute-members">members</a>              =&gt; <em># The members of the group. For platforms or...</em>
-  <a href="#group-attribute-provider">provider</a>             =&gt; <em># The specific backend to use for this `group...</em>
   <a href="#group-attribute-system">system</a>               =&gt; <em># Whether the group is a system group with lower...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -62,7 +61,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Create or remove the group.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -70,7 +74,14 @@ Valid values are `present`, `absent`.
 
 Whether to allow duplicate GIDs. Defaults to `false`.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -83,7 +94,12 @@ AIX only. Configures the behavior of the `attributes` parameter.
 * `inclusive` --- The provided list of attributes is comprehensive, and
   Puppet **purges** any attributes that aren't listed there.
 
-Valid values are `inclusive`, `minimum`.
+Default: `minimum`
+
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -93,10 +109,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify group AIX attributes, as an array of `'key=value'` strings. This
 parameter's behavior can be configured with `attribute_membership`.
-
-
-
-Requires features manages_aix_lam.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -109,7 +121,14 @@ Configures the behavior of the `members` parameter.
 * `true` --- The provided list of of group members is comprehensive, and
   Puppet **purges** any members that aren't listed there.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -118,9 +137,14 @@ Valid values are `true`, `false`, `yes`, `no`.
 Forces the management of local accounts when accounts are also
 being managed by some other NSS
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
 
-Requires features libuser.
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -143,10 +167,6 @@ identifier (SID).
 
 The name of the I&A module to use to manage this user
 
-
-
-Requires features manages_aix_lam.
-
 ([↑ Back to group attributes](#group-attributes))
 
 <h4 id="group-attribute-members">members</h4>
@@ -157,34 +177,20 @@ The members of the group. For platforms or directory services where group
 membership is stored in the group objects, not the users. This parameter's
 behavior can be configured with `auth_membership`.
 
-
-
-Requires features manages_members.
-
-([↑ Back to group attributes](#group-attributes))
-
-<h4 id="group-attribute-provider">provider</h4>
-
-The specific backend to use for this `group`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`aix`](#group-provider-aix)
-* [`directoryservice`](#group-provider-directoryservice)
-* [`groupadd`](#group-provider-groupadd)
-* [`ldap`](#group-provider-ldap)
-* [`pw`](#group-provider-pw)
-* [`windows_adsi`](#group-provider-windows_adsi)
-
 ([↑ Back to group attributes](#group-attributes))
 
 <h4 id="group-attribute-system">system</h4>
 
 Whether the group is a system group with lower GID.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -195,24 +201,23 @@ Valid values are `true`, `false`, `yes`, `no`.
 
 Group management for AIX.
 
-* Required binaries: `/usr/bin/chgroup`, `/usr/bin/mkgroup`, `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`.
-* Default for `operatingsystem` == `aix`.
-* Supported features: `manages_aix_lam`, `manages_members`.
+* Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
+* Confined to: `operatingsystem == aix`
+* Default for: `["operatingsystem", "aix"] == `
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
 Group management using DirectoryService on OS X.
 
-* Required binaries: `/usr/bin/dscl`.
-* Default for `operatingsystem` == `darwin`.
-* Supported features: `manages_members`.
+* Required binaries: `/usr/bin/dscl`
+* Confined to: `operatingsystem == darwin`
+* Default for: `["operatingsystem", "darwin"] == `
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
 Group management via `groupadd` and its ilk. The default for most platforms.
 
-* Required binaries: `groupadd`, `groupdel`, `groupmod`, `lgroupadd`, `lgroupdel`, `lgroupmod`.
-* Supported features: `system_groups`.
+* Required binaries: `groupadd`, `groupdel`, `groupmod`
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -227,21 +232,23 @@ Note that this provider will automatically generate a GID for you if you do
 not specify one, but it is a potentially expensive operation, as it
 iterates across all existing groups to pick the appropriate next one.
 
+* Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
+
 <h4 id="group-provider-pw">pw</h4>
 
 Group management via `pw` on FreeBSD and DragonFly BSD.
 
-* Required binaries: `pw`.
-* Default for `operatingsystem` == `freebsd, dragonfly`.
-* Supported features: `manages_members`.
+* Required binaries: `pw`
+* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
+* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
 
 <h4 id="group-provider-windows_adsi">windows_adsi</h4>
 
 Local group management for Windows. Group members can be both users and groups.
 Additionally, local groups can contain domain users.
 
-* Default for `operatingsystem` == `windows`.
-* Supported features: `manages_members`.
+* Confined to: `operatingsystem == windows`
+* Default for: `["operatingsystem", "windows"] == `
 
 <h3 id="group-provider-features">Provider Features</h3>
 
@@ -281,10 +288,10 @@ Provider support:
     </tr>
     <tr>
       <td>groupadd</td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>ldap</td>
@@ -312,4 +319,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

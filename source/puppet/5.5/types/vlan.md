@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: vlan'
 canonical: "/puppet/latest/types/vlan.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 vlan
 -----
@@ -20,11 +20,10 @@ Manages a VLAN on a router or switch.
 <h3 id="vlan-attributes">Attributes</h3>
 
 <pre><code>vlan { 'resource title':
-  <a href="#vlan-attribute-name">name</a>        =&gt; <em># <strong>(namevar)</strong> The numeric VLAN ID.  Values can match...</em>
+  <a href="#vlan-attribute-name">name</a>        =&gt; <em># <strong>(namevar)</strong> The numeric VLAN ID.  Allowed values:  ...</em>
   <a href="#vlan-attribute-ensure">ensure</a>      =&gt; <em># The basic property that the resource should be...</em>
   <a href="#vlan-attribute-description">description</a> =&gt; <em># The VLAN's...</em>
   <a href="#vlan-attribute-device_url">device_url</a>  =&gt; <em># The URL of the router or switch maintaining this </em>
-  <a href="#vlan-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `vlan...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -34,7 +33,9 @@ _(**Namevar:** If omitted, this attribute's value defaults to the resource's tit
 
 The numeric VLAN ID.
 
-Values can match `/^\d+/`.
+Allowed values:
+
+* `/^\d+/`
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
@@ -44,7 +45,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
@@ -62,18 +68,6 @@ The URL of the router or switch maintaining this VLAN.
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
-<h4 id="vlan-attribute-provider">provider</h4>
-
-The specific backend to use for this `vlan`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`cisco`](#vlan-provider-cisco)
-
-([↑ Back to vlan attributes](#vlan-attributes))
-
 
 <h3 id="vlan-providers">Providers</h3>
 
@@ -84,4 +78,4 @@ Cisco switch/router provider for vlans.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

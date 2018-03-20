@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Man Page: puppet epp'
 canonical: "/puppet/latest/man/epp.html"
 ---
@@ -40,20 +40,33 @@ sometimes available.</dd>
 
 <h2 id="ACTIONS">ACTIONS</h2>
 
-<dl>
-<dt><code>dump</code> - Outputs a dump of the internal template parse tree for debugging</dt><dd><p><code>SYNOPSIS</code></p>
+<ul>
+<li><p><code>dump</code> - Outputs a dump of the internal template parse tree for debugging:
+<code>SYNOPSIS</code></p>
 
 <p>puppet epp dump [--e <var>source</var>]
 [--[no-]validate]
+[--format <var>old, pn, or json</var>]
+[--pretty]
 [--[no-]header]
--e <var>source</var> | [<var>templates</var> ...]</p>
+[--format <var>old|pn|json</var>] [--pretty] { -e <var>source</var> | [<var>templates</var> ...] }</p>
 
 <p><code>DESCRIPTION</code></p>
 
 <p>The dump action parses and validates the EPP syntax and dumps the resulting AST model
-in a human readable (but not necessarily an easy to understand) format.
-The output format of the dumped tree is intended for epp parser debugging purposes
-and is not API, and may thus change between versions without deprecation warnings.</p>
+in a human readable (but not necessarily an easy to understand) format.</p>
+
+<p>The output format can be controlled using the --format <var>old|pn|json</var> where:</p>
+
+<ul>
+<li>'old' is the default, but now deprecated format which is not API.</li>
+<li>'pn' is the Puppet Extended S-Expression Notation.</li>
+<li>'json' outputs the same graph as 'pn' but with JSON syntax.</li>
+</ul>
+
+
+<p>The output will be "pretty printed" when the option --pretty is given together with --format 'pn' or 'json'.
+This option has no effect on the 'old' format.</p>
 
 <p>The command accepts one or more templates (.epp) files, or an -e followed by the template
 source text. The given templates can be paths to template files, or references
@@ -74,16 +87,23 @@ given source.</p>
 <var>--e &lt;source</var>> -
 Dump one epp source expression given on the command line.</p>
 
+<p><var>--format &lt;old, pn, or json</var>> -
+Get result in 'old' (deprecated format), 'pn' (new format), or 'json' (new format in JSON).</p>
+
 <p><var>--[no-]header</var> -
 Whether or not to show a file name header between files.</p>
+
+<p><var>--pretty</var> -
+Pretty print output. Only applicable together with --format pn or json</p>
 
 <p><var>--[no-]validate</var> -
 Whether or not to validate the parsed result, if no-validate only syntax errors are reported.</p>
 
 <p><code>RETURNS</code></p>
 
-<p>A dump of the resulting AST model unless there are syntax or validation errors.</p></dd>
-<dt><code>render</code> - Renders an epp template as text</dt><dd><p><code>SYNOPSIS</code></p>
+<p>A dump of the resulting AST model unless there are syntax or validation errors.</p></li>
+<li><p><code>render</code> - Renders an epp template as text:
+<code>SYNOPSIS</code></p>
 
 <p>puppet epp render [--node <var>node_name</var>]
 [--e <var>source</var>]
@@ -173,8 +193,9 @@ A .pp or .yaml file that is processed to produce a hash of values for the templa
 
 <p><code>RETURNS</code></p>
 
-<p>A rendered result of one or more given templates.</p></dd>
-<dt><code>validate</code> - Validate the syntax of one or more EPP templates.</dt><dd><p><code>SYNOPSIS</code></p>
+<p>A rendered result of one or more given templates.</p></li>
+<li><p><code>validate</code> - Validate the syntax of one or more EPP templates.:
+<code>SYNOPSIS</code></p>
 
 <p>puppet epp validate [--[no-]continue_on_error] [<var>template</var>] [<var>template</var> ...]</p>
 
@@ -201,8 +222,8 @@ Whether or not to continue after errors are reported for a template.</p>
 
 <p><code>RETURNS</code></p>
 
-<p>Nothing, or encountered syntax errors.</p></dd>
-</dl>
+<p>Nothing, or encountered syntax errors.</p></li>
+</ul>
 
 
 <h2 id="EXAMPLES">EXAMPLES</h2>

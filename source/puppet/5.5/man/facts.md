@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Man Page: puppet facts'
 canonical: "/puppet/latest/man/facts.html"
 ---
@@ -102,6 +102,31 @@ run mode with the '--run_mode' option.</p></dd>
 <p>API only: create or overwrite an object. As the Faces framework does not
 currently accept data from STDIN, save actions cannot currently be invoked
 from the command line.</p></dd>
+<dt><code>upload</code> - Upload local facts to the puppet master.</dt><dd><p><code>SYNOPSIS</code></p>
+
+<p>puppet facts upload [--terminus _TERMINUS] [--extra HASH]</p>
+
+<p><code>DESCRIPTION</code></p>
+
+<p>Reads facts from the local system using the <code>facter</code> terminus, then
+saves the returned facts using the rest terminus.</p>
+
+<p><code>RETURNS</code></p>
+
+<p>Nothing.</p>
+
+<p><code>NOTES</code></p>
+
+<p>This action requires that the puppet master's <code>auth.conf</code> file
+allow <code>PUT</code> or <code>save</code> access to the <code>/puppet/v3/facts</code> API endpoint.</p>
+
+<p>For details on configuring Puppet Server's <code>auth.conf</code>, see:</p>
+
+<p><a href="https://puppet.com/docs/puppetserver/latest/config_file_auth.html" data-bare-link="true">https://puppet.com/docs/puppetserver/latest/config_file_auth.html</a></p>
+
+<p>For legacy Rack-based Puppet Masters, see:</p>
+
+<p><a href="https://puppet.com/docs/puppet/latest/config_file_auth.html" data-bare-link="true">https://puppet.com/docs/puppet/latest/config_file_auth.html</a></p></dd>
 </dl>
 
 
@@ -113,6 +138,12 @@ from the command line.</p></dd>
 
 <p>$ puppet facts find</p>
 
+<p><code>upload</code></p>
+
+<p>Upload facts:</p>
+
+<p>$ puppet facts upload</p>
+
 <h2 id="NOTES">NOTES</h2>
 
 <p>This subcommand is an indirector face, which exposes <code>find</code>, <code>search</code>, <code>save</code>,
@@ -123,6 +154,7 @@ this face include:</p>
 <li><code>facter</code></li>
 <li><code>memory</code></li>
 <li><code>network_device</code></li>
+<li><code>rest</code></li>
 <li><code>store_configs</code></li>
 <li><code>yaml</code></li>
 </ul>

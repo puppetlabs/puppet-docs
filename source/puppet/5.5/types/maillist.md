@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: maillist'
 canonical: "/puppet/latest/types/maillist.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 maillist
 -----
@@ -27,7 +27,6 @@ and remove lists; it cannot currently reconfigure them.
   <a href="#maillist-attribute-description">description</a> =&gt; <em># The description of the mailing...</em>
   <a href="#maillist-attribute-mailserver">mailserver</a>  =&gt; <em># The name of the host handling email for the...</em>
   <a href="#maillist-attribute-password">password</a>    =&gt; <em># The admin...</em>
-  <a href="#maillist-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `maillist...</em>
   <a href="#maillist-attribute-webserver">webserver</a>   =&gt; <em># The name of the host providing web archives and...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -46,7 +45,13 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`, `purged`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
+* `purged`
 
 ([↑ Back to maillist attributes](#maillist-attributes))
 
@@ -74,18 +79,6 @@ The admin password.
 
 ([↑ Back to maillist attributes](#maillist-attributes))
 
-<h4 id="maillist-attribute-provider">provider</h4>
-
-The specific backend to use for this `maillist`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`mailman`](#maillist-provider-mailman)
-
-([↑ Back to maillist attributes](#maillist-attributes))
-
 <h4 id="maillist-attribute-webserver">webserver</h4>
 
 The name of the host providing web archives and the administrative interface.
@@ -97,9 +90,9 @@ The name of the host providing web archives and the administrative interface.
 
 <h4 id="maillist-provider-mailman">mailman</h4>
 
-* Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `newlist`, `rmlist`.
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Puppet HTTP API: Report'
 canonical: "/puppet/latest/http_api/http_report.html"
 ---
@@ -18,7 +18,7 @@ example, storing reports in PuppetDB is handled by one such report processor.
 
 Save
 ----
-The HTTP or HTTPS endpoint for sending reports to the master is:
+The http(s) endpoint for sending reports to the master is:
 
     PUT /puppet/v3/report/:nodename?environment=:environment
 
@@ -26,7 +26,7 @@ The HTTP or HTTPS endpoint for sending reports to the master is:
 
 PUT
 
-### Supported Formats
+### Supported Format(s)
 
 `application/json`, `text/pson`
 
@@ -62,7 +62,7 @@ example is formatted for readability)
      "job_id"=>null,
      "catalog_uuid"=>"827a74c8-cf98-44da-9ff7-18c5e4bee41e",
      "catalog_format"=>1,
-     "report_format"=>8,
+     "report_format"=>9,
      "puppet_version"=>"5.0.0",
      "status"=>"unchanged",
      "transaction_completed"=>true,
@@ -110,6 +110,7 @@ example is formatted for readability)
          "line"=>nil,
          "resource"=>"Notify[a resource]",
          "resource_type"=>"Notify",
+         "provider_used"=>nil,
          "containment_path"=>["Notify[a resource]"],
          "evaluation_time"=>nil,
          "tags"=>["notify"],

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Types: Index'
 canonical: "/puppet/latest/types/index.html"
 ---
@@ -8,6 +8,7 @@ canonical: "/puppet/latest/types/index.html"
 ## List of Resource Types
 
 * [augeas](./augeas.html)
+* [component](./component.html)
 * [computer](./computer.html)
 * [cron](./cron.html)
 * [exec](./exec.html)
@@ -22,20 +23,6 @@ canonical: "/puppet/latest/types/index.html"
 * [maillist](./maillist.html)
 * [mcx](./mcx.html)
 * [mount](./mount.html)
-* [nagios_command](./nagios_command.html)
-* [nagios_contact](./nagios_contact.html)
-* [nagios_contactgroup](./nagios_contactgroup.html)
-* [nagios_host](./nagios_host.html)
-* [nagios_hostdependency](./nagios_hostdependency.html)
-* [nagios_hostescalation](./nagios_hostescalation.html)
-* [nagios_hostextinfo](./nagios_hostextinfo.html)
-* [nagios_hostgroup](./nagios_hostgroup.html)
-* [nagios_service](./nagios_service.html)
-* [nagios_servicedependency](./nagios_servicedependency.html)
-* [nagios_serviceescalation](./nagios_serviceescalation.html)
-* [nagios_serviceextinfo](./nagios_serviceextinfo.html)
-* [nagios_servicegroup](./nagios_servicegroup.html)
-* [nagios_timeperiod](./nagios_timeperiod.html)
 * [notify](./notify.html)
 * [package](./package.html)
 * [resources](./resources.html)
@@ -51,6 +38,7 @@ canonical: "/puppet/latest/types/index.html"
 * [tidy](./tidy.html)
 * [user](./user.html)
 * [vlan](./vlan.html)
+* [whit](./whit.html)
 * [yumrepo](./yumrepo.html)
 * [zfs](./zfs.html)
 * [zone](./zone.html)

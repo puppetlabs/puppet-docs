@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Puppet HTTP API: Catalog'
 canonical: "/puppet/latest/http_api/http_catalog.html"
 ---
@@ -28,7 +28,7 @@ POST, GET
 
 ### Notes
 
-The POST and GET methods are functionally equivalent. Both provide the three parameters specified below: the POST in the
+The POST and GET methods are functionally equivalent. Both provide the 3 parameters specified below: the POST in the
 request body, the GET in the query string.
 
 Puppet originally used GET; POST was added because some web servers have a maximum URI length of

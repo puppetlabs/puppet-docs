@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -23,6 +23,7 @@ a scheduled task, or a similar tool.</p>
 <p>  puppet device [-d|--debug] [--detailed-exitcodes] [--deviceconfig <var>file</var>]
                 [-h|--help] [-l|--logdest syslog|<var>file</var>|console]
                 [-v|--verbose] [-w|--waitforcert <var>seconds</var>]
+                [-a|--apply <var>file</var>] [-r|--resource <var>type</var> [name]]
                 [-t|--target <var>device</var>] [--user=<var>user</var>] [-V|--version]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
@@ -76,8 +77,13 @@ enabled, this defaults to 'console'. Otherwise, it defaults to 'syslog'.</p>
 log file will not have an ending ']' automatically written to it due to the
 appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
+<dt class="flush">--apply</dt><dd><p>Apply a manifest against a remote target. Target must be specified.</p></dd>
+<dt>--resource</dt><dd><p>Displays a resource state as Puppet code, roughly equivalent to
+<code>puppet resource</code>.  Can be filterd by title. Requires --target be specified.</p></dd>
 <dt>--target</dt><dd><p>Target a specific device/certificate in the device.conf. Doing so will perform a
 device run against only that device/certificate.</p></dd>
+<dt>--to_yaml</dt><dd><p>Output found resources in yaml format, suitable to use with Hiera and
+create_resources.</p></dd>
 <dt class="flush">--user</dt><dd><p>The user to run as.</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
@@ -90,7 +96,7 @@ client.  You can turn off waiting for certificates by specifying a time of 0.</p
 
 <h2 id="EXAMPLE">EXAMPLE</h2>
 
-<pre><code>  $ puppet device --server puppet.domain.com
+<pre><code>  $ puppet device --target remotehost --verbose
 </code></pre>
 
 <h2 id="AUTHOR">AUTHOR</h2>

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: computer'
 canonical: "/puppet/latest/types/computer.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 computer
 -----
@@ -42,7 +42,6 @@ the Computer resource will autorequire it.
   <a href="#computer-attribute-ensure">ensure</a>     =&gt; <em># Control the existences of this computer record...</em>
   <a href="#computer-attribute-en_address">en_address</a> =&gt; <em># The MAC address of the primary network...</em>
   <a href="#computer-attribute-ip_address">ip_address</a> =&gt; <em># The IP Address of the Computer...</em>
-  <a href="#computer-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `computer...</em>
   <a href="#computer-attribute-realname">realname</a>   =&gt; <em># The 'long' name of the computer...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -63,7 +62,10 @@ Control the existences of this computer record. Set this attribute to
 `present` to ensure the computer record exists.  Set it to `absent`
 to delete any computer records with this name
 
-Valid values are `present`, `absent`.
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to computer attributes](#computer-attributes))
 
@@ -80,18 +82,6 @@ The MAC address of the primary network interface. Must match en0.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The IP Address of the Computer object.
-
-([↑ Back to computer attributes](#computer-attributes))
-
-<h4 id="computer-attribute-provider">provider</h4>
-
-The specific backend to use for this `computer`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`directoryservice`](#computer-provider-directoryservice)
 
 ([↑ Back to computer attributes](#computer-attributes))
 
@@ -117,9 +107,10 @@ domain, not in remote directories.
 If you wish to manage /etc/hosts on Mac OS X, then simply use the host
 type as per other platforms.
 
-* Default for `operatingsystem` == `darwin`.
+* Confined to: `operatingsystem == darwin`
+* Default for: `["operatingsystem", "darwin"] == `
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

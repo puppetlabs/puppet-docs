@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Man Page: puppet parser'
 canonical: "/puppet/latest/man/parser.html"
 ---
@@ -40,17 +40,32 @@ sometimes available.</dd>
 
 <h2 id="ACTIONS">ACTIONS</h2>
 
-<dl>
-<dt><code>dump</code> - Outputs a dump of the internal parse tree for debugging</dt><dd><p><code>SYNOPSIS</code></p>
+<ul>
+<li><p><code>dump</code> - Outputs a dump of the internal parse tree for debugging:
+<code>SYNOPSIS</code></p>
 
 <p>puppet parser dump [--e <var>source</var>]
 [--[no-]validate]
--e <var>source</var>| [<var>manifest</var> ...]</p>
+[--format <var>old, pn, or json</var>]
+[--pretty]
+[--format <var>old|pn|json</var>] [--pretty] { -e <var>source</var> | [<var>templates</var> ...] }</p>
 
 <p><code>DESCRIPTION</code></p>
 
 <p>This action parses and validates the Puppet DSL syntax without compiling a catalog
 or syncing any resources.</p>
+
+<p>The output format can be controlled using the --format <var>old|pn|json</var> where:</p>
+
+<ul>
+<li>'old' is the default, but now deprecated format which is not API.</li>
+<li>'pn' is the Puppet Extended S-Expression Notation.</li>
+<li>'json' outputs the same graph as 'pn' but with JSON syntax.</li>
+</ul>
+
+
+<p>The output will be "pretty printed" when the option --pretty is given together with --format 'pn' or 'json'.
+This option has no effect on the 'old' format.</p>
 
 <p>The command accepts one or more manifests (.pp) files, or an -e followed by the puppet
 source text.
@@ -63,13 +78,20 @@ not API, it may change from time to time.</p>
 <var>--e &lt;source</var>> -
 dump one source expression given on the command line.</p>
 
+<p><var>--format &lt;old, pn, or json</var>> -
+Get result in 'old' (deprecated format), 'pn' (new format), or 'json' (new format in JSON).</p>
+
+<p><var>--pretty</var> -
+Pretty print output. Only applicable together with --format pn or json</p>
+
 <p><var>--[no-]validate</var> -
 Whether or not to validate the parsed result, if no-validate only syntax errors are reported</p>
 
 <p><code>RETURNS</code></p>
 
-<p>A dump of the resulting AST model unless there are syntax or validation errors.</p></dd>
-<dt><code>validate</code> - Validate the syntax of one or more Puppet manifests.</dt><dd><p><code>SYNOPSIS</code></p>
+<p>A dump of the resulting AST model unless there are syntax or validation errors.</p></li>
+<li><p><code>validate</code> - Validate the syntax of one or more Puppet manifests.:
+<code>SYNOPSIS</code></p>
 
 <p>puppet parser validate [<var>manifest</var>] [<var>manifest</var> ...]</p>
 
@@ -85,8 +107,8 @@ after having reported issues for the first encountered file with errors.</p>
 
 <p><code>RETURNS</code></p>
 
-<p>Nothing, or the first syntax error encountered.</p></dd>
-</dl>
+<p>Nothing, or the first syntax error encountered.</p></li>
+</ul>
 
 
 <h2 id="EXAMPLES">EXAMPLES</h2>

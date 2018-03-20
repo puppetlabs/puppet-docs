@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 schedule
 -----
@@ -31,8 +31,8 @@ specify a very  restrictive schedule and Puppet happens to run at a
 time within that schedule, then the resources will get applied;
 otherwise, that work may never get done.
 
-Thus, it is advisable to use wider scheduling (e.g., over a couple of
-hours) combined with periods and repetitions.  For instance, if you
+Thus, it is advisable to use wider scheduling (for example, over a couple
+of hours) combined with periods and repetitions.  For instance, if you
 wanted to restrict certain resources to only running once, between
 the hours of two and 4 AM, then you would use this schedule:
 
@@ -49,7 +49,7 @@ run once that day, and they won't get applied outside that schedule
 because they will be outside the scheduled range.
 
 Puppet automatically creates a schedule for each of the valid periods
-with the same name as that period (e.g., hourly and daily).
+with the same name as that period (such as hourly and daily).
 Additionally, a schedule named `puppet` is created and used as the
 default, with the following attributes:
 
@@ -65,7 +65,7 @@ This will cause resources to be applied every 30 minutes by default.
 <pre><code>schedule { 'resource title':
   <a href="#schedule-attribute-name">name</a>        =&gt; <em># <strong>(namevar)</strong> The name of the schedule.  This name is used...</em>
   <a href="#schedule-attribute-period">period</a>      =&gt; <em># The period of repetition for resources on this...</em>
-  <a href="#schedule-attribute-periodmatch">periodmatch</a> =&gt; <em># Whether periods should be matched by number...</em>
+  <a href="#schedule-attribute-periodmatch">periodmatch</a> =&gt; <em># Whether periods should be matched by a numeric...</em>
   <a href="#schedule-attribute-range">range</a>       =&gt; <em># The earliest and latest that a resource can be...</em>
   <a href="#schedule-attribute-repeat">repeat</a>      =&gt; <em># How often a given resource may be applied in...</em>
   <a href="#schedule-attribute-weekday">weekday</a>     =&gt; <em># The days of the week in which the schedule...</em>
@@ -97,8 +97,8 @@ for resources to get applied every time Puppet runs.
 
 Note that the period defines how often a given resource will get
 applied but not when; if you would like to restrict the hours
-that a given resource can be applied (e.g., only at night during
-a maintenance window), then use the `range` attribute.
+that a given resource can be applied (for instance, only at night
+during a maintenance window), then use the `range` attribute.
 
 If the provided periods are not sufficient, you can provide a
 value to the *repeat* attribute, which will cause Puppet to
@@ -114,24 +114,35 @@ This can cause Puppet to apply that resource up to every 10 minutes.
 
 At the moment, Puppet cannot guarantee that level of repetition; that
 is, the resource can applied _up to_ every 10 minutes, but internal
-factors might prevent it from actually running that often (e.g. if a
-Puppet run is still in progress when the next run is scheduled to start,
-that next run will be suppressed).
+factors might prevent it from actually running that often (for instance,
+if a Puppet run is still in progress when the next run is scheduled to
+start, that next run will be suppressed).
 
 See the `periodmatch` attribute for tuning whether to match
 times by their distance apart or by their specific value.
 
-Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
+Allowed values:
+
+* `hourly`
+* `daily`
+* `weekly`
+* `monthly`
+* `never`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
 <h4 id="schedule-attribute-periodmatch">periodmatch</h4>
 
-Whether periods should be matched by number (e.g., the two times
-are in the same hour) or by distance (e.g., the two times are
-60 minutes apart).
+Whether periods should be matched by a numeric value (for instance,
+whether two times are in the same hour) or by their chronological
+distance apart (whether two times are 60 minutes apart).
 
-Valid values are `number`, `distance`.
+Default: `distance`
+
+Allowed values:
+
+* `number`
+* `distance`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -150,7 +161,7 @@ separator. For instance:
 This is mostly useful for restricting certain resources to being
 applied in maintenance windows or during off-peak hours. Multiple
 ranges can be applied in array context. As a convenience when specifying
-ranges, you may cross midnight (e.g.: range => "22:00 - 04:00").
+ranges, you can cross midnight (for example, `range => "22:00 - 04:00"`).
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -158,6 +169,8 @@ ranges, you may cross midnight (e.g.: range => "22:00 - 04:00").
 
 How often a given resource may be applied in this schedule's `period`.
 Defaults to 1; must be an integer.
+
+Default: `1`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -189,4 +202,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

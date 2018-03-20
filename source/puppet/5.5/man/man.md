@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Man Page: puppet man'
 canonical: "/puppet/latest/man/man.html"
 ---
@@ -17,8 +17,10 @@ canonical: "/puppet/latest/man/man.html"
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
-<p>This subcommand displays manual pages for all Puppet subcommands. If the
-<code>ronn</code> gem (<a href="https://github.com/rtomayko/ronn/" data-bare-link="true">https://github.com/rtomayko/ronn/</a>) is installed on your
+<p>Please use the command 'puppet help <var>subcommand</var>' or the system manpage system
+'man puppet-<var>subcommand</var>' to display information about Puppet subcommands. The
+deprecated man subcommand displays manual pages for all Puppet subcommands. If
+the <code>ronn</code> gem (<a href="https://github.com/rtomayko/ronn/" data-bare-link="true">https://github.com/rtomayko/ronn/</a>) is installed on your
 system, puppet man will display fully-formatted man pages. If <code>ronn</code> is not
 available, puppet man will display the raw (but human-readable) source text
 in a pager.</p>
@@ -70,9 +72,13 @@ text (e.g. for use in a pipeline), call this action with '--render-as s'.</p></d
 
 <p><code>man</code></p>
 
-<p>View the manual page for a subcommand:</p>
+<p>View the installed manual page for the subcommand 'config':</p>
 
-<p>$ puppet man facts</p>
+<p>$ man puppet-config</p>
+
+<p>(Deprecated) View the manual page for the subcommand 'config':</p>
+
+<p>$ puppet man config</p>
 
 <h2 id="NOTES">NOTES</h2>
 

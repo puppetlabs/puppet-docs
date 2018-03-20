@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: host'
 canonical: "/puppet/latest/types/host.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 host
 -----
@@ -15,9 +15,7 @@ host
 
 <h3 id="host-description">Description</h3>
 
-Installs and manages host entries.  For most systems, these
-entries will just be in `/etc/hosts`, but some systems (notably OS X)
-will have different solutions.
+The host's IP address, IPv4 or IPv6.
 
 <h3 id="host-attributes">Attributes</h3>
 
@@ -27,7 +25,6 @@ will have different solutions.
   <a href="#host-attribute-comment">comment</a>      =&gt; <em># A comment that will be attached to the line with </em>
   <a href="#host-attribute-host_aliases">host_aliases</a> =&gt; <em># Any aliases the host might have.  Multiple...</em>
   <a href="#host-attribute-ip">ip</a>           =&gt; <em># The host's IP address, IPv4 or...</em>
-  <a href="#host-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `host...</em>
   <a href="#host-attribute-target">target</a>       =&gt; <em># The file in which to store service information.  </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -46,7 +43,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to host attributes](#host-attributes))
 
@@ -75,18 +77,6 @@ The host's IP address, IPv4 or IPv6.
 
 ([↑ Back to host attributes](#host-attributes))
 
-<h4 id="host-attribute-provider">provider</h4>
-
-The specific backend to use for this `host`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`parsed`](#host-provider-parsed)
-
-([↑ Back to host attributes](#host-attributes))
-
 <h4 id="host-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -103,7 +93,9 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 
 
+* Confined to: `exists == hosts`
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Puppet HTTP API: Index'
 canonical: "/puppet/latest/http_api/http_api_index.html"
 ---
@@ -88,6 +88,7 @@ These endpoints accept payload formats formatted as JSON or PSON (MIME types of
 `application/json` and `text/pson`, respectively) except for `File Content` and
 `File Bucket File` which always use `application/octet-stream`.
 
+* [Facts](./http_facts.md)
 * [Catalog](./http_catalog.md)
 * [Node](./http_node.md)
 * [File Bucket File](./http_file_bucket_file.md)

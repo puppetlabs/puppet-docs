@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: edd3c04ba4892bd59ab1cac02f44d74c9d432ca8
+built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
 title: 'Resource Type: ssh_authorized_key'
 canonical: "/puppet/latest/types/ssh_authorized_key.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
 
 ssh_authorized_key
 -----
@@ -53,14 +53,13 @@ that user.
 <h3 id="ssh_authorized_key-attributes">Attributes</h3>
 
 <pre><code>ssh_authorized_key { 'resource title':
-  <a href="#ssh_authorized_key-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> The SSH key comment. This can be anything, and...</em>
-  <a href="#ssh_authorized_key-attribute-ensure">ensure</a>   =&gt; <em># The basic property that the resource should be...</em>
-  <a href="#ssh_authorized_key-attribute-key">key</a>      =&gt; <em># The public key itself; generally a long string...</em>
-  <a href="#ssh_authorized_key-attribute-options">options</a>  =&gt; <em># Key options; see sshd(8) for possible values...</em>
-  <a href="#ssh_authorized_key-attribute-provider">provider</a> =&gt; <em># The specific backend to use for this...</em>
-  <a href="#ssh_authorized_key-attribute-target">target</a>   =&gt; <em># The absolute filename in which to store the SSH...</em>
-  <a href="#ssh_authorized_key-attribute-type">type</a>     =&gt; <em># The encryption type used.  Valid values are...</em>
-  <a href="#ssh_authorized_key-attribute-user">user</a>     =&gt; <em># The user account in which the SSH key should be...</em>
+  <a href="#ssh_authorized_key-attribute-name">name</a>    =&gt; <em># <strong>(namevar)</strong> The SSH key comment. This can be anything, and...</em>
+  <a href="#ssh_authorized_key-attribute-ensure">ensure</a>  =&gt; <em># The basic property that the resource should be...</em>
+  <a href="#ssh_authorized_key-attribute-key">key</a>     =&gt; <em># The public key itself; generally a long string...</em>
+  <a href="#ssh_authorized_key-attribute-options">options</a> =&gt; <em># Key options; see sshd(8) for possible values...</em>
+  <a href="#ssh_authorized_key-attribute-target">target</a>  =&gt; <em># The absolute filename in which to store the SSH...</em>
+  <a href="#ssh_authorized_key-attribute-type">type</a>    =&gt; <em># The encryption type used.  Allowed values:  ...</em>
+  <a href="#ssh_authorized_key-attribute-user">user</a>    =&gt; <em># The user account in which the SSH key should be...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -83,7 +82,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -97,8 +101,8 @@ attribute may not contain whitespace.
 Make sure to omit the following in this attribute (and specify them in
 other attributes):
 
-* Key headers (e.g. 'ssh-rsa') --- put these in the `type` attribute.
-* Key identifiers / comments (e.g. 'joe@joescomputer.local') --- put these in
+* Key headers, such as 'ssh-rsa' --- put these in the `type` attribute.
+* Key identifiers / comments, such as 'joe@joescomputer.local' --- put these in
   the `name` attribute/resource title.
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
@@ -112,26 +116,16 @@ should be specified as an array.
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
-<h4 id="ssh_authorized_key-attribute-provider">provider</h4>
-
-The specific backend to use for this `ssh_authorized_key`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`parsed`](#ssh_authorized_key-provider-parsed)
-
-([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
-
 <h4 id="ssh_authorized_key-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The absolute filename in which to store the SSH key. This
-property is optional and should only be used in cases where keys
-are stored in a non-standard location (i.e.` not in
-`~user/.ssh/authorized_keys`).
+property is optional and should be used only in cases where keys
+are stored in a non-standard location, for instance when not in
+`~user/.ssh/authorized_keys`.
+
+Default: `absent`
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -141,7 +135,17 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The encryption type used.
 
-Valid values are `ssh-dss` (also called `dsa`), `ssh-rsa` (also called `rsa`), `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-ed25519` (also called `ed25519`).
+Allowed values:
+
+* `ssh-dss`
+* `ssh-rsa`
+* `ecdsa-sha2-nistp256`
+* `ecdsa-sha2-nistp384`
+* `ecdsa-sha2-nistp521`
+* `ssh-ed25519`
+* `dsa`
+* `ed25519`
+* `rsa`
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -164,4 +168,4 @@ Parse and generate authorized_keys files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-02-14 15:11:50 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
