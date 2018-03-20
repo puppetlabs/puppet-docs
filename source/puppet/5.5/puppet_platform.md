@@ -4,7 +4,7 @@ title: "About Puppet Platform and its packages"
 ---
 
 > **Note:** This document covers the Puppet Platform repository of open source Puppet 5-compatible software packages.
-> -   For Puppet 3.8 open source packages, see its [repository documentation](/puppet/3.8/puppet_repositories.html).
+> -   For Puppet 3.8 open source packages, see its [repository documentation](https://docs.puppet.com/puppet/3.8/puppet_repositories.html).
 > -   For Puppet Enterprise installation tarballs, see its [installation documentation](/pe/latest/install_basic.html).
 
 Puppet maintains official Puppet 5 Platform package repositories for several operating systems and distributions. Puppet 5 Platform has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other.
@@ -13,12 +13,12 @@ Puppet publishes updates for operating systems starting from the time a package 
 
 See [The Puppet Enterprise Lifecycle](https://puppet.com/misc/puppet-enterprise-lifecycle) for information about phases of the Puppet Support Lifecycle.
 
-To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.4.0:
+To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.5.0:
 
 ```
 class { '::puppet_agent':
   collection      => 'latest',
-  package_version => '5.4.0',
+  package_version => '5.5.0',
 }
 ```
 
@@ -67,6 +67,10 @@ To enable the Puppet 5 Platform repository:
     sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
+
+#### Fedora 26
+
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-27.noarch.rpm
 
 #### Fedora 26
 
@@ -153,8 +157,8 @@ Security-conscious users can use GPG to verify signatures on our packages.
 
 Certain operating system and installation methods automatically verify our package signatures.
 
-* If you install Puppet packages via our Yum and Apt repositories, the Puppet Platform release package that enables the repository also installs our release signing key. The Yum and Apt tools automatically verify the integrity of our packages as you install them.
-* Our Microsoft Installer (MSI) packages for Windows are signed with a different key, and the Windows installer automatically verifies the signature before installing the package.
+-   If you install Puppet packages via our Yum and Apt repositories, the Puppet Platform release package that enables the repository also installs our release signing key. The Yum and Apt tools automatically verify the integrity of our packages as you install them.
+-   Our Microsoft Installer (MSI) packages for Windows are signed with a different key, and the Windows installer automatically verifies the signature before installing the package.
 
 In these cases, you don't need to do anything to verify the package signature.
 
@@ -166,18 +170,20 @@ If you're using Puppet source tarballs or Ruby gems, or installing RPM packages 
 
 Before you can verify signatures, you must import the Puppet public key and verify its fingerprint. This key is certified by several Puppet developers and should be available from the public keyservers.
 
-1. To import the public key, run `gpg --keyserver pgp.mit.edu --recv-key 7F438280EF8D349F`
+1.  To import the public key, run `gpg --keyserver pgp.mit.edu --recv-key 7F438280EF8D349F`
 
-The `gpg` tool then requests and imports the key:
+    The `gpg` tool then requests and imports the key:
 
+    ```
 		gpg: requesting key EF8D349F from hkp server pgp.mit.edu
 		gpg: /home/username/.gnupg/trustdb.gpg: trustdb created
 		gpg: key EF8D349F: public key "Puppet, Inc. Release Key (Puppet, Inc. Release Key) <release@puppet.com>" imported
 		gpg: no ultimately trusted keys found
 		gpg: Total number processed: 1
 		gpg:               imported: 1  (RSA: 1)
+		```
 
-The key is also [available via HTTP](http://pool.sks-keyservers.net:11371/pks/lookup?op=get&search=0x7F438280EF8D349F).
+    The key is also [available via HTTP](http://pool.sks-keyservers.net:11371/pks/lookup?op=get&search=0x7F438280EF8D349F).
 
 > **Note:** If this is your first time running the `gpg` tool, it might fail to import the key after creating its configuration file and keyring. This is normal, and you can run the command a second time to import the key into your newly created keyring.
 
@@ -185,14 +191,16 @@ The key is also [available via HTTP](http://pool.sks-keyservers.net:11371/pks/lo
 
 The fingerprint of the Puppet release signing key is `6F6B 1550 9CF8 E59E 6E46  9F32 7F43 8280 EF8D 349F`.
 
-1. To check the key's fingerprint, run `gpg --list-key --fingerprint 7F438280EF8D349F`
+1.  To check the key's fingerprint, run `gpg --list-key --fingerprint 7F438280EF8D349F`
 
-2. Ensure the fingerprint listed in the output matches the above value:
+2.  Ensure the fingerprint listed in the output matches the above value:
 
+    ```
 		pub   4096R/EF8D349F 2016-08-18 [expires: 2021-08-17]
 					Key fingerprint = 6F6B 1550 9CF8 E59E 6E46  9F32 7F43 8280 EF8D 349F
 		uid                  Puppet, Inc. Release Key (Puppet, Inc. Release Key) <release@puppet.com>
 		sub   4096R/656674AE 2016-08-18 [expires: 2021-08-17]
+		```
 
 #### Verify a source tarball or gem
 
@@ -220,23 +228,23 @@ This is normal if you do not have a trust path to the key. If you've verified th
 
 Puppet RPM packages include an embedded signature. To verify it, you must import the Puppet public key to `rpm`, then use `rpm` to check the signature.
 
-1. Retrieve the [Puppet public key](http://pool.sks-keyservers.net:11371/pks/lookup?op=get&search=0x1054B7A24BD6EC30) and place it in a file on your node.
+1.  Retrieve the [Puppet public key](http://pool.sks-keyservers.net:11371/pks/lookup?op=get&search=0x1054B7A24BD6EC30) and place it in a file on your node.
 
-2. Run `sudo rpm --import PUBKEY <PUBLIC KEY FILE>` replacing `<PUBLIC KEY FILE>` with the path to the file containing the Puppet public key.
+2.  Run `sudo rpm --import PUBKEY <PUBLIC KEY FILE>` replacing `<PUBLIC KEY FILE>` with the path to the file containing the Puppet public key.
 
-   The `rpm` tool won't output anything if successful.
+    The `rpm` tool won't output anything if successful.
 
-3. To verify an RPM you've downloaded, run the `rpm` tool with the `checksig` flag (`-K`): `sudo rpm -vK <RPM FILE NAME>`
+3.  To verify an RPM you've downloaded, run the `rpm` tool with the `checksig` flag (`-K`): `sudo rpm -vK <RPM FILE NAME>`
 
-   This verifies the embedded signature, as signified by the `OK` results in the `rpm` output:
+    This verifies the embedded signature, as signified by the `OK` results in the `rpm` output:
 
-   ~~~
-    puppet-agent-1.5.1-1.el6.x86_64.rpm:
-        Header V4 RSA/SHA512 Signature, key ID ef8d349f: OK
-        Header SHA1 digest: OK (95b492a1fff452d029aaeb59598f1c78dbfee0c5)
-        V4 RSA/SHA512 Signature, key ID ef8d349f: OK
-        MD5 digest: OK (4878909ccdd0af24fa9909790dd63a12)
-   ~~~
+    ```
+     puppet-agent-1.5.1-1.el6.x86_64.rpm:
+         Header V4 RSA/SHA512 Signature, key ID ef8d349f: OK
+         Header SHA1 digest: OK (95b492a1fff452d029aaeb59598f1c78dbfee0c5)
+         V4 RSA/SHA512 Signature, key ID ef8d349f: OK
+         MD5 digest: OK (4878909ccdd0af24fa9909790dd63a12)
+    ```
 
 If you don't import the Puppet public key, you can still verify the package's integrity using `rpm -vK`. However, you won't be able to validate the package's origin:
 
@@ -246,9 +254,9 @@ If you don't import the Puppet public key, you can still verify the package's in
         V4 RSA/SHA512 Signature, key ID ef8d349f: NOKEY
         MD5 digest: OK (4878909ccdd0af24fa9909790dd63a12)
 
-#### Verify an OS X `puppet-agent` package
+#### Verify a macOS `puppet-agent` package
 
-Puppet signs `puppet-agent` packages for OS X with a developer ID and certificate. To verify the signature, download and mount the `puppet-agent` disk image, then use the `pkgutil` tool with the `--check-signature` flag:
+Puppet signs `puppet-agent` packages for macOS with a developer ID and certificate. To verify the signature, download and mount the `puppet-agent` disk image, then use the `pkgutil` tool with the `--check-signature` flag:
 
     pkgutil --check-signature /Volumes/puppet-agent-<AGENT-VERSION>-1.osx10.10/puppet-agent-<AGENT-VERSION>-1-installer.pkg
 
