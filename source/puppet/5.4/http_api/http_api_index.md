@@ -52,7 +52,7 @@ and the remaining CA endpoints are always accessible. Rack Puppet master servers
 still use `auth.conf` for `/puppet-ca`.
 
 When specifying authorization in `auth.conf`, the prefix and the version number
-(e.g. `/puppet/v3`) on the paths must be retained, since Puppet matches
+(for example, `/puppet/v3`) on the paths must be retained, since Puppet matches
 authorization rules against the full request path.
 
 Puppet V3 HTTP API
