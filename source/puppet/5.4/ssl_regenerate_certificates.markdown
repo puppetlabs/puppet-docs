@@ -45,7 +45,7 @@ Note that this process **destroys the certificate authority and all other certif
 
 6. Generate the Puppet master's new certs with `sudo puppet master --no-daemonize --verbose`.
 7. When you see `Notice: Starting Puppet master <your Puppet version>`, type CTRL + C.
-8. Start the Puppet master service by reversing whatever you did in step 3. (E.g., `sudo puppet resource service puppetserver ensure=running`.)
+8. Start the Puppet master service by reversing whatever you did in step 3. (For example, `sudo puppet resource service puppetserver ensure=running`.)
 9. Start the Puppet agent service with `sudo puppet resource service puppet ensure=running`.
 
 > At this point:
