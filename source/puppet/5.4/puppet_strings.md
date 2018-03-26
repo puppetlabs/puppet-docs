@@ -1,15 +1,4 @@
 
-NEEDS:
-
-* WHAT IS IT? CONCEPT
-* COMMAND REFERENCE
-* STYLE GUIDE
-* HOW TO PUPPET STRINGS
-  * CREATE A MARKDOWN
-  * GENERATE AND VIEW HTML DOCS
-  * PUBLISHING TO THE FORGE
-
-
 Puppet Strings combines source code and code comments to create complete, user-friendly documentation for modules.
 
 Strings can generate documentation for classes, defined types, functions, and resource types in HTML, JSON, and Markdown formats. Instead of manually writing and formatting long reference lists, add descriptive tags and comments along with the code for each element (class, defined type, function) of your module. Strings automatically extracts some information, such as data types and attribute defaults from the code, so you need to add minimal documentation comments. Whenever you update code, update your documentation comments at the same time.
