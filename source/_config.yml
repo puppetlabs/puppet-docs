@@ -287,6 +287,15 @@ documents:
       puppetdb: "4.3"
     hide: true
 
+  /puppet/5.5:
+    doc: puppet
+    version: "5.5"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.11"
+      hiera: "3.4"
+      puppetserver: "5.3"
+    hide: true
   /puppet/5.4:
     doc: puppet
     version: "5.4"
@@ -468,6 +477,19 @@ documents:
     nav: ./_hiera_toc.html
     hide: true
 
+  /puppetserver/5.3:
+    doc: puppetserver
+    version: "5.3"
+    nav: /puppet/5.5/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: 9b5bc37df3cb0f1749565df7c6aad8afd3b4211e
+      subdirectory: documentation
+    my_versions:
+      puppet: "5.5"
+      facter: "3.11"
+      hiera: "3.4"
+    hide: true
   /puppetserver/5.2:
     doc: puppetserver
     version: "5.2"
@@ -561,7 +583,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: 5c4a80b4971ed8905a63c5f648dbab6b3b7016a5
+      commit: origin/5.2.x
       subdirectory: documentation
     hide: true
   /puppetdb/5.1:
