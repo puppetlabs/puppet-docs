@@ -243,12 +243,11 @@ Related topics: [interpolate][interpolation], [hierarchies][hierarchy].
 
 Hiera 5 (Puppet 4.9.3 and later) includes a native interface for the Hiera eyaml extension, which keeps data encrypted on disk but lets Puppet read it during catalog compilation.
 
+To learn how to create keys and edit encrypted files, see the [Hiera eyaml documentation](https://github.com/voxpupuli/hiera-eyaml). 
+
 Within `hiera.yaml`, the eyaml backend resembles the standard built-in backends, with a few differences: it uses `lookup_key` instead of `data_hash`, and requires an `options` key to locate decryption keys. Note that the eyaml backend can read regular yaml files as well as yaml files with encrypted data.
 
-> **Important**: To use the eyaml backend, you must have the `hiera-eyaml` gem installed where Puppet can use it. You'll need to install it twice:
-
--   To enable eyaml with Puppet Server, use `sudo /opt/puppetlabs/bin/puppetserver gem install hiera-eyaml`.
--   To enable eyaml on the command line and with `puppet apply`, use `sudo /opt/puppetlabs/puppet/bin/gem install hiera-eyaml`.
+> **Important**: To use the eyaml backend, you must have the `hiera-eyaml` gem installed where Puppet can use it. It's included in Puppet Server since version 5.2.0, so you just need to make it available for command line usage. To enable eyaml on the command line and with `puppet apply`, use `sudo /opt/puppetlabs/puppet/bin/gem install hiera-eyaml`.
 
 Each eyaml hierarchy level needs the following keys:
 
