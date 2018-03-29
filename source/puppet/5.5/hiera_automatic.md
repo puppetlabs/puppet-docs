@@ -72,6 +72,17 @@ Hiera uses a hierarchy of data sources, and a given key can have values in multi
 
 ### Examples
 
+Default values for a lookup:
+
+(Still works, but deprecated).
+```
+hiera('some::key', 'the default value')
+```
+(Recommended).
+```
+lookup('some::key', undef, undef, 'the default value')
+```
+
 Look up a key and returning the first value found:
 
 ```
