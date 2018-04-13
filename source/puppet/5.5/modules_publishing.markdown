@@ -37,8 +37,8 @@ To publish your module:
 4. Build an uploadable tarball of your module.
 5. Upload your module using the Puppet Forge's web interface.
 
-{:.section}
-### Related topics
+
+**Related topics:**
 
 * [Module fundamentals][fundamentals]: How to write and use your own Puppet modules.
 * [Installing modules][installing]: How to install pre-built modules from the Puppet Forge.
@@ -47,16 +47,16 @@ To publish your module:
 * [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
 
 
-{:.concept}
+{:.section}
 ## Naming your module 
 
 Your module has two names: a short name, like "mysql", and a long name that includes your Forge username, like "puppetlabs-mysql".
 
-To upload to the Forge, you must use the module long name. This name is composed of your Forge username and the short name of your module. For example, the user named "puppetlabs" maintains a "mysql" module, which is known to the Forge as "puppetlabs-mysql". Use this long name in your module's `metadata.json` file. This helps disambiguate modules that might have common short names, such as "mysql" or "apache."
+To upload to the Forge, use the module long name. This name is composed of your Forge username and the short name of your module. For example, the "puppetlabs" user maintains a "mysql" module, which is known to the Forge as "puppetlabs-mysql". Use this long name in your module's `metadata.json` file. This helps disambiguate modules that might have common short names, such as "mysql" or "apache."
 
 However, your module directory on disk must use the short name, without the username prefix. Module directory names cannot contain dashes or periods; only letters, numbers, and underscores. As long as you have the correct long name in your `metadata.json` file, the `puppet module build` command uses the correct names in the correct places.
 
-> **Note**: Although the Puppet Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. Always use the `username-module` style in your metadata files and when issuing commands.
+> **Note**: Although the  Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. Always use the `username-module` style in your metadata files and when issuing commands.
 
 Related topics:
 
@@ -177,8 +177,7 @@ After a successful upload, your browser should load the new release page of your
 
 You can automatically publish new versions of your module to the Forge using Travis CI.
 
-{:.task}
-### Set up Travis CI for automatic publishing
+First, set up Travis CI for automatic publishing.
 
 1. Enable Travis CI for the module repository.
 2. Generate a Travis-encrypted Forge password string. For instructions, see the Travis CI [encryption keys docs](https://docs.travis-ci.com/user/encryption-keys/).
@@ -196,8 +195,7 @@ deploy:
     all_branches: true
 ```
 
-{:.task}
-### Publish to the Forge with Travis CI
+To publish to the Forge with Travis CI, update your version, tag your repo, and push your commit.
 
 1. Update the version number in the module's `metadata.json` file and commit the change to the module repository.
 2. Tag the module repo with the desired version number. For more information about how to do this, see Git docs on [basic tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging).
