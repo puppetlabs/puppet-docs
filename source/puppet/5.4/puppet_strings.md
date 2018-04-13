@@ -1,7 +1,7 @@
 
-Puppet Strings combines source code and code comments to create complete, user-friendly documentation for modules.
+To create complete, user-friendly module documentation, generate documentation with Puppet Strings.
 
-Strings can generate documentation for classes, defined types, functions, and resource types in HTML, JSON, and Markdown formats. Instead of manually writing and formatting long reference lists, add descriptive tags and comments along with the code for each element (class, defined type, function) of your module. Strings automatically extracts some information, such as data types and attribute defaults from the code, so you need to add minimal documentation comments. Whenever you update code, update your documentation comments at the same time.
+Strings combines source code and code comments to document classes, defined types, functions, and resource types in HTML, JSON, and Markdown formats. Instead of manually writing and formatting long reference lists, add descriptive tags and comments along with the code for each element (class, defined type, function) of your module. Strings automatically extracts some information, such as data types and attribute defaults from the code, so you need to add minimal documentation comments. Whenever you update code, update your documentation comments at the same time.
 
 Strings outputs documentation as HTML, JSON, and Markdown.
 
@@ -69,6 +69,15 @@ To generate documentation for specific directories, run the `puppet strings gene
 $ puppet strings generate 'modules/foo/lib/**/*.rb' 'modules/foo/manifests/**/*.pp' 'modules/foo/functions/**/*.pp' ...
 ```
 
+To render HTML documentation in any browser, open the index.html file L in a `/doc/` folder in the module. You can view the HTML for a single module or for all of your installed modules in any web browser.
+
+You can view HTML documentation for all your local modules with the `server` action.
+
+This action serves documentation for all modules in the [module path](https://docs.puppet.com/puppet/latest/reference/dirs_modulepath.html) at `http://localhost:8808`.
+
+1. View HTML documentation in your web browser by running `puppet strings server`
+
+
 {:.task}
 ### Generate documentation in Markdown
 
@@ -84,6 +93,8 @@ By default, Markdown output generates a `REFERENCE.md` file, but you can specify
    ```
    puppet strings generate --format markdown --out docs/INFO.md
    ```
+
+Strings creates a `REFERENCE.md` file in the main directory of the module. View this file by opening it in your text editor.
 
 {:.task}
 ### Generate documentation in JSON
@@ -103,37 +114,6 @@ By default, Strings prints JSON output to stdout.
 
 For details about Strings JSON output, see [Strings JSON schema](https://github.com/puppetlabs/puppet-strings/blob/master/JSON.md).
 
-{:.concept}
-## Viewing HTML documentation
-
-Strings generates documentation as HTML, JSON, or Markdown in the module. You can view this documentation in any web browser or text editor, depending on the output.
-
-For Markdown output, Strings creates a `REFERENCE.md` file in the main directory of the module. View this file by opening it in your text editor.
-
-By default, Strings outputs documentation as HTML in a `/doc/` folder in the module. You can view the HTML for a single module or for all of your installed modules in any web browser.
-
-{:.task}
-### View HTML documentation for a single module
-
-Strings generates documentation as HTML, JSON, or Markdown in the module. You can view this documentation in a web browser or text editor, depending on the output.
-
- To view the HTML documentation for a module
-
-1. Change into the module's `/doc` directory by running `cd <MODULE_NAME>/doc`
-2. Open the index page by running `open _index.html`
-
-
-If you specify Markdown output, Strings creates a `REFERENCE.md` file in the main directory of the module. View this file the same way you would view any 
-
-{:.task}
-### View HTML documentation for all installed modules
-
-You can view HTML documentation for all your local modules with the `server` action.
-
-This action serves documentation for all modules in the [module path](https://docs.puppet.com/puppet/latest/reference/dirs_modulepath.html) at `http://localhost:8808`.
-
-1. View HTML documentation in your web browser by running `puppet strings server`
-
 
 {:.task}
 ## Publish documentation to GitHub Pages with Rake tasks
@@ -152,10 +132,7 @@ This task:
 
 This task keeps the `gh-pages` branch up to date with the current code and uses the `--force` option when pushing to the `gh-pages` branch.
 
-{:.task}
-### Set up Rake tasks
-
-To set up Rake tasks, update your Gemfile and your Rakefile.
+Before you begin, update your Gemfile and your Rakefile.
 
 1.  Add the following to your Gemfile to use `puppet-strings`:
 
@@ -172,13 +149,9 @@ To set up Rake tasks, update your Gemfile and your Rakefile.
     Adding this `require` automatically creates the Rake tasks below.
 
 
-{:.task}
-### Generate and push documentation to GitHub Pages
-
 To generate Puppet Strings documentation and make it available on [GitHub Pages](https://pages.github.com/), use the `strings:gh_pages:update` task.
 
 1. Generate and push your docs by running `strings:gh_pages:update`
-
 
 ## Reference
 
@@ -227,8 +200,8 @@ Filenames or directory paths | Outputs documentation for only specified files or
 
 [NOTE: THIS NEEDS TO BE A TABLE, BUT MAYBE I CAN WAIT TILL IT'S IN DITA]
 
-* `@api`: Describes the resource as private or public, most commonly used with classes or defined types.
-* `@example`: Shows an example snippet of code for an object. The first line is an optional title. See above for more about how to [include examples in documentation](#including-examples-in-documentation).
+* `@api`: Describes the resource as belonging to the private or public API. Specify as private, `# @api private`, to mark a module element, such as a class, as part of the private API.
+* `@example`: Shows an example snippet of code for an object. The first line is an optional title, and any subsequent lines are automatically formatted as a code snippet. Use for specific examples of a given component. One example tag per example.
 * `@param`: Documents a parameter with a given name, type and optional description.
 * `@!puppet.type.param`: Documents dynamic type parameters. See [Documenting resource types and providers](#documenting-resource-types-and-providers) above.
 * `@!puppet.type.property`: Documents dynamic type properties. See [Documenting resource types and providers](#documenting-resource-types-and-providers) above.
@@ -244,9 +217,10 @@ Filenames or directory paths | Outputs documentation for only specified files or
   ```
 * `@raise`Documents any exceptions that can be raised by the given component. For example: `# @raise PuppetError this error will be raised if x`
 * `@return`: Describes the return value (and type or types) of a method. You can list multiple return tags for a method if the method has distinct return cases. In this case, begin each case with "if".
-* `@see`: Adds "see also" references. Accepts URLs or other code objects with an optional description at the end. Note that the URL or object is automatically linked by YARD and does not need markup formatting.
-* `@since`: Lists the version in which the object was first added.
-* `@summary`: A short description of the documented item.
+* `@see`: Adds "see also" references. Accepts URLs or other code objects with an optional description at the end. The URL or object is automatically linked by YARD and does not need markup formatting. Appears in the generated documentation as a "See Also" section. Use one tag per reference (website, related method, etc).
+* `@since`: Lists the version in which the object was first added. Strings does not verify that the specified version exists; authors are responsible for providing accurate information.
+* `@summary`: A description of the documented item. This summary should be 140 characters or fewer.
+
 
 ## Additional Resources
 

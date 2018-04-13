@@ -1,10 +1,13 @@
-Puppet Strings Style Guide
+{:.reference}
+# Puppet Strings Style Guide
+
 Applies to Puppet 4 and later
 
 Puppet Strings combines source code and code comments to create complete, user-friendly reference information for modules. Strings can generate module documentation for classes, defined types, functions, and resource types in HTML, JSON, and Markdown formats.
 
 Instead of manually writing and formatting long reference lists, add a few descriptive tags and comments for each element (class, defined type, function) of your module. Whenever you update code, update your documentation comments at the same time. Strings automatically extracts some information, such as data types and attribute defaults from the code, so you need to add minimal documentation comments.
 
+{:.section}
 ## Module README
 
 Module READMEs are where users can learn more about what a module does and how to use it. In the module README, include basic module information and extended usage examples that address common use cases. 
@@ -20,7 +23,7 @@ The README should contain the following sections:
 * Limitations: OS compatibility and known issues.
 * Development: Guide for contributing to the module.
 
-{:.concept}
+{:.section}
 ## Comment style
 
 Generally, Strings documentation comments follow a similar format:
@@ -52,10 +55,17 @@ Class and defined type information should be listed in the following order.
 ### Parameters
 
 Add parameter information as part of any class, defined type, or function that accepts parameters.  Parameter information should appear in the following order.
-The `@param` tag, a space, and then the name of the parameter.
-Description of what the parameter does. This may be on the same line as the `@param` tag or on the next line.
-Any additional information about valid values that is not clear from the data type. For example, if the data type is [String], but the value must specifically be a path, say so here.
-Any other information about the parameter, such as warnings or special behavior.
+1. The `@param` tag, a space, and then the name of the parameter.
+1. Description of what the parameter does. This may be on the same line as the `@param` tag or on the next line.
+1. Any additional information about valid values that is not clear from the data type. For example, if the data type is [String], but the value must specifically be a path, say so here.
+1. Any other information about the parameter, such as warnings or special behavior.
+
+For example:
+
+```
+# @param noselect_servers
+#   Specifies one or more peers to not sync with. Puppet appends 'noselect' to each matching item in the `servers` array.
+```
 
 
 {:.example}
@@ -107,12 +117,50 @@ class apache::mod::php (
 ) { … }
 ```
 
-For example:
+{:.example}
+#### Example defined type
 
 ```
-# @param noselect_servers
-#   Specifies one or more peers to not sync with. Puppet appends 'noselect' to each matching item in the `servers` array.
+# @summary
+#   Create and configure a MySQL database.
+#
+# @example Create a database
+#   mysql::db { 'mydb':
+#     user     => 'myuser',
+#     password => 'mypass',
+#     host     => 'localhost',
+#     grant    => ['SELECT', 'UPDATE'],
+#   }
+#
+# @param name
+#   The name of the database to create. (dbname)
+# @param user
+#   The user for the database you're creating.
+# @param password
+#   The password for $user for the database you're creating.
+# @param dbname
+#   The name of the database to create.
+# @param charset
+#   The character set for the database.
+# @param collate
+#   The collation for the database.
+# @param host
+#   The host to use as part of user@host for grants.
+# @param grant
+#   The privileges to be granted for user@host on the database.
+# @param sql
+#   The path to the sqlfile you want to execute. This can be single file specified as string, or it can be an array of strings.
+# @param enforce_sql
+#   Specifies whether executing the sqlfiles should happen on every run. If set to false, sqlfiles only run once.
+# @param ensure
+#   Specifies whether to create the database. Valid values are 'present', 'absent'. Defaults to 'present'.
+# @param import_timeout
+#   Timeout, in seconds, for loading the sqlfiles. Defaults to 300.
+# @param import_cat_cmd
+#   Command to read the sqlfile for importing the database. Useful for compressed sqlfiles. For example, you can use 'zcat' for .gz files.
+#
 ```
+
 
 {:.section}
 ### Functions
@@ -230,6 +278,7 @@ DESC
   end
 end
 ```
+
 {:.section}
 ### Resource API type
 
@@ -279,58 +328,3 @@ EOS
   },
 )
 ```
-
-{:.reference}
-## Strings tag reference
-
-<# Heading #>   | <# Heading #>   | <# Heading #>      | <# Heading #>
-----------------|:---------------:|:------------------:|-------------------------
-<# cell data #> | <# cell data #> | <# cell data #>    | <# cell data #>
-<# cell data #> | <# cell data #> | <# cell data #>    | <# cell data #>
-<# cell data #> | <# cell data #> | <# cell data #>    | <# cell data #>
-
-
-@summary
-A summary description. This summary should be 140 characters or fewer.
-@param
-Documents a parameter with a given name, type and optional description. Data types specified in your Puppet code override data types specified in the docs string. 
-@return
-Describes the return value (and type or types) of a method. You can list multiple return tags for a method if the method has distinct return cases. In this case, begin each case with "if".
-@example
-Shows an example snippet of code for an object. The first line is an optional title, and any subsequent lines are automatically formatted as a code snippet. Use for specific examples of a given component. One example tag per example.
-@!puppet.type.param
-Documents dynamic type parameters.
-@!puppet.type.property
-Documents dynamic type properties.
-@since
-Lists the version in which the object was first added. Strings does not verify that the specified version exists; authors are responsible for providing accurate information.
-@see
-Adds "see also" references. Accepts URLs or other code objects with an optional description at the end. Note that the URL or object is automatically linked by YARD and does not need markup formatting. Appears in the generated documentation as a "See Also" section. Use one tag per reference (website, related method, etc).
-@raise
-Documents any exceptions that can be raised by the given component. For example:
-
-
-```
-# @raise PuppetError this error will be raised if x
-```
-@option
-Use this with a `@param` tag to define what optional parameters the user can pass in an options hash to the method.
-Should be placed under a `@param` tag
-For example:
-```
-# @param [Hash] opts
-#      List of options
-# @option opts [String] :option1
-#      option 1 in the hash
-# @option opts [Array] :option2
-#      option 2 in the hash
-```
-@api
-Use this tag to mark a module element, such as a class, as part of the private API. 
-```puppet
-# @api private
-class mysql::bindings::perl { … }
-```
-Specify private for classes
-
-
