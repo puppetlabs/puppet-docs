@@ -13,6 +13,8 @@ If you created your module with Puppet Development Kit, the `metadata.json` is c
 * The `puppet module` command uses `metadata.json` to display module information and prepare modules for publishing.
 * The Forge requires `metadata.json` and uses it to create the module's info page and to provide dependency and other information to users installing the module.
 
+The `metadata.json` file uses standard JSON syntax and contains a single JSON object. A JSON object is a map of keys to values; it's sometimes called a hash and is equivalent to a Ruby or Puppet hash.
+
 {:.example}
 ### metadata.json example 
 
@@ -57,11 +59,130 @@ If you created your module with Puppet Development Kit, the `metadata.json` is c
   "description": "NTP Module for Debian, Ubuntu, CentOS, RHEL, OEL, Fedora, FreeBSD, ArchLinux, Amazon Linux and Gentoo."
 }
 ```
+{:.section}
+## Specifying dependencies in modules
 
-{:.concept}
-## Formatting `metadata.json`
+[inpage_deps]: #specifying-dependencies-in-modules
 
-A `metadata.json` file uses standard JSON syntax, and contains a single JSON object. A JSON object is a map of keys to values; it's sometimes called a hash and is equivalent to a Ruby or Puppet hash.
+If your module depends on functionality in another module, you can express this in the `dependencies` key of `metadata.json`.
+
+The `dependencies` key accepts an array of hashes. This key is required, but if your module has no dependencies, you can pass an empty array.
+
+The hash for each dependency must contain `"name"` and `"version_requirement"` keys. For example:
+
+``` json
+"dependencies": [
+  { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" },
+  { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
+  { "name": "puppetlabs/apt", "version_requirement": ">= 1.1.0 < 2.0.0" },
+  { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 < 2.0.0" }
+]
+```
+
+If a dependency is not installed, the `puppet module` command installs the most recent specified version of that dependency. If the dependency is already installed at a version accepted in the module's `metadata.json` (even if not the latest version), Puppet doesn't update the dependency.
+
+After you've created your module and gone through the metadata dialog, you must manually edit the `metadata.json` file to include the dependency information. For information about how to format dependency versions, see the related topic about version specifiers in module metadata.
+
+
+{:.section}
+## Specifying Puppet version requirements in modules 
+
+[inpage_require]: #specifying-puppet-version-requirements-in-module
+
+The `requirements` key specifies external requirements for the module, particularly the Puppet version required. Although you can express any requirement here, the Puppet Forge module pages and search function support only the "puppet" requirement for Puppet version.
+
+Specify requirements in the following format:
+
+* "name": The name of the requirement.
+* "version_requirement": A semver version range similar to dependencies.
+
+```json
+"requirements": [
+  {"name": "puppet”, “version_requirement”: ">= 4.5.0 < 5.0.0"}
+]
+```
+
+For Puppet Enterprise versions, specify the core Puppet version of that version of Puppet Enterprise. For example, Puppet Enterprise 2017.1 contained Puppet 4.9. We do not recommend expressing requirements for Puppet versions earlier than 3.0, because they do not follow semantic versioning.
+
+For information about formatting version requirements, see the related topic about version specifiers in module metadata.
+
+
+{:.section}
+## Specifying operating system compatibility in modules
+
+[inpage_os]: #specifying-operating-system-compatibility-in-modules
+
+If you are publishing your module to the Forge, we highly recommend that you include `operatingsystem_support` in `metadata.json`. Even if you do not intend to publish your module, including this information can be helpful for tracking your work.
+
+This key accepts an array of hashes, where each hash contains `operatingsystem` and `operatingsystemrelease` keys.
+
+* `operatingsystem` should be a string. The Puppet Forge uses this for search filters.
+* `operatingsystemrelease` should be an array of strings. The Puppet Forge displays these versions on module pages, and you can format them in whatever way makes sense for the OS in question.
+
+``` json
+"operatingsystem_support": [
+  {
+  "operatingsystem":"RedHat",
+  "operatingsystemrelease":[ "5.0", "6.0" ]
+  },
+  {
+  "operatingsystem": "Ubuntu",
+  "operatingsystemrelease": [
+    "12.04",
+    "10.04"
+    ]
+  }
+]
+```
+
+{:.section}
+## Version specifiers in module metadata
+
+Your module metadata specifies your own module's version as well as the versions for your module's dependencies and requirements. When you specify a version for a module dependency or requirement, you can use several version specifiers that allow multiple versions.
+
+Follow the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification for versioning your module. This helps others rely on your modules without being surprised by changes you make.
+
+You can take advantage of semantic version when you specify dependencies or requirements in your metadata. For example, if you want to allow updates but avoid breaking changes, you could specify a major version with any minor version:
+
+```json
+"dependencies": [
+  { "name": "puppetlabs/stdlib", "version_requirement": "4.x" },
+]
+```
+
+
+Always set an upper version boundary in your version range. For example, `1.x` (any version of `1`, but less than `2.0.0`) or `>= 1.0.0 < 3.0.0` (greater than or equal to `1.0.0`, but less than `3.0.0`). If your module is compatible with the latest released versions of its dependencies, set the upper bound to exclude the next, unreleased major version.
+
+Without this upper bound, users might run into compatibility issues across major version boundaries, where incompatible changes occur.
+
+If your module is compatible with only one major or minor version, use the semantic major/minor version shorthand (such as `1.x`). If your module is compatible with versions crossing major version boundaries, such as with `stdlib`, you can set your supported version range to the next unreleased major version. For example:
+
+```json
+  "dependencies": [
+{ "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" }
+```
+
+In this example, the current version of `stdlib` is 4.8.0, and version 5.0.0 is not yet released. Under the rules of semantic versioning, 5.0.0 is likely to have incompatibilities, but every version of 4.x should be compatible. We don't know yet if the module will be compatible with 5.x. So we set the upper bound of the version dependency to less than the next known incompatible release (or major version).
+
+
+The version specifiers allowed in module dependencies are:
+
+Format   | Description
+----------------|:---------------
+`1.2.3` | A specific version.
+`> 1.2.3` | Greater than a specific version.
+`< 1.2.3` | Less than a specific version.
+`>= 1.2.3` | Greater than or equal to a specific version.
+`<= 1.2.3` | Less than or equal to a specific version.
+`>= 1.0.0 < 2.0.0` | Range of versions; both conditions must be satisfied. (This example would match 1.0.1 but not 2.0.1.)
+`1.x` | A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>= 1.0.0 < 2.0.0`.)
+`1.2.x` | A semantic major and minor version. (This example would match 1.2.3 but not 1.3.0, and is shorthand for `>= 1.2.0 < 1.3.0`.)
+
+**Note:** You cannot mix semantic versioning shorthand (.x) with greater than or less than versioning syntax. For example, the following are not allowed:
+
+* `>= 3.2.x`
+* `< 4.x`
+
 
 {:.reference}
 ## Available `metadata.json` keys
@@ -142,6 +263,13 @@ The main JSON object in `metadata.json` can contain only certain keys.
   </tr>
 </table>
 
+
+> **Deprecated keys**
+> 
+> * `types`: Resource type documentation generated by older versions of the `puppet module` command as part of `puppet module build`. **Remove this key from your `metadata.json`.**
+> * `data_provider`: The experimental Puppet lookup feature used this key to enable module data. It's no longer necessary, because [Hiera 5's module layer][module data] is automatically enabled if a `hiera.yaml` file is present.
+
+
 Related topics:
 
 * [Semantic versioning](http://semver.org/)
@@ -150,145 +278,4 @@ Related topics:
 * [Specifying requirements][inpage_require]
 * [Specifying operating system compatibility][inpage_os]
 
-{:.section}
-### Deprecated keys
-
-* `types`: Resource type documentation generated by older versions of the `puppet module` command as part of `puppet module build`. **Remove this key from your `metadata.json`.**
-
-* `data_provider`: The experimental Puppet lookup feature used this key to enable module data. It's no longer necessary, because [Hiera 5's module layer][module data] is automatically enabled if a `hiera.yaml` file is present.
-
-  The `data_provider` key accepts the following values:
-
-    * `null` (or key is absent): In Puppet 4.9 and later, automatically configure module data if hiera.yaml is present. In Puppet 4.3 through 4.8, disable module data.
-    * `"none"`: Disable module data.
-    * `"hiera"`: In Puppet 4.9 and later, same as `null` or absent. In 4.3 through 4.8, enable module data using a [`hiera.yaml` (version 4) file][hiera_yaml_4].
-    * `"function"`: Uses a hash returned by a function named `<MODULE NAME>::data`.
-
-{:.concept}
-## Specifying dependencies in modules
-
-[inpage_deps]: #specifying-dependencies-in-modules
-
-If your module depends on functionality in another module, you can express this in the `dependencies` key of `metadata.json`.
-
-The `dependencies` key accepts an array of hashes. This key is required, but if your module has no dependencies, you can pass an empty array.
-
-The hash for each dependency must contain `"name"` and `"version_requirement"` keys. For example:
-
-``` json
-"dependencies": [
-  { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" },
-  { "name": "puppetlabs/firewall", "version_requirement": ">= 0.0.4" },
-  { "name": "puppetlabs/apt", "version_requirement": ">= 1.1.0 < 2.0.0" },
-  { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 < 2.0.0" }
-]
-```
-
-After you've created your module and gone through the metadata dialog, you must manually edit the `metadata.json` file to include the dependency information. For information about how to format dependency versions, see the related topic about version specifiers in module metadata.
-
-Related topics:
-
-* [Version specifiers in module metadata](#version-specifiers-in-module-metadata)
-
-{:.concept}
-## Specifying Puppet version requirements in modules 
-
-[inpage_require]: #specifying-puppet-version-requirements-in-module
-
-The `requirements` key specifies external requirements for the module, particularly the Puppet version required. Although you can express any requirement here, the Puppet Forge module pages and search function support only the "puppet" requirement for Puppet version.
-
-Specify requirements in the following format:
-
-* "name": The name of the requirement.
-* "version_requirement": A semver version range similar to dependencies.
-
-```json
-"requirements": [
-  {"name": "puppet”, “version_requirement”: ">= 4.5.0 < 5.0.0"}
-]
-```
-
-For Puppet Enterprise versions, specify the core Puppet version of that version of Puppet Enterprise. For example, Puppet Enterprise 2017.1 contained Puppet 4.9. We do not recommend expressing requirements for Puppet versions earlier than 3.0, because they do not follow semantic versioning.
-
-For information about formatting version requirements, see the related topic about version specifiers in module metadata.
-
-
-{:.concept}
-## Specifying operating system compatibility in modules
-
-[inpage_os]: #specifying-operating-system-compatibility-in-modules
-
-If you are publishing your module to the Forge, we highly recommend that you include `operatingsystem_support` in `metadata.json`. Even if you do not intend to publish your module, including this information can be helpful for tracking your work.
-
-This key accepts an array of hashes, where each hash contains `operatingsystem` and `operatingsystemrelease` keys.
-
-* `operatingsystem` should be a string. The Puppet Forge uses this for search filters.
-* `operatingsystemrelease` should be an array of strings. The Puppet Forge displays these versions on module pages, and you can format them in whatever way makes sense for the OS in question.
-
-``` json
-"operatingsystem_support": [
-  {
-  "operatingsystem":"RedHat",
-  "operatingsystemrelease":[ "5.0", "6.0" ]
-  },
-  {
-  "operatingsystem": "Ubuntu",
-  "operatingsystemrelease": [
-    "12.04",
-    "10.04"
-    ]
-  }
-]
-```
-
-{:.concept}
-## Version specifiers in module metadata
-
-Your module metadata specifies your own module's version as well as the versions for your module's dependencies and requirements. When you specify a version for a module dependency or requirement, you can use several version specifiers that allow multiple versions.
-
-We strongly recommend following the [Semantic Versioning](http://semver.org/spec/v1.0.0.html) specification for versioning your module. This helps others rely on your modules without being surprised by changes you make.
-
-You can take advantage of semantic version when you specify dependencies or requirements in your metadata. For example, if you want to allow updates but avoid breaking changes, you can specify a range of acceptable versions, such as a major version with any minor version:
-
-```json
-"dependencies": [
-  { "name": "puppetlabs/stdlib", "version_requirement": "4.x" },
-]
-```
-
-If a dependency is not installed, the `puppet module` command installs the most recent specified version of that dependency. If the dependency is already installed at a version accepted in the module's `metadata.json` (even if not the latest version), Puppet doesn't update the dependency.
-
-The version specifiers allowed in module dependencies are:
-
-Format   | Description
-----------------|:---------------
-`1.2.3` | A specific version.
-`> 1.2.3` | Greater than a specific version.
-`< 1.2.3` | Less than a specific version.
-`>= 1.2.3` | Greater than or equal to a specific version.
-`<= 1.2.3` | Less than or equal to a specific version.
-`>= 1.0.0 < 2.0.0` | Range of versions; both conditions must be satisfied. (This example would match 1.0.1 but not 2.0.1.)
-`1.x` | A semantic major version. (This example would match 1.0.1 but not 2.0.1, and is shorthand for `>= 1.0.0 < 2.0.0`.)
-`1.2.x` | A semantic major and minor version. (This example would match 1.2.3 but not 1.3.0, and is shorthand for `>= 1.2.0 < 1.3.0`.)
-
-**Note:** You cannot mix semantic versioning shorthand (.x) with greater than or less than versioning syntax. For example, the following are not allowed:
-
-* `>= 3.2.x`
-* `< 4.x`
-
-{:.section}
-### Best practice: Set an upper bound for version 
-
-When you specify versions for dependencies or requirements, set the upper version boundary in your version range; for example, `1.x` (any version of `1`, but less than `2.0.0`) or `>= 1.0.0 < 3.0.0` (greater than or equal to `1.0.0`, but less than `3.0.0`). If your module is compatible with the latest released versions of its dependencies, set the upper bound to exclude the next, unreleased major version.
-
-Without this upper bound, users might run into compatibility issues across major version boundaries, where incompatible changes occur. It is better to be conservative and set an upper bound, and then release a newer version of your module after a major version release of the dependency. Otherwise, you could suddenly have to fix broken dependencies.
-
-If your module is compatible with only one major or minor version, you can use the semantic major/minor version shorthand (e.g., `1.x`). If your module is compatible with versions crossing major version boundaries, such as with `stdlib`, you can set your supported version range to the next unreleased major version. For example:
-
-```json
-  "dependencies": [
-{ "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 < 5.0.0" }
-```
-
-In this example, the current version of `stdlib` is 4.8.0, and version 5.0.0 is not yet released. Under the rules of semantic versioning, 5.0.0 is likely to have incompatibilities, but every version of 4.x should be compatible. We don't know yet if the module will be compatible with 5.x. So we set the upper bound of the version dependency to less than the next known incompatible release (or major version).
 

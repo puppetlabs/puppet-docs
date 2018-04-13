@@ -12,6 +12,8 @@ title: Module cheat sheet
 [forge]: https://forge.puppet.com/
 [documentation]: ./modules_documentation.html
 
+{:.reference}
+## Module cheat sheet
 
 A quick reference to Puppet module terms and concepts.
 
