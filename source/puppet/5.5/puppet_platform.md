@@ -76,10 +76,6 @@ To enable the Puppet 5 Platform repository:
 
     sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-26.noarch.rpm
 
-#### Fedora 25
-
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-25.noarch.rpm
-
 #### SuSE Enterprise Linux 12
 
     sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-sles-12.noarch.rpm
