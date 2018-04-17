@@ -12,8 +12,10 @@ title: "Puppet agent release notes"
 
 [Facter 3.10.0]: /facter/3.10/release_notes.html#facter-3100
 [Facter 3.11.0]: /facter/3.11/release_notes.html#facter-3110
+[Facter 3.11.1]: /facter/3.11/release_notes.html#facter-3111
 
 [MCollective 2.12.0]: /mcollective/current/releasenotes.html#2_12_0
+[MCollective 2.12.1]: /mcollective/current/releasenotes.html#2_12_1
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
