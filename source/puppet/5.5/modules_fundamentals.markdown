@@ -25,7 +25,7 @@ title: "Module fundamentals"
 
 Modules are self-contained bundles of code and data with a specific directory structure. These reusable, shareable units of Puppet code are a basic building block for Puppet.
 
-Modules must have a [valid name](#allowed-module-names) and be located in [modulepath][modulepath]. Puppet automatically loads all content from every module in the modulepath, making classes, defined types, and plug-ins (such as custom types or facts) available. To learn more about how to classes, defined types, and plug-ins, see the related topics.
+Modules must have a [valid name](#module-names) and be located in [modulepath][modulepath]. Puppet automatically loads all content from every module in the modulepath, making classes, defined types, and plug-ins (such as custom types or facts) available. To learn more about how to classes, defined types, and plug-ins, see the related topics.
 
 You can download and install modules written by Puppet or the Puppet community from the Puppet Forge. You should also expect to write at least some of your own modules.
 
@@ -47,7 +47,7 @@ Related topics:
 
 Modules have a specific directory structure that allows Puppet to find and automatically load classes, defined types, facts, custom types and providers, functions, and tasks. 
 
-Modules must have a [valid name](#module-names) and be installed in Puppet's [modulepath][]. You'll install modules with either the `puppet module` command or, if you're using code management, with a Puppetfile. See the related topic about installing modules for details.
+Modules must have a [valid name][module-names] and be installed in Puppet's [modulepath][]. You'll install modules with either the `puppet module` command or, if you're using code management, with a Puppetfile. See the related topic about installing modules for details.
 
 Each module subdirectory has a specific function. Not all directories are required, but if used, they should be in the following structure.
 
