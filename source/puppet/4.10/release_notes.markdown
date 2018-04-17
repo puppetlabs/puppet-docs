@@ -18,6 +18,44 @@ Read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), because the
 
 Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html) and [Puppet 4.8 release notes](/puppet/4.8/release_notes.html).
 
+## Puppet 4.10.11
+
+Released April 17, 2018.
+
+This is a bug-fix and feature release of Puppet.
+
+-   [All issues resolved in Puppet 4.10.11](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.11%27)
+
+### Bug fixes
+
+-   Previous versions of Puppet would fail to clean a certificate signing request when running `puppet cert clean` because it would try to revoke the certificate. In Puppet 4.10.11, `puppet cert clean` correctly cleans certificate signing requests. ([PUP-1916](https://tickets.puppetlabs.com/browse/PUP-1916))
+
+-   Fedora 26-30 now use `dnf` as the default packaging system. ([PUP-7326](https://tickets.puppetlabs.com/browse/PUP-7326))
+
+-   Previous versions of Puppet produced warnings or errors when managing Windows local groups that contained unresolvable SIDs from previously valid domain members that had since been deleted. Puppet 4.10.11 safely handles these unresolvable SIDs inside of groups. ([PUP-7349](https://tickets.puppetlabs.com/browse/PUP-7349))
+
+-   If `noop` is set to true directly on a `tidy` resource, Puppet 4.10.11 will not purge its children. ([PUP-8231](https://tickets.puppetlabs.com/browse/PUP-8231))
+
+-   While previous versions of Puppet could create new Windows groups containing virtual accounts, it couldn't manage groups that contained at least one virtual account. Puppet might also have been unable to correctly manage groups with account names that appeared in both the local computer and a domain, due to a failure to properly disambiguate the accounts. Puppet 4.10.11 resolves both problems. ([PUP-8258](https://tickets.puppetlabs.com/browse/PUP-8258))
+
+-   Puppet 4.10.11 lets you use cached catalogs in `puppet apply` and `puppet agent` runs with the `--noop` flag. The cached catalog isn't updated if one already exists, and isn't created if there's no previously cached catalog. ([PUP-8337](https://tickets.puppetlabs.com/browse/PUP-8337))
+
+-   With the Windows Data Deduplication feature turned on, the Puppet `file` and `package` resources might have presented errors in previous versions of Puppet. Puppet 4.10.11 resolves this issue by no longer treating deduplication reparse points as symbolic links. ([PUP-8411](https://tickets.puppetlabs.com/browse/PUP-8411))
+
+-   When using `puppet types generate` for environment isolation, and a resource type had customized title patterns, previous versions of Puppet would not use those. Puppet 4.10.11 resolves this issue. ([PUP-8448](https://tickets.puppetlabs.com/browse/PUP-8448))
+
+-   In Puppet 4.10.11, the `puppet cert clean` command can clean certificates even if none of the certificates in the provided list have already been signed. ([PUP-8467](https://tickets.puppetlabs.com/browse/PUP-8467))
+
+-   Puppet 4.10.11 should no longer log warnings resulting from inadvisable coding practices, such as using ambiguous arguments, to the process's `stderr`. This resolves an issue in previous versions of Puppet where log managers could cause a broken pipe. ([PUP-8502](https://tickets.puppetlabs.com/browse/PUP-8502))
+
+### New features
+
+-   SystemD is now set as the default provider for Ubuntu 17.04 and 17.10. ([PUP-8538](https://tickets.puppetlabs.com/browse/PUP-8538))
+
+-   The `puppet lookup` command-line tool called the external node classifier (node terminus) even if the `--compile` flag was not enabled. This could cause errors, because Puppet would load classes indicated by the ENC without a complete and proper setup, or if loaded code was had parse errors. In Puppet 4.10.11, the configured ENC is used only if the `--compile` flag is enabled. ([PUP-7046](https://tickets.puppetlabs.com/browse/PUP-7046))
+
+-   On AIX, Puppet 4.10.11 correctly manages users on the latest AIX service packs. ([PUP-8495](https://tickets.puppetlabs.com/browse/PUP-8495))
+
 ## Puppet 4.10.10
 
 Released February 5, 2018.
