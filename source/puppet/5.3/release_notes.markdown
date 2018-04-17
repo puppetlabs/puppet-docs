@@ -20,6 +20,40 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.3.6
+
+Released April 17, 2018.
+
+This is a bug-fix and feature release of Puppet.
+
+-   [All issues resolved in Puppet 5.3.6](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.6%27)
+
+### Bug fixes
+
+-   Previous versions of Puppet produced warnings or errors when managing Windows local groups that contained unresolvable SIDs from previously valid domain members that had since been deleted. Puppet 5.3.6 safely handles these unresolvable SIDs inside of groups. ([PUP-7326](https://tickets.puppetlabs.com/browse/PUP-7326))
+
+-   While previous versions of Puppet could create new Windows groups containing virtual accounts, it couldn't manage groups that contained at least one virtual account. Puppet might also have been unable to correctly manage groups with account names that appeared in both the local computer and a domain, due to a failure to properly disambiguate the accounts. Puppet 5.3.6 resolves both problems. ([PUP-8231](https://tickets.puppetlabs.com/browse/PUP-8231))
+
+-   In a custom Node terminus, previous versions of Puppet allowed you to construct the Node object where `$::environment` would be empty during catalog compilation, even though the Node object had a properly set environment. In Puppet 5.3.6, catalog compilation now consults the node's environment directly when setting `$::environment`. ([PUP-8443](https://tickets.puppetlabs.com/browse/PUP-8443))
+
+-   In Puppet 5.3.6, the `puppet cert clean` command can clean certificates even if none of the certificates in the provided list have already been signed. ([PUP-8448](https://tickets.puppetlabs.com/browse/PUP-8448))
+
+-   Puppet 5.3.6 should no longer log warnings resulting from inadvisable coding practices, such as using ambiguous arguments, to the process's `stderr`. This resolves an issue in previous versions of Puppet where log managers could cause a broken pipe. ([PUP-8467](https://tickets.puppetlabs.com/browse/PUP-8467))
+
+-   The lookup CLI tool called the ENC (node terminus) even if the `--compile` option was not enabled. This could cause errors, because classes indicated by the ENC would be loaded without a full and proper setup, and could also result in an error if loaded code was had parse errors. Puppet 5.3.6 uses the configured ENC only if the `--compile` option is enabled. ([PUP-8502](https://tickets.puppetlabs.com/browse/PUP-8502))
+
+-   On AIX, Puppet 5.3.6 correctly manages users on the latest AIX service packs. ([PUP-8538](https://tickets.puppetlabs.com/browse/PUP-8538))
+
+-   When processing malformed plist files, previous versions of Puppet used `/dev/stdout`, which can cause Ruby to report warnings. Puppet 5.3.6 instead uses `-`, which uses stdout when processing the plist file with `plutil`. ([PUP-8545](https://tickets.puppetlabs.com/browse/PUP-8545))
+
+-   Previous versions of Puppet overpopulated the context stack with the server version, which drastically increased the time it took to parse the context stack for every request due to a massive amount of redundant data. Puppet 5.3.6 doesn't overpopulate the stack with duplicate information. ([PUP-8562](https://tickets.puppetlabs.com/browse/PUP-8562))
+
+### New features
+
+-   Puppet 5.3.6 can retrieve the current system state as Puppet code from devices using `puppet device`. ([PUP-8041](https://tickets.puppetlabs.com/browse/PUP-8041))
+
+-   SystemD is the new default provider for Ubuntu 17.04 and 17.10. ([PUP-8495](https://tickets.puppetlabs.com/browse/PUP-8495))
+
 ## Puppet 5.3.5
 
 Released February 13, 2018.
