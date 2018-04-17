@@ -13,7 +13,7 @@ title: "Hiera 3.3: Release Notes"
 
 Released April 17, 2017.
 
-This is a maintenance release of Hiera that ships with Puppet agent 1.10.11 and does not affect users.
+This is a maintenance release of Hiera that ships with Puppet agent 1.10.12 and does not affect users.
 
 -   [Fixed in Hiera 3.3.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27HI+3.3.2%27)
 -   [Introduced in Hiera 3.3.3](https://tickets.puppetlabs.com/issues/?jql=affectedVersion+%3D+%27HI+3.3.3%27)
