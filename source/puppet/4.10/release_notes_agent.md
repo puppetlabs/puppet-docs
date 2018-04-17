@@ -55,7 +55,7 @@ There was no public Puppet agent 1.10.11 release.
 
 ### Component updates
 
-This release contains bug fixes in [Puppet 4.10.11][], [Facter 3.6.10][], [Hiera 3.3.3][], and [pxp-agent][] 1.5.7. It also updates `virt-what` to version 1.18 on Linux platforms.
+This release contains bug fixes in [Puppet 4.10.11][], [Facter 3.6.10][], [Hiera 3.3.3][], and [`pxp-agent`][] 1.5.7. It also updates `virt-what` to version 1.18 on Linux platforms.
 
 ### Security updates
 
