@@ -73,7 +73,7 @@ $ puppet strings generate 'modules/foo/lib/**/*.rb' 'modules/foo/manifests/**/*.
 
 To render HTML documentation for a single module, open the `index.html` file in the module's `./doc/` folder.
 
-To view HTML documentation for all of your local modules, run `puppet strings server`. [JEAN TODO: do they need to be in a certain directory to run this command?] The `server` action serves documentation for all modules in the [module path](./dirs_modulepath.html) at `http://localhost:8808`.
+To view HTML documentation for all of your local modules, run `puppet strings server`, from any directory. This command serves documentation for all modules in the [module path](./dirs_modulepath.html) at `http://localhost:8808`.
 
 {:.task}
 ### Generate documentation in Markdown

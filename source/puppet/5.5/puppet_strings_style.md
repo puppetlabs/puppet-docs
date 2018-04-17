@@ -241,15 +241,15 @@ function example(String $name) {
 {:.section}
 ### Resource types
 
-Add descriptions to the type and its attributes by passing either a here document (heredoc) or a short string to the `desc` method. Strings automatically detects much of the information for types, including the parameters and properties, or attributes. [TODO: Jean to clarify whether parameter guidelines here apply to properties as well]
+Add descriptions to the type and its attributes by passing either a here document (heredoc) or a short string to the `desc` method. Strings automatically detects much of the information for types, including the parameters and properties, collectively known as attributes.
 
 To document the resource type itself, pass a here document (heredoc) to the `desc` method immediately after the type definition. This allows you to use multiple lines and String comment tags for your type documentation. For details about heredocs in Puppet, see [strings]({{puppet}}/lang_data_string.html#heredocs) in the language reference.
 
 For attributes, where a short description is usually enough, pass a string to `desc` in the attribute. Strings interprets text strings passed to `desc` in the same way it interprets the `@param` tag. Descriptions passed to `desc` should be no more than 140 characters. If you need a long description for an attribute, pass a heredoc to `desc` in the attribute itself.
 
-You do not need to add tags for other method calls. Every other method call present in a resource type is automatically included and documented by Strings, and each parameter or property is updated accordingly in the final documentation. This includes method calls such as `defaultto`, `newvalue`, and `namevar`.
+You do not need to add tags for other method calls. Every other method call present in a resource type is automatically included and documented by Strings, and each attribute is updated accordingly in the final documentation. This includes method calls such as `defaultto`, `newvalue`, and `namevar`.
 
-If your type dynamically generates parameters or properties, document those attributes with the `@!puppet.type.param` and `@!puppet.type.property` tags before the type definition. You cannot use any other tags before the resource type definition.
+If your type dynamically generates attributes, document those attributes with the `@!puppet.type.param` and `@!puppet.type.property` tags before the type definition. You cannot use any other tags before the resource type definition.
 
 The resource type description should appear in the following order:
 
@@ -290,7 +290,7 @@ end
 
 For resource API types, follow the guidelines for standard resource types, but pass the heredoc or documentation string to a `desc` key in the data structure. You can include tags and multiple lines with the heredoc. Strings extracts the heredoc information along with other information from this data structure. 
 
-The heredoc and documentation strings that Strings uses are bolded in this code example: [TODO: how to emphasize or mark parts of this sample in Markdown or, more importantly for the long term, in easyDITA?]
+The heredoc and documentation strings that Strings uses are bolded in this code example: [TODO: obviously they are not bolded here; how to emphasize or mark parts of this sample in Markdown or, more importantly for the long term, in easyDITA? I want the user to be able to see the docs section easily]
 
 {:.example}
 #### Resource API example
