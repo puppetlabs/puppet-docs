@@ -12,6 +12,7 @@ title: "Puppet agent release notes"
 [Puppet 4.10.8]: /puppet/4.10/release_notes.html#puppet-4108
 [Puppet 4.10.9]: /puppet/4.10/release_notes.html#puppet-4109
 [Puppet 4.10.10]: /puppet/4.10/release_notes.html#puppet-4110
+[Puppet 4.10.11]: /puppet/4.10/release_notes.html#puppet-4111
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
@@ -20,8 +21,10 @@ title: "Puppet agent release notes"
 [Facter 3.6.7]: /facter/3.6/release_notes.html#facter-367
 [Facter 3.6.8]: /facter/3.6/release_notes.html#facter-368
 [Facter 3.6.9]: /facter/3.6/release_notes.html#facter-369
+[Facter 3.6.10]: /facter/3.6/release_notes.html#facter-3610
 
 [Hiera 3.3.2]: /hiera/3.3/release_notes.html#hiera-332
+[Hiera 3.3.3]: /hiera/3.3/release_notes.html#hiera-333
 
 [MCollective 2.10.3]: /mcollective/releasenotes.html#2_10_3
 [MCollective 2.10.4]: /mcollective/releasenotes.html#2_10_4
@@ -43,6 +46,42 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
+
+## Puppet agent 1.10.12
+
+Released April 17, 2018.
+
+There was no public Puppet agent 1.10.11 release.
+
+### Component updates
+
+This release contains bug fixes in [Puppet 4.10.11][], [Facter 3.6.10][], [Hiera 3.3.3][], and [pxp-agent][] 1.5.7. It also updates `virt-what` to version 1.18 on Linux platforms.
+
+### Security updates
+
+-   Updates `curl` to version 7.59.0. ([PA-1913](https://tickets.puppetlabs.com/browse/PA-1913))
+
+-   This release includes fixes for the following security vulnerabilities in Ruby: ([PA-1959](https://tickets.puppetlabs.com/browse/PA-1959))
+    -   CVE-2017-17742
+    -   CVE-2018-6914
+    -   CVE-2018-8777
+    -   CVE-2018-8778
+    -   CVE-2018-8779
+    -   CVE-2018-8780
+
+### Bug fixes
+
+-   The `puppet-agent` package no longer invokes custom facts on upgrade, avoiding a deadlock when such a fact tried to access the package manager's database. ([PA-1402](https://tickets.puppetlabs.com/browse/PA-1402))
+
+-   Resolved an issue that prevented locales from appearing. ([PA-1850](https://tickets.puppetlabs.com/browse/PA-1850))
+
+-   All of the Dynamic Link Library (dll) files required by the `pxp-agent` binary are copied to the executable's directory (`<pxp-agent-install-root>/bin`). ([PA-1908](https://tickets.puppetlabs.com/browse/PA-1908))
+
+-   Update virt-what from version 1.14 to version 1.18 (only affects linux platforms) ([PA-1893](https://tickets.puppetlabs.com/browse/PA-1893))
+
+-   MCollective now relies only on its internal log rotation rather than also using the `logrotate` configuration. This prevents conflicting rotations and simplifies configuration. ([PA-1823](https://tickets.puppetlabs.com/browse/PA-1823))
+
+-   Log rotation under `systemd` correctly signals `pxp-agent` to re-open the log file. ([PCP-834](https://tickets.puppetlabs.com/browse/PCP-834))
 
 ## Puppet agent 1.10.10
 
