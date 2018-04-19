@@ -17,7 +17,7 @@ title: "Installing Puppet agent: Microsoft Windows"
 {:.task}
 Install the Puppet agent so that your master can communicate with your Windows nodes.
 
-**Before you begin:** If you're using Puppet with a master/agent configuration, you'll need a \*nix node to act as your Puppet master. Read the [pre-install tasks.](./install_pre.html)
+**Before you begin:** If you're using Puppet with a master-agent configuration, you'll need a \*nix node to act as your Puppet master. Read the [pre-install tasks.](./install_pre.html)
 
 1. Download the Windows `puppet-agent` package
 
