@@ -40,7 +40,7 @@ defaultnav:
 externalsources:
   /mcollective:
     repo: git://github.com/puppetlabs/marionette-collective.git
-    commit: origin/master
+    commit: origin/2.12.x
     subdirectory: website
 
 
