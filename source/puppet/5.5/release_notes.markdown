@@ -20,6 +20,48 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.1
+
+Released April 17, 2018.
+
+This is a feature and bug-fix release of Puppet.
+
+-   [All issues resolved in Puppet 5.5.1](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.5.1%27)
+
+### Deprecations
+
+-   Ruby versions older than 2.3 are deprecated in Puppet 5.5.1 and will be removed in Puppet 6. Puppet issues warnings when using older versions of Ruby.	([PUP-8504](https://tickets.puppetlabs.com/browse/PUP-8504))
+
+-   Puppet 5.5.1 removes the deprecation of `empty(undef)` introduced in Puppet 5.5.0. ([PUP-8623](https://tickets.puppetlabs.com/browse/PUP-8623))
+
+### Bug fixes
+
+-   When reporting metrics on the time of a Puppet run, previous versions of Puppet instead reported the sum of other run times. Puppet 5.5.1 reports the measured time of the run. ([PUP-6344](https://tickets.puppetlabs.com/browse/PUP-6344))
+
+-   If the production environment did not exist when running Puppet, previous versions would create the directory as the user `root` and group `root` instead of the service account if one is available. Puppet 5.5.1 sets the owner and group to the service account if it exists on the node. ([PUP-6996](https://tickets.puppetlabs.com/browse/PUP-6996))
+
+-   The `yumrepo` provider in previous versions of Puppet attempted to run `stat` on non-existent repository files when a repository file not being managed by a `yumrepo` resource was deleted. This led to an error on the first attempt at running Puppet. In Puppet 5.5.1, `yumrepo` ensures the file exists before attempting to run `stat`. ([PUP-8421](https://tickets.puppetlabs.com/browse/PUP-8421))
+
+-   On AIX, Puppet 5.5.1 correctly manages users on the latest AIX service packs. ([PUP-8538](https://tickets.puppetlabs.com/browse/PUP-8538))
+
+-   The `augeas` provider in previous versions of Puppet did not properly unescape quotes in quoted arguments for `set` and similar commands, resulting in escaping backslashes appearing in output. Puppet 5.5.1 correctly removes those escaping backslashes. ([PUP-8561](https://tickets.puppetlabs.com/browse/PUP-8561))
+
+-   Previous versions of Puppet overpopulated the context stack with the server version, which drastically increased the time it took to parse the context stack for every request due to a massive amount of redundant data. Puppet 5.5.1 doesn't overpopulate the stack with duplicate information. ([PUP-8562](https://tickets.puppetlabs.com/browse/PUP-8562))
+
+-   Extra information for `puppet config print` is shown only when passing the `verbose` or `debug` options in Puppet 5.5.1. ([PUP-8566](https://tickets.puppetlabs.com/browse/PUP-8566))
+
+-   When parsing EPP templates containing CRLF line breaks, previous versions of Puppet did not generate files containing CRLF line breaks, which could cause issues when using EPP templates on platforms such as Windows that expect them. (ERB templates were not affected.) Puppet 5.5.1 correctly passes CRLF line breaks in EPP templates to the generated output. ([PUP-8240](https://tickets.puppetlabs.com/browse/PUP-8240))
+
+### New features
+
+-   When forming relationships between resources by using an invalid resource reference, the error message in Puppet 5.5.1 includes the source location. ([PUP-8498](https://tickets.puppetlabs.com/browse/PUP-8498))
+
+-   In previous versions of Puppet, the `yumrepo` type limited priority values to a range fom 1 to 99. Puppet 5.5.1 now accepts any positive or negative integer, which matches the behavior of `yum` when determining valid priority values. ([PUP-4678](https://tickets.puppetlabs.com/browse/PUP-4678))
+
+-   Previous versions of Puppet applied the `tidy` resource to all files that it found, even when Puppet managed the files. The `tidy` resource in Puppet 5.5.1 skips any files that are managed by Puppet when deciding if it should remove files. ([PUP-7307](https://tickets.puppetlabs.com/browse/PUP-7307))
+
+-   SystemD is the new default provider for Ubuntu 17.04 and 17.10. ([PUP-8495](https://tickets.puppetlabs.com/browse/PUP-8495))
+
 ## Puppet 5.5.0
 
 Released March 20, 2018.
