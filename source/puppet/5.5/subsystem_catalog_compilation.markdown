@@ -108,7 +108,7 @@ Once the Puppet master has the agent-provided information for this request, it a
 
 By default, Puppet master uses the [`plain` node terminus][plain_node], which just returns a blank node object. This results in only manifests and agent-provided info being used in compilation.
 
-The next most common node terminus is the [`exec` node terminus][exec_node], which will request data from an [external node classifier (ENC)][enc]. This can return classes, variables, and/or an environment, depending on how the ENC is designed.
+The next most common node terminus is the [`exec` node terminus][exec_node], which will request data from an [external node classifier (ENC)][enc]. This can return classes, variables, an environment, or some combination of the three, depending on how the ENC is designed.
 
 Less commonly, some people use the [`ldap` node terminus][ldap_node], which will fetch ENC-like information from an LDAP database. See the page on [LDAP nodes][ldap_guide] for more information.
 
