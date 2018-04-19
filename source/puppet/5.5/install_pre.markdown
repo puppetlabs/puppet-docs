@@ -16,13 +16,13 @@ To ease your Puppet installation, complete these tasks before installing Puppet 
 
 1. Decide on a deployment type.
 
-   Puppet usually uses an agent/master (client/server) architecture, but it can also run in a self-contained architecture. Your choice determines which packages you install, and what extra configuration you need to do.
+   Puppet usually uses an agent-master (client-server) architecture, but it can also run in a self-contained architecture. Your choice determines which packages you install, and what extra configuration you need to do.
 
    Additionally, consider using [PuppetDB][], which enables extra Puppet features and makes it easy to query and analyze Puppet's data about your infrastructure.
 
    [Learn more about Puppet's architectures here.][architecture]
 
-2. If you choose the standard agent/master architecture, you need to decide which servers act as the Puppet master (and the [PuppetDB][] server, if you choose to use it).
+2. If you choose the standard agent-master architecture, you need to decide which servers act as the Puppet master (and the [PuppetDB][] server, if you choose to use it).
 
    Completely install and configure Puppet on any Puppet masters and PuppetDB servers before installing on any agent nodes. The master must be running some kind of \*nix. Windows machines can't be masters.
 
@@ -38,7 +38,7 @@ To ease your Puppet installation, complete these tasks before installing Puppet 
 
 4. Check your network configuration.
 
-   In an agent/master deployment, you must prepare your network for Puppet's traffic.
+   In an agent-master deployment, you must prepare your network for Puppet's traffic.
 
    * **Firewalls:** The Puppet master server must allow incoming connections on port 8140, and agent nodes must be able to connect to the master on that port.
    * **Name resolution:** Every node must have a unique hostname. **Forward and reverse DNS** must both be configured correctly. If your site lacks DNS, you must write an `/etc/hosts` file on each node.
