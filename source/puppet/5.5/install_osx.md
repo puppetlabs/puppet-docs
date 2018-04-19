@@ -71,7 +71,7 @@ These instructions cover installing Puppet agent on macOS machines.
 
 ## Installing with the GUI
 
-The Puppet installer on macOS/OS X provides a graphic user interface to help with manual installation.
+The Puppet installer on macOS provides a graphic user interface to help with manual installation.
 
 1.  Double-click the `puppet-agent` disk image you downloaded. This mounts it at `/Volumes/<DMG NAME>`.
 
