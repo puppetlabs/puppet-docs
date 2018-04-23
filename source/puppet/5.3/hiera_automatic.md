@@ -66,7 +66,7 @@ Arguments in `[square brackets]` are optional.
 
 ### Merge behaviours
 
-Hiera uses a hierarchy of data sources, and a given key can have values in multiple sources. By default, Hiera returns the first value it finds, but it also continues to search and merge all the values together.
+Hiera uses a hierarchy of data sources, and a given key can have values in multiple sources. Hiera can either return the first value it finds, or continue to search and merge all the values together. When Hiera searches, it first searches the global layer, then the environment layer, and finally the module layer — where it only searches in modules that have a matching namespace. By default (unless you use one of the merge strategies) it is priority/"first found wins", in which case the search ends as soon as a value is found.
 
 > Note: Data sources can use the `lookup_options` metadata key to request a specific merge behavior for a key. The lookup function will use that requested behavior unless you specify one.
 
