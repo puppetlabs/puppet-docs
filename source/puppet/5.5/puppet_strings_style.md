@@ -4,7 +4,7 @@
 
 To document your module with Puppet Strings, add descriptive tags and comments for each class, defined type, function, and resource type or provider.
 
-Strings can then generate complete reference information for your module, based on your comments and information from your code. When you update your code, update your documentation comments at the same time.
+Strings uses these tags and comments, along with the structure of the module code, to generate complete reference information for your module. When you update your code, update your documentation comments at the same time.
 
 This style guide applies to:
 
@@ -30,16 +30,15 @@ The README should contain the following sections:
 * Development: Guide for contributing to the module.
 
 {:.section}
-## Comment style
+## Comment style guidelines
 
-Generally, Strings documentation comments follow a similar format:
+Strings documentation comments inside module code follow these rules and guidelines:
 
-* Comments must immediately precede the code for that element. You cannot have a blank return separating the comment section from the code it documents.
-* Each comment tag (such as `@example`) may have more than one line of comments.
-* Any additional lines following a tag should be uniformly indented by two spaces.
-* Each comment line should be no more than 140 characters, to improve readability.
-* Each section (such as `@summary`, `@example`, or the `@param` list) should be followed by a blank comment line to improve readability.
-* Any untagged comments for a given element are output in a single overview section that precedes all tagged information for that code element.
+* Place an element's documentation comment immediately before the code for that element. Do not put a blank line between the comment and its corresponding code.
+* Each comment tag (such as `@example`) may have more than one line of comments. Indent additional lines with two spaces.
+* Keep each comment line to no more than 140 characters, to improve readability.
+* Separate comment sections (such as `@summary`, `@example`, or the `@param` list) with a blank comment line (that is, a `#` with no additional content) to improve readability.
+* Untagged comments for a given element are output in an overview section that precedes all tagged information for that code element.
 * If an element, such as a class or parameter, is deprecated, indicate it in the description for that element with **Deprecated** in bold.
 
 {:.section}
@@ -47,24 +46,26 @@ Generally, Strings documentation comments follow a similar format:
 
 Document each class and defined type, along with its parameters, with comments before the code.
 
-Class and defined type information should be listed in the following order. 
+List the class and defined type information in the following order: 
 
-1. A `@summary` tag, a space, and then a summary describing the class or defined type. This summary should be 140 characters or fewer.
+1. A `@summary` tag, a space, and then a summary describing the class or defined type.
 1. Optional: Other tags such as `@see`, `@note`, or `@api private`.
-1. Optional: usage examples, each consisting of:
+1. Optional: Usage examples, each consisting of:
    1. An `@example` tag with a description of a usage example on the same line 
    1. Code example showing how the class or defined type is used. This example should be directly under the `@example` tag and description, indented two spaces.
-1. One `@param` tag for each parameter in the class or defined type. See the parameter section for formatting guidelines.
+1. One `@param` tag for each parameter in the class or defined type. See the Parameters section for formatting guidelines.
 
 {:.section}
 ### Parameters
 
-Add parameter information as part of any class, defined type, or function that accepts parameters.  Parameter information should appear in the following order.
+Add parameter information as part of any class, defined type, or function that accepts parameters. 
+
+Parameter information should appear in the following order:
 
 1. The `@param` tag, a space, and then the name of the parameter.
-1. Description of what the parameter does. This may be either on the same line as the `@param` tag or on the next line.
-1. Any additional information about valid values that is not clear from the data type. For example, if the data type is [String], but the value must specifically be a path, say so here.
-1. Any other information about the parameter, such as warnings or special behavior.
+1. A description of what the parameter does. This may be either on the same line as the `@param` tag or on the next line.
+1. Additional information about valid values that is not clear from the data type. For example, if the data type is [String], but the value must specifically be a path, say so here.
+1. Other information about the parameter, such as warnings or special behavior.
 
 For example:
 
@@ -171,13 +172,13 @@ class apache::mod::php (
 {:.section}
 ### Functions
 
-Functions must be documented before the function definition, and should include the following information:
+Put documentation comments for functions immediately before the function definition, and include the following information:
 
-1. An untagged docstring describing what the function does
-1. One `@param` tag for each parameter in the function. See the parameter section for formatting guidelines.
+1. An untagged docstring describing what the function does.
+1. One `@param` tag for each parameter in the function. See the Parameters section for formatting guidelines.
 1. A `@return` tag with the data type and a description of the returned value.
 1. Optionally, a usage example, consisting of:
-   1. An `@example` tag with a description of a usage example on the same line 
+   1. An `@example` tag with a description of a usage example on the same line. 
    1. Code example showing how the function is used. This example should be directly under the `@example` tag and description, indented two spaces.
 1. For custom Ruby functions, docs should come immediately before each ‘dispatch’ call.
 1. For functions in Puppet, docs should come immediately before the function name.
@@ -185,7 +186,7 @@ Functions must be documented before the function definition, and should include 
 {:.example}
 #### Ruby function examples
 
-This example has one potential return type.
+This example function has one potential return type.
 
 ```
 # An example 4.x function.
@@ -204,7 +205,7 @@ Puppet::Functions.create_function(:example) do
 end
 ```
 
-If the function has more than one potential return type, specify `@return` tag for each. Begin each tag string with ‘if’ to differentiate between cases.
+If the function has more than one potential return type, specify a `@return` tag for each. Begin each tag string with ‘if’ to differentiate between cases.
 
 ```
 # An example 4.x function.
@@ -243,7 +244,7 @@ function example(String $name) {
 
 Add descriptions to the type and its attributes by passing either a here document (heredoc) or a short string to the `desc` method. Strings automatically detects much of the information for types, including the parameters and properties, collectively known as attributes.
 
-To document the resource type itself, pass a here document (heredoc) to the `desc` method immediately after the type definition. This allows you to use multiple lines and String comment tags for your type documentation. For details about heredocs in Puppet, see [strings]({{puppet}}/lang_data_string.html#heredocs) in the language reference.
+To document the resource type itself, pass a here document (heredoc) to the `desc` method immediately after the type definition. Using a heredoc allows you to use multiple lines and String comment tags for your type documentation. For details about heredocs in Puppet, see [strings]({{puppet}}/lang_data_string.html#heredocs) in the language reference.
 
 For attributes, where a short description is usually enough, pass a string to `desc` in the attribute. Strings interprets text strings passed to `desc` in the same way it interprets the `@param` tag. Descriptions passed to `desc` should be no more than 140 characters. If you need a long description for an attribute, pass a heredoc to `desc` in the attribute itself.
 
@@ -251,10 +252,10 @@ You do not need to add tags for other method calls. Every other method call pres
 
 If your type dynamically generates attributes, document those attributes with the `@!puppet.type.param` and `@!puppet.type.property` tags before the type definition. You cannot use any other tags before the resource type definition.
 
-The resource type description should appear in the following order:
+Document the resource type description in the following order:
 
 1. Directly under the type definition, indented two spaces, the `desc` method, with a heredoc including a descriptive delimiting keyword, such as `DESC`.
-1. A `@summary` tag with a summary describing the type. This summary should be 140 characters or fewer. 
+1. A `@summary` tag with a summary describing the type.  
 1. Optionally, usage examples, each consisting of:
    1. An `@example` tag with a description of a usage example on the same line.
    1. Code example showing how the type is used. This example should be directly under the `@example` tag and description, indented two spaces.
