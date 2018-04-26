@@ -1,17 +1,17 @@
 
-Get complete, user-friendly module documentation by generating module documentation with Puppet Strings. Strings combines code comments with source code to document classes, defined types, functions, and resource types and providers.
+Produce complete, user-friendly module documentation by using Puppet Strings. Strings uses special code comments and the source code to generate documentation for a module's classes, defined types, functions, and resource types and providers.
 
-If you are a module author, add descriptive tags and comments with the code for each element (class, defined type, function) of your module. Strings automatically extracts some information from Puppet and Ruby code, such as data types and attribute defaults. Whenever you update code, update your documentation comments at the same time.
+If you are a module author, add descriptive tags and comments with the code for each element (class, defined type, function) of your module. Strings extracts information from Puppet and Ruby code, such as data types and attribute defaults. Whenever you update code, update your documentation comments at the same time.
 
-Both module users and authors can generate module documentation with Strings. Even if the module contains no code comments, Strings generates minimal documentation based only on the information it can extract from the code.
+Both module users and authors can generate module documentation with Strings. Even if the module contains no code comments, Strings generates minimal documentation based on the information it can extract from the code.
 
-Strings outputs documentation as HTML, JSON, and Markdown.
+Strings outputs documentation as HTML, JSON, or Markdown.
 
-HTML output includes the module README along with reference documentation for all classes, defined types, functions, and resource types. You can render the HTML in any browser.
+HTML output, which you can read in any web browser, includes the module README and reference documentation for all classes, defined types, functions, and resource types. 
 
-JSON output includes the reference documentation only, and sends output to either STDOUT or to a file.
+JSON output includes the reference documentation only. You can write it either to `STDOUT` or to a file.
 
-Markdown output includes reference documentation only, and writes the information to a REFERENCE.md.
+Markdown output includes the reference documentation only, and writes the information to a `REFERENCE.md` file.
 
 **Related links**:
 
@@ -43,19 +43,19 @@ Requires:
 
 Generate documentation in HTML, JSON, or Markdown by running Puppet Strings. Strings creates reference documentation based on the code and comments in all Puppet and Ruby source files under the `./manifests/`, `./functions/`, `./lib/`, `./types/`, and `./tasks/` directories.
 
-By default, Strings outputs HTML of the reference information and the module README to the module's `./doc/` directory. This output can be rendered in any browser.
+By default, Strings outputs HTML of the reference information and the module README to the module's `./doc/` directory. You can open and read the generated HTML documentation in any browser.
 
-If you specify JSON or Markdown output, documentation includes reference information only. Strings writes Markdown output to a `REFERENCE.md` file and sends JSON output either to STDOUT or to a file.
+If you specify JSON or Markdown output, documentation includes the reference information only. Strings writes Markdown output to a `REFERENCE.md` file, or sends JSON output either to `STDOUT` or to a file.
 
 {:.task}
-### Generate documentation in HTML
+### Generate and view documentation in HTML
 
-To generate HTML documentation for a Puppet module, run Strings from that module's directory.
+To generate HTML documentation for a Puppet module, run Strings from that module's directory:
 
-1. Change directory into the module: `cd /modules/<MODULE_NAME>`.
-2. Run the command: `puppet strings`.
+1. Change directory into the module: `cd /modules/<MODULE_NAME>`
+2. Run the command: `puppet strings`
 
-Strings outputs HTML to `./doc/` directory in the module.
+Strings outputs HTML to the `./doc/` directory in the module.
 
 To generate documentation for specific files or directories in a module, run the `puppet strings generate` subcommand and specify the files or directories as a space-separated list. 
 
@@ -71,9 +71,9 @@ or
 $ puppet strings generate 'modules/foo/lib/**/*.rb' 'modules/foo/manifests/**/*.pp' 'modules/foo/functions/**/*.pp' ...
 ```
 
-To render HTML documentation for a single module, open the `index.html` file in the module's `./doc/` folder.
+To view the generated HTML documentation for a module, open the `index.html` file in the module's `./doc/` folder.
 
-To view HTML documentation for all of your local modules, run `puppet strings server`, from any directory. This command serves documentation for all modules in the [module path](./dirs_modulepath.html) at `http://localhost:8808`.
+To view HTML documentation for all of your local modules, run `puppet strings server` from any directory. This command serves documentation for all modules in the [module path](./dirs_modulepath.html) at `http://localhost:8808`.
 
 {:.task}
 ### Generate documentation in Markdown
@@ -82,8 +82,8 @@ To generate reference documentation in Markdown, specify the `markdown` format w
 
 Strings generates Markdown output as a `REFERENCE.md` file in the main module directory, but you can specify a different filename or location with command line options.
 
-1. Change directory into the module: `cd /modules/<MODULE_NAME>`.
-2. Run the command: `puppet strings generate --format markdown`.
+1. Change directory into the module: `cd /modules/<MODULE_NAME>`
+2. Run the command: `puppet strings generate --format markdown`
 
    To specify a different file, use the `--out` option and specify the path and filename:
 
@@ -91,17 +91,17 @@ Strings generates Markdown output as a `REFERENCE.md` file in the main module di
    puppet strings generate --format markdown --out docs/INFO.md
    ```
 
-View the Markdown file by opening it in any text editor.
+View the Markdown file by opening it in a text editor or Markdown viewer.
 
 {:.task}
 ### Generate documentation in JSON
 
-To generate reference documentation as JSON output to a file or to stdout, specify the `json` format when you run Strings. JSON output is useful for handling the data with custom applications.
+To generate reference documentation as JSON output to a file or to standard output, specify the `json` format when you run Strings. JSON output is useful if you want to use the output in a custom application that reads JSON.
 
-By default, Strings prints JSON output to stdout.
+By default, Strings prints JSON output to `STDOUT`.
 
-1. Change directory into the module: `cd /modules/<MODULE_NAME>`.
-2. Run the command: `puppet strings generate --format json`.
+1. Change directory into the module: `cd /modules/<MODULE_NAME>`
+2. Run the command: `puppet strings generate --format json`
 
    To generate JSON documentation to a file instead, use the `--out` option and specify a filename:
    
@@ -154,7 +154,7 @@ To generate Puppet Strings documentation and publish it on [GitHub Pages](https:
 
 The `puppet strings` command generates module documentation based on code and code comments.
 
-By default, running `puppet strings` generates HTML documentation for a module into a `doc/` directory within that module. To pass any options or arguments, use the `generate` action.
+By default, running `puppet strings` generates HTML documentation for a module into a `./doc/` directory within that module. To pass any options or arguments, use the `generate` action.
 
 Usage: `puppet strings [--generate] [--server]`
 
@@ -183,7 +183,7 @@ Option   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
 
 `--format` | Specifies a format for documentation. | Markdown, JSON    | If not specified, Strings outputs HTML documentation.
-`--out` | Specifies an output location for documentation | A valid directory location and filename.    | If not specified, outputs to default locations depending on format: HTML (`/docs/`), Markdown (main module directory), or JSON (stdout).
+`--out` | Specifies an output location for documentation | A valid directory location and filename.    | If not specified, outputs to default locations depending on format: HTML (`./doc/`), Markdown (main module directory), or JSON (`STDOUT`).
 Filenames or directory paths | Outputs documentation for only specified files or directories. | Markdown, JSON.    | If not specified, Strings outputs HTML documentation.
 `--verbose` | Logs verbosely. | none    | If not specified, Strings logs basic information.
 `--debug` | Logs debug information. | none    | If not specified, Strings does not log debug information.
@@ -210,8 +210,8 @@ Filenames or directory paths | Outputs documentation for only specified files or
   # @option opts [Array] :option2
   #      option 2 in the hash
   ```
-* `@raise`Documents any exceptions that can be raised by the given component. For example: `# @raise PuppetError this error will be raised if x`
-* `@return`: Describes the return value (and type or types) of a method. You can list multiple return tags for a method if the method has distinct return cases. In this case, begin each case with "if".
+* `@raise`: Documents any exceptions that can be raised by the given component. For example: `# @raise PuppetError this error will be raised if x`
+* `@return`: Describes the return value (and type or types) of a method. You can list multiple return tags for a method if the method has distinct return cases. In this case, begin each case with `if`.
 * `@see`: Adds "see also" references. Accepts URLs or other code objects with an optional description at the end. The URL or object is automatically linked by YARD and does not need markup formatting. Appears in the generated documentation as a "See Also" section. Use one tag per reference (website, related method, etc).
-* `@since`: Lists the version in which the object was first added. Strings does not verify that the specified version exists; authors are responsible for providing accurate information.
+* `@since`: Lists the version in which the object was first added. Strings does not verify that the specified version exists. You are responsible for providing accurate information.
 * `@summary`: A description of the documented item. This summary should be 140 characters or fewer.
