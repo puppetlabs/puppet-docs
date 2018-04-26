@@ -149,14 +149,13 @@ Usage: `puppet strings [--generate] [--server]`
 
 Action   | Description   
 ----------------|-------------------------
-
 `generate` | Generates documentation with any specified parameters, including format and output location.
 `server` | Serves documentation for all modules in the [module path](https://docs.puppet.com/puppet/latest/reference/dirs_modulepath.html) locally at `http://localhost:8808`.
 
 {:.section}
 ### `puppet strings generate` action
 
-Usage: `puppet strings [generate] [--format <FORMAT>][--out <DESTINATION>] [<ARGUMENTS>]
+Usage: `puppet strings [generate] [--format <FORMAT>][--out <DESTINATION>] [<ARGUMENTS>]`
 
 For example:
 

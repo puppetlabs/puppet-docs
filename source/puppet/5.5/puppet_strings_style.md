@@ -293,10 +293,10 @@ The heredoc and documentation strings that Strings uses are bolded in this code 
 {:.example}
 #### Resource API example
 
-```
+<code>
 Puppet::ResourceApi.register_type(
   name: 'apt_key',
-  **docs: <<-EOS,
+  <bold>docs: <<-EOS,
 @summary Fancy new type.
 @example Fancy new example.
  apt_key { '6F6B15509CF8E59E6E469F327F438280EF8D349F':
@@ -308,7 +308,7 @@ manage GPG keys needed by apt to perform package validation. Apt has its own GPG
 
 **Autorequires**:
 If Puppet is given the location of a key file which looks like an absolute path this type will autorequire that file.
-EOS**
+EOS</bold>
   attributes:   {
     ensure:      {
       type: 'Enum[present, absent]',
@@ -331,4 +331,4 @@ EOS**
     package: 'apt',
   },
 )
-```
+</code>
