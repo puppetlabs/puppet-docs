@@ -293,7 +293,7 @@ The heredoc and documentation strings that Strings uses are bolded in this code 
 {:.example}
 #### Resource API example
 
-<code>
+<pre><code>
 Puppet::ResourceApi.register_type(
   name: 'apt_key',
   <bold>docs: <<-EOS,
@@ -331,4 +331,4 @@ EOS</bold>
     package: 'apt',
   },
 )
-</code>
+</code></pre>
