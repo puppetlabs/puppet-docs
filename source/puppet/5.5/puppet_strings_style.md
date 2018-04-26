@@ -288,7 +288,7 @@ end
 
 For resource API types, follow the guidelines for standard resource types, but pass the heredoc or documentation string to a `desc` key in the data structure. You can include tags and multiple lines with the heredoc. Strings extracts the heredoc information along with other information from this data structure. 
 
-The heredoc and documentation strings that Strings uses are bolded in this code example: 
+The heredoc and documentation strings that Strings uses are called out in comments in this code example: 
 
 {:.example}
 #### Resource API example
@@ -296,7 +296,8 @@ The heredoc and documentation strings that Strings uses are bolded in this code 
 ```
 Puppet::ResourceApi.register_type(
   name: 'apt_key',
-  <bold>docs: <<-EOS,
+  # HEREDOC BEGINS BELOW
+  docs: <<-EOS,
 @summary Fancy new type.
 @example Fancy new example.
  apt_key { '6F6B15509CF8E59E6E469F327F438280EF8D349F':
@@ -308,22 +309,26 @@ manage GPG keys needed by apt to perform package validation. Apt has its own GPG
 
 **Autorequires**:
 If Puppet is given the location of a key file which looks like an absolute path this type will autorequire that file.
-EOS</bold>
+EOS
+# HEREDOC ENDS
   attributes:   {
     ensure:      {
       type: 'Enum[present, absent]',
-      **desc: 'Whether this apt key should be present or absent on the target system.'**
+       # DOCS PASSED TO DESC:
+       desc: 'Whether this apt key should be present or absent on the target system.'**
     },
     id:          {
       type:      'Variant[Pattern[/\A(0x)?[0-9a-fA-F]{8}\Z/], Pattern[/\A(0x)?[0-9a-fA-F]{16}\Z/], Pattern[/\A(0x)?[0-9a-fA-F]{40}\Z/]]',
       behaviour: :namevar,
-      **desc:      'The ID of the key you want to manage.',**
+       # DOCS PASSED TO DESC:
+       desc:      'The ID of the key you want to manage.',**
     },
     # ...
     created:     {
       type:      'String',
       behavior: :read_only,
-      **desc:      'Date the key was created, in ISO format.',**
+       # DOCS PASSED TO DESC:
+       desc:      'Date the key was created, in ISO format.',**
     },
   },
   autorequires: {
