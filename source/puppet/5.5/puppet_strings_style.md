@@ -11,7 +11,7 @@ This style guide applies to:
 * Puppet Strings version 1.2 and later
 * Puppet 4 and later
 
-For information about the specific meaning of terms like 'must,' 'must not,' 'required,' 'should,' 'should not,' 'recommend,' 'may,' and 'optional,' see [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt). [TODO: I am excited to conref this graf from the style guide.]
+For information about the specific meaning of terms like 'must,' 'must not,' 'required,' 'should,' 'should not,' 'recommend,' 'may,' and 'optional,' see [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 {:.section}
 ## The module README

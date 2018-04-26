@@ -31,12 +31,6 @@ Requires:
 
 1. Install the YARD gem by running `gem install yard`
 1. Install the `puppet-strings` gem by running `gem install puppet-strings`
-1. **Optional**: Set YARD options for Strings.
-   
-   To use YARD options with Strings, specify a `yardopts` file in the same directory in which you run `puppet strings`. Strings supports the Markdown format and automatically sets the YARD `markup` option to `markdown`.
-   
-   To see a list of available YARD options, run `yard help doc` on the command line. For details about YARD options configuration, see the [YARD docs](http://www.rubydoc.info/gems/yard/file/docs/GettingStarted.md#config).
-
 
 {:.concept}
 ## Generating documentation with Puppet Strings
@@ -53,23 +47,18 @@ If you specify JSON or Markdown output, documentation includes the reference inf
 To generate HTML documentation for a Puppet module, run Strings from that module's directory:
 
 1. Change directory into the module: `cd /modules/<MODULE_NAME>`
-2. Run the command: `puppet strings`
+2. Generate documentation with the `puppet strings` command:
+   1. To generate the documentation for the entire module, run `puppet strings`
+   1. To generate the documentation for specific files or directories in a module, run the `puppet strings generate` subcommand and specify the files or directories as a space-separated list.
+      For example:
+
+      ```
+      puppet strings generate first.pp second.pp
+      
+      $ puppet strings generate 'modules/foo/lib/**/*.rb' 'modules/foo/manifests/**/*.pp' 'modules/foo/functions/**/*.pp' ...
+      ```
 
 Strings outputs HTML to the `./doc/` directory in the module.
-
-To generate documentation for specific files or directories in a module, run the `puppet strings generate` subcommand and specify the files or directories as a space-separated list. 
-
-For example:
-
-```
-puppet strings generate first.pp second.pp
-```
-
-or
-
-```
-$ puppet strings generate 'modules/foo/lib/**/*.rb' 'modules/foo/manifests/**/*.pp' 'modules/foo/functions/**/*.pp' ...
-```
 
 To view the generated HTML documentation for a module, open the `index.html` file in the module's `./doc/` folder.
 
@@ -115,9 +104,9 @@ For details about Strings JSON output, see [Strings JSON schema](https://github.
 {:.task}
 ## Publish documentation to GitHub Pages
 
-To make your module documentation available on GitHub Pages, generate and publish HTML documentation with a Rake task.
+To make your module documentation available on GitHub Pages, generate and publish HTML documentation with the `strings:gh_pages:update` Rake task, available in `puppet-strings/tasks`
 
-The `strings:gh_pages:update` Rake task, available in `puppet-strings/tasks`, performs the following actions:
+The `strings:gh_pages:update` task performs the following actions:
 
 1. Creates a `doc` directory in the root of your project.
 1. Creates a `gh-pages` branch of the current repository, if it doesn't already exist.
@@ -187,19 +176,17 @@ Option   | Description   | Values      | Default
 Filenames or directory paths | Outputs documentation for only specified files or directories. | Markdown, JSON.    | If not specified, Strings outputs HTML documentation.
 `--verbose` | Logs verbosely. | none    | If not specified, Strings logs basic information.
 `--debug` | Logs debug information. | none    | If not specified, Strings does not log debug information.
-`--markup FORMAT` | The markup format to use for docstring text | "markdown", "textile", "rdoc", "ruby", "text", "html", or "none"    | By default, Strings outputs HTML, if no `--format` is specified or Markdown if `--format markdown` is specified.
-`--help` | Displays help documentation for the command. | Markdown, JSON    | If not specified, Strings outputs HTML documentation.
+`--markup FORMAT` | The markup format to use for documentation. | "markdown", "textile", "rdoc", "ruby", "text", "html", or "none"    | By default, Strings outputs HTML, if no `--format` is specified or Markdown if `--format markdown` is specified.
+`--help` | Displays help documentation for the command. | None.    | If specified, displays help.
 
 {:.section}
 ### Available Strings tags
 
-[TODO: THIS NEEDS TO BE A TABLE, BUT MAYBE I CAN WAIT TILL IT'S IN DITA]
-
 * `@api`: Describes the resource as belonging to the private or public API. Specify as private, `# @api private`, to mark a module element, such as a class, as part of the private API.
 * `@example`: Shows an example snippet of code for an object. The first line is an optional title, and any subsequent lines are automatically formatted as a code snippet. Use for specific examples of a given component. One example tag per example.
 * `@param`: Documents a parameter with a given name, type and optional description.
-* `@!puppet.type.param`: Documents dynamic type parameters. See [Documenting resource types and providers](#documenting-resource-types-and-providers) above.
-* `@!puppet.type.property`: Documents dynamic type properties. See [Documenting resource types and providers](#documenting-resource-types-and-providers) above.
+* `@!puppet.type.param`: Documents dynamic type parameters. See [Documenting resource types and providers]({{puppet}}/puppet_strings.html#resource-types).
+* `@!puppet.type.property`: Documents dynamic type properties. See [Documenting resource types and providers]({{puppet}}/puppet_strings.html#resource-types).
 * `@option`: With a `@param` tag, defines what optional parameters the user can pass in an options hash to the method.
   For example:
   ```
@@ -212,6 +199,25 @@ Filenames or directory paths | Outputs documentation for only specified files or
   ```
 * `@raise`: Documents any exceptions that can be raised by the given component. For example: `# @raise PuppetError this error will be raised if x`
 * `@return`: Describes the return value (and type or types) of a method. You can list multiple return tags for a method if the method has distinct return cases. In this case, begin each case with `if`.
+   For example:
+   ```
+   # An example 4.x function.
+   Puppet::Functions.create_function(:example) do
+     # @param first The first parameter.
+     # @param second The second parameter.
+     # @return [String] If second argument is less than 10, the name of one item.
+     # @return [Array] If second argument is greater than 10, a list of item names.
+     # @example Calling the function.
+     #   example('hi', 10)
+     dispatch :example do
+       param 'String', :first
+       param 'Integer', :second
+     end
+   
+     # ...
+   end
+   ```
+
 * `@see`: Adds "see also" references. Accepts URLs or other code objects with an optional description at the end. The URL or object is automatically linked by YARD and does not need markup formatting. Appears in the generated documentation as a "See Also" section. Use one tag per reference (website, related method, etc).
 * `@since`: Lists the version in which the object was first added. Strings does not verify that the specified version exists. You are responsible for providing accurate information.
-* `@summary`: A description of the documented item. This summary should be 140 characters or fewer.
+* `@summary`: A description of the documented item, 140 characters or fewer.
