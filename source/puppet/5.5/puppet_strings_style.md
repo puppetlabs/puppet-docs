@@ -63,7 +63,7 @@ Add parameter information as part of any class, defined type, or function that a
 Parameter information should appear in the following order:
 
 1. The `@param` tag, a space, and then the name of the parameter.
-1. A description of what the parameter does. This may be either on the same line as the `@param` tag or on the next line.
+1. A description of what the parameter does. This may be either on the same line as the `@param` tag or on the next line, indented with two spaces.
 1. Additional information about valid values that is not clear from the data type. For example, if the data type is [String], but the value must specifically be a path, say so here.
 1. Other information about the parameter, such as warnings or special behavior.
 
@@ -79,8 +79,6 @@ For example:
 #### Example class
 
 ```
-# This is an example of how to document a Puppet class
-#
 # @summary configures the Apache PHP module
 #
 # @example Basic usage
@@ -229,7 +227,6 @@ end
 #### Puppet function example
 
 ```
-# An example function written in Puppet.
 # @param name the name to say hello to.
 # @return [String] Returns a string.
 # @example Calling the function.
@@ -291,7 +288,7 @@ end
 
 For resource API types, follow the guidelines for standard resource types, but pass the heredoc or documentation string to a `desc` key in the data structure. You can include tags and multiple lines with the heredoc. Strings extracts the heredoc information along with other information from this data structure. 
 
-The heredoc and documentation strings that Strings uses are bolded in this code example: [TODO: obviously they are not bolded here; how to emphasize or mark parts of this sample in Markdown or, more importantly for the long term, in easyDITA? I want the user to be able to see the docs section easily]
+The heredoc and documentation strings that Strings uses are bolded in this code example: 
 
 {:.example}
 #### Resource API example
@@ -299,7 +296,7 @@ The heredoc and documentation strings that Strings uses are bolded in this code 
 ```
 Puppet::ResourceApi.register_type(
   name: 'apt_key',
-  docs: <<-EOS,
+  **docs: <<-EOS,
 @summary Fancy new type.
 @example Fancy new example.
  apt_key { '6F6B15509CF8E59E6E469F327F438280EF8D349F':
@@ -311,22 +308,22 @@ manage GPG keys needed by apt to perform package validation. Apt has its own GPG
 
 **Autorequires**:
 If Puppet is given the location of a key file which looks like an absolute path this type will autorequire that file.
-EOS
+EOS**
   attributes:   {
     ensure:      {
       type: 'Enum[present, absent]',
-      desc: 'Whether this apt key should be present or absent on the target system.'
+      **desc: 'Whether this apt key should be present or absent on the target system.'**
     },
     id:          {
       type:      'Variant[Pattern[/\A(0x)?[0-9a-fA-F]{8}\Z/], Pattern[/\A(0x)?[0-9a-fA-F]{16}\Z/], Pattern[/\A(0x)?[0-9a-fA-F]{40}\Z/]]',
       behaviour: :namevar,
-      desc:      'The ID of the key you want to manage.',
+      **desc:      'The ID of the key you want to manage.',**
     },
     # ...
     created:     {
       type:      'String',
       behavior: :read_only,
-      desc:      'Date the key was created, in ISO format.',
+      **desc:      'Date the key was created, in ISO format.',**
     },
   },
   autorequires: {
