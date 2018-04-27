@@ -1,5 +1,7 @@
-{:.reference}
-# Puppet Strings style guide
+---
+layout: default
+title: "Puppet Strings style guide"
+---
 
 
 To document your module with Puppet Strings, add descriptive tags and comments for each class, defined type, function, and resource type or provider.
@@ -46,19 +48,19 @@ Strings documentation comments inside module code follow these rules and guideli
 
 Document each class and defined type, along with its parameters, with comments before the code.
 
-List the class and defined type information in the following order: 
+List the class and defined type information in the following order:
 
 1. A `@summary` tag, a space, and then a summary describing the class or defined type.
 1. Optional: Other tags such as `@see`, `@note`, or `@api private`.
 1. Optional: Usage examples, each consisting of:
-   1. An `@example` tag with a description of a usage example on the same line 
+   1. An `@example` tag with a description of a usage example on the same line
    1. Code example showing how the class or defined type is used. This example should be directly under the `@example` tag and description, indented two spaces.
 1. One `@param` tag for each parameter in the class or defined type. See the Parameters section for formatting guidelines.
 
 {:.section}
 ### Parameters
 
-Add parameter information as part of any class, defined type, or function that accepts parameters. 
+Add parameter information as part of any class, defined type, or function that accepts parameters.
 
 Parameter information should appear in the following order:
 
@@ -176,7 +178,7 @@ Put documentation comments for functions immediately before the function definit
 1. One `@param` tag for each parameter in the function. See the Parameters section for formatting guidelines.
 1. A `@return` tag with the data type and a description of the returned value.
 1. Optionally, a usage example, consisting of:
-   1. An `@example` tag with a description of a usage example on the same line. 
+   1. An `@example` tag with a description of a usage example on the same line.
    1. Code example showing how the function is used. This example should be directly under the `@example` tag and description, indented two spaces.
 1. For custom Ruby functions, docs should come immediately before each ‘dispatch’ call.
 1. For functions in Puppet, docs should come immediately before the function name.
@@ -252,7 +254,7 @@ If your type dynamically generates attributes, document those attributes with th
 Document the resource type description in the following order:
 
 1. Directly under the type definition, indented two spaces, the `desc` method, with a heredoc including a descriptive delimiting keyword, such as `DESC`.
-1. A `@summary` tag with a summary describing the type.  
+1. A `@summary` tag with a summary describing the type.
 1. Optionally, usage examples, each consisting of:
    1. An `@example` tag with a description of a usage example on the same line.
    1. Code example showing how the type is used. This example should be directly under the `@example` tag and description, indented two spaces.
@@ -286,9 +288,9 @@ end
 {:.section}
 ### Resource API type
 
-For resource API types, follow the guidelines for standard resource types, but pass the heredoc or documentation string to a `desc` key in the data structure. You can include tags and multiple lines with the heredoc. Strings extracts the heredoc information along with other information from this data structure. 
+For resource API types, follow the guidelines for standard resource types, but pass the heredoc or documentation string to a `desc` key in the data structure. You can include tags and multiple lines with the heredoc. Strings extracts the heredoc information along with other information from this data structure.
 
-The heredoc and documentation strings that Strings uses are called out in comments in this code example: 
+The heredoc and documentation strings that Strings uses are called out in comments in this code example:
 
 {:.example}
 #### Resource API example

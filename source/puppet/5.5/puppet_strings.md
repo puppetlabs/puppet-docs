@@ -1,3 +1,7 @@
+---
+layout: default
+title: "Puppet Strings"
+---
 
 Produce complete, user-friendly module documentation by using Puppet Strings. Strings uses special code comments and the source code to generate documentation for a module's classes, defined types, functions, and resource types and providers.
 
@@ -7,7 +11,7 @@ Both module users and authors can generate module documentation with Strings. Ev
 
 Strings outputs documentation as HTML, JSON, or Markdown.
 
-HTML output, which you can read in any web browser, includes the module README and reference documentation for all classes, defined types, functions, and resource types. 
+HTML output, which you can read in any web browser, includes the module README and reference documentation for all classes, defined types, functions, and resource types.
 
 JSON output includes the reference documentation only. You can write it either to `STDOUT` or to a file.
 
@@ -54,7 +58,7 @@ To generate HTML documentation for a Puppet module, run Strings from that module
 
       ```
       puppet strings generate first.pp second.pp
-      
+
       $ puppet strings generate 'modules/foo/lib/**/*.rb' 'modules/foo/manifests/**/*.pp' 'modules/foo/functions/**/*.pp' ...
       ```
 
@@ -93,7 +97,7 @@ By default, Strings prints JSON output to `STDOUT`.
 2. Run the command: `puppet strings generate --format json`
 
    To generate JSON documentation to a file instead, use the `--out` option and specify a filename:
-   
+
    ```
    puppet strings generate --format json --out documentation.json
    ```
@@ -129,7 +133,7 @@ Before you begin, update your Gemfile and your Rakefile.
     ```ruby
     require 'puppet-strings/tasks'
     ```
-   
+
     Adding this `require` automatically creates the Rake tasks below.
 
 
@@ -147,7 +151,7 @@ By default, running `puppet strings` generates HTML documentation for a module i
 
 Usage: `puppet strings [--generate] [--server]`
 
-Action   | Description   
+Action   | Description
 ----------------|-------------------------
 `generate` | Generates documentation with any specified parameters, including format and output location.
 `server` | Serves documentation for all modules in the [module path](https://docs.puppet.com/puppet/latest/reference/dirs_modulepath.html) locally at `http://localhost:8808`.
@@ -212,7 +216,7 @@ Filenames or directory paths | Outputs documentation for only specified files or
        param 'String', :first
        param 'Integer', :second
      end
-   
+
      # ...
    end
    ```
