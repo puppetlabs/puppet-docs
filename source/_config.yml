@@ -40,7 +40,7 @@ defaultnav:
 externalsources:
   /mcollective:
     repo: git://github.com/puppetlabs/marionette-collective.git
-    commit: origin/master
+    commit: origin/2.12.x
     subdirectory: website
 
 
@@ -251,7 +251,7 @@ documents:
     nav: ./_pe_toc.html
     external_source:
       repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.4.10
+      commit: origin/pe2016.4.11
       subdirectory: source
     my_versions:
       puppet: "4.10"
@@ -483,7 +483,7 @@ documents:
     nav: /puppet/5.5/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 9b5bc37df3cb0f1749565df7c6aad8afd3b4211e
+      commit: a860acae1da44651bc51058c98333cb7378b368b
       subdirectory: documentation
     my_versions:
       puppet: "5.5"

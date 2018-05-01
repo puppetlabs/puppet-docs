@@ -5,6 +5,26 @@ title: "Facter 3.6 Release notes"
 
 This page documents the history of the Facter 3.6 series. If you're upgrading from Facter 2, review the [Facter 3.0 release notes](../3.0/release_notes.html) for important information about other breaking changes, new features, and changed functionality.
 
+## Facter 3.6.10
+
+Released April 17, 2018.
+
+This is a bug-fix release that shipped with Puppet agent 1.10.12.
+
+-   [All issues resolved in Facter 3.6.10](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.6.10%27)
+
+### Bug fixes
+
+-   The `uptime` fact for Windows now uses `GetTickCount64`, which is more reliable, minimizes clock skews, and offers better resolution than the previous method of computing using WMI BootUptime. ([FACT-1504](https://tickets.puppetlabs.com/browse/FACT-1504))
+
+-   Facter 3.6.10 properly checks for errors when gathering disk information on AIX, and no longer warns or reports bogus results for devices assigned to special uses, such as databases. ([FACT-1597](https://tickets.puppetlabs.com/browse/FACT-1597))
+
+-   Facter 3.6.10 reports MAC addresses on infiniband interfaces. ([FACT-1761](https://tickets.puppetlabs.com/browse/FACT-1761))
+
+-   Facter no longer attempts to check the `dmidecode` fact in Linux systems running on POWER architectures. ([FACT-1765](https://tickets.puppetlabs.com/browse/FACT-1765))
+
+-   Facter 3.6.10 updates its virtualization resolvers to recognize the SMBIOS data reported by Amazon's newer kvm-based hypervisor, which is used with c5 instances. Facter now reports the hypervisor as `kvm` for these cases, allowing c5 instances to be detected as virtual and filling the `ec2_metadata` fact. ([FACT-1797](https://tickets.puppetlabs.com/browse/FACT-1797))
+
 ## Facter 3.6.9
 
 Released February 5, 2018.

@@ -13,12 +13,12 @@ Puppet publishes updates for operating systems starting from the time a package 
 
 See [The Puppet Enterprise Lifecycle](https://puppet.com/misc/puppet-enterprise-lifecycle) for information about phases of the Puppet Support Lifecycle.
 
-To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.3.1:
+To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.3.5:
 
 ```
 class { '::puppet_agent':
   collection      => 'latest',
-  package_version => '5.3.1',
+  package_version => '5.3.5',
 }
 ```
 
@@ -71,10 +71,6 @@ To enable the Puppet 5 Platform repository:
 #### Fedora 26
 
     sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-26.noarch.rpm
-
-#### Fedora 25
-
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-25.noarch.rpm
 
 #### SuSE Enterprise Linux 12
 
@@ -229,7 +225,7 @@ Puppet RPM packages include an embedded signature. To verify it, you must import
 3. To verify an RPM you've downloaded, run the `rpm` tool with the `checksig` flag (`-K`): `sudo rpm -vK <RPM FILE NAME>`
 
    This verifies the embedded signature, as signified by the `OK` results in the `rpm` output:
-   
+
    ~~~
     puppet-agent-1.5.1-1.el6.x86_64.rpm:
         Header V4 RSA/SHA512 Signature, key ID ef8d349f: OK

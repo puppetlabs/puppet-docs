@@ -15,7 +15,7 @@ title: "Documenting modules"
 
 
 
-You should document any module you write, whether you the module is for internal use only or for publication on the Puppet Forge. When you write module documentation, follow best practices and our module README template.
+You should document any module you write, whether your module is for internal use only or for publication on the Puppet Forge. When you write module documentation, follow best practices and our module README template.
 
 Documenting your module helps future-you remember what your module was built to do, as well as helping to explain why you chose to do things one way versus another. And anyone else using your module will definitely appreciate it. Use Markdown and `.md` (or `.markdown`) files for your READMEs.
 
@@ -43,7 +43,7 @@ Related topics:
 
 * [README template][template]
 
-{:.concept}
+{:.section}
 ### Creating a table of contents
 
 The table of contents is a best practice, particularly for large or complicated modules.
@@ -70,7 +70,7 @@ The section headings for each top-level section (following the numbered sections
     6. [Development - Guide for contributing to the module](#development)
 ```
 
-{:.concept}
+{:.section}
 ### Writing the module description
 
 Write a module description that tells users what software the module is working with and what it does with that software.
@@ -91,8 +91,8 @@ environment's needs. Once installed and configured, the cat module
 automates maintenance of your cat through a series of resource types and providers.
 ```
 
-{:.concept}
-## Writing the Setup section
+{:.section}
+### Writing the Setup section
 
 The **Setup** section should give a user the basic steps to successfully get their module functioning.
 
@@ -129,7 +129,7 @@ Module installation instructions are covered both on the module's Forge page AND
   Declare the main `::cat` class.
   ```
 
-{:.concept}
+{:.section}
 ### Writing the Usage section
 
 The **Usage** section should address how to solve some general problems with the module, and it should include code examples.
@@ -162,19 +162,12 @@ playtime at 3 a.m. local time.
     }
 ```
 
-{:.concept}
-### Writing the Reference section
+{:.section}
+### Generating Reference documentation with Strings
 
 This section is where your users can find a complete list of your module's classes, types, defined types providers, facts, and functions, along with the parameters for each.
 
 Users frequently refer to this section to find specific details; most users don't _read it_ as such. You can provide this list either via Puppet Strings or as a complete list in the README **Reference** section.
-
-Related topics:
-
-* [Puppet Strings](#puppet-strings)
-
-{:.section}
-#### Creating the Reference with Puppet Strings
 
 Use Puppet Strings comments in your code to document your Puppet classes, defined types, functions, and resource types and providers so that you and your users can generate the module's reference information.
 
@@ -195,7 +188,7 @@ For example:
 If you use Strings to document your module, include information about it in your **Reference** section so that your users will know how to generate your module's documentation. See Puppet Strings documentation for details on usage, installation, and correctly writing documentation comments.
 
 {:.section}
-#### Writing a Reference list
+### Writing a Reference list
 
 If you aren't using Puppet Strings code comments to document your module, then include a Reference list of each of your classes, defined types, types, functions, and so on, along with their parameters.
 
@@ -260,7 +253,7 @@ Valid options: A hash with the following keys:
 * `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
 ```
 
-{:.concept}
+{:.section}
 ### Writing the Limitations and development sections
 
 The **Limitations** section warns your users of issues, and the **Development** section tells your users how they can contribute to your module.

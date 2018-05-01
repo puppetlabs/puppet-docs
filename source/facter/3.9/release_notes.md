@@ -5,6 +5,22 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.9 series.
 
+## Facter 3.9.6
+
+Released April 17, 2018.
+
+This is a bug-fix release that shipped with Puppet Platform 5.3.6.
+
+-   [All issues resolved in Facter 3.9.6](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.9.6%27)
+
+### Bug fixes
+
+-   The `uptime` fact for Windows now uses `GetTickCount64`, which is more reliable, minimizes clock skews, and offers better resolution than the previous method of computing using WMI BootUptime. ([FACT-1504](https://tickets.puppetlabs.com/browse/FACT-1504))
+
+-   Facter 3.9.6 properly checks for errors when gathering disk information on AIX, and no longer warns or reports bogus results for devices assigned to special uses, such as databases. ([FACT-1597](https://tickets.puppetlabs.com/browse/FACT-1597))
+
+-   Facter 3.9.6 reports MAC addresses on infiniband interfaces. ([FACT-1761](https://tickets.puppetlabs.com/browse/FACT-1761))
+
 ## Facter 3.9.5
 
 Released February 14, 2018.

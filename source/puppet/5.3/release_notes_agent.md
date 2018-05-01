@@ -11,16 +11,19 @@ title: "Puppet agent release notes"
 [Puppet 5.3.3]: /puppet/5.3/release_notes.html#puppet-533
 [Puppet 5.3.4]: /puppet/5.3/release_notes.html#puppet-534
 [Puppet 5.3.5]: /puppet/5.3/release_notes.html#puppet-535
+[Puppet 5.3.6]: /puppet/5.3/release_notes.html#puppet-536
 
 [Facter 3.9.0]: /facter/3.9/release_notes.html#facter-390
 [Facter 3.9.2]: /facter/3.9/release_notes.html#facter-392
 [Facter 3.9.3]: /facter/3.9/release_notes.html#facter-393
 [Facter 3.9.4]: /facter/3.9/release_notes.html#facter-394
 [Facter 3.9.5]: /facter/3.9/release_notes.html#facter-395
+[Facter 3.9.6]: /facter/3.9/release_notes.html#facter-396
 
 [MCollective 2.11.2]: /mcollective/releasenotes.html#2_11_2
 [MCollective 2.11.3]: /mcollective/releasenotes.html#2_11_3
 [MCollective 2.11.4]: /mcollective/releasenotes.html#2_11_4
+[MCollective 2.11.5]: /mcollective/releasenotes.html#2_11_5
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -35,6 +38,38 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
+
+## Puppet agent 5.3.6
+
+Released April 17, 2018.
+
+This release of Puppet Platform contains several Puppet and Facter bug fixes.
+
+### Component updates
+
+This release includes component updates to [Puppet 5.3.6][], [Facter 3.9.6][], Hiera 3.4.3, [MCollective 2.11.5][], and [pxp-agent][] 1.8.3. It also updates `virt-what` to version 1.18 on Linux platforms.
+
+### Security update
+
+-   Updates `curl` to version 7.59.0. ([PA-1913](https://tickets.puppetlabs.com/browse/PA-1913))
+
+### Bug fixes
+
+-   The `puppet-agent` package no longer invokes custom facts on upgrade, avoiding a deadlock when such a fact tried to access the package manager's database. ([PA-1402](https://tickets.puppetlabs.com/browse/PA-1402))
+
+-   Resolved an issue that prevented locales from appearing. ([PA-1846](https://tickets.puppetlabs.com/browse/PA-1846))
+
+-   All of the Dynamic Link Library (dll) files required by the `pxp-agent` binary are copied to the executable's directory (`<pxp-agent-install-root>/bin`). ([PA-1850](https://tickets.puppetlabs.com/browse/PA-1850))
+
+-   Any `hiera.yaml` files that exist on the old agent are now copied to temporary files during an agent upgrade via an RPM package provider, in a manner that preserves permissions and file metadata. ([PA-1890](https://tickets.puppetlabs.com/browse/PA-1890))
+
+-   MCollective now relies only on its internal log rotation rather than also using the `logrotate` configuration. This prevents conflicting rotations and simplifies configuration. ([PA-1908](https://tickets.puppetlabs.com/browse/PA-1908))
+
+-   Log rotation under `systemd` correctly signals `pxp-agent` to re-open the log file. ([PCP-834](https://tickets.puppetlabs.com/browse/PCP-834))
+
+### Platform updates
+
+This release removes packages for Fedora 25.
 
 ## Puppet agent 5.3.5
 

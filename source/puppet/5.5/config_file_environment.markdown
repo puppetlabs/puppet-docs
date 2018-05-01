@@ -68,7 +68,7 @@ That is, Puppet will add the environment's `modules` directory to the value of t
 
 ### `manifest`
 
-The [main manifest][] the Puppet master will use when compiling catalogs for this environment. This can be one file or a directory of manifests to be evaluated in alphabetical order. Puppet manages this path as a directory if one exists or if the path ends with a / or .
+The [main manifest][] the Puppet master will use when compiling catalogs for this environment. This can be one file or a directory of manifests to be evaluated in alphabetical order. Puppet manages this path as a directory if one exists or if the path ends with a slash (`/`) or dot (`.`).
 
 If this setting isn't set, Puppet will use the environment's `manifests` directory as the main manifest, even if it is empty or absent. A directory environment will never use the global `manifest` from [puppet.conf][].
 

@@ -66,7 +66,7 @@ Arguments in `[square brackets]` are optional.
 
 ### Merge behaviours
 
-Hiera uses a hierarchy of data sources, and a given key can have values in multiple sources. By default, Hiera returns the first value it finds, but it also continues to search and merge all the values together.
+Hiera uses a hierarchy of data sources, and a given key can have values in multiple sources. Hiera can either return the first value it finds, or continue to search and merge all the values together. When Hiera searches, it first searches the global layer, then the environment layer, and finally the module layer — where it only searches in modules that have a matching namespace. By default (unless you use one of the merge strategies) it is priority/"first found wins", in which case the search ends as soon as a value is found.
 
 > Note: Data sources can use the `lookup_options` metadata key to request a specific merge behavior for a key. The lookup function will use that requested behavior unless you specify one.
 
@@ -104,7 +104,7 @@ You must provide the key's name. The other arguments are optional.
 -   `<NAME>` (String or Array) - The name of the key to look up.
 This can also be an array of keys. If Hiera doesn't find anything for the first key, it tries with the subsequent ones, only resorting to a default value if none of them succeed.
 -   `<VALUE TYPE>` (data Type) - A data type that must match the retrieved value; if not, the lookup (and catalog compilation) will fail. Defaults to `Data`  which accepts any normal value.
--   `<MERGE BEHAVIOR>` (String or Hash; see “Merge Behaviors”) -  Whether and how to combine multiple values. If present, this overrides any merge behavior specified in the data sources. Defaults to no value; Hiera will use merge behavior from the data sources if present, and will otherwise do a first-found lookup.
+-   `<MERGE BEHAVIOR>` (String or Hash; see [Merge behaviors](https://puppet.com/docs/puppet/5.5/hiera_merging.html#ariaid-title3)) -  Whether and how to combine multiple values. If present, this overrides any merge behavior specified in the data sources. Defaults to no value; Hiera will use merge behavior from the data sources if present, and will otherwise do a first-found lookup.
 -   `<DEFAULT VALUE>` (any normal value) - If present, lookup returns this when it can't find a normal value. Default values are never merged with found values. Like a normal value, the default must match the value type. Defaults to no value; if Hiera can't find a normal value, the lookup (and compilation) will fail.
 -   `<OPTIONS HASH>` (Hash) - Alternate way to set the arguments above, plus some less common additional options. If you pass an options hash, you can't combine it with any regular arguments (except `<NAME>`). An options hash can have the following keys:
     -   `'name'` - Same as `<NAME>` (argument 1). You can pass this as an argument or in the hash, but not both.

@@ -16,7 +16,7 @@ title: "Overview of Puppet's architecture"
 [resource]: ./lang_resources.html
 [Puppet Server]: {{puppetserver}}/
 
-You can configure systems with Puppet either in a client/server architecture, using the **Puppet agent** and **Puppet master** applications, or in a stand-alone architecture, using the **Puppet apply** application.
+You can configure systems with Puppet either in a client-server architecture, using the **Puppet agent** and **Puppet master** applications, or in a stand-alone architecture, using the **Puppet apply** application.
 
 {:.concept}
 ## Catalogs
@@ -31,9 +31,9 @@ Puppet configures systems in two stages:
 To compile a catalog, Puppet uses several sources of information. For more info, see the pages on [basics of the Puppet language][lang_basics] and [catalog compilation][catalog_compilation].
 
 {:.concept}
-## The agent/master architecture
+## The agent-master architecture
 
-When set up as an agent/master architecture, a Puppet master server controls the configuration information, and each managed agent node requests its own configuration catalog from the master.
+When set up as an agent-master architecture, a Puppet master server controls the configuration information, and each managed agent node requests its own configuration catalog from the master.
 
 In this architecture, managed nodes run the **Puppet agent** application, usually as a background service. One or more servers run the **Puppet master** application, [Puppet Server][].
 
@@ -83,13 +83,13 @@ After applying the catalog, Puppet apply stores a report on disk. You can config
 For more information, see the documentation for [the Puppet apply application][apply].
 
 {:.concept}
-## Differences between agent/master and stand-alone
+## Differences between agent-master and stand-alone
 
 In general, Puppet apply can do the same things as the combination of Puppet agent and Puppet master, but there are several trade-offs around security and the ease of certain tasks.
 
-If you don't have a preference, you should select the agent/master architecture. If you have questions, considering these trade-offs helps you make your decision.
+If you don't have a preference, you should select the agent-master architecture. If you have questions, considering these trade-offs helps you make your decision.
 
-* **Principle of least privilege.** In agent/master Puppet, each agent only gets its own configuration, and is unable to see how other nodes are configured. With Puppet apply, it's impractical to do this, so every node has access to complete knowledge about how your site is configured. Depending on how you're configuring your systems, this can potentially raise the risks of horizontal privilege escalation.
+* **Principle of least privilege.** In agent-master Puppet, each agent only gets its own configuration, and is unable to see how other nodes are configured. With Puppet apply, it's impractical to do this, so every node has access to complete knowledge about how your site is configured. Depending on how you're configuring your systems, this can potentially raise the risks of horizontal privilege escalation.
 * **Ease of centralized reporting and inventory.** Agents send reports to the Puppet master by default, and the master can be configured with any number of [report handlers][] to pass these on to other services. You can also connect the master to [PuppetDB][], a powerful tool for querying inventory and activity data. Puppet apply nodes handle their own information, so if you're using PuppetDB or sending reports to another service, _each_ node needs to be configured and authorized to connect to it.
 * **Ease of updating configurations.** Only Puppet master servers have the Puppet modules, main manifests, and other data necessary for compiling catalogs. This means that when you need to update your systems' configurations, you only need to update content on one (or a few) master servers. In a decentralized `puppet apply` deployment, you'll need to sync new configuration code and data to every node.
 * **CPU and memory usage on managed machines.** Since Puppet agent doesn't compile its own catalogs, it uses fewer resources on the machines it manages, leaving them with more capacity for their designated tasks.
