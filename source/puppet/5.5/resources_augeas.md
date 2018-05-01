@@ -4,9 +4,9 @@ title: "Resource tips and examples: Augeas"
 
 
 
-[Augeas](http://augeas.net/index.html) is a lovely tool that treats
+[Augeas](http://augeas.net/index.html) is a tool that treats
 config files (well, anything really, but it's mostly about config
-files) as trees of values. You then modify the tree as you like,
+files) as trees of values. You modify the tree as you like,
 and write the file back.
 
 For example, the "PermitRootLogin" setting in `sshd_config` can be referenced like this:
@@ -66,7 +66,7 @@ reasons, run `augtool print /augeas//error`:
 
 The first is a permissions error, the second is a parse error.  See the Augeas wiki page on [tracking down errors](https://github.com/hercules-team/augeas/wiki/Tracking-down-errors) for more information.
 
-The easiest way to understand how Augeas handles a particular file is to examine it using `augtool ls` and/or `augtool print`. In fact, you might want to make your changes by hand in a text editor, then use `augtool print` to give you an idea what the final result should look like.
+The easiest way to understand how Augeas handles a particular file is to examine it using `augtool ls` or `augtool print`. In fact, you might want to make your changes by hand in a text editor, then use `augtool print` to give you an idea what the final result should look like.
 
 Here's an example of how to determine the tree structure of a file, in this case `/etc/exports`. This is based on examples from from the bottom of `man 5 exports`:
 
