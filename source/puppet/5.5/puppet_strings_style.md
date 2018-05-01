@@ -243,7 +243,7 @@ function example(String $name) {
 
 Add descriptions to the type and its attributes by passing either a here document (heredoc) or a short string to the `desc` method. Strings automatically detects much of the information for types, including the parameters and properties, collectively known as attributes.
 
-To document the resource type itself, pass a here document (heredoc) to the `desc` method immediately after the type definition. Using a heredoc allows you to use multiple lines and String comment tags for your type documentation. For details about heredocs in Puppet, see [strings]({{puppet}}/lang_data_string.html#heredocs) in the language reference.
+To document the resource type itself, pass a here document (heredoc) to the `desc` method immediately after the type definition. Using a heredoc allows you to use multiple lines and String comment tags for your type documentation. For details about heredocs in Puppet, see [strings](./lang_data_string.html#heredocs) in the language reference.
 
 For attributes, where a short description is usually enough, pass a string to `desc` in the attribute. Strings interprets text strings passed to `desc` in the same way it interprets the `@param` tag. Descriptions passed to `desc` should be no more than 140 characters. If you need a long description for an attribute, pass a heredoc to `desc` in the attribute itself.
 
