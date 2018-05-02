@@ -90,7 +90,7 @@ The name you use in the title must exactly match the name that the package repor
 
 ## Install and uninstall options
 
-The Windows package provider also supports package-specific `install_options` (e.g. install directory) and `uninstall_options`. These options will vary across packages, so you'll need to see the documentation for the specific package you're installing. Options are specified as an array of strings and/or hashes.
+The Windows package provider also supports package-specific `install_options` (such as install directory) and `uninstall_options`. These options vary across packages, so see the documentation for the specific package you're installing. Options are specified as an array of strings or hashes.
 
 MSI properties can be specified as an array of strings following the 'property=key' pattern; you should use one string per property. Command line flags to executable installers can be specified as an array of strings, with one string per flag.
 
@@ -114,7 +114,7 @@ Previously, if you tried to manage a hidden package, Puppet would try to install
 
 ### Known Issues Prior to Puppet 3.4 / PE 3.2
 
-Prior to Puppet 3.4.0 / Puppet Enterprise 3.2, you couldn't specify package versions in the `ensure` attribute. This meant upgrades worked fine for packages that changed their name with every version (e.g. Git), but there wasn't an easy way to upgrade packages with stable names (e.g. MySQL).
+Prior to Puppet 3.4.0 / Puppet Enterprise 3.2, you couldn't specify package versions in the `ensure` attribute. This meant upgrades worked fine for packages that changed their name with every version (such as Git), but there wasn't an easy way to upgrade packages with stable names (such as MySQL).
 
 To manage MySQL-like packages on older Puppet versions, you can specify the package's PackageCode as the name/title, instead of using the DisplayName. The PackageCode is a GUID that's unique per MSI file. You can use Ruby to find the PackageCode from an MSI:
 
