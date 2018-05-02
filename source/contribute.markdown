@@ -30,18 +30,18 @@ Each topic file should cover a single subject area. If the Puppet docs already h
 If you're writing a new topic, start with an overview:
 
 - Provide definitions and descriptions that introduce the subject and place it within the context of the rest of Puppet.
-- Provide diagrams if they help clarify relationships and structures. 
+- Provide diagrams if they help clarify relationships and structures.
 - Your goal is to help people solve problems and get things done. Avoid too much background information.
 
 Next, describe things that the person *does*:
 
 - Create a section for each major task that a person does. These should describe how to get results people want, not just things the tools require them to do.
-- List prerequisites, if any. 
-- Use a numbered list to list the actions the person does to accomplish the task. 
-- Finish by stating what the outcome is, and what the person might do next. 
+- List prerequisites, if any.
+- Use a numbered list to list the actions the person does to accomplish the task.
+- Finish by stating what the outcome is, and what the person might do next.
 - Provide code or command examples that show what to do for common scenarios.
-- If there are multiple ways of doing something, describe only one: the most straight-forward way for the given context. 
-- Use screen captures minimally (ideally not at all), and only to illustrate things that are otherwise impractical to describe. 
+- If there are multiple ways of doing something, describe only one: the most straight-forward way for the given context.
+- Use screen captures minimally (ideally not at all), and only to illustrate things that are otherwise impractical to describe.
 - Avoid mixing lengthy conceptual descriptions in with task steps. Put those in your overview section instead.
 
 For reference information for a command line tool or an API, follow the layout patterns in similar existing Puppet documentation. If this is lengthy, split it into its own Markdown file.
@@ -63,7 +63,7 @@ Sometimes our docs are missing useful information that you can provide:
 
 - Strive to be friendly and authoritative.
 - Use simple, direct language. Avoid passive voice and implications.
-- Be consise, but not terse.
+- Be concise, but not terse.
 - Use second-person almost always: "Open the file in your favorite text editor."
 - Use inclusive, gender-neutral language.
 - Avoid patronizing language, often indicated by words like _clearly_, _actually_, or _obviously_.
@@ -77,10 +77,10 @@ Sometimes our docs are missing useful information that you can provide:
 
 ### Headings
 
-Use headings to increase the scanability of your content, and to make separate sections for conceptual information, each task, and reference information. 
+Use headings to increase the scanability of your content, and to make separate sections for conceptual information, each task, and reference information.
 
-- Nest H3s (markdown: `### `) inside H2s (`## `). Nest H4s (`#### `) inside H3s. 
-- For conceptual information, use a noun phrase that accurately describes the content (for example, "Defined resource types"). 
+- Nest H3s (markdown: `### `) inside H2s (`## `). Nest H4s (`#### `) inside H3s.
+- For conceptual information, use a noun phrase that accurately describes the content (for example, "Defined resource types").
 - For task section headings, use a verb phrase that indicates the goal (for example, "Deploying your code"), but also differentiates it from other tasks (so maybe, "Deploying your code to a test environment").
 
 ### Formatting
