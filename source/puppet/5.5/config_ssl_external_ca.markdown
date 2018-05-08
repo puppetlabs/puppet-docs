@@ -105,5 +105,5 @@ Root certificate revocation list  | `puppet config print hostcrl --section agent
 ## Option 2: Puppet Server functioning as an intermediate CA
 
 Puppet Server can operate as an intermediate CA to an external root CA. Please
-refer to [Using Puppet Server as an intermediate certificate authority]({puppetserver}/intermediate_ca_configuration.html)
+refer to [Using Puppet Server as an intermediate certificate authority]({{puppetserver}}/intermediate_ca_configuration.html)
 for a complete walk through of setting it up.
