@@ -19,7 +19,7 @@ title: "Documenting modules"
 
 Document any module you write, whether your module is for internal use only or for publication on the Puppet Forge. Complete, clear documentation helps your module users understand what your module can do and how to use it.
 
-When writing module documentation, base your README on our module README template and use Puppet Strings to generate reference information for your module's classes, defined types, functions, and resource types and providers.
+When writing module documentation, base your README on our module README template and use Puppet Strings to generate reference information for your module's classes, defined types, functions, tasks, task plans, and resource types and providers.
 
 Related topics:
 
@@ -37,7 +37,7 @@ Related topics:
 {:.concept}
 ## The README
 
-In your README, include basic module information and extended usage examples for common use cases. The README tells users what your module does and how to use it.
+In your README, include basic module information and extended usage examples for the most common use cases. Your README should tell users what your module does and how they can use it.
 
 Include reference information as a separate `REFERENCE.md` file in the module's root directory. This file should include a complete list of your module's elements: classes, defined types, functions, resource types and providers, Puppet tasks and plans, and parameters for each element. If you upload your module to the Forge, this reference information is displayed in a Reference tab on the module detail page. To make sure your docs stay current, use Puppet Strings to generate the `REFERENCE.md` page based on your code and comments.
 
@@ -86,9 +86,9 @@ Start with the module name as a Level 1 heading at the top of the module, follow
 {:.section}
 ### Writing the module description
 
-In your module **Description**, briefly tell users what your module does and what kind of problems they can use it to solve.
+In your module **Description**, briefly tell users why they might want to use your module. Explain what your module does and what kind of problems users can solve with it.
 
-This should be a fairly short description helps the user decide if your module is what they want. Does your module just install software? Does it install and configure it? Give your user information about what to expect from the module so they can assess whether they want to use it or not.
+This should be a fairly short description helps the user decide if your module is what they want. What are the most common use cases for your module? Does your module just install software? Does it install and configure it? Give your user information about what to expect from the module.
 
 ``` markdown
 ## Module description
@@ -101,7 +101,7 @@ The cat module automates the installation of a cat to your apartment or house, a
 {:.section}
 ### Writing the Setup section
 
-In the **Setup** section, detail how your user can successfully get their module functioning. Include steps to get started, requirements, and any other information users might need to know before they start using your module.
+In the **Setup** section, detail how your user can successfully get your module functioning. Include steps to get started, requirements, and any other information users might need to know before they start using your module.
 
 Module installation instructions are covered both on the module's Forge page and in the Puppet docs, so don't reiterate them here. In this section, include the following subsections, as applicable:
 
@@ -128,7 +128,7 @@ Module installation instructions are covered both on the module's Forge page and
 
 * **Beginning with [modulename]**
 
-  Always include this section to explain the minimum steps required to get the module up and running in a user's environment. This section can show basic Proof of Concept use cases, so it doesn't have to be something you would run in production. For simple modules, "Declare the main `::cat` class" may be enough.
+  Always include this section to explain the minimum steps required to get the module up and running in a user's environment. You can use basic Proof of Concept use cases here; it doesn't have to be something you would run in production. For simple modules, "Declare the main `::cat` class" may be enough.
 
   ``` markdown
   ### Beginning with cat
@@ -141,7 +141,7 @@ Module installation instructions are covered both on the module's Forge page and
 
 Include usage examples for common use cases in the **Usage** section. Show your users how to use your module to solve problems, and be sure to include code examples.
 
-If your module does many things, include three to five examples of the most important or common tasks a user can accomplish with your module. Show how to accomplish more complex tasks that involve different types, classes, and functions working in tandem. For example, the Usage section for the `puppetlabs-apache` module includes an example that shows users how to set up a virtual host with SSL, which involves several classes.
+If your module does many things, include three to five examples of the most important or common tasks a user can accomplish with your module. Show users how to accomplish more complex tasks that involve different types, classes, and functions working in tandem. For example, the Usage section for the `puppetlabs-apache` module includes an example that shows users how to set up a virtual host with SSL, which involves several classes.
 
 
 ``` markdown
@@ -181,64 +181,14 @@ This module cannot be used with the smallchild module.
 
 In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
 
-{:.concept}
-### README style notes
-
-To write a clear, concise, and comprehensible README, we recommend following a few principles, best practices, and style guidelines.
-
 {:.section}
-#### General principles of READMEs
-
-1. Write for both web and terminal viewing. We recommend [Markdown][commonmark]. Above all else, your module must be easily readable and scannable.
-2. Limit the number of external links. Linking to anything on the web limits the usability of the module, particularly if a range of users might use it in various environments, such as in terminal. Also, links look gross in plain Markdown and make your README less readable.
-3. Scannability is key. READMEs are formulaic and repetitious for a reason. Repetition means that no matter the module, users know where to get the information they're looking for.
-
-{:.section}
-#### Style and formatting
-
-1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
-2. *Public* classes and defined types are intended to be tweaked, changed, or otherwise interacted with by the user. *Private* classes and defined types do the behind-the-scenes work of the module (for instance, grabbing the package and installing it) and are not intended for the user to touch or look at.
-3. Start every parameter description with an action verb, if possible (such as "Enables..." or "Specifies...").
-4. List the valid options (such as, "Valid options: an array") for the parameter, and the default value, if applicable.
-
-   For example:
-
-
-   ``` markdown
-   Specifies the type of meow the cat service uses at food distribution time. Valid options: 'bark', 'low', 'rumble', 'loud', or 'none'. Default: 'low'.
-   ```
-
-   or
-
-   ``` markdown
-   Sets the food intake limit for your cat service. Determined in grams. Valid options: Integer; maximum = 100g.
-   ```
-
-4. List parameters in alphabetical order. This makes it easier to find specific settings.
-5. Specify the valid options (or inputs or values) for every parameter. This might be a string, integers, an array, or specific values.
-6. Mark parameters as Required if the user must set a value (that is, the parameter has no default).
-7.`< >` do not render in Markdown. Ask us how we know.
-8. You don't need to escape `_` because neither GitHub nor the Forge's Markdown rendering hides `_`.
-9. The Forge's Markdown rendering is exactly the same as GitHub's rendering.
-
-{:.section}
-#### Documentation best practices
-
-If you really want your documentation to shine, following a few best practices can help make your documentation clear and readable.
-
-1. Use the second person; that is, write directly to the person reading your document. For example, “If you’re installing the cat module on Windows....”
-2. Use the imperative; that is, tell the user what they should do. For example, "Secure your dog door before installing the cat module."
-3. Use the active voice whenever possible. For example, "We recommend that you install cat and bird modules on separate instances" rather than "It is recommended that you install cat and bird modules on separate instances."
-4. Use the present tense, almost always. You seldom need the word "will," for example. Events that regularly occur should be present tense: "This parameter *sets* your cat to 'purebred'. The purebred cat *alerts* you for breakfast at 6 a.m." Only use future tense when you are specifically referring to something that takes place at a time in the future, such as "The `tail` parameter is deprecated and *will be* removed in a future version. Use `manx` instead."
-5. Lists, whether ordered or unordered, make things clearer for the reader. When steps should happen in a sequence, use an ordered list (1, 2, 3…). If order doesn’t matter, like in a list of options or requirements, use an unordered (bulleted) list.
-
-
-{:.section}
-### Generating Reference documentation with Strings
+## Generating Reference documentation with Strings
 
 List reference information --- that is, a complete list of classes, defined types, functions, resource types and providers, tasks, and plans in a separate `REFERENCE.md` file in the root directory of your module. Use Puppet Strings to generate this documentation based on your comments and module code. If you aren't using Strings to generate documentation yet, you can create a `REFERENCE.md` file manually.
 
-> Previously, we recommended that module authors include reference information in the README itself. However, the **Reference** section often became quite long and difficult to maintain. Moving reference information to a separate file keeps the README more readable, and using Strings to generate this file should alleviate maintenance work. The Forge now displays information from a module's REFERENCE.md file in a Reference tab on the module detail page, so the information remains easily accessible to users. To transition your module to the REFERENCE.md model, add Strings comments to your code for each of your classes, defined types, functions, task plans, and resource types and providers. You can create a REFERENCE.md file manually, but remember that if you generate a REFERENCE.md with Strings, it will overwrite any existing REFERENCE.md file. For details on adding comments to your code, see the [Puppet Strings style guide](https://puppet.com/docs/puppet/5.5/puppet_strings_style.html). For instructions on how to install and use Strings, see the [Puppet Strings documentation](https://puppet.com/docs/puppet/5.5/puppet_strings.html).
+Previously, we recommended that module authors include reference information in the README itself. However, the **Reference** section often became quite long and difficult to maintain. Moving reference information to a separate file keeps the README more readable, and using Strings to generate this file should alleviate maintenance work. The Forge displays information from a module's `REFERENCE.md` file in a Reference tab on the module detail page, so the information remains easily accessible to users.
+
+To transition your module to the `REFERENCE.md` model, add Strings comments to your code for each of your classes, defined types, functions, task plans, and resource types and providers. You can create a `REFERENCE.md` file manually, but remember that if you generate a `REFERENCE.md` with Strings, it will overwrite any existing `REFERENCE.md` file. For details on adding comments to your code, see the [Puppet Strings style guide](https://puppet.com/docs/puppet/5.5/puppet_strings_style.html). For instructions on how to install and use Strings, see the [Puppet Strings documentation](https://puppet.com/docs/puppet/5.5/puppet_strings.html).
 
 
 {:.section}
@@ -304,3 +254,56 @@ Valid options: A hash with the following keys:
 * `frequency` - accepts an integer, defaults to 1.
 * `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
 ```
+
+{:.concept}
+## Documentation style notes
+
+To write a clear, concise, and comprehensible documentation, we recommend following a few principles, best practices, and style guidelines.
+
+{:.section}
+### General principles of READMEs
+
+1. Write for both web and terminal viewing. We recommend [Markdown][commonmark]. Above all else, your module must be easily readable and scannable.
+2. Limit the number of external links. Linking to anything on the web limits the usability of the module, particularly if a range of users might use it in various environments, such as in terminal. Also, links look gross in plain Markdown and make your README less readable.
+3. Scannability is key. READMEs are formulaic and repetitious for a reason. Repetition means that no matter the module, users know where to get the information they're looking for.
+
+{:.section}
+### Style and formatting
+
+1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
+1. Whether in a manually created tart every parameter description with an action verb, if possible (such as "Enables..." or "Specifies...").
+1. If you are documenting parameters manually, list the data type.
+1. List the parameter's valid options, if they are not clear from the data type. For example, if the data type is [String], but the value must specifically be one of several specific values, say so here.
+
+   For example:
+
+
+   ``` markdown
+   Specifies the type of meow the cat service uses at food distribution time.
+
+   Valid options: 'bark', 'low', 'rumble', 'loud', or 'none'. Default: 'low'.
+   ```
+
+   or
+
+   ``` markdown
+   Sets the food intake limit for your cat service. Determined in grams.
+
+   Valid options: Integer; maximum = 100g.
+   ```
+
+6. If you are documenting parameters manually, mark them as Required if the user must set a value (that is, the parameter has no default).
+7. `< >` do not render in Markdown. Ask us how we know.
+8. You don't need to escape `_` because neither GitHub nor the Forge's Markdown rendering hides `_`.
+9. The Forge's Markdown rendering is exactly the same as GitHub's rendering.
+
+{:.section}
+#### Documentation best practices
+
+If you really want your documentation to shine, following a few best practices can help make your documentation clear and readable.
+
+1. Use the second person; that is, write directly to the person reading your document. For example, “If you’re installing the cat module on Windows....”
+2. Use the imperative; that is, tell the user what they should do. For example, "Secure your dog door before installing the cat module."
+3. Use the active voice whenever possible. For example, "Install cat and bird modules on separate instances" rather than "The cat and bird modules should be installed on separate instances."
+4. Use the present tense, almost always. You seldom need the word "will," for example. Events that regularly occur should be present tense: "This parameter *sets* your cat to 'purebred'. The purebred cat *alerts* you for breakfast at 6 a.m." Only use future tense when you are specifically referring to something that takes place at a time in the future, such as "The `tail` parameter is deprecated and *will be* removed in a future version. Use `manx` instead."
+5. Lists, whether ordered or unordered, make things clearer for the reader. When steps should happen in a sequence, use an ordered list (1, 2, 3…). If order doesn’t matter, like in a list of options or requirements, use an unordered (bulleted) list.
