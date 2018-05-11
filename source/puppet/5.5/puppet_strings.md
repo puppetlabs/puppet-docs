@@ -159,7 +159,7 @@ Action   | Description
 {:.section}
 ### `puppet strings generate` action
 
-Usage: `puppet strings [generate] [--format <FORMAT>][--out <DESTINATION>] [<ARGUMENTS>]`
+Usage: `puppet strings generate [--format <FORMAT>][--out <DESTINATION>] [<ARGUMENTS>]`
 
 For example:
 
@@ -173,14 +173,37 @@ puppet strings generate manifest1.pp manifest2.pp
 
 Option   | Description   | Values      | Default
 ----------------|:---------------:|:------------------:|-------------------------
-
 `--format` | Specifies a format for documentation. | Markdown, JSON    | If not specified, Strings outputs HTML documentation.
 `--out` | Specifies an output location for documentation | A valid directory location and filename.    | If not specified, outputs to default locations depending on format: HTML (`./doc/`), Markdown (main module directory), or JSON (`STDOUT`).
 Filenames or directory paths | Outputs documentation for only specified files or directories. | Markdown, JSON.    | If not specified, Strings outputs HTML documentation.
 `--verbose` | Logs verbosely. | none    | If not specified, Strings logs basic information.
 `--debug` | Logs debug information. | none    | If not specified, Strings does not log debug information.
-`--markup FORMAT` | The markup format to use for documentation. | "markdown", "textile", "rdoc", "ruby", "text", "html", or "none"    | By default, Strings outputs HTML, if no `--format` is specified or Markdown if `--format markdown` is specified.
+`--markup FORMAT` | The markup format to use for documentation. | "markdown", "textile", "rdoc", "ruby", "text", "html", or "none"    | If no `--format` is specified, Strings outputs HTML.
 `--help` | Displays help documentation for the command. | None.    | If specified, displays help.
+
+{:.section}
+### `puppet strings server` command reference
+
+Usage: `puppet strings server [--markup <FORMAT>][[module_name]...][--modulepath <PATH>]`
+
+For example:
+
+```
+puppet strings server --modulepath path/to/modules
+```
+
+```
+puppet strings server concat
+```
+
+Option   | Description   | Values      | Default
+----------------|:---------------:|:------------------:|-------------------------
+`--modulepath` | Puppet option for setting the module path. | A valid path. | Defaults to Puppet's current module path.
+`--verbose` | Logs verbosely. | None.    | If not specified, Strings logs basic information.
+`--debug` | Logs debug information. | None.    | If not specified, Strings does not log debug information.
+`--markup FORMAT` | The markup format to use for documentation | "markdown", "textile", "rdoc", "ruby", "text", "html", or "none".    | If no `--format` is specified, Strings outputs HTML.
+`--help` | Displays help documentation for the command. | none | If specified, displays help.
+
 
 {:.section}
 ### Available Strings tags
@@ -203,6 +226,7 @@ Filenames or directory paths | Outputs documentation for only specified files or
 * `@raise`: Documents any exceptions that can be raised by the given component. For example: `# @raise PuppetError this error will be raised if x`
 * `@return`: Describes the return value (and type or types) of a method. You can list multiple return tags for a method if the method has distinct return cases. In this case, begin each case with `if`.
    For example:
+
    ```
    # An example 4.x function.
    Puppet::Functions.create_function(:example) do
