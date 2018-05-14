@@ -10,7 +10,7 @@ Strings uses these tags and comments, along with the structure of the module cod
 
 This style guide applies to:
 
-* Puppet Strings version 1.2 and later
+* Puppet Strings version 2.0 and later
 * Puppet 4 and later
 
 For information about the specific meaning of terms like 'must,' 'must not,' 'required,' 'should,' 'should not,' 'recommend,' 'may,' and 'optional,' see [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
