@@ -181,10 +181,10 @@ This module cannot be used with the smallchild module.
 
 In the Development section, tell other users the ground rules for contributing to your project and how they should submit their work.
 
-{:.section}
+{:.concept}
 ## Generating Reference documentation with Strings
 
-List reference information --- that is, a complete list of classes, defined types, functions, resource types and providers, tasks, and plans in a separate `REFERENCE.md` file in the root directory of your module. Use Puppet Strings to generate this documentation based on your comments and module code. If you aren't using Strings to generate documentation yet, you can create a `REFERENCE.md` file manually.
+List reference information --- that is, a complete list of classes, defined types, functions, resource types and providers, tasks, and plans --- in a separate `REFERENCE.md` file in the root directory of your module. Use Puppet Strings to generate this documentation based on your comments and module code. If you aren't using Strings to generate documentation yet, you can create a `REFERENCE.md` file manually.
 
 Previously, we recommended that module authors include reference information in the README itself. However, the **Reference** section often became quite long and difficult to maintain. Moving reference information to a separate file keeps the README more readable, and using Strings to generate this file should alleviate maintenance work. The Forge displays information from a module's `REFERENCE.md` file in a Reference tab on the module detail page, so the information remains easily accessible to users.
 
