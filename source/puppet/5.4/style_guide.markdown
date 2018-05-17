@@ -318,7 +318,7 @@ When using the special attribute `*` (asterisk or splat character) in addition t
 
 ```puppet
 $file_ownership = {
-  'owner' => 'root',
+  'owner' => 'owner',
   'group' => 'wheel',
   'mode'  => '0644',
 }
@@ -494,7 +494,7 @@ file {
     mode   => '0666',;
 
   '/foo':
-    user => 'root',;
+    user => 'owner',;
 
   '/bar':
     user => 'staff',;
@@ -511,7 +511,7 @@ file {
     * => $our_default_file_attributes,;
 
   '/foo':
-    user => 'root',;
+    user => 'owner',;
 
   '/bar':
     user => 'staff',;
@@ -539,7 +539,7 @@ $array_of_paths.each |$path| {
 file {
   '/foo':
     ensure => 'file',
-    user   => root,
+    user   => owner,
     mode   => '0666',;
 
   '/bar':
@@ -598,7 +598,7 @@ Resource attributes must be uniformly indented in two spaces from the title.
 ```puppet
 file { '/foo':
   ensure => 'file',
-  owner  => 'root',
+  owner  => 'owner',
 }
 ```
 
