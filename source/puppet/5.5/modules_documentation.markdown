@@ -194,42 +194,61 @@ To transition your module to the `REFERENCE.md` model, add Strings comments to y
 {:.section}
 ### Manually writing reference information
 
-If you aren't using Puppet Strings yet to generate your Reference documentation, you can manually create a `REFERENCE.md` file listing each of your classes, defined types, resource types and providers, functions, and facts, along with any parameters. If your module contains type aliases or facts, which Strings doesn't support yet, document them in a short, supplementary Reference section.
+If you're not yet ready to use Puppet Strings to generate your reference docs, you can manually create a `REFERENCE.md` file listing all of your module's classes, defined types, functions, tasks, task plans, and resource types and providers. This is useful if you are in the process of moving your reference documentation into code comments, or if your module contains resources that aren't yet supported in Strings.
 
-To manually document reference information, start your reference information with a small table of contents that first lists the classes, defined types, and resource types of your module. If your module contains both public and private classes or defined types, list the public and the private separately. Include a brief description of what these items do in your module.
+If your module contains a `REFERENCE.md` file, the Forge displays the contents in a Reference tab on the module's detail page, whether you created the file manually or with Strings. Write the `REFERENCE.md` file in Markdown, and keep it in the root directory of your module.
 
-```
-## Reference
+If you already have a README with an accurate reference section, you can remove that section from your README and paste it into a `REFERENCE.md` file. The formatting isn't vastly different.
 
-### Classes
+> **Important**: If you create a `REFERENCE.md` manually, and then generate Markdown with Puppet Strings, it will overwrite your `REFERENCE.md` unless you give the files different names. The module detail page on the Forge displays only the `README.md` and `REFERENCE.md` files.
 
-#### Public classes
+At the top of your `REFERENCE.md`, include a ` # Reference` header and a table of contents.
 
-*[`pet::cat`](#petcat): Installs and configures a cat in your environment.
+In the table of contents, list each element of your module: classes, defined types, functions, tasks, task plans, and resource types and providers. Provide brief descriptions, and separate public and private classes.
 
-#### Private classes
-
-*[`pet::cat::install`]: Handles the cat packages.
-*[`pet::cat::configure`]: Handles the configuration file.
-```
-
-After this table of contents, list the parameters, providers, or features for each element (class, defined type, function, and so on) of your module. Be sure to include valid or acceptable values and any defaults that apply.
-
-Each element in this list should include:
+Include the following information:
 
   * The data type, if applicable.
   * A description of what the element does.
   * Valid values, if the data type doesn't make it obvious.
   * Default value, if any.
 
+```markdown
+# Reference
+
+## Classes
+
+### Public Classes
+*[`cat`](#cat)
+
+### Private Classes
+*`cat::install`: Handles the cat packages.
+*`cat::configure`: Handles the configuration file.
+*`cat::service`: Handles the cat service for maintenance of your cat.
 ```
-### `pet::cat`
+
+In the body of the `REFERENCE.md`, list out each of the module's elements (classes, defined types, functions, and so on), describe what it does, and list out its parameters.
+
+For each parameter, list:
+
+* If the parameter is required, specify *Required*.
+* The data type.
+* A description of what the parameter does, along with other information the user might need, such as "Only applies if `perl_enable => true`."
+* The valid values for the parameter, unless evident from the data type. For example, for a String data type, you should list specify what kind of string is needed (such as one of a specific set of strings or a valid URL). For a Boolean data type, you don't need to list true and false as valid values. 
+* The default value.
+ 
+``` markdown
+### Class: cat
+
+Installs and configures a cat in your environment.
 
 #### Parameters
 
+The following parameters are available in the `cat` class:
+
 ##### `purr`
 
-Data type: Boolean.
+Data type: `Boolean`.
 
 Enables purring in your cat.
 
@@ -237,73 +256,41 @@ Default: `true`.
 
 ##### `meow`
 
-Enables vocalization in your cat. Valid options: 'string'.
+Data type: `Any`.
+
+Enables vocalization in your cat.
+
+Valid values: 'loud', 'medium-loud', 'kitten', 'silent'.
 
 Default: 'medium-loud'.
-
-#### `laser`
-
-Specifies the type, duration, and timing of your cat's laser show.
-
-Default: `undef`.
-
-Valid options: A hash with the following keys:
-
-* `pattern` - accepts 'random', 'line', or a string mapped to a custom laser_program, defaults to 'random'.
-* `duration` - accepts an integer in seconds, defaults to '5'.
-* `frequency` - accepts an integer, defaults to 1.
-* `start_time` - accepts an integer specifying the 24-hr formatted start time for the program.
 ```
 
+
 {:.concept}
-## Documentation style notes
+## Documentation style
 
 To write a clear, concise, and comprehensible documentation, we recommend following a few principles, best practices, and style guidelines.
 
-{:.section}
-### General principles of READMEs
-
-1. Write for both web and terminal viewing. We recommend [Markdown][commonmark]. Above all else, your module must be easily readable and scannable.
-2. Limit the number of external links. Linking to anything on the web limits the usability of the module, particularly if a range of users might use it in various environments, such as in terminal. Also, links look gross in plain Markdown and make your README less readable.
-3. Scannability is key. READMEs are formulaic and repetitious for a reason. Repetition means that no matter the module, users know where to get the information they're looking for.
-
-{:.section}
-### Style and formatting
-
-1. When referring to the module, the module's name is lowercase. When referring to the software the module is automating, the software's name is uppercase (as appropriate).
-1. Whether in a manually created tart every parameter description with an action verb, if possible (such as "Enables..." or "Specifies...").
-1. If you are documenting parameters manually, list the data type.
-1. List the parameter's valid options, if they are not clear from the data type. For example, if the data type is [String], but the value must specifically be one of several specific values, say so here.
-
-   For example:
-
-
-   ``` markdown
-   Specifies the type of meow the cat service uses at food distribution time.
-
-   Valid options: 'bark', 'low', 'rumble', 'loud', or 'none'. Default: 'low'.
-   ```
-
-   or
-
-   ``` markdown
-   Sets the food intake limit for your cat service. Determined in grams.
-
-   Valid options: Integer; maximum = 100g.
-   ```
-
-6. If you are documenting parameters manually, mark them as Required if the user must set a value (that is, the parameter has no default).
-7. `< >` do not render in Markdown. Ask us how we know.
-8. You don't need to escape `_` because neither GitHub nor the Forge's Markdown rendering hides `_`.
-9. The Forge's Markdown rendering is exactly the same as GitHub's rendering.
+1. Write for both web and terminal viewing using [Markdown][commonmark]. Above all else, your module must be easily readable and scannable.
+1. Limit the number of external links. Linking to anything on the web limits the usability of the module, particularly when users read it in terminal.
+1. Consistency is key. Consistently formatted documentation means that no matter the module, users know where to get the information they're looking for.
+1. Use the second person; that is, write directly to the person reading your document. For example, “If you’re installing the cat module on Windows...”
+1. Use the imperative; that is, tell the user what they should do. For example, "Secure your dog door before installing the cat module."
+1. Use the active voice whenever possible. For example, "Install cat and bird modules on separate instances" rather than "The cat and bird modules should be installed on separate instances."
+1. Use the present tense, almost always. Use present tense for parameter behaviors (such as "Enables..." or "Specifies...") and for events that regularly occur (such as "This parameter *sets* your cat to 'purebred'. The purebred cat *alerts* you for breakfast at 6 a.m." Use future tense only when you are specifically referring to something that takes place at a time in the future, such as "The `tail` parameter is deprecated and *will be* removed in a future version. Use `manx` instead."
 
 {:.section}
-#### Documentation best practices
+### Puppet documentation conventions
 
-If you really want your documentation to shine, following a few best practices can help make your documentation clear and readable.
+At Puppet, we follow some documentation conventions to make our docs clear and to make it easier to translate our module READMEs and REFERENCEs into other languages. While you aren't required to use the same conventions in your own modules, we ask that you use them when submitting documentation changes to modules owned by Puppet.
 
-1. Use the second person; that is, write directly to the person reading your document. For example, “If you’re installing the cat module on Windows....”
-2. Use the imperative; that is, tell the user what they should do. For example, "Secure your dog door before installing the cat module."
-3. Use the active voice whenever possible. For example, "Install cat and bird modules on separate instances" rather than "The cat and bird modules should be installed on separate instances."
-4. Use the present tense, almost always. You seldom need the word "will," for example. Events that regularly occur should be present tense: "This parameter *sets* your cat to 'purebred'. The purebred cat *alerts* you for breakfast at 6 a.m." Only use future tense when you are specifically referring to something that takes place at a time in the future, such as "The `tail` parameter is deprecated and *will be* removed in a future version. Use `manx` instead."
-5. Lists, whether ordered or unordered, make things clearer for the reader. When steps should happen in a sequence, use an ordered list (1, 2, 3…). If order doesn’t matter, like in a list of options or requirements, use an unordered (bulleted) list.
+The Forge's Markdown rendering is exactly the same as GitHub's rendering.
+
+1. Lowercase module names, such as apache. This helps differentiate the module from the software the module is automating. Capitalize software names as they normally would be, such as Apache.
+1. String values are set in single quotes, to indicate that they are strings.
+1. The values `true`, `false`, and `undef` are set in backticks.
+1. Filenames, settings, directories, classes, types, defined types, functions, and similar code elements are set in backticks, unless they are being passed as a string value. When indicating any value that the user passes as a string, use quotes.
+1. Integer values require no special marking.
+1. Data types are set in backticks.
+1. Use empty lines between new lines to help with read
+
