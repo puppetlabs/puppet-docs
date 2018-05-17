@@ -200,7 +200,7 @@ If your module contains a `REFERENCE.md` file, the Forge displays the contents i
 
 If you already have a README with an accurate reference section, you can remove that section from your README and paste it into a `REFERENCE.md` file. The formatting isn't vastly different.
 
-> **Important**: If you create a `REFERENCE.md` manually, and then generate Markdown with Puppet Strings, it will overwrite your `REFERENCE.md` unless you give the files different name. The module detail page on the Forge displays only the `README.md` and `REFERENCE.md` files.
+> **Important**: If you create a `REFERENCE.md` manually, and then generate Markdown with Puppet Strings, it will overwrite your `REFERENCE.md` unless you give the files different names. The module detail page on the Forge displays only the `README.md` and `REFERENCE.md` files.
 
 At the top of your `REFERENCE.md`, include a ` # Reference` header and a table of contents.
 
@@ -219,7 +219,7 @@ Include the following information:
 ## Classes
 
 ### Public Classes
-*[`cat`](#::cat)
+*[`cat`](#cat)
 
 ### Private Classes
 *`cat::install`: Handles the cat packages.
