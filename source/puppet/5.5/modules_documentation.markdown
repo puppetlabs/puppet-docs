@@ -292,5 +292,5 @@ The Forge's Markdown rendering is exactly the same as GitHub's rendering.
 1. Filenames, settings, directories, classes, types, defined types, functions, and similar code elements are set in backticks, unless they are being passed as a string value. When indicating any value that the user passes as a string, use quotes.
 1. Integer values require no special marking.
 1. Data types are set in backticks.
-1. Use empty lines between new lines to help with read
+1. Use empty lines between new lines to help with readability.
 
