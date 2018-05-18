@@ -280,7 +280,7 @@ To write a clear, concise, and comprehensible documentation, we recommend follow
 1. Use the present tense, almost always. Use present tense for parameter behaviors (such as "Enables..." or "Specifies...") and for events that regularly occur (such as "This parameter *sets* your cat to 'purebred'. The purebred cat *alerts* you for breakfast at 6 a.m." Use future tense only when you are specifically referring to something that takes place at a time in the future, such as "The `tail` parameter is deprecated and *will be* removed in a future version. Use `manx` instead."
 
 {:.section}
-### Puppet documentation conventions
+### Puppet module documentation conventions
 
 At Puppet, we follow some documentation conventions to make our docs clear and to make it easier to translate our module READMEs and REFERENCEs into other languages. While you aren't required to use the same conventions in your own modules, we ask that you use them when submitting documentation changes to modules owned by Puppet.
 
