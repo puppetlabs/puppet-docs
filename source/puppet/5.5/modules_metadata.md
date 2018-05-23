@@ -59,6 +59,7 @@ The `metadata.json` file uses standard JSON syntax and contains a single JSON ob
   "description": "NTP Module for Debian, Ubuntu, CentOS, RHEL, OEL, Fedora, FreeBSD, ArchLinux, Amazon Linux and Gentoo."
 }
 ```
+
 {:.section}
 ## Specifying dependencies in modules
 

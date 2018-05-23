@@ -7,7 +7,7 @@ title: Beginner's guide to writing modules
 [anchor]: ./lang_containment.html#anchor-pattern-containment-for-compatibility-with-puppet--340
 [pdk]: {{pdk}}/pdk.html
 
-Learn how to create fantastic modules by introducing module best practices [standards and architecture](./style_guide.html).
+Learn how to create fantastic modules by following module best practices [standards and architecture](./style_guide.html).
 
 Contributors to this guide have spent years creating Puppet modules, falling into every pitfall, trap, and mistake you could hope to make. This guide is intended to help you avoid our mistakes through an approachable introduction to module best practices.
 
@@ -265,7 +265,7 @@ Ensure that the module works in a variety of conditions, and that the options an
 
 We recommend several testing frameworks available to help you write unit and acceptance tests. Some of these tools are already included in the Puppet Development Kit (PDK; see the [PDK][pdk] documentation for details.
 
-{:.concept}
+{:.section}
 ### rspec-puppet
 
 The `rspec-puppet` gem provides a unit-testing framework for Puppet. It extends RSpec to allow the testing framework to understand Puppet catalogs, the artifact it specializes in testing. You can write tests, as in the below example, to test that aspects of your module work as intended.
@@ -280,7 +280,7 @@ A typical use of RSpec is to iterate over a list of operating systems, asserting
 
 To learn more, see [http://rspec-puppet.com/](http://rspec-puppet.com/).
 
-{:.concept}
+{:.section}
 ### puppetlabs-spec-helper
 
 The [puppetlabs-spec-helper](https://github.com/puppetlabs/puppetlabs_spec_helper) gem automates some of the tasks required to test modules.
@@ -291,7 +291,7 @@ This is especially useful in conjunction with `rspec-puppet`, as `puppetlabs-spe
 require 'puppetlabs_spec_helper/rake_tasks'
 ```
 
-{:.concept}
+{:.section}
 ### Beaker-rspec
 
 [Beaker-rspec](https://github.com/puppetlabs/beaker-rspec) is an acceptance/integration testing framework.
