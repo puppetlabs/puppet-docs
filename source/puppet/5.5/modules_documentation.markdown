@@ -66,7 +66,7 @@ The section headings for each top-level section (following the numbered sections
         * [Beginning with [modulename]](#beginning-with-[modulename])
     3. [Usage - Configuration options and additional functionality](#usage)
     4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-    5. [Limitations - OS compatibility, etc.](#limitations)
+    5. [Limitations - OS compatibility, and so on](#limitations)
     6. [Development - Guide for contributing to the module](#development)
 ```
 
@@ -194,7 +194,7 @@ If you aren't using Puppet Strings code comments to document your module, then i
 
 Generally, unless your module is very small (only 1 -- 4 classes or defined resource types), start your **Reference** section with a small table of contents that first lists the classes, defined types, and resource types of your module.
 
-If your module contains both public and private classes, defined types, etc, list the public and the private separately. Include a brief description of what these items do in your module. It's especially helpful if you provide a link to each listed item.
+If your module contains both public and private classes, defined types, and so on, list the public and the private separately. Include a brief description of what these items do in your module. It's especially helpful if you provide a link to each listed item.
 
 ```
 ## Reference
