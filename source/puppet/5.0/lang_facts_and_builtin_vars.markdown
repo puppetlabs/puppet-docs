@@ -229,6 +229,7 @@ Puppet agent and Puppet apply both add several extra pieces of info to their fac
 
 * `$clientcert` --- the value of the node's [`certname` setting][certname]. (This is self-reported; for the verified certificate name, use `$trusted['certname']`.)
 * `$clientversion` --- the current version of Puppet agent.
+* `$puppetversion` --- the current version of Puppet on the agent.
 * `$clientnoop` --- the value of the node's [`noop` setting][noop] (true or false) at the time of the run.
 * `$agent_specified_environment` --- the value of the node's [`environment` setting][environment_setting]. If the Puppet master's node classifier specified an environment for the node, `$agent_specified_environment` and `$environment` can have different values.
 

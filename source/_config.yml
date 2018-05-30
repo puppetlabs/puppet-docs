@@ -424,6 +424,11 @@ documents:
       puppetserver: "5.1"
     hide: true
 
+  /facter/3.11:
+    doc: facter
+    version: "3.11"
+    nav: ./_facter_toc.html
+    hide: true
   /facter/3.10:
     doc: facter
     version: "3.10"

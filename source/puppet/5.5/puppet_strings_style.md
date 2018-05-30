@@ -10,7 +10,7 @@ Strings uses these tags and comments, along with the structure of the module cod
 
 This style guide applies to:
 
-* Puppet Strings version 1.2 and later
+* Puppet Strings version 2.0 and later
 * Puppet 4 and later
 
 For information about the specific meaning of terms like 'must,' 'must not,' 'required,' 'should,' 'should not,' 'recommend,' 'may,' and 'optional,' see [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
@@ -18,9 +18,9 @@ For information about the specific meaning of terms like 'must,' 'must not,' 're
 {:.section}
 ## The module README
 
-Include basic module information and extended usages examples for common use cases in your module README. Strings generates reference information, but the README tells users what your module does and how to use it.
+Include basic module information and extended usage examples for common use cases in your module README. Strings generates reference information, but the README tells users what your module does and how to use it.
 
-Strings does not generate information for type aliases or facts. If your module includes thes elements, document them in your README.
+Strings does not generate information for type aliases or facts. If your module includes these elements, document them in your README.
 
 The README should contain the following sections:
 
@@ -167,7 +167,6 @@ class apache::mod::php (
 #   Command to read the sqlfile for importing the database. Useful for compressed sqlfiles. For example, you can use 'zcat' for .gz files.
 #
 ```
-
 
 {:.section}
 ### Functions
@@ -338,4 +337,35 @@ EOS
     package: 'apt',
   },
 )
+```
+
+{:.section}
+### Puppet tasks and plans
+
+Puppet Strings documents Puppet tasks automatically, taking all information from the task metadata. Document Puppet task plans just as you would a class or defined type, with tags and descriptions in the plan file.
+
+List the plan information in the following order:
+
+
+1. A `@summary` tag, a space, and then a summary describing the plan.
+1. Optional: Other tags such as `@see`, `@note`, or `@api private`.
+1. Optional: Usage examples, each consisting of:
+   1. An `@example` tag with a description of a usage example on the same line
+   1. Code example showing how the plan is used. This example should be directly under the `@example` tag and description, indented two spaces.
+1. One `@param` tag for each parameter in the plan. See the Parameters section for formatting guidelines.
+
+For example:
+
+```puppet
+# @summary A simple plan.
+#
+# @param param1
+#   First param.
+# @param param2
+#   Second param.
+# @param param3
+#   Third param.
+plan baz(String $param1, $param2, Integer $param3 = 1) {
+  run_task('foo::bar', $param1, blerg => $param2)
+}
 ```

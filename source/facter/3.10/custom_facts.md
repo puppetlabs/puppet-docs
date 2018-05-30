@@ -49,7 +49,7 @@ this:
         ├── system_load.rb
         └── users.rb
 
-Facter loads `facter/system\_load.rb`, `facter/users.rb`, and
+Facter loads `facter/system_load.rb`, `facter/users.rb`, and
 `facter/rackspace.rb`.
 
 ### Using the `--custom-dir` command line option

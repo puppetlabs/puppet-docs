@@ -82,14 +82,14 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 
 #{ categories[:core].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
 
-Occasionally Useful Subcommands
+Secondary subcommands
 -----
 
 Many or most users will need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
 
 #{ categories[:occasional].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
 
-Niche Subcommands
+Niche subcommands
 -----
 
 Most users can ignore these subcommands. They're only useful for certain niche workflows, and most of them are interfaces to Puppet's internal subsystems.
@@ -100,7 +100,11 @@ EOT
         # Handle any leftovers that aren't in categories
         unless leftovers.empty?
           index_text << <<EOADDENDUM
-Unknown or New Subcommands
+## Puppet Enterprise-specific subcommands
+
+Puppet Enterprise (PE) has some unique subcommands, such as `puppet infrastructure`. For reference information about these commands, use the `puppet help` command, such as `puppet help infrastructure`. For usage information, see the [Puppet Enterprise documentation](https://puppet.com/docs/pe/).
+
+Unknown or new subcommands
 -----
 
 These subcommands have not yet been added to any of the categories above.

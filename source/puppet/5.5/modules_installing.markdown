@@ -212,18 +212,6 @@ By default, the command won't uninstall a module that other modules depend on or
 * To uninstall the module while ignoring and overwriting any local changes, use the `--ignore-changes` option.
 
 {:.concept}
-## Managing modules
-
-The `puppet module` command can also list, upgrade, and uninstall modules.
-
-{:.section}
-### Listing installed modules
-
-Use the `puppet module list` command to see which modules you have installed and which directory they're installed in.
-
-To view the modules arranged by dependency instead of location on disk, use the `--tree` option.
-
-{:.section}
 ### Upgrading modules
 
 Use the `puppet module upgrade`command to upgrade an installed module to the latest version.
