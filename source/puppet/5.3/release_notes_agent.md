@@ -12,6 +12,7 @@ title: "Puppet agent release notes"
 [Puppet 5.3.4]: /puppet/5.3/release_notes.html#puppet-534
 [Puppet 5.3.5]: /puppet/5.3/release_notes.html#puppet-535
 [Puppet 5.3.6]: /puppet/5.3/release_notes.html#puppet-536
+[Puppet 5.3.7]: /puppet/5.3/release_notes.html#puppet-537
 
 [Facter 3.9.0]: /facter/3.9/release_notes.html#facter-390
 [Facter 3.9.2]: /facter/3.9/release_notes.html#facter-392
@@ -38,6 +39,28 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
+
+## Puppet agent 5.3.7
+
+Released June 2018.
+
+This release of Puppet Platform contains several Puppet and Facter security and bug fixes.
+
+### Component updates
+
+This release updates Puppet to [Puppet 5.3.7][].
+
+### Bug fixes
+
+-   Previous versions of Puppet on Ruby 2.0 or newer would close and reopen HTTP connection that were idle for more than 2 seconds, causing increased load on Puppet masters. This version of Puppet ensures that the agent uses the `http_keepalive_timeout` setting when determining when to close idle connections. ([PUP-8663](https://tickets.puppetlabs.com/browse/PUP-8663))
+
+-   When installing or updating `puppet-agent` 5.3.7, it updates the `MANPATH` environment variable so that Puppet's man pages are available. ([PA-1847](https://tickets.puppetlabs.com/browse/PA-1847))
+
+### Security updates
+
+-   On Windows, Puppet no longer includes `/opt/puppetlabs/puppet/modules` in its default basemodulepath, because unprivileged users could create a `C:\opt` directory and escalate privileges. ([PUP-8707](https://tickets.puppetlabs.com/browse/PUP-8707))
+
+-   This version of Puppet agent restricts permissions to some directories within `C:\ProgramData\PuppetLabs` so that only LocalSystem and members of the local Administrators group have access. ([PA-2019](https://tickets.puppetlabs.com/browse/PA-2019))
 
 ## Puppet agent 5.3.6
 

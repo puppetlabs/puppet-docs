@@ -20,6 +20,24 @@ Read the [Puppet 5.1](/puppet/5.1/release_notes.html) and [Puppet 5.2 release no
 
 Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.html) and [Puppet 4.9 release notes](/puppet/4.9/release_notes.html).
 
+## Puppet 5.3.7
+
+Released June 2018.
+
+This is a bug-fix and security release of Puppet.
+
+-   [All issues resolved in Puppet 5.3.7](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.7%27)
+
+### Component updates
+
+### Bug fixes
+
+-   When running Puppet on Ruby 2.0 or newer, Puppet would close and reopen HTTP connections that were idle for more than 2 seconds, causing increased load on Puppet masters. Puppet 5.3.7 ensures that the agent always uses the `http_keepalive_timeout` setting when determining when to close idle connections. ([PUP-8663](https://tickets.puppetlabs.com/browse/PUP-8663))
+
+### Security fixes
+
+-   On Windows, Puppet no longer includes `/opt/puppetlabs/puppet/modules` in its default basemodulepath, because unprivileged users could create a `C:\opt` directory and escalate privileges. ([PUP-8707](https://tickets.puppetlabs.com/browse/PUP-8707))
+
 ## Puppet 5.3.6
 
 Released April 17, 2018.

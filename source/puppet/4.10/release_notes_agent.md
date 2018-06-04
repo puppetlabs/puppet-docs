@@ -13,6 +13,7 @@ title: "Puppet agent release notes"
 [Puppet 4.10.9]: /puppet/4.10/release_notes.html#puppet-4109
 [Puppet 4.10.10]: /puppet/4.10/release_notes.html#puppet-4110
 [Puppet 4.10.11]: /puppet/4.10/release_notes.html#puppet-4111
+[Puppet 4.10.12]: /puppet/4.10/release_notes.html#puppet-4112
 
 [Facter 3.6.3]: /facter/3.6/release_notes.html#facter-363
 [Facter 3.6.4]: /facter/3.6/release_notes.html#facter-364
@@ -46,6 +47,28 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 4. Also read the [Puppet 4.0 release notes](/puppet/4.0/release_notes.html), since they cover any breaking changes since Puppet 3.8.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 release notes](./release_notes.html).
+
+## Puppet agent 1.10.13
+
+Released June 2018.
+
+This release of Puppet agent includes bug fixes and security updates.
+
+### Component updates
+
+This release updates Puppet to [Puppet 4.10.12][].
+
+### Bug fixes
+
+-   Previous versions of Puppet on Ruby 2.0 or newer would close and reopen HTTP connection that were idle for more than 2 seconds, causing increased load on Puppet masters. This version of Puppet ensures that the agent uses the `http_keepalive_timeout` setting when determining when to close idle connections. ([PUP-8663](https://tickets.puppetlabs.com/browse/PUP-8663))
+
+-   When installing or updating `puppet-agent` 1.10.12, it updates the `MANPATH` environment variable so that Puppet's man pages are available. ([PA-1847](https://tickets.puppetlabs.com/browse/PA-1847))
+
+### Security updates
+
+-   On Windows, Puppet no longer includes `/opt/puppetlabs/puppet/modules` in its default basemodulepath, because unprivileged users could create a `C:\opt` directory and escalate privileges. ([PUP-8707](https://tickets.puppetlabs.com/browse/PUP-8707))
+
+-   This version of Puppet agent restricts permissions to some directories within `C:\ProgramData\PuppetLabs` so that only LocalSystem and members of the local Administrators group have access. ([PA-2019](https://tickets.puppetlabs.com/browse/PA-2019))
 
 ## Puppet agent 1.10.12
 
