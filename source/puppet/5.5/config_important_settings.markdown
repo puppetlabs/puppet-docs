@@ -166,7 +166,7 @@ Puppet Server has [its own configuration files][puppetserver_config_files]; cons
 
 ### Rack related settings
 
-* [`ssl_client_header`][ssl_client_header] and [`ssl_client_verify_header`][ssl_client_verify_header] --- These are used when running Puppet master as a Rack application (e.g. under Passenger), which you should definitely be doing. See [the Passenger setup guide][passenger_headers] for more context about how these settings work; depending on how you configure your Rack server, you can usually leave these settings with their default values.
+* [`ssl_client_header`][ssl_client_header] and [`ssl_client_verify_header`][ssl_client_verify_header] --- These are used when running Puppet master as a Rack application, a method deprecated in favor of running Puppet Server. See [the Passenger setup guide][passenger_headers] for more context about how these settings work; depending on how you configure your Rack server, you can usually leave these settings with their default values.
 * [`always_retry_plugins`][always_retry_plugins] --- If this setting is set to false, then types and features will only be checked once, and if they are not available, the negative result is cached and returned for all subsequent attempts to load the type or feature. This replaces the [`always_cache_features`][alwayscachefeatures] setting.
 
 ### Extensions
