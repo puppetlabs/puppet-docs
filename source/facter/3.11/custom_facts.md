@@ -14,6 +14,8 @@ Sometimes you need to be able to write conditional expressions based on site-spe
 
 Because you can't include arbitrary Ruby code in your manifests, the best solution is to add a new fact to Facter. These additional facts can then be distributed to Puppet clients and are available for use in manifests and templates, just like any other fact is.
 
+Alternatively, you can distribute facts in modules. For example, the profile module works well if you're using the roles and profile method. Put the fact in the `lib/facter` directory of the module. 
+
 > **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` fails with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
 
 ### Structured and flat facts
