@@ -1,75 +1,90 @@
-# The Puppet Docs Toolchain
+[Markdown]: http://daringfireball.net/projects/markdown
+[YARD]: http://yardoc.org
+[kramdown]: http://kramdown.rubyforge.org
+[Puppet contribution guidelines]: https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md
+[Jekyll]: https://github.com/mojombo/jekyll
+[Liquid wiki]: https://github.com/Shopify/liquid/wiki
 
-_... wherein we discuss the innards of docs.puppetlabs.com_
+# The Puppet docs toolchain
 
-## Elevator Pitch
+_... wherein we discuss the innards of docs.puppet.com_
 
-The Puppet docs site is a collection of static HTML files generated from [Markdown][] source files and from Puppet itself. When we talk about the toolchain, we're talking about the collection of tools and services in use to generate the site then deploy it to the web servers for docs.puppetlabs.com. Among the things the toolchain provides:
+> **Note:** This README describes a previous documentation publishing workflow to static HTML content served on https://docs.puppet.com. Docs are now published to the puppet.com Drupal CMS instance at https://puppet.com/docs/, which imports bare HTML output and renders it.
 
-- The HTML for the Puppet docs site
-- References generated from inline documentation in Puppet itself
-- YARD developer documentation
-- PDFs of Puppet references
+## Elevator pitch
 
-## Initial Setup
+The Puppet docs site was a collection of static HTML files generated from [Markdown][] source files and from Puppet itself. When we talk about the toolchain, we're talking about the collection of tools and services in use to generate the site then deploy it to the web servers for docs.puppet.com. Among the things the toolchain provides:
 
-[The instructions on Github](https://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) explain how to get a functioning docs toolchain in place.
+-   HTML for the Puppet docs site
+-   References generated from inline documentation in Puppet's source code
+
+## Initial setup
+
+[The instructions on GitHub](https://github.com/puppetlabs/puppet-docs/blob/master/README.markdown) explain how to get a functioning docs toolchain in place.
 
 ## Tools and Services
 
-### Git & Github
+### Git and GitHub
 
-The Puppet docs repository lives on Github:
+The Puppet docs repository lives on GitHub:
 
 <https://github.com/puppetlabs/puppet-docs>
 
-#### Git Workflow
+#### Git workflow
 
 For working with the puppet-docs repository from day to day:
 
-- Fork puppetlabs/puppet-docs
+-   Fork puppetlabs/puppet-docs
 
-- Clone your fork to your machine ("set up a local remote"):
+-   Clone your fork to your machine ("set up a local remote"):
+
     `git clone git@github.com:#{your_github_username}/puppet-docs.git`
 
-- Designating puppetlabs/puppet-docs as your git upstream:
+-   Designate puppetlabs/puppet-docs as your git upstream:
+
     `git remote add upstream git@github.com:puppetlabs/puppet-docs.git`
 
-- Making changes from a branch on your local:
+-   Make changes from a branch on your local:
+
     `git checkout -b name_of_topic_branch`
 
-- Updating your local master before merging your branch changes:
+-   Update your local master before merging your branch changes:
+
     `git pull upstream master`
 
-- Merging your topic branch to your local master:
+-   Merge your topic branch to your local master:
+
     `git merge name_of_topic_branch`
 
-- Pushing from master to master:
+-   Push from master to master:
+
     `git push upstream master`
 
-If you have a very small change to make, just make sure your master branch is up to date (`git pull upstream master`), make your change, then push it.
+If you have a very small change to make, update your master branch (`git pull upstream master`), make your change, then push it (`git push upstream master`).
+
+> **Note:** Some content on https://puppet.com/docs is not generated from these Markdown docs. If an expected change doesn't appear on https://puppet.com/docs within 24 hours, file a [DOCUMENT ticket](https://tickets.puppetlabs.com/DOCUMENT) with a link to the page and and a link to the commits containing the desired changes, so a Puppet technical writer can follow up.
 
 ### Jekyll
 
 [Jekyll][] is a static site generator. It takes a directory full of files written in HTML or Markdown and generates a site of static HTML. If you're used to dealing with a content management system such as WordPress or Drupal elsewhere, these things are worth knowing:
 
-- Jekyll doesn't allow you to edit content on a live site: you have to make your changes to the Markdown file, save them, then generate the site.
-- Jekyll has to regenerate the entire site every time it's generated. That includes all the navigation elements and pages.
-- Jekyll __does not use__ the remote Github repository to generate the site. It uses what's in the git branch you're working on. You should generally use the [git workflow](#git-workflow) outlined above to make sure you're not generating a site with bits that aren't ready for primetime.
+-   Jekyll doesn't allow you to edit content on a live site. You edit Markdown files, save them, then regenerate the entire site.
+-   Jekyll has to regenerate the entire site every time it's generated. That includes all the navigation elements and pages.
+-   Jekyll _does not use_ the remote GitHub repository to generate the site. It uses what's in the git branch you're working on. You should generally use the [git workflow](#git-workflow) outlined above to make sure you're not generating a site with bits that aren't ready for primetime.
 
 ##### What do I need to know about this?
 
 **Day-to-day:** Not much:
 
-- See the section on [generating the site](#generating) to learn how to generate the docs site.
-- See the section on [navigation and templating](#navigation-and-templating) if you need to change a section's navigation or templating.
+-   See the section on [generating the site](#generating) to learn how to generate the docs site.
+-   See the section on [navigation and templating](#navigation-and-templating) if you need to change a section's navigation or templating.
 
 **Toolsmiths:** We're currently carrying patches on Jekyll in order to get it to:
 
-- use symlinked pages and directories (the upstream Jekyll maintainer has security concerns about allowing symlinks)
-- process files/directories with a leading "\_" (because Jekyll's filename convention uses "\_" for config files and other unprocessables)
+-   use symlinked pages and directories (the upstream Jekyll maintainer has security concerns about allowing symlinks)
+-   process files/directories with a leading "\_" (because Jekyll's filename convention uses "\_" for config files and other unprocessables)
 
-We keep our fork of Jekyll in a Puppet-owned github repository:
+We keep our fork of Jekyll in a Puppet-owned GitHub repository:
 
 <https://github.com/puppetlabs/jekyll>
 
@@ -107,7 +122,7 @@ The Puppet docs site is written in Markdown. In order to get advanced HTML featu
 
 kramdown also treats markup inside HTML block-level elements differently from vanilla Markdown.
 
-#### Liquid Templating
+#### Liquid templating
 
 Jekyll uses Liquid to provide a limited amount of relatively safe in-line logic for templates.
 
@@ -129,11 +144,13 @@ See the [Liquid wiki][] for a complete reference to Liquid functions (Liquid for
 
 #### YARD
 
+> **Note:** Puppet no longer publishes YARD output for current versions of Puppet to puppet.com/docs or docs.puppet.com. For details on generating this developer documentation on your own, see <https://puppet.com/docs/puppet/latest/yard/index.html>.
+
 Among YARD's featues:
 
-- Simple templating that allows developers to include and display useful metadata, such as whether a function is part of the public API
-- Markdown support
-- The ability to provide a simple desktop documentation webserver with nothing more than a local copy of the Puppet repo
+-   Simple templating that allows developers to include and display useful metadata, such as whether a function is part of the public API
+-   Markdown support
+-   The ability to provide a simple desktop documentation webserver with nothing more than a local copy of the Puppet repo
 
 ##### What do I need to know about this?
 
@@ -143,6 +160,8 @@ Among YARD's featues:
 
 #### Puppet documentation
 
+> **Note:** The content generated by `puppet doc` is being supplanted by the use of [Puppet Strings](https://github.com/puppetlabs/puppet-strings), but is still used for most of the generated reference documentation.
+
 Much Puppet code includes what are referred to as "doc strings," generally brief inline documentation made available via the `puppet doc` command. The Puppet docs site keeps a copy of Puppet's `puppet doc` output. The latest version is linked in the sidebar of the Puppet reference manual:
 
 <http://docs.puppetlabs.com/puppet/latest>
@@ -151,10 +170,10 @@ Much Puppet code includes what are referred to as "doc strings," generally brief
 
 To modify Puppet documentation, you need to:
 
-1. Read the [Puppet contribution guidelines][], even if you're a Puppet employee
-2. fork the puppet repo
-3. make your changes in a topic branch
-4. submit a pull request
+1.  Read the [Puppet contribution guidelines][], even if you're a Puppet employee
+2.  Fork the puppet repo
+3.  Make your changes in a topic branch
+4.  Submit a pull request
 
 ##### Revising past versions of Puppet docs
 
@@ -164,15 +183,16 @@ Since we keep generated references for every patch release of Puppet, there will
 
 **Day-to-day:** You should generate Puppet references each time a new patch release of Puppet is made. See the section on [generated references](#generated-references) below.
 
-___WARNING: You should not regenerate references for older versions of these documents: Sometimes changes are made to the existing versions, and regenerating them will overwrite these changes.___
+> **WARNING:** Do not regenerate references for older versions of these documents: Sometimes changes are made to the existing versions, and regenerating them will overwrite these changes.
 
 **Toolsmiths:** Puppet documentation can be crabby. Here are some things to look out for:
 
-- Clean loadpath: You should never have Puppet installed from Puppet provided packages on a system that's generating documents unless you've got a sound plan for isolating the version of Ruby you're using to generate the docs from system Ruby libraries (e.g. rbenv or rvm).
-- ActiveRecord: A few parts of Puppet have declared dependencies on ActiveRecord but do not actually use it and will not raise an error if ActiveRecord isn't present (Puppet 3 or later). If generated reference pages come up blank, doublecheck for ActiveRecord.
-
+-   Clean loadpath: You should never have Puppet installed from Puppet provided packages on a system that's generating documents unless you've got a sound plan for isolating the version of Ruby you're using to generate the docs from system Ruby libraries (e.g. rbenv or rvm).
+-   ActiveRecord: A few parts of Puppet have declared dependencies on ActiveRecord but do not actually use it and will not raise an error if ActiveRecord isn't present (Puppet 3 or later). If generated reference pages come up blank, doublecheck for ActiveRecord.
 
 ### Apache and Puppet
+
+> **Note:** This section refers only to content on docs.puppet.com, which is no longer regularly updated. Today, publishing to Drupal-powered puppet.com is handled by an internal import pipeline.
 
 Eventually, once the site is deployed to the servers, it's served by Apache, although it could be served by more or less anything.
 
@@ -183,6 +203,8 @@ In production, the Apache virtual host file is managed by a Puppet module in a p
 #### Where do things live in the filesystem?
 
 The content for the docs site lives in the `_source` directory of the puppet-docs repo:
+
+> **Note:** This tree is not regularly updated and might not reflect the accurate state of the repository.
 
     .
     ├── README.txt
@@ -225,7 +247,7 @@ The content for the docs site lives in the `_source` directory of the puppet-doc
     │   └── index.markdown
     └── windows
 
-### Generating the Docs
+### Generating the docs
 
 Generating the Puppet docs site using the Rakefile in the top of the docs repo.
 
@@ -235,9 +257,11 @@ __Rake command:__ `rake generate`
 
 If all you need to do is regenerate the docs site to reflect changes you've made:
 
-`$ cd puppet-docs`
-`$ rake generate`
-`$ rake serve`
+```
+$ cd puppet-docs
+$ rake generate
+$ rake serve
+```
 
 Visit `http://localhost:9292` to review your changes.
 
@@ -247,8 +271,8 @@ Visit `http://localhost:9292` to review your changes.
 
 **Day-to-day:**
 
-- Sometimes `rake` will fail with an error referencing "bundler." Run `bundle update` in your puppet-docs directory and that should sort it out.
-- Sometimes, early in the build process, you'll see errors related to mcollective or PuppetDB being in a detached HEAD state. Feel free to ignore those.
+-   Sometimes `rake` will fail with an error referencing "bundler." Run `bundle update` in your puppet-docs directory and that should sort it out.
+-   Sometimes, early in the build process, you'll see errors related to mcollective or PuppetDB being in a detached HEAD state. Feel free to ignore those.
 
 **Toolsmith:**
 
@@ -260,24 +284,26 @@ __Rake command:__ `rake references`
 
 The generated references and YARD docs are produced from inline documentation in Puppet. You need to regenerate these with each patch release of Puppet. Once the references are generated, the new files will need to be added to the repo and committed. The new files are located under `_source/references`.
 
-**WARNING:** Sometimes we have to go back and make corrections to existing generated references. Please do not regenerate older references or those corrections will likely be overwritten.
+> **WARNING:** Sometimes we have to go correct existing generated references. Regenerating older references will overwrite those corrections.
 
-## Navigation, Templating, Pages
+## Navigation, templating, pages
+
+> **Note:** The content published to puppet.com/docs does not use the templates described here.
 
 ### Templates
 
 The templates Jekyll uses to generate the site live in `_source/layouts`. They include:
 
-- **frontpage.html** for the front page of the docs site
-- **default.html** which provides for a generated table of contents at the top of the page and a left-side navigation menu
-- **legacy.html** which provides for a generated table of contents as a right-side menu
+-   **frontpage.html** for the front page of the docs site
+-   **default.html** which provides for a generated table of contents at the top of the page and a left-side navigation menu
+-   **legacy.html** which provides for a generated table of contents as a right-side menu
 
 CSS and JavaScript for the templates lives in `source/files/stylesheets` and `source/files/javascripts` respectively.
 
 In addition to the basic templates, there are also two error pages in the `source/files/errors` directory:
 
-- **general_404.html**, a 404 page with links to commonly sought items across the docs site
-- **versioned_404.html**, a 404 page that helps users find their way to current versions of older docs
+-   **general_404.html**, a 404 page with links to commonly sought items across the docs site
+- *  *versioned_404.html**, a 404 page that helps users find their way to current versions of older docs
 
 ### Navigation
 
@@ -289,28 +315,34 @@ So, for pages using the default layout, to add a new navigation menu to the left
 
 Jekyll expects each page to include YAML frontmatter. It should, at a minimum, include a `layout` and `title` value, e.g.
 
-	---
-	layout: default
-	title: "Hiera 1: Command Line Usage"
-	---
+```yaml
+---
+layout: default
+title: "Hiera 1: Command Line Usage"
+---
+```
 
 In addition, you can include a few other values in the frontmatter:
 
-* `canonical`
-* `description`
-* `toc`
-* `subtitle`
-* `munge_header_ids`
-* `nav`
-* `version_note`
+-   `canonical`
+-   `description`
+-   `toc`
+-   `subtitle`
+-   `munge_header_ids`
+-   `nav`
+-   `version_note`
 
 **Canonical:** Designates the canonical version of a given page. We use this to generate a canonical link that guides search engines to the most current, most relevant version of a given page. Testing has shown that this is very effective for consolidating search traffic on the most recent version of a given document. Format the canonical value as an absolute path from the docroot:
 
-	canonical: "/puppetdb/1.1/configure.html"
+```yaml
+canonical: "/puppetdb/1.1/configure.html"
+```
 
 **Description:** Designates a description meta tag for a given page. The description is used by search engines to generate a preview snippet in results pages, so this should not typically exceed 150 characters. Format this as a string:
 
-	description: "The hiera command line tool is useful for previewing and validating your hierarchy before putting it into production."
+```yaml
+description: "The hiera command line tool is useful for previewing and validating your hierarchy before putting it into production."
+```
 
 If you don't designate a description value, the templates will automatically include the first 150 characters of a given page as the description field. This isn't always ideal, but it's what Google would do automatically, and it keeps SEO tools in use around the company from complaining about the total lack of a description tag.
 
@@ -325,14 +357,3 @@ If you don't designate a description value, the templates will automatically inc
 **Version note:** This lets you set a version note that will appear somewhere on the page (under the page title header and before the in-page TOC, at the time of this writing). This lets you override the per-large-document notes set in `_config.yml` in the `version_notes` map.
 
 Version notes can optionally include a `<p class="noisy">`, which will make the note pop a bit more if it's something we really want users to notice.
-
-## Reference Links (remove when done with draft)
-[Markdown]: http://daringfireball.net/projects/markdown
-[YARD]: http://yardoc.org
-[kramdown]: http://kramdown.rubyforge.org
-[Puppet contribution guidelines]: https://github.com/puppetlabs/puppet/blob/master/CONTRIBUTING.md
-[Jekyll]: https://github.com/mojombo/jekyll
-[Liquid wiki]: https://github.com/Shopify/liquid/wiki
-
-
-
