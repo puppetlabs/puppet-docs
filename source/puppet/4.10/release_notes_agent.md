@@ -50,7 +50,7 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 4.10 releas
 
 ## Puppet agent 1.10.13
 
-Released June 2018.
+Released June 7, 2018.
 
 This release of Puppet agent includes bug fixes and security updates.
 

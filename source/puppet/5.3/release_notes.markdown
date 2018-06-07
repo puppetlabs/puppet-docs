@@ -22,13 +22,11 @@ Also of interest: the [Puppet 4.10 release notes](/puppet/4.10/release_notes.htm
 
 ## Puppet 5.3.7
 
-Released June 2018.
+Released June 7, 2018.
 
 This is a bug-fix and security release of Puppet.
 
 -   [All issues resolved in Puppet 5.3.7](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.3.7%27)
-
-### Component updates
 
 ### Bug fixes
 

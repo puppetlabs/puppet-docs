@@ -37,9 +37,9 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [
 
 ## Puppet agent 5.5.2
 
-Released June 2018.
+Released June 7, 2018.
 
-This release of Puppet agent contains several Puppet and Facter security and bug fixes.
+This release of Puppet Platform contains several Puppet and Facter security and bug fixes.
 
 ### Component updates
 

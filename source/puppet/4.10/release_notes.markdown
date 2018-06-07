@@ -20,13 +20,11 @@ Also of interest: the [Puppet 4.9 release notes](/puppet/4.9/release_notes.html)
 
 ## Puppet 4.10.12
 
-Released June 2018.
+Released June 7, 2018.
 
 This is a bug-fix and security release of Puppet.
 
 -   [All issues resolved in Puppet 4.10.12](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%204.10.12%27)
-
-### Component updates
 
 ### Bug fixes
 
