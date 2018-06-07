@@ -3,7 +3,21 @@ layout: default
 title: "Facter release notes"
 ---
 
-This page documents the history of the Facter 3.10 series.
+This page documents the history of the Facter 3.11 series.
+
+## Facter 3.11.2
+
+Released June 7, 2018.
+
+This is a bug-fix release that shipped with Puppet Platform 5.5.2.
+
+-   [All issues resolved in Facter 3.11.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.11.2%27)
+
+### Bug fix
+
+-   When using the `systemd-networkd` DHCP client, previous versions of the Linux networking resolver didn't know how to collect DHCP lease information, since it expected `dhclient` to be installed. Systems relying entirely on `systemd-networkd` for DHCP management do not use `dhclient`.
+
+    Facter 3.11.2 checks `systemd-networkd`'s DHCP leases directory (`/run/systemd/netif/leases`) in addition to `dhclient`'s lease files when attempting to identify DHCP servers.
 
 ## Facter 3.11.1
 

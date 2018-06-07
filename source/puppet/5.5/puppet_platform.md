@@ -92,7 +92,7 @@ To enable the Puppet 5 Platform repository:
 
    For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `puppet5-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
 
-2. Download the release package and install it as root using the `dpkg` tool and the `install` flag (`-i`):
+2. Download the release package and install it as root using the `dpkg` tool and the `install` flag (`-i`). For example, to download and install the release package for Debian 7 "Wheezy", run:
 
    ~~~
    wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
@@ -100,6 +100,12 @@ To enable the Puppet 5 Platform repository:
    ~~~
 
 3. Run `apt-get update` after installing the release package to update the `apt` package lists.
+
+#### Ubuntu 18.04 Bionic Beaver
+
+    wget https://apt.puppetlabs.com/puppet5-release-bionic.deb
+    sudo dpkg -i puppet5-release-bionic.deb
+    sudo apt update
 
 #### Ubuntu 16.04 Xenial Xerus
 

@@ -20,6 +20,38 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.2
+
+Released June 7, 2018.
+
+This is a bug-fix and security release of Puppet.
+
+-   [All issues resolved in Puppet 5.5.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.5.2%27)
+
+### Bug fixes
+
+-   In previous versions of Puppet, attempting to create a Numeric type from the String "0" would result in an error. Puppet 5.5.2 resolves this issue. ([PUP-8703](https://tickets.puppetlabs.com/browse/PUP-8703))
+
+-   When running Puppet on Ruby 2.0 or newer, Puppet would close and reopen HTTP connections that were idle for more than 2 seconds, causing increased load on Puppet masters. Puppet 5.5.2 ensures that the agent always uses the `http_keepalive_timeout` setting when determining when to close idle connections. ([PUP-8663](https://tickets.puppetlabs.com/browse/PUP-8663))
+
+-   When using the [`--freeze_main` option](./configuration.html#freezemain) in previous versions of Puppet, certain circumstances could result in an error even if no code being loaded modified the main loaded logic. Puppet 5.5.2 resolves this issue. ([PUP-8637](https://tickets.puppetlabs.com/browse/PUP-8637))
+
+-   Previous versions of Puppet did not allow aliased (custom) data types or Variant types to be used with the `match()` function. Puppet 5.5.2 removes this limitation. ([PUP-8745](https://tickets.puppetlabs.com/browse/PUP-8745))
+
+### Security fixes
+
+-   On Windows, Puppet no longer includes `/opt/puppetlabs/puppet/modules` in its default basemodulepath, because unprivileged users could create a `C:\opt` directory and escalate privileges. ([PUP-8707](https://tickets.puppetlabs.com/browse/PUP-8707))
+
+### New features
+
+-   Puppet 5.5.2 can accept globs in the path name for the `modulepath` as defined in `environment.conf`. ([PUP-8556](https://tickets.puppetlabs.com/browse/PUP-8556))
+
+-   Puppet 5.5.2 simplifies the logic for resolving resources' types in reports. ([PUP-8746](https://tickets.puppetlabs.com/browse/PUP-8746))
+
+### Deprecations
+
+-   Puppet 5.5.2 issues a deprecation warning when explicitly using a checksum value in the content property of a file resource. ([PUP-7534](https://tickets.puppetlabs.com/browse/PUP-7534))
+
 ## Puppet 5.5.1
 
 Released April 17, 2018.
