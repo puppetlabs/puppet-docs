@@ -7,7 +7,7 @@ This page documents the history of the Facter 3.11 series.
 
 ## Facter 3.11.2
 
-Released June 2018.
+Released June 7, 2018.
 
 This is a bug-fix release that shipped with Puppet Platform 5.5.2.
 
