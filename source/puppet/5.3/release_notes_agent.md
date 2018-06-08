@@ -46,6 +46,11 @@ Released June 7, 2018.
 
 This release of Puppet Platform contains several Puppet and Facter security and bug fixes.
 
+### Known issues
+
+-   Due to an issue with the Windows installer, Puppet agent 5.3.7 can inadvertently change permissions on files acr
+oss a Windows node's filesystem during installation or upgrade. This can cause serious issues on those nodes. The Puppet agent 5.3.7 installer binaries for Windows have been removed from our downloads as well as the Chocolatey community feed, and they should not be installed if downloaded. ([PA-2075](https://tickets.puppetlabs.com/browse/PA-2075))
+
 ### Component updates
 
 This release updates Puppet to [Puppet 5.3.7][].
