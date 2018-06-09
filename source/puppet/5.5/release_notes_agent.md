@@ -45,6 +45,10 @@ This release of Puppet Platform contains several Puppet and Facter security and 
 
 This release includes component updates to [Puppet 5.5.2][], [Facter 3.11.2][], [MCollective 2.12.2][], and [pxp-agent][] 1.9.2.
 
+### Known issues
+
+-   Due to an issue with the Windows installer, Puppet agent 5.5.2 can inadvertently change permissions on files across a Windows node's filesystem during installation or upgrade. This can cause serious issues on those nodes. The Puppet agent 5.5.2 installer binaries for Windows have been removed from our downloads as well as the Chocolatey community feed, and they should not be installed if downloaded or installed on their own or as part of Puppet Enterprise (PE) 2018.1.1. ([PA-2075](https://tickets.puppetlabs.com/browse/PA-2075))
+
 ### Bug fixes
 
 -   Previous versions of Puppet on Ruby 2.0 or newer would close and reopen HTTP connection that were idle for more than 2 seconds, causing increased load on Puppet masters. This version of Puppet ensures that the agent uses the `http_keepalive_timeout` setting when determining when to close idle connections. ([PUP-8663](https://tickets.puppetlabs.com/browse/PUP-8663))

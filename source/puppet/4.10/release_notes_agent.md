@@ -58,6 +58,10 @@ This release of Puppet agent includes bug fixes and security updates.
 
 This release updates Puppet to [Puppet 4.10.12][].
 
+### Known issues
+
+-   Due to an issue with the Windows installer, Puppet agent 1.10.13 can inadvertently change permissions on files across a Windows node's filesystem during installation or upgrade. This can cause serious issues on those nodes. The Puppet agent 1.10.13 installer binaries for Windows have been removed from our downloads as well as the Chocolatey community feed, and they should not be installed if downloaded or installed on their own or as part of Puppet Enterprise (PE) 2016.4.12. ([PA-2075](https://tickets.puppetlabs.com/browse/PA-2075))
+
 ### Bug fixes
 
 -   Previous versions of Puppet on Ruby 2.0 or newer would close and reopen HTTP connection that were idle for more than 2 seconds, causing increased load on Puppet masters. This version of Puppet ensures that the agent uses the `http_keepalive_timeout` setting when determining when to close idle connections. ([PUP-8663](https://tickets.puppetlabs.com/browse/PUP-8663))
