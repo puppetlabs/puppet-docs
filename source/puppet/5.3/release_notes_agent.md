@@ -52,7 +52,7 @@ There are no component updates in this Puppet agent release.
 
 ### Bug fixes
 
--   The previous version of the Windows Puppet agent installer had an internal MSI property resolution issue that could be triggered when a requesting that msiexec install the same version of the Puppet agent package that was already installed on the node. In those rare instances, and when combined with the permission resetting code introduced in [PA-2019](https://tickets.puppetlabs.com/browse/PA-2019) as a response to CVE-2018-6513, the Puppet agent package could execute `takeown.exe` and `icacls.exe` against the filesystem root (`C:\`), resulting in incorrectly rewritten permissions across the filesystem.
+-   The previous version of the Windows Puppet agent installer had an internal MSI property resolution issue that could be triggered when requesting that msiexec install the same version of the Puppet agent package that was already installed on the node. In those rare instances, and when combined with the permission resetting code introduced in [PA-2019](https://tickets.puppetlabs.com/browse/PA-2019) as a response to CVE-2018-6513, the Puppet agent package could execute `takeown.exe` and `icacls.exe` against the filesystem root (`C:\`), resulting in incorrectly rewritten permissions across the filesystem.
 
     Using the Chocolatey package provider to perform an in-place upgrade of the Puppet package during a Puppet run, which is the workflow used by Foreman, most commonly triggered this behavior.
 
