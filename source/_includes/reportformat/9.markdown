@@ -1,6 +1,6 @@
-## Report Format 8
+## Report Format 9
 
-This is the format of reports output by Puppet versions 5.4.z. It does not include backward-incompatible changes to [report format 7](../5.3/format_report.html).
+This is the format of reports output by Puppet versions 5.5.0 and newer. It does not include backward-incompatible changes to [report format 8](../5.4/format_report.html).
 
 ### Puppet::Transaction::Report
 
@@ -32,6 +32,7 @@ This is the format of reports output by Puppet versions 5.4.z. It does not inclu
 
 <table>
   <tr><th>Property</th><th>Type</th><th>Description</th></tr>
+  <tr><td>provider_used</td><td>string</td><td>The name of the provider used by the resource.</td></tr>
   <tr><td>file</td><td>string</td><td>the pathname of the manifest file which triggered the log message.</td></tr>
   <tr><td>line</td><td>integer</td><td>the line number in the manifest file which triggered the log message.</td></tr>
   <tr><td>level</td><td>symbol</td><td>severity of the message. Possible values for level are :debug, :info, :notice, :warning, :err, :alert, :emerg, :crit</td></tr>
@@ -115,6 +116,6 @@ A Puppet::Transaction::Event object represents a single event for a single resou
 * `noop`: property was out of sync, and wasn't changed due to noop mode.
 * `audit`: property was in sync, and was being audited.
 
-### Differences from Report Format 7
+### Differences from Report Format 8
 
-* `transaction_completed` was added to `Puppet::Transaction::Report`
+* `provider_used` was added to `Puppet::Util::Log`
