@@ -32,7 +32,6 @@ This is the format of reports output by Puppet versions 5.5.0 and newer. It does
 
 <table>
   <tr><th>Property</th><th>Type</th><th>Description</th></tr>
-  <tr><td>provider_used</td><td>string</td><td>The name of the provider used by the resource.</td></tr>
   <tr><td>file</td><td>string</td><td>the pathname of the manifest file which triggered the log message.</td></tr>
   <tr><td>line</td><td>integer</td><td>the line number in the manifest file which triggered the log message.</td></tr>
   <tr><td>level</td><td>symbol</td><td>severity of the message. Possible values for level are :debug, :info, :notice, :warning, :err, :alert, :emerg, :crit</td></tr>
@@ -75,6 +74,7 @@ A Puppet::Resource::Status object represents the status of a single resource.
   <tr><td>resource_type</td><td>string</td><td>the resource type, capitalized.</td></tr>
   <tr><td>title</td><td>title</td><td>the resource title.</td></tr>
   <tr><td>resource</td><td>string</td><td>the resource name, in the form Type[title]. This is always the same as the key corresponding to this Puppet::Resource::Status object in the resource_statuses hash. Deprecated.</td></tr>
+  <tr><td>provider_used</td><td>string</td><td>The name of the provider used by the resource.</td></tr>
   <tr><td>file</td><td>string</td><td>the pathname of the manifest file which declared the resource</td></tr>
   <tr><td>line</td><td>integer</td><td>the line number in the manifest file which declared the resource</td></tr>
   <tr><td>evaluation_time</td><td>float</td><td>the amount of time, in seconds, taken to evaluate the resource. Not present in inspect reports.</td></tr>
@@ -118,4 +118,4 @@ A Puppet::Transaction::Event object represents a single event for a single resou
 
 ### Differences from Report Format 8
 
-* `provider_used` was added to `Puppet::Util::Log`
+* `provider_used` was added to `Puppet::Report::Status`
