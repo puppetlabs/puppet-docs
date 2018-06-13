@@ -35,6 +35,24 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
 
+## Puppet agent 5.5.3
+
+Released June 13, 2018.
+
+This release of Puppet agent resolves a critical Windows installer bug.
+
+### Component updates
+
+There are no component updates in this Puppet agent release.
+
+### Bug fixes
+
+-   The previous version of the Windows Puppet agent installer had an internal MSI property resolution issue that could be triggered when a requesting that msiexec install the same version of the Puppet agent package that was already installed on the node. In those rare instances, and when combined with the permission resetting code introduced in [PA-2019](https://tickets.puppetlabs.com/browse/PA-2019) as a response to CVE-2018-6513, the Puppet agent package could execute `takeown.exe` and `icacls.exe` against the filesystem root (`C:\`), resulting in incorrectly rewritten permissions across the filesystem.
+
+    Using the Chocolatey package provider to perform an in-place upgrade of the Puppet package during a Puppet run, which is the workflow used by Foreman, most commonly triggered this behavior.
+
+    Puppet agent 5.5.3 resolves both of these problems by implementing a workaround of the MSI property resolution issue and making the PA-2019 permission resetting code more defensive. ([PA-2075](https://tickets.puppetlabs.com/browse/PA-2075))
+
 ## Puppet agent 5.5.2
 
 Released June 7, 2018.
@@ -47,7 +65,7 @@ This release includes component updates to [Puppet 5.5.2][], [Facter 3.11.2][], 
 
 ### Known issues
 
--   Due to an issue with the Windows installer, Puppet agent 5.5.2 can inadvertently change permissions on files across a Windows node's filesystem during installation or upgrade. This can cause serious issues on those nodes. The Puppet agent 5.5.2 installer binaries for Windows have been removed from our downloads as well as the Chocolatey community feed, and they should not be installed if downloaded or installed on their own or as part of Puppet Enterprise (PE) 2018.1.1. ([PA-2075](https://tickets.puppetlabs.com/browse/PA-2075))
+-   Due to an issue with the Windows installer, Puppet agent 5.5.2 can inadvertently change permissions on files across a Windows node's filesystem when re-installed or in certain rare installation scenarios. This can cause serious issues on those nodes. The Puppet agent 5.5.2 installer binaries for Windows have been removed from our downloads as well as the Chocolatey community feed, and they should not be installed if downloaded or installed on their own or as part of Puppet Enterprise (PE) 2018.1.1. ([PA-2075](https://tickets.puppetlabs.com/browse/PA-2075))
 
 ### Bug fixes
 
