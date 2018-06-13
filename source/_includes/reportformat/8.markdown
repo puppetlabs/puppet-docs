@@ -1,6 +1,6 @@
-## Report Format 7
+## Report Format 8
 
-This is the format of reports output by Puppet versions 5.0 and later.
+This is the format of reports output by Puppet versions 5.4.z. It does not include backward-incompatible changes to [report format 7](../5.3/format_report.html).
 
 ### Puppet::Transaction::Report
 
@@ -20,6 +20,7 @@ This is the format of reports output by Puppet versions 5.0 and later.
   <tr><td>report_format</td><td>string or integer</td><td>"7", or 7</td></tr>
   <tr><td>puppet_version</td><td>string</td><td>The version of the Puppet agent.</td></tr>
   <tr><td>status</td><td>string</td><td>"failed", "changed", or "unchanged"</td></tr>
+  <tr><td>transaction_completed</td><td>boolean</td><td>Whether the transaction completed. For instance, if the transaction didn't have an unrescued exception, transaction_completed should be true.</td></tr>
   <tr><td>noop</td><td>boolean</td><td>Whether or not the Puppet run was started in noop mode.</td></tr>
   <tr><td>noop_pending</td><td>boolean</td><td>Whether or not there are changes that Puppet decided not to apply because of noop.</td></tr>
   <tr><td>environment</td><td>string</td><td>The environment that was used for the puppet run.</td></tr>
@@ -114,6 +115,6 @@ A Puppet::Transaction::Event object represents a single event for a single resou
 * `noop`: property was out of sync, and wasn't changed due to noop mode.
 * `audit`: property was in sync, and was being audited.
 
-### Differences from Report Format 6
+### Differences from Report Format 7
 
-* `kind` was removed from `Puppet::Transaction::Report`
+* `transaction_completed` was added to `Puppet::Transaction::Report`
