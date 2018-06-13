@@ -53,6 +53,8 @@ There are no component updates in this Puppet agent release.
 
     Puppet agent 5.5.3 resolves both of these problems by implementing a workaround of the MSI property resolution issue and making the PA-2019 permission resetting code more defensive. ([PA-2075](https://tickets.puppetlabs.com/browse/PA-2075))
 
+-   In Puppet agent 5.5.2, Puppet's systemd services were not always enabled as expected on Debian and derivative operating systems, such as within the `debian-installer` chroot. This could lead to Puppet services being disabled after an automated deployment of agent 5.5.2 on these operating systems. Puppet agent 5.5.3 fixes this regression. ([PA-2072](https://tickets.puppetlabs.com/browse/PA-2072))
+
 ## Puppet agent 5.5.2
 
 Released June 7, 2018.
