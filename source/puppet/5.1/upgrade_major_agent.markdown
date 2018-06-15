@@ -12,7 +12,7 @@ title: "Upgrading Puppet 3.8.x agents to 5.x"
 
 Although there have been a lot of changes to Puppet agent configuration since Puppet 3.8, the process of upgrading Puppet 3 agents to the latest versions of Puppet can be automated in a way that server upgrades can't.
 
-### Decide how to upgrade your nodes
+## Decide how to upgrade your nodes
 
 We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 5.
 
@@ -26,7 +26,7 @@ The next steps explain both methods.
 
 > **WARNING:** Other methods of automatically installing and upgrading Puppet agent, such as through Chocolatey, are unstable and untested.
 
-### Upgrade with the `puppet_agent` module
+## Upgrade with the `puppet_agent` module
 
 The `puppet_agent` module does the following things for you:
 
@@ -57,7 +57,7 @@ The `puppet_agent` module does the following things for you:
 
 3.  After you've upgraded your entire deployment, do the [post-upgrade clean-up tasks](./upgrade_major_post.html).
 
-### Upgrade manually or build your own automation
+## Upgrade manually or build your own automation
 
 > **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
