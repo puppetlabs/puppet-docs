@@ -14,11 +14,9 @@ Although there are a lot of changes to Puppet agent configuration from Puppet 3.
 
 ### Decide how to upgrade your nodes
 
-We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 4.
+We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 5.
 
-> *Note:* This module has not yet been tested for upgrades to Puppet 5, but the process should be the same.
-
-If you're running Puppet on Windows or [any supported Linux operating system](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agents.
+If you're running Puppet on Windows or [any Linux operating system for which we publish puppet-agent packages](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agents.
 
 If you're running Puppet on other operating systems, you can't upgrade them with the module. You can either upgrade your agents manually or automate the process yourself.
 
@@ -61,7 +59,7 @@ To upgrade agents without using the `puppet_agent` module, you can either instal
 
 1.  Install the new version of Puppet.
 
-Find your operating system in the sidebar navigation to the left and follow the Puppet agent installation instructions.
+    Find your operating system in the sidebar navigation to the left and follow the Puppet agent installation instructions.
 
 2.  Move SSL files (\*nix only).
 
