@@ -10,9 +10,7 @@ title: "Upgrading Puppet 3.8.x agents to 5.x"
 [facter]: /facter/
 [Puppet Platform]: ./puppet_platform.html
 
-Although there have been a lot of changes to Puppet agent configuration since Puppet 3.8, the process of upgrading agents to the latest versions of Puppet can be automated in a way that server upgrades can't.
-
-> **Puppet Enterprise Note:** This document covers upgrading open source Puppet agents. If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
+Although there have been a lot of changes to Puppet agent configuration since Puppet 3.8, the process of upgrading Puppet 3 agents to the latest versions of Puppet can be automated in a way that server upgrades can't.
 
 ### Decide how to upgrade your nodes
 
@@ -36,7 +34,7 @@ The `puppet_agent` module does the following things for you:
 -   Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][], and [MCollective][].
 -   Copies Puppet's SSL files to their new location.
 -   Copies your old `puppet.conf` to its [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
--   Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/mcollective/deploy/plugins.html) to the `libdir` setting.
+-   Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/docs/mcollective/current/deploy/plugins.html) to the `libdir` setting.
 -   Ensures the Puppet and MCollective services are running.
 
 > **Note**: This module works on Windows and supported Linux distributions. If your agents run any other operating systems, skip to ["Upgrade Manually or Build Your Own Automation"](#upgrade-manually-or-build-your-own-automation).
@@ -77,17 +75,17 @@ To upgrade agents without using the `puppet_agent` module, you can either instal
 
     Locate your [`ssldir`](./dirs_ssldir.html) in `/etc/puppet/puppet.conf` and move that directory's contents to `/etc/puppetlabs/puppet/ssl` without changing the files' permissions. For example, run `sudo cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl`.
 
-3.  Reconcile `puppet.conf`
+3.  Reconcile `puppet.conf`.
 
     On \*nix systems, we moved [`puppet.conf`](./config_file_main.html) from `/etc/puppet/puppet.conf` to `/etc/puppetlabs/puppet/puppet.conf`. Either edit the new `puppet.conf` file or copy your old version. (We didn't change `puppet.conf`'s location on Windows.)
 
     Examine the new `puppet.conf` regardless of your operating system and confirm that:
 
     -   It includes any necessary modifications.
-    -   It excludes any settings that were [removed in Puppet 4.0](/puppet/3.8/deprecated_settings.html). Notably, if you set `stringify_facts=false` [before upgrading](./upgrade_major_pre.html), remove this setting.
+    -   It excludes any settings that were [removed in Puppet 4.0](https://docs.puppet.com/puppet/3.8/deprecated_settings.html). Notably, if you set `stringify_facts=false` [before upgrading](./upgrade_major_pre.html), remove this setting.
     -   All [important settings](./config_important_settings.html#settings-for-puppet-master-servers) are correctly configured for your site.
 
-4.  Start service or update cron job.
+4.  Start the service or update the cron job.
 
     We also moved Puppet binaries to `/opt/puppetlabs/bin` in Puppet 4. If you run Puppet as a service, configure it to launch at boot using `/opt/puppetlabs/bin/puppet resource`:
 
@@ -97,7 +95,7 @@ To upgrade agents without using the `puppet_agent` module, you can either instal
 
     If you use a cron job to periodically run `puppet agent -t` on your \*nix systems, edit the job and update the `puppet` binary's path to `/opt/puppetlabs/bin/puppet`.
 
-5.  Reconcile MCollective configuration files (\*nix only)
+5.  Reconcile MCollective configuration files (\*nix only).
 
     On \*nix systems, we moved MCollective's configuration files from `/etc/mcollective` to `/etc/puppetlabs/mcollective`.
 
