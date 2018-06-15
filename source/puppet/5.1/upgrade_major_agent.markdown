@@ -8,15 +8,17 @@ title: "Upgrading Puppet 3.8.x agents to 5.x"
 [puppet_agent]: https://forge.puppet.com/puppetlabs/puppet_agent
 [moved]: ./whered_it_go.html
 [facter]: /facter/
-[Puppet Platform]: ./puppet_platform.md
+[Puppet Platform]: ./puppet_platform.html
 
-Although there are a lot of changes to Puppet agent configuration from Puppet 3.8 to Puppet 4, the process of upgrading agents to Puppet 5 can be automated in a way that server upgrades can't.
+Although there have been a lot of changes to Puppet agent configuration since Puppet 3.8, the process of upgrading agents to the latest versions of Puppet can be automated in a way that server upgrades can't.
 
-> **Note:** If you're using Puppet Enterprise (PE), see [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
+> **Puppet Enterprise Note:** This document covers upgrading open source Puppet agents. If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
 ### Decide how to upgrade your nodes
 
-We provide and support a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3.
+We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 5.
+
+> **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
 If you're running Puppet on Windows or [any Linux operating system for which we publish puppet-agent packages](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agents.
 
@@ -26,8 +28,6 @@ The next steps explain both methods.
 
 ### Upgrade with the `puppet_agent` module
 
-> **Note**: This module works on Windows and supported Linux distributions. If your agents run any other operating systems, skip to ["Upgrade Manually or Build Your Own Automation"](#upgrade-manually-or-build-your-own-automation).
-
 The `puppet_agent` module does the following things for you:
 
 -   Enables the [Puppet Platform][] repository, if applicable.
@@ -36,6 +36,10 @@ The `puppet_agent` module does the following things for you:
 -   Copies your old `puppet.conf` to its [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
 -   Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/mcollective/deploy/plugins.html) to the `libdir` setting.
 -   Ensures the Puppet and MCollective services are running.
+
+> **Note**: This module works on Windows and supported Linux distributions. If your agents run any other operating systems, skip to ["Upgrade Manually or Build Your Own Automation"](#upgrade-manually-or-build-your-own-automation).
+
+> **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
 1.  Install the module on Puppet servers.
 
@@ -54,6 +58,8 @@ The `puppet_agent` module does the following things for you:
 3.  After you've upgraded your entire deployment, do the [post-upgrade clean-up tasks](./upgrade_major_post.html).
 
 ### Upgrade manually or build your own automation
+
+> **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
 To upgrade agents without using the `puppet_agent` module, you can either install the upgrades manually or design your own upgrade automation.
 
