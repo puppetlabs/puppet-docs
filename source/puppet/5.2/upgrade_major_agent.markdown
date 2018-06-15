@@ -26,6 +26,8 @@ If you're running Puppet on other operating systems, you can't upgrade them with
 
 The next steps explain both methods.
 
+> **WARNING:** Other methods of automatically installing and upgrading Puppet agent, such as through Chocolatey, are unstable and untested.
+
 ### Upgrade with the `puppet_agent` module
 
 The `puppet_agent` module does the following things for you:
