@@ -14,7 +14,7 @@ Although there have been a lot of changes to Puppet agent configuration since Pu
 
 ## Decide how to upgrade your nodes
 
-We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 5.
+We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 4.
 
 > **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
