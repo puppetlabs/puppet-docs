@@ -34,7 +34,7 @@ Install the Puppet agent so that your master can communicate with your Windows n
 
    >**Note:** Puppet dual-signs `puppet-agent` packages. You might see a warning from your browser saying the signature is corrupt or invalid.
    >
-   > ![invalid or corrupt](./images/windows_invalid_signature.jpg)
+   > ![invalid or corrupt](./images/windows_invalid_signature.png)
    >
    > If you want to verify the package is dual-signed, right-click on the MSI, and select **Properties**. Navigate to the **Digital Signatures** tab and you should see something similar to:
    >
