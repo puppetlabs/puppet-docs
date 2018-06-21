@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 file
 -----
@@ -126,7 +126,7 @@ path to another file as the ensure value, it is equivalent to specifying
 
 However, we recommend using `link` and `target` explicitly, since this
 behavior can be harder to read and is
-[deprecated](https://docs.puppetlabs.com/puppet/4.3/reference/deprecated_language.html)
+[deprecated](https://docs.puppet.com/puppet/4.3/deprecated_language.html)
 as of Puppet 4.3.0.
 
 Valid values are `absent` (also called `false`), `file`, `present`, `directory`, `link`. Values can match `/./`.
@@ -221,8 +221,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](https://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
-or [file](https://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
+[template](https://puppet.com/docs/puppet/latest/function.html#template)
+or [file](https://puppet.com/docs/puppet/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
@@ -755,4 +755,5 @@ Provider support:
 </table>
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

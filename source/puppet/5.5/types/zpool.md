@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: zpool'
 canonical: "/puppet/latest/types/zpool.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 zpool
 -----
@@ -27,6 +27,7 @@ Supports vdevs with mirrors, raidz, logs and spares.
   <a href="#zpool-attribute-disk">disk</a>        =&gt; <em># The disk(s) for this pool. Can be an array or a...</em>
   <a href="#zpool-attribute-log">log</a>         =&gt; <em># Log disks for this pool. This type does not...</em>
   <a href="#zpool-attribute-mirror">mirror</a>      =&gt; <em># List of all the devices to mirror for this pool. </em>
+  <a href="#zpool-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `zpool...</em>
   <a href="#zpool-attribute-raid_parity">raid_parity</a> =&gt; <em># Determines parity when using the `raidz...</em>
   <a href="#zpool-attribute-raidz">raidz</a>       =&gt; <em># List of all the devices to raid for this pool...</em>
   <a href="#zpool-attribute-spare">spare</a>       =&gt; <em># Spare disk(s) for this...</em>
@@ -47,12 +48,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to zpool attributes](#zpool-attributes))
 
@@ -79,7 +75,19 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 List of all the devices to mirror for this pool. Each mirror should be a
 space separated string:
 
-    mirror => [\"disk1 disk2\", \"disk3 disk4\"],
+    mirror => ["disk1 disk2", "disk3 disk4"],
+
+([↑ Back to zpool attributes](#zpool-attributes))
+
+<h4 id="zpool-attribute-provider">provider</h4>
+
+The specific backend to use for this `zpool`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`zpool`](#zpool-provider-zpool)
 
 ([↑ Back to zpool attributes](#zpool-attributes))
 
@@ -96,7 +104,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 List of all the devices to raid for this pool. Should be an array of
 space separated strings:
 
-    raidz => [\"disk1 disk2\", \"disk3 disk4\"],
+    raidz => ["disk1 disk2", "disk3 disk4"],
 
 ([↑ Back to zpool attributes](#zpool-attributes))
 
@@ -115,9 +123,9 @@ Spare disk(s) for this pool.
 
 Provider for zpool.
 
-* Required binaries: `zpool`
+* Required binaries: `zpool`.
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

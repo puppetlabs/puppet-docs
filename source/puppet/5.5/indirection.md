@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: Indirection Reference
 toc: columns
 canonical: "/puppet/latest/indirection.html"
@@ -328,12 +328,12 @@ A node is composed of its name, its facts, and its environment.
 ### `exec` terminus
 
 Call an external program to get node information.  See
-the [External Nodes](https://docs.puppetlabs.com/guides/external_nodes.html) page for more information.
+the [External Nodes](https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html) page for more information.
 
 ### `ldap` terminus
 
 Search in LDAP for node configuration information.  See
-the [LDAP Nodes](https://docs.puppetlabs.com/guides/ldap_nodes.html) page for more information.  This will first
+the [LDAP Nodes](https://puppet.com/docs/puppet/latest/nodes_ldap.html) page for more information.  This will first
 search for whatever the certificate name is, then (if that name
 contains a `.`) for the short name, then `default`.
 Requires ruby-ldap with MRI ruby or jruby-ldap with puppetserver/jruby

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 package
 -----
@@ -43,6 +43,7 @@ resource will autorequire those files.
 
 <pre><code>package { 'resource title':
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
+  <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-ensure">ensure</a>               =&gt; <em># What state the package should be in. On...</em>
   <a href="#package-attribute-adminfile">adminfile</a>            =&gt; <em># A file containing package defaults for...</em>
   <a href="#package-attribute-allow_virtual">allow_virtual</a>        =&gt; <em># Specifies if virtual package names are allowed...</em>
@@ -101,6 +102,58 @@ conditionally:
 
 ([↑ Back to package attributes](#package-attributes))
 
+<h4 id="package-attribute-provider">provider</h4>
+
+_(**Secondary namevar:** This resource type allows you to manage multiple resources with the same name as long as their providers are different.)_
+
+The specific backend to use for this `package`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`aix`](#package-provider-aix)
+* [`appdmg`](#package-provider-appdmg)
+* [`apple`](#package-provider-apple)
+* [`apt`](#package-provider-apt)
+* [`aptitude`](#package-provider-aptitude)
+* [`aptrpm`](#package-provider-aptrpm)
+* [`blastwave`](#package-provider-blastwave)
+* [`dnf`](#package-provider-dnf)
+* [`dpkg`](#package-provider-dpkg)
+* [`fink`](#package-provider-fink)
+* [`freebsd`](#package-provider-freebsd)
+* [`gem`](#package-provider-gem)
+* [`hpux`](#package-provider-hpux)
+* [`macports`](#package-provider-macports)
+* [`nim`](#package-provider-nim)
+* [`openbsd`](#package-provider-openbsd)
+* [`opkg`](#package-provider-opkg)
+* [`pacman`](#package-provider-pacman)
+* [`pip3`](#package-provider-pip3)
+* [`pip`](#package-provider-pip)
+* [`pkg`](#package-provider-pkg)
+* [`pkgdmg`](#package-provider-pkgdmg)
+* [`pkgin`](#package-provider-pkgin)
+* [`pkgng`](#package-provider-pkgng)
+* [`pkgutil`](#package-provider-pkgutil)
+* [`portage`](#package-provider-portage)
+* [`ports`](#package-provider-ports)
+* [`portupgrade`](#package-provider-portupgrade)
+* [`puppet_gem`](#package-provider-puppet_gem)
+* [`rpm`](#package-provider-rpm)
+* [`rug`](#package-provider-rug)
+* [`sun`](#package-provider-sun)
+* [`sunfreeware`](#package-provider-sunfreeware)
+* [`tdnf`](#package-provider-tdnf)
+* [`up2date`](#package-provider-up2date)
+* [`urpmi`](#package-provider-urpmi)
+* [`windows`](#package-provider-windows)
+* [`yum`](#package-provider-yum)
+* [`zypper`](#package-provider-zypper)
+
+([↑ Back to package attributes](#package-attributes))
+
 <h4 id="package-attribute-ensure">ensure</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -118,17 +171,7 @@ patterns are not accepted except for the `gem` package provider. For
 example, to install the bash package from the rpm
 `bash-4.1.2-29.el6.x86_64.rpm`, use the string `'4.1.2-29.el6'`.
 
-Default: `installed`
-
-Allowed values:
-
-* `present`
-* `absent`
-* `purged`
-* `held`
-* `installed`
-* `latest`
-* `/./`
+Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`. Values can match `/./`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -150,14 +193,9 @@ The value of `adminfile` will be passed directly to the `pkgadd` or
 
 Specifies if virtual package names are allowed for install and uninstall.
 
-Default: `true`
+Valid values are `true`, `false`, `yes`, `no`.
 
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Requires features virtual_packages.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -166,10 +204,7 @@ Allowed values:
 Tells apt to allow cdrom sources in the sources.list file.
 Normally apt will bail if you try this.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -185,12 +220,7 @@ Whether to keep or replace modified config files when installing or
 upgrading a package. This only affects the `apt` and `dpkg` providers.
 Defaults to `keep`.
 
-Default: `keep`
-
-Allowed values:
-
-* `keep`
-* `replace`
+Valid values are `keep`, `replace`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -216,7 +246,7 @@ vendor.  One commonly implemented option is `INSTALLDIR`:
     package { 'mysql':
       ensure          => installed,
       source          => 'N:/packages/mysql-5.5.16-winx64.msi',
-      install_options => [ '/S', { 'INSTALLDIR' => 'C:\\mysql-5.5' } ],
+      install_options => [ '/S', { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
     }
 
 Each option in the array can either be a string or a hash, where each
@@ -229,6 +259,10 @@ installation command, forward slashes won't be automatically converted
 like they are in `file` resources.) Note also that backslashes in
 double-quoted strings _must_ be escaped and backslashes in single-quoted
 strings _can_ be escaped.
+
+
+
+Requires features install_options.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -262,6 +296,10 @@ settings.
 Again, check the documentation of your platform's package provider to see
 the actual usage.
 
+
+
+Requires features package_settings.
+
 ([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-platform">platform</h4>
@@ -285,12 +323,7 @@ cause unnecessary re-installs.
 
 Defaults to `false`.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -354,6 +387,10 @@ separators should be used.  Note that backslashes in double-quoted
 strings _must_ be double-escaped and backslashes in single-quoted
 strings _may_ be double-escaped.
 
+
+
+Requires features uninstall_options.
+
 ([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-vendor">vendor</h4>
@@ -381,16 +418,16 @@ Note that package downgrades are *not* supported; if your resource specifies
 a specific version number and there is already a newer version of the package
 installed on the machine, the resource will fail with an error message.
 
-* Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`
-* Confined to: `operatingsystem == [ :aix ]`
-* Default for: `["operatingsystem", "aix"] == `
+* Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`.
+* Default for `operatingsystem` == `aix`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-appdmg">appdmg</h4>
 
 Package management which copies application bundles to a target.
 
-* Required binaries: `/usr/bin/hdiutil`, `/usr/bin/curl`, `/usr/bin/ditto`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
+* Required binaries: `/usr/bin/curl`, `/usr/bin/ditto`, `/usr/bin/hdiutil`.
+* Supported features: `installable`.
 
 <h4 id="package-provider-apple">apple</h4>
 
@@ -400,8 +437,8 @@ it only supports installation; no deletion or upgrades.  The provider will
 automatically add the `.pkg` extension, so leave that off when specifying
 the package name.
 
-* Required binaries: `/usr/sbin/installer`
-* Confined to: `operatingsystem == darwin`
+* Required binaries: `/usr/sbin/installer`.
+* Supported features: `installable`.
 
 <h4 id="package-provider-apt">apt</h4>
 
@@ -411,27 +448,30 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`
-* Default for: `["osfamily", "debian"] == `
+* Required binaries: `/usr/bin/apt-cache`, `/usr/bin/apt-get`, `/usr/bin/debconf-set-selections`.
+* Default for `osfamily` == `debian`.
+* Supported features: `holdable`, `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptitude">aptitude</h4>
 
 Package management via `aptitude`.
 
-* Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`
+* Required binaries: `/usr/bin/apt-cache`, `/usr/bin/aptitude`.
+* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptrpm">aptrpm</h4>
 
 Package management via `apt-get` ported to `rpm`.
 
-* Required binaries: `apt-get`, `apt-cache`, `rpm`
+* Required binaries: `apt-cache`, `apt-get`, `rpm`.
+* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-blastwave">blastwave</h4>
 
 Package management using Blastwave.org's `pkg-get` command on Solaris.
 
-* Required binaries: `pkgget`
-* Confined to: `osfamily == solaris`
+* Required binaries: `pkg-get`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-dnf">dnf</h4>
 
@@ -445,8 +485,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `dnf`, `rpm`
-* Default for: `["operatingsystem", "fedora"] == ["operatingsystemmajrelease", "(22..30).to_a"]`
+* Required binaries: `dnf`, `rpm`.
+* Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24, 25, 26, 27, 28, 29, 30`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
 
@@ -454,13 +495,15 @@ Package management via `dpkg`.  Because this only uses `dpkg`
 and not `apt`, you must specify the source of any packages you want
 to manage.
 
-* Required binaries: `/usr/bin/dpkg`, `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`
+* Required binaries: `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`, `/usr/bin/dpkg`.
+* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-fink">fink</h4>
 
 Package management via `fink`.
 
-* Required binaries: `/sw/bin/fink`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`, `/sw/bin/dpkg-query`
+* Required binaries: `/sw/bin/apt-cache`, `/sw/bin/apt-get`, `/sw/bin/dpkg-query`, `/sw/bin/fink`.
+* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-freebsd">freebsd</h4>
 
@@ -470,8 +513,8 @@ ports and packages.  Apparently all of the tools are written in Ruby,
 so there are plans to rewrite this support to directly use those
 libraries.
 
-* Required binaries: `/usr/sbin/pkg_info`, `/usr/sbin/pkg_add`, `/usr/sbin/pkg_delete`
-* Confined to: `operatingsystem == freebsd`
+* Required binaries: `/usr/sbin/pkg_add`, `/usr/sbin/pkg_delete`, `/usr/sbin/pkg_info`.
+* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-gem">gem</h4>
 
@@ -487,15 +530,16 @@ which allow command-line flags to be passed to the gem command.
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `gem`
+* Required binaries: `gem`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-hpux">hpux</h4>
 
 HP-UX's packaging system.
 
-* Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`
-* Confined to: `operatingsystem == hp-ux`
-* Default for: `["operatingsystem", "hp-ux"] == `
+* Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`.
+* Default for `operatingsystem` == `hp-ux`.
+* Supported features: `installable`, `uninstallable`.
 
 <h4 id="package-provider-macports">macports</h4>
 
@@ -508,7 +552,8 @@ Variant preferences may be specified using
 When specifying a version in the Puppet DSL, only specify the version, not the revision.
 Revisions are only used internally for ensuring the latest version/revision of a port.
 
-* Confined to: `operatingsystem == darwin`
+* Required binaries: `/opt/local/bin/port`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-nim">nim</h4>
 
@@ -521,8 +566,8 @@ Note that package downgrades are *not* supported; if your resource specifies
 a specific version number and there is already a newer version of the package
 installed on the machine, the resource will fail with an error message.
 
-* Required binaries: `/usr/sbin/nimclient`, `/usr/bin/lslpp`, `rpm`
-* Confined to: `exists == /etc/niminfo`
+* Required binaries: `/usr/bin/lslpp`, `/usr/sbin/nimclient`, `rpm`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-openbsd">openbsd</h4>
 
@@ -533,17 +578,17 @@ attributes, which allow command-line flags to be passed to pkg_add and pkg_delet
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `pkg_info`, `pkg_add`, `pkg_delete`
-* Confined to: `operatingsystem == openbsd`
-* Default for: `["operatingsystem", "openbsd"] == `
+* Required binaries: `pkg_add`, `pkg_delete`, `pkg_info`.
+* Default for `operatingsystem` == `openbsd`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-opkg">opkg</h4>
 
 Opkg packaging support. Common on OpenWrt and OpenEmbedded platforms
 
-* Required binaries: `opkg`
-* Confined to: `operatingsystem == openwrt`
-* Default for: `["operatingsystem", "openwrt"] == `
+* Required binaries: `opkg`.
+* Default for `operatingsystem` == `openwrt`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-pacman">pacman</h4>
 
@@ -553,9 +598,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/pacman`
-* Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
-* Default for: `["operatingsystem", "[:archlinux, :manjarolinux]"] == `
+* Required binaries: `/usr/bin/pacman`.
+* Default for `operatingsystem` == `archlinux, manjarolinux`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `virtual_packages`.
 
 <h4 id="package-provider-pip">pip</h4>
 
@@ -565,6 +610,8 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
+
 <h4 id="package-provider-pip3">pip3</h4>
 
 Python packages via `pip3`.
@@ -573,13 +620,15 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
+
 <h4 id="package-provider-pkg">pkg</h4>
 
 OpenSolaris image packaging system. See pkg(5) for more information.
 
-* Required binaries: `/usr/bin/pkg`
-* Confined to: `osfamily == solaris`
-* Default for: `["osfamily", "solaris"] == ["kernelrelease", "['5.11', '5.12']"]`
+* Required binaries: `/usr/bin/pkg`.
+* Default for `kernelrelease` == `5.11, 5.12` and `osfamily` == `solaris`.
+* Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
 
@@ -605,30 +654,32 @@ Notes:
   whether a package has been installed. Thus, to install new a version of a
   package, you must create a new DMG with a different filename.
 
-* Required binaries: `/usr/sbin/installer`, `/usr/bin/hdiutil`, `/usr/bin/curl`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for: `["operatingsystem", "darwin"] == `
+* Required binaries: `/usr/bin/curl`, `/usr/bin/hdiutil`, `/usr/sbin/installer`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `installable`.
 
 <h4 id="package-provider-pkgin">pkgin</h4>
 
 Package management using pkgin, a binary package manager for pkgsrc.
 
-* Required binaries: `pkgin`
-* Default for: `["operatingsystem", "[ :smartos, :netbsd ]"] == `
+* Required binaries: `pkgin`.
+* Default for `operatingsystem` == `smartos, netbsd`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgng">pkgng</h4>
 
 A PkgNG provider for FreeBSD and DragonFly.
 
-* Required binaries: `/usr/local/sbin/pkg`
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Required binaries: `/usr/local/sbin/pkg`.
+* Default for `operatingsystem` == `freebsd, dragonfly`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgutil">pkgutil</h4>
 
 Package management using Peter Bonivart's ``pkgutil`` command on Solaris.
 
-* Confined to: `osfamily == solaris`
+* Required binaries: `pkgutil`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-portage">portage</h4>
 
@@ -638,14 +689,16 @@ This provider supports the `install_options` and `uninstall_options` attributes,
 flags to be passed to emerge.  These options should be specified as a string (e.g. '--flag'), a hash
 (e.g. {'--flag' => 'value'}), or an array where each element is either a string or a hash.
 
-* Confined to: `operatingsystem == gentoo`
-* Default for: `["operatingsystem", "gentoo"] == `
+* Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`, `/usr/bin/qatom`.
+* Default for `operatingsystem` == `gentoo`.
+* Supported features: `install_options`, `installable`, `purgeable`, `reinstallable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-ports">ports</h4>
 
 Support for FreeBSD's ports.  Note that this, too, mixes packages and ports.
 
-* Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`
+* Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/sbin/pkg_info`.
+* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-portupgrade">portupgrade</h4>
 
@@ -653,12 +706,16 @@ Support for FreeBSD's ports using the portupgrade ports management software.
 Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
 for the portupgrade port.
 
-* Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`
+* Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/sbin/pkg_info`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-puppet_gem">puppet_gem</h4>
 
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
+
+* Required binaries: `/opt/puppetlabs/puppet/bin/gem`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -670,14 +727,15 @@ attributes, which allow command-line flags to be passed to rpm.
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `rpm`
+* Required binaries: `rpm`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-rug">rug</h4>
 
 Support for suse `rug` package manager.
 
-* Required binaries: `/usr/bin/rug`, `rpm`
-* Confined to: `operatingsystem == [:suse, :sles]`
+* Required binaries: `/usr/bin/rug`, `rpm`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-sun">sun</h4>
 
@@ -688,9 +746,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`
-* Confined to: `osfamily == solaris`
-* Default for: `["osfamily", "solaris"] == `
+* Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`.
+* Default for `osfamily` == `solaris`.
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-sunfreeware">sunfreeware</h4>
 
@@ -698,8 +756,8 @@ Package management using sunfreeware.com's `pkg-get` command on Solaris.
 At this point, support is exactly the same as `blastwave` support and
 has not actually been tested.
 
-* Required binaries: `pkg-get`
-* Confined to: `osfamily == solaris`
+* Required binaries: `pkg-get`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-tdnf">tdnf</h4>
 
@@ -709,24 +767,26 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be spcified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}), or an
 array where each element is either a string or a hash.
 
-* Required binaries: `tdnf`, `rpm`
-* Default for: `["operatingsystem", "PhotonOS"] == `
+* Required binaries: `rpm`, `tdnf`.
+* Default for `operatingsystem` == `PhotonOS`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-up2date">up2date</h4>
 
 Support for Red Hat's proprietary `up2date` package update
 mechanism.
 
-* Required binaries: `/usr/sbin/up2date-nox`
-* Confined to: `osfamily == redhat`
-* Default for: `["osfamily", "redhat"] == ["lsbdistrelease", "[\"2.1\", \"3\", \"4\"]"]`
+* Required binaries: `/usr/sbin/up2date-nox`.
+* Default for `lsbdistrelease` == `2.1, 3, 4` and `osfamily` == `redhat`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-urpmi">urpmi</h4>
 
 Support via `urpmi`.
 
-* Required binaries: `urpmi`, `urpmq`, `rpm`, `urpme`
-* Default for: `["operatingsystem", "[:mandriva, :mandrake]"] == `
+* Required binaries: `rpm`, `urpme`, `urpmi`, `urpmq`.
+* Default for `operatingsystem` == `mandriva, mandrake`.
+* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-windows">windows</h4>
 
@@ -747,8 +807,8 @@ uninstall, then the appropriate arguments should be specified using the
 `install_options` or `uninstall_options` attributes, respectively.  Puppet
 will automatically quote any option that contains spaces.
 
-* Confined to: `operatingsystem == windows`
-* Default for: `["operatingsystem", "windows"] == `
+* Default for `operatingsystem` == `windows`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `versionable`.
 
 <h4 id="package-provider-yum">yum</h4>
 
@@ -762,8 +822,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `yum`, `rpm`
-* Default for: `["osfamily", "redhat"] == `
+* Required binaries: `rpm`, `yum`.
+* Default for `osfamily` == `redhat`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-zypper">zypper</h4>
 
@@ -773,9 +834,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/zypper`
-* Confined to: `operatingsystem == [:suse, :sles, :sled, :opensuse]`
-* Default for: `["operatingsystem", "[:suse, :sles, :sled, :opensuse]"] == `
+* Required binaries: `/usr/bin/zypper`.
+* Default for `operatingsystem` == `suse, sles, sled, opensuse`.
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h3 id="package-provider-features">Provider Features</h3>
 
@@ -817,13 +878,13 @@ Provider support:
       <td>aix</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -831,7 +892,7 @@ Provider support:
       <td>appdmg</td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -845,7 +906,7 @@ Provider support:
       <td>apple</td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -857,29 +918,29 @@ Provider support:
     </tr>
     <tr>
       <td>apt</td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
       <td>aptitude</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -887,13 +948,13 @@ Provider support:
       <td>aptrpm</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -901,13 +962,13 @@ Provider support:
       <td>blastwave</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -915,13 +976,13 @@ Provider support:
       <td>dnf</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -929,27 +990,27 @@ Provider support:
       <td>dpkg</td>
       <td><em>X</em> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td>fink</td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -957,13 +1018,13 @@ Provider support:
       <td>freebsd</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -971,13 +1032,13 @@ Provider support:
       <td>gem</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -985,12 +1046,12 @@ Provider support:
       <td>hpux</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1013,13 +1074,13 @@ Provider support:
       <td>nim</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1027,12 +1088,12 @@ Provider support:
       <td>openbsd</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1041,13 +1102,13 @@ Provider support:
       <td>opkg</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1055,12 +1116,12 @@ Provider support:
       <td>pacman</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -1097,13 +1158,13 @@ Provider support:
       <td>pkg</td>
       <td><em>X</em> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1111,7 +1172,7 @@ Provider support:
       <td>pkgdmg</td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1139,12 +1200,12 @@ Provider support:
       <td>pkgng</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1153,13 +1214,13 @@ Provider support:
       <td>pkgutil</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1167,13 +1228,13 @@ Provider support:
       <td>portage</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1181,13 +1242,13 @@ Provider support:
       <td>ports</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1195,13 +1256,13 @@ Provider support:
       <td>portupgrade</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1209,13 +1270,13 @@ Provider support:
       <td>puppet_gem</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1223,13 +1284,13 @@ Provider support:
       <td>rpm</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1237,13 +1298,13 @@ Provider support:
       <td>rug</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1251,13 +1312,13 @@ Provider support:
       <td>sun</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1265,13 +1326,13 @@ Provider support:
       <td>sunfreeware</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1279,13 +1340,13 @@ Provider support:
       <td>tdnf</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1293,13 +1354,13 @@ Provider support:
       <td>up2date</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1307,13 +1368,13 @@ Provider support:
       <td>urpmi</td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1335,13 +1396,13 @@ Provider support:
       <td>yum</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1349,13 +1410,13 @@ Provider support:
       <td>zypper</td>
       <td> </td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1364,4 +1425,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: zfs'
 canonical: "/puppet/latest/types/zfs.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 zfs
 -----
@@ -41,6 +41,7 @@ parent zfs instances, the zfs resource will autorequire them.
   <a href="#zfs-attribute-mountpoint">mountpoint</a>     =&gt; <em># The mountpoint property. Valid values are...</em>
   <a href="#zfs-attribute-nbmand">nbmand</a>         =&gt; <em># The nbmand property. Valid values are `on`...</em>
   <a href="#zfs-attribute-primarycache">primarycache</a>   =&gt; <em># The primarycache property. Valid values are...</em>
+  <a href="#zfs-attribute-provider">provider</a>       =&gt; <em># The specific backend to use for this `zfs...</em>
   <a href="#zfs-attribute-quota">quota</a>          =&gt; <em># The quota property. Valid values are `&lt;size>`...</em>
   <a href="#zfs-attribute-readonly">readonly</a>       =&gt; <em># The readonly property. Valid values are `on`...</em>
   <a href="#zfs-attribute-recordsize">recordsize</a>     =&gt; <em># The recordsize property. Valid values are powers </em>
@@ -75,12 +76,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -201,6 +197,18 @@ The nbmand property. Valid values are `on`, `off`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The primarycache property. Valid values are `all`, `none`, `metadata`.
+
+([↑ Back to zfs attributes](#zfs-attributes))
+
+<h4 id="zfs-attribute-provider">provider</h4>
+
+The specific backend to use for this `zfs`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`zfs`](#zfs-provider-zfs)
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -347,9 +355,9 @@ The zoned property. Valid values are `on`, `off`.
 
 Provider for zfs.
 
-* Required binaries: `zfs`
+* Required binaries: `zfs`.
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

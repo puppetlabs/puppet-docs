@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -51,7 +51,7 @@ debug</p>
 <p>The optional debug property specifies transport-level debugging,
 and is limited to telnet and ssh transports.</p>
 
-<p>See https://docs.puppet.com/puppet/latest/config_file_device.html for details.</p>
+<p>See https://puppet.com/docs/puppet/latest/config_file_device.html for details.</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: interface'
 canonical: "/puppet/latest/types/interface.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 interface
 -----
@@ -24,17 +24,18 @@ switchport characteristics (speed, duplex).
 <pre><code>interface { 'resource title':
   <a href="#interface-attribute-name">name</a>                =&gt; <em># <strong>(namevar)</strong> The interface's...</em>
   <a href="#interface-attribute-ensure">ensure</a>              =&gt; <em># The basic property that the resource should be...</em>
-  <a href="#interface-attribute-access_vlan">access_vlan</a>         =&gt; <em># Interface static access vlan.  Allowed values:...</em>
+  <a href="#interface-attribute-access_vlan">access_vlan</a>         =&gt; <em># Interface static access vlan.  Values can match...</em>
   <a href="#interface-attribute-allowed_trunk_vlans">allowed_trunk_vlans</a> =&gt; <em># Allowed list of Vlans that this trunk can...</em>
   <a href="#interface-attribute-description">description</a>         =&gt; <em># Interface...</em>
   <a href="#interface-attribute-device_url">device_url</a>          =&gt; <em># The URL at which the router or switch can be...</em>
-  <a href="#interface-attribute-duplex">duplex</a>              =&gt; <em># Interface duplex.  Allowed values:  * `auto` ...</em>
-  <a href="#interface-attribute-encapsulation">encapsulation</a>       =&gt; <em># Interface switchport encapsulation.  Allowed...</em>
-  <a href="#interface-attribute-etherchannel">etherchannel</a>        =&gt; <em># Channel group this interface is part of....</em>
+  <a href="#interface-attribute-duplex">duplex</a>              =&gt; <em># Interface duplex.  Valid values are `auto`...</em>
+  <a href="#interface-attribute-encapsulation">encapsulation</a>       =&gt; <em># Interface switchport encapsulation.  Valid...</em>
+  <a href="#interface-attribute-etherchannel">etherchannel</a>        =&gt; <em># Channel group this interface is part of.  Values </em>
   <a href="#interface-attribute-ipaddress">ipaddress</a>           =&gt; <em># IP Address of this interface. Note that it might </em>
-  <a href="#interface-attribute-mode">mode</a>                =&gt; <em># Interface switchport mode.  Allowed values:  ...</em>
-  <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan when trunking.  Allowed...</em>
-  <a href="#interface-attribute-speed">speed</a>               =&gt; <em># Interface speed.  Allowed values:  * `auto` ...</em>
+  <a href="#interface-attribute-mode">mode</a>                =&gt; <em># Interface switchport mode.  Valid values are...</em>
+  <a href="#interface-attribute-native_vlan">native_vlan</a>         =&gt; <em># Interface native vlan when trunking.  Values can </em>
+  <a href="#interface-attribute-provider">provider</a>            =&gt; <em># The specific backend to use for this `interface` </em>
+  <a href="#interface-attribute-speed">speed</a>               =&gt; <em># Interface speed.  Valid values are `auto`...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -52,14 +53,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
-* `shutdown`
-* `no_shutdown`
+Valid values are `present` (also called `no_shutdown`), `absent` (also called `shutdown`).
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -69,9 +63,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface static access vlan.
 
-Allowed values:
-
-* `/^\d+/`
+Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -81,10 +73,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Allowed list of Vlans that this trunk can forward.
 
-Allowed values:
-
-* `all`
-* `/./`
+Valid values are `all`. Values can match `/./`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -108,11 +97,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface duplex.
 
-Allowed values:
-
-* `auto`
-* `full`
-* `half`
+Valid values are `auto`, `full`, `half`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -122,12 +107,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport encapsulation.
 
-Allowed values:
-
-* `none`
-* `dot1q`
-* `isl`
-* `negotiate`
+Valid values are `none`, `dot1q`, `isl`, `negotiate`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -137,9 +117,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Channel group this interface is part of.
 
-Allowed values:
-
-* `/^\d+/`
+Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -167,12 +145,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport mode.
 
-Allowed values:
-
-* `access`
-* `trunk`
-* `dynamic auto`
-* `dynamic desirable`
+Valid values are `access`, `trunk`, `dynamic auto`, `dynamic desirable`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -182,9 +155,19 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface native vlan when trunking.
 
-Allowed values:
+Values can match `/^\d+/`.
 
-* `/^\d+/`
+([↑ Back to interface attributes](#interface-attributes))
+
+<h4 id="interface-attribute-provider">provider</h4>
+
+The specific backend to use for this `interface`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`cisco`](#interface-provider-cisco)
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -194,10 +177,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface speed.
 
-Allowed values:
-
-* `auto`
-* `/^\d+/`
+Valid values are `auto`. Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -211,4 +191,4 @@ Cisco switch/router provider for interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

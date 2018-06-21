@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: selmodule'
 canonical: "/puppet/latest/types/selmodule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 selmodule
 -----
@@ -29,6 +29,7 @@ resource will autorequire that file.
 <pre><code>selmodule { 'resource title':
   <a href="#selmodule-attribute-name">name</a>          =&gt; <em># <strong>(namevar)</strong> The name of the SELinux policy to be managed....</em>
   <a href="#selmodule-attribute-ensure">ensure</a>        =&gt; <em># The basic property that the resource should be...</em>
+  <a href="#selmodule-attribute-provider">provider</a>      =&gt; <em># The specific backend to use for this `selmodule` </em>
   <a href="#selmodule-attribute-selmoduledir">selmoduledir</a>  =&gt; <em># The directory to look for the compiled pp module </em>
   <a href="#selmodule-attribute-selmodulepath">selmodulepath</a> =&gt; <em># The full path to the compiled .pp policy module. </em>
   <a href="#selmodule-attribute-syncversion">syncversion</a>   =&gt; <em># If set to `true`, the policy will be reloaded if </em>
@@ -50,12 +51,19 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
+Valid values are `present`, `absent`.
 
-Allowed values:
+([↑ Back to selmodule attributes](#selmodule-attributes))
 
-* `present`
-* `absent`
+<h4 id="selmodule-attribute-provider">provider</h4>
+
+The specific backend to use for this `selmodule`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`semodule`](#selmodule-provider-semodule)
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
@@ -66,8 +74,6 @@ Currently defaults to `/usr/share/selinux/targeted`.  If the
 `selmodulepath` attribute is not specified, Puppet will expect to find
 the module in `<selmoduledir>/<name>.pp`, where `name` is the value of the
 `name` parameter.
-
-Default: `/usr/share/selinux/targeted`
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
@@ -87,10 +93,7 @@ version found in the on-disk file differs from the loaded
 version.  If set to `false` (the default) the only check
 that will be made is if the policy is loaded at all or not.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
@@ -101,9 +104,9 @@ Allowed values:
 
 Manage SELinux policy modules using the semodule binary.
 
-* Required binaries: `/usr/sbin/semodule`
+* Required binaries: `/usr/sbin/semodule`.
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

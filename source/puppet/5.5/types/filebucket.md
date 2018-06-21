@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: filebucket'
 canonical: "/puppet/latest/types/filebucket.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 filebucket
 -----
@@ -51,7 +51,7 @@ restricted `auth.conf` file, you may need to allow access to the
 <pre><code>filebucket { 'resource title':
   <a href="#filebucket-attribute-name">name</a>   =&gt; <em># <strong>(namevar)</strong> The name of the...</em>
   <a href="#filebucket-attribute-path">path</a>   =&gt; <em># The path to the _local_ filebucket; defaults to...</em>
-  <a href="#filebucket-attribute-port">port</a>   =&gt; <em># </em>
+  <a href="#filebucket-attribute-port">port</a>   =&gt; <em># The port on which the remote server is...</em>
   <a href="#filebucket-attribute-server">server</a> =&gt; <em># The server providing the remote filebucket...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -74,7 +74,8 @@ this attribute to `false`.
 
 <h4 id="filebucket-attribute-port">port</h4>
 
-
+The port on which the remote server is listening. Defaults to the
+value of the `masterport` setting, which is usually 8140.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
 
@@ -92,4 +93,4 @@ This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

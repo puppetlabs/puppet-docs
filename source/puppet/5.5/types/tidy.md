@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: tidy'
 canonical: "/puppet/latest/types/tidy.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 tidy
 -----
@@ -103,12 +103,7 @@ up a common source of confusion.
 If target is a directory, recursively descend
 into the directory looking for files to tidy.
 
-Allowed values:
-
-* `true`
-* `false`
-* `inf`
-* `/^[0-9]+$/`
+Valid values are `true`, `false`, `inf`. Values can match `/^[0-9]+$/`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -119,12 +114,7 @@ directories whose age is older than the specified criteria.
 This will only remove empty directories, so all contained
 files must also be tidied before a directory gets removed.
 
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -143,13 +133,7 @@ be used.
 
 Set the mechanism for determining age. Default: atime.
 
-Default: `atime`
-
-Allowed values:
-
-* `atime`
-* `mtime`
-* `ctime`
+Valid values are `atime`, `mtime`, `ctime`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -157,4 +141,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

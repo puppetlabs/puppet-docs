@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: sshkey'
 canonical: "/puppet/latest/types/sshkey.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 sshkey
 -----
@@ -28,6 +28,7 @@ type to manage authorized keys.
   <a href="#sshkey-attribute-ensure">ensure</a>       =&gt; <em># The basic property that the resource should be...</em>
   <a href="#sshkey-attribute-host_aliases">host_aliases</a> =&gt; <em># Any aliases the host might have.  Multiple...</em>
   <a href="#sshkey-attribute-key">key</a>          =&gt; <em># The key itself; generally a long string of...</em>
+  <a href="#sshkey-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `sshkey...</em>
   <a href="#sshkey-attribute-target">target</a>       =&gt; <em># The file in which to store the ssh key.  Only...</em>
   <a href="#sshkey-attribute-type">type</a>         =&gt; <em># The encryption type used.  Probably ssh-dss or...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
@@ -47,12 +48,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
@@ -81,6 +77,18 @@ other attributes):
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
+<h4 id="sshkey-attribute-provider">provider</h4>
+
+The specific backend to use for this `sshkey`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`parsed`](#sshkey-provider-parsed)
+
+([↑ Back to sshkey attributes](#sshkey-attributes))
+
 <h4 id="sshkey-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -96,17 +104,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The encryption type used.  Probably ssh-dss or ssh-rsa.
 
-Allowed values:
-
-* `ssh-dss`
-* `ssh-ed25519`
-* `ssh-rsa`
-* `ecdsa-sha2-nistp256`
-* `ecdsa-sha2-nistp384`
-* `ecdsa-sha2-nistp521`
-* `dsa`
-* `ed25519`
-* `rsa`
+Valid values are `ssh-dss` (also called `dsa`), `ssh-ed25519` (also called `ed25519`), `ssh-rsa` (also called `rsa`), `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`.
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
@@ -120,4 +118,4 @@ Parse and generate host-wide known hosts files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 schedule
 -----
@@ -15,7 +15,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
+[`schedule`](https://puppet.com/docs/puppet/latest/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -121,13 +121,7 @@ start, that next run will be suppressed).
 See the `periodmatch` attribute for tuning whether to match
 times by their distance apart or by their specific value.
 
-Allowed values:
-
-* `hourly`
-* `daily`
-* `weekly`
-* `monthly`
-* `never`
+Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -137,12 +131,7 @@ Whether periods should be matched by a numeric value (for instance,
 whether two times are in the same hour) or by their chronological
 distance apart (whether two times are 60 minutes apart).
 
-Default: `distance`
-
-Allowed values:
-
-* `number`
-* `distance`
+Valid values are `number`, `distance`.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -169,8 +158,6 @@ ranges, you can cross midnight (for example, `range => "22:00 - 04:00"`).
 
 How often a given resource may be applied in this schedule's `period`.
 Defaults to 1; must be an integer.
-
-Default: `1`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -202,4 +189,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

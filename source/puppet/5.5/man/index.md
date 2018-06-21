@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: Puppet Man Pages
 canonical: "/puppet/latest/man/index.html"
 ---
@@ -23,7 +23,7 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 - [puppet lookup](./lookup.html)
 
 
-Occasionally Useful Subcommands
+Secondary subcommands
 -----
 
 Many or most users will need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
@@ -40,7 +40,7 @@ Many or most users will need to use these subcommands at some point, but they ar
 - [puppet plugin](./plugin.html)
 
 
-Niche Subcommands
+Niche subcommands
 -----
 
 Most users can ignore these subcommands. They're only useful for certain niche workflows, and most of them are interfaces to Puppet's internal subsystems.
@@ -57,7 +57,11 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 - [puppet status](./status.html)
 
 
-Unknown or New Subcommands
+## Puppet Enterprise-specific subcommands
+
+Puppet Enterprise (PE) has some unique subcommands, such as `puppet infrastructure`. For reference information about these commands, use the `puppet help` command, such as `puppet help infrastructure`. For usage information, see the [Puppet Enterprise documentation](https://puppet.com/docs/pe/).
+
+Unknown or new subcommands
 -----
 
 These subcommands have not yet been added to any of the categories above.

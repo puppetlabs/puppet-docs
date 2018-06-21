@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Puppet HTTP API: Index'
 canonical: "/puppet/latest/http_api/http_api_index.html"
 ---
@@ -116,11 +116,11 @@ with JSON (MIME type of `application/json`).
 
 ### Puppet Server-specific endpoints
 
-When using [Puppet Server 2.3 or newer](https://docs.puppet.com/puppetserver/2.3/)
+When using [Puppet Server 2.3 or newer](https://puppet.com/docs/puppetserver/2.3/)
 as a Puppet master, Puppet Server adds additional `/puppet/v3/` endpoints:
 
-* [Static File Content](https://docs.puppet.com/puppetserver/latest/puppet-api/v3/static_file_content.md)
-* [Environment Classes](https://docs.puppet.com/puppetserver/latest/puppet-api/v3/environment_classes.md)
+* [Static File Content](https://puppet.com/docs/puppetserver/latest/puppet-api/v3/static_file_content.md)
+* [Environment Classes](https://puppet.com/docs/puppetserver/latest/puppet-api/v3/environment_classes.md)
 
 #### Error Responses
 

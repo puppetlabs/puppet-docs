@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: resources'
 canonical: "/puppet/latest/types/resources.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 resources
 -----
@@ -45,14 +45,7 @@ autorequired by any managed resources. **Note:** The `ssh_authorized_key`
 resource type can't be purged this way; instead, see the `purge_ssh_keys`
 attribute of the `user` type.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to resources attributes](#resources-attributes))
 
@@ -62,11 +55,7 @@ This keeps system users from being purged.  By default, it
 does not purge users whose UIDs are less than the minimum UID for the system (typically 500 or 1000), but you can specify
 a different UID as the inclusive limit.
 
-Allowed values:
-
-* `true`
-* `false`
-* `/^\d+$/`
+Valid values are `true`, `false`. Values can match `/^\d+$/`.
 
 ([↑ Back to resources attributes](#resources-attributes))
 
@@ -82,4 +71,4 @@ To specify a range of uids, consider using the range() function from stdlib.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Man Page: puppet lookup'
 canonical: "/puppet/latest/man/lookup.html"
 ---
@@ -57,7 +57,7 @@ error.</p>
 value for the first found key, omitting the rest.</p>
 
 <p>For more details about how Hiera works, see the Hiera documentation:
-https://docs.puppet.com/puppet/latest/hiera_intro.html</p>
+https://puppet.com/docs/puppet/latest/hiera_intro.html</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
 
