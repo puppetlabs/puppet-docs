@@ -4,9 +4,12 @@ title: "Custom facts walkthrough"
 ---
 
 [Facter 3.0.2 release notes]: ../3.0/release_notes.html#facter--p-restored
-[Plugins in Modules]: /puppet/latest/plugins_in_modules.html
+[Plugins in Modules]: /docs/puppet/latest/plugins_in_modules.html
+[Adding plug-ins to a module]: /docs/puppet/latest/plugins_in_modules.html#adding-plug-ins-to-a-module
 
 You can add custom facts by writing snippets of Ruby code on the Puppet master. Puppet then uses [Plugins in Modules][] to distribute the facts to the client.
+
+For information on how to add custom facts to modules, see [Adding plug-ins to a module][].
 
 ## Adding custom facts to Facter
 
