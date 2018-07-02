@@ -511,6 +511,10 @@ documents:
     version: "3.4"
     nav: ./_facter_toc.html
     hide: true
+  /facter/3.3:
+    doc: facter
+    version: "3.3"
+    nav: ./_facter_toc.html
   /facter/3.1:
     doc: facter
     version: "3.1"
