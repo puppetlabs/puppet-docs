@@ -261,36 +261,36 @@ documents:
       puppetdb: "4.2"
     hide: true
 
- /pe/2016.2:
-   doc: pe
-   version: "2016.2"
-   nav: ./_pe_toc.html
-   external_source:
-     repo: git@github.com:puppetlabs/pe-docs-private.git
-     commit: origin/pe2016.2.1
-     subdirectory: source
-   my_versions:
-     puppet: "4.5"
-     facter: "3.1"
-     hiera: "3.2"
-     puppetserver: "2.4"
-     puppetdb: "4.1"
+  /pe/2016.2:
+    doc: pe
+    version: "2016.2"
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/pe2016.2.1
+      subdirectory: source
+    my_versions:
+      puppet: "4.5"
+      facter: "3.1"
+      hiera: "3.2"
+      puppetserver: "2.4"
+      puppetdb: "4.1"
 
- /pe/3.8:
-   doc: pe
-   version: "3.8"
-   nav: ./_pe_toc.html
-   external_source:
-     repo: git@github.com:puppetlabs/pe-docs-private.git
-     commit: origin/pe3.8.7
-     subdirectory: source
-   my_versions:
-     puppet: "3.8"
-     facter: "2.4"
-     hiera: "1"
-     puppetserver: "1.2"
-     puppetdb: "2.3"
-   hide: true
+  /pe/3.8:
+    doc: pe
+    version: "3.8"
+    nav: ./_pe_toc.html
+    external_source:
+      repo: git@github.com:puppetlabs/pe-docs-private.git
+      commit: origin/pe3.8.7
+      subdirectory: source
+    my_versions:
+      puppet: "3.8"
+      facter: "2.4"
+      hiera: "1"
+      puppetserver: "1.2"
+      puppetdb: "2.3"
+    hide: true
 
   /ja/pe/2017.2:
     doc: pe_ja
