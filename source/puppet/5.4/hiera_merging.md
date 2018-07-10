@@ -182,7 +182,7 @@ Each key is either the full name of a lookup key (like `ntp::servers`) or a regu
 
 Each value is a hash with a `merge` key. A merge behavior can be a string or a hash.
 
-`lookup_options` is a reserved key — you can’t put other kinds of data in it, and you can’t look it up directly. This only reserved key in Hiera.
+`lookup_options` is a reserved key — you can’t put other kinds of data in it, and you can’t look it up directly. This is the only reserved key in Hiera.
 
 ### Overriding merge behavior
 
