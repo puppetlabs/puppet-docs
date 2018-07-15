@@ -35,6 +35,28 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
 
+## Puppet agent 5.5.4
+
+Released July 17, 2018.
+
+This release of Puppet Platform contains several bug fixes, some new features, and several new deprecations in Puppet.
+
+### Component updates
+
+--
+
+### Deprecated components
+
+-   As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
+
+### Platform updates
+
+This version of Puppet agent adds packages for Fedora 28 (i386 and x86_64).
+
+### Bug fixes
+
+-   pxp-agent 1.9.3 adds proxy configuration options. Set a proxy between `pxp-agent` and `pcp-broker` with `broker-ws-proxy`, and between `pxp-agent` and a Puppet master with `master-proxy`.
+
 ## Puppet agent 5.5.3
 
 Released June 13, 2018.
