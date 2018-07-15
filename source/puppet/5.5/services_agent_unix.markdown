@@ -4,7 +4,7 @@ title: "Puppet's services: Puppet agent on *nix systems"
 ---
 
 [resource type reference]: ./type.html
-[MCollective]: /mcollective
+[MCollective]: /docs/mcollective
 [puppet.conf]: ./config_file_main.html
 [runinterval]: ./configuration.html#runinterval
 [onetime]: ./configuration.html#onetime
@@ -71,7 +71,7 @@ On \*nix nodes, there are three main ways to do this:
 * **Make a cron job that runs Puppet agent.** Requires more manual configuration, but a good choice if you want to reduce the number of persistent processes on your systems.
 * **Only run Puppet agent on demand.** You can also deploy [MCollective][] to run on demand on many nodes.
 
-Choose whichever one works best for your infrastructure and culture. 
+Choose whichever one works best for your infrastructure and culture.
 
 ### Run Puppet agent as a service
 
@@ -137,11 +137,11 @@ Puppet agent runs can be started while logged in to the target system, or remote
    ssh ops@magpie.example.com sudo puppet agent --test
    ```
 
-To run remotely on _many_ machines, you need some form of orchestration or parallel execution tool, such as MCollective. MCollective ships as a part of the `puppet-agent` package, but you need to [deploy it](/mcollective/deploy/standard.html) and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent). Once everything is ready, see the instructions in [the puppet agent plugin's README](https://github.com/puppetlabs/mcollective-puppet-agent#readme) for usage details.
+To run remotely on _many_ machines, you need some form of orchestration or parallel execution tool, such as [Bolt](/docs/bolt/) or [MCollective](/docs/mcollective/) with [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent).
+
+> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
 
 ## Disable and re-enable Puppet runs
-
-<!-- maybe this should go at the top? seems like a frequently used command. -->
 
 Whether you're troubleshooting errors, working in a maintenance window, or simply developing in a sandbox environment, you may need to temporarily disable the Puppet agent from running.
 
@@ -149,8 +149,6 @@ Whether you're troubleshooting errors, working in a maintenance window, or simpl
 
    * Disable -- `sudo puppet agent --disable "<MESSAGE>"`.
    * Enable -- `sudo puppet agent --enable`.
-
-
 
 ## Configuring Puppet agent
 
