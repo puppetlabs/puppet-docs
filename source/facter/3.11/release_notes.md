@@ -5,11 +5,25 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.11 series.
 
+## Facter 3.11.3
+
+Released July 17, 2018.
+
+This is a bug-fix release that shipped with Puppet Platform 5.5.4.
+
+-   [All issues resolved in Facter 3.11.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.11.3%27)
+
+### Bug fixes
+
+-   Facter 3.11.3 correctly reads the format of `/etc/system-release` and reports the `os release` fact on Amazon Linux 2. Previous versions of Facter instead fell back to the kernel version. ([FACT-1865](https://tickets.puppetlabs.com/browse/FACT-1865))
+
+-   Facter 3.11.3 no longer tries to read `kstat` entries that it does not need to process. This avoids potential permissions issues when run in a zone or as non-root on Solaris. ([FACT-1832](https://tickets.puppetlabs.com/browse/FACT-1832))
+
 ## Facter 3.11.2
 
 Released June 7, 2018.
 
-This is a bug-fix release that shipped with Puppet Platform 5.5.2.
+This is a bug-fix release that shipped with Puppet Platform 5.5.2 and 5.5.3.
 
 -   [All issues resolved in Facter 3.11.2](https://tickets.puppetlabs.com/issues/?jql=fixVersion+%3D+%27FACT+3.11.2%27)
 
