@@ -3,91 +3,85 @@ layout: default
 title: "Puppet's services: Puppet device"
 ---
 
-
 [man]: ./man/device.html
 [device.conf]: ./config_file_device.html
 [deviceconfig]: /configuration.html#deviceconfig
-[PUP-1391]: https://tickets.puppetlabs.com/browse/PUP-1391
 [report]: ./reporting_about.html
 
-## Overview
+The `puppet device` application manages certificates, collects facts, retrieves and applies catalogs, and stores reports for a device. Devices that cannot run Puppet applications require a Puppet agent to act as a proxy that runs the `puppet device` subcommand.
 
-Puppet device is an application that manages certificates, collects facts, retrieves and applies catalogs, and stores reports for a device. Devices that cannot run Puppet applications require a (proxy) Puppet agent to act as a proxy to run the Puppet device subcommand.
-
-For details about the Puppet device command, see [the puppet device man page][man].
+For details about the `puppet device` command, see [the puppet device man page][man] and [Puppet device documentation](./puppet_device.html).
 
 ## Supported platforms
 
-Puppet device runs similarly on both \*nix and Windows systems.
+The `puppet device` command runs similarly on both \*nix and Windows systems.
 
 ## Run environment
 
-Unlike Puppet agent, Puppet device never runs as a daemon or service. It always runs as a single task in the foreground that manages devices, and exits.
+Unlike Puppet agent, `puppet device` never runs as a daemon or service. It always runs as a single task in the foreground that manages devices, then exits.
 
 ### User
 
-Puppet device runs as whichever user executed the Puppet device command.
+The `puppet device` command runs as whichever user executed it.
 
-You should run Puppet device as:
+You should run `puppet device` as:
 
-* `root` on \*nix systems
-* Either `LocalService` or a member of the `Administrators` group on Windows systems
-
-Due to a bug [PUP-1391][], the `--user=root` option is required, even when Puppet device is run as root, for runs that create certificates or keys.
+-   `root` on \*nix systems
+-   Either `LocalService` or a member of the `Administrators` group on Windows systems
 
 ### Logging
 
-By default, Puppet device logs directly to the terminal. This is valuable for interactive use, but less valuable when running as a cron job or scheduled task.
+By default, the `puppet device` command logs directly to the terminal. This is valuable for interactive use, but less valuable when running as a `cron` job or scheduled task.
 
-When run with the `--logdest syslog` option, Puppet device logs to the \*nix syslog service. Your syslog configuration dictates where these messages will be saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on Mac OS X, and `/var/adm/messages` on Solaris.
+When run with the `--logdest syslog` option, `puppet device` logs to the \*nix syslog service. Your syslog configuration dictates where these messages are saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on OS X/macOS, and `/var/adm/messages` on Solaris.
 
-When run with the `--logdest eventlog` option, it logs to the Windows Event Log. You can view its logs by browsing the Event Viewer. (Control Panel → System and Security → Administrative Tools → Event Viewer)
+When run with the `--logdest eventlog` option, `puppet device` logs to the Windows Event Log. You can view its logs by browsing the Event Viewer (Control Panel → System and Security → Administrative Tools → Event Viewer).
 
-When run with the `--logdest <FILE>` option, it logs to the file specified by `<FILE>`.
+When run with the `--logdest <FILE>` option, `puppet device` logs to the specified file.
 
 You can adjust how verbose the logs are with the `--debug` and `--verbose` options.
 
 ### Network access
 
-By default, Puppet device communicates over the network with the devices it manages. It never accepts inbound network connections.
+By default, `puppet device` communicates over the network with the devices it manages. It never accepts inbound network connections.
 
-In addition to local logging, Puppet device submits a [report][] to the Puppet master after each run.
+In addition to local logging, `puppet device` submits a [report][] to the Puppet master after each run.
 
-## Configuration of Puppet device
+## Configuring `puppet device`
 
-Configure Puppet device with [device.conf][].
+Configure `puppet device` with [device.conf][].
 
 You can specify multiple devices in [device.conf][], which is configurable with the [deviceconfig][] setting.
 
 For example:
 
-~~~
+```ini
 [device.example.com]
 type f5
 url https://admin:password@device.example.com/
-~~~
+```
 
-You can use `puppet device --target` to specify a device, which will perform a run for only that device.
+You can then use `puppet device --target` to specify a device, and the command then performs a run for only that device.
 
-You can also create a separate configuration file for each device, and use `puppet device --deviceconfig` to specify the path to the configuration file for a device.
+You can also create a separate configuration file for each device, and use `puppet device --deviceconfig` to specify the path to the device's configuration file.
 
-## Classification of agents and devices
+## Classifying agents and devices
 
 ### Agent
 
-A common practice is to classify the proxy Puppet agent for a device with the base class of the device provider.
+You can classify the proxy Puppet agent for a device with the base class of the device provider.
 
 For example:
 
-~~~
+```puppet
 node 'device-proxy.example.com' {
 	class {'f5': }
 }
-~~~
+```
 
 Apply the classification by running `puppet agent -t` on the proxy Puppet agent.
 
-(Note that this can vary by device provider.)
+(Note that this classification can vary by device provider.)
 
 ### Device
 
@@ -95,7 +89,7 @@ Define resources on the device.
 
 For example:
 
-~~~
+```puppet
 node 'device.example.com' {
 	f5_virtualserver { '/Common/puppet_vs':
 		ensure                     => 'present',
@@ -110,34 +104,36 @@ node 'device.example.com' {
 		source_address_translation => 'automap',
 	}
 }
-~~~
+```
 
-## Managing devices with Puppet device
+## Managing devices
 
-To run Puppet device on demand and manage all of the devices specified in [device.conf][]
+To run Puppet device on demand and manage all of the devices specified in [device.conf][], run:
 
-    $ puppet device -v --user=root
+    $ puppet device -v
 
 Since Puppet device doesn't run as a service, you must manually create a cron job or scheduled task if you want it to run on a regular basis.
 
-On \*nix, you can use the Puppet resource command to set up a cron job. Below is an example that runs Puppet device once an hour; adjust the path to the Puppet command if you are not using Puppet Enterprise.
+On \*nix, you can use the Puppet resource command to set up a cron job. Below is an example that runs Puppet device once an hour. Adjust the path to the Puppet command if it does not match the example.
 
-    $ sudo puppet resource cron puppet-device ensure=present user=root minute=30 command='/opt/puppetlabs/bin/puppet device --user=root --logdest syslog'
+    $ sudo puppet resource cron puppet-device ensure=present minute=30 command='/opt/puppetlabs/bin/puppet device --logdest syslog'
 
 ## Limitations with other Puppet applications
 
-Puppet apply and Puppet resource cannot modify device resources. However, Puppet resource can inspect a device's resources when provided a url fact containing the device url as specified in [device.conf][].
+The `puppet apply` and `puppet resource` commands cannot modify device resources. To view device resources, use the `puppet device --resource` command. To set device data, use the `puppet device --apply` command. See the [`puppet device`](puppet_device.html) documentation for details.
+
+However, `puppet resource` can also inspect a device's resources when provided a url fact containing the device url as specified in [device.conf][].
 
 For example:
 
-~~~
+```
 export FACTER_url=https://admin:password@device.example.com/
 puppet resource f5_virtualserver
-~~~
+```
 
 Returns:
 
-~~~
+```puppet
 f5_virtualserver { '/Common/puppet_vs':
   ensure                                 => 'present',
   address_status                         => 'yes',
@@ -196,4 +192,4 @@ f5_virtualserver { '/Common/puppet_vs':
   web_acceleration_profile               => 'none',
   xml_profile                            => 'none',
 }
-~~~
+```
