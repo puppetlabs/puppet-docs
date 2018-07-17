@@ -20,6 +20,42 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.3
+
+Released July 17, 2018.
+
+This is a bug-fix release of Puppet.
+
+-   [All issues resolved in Puppet 5.5.3](https://tickets.puppetlabs.com/issues/?jql=fixVersion%20%3D%20%27PUP%205.5.3%27)
+
+### Bug fixes
+
+-   The `selmodule` type in Puppet 5.5.3 checks module names more strictly when determining whether a module has already been loaded. Specifically, its search wasn't anchored to the start of the module name in previous versions of Puppet, resulting in modules whose only difference in name is a prefix (such as "motd" and "mymotd") falsely reporting which module is loaded. Puppet 5.5.3 resolves this issue. ([PUP-8943](https://tickets.puppetlabs.com/browse/PUP-8943))
+
+-   When resources fail to restart when notified from another resource, Puppet 5.5.3 now flags them as failed and reports them as such. Reports also now include the [`failed_to_restart` status](./format_report.html) for individual resources. This change also increments the report format version to 10. ([PUP-8908](https://tickets.puppetlabs.com/browse/PUP-8908))
+
+-   When `config_version` refers to an external program, the last run summary in Puppet 5.5.3 no longer includes the Puppet-specific class name in YAML output. This is designed to make the YAML output easier to work with when using other YAML-processing tools. ([PUP-8767](https://tickets.puppetlabs.com/browse/PUP-8767))
+
+-   When previous versions of Puppet cleared the environment cache, associated translation domains lingered until they were replaced the next time the environment was used. Environments that were never used again would still consume memory required for the translations, resulting in a memory leak. Puppet 5.5.3 resolves this issue by releasing translation domains when the related cached environment is purged. ([PUP-8672](https://tickets.puppetlabs.com/browse/PUP-8672))
+
+-   Since Puppet 4.10.9, non-existent Solaris SMF services reported a state of `:absent` instead of `:stopped`. This change could break some workflows, so the behavior has been reverted in this release to report non-existent Solaris SMF services as `:stopped`. ([PUP-8262](https://tickets.puppetlabs.com/browse/PUP-8262))
+
+### Regression fixes
+
+-   The introduction of `multi_json` in Puppet 5.5.0 broke the JSON log destination. Puppet 5.5.3 fixes this regression. ([PUP-8773](https://tickets.puppetlabs.com/browse/PUP-8773))
+
+### New features
+
+-   The new [`puppet device --facts`](puppet_device.html) command allows you to display facts on a device, much in the same way that the `puppet facts` command behaves on other agents. ([PUP-8699](https://tickets.puppetlabs.com/browse/PUP-8699))
+
+### Deprecations
+
+-   The `puppet module build` command is deprecated in Puppet 5.5.3 and will be removed in a future release. To build modules and submit them to the Puppet Forge, use the [Puppet Development Kit](https://puppet.com/download-puppet-development-kit). ([PUP-8762](https://tickets.puppetlabs.com/browse/PUP-8762))
+
+-   The `--configprint` flag is deprecated in Puppet 5.5.3. When running `puppet <SUBCOMMAND> --configprint` with the `debug` or `verbose` flags, Puppet outputs a deprecation warning. Use `puppet config <SUBCOMMAND>` to output setting values. ([PUP-8712](https://tickets.puppetlabs.com/browse/PUP-8712))
+
+-   Puppet has long verified absolute paths across platforms with `Puppet::Util.absolute_path?(path)`. However, it now uses Ruby's built-in methods to accomplish this. Puppet 5.5.3 therefore deprecates `Puppet::Util.absolute_path?(path)` in favor of `Pathname.new(path.to_s).absolute?`. ([PUP-7407](https://tickets.puppetlabs.com/browse/PUP-7407))
+
 ## Puppet 5.5.2
 
 Released June 7, 2018.
@@ -196,6 +232,10 @@ This is a feature and bug-fix release of Puppet.
 -   The `puppet config` command in Puppet 5.5.0 can remove settings. ([PUP-3020](https://tickets.puppetlabs.com/browse/PUP-3020))
 
 -   The `yumrepo` provider in Puppet 5.5.0 supports username and password fields. ([PUP-7400](https://tickets.puppetlabs.com/browse/PUP-7400))
+
+### Regressions
+
+-   The introduction of `multi_json` in Puppet 5.5.0 broke the JSON log destination. For example, running Puppet agent with the `--logdest` option pointed at a JSON target would result in a Ruby failure. This regression is fixed in Puppet 5.5.3. ([PUP-8773](https://tickets.puppetlabs.com/browse/PUP-8773))
 
 ### Deprecations
 

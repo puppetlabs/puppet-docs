@@ -3,7 +3,6 @@ layout: default
 title: "Publishing modules on the Puppet Forge"
 ---
 
-
 [installing]: ./modules_installing.html
 [fundamentals]: ./modules_fundamentals.html
 [plugins]: ./plugins_in_modules.html
@@ -26,7 +25,6 @@ title: "Publishing modules on the Puppet Forge"
 [metadata]: ./modules_metadata.html
 [pdk]: {{pdk}}/pdk.html
 
-
 To share your module with other Puppet users, get contributions to your modules, and maintain your module releases, publish your module on the Puppet Forge. The Forge is a community repository of modules, written and contributed by open source Puppet and Puppet Enterprise users.
 
 To publish your module:
@@ -37,7 +35,6 @@ To publish your module:
 4. Build an uploadable tarball of your module.
 5. Upload your module using the Puppet Forge's web interface.
 
-
 **Related topics:**
 
 * [Module fundamentals][fundamentals]: How to write and use your own Puppet modules.
@@ -46,9 +43,8 @@ To publish your module:
 * [Documenting modules][documentation]: How to write good documentation for your modules.
 * [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
 
-
 {:.section}
-## Naming your module 
+## Naming your module
 
 Your module has two names: a short name, like "mysql", and a long name that includes your Forge username, like "puppetlabs-mysql".
 
@@ -56,7 +52,9 @@ To upload to the Forge, use the module long name. This name is composed of your 
 
 However, your module directory on disk must use the short name, without the username prefix. Module directory names cannot contain dashes or periods; only letters, numbers, and underscores. As long as you have the correct long name in your `metadata.json` file, the `puppet module build` command uses the correct names in the correct places.
 
-> **Note**: Although the  Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. Always use the `username-module` style in your metadata files and when issuing commands.
+> **Deprecation note:** The `puppet module build` command is deprecated in Puppet 5.5.3 and will be removed in future versions of Puppet. Use the [Puppet Development Kit][pdk] (PDK) to develop modules, and the `pdk build` command to build modules using PDK.
+
+> **Note**: Although the Forge expects to receive modules named `username-module`, its web interface presents them as `username/module`. Always use the `username-module` style in your metadata files and when issuing commands.
 
 Related topics:
 
@@ -108,6 +106,8 @@ tmp/
 
 The `.pmtignore` file excludes files during `puppet module build` only. For example, you might want spec tests in your source control but not in your module package, so you would list them in `.pmtignore`. To prevent files, such as those in temporary directories, from ever being checked into Git, use `.gitignore`.
 
+> **Deprecation note:** The `puppet module build` command is deprecated in Puppet 5.5.3 and will be removed in future versions of Puppet. Use the [Puppet Development Kit][pdk] (PDK) to develop modules, and the `pdk build` command to build modules using PDK.
+
 If you have both a `.pmtignore` and a `.gitignore` file, the `puppet module` command uses the `.pmtignore` file.
 
 {:.section}
@@ -134,7 +134,7 @@ If you assembled your module manually, you must make sure that you have a `metad
 
 > **Modulefiles**
 >
-> If you maintain older modules, you might find the metadata stored in a Modulefile. Move any metadata contained in the Modulefile to the `metadata.json`. Modulefiles were deprecated in Puppet 3 and removed in Puppet 4. They are now treated like any other text file in the root directory of the module. 
+> If you maintain older modules, you might find the metadata stored in a Modulefile. Move any metadata contained in the Modulefile to the `metadata.json`. Modulefiles were deprecated in Puppet 3 and removed in Puppet 4. They are now treated like any other text file in the root directory of the module.
 
 Related topics:
 
@@ -143,7 +143,7 @@ Related topics:
 
 
 {:.task}
-## Build your module 
+## Build your module
 
 To upload your module to the Forge, you first must build the module package.
 
@@ -156,6 +156,8 @@ To upload your module to the Forge, you first must build the module package.
    Building /etc/puppetlabs/puppet/modules/mymodule for release
    /etc/puppetlabs/puppet/modules/mymodule/pkg/examplecorp-mymodule-0.0.1.tar.gz
    ```
+
+> **Deprecation note:** The `puppet module build` command is deprecated in Puppet 5.5.3 and will be removed in future versions of Puppet. Use the [Puppet Development Kit][pdk] (PDK) to develop modules, and the `pdk build` command to build modules using PDK.
 
 {:.task}
 ## Upload a module to the Forge

@@ -6,7 +6,7 @@ title: "Puppet's services: Puppet agent on Windows systems"
 [catalogs]: ./subsystem_catalog_compilation.html
 [unix_agent]: ./services_agent_unix.html
 [resource type reference]: ./type.html
-[mcollective]: /mcollective
+[mcollective]: /docs/mcollective/
 [puppet.conf]: ./config_file_main.html
 [runinterval]: ./configuration.html#runinterval
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
@@ -123,6 +123,10 @@ This prompts it to ask for UAC confirmation:
 
 Open source Puppet users can install [MCollective][] and [the puppet agent plugin](https://github.com/puppetlabs/mcollective-puppet-agent) to get similar capabilities, but Puppet doesn't provide standalone MCollective packages for Windows.
 
+> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
+
+You can also use [Bolt](/docs/bolt/) to run tasks and commands on remote systems.
+
 ## Disabling and re-enabling Puppet runs
 
 Whether you're troubleshooting errors, working in a maintenance window, or simply developing in a sandbox environment, you may need to temporarily disable the Puppet agent from running.
@@ -165,4 +169,4 @@ In addition to local logging, Puppet agent submits a [report][] to the Puppet ma
 
 ### Setting Puppet Agent CPU priority
 
-When CPU usage is high, try lowering the priority of the Puppet Agent service. This can be achieved using the [process priority setting](https://puppet.com/docs/puppet/latest/configuration.html#priority), a cross platform configuration option. This can also be set in the Puppet Master. 
+When CPU usage is high, try lowering the priority of the Puppet Agent service. This can be achieved using the [process priority setting](https://puppet.com/docs/puppet/latest/configuration.html#priority), a cross platform configuration option. This can also be set in the Puppet Master.

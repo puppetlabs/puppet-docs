@@ -7,8 +7,7 @@ description: "This page describes the steps for regenerating certs under an open
 [split]: {{pe}}/trouble_regenerate_certs_split.html
 [monolithic]: {{pe}}/trouble_regenerate_certs_monolithic.html
 [puppetdb]: {{puppetdb}}/
-[puppet dashboard]: /dashboard/1.2
-[mcollective]: /mcollective
+[mcollective]: /docs/mcollective
 [ssldir]: ./dirs_ssldir.html
 
 > **Note:** If you're visiting this page to remediate your Puppet Enterprise deployment due to [CVE-2014-0160][cve], a.k.a. "Heartbleed," [please see this announcement][blog] for additional information and links to more resources before using this guide. Before applying these instructions, please bear in mind that this is a non-trivial operation that contains some manual steps and will require you to replace certificates on  every agent node managed by your Puppet master.
@@ -64,7 +63,9 @@ For each extension like this, you'll need to regenerate the certificates it uses
 * [PuppetDB][] users should first follow [the instructions below on regenerating agent certificates][agent_certs], since PuppetDB re-uses Puppet agents' certificates. After that, restart the PuppetDB service.
 * [MCollective][] often uses SSL certificates from Puppet's CA. If you are replacing your Puppet CA and are using the same certs for MCollective, you should [go through the standard deployment guide][standard_mco] and re-do any steps involving security credentials. You'll generally need to replace client certificates, your server keypair, and the ActiveMQ server's keystore and truststore.
 
-[standard_mco]: /mcollective/deploy/standard.html
+[standard_mco]: /docs/mcollective/current/deploy/standard.html
+
+> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
 
 ## Step 3: Clear and regenerate certs for Puppet agents
 

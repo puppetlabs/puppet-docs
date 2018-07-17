@@ -3,23 +3,25 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 5.0.0]: /puppet/5.0/release_notes.html#puppet-500
-[Puppet 5.1.0]: /puppet/5.1/release_notes.html#puppet-510
-[Puppet 5.2.0]: /puppet/5.2/release_notes.html#puppet-520
-[Puppet 5.3.1]: /puppet/5.3/release_notes.html#puppet-531
-[Puppet 5.4.0]: /puppet/5.4/release_notes.html#puppet-540
-[Puppet 5.5.0]: /puppet/5.5/release_notes.html#puppet-550
-[Puppet 5.5.1]: /puppet/5.5/release_notes.html#puppet-551
-[Puppet 5.5.2]: /puppet/5.5/release_notes.html#puppet-552
+[Puppet 5.0.0]: /docs/puppet/5.0/release_notes.html#puppet-500
+[Puppet 5.1.0]: /docs/puppet/5.1/release_notes.html#puppet-510
+[Puppet 5.2.0]: /docs/puppet/5.2/release_notes.html#puppet-520
+[Puppet 5.3.1]: /docs/puppet/5.3/release_notes.html#puppet-531
+[Puppet 5.4.0]: /docs/puppet/5.4/release_notes.html#puppet-540
+[Puppet 5.5.0]: /docs/puppet/5.5/release_notes.html#puppet-550
+[Puppet 5.5.1]: /docs/puppet/5.5/release_notes.html#puppet-551
+[Puppet 5.5.2]: /docs/puppet/5.5/release_notes.html#puppet-552
+[Puppet 5.5.3]: /docs/puppet/5.5/release_notes.html#puppet-553
 
-[Facter 3.10.0]: /facter/3.10/release_notes.html#facter-3100
-[Facter 3.11.0]: /facter/3.11/release_notes.html#facter-3110
-[Facter 3.11.1]: /facter/3.11/release_notes.html#facter-3111
-[Facter 3.11.2]: /facter/3.11/release_notes.html#facter-3112
+[Facter 3.10.0]: /docs/facter/3.10/release_notes.html#facter-3100
+[Facter 3.11.0]: /docs/facter/3.11/release_notes.html#facter-3110
+[Facter 3.11.1]: /docs/facter/3.11/release_notes.html#facter-3111
+[Facter 3.11.2]: /docs/facter/3.11/release_notes.html#facter-3112
+[Facter 3.11.3]: /docs/facter/3.11/release_notes.html#facter-3113
 
-[MCollective 2.12.0]: /mcollective/current/releasenotes.html#2_12_0
-[MCollective 2.12.1]: /mcollective/current/releasenotes.html#2_12_1
-[MCollective 2.12.2]: /mcollective/current/releasenotes.html#2_12_2
+[MCollective 2.12.0]: /docs/mcollective/current/releasenotes.html#2_12_0
+[MCollective 2.12.1]: /docs/mcollective/current/releasenotes.html#2_12_1
+[MCollective 2.12.2]: /docs/mcollective/current/releasenotes.html#2_12_2
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -34,6 +36,30 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
+
+## Puppet agent 5.5.4
+
+Released July 17, 2018.
+
+This release of Puppet Platform contains several bug fixes, some new features, and several new deprecations in Puppet.
+
+### Component updates
+
+Puppet Platform 5.5.4 includes puppet-agent 5.5.4, [PuppetDB 5.2.3](/docs/puppetdb/5.2/release_notes.html), and [Puppet Server 5.3.4](/docs/puppetserver/5.3/release_notes.html).
+
+`puppet-agent` 5.5.4 includes updates to [Puppet 5.5.3][], [Facter 3.11.3][], `cpp-pcp-client` 1.5.6, [`pxp-agent`][pxp-agent] 1.9.3, and `leatherman` 1.4.2. It also includes Hiera 3.4.3 and MCollective 2.12.2, which were not updated.
+
+See the linked release notes for details about each component release.
+
+> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use MCollective with Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use MCollective with open source Puppet, consider migrating MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/latest/api/query/tutorial-pql.html).
+
+### Platform updates
+
+This version of Puppet agent adds packages for Fedora 28 (i386 and x86_64).
+
+### Bug fixes
+
+-   pxp-agent 1.9.3 adds proxy configuration options. Set a proxy between `pxp-agent` and `pcp-broker` with `broker-ws-proxy`, and between `pxp-agent` and a Puppet master with `master-proxy`.
 
 ## Puppet agent 5.5.3
 
@@ -59,7 +85,7 @@ There are no component updates in this Puppet agent release.
 
 Released June 7, 2018.
 
-This release of Puppet Platform contains several Puppet and Facter security and bug fixes.
+This release of Puppet Platform contained several Puppet and Facter security and bug fixes, but due to issues with the Windows agent installer, this release was pulled from our repositories and should not be used. Use Puppet agent 5.5.3 or newer instead, which include all of the changes listed below.
 
 ### Component updates
 

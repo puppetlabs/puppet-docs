@@ -8,7 +8,6 @@ title: "Installing modules"
 [modulepath]: ./dirs_modulepath.html
 [codedir]: ./dirs_codedir.html
 
-
 [publishing]: ./modules_publishing.html
 [fundamentals]: ./modules_fundamentals.html
 [plugins]: ./plugins_in_modules.html
@@ -24,8 +23,7 @@ title: "Installing modules"
 [supported]: https://forge.puppet.com/supported
 [score]: /forge/assessingmodulequality.html
 [environment]: ./environments.html
-[pdk]: {{pdk}}/pdk.html
-
+[pdk]: https://puppet.com/docs/pdk/
 
 Install, upgrade, and uninstall Forge modules from the command line with the `puppet module` command.
 
@@ -33,7 +31,9 @@ The `puppet module` command provides an interface for managing modules from the 
 
 > **Important:** If you are using [Code Manager][code_mgr] or [r10k][r10k], do not use the `puppet module` command. With code management, you must install modules with a Puppetfile. Code management purges modules that were installed with the `puppet module` command. See the [Puppetfile][puppetfile] documentation for instructions.
 
-> **Solaris Note:** To use `puppet module` commands on Solaris systems, you must first install gtar.
+> **Solaris note:** To use `puppet module` commands on Solaris systems, you must first install gtar.
+
+> **Deprecation note:** The `puppet module build` command is deprecated in Puppet 5.5.3 and will be removed in future versions of Puppet. Use the [Puppet Development Kit][pdk] (PDK) to develop modules, and the `pdk build` command to build modules using PDK.
 
 {:.section}
 ### Using `puppet module` behind a proxy
@@ -97,7 +97,7 @@ When you've identified the module you want, you can then install it.
 {:.concept}
 ## Installing modules from the command line
 
-The `puppet module install` command installs a module and all of its dependencies. You can install modules from the Forge, a module repository, or a release tarball. 
+The `puppet module install` command installs a module and all of its dependencies. You can install modules from the Forge, a module repository, or a release tarball.
 
 By default, this command installs modules into the first directory in the Puppet [modulepath][], `$codedir/environments/production/modules` by default.
 
@@ -180,7 +180,7 @@ sudo puppet module install ~/puppetlabs-apache-0.10.0.tar.gz --ignore-dependenci
 
 Some premium Puppet modules are available only to Puppet Enterprise users. Generally, you manage these modules in the same way you would manage other modules, but you must have a valid PE license on the machine on which you download the module.
 
-To install or upgrade a [Puppet Enterprise module](/forge/puppetenterprisemodules) with the `puppet module` command, you must:
+To install or upgrade a Puppet Enterprise module with the `puppet module` command, you must:
 
 * Be logged in as the root user.
 * Install the module on a properly licensed Puppet node.
@@ -198,6 +198,8 @@ If you need to install a PE-only module on a node with no internet, you can down
 3. Move the *.tar.gz wherever you choose.
 4. Run `puppet module install` against the tar.gz.
 5. Manually install the module's dependencies. Without internet access, the `puppet module` command cannot install dependencies automatically.
+
+> **Deprecation note:** The `puppet module build` command is deprecated in Puppet 5.5.3 and will be removed in future versions of Puppet. Use the [Puppet Development Kit][pdk] (PDK) to develop modules, and the `pdk build` command to build modules using PDK.
 
 {:.concept}
 ### Uninstalling modules
@@ -301,7 +303,7 @@ Error: Request to Puppet Forge failed.
   The message we received said 'You must have a valid Puppet Enterprise license on this node in order to download puppetlabs-f5. If you have a Puppet Enterprise license, please see https://docs.puppetlabs.com/pe/latest/modules_installing.html#puppet-enterprise-modules for more information.'
 ```
 
-If you aren't a Puppet Enterprise user, you won't be able to use this module unless you purchase [Puppet Enterprise](https://puppetlabs.com/puppet/puppet-enterprise).
+If you aren't a Puppet Enterprise user, you won't be able to use this module unless you purchase [Puppet Enterprise](https://puppet.com/products/puppet-enterprise).
 
 If you are a Puppet Enterprise user, check the following:
 
@@ -311,5 +313,3 @@ If you are a Puppet Enterprise user, check the following:
 4. Are you running a version of Puppet Enterprise that supports this module? If not, you might need to upgrade.
 5. Do you have access to the internet on the node? If not, you need to switch to a node that has access to the internet.
 6. If you are using r10k, is it running from `/opt/puppetlabs/bin/r10k`? If not, run r10k  from that location.
-
-

@@ -4,6 +4,6 @@ title: "Formats: Reports"
 ---
 
 
-This version of Puppet uses report format 9.
+Puppet 5.5.3 uses report format 10.
 
-{% include reportformat/9.markdown %}
+{% include reportformat/10.markdown %}
