@@ -51,3 +51,4 @@ with:
 
 * query: optional `?enable=` parameter whose value is the enable password
 
+> Note: If your password contains an "@" sign, encode it as "%40". For example, "p@ssword" would be "p%40ssword". 
