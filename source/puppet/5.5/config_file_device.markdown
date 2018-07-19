@@ -51,3 +51,4 @@ with:
 
 * query: optional `?enable=` parameter whose value is the enable password
 
+> Note: Reserved non-alphanumeric characters in the `url` must be percent encoded.
