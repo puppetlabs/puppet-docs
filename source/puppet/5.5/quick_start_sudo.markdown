@@ -4,7 +4,7 @@ title: "Quick Start » Sudo users"
 subtitle: "Sudo users quick start guide"
 ---
 
-[downloads]: https://puppetlabs.com/puppet/puppet-open-source
+[downloads]: https://puppet.com/products/open-source-projects
 [sys_req]: ./install_system_requirements.html
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
@@ -25,7 +25,7 @@ In most cases, managing sudo on your agents involves controlling which users hav
 
 ## Install the `saz-sudo` module
 
-The `saz-sudo` module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [http://forge.puppetlabs.com/saz/sudo](http://forge.puppetlabs.com/saz/sudo).
+The `saz-sudo` module, available on the Puppet Forge, is one of many modules written by a member of the Puppet user community.  You can learn more about the module by visiting [http://forge.puppet.com/saz/sudo](http://forge.puppet.com/saz/sudo).
 
 **To install the `saz-sudo` module**:
 
@@ -52,7 +52,7 @@ Some modules can be large, complex, and require a significant amount of trial an
 >
 >**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](./bgtm.html), and the [Puppet Forge](https://forge.puppet.com/).
 
 Modules are directory trees. For this task, you'll create the following files:
 
@@ -134,12 +134,11 @@ From the command line on the Puppet agent, run `sudo -l -U jargyle` to confirm i
 
 ### Other resources
 
-For more information about working with Puppet and Sudo Users, check out our [Module of The Week: saz/sudo - Manage sudo configuration](https://puppetlabs.com/blog/module-of-the-week-sazsudo-manage-sudo-configuration) blog post.
+For more information about working with Puppet and Sudo Users, check out our [Module of The Week: saz/sudo - Manage sudo configuration](https://puppet.com/blog/module-of-the-week-sazsudo-manage-sudo-configuration) blog post.
 
-Puppet offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppetlabs.com/learn) to discover more.
+Puppet offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted one below; head over to the [learning Puppet page](https://puppet.com/learn) to discover more.
 
-* The Puppet workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
-* Learn about [Managing sudo Privileges](https://puppetlabs.com/learn/managing-sudo-privileges) through this online training workshop.
+The Puppet workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://learn.puppet.com).
 
 ----------
 

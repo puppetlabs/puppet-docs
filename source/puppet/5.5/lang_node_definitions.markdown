@@ -10,7 +10,7 @@ title: "Language: Node definitions"
 [nodescope]: ./lang_scope.html#node-scope
 [topscope]: ./lang_scope.html#top-scope
 [extlookup]: ./function.html#extlookup
-[custom_functions]: /guides/custom_functions.html
+[custom_functions]: ./functions_ruby_overview.html
 [regex]: ./lang_data_regexp.html
 [strings]: ./lang_data_string.html
 [inherit]: ./lang_classes.html#inheritance
@@ -21,7 +21,6 @@ title: "Language: Node definitions"
 [strict]: ./configuration.html#stricthostnamechecking
 [conditional]: ./lang_conditional.html
 
-
 A **node definition** or **node statement** is a block of Puppet code that will only be included in matching nodes' [catalogs][]. This feature allows you to assign specific configurations to specific nodes.
 
 Node statements are an **optional feature** of Puppet. They can be replaced by or combined with an [external node classifier][enc], or you can eschew both and use conditional statements with [facts][] to classify nodes.
@@ -29,7 +28,6 @@ Node statements are an **optional feature** of Puppet. They can be replaced by o
 Unlike more general conditional structures, node statements only match nodes by **name.** By default, the name of a node is its [certname][] (which defaults to the node's fully qualified domain name).
 
 ## Location
-
 
 Node definitions should go in [the main manifest][sitepp]. The main manifest can be a single file, or a directory containing many files.
 
@@ -65,10 +63,7 @@ Node definitions look like class definitions. The general form of a node definit
 >
 > This will make it easier to switch between node definitions and an ENC.
 
-
-
 ## Naming
-
 
 Node statements match nodes by name. A node's name is its unique identifier; by default, this is its [certname][] setting, which in turn defaults to the node's fully qualified domain name.
 
@@ -81,7 +76,6 @@ A node statement's **name** must be one of the following:
 * The bare word `default`.
 
 You cannot create two node statements with the same name.
-
 
 ### Multiple names
 
@@ -123,9 +117,7 @@ node /^(foo|bar)\.example\.com$/ {
 
 The above example would match `foo.example.com` and `bar.example.com`, but no other nodes.
 
-
 ## Behavior
-
 
 If [the main manifest][sitepp] contains at least one node definition, it must have one for **every** node; compilation for a node will fail if one cannot be found. (Hence the usefulness of [the `default` node](#the-default-node).) If the main manifest contains **no** node definitions, this requirement is dropped.
 

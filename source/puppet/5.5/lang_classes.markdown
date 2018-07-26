@@ -35,7 +35,7 @@ title: "Language: Classes"
 [declare]: #declaring-classes
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
-[ldap_nodes]: /guides/ldap_nodes.html
+[ldap_nodes]: ./nodes_ldap.html
 [hiera]: {{hiera}}/
 [external_data]: {{hiera}}/puppet.html
 [array_search]: {{hiera}}/lookup_types.html#array-merge

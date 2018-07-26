@@ -5,9 +5,9 @@ title: "Language: Using templates"
 
 [interpolate]: ./lang_data_string.html#interpolation
 [heredoc]: ./lang_data_string.html#heredocs
-[augeas]: /guides/augeas.html
-[concat]: https://forge.puppetlabs.com/puppetlabs/concat
-[file_line]: https://forge.puppetlabs.com/puppetlabs/stdlib
+[augeas]: ./resources_augeas.html
+[concat]: https://forge.puppet.com/puppetlabs/concat
+[file_line]: https://forge.puppet.com/puppetlabs/stdlib
 [functions]: ./lang_functions.html
 [epp]: ./lang_template_epp.html
 [man epp]: ./man/epp.html
@@ -18,7 +18,7 @@ title: "Language: Using templates"
 [valid local variable names]: ./lang_reserved.html#variables
 [heredoc]: ./lang_data_string.html#heredocs
 [iteration functions]: ./lang_iteration.html
-[stdlib]: https://forge.puppetlabs.com/puppetlabs/stdlib
+[stdlib]: https://forge.puppet.com/puppetlabs/stdlib
 
 Templates are documents that combine code, data, and literal text to produce a final rendered output. The goal of a template is to manage a complicated piece of text with simple inputs.
 

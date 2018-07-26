@@ -32,7 +32,7 @@ Modules are directory trees. For this task, you'll create the following structur
 Every manifest (.pp file) in a module contains a single class. File names map to class names in a predictable way, described in the [Autoloader Behavior documentation](./lang_namespaces.html#autoloader-behavior). The `init.pp` file is a special case that contains a class named after the module, `helloworld`. Other manifest files contain classes called `<MODULE NAME>::<FILE NAME>`, or in this case, `helloworld::motd`.
 
 * For more on how modules work, see [Module Fundamentals](./modules_fundamentals.html) in the Puppet documentation.
-* For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
+* For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](./bgtm.html).
 
 **To write the `helloworld` class**:
 
@@ -106,7 +106,7 @@ From the command line of your agent, run `cat /etc/motd`. The result should show
 
 ## Other resources
 
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](./bgtm.html), and the [Puppet Forge](https://forge.puppet.com/).
 >
 > Check out the remainder of the [Quick Start Guide series](./quick_start.html) for additional module writing exercises.
 

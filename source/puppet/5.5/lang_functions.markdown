@@ -4,9 +4,9 @@ layout: default
 ---
 
 [func_ref]: ./function.html
-[forge]: https://forge.puppetlabs.com
-[custom]: /guides/custom_functions.html
-[stdlib]: https://forge.puppetlabs.com/puppetlabs/stdlib
+[forge]: https://forge.puppet.com
+[custom]: ./functions_ruby_overview.html
+[stdlib]: https://forge.puppet.com/puppetlabs/stdlib
 [resource]: ./lang_resources.html
 [custom_facts]: {{facter}}/custom_facts.html
 [datatype]: ./lang_data.html
@@ -31,13 +31,11 @@ Puppet includes several built-in functions, and more are available in modules on
 
 ## Location
 
-
 Like any [expression][], a function call can be used anywhere the value it returns would be allowed.
 
 Function calls can also stand on their own, which will cause their value to be ignored. (Any side effects will still occur.)
 
 ## Syntax
-
 
 There are two ways to call functions in the Puppet language: classic **prefix calls** like `template("ntp/ntp.conf.erb")`, and **chained calls** like `"ntp/ntp.conf.erb".template`. There's also a modified form of prefix call that can only be used with certain functions.
 
@@ -105,8 +103,6 @@ The general form of a prefix function call is:
 * A closing parenthesis (`)`), if an opening parenthesis was used.
 * Optionally, a [lambda][] (code block), if the function accepts one.
 
-
-
 ### Chained function calls
 
 You can also call a function by writing its first argument, a period, and the name of the function.
@@ -149,10 +145,7 @@ The general form of a chained function call is:
     * Note that [the `*` (splat) array operator][splat] can convert an array to a comma-separated list of arguments.
 * Optionally, a [lambda][] (code block), if the function accepts one.
 
-
-
 ## Behavior
-
 
 An entire function call (including the name, arguments, and lambda) constitutes an [expression][]. It will resolve to a single value, and can be used anywhere a value of that type is accepted.
 
@@ -160,9 +153,7 @@ A function call might also result in some side effect, in addition to returning 
 
 All functions run during [compilation][catalog], which means they can only access code and data available on the Puppet master. To make changes to an agent node, you must use a [resource][]; to collect data from an agent node, you must use a [custom fact][custom_facts].
 
-
 ## Documentation for functions
-
 
 Each function defines how many arguments it takes, what [data types][datatype] it expects those arguments to be, what values it returns, and any side effects it has. Thus, each function has its own docs.
 
@@ -170,9 +161,7 @@ For info about any _built-in_ function, [see the Function Reference.][func_ref]
 
 For info about a function included in a module, see that module's documentation.
 
-
 ## List of built-in statement functions
-
 
 [inpage_statement]: #list-of-built-in-statement-functions
 

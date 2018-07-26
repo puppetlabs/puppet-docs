@@ -4,7 +4,7 @@ title: "Quick Start » DNS"
 subtitle: "DNS Quick Start Guide"
 ---
 
-[downloads]: http://info.puppetlabs.com/download-pe.html
+[downloads]: https://puppet.com/download-puppet-enterprise
 [sys_req]: ./install_system_requirements.html
 [agent_install]: ./install_agents.html
 [install_overview]: ./install_basic.html
@@ -32,7 +32,7 @@ Some modules can be large, complex, and require a significant amount of trial an
 >
 >**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](./bgtm.html), and the [Puppet Forge](https://forge.puppet.com/).
 
 Modules are directory trees. For this task, you'll create the following files:
 
@@ -102,12 +102,11 @@ Finally, let's take a look at how Puppet will ensure the desired state of the `r
 
 ### Other resources
 
-For more information about working with Puppet and DNS, check out our [Dealing with Name Resolution Issues](http://puppetlabs.com/blog/resolving-dns-issues) blog post.
+For more information about working with Puppet and DNS, check out our [Dealing with Name Resolution Issues](http://puppet.com/blog/resolving-dns-issues) blog post.
 
-Puppet offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [Learning Puppet page](https://puppetlabs.com/learn) to discover more.
+Puppet offers many opportunities for learning and training, from formal certification courses to guided online lessons. We've noted a few below. Head over to the [Learning Puppet page](https://learn.puppet.com/) to discover more.
 
-* The Puppet workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://puppetlabs.com/learn).
-* Learn about [Puppet DNS](https://puppetlabs.com/learn/puppet-dns) through this online training workshop.
+* The Puppet workshop contains a series of self-paced, online lessons that cover a variety of topics on Puppet basics. You can sign up at the [learning page](https://learn.puppet.com/).
 
 ----------
 

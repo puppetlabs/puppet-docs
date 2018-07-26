@@ -8,8 +8,8 @@ title: Plug-ins in Modules
 [external facts]: {{facter}}/custom_facts.html#external-facts
 [vardir]: ./dirs_vardir.html
 [custom facts]: {{facter}}/custom_facts.html
-[custom resource types and providers]: /guides/custom_types.html
-[ruby_functions]: /guides/custom_functions.html
+[custom resource types and providers]: ./custom_types.html
+[ruby_functions]: ./functions_ruby_overview.html
 [puppet_functions]: ./lang_write_functions_in_puppet.html
 [custom augeas lenses]: https://github.com/hercules-team/augeas/wiki/Create-a-lens-from-bottom-to-top
 

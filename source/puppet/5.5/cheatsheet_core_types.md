@@ -71,7 +71,7 @@ Manages files, directories, and symlinks.
 #### For Normal Files
 
 * [`source`](./type.html#file-attribute-source) -- Where to download contents for the file. Usually a `puppet:///` URL.
-* [`content`](./type.html#file-attribute-content) -- The file's desired contents, as a string. Most useful when paired with [templates](https://docs.puppet.com/guides/templating.html), but you can also use the output of the [file function](./function.html#file).
+* [`content`](./type.html#file-attribute-content) -- The file's desired contents, as a string. Most useful when paired with [templates](./lang_template.html), but you can also use the output of the [file function](./function.html#file).
 
 {:.section}
 #### For Directories
