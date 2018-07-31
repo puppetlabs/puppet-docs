@@ -14,12 +14,24 @@ title: "Language: Embedded Ruby (ERB) template syntax"
 [hashes]: ./lang_data_hash.html
 [undef]: ./lang_data_undef.html
 [variables]: ./lang_variables.html
+[data types]: ./lang_data_type.html
+[boolean]: ./lang_data_boolean.html
+[undef]: ./lang_data_undef.html
+[string]: ./lang_data_string.html
+[number]: ./lang_data_number.html
+[array]: ./lang_data_array.html
+[hash]: ./lang_data_hash.html
+[default]: ./lang_data_default.html
+[regexp]: ./lang_data_regexp.html
+[resource reference]: ./lang_data_resource_reference.html
+[lambda]: ./lang_lambdas.html
+[data type]: ./lang_data_type.html
 
 [ERB][] is a templating language based on Ruby. Puppet can evaluate ERB templates with the `template` and `inline_template` functions.
 
 This page covers how to write ERB templates. See [Templates](./lang_template.html) for information about what templates are and how to evaluate them.
 
-**Note:** If you've used ERB in other projects, it might have had different features enabled. This page only describes how ERB works in Puppet.
+> **Note:** If you've used ERB in other projects, it might have had different features enabled. This page describes how ERB works in Puppet.
 
 ## ERB structure and syntax
 
@@ -49,14 +61,14 @@ Puppet passes data to templates via special objects and variables, which you can
 
 ERB has two tags for Ruby code, a tag for comments, and a way to escape tag delimiters.
 
-* `<%= EXPRESSION %>` --- Inserts the value of an expression.
-    * With `-%>` --- Trims the following line break.
-* `<% CODE %>` --- Executes code, but does not insert a value.
-    * With `<%-` --- Trims the preceding indentation.
-    * With `-%>` --- Trims the following line break.
-* `<%# COMMENT %>` --- Removed from the final output.
-    * With `-%>` --- Trims the following line break.
-* `<%%` or `%%>` --- A literal `<%` or `%>`, respectively.
+-   `<%= EXPRESSION %>` --- Inserts the value of an expression.
+    -   With `-%>` --- Trims the following line break.
+-   `<% CODE %>` --- Executes code, but does not insert a value.
+    -   With `<%-` --- Trims the preceding indentation.
+    -   With `-%>` --- Trims the following line break.
+-   `<%# COMMENT %>` --- Removed from the final output.
+    -   With `-%>` --- Trims the following line break.
+-   `<%%` or `%%>` --- A literal `<%` or `%>`, respectively.
 
 Text outside a tag becomes literal text, but it is subject to any tagged Ruby code surrounding it. For example, text surrounded by a tagged `if` statement only appears in the output if the condition is true.
 
@@ -77,7 +89,7 @@ ServerAlias <%= @hostname %>
 
 You can trim line breaks after expression-printing tags by adding a hyphen to the closing tag delimiter.
 
-* `-%>` --- If the tag ends a line, trim the following line break.
+-   `-%>` --- If the tag ends a line, trim the following line break.
 
 ### Non-printing tags
 
@@ -111,8 +123,8 @@ You must keep `do |server|` inside the first tag, because you can't insert an ar
 
 You can trim whitespace surrounding a non-printing tag by adding hyphens (`-`) to the tag delimiters.
 
-* `<%-` --- If the tag is indented, trim the indentation.
-* `-%>` --- If the tag ends a line, trim the following line break.
+-   `<%-` --- If the tag is indented, trim the indentation.
+-   `-%>` --- If the tag ends a line, trim the following line break.
 
 ### Comment tags
 
@@ -124,7 +136,7 @@ A comment tag's contents do not appear in the template's output. It starts with 
 
 You can trim line breaks after comment tags by adding a hyphen to the closing tag delimiter.
 
-* `-%>` --- If the tag ends a line, trim the following line break.
+-   `-%>` --- If the tag ends a line, trim the following line break.
 
 ### Literal tag delimiters
 
@@ -138,8 +150,8 @@ An ERB template has its own [local scope][], and its parent scope is set to the 
 
 There are two ways to access variables in an ERB template:
 
-* `@variable`
-* `scope['variable']` (and its older equivalent, `scope.lookupvar('variable')`)
+-   `@variable`
+-   `scope['variable']` (and its older equivalent, `scope.lookupvar('variable')`)
 
 ### `@variable`
 
@@ -155,9 +167,21 @@ There is also another way to use the `scope` object: you can call its `lookupvar
 
 ### Puppet data types in Ruby
 
-Puppet's data types are converted to Ruby classes as follows:
+Puppet's [data types][] are converted to Ruby classes as follows:
 
-{% partial ./_puppet_types_to_ruby_types.md %}
+Puppet type             | Ruby class
+------------------------|-------------------------------------------------------------------------------
+[Boolean][]             | `Boolean`
+[Undef][]               | `NilClass` (value `nil`)
+[String][]              | `String`
+[Number][]              | subtype of `Numeric`
+[Array][]               | `Array`
+[Hash][]                | `Hash`
+[Default][]             | `Symbol` (value `:default`)
+[Regexp][]              | `Regexp`
+[Resource reference][]  | `Puppet::Pops::Types::PResourceType`, or `Puppet::Pops::Types::PHostClassType`
+[Lambda][] (code block) | `Puppet::Pops::Evaluator::Closure`
+[Data type][] (`Type`)  | A type class under `Puppet::Pops::Types`, such as `Puppet::Pops::Types::PIntegerType`
 
 ### Testing for undefined variables
 
@@ -212,10 +236,10 @@ Usually, your templates will use data from Puppet variables. These values will a
 
 These will become the equivalent Ruby objects when you access them from an ERB template. For information about the ways you can transform these objects, see the Ruby documentation for:
 
-* [Strings](http://ruby-doc.org/core/String.html)
-* [Integers](http://ruby-doc.org/core/Integer.html)
-* [Arrays](http://ruby-doc.org/core/Array.html)
-* [Hashes](http://ruby-doc.org/core/Hash.html)
+-   [Strings](http://ruby-doc.org/core/String.html)
+-   [Integers](http://ruby-doc.org/core/Integer.html)
+-   [Arrays](http://ruby-doc.org/core/Array.html)
+-   [Hashes](http://ruby-doc.org/core/Hash.html)
 
 Also, note that Puppet's [special `undef` value][undef] becomes Ruby's special `nil` value in ERB templates.
 
@@ -223,8 +247,8 @@ Also, note that Puppet's [special `undef` value][undef] becomes Ruby's special `
 
 You can use [Puppet functions][functions] inside templates with the `scope.call_function(<NAME>, <ARGS>)` method. This method takes two arguments:
 
-* The name of the function, as a string.
-* All arguments to the function, as an array. (This must be an array even for one argument or zero arguments.)
+-   The name of the function, as a string.
+-   All arguments to the function, as an array. (This must be an array even for one argument or zero arguments.)
 
 For example, to evaluate one template inside another:
 
