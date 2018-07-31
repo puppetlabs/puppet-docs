@@ -12,7 +12,7 @@ title: "Config files: custom_trusted_oid_mapping.yaml"
 
 The `custom_trusted_oid_mapping.yaml` file lets you set your own short names for [certificate extension][extensions] object identifiers (OIDs), which can make [the `$trusted` variable][trusted] more useful.
 
-It is only valid on a Puppet master server; in Puppet apply, the compiler doesn't add certificate extensions to `$trusted`.
+It is only valid on a Puppet master server. In Puppet apply, the compiler doesn't add certificate extensions to `$trusted`.
 
 ## More about certificate extensions
 
@@ -22,7 +22,9 @@ If the CA signs a certificate with extensions included, those extensions are ava
 
 By default, the [Puppet-specific registered OIDs][registered] appear as keys with convenient short names in the `$trusted[extensions]` hash, and any other OIDs appear as raw numerical IDs. You can use the `custom_trusted_oid_mapping.yaml` file to map other OIDs to short names, which will replace the numerical OIDs in `$trusted[extensions]`.
 
-For more info, see:
+The output of `puppet cert print` reflects changes made in `custom_trusted_oid_mapping.yaml` immediatly without requiring a restart.
+
+For more information, see:
 
 * [CSR Attributes and Certificate Extensions][extensions]
 * [The `csr_attributes.yaml` File][csr_attributes]
@@ -30,10 +32,9 @@ For more info, see:
 
 ### Limitations of OID mapping
 
-Mapping OIDs in this file _only_ affects the keys in the `$trusted[extensions]` hash. It does not affect:
+Mapping OIDs in this file _only_ affects the keys in the `$trusted[extensions]` hash. It does not affect what an agent can request in its `csr_attributes.yaml` file --- anything but Puppet-specific registered extensions must still be numerical OIDs.
 
-* What an agent can request in its `csr_attributes.yaml` file --- anything but Puppet-specific registered extensions must still be numerical OIDs.
-* What you see when you run `puppet cert print` --- mapped extensions will still be displayed as numerical OIDs. (Improving cert display is planned as [PUP-4617][].)
+After restarting puppetserver once custom OID mapping values are set, you can reference variables using only the short name.
 
 ## Location
 
@@ -46,14 +47,16 @@ The location of the `confdir` depends on your OS. [See the confdir documentation
 
 ## Example
 
-    ---
-    oid_mapping:
-      1.3.6.1.4.1.34380.1.2.1.1:
-        shortname: 'myshortname'
-        longname: 'My Long Name'
-      1.3.6.1.4.1.34380.1.2.1.2:
-        shortname: 'myothershortname'
-        longname: 'My Other Long Name'
+```yaml
+---
+oid_mapping:
+  1.3.6.1.4.1.34380.1.2.1.1:
+    shortname: 'myshortname'
+    longname: 'My Long Name'
+  1.3.6.1.4.1.34380.1.2.1.2:
+    shortname: 'myothershortname'
+    longname: 'My Other Long Name'
+```
 
 ## Format
 
@@ -61,5 +64,5 @@ The `custom_trusted_oid_mapping.yaml` must be a YAML hash containing a single ke
 
 The value of the `oid_mapping` key must be a hash whose keys are numerical OIDs. The value for each OID must be a hash with two keys:
 
-* `shortname` for the one-word name that will be used in the `$trusted[extensions]` hash.
+* `shortname` for the case-sensitive one-word name that will be used in the `$trusted[extensions]` hash.
 * `longname` for a more descriptive name (not currently used for anything).
