@@ -83,10 +83,16 @@ shell path.
 
 ### Features
 
-_Features_ are abilities that some providers may not support. Generally, a
-feature will correspond to some allowed values for a resource attribute; for
+_Features_ are abilities that some providers might not support. Generally, a
+feature corresponds to some allowed values for a resource attribute.
+
+This is often the case with the `ensure` attribute. In most types, Puppet
+doesn't create new resources when omitting `ensure` but still modifies existing
+resources to match specifications in the manifest. However, in some types this
+isn't always the case, or additional values provide more granular control. For
 example, if a `package` provider supports the `purgeable` feature, you can
-specify `ensure => purged` to delete config files installed by the package.
+specify `ensure => purged` to delete configuration files installed by the
+package.
 
 Resource types define the set of features they can use, and providers can
 declare which features they provide.
