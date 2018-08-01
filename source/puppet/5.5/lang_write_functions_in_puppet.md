@@ -142,7 +142,7 @@ When you call your function, Puppet interprets it the same way as a call to any 
 
 Functions are autoloaded and made available to other modules unless those modules specify dependencies. Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest that lists the containing module as a dependency, and also from your [main manifest](./dirs_manifest.html).
 
-Note that if a module has a list of dependencies in its [metadata.json](./modules_metadata.html) file, only custom functions from those specific dependencies are loaded.
+Note that if a module has a list of dependencies in its [metadata.json](./modules_metadata.html) file, it loads custom functions only from those specific dependencies.
 
 The arguments you pass to the function will map to the parameters defined in the function's definition. You must pass arguments for the mandatory parameters, and can choose whether to pass arguments for optional parameters.
 

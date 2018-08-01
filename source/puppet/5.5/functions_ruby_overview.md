@@ -82,6 +82,10 @@ Function name         | File location
 `mymodule::upcase`    | `<MODULES DIR>/mymodule/lib/puppet/functions/mymodule/upcase.rb`
 `environment::upcase` | `/etc/puppetlabs/code/environments/production/lib/puppet/functions/environment/upcase.rb`
 
+Functions are autoloaded and made available to other modules unless those modules specify dependencies. Once a function is written and available (in a module where the autoloader can find it), you can call that function in any Puppet manifest that lists the containing module as a dependency, and also from your [main manifest](./dirs_manifest.html).
+
+Note that if a module has a list of dependencies in its [metadata.json](./modules_metadata.html) file, it loads custom functions only from those specific dependencies.
+
 ## Function names
 
 Function names generally resemble these examples:
