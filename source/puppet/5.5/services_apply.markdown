@@ -20,7 +20,7 @@ title: "Puppet's services: Puppet apply"
 [puppet.conf]: ./config_file_main.html
 [short_settings]: ./config_important_settings.html#settings-for-agents-all-nodes
 
-Puppet apply is an application that compiles and manages configurations on nodes. It acts like a self-contained combination of the Puppet master and Puppet agent applications. For more info about Puppet's architecture, see [Overview of Puppet's Architecture](./architecture.html) --- in particular, read the note at the end about [differences and trade-offs between agent/master and puppet apply.](architecture.html#note-differences-between-agentmaster-and-puppet-apply)
+Puppet apply is an application that compiles and manages configurations on nodes. It acts like a self-contained combination of the Puppet master and Puppet agent applications. For more info about Puppet's architecture, see [Overview of Puppet's Architecture](./architecture.html) --- in particular, read the note at the end about [differences and trade-offs between agent/master and puppet apply.](./architecture.html#note-differences-between-agentmaster-and-puppet-apply)
 
 For details about invoking the Puppet apply command, see [the puppet apply man page][man].
 
