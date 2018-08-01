@@ -112,11 +112,11 @@ Expressions in non-printing tags don't have to resolve to a value or be a comple
 <%# Syntax error: %>
 <% $servers.each -%>
 # some server
-<% |server| { %> server <%= server %>
+<% |$server| { %> server <%= server %>
 <% } -%>
 ```
 
-You must keep `|server| {` inside the first tag, because you can't insert an arbitrary statement between a function call and its required block.
+You must keep `|$server| {` inside the first tag, because you can't insert an arbitrary statement between a function call and its required block.
 
 #### Space trimming
 
