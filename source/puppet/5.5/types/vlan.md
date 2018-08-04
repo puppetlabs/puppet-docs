@@ -34,7 +34,9 @@ _(**Namevar:** If omitted, this attribute's value defaults to the resource's tit
 
 The numeric VLAN ID.
 
-Values can match `/^\d+/`.
+Allowed values:
+
+* `/^\d+/`
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
@@ -44,7 +46,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 

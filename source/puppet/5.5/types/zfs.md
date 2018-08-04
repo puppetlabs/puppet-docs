@@ -76,7 +76,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -355,7 +360,7 @@ The zoned property. Valid values are `on`, `off`.
 
 Provider for zfs.
 
-* Required binaries: `zfs`.
+* Required binaries: `zfs`
 
 
 

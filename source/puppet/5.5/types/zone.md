@@ -62,6 +62,8 @@ in that a zone must be `configured`, then `installed`, and
 only then can be `running`.  Note also that `halt` is currently
 used to stop zones.
 
+Default: `running`
+
 Valid values are `absent`, `configured`, `installed`, `running`.
 
 ([↑ Back to zone attributes](#zone-attributes))
@@ -72,7 +74,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether the zone should automatically boot.
 
-Valid values are `true`, `false`.
+Default: `true`
+
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to zone attributes](#zone-attributes))
 
@@ -147,7 +154,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The IP stack type of the zone.
 
-Valid values are `shared`, `exclusive`.
+Default: `shared`
+
+Allowed values:
+
+* `shared`
+* `exclusive`
 
 ([↑ Back to zone attributes](#zone-attributes))
 

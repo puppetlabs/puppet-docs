@@ -91,7 +91,11 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic state that the object should be in.
 
-Valid values are `present`, `absent`, `role`.
+Allowed values:
+
+* `present`
+* `absent`
+* `role`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -99,7 +103,14 @@ Valid values are `present`, `absent`, `role`.
 
 Whether to allow duplicate UIDs. Defaults to `false`.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -109,7 +120,12 @@ Whether specified attribute value pairs should be treated as the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
 attribute/value pairs for the user. Defaults to `minimum`.
 
-Valid values are `inclusive`, `minimum`.
+Default: `minimum`
+
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -118,8 +134,6 @@ Valid values are `inclusive`, `minimum`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify AIX attributes for the user in an array of attribute = value pairs.
-
-
 
 Requires features manages_aix_lam.
 
@@ -131,7 +145,12 @@ Whether specified auths should be considered the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of auths the user
 has. Defaults to `minimum`.
 
-Valid values are `inclusive`, `minimum`.
+Default: `minimum`
+
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -141,8 +160,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The auths the user has.  Multiple auths should be
 specified as an array.
-
-
 
 Requires features manages_solaris_rbac.
 
@@ -164,7 +181,10 @@ The expiry date for this user. Provide as either the special
 value `absent` to ensure that the account never expires, or as
 a zero-padded YYYY-MM-DD format -- for example, 2010-02-19.
 
-Valid values are `absent`. Values can match `/^\d{4}-\d{2}-\d{2}$/`.
+Allowed values:
+
+* `absent`
+* `/^\d{4}-\d{2}-\d{2}$/`
 
 Requires features manages_expiry.
 
@@ -175,7 +195,14 @@ Requires features manages_expiry.
 Forces the management of local accounts when accounts are also
 being managed by some other NSS
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 Requires features libuser.
 
@@ -216,8 +243,6 @@ separately and is not currently checked for existence.
 
 The name of the I&A module to use to manage this user.
 
-
-
 Requires features manages_aix_lam.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -231,8 +256,6 @@ This is the number of iterations of a chained computation of the
 is used in OS X, and is required for managing passwords on OS X 10.8 and
 newer.
 
-
-
 Requires features manages_password_salt.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -243,7 +266,12 @@ Whether specified key/value pairs should be considered the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
 the user's attributes. Defaults to `minimum`.
 
-Valid values are `inclusive`, `minimum`.
+Default: `minimum`
+
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -252,8 +280,6 @@ Valid values are `inclusive`, `minimum`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify user attributes in an array of key = value pairs.
-
-
 
 Requires features manages_solaris_rbac.
 
@@ -264,8 +290,6 @@ Requires features manages_solaris_rbac.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The name of login class to which the user belongs.
-
-
 
 Requires features manages_loginclass.
 
@@ -283,7 +307,14 @@ user if `ensure => present` and the user does not exist at the time of the Puppe
 If the home directory is then deleted manually, Puppet will not recreate it on the next
 run.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -296,9 +327,12 @@ that the user is a part of.
 If `inclusive` is specified, Puppet will ensure that the user is a
 member of **only** specified groups.
 
-Defaults to `minimum`.
+Default: `minimum`
 
-Valid values are `inclusive`, `minimum`.
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -357,8 +391,6 @@ This results in the password being redacted from the report, as in the
     corrective_change: false
 ```
 
-
-
 Requires features manages_passwords.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -368,8 +400,6 @@ Requires features manages_passwords.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The maximum number of days a password may be used before it must be changed.
-
-
 
 Requires features manages_password_age.
 
@@ -381,8 +411,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The minimum number of days a password must be used before it may be changed.
 
-
-
 Requires features manages_password_age.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -393,8 +421,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The number of days before a password is going to expire (see the maximum password age) during which the user should be warned.
 
-
-
 Requires features manages_password_age.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -403,9 +429,14 @@ Requires features manages_password_age.
 
 Whether specified roles should be treated as the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of roles
-of which the user is a member. Defaults to `minimum`.
+of which the user is a member.
 
-Valid values are `inclusive`, `minimum`.
+Default: `minimum`
+
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -416,8 +447,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The profiles the user has.  Multiple profiles should be
 specified as an array.
 
-
-
 Requires features manages_solaris_rbac.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -427,8 +456,6 @@ Requires features manages_solaris_rbac.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The name of the project associated with a user.
-
-
 
 Requires features manages_solaris_rbac.
 
@@ -463,12 +490,12 @@ with the `ssh_authorized_key` resource type. Allowed values are:
 * `true` --- look for keys in the `.ssh/authorized_keys` file in the user's
   home directory. Purge any keys that aren't managed as `ssh_authorized_key`
   resources.
-* An array of file paths --- look for keys in all of the files listed. Purge
-  any keys that aren't managed as `ssh_authorized_key` resources. If any of
-  these paths starts with `~` or `%h`, that token will be replaced with
-  the user's home directory.
+* An array of file paths --- look for keys in all of the files listed.
+  Purge any keys that aren't managed as `ssh_authorized_key` resources.
+  If any of these paths starts with `~` or `%h`, that token will be
+  replaced with the user's home directory.
 
-Valid values are `true`, `false`.
+Default: `false`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -476,9 +503,14 @@ Valid values are `true`, `false`.
 
 Whether specified roles should be considered the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of roles the user
-has. Defaults to `minimum`.
+has.
 
-Valid values are `inclusive`, `minimum`.
+Default: `minimum`
+
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -488,8 +520,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The roles the user has.  Multiple roles should be
 specified as an array.
-
-
 
 Requires features manages_solaris_rbac.
 
@@ -501,8 +531,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 This is the 32-byte salt used to generate the PBKDF2 password used in
 OS X. This field is required for managing passwords on OS X >= 10.8.
-
-
 
 Requires features manages_password_salt.
 
@@ -517,8 +545,6 @@ executable.
 
 This attribute cannot be managed on Windows systems.
 
-
-
 Requires features manages_shell.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -528,9 +554,16 @@ Requires features manages_shell.
 Whether the user is a system user, according to the OS's criteria;
 on most platforms, a UID less than or equal to 500 indicates a system
 user. This parameter is only used when the resource is created and will
-not affect the UID when the user is present. Defaults to `false`.
+not affect the UID when the user is present.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -558,7 +591,8 @@ security identifier (SID).
 
 User management for AIX.
 
-* Required binaries: `/bin/chpasswd`, `/usr/bin/chuser`, `/usr/bin/mkuser`, `/usr/sbin/lsgroup`, `/usr/sbin/lsuser`, `/usr/sbin/rmuser`.
+* Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/usr/sbin/lsgroup`, `/bin/chpasswd`
+* Confined to: `operatingsystem == aix`
 * Default for `operatingsystem` == `aix`.
 * Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`.
 
@@ -566,7 +600,8 @@ User management for AIX.
 
 User management on OS X.
 
-* Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/uuidgen`.
+* Required binaries: `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscl`, `/usr/bin/dscacheutil`
+* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
 * Default for `operatingsystem` == `darwin`.
 * Supported features: `manages_password_salt`, `manages_passwords`, `manages_shell`.
 
@@ -578,7 +613,8 @@ its standard `usermod` cannot make changes while the user is logged in.
 New functionality provides for changing trusted computing passwords and
 resetting password expirations under trusted computing.
 
-* Required binaries: `/usr/sam/lbin/useradd.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/usermod.sam`.
+* Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`
+* Confined to: `operatingsystem == hp-ux`
 * Default for `operatingsystem` == `hp-ux`.
 * Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
 
@@ -595,6 +631,7 @@ Note that this provider will automatically generate a UID for you if
 you do not specify one, but it is a potentially expensive operation,
 as it iterates across all existing users to pick the appropriate next one.
 
+* Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
 * Supported features: `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-openbsd">openbsd</h4>
@@ -603,7 +640,8 @@ User management via `useradd` and its ilk for OpenBSD. Note that you
 will need to install Ruby's shadow password library (package known as
 `ruby-shadow`) if you wish to manage user passwords.
 
-* Required binaries: `passwd`, `useradd`, `userdel`, `usermod`.
+* Required binaries: `useradd`, `userdel`, `usermod`, `passwd`
+* Confined to: `operatingsystem == openbsd`
 * Default for `operatingsystem` == `openbsd`.
 * Supported features: `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
@@ -611,7 +649,8 @@ will need to install Ruby's shadow password library (package known as
 
 User management via `pw` on FreeBSD and DragonFly BSD.
 
-* Required binaries: `pw`.
+* Required binaries: `pw`
+* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_passwords`, `manages_shell`.
 
@@ -619,7 +658,7 @@ User management via `pw` on FreeBSD and DragonFly BSD.
 
 User and role management on Solaris, via `useradd` and `roleadd`.
 
-* Required binaries: `passwd`, `roleadd`, `roledel`, `rolemod`, `useradd`, `userdel`, `usermod`.
+* Required binaries: `useradd`, `userdel`, `usermod`, `passwd`, `roleadd`, `roledel`, `rolemod`
 * Default for `osfamily` == `solaris`.
 * Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`, `manages_solaris_rbac`.
 
@@ -629,13 +668,14 @@ User management via `useradd` and its ilk.  Note that you will need to
 install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
-* Required binaries: `chage`, `lchage`, `luseradd`, `luserdel`, `lusermod`, `useradd`, `userdel`, `usermod`.
+* Required binaries: `useradd`, `userdel`, `usermod`, `chage`
 * Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
 Local user management for Windows.
 
+* Confined to: `operatingsystem == windows`
 * Default for `operatingsystem` == `windows`.
 * Supported features: `manages_homedir`, `manages_passwords`.
 

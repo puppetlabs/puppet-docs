@@ -92,7 +92,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -113,13 +118,17 @@ Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Use to specify the maximum available network bandwidth
-      in bytes/second. Used with the `throttle` option. If `throttle`
-      is a percentage and `bandwidth` is `0` then bandwidth throttling
-      will be disabled. If `throttle` is expressed as a data rate then
-      this option is ignored.
+in bytes/second. Used with the `throttle` option. If `throttle`
+is a percentage and `bandwidth` is `0` then bandwidth throttling
+will be disabled. If `throttle` is expressed as a data rate then
+this option is ignored.
+
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^\d+[kMG]?$/`.
+Allowed values:
+
+* `/^\d+[kMG]?$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -129,7 +138,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The URL for this repository. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -139,7 +151,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Cost of this repository. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^\d+$/`.
+Allowed values:
+
+* `/^\d+$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -152,7 +167,10 @@ When the deltarpm metadata is larger than this percentage value of the
 package, deltarpm metadata is not downloaded.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^\d+$/`.
+Allowed values:
+
+* `/^\d+$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -165,7 +183,10 @@ When the delta is larger than this percentage value of the package, the
 delta is not used.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^\d+$/`.
+Allowed values:
+
+* `/^\d+$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -177,7 +198,10 @@ A human-readable description of the repository.
 This corresponds to the name parameter in `yum.conf(5)`.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -215,7 +239,10 @@ Packages that match the package name given or shell globs will never be
 considered in updates or installs for this repo.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -226,7 +253,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The failover method for this repository; should be either
 `roundrobin` or `priority`. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^roundrobin|priority$/`.
+Allowed values:
+
+* `/^roundrobin|priority$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -236,7 +266,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The URL for the GPG CA key for this repository. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -260,7 +293,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The URL for the GPG key with which packages from this
 repository are signed. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -270,7 +306,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 What to cache from this repository. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^(packages|all|none)$/`.
+Allowed values:
+
+* `/^(packages|all|none)$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -282,7 +321,10 @@ The URL of a remote file containing additional yum configuration
 settings. Puppet does not check for this file's existence or validity.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -295,7 +337,10 @@ include. If this is set, only packages matching one of the package
 names or shell globs will be considered for update or install
 from this repository. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -318,7 +363,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Number of seconds after which the metadata will expire.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^([0-9]+[dhm]?|never)$/`.
+Allowed values:
+
+* `/^([0-9]+[dhm]?|never)$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -328,7 +376,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Metalink for mirrors. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -339,7 +390,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The URL that holds the list of mirrors for this repository.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -348,10 +402,12 @@ Valid values are `absent`. Values can match `/.*/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Time (in seconds) after which the mirrorlist locally cached
-      will expire.
-Set this to `absent` to remove it from the file completely.
+will expire. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^[0-9]+$/`.
+Allowed values:
+
+* `/^[0-9]+$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -362,7 +418,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Password to use with the username for basic authentication.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -387,7 +446,10 @@ Priority of this repository. Can be any integer value
 is installed and enabled.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^-?\d+$/`.
+Allowed values:
+
+* `/^-?\d+$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -425,7 +487,10 @@ This attribute can also be set to `'_none_'`, which will make Yum bypass any
 global proxy settings when accessing this repository.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -435,7 +500,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Password for this proxy. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -445,7 +513,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Username for this proxy. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -466,11 +537,14 @@ Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Set the number of times any attempt to retrieve a file should
-      retry before returning an error. Setting this to `0` makes yum
-     try forever.
+retry before returning an error. Setting this to `0` makes yum
+try forever.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^[0-9]+$/`.
+Allowed values:
+
+* `/^[0-9]+$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -506,7 +580,10 @@ Path to the directory containing the databases of the
 certificate authorities yum should use to verify SSL certificates.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -517,7 +594,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Path  to the SSL client certificate yum should use to connect
 to repositories/remote sites. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -528,7 +608,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Path to the SSL client key yum should use to connect
 to repositories/remote sites. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -548,6 +631,8 @@ Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 The target parameter will be enabled in a future release and should not be used.
 
+Default: `absent`
+
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
 <h4 id="yumrepo-attribute-throttle">throttle</h4>
@@ -555,12 +640,15 @@ The target parameter will be enabled in a future release and should not be used.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Enable bandwidth throttling for downloads. This option
-      can be expressed as a absolute data rate in bytes/sec or a
-      percentage `60%`. An SI prefix (k, M or G) may be appended
-      to the data rate values.
+can be expressed as a absolute data rate in bytes/sec or a
+percentage `60%`. An SI prefix (k, M or G) may be appended
+to the data rate values.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^\d+[kMG%]?$/`.
+Allowed values:
+
+* `/^\d+[kMG%]?$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -571,7 +659,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Number of seconds to wait for a connection before timing
 out. Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/^\d+$/`.
+Allowed values:
+
+* `/^\d+$/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -582,7 +673,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Username to use for basic authentication to a repo or really any url.
 Set this to `absent` to remove it from the file completely.
 
-Valid values are `absent`. Values can match `/.*/`.
+Allowed values:
+
+* `/.*/`
+* `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
