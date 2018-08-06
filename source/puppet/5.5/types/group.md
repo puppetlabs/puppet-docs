@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 group
 -----
@@ -62,7 +62,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Create or remove the group.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -70,7 +75,12 @@ Valid values are `present`, `absent`.
 
 Whether to allow duplicate GIDs. Defaults to `false`.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -78,12 +88,17 @@ Valid values are `true`, `false`, `yes`, `no`.
 
 AIX only. Configures the behavior of the `attributes` parameter.
 
-* `minimum` (default) --- The provided list of attributes is partial, and Puppet
+* `minimum` --- The provided list of attributes is partial, and Puppet
   **ignores** any attributes that aren't listed there.
 * `inclusive` --- The provided list of attributes is comprehensive, and
   Puppet **purges** any attributes that aren't listed there.
 
-Valid values are `inclusive`, `minimum`.
+Default: `minimum`
+
+Allowed values:
+
+* `inclusive`
+* `minimum`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -94,8 +109,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Specify group AIX attributes, as an array of `'key=value'` strings. This
 parameter's behavior can be configured with `attribute_membership`.
 
-
-
 Requires features manages_aix_lam.
 
 ([↑ Back to group attributes](#group-attributes))
@@ -104,21 +117,31 @@ Requires features manages_aix_lam.
 
 Configures the behavior of the `members` parameter.
 
-* `false` (default) --- The provided list of group members is partial,
+* `false` --- The provided list of group members is partial,
   and Puppet **ignores** any members that aren't listed there.
 * `true` --- The provided list of of group members is comprehensive, and
   Puppet **purges** any members that aren't listed there.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
 <h4 id="group-attribute-forcelocal">forcelocal</h4>
 
 Forces the management of local accounts when accounts are also
-being managed by some other NSS
+being managed by some other NSS.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 Requires features libuser.
 
@@ -143,8 +166,6 @@ identifier (SID).
 
 The name of the I&A module to use to manage this user
 
-
-
 Requires features manages_aix_lam.
 
 ([↑ Back to group attributes](#group-attributes))
@@ -156,8 +177,6 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The members of the group. For platforms or directory services where group
 membership is stored in the group objects, not the users. This parameter's
 behavior can be configured with `auth_membership`.
-
-
 
 Requires features manages_members.
 
@@ -184,7 +203,12 @@ Available providers are:
 
 Whether the group is a system group with lower GID.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -195,24 +219,26 @@ Valid values are `true`, `false`, `yes`, `no`.
 
 Group management for AIX.
 
-* Required binaries: `/usr/bin/chgroup`, `/usr/bin/mkgroup`, `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`.
-* Default for `operatingsystem` == `aix`.
-* Supported features: `manages_aix_lam`, `manages_members`.
+* Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
+* Confined to: `operatingsystem == aix`
+* Default for: `operatingsystem` == `aix`
+* Supported features: `manages_aix_lam`, `manages_members`
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
 Group management using DirectoryService on OS X.
 
-* Required binaries: `/usr/bin/dscl`.
-* Default for `operatingsystem` == `darwin`.
-* Supported features: `manages_members`.
+* Required binaries: `/usr/bin/dscl`
+* Confined to: `operatingsystem == darwin`
+* Default for: `operatingsystem` == `darwin`
+* Supported features: `manages_members`
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
 Group management via `groupadd` and its ilk. The default for most platforms.
 
-* Required binaries: `groupadd`, `groupdel`, `groupmod`, `lgroupadd`, `lgroupdel`, `lgroupmod`.
-* Supported features: `system_groups`.
+* Required binaries: `groupadd`, `groupdel`, `groupmod`
+* Supported features: `system_groups`
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -227,11 +253,14 @@ Note that this provider will automatically generate a GID for you if you do
 not specify one, but it is a potentially expensive operation, as it
 iterates across all existing groups to pick the appropriate next one.
 
+* Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
+
 <h4 id="group-provider-pw">pw</h4>
 
 Group management via `pw` on FreeBSD and DragonFly BSD.
 
-* Required binaries: `pw`.
+* Required binaries: `pw`
+* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `manages_members`.
 
@@ -240,7 +269,8 @@ Group management via `pw` on FreeBSD and DragonFly BSD.
 Local group management for Windows. Group members can be both users and groups.
 Additionally, local groups can contain domain users.
 
-* Default for `operatingsystem` == `windows`.
+* Confined to: `operatingsystem == windows`
+* Default for: `operatingsystem` == `windows`
 * Supported features: `manages_members`.
 
 <h3 id="group-provider-features">Provider Features</h3>
@@ -312,4 +342,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

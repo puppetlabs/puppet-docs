@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: ssh_authorized_key'
 canonical: "/puppet/latest/types/ssh_authorized_key.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 ssh_authorized_key
 -----
@@ -83,7 +83,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -133,6 +138,8 @@ property is optional and should be used only in cases where keys
 are stored in a non-standard location, for instance when not in
 `~user/.ssh/authorized_keys`.
 
+Default: `absent`
+
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
 <h4 id="ssh_authorized_key-attribute-type">type</h4>
@@ -141,7 +148,17 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The encryption type used.
 
-Valid values are `ssh-dss` (also called `dsa`), `ssh-rsa` (also called `rsa`), `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-ed25519` (also called `ed25519`).
+Allowed values:
+
+* `ssh-dss`
+* `ssh-rsa`
+* `ecdsa-sha2-nistp256`
+* `ecdsa-sha2-nistp384`
+* `ecdsa-sha2-nistp521`
+* `ssh-ed25519`
+* `dsa`
+* `ed25519`
+* `rsa`
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -164,4 +181,4 @@ Parse and generate authorized_keys files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700

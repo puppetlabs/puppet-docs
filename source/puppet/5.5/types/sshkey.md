@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: sshkey'
 canonical: "/puppet/latest/types/sshkey.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 sshkey
 -----
@@ -48,7 +48,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
@@ -104,7 +109,17 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The encryption type used.  Probably ssh-dss or ssh-rsa.
 
-Valid values are `ssh-dss` (also called `dsa`), `ssh-ed25519` (also called `ed25519`), `ssh-rsa` (also called `rsa`), `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`.
+Allowed values:
+
+* `ssh-dss`
+* `ssh-ed25519`
+* `ssh-rsa`
+* `ecdsa-sha2-nistp256`
+* `ecdsa-sha2-nistp384`
+* `ecdsa-sha2-nistp521`
+* `dsa`
+* `ed25519`
+* `rsa`
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
@@ -118,4 +133,4 @@ Parse and generate host-wide known hosts files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700

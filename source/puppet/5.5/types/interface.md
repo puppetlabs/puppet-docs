@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: interface'
 canonical: "/puppet/latest/types/interface.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 interface
 -----
@@ -53,7 +53,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present` (also called `no_shutdown`), `absent` (also called `shutdown`).
+Default: `present`
+
+Allowed values:
+
+* `present` or `no_shutdown`
+* `absent` or `shutdown`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -63,7 +68,9 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface static access vlan.
 
-Values can match `/^\d+/`.
+Allowed values:
+
+* `/^\d+/`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -73,7 +80,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Allowed list of Vlans that this trunk can forward.
 
-Valid values are `all`. Values can match `/./`.
+Allowed values:
+
+* `all`
+* `/./`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -97,7 +107,11 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface duplex.
 
-Valid values are `auto`, `full`, `half`.
+Allowed values:
+
+* `auto`
+* `full`
+* `half`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -107,7 +121,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport encapsulation.
 
-Valid values are `none`, `dot1q`, `isl`, `negotiate`.
+Allowed values:
+
+* `none`
+* `dot1q`
+* `isl`
+* `negotiate`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -117,7 +136,9 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Channel group this interface is part of.
 
-Values can match `/^\d+/`.
+Allowed values:
+
+* `/^\d+/`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -145,7 +166,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport mode.
 
-Valid values are `access`, `trunk`, `dynamic auto`, `dynamic desirable`.
+Allowed values:
+
+* `access`
+* `trunk`
+* `dynamic auto`
+* `dynamic desirable`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -155,7 +181,9 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface native vlan when trunking.
 
-Values can match `/^\d+/`.
+Allowed values:
+
+* `/^\d+/`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -177,7 +205,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface speed.
 
-Valid values are `auto`. Values can match `/^\d+/`.
+Allowed values:
+
+* `auto`
+* `/^\d+/`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -191,4 +222,4 @@ Cisco switch/router provider for interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

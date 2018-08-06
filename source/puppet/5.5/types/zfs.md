@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: zfs'
 canonical: "/puppet/latest/types/zfs.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 zfs
 -----
@@ -89,7 +89,15 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The aclinherit property. Valid values are `discard`, `noallow`, `restricted`, `passthrough`, `passthrough-x`.
+The aclinherit property.
+
+Allowed values:
+
+* `discard`
+* `noallow`
+* `restricted`
+* `passthrough`
+* `passthrough-x`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -97,7 +105,13 @@ The aclinherit property. Valid values are `discard`, `noallow`, `restricted`, `p
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The aclmode property. Valid values are `discard`, `groupmask`, `passthrough`.
+The aclmode property.
+
+Allowed values:
+
+* `discard`
+* `groupmask`
+* `passthrough`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -105,7 +119,14 @@ The aclmode property. Valid values are `discard`, `groupmask`, `passthrough`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The acltype propery. Valid values are 'noacl' and 'posixacl'. Only supported on Linux.
+The acltype propery.
+
+Allowed values:
+
+* 'noacl'
+* 'posixacl'
+
+Only supported on Linux.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -113,7 +134,12 @@ The acltype propery. Valid values are 'noacl' and 'posixacl'. Only supported on 
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The atime property. Valid values are `on`, `off`.
+The atime property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -121,7 +147,13 @@ The atime property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The canmount property. Valid values are `on`, `off`, `noauto`.
+The canmount property.
+
+Allowed values:
+
+* `on`
+* `off`
+* `noauto`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -129,7 +161,15 @@ The canmount property. Valid values are `on`, `off`, `noauto`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The checksum property. Valid values are `on`, `off`, `fletcher2`, `fletcher4`, `sha256`.
+The checksum property.
+
+Allowed values:
+
+* `on`
+* `off`
+* `fletcher2`
+* `fletcher4`
+* `sha256`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -137,7 +177,16 @@ The checksum property. Valid values are `on`, `off`, `fletcher2`, `fletcher4`, `
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The compression property. Valid values are `on`, `off`, `lzjb`, `gzip`, `gzip-[1-9]`, `zle`.
+The compression property.
+
+Allowed values:
+
+* `on`
+* `off`
+* `lzjb`
+* `gzip`
+* `gzip-[1-9]`
+* `zle`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -145,7 +194,13 @@ The compression property. Valid values are `on`, `off`, `lzjb`, `gzip`, `gzip-[1
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The copies property. Valid values are `1`, `2`, `3`.
+The copies property.
+
+Allowed values:
+
+* `1`
+* `2`
+* `3`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -153,7 +208,12 @@ The copies property. Valid values are `1`, `2`, `3`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The dedup property. Valid values are `on`, `off`.
+The dedup property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -161,7 +221,12 @@ The dedup property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The devices property. Valid values are `on`, `off`.
+The devices property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -169,7 +234,12 @@ The devices property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The exec property. Valid values are `on`, `off`.
+The exec property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -177,7 +247,12 @@ The exec property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The logbias property. Valid values are `latency`, `throughput`.
+The logbias property.
+
+Allowed values:
+
+* `latency`
+* `throughput`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -185,7 +260,13 @@ The logbias property. Valid values are `latency`, `throughput`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The mountpoint property. Valid values are `<path>`, `legacy`, `none`.
+The mountpoint property.
+
+Allowed values:
+
+* `<path>`
+* `legacy`
+* `none`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -193,7 +274,12 @@ The mountpoint property. Valid values are `<path>`, `legacy`, `none`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The nbmand property. Valid values are `on`, `off`.
+The nbmand property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -201,7 +287,13 @@ The nbmand property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The primarycache property. Valid values are `all`, `none`, `metadata`.
+The primarycache property.
+
+Allowed values:
+
+* `all`
+* `none`
+* `metadata`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -221,7 +313,12 @@ Available providers are:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The quota property. Valid values are `<size>`, `none`.
+The quota property.
+
+Allowed values:
+
+* `<size>`
+* `none`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -229,7 +326,12 @@ The quota property. Valid values are `<size>`, `none`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The readonly property. Valid values are `on`, `off`.
+The readonly property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -237,7 +339,11 @@ The readonly property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The recordsize property. Valid values are powers of two between 512 and 128k.
+The recordsize property.
+
+Allowed values:
+
+* powers of two between 512 and 128k
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -245,7 +351,12 @@ The recordsize property. Valid values are powers of two between 512 and 128k.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The refquota property. Valid values are `<size>`, `none`.
+The refquota property.
+
+Allowed values:
+
+* `<size>`
+* `none`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -253,7 +364,12 @@ The refquota property. Valid values are `<size>`, `none`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The refreservation property. Valid values are `<size>`, `none`.
+The refreservation property.
+
+Allowed values:
+
+* `<size>`
+* `none`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -261,7 +377,12 @@ The refreservation property. Valid values are `<size>`, `none`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The reservation property. Valid values are `<size>`, `none`.
+The reservation property.
+
+Allowed values:
+
+* `<size>`
+* `none`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -269,7 +390,13 @@ The reservation property. Valid values are `<size>`, `none`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The secondarycache property. Valid values are `all`, `none`, `metadata`.
+The secondarycache property.
+
+Allowed values:
+
+* `all`
+* `none`
+* `metadata`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -277,7 +404,12 @@ The secondarycache property. Valid values are `all`, `none`, `metadata`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The setuid property. Valid values are `on`, `off`.
+The setuid property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -285,7 +417,13 @@ The setuid property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The shareiscsi property. Valid values are `on`, `off`, `type=<type>`.
+The shareiscsi property.
+
+Allowed values:
+
+* `on`
+* `off`
+* `type=<type>`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -293,7 +431,13 @@ The shareiscsi property. Valid values are `on`, `off`, `type=<type>`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The sharenfs property. Valid values are `on`, `off`, share(1M) options
+The sharenfs property.
+
+Allowed values:
+
+* `on`
+* `off`
+* share(1M) options
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -301,7 +445,13 @@ The sharenfs property. Valid values are `on`, `off`, share(1M) options
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The sharesmb property. Valid values are `on`, `off`, sharemgr(1M) options
+The sharesmb property.
+
+Allowed values:
+
+* `on`
+* `off`
+* sharemgr(1M) options
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -309,7 +459,12 @@ The sharesmb property. Valid values are `on`, `off`, sharemgr(1M) options
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The snapdir property. Valid values are `hidden`, `visible`.
+The snapdir property.
+
+Allowed values:
+
+* `hidden`
+* `visible`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -317,7 +472,15 @@ The snapdir property. Valid values are `hidden`, `visible`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The version property. Valid values are `1`, `2`, `3`, `4`, `current`.
+The version property.
+
+Allowed values:
+
+* `1`
+* `2`
+* `3`
+* `4`
+* `current`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -325,7 +488,11 @@ The version property. Valid values are `1`, `2`, `3`, `4`, `current`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The volsize property. Valid values are `<size>`
+The volsize property.
+
+Allowed values:
+
+* `<size>`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -333,7 +500,12 @@ The volsize property. Valid values are `<size>`
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The vscan property. Valid values are `on`, `off`.
+The vscan property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -341,7 +513,12 @@ The vscan property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The xattr property. Valid values are `on`, `off`.
+The xattr property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -349,7 +526,12 @@ The xattr property. Valid values are `on`, `off`.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The zoned property. Valid values are `on`, `off`.
+The zoned property.
+
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -365,4 +547,4 @@ Provider for zfs.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700

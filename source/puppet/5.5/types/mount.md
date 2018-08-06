@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: mount'
 canonical: "/puppet/latest/types/mount.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 mount
 -----
@@ -70,7 +70,13 @@ the filesystem from the fstab.  Set to `mounted` to add it to the
 fstab and mount it. Set to `present` to add to fstab but not change
 mount/unmount status.
 
-Valid values are `defined` (also called `present`), `unmounted`, `absent`, `mounted`.
+Allowed values:
+
+* `defined`
+* `present`
+* `unmounted`
+* `absent`
+* `mounted`
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -108,10 +114,15 @@ path, depending on the operating system.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Whether to dump the mount.  Not all platform support this.
-Valid values are `1` or `0` (or `2` on FreeBSD). Default is `0`.
+Whether to dump the mount. Not all platforms support this.
 
-Values can match `/(0|1)/`.
+Default: `0`.
+
+Allowed values:
+
+* `1`
+* `0`
+* `2` on FreeBSD
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -164,7 +175,10 @@ Whether the mount can be remounted  `mount -o remount`.  If
 this is false, then the filesystem will be unmounted and remounted
 manually, which is prone to failure.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -182,8 +196,8 @@ those providers that write to disk.
 
 <h4 id="mount-provider-parsed">parsed</h4>
 
-* Required binaries: `mount`, `umount`.
-* Supported features: `refreshable`.
+* Required binaries: `mount`, `umount`
+* Supported features: `refreshable`
 
 <h3 id="mount-provider-features">Provider Features</h3>
 
@@ -203,11 +217,11 @@ Provider support:
   <tbody>
     <tr>
       <td>parsed</td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

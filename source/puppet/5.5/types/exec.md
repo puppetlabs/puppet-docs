@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 exec
 -----
@@ -156,7 +156,13 @@ when the command has an exit code that does not match any value
 specified by the `returns` attribute. As with any resource type,
 the log level can be controlled with the `loglevel` metaparameter.
 
-Valid values are `true`, `false`, `on_failure`.
+Default: `on_failure`
+
+Allowed values:
+
+* `true`
+* `false`
+* `on_failure`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -245,7 +251,10 @@ other object; it is useful for triggering an action:
 Note that only `subscribe` and `notify` can trigger actions, not `require`,
 so it only makes sense to use `refreshonly` with `subscribe` or `notify`.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -275,6 +284,8 @@ Microsoft recommends against using negative/very large exit codes, and
 you should avoid them when possible. To convert a negative exit code to
 the positive one Puppet will use, add it to 4294967296.
 
+Default: `0`
+
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-timeout">timeout</h4>
@@ -284,21 +295,27 @@ longer than the timeout, the command is considered to have failed
 and will be stopped. The timeout is specified in seconds. The default
 timeout is 300 seconds and you can set it to 0 to disable the timeout.
 
+Default: `300`
+
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-tries">tries</h4>
 
 The number of times execution of the command should be tried.
-Defaults to '1'. This many attempts will be made to execute
+This many attempts will be made to execute
 the command until an acceptable return code is returned.
 Note that the timeout parameter applies to each try rather than
 to the complete set of tries.
+
+Default: `1`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-try_sleep">try_sleep</h4>
 
 The time to sleep in seconds between 'tries'.
+
+Default: `0`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -359,7 +376,8 @@ performing any interpolation. This is a safer and more predictable way
 to execute most commands, but prevents the use of globbing and shell
 built-ins (including control logic like "for" and "if" statements).
 
-* Default for `feature` == `posix`.
+* Confined to: `feature == posix`
+* Default for: `feature` == `posix`
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -372,6 +390,8 @@ etc. etc.
 
 This provider closely resembles the behavior of the `exec` type
 in Puppet 0.25.x.
+
+* Confined to: `feature == posix`
 
 <h4 id="exec-provider-windows">windows</h4>
 
@@ -398,9 +418,10 @@ command:
       command => 'powershell -executionpolicy remotesigned -file C:/test.ps1',
     }
 
-* Default for `operatingsystem` == `windows`.
+* Confined to: `operatingsystem == windows`
+* Default for: `operatingsystem` == `windows`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: macauthorization'
 canonical: "/puppet/latest/types/macauthorization.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 macauthorization
 -----
@@ -67,7 +67,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -80,7 +85,10 @@ whether a right should be allowed automatically if the requesting process
 is running with `uid == 0`.  AuthorizationServices defaults this attribute
 to false if not specified.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -91,7 +99,13 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Corresponds to `class` in the authorization store; renamed due
 to 'class' being a reserved word in Puppet.
 
-Valid values are `user`, `evaluate-mechanisms`, `allow`, `deny`, `rule`.
+Allowed values:
+
+* `user`
+* `evaluate-mechanisms`
+* `allow`
+* `deny`
+* `rule`
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -102,7 +116,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Type --- this can be a `right` or a `rule`. The `comment` type has
 not yet been implemented.
 
-Valid values are `right`, `rule`.
+Allowed values:
+
+* `right`
+* `rule`
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -112,7 +129,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Corresponds to `authenticate-user` in the authorization store.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -180,7 +200,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Whether the session owner automatically matches this rule or right.
 Corresponds to `session-owner` in the authorization store.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -194,7 +217,10 @@ to authorize this right. For maximum security, set sharing to false so
 credentials stored by the Security Server for one application may not be
 used by another application.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -224,10 +250,11 @@ The number of tries allowed.
 
 Manage Mac OS X authorization database rules and rights.
 
-* Required binaries: `/usr/bin/security`.
-* Default for `operatingsystem` == `darwin`.
+* Required binaries: `/usr/bin/security`
+* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
+* Default for: `operatingsystem` == `darwin`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: selboolean'
 canonical: "/puppet/latest/types/selboolean.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 selboolean
 -----
@@ -38,10 +38,14 @@ The name of the SELinux boolean to be managed.
 
 <h4 id="selboolean-attribute-persistent">persistent</h4>
 
-If set true, SELinux booleans will be written to disk and persist across reboots.
-The default is `false`.
+If set to true, SELinux booleans will be written to disk and persist across reboots.
 
-Valid values are `true`, `false`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to selboolean attributes](#selboolean-attributes))
 
@@ -63,7 +67,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether the SELinux boolean should be enabled or disabled.
 
-Valid values are `on`, `off`.
+Allowed values:
+
+* `on`
+* `off`
 
 ([↑ Back to selboolean attributes](#selboolean-attributes))
 
@@ -74,9 +81,9 @@ Valid values are `on`, `off`.
 
 Manage SELinux booleans using the getsebool and setsebool binaries.
 
-* Required binaries: `/usr/sbin/getsebool`, `/usr/sbin/setsebool`.
+* Required binaries: `/usr/sbin/getsebool`, `/usr/sbin/setsebool`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700

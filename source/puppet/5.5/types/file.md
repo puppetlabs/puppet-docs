@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 file
 -----
@@ -172,6 +172,8 @@ balancer to direct all filebucket traffic to a single master, or use
 something like an out-of-band rsync task to synchronize the content on all
 masters.
 
+Default: `puppet`
+
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-checksum">checksum</h4>
@@ -246,7 +248,12 @@ You must use `force` in order to:
 * Replace directories with files or links
 * Remove a directory when `ensure => absent`
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -282,7 +289,12 @@ How to handle links during file actions.  During file copying,
 will copy the link itself. When not copying, `manage` will manage
 the link, and `follow` will manage the file to which the link points.
 
-Valid values are `follow`, `manage`.
+Default: `manage`
+
+Allowed values:
+
+* `follow`
+* `manage`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -415,7 +427,12 @@ If `recurselimit` is set and you aren't using `force => true`, purging
 will obey the recursion limit; files in any subdirectories deeper than the
 limit will be treated as unmanaged and left alone.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `false`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -444,11 +461,15 @@ is only used when `ensure => directory` is set. The allowed values are:
   The `source` attribute is not mandatory when using `recurse => true`, so you
   can enable purging in directories where all files are managed individually.
 
-By default, setting recurse to `remote` or `true` will manage _all_
+By default, setting recurse to `remote` or `true` manages _all_
 subdirectories. You can use the `recurselimit` attribute to limit the
 recursion depth.
 
-Valid values are `true`, `false`, `remote`.
+Allowed values:
+
+* `true`
+* `false`
+* `remote`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -472,7 +493,9 @@ directory, as well as the contents of the _first_ level of subdirectories.
 
 This pattern continues for each incremental value of `recurselimit`.
 
-Values can match `/^[0-9]+$/`.
+Allowed values:
+
+* `/^[0-9]+$/`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -484,7 +507,12 @@ specifies.  Setting this to false allows file resources to initialize files
 without overwriting future changes.  Note that this only affects content;
 Puppet will still manage ownership and permissions. Defaults to `true`.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `true`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -557,7 +585,13 @@ other secret data, which might otherwise be included in Puppet reports or
 other insecure outputs.  If the global `show_diff` setting
 is false, then no diffs will be shown even if this parameter is true.
 
-Valid values are `true`, `false`, `yes`, `no`.
+
+Default: `true`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -642,7 +676,12 @@ all valid sources will have all of their contents copied to the local
 system. If a given file exists in more than one source, the version from
 the earliest source in the list will be used.
 
-Valid values are `first`, `all`.
+Default: `first`
+
+Allowed values:
+
+* `first`
+* `all`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -666,7 +705,10 @@ Directories of symlinks can be served recursively by instead using the
 `source` attribute, setting `ensure` to `directory`, and setting the
 `links` attribute to `manage`.
 
-Valid values are `notlink`. Values can match `/./`.
+Allowed values:
+
+* `notlink`
+* `/./`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -708,7 +750,9 @@ you can specify a different placeholder token with the
 <h4 id="file-attribute-validate_replacement">validate_replacement</h4>
 
 The replacement string in a `validate_cmd` that will be replaced
-with an input file name. Defaults to: `%`
+with an input file name.
+
+Default: `%`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -719,13 +763,15 @@ with an input file name. Defaults to: `%`
 
 Uses POSIX functionality to manage file ownership and permissions.
 
-* Supported features: `manages_symlinks`.
+* Confined to: `feature == posix`
+* Supported features: `manages_symlinks`
 
 <h4 id="file-provider-windows">windows</h4>
 
 Uses Microsoft Windows functionality to manage file ownership and permissions.
 
-* Supported features: `manages_symlinks`.
+* Confined to: `operatingsystem == windows`
+* Supported features: `manages_symlinks`
 
 <h3 id="file-provider-features">Provider Features</h3>
 
@@ -756,4 +802,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: notify'
 canonical: "/puppet/latest/types/notify.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 notify
 -----
@@ -43,9 +43,14 @@ The message to be sent to the log.
 
 <h4 id="notify-attribute-withpath">withpath</h4>
 
-Whether to show the full object path. Defaults to false.
+Whether to show the full object path.
 
-Valid values are `true`, `false`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to notify attributes](#notify-attributes))
 
@@ -53,4 +58,4 @@ Valid values are `true`, `false`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

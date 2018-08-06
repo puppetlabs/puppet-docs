@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 schedule
 -----
@@ -121,7 +121,13 @@ start, that next run will be suppressed).
 See the `periodmatch` attribute for tuning whether to match
 times by their distance apart or by their specific value.
 
-Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
+Allowed values:
+
+* `hourly`
+* `daily`
+* `weekly`
+* `monthly`
+* `never`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -131,7 +137,12 @@ Whether periods should be matched by a numeric value (for instance,
 whether two times are in the same hour) or by their chronological
 distance apart (whether two times are 60 minutes apart).
 
-Valid values are `number`, `distance`.
+Default: `distance`
+
+Allowed values:
+
+* `number`
+* `distance`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -158,6 +169,8 @@ ranges, you can cross midnight (for example, `range => "22:00 - 04:00"`).
 
 How often a given resource may be applied in this schedule's `period`.
 Defaults to 1; must be an integer.
+
+Default: `1`
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -189,4 +202,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700

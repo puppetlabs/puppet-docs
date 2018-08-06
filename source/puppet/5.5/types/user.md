@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 user
 -----
@@ -101,7 +101,7 @@ Allowed values:
 
 <h4 id="user-attribute-allowdupe">allowdupe</h4>
 
-Whether to allow duplicate UIDs. Defaults to `false`.
+Whether to allow duplicate UIDs.
 
 Default: `false`
 
@@ -118,7 +118,7 @@ Allowed values:
 
 Whether specified attribute value pairs should be treated as the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
-attribute/value pairs for the user. Defaults to `minimum`.
+attribute/value pairs for the user.
 
 Default: `minimum`
 
@@ -143,7 +143,7 @@ Requires features manages_aix_lam.
 
 Whether specified auths should be considered the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of auths the user
-has. Defaults to `minimum`.
+has.
 
 Default: `minimum`
 
@@ -264,7 +264,7 @@ Requires features manages_password_salt.
 
 Whether specified key/value pairs should be considered the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
-the user's attributes. Defaults to `minimum`.
+the user's attributes.
 
 Default: `minimum`
 
@@ -299,7 +299,7 @@ Requires features manages_loginclass.
 
 Whether to manage the home directory when Puppet creates or removes the user.
 This creates the home directory if Puppet also creates the user account, and deletes the
-home directory if Puppet also removes the user account. Defaults to `false`.
+home directory if Puppet also removes the user account.
 
 This parameter has no effect unless Puppet is also creating or removing the user in the
 resource at the same time. For instance, Puppet creates a home directory for a managed
@@ -857,4 +857,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700

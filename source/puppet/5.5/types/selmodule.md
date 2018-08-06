@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: selmodule'
 canonical: "/puppet/latest/types/selmodule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 selmodule
 -----
@@ -51,7 +51,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
@@ -75,6 +80,8 @@ Currently defaults to `/usr/share/selinux/targeted`.  If the
 the module in `<selmoduledir>/<name>.pp`, where `name` is the value of the
 `name` parameter.
 
+Default: `/usr/share/selinux/targeted`
+
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
 <h4 id="selmodule-attribute-selmodulepath">selmodulepath</h4>
@@ -93,7 +100,10 @@ version found in the on-disk file differs from the loaded
 version.  If set to `false` (the default) the only check
 that will be made is if the policy is loaded at all or not.
 
-Valid values are `true`, `false`.
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
@@ -104,9 +114,9 @@ Valid values are `true`, `false`.
 
 Manage SELinux policy modules using the semodule binary.
 
-* Required binaries: `/usr/sbin/semodule`.
+* Required binaries: `/usr/sbin/semodule`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700

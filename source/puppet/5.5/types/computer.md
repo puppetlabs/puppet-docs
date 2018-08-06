@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: computer'
 canonical: "/puppet/latest/types/computer.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 computer
 -----
@@ -63,7 +63,10 @@ Control the existences of this computer record. Set this attribute to
 `present` to ensure the computer record exists.  Set it to `absent`
 to delete any computer records with this name
 
-Valid values are `present`, `absent`.
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to computer attributes](#computer-attributes))
 
@@ -117,9 +120,10 @@ domain, not in remote directories.
 If you wish to manage /etc/hosts on Mac OS X, then simply use the host
 type as per other platforms.
 
-* Default for `operatingsystem` == `darwin`.
+* Confined to: `operatingsystem == darwin`
+* Default for `operatingsystem` == `darwin`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

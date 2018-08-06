@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: host'
 canonical: "/puppet/latest/types/host.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 host
 -----
@@ -14,6 +14,8 @@ host
 * [Providers](#host-providers)
 
 <h3 id="host-description">Description</h3>
+
+The host's IP address, IPv4 or IPv6.
 
 Installs and manages host entries.  For most systems, these
 entries will just be in `/etc/hosts`, but some systems (notably OS X)
@@ -46,7 +48,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to host attributes](#host-attributes))
 
@@ -101,9 +108,9 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 <h4 id="host-provider-parsed">parsed</h4>
 
+* Confined to: `exists == hosts`
 
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

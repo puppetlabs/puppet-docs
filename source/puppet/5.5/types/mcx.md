@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: mcx'
 canonical: "/puppet/latest/types/mcx.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 mcx
 -----
@@ -64,7 +64,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Create or remove the MCX setting.
 
-Valid values are `present`, `absent`.
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to mcx attributes](#mcx-attributes))
 
@@ -78,8 +81,6 @@ This is the standard output from the system command:
     dscl localhost -mcxexport /Local/Default/<ds_type>/ds_name
 
 Note that `ds_type` is capitalized and plural in the dscl command.
-
-
 
 Requires features manages_content.
 
@@ -98,7 +99,12 @@ example, in `/Groups/admin`, `group` will be used as the dstype.)
 
 The DirectoryService type this MCX setting attaches to.
 
-Valid values are `user`, `group`, `computer`, `computerlist`.
+Allowed values:
+
+* `user`
+* `group`
+* `computer`
+* `computerlist`
 
 ([↑ Back to mcx attributes](#mcx-attributes))
 
@@ -132,9 +138,10 @@ manifest from the resulting configuration.
 
 Original Author: Jeff McCune (mccune.jeff@gmail.com)
 
-* Required binaries: `/usr/bin/dscl`.
-* Default for `operatingsystem` == `darwin`.
-* Supported features: `manages_content`.
+* Required binaries: `/usr/bin/dscl`
+* Confined to: `operatingsystem == darwin`
+* Default for: `operatingsystem` == `darwin`
+* Supported features: `manages_content`
 
 <h3 id="mcx-provider-features">Provider Features</h3>
 

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: augeas'
 canonical: "/puppet/latest/types/augeas.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
 
 augeas
 -----
@@ -107,6 +107,8 @@ defaults to `/files + incl`; otherwise, defaults to the empty string.
 Optional command to force the augeas type to execute even if it thinks changes
 will not be made. This does not override the `onlyif` parameter.
 
+Default: `false`
+
 ([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-incl">incl</h4>
@@ -128,6 +130,8 @@ The Augeas documentation includes [a list of available lenses](http://augeas.net
 <h4 id="augeas-attribute-load_path">load_path</h4>
 
 Optional colon-separated list or array of directories; these directories are searched for schema definitions. The agent's `$libdir/augeas/lenses` path will always be added to support pluginsync.
+
+Default: `""`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -180,11 +184,15 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The expected return code from the augeas command. Should not be set.
 
+Default: `0`
+
 ([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-root">root</h4>
 
 A file system path; all files loaded by Augeas are loaded underneath `root`.
+
+Default: `/`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -196,15 +204,25 @@ other secret data, which might otherwise be included in Puppet reports or
 other insecure outputs.  If the global `show_diff` setting
 is false, then no diffs will be shown even if this parameter is true.
 
-Valid values are `true`, `false`, `yes`, `no`.
+Default: `true`
+
+Allowed values:
+
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-type_check">type_check</h4>
 
-Whether augeas should perform typechecking. Defaults to false.
+Whether augeas should perform typechecking.
 
-Valid values are `true`, `false`.
+Default: `false`
+
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -213,7 +231,8 @@ Valid values are `true`, `false`.
 
 <h4 id="augeas-provider-augeas">augeas</h4>
 
-* Supported features: `execute_changes`, `need_to_run?`, `parse_commands`.
+* Confined to: `feature == augeas`
+* Supported features: `execute_changes`, `need_to_run?`, `parse_commands`
 
 <h3 id="augeas-provider-features">Provider Features</h3>
 
@@ -246,4 +265,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700

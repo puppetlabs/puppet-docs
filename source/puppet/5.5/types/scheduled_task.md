@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: scheduled_task'
 canonical: "/puppet/latest/types/scheduled_task.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
 
 scheduled_task
 -----
@@ -50,7 +50,12 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Valid values are `present`, `absent`.
+Default: `present`
+
+Allowed values:
+
+* `present`
+* `absent`
 
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
@@ -79,7 +84,12 @@ Whether the triggers for this task should be enabled. This attribute
 affects every trigger for the task; triggers cannot be enabled or
 disabled individually.
 
-Valid values are `true`, `false`.
+Default: `true`
+
+Allowed values:
+
+* `true`
+* `false`
 
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
@@ -205,6 +215,8 @@ Please also note that Puppet must be running as a privileged user
 in order to manage `scheduled_task` resources. Running as an
 unprivileged user will result in 'access denied' errors.
 
+Default: `system`
+
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
 <h4 id="scheduled_task-attribute-working_dir">working_dir</h4>
@@ -222,9 +234,10 @@ The full path of the directory in which to start the command.
 
 This provider manages scheduled tasks on Windows.
 
-* Default for `operatingsystem` == `windows`.
+* Confined to: `operatingsystem == windows`
+* Default for: `operatingsystem` == `windows`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
