@@ -3,13 +3,14 @@ layout: default
 title: "Config files: fileserver.conf"
 ---
 
-[file]: ./type.html#file
+[file]: ./types/file.html
 [module_files]: ./modules_fundamentals.html#files
 [fileserverconfig]: ./configuration.html#fileserverconfig
 [auth_conf]: {{puppetserver}}/config_file_auth.html
 [deprecated]: ./deprecated_settings.html#authorization-rules-in-fileserverconf
 [custom_mount]: ./file_serving.html
 [mount_auth_examples]: ./file_serving.html#controlling-access-to-a-custom-mount-point-in-authconf
+[confdir]: ./dirs_confdir.html
 
 The `fileserver.conf` file configures custom static mount points for Puppet's file server. If custom mount points are present, [`file` resources][file] can access them with their `source` attributes.
 
@@ -17,15 +18,13 @@ The `fileserver.conf` file configures custom static mount points for Puppet's fi
 
 This file is only necessary if you are [creating custom mount points.][custom_mount]
 
-Puppet automatically serves files from the `files` directory of every module, and most users find this sufficient. ([More info on serving files from modules][module_files].) However, custom mount points are useful for things that shouldn't be stored in version control with your modules, like very large files and sensitive credentials.
+Puppet automatically serves files from the `files` directory of every module, and most users find this sufficient. ([More info on serving files from modules.][module_files]) However, custom mount points are useful for things that shouldn't be stored in version control with your modules, like very large files and sensitive credentials.
 
 ## Location
 
 The `fileserver.conf` file is located at `$confdir/fileserver.conf` by default. Its location is configurable with the [`fileserverconfig` setting][fileserverconfig].
 
 The location of the `confdir` depends on your OS. [See the confdir documentation for details.][confdir]
-
-[confdir]: ./dirs_confdir.html
 
 ## Example
 

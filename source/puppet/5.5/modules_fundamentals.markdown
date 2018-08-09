@@ -7,9 +7,7 @@ title: "Module fundamentals"
 [installing]: ./modules_installing.html
 [publishing]: ./modules_publishing.html
 [documentation]: ./modules_documentation.html
-
 [plugins]: ./plugins_in_modules.html
-
 [external facts]: {{facter}}/custom_facts.html#external-facts
 [custom facts]: {{facter}}/custom_facts.html
 [classes]: ./lang_classes.html
@@ -17,7 +15,7 @@ title: "Module fundamentals"
 [enc]: ./nodes_external.html
 [environment]: ./environments.html
 [templates]: ./lang_template.html
-[forge]: http://forge.puppetlabs.com
+[forge]: http://forge.puppet.com
 [file_function]: ./function.html#file
 [reserved names]: ./lang_reserved.html
 [pdk]: {{pdk}}/pdk.html
@@ -28,7 +26,6 @@ Modules are self-contained bundles of code and data with a specific directory st
 Modules must have a [valid name](#module-names) and be located in [modulepath][modulepath]. Puppet automatically loads all content from every module in the modulepath, making classes, defined types, and plug-ins (such as custom types or facts) available. To learn more about how to classes, defined types, and plug-ins, see the related topics.
 
 You can download and install modules written by Puppet or the Puppet community from the Puppet Forge. You should also expect to write at least some of your own modules.
-
 
 Related topics:
 
@@ -41,73 +38,72 @@ Related topics:
 * [External node classifiers (ENC)][enc]
 * [Using plug-ins][plugins]
 
-
 {:.concept}
 ## Module structure
 
-Modules have a specific directory structure that allows Puppet to find and automatically load classes, defined types, facts, custom types and providers, functions, and tasks. 
+Modules have a specific directory structure that allows Puppet to find and automatically load classes, defined types, facts, custom types and providers, functions, and tasks.
 
 Modules must have a [valid name][module-names] and be installed in Puppet's [modulepath][]. You'll install modules with either the `puppet module` command or, if you're using code management, with a Puppetfile. See the related topic about installing modules for details.
 
 Each module subdirectory has a specific function. Not all directories are required, but if used, they should be in the following structure.
 
-* `<MODULE NAME>`
-    * `manifests`
-    * `files`
-    * `templates`
-    * `lib`
-      * `facter`
-      * `puppet`
-        * `functions`
-        * `parser/functions`
-        * `type`
-        * `provider`
-    * `facts.d`
-    * `examples`
-    * `spec`
-    * `functions`
-    * `types`
-    * `tasks`
+-   `<MODULE NAME>`
+    -   `manifests`
+    -   `files`
+    -   `templates`
+    -   `lib`
+        -   `facter`
+        -   `puppet`
+            -   `functions`
+            -   `parser/functions`
+            -   `type`
+            -   `provider`
+    -   `facts.d`
+    -   `examples`
+    -   `spec`
+    -   `functions`
+    -   `types`
+    -   `tasks`
 
-Related topics: 
+Related topics:
 
-* [Classes][classes]
-* [Defined types][defined_types]
-* [Type aliases](./lang_type_aliases.html)
+-   [Classes][classes]
+-   [Defined types][defined_types]
+-   [Type aliases](./lang_type_aliases.html)
 
 {:.example}
 ### Example
 
 This example module, `my_module`, shows the standard module layout in more detail.
 
-* `my_module`: The main module directory's name matches the name of the module.
-    * `manifests/`: Contains all of the manifests in the module.
-        * `init.pp`: Contains a class definition. The `init.pp` class, if used, is the main class of the module. This class's name must match the module's name.
-        * `other_class.pp`: Contains a class named `my_module::other_class`.
-        * `my_defined_type.pp`: Contains a defined type named `my_module::my_defined_type`.
-        * `implementation/`: This directory's name affects the class names beneath it.
-            * `foo.pp`: Contains a class named `my_module::implementation::foo`.
-            * `bar.pp`: Contains a class named `my_module::implementation::bar`.
-    * `files/`: Contains static files, which managed nodes can download.
-        * `service.conf`: This file's `source =>` URL would be `puppet:///modules/my_module/service.conf`. Its contents can also be accessed with the `file` function: `content => file('my_module/service.conf')`.
-    * `lib/`: Contains plug-ins, such as custom facts and custom resource types. These are used by both the Puppet master and the Puppet agent, and they are synced to all agent nodes in the environment on each Puppet run.
-      * `facter`: Contains custom facts, written in Ruby.
-      * `puppet`
-        * `functions`: Contains functions written in Ruby for the modern `Puppet::Functions` API.
-        * `parser/functions`: Contains functions written in Ruby for the legacy `Puppet::Parser::Functions` API.
-        * `type` : Contains custom resource types written in the Puppet language.
-        * `provider`: Contains custom resource providers written in the Puppet language.
-    * `facts.d/`: Contains external facts, which are an alternative to Ruby-based custom facts. These are synced to all agent nodes, so they can submit values for those facts to the Puppet master.
-    * `templates/`: Contains templates, which the module's manifests can use.
-        * `component.erb`: A manifest can render this template with `template('my_module/component.erb')`.
-        * `component.epp`: A manifest can render this template with `epp('my_module/component.epp')`.
-    * `examples/`: Contains examples showing how to declare the module's classes and defined types.
-        * `init.pp`
-        * `other_example.pp`: Major use cases should have an example.
-    * `spec/`: Contains spec tests for any plug-ins in the `lib` directory.
-    * `functions`: Contains custom functions written in the Puppet language.
-    * `types`: Contains resource type aliases.
-    * `tasks`: Contains Puppet tasks, written in any language.
+-   `my_module`: The main module directory's name matches the name of the module.
+    -   `manifests/`: Contains all of the manifests in the module.
+        -   `init.pp`: Contains a class definition. The `init.pp` class, if used, is the main class of the module. This class's name must match the module's name.
+        -   `other_class.pp`: Contains a class named `my_module::other_class`.
+        -   `my_defined_type.pp`: Contains a defined type named `my_module::my_defined_type`.
+        -   `implementation/`: This directory's name affects the class names beneath it.
+            -   `foo.pp`: Contains a class named `my_module::implementation::foo`.
+            -   `bar.pp`: Contains a class named `my_module::implementation::bar`.
+    -   `files/`: Contains static files, which managed nodes can download.
+        -   `service.conf`: This file's `source =>` URL would be `puppet:///modules/my_module/service.conf`. Its contents can also be accessed with the `file` function: `content => file('my_module/service.conf')`.
+    -   `lib/`: Contains plug-ins, such as custom facts and custom resource types. These are used by both the Puppet master and the Puppet agent, and they are synced to all agent nodes in the environment on each Puppet run.
+        -   `facter`: Contains custom facts, written in Ruby.
+        -   `puppet`
+            -   `functions`: Contains functions written in Ruby for the modern `Puppet::Functions` API.
+            -   `parser/functions`: Contains functions written in Ruby for the legacy `Puppet::Parser::Functions` API.
+            -   `type` : Contains custom resource types written in the Puppet language.
+            -   `provider`: Contains custom resource providers written in the Puppet language.
+    -   `facts.d/`: Contains external facts, which are an alternative to Ruby-based custom facts. These are synced to all agent nodes, so they can submit values for those facts to the Puppet master.
+    -   `templates/`: Contains templates, which the module's manifests can use.
+        -   `component.erb`: A manifest can render this template with `template('my_module/component.erb')`.
+        -   `component.epp`: A manifest can render this template with `epp('my_module/component.epp')`.
+    -   `examples/`: Contains examples showing how to declare the module's classes and defined types.
+        -   `init.pp`
+        -   `other_example.pp`: Major use cases should have an example.
+    -   `spec/`: Contains spec tests for any plug-ins in the `lib` directory.
+    -   `functions`: Contains custom functions written in the Puppet language.
+    -   `types`: Contains resource type aliases.
+    -   `tasks`: Contains Puppet tasks, written in any language.
 
 {:.section}
 ### Module names
@@ -134,8 +130,8 @@ Name of module | :: | Other directories:: (if any) | Name of file (no extension)
 
 Thus:
 
-* `my_module::other_class` is in the file `my_module/manifests/other_class.pp`
-* `my_module::implementation::foo` is in the file `my_module/manifests/implementation/foo.pp`
+-   `my_module::other_class` is in the file `my_module/manifests/other_class.pp`
+-   `my_module::implementation::foo` is in the file `my_module/manifests/implementation/foo.pp`
 
 The double colon that divides the sections of a class's name is called the *namespace separator.*
 
@@ -148,7 +144,7 @@ Download files by using `puppet:///` URLs in the `source` attribute of a [`file`
 
 Puppet URLs work the same for both `puppet agent` and `puppet apply`; in either case they retrieve the correct file from a module.
 
-[file]: ./type.html#file
+[file]: ./types/file.html#file
 
 Puppet URLs are formatted as follows:
 
@@ -183,19 +179,18 @@ Every Puppet user should expect to write at least some of their own modules. Mod
 
 Puppet Development Kit creates a complete module skeleton and includes command line tools for creating classes, defined types, and tasks in your module.
 
-To test your modules, use PDK to run unit tests and to validate your module's metadata, syntax, and style. 
+To test your modules, use PDK to run unit tests and to validate your module's metadata, syntax, and style.
 
 PDK can be downloaded and installed on any development machine; a Puppet installation is not required. See the PDK documentation to get started.
 
-> **Note:** The `puppet module generate` command is deprecated and will be removed in a future version of Puppet.
+> **Note:** The `puppet module generate` command is deprecated and will be removed in a future version of Puppet in favor of PDK.
 
 For help getting started writing modules, see our Beginner's guide to writing modules. For details on best practices and code style, see the Puppet Language Style Guide.
 
 Related topics:
 
-* [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
-* [Beginner's guide to writing modules](./bgtm.html)
-* [Puppet Language Style Guide](./style_guide.html)
-* [Publishing modules][publishing]
-* [Documenting modules][documentation]
-
+-   [Puppet Development Kit][pdk]: A package of development and testing tools to help you create great modules.
+-   [Beginner's guide to writing modules](./bgtm.html)
+-   [Puppet Language Style Guide](./style_guide.html)
+-   [Publishing modules][publishing]
+-   [Documenting modules][documentation]

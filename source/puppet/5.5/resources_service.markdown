@@ -3,15 +3,14 @@ layout: default
 title: "Resource tips and examples: Service"
 ---
 
-[service]: /puppet/3.8/type.html#service
-[ensure]: /puppet/3.8/type.html#service-attribute-ensure
-[enable]: /puppet/3.8/type.html#service-attribute-enable
-[start]: /puppet/3.8/type.html#service-attribute-start
-[binary]: /puppet/3.8/type.html#service-attribute-binary
-[stop]: /puppet/3.8/type.html#service-attribute-stop
-[status]: /puppet/3.8/type.html#service-attribute-status
-[pattern]: /puppet/3.8/type.html#service-attribute-pattern
-
+[service]: ./types/service.html#service
+[ensure]: ./types/service.html#service-attribute-ensure
+[enable]: ./types/service.html#service-attribute-enable
+[start]: ./types/service.html#service-attribute-start
+[binary]: ./types/service.html#service-attribute-binary
+[stop]: ./types/service.html#service-attribute-stop
+[status]: ./types/service.html#service-attribute-status
+[pattern]: ./types/service.html#service-attribute-pattern
 
 Puppet can manage [services][service] on nearly all operating systems.
 
@@ -28,7 +27,7 @@ service { 'apache2':
 }
 ```
 
-(Note that some OSes don't support the `enable` attribute.)
+(Note that some operating systems don't support the `enable` attribute.)
 
 ### Defective init script
 
@@ -41,11 +40,11 @@ In some rare cases --- such as virtual services like Red Hat's `network` --- a s
 ### No init script or service config
 
 ``` puppet
-service { "apache2":
+service { 'apache2':
   ensure  => running,
-  start   => "/usr/sbin/apachectl start",
-  stop    => "/usr/sbin/apachectl stop",
-  pattern => "/usr/sbin/httpd",
+  start   => '/usr/sbin/apachectl start',
+  stop    => '/usr/sbin/apachectl stop',
+  pattern => '/usr/sbin/httpd',
 }
 ```
 
@@ -73,9 +72,9 @@ If there's a better way to check the service's status, or if the start command i
 
 If a service needs to be reloaded, Puppet defaults to stopping it and starting it again. If you have a safer command for restarting a service, you can optionally specify it in the `restart` attribute.
 
-## Mac OS X
+## macOS and OS X
 
-OS X handles services much like most Linuxes; the main difference is that `enable` and `ensure` are much more closely linked --- running services are always enabled, and stopped ones are always disabled. For best results, either leave `enable` blank or make sure it's set to `true` whenever `ensure => running`.
+macOS and OS X handle services much like most Linuxes; the main difference is that `enable` and `ensure` are much more closely linked --- running services are always enabled, and stopped ones are always disabled. For best results, either leave `enable` blank or make sure it's set to `true` whenever `ensure => running`.
 
 Also, note that the launchd plists that configure your services must be in one of the following four directories:
 
@@ -92,7 +91,7 @@ On Microsoft Windows, Puppet can start, stop, enable, disable, list, query and c
 
 When writing service resources for Windows, remember the following:
 
-* Use the short service name (e.g. `wuauserv`) in Puppet, not the display name (e.g. `Automatic Updates`).
+* Use the short service name (such as `wuauserv`) in Puppet, not the display name (such as `Automatic Updates`).
 * Setting `enable => true` will assign a service the "Automatic" startup type; setting `enable => manual` will assign the "Manual" startup type.
 
 A complete service resource is very simple:
@@ -103,4 +102,3 @@ service { 'mysql':
   enable => true,
 }
 ```
-

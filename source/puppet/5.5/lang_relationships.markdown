@@ -9,17 +9,16 @@ title: "Language: Relationships and ordering"
 [reference]: ./lang_data_resource_reference.html
 [array]: ./lang_data_array.html
 [class]: ./lang_classes.html
-[service]: ./type.html#service
-[exec]: ./type.html#exec
+[service]: ./types/service.html
+[exec]: ./types/exec.html
 [type]: ./type.html
-[mount]: ./type.html#mount
-[package]: ./type.html#package
+[mount]: ./types/mount.html
+[package]: ./types/package.html
 [metaparameters]: ./lang_resources.html#metaparameters
 [require_function]: ./lang_classes.html#using-require
 [moar]: ./configuration.html#ordering
 [lambdas]: ./lang_lambdas.html
 [containment]: ./lang_containment.html
-
 
 By default, Puppet applies resources in the order they're declared in their manifest. However, if a group of resources must _always_ be managed in a specific order, you should explicitly declare such relationships with relationship metaparameters, chaining arrows, and the `require` function.
 
@@ -27,9 +26,7 @@ By default, Puppet applies resources in the order they're declared in their mani
 >
 > To make Puppet apply unrelated resources in a more-or-less random order, set [the `ordering` setting][moar] to `title-hash` or `random`.
 
-
 ## Syntax: Relationship metaparameters
-
 
 ``` puppet
 package { 'openssh-server':
@@ -40,10 +37,10 @@ package { 'openssh-server':
 
 Puppet uses four [metaparameters][] to establish relationships, and you can set each of them as an attribute in any resource. The value of any relationship metaparameter should be a [resource reference][reference] (or [array][] of references) pointing to one or more **target resources**.
 
-* `before` --- Applies a resource **before** the target resource.
-* `require` --- Applies a resource **after** the target resource.
-* `notify` --- Applies a resource **before** the target resource. The target resource [refreshes][refresh] if the notifying resource changes.
-* `subscribe` --- Applies a resource **after** the target resource. The subscribing resource [refreshes][refresh] if the target resource changes.
+-   `before` --- Applies a resource **before** the target resource.
+-   `require` --- Applies a resource **after** the target resource.
+-   `notify` --- Applies a resource **before** the target resource. The target resource [refreshes][refresh] if the notifying resource changes.
+-   `subscribe` --- Applies a resource **after** the target resource. The subscribing resource [refreshes][refresh] if the target resource changes.
 
 If two resources need to happen in order, you can either put a `before` attribute in the prior one or a `require` attribute in the subsequent one; either approach creates the same relationship. The same is true of `notify` and `subscribe`.
 
@@ -110,9 +107,7 @@ file { '/etc/ssh/sshd_config':
 }
 ```
 
-
 ## Syntax: Chaining arrows
-
 
 ``` puppet
 # ntp.conf is applied first, and notifies the ntpd service if it changes:
@@ -121,17 +116,17 @@ File['/etc/ntp.conf'] ~> Service['ntpd']
 
 You can create relationships between two resources or groups of resources using the `->` and `~>` operators.
 
-* `->` (ordering arrow; a hyphen and a greater-than sign) --- Applies the resource on the left before the resource on the right.
-* `~>` (notifying arrow; a tilde and a greater-than sign) --- Applies the resource on the left first. If the left-hand resource changes, the right-hand resource will [refresh][].
+-   `->` (ordering arrow; a hyphen and a greater-than sign) --- Applies the resource on the left before the resource on the right.
+-   `~>` (notifying arrow; a tilde and a greater-than sign) --- Applies the resource on the left first. If the left-hand resource changes, the right-hand resource will [refresh][].
 
 ### Operands
 
 The chaining arrows accept the following kinds of operands on either side of the arrow:
 
-* [Resource references][reference], including multi-resource references
-* Arrays of resource references
-* [Resource declarations][resources]
-* [Resource collectors][collector]
+-   [Resource references][reference], including multi-resource references
+-   Arrays of resource references
+-   [Resource declarations][resources]
+-   [Resource collectors][collector]
 
 An operand can be shared between two chaining statements, which allows you to link them together into a "timeline":
 
@@ -173,8 +168,8 @@ You can take advantage of this if you're automatically creating resources whose 
 
 For example:
 
-* The `map` function iterates over its arguments and returns an array of values, with each value produced by the last expression in the block. If that last expression is a resource declaration, `map` produces an array of resource references, which could then be used as an operand for a chaining arrow.
-* The value of a resource declaration whose title is an array, is itself an array of resource references that you can assign to a variable and use in a chaining statement.
+-   The `map` function iterates over its arguments and returns an array of values, with each value produced by the last expression in the block. If that last expression is a resource declaration, `map` produces an array of resource references, which could then be used as an operand for a chaining arrow.
+-   The value of a resource declaration whose title is an array, is itself an array of resource references that you can assign to a variable and use in a chaining statement.
 
 ### Caveats when chaining resource collectors
 
@@ -196,9 +191,7 @@ Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their s
 
 > **Note**: Most of Puppet's syntax is written left-to-right. Avoid these reversed forms as they can be confusing.
 
-
 ## Syntax: The `require` function
-
 
 [The `require` function][require_function] declares a [class][] and causes it to become a dependency of the surrounding container:
 
@@ -222,9 +215,7 @@ class apache::ssl {
 }
 ```
 
-
 ## Behavior
-
 
 ### Ordering
 
@@ -246,21 +237,21 @@ Notifying relationships also interact with [containment][]. The complete rules f
 
 #### Receiving refresh events
 
-* If a resource gets a refresh event during a run and its resource type has a refresh action, it will perform that action.
-* If a resource gets a refresh event but its resource type _cannot_ refresh, nothing happens.
-* If a class or defined resource gets a refresh event, every resource it contains will also get a refresh event.
-* A resource can perform its refresh action up to once per run. If it receives multiple refresh events, they're combined and the resource only refreshes once.
+-   If a resource gets a refresh event during a run and its resource type has a refresh action, it will perform that action.
+-   If a resource gets a refresh event but its resource type _cannot_ refresh, nothing happens.
+-   If a class or defined resource gets a refresh event, every resource it contains will also get a refresh event.
+-   A resource can perform its refresh action up to once per run. If it receives multiple refresh events, they're combined and the resource only refreshes once.
 
 #### Sending refresh events
 
-* If a resource is not in its desired state and Puppet makes changes to it during a run, it will send a refresh event to any subscribed resources.
-* If a resource performs its refresh action during a run, it will send a refresh event to any subscribed resources.
-* If Puppet changes (or refreshes) any resource in a class or defined resource, that class or defined resource will send a refresh event to any subscribed resources.
+-   If a resource is not in its desired state and Puppet makes changes to it during a run, it will send a refresh event to any subscribed resources.
+-   If a resource performs its refresh action during a run, it will send a refresh event to any subscribed resources.
+-   If Puppet changes (or refreshes) any resource in a class or defined resource, that class or defined resource will send a refresh event to any subscribed resources.
 
 #### No-op
 
-* If a resource is in no-op mode (due to the global `noop` setting or the per-resource `noop` metaparameter), it _will not refresh_ when it receives a refresh event. However, Puppet will log a message stating what would have happened.
-* If a resource is in no-op mode but Puppet would otherwise have changed or refreshed it, it _will not send refresh events_ to subscribed resources. However, Puppet will log messages stating what would have happened to any resources further down the subscription chain.
+-   If a resource is in no-op mode (due to the global `noop` setting or the per-resource `noop` metaparameter), it _will not refresh_ when it receives a refresh event. However, Puppet will log a message stating what would have happened.
+-   If a resource is in no-op mode but Puppet would otherwise have changed or refreshed it, it _will not send refresh events_ to subscribed resources. However, Puppet will log messages stating what would have happened to any resources further down the subscription chain.
 
 ### Auto\* relationships
 
@@ -276,8 +267,8 @@ Relationships are not limited by evaluation-order. You can declare a relationshi
 
 If one of the resources in a relationship is never declared, **compilation fails** with one of the following errors:
 
-* `Could not find dependency <OTHER RESOURCE> for <RESOURCE>`
-* `Could not find resource '<OTHER RESOURCE>' for relationship on '<RESOURCE>'`.
+-   `Could not find dependency <OTHER RESOURCE> for <RESOURCE>`
+-   `Could not find resource '<OTHER RESOURCE>' for relationship on '<RESOURCE>'`.
 
 ### Failed dependencies
 
