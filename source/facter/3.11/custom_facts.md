@@ -181,6 +181,20 @@ available on the given system. Since this is only available on Linux systems,
 we use the confine statement to ensure that this fact isn't needlessly run on
 systems that don't support this type of enumeration.
 
+To confine structured facts like `['os']['family']`, you can use `Facter.value`:
+
+``` ruby
+confine Facter.value(:os)['family'] => 'RedHat'
+```
+
+You can also use a Ruby block:
+
+``` ruby
+confine :os do |os|
+  os['family'] == 'RedHat'
+end
+```
+
 ### Fact precedence
 
 A single fact can have multiple **resolutions**, each of which is a different way
