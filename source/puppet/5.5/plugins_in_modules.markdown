@@ -54,7 +54,7 @@ Plug-in type       | Module subdirectory | Mount point   | Agent directory
 Ruby plug-ins      | `<MODULE>/lib`      | `plugins`     | `<VARDIR>/lib`
 Translations       | `<MODULE>/locales`  | `locales`     | `<VARDIR>/locales`
 
-(`<VARDIR>` is Puppet agent's [cache directory][vardir], which is located at `/var/opt/puppetlabs/puppet/cache`, `%PROGRAMDATA%\PuppetLabs\puppet\cache`, or `~/.puppetlabs/opt/puppet/cache`.)
+(`<VARDIR>` is Puppet agent's [cache directory][vardir], which is located at `/opt/puppetlabs/puppet/cache`, `%PROGRAMDATA%\PuppetLabs\puppet\cache`, or `~/.puppetlabs/opt/puppet/cache`.)
 
 {:.concept}
 ## Types of plug-ins
