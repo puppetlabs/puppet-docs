@@ -21,7 +21,6 @@ title: "Language: Reserved words and acceptable names"
 
 ## Reserved words
 
-
 Several words in the Puppet language are **reserved**. This means they:
 
 * Cannot be used as bare word strings --- you must quote these words if you wish to use them as strings.
@@ -66,7 +65,6 @@ Additionally:
 
 ## Reserved class names
 
-
 The following are built-in namespaces used by Puppet and so must not be used as class names:
 
 * `main` --- Puppet automatically creates a `main` [class][], which [contains][] any [resources][] not contained by any other class.
@@ -100,9 +98,7 @@ Additionally, the names of data types can't be used as class names:
 * `undef`, `Undef`
 * `variant`, `Variant`
 
-
 ## Reserved variable names
-
 
 The following variable names are reserved. Unless otherwise noted, you can't assign values to them or use them as parameters in classes or defined types.
 
@@ -115,13 +111,11 @@ The following variable names are reserved. Unless otherwise noted, you can't ass
 
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 
-
 ## Acceptable characters in names
-
 
 Puppet limits the characters you can use when naming language constructs.
 
-> Note: In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and might cease to work at any time. Removal of these bug cases will not be limited to major releases.
+> **Note:** In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and might cease to work at any time. Removal of these bug cases will not be limited to major releases.
 
 ### Variables
 
@@ -138,7 +132,7 @@ The names of classes and defined resource types can consist of one or more [name
 
 Namespace segments should match the following regular expression:
 
-    \A[a-z][a-z0-9_]*\Z
+    \A[a-z][a-zA-Z0-9_]*\Z
 
 The one exception is the top namespace, whose name is the empty string.
 
@@ -146,7 +140,7 @@ Multiple namespace segments can be joined together in a class or defined type na
 
 Class names with multiple namespaces should match the following regular expression:
 
-    \A([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*\Z
+    \A([a-z][a-zA-Z0-9_]*)?(::[a-z][a-zA-Z0-9_]*)*\Z
 
 Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or defined type names.
 
