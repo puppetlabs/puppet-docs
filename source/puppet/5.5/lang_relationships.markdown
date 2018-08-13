@@ -27,9 +27,7 @@ By default, Puppet applies resources in the order they're declared in their mani
 >
 > To make Puppet apply unrelated resources in a more-or-less random order, set [the `ordering` setting][moar] to `title-hash` or `random`.
 
-
 ## Syntax: Relationship metaparameters
-
 
 ``` puppet
 package { 'openssh-server':
@@ -110,9 +108,7 @@ file { '/etc/ssh/sshd_config':
 }
 ```
 
-
 ## Syntax: Chaining arrows
-
 
 ``` puppet
 # ntp.conf is applied first, and notifies the ntpd service if it changes:
@@ -196,9 +192,7 @@ Both chaining arrows have a reversed form (`<-` and `<~`). As implied by their s
 
 > **Note**: Most of Puppet's syntax is written left-to-right. Avoid these reversed forms as they can be confusing.
 
-
 ## Syntax: The `require` function
-
 
 [The `require` function][require_function] declares a [class][] and causes it to become a dependency of the surrounding container:
 
@@ -222,9 +216,7 @@ class apache::ssl {
 }
 ```
 
-
 ## Behavior
-
 
 ### Ordering
 
@@ -267,6 +259,8 @@ Notifying relationships also interact with [containment][]. The complete rules f
 Certain resource types can have automatic relationships with other resources, using  _autorequire_, _autonotify_, _autobefore_, or _autosubscribe_. This creates an ordering relationship without the user explicitly stating one. The [resource type reference][type] notes which resource types can have these types of relationships with other resources. Auto relationships between types and resources are established when applying a catalog.
 
 When Puppet prepares to sync a resource whose type supports an auto relationship, it searches the catalog for any resources that match certain rules. If it finds any, it processes them in the correct order, sending refresh events if necessary. If Puppet _doesn't_ find any resources that could use an auto relationship, that's fine; they aren't considered a failed dependency.
+
+When explicit relationships, such as those created by chaining arrows, and automatic relationships conflict, explicit relationships take precedence.
 
 ### Evaluation-order independence
 
