@@ -130,17 +130,17 @@ The names of classes and defined resource types can consist of one or more [name
 * Digits
 * Underscores
 
-Namespace segments should match the following regular expression:
+In other words, namespace segments should match the following Ruby regular expression:
 
-    \A[a-z][a-zA-Z0-9_]*\Z
+    \A[a-z]\w*\Z
 
 The one exception is the top namespace, whose name is the empty string.
 
 Multiple namespace segments can be joined together in a class or defined type name with the `::` (double colon) [namespace][] separator.
 
-Class names with multiple namespaces should match the following regular expression:
+For example, class names with multiple namespaces should match the following Ruby regular expression:
 
-    \A([a-z][a-zA-Z0-9_]*)?(::[a-z][a-zA-Z0-9_]*)*\Z
+    \A((::)?[a-z]\w*)(::[a-z]\w*)*\z
 
 Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or defined type names.
 
@@ -155,7 +155,7 @@ Module names obey the same rules as individual namespace segments (like in a cla
 * Digits
 * Underscores
 
-Module names should match the following regular expression:
+Module names should match the following Ruby regular expression:
 
     \A[a-z][a-z0-9_]*\Z
 
@@ -170,7 +170,7 @@ Class and defined type parameters begin with a `$` (dollar sign), and their firs
 * Digits
 * Underscores
 
-Parameter names should match the following regular expression:
+Parameter names should match the following Ruby regular expression:
 
     \A\$[a-z][a-z0-9_]*\Z
 
@@ -186,7 +186,7 @@ Parameter names should match the following regular expression:
 * Periods
 * Hyphens
 
-Tag names should match the following regular expression:
+Tag names should match the following Ruby regular expression:
 
     \A[[:alnum:]_][[:alnum:]_:.-]*\Z
 
@@ -202,6 +202,6 @@ Resource names (or namevars) might be limited by the underlying system being man
 
 ### Environments
 
-[Environment][] names can contain lowercase letters, numbers, and underscores. That is, they must match the following regular expression:
+[Environment][] names can contain lowercase letters, numbers, and underscores. That is, they must match the following Ruby regular expression:
 
     \A[a-z0-9_]+\Z
