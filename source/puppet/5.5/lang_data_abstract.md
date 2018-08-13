@@ -117,6 +117,40 @@ Note that you can use capture groups in the regular expressions, but they won't 
 * `Pattern[/\A[a-z].*/]` --- matches any string that begins with a lowercase letter.
 * `Pattern[/\A[a-z].*/, /\Anone\Z/]` --- matches the above **or** the exact string `"none"`.
 
+### `Timestamp`
+
+The `Timestamp` data type matches special [strings][], [floats][], or [integers][] representing a time and date, or `default`, representing an infinite point in the past or future.
+
+It takes up to two parameters, and requires at least one. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of time, with the first parameter being the `from` value and the second being the `to` value.
+
+#### Parameters
+
+The full signature for `Timestamp` is:
+
+    Timestamp[ <TIMESTAMP VALUE>, (<RANGE LIMIT>) ]
+
+Position | Parameter | Data Type | Default Value | Description
+---------|-----------|-----------|---------------|------------
+1 | Timestamp Value | String, Float, Integer, or `default` | `default` (-Infinity in a range) | Point in time if passed alone, or `from` value in a range if passed with a second parameter
+2 | Range Limit | String, Float, Integer, or `default` | `default` (+Infinity) | The `to` value in a range
+
+`Timestamp` values are interpreted depending on their format.
+
+* A String in the format of `YYYY-MM-DD` represents the time 00:00:00.0 UTC on the specified year (`YYYY`), month (`MM`), and day (`DD`)
+* A String in the format of `YYYY-MM-DD`T`HH:MM:SS.SSS` represents a specific hour (`HH`), minute (`MM`), and decimal second (`SS.SSS`) of UTC on the specified date
+* An Integer or Float represents the seconds passed since the Unix epoch
+* `default` is used in ranges and represents infinity as the maximum floating point value, either negative (as the `from` value of a range) or positive (as the `to` value)
+
+A `Timestamp` range with either end defined as `default` (infinity) is an _open range_, while a range with both ends defined as an exact timestamp is a _closed range_. Range values can be negative.
+
+The `Timestamp` type is not enumerable.
+
+#### Examples:
+
+* `Timestamp['2000-01-01T00:00:00.000', default]` --- an open range of time from the start of the 21st century to an infinte point in the future
+* `Timestamp['2012-10-10']` --- the exact Timestamp 2012-10-10T00:00:00.0 UTC
+* `Timestamp[default, 1433116800]` --- an open range of time from an infinite point in the past to 2015-06-01T00:00:00 UTC, here expressed as seconds since the Unix epoch
+* `Timestamp['2010-01-01', '2015-12-31T23:59:59.999999999']` --- a closed range of time between the start of 2010 and the end of 2015
 
 ### `Enum`
 
@@ -281,7 +315,6 @@ It takes no parameters.
 ### `Any`
 
 The `Any` data type matches _any_ value of _any_ data type.
-
 
 ## Unusual types
 
