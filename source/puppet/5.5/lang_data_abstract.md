@@ -119,7 +119,7 @@ Note that you can use capture groups in the regular expressions, but they won't 
 
 ### `Timespan`
 
-The `Timespan` data type matches a Timespan; [strings][], [floats][], or [integers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
+The `Timespan` data type matches a Timespan; [strings][], or [numbers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
 
 It takes up to two parameters, and defaults to an infinite range to the past and future.
 
@@ -134,10 +134,14 @@ Position | Parameter | Data Type | Default Value | Description
 1 | Timespan Start or Length | String, Float, Integer, or `default` | `default` (-Infinity in a span) | Length of the timespan if passed alone, or the `from` value in a range if passed with a second parameter
 2 | Timespan End | String, Float, Integer, or `default` | `default` (+Infinity), or none if only one value is passed | The `to` value in a range
 
-`Timeframe` values are interpreted depending on their format.
+`Timespan` values are interpreted depending on their format.
 
 * A String in the format of `D-HH:MM:SS` represents a span of days (`D`), hours (`HH`), minutes (`MM`), and seconds (`SS`)
 * An Integer or Float represents a number of seconds
+
+A `Timespan` range with either end defined as `default` (infinity) is an _open range_, while any other span is a _closed range_. The span's range is inclusive.
+
+The `Timespan` type is not enumerable.
 
 #### Examples:
 
@@ -147,7 +151,7 @@ Position | Parameter | Data Type | Default Value | Description
 
 ### `Timestamp`
 
-The `Timestamp` data type matches a Timestamp; [strings][], [floats][], or [integers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
+The `Timestamp` data type matches a Timestamp; [strings][] or [numbers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
 
 It takes up to two parameters, and defaults to an infinite range to the past and future. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of time, with the first parameter being the `from` value and the second being the `to` value.
 
@@ -160,7 +164,7 @@ The full signature for `Timestamp` is:
 Position | Parameter | Data Type | Default Value | Description
 ---------|-----------|-----------|---------------|------------
 1 | Timestamp Value | String, Float, Integer, or `default` | `default` (-Infinity in a range) | Point in time if passed alone, or `from` value in a range if passed with a second parameter
-2 | Range Limit | String, Float, Integer, or `default` | `default` (+Infinity) | The `to` value in a range
+2 | Range Limit | String, Float, Integer, or `default` | `default` (+Infinity), or none if only one value is passed | The `to` value in a range
 
 `Timestamp` values are interpreted depending on their format.
 
@@ -169,7 +173,7 @@ Position | Parameter | Data Type | Default Value | Description
 * An Integer or Float represents the seconds passed since the Unix epoch
 * `default` is used in ranges and represents infinity as the maximum floating point value, either negative (as the `from` value of a range) or positive (as the `to` value)
 
-A `Timestamp` range with either end defined as `default` (infinity) is an _open range_, while a range with both ends defined as an exact timestamp is a _closed range_. Range values can be negative.
+A `Timestamp` range with either end defined as `default` (infinity) is an _open range_, while a range with both ends defined as an exact timestamp is a _closed range_. Range values can be negative, and the range is inclusive.
 
 The `Timestamp` type is not enumerable.
 
