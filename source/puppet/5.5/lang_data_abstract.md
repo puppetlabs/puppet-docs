@@ -117,17 +117,45 @@ Note that you can use capture groups in the regular expressions, but they won't 
 * `Pattern[/\A[a-z].*/]` --- matches any string that begins with a lowercase letter.
 * `Pattern[/\A[a-z].*/, /\Anone\Z/]` --- matches the above **or** the exact string `"none"`.
 
+### `Timespan`
+
+The `Timespan` data type matches a Timespan; [strings][], [floats][], or [integers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
+
+It takes up to two parameters, and defaults to an infinite range to the past and future.
+
+#### Parameters
+
+The full signature for `Timespan` is:
+
+    Timespan[ (<TIMESPAN START OR LENGTH>, (<TIMESPAN END>)) ]
+
+Position | Parameter | Data Type | Default Value | Description
+---------|-----------|-----------|---------------|------------
+1 | Timespan Start or Length | String, Float, Integer, or `default` | `default` (-Infinity in a span) | Length of the timespan if passed alone, or the `from` value in a range if passed with a second parameter
+2 | Timespan End | String, Float, Integer, or `default` | `default` (+Infinity), or none if only one value is passed | The `to` value in a range
+
+`Timeframe` values are interpreted depending on their format.
+
+* A String in the format of `D-HH:MM:SS` represents a span of days (`D`), hours (`HH`), minutes (`MM`), and seconds (`SS`)
+* An Integer or Float represents a number of seconds
+
+#### Examples:
+
+* `Timespan[2]` --- a timespan of 2 seconds
+* `Timespan[77.3]` --- a timespan of 1 minute, 17 seconds, and 300 milliseconds (77.3 seconds)
+* `Timespan['1-00:00:00', '2-00:00:00']` --- a timespan between 1 and 2 days
+
 ### `Timestamp`
 
-The `Timestamp` data type matches special [strings][], [floats][], or [integers][] representing a time and date, or `default`, representing an infinite point in the past or future.
+The `Timestamp` data type matches a Timestamp; [strings][], [floats][], or [integers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
 
-It takes up to two parameters, and requires at least one. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of time, with the first parameter being the `from` value and the second being the `to` value.
+It takes up to two parameters, and defaults to an infinite range to the past and future. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of time, with the first parameter being the `from` value and the second being the `to` value.
 
 #### Parameters
 
 The full signature for `Timestamp` is:
 
-    Timestamp[ <TIMESTAMP VALUE>, (<RANGE LIMIT>) ]
+    Timestamp[ (<TIMESTAMP VALUE>, (<RANGE LIMIT>)) ]
 
 Position | Parameter | Data Type | Default Value | Description
 ---------|-----------|-----------|---------------|------------
