@@ -254,11 +254,14 @@ Facter.add(:sleep) do
       Facter::Core::Execution.execute('sleep 10', options = {:timeout => 5})
       'did not timeout!'
     rescue Facter::Core::Execution::ExecutionFailure
-      'timeout!'
+      Facter.warn("Sleep fact timed out!")
     end
   end
 end
+
 ```
+
+When Facter runs as standalone, using `Facter.warn` ensures that the message is printed to `STDERR`. When Facter is called as part of a catalog application, using `Facter.warn` prints the message to Puppet's log. If an exception is not caught, Facter automatically logs it as an error.
 
 ## Structured facts
 
