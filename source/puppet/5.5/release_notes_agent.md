@@ -37,6 +37,17 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
 
+## Puppet agent 5.5.6
+
+Released 21 August, 2018
+
+This is primarily a bug fix release. Note that there is no Puppet agent 5.5.5 release.
+
+### Bug fixes
+
+- After installing `puppet-agent-5.5.3-1.el6.s390x.rpm` on a CentOS 6 s390 box, all Puppet commands failed with a Ruby error. This is now fixed. ([PA-2126](https://tickets.puppetlabs.com/browse/PA-2126))
+
+
 ## Puppet agent 5.5.4
 
 Released July 17, 2018.
