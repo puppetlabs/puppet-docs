@@ -22,7 +22,7 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 ## Puppet 5.5.6
 
-Released 21 August 2018
+Released 22 August 2018
 
 This is a bug-fix release of Puppet. It contains several deprecations.
 
