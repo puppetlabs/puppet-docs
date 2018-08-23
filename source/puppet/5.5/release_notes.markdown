@@ -30,13 +30,13 @@ This is a bug-fix release of Puppet. It contains several deprecations.
 
 ### Bug fixes
 
-- The `tagged` function is no longer case sensitive. The `tagged` function will now return `true` if the string case-insensitively matches a resource or catalog tag. Previously, the function was case sensitive. ([PUP-9024](https://tickets.puppetlabs.com/browse/PUP-9024)
+- The `tagged` function is no longer case sensitive. The `tagged` function will now return `true` if the string case-insensitively matches a resource or catalog tag. Previously, the function was case sensitive. ([PUP-9024](https://tickets.puppetlabs.com/browse/PUP-9024))
 
-- Puppet Server catalog failed to compile when 1disable_i18n = true` in the main section in `puppet.conf`. This is now fixed. ([PUP-9010](https://tickets.puppetlabs.com/browse/PUP-9010)
+- Puppet Server catalog failed to compile when `disable_i18n = true` in the main section in `puppet.conf`. This is now fixed. ([PUP-9010](https://tickets.puppetlabs.com/browse/PUP-9010))
 
-- puppet-agent-5.5.4-1.el6.x86_64 on Scientfic Linux 6 failed to use `upstart`. This is fixed. Note that the `upstart` provider only works on platforms that have the `upstart daemon` running. Puppet checks this with `initctl version --quiet`. ([PUP-9008](https://tickets.puppetlabs.com/browse/PUP-9008)
+- puppet-agent-5.5.4-1.el6.x86_64 on Scientfic Linux 6 failed to use `upstart`. This is fixed. Note that the `upstart` provider only works on platforms that have the `upstart daemon` running. Puppet checks this with `initctl version --quiet`. ([PUP-9008](https://tickets.puppetlabs.com/browse/PUP-9008))
 
-- This fix eliminates the use of `Kernel.eval` to convert stringified arrays to Ruby arrays when specified in Augeas resources in the manifest. ([PUP-8974](https://tickets.puppetlabs.com/browse/PUP-8974)
+- This fix eliminates the use of `Kernel.eval` to convert stringified arrays to Ruby arrays when specified in Augeas resources in the manifest. ([PUP-8974](https://tickets.puppetlabs.com/browse/PUP-8974))
 
 
 ### New features and improvements
@@ -46,27 +46,29 @@ This is a bug-fix release of Puppet. It contains several deprecations.
 
 ### Deprecations
 
-- All Puppet subcommands that perform actions on the CA are deprecated. This includes `cert`, `ca`, `certificate`, `certificate_revocation_list`, and `certificate_request`. Their functionality will be replaced in Puppet 6 by a new CA command-line interface under Puppet Server, and a new client-side subcommand for SSL client tasks. This change deprecates `puppet.conf` settings: 
-    *`ca_name`
-    *`cadir`
-    *`cacert`
-    *`cakey`
-    *`capub`
-    *`cacrl`
-    *`caprivatedir`
-    *`csrdir`
-    *`signeddir`
-    *`capass`
-    *`serial`
-    *`autosign`
-    *`allow_duplicate_certs`
-    *`ca_ttl`
-    *`cert_inventory`
-    ([PUP-9027](https://tickets.puppetlabs.com/browse/PUP-9027)) and ([PUP-8997](https://tickets.puppetlabs.com/browse/PUP-8997))
-    
-- The LDAP Node Terminus is deprecated. ([PUP-7600](https://tickets.puppetlabs.com/browse/PUP-7600)
-    
-- Setting `source_permissions` to `use` or `use_when_creating` is deprecated. If you need to manage permissions, set them explicitly using `owner`, `group`, and `mode`. ([PUP-5921](https://tickets.puppetlabs.com/browse/PUP-5921)
+-   All Puppet subcommands that perform actions on the CA are deprecated. This includes `cert`, `ca`, `certificate`, `certificate_revocation_list`, and `certificate_request`. Their functionality will be replaced in Puppet 6 by a new CA command-line interface under Puppet Server, and a new client-side subcommand for SSL client tasks. This change deprecates `puppet.conf` settings:
+
+    -   `ca_name`
+    -   `cadir`
+    -   `cacert`
+    -   `cakey`
+    -   `capub`
+    -   `cacrl`
+    -   `caprivatedir`
+    -   `csrdir`
+    -   `signeddir`
+    -   `capass`
+    -   `serial`
+    -   `autosign`
+    -   `allow_duplicate_certs`
+    -   `ca_ttl`
+    -   `cert_inventory`
+
+    ([PUP-9027](https://tickets.puppetlabs.com/browse/PUP-9027) and [PUP-8997](https://tickets.puppetlabs.com/browse/PUP-8997))
+
+- The LDAP Node Terminus is deprecated. ([PUP-7600](https://tickets.puppetlabs.com/browse/PUP-7600))
+
+- Setting `source_permissions` to `use` or `use_when_creating` is deprecated. If you need to manage permissions, set them explicitly using `owner`, `group`, and `mode`. ([PUP-5921](https://tickets.puppetlabs.com/browse/PUP-5921))
 
 
 ## Puppet 5.5.3

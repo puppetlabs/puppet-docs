@@ -12,12 +12,14 @@ title: "Puppet agent release notes"
 [Puppet 5.5.1]: /docs/puppet/5.5/release_notes.html#puppet-551
 [Puppet 5.5.2]: /docs/puppet/5.5/release_notes.html#puppet-552
 [Puppet 5.5.3]: /docs/puppet/5.5/release_notes.html#puppet-553
+[Puppet 5.5.6]: /docs/puppet/5.5/release_notes.html#puppet-556
 
 [Facter 3.10.0]: /docs/facter/3.10/release_notes.html#facter-3100
 [Facter 3.11.0]: /docs/facter/3.11/release_notes.html#facter-3110
 [Facter 3.11.1]: /docs/facter/3.11/release_notes.html#facter-3111
 [Facter 3.11.2]: /docs/facter/3.11/release_notes.html#facter-3112
 [Facter 3.11.3]: /docs/facter/3.11/release_notes.html#facter-3113
+[Facter 3.11.4]: /docs/facter/3.11/release_notes.html#facter-3114
 
 [MCollective 2.12.0]: /docs/mcollective/current/releasenotes.html#2_12_0
 [MCollective 2.12.1]: /docs/mcollective/current/releasenotes.html#2_12_1
@@ -39,9 +41,17 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [
 
 ## Puppet agent 5.5.6
 
-Released 21 August, 2018
+Released 22 August 2018
 
 This is primarily a bug fix release. Note that there is no Puppet agent 5.5.5 release.
+
+### Component updates
+
+Puppet Platform 5.5.6 includes puppet-agent 5.5.6, [PuppetDB 5.2.4](/docs/puppetdb/5.2/release_notes.html), and [Puppet Server 5.3.5](/docs/puppetserver/5.3/release_notes.html).
+
+`puppet-agent` 5.5.6 includes updates to [Puppet 5.5.6][], [Facter 3.11.4][], [Hiera 3.4.4][], `cpp-pcp-client` 1.5.7, and [`pxp-agent`][pxp-agent] 1.9.4.
+
+See the linked release notes for details about each component release.
 
 ### Bug fixes
 
