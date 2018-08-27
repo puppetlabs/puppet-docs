@@ -23,6 +23,8 @@ This is a bug-fix release that shipped with Puppet Platform 5.5.6.
 
 - The `os.architecture` fact is now determined from the `processors.models[0]` fact. This addresses a problem where Puppet agent wasn't working with dynamic CPU allocations on AIX. ([FACT-1550](https://tickets.puppetlabs.com/browse/FACT-1550)) 
 
+- The `memory` fact was occasionally failing on AIX. This has been fixed. ([FACT-1821](https://tickets.puppetlabs.com/browse/FACT-1821))
+
 
 ## Facter 3.11.3
 

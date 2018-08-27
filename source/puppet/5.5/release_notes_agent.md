@@ -57,6 +57,8 @@ See the linked release notes for details about each component release.
 
 - After installing `puppet-agent-5.5.3-1.el6.s390x.rpm` on a CentOS 6 s390 box, all Puppet commands failed with a Ruby error. This is now fixed. ([PA-2126](https://tickets.puppetlabs.com/browse/PA-2126))
 
+- The Puppet agent installer now idempotently sets permissions on the install folder on Windows. Previously it would run `takeown` and `icacls` against the folder recursively, potentially taking many minutes to run. ([PA-2113](https://tickets.puppetlabs.com/browse/PA-2113))
+
 
 ## Puppet agent 5.5.4
 
