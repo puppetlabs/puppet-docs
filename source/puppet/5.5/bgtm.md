@@ -323,7 +323,7 @@ This allows you to create a list of dependencies in the `metadata.json` file of 
 
 We recommend that you document your module with a README explaining how your module works and a Reference section detailing information about your module's classes, defined types, functions, and resource types and providers.
 
-For guidance, see our modules documentation [guide](./modules_documentation.html)and the [documentation](./style_guide.html#module-documentation) section of the Puppet Language Style Guide.
+For guidance, see our modules documentation [guide](./modules_documentation.html) and the [documentation](./style_guide.html#module-documentation) section of the Puppet Language Style Guide.
 
 {:.concept}
 ## Releasing your module
