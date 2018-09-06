@@ -39,9 +39,16 @@ canonical: "/mcollective/index.html"
 [ChangeLog]: /mcollective1.2/changelog.html
 
 # {{page.title}}
-The Marionette Collective AKA mcollective is a framework to build server
+The Marionette Collective is a framework to build server
 orchestration or parallel job execution systems.
 
+**Warning:**
+Puppet Enterprise 2018.1 is the last release to support Marionette Collective, also known as MCollective. While PE 2018.1 remains supported, Puppet will continue to address security issues for MCollective. Feature development has been discontinued. Future releases of PE will not include MCollective. For more information, see the [Puppet Enterprise support lifecycle](https://puppet.com/misc/puppet-enterprise-lifecycle).
+
+To prepare for these changes, migrate your MCollective work to [Puppet orchestrator](https://puppet.com/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html#concept-5391) to automate tasks and create consistent, repeatable administrative processes. Use orchestrator to automate your workflows and take advantage of its integration with Puppet Enterprise console and commands, APIs, role-based access control, and event tracking.
+
+
+## Overview
 Primarily we'll use it as a means of programmatic execution of Systems Administration
 actions on clusters of servers.  In this regard we operate in the same space as tools
 like [Func], [Fabric] or [Capistrano].
