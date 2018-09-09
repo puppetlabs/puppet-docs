@@ -6,7 +6,17 @@ toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:51:01 -0700
+---
+layout: default
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+title: Resource Type Reference (Single-Page)
+canonical: "/puppet/latest/type.html"
+toc_levels: 2
+toc: columns
+---
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 ## About resource types
 
@@ -15,7 +25,7 @@ toc: columns
 This is the documentation for the _built-in_ resource types and providers, keyed
 to a specific Puppet version. (See sidebar.) Additional resource types can be
 distributed in Puppet modules; you can find and install modules by browsing the
-[Puppet Forge](http://forge.puppet.com). See each module's documentation for
+[Puppet Forge](http://forge.puppetlabs.com). See each module's documentation for
 information on how to use its custom resource types.
 
 ### Declaring resources
@@ -107,7 +117,7 @@ package.
 Resource types define the set of features they can use, and providers can
 declare which features they provide.
 
-----------------
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 augeas
 -----
@@ -209,8 +219,6 @@ defaults to `/files + incl`; otherwise, defaults to the empty string.
 Optional command to force the augeas type to execute even if it thinks changes
 will not be made. This does not override the `onlyif` parameter.
 
-Default: `false`
-
 ([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-incl">incl</h4>
@@ -232,8 +240,6 @@ The Augeas documentation includes [a list of available lenses](http://augeas.net
 <h4 id="augeas-attribute-load_path">load_path</h4>
 
 Optional colon-separated list or array of directories; these directories are searched for schema definitions. The agent's `$libdir/augeas/lenses` path will always be added to support pluginsync.
-
-Default: `""`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -286,15 +292,11 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The expected return code from the augeas command. Should not be set.
 
-Default: `0`
-
 ([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-root">root</h4>
 
 A file system path; all files loaded by Augeas are loaded underneath `root`.
-
-Default: `/`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -306,34 +308,24 @@ other secret data, which might otherwise be included in Puppet reports or
 other insecure outputs.  If the global `show_diff` setting
 is false, then no diffs will be shown even if this parameter is true.
 
-Default: `true`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-type_check">type_check</h4>
 
-Whether augeas should perform typechecking.
+Whether augeas should perform typechecking. Defaults to false.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to augeas attributes](#augeas-attributes))
+
 
 <h3 id="augeas-providers">Providers</h3>
 
 <h4 id="augeas-provider-augeas">augeas</h4>
 
-* Confined to: `feature == augeas`
-* Supported features: `execute_changes`, `need_to_run?`, `parse_commands`
+* Supported features: `execute_changes`, `need_to_run?`, `parse_commands`.
 
 <h3 id="augeas-provider-features">Provider Features</h3>
 
@@ -363,6 +355,12 @@ Provider support:
     </tr>
   </tbody>
 </table>
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 computer
 -----
@@ -420,10 +418,7 @@ Control the existences of this computer record. Set this attribute to
 `present` to ensure the computer record exists.  Set it to `absent`
 to delete any computer records with this name
 
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to computer attributes](#computer-attributes))
 
@@ -461,6 +456,7 @@ The 'long' name of the computer record.
 
 ([↑ Back to computer attributes](#computer-attributes))
 
+
 <h3 id="computer-providers">Providers</h3>
 
 <h4 id="computer-provider-directoryservice">directoryservice</h4>
@@ -476,8 +472,14 @@ domain, not in remote directories.
 If you wish to manage /etc/hosts on Mac OS X, then simply use the host
 type as per other platforms.
 
-* Confined to: `operatingsystem == darwin`
-* Default for `operatingsystem` == `darwin`
+* Default for `operatingsystem` == `darwin`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 cron
 -----
@@ -576,12 +578,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to cron attributes](#cron-attributes))
 
@@ -608,6 +605,7 @@ Any environment settings associated with this cron job.  They
 will be stored between the header and the job in the crontab.  There
 can be no guarantees that other, earlier settings will not also
 affect a given cron job.
+
 
 Also, Puppet cannot automatically determine whether an existing,
 unmanaged environment setting is associated with a given cron
@@ -725,11 +723,19 @@ must be either:
 
 ([↑ Back to cron attributes](#cron-attributes))
 
+
 <h3 id="cron-providers">Providers</h3>
 
 <h4 id="cron-provider-crontab">crontab</h4>
 
-* Required binaries: `crontab`
+* Required binaries: `crontab`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 exec
 -----
@@ -880,13 +886,7 @@ when the command has an exit code that does not match any value
 specified by the `returns` attribute. As with any resource type,
 the log level can be controlled with the `loglevel` metaparameter.
 
-Default: `on_failure`
-
-Allowed values:
-
-* `true`
-* `false`
-* `on_failure`
+Valid values are `true`, `false`, `on_failure`.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -975,10 +975,7 @@ other object; it is useful for triggering an action:
 Note that only `subscribe` and `notify` can trigger actions, not `require`,
 so it only makes sense to use `refreshonly` with `subscribe` or `notify`.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -1008,8 +1005,6 @@ Microsoft recommends against using negative/very large exit codes, and
 you should avoid them when possible. To convert a negative exit code to
 the positive one Puppet will use, add it to 4294967296.
 
-Default: `0`
-
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-timeout">timeout</h4>
@@ -1019,27 +1014,21 @@ longer than the timeout, the command is considered to have failed
 and will be stopped. The timeout is specified in seconds. The default
 timeout is 300 seconds and you can set it to 0 to disable the timeout.
 
-Default: `300`
-
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-tries">tries</h4>
 
 The number of times execution of the command should be tried.
-This many attempts will be made to execute
+Defaults to '1'. This many attempts will be made to execute
 the command until an acceptable return code is returned.
 Note that the timeout parameter applies to each try rather than
 to the complete set of tries.
-
-Default: `1`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-try_sleep">try_sleep</h4>
 
 The time to sleep in seconds between 'tries'.
-
-Default: `0`
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -1090,6 +1079,7 @@ when using this attribute.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
+
 <h3 id="exec-providers">Providers</h3>
 
 <h4 id="exec-provider-posix">posix</h4>
@@ -1099,8 +1089,7 @@ performing any interpolation. This is a safer and more predictable way
 to execute most commands, but prevents the use of globbing and shell
 built-ins (including control logic like "for" and "if" statements).
 
-* Confined to: `feature == posix`
-* Default for: `feature` == `posix`
+* Default for `feature` == `posix`.
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -1113,8 +1102,6 @@ etc. etc.
 
 This provider closely resembles the behavior of the `exec` type
 in Puppet 0.25.x.
-
-* Confined to: `feature == posix`
 
 <h4 id="exec-provider-windows">windows</h4>
 
@@ -1141,8 +1128,12 @@ command:
       command => 'powershell -executionpolicy remotesigned -file C:/test.ps1',
     }
 
-* Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
+* Default for `operatingsystem` == `windows`.
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 file
 -----
@@ -1309,8 +1300,6 @@ balancer to direct all filebucket traffic to a single master, or use
 something like an out-of-band rsync task to synchronize the content on all
 masters.
 
-Default: `puppet`
-
 ([↑ Back to file attributes](#file-attributes))
 
 <h4 id="file-attribute-checksum">checksum</h4>
@@ -1385,12 +1374,7 @@ You must use `force` in order to:
 * Replace directories with files or links
 * Remove a directory when `ensure => absent`
 
-Default: `false`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1426,12 +1410,7 @@ How to handle links during file actions.  During file copying,
 will copy the link itself. When not copying, `manage` will manage
 the link, and `follow` will manage the file to which the link points.
 
-Default: `manage`
-
-Allowed values:
-
-* `follow`
-* `manage`
+Valid values are `follow`, `manage`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1564,12 +1543,7 @@ If `recurselimit` is set and you aren't using `force => true`, purging
 will obey the recursion limit; files in any subdirectories deeper than the
 limit will be treated as unmanaged and left alone.
 
-Default: `false`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1598,15 +1572,11 @@ is only used when `ensure => directory` is set. The allowed values are:
   The `source` attribute is not mandatory when using `recurse => true`, so you
   can enable purging in directories where all files are managed individually.
 
-By default, setting recurse to `remote` or `true` manages _all_
+By default, setting recurse to `remote` or `true` will manage _all_
 subdirectories. You can use the `recurselimit` attribute to limit the
 recursion depth.
 
-Allowed values:
-
-* `true`
-* `false`
-* `remote`
+Valid values are `true`, `false`, `remote`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1630,9 +1600,7 @@ directory, as well as the contents of the _first_ level of subdirectories.
 
 This pattern continues for each incremental value of `recurselimit`.
 
-Allowed values:
-
-* `/^[0-9]+$/`
+Values can match `/^[0-9]+$/`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1644,12 +1612,7 @@ specifies.  Setting this to false allows file resources to initialize files
 without overwriting future changes.  Note that this only affects content;
 Puppet will still manage ownership and permissions. Defaults to `true`.
 
-Default: `true`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1722,12 +1685,7 @@ other secret data, which might otherwise be included in Puppet reports or
 other insecure outputs.  If the global `show_diff` setting
 is false, then no diffs will be shown even if this parameter is true.
 
-Default: `true`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1812,12 +1770,7 @@ all valid sources will have all of their contents copied to the local
 system. If a given file exists in more than one source, the version from
 the earliest source in the list will be used.
 
-Default: `first`
-
-Allowed values:
-
-* `first`
-* `all`
+Valid values are `first`, `all`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1841,10 +1794,7 @@ Directories of symlinks can be served recursively by instead using the
 `source` attribute, setting `ensure` to `directory`, and setting the
 `links` attribute to `manage`.
 
-Allowed values:
-
-* `notlink`
-* `/./`
+Valid values are `notlink`. Values can match `/./`.
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1886,11 +1836,10 @@ you can specify a different placeholder token with the
 <h4 id="file-attribute-validate_replacement">validate_replacement</h4>
 
 The replacement string in a `validate_cmd` that will be replaced
-with an input file name.
-
-Default: `%`
+with an input file name. Defaults to: `%`
 
 ([↑ Back to file attributes](#file-attributes))
+
 
 <h3 id="file-providers">Providers</h3>
 
@@ -1898,15 +1847,13 @@ Default: `%`
 
 Uses POSIX functionality to manage file ownership and permissions.
 
-* Confined to: `feature == posix`
-* Supported features: `manages_symlinks`
+* Supported features: `manages_symlinks`.
 
 <h4 id="file-provider-windows">windows</h4>
 
 Uses Microsoft Windows functionality to manage file ownership and permissions.
 
-* Confined to: `operatingsystem == windows`
-* Supported features: `manages_symlinks`
+* Supported features: `manages_symlinks`.
 
 <h3 id="file-provider-features">Provider Features</h3>
 
@@ -1934,6 +1881,11 @@ Provider support:
     </tr>
   </tbody>
 </table>
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 filebucket
 -----
@@ -2013,9 +1965,15 @@ The server providing the remote filebucket service. Defaults to the
 value of the `server` setting (that is, the currently configured
 puppet master server).
 
-This setting is consulted only if the `path` attribute is set to `false`.
+This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 group
 -----
@@ -2072,12 +2030,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Create or remove the group.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -2085,12 +2038,7 @@ Allowed values:
 
 Whether to allow duplicate GIDs. Defaults to `false`.
 
-Default: `false`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -2098,17 +2046,12 @@ Allowed values:
 
 AIX only. Configures the behavior of the `attributes` parameter.
 
-* `minimum` --- The provided list of attributes is partial, and Puppet
+* `minimum` (default) --- The provided list of attributes is partial, and Puppet
   **ignores** any attributes that aren't listed there.
 * `inclusive` --- The provided list of attributes is comprehensive, and
   Puppet **purges** any attributes that aren't listed there.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -2119,6 +2062,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Specify group AIX attributes, as an array of `'key=value'` strings. This
 parameter's behavior can be configured with `attribute_membership`.
 
+
+
 Requires features manages_aix_lam.
 
 ([↑ Back to group attributes](#group-attributes))
@@ -2127,31 +2072,21 @@ Requires features manages_aix_lam.
 
 Configures the behavior of the `members` parameter.
 
-* `false` --- The provided list of group members is partial,
+* `false` (default) --- The provided list of group members is partial,
   and Puppet **ignores** any members that aren't listed there.
 * `true` --- The provided list of of group members is comprehensive, and
   Puppet **purges** any members that aren't listed there.
 
-Default: `false`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to group attributes](#group-attributes))
 
 <h4 id="group-attribute-forcelocal">forcelocal</h4>
 
 Forces the management of local accounts when accounts are also
-being managed by some other NSS.
+being managed by some other NSS
 
-Default: `false`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 Requires features libuser.
 
@@ -2176,6 +2111,8 @@ identifier (SID).
 
 The name of the I&A module to use to manage this user
 
+
+
 Requires features manages_aix_lam.
 
 ([↑ Back to group attributes](#group-attributes))
@@ -2187,6 +2124,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The members of the group. For platforms or directory services where group
 membership is stored in the group objects, not the users. This parameter's
 behavior can be configured with `auth_membership`.
+
+
 
 Requires features manages_members.
 
@@ -2213,14 +2152,10 @@ Available providers are:
 
 Whether the group is a system group with lower GID.
 
-Default: `false`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to group attributes](#group-attributes))
+
 
 <h3 id="group-providers">Providers</h3>
 
@@ -2228,26 +2163,24 @@ Allowed values:
 
 Group management for AIX.
 
-* Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
-* Confined to: `operatingsystem == aix`
-* Default for: `operatingsystem` == `aix`
-* Supported features: `manages_aix_lam`, `manages_members`
+* Required binaries: `/usr/bin/chgroup`, `/usr/bin/mkgroup`, `/usr/sbin/lsgroup`, `/usr/sbin/rmgroup`.
+* Default for `operatingsystem` == `aix`.
+* Supported features: `manages_aix_lam`, `manages_members`.
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
 Group management using DirectoryService on OS X.
 
-* Required binaries: `/usr/bin/dscl`
-* Confined to: `operatingsystem == darwin`
-* Default for: `operatingsystem` == `darwin`
-* Supported features: `manages_members`
+* Required binaries: `/usr/bin/dscl`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `manages_members`.
 
 <h4 id="group-provider-groupadd">groupadd</h4>
 
 Group management via `groupadd` and its ilk. The default for most platforms.
 
-* Required binaries: `groupadd`, `groupdel`, `groupmod`
-* Supported features: `system_groups`
+* Required binaries: `groupadd`, `groupdel`, `groupmod`, `lgroupadd`, `lgroupdel`, `lgroupmod`.
+* Supported features: `system_groups`.
 
 <h4 id="group-provider-ldap">ldap</h4>
 
@@ -2262,14 +2195,11 @@ Note that this provider will automatically generate a GID for you if you do
 not specify one, but it is a potentially expensive operation, as it
 iterates across all existing groups to pick the appropriate next one.
 
-* Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
-
 <h4 id="group-provider-pw">pw</h4>
 
 Group management via `pw` on FreeBSD and DragonFly BSD.
 
-* Required binaries: `pw`
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
+* Required binaries: `pw`.
 * Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `manages_members`.
 
@@ -2278,8 +2208,7 @@ Group management via `pw` on FreeBSD and DragonFly BSD.
 Local group management for Windows. Group members can be both users and groups.
 Additionally, local groups can contain domain users.
 
-* Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
+* Default for `operatingsystem` == `windows`.
 * Supported features: `manages_members`.
 
 <h3 id="group-provider-features">Provider Features</h3>
@@ -2349,6 +2278,11 @@ Provider support:
   </tbody>
 </table>
 
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
 host
 -----
 
@@ -2356,8 +2290,6 @@ host
 * [Providers](#host-providers)
 
 <h3 id="host-description">Description</h3>
-
-The host's IP address, IPv4 or IPv6.
 
 Installs and manages host entries.  For most systems, these
 entries will just be in `/etc/hosts`, but some systems (notably OS X)
@@ -2390,12 +2322,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to host attributes](#host-attributes))
 
@@ -2445,161 +2372,20 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 ([↑ Back to host attributes](#host-attributes))
 
+
 <h3 id="host-providers">Providers</h3>
 
 <h4 id="host-provider-parsed">parsed</h4>
 
-* Confined to: `exists == hosts`
 
-* [augeas](./augeas.html)
-* [computer](./computer.html)
-* [cron](./cron.html)
-* [exec](./exec.html)
-* [file](./file.html)
-* [filebucket](./filebucket.html)
-* [group](./group.html)
-* [host](./host.html)
-* [interface](./interface.html)
-* [k5login](./k5login.html)
-* [macauthorization](./macauthorization.html)
-* [mailalias](./mailalias.html)
-* [maillist](./maillist.html)
-* [mcx](./mcx.html)
-* [mount](./mount.html)
-* [nagios_command](./nagios_command.html)
-* [nagios_contact](./nagios_contact.html)
-* [nagios_contactgroup](./nagios_contactgroup.html)
-* [nagios_host](./nagios_host.html)
-* [nagios_hostdependency](./nagios_hostdependency.html)
-* [nagios_hostescalation](./nagios_hostescalation.html)
-* [nagios_hostextinfo](./nagios_hostextinfo.html)
-* [nagios_hostgroup](./nagios_hostgroup.html)
-* [nagios_service](./nagios_service.html)
-* [nagios_servicedependency](./nagios_servicedependency.html)
-* [nagios_serviceescalation](./nagios_serviceescalation.html)
-* [nagios_serviceextinfo](./nagios_serviceextinfo.html)
-* [nagios_servicegroup](./nagios_servicegroup.html)
-* [nagios_timeperiod](./nagios_timeperiod.html)
-* [notify](./notify.html)
-* [package](./package.html)
-* [resources](./resources.html)
-* [router](./router.html)
-* [schedule](./schedule.html)
-* [scheduled_task](./scheduled_task.html)
-* [selboolean](./selboolean.html)
-* [selmodule](./selmodule.html)
-* [service](./service.html)
-* [ssh_authorized_key](./ssh_authorized_key.html)
-* [sshkey](./sshkey.html)
-* [stage](./stage.html)
-* [tidy](./tidy.html)
-* [user](./user.html)
-* [vlan](./vlan.html)
-* [yumrepo](./yumrepo.html)
-* [zfs](./zfs.html)
-* [zone](./zone.html)
-* [zpool](./zpool.html)
 
-## About resource types
 
-### Built-in types and custom types
 
-This is the documentation for the _built-in_ resource types and providers, keyed
-to a specific Puppet version. (See sidebar.) Additional resource types can be
-distributed in Puppet modules; you can find and install modules by browsing the
-[Puppet Forge](http://forge.puppet.com). See each module's documentation for
-information on how to use its custom resource types.
 
-### Declaring resources
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
-To manage resources on a target system, you should declare them in Puppet
-manifests. For more details, see
-[the resources page of the Puppet language reference.](/docs/puppet/latest/lang_resources.html)
 
-You can also browse and manage resources interactively using the
-`puppet resource` subcommand; run `puppet resource --help` for more information.
-
-### Namevars and titles
-
-All types have a special attribute called the _namevar_. This is the attribute
-used to uniquely identify a resource on the target system.
-
-Each resource has a specific namevar attribute, which is listed on this page in
-each resource's reference. If you don't specify a value for the namevar, its
-value defaults to the resource's _title_.
-
-**Example of a title as a default namevar:**
-
-```puppet
-file { '/etc/passwd':
-  owner => 'root',
-  group => 'root',
-  mode  => '0644',
-}
-```
-
-In this code, `/etc/passwd` is the _title_ of the file resource.
-
-The file type's namevar is `path`. Because we didn't provide a `path` value in
-this example, the value defaults to the title, `/etc/passwd`.
-
-**Example of a namevar:**
-
-```puppet
-file { 'passwords':
-  path  => '/etc/passwd',
-  owner => 'root',
-  group => 'root',
-  mode  => '0644',
-```
-
-This example is functionally similar to the previous example. Its `path`
-namevar attribute has an explicitly set value separate from the title, so
-its name is still `/etc/passwd`.
-
-Other Puppet code can refer to this resource as `File['/etc/passwd']` to
-declare relationships.
-
-### Attributes, parameters, properties
-
-The _attributes_ (sometimes called _parameters_) of a resource determine its
-desired state. They either directly modify the system (internally, these are
-called "properties") or they affect how the resource behaves (for instance,
-adding a search path for `exec` resources or controlling directory recursion
-on `file` resources).
-
-### Providers
-
-_Providers_ implement the same resource type on different kinds of systems.
-They usually do this by calling out to external commands.
-
-Although Puppet will automatically select an appropriate default provider, you
-can override the default with the `provider` attribute. (For example, `package`
-resources on Red Hat systems default to the `yum` provider, but you can specify
-`provider => gem` to install Ruby libraries with the `gem` command.)
-
-Providers often specify binaries that they require. Fully qualified binary
-paths indicate that the binary must exist at that specific path, and
-unqualified paths indicate that Puppet will search for the binary using the
-shell path.
-
-### Features
-
-_Features_ are abilities that some providers might not support. Generally, a
-feature corresponds to some allowed values for a resource attribute.
-
-This is often the case with the `ensure` attribute. In most types, Puppet
-doesn't create new resources when omitting `ensure` but still modifies existing
-resources to match specifications in the manifest. However, in some types this
-isn't always the case, or additional values provide more granular control. For
-example, if a `package` provider supports the `purgeable` feature, you can
-specify `ensure => purged` to delete configuration files installed by the
-package.
-
-Resource types define the set of features they can use, and providers can
-declare which features they provide.
-
-----------------
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 interface
 -----
@@ -2647,12 +2433,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present` or `no_shutdown`
-* `absent` or `shutdown`
+Valid values are `present` (also called `no_shutdown`), `absent` (also called `shutdown`).
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2662,9 +2443,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface static access vlan.
 
-Allowed values:
-
-* `/^\d+/`
+Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2674,10 +2453,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Allowed list of Vlans that this trunk can forward.
 
-Allowed values:
-
-* `all`
-* `/./`
+Valid values are `all`. Values can match `/./`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2701,11 +2477,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface duplex.
 
-Allowed values:
-
-* `auto`
-* `full`
-* `half`
+Valid values are `auto`, `full`, `half`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2715,12 +2487,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport encapsulation.
 
-Allowed values:
-
-* `none`
-* `dot1q`
-* `isl`
-* `negotiate`
+Valid values are `none`, `dot1q`, `isl`, `negotiate`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2730,9 +2497,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Channel group this interface is part of.
 
-Allowed values:
-
-* `/^\d+/`
+Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2760,12 +2525,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface switchport mode.
 
-Allowed values:
-
-* `access`
-* `trunk`
-* `dynamic auto`
-* `dynamic desirable`
+Valid values are `access`, `trunk`, `dynamic auto`, `dynamic desirable`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2775,9 +2535,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface native vlan when trunking.
 
-Allowed values:
-
-* `/^\d+/`
+Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -2799,18 +2557,23 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Interface speed.
 
-Allowed values:
-
-* `auto`
-* `/^\d+/`
+Valid values are `auto`. Values can match `/^\d+/`.
 
 ([↑ Back to interface attributes](#interface-attributes))
+
 
 <h3 id="interface-providers">Providers</h3>
 
 <h4 id="interface-provider-cisco">cisco</h4>
 
 Cisco switch/router provider for interface.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 k5login
 -----
@@ -2853,12 +2616,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to k5login attributes](#k5login-attributes))
 
@@ -2939,12 +2697,19 @@ enabled.
 
 ([↑ Back to k5login attributes](#k5login-attributes))
 
+
 <h3 id="k5login-providers">Providers</h3>
 
 <h4 id="k5login-provider-k5login">k5login</h4>
 
 The k5login provider is the only provider for the k5login
 type.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 macauthorization
 -----
@@ -3006,12 +2771,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -3024,10 +2784,7 @@ whether a right should be allowed automatically if the requesting process
 is running with `uid == 0`.  AuthorizationServices defaults this attribute
 to false if not specified.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -3038,13 +2795,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Corresponds to `class` in the authorization store; renamed due
 to 'class' being a reserved word in Puppet.
 
-Allowed values:
-
-* `user`
-* `evaluate-mechanisms`
-* `allow`
-* `deny`
-* `rule`
+Valid values are `user`, `evaluate-mechanisms`, `allow`, `deny`, `rule`.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -3055,10 +2806,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Type --- this can be a `right` or a `rule`. The `comment` type has
 not yet been implemented.
 
-Allowed values:
-
-* `right`
-* `rule`
+Valid values are `right`, `rule`.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -3068,10 +2816,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Corresponds to `authenticate-user` in the authorization store.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -3139,10 +2884,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Whether the session owner automatically matches this rule or right.
 Corresponds to `session-owner` in the authorization store.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -3156,10 +2898,7 @@ to authorize this right. For maximum security, set sharing to false so
 credentials stored by the Security Server for one application may not be
 used by another application.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
@@ -3182,15 +2921,19 @@ The number of tries allowed.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
+
 <h3 id="macauthorization-providers">Providers</h3>
 
 <h4 id="macauthorization-provider-macauthorization">macauthorization</h4>
 
 Manage Mac OS X authorization database rules and rights.
 
-* Required binaries: `/usr/bin/security`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for: `operatingsystem` == `darwin`
+* Required binaries: `/usr/bin/security`.
+* Default for `operatingsystem` == `darwin`.
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 mailalias
 -----
@@ -3228,12 +2971,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to mailalias attributes](#mailalias-attributes))
 
@@ -3277,9 +3015,18 @@ those providers that write to disk.
 
 ([↑ Back to mailalias attributes](#mailalias-attributes))
 
+
 <h3 id="mailalias-providers">Providers</h3>
 
 <h4 id="mailalias-provider-aliases">aliases</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 maillist
 -----
@@ -3320,13 +3067,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
-* `purged`
+Valid values are `present`, `absent`, `purged`.
 
 ([↑ Back to maillist attributes](#maillist-attributes))
 
@@ -3372,11 +3113,18 @@ The name of the host providing web archives and the administrative interface.
 
 ([↑ Back to maillist attributes](#maillist-attributes))
 
+
 <h3 id="maillist-providers">Providers</h3>
 
 <h4 id="maillist-provider-mailman">mailman</h4>
 
-* Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `newlist`, `rmlist`
+* Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `newlist`, `rmlist`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 mcx
 -----
@@ -3435,10 +3183,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Create or remove the MCX setting.
 
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to mcx attributes](#mcx-attributes))
 
@@ -3452,6 +3197,8 @@ This is the standard output from the system command:
     dscl localhost -mcxexport /Local/Default/<ds_type>/ds_name
 
 Note that `ds_type` is capitalized and plural in the dscl command.
+
+
 
 Requires features manages_content.
 
@@ -3470,12 +3217,7 @@ example, in `/Groups/admin`, `group` will be used as the dstype.)
 
 The DirectoryService type this MCX setting attaches to.
 
-Allowed values:
-
-* `user`
-* `group`
-* `computer`
-* `computerlist`
+Valid values are `user`, `group`, `computer`, `computerlist`.
 
 ([↑ Back to mcx attributes](#mcx-attributes))
 
@@ -3490,6 +3232,7 @@ Available providers are:
 * [`mcxcontent`](#mcx-provider-mcxcontent)
 
 ([↑ Back to mcx attributes](#mcx-attributes))
+
 
 <h3 id="mcx-providers">Providers</h3>
 
@@ -3508,10 +3251,9 @@ manifest from the resulting configuration.
 
 Original Author: Jeff McCune (mccune.jeff@gmail.com)
 
-* Required binaries: `/usr/bin/dscl`
-* Confined to: `operatingsystem == darwin`
-* Default for: `operatingsystem` == `darwin`
-* Supported features: `manages_content`
+* Required binaries: `/usr/bin/dscl`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `manages_content`.
 
 <h3 id="mcx-provider-features">Provider Features</h3>
 
@@ -3535,6 +3277,11 @@ Provider support:
     </tr>
   </tbody>
 </table>
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 mount
 -----
@@ -3599,13 +3346,7 @@ the filesystem from the fstab.  Set to `mounted` to add it to the
 fstab and mount it. Set to `present` to add to fstab but not change
 mount/unmount status.
 
-Allowed values:
-
-* `defined`
-* `present`
-* `unmounted`
-* `absent`
-* `mounted`
+Valid values are `defined` (also called `present`), `unmounted`, `absent`, `mounted`.
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -3643,15 +3384,10 @@ path, depending on the operating system.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Whether to dump the mount. Not all platforms support this.
+Whether to dump the mount.  Not all platform support this.
+Valid values are `1` or `0` (or `2` on FreeBSD). Default is `0`.
 
-Default: `0`.
-
-Allowed values:
-
-* `1`
-* `0`
-* `2` on FreeBSD
+Values can match `/(0|1)/`.
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -3704,10 +3440,7 @@ Whether the mount can be remounted  `mount -o remount`.  If
 this is false, then the filesystem will be unmounted and remounted
 manually, which is prone to failure.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to mount attributes](#mount-attributes))
 
@@ -3720,12 +3453,13 @@ those providers that write to disk.
 
 ([↑ Back to mount attributes](#mount-attributes))
 
+
 <h3 id="mount-providers">Providers</h3>
 
 <h4 id="mount-provider-parsed">parsed</h4>
 
-* Required binaries: `mount`, `umount`
-* Supported features: `refreshable`
+* Required binaries: `mount`, `umount`.
+* Supported features: `refreshable`.
 
 <h3 id="mount-provider-features">Provider Features</h3>
 
@@ -3745,10 +3479,15 @@ Provider support:
   <tbody>
     <tr>
       <td>parsed</td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
   </tbody>
 </table>
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_command
 -----
@@ -3880,9 +3619,19 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_command attributes](#nagios_command-attributes))
 
+
 <h3 id="nagios_command-providers">Providers</h3>
 
 <h4 id="nagios_command-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_contact
 -----
@@ -4194,9 +3943,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_contact attributes](#nagios_contact-attributes))
 
+
 <h3 id="nagios_contact-providers">Providers</h3>
 
 <h4 id="nagios_contact-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_contactgroup
 -----
@@ -4346,9 +4104,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_contactgroup attributes](#nagios_contactgroup-attributes))
 
+
 <h3 id="nagios_contactgroup-providers">Providers</h3>
 
 <h4 id="nagios_contactgroup-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_host
 -----
@@ -4867,9 +4634,19 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_host attributes](#nagios_host-attributes))
 
+
 <h3 id="nagios_host-providers">Providers</h3>
 
 <h4 id="nagios_host-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_hostdependency
 -----
@@ -5064,9 +4841,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostdependency attributes](#nagios_hostdependency-attributes))
 
+
 <h3 id="nagios_hostdependency-providers">Providers</h3>
 
 <h4 id="nagios_hostdependency-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_hostescalation
 -----
@@ -5270,9 +5056,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostescalation attributes](#nagios_hostescalation-attributes))
 
+
 <h3 id="nagios_hostescalation-providers">Providers</h3>
 
 <h4 id="nagios_hostescalation-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_hostextinfo
 -----
@@ -5449,9 +5244,19 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostextinfo attributes](#nagios_hostextinfo-attributes))
 
+
 <h3 id="nagios_hostextinfo-providers">Providers</h3>
 
 <h4 id="nagios_hostextinfo-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_hostgroup
 -----
@@ -5637,9 +5442,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_hostgroup attributes](#nagios_hostgroup-attributes))
 
+
 <h3 id="nagios_hostgroup-providers">Providers</h3>
 
 <h4 id="nagios_hostgroup-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_service
 -----
@@ -6167,9 +5981,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_service attributes](#nagios_service-attributes))
 
+
 <h3 id="nagios_service-providers">Providers</h3>
 
 <h4 id="nagios_service-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_servicedependency
 -----
@@ -6382,9 +6205,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_servicedependency attributes](#nagios_servicedependency-attributes))
 
+
 <h3 id="nagios_servicedependency-providers">Providers</h3>
 
 <h4 id="nagios_servicedependency-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_serviceescalation
 -----
@@ -6606,9 +6438,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_serviceescalation attributes](#nagios_serviceescalation-attributes))
 
+
 <h3 id="nagios_serviceescalation-providers">Providers</h3>
 
 <h4 id="nagios_serviceescalation-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_serviceextinfo
 -----
@@ -6794,9 +6635,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_serviceextinfo attributes](#nagios_serviceextinfo-attributes))
 
+
 <h3 id="nagios_serviceextinfo-providers">Providers</h3>
 
 <h4 id="nagios_serviceextinfo-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_servicegroup
 -----
@@ -6973,9 +6823,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_servicegroup attributes](#nagios_servicegroup-attributes))
 
+
 <h3 id="nagios_servicegroup-providers">Providers</h3>
 
 <h4 id="nagios_servicegroup-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_timeperiod
 -----
@@ -7179,9 +7038,18 @@ Nagios configuration file parameter.
 
 ([↑ Back to nagios_timeperiod attributes](#nagios_timeperiod-attributes))
 
+
 <h3 id="nagios_timeperiod-providers">Providers</h3>
 
 <h4 id="nagios_timeperiod-provider-naginator">naginator</h4>
+
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 notify
 -----
@@ -7219,16 +7087,18 @@ The message to be sent to the log.
 
 <h4 id="notify-attribute-withpath">withpath</h4>
 
-Whether to show the full object path.
+Whether to show the full object path. Defaults to false.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to notify attributes](#notify-attributes))
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 package
 -----
@@ -7394,17 +7264,7 @@ patterns are not accepted except for the `gem` package provider. For
 example, to install the bash package from the rpm
 `bash-4.1.2-29.el6.x86_64.rpm`, use the string `'4.1.2-29.el6'`.
 
-Default: `installed`
-
-Allowed values:
-
-* `present`
-* `absent`
-* `purged`
-* `held`
-* `installed`
-* `latest`
-* `/./`
+Valid values are `present` (also called `installed`), `absent`, `purged`, `held`, `latest`. Values can match `/./`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -7426,12 +7286,7 @@ The value of `adminfile` will be passed directly to the `pkgadd` or
 
 Specifies if virtual package names are allowed for install and uninstall.
 
-Default: `true`
-
-Allowed values:
-
-* `true` or `yes`
-* `false` or `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 Requires features virtual_packages.
 
@@ -7442,10 +7297,7 @@ Requires features virtual_packages.
 Tells apt to allow cdrom sources in the sources.list file.
 Normally apt will bail if you try this.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -7461,12 +7313,7 @@ Whether to keep or replace modified config files when installing or
 upgrading a package. This only affects the `apt` and `dpkg` providers.
 Defaults to `keep`.
 
-Default: `keep`
-
-Allowed values:
-
-* `keep`
-* `replace`
+Valid values are `keep`, `replace`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -7506,6 +7353,8 @@ like they are in `file` resources.) Note also that backslashes in
 double-quoted strings _must_ be escaped and backslashes in single-quoted
 strings _can_ be escaped.
 
+
+
 Requires features install_options.
 
 ([↑ Back to package attributes](#package-attributes))
@@ -7540,6 +7389,8 @@ settings.
 Again, check the documentation of your platform's package provider to see
 the actual usage.
 
+
+
 Requires features package_settings.
 
 ([↑ Back to package attributes](#package-attributes))
@@ -7563,12 +7414,9 @@ If you use this, be careful of notifying classes when you want to restart
 services. If the class also contains a refreshable package, doing so could
 cause unnecessary re-installs.
 
-Default: `false`
+Defaults to `false`.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -7632,6 +7480,8 @@ separators should be used.  Note that backslashes in double-quoted
 strings _must_ be double-escaped and backslashes in single-quoted
 strings _may_ be double-escaped.
 
+
+
 Requires features uninstall_options.
 
 ([↑ Back to package attributes](#package-attributes))
@@ -7641,6 +7491,7 @@ Requires features uninstall_options.
 A read-only parameter set by the package.
 
 ([↑ Back to package attributes](#package-attributes))
+
 
 <h3 id="package-providers">Providers</h3>
 
@@ -7660,18 +7511,16 @@ Note that package downgrades are *not* supported; if your resource specifies
 a specific version number and there is already a newer version of the package
 installed on the machine, the resource will fail with an error message.
 
-* Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`
-* Confined to: `operatingsystem == [ :aix ]`
-* Default for: `operatingsystem` == `aix`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/usr/bin/lslpp`, `/usr/sbin/installp`.
+* Default for `operatingsystem` == `aix`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-appdmg">appdmg</h4>
 
 Package management which copies application bundles to a target.
 
-* Required binaries: `/usr/bin/hdiutil`, `/usr/bin/curl`, `/usr/bin/ditto`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Supported features: `installable`
+* Required binaries: `/usr/bin/curl`, `/usr/bin/ditto`, `/usr/bin/hdiutil`.
+* Supported features: `installable`.
 
 <h4 id="package-provider-apple">apple</h4>
 
@@ -7681,9 +7530,8 @@ it only supports installation; no deletion or upgrades.  The provider will
 automatically add the `.pkg` extension, so leave that off when specifying
 the package name.
 
-* Required binaries: `/usr/sbin/installer`
-* Confined to: `operatingsystem == darwin`
-* Supported features: `installable`
+* Required binaries: `/usr/sbin/installer`.
+* Supported features: `installable`.
 
 <h4 id="package-provider-apt">apt</h4>
 
@@ -7693,31 +7541,30 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`
-* Default for: `osfamily` == `debian`
-* Supported features: `holdable`, `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/usr/bin/apt-cache`, `/usr/bin/apt-get`, `/usr/bin/debconf-set-selections`.
+* Default for `osfamily` == `debian`.
+* Supported features: `holdable`, `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptitude">aptitude</h4>
 
 Package management via `aptitude`.
 
-* Required binaries: `/usr/bin/aptitude`, `/usr/bin/apt-cache`
-* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/usr/bin/apt-cache`, `/usr/bin/aptitude`.
+* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-aptrpm">aptrpm</h4>
 
 Package management via `apt-get` ported to `rpm`.
 
-* Required binaries: `apt-get`, `apt-cache`, `rpm`
-* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `apt-cache`, `apt-get`, `rpm`.
+* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-blastwave">blastwave</h4>
 
 Package management using Blastwave.org's `pkg-get` command on Solaris.
 
-* Required binaries: `pkgget`
-* Confined to: `osfamily == solaris`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Required binaries: `pkg-get`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-dnf">dnf</h4>
 
@@ -7731,9 +7578,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `dnf`, `rpm`
+* Required binaries: `dnf`, `rpm`.
 * Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24, 25, 26, 27, 28, 29, 30`.
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-dpkg">dpkg</h4>
 
@@ -7741,15 +7588,15 @@ Package management via `dpkg`.  Because this only uses `dpkg`
 and not `apt`, you must specify the source of any packages you want
 to manage.
 
-* Required binaries: `/usr/bin/dpkg`, `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`
-* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`
+* Required binaries: `/usr/bin/dpkg-deb`, `/usr/bin/dpkg-query`, `/usr/bin/dpkg`.
+* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-fink">fink</h4>
 
 Package management via `fink`.
 
-* Required binaries: `/sw/bin/fink`, `/sw/bin/apt-get`, `/sw/bin/apt-cache`, `/sw/bin/dpkg-query`
-* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/sw/bin/apt-cache`, `/sw/bin/apt-get`, `/sw/bin/dpkg-query`, `/sw/bin/fink`.
+* Supported features: `holdable`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-freebsd">freebsd</h4>
 
@@ -7759,8 +7606,7 @@ ports and packages.  Apparently all of the tools are written in Ruby,
 so there are plans to rewrite this support to directly use those
 libraries.
 
-* Required binaries: `/usr/sbin/pkg_info`, `/usr/sbin/pkg_add`, `/usr/sbin/pkg_delete`
-* Confined to: `operatingsystem == freebsd`
+* Required binaries: `/usr/sbin/pkg_add`, `/usr/sbin/pkg_delete`, `/usr/sbin/pkg_info`.
 * Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-gem">gem</h4>
@@ -7777,17 +7623,16 @@ which allow command-line flags to be passed to the gem command.
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `gem`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `gem`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-hpux">hpux</h4>
 
 HP-UX's packaging system.
 
-* Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`
-* Confined to: `operatingsystem == hp-ux`
+* Required binaries: `/usr/sbin/swinstall`, `/usr/sbin/swlist`, `/usr/sbin/swremove`.
 * Default for `operatingsystem` == `hp-ux`.
-* Supported features: `installable`, `uninstallable`
+* Supported features: `installable`, `uninstallable`.
 
 <h4 id="package-provider-macports">macports</h4>
 
@@ -7800,9 +7645,8 @@ Variant preferences may be specified using
 When specifying a version in the Puppet DSL, only specify the version, not the revision.
 Revisions are only used internally for ensuring the latest version/revision of a port.
 
-* Required binaries: `/opt/local/bin/port`
-* Confined to: `operatingsystem == darwin`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/opt/local/bin/port`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-nim">nim</h4>
 
@@ -7815,9 +7659,8 @@ Note that package downgrades are *not* supported; if your resource specifies
 a specific version number and there is already a newer version of the package
 installed on the machine, the resource will fail with an error message.
 
-* Required binaries: `/usr/sbin/nimclient`, `/usr/bin/lslpp`, `rpm`
-* Confined to: `exists == /etc/niminfo`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/usr/bin/lslpp`, `/usr/sbin/nimclient`, `rpm`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-openbsd">openbsd</h4>
 
@@ -7828,19 +7671,17 @@ attributes, which allow command-line flags to be passed to pkg_add and pkg_delet
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `pkg_info`, `pkg_add`, `pkg_delete`
-* Confined to: `operatingsystem == openbsd`
-* Default for: `operatingsystem` == `openbsd`
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `pkg_add`, `pkg_delete`, `pkg_info`.
+* Default for `operatingsystem` == `openbsd`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-opkg">opkg</h4>
 
 Opkg packaging support. Common on OpenWrt and OpenEmbedded platforms
 
-* Required binaries: `opkg`
-* Confined to: `operatingsystem == openwrt`
+* Required binaries: `opkg`.
 * Default for `operatingsystem` == `openwrt`.
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-pacman">pacman</h4>
 
@@ -7850,10 +7691,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/pacman`
-* Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
-* Default for: `operatingsystem` == `archlinux, manjarolinux`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `virtual_packages`
+* Required binaries: `/usr/bin/pacman`.
+* Default for `operatingsystem` == `archlinux, manjarolinux`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `virtual_packages`.
 
 <h4 id="package-provider-pip">pip</h4>
 
@@ -7863,7 +7703,7 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pip3">pip3</h4>
 
@@ -7873,16 +7713,15 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkg">pkg</h4>
 
 OpenSolaris image packaging system. See pkg(5) for more information.
 
-* Required binaries: `/usr/bin/pkg`
-* Confined to: `osfamily == solaris`
-* Default for: `kernelrelease` == `5.11, 5.12` and `osfamily` == `solaris`
-* Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/usr/bin/pkg`.
+* Default for `kernelrelease` == `5.11, 5.12` and `osfamily` == `solaris`.
+* Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
 
@@ -7908,35 +7747,32 @@ Notes:
   whether a package has been installed. Thus, to install new a version of a
   package, you must create a new DMG with a different filename.
 
-* Required binaries: `/usr/sbin/installer`, `/usr/bin/hdiutil`, `/usr/bin/curl`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for: `operatingsystem` == `darwin`
-* Supported features: `installable`
+* Required binaries: `/usr/bin/curl`, `/usr/bin/hdiutil`, `/usr/sbin/installer`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `installable`.
 
 <h4 id="package-provider-pkgin">pkgin</h4>
 
 Package management using pkgin, a binary package manager for pkgsrc.
 
-* Required binaries: `pkgin`
-* Default for: `operatingsystem` == `smartos, netbsd`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `pkgin`.
+* Default for `operatingsystem` == `smartos, netbsd`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgng">pkgng</h4>
 
 A PkgNG provider for FreeBSD and DragonFly.
 
-* Required binaries: `/usr/local/sbin/pkg`
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for: `operatingsystem` == `freebsd, dragonfly`.
+* Required binaries: `/usr/local/sbin/pkg`.
+* Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-pkgutil">pkgutil</h4>
 
 Package management using Peter Bonivart's ``pkgutil`` command on Solaris.
 
-* Required binaries: `pkgutil`
-* Confined to: `osfamily == solaris`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Required binaries: `pkgutil`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-portage">portage</h4>
 
@@ -7946,17 +7782,16 @@ This provider supports the `install_options` and `uninstall_options` attributes,
 flags to be passed to emerge.  These options should be specified as a string (e.g. '--flag'), a hash
 (e.g. {'--flag' => 'value'}), or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`, `/usr/bin/qatom`
-* Confined to: `operatingsystem == gentoo`
-* Default for: `operatingsystem` == `gentoo`
-* Supported features: `install_options`, `installable`, `purgeable`, `reinstallable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`, `/usr/bin/qatom`.
+* Default for `operatingsystem` == `gentoo`.
+* Supported features: `install_options`, `installable`, `purgeable`, `reinstallable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-ports">ports</h4>
 
 Support for FreeBSD's ports.  Note that this, too, mixes packages and ports.
 
-* Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`
-* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`
+* Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/sbin/pkg_info`.
+* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-portupgrade">portupgrade</h4>
 
@@ -7964,16 +7799,16 @@ Support for FreeBSD's ports using the portupgrade ports management software.
 Use the port's full origin as the resource name. eg (ports-mgmt/portupgrade)
 for the portupgrade port.
 
-* Required binaries: `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/portversion`, `/usr/local/sbin/pkg_deinstall`, `/usr/sbin/pkg_info`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Required binaries: `/usr/local/sbin/pkg_deinstall`, `/usr/local/sbin/portinstall`, `/usr/local/sbin/portupgrade`, `/usr/local/sbin/portversion`, `/usr/sbin/pkg_info`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-puppet_gem">puppet_gem</h4>
 
 Puppet Ruby Gem support. This provider is useful for managing
 gems needed by the ruby provided in the puppet-agent package.
 
-* Required binaries: `/opt/puppetlabs/puppet/bin/gem`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/opt/puppetlabs/puppet/bin/gem`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-rpm">rpm</h4>
 
@@ -7985,16 +7820,15 @@ attributes, which allow command-line flags to be passed to rpm.
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `rpm`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Required binaries: `rpm`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-rug">rug</h4>
 
 Support for suse `rug` package manager.
 
-* Required binaries: `/usr/bin/rug`, `rpm`
-* Confined to: `operatingsystem == [:suse, :sles]`
-* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `/usr/bin/rug`, `rpm`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-sun">sun</h4>
 
@@ -8005,10 +7839,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`
-* Confined to: `osfamily == solaris`
-* Default for: `osfamily` == `solaris`
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`
+* Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`.
+* Default for `osfamily` == `solaris`.
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-sunfreeware">sunfreeware</h4>
 
@@ -8016,9 +7849,8 @@ Package management using sunfreeware.com's `pkg-get` command on Solaris.
 At this point, support is exactly the same as `blastwave` support and
 has not actually been tested.
 
-* Required binaries: `pkg-get`
-* Confined to: `osfamily == solaris`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Required binaries: `pkg-get`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-tdnf">tdnf</h4>
 
@@ -8028,27 +7860,26 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be spcified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}), or an
 array where each element is either a string or a hash.
 
-* Required binaries: `tdnf`, `rpm`
-* Default for `operatingsystem` == `PhotonOS`
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Required binaries: `rpm`, `tdnf`.
+* Default for `operatingsystem` == `PhotonOS`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-up2date">up2date</h4>
 
 Support for Red Hat's proprietary `up2date` package update
 mechanism.
 
-* Required binaries: `/usr/sbin/up2date-nox`
-* Confined to: `osfamily == redhat`
-* Default for `lsbdistrelease` == `2.1, 3, 4` and `osfamily` == `redhat`
-* Supported features: `installable`, `uninstallable`, `upgradeable`
+* Required binaries: `/usr/sbin/up2date-nox`.
+* Default for `lsbdistrelease` == `2.1, 3, 4` and `osfamily` == `redhat`.
+* Supported features: `installable`, `uninstallable`, `upgradeable`.
 
 <h4 id="package-provider-urpmi">urpmi</h4>
 
 Support via `urpmi`.
 
-* Required binaries: `urpmi`, `urpmq`, `rpm`, `urpme`
-* Default for `operatingsystem` == `mandriva, mandrake`
-* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`
+* Required binaries: `rpm`, `urpme`, `urpmi`, `urpmq`.
+* Default for `operatingsystem` == `mandriva, mandrake`.
+* Supported features: `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`.
 
 <h4 id="package-provider-windows">windows</h4>
 
@@ -8069,9 +7900,8 @@ uninstall, then the appropriate arguments should be specified using the
 `install_options` or `uninstall_options` attributes, respectively.  Puppet
 will automatically quote any option that contains spaces.
 
-* Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `versionable`
+* Default for `operatingsystem` == `windows`.
+* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `versionable`.
 
 <h4 id="package-provider-yum">yum</h4>
 
@@ -8085,9 +7915,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `yum`, `rpm`
-* Default for: `osfamily` == `redhat`
-* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Required binaries: `rpm`, `yum`.
+* Default for `osfamily` == `redhat`.
+* Supported features: `install_options`, `installable`, `purgeable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h4 id="package-provider-zypper">zypper</h4>
 
@@ -8097,10 +7927,9 @@ This provider supports the `install_options` attribute, which allows command-lin
 These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
 or an array where each element is either a string or a hash.
 
-* Required binaries: `/usr/bin/zypper`
-* Confined to: `operatingsystem == [:suse, :sles, :sled, :opensuse]`
-* Default for: `operatingsystem` == `suse, sles, sled, opensuse`
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
+* Required binaries: `/usr/bin/zypper`.
+* Default for `operatingsystem` == `suse, sles, sled, opensuse`.
+* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`.
 
 <h3 id="package-provider-features">Provider Features</h3>
 
@@ -8687,6 +8516,11 @@ Provider support:
   </tbody>
 </table>
 
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
 resources
 -----
 
@@ -8725,14 +8559,7 @@ autorequired by any managed resources. **Note:** The `ssh_authorized_key`
 resource type can't be purged this way; instead, see the `purge_ssh_keys`
 attribute of the `user` type.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to resources attributes](#resources-attributes))
 
@@ -8742,11 +8569,7 @@ This keeps system users from being purged.  By default, it
 does not purge users whose UIDs are less than the minimum UID for the system (typically 500 or 1000), but you can specify
 a different UID as the inclusive limit.
 
-Allowed values:
-
-* `true`
-* `false`
-* `/^\d+$/`
+Valid values are `true`, `false`. Values can match `/^\d+$/`.
 
 ([↑ Back to resources attributes](#resources-attributes))
 
@@ -8757,6 +8580,13 @@ Accepts integers, integer strings, and arrays of integers or integer strings.
 To specify a range of uids, consider using the range() function from stdlib.
 
 ([↑ Back to resources attributes](#resources-attributes))
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 router
 -----
@@ -8782,6 +8612,13 @@ An SSH or telnet URL at which to access the router, in the form
 `ssh://user:pass:enable@host/` or `telnet://user:pass:enable@host/`.
 
 ([↑ Back to router attributes](#router-attributes))
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 schedule
 -----
@@ -8897,13 +8734,7 @@ start, that next run will be suppressed).
 See the `periodmatch` attribute for tuning whether to match
 times by their distance apart or by their specific value.
 
-Allowed values:
-
-* `hourly`
-* `daily`
-* `weekly`
-* `monthly`
-* `never`
+Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -8913,12 +8744,7 @@ Whether periods should be matched by a numeric value (for instance,
 whether two times are in the same hour) or by their chronological
 distance apart (whether two times are 60 minutes apart).
 
-Default: `distance`
-
-Allowed values:
-
-* `number`
-* `distance`
+Valid values are `number`, `distance`.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
@@ -8946,8 +8772,6 @@ ranges, you can cross midnight (for example, `range => "22:00 - 04:00"`).
 How often a given resource may be applied in this schedule's `period`.
 Defaults to 1; must be an integer.
 
-Default: `1`
-
 ([↑ Back to schedule attributes](#schedule-attributes))
 
 <h4 id="schedule-attribute-weekday">weekday</h4>
@@ -8973,6 +8797,13 @@ This will match at 11 PM on Saturday and 2 AM on Sunday, but not
 at 2 AM on Saturday.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 scheduled_task
 -----
@@ -9017,12 +8848,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
@@ -9051,12 +8877,7 @@ Whether the triggers for this task should be enabled. This attribute
 affects every trigger for the task; triggers cannot be enabled or
 disabled individually.
 
-Default: `true`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
@@ -9130,6 +8951,7 @@ A trigger can contain the following keys:
       when the task should run. Must be one of `first`, `second`, `third`,
       `fourth`, or `fifth`.
 
+
 Examples:
 
     # Run at 8am on the 1st and 15th days of the month in January, March,
@@ -9181,8 +9003,6 @@ Please also note that Puppet must be running as a privileged user
 in order to manage `scheduled_task` resources. Running as an
 unprivileged user will result in 'access denied' errors.
 
-Default: `system`
-
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
 <h4 id="scheduled_task-attribute-working_dir">working_dir</h4>
@@ -9193,14 +9013,20 @@ The full path of the directory in which to start the command.
 
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
+
 <h3 id="scheduled_task-providers">Providers</h3>
 
 <h4 id="scheduled_task-provider-win32_taskscheduler">win32_taskscheduler</h4>
 
 This provider manages scheduled tasks on Windows.
 
-* Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
+* Default for `operatingsystem` == `windows`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 selboolean
 -----
@@ -9233,14 +9059,10 @@ The name of the SELinux boolean to be managed.
 
 <h4 id="selboolean-attribute-persistent">persistent</h4>
 
-If set to true, SELinux booleans will be written to disk and persist across reboots.
+If set true, SELinux booleans will be written to disk and persist across reboots.
+The default is `false`.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to selboolean attributes](#selboolean-attributes))
 
@@ -9262,12 +9084,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether the SELinux boolean should be enabled or disabled.
 
-Allowed values:
-
-* `on`
-* `off`
+Valid values are `on`, `off`.
 
 ([↑ Back to selboolean attributes](#selboolean-attributes))
+
 
 <h3 id="selboolean-providers">Providers</h3>
 
@@ -9275,7 +9095,14 @@ Allowed values:
 
 Manage SELinux booleans using the getsebool and setsebool binaries.
 
-* Required binaries: `/usr/sbin/getsebool`, `/usr/sbin/setsebool`
+* Required binaries: `/usr/sbin/getsebool`, `/usr/sbin/setsebool`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 selmodule
 -----
@@ -9321,12 +9148,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
@@ -9350,8 +9172,6 @@ Currently defaults to `/usr/share/selinux/targeted`.  If the
 the module in `<selmoduledir>/<name>.pp`, where `name` is the value of the
 `name` parameter.
 
-Default: `/usr/share/selinux/targeted`
-
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
 <h4 id="selmodule-attribute-selmodulepath">selmodulepath</h4>
@@ -9370,12 +9190,10 @@ version found in the on-disk file differs from the loaded
 version.  If set to `false` (the default) the only check
 that will be made is if the policy is loaded at all or not.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
+
 
 <h3 id="selmodule-providers">Providers</h3>
 
@@ -9383,7 +9201,13 @@ Allowed values:
 
 Manage SELinux policy modules using the semodule binary.
 
-* Required binaries: `/usr/sbin/semodule`
+* Required binaries: `/usr/sbin/semodule`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 service
 -----
@@ -9459,10 +9283,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether a service should be running.
 
-Allowed values:
-
-* `stopped` or `false`
-* `running` or `true`
+Valid values are `stopped` (also called `false`), `running` (also called `true`).
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -9492,12 +9313,7 @@ This property behaves quite differently depending on the platform;
 wherever possible, it relies on local tools to enable or disable
 a given service.
 
-Allowed values:
-
-* `true`
-* `false`
-* `manual`
-* `mask`
+Valid values are `true`, `false`, `manual`, `mask`.
 
 Requires features enableable.
 
@@ -9508,6 +9324,8 @@ Requires features enableable.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify a string of flags to pass to the startup script.
+
+
 
 Requires features flaggable.
 
@@ -9521,10 +9339,7 @@ the init script's `stop` and `start` commands will be used.
 
 Defaults to false.
 
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -9548,12 +9363,7 @@ scripts (like 'network' under Red Hat systems) will respond poorly to
 refresh events from other resources if you override the default behavior
 without providing a status command.
 
-Default: `true`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -9653,6 +9463,7 @@ Specify a *stop* command manually.
 
 ([↑ Back to service attributes](#service-attributes))
 
+
 <h3 id="service-providers">Providers</h3>
 
 <h4 id="service-provider-base">base</h4>
@@ -9665,8 +9476,8 @@ same binary will be searched for in the process table to stop the
 service.  As with `init`-style services, it is preferable to specify start,
 stop, and status commands.
 
-* Required binaries: `kill`
-* Supported features: `refreshable`
+* Required binaries: `kill`.
+* Supported features: `refreshable`.
 
 <h4 id="service-provider-bsd">bsd</h4>
 
@@ -9674,7 +9485,6 @@ Generic BSD form of `init`-style service management with `rc.d`.
 
 Uses `rc.conf.d` for service enabling and disabling.
 
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-daemontools">daemontools</h4>
@@ -9713,8 +9523,8 @@ If a service has `ensure => "running"`, it will link /path/to/daemon to
 If a service has `ensure => "stopped"`, it will only shut down the service, not
 remove the `/path/to/service` link.
 
-* Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-debian">debian</h4>
 
@@ -9724,15 +9534,14 @@ The only differences from `init` are support for enabling and disabling
 services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
-* Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
-* Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`
+* Required binaries: `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`, `/usr/sbin/update-rc.d`.
+* Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `1, 2`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `5, 6, 7`.
 * Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
 
 Provider for FreeBSD and DragonFly BSD. Uses the `rcvar` argument of init scripts and parses/edits rc files.
 
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
 * Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `enableable`, `refreshable`.
 
@@ -9742,24 +9551,14 @@ Gentoo's form of `init`-style service management.
 
 Uses `rc-update` for service enabling and disabling.
 
-* Required binaries: `/sbin/rc-update`
-* Confined to: `operatingsystem == gentoo`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/sbin/rc-update`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-init">init</h4>
 
 Standard `init`-style service management.
 
-* Confined to:
-
-  ```
-  true == begin
-      os = Facter.value(:operatingsystem).downcase
-      family = Facter.value(:osfamily).downcase
-      !(os == 'debian' || os == 'ubuntu' || family == 'redhat')
-  end
-  ```
-* Supported features: `refreshable`
+* Supported features: `refreshable`.
 
 <h4 id="service-provider-launchd">launchd</h4>
 
@@ -9798,19 +9597,17 @@ be in a state of "stopped/enabled" or "running/disabled".
 
 Note that this provider does not support overriding 'restart'
 
-* Required binaries: `/bin/launchctl`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for `operatingsystem` == `darwin`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/bin/launchctl`.
+* Default for `operatingsystem` == `darwin`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-openbsd">openbsd</h4>
 
 Provider for OpenBSD's rc.d daemon control scripts
 
-* Required binaries: `/usr/sbin/rcctl`
-* Confined to: `operatingsystem == openbsd`
-* Default for `operatingsystem` == `openbsd`
-* Supported features: `enableable`, `flaggable`, `refreshable`
+* Required binaries: `/usr/sbin/rcctl`.
+* Default for `operatingsystem` == `openbsd`.
+* Supported features: `enableable`, `flaggable`, `refreshable`.
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -9818,9 +9615,9 @@ Support for Gentoo's OpenRC initskripts
 
 Uses rc-update, rc-status and rc-service to manage services.
 
-* Required binaries: `/sbin/rc-service`, `/sbin/rc-update`
-* Default for `operatingsystem` == `gentoo`, `operatingsystem` == `funtoo`.
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/bin/rc-status`, `/sbin/rc-service`, `/sbin/rc-update`.
+* Default for `operatingsystem` == `gentoo`. Default for `operatingsystem` == `funtoo`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-openwrt">openwrt</h4>
 
@@ -9828,26 +9625,24 @@ Support for OpenWrt flavored init scripts.
 
 Uses /etc/init.d/service_name enable, disable, and enabled.
 
-* Confined to: `operatingsystem == openwrt`
-* Default for `operatingsystem` == `openwrt`
-* Supported features: `enableable`, `refreshable`
+* Default for `operatingsystem` == `openwrt`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-rcng">rcng</h4>
 
 RCng service management with rc.d
 
-* Confined to: `operatingsystem == [:netbsd, :cargos]`
-* Default for `operatingsystem` == `netbsd, cargos`
-* Supported features: `enableable`, `refreshable`
+* Default for `operatingsystem` == `netbsd, cargos`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-redhat">redhat</h4>
 
 Red Hat's (and probably many others') form of `init`-style service
 management. Uses `chkconfig` for service enabling and disabling.
 
-* Required binaries: `/sbin/chkconfig`, `/sbin/service`
-* Default for `osfamily` == `redhat`, `operatingsystemmajrelease` == `10, 11` and `osfamily` == `suse`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/sbin/chkconfig`, `/sbin/service`.
+* Default for `osfamily` == `redhat`. Default for `operatingsystemmajrelease` == `10, 11` and `osfamily` == `suse`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-runit">runit</h4>
 
@@ -9879,14 +9674,14 @@ This provider supports out of the box:
 * restart
 * status
 
-* Required binaries: `/usr/bin/sv`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/sv`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-service">service</h4>
 
 The simplest form of service support.
 
-* Supported features: `refreshable`
+* Supported features: `refreshable`.
 
 <h4 id="service-provider-smf">smf</h4>
 
@@ -9899,10 +9694,9 @@ disables them, respectively.
 By specifying `manifest => "/path/to/service.xml"`, the SMF manifest will
 be imported if it does not exist.
 
-* Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`
-* Confined to: `osfamily == solaris`
-* Default for `osfamily` == `solaris`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/svcs`, `/usr/sbin/svcadm`, `/usr/sbin/svccfg`.
+* Default for `osfamily` == `solaris`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-src">src</h4>
 
@@ -9915,10 +9709,9 @@ Enabling and disabling services is not supported, as it requires
 modifications to `/etc/inittab`. Starting and stopping groups of subsystems
 is not yet supported.
 
-* Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`
-* Confined to: `operatingsystem == aix`
-* Default for `operatingsystem` == `aix`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`.
+* Default for `operatingsystem` == `aix`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -9928,18 +9721,9 @@ Because `systemd` defaults to assuming the `.service` unit type, the suffix
 may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
-* Required binaries: `systemctl`
-* Default for
-  * `osfamily` == `archlinux`
-  * `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`
-  * `operatingsystem` == `fedora` and `osfamily` == `redhat`
-  * `osfamily` == `suse`
-  * `osfamily` == `coreos`
-  * `operatingsystem` == `amazon` and `operatingsystemmajrelease` == `2`
-  * `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`
-  * `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10, 17.04, 17.10, 18.04`
-  * `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
-* Supported features: `enableable`, `maskable`, `refreshable`
+* Required binaries: `systemctl`.
+* Default for `osfamily` == `archlinux`. Default for `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`. Default for `operatingsystem` == `fedora` and `osfamily` == `redhat`. Default for `osfamily` == `suse`. Default for `osfamily` == `coreos`. Default for `operatingsystem` == `amazon` and `operatingsystemmajrelease` == `2`. Default for `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`. Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10, 17.04, 17.10, 18.04`. Default for `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
+* Supported features: `enableable`, `maskable`, `refreshable`.
 
 <h4 id="service-provider-upstart">upstart</h4>
 
@@ -9948,22 +9732,9 @@ Ubuntu service management with `upstart`.
 This provider manages `upstart` jobs on Ubuntu. For `upstart` documentation,
 see <http://upstart.ubuntu.com/>.
 
-* Required binaries: `/sbin/start`, `/sbin/stop`, `/sbin/restart`, `/sbin/status`, `/sbin/initctl`
-* Confined to:
-  ```
-  any == [
-    Facter.value(:operatingsystem) == 'Ubuntu',
-    (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
-    (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
-    Facter.value(:operatingsystem) == 'LinuxMint',
-  ]
-  ```
-
-  ```
-  exists == /var/run/upstart-socket-bridge.pid
-  ```
-* Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `10.04, 12.04, 14.04, 14.10`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `/sbin/initctl`, `/sbin/restart`, `/sbin/start`, `/sbin/status`, `/sbin/stop`.
+* Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `10.04, 12.04, 14.04, 14.10`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -9974,10 +9745,9 @@ status methods for all services.
 Control of service groups (dependencies) is not yet supported, nor is running
 services as a specific user.
 
-* Required binaries: `net.exe`
-* Confined to: `operatingsystem == windows`
-* Default for `operatingsystem` == `windows`
-* Supported features: `enableable`, `refreshable`
+* Required binaries: `net.exe`.
+* Default for `operatingsystem` == `windows`.
+* Supported features: `enableable`, `refreshable`.
 
 <h3 id="service-provider-features">Provider Features</h3>
 
@@ -10166,6 +9936,11 @@ Provider support:
   </tbody>
 </table>
 
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
 ssh_authorized_key
 -----
 
@@ -10242,12 +10017,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -10297,8 +10067,6 @@ property is optional and should be used only in cases where keys
 are stored in a non-standard location, for instance when not in
 `~user/.ssh/authorized_keys`.
 
-Default: `absent`
-
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
 <h4 id="ssh_authorized_key-attribute-type">type</h4>
@@ -10307,17 +10075,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The encryption type used.
 
-Allowed values:
-
-* `ssh-dss`
-* `ssh-rsa`
-* `ecdsa-sha2-nistp256`
-* `ecdsa-sha2-nistp384`
-* `ecdsa-sha2-nistp521`
-* `ssh-ed25519`
-* `dsa`
-* `ed25519`
-* `rsa`
+Valid values are `ssh-dss` (also called `dsa`), `ssh-rsa` (also called `rsa`), `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`, `ssh-ed25519` (also called `ed25519`).
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
@@ -10330,11 +10088,18 @@ will autorequire this user if it is being managed as a `user` resource.
 
 ([↑ Back to ssh_authorized_key attributes](#ssh_authorized_key-attributes))
 
+
 <h3 id="ssh_authorized_key-providers">Providers</h3>
 
 <h4 id="ssh_authorized_key-provider-parsed">parsed</h4>
 
 Parse and generate authorized_keys files for SSH.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 sshkey
 -----
@@ -10377,12 +10142,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
@@ -10438,25 +10198,22 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The encryption type used.  Probably ssh-dss or ssh-rsa.
 
-Allowed values:
-
-* `ssh-dss`
-* `ssh-ed25519`
-* `ssh-rsa`
-* `ecdsa-sha2-nistp256`
-* `ecdsa-sha2-nistp384`
-* `ecdsa-sha2-nistp521`
-* `dsa`
-* `ed25519`
-* `rsa`
+Valid values are `ssh-dss` (also called `dsa`), `ssh-ed25519` (also called `ed25519`), `ssh-rsa` (also called `rsa`), `ecdsa-sha2-nistp256`, `ecdsa-sha2-nistp384`, `ecdsa-sha2-nistp521`.
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
+
 
 <h3 id="sshkey-providers">Providers</h3>
 
 <h4 id="sshkey-provider-parsed">parsed</h4>
 
 Parse and generate host-wide known hosts files for SSH.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 stage
 -----
@@ -10501,6 +10258,13 @@ The name of the stage. Use this as the value for the `stage` metaparameter
 when assigning classes to this stage.
 
 ([↑ Back to stage attributes](#stage-attributes))
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 tidy
 -----
@@ -10598,12 +10362,7 @@ up a common source of confusion.
 If target is a directory, recursively descend
 into the directory looking for files to tidy.
 
-Allowed values:
-
-* `true`
-* `false`
-* `inf`
-* `/^[0-9]+$/`
+Valid values are `true`, `false`, `inf`. Values can match `/^[0-9]+$/`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -10614,12 +10373,7 @@ directories whose age is older than the specified criteria.
 This will only remove empty directories, so all contained
 files must also be tidied before a directory gets removed.
 
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
 
@@ -10636,17 +10390,18 @@ be used.
 
 <h4 id="tidy-attribute-type">type</h4>
 
-Set the mechanism for determining age.
+Set the mechanism for determining age. Default: atime.
 
-Default: `atime`
-
-Allowed values:
-
-* `atime`
-* `mtime`
-* `ctime`
+Valid values are `atime`, `mtime`, `ctime`.
 
 ([↑ Back to tidy attributes](#tidy-attributes))
+
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 user
 -----
@@ -10732,26 +10487,15 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic state that the object should be in.
 
-Allowed values:
-
-* `present`
-* `absent`
-* `role`
+Valid values are `present`, `absent`, `role`.
 
 ([↑ Back to user attributes](#user-attributes))
 
 <h4 id="user-attribute-allowdupe">allowdupe</h4>
 
-Whether to allow duplicate UIDs.
+Whether to allow duplicate UIDs. Defaults to `false`.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -10759,14 +10503,9 @@ Allowed values:
 
 Whether specified attribute value pairs should be treated as the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
-attribute/value pairs for the user.
+attribute/value pairs for the user. Defaults to `minimum`.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -10776,6 +10515,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify AIX attributes for the user in an array of attribute = value pairs.
 
+
+
 Requires features manages_aix_lam.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -10784,14 +10525,9 @@ Requires features manages_aix_lam.
 
 Whether specified auths should be considered the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of auths the user
-has.
+has. Defaults to `minimum`.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -10801,6 +10537,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The auths the user has.  Multiple auths should be
 specified as an array.
+
+
 
 Requires features manages_solaris_rbac.
 
@@ -10822,10 +10560,7 @@ The expiry date for this user. Provide as either the special
 value `absent` to ensure that the account never expires, or as
 a zero-padded YYYY-MM-DD format -- for example, 2010-02-19.
 
-Allowed values:
-
-* `absent`
-* `/^\d{4}-\d{2}-\d{2}$/`
+Valid values are `absent`. Values can match `/^\d{4}-\d{2}-\d{2}$/`.
 
 Requires features manages_expiry.
 
@@ -10836,14 +10571,7 @@ Requires features manages_expiry.
 Forces the management of local accounts when accounts are also
 being managed by some other NSS
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 Requires features libuser.
 
@@ -10884,6 +10612,8 @@ separately and is not currently checked for existence.
 
 The name of the I&A module to use to manage this user.
 
+
+
 Requires features manages_aix_lam.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -10897,6 +10627,8 @@ This is the number of iterations of a chained computation of the
 is used in OS X, and is required for managing passwords on OS X 10.8 and
 newer.
 
+
+
 Requires features manages_password_salt.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -10905,14 +10637,9 @@ Requires features manages_password_salt.
 
 Whether specified key/value pairs should be considered the
 **complete list** (`inclusive`) or the **minimum list** (`minimum`) of
-the user's attributes.
+the user's attributes. Defaults to `minimum`.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -10921,6 +10648,8 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify user attributes in an array of key = value pairs.
+
+
 
 Requires features manages_solaris_rbac.
 
@@ -10932,6 +10661,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The name of login class to which the user belongs.
 
+
+
 Requires features manages_loginclass.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -10940,7 +10671,7 @@ Requires features manages_loginclass.
 
 Whether to manage the home directory when Puppet creates or removes the user.
 This creates the home directory if Puppet also creates the user account, and deletes the
-home directory if Puppet also removes the user account.
+home directory if Puppet also removes the user account. Defaults to `false`.
 
 This parameter has no effect unless Puppet is also creating or removing the user in the
 resource at the same time. For instance, Puppet creates a home directory for a managed
@@ -10948,14 +10679,7 @@ user if `ensure => present` and the user does not exist at the time of the Puppe
 If the home directory is then deleted manually, Puppet will not recreate it on the next
 run.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -10968,12 +10692,9 @@ that the user is a part of.
 If `inclusive` is specified, Puppet will ensure that the user is a
 member of **only** specified groups.
 
-Default: `minimum`
+Defaults to `minimum`.
 
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -11032,6 +10753,8 @@ This results in the password being redacted from the report, as in the
     corrective_change: false
 ```
 
+
+
 Requires features manages_passwords.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -11041,6 +10764,8 @@ Requires features manages_passwords.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The maximum number of days a password may be used before it must be changed.
+
+
 
 Requires features manages_password_age.
 
@@ -11052,6 +10777,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The minimum number of days a password must be used before it may be changed.
 
+
+
 Requires features manages_password_age.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -11062,6 +10789,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The number of days before a password is going to expire (see the maximum password age) during which the user should be warned.
 
+
+
 Requires features manages_password_age.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -11070,14 +10799,9 @@ Requires features manages_password_age.
 
 Whether specified roles should be treated as the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of roles
-of which the user is a member.
+of which the user is a member. Defaults to `minimum`.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -11088,6 +10812,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The profiles the user has.  Multiple profiles should be
 specified as an array.
 
+
+
 Requires features manages_solaris_rbac.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -11097,6 +10823,8 @@ Requires features manages_solaris_rbac.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The name of the project associated with a user.
+
+
 
 Requires features manages_solaris_rbac.
 
@@ -11131,12 +10859,12 @@ with the `ssh_authorized_key` resource type. Allowed values are:
 * `true` --- look for keys in the `.ssh/authorized_keys` file in the user's
   home directory. Purge any keys that aren't managed as `ssh_authorized_key`
   resources.
-* An array of file paths --- look for keys in all of the files listed.
-  Purge any keys that aren't managed as `ssh_authorized_key` resources.
-  If any of these paths starts with `~` or `%h`, that token will be
-  replaced with the user's home directory.
+* An array of file paths --- look for keys in all of the files listed. Purge
+  any keys that aren't managed as `ssh_authorized_key` resources. If any of
+  these paths starts with `~` or `%h`, that token will be replaced with
+  the user's home directory.
 
-Default: `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -11144,14 +10872,9 @@ Default: `false`
 
 Whether specified roles should be considered the **complete list**
 (`inclusive`) or the **minimum list** (`minimum`) of roles the user
-has.
+has. Defaults to `minimum`.
 
-Default: `minimum`
-
-Allowed values:
-
-* `inclusive`
-* `minimum`
+Valid values are `inclusive`, `minimum`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -11161,6 +10884,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The roles the user has.  Multiple roles should be
 specified as an array.
+
+
 
 Requires features manages_solaris_rbac.
 
@@ -11172,6 +10897,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 This is the 32-byte salt used to generate the PBKDF2 password used in
 OS X. This field is required for managing passwords on OS X >= 10.8.
+
+
 
 Requires features manages_password_salt.
 
@@ -11186,6 +10913,8 @@ executable.
 
 This attribute cannot be managed on Windows systems.
 
+
+
 Requires features manages_shell.
 
 ([↑ Back to user attributes](#user-attributes))
@@ -11195,16 +10924,9 @@ Requires features manages_shell.
 Whether the user is a system user, according to the OS's criteria;
 on most platforms, a UID less than or equal to 500 indicates a system
 user. This parameter is only used when the resource is created and will
-not affect the UID when the user is present.
+not affect the UID when the user is present. Defaults to `false`.
 
-Default: `false`
-
-Allowed values:
-
-* `true`
-* `false`
-* `yes`
-* `no`
+Valid values are `true`, `false`, `yes`, `no`.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -11225,14 +10947,14 @@ security identifier (SID).
 
 ([↑ Back to user attributes](#user-attributes))
 
+
 <h3 id="user-providers">Providers</h3>
 
 <h4 id="user-provider-aix">aix</h4>
 
 User management for AIX.
 
-* Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/usr/sbin/lsgroup`, `/bin/chpasswd`
-* Confined to: `operatingsystem == aix`
+* Required binaries: `/bin/chpasswd`, `/usr/bin/chuser`, `/usr/bin/mkuser`, `/usr/sbin/lsgroup`, `/usr/sbin/lsuser`, `/usr/sbin/rmuser`.
 * Default for `operatingsystem` == `aix`.
 * Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`.
 
@@ -11240,8 +10962,7 @@ User management for AIX.
 
 User management on OS X.
 
-* Required binaries: `/usr/bin/uuidgen`, `/usr/bin/dsimport`, `/usr/bin/dscl`, `/usr/bin/dscacheutil`
-* Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
+* Required binaries: `/usr/bin/dscacheutil`, `/usr/bin/dscl`, `/usr/bin/dsimport`, `/usr/bin/uuidgen`.
 * Default for `operatingsystem` == `darwin`.
 * Supported features: `manages_password_salt`, `manages_passwords`, `manages_shell`.
 
@@ -11253,8 +10974,7 @@ its standard `usermod` cannot make changes while the user is logged in.
 New functionality provides for changing trusted computing passwords and
 resetting password expirations under trusted computing.
 
-* Required binaries: `/usr/sam/lbin/usermod.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/useradd.sam`
-* Confined to: `operatingsystem == hp-ux`
+* Required binaries: `/usr/sam/lbin/useradd.sam`, `/usr/sam/lbin/userdel.sam`, `/usr/sam/lbin/usermod.sam`.
 * Default for `operatingsystem` == `hp-ux`.
 * Supported features: `allows_duplicates`, `manages_homedir`, `manages_passwords`.
 
@@ -11271,7 +10991,6 @@ Note that this provider will automatically generate a UID for you if
 you do not specify one, but it is a potentially expensive operation,
 as it iterates across all existing users to pick the appropriate next one.
 
-* Confined to: `feature == ldap`, `false == (Puppet[:ldapuser] == "")`
 * Supported features: `manages_passwords`, `manages_shell`.
 
 <h4 id="user-provider-openbsd">openbsd</h4>
@@ -11280,8 +10999,7 @@ User management via `useradd` and its ilk for OpenBSD. Note that you
 will need to install Ruby's shadow password library (package known as
 `ruby-shadow`) if you wish to manage user passwords.
 
-* Required binaries: `useradd`, `userdel`, `usermod`, `passwd`
-* Confined to: `operatingsystem == openbsd`
+* Required binaries: `passwd`, `useradd`, `userdel`, `usermod`.
 * Default for `operatingsystem` == `openbsd`.
 * Supported features: `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
@@ -11289,8 +11007,7 @@ will need to install Ruby's shadow password library (package known as
 
 User management via `pw` on FreeBSD and DragonFly BSD.
 
-* Required binaries: `pw`
-* Confined to: `operatingsystem == [:freebsd, :dragonfly]`
+* Required binaries: `pw`.
 * Default for `operatingsystem` == `freebsd, dragonfly`.
 * Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_passwords`, `manages_shell`.
 
@@ -11298,7 +11015,7 @@ User management via `pw` on FreeBSD and DragonFly BSD.
 
 User and role management on Solaris, via `useradd` and `roleadd`.
 
-* Required binaries: `useradd`, `userdel`, `usermod`, `passwd`, `roleadd`, `roledel`, `rolemod`
+* Required binaries: `passwd`, `roleadd`, `roledel`, `rolemod`, `useradd`, `userdel`, `usermod`.
 * Default for `osfamily` == `solaris`.
 * Supported features: `allows_duplicates`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`, `manages_solaris_rbac`.
 
@@ -11308,14 +11025,13 @@ User management via `useradd` and its ilk.  Note that you will need to
 install Ruby's shadow password library (often known as `ruby-libshadow`)
 if you wish to manage user passwords.
 
-* Required binaries: `useradd`, `userdel`, `usermod`, `chage`
+* Required binaries: `chage`, `lchage`, `luseradd`, `luserdel`, `lusermod`, `useradd`, `userdel`, `usermod`.
 * Supported features: `allows_duplicates`, `manages_expiry`, `manages_homedir`, `manages_shell`, `system_users`.
 
 <h4 id="user-provider-windows_adsi">windows_adsi</h4>
 
 Local user management for Windows.
 
-* Confined to: `operatingsystem == windows`
 * Default for `operatingsystem` == `windows`.
 * Supported features: `manages_homedir`, `manages_passwords`.
 
@@ -11495,6 +11211,11 @@ Provider support:
   </tbody>
 </table>
 
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
 vlan
 -----
 
@@ -11522,9 +11243,7 @@ _(**Namevar:** If omitted, this attribute's value defaults to the resource's tit
 
 The numeric VLAN ID.
 
-Allowed values:
-
-* `/^\d+/`
+Values can match `/^\d+/`.
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
@@ -11534,12 +11253,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
@@ -11569,11 +11283,18 @@ Available providers are:
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
+
 <h3 id="vlan-providers">Providers</h3>
 
 <h4 id="vlan-provider-cisco">cisco</h4>
 
 Cisco switch/router provider for vlans.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 yumrepo
 -----
@@ -11660,12 +11381,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11686,17 +11402,13 @@ Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Use to specify the maximum available network bandwidth
-in bytes/second. Used with the `throttle` option. If `throttle`
-is a percentage and `bandwidth` is `0` then bandwidth throttling
-will be disabled. If `throttle` is expressed as a data rate then
-this option is ignored.
-
+      in bytes/second. Used with the `throttle` option. If `throttle`
+      is a percentage and `bandwidth` is `0` then bandwidth throttling
+      will be disabled. If `throttle` is expressed as a data rate then
+      this option is ignored.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^\d+[kMG]?$/`
-* `absent`
+Valid values are `absent`. Values can match `/^\d+[kMG]?$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11706,10 +11418,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The URL for this repository. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11719,10 +11428,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Cost of this repository. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^\d+$/`
-* `absent`
+Valid values are `absent`. Values can match `/^\d+$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11735,10 +11441,7 @@ When the deltarpm metadata is larger than this percentage value of the
 package, deltarpm metadata is not downloaded.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^\d+$/`
-* `absent`
+Valid values are `absent`. Values can match `/^\d+$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11751,10 +11454,7 @@ When the delta is larger than this percentage value of the package, the
 delta is not used.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^\d+$/`
-* `absent`
+Valid values are `absent`. Values can match `/^\d+$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11766,10 +11466,7 @@ A human-readable description of the repository.
 This corresponds to the name parameter in `yum.conf(5)`.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11807,10 +11504,7 @@ Packages that match the package name given or shell globs will never be
 considered in updates or installs for this repo.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11821,10 +11515,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The failover method for this repository; should be either
 `roundrobin` or `priority`. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^roundrobin|priority$/`
-* `absent`
+Valid values are `absent`. Values can match `/^roundrobin|priority$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11834,10 +11525,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The URL for the GPG CA key for this repository. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11861,10 +11549,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The URL for the GPG key with which packages from this
 repository are signed. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11874,10 +11559,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 What to cache from this repository. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^(packages|all|none)$/`
-* `absent`
+Valid values are `absent`. Values can match `/^(packages|all|none)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11889,10 +11571,7 @@ The URL of a remote file containing additional yum configuration
 settings. Puppet does not check for this file's existence or validity.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11905,10 +11584,7 @@ include. If this is set, only packages matching one of the package
 names or shell globs will be considered for update or install
 from this repository. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11931,10 +11607,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Number of seconds after which the metadata will expire.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^([0-9]+[dhm]?|never)$/`
-* `absent`
+Valid values are `absent`. Values can match `/^([0-9]+[dhm]?|never)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11944,10 +11617,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Metalink for mirrors. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11958,10 +11628,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The URL that holds the list of mirrors for this repository.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11970,12 +11637,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Time (in seconds) after which the mirrorlist locally cached
-will expire. Set this to `absent` to remove it from the file completely.
+      will expire.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^[0-9]+$/`
-* `absent`
+Valid values are `absent`. Values can match `/^[0-9]+$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -11986,10 +11651,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Password to use with the username for basic authentication.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12014,10 +11676,7 @@ Priority of this repository. Can be any integer value
 is installed and enabled.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^-?\d+$/`
-* `absent`
+Valid values are `absent`. Values can match `/^-?\d+$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12055,10 +11714,7 @@ This attribute can also be set to `'_none_'`, which will make Yum bypass any
 global proxy settings when accessing this repository.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12068,10 +11724,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Password for this proxy. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12081,10 +11734,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Username for this proxy. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12105,14 +11755,11 @@ Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Set the number of times any attempt to retrieve a file should
-retry before returning an error. Setting this to `0` makes yum
-try forever.
+      retry before returning an error. Setting this to `0` makes yum
+     try forever.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^[0-9]+$/`
-* `absent`
+Valid values are `absent`. Values can match `/^[0-9]+$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12148,10 +11795,7 @@ Path to the directory containing the databases of the
 certificate authorities yum should use to verify SSL certificates.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12162,10 +11806,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Path  to the SSL client certificate yum should use to connect
 to repositories/remote sites. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12176,10 +11817,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Path to the SSL client key yum should use to connect
 to repositories/remote sites. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12199,8 +11837,6 @@ Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 The target parameter will be enabled in a future release and should not be used.
 
-Default: `absent`
-
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
 <h4 id="yumrepo-attribute-throttle">throttle</h4>
@@ -12208,15 +11844,12 @@ Default: `absent`
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Enable bandwidth throttling for downloads. This option
-can be expressed as a absolute data rate in bytes/sec or a
-percentage `60%`. An SI prefix (k, M or G) may be appended
-to the data rate values.
+      can be expressed as a absolute data rate in bytes/sec or a
+      percentage `60%`. An SI prefix (k, M or G) may be appended
+      to the data rate values.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^\d+[kMG%]?$/`
-* `absent`
+Valid values are `absent`. Values can match `/^\d+[kMG%]?$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12227,10 +11860,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Number of seconds to wait for a connection before timing
 out. Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/^\d+$/`
-* `absent`
+Valid values are `absent`. Values can match `/^\d+$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -12241,12 +11871,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Username to use for basic authentication to a repo or really any url.
 Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `/.*/`
-* `absent`
+Valid values are `absent`. Values can match `/.*/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
+
 
 <h3 id="yumrepo-providers">Providers</h3>
 
@@ -12269,6 +11897,12 @@ yum repo directory that exists. The custom directory specified by the
 '/etc/yum.conf' reposdir property is checked first, followed by
 '/etc/yum/repos.d', and then '/etc/yum.repos.d'. If none of these exist, the
 section will be created in '/etc/yum.conf'.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 zfs
 -----
@@ -12339,12 +11973,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12352,15 +11981,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The aclinherit property.
-
-Allowed values:
-
-* `discard`
-* `noallow`
-* `restricted`
-* `passthrough`
-* `passthrough-x`
+The aclinherit property. Valid values are `discard`, `noallow`, `restricted`, `passthrough`, `passthrough-x`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12368,13 +11989,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The aclmode property.
-
-Allowed values:
-
-* `discard`
-* `groupmask`
-* `passthrough`
+The aclmode property. Valid values are `discard`, `groupmask`, `passthrough`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12382,14 +11997,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The acltype propery.
-
-Allowed values:
-
-* 'noacl'
-* 'posixacl'
-
-Only supported on Linux.
+The acltype propery. Valid values are 'noacl' and 'posixacl'. Only supported on Linux.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12397,12 +12005,7 @@ Only supported on Linux.
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The atime property.
-
-Allowed values:
-
-* `on`
-* `off`
+The atime property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12410,13 +12013,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The canmount property.
-
-Allowed values:
-
-* `on`
-* `off`
-* `noauto`
+The canmount property. Valid values are `on`, `off`, `noauto`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12424,15 +12021,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The checksum property.
-
-Allowed values:
-
-* `on`
-* `off`
-* `fletcher2`
-* `fletcher4`
-* `sha256`
+The checksum property. Valid values are `on`, `off`, `fletcher2`, `fletcher4`, `sha256`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12440,16 +12029,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The compression property.
-
-Allowed values:
-
-* `on`
-* `off`
-* `lzjb`
-* `gzip`
-* `gzip-[1-9]`
-* `zle`
+The compression property. Valid values are `on`, `off`, `lzjb`, `gzip`, `gzip-[1-9]`, `zle`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12457,13 +12037,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The copies property.
-
-Allowed values:
-
-* `1`
-* `2`
-* `3`
+The copies property. Valid values are `1`, `2`, `3`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12471,12 +12045,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The dedup property.
-
-Allowed values:
-
-* `on`
-* `off`
+The dedup property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12484,12 +12053,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The devices property.
-
-Allowed values:
-
-* `on`
-* `off`
+The devices property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12497,12 +12061,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The exec property.
-
-Allowed values:
-
-* `on`
-* `off`
+The exec property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12510,12 +12069,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The logbias property.
-
-Allowed values:
-
-* `latency`
-* `throughput`
+The logbias property. Valid values are `latency`, `throughput`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12523,13 +12077,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The mountpoint property.
-
-Allowed values:
-
-* `<path>`
-* `legacy`
-* `none`
+The mountpoint property. Valid values are `<path>`, `legacy`, `none`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12537,12 +12085,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The nbmand property.
-
-Allowed values:
-
-* `on`
-* `off`
+The nbmand property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12550,13 +12093,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The primarycache property.
-
-Allowed values:
-
-* `all`
-* `none`
-* `metadata`
+The primarycache property. Valid values are `all`, `none`, `metadata`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12576,12 +12113,7 @@ Available providers are:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The quota property.
-
-Allowed values:
-
-* `<size>`
-* `none`
+The quota property. Valid values are `<size>`, `none`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12589,12 +12121,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The readonly property.
-
-Allowed values:
-
-* `on`
-* `off`
+The readonly property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12602,11 +12129,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The recordsize property.
-
-Allowed values:
-
-* powers of two between 512 and 128k
+The recordsize property. Valid values are powers of two between 512 and 128k.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12614,12 +12137,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The refquota property.
-
-Allowed values:
-
-* `<size>`
-* `none`
+The refquota property. Valid values are `<size>`, `none`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12627,12 +12145,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The refreservation property.
-
-Allowed values:
-
-* `<size>`
-* `none`
+The refreservation property. Valid values are `<size>`, `none`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12640,12 +12153,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The reservation property.
-
-Allowed values:
-
-* `<size>`
-* `none`
+The reservation property. Valid values are `<size>`, `none`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12653,13 +12161,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The secondarycache property.
-
-Allowed values:
-
-* `all`
-* `none`
-* `metadata`
+The secondarycache property. Valid values are `all`, `none`, `metadata`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12667,12 +12169,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The setuid property.
-
-Allowed values:
-
-* `on`
-* `off`
+The setuid property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12680,13 +12177,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The shareiscsi property.
-
-Allowed values:
-
-* `on`
-* `off`
-* `type=<type>`
+The shareiscsi property. Valid values are `on`, `off`, `type=<type>`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12694,13 +12185,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The sharenfs property.
-
-Allowed values:
-
-* `on`
-* `off`
-* share(1M) options
+The sharenfs property. Valid values are `on`, `off`, share(1M) options
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12708,13 +12193,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The sharesmb property.
-
-Allowed values:
-
-* `on`
-* `off`
-* sharemgr(1M) options
+The sharesmb property. Valid values are `on`, `off`, sharemgr(1M) options
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12722,12 +12201,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The snapdir property.
-
-Allowed values:
-
-* `hidden`
-* `visible`
+The snapdir property. Valid values are `hidden`, `visible`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12735,15 +12209,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The version property.
-
-Allowed values:
-
-* `1`
-* `2`
-* `3`
-* `4`
-* `current`
+The version property. Valid values are `1`, `2`, `3`, `4`, `current`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12751,11 +12217,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The volsize property.
-
-Allowed values:
-
-* `<size>`
+The volsize property. Valid values are `<size>`
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12763,12 +12225,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The vscan property.
-
-Allowed values:
-
-* `on`
-* `off`
+The vscan property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12776,12 +12233,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The xattr property.
-
-Allowed values:
-
-* `on`
-* `off`
+The xattr property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
 
@@ -12789,14 +12241,10 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The zoned property.
-
-Allowed values:
-
-* `on`
-* `off`
+The zoned property. Valid values are `on`, `off`.
 
 ([↑ Back to zfs attributes](#zfs-attributes))
+
 
 <h3 id="zfs-providers">Providers</h3>
 
@@ -12804,7 +12252,13 @@ Allowed values:
 
 Provider for zfs.
 
-* Required binaries: `zfs`
+* Required binaries: `zfs`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 zone
 -----
@@ -12861,14 +12315,7 @@ in that a zone must be `configured`, then `installed`, and
 only then can be `running`.  Note also that `halt` is currently
 used to stop zones.
 
-Default: `running`
-
-Allowed values:
-
-* `absent`
-* `configured`
-* `installed`
-* `running`.
+Valid values are `absent`, `configured`, `installed`, `running`.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
@@ -12878,12 +12325,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether the zone should automatically boot.
 
-Default: `true`
-
-Allowed values:
-
-* `true`
-* `false`
+Valid values are `true`, `false`.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
@@ -12958,12 +12400,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The IP stack type of the zone.
 
-Default: `shared`
-
-Allowed values:
-
-* `shared`
-* `exclusive`
+Valid values are `shared`, `exclusive`.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
@@ -13041,10 +12478,11 @@ And then call that:
       realhostname => 'fully.qualified.domain.name',
     }
 
-The `sysidcfg` matters only on the first booting of the zone,
-so Puppet checks for it only at that time.
+The `sysidcfg` only matters on the first booting of the zone,
+so Puppet only checks for it at that time.
 
 ([↑ Back to zone attributes](#zone-attributes))
+
 
 <h3 id="zone-providers">Providers</h3>
 
@@ -13052,8 +12490,14 @@ so Puppet checks for it only at that time.
 
 Provider for Solaris Zones.
 
-* Required binaries: `/usr/sbin/zoneadm`, `/usr/sbin/zonecfg`
+* Required binaries: `/usr/sbin/zoneadm`, `/usr/sbin/zonecfg`.
 * Default for `osfamily` == `solaris`.
+
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 zpool
 -----
@@ -13096,12 +12540,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The basic property that the resource should be in.
 
-Default: `present`
-
-Allowed values:
-
-* `present`
-* `absent`
+Valid values are `present`, `absent`.
 
 ([↑ Back to zpool attributes](#zpool-attributes))
 
@@ -13169,12 +12608,16 @@ Spare disk(s) for this pool.
 
 ([↑ Back to zpool attributes](#zpool-attributes))
 
+
 <h3 id="zpool-providers">Providers</h3>
 
 <h4 id="zpool-provider-zpool">zpool</h4>
 
 Provider for zpool.
 
-* Required binaries: `zpool`
+* Required binaries: `zpool`.
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+
+
+
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
