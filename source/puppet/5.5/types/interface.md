@@ -5,7 +5,7 @@ title: 'Resource Type: interface'
 canonical: "/puppet/latest/types/interface.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 interface
 -----
@@ -57,8 +57,10 @@ Default: `present`
 
 Allowed values:
 
-* `present` or `no_shutdown`
-* `absent` or `shutdown`
+* `present`
+* `absent`
+* `shutdown`
+* `no_shutdown`
 
 ([↑ Back to interface attributes](#interface-attributes))
 
@@ -222,4 +224,4 @@ Cisco switch/router provider for interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

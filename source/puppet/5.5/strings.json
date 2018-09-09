@@ -8,7 +8,7 @@
   "resource_types": [
     {
       "name": "augeas",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/augeas.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/augeas.rb",
       "line": 18,
       "docstring": {
         "text": "Apply a change or an array of changes to the filesystem\nusing the augeas tool.\n\nRequires:\n\n- [Augeas](http://www.augeas.net)\n- The ruby-augeas bindings\n\nSample usage with a string:\n\n    augeas{\"test1\" :\n      context => \"/files/etc/sysconfig/firstboot\",\n      changes => \"set RUN_FIRSTBOOT YES\",\n      onlyif  => \"match other_value size > 0\",\n    }\n\nSample usage with an array and custom lenses:\n\n    augeas{\"jboss_conf\":\n      context   => \"/files\",\n      changes   => [\n          \"set etc/jbossas/jbossas.conf/JBOSS_IP $ipaddress\",\n          \"set etc/jbossas/jbossas.conf/JAVA_HOME /usr\",\n        ],\n      load_path => \"$/usr/share/jbossas/lenses\",\n    }"
@@ -86,7 +86,7 @@
     },
     {
       "name": "component",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/component.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/component.rb",
       "line": 6,
       "docstring": {
         "text": "The name of the component.  Generally optional."
@@ -101,7 +101,7 @@
     },
     {
       "name": "computer",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/computer.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/computer.rb",
       "line": 1,
       "docstring": {
         "text": "Computer object management using DirectoryService\non OS X.\n\nNote that these are distinctly different kinds of objects to 'hosts',\nas they require a MAC address and can have all sorts of policy attached to\nthem.\n\nThis provider only manages Computer objects in the local directory service\ndomain, not in remote directories.\n\nIf you wish to manage `/etc/hosts` file on Mac OS X, then simply use the host\ntype as per other platforms.\n\nThis type primarily exists to create localhost Computer objects that MCX\npolicy can then be attached to.\n\n**Autorequires:** If Puppet is managing the plist file representing a\nComputer object (located at `/var/db/dslocal/nodes/Default/computers/{name}.plist`),\nthe Computer resource will autorequire it."
@@ -138,7 +138,7 @@
     },
     {
       "name": "cron",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/cron.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/cron.rb",
       "line": 5,
       "docstring": {
         "text": "Installs and manages cron jobs.  Every cron resource created by Puppet\nrequires a command and at least one periodic attribute (hour, minute,\nmonth, monthday, weekday, or special).  While the name of the cron job is\nnot part of the actual job, the name is stored in a comment beginning with\n`# Puppet Name: `. These comments are used to match crontab entries created\nby Puppet with cron resources.\n\nIf an existing crontab entry happens to match the scheduling and command of a\ncron resource that has never been synced, Puppet will defer to the existing\ncrontab entry and will not create a new entry tagged with the `# Puppet Name: `\ncomment.\n\nExample:\n\n    cron { 'logrotate':\n      command => '/usr/sbin/logrotate',\n      user    => 'root',\n      hour    => 2,\n      minute  => 0,\n    }\n\nNote that all periodic attributes can be specified as an array of values:\n\n    cron { 'logrotate':\n      command => '/usr/sbin/logrotate',\n      user    => 'root',\n      hour    => [2, 4],\n    }\n\n...or using ranges or the step syntax `*/2` (although there's no guarantee\nthat your `cron` daemon supports these):\n\n    cron { 'logrotate':\n      command => '/usr/sbin/logrotate',\n      user    => 'root',\n      hour    => ['2-4'],\n      minute  => '*/10',\n    }\n\nAn important note: _the Cron type will not reset parameters that are\nremoved from a manifest_. For example, removing a `minute => 10` parameter\nwill not reset the minute component of the associated cronjob to `*`.\nThese changes must be expressed by setting the parameter to\n`minute => absent` because Puppet only manages parameters that are out of\nsync with manifest entries.\n\n**Autorequires:** If Puppet is managing the user account specified by the\n`user` property of a cron resource, then the cron resource will autorequire\nthat user."
@@ -204,7 +204,7 @@
     },
     {
       "name": "exec",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/exec.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/exec.rb",
       "line": 2,
       "docstring": {
         "text": "Executes external commands.\n\nAny command in an `exec` resource **must** be able to run multiple times\nwithout causing harm --- that is, it must be *idempotent*. There are three\nmain ways for an exec to be idempotent:\n\n* The command itself is already idempotent. (For example, `apt-get update`.)\n* The exec has an `onlyif`, `unless`, or `creates` attribute, which prevents\n  Puppet from running the command unless some condition is met.\n* The exec has `refreshonly => true`, which only allows Puppet to run the\n  command when some other resource is changed. (See the notes on refreshing\n  below.)\n\nA caution: There's a widespread tendency to use collections of execs to\nmanage resources that aren't covered by an existing resource type. This\nworks fine for simple tasks, but once your exec pile gets complex enough\nthat you really have to think to understand what's happening, you should\nconsider developing a custom resource type instead, as it will be much\nmore predictable and maintainable.\n\n**Refresh:** `exec` resources can respond to refresh events (via\n`notify`, `subscribe`, or the `~>` arrow). The refresh behavior of execs\nis non-standard, and can be affected by the `refresh` and\n`refreshonly` attributes:\n\n* If `refreshonly` is set to true, the exec will _only_ run when it receives an\n  event. This is the most reliable way to use refresh with execs.\n* If the exec already would have run and receives an event, it will run its\n  command **up to two times.** (If an `onlyif`, `unless`, or `creates` condition\n  is no longer met after the first run, the second run will not occur.)\n* If the exec already would have run, has a `refresh` command, and receives an\n  event, it will run its normal command, then run its `refresh` command\n  (as long as any `onlyif`, `unless`, or `creates` conditions are still met\n  after the normal command finishes).\n* If the exec would **not** have run (due to an `onlyif`, `unless`, or `creates`\n  attribute) and receives an event, it still will not run.\n* If the exec has `noop => true`, would otherwise have run, and receives\n  an event from a non-noop resource, it will run once (or run its `refresh`\n  command instead, if it has one).\n\nIn short: If there's a possibility of your exec receiving refresh events,\nit becomes doubly important to make sure the run conditions are restricted.\n\n**Autorequires:** If Puppet is managing an exec's cwd or the executable\nfile used in an exec's command, the exec resource will autorequire those\nfiles. If Puppet is managing the user that an exec should run as, the\nexec resource will autorequire that user."
@@ -279,7 +279,7 @@
     },
     {
       "name": "file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/file.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/file.rb",
       "line": 14,
       "docstring": {
         "text": "Manages files, including their content, ownership, and permissions.\n\nThe `file` type can manage normal files, directories, and symlinks; the\ntype should be specified in the `ensure` attribute.\n\nFile contents can be managed directly with the `content` attribute, or\ndownloaded from a remote source using the `source` attribute; the latter\ncan also be used to recursively serve directories (when the `recurse`\nattribute is set to `true` or `local`). On Windows, note that file\ncontents are managed in binary mode; Puppet never automatically translates\nline endings.\n\n**Autorequires:** If Puppet is managing the user or group that owns a\nfile, the file resource will autorequire them. If Puppet is managing any\nparent directories of a file, the file resource will autorequire them."
@@ -396,7 +396,7 @@
     },
     {
       "name": "filebucket",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/filebucket.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/filebucket.rb",
       "line": 4,
       "docstring": {
         "text": "A repository for storing and retrieving file content by MD5 checksum. Can\nbe local to each agent node, or centralized on a puppet master server. All\npuppet masters provide a filebucket service that agent nodes can access\nvia HTTP, but you must declare a filebucket resource before any agents\nwill do so.\n\nFilebuckets are used for the following features:\n\n- **Content backups.** If the `file` type's `backup` attribute is set to\n  the name of a filebucket, Puppet will back up the _old_ content whenever\n  it rewrites a file; see the documentation for the `file` type for more\n  details. These backups can be used for manual recovery of content, but\n  are more commonly used to display changes and differences in a tool like\n  Puppet Dashboard.\n\nTo use a central filebucket for backups, you will usually want to declare\na filebucket resource and a resource default for the `backup` attribute\nin site.pp:\n\n    # /etc/puppetlabs/puppet/manifests/site.pp\n    filebucket { 'main':\n      path   => false,                # This is required for remote filebuckets.\n      server => 'puppet.example.com', # Optional; defaults to the configured puppet master.\n    }\n\n    File { backup => main, }\n\nPuppet master servers automatically provide the filebucket service, so\nthis will work in a default configuration. If you have a heavily\nrestricted `auth.conf` file, you may need to allow access to the\n`file_bucket_file` endpoint."
@@ -422,7 +422,7 @@
     },
     {
       "name": "group",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/group.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/group.rb",
       "line": 7,
       "docstring": {
         "text": "Manage groups. On most platforms this can only create groups.\nGroup membership must be managed on individual users.\n\nOn some platforms such as OS X, group membership is managed as an\nattribute of the group, not the user record. Providers must have\nthe feature 'manages_members' to manage the 'members' property of\na group record."
@@ -535,7 +535,7 @@
     },
     {
       "name": "host",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/host.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/host.rb",
       "line": 4,
       "docstring": {
         "text": "The host's IP address, IPv4 or IPv6."
@@ -577,7 +577,7 @@
     },
     {
       "name": "interface",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/interface.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/interface.rb",
       "line": 7,
       "docstring": {
         "text": "This represents a router or switch interface. It is possible to manage\ninterface mode (access or trunking, native vlan and encapsulation) and\nswitchport characteristics (speed, duplex)."
@@ -687,7 +687,7 @@
     },
     {
       "name": "k5login",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/k5login.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/k5login.rb",
       "line": 6,
       "docstring": {
         "text": "Manage the `.k5login` file for a user.  Specify the full path to\nthe `.k5login` file as the name, and an array of principals as the\n`principals` attribute."
@@ -737,7 +737,7 @@
     },
     {
       "name": "macauthorization",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/macauthorization.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/macauthorization.rb",
       "line": 1,
       "docstring": {
         "text": "Manage the Mac OS X authorization database. See the\n[Apple developer site](https://developer.apple.com/library/content/documentation/Security/Conceptual/Security_Overview/AuthenticationAndAuthorization/AuthenticationAndAuthorization.html)\nfor more information.\n\nNote that authorization store directives with hyphens in their names have\nbeen renamed to use underscores, as Puppet does not react well to hyphens\nin identifiers.\n\n**Autorequires:** If Puppet is managing the `/etc/authorization` file, each\nmacauthorization resource will autorequire it."
@@ -842,7 +842,7 @@
     },
     {
       "name": "mailalias",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/mailalias.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/mailalias.rb",
       "line": 2,
       "docstring": {
         "text": "Creates an email alias in the local alias database."
@@ -880,7 +880,7 @@
     },
     {
       "name": "maillist",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/maillist.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/maillist.rb",
       "line": 2,
       "docstring": {
         "text": "Manage email lists.  This resource type can only create\nand remove lists; it cannot currently reconfigure them."
@@ -927,7 +927,7 @@
     },
     {
       "name": "mcx",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/mcx.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/mcx.rb",
       "line": 1,
       "docstring": {
         "text": "MCX object management using DirectoryService on OS X.\n\nThe default provider of this type merely manages the XML plist as\nreported by the `dscl -mcxexport` command.  This is similar to the\ncontent property of the file type in Puppet.\n\nThe recommended method of using this type is to use Work Group Manager\nto manage users and groups on the local computer, record the resulting\npuppet manifest using the command `puppet resource mcx`, then deploy it\nto other machines.\n\n**Autorequires:** If Puppet is managing the user, group, or computer that these\nMCX settings refer to, the MCX resource will autorequire that user, group, or computer."
@@ -976,7 +976,7 @@
     },
     {
       "name": "mount",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/mount.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/mount.rb",
       "line": 5,
       "docstring": {
         "text": "Manages mounted filesystems, including putting mount\ninformation into the mount table. The actual behavior depends\non the value of the 'ensure' parameter.\n\n**Refresh:** `mount` resources can respond to refresh events (via\n`notify`, `subscribe`, or the `~>` arrow). If a `mount` receives an event\nfrom another resource **and** its `ensure` attribute is set to `mounted`,\nPuppet will try to unmount then remount that filesystem.\n\n**Autorequires:** If Puppet is managing any parents of a mount resource ---\nthat is, other mount points higher up in the filesystem --- the child\nmount will autorequire them.\n\n**Autobefores:**  If Puppet is managing any child file paths of a mount\npoint, the mount resource will autobefore them."
@@ -1053,7 +1053,7 @@
     },
     {
       "name": "notify",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/notify.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/notify.rb",
       "line": 6,
       "docstring": {
         "text": "Sends an arbitrary message to the agent run-time log."
@@ -1083,7 +1083,7 @@
     },
     {
       "name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/package.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/package.rb",
       "line": 10,
       "docstring": {
         "text": "Manage packages.  There is a basic dichotomy in package\nsupport right now:  Some package types (such as yum and apt) can\nretrieve their own package files, while others (such as rpm and sun)\ncannot.  For those package formats that cannot retrieve their own files,\nyou can use the `source` parameter to point to the correct file.\n\nPuppet will automatically guess the packaging format that you are\nusing based on the platform you are on, but you can override it\nusing the `provider` parameter; each provider defines what it\nrequires in order to function, and you must meet those requirements\nto use a given provider.\n\nYou can declare multiple package resources with the same `name`, as long\nas they specify different providers and have unique titles.\n\nNote that you must use the _title_ to make a reference to a package\nresource; `Package[<NAME>]` is not a synonym for `Package[<TITLE>]` like\nit is for many other resource types.\n\n**Autorequires:** If Puppet is managing the files specified as a\npackage's `adminfile`, `responsefile`, or `source`, the package\nresource will autorequire those files."
@@ -1256,7 +1256,7 @@
     },
     {
       "name": "resources",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/resources.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/resources.rb",
       "line": 4,
       "docstring": {
         "text": "This is a metatype that can manage other resource types.  Any\nmetaparams specified here will be passed on to any generated resources,\nso you can purge unmanaged resources but set `noop` to true so the\npurging is only logged and does not actually happen."
@@ -1295,7 +1295,7 @@
     },
     {
       "name": "router",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/router.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/router.rb",
       "line": 6,
       "docstring": {
         "text": "Manages connected router."
@@ -1310,7 +1310,7 @@
     },
     {
       "name": "schedule",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/schedule.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/schedule.rb",
       "line": 2,
       "docstring": {
         "text": "Define schedules for Puppet. Resources can be limited to a schedule by using the\n[`schedule`](https://puppet.com/docs/puppet/latest/metaparameter.html#schedule)\nmetaparameter.\n\nCurrently, **schedules can only be used to stop a resource from being\napplied;** they cannot cause a resource to be applied when it otherwise\nwouldn't be, and they cannot accurately specify a time when a resource\nshould run.\n\nEvery time Puppet applies its configuration, it will apply the\nset of resources whose schedule does not eliminate them from\nrunning right then, but there is currently no system in place to\nguarantee that a given resource runs at a given time.  If you\nspecify a very  restrictive schedule and Puppet happens to run at a\ntime within that schedule, then the resources will get applied;\notherwise, that work may never get done.\n\nThus, it is advisable to use wider scheduling (for example, over a couple\nof hours) combined with periods and repetitions.  For instance, if you\nwanted to restrict certain resources to only running once, between\nthe hours of two and 4 AM, then you would use this schedule:\n\n    schedule { 'maint':\n      range  => '2 - 4',\n      period => daily,\n      repeat => 1,\n    }\n\nWith this schedule, the first time that Puppet runs between 2 and 4 AM,\nall resources with this schedule will get applied, but they won't\nget applied again between 2 and 4 because they will have already\nrun once that day, and they won't get applied outside that schedule\nbecause they will be outside the scheduled range.\n\nPuppet automatically creates a schedule for each of the valid periods\nwith the same name as that period (such as hourly and daily).\nAdditionally, a schedule named `puppet` is created and used as the\ndefault, with the following attributes:\n\n    schedule { 'puppet':\n      period => hourly,\n      repeat => 2,\n    }\n\nThis will cause resources to be applied every 30 minutes by default."
@@ -1358,7 +1358,7 @@
     },
     {
       "name": "scheduled_task",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/scheduled_task.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/scheduled_task.rb",
       "line": 3,
       "docstring": {
         "text": "Installs and manages Windows Scheduled Tasks.  All attributes\nexcept `name`, `command`, and `trigger` are optional; see the description\nof the `trigger` attribute for details on setting schedules."
@@ -1418,7 +1418,7 @@
     },
     {
       "name": "selboolean",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/selboolean.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/selboolean.rb",
       "line": 2,
       "docstring": {
         "text": "Manages SELinux booleans on systems with SELinux support.  The supported booleans\nare any of the ones found in `/selinux/booleans/`."
@@ -1452,7 +1452,7 @@
     },
     {
       "name": "selmodule",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/selmodule.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/selmodule.rb",
       "line": 5,
       "docstring": {
         "text": "Manages loading and unloading of SELinux policy modules\non the system.  Requires SELinux support.  See man semodule(8)\nfor more information on SELinux policy modules.\n\n**Autorequires:** If Puppet is managing the file containing this SELinux\npolicy module (which is either explicitly specified in the `selmodulepath`\nattribute or will be found at {`selmoduledir`}/{`name`}.pp), the selmodule\nresource will autorequire that file."
@@ -1495,7 +1495,7 @@
     },
     {
       "name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/service.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/service.rb",
       "line": 10,
       "docstring": {
         "text": "Manage running services.  Service support unfortunately varies\nwidely by platform --- some platforms have very little if any concept of a\nrunning service, and some have a very codified and powerful concept.\nPuppet's service support is usually capable of doing the right thing, but\nthe more information you can provide, the better behaviour you will get.\n\nPuppet 2.7 and newer expect init scripts to have a working status command.\nIf this isn't the case for any of your services' init scripts, you will\nneed to set `hasstatus` to false and possibly specify a custom status\ncommand in the `status` attribute. As a last resort, Puppet will attempt to\nsearch the process table by calling whatever command is listed in the `ps`\nfact. The default search pattern is the name of the service, but you can\nspecify it with the `pattern` attribute.\n\n**Refresh:** `service` resources can respond to refresh events (via\n`notify`, `subscribe`, or the `~>` arrow). If a `service` receives an\nevent from another resource, Puppet will restart the service it manages.\nThe actual command used to restart the service depends on the platform and\ncan be configured:\n\n* If you set `hasrestart` to true, Puppet will use the init script's restart command.\n* You can provide an explicit command for restarting with the `restart` attribute.\n* If you do neither, the service's stop and start commands will be used."
@@ -1615,7 +1615,7 @@
     },
     {
       "name": "ssh_authorized_key",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/ssh_authorized_key.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/ssh_authorized_key.rb",
       "line": 2,
       "docstring": {
         "text": "Manages SSH authorized keys. Currently only type 2 keys are supported.\n\nIn their native habitat, SSH keys usually appear as a single long line, in\nthe format `<TYPE> <KEY> <NAME/COMMENT>`. This resource type requires you\nto split that line into several attributes. Thus, a key that appears in\nyour `~/.ssh/id_rsa.pub` file like this...\n\n    ssh-rsa AAAAB3Nza[...]qXfdaQ== nick@magpie.example.com\n\n...would translate to the following resource:\n\n    ssh_authorized_key { 'nick@magpie.example.com':\n      ensure => present,\n      user   => 'nick',\n      type   => 'ssh-rsa',\n      key    => 'AAAAB3Nza[...]qXfdaQ==',\n    }\n\nTo ensure that only the currently approved keys are present, you can purge\nunmanaged SSH keys on a per-user basis. Do this with the `user` resource\ntype's `purge_ssh_keys` attribute:\n\n    user { 'nick':\n      ensure         => present,\n      purge_ssh_keys => true,\n    }\n\nThis will remove any keys in `~/.ssh/authorized_keys` that aren't being\nmanaged with `ssh_authorized_key` resources. See the documentation of the\n`user` type for more details.\n\n**Autorequires:** If Puppet is managing the user account in which this\nSSH key should be installed, the `ssh_authorized_key` resource will autorequire\nthat user."
@@ -1678,7 +1678,7 @@
     },
     {
       "name": "sshkey",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/sshkey.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/sshkey.rb",
       "line": 2,
       "docstring": {
         "text": "Installs and manages ssh host keys.  By default, this type will\ninstall keys into `/etc/ssh/ssh_known_hosts`. To manage ssh keys in a\ndifferent `known_hosts` file, such as a user's personal `known_hosts`,\npass its path to the `target` parameter. See the `ssh_authorized_key`\ntype to manage authorized keys."
@@ -1736,7 +1736,7 @@
     },
     {
       "name": "stage",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/stage.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/stage.rb",
       "line": 1,
       "docstring": {
         "text": "A resource type for creating new run stages.  Once a stage is available,\nclasses can be assigned to it by declaring them with the resource-like syntax\nand using\n[the `stage` metaparameter](https://puppet.com/docs/puppet/latest/metaparameter.html#stage).\n\nNote that new stages are not useful unless you also declare their order\nin relation to the default `main` stage.\n\nA complete run stage example:\n\n    stage { 'pre':\n      before => Stage['main'],\n    }\n\n    class { 'apt-updates':\n      stage => 'pre',\n    }\n\nIndividual resources cannot be assigned to run stages; you can only set stages\nfor classes."
@@ -1751,7 +1751,7 @@
     },
     {
       "name": "tidy",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/tidy.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/tidy.rb",
       "line": 3,
       "docstring": {
         "text": "Remove unwanted files based on specific criteria.  Multiple\ncriteria are OR'd together, so a file that is too large but is not\nold enough will still get tidied.\n\nIf you don't specify either `age` or `size`, then all files will\nbe removed.\n\nThis resource type works by generating a file resource for every file\nthat should be deleted and then letting that resource perform the\nactual deletion."
@@ -1812,7 +1812,7 @@
     },
     {
       "name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/user.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/user.rb",
       "line": 9,
       "docstring": {
         "text": "Manage users.  This type is mostly built to manage system\nusers, so it is lacking some features useful for managing normal\nusers.\n\nThis resource type uses the prescribed native tools for creating\ngroups and generally uses POSIX APIs for retrieving information\nabout them.  It does not directly modify `/etc/passwd` or anything.\n\n**Autorequires:** If Puppet is managing the user's primary group (as\nprovided in the `gid` attribute) or any group listed in the `groups`\nattribute then the user resource will autorequire that group. If Puppet\nis managing any role accounts corresponding to the user's roles, the\nuser resource will autorequire those role accounts."
@@ -2083,7 +2083,7 @@
     },
     {
       "name": "vlan",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/vlan.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/vlan.rb",
       "line": 5,
       "docstring": {
         "text": "Manages a VLAN on a router or switch."
@@ -2120,7 +2120,7 @@
     },
     {
       "name": "whit",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/whit.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/whit.rb",
       "line": 1,
       "docstring": {
         "text": "Whits are internal artifacts of Puppet's current implementation, and\nPuppet suppresses their appearance in all logs. We make no guarantee of\nthe whit's continued existence, and it should never be used in an actual\nmanifest. Use the `anchor` type from the puppetlabs-stdlib module if you\nneed arbitrary whit-like no-op resources."
@@ -2135,7 +2135,7 @@
     },
     {
       "name": "yumrepo",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/yumrepo.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/yumrepo.rb",
       "line": 3,
       "docstring": {
         "text": "The client-side description of a yum repository. Repository\nconfigurations are found by parsing `/etc/yum.conf` and\nthe files indicated by the `reposdir` option in that file\n(see `yum.conf(5)` for details).\n\nMost parameters are identical to the ones documented\nin the `yum.conf(5)` man page.\n\nContinuation lines that yum supports (for the `baseurl`, for example)\nare not supported. This type does not attempt to read or verify the\nexistence of files listed in the `include` attribute."
@@ -2486,7 +2486,7 @@
     },
     {
       "name": "zfs",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/zfs.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/zfs.rb",
       "line": 2,
       "docstring": {
         "text": "Manage zfs. Create destroy and set properties on zfs instances.\n\n**Autorequires:** If Puppet is managing the zpool at the root of this zfs\ninstance, the zfs resource will autorequire it. If Puppet is managing any\nparent zfs instances, the zfs resource will autorequire them."
@@ -2640,7 +2640,7 @@
     },
     {
       "name": "zone",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/zone.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/zone.rb",
       "line": 2,
       "docstring": {
         "text": "Manages Solaris zones.\n\n**Autorequires:** If Puppet is managing the directory specified as the root of\nthe zone's filesystem (with the `path` attribute), the zone resource will\nautorequire that directory."
@@ -2728,7 +2728,7 @@
     },
     {
       "name": "zpool",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/type/zpool.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/type/zpool.rb",
       "line": 32,
       "docstring": {
         "text": "Manage zpools. Create and delete zpools. The provider WILL NOT SYNC, only report differences.\n\nSupports vdevs with mirrors, raidz, logs and spares."
@@ -2781,7 +2781,7 @@
     {
       "name": "aix",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/aix.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/aix.rb",
       "line": 4,
       "docstring": {
         "text": "Installation from an AIX software directory, using the AIX `installp`\ncommand.  The `source` parameter is required for this provider, and should\nbe set to the absolute path (on the puppet agent machine) of a directory\ncontaining one or more BFF package files.\n\nThe `installp` command will generate a table of contents file (named `.toc`)\nin this directory, and the `name` parameter (or resource title) that you\nspecify for your `package` resource must match a package name that exists\nin the `.toc` file.\n\nNote that package downgrades are *not* supported; if your resource specifies\na specific version number and there is already a newer version of the package\ninstalled on the machine, the resource will fail with an error message."
@@ -2808,7 +2808,7 @@
     {
       "name": "aix",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/aix.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/aix.rb",
       "line": 19,
       "docstring": {
         "text": "User management for AIX."
@@ -2844,7 +2844,7 @@
     {
       "name": "aix",
       "type_name": "group",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/group/aix.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/group/aix.rb",
       "line": 9,
       "docstring": {
         "text": "Group management for AIX."
@@ -2874,7 +2874,7 @@
     {
       "name": "aliases",
       "type_name": "mailalias",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/mailalias/aliases.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/mailalias/aliases.rb",
       "line": 3,
       "docstring": {
         "text": ""
@@ -2883,7 +2883,7 @@
     {
       "name": "appdmg",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/appdmg.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/appdmg.rb",
       "line": 17,
       "docstring": {
         "text": "Package management which copies application bundles to a target."
@@ -2901,7 +2901,7 @@
     {
       "name": "apple",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/apple.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/apple.rb",
       "line": 4,
       "docstring": {
         "text": "Package management based on OS X's built-in packaging system.  This is\nessentially the simplest and least functional package system in existence --\nit only supports installation; no deletion or upgrades.  The provider will\nautomatically add the `.pkg` extension, so leave that off when specifying\nthe package name."
@@ -2916,7 +2916,7 @@
     {
       "name": "apt",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/apt.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/apt.rb",
       "line": 1,
       "docstring": {
         "text": "Package management via `apt-get`.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to apt-get.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -2942,7 +2942,7 @@
     {
       "name": "aptitude",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/aptitude.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/aptitude.rb",
       "line": 1,
       "docstring": {
         "text": "Package management via `aptitude`."
@@ -2958,7 +2958,7 @@
     {
       "name": "aptrpm",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/aptrpm.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/aptrpm.rb",
       "line": 1,
       "docstring": {
         "text": "Package management via `apt-get` ported to `rpm`."
@@ -2975,7 +2975,7 @@
     {
       "name": "augeas",
       "type_name": "augeas",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/augeas/augeas.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/augeas/augeas.rb",
       "line": 22,
       "docstring": {
         "text": ""
@@ -2992,7 +2992,7 @@
     {
       "name": "base",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/base.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/base.rb",
       "line": 1,
       "docstring": {
         "text": "The simplest form of Unix service support.\n\nYou have to specify enough about your service for this to work; the\nminimum you can specify is a binary for starting the process, and this\nsame binary will be searched for in the process table to stop the\nservice.  As with `init`-style services, it is preferable to specify start,\nstop, and status commands."
@@ -3004,7 +3004,7 @@
     {
       "name": "blastwave",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/blastwave.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/blastwave.rb",
       "line": 2,
       "docstring": {
         "text": "Package management using Blastwave.org's `pkg-get` command on Solaris."
@@ -3019,7 +3019,7 @@
     {
       "name": "bsd",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/bsd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/bsd.rb",
       "line": 1,
       "docstring": {
         "text": "Generic BSD form of `init`-style service management with `rc.d`.\n\nUses `rc.conf.d` for service enabling and disabling."
@@ -3031,7 +3031,7 @@
     {
       "name": "cisco",
       "type_name": "interface",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/interface/cisco.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/interface/cisco.rb",
       "line": 3,
       "docstring": {
         "text": "Cisco switch/router provider for interface."
@@ -3040,7 +3040,7 @@
     {
       "name": "cisco",
       "type_name": "vlan",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/vlan/cisco.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/vlan/cisco.rb",
       "line": 3,
       "docstring": {
         "text": "Cisco switch/router provider for vlans."
@@ -3049,7 +3049,7 @@
     {
       "name": "crontab",
       "type_name": "cron",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/cron/crontab.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/cron/crontab.rb",
       "line": 3,
       "docstring": {
         "text": ""
@@ -3061,7 +3061,7 @@
     {
       "name": "daemontools",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/daemontools.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/daemontools.rb",
       "line": 4,
       "docstring": {
         "text": "Daemontools service management.\n\nThis provider manages daemons supervised by D.J. Bernstein daemontools.\nWhen detecting the service directory it will check, in order of preference:\n\n* `/service`\n* `/etc/service`\n* `/var/lib/svscan`\n\nThe daemon directory should be in one of the following locations:\n\n* `/var/lib/service`\n* `/etc`\n\n...or this can be overridden in the resource's attributes:\n\n    service { 'myservice':\n      provider => 'daemontools',\n      path     => '/path/to/daemons',\n    }\n\nThis provider supports out of the box:\n\n* start/stop (mapped to enable/disable)\n* enable/disable\n* restart\n* status\n\nIf a service has `ensure => \"running\"`, it will link /path/to/daemon to\n/path/to/service, which will automatically enable the service.\n\nIf a service has `ensure => \"stopped\"`, it will only shut down the service, not\nremove the `/path/to/service` link."
@@ -3074,7 +3074,7 @@
     {
       "name": "debian",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/debian.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/debian.rb",
       "line": 3,
       "docstring": {
         "text": "Debian's form of `init`-style management.\n\nThe only differences from `init` are support for enabling and disabling\nservices via `update-rc.d` and the ability to determine enabled status via\n`invoke-rc.d`."
@@ -3110,7 +3110,7 @@
     {
       "name": "directoryservice",
       "type_name": "computer",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/computer/computer.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/computer/computer.rb",
       "line": 3,
       "docstring": {
         "text": "Computer object management using DirectoryService on OS X.\nNote that these are distinctly different kinds of objects to 'hosts',\nas they require a MAC address and can have all sorts of policy attached to\nthem.\n\nThis provider only manages Computer objects in the local directory service\ndomain, not in remote directories.\n\nIf you wish to manage /etc/hosts on Mac OS X, then simply use the host\ntype as per other platforms."
@@ -3130,7 +3130,7 @@
     {
       "name": "directoryservice",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/directoryservice.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/directoryservice.rb",
       "line": 5,
       "docstring": {
         "text": "User management on OS X."
@@ -3162,7 +3162,7 @@
     {
       "name": "directoryservice",
       "type_name": "group",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/group/directoryservice.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/group/directoryservice.rb",
       "line": 3,
       "docstring": {
         "text": "Group management using DirectoryService on OS X."
@@ -3188,7 +3188,7 @@
     {
       "name": "dnf",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/dnf.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/dnf.rb",
       "line": 1,
       "docstring": {
         "text": "Support via `dnf`.\n\nUsing this provider's `uninstallable` feature will not remove dependent packages. To\nremove dependent packages with this provider use the `purgeable` feature, but note this\nfeature is destructive and should be used with the utmost care.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to dnf.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -3218,7 +3218,7 @@
     {
       "name": "dpkg",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/dpkg.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/dpkg.rb",
       "line": 3,
       "docstring": {
         "text": "Package management via `dpkg`.  Because this only uses `dpkg`\nand not `apt`, you must specify the source of any packages you want\nto manage."
@@ -3235,7 +3235,7 @@
     {
       "name": "fink",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/fink.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/fink.rb",
       "line": 1,
       "docstring": {
         "text": "Package management via `fink`."
@@ -3253,7 +3253,7 @@
     {
       "name": "freebsd",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/freebsd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/freebsd.rb",
       "line": 1,
       "docstring": {
         "text": "Provider for FreeBSD and DragonFly BSD. Uses the `rcvar` argument of init scripts and parses/edits rc files."
@@ -3273,7 +3273,7 @@
     {
       "name": "freebsd",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/freebsd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/freebsd.rb",
       "line": 1,
       "docstring": {
         "text": "The specific form of package management on FreeBSD.  This is an\nextremely quirky packaging system, in that it freely mixes between\nports and packages.  Apparently all of the tools are written in Ruby,\nso there are plans to rewrite this support to directly use those\nlibraries."
@@ -3290,7 +3290,7 @@
     {
       "name": "gem",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/gem.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/gem.rb",
       "line": 5,
       "docstring": {
         "text": "Ruby Gem support. If a URL is passed via `source`, then that URL is\nappended to the list of remote gem repositories; to ensure that only the\nspecified source is used, also pass `--clear-sources` via `install_options`.\nIf source is present but is not a valid URL, it will be interpreted as the\npath to a local gem file. If source is not present, the gem will be\ninstalled from the default gem repositories. Note that to modify this for Windows, it has to be a valid URL.\n\nThis provider supports the `install_options` and `uninstall_options` attributes,\nwhich allow command-line flags to be passed to the gem command.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -3307,7 +3307,7 @@
     {
       "name": "gentoo",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/gentoo.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/gentoo.rb",
       "line": 3,
       "docstring": {
         "text": "Gentoo's form of `init`-style service management.\n\nUses `rc-update` for service enabling and disabling."
@@ -3322,7 +3322,7 @@
     {
       "name": "getsetsebool",
       "type_name": "selboolean",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/selboolean/getsetsebool.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/selboolean/getsetsebool.rb",
       "line": 1,
       "docstring": {
         "text": "Manage SELinux booleans using the getsebool and setsebool binaries."
@@ -3335,7 +3335,7 @@
     {
       "name": "groupadd",
       "type_name": "group",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/group/groupadd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/group/groupadd.rb",
       "line": 4,
       "docstring": {
         "text": "Group management via `groupadd` and its ilk. The default for most platforms."
@@ -3349,7 +3349,7 @@
     {
       "name": "hpux",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/hpux.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/hpux.rb",
       "line": 5,
       "docstring": {
         "text": "HP-UX's packaging system."
@@ -3374,7 +3374,7 @@
     {
       "name": "hpuxuseradd",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/hpux.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/hpux.rb",
       "line": 1,
       "docstring": {
         "text": "User management for HP-UX. This provider uses the undocumented `-F`\nswitch to HP-UX's special `usermod` binary to work around the fact that\nits standard `usermod` cannot make changes while the user is logged in.\nNew functionality provides for changing trusted computing passwords and\nresetting password expirations under trusted computing."
@@ -3404,7 +3404,7 @@
     {
       "name": "inifile",
       "type_name": "yumrepo",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/yumrepo/inifile.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/yumrepo/inifile.rb",
       "line": 3,
       "docstring": {
         "text": "Manage yum repo configurations by parsing yum INI configuration files.\n\n### Fetching instances\n\nWhen fetching repo instances, directory entries in '/etc/yum/repos.d',\n'/etc/yum.repos.d', and the directory optionally specified by the reposdir\nkey in '/etc/yum.conf' will be checked. If a given directory does not exist it\nwill be ignored. In addition, all sections in '/etc/yum.conf' aside from\n'main' will be created as sections.\n\n### Storing instances\n\nWhen creating a new repository, a new section will be added in the first\nyum repo directory that exists. The custom directory specified by the\n'/etc/yum.conf' reposdir property is checked first, followed by\n'/etc/yum/repos.d', and then '/etc/yum.repos.d'. If none of these exist, the\nsection will be created in '/etc/yum.conf'."
@@ -3413,7 +3413,7 @@
     {
       "name": "init",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/init.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/init.rb",
       "line": 3,
       "docstring": {
         "text": "Standard `init`-style service management."
@@ -3425,7 +3425,7 @@
     {
       "name": "launchd",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/launchd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/launchd.rb",
       "line": 2,
       "docstring": {
         "text": "This provider manages jobs with `launchd`, which is the default service\nframework for Mac OS X (and may be available for use on other platforms).\n\nFor more information, see the `launchd` man page:\n\n* <https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man8/launchd.8.html>\n\nThis provider reads plists out of the following directories:\n\n* `/System/Library/LaunchDaemons`\n* `/System/Library/LaunchAgents`\n* `/Library/LaunchDaemons`\n* `/Library/LaunchAgents`\n\n...and builds up a list of services based upon each plist's \"Label\" entry.\n\nThis provider supports:\n\n* ensure => running/stopped,\n* enable => true/false\n* status\n* restart\n\nHere is how the Puppet states correspond to `launchd` states:\n\n* stopped --- job unloaded\n* started --- job loaded\n* enabled --- 'Disable' removed from job plist file\n* disabled --- 'Disable' added to job plist file\n\nNote that this allows you to do something `launchctl` can't do, which is to\nbe in a state of \"stopped/enabled\" or \"running/disabled\".\n\nNote that this provider does not support overriding 'restart'"
@@ -3453,7 +3453,7 @@
     {
       "name": "ldap",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/ldap.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/ldap.rb",
       "line": 3,
       "docstring": {
         "text": "User management via LDAP.\n\nThis provider requires that you have valid values for all of the\nLDAP-related settings in `puppet.conf`, including `ldapbase`.  You will\nalmost definitely need settings for `ldapuser` and `ldappassword` in order\nfor your clients to write to LDAP.\n\nNote that this provider will automatically generate a UID for you if\nyou do not specify one, but it is a potentially expensive operation,\nas it iterates across all existing users to pick the appropriate next one."
@@ -3470,7 +3470,7 @@
     {
       "name": "ldap",
       "type_name": "group",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/group/ldap.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/group/ldap.rb",
       "line": 3,
       "docstring": {
         "text": "Group management via LDAP.\n\nThis provider requires that you have valid values for all of the\nLDAP-related settings in `puppet.conf`, including `ldapbase`.  You will\nalmost definitely need settings for `ldapuser` and `ldappassword` in order\nfor your clients to write to LDAP.\n\nNote that this provider will automatically generate a GID for you if you do\nnot specify one, but it is a potentially expensive operation, as it\niterates across all existing groups to pick the appropriate next one."
@@ -3483,7 +3483,7 @@
     {
       "name": "macauthorization",
       "type_name": "macauthorization",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/macauthorization/macauthorization.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/macauthorization/macauthorization.rb",
       "line": 6,
       "docstring": {
         "text": "Manage Mac OS X authorization database rules and rights."
@@ -3507,7 +3507,7 @@
     {
       "name": "macports",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/macports.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/macports.rb",
       "line": 4,
       "docstring": {
         "text": "Package management using MacPorts on OS X.\n\nSupports MacPorts versions and revisions, but not variants.\nVariant preferences may be specified using\n[the MacPorts variants.conf file](http://guide.macports.org/chunked/internals.configuration-files.html#internals.configuration-files.variants-conf).\n\nWhen specifying a version in the Puppet DSL, only specify the version, not the revision.\nRevisions are only used internally for ensuring the latest version/revision of a port."
@@ -3525,7 +3525,7 @@
     {
       "name": "mailman",
       "type_name": "maillist",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/maillist/mailman.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/maillist/mailman.rb",
       "line": 3,
       "docstring": {
         "text": ""
@@ -3534,7 +3534,7 @@
     {
       "name": "mcxcontent",
       "type_name": "mcx",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/mcx/mcxcontent.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/mcx/mcxcontent.rb",
       "line": 3,
       "docstring": {
         "text": "MCX Settings management using DirectoryService on OS X.\n\nThis provider manages the entire MCXSettings attribute available\nto some directory services nodes.  This management is 'all or nothing'\nin that discrete application domain key value pairs are not managed\nby this provider.\n\nIt is recommended to use WorkGroup Manager to configure Users, Groups,\nComputers, or ComputerLists, then use 'ralsh mcx' to generate a puppet\nmanifest from the resulting configuration.\n\nOriginal Author: Jeff McCune (mccune.jeff@gmail.com)"
@@ -3557,7 +3557,7 @@
     {
       "name": "nim",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/nim.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/nim.rb",
       "line": 4,
       "docstring": {
         "text": "Installation from an AIX NIM LPP source.  The `source` parameter is required\nfor this provider, and should specify the name of a NIM `lpp_source` resource\nthat is visible to the puppet agent machine.  This provider supports the\nmanagement of both BFF/installp and RPM packages.\n\nNote that package downgrades are *not* supported; if your resource specifies\na specific version number and there is already a newer version of the package\ninstalled on the machine, the resource will fail with an error message."
@@ -3577,7 +3577,7 @@
     {
       "name": "openbsd",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/openbsd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/openbsd.rb",
       "line": 1,
       "docstring": {
         "text": "Provider for OpenBSD's rc.d daemon control scripts"
@@ -3603,7 +3603,7 @@
     {
       "name": "openbsd",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/openbsd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/openbsd.rb",
       "line": 3,
       "docstring": {
         "text": "User management via `useradd` and its ilk for OpenBSD. Note that you\nwill need to install Ruby's shadow password library (package known as\n`ruby-shadow`) if you wish to manage user passwords."
@@ -3635,7 +3635,7 @@
     {
       "name": "openbsd",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/openbsd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/openbsd.rb",
       "line": 4,
       "docstring": {
         "text": "OpenBSD's form of `pkg_add` support.\n\nThis provider supports the `install_options` and `uninstall_options`\nattributes, which allow command-line flags to be passed to pkg_add and pkg_delete.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -3666,7 +3666,7 @@
     {
       "name": "openrc",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/openrc.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/openrc.rb",
       "line": 2,
       "docstring": {
         "text": "Support for Gentoo's OpenRC initskripts\n\nUses rc-update, rc-status and rc-service to manage services."
@@ -3693,7 +3693,7 @@
     {
       "name": "openwrt",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/openwrt.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/openwrt.rb",
       "line": 1,
       "docstring": {
         "text": "Support for OpenWrt flavored init scripts.\n\nUses /etc/init.d/service_name enable, disable, and enabled."
@@ -3716,7 +3716,7 @@
     {
       "name": "opkg",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/opkg.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/opkg.rb",
       "line": 3,
       "docstring": {
         "text": "Opkg packaging support. Common on OpenWrt and OpenEmbedded platforms"
@@ -3739,7 +3739,7 @@
     {
       "name": "pacman",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pacman.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pacman.rb",
       "line": 5,
       "docstring": {
         "text": "Support for the Package Manager Utility (pacman) used in Archlinux.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to pacman.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -3768,7 +3768,7 @@
     {
       "name": "parsed",
       "type_name": "ssh_authorized_key",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/ssh_authorized_key/parsed.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/ssh_authorized_key/parsed.rb",
       "line": 3,
       "docstring": {
         "text": "Parse and generate authorized_keys files for SSH."
@@ -3777,7 +3777,7 @@
     {
       "name": "parsed",
       "type_name": "host",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/host/parsed.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/host/parsed.rb",
       "line": 14,
       "docstring": {
         "text": ""
@@ -3789,7 +3789,7 @@
     {
       "name": "parsed",
       "type_name": "mount",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/mount/parsed.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/mount/parsed.rb",
       "line": 12,
       "docstring": {
         "text": ""
@@ -3802,7 +3802,7 @@
     {
       "name": "parsed",
       "type_name": "sshkey",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/sshkey/parsed.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/sshkey/parsed.rb",
       "line": 3,
       "docstring": {
         "text": "Parse and generate host-wide known hosts files for SSH."
@@ -3811,7 +3811,7 @@
     {
       "name": "pip",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pip.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pip.rb",
       "line": 7,
       "docstring": {
         "text": "Python packages via `pip`.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -3827,7 +3827,7 @@
     {
       "name": "pip3",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pip3.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pip3.rb",
       "line": 6,
       "docstring": {
         "text": "Python packages via `pip3`.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -3843,7 +3843,7 @@
     {
       "name": "pkg",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkg.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkg.rb",
       "line": 3,
       "docstring": {
         "text": "OpenSolaris image packaging system. See pkg(5) for more information."
@@ -3875,7 +3875,7 @@
     {
       "name": "pkgdmg",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgdmg.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgdmg.rb",
       "line": 15,
       "docstring": {
         "text": "Package management based on Apple's Installer.app and DiskUtility.app.\n\nThis provider works by checking the contents of a DMG image for Apple pkg or\nmpkg files. Any number of pkg or mpkg files may exist in the root directory\nof the DMG file system, and Puppet will install all of them. Subdirectories\nare not checked for packages.\n\nThis provider can also accept plain .pkg (but not .mpkg) files in addition\nto .dmg files.\n\nNotes:\n\n* The `source` attribute is mandatory. It must be either a local disk path\n  or an HTTP, HTTPS, or FTP URL to the package.\n* The `name` of the resource must be the filename (without path) of the DMG file.\n* When installing the packages from a DMG, this provider writes a file to\n  disk at `/var/db/.puppet_pkgdmg_installed_NAME`. If that file is present,\n  Puppet assumes all packages from that DMG are already installed.\n* This provider is not versionable and uses DMG filenames to determine\n  whether a package has been installed. Thus, to install new a version of a\n  package, you must create a new DMG with a different filename."
@@ -3901,7 +3901,7 @@
     {
       "name": "pkgin",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgin.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgin.rb",
       "line": 3,
       "docstring": {
         "text": "Package management using pkgin, a binary package manager for pkgsrc."
@@ -3927,7 +3927,7 @@
     {
       "name": "pkgng",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgng.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgng.rb",
       "line": 3,
       "docstring": {
         "text": "A PkgNG provider for FreeBSD and DragonFly."
@@ -3954,7 +3954,7 @@
     {
       "name": "pkgutil",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgutil.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/pkgutil.rb",
       "line": 2,
       "docstring": {
         "text": "Package management using Peter Bonivart's ``pkgutil`` command on Solaris."
@@ -3966,7 +3966,7 @@
     {
       "name": "portage",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/portage.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/portage.rb",
       "line": 4,
       "docstring": {
         "text": "Provides packaging support for Gentoo's portage system.\n\nThis provider supports the `install_options` and `uninstall_options` attributes, which allows command-line\nflags to be passed to emerge.  These options should be specified as a string (e.g. '--flag'), a hash\n(e.g. {'--flag' => 'value'}), or an array where each element is either a string or a hash."
@@ -3994,7 +3994,7 @@
     {
       "name": "ports",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/ports.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/ports.rb",
       "line": 1,
       "docstring": {
         "text": "Support for FreeBSD's ports.  Note that this, too, mixes packages and ports."
@@ -4009,7 +4009,7 @@
     {
       "name": "portupgrade",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/portupgrade.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/portupgrade.rb",
       "line": 4,
       "docstring": {
         "text": "Support for FreeBSD's ports using the portupgrade ports management software.\nUse the port's full origin as the resource name. eg (ports-mgmt/portupgrade)\nfor the portupgrade port."
@@ -4025,7 +4025,7 @@
     {
       "name": "posix",
       "type_name": "file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/file/posix.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/file/posix.rb",
       "line": 1,
       "docstring": {
         "text": "Uses POSIX functionality to manage file ownership and permissions."
@@ -4040,7 +4040,7 @@
     {
       "name": "posix",
       "type_name": "exec",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/exec/posix.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/exec/posix.rb",
       "line": 3,
       "docstring": {
         "text": "Executes external binaries directly, without passing through a shell or\nperforming any interpolation. This is a safer and more predictable way\nto execute most commands, but prevents the use of globbing and shell\nbuilt-ins (including control logic like \"for\" and \"if\" statements)."
@@ -4063,7 +4063,7 @@
     {
       "name": "puppet_gem",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/puppet_gem.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/puppet_gem.rb",
       "line": 3,
       "docstring": {
         "text": "Puppet Ruby Gem support. This provider is useful for managing\ngems needed by the ruby provided in the puppet-agent package."
@@ -4077,7 +4077,7 @@
     {
       "name": "pw",
       "type_name": "group",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/group/pw.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/group/pw.rb",
       "line": 3,
       "docstring": {
         "text": "Group management via `pw` on FreeBSD and DragonFly BSD."
@@ -4103,7 +4103,7 @@
     {
       "name": "pw",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/pw.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/pw.rb",
       "line": 4,
       "docstring": {
         "text": "User management via `pw` on FreeBSD and DragonFly BSD."
@@ -4133,7 +4133,7 @@
     {
       "name": "rcng",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/rcng.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/rcng.rb",
       "line": 1,
       "docstring": {
         "text": "RCng service management with rc.d"
@@ -4153,7 +4153,7 @@
     {
       "name": "redhat",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/redhat.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/redhat.rb",
       "line": 3,
       "docstring": {
         "text": "Red Hat's (and probably many others') form of `init`-style service\nmanagement. Uses `chkconfig` for service enabling and disabling."
@@ -4184,7 +4184,7 @@
     {
       "name": "rpm",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/rpm.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/rpm.rb",
       "line": 4,
       "docstring": {
         "text": "RPM packaging support; should work anywhere with a working `rpm`\nbinary.\n\nThis provider supports the `install_options` and `uninstall_options`\nattributes, which allow command-line flags to be passed to rpm.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -4202,7 +4202,7 @@
     {
       "name": "rug",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/rug.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/rug.rb",
       "line": 1,
       "docstring": {
         "text": "Support for suse `rug` package manager."
@@ -4221,7 +4221,7 @@
     {
       "name": "runit",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/runit.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/runit.rb",
       "line": 4,
       "docstring": {
         "text": "Runit service management.\n\nThis provider manages daemons running supervised by Runit.\nWhen detecting the service directory it will check, in order of preference:\n\n* `/service`\n* `/etc/service`\n* `/var/service`\n\nThe daemon directory should be in one of the following locations:\n\n* `/etc/sv`\n* `/var/lib/service`\n\nor this can be overridden in the service resource parameters:\n\n    service { 'myservice':\n      provider => 'runit',\n      path     => '/path/to/daemons',\n    }\n\nThis provider supports out of the box:\n\n* start/stop\n* enable/disable\n* restart\n* status"
@@ -4233,7 +4233,7 @@
     {
       "name": "semodule",
       "type_name": "selmodule",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/selmodule/semodule.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/selmodule/semodule.rb",
       "line": 1,
       "docstring": {
         "text": "Manage SELinux policy modules using the semodule binary."
@@ -4245,7 +4245,7 @@
     {
       "name": "service",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/service.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/service.rb",
       "line": 1,
       "docstring": {
         "text": "The simplest form of service support."
@@ -4254,7 +4254,7 @@
     {
       "name": "shell",
       "type_name": "exec",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/exec/shell.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/exec/shell.rb",
       "line": 1,
       "docstring": {
         "text": "Passes the provided command through `/bin/sh`; only available on\nPOSIX systems. This allows the use of shell globbing and built-ins, and\ndoes not require that the path to a command be fully-qualified. Although\nthis can be more convenient than the `posix` provider, it also means that\nyou need to be more careful with escaping; as ever, with great power comes\netc. etc.\n\nThis provider closely resembles the behavior of the `exec` type\nin Puppet 0.25.x."
@@ -4266,7 +4266,7 @@
     {
       "name": "smf",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/smf.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/smf.rb",
       "line": 4,
       "docstring": {
         "text": "Support for Sun's new Service Management Framework.\n\nStarting a service is effectively equivalent to enabling it, so there is\nonly support for starting and stopping services, which also enables and\ndisables them, respectively.\n\nBy specifying `manifest => \"/path/to/service.xml\"`, the SMF manifest will\nbe imported if it does not exist."
@@ -4294,7 +4294,7 @@
     {
       "name": "solaris",
       "type_name": "zone",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/zone/solaris.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/zone/solaris.rb",
       "line": 1,
       "docstring": {
         "text": "Provider for Solaris Zones."
@@ -4315,7 +4315,7 @@
     {
       "name": "src",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/src.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/src.rb",
       "line": 4,
       "docstring": {
         "text": "Support for AIX's System Resource controller.\n\nServices are started/stopped based on the `stopsrc` and `startsrc`\ncommands, and some services can be refreshed with `refresh` command.\n\nEnabling and disabling services is not supported, as it requires\nmodifications to `/etc/inittab`. Starting and stopping groups of subsystems\nis not yet supported."
@@ -4338,7 +4338,7 @@
     {
       "name": "sun",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/sun.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/sun.rb",
       "line": 5,
       "docstring": {
         "text": "Sun's packaging system.  Requires that you specify the source for\nthe packages you're managing.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to pkgadd.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -4366,7 +4366,7 @@
     {
       "name": "sunfreeware",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/sunfreeware.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/sunfreeware.rb",
       "line": 2,
       "docstring": {
         "text": "Package management using sunfreeware.com's `pkg-get` command on Solaris.\nAt this point, support is exactly the same as `blastwave` support and\nhas not actually been tested."
@@ -4381,7 +4381,7 @@
     {
       "name": "systemd",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/systemd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/systemd.rb",
       "line": 3,
       "docstring": {
         "text": "Manages `systemd` services using `systemctl`.\n\nBecause `systemd` defaults to assuming the `.service` unit type, the suffix\nmay be omitted.  Other unit types (such as `.path`) may be managed by\nproviding the proper suffix."
@@ -4473,7 +4473,7 @@
     {
       "name": "tdnf",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/tdnf.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/tdnf.rb",
       "line": 1,
       "docstring": {
         "text": "Support via `tdnf`.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to tdnf.\nThese options should be spcified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}), or an\narray where each element is either a string or a hash."
@@ -4499,7 +4499,7 @@
     {
       "name": "up2date",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/up2date.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/up2date.rb",
       "line": 1,
       "docstring": {
         "text": "Support for Red Hat's proprietary `up2date` package update\nmechanism."
@@ -4526,13 +4526,14 @@
     {
       "name": "upstart",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/upstart.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/upstart.rb",
       "line": 1,
       "docstring": {
         "text": "Ubuntu service management with `upstart`.\n\nThis provider manages `upstart` jobs on Ubuntu. For `upstart` documentation,\nsee <http://upstart.ubuntu.com/>."
       },
       "confines": {
-        "any": "[\n    Facter.value(:operatingsystem) == 'Ubuntu',\n    (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\\./),\n    (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\\d{4}/),\n    Facter.value(:operatingsystem) == 'LinuxMint',\n  ]"
+        "any": "[\n    Facter.value(:operatingsystem) == 'Ubuntu',\n    (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\\./),\n    (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\\d{4}/),\n    Facter.value(:operatingsystem) == 'LinuxMint',\n  ]",
+        "true": "begin\n    initctl('version', '--quiet')\n    true\n  rescue\n    false\n  end"
       },
       "features": [
         "enableable"
@@ -4560,7 +4561,7 @@
     {
       "name": "urpmi",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/urpmi.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/urpmi.rb",
       "line": 1,
       "docstring": {
         "text": "Support via `urpmi`."
@@ -4586,7 +4587,7 @@
     {
       "name": "user_role_add",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/user_role_add.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/user_role_add.rb",
       "line": 5,
       "docstring": {
         "text": "User and role management on Solaris, via `useradd` and `roleadd`."
@@ -4620,7 +4621,7 @@
     {
       "name": "useradd",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/useradd.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/useradd.rb",
       "line": 7,
       "docstring": {
         "text": "User management via `useradd` and its ilk.  Note that you will need to\ninstall Ruby's shadow password library (often known as `ruby-libshadow`)\nif you wish to manage user passwords."
@@ -4641,7 +4642,7 @@
     {
       "name": "win32_taskscheduler",
       "type_name": "scheduled_task",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/scheduled_task/win32_taskscheduler.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/scheduled_task/win32_taskscheduler.rb",
       "line": 7,
       "docstring": {
         "text": "This provider manages scheduled tasks on Windows."
@@ -4661,7 +4662,7 @@
     {
       "name": "windows",
       "type_name": "file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/file/windows.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/file/windows.rb",
       "line": 1,
       "docstring": {
         "text": "Uses Microsoft Windows functionality to manage file ownership and permissions."
@@ -4673,7 +4674,7 @@
     {
       "name": "windows",
       "type_name": "service",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/service/windows.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/service/windows.rb",
       "line": 3,
       "docstring": {
         "text": "Support for Windows Service Control Manager (SCM). This provider can\nstart, stop, enable, and disable services, and the SCM provides working\nstatus methods for all services.\n\nControl of service groups (dependencies) is not yet supported, nor is running\nservices as a specific user."
@@ -4699,7 +4700,7 @@
     {
       "name": "windows",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/windows.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/windows.rb",
       "line": 5,
       "docstring": {
         "text": "Windows package management.\n\nThis provider supports either MSI or self-extracting executable installers.\n\nThis provider requires a `source` attribute when installing the package.\nIt accepts paths to local files, mapped drives, or UNC paths.\n\nThis provider supports the `install_options` and `uninstall_options`\nattributes, which allow command-line flags to be passed to the installer.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash.\n\nIf the executable requires special arguments to perform a silent install or\nuninstall, then the appropriate arguments should be specified using the\n`install_options` or `uninstall_options` attributes, respectively.  Puppet\nwill automatically quote any option that contains spaces."
@@ -4726,7 +4727,7 @@
     {
       "name": "windows",
       "type_name": "exec",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/exec/windows.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/exec/windows.rb",
       "line": 3,
       "docstring": {
         "text": "Execute external binaries on Windows systems. As with the `posix`\nprovider, this provider directly calls the command with the arguments\ngiven, without passing it through a shell or performing any interpolation.\nTo use shell built-ins --- that is, to emulate the `shell` provider on\nWindows --- a command must explicitly invoke the shell:\n\n    exec {'echo foo':\n      command => 'cmd.exe /c echo \"foo\"',\n    }\n\nIf no extension is specified for a command, Windows will use the `PATHEXT`\nenvironment variable to locate the executable.\n\n**Note on PowerShell scripts:** PowerShell's default `restricted`\nexecution policy doesn't allow it to run saved scripts. To run PowerShell\nscripts, specify the `remotesigned` execution policy as part of the\ncommand:\n\n    exec { 'test':\n      path    => 'C:/Windows/System32/WindowsPowerShell/v1.0',\n      command => 'powershell -executionpolicy remotesigned -file C:/test.ps1',\n    }"
@@ -4746,7 +4747,7 @@
     {
       "name": "windows_adsi",
       "type_name": "group",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/group/windows_adsi.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/group/windows_adsi.rb",
       "line": 3,
       "docstring": {
         "text": "Local group management for Windows. Group members can be both users and groups.\nAdditionally, local groups can contain domain users."
@@ -4769,7 +4770,7 @@
     {
       "name": "windows_adsi",
       "type_name": "user",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/user/windows_adsi.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/user/windows_adsi.rb",
       "line": 3,
       "docstring": {
         "text": "Local user management for Windows."
@@ -4793,7 +4794,7 @@
     {
       "name": "yum",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/yum.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/yum.rb",
       "line": 1,
       "docstring": {
         "text": "Support via `yum`.\n\nUsing this provider's `uninstallable` feature will not remove dependent packages. To\nremove dependent packages with this provider use the `purgeable` feature, but note this\nfeature is destructive and should be used with the utmost care.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to yum.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -4819,7 +4820,7 @@
     {
       "name": "zfs",
       "type_name": "zfs",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/zfs/zfs.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/zfs/zfs.rb",
       "line": 1,
       "docstring": {
         "text": "Provider for zfs."
@@ -4831,7 +4832,7 @@
     {
       "name": "zpool",
       "type_name": "zpool",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/zpool/zpool.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/zpool/zpool.rb",
       "line": 1,
       "docstring": {
         "text": "Provider for zpool."
@@ -4843,7 +4844,7 @@
     {
       "name": "zypper",
       "type_name": "package",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/provider/package/zypper.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/provider/package/zypper.rb",
       "line": 1,
       "docstring": {
         "text": "Support for SuSE `zypper` package manager. Found in SLES10sp2+ and SLES11.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to zypper.\nThese options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),\nor an array where each element is either a string or a hash."
@@ -4872,7 +4873,7 @@
   "puppet_functions": [
     {
       "name": "alert",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/alert.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/alert.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -4924,7 +4925,7 @@
     },
     {
       "name": "all",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/all.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/all.rb",
       "line": 62,
       "type": "ruby4x",
       "signatures": [
@@ -5218,7 +5219,7 @@
     },
     {
       "name": "annotate",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/annotate.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/annotate.rb",
       "line": 66,
       "type": "ruby4x",
       "signatures": [
@@ -5501,7 +5502,7 @@
     },
     {
       "name": "any",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/any.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/any.rb",
       "line": 67,
       "type": "ruby4x",
       "signatures": [
@@ -5795,7 +5796,7 @@
     },
     {
       "name": "assert_type",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/assert_type.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/assert_type.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -5831,7 +5832,7 @@
     },
     {
       "name": "assert_type",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/assert_type.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/assert_type.rb",
       "line": 53,
       "type": "ruby4x",
       "signatures": [
@@ -6019,7 +6020,7 @@
     },
     {
       "name": "binary_file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/binary_file.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/binary_file.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -6055,7 +6056,7 @@
     },
     {
       "name": "binary_file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/binary_file.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/binary_file.rb",
       "line": 18,
       "type": "ruby4x",
       "signatures": [
@@ -6111,7 +6112,7 @@
     },
     {
       "name": "break",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/break.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/break.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -6147,7 +6148,7 @@
     },
     {
       "name": "break",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/break.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/break.rb",
       "line": 34,
       "type": "ruby4x",
       "signatures": [
@@ -6197,7 +6198,7 @@
     },
     {
       "name": "call",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/call.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/call.rb",
       "line": 31,
       "type": "ruby4x",
       "signatures": [
@@ -6295,7 +6296,7 @@
     },
     {
       "name": "contain",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/contain.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/contain.rb",
       "line": 21,
       "type": "ruby4x",
       "signatures": [
@@ -6347,7 +6348,7 @@
     },
     {
       "name": "contain",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/contain.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/contain.rb",
       "line": 4,
       "type": "ruby3x",
       "signatures": [
@@ -6383,7 +6384,7 @@
     },
     {
       "name": "convert_to",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/convert_to.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/convert_to.rb",
       "line": 22,
       "type": "ruby4x",
       "signatures": [
@@ -6476,7 +6477,7 @@
     },
     {
       "name": "create_resources",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/create_resources.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/create_resources.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -6512,7 +6513,7 @@
     },
     {
       "name": "crit",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/crit.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/crit.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -6564,7 +6565,7 @@
     },
     {
       "name": "debug",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/debug.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/debug.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -6616,7 +6617,7 @@
     },
     {
       "name": "defined",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/defined.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/defined.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -6652,7 +6653,7 @@
     },
     {
       "name": "defined",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/defined.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/defined.rb",
       "line": 102,
       "type": "ruby4x",
       "signatures": [
@@ -6735,7 +6736,7 @@
     },
     {
       "name": "dig",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/dig.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/dig.rb",
       "line": 30,
       "type": "ruby4x",
       "signatures": [
@@ -6812,7 +6813,7 @@
     },
     {
       "name": "dig",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/dig.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/dig.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -6848,7 +6849,7 @@
     },
     {
       "name": "digest",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/digest.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/digest.rb",
       "line": 2,
       "type": "ruby3x",
       "signatures": [
@@ -6884,7 +6885,7 @@
     },
     {
       "name": "each",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/each.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/each.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -6920,7 +6921,7 @@
     },
     {
       "name": "each",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/each.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/each.rb",
       "line": 97,
       "type": "ruby4x",
       "signatures": [
@@ -7219,7 +7220,7 @@
     },
     {
       "name": "emerg",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/emerg.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/emerg.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -7271,7 +7272,7 @@
     },
     {
       "name": "empty",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/empty.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/empty.rb",
       "line": 24,
       "type": "ruby4x",
       "signatures": [
@@ -7534,7 +7535,7 @@
     },
     {
       "name": "epp",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/epp.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/epp.rb",
       "line": 37,
       "type": "ruby4x",
       "signatures": [
@@ -7606,7 +7607,7 @@
     },
     {
       "name": "epp",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/epp.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/epp.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -7642,7 +7643,7 @@
     },
     {
       "name": "err",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/err.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/err.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -7694,7 +7695,7 @@
     },
     {
       "name": "eyaml_lookup_key",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/eyaml_lookup_key.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/eyaml_lookup_key.rb",
       "line": 7,
       "type": "ruby4x",
       "signatures": [
@@ -7782,7 +7783,7 @@
     },
     {
       "name": "fail",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/fail.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/fail.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -7818,7 +7819,7 @@
     },
     {
       "name": "file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/file.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/file.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -7854,7 +7855,7 @@
     },
     {
       "name": "filter",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/filter.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/filter.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -7890,7 +7891,7 @@
     },
     {
       "name": "filter",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/filter.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/filter.rb",
       "line": 71,
       "type": "ruby4x",
       "signatures": [
@@ -8189,7 +8190,7 @@
     },
     {
       "name": "find_file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/find_file.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/find_file.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -8225,7 +8226,7 @@
     },
     {
       "name": "find_file",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/find_file.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/find_file.rb",
       "line": 20,
       "type": "ruby4x",
       "signatures": [
@@ -8339,7 +8340,7 @@
     },
     {
       "name": "flatten",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/flatten.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/flatten.rb",
       "line": 56,
       "type": "ruby4x",
       "signatures": [
@@ -8415,7 +8416,7 @@
     },
     {
       "name": "fqdn_rand",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/fqdn_rand.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/fqdn_rand.rb",
       "line": 4,
       "type": "ruby3x",
       "signatures": [
@@ -8451,7 +8452,7 @@
     },
     {
       "name": "generate",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/generate.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/generate.rb",
       "line": 2,
       "type": "ruby3x",
       "signatures": [
@@ -8487,7 +8488,7 @@
     },
     {
       "name": "hiera",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera.rb",
       "line": 4,
       "type": "ruby3x",
       "signatures": [
@@ -8523,7 +8524,7 @@
     },
     {
       "name": "hiera",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/hiera.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/hiera.rb",
       "line": 86,
       "type": "ruby4x",
       "signatures": [
@@ -8557,7 +8558,7 @@
     },
     {
       "name": "hiera_array",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/hiera_array.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/hiera_array.rb",
       "line": 75,
       "type": "ruby4x",
       "signatures": [
@@ -8591,7 +8592,7 @@
     },
     {
       "name": "hiera_array",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera_array.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera_array.rb",
       "line": 4,
       "type": "ruby3x",
       "signatures": [
@@ -8627,7 +8628,7 @@
     },
     {
       "name": "hiera_hash",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera_hash.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera_hash.rb",
       "line": 4,
       "type": "ruby3x",
       "signatures": [
@@ -8663,7 +8664,7 @@
     },
     {
       "name": "hiera_hash",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/hiera_hash.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/hiera_hash.rb",
       "line": 86,
       "type": "ruby4x",
       "signatures": [
@@ -8697,7 +8698,7 @@
     },
     {
       "name": "hiera_include",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera_include.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/hiera_include.rb",
       "line": 4,
       "type": "ruby3x",
       "signatures": [
@@ -8733,7 +8734,7 @@
     },
     {
       "name": "hiera_include",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/hiera_include.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/hiera_include.rb",
       "line": 93,
       "type": "ruby4x",
       "signatures": [
@@ -8772,7 +8773,7 @@
     },
     {
       "name": "hocon_data",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/hocon_data.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/hocon_data.rb",
       "line": 9,
       "type": "ruby4x",
       "signatures": [
@@ -8844,7 +8845,7 @@
     },
     {
       "name": "import",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/import.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/import.rb",
       "line": 3,
       "type": "ruby4x",
       "signatures": [
@@ -8896,7 +8897,7 @@
     },
     {
       "name": "include",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/include.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/include.rb",
       "line": 2,
       "type": "ruby3x",
       "signatures": [
@@ -8932,7 +8933,7 @@
     },
     {
       "name": "include",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/include.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/include.rb",
       "line": 29,
       "type": "ruby4x",
       "signatures": [
@@ -8984,7 +8985,7 @@
     },
     {
       "name": "info",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/info.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/info.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -9036,7 +9037,7 @@
     },
     {
       "name": "inline_epp",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/inline_epp.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/inline_epp.rb",
       "line": 48,
       "type": "ruby4x",
       "signatures": [
@@ -9108,7 +9109,7 @@
     },
     {
       "name": "inline_epp",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/inline_epp.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/inline_epp.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -9144,7 +9145,7 @@
     },
     {
       "name": "inline_template",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/inline_template.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/inline_template.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -9180,7 +9181,7 @@
     },
     {
       "name": "join",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/join.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/join.rb",
       "line": 47,
       "type": "ruby4x",
       "signatures": [
@@ -9268,7 +9269,7 @@
     },
     {
       "name": "json_data",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/json_data.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/json_data.rb",
       "line": 7,
       "type": "ruby4x",
       "signatures": [
@@ -9340,7 +9341,7 @@
     },
     {
       "name": "keys",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/keys.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/keys.rb",
       "line": 17,
       "type": "ruby4x",
       "signatures": [
@@ -9397,7 +9398,7 @@
     },
     {
       "name": "length",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/length.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/length.rb",
       "line": 19,
       "type": "ruby4x",
       "signatures": [
@@ -9564,7 +9565,7 @@
     },
     {
       "name": "lest",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/lest.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/lest.rb",
       "line": 42,
       "type": "ruby4x",
       "signatures": [
@@ -9641,7 +9642,7 @@
     },
     {
       "name": "lest",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/lest.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/lest.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -9677,7 +9678,7 @@
     },
     {
       "name": "lookup",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/lookup.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/lookup.rb",
       "line": 125,
       "type": "ruby4x",
       "signatures": [
@@ -10126,7 +10127,7 @@
     },
     {
       "name": "lookup",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/lookup.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/lookup.rb",
       "line": 2,
       "type": "ruby3x",
       "signatures": [
@@ -10162,7 +10163,7 @@
     },
     {
       "name": "map",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/map.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/map.rb",
       "line": 69,
       "type": "ruby4x",
       "signatures": [
@@ -10461,7 +10462,7 @@
     },
     {
       "name": "map",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/map.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/map.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -10497,7 +10498,7 @@
     },
     {
       "name": "match",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/match.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/match.rb",
       "line": 37,
       "type": "ruby4x",
       "signatures": [
@@ -10658,7 +10659,7 @@
     },
     {
       "name": "match",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/match.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/match.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -10694,7 +10695,7 @@
     },
     {
       "name": "md5",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/md5.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/md5.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -10730,7 +10731,7 @@
     },
     {
       "name": "module_directory",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/module_directory.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/module_directory.rb",
       "line": 19,
       "type": "ruby4x",
       "signatures": [
@@ -10844,7 +10845,7 @@
     },
     {
       "name": "new",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/new.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/new.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -10880,7 +10881,7 @@
     },
     {
       "name": "new",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/new.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/new.rb",
       "line": 999,
       "type": "ruby4x",
       "signatures": [
@@ -11048,7 +11049,7 @@
     },
     {
       "name": "next",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/next.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/next.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -11084,7 +11085,7 @@
     },
     {
       "name": "next",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/next.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/next.rb",
       "line": 6,
       "type": "ruby4x",
       "signatures": [
@@ -11140,7 +11141,7 @@
     },
     {
       "name": "notice",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/notice.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/notice.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -11192,7 +11193,7 @@
     },
     {
       "name": "realize",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/realize.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/realize.rb",
       "line": 4,
       "type": "ruby3x",
       "signatures": [
@@ -11228,7 +11229,7 @@
     },
     {
       "name": "reduce",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/reduce.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/reduce.rb",
       "line": 130,
       "type": "ruby4x",
       "signatures": [
@@ -11410,7 +11411,7 @@
     },
     {
       "name": "reduce",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/reduce.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/reduce.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -11446,7 +11447,7 @@
     },
     {
       "name": "regsubst",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/regsubst.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/regsubst.rb",
       "line": 28,
       "type": "ruby3x",
       "signatures": [
@@ -11482,7 +11483,7 @@
     },
     {
       "name": "regsubst",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/regsubst.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/regsubst.rb",
       "line": 41,
       "type": "ruby4x",
       "signatures": [
@@ -11714,7 +11715,7 @@
     },
     {
       "name": "require",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/require.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/require.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -11750,7 +11751,7 @@
     },
     {
       "name": "require",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/require.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/require.rb",
       "line": 37,
       "type": "ruby4x",
       "signatures": [
@@ -11802,7 +11803,7 @@
     },
     {
       "name": "return",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/return.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/return.rb",
       "line": 6,
       "type": "ruby4x",
       "signatures": [
@@ -11858,7 +11859,7 @@
     },
     {
       "name": "return",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/return.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/return.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -11894,7 +11895,7 @@
     },
     {
       "name": "reverse_each",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/reverse_each.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/reverse_each.rb",
       "line": 75,
       "type": "ruby4x",
       "signatures": [
@@ -12044,7 +12045,7 @@
     },
     {
       "name": "reverse_each",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/reverse_each.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/reverse_each.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -12080,7 +12081,7 @@
     },
     {
       "name": "scanf",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/scanf.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/scanf.rb",
       "line": 28,
       "type": "ruby4x",
       "signatures": [
@@ -12168,7 +12169,7 @@
     },
     {
       "name": "scanf",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/scanf.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/scanf.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -12204,7 +12205,7 @@
     },
     {
       "name": "sha1",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/sha1.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/sha1.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -12240,7 +12241,7 @@
     },
     {
       "name": "sha256",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/sha256.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/sha256.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -12276,7 +12277,7 @@
     },
     {
       "name": "shellquote",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/shellquote.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/shellquote.rb",
       "line": 27,
       "type": "ruby3x",
       "signatures": [
@@ -12312,7 +12313,7 @@
     },
     {
       "name": "slice",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/slice.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/slice.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -12348,7 +12349,7 @@
     },
     {
       "name": "slice",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/slice.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/slice.rb",
       "line": 47,
       "type": "ruby4x",
       "signatures": [
@@ -12546,7 +12547,7 @@
     },
     {
       "name": "split",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/split.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/split.rb",
       "line": 22,
       "type": "ruby4x",
       "signatures": [
@@ -12757,7 +12758,7 @@
     },
     {
       "name": "split",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/split.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/split.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -12793,7 +12794,7 @@
     },
     {
       "name": "sprintf",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/sprintf.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/sprintf.rb",
       "line": 27,
       "type": "ruby3x",
       "signatures": [
@@ -12829,7 +12830,7 @@
     },
     {
       "name": "step",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/step.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/step.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -12865,7 +12866,7 @@
     },
     {
       "name": "step",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/step.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/step.rb",
       "line": 77,
       "type": "ruby4x",
       "signatures": [
@@ -13037,7 +13038,7 @@
     },
     {
       "name": "strftime",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/strftime.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/strftime.rb",
       "line": 179,
       "type": "ruby4x",
       "signatures": [
@@ -13269,7 +13270,7 @@
     },
     {
       "name": "strftime",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/strftime.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/strftime.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -13305,7 +13306,7 @@
     },
     {
       "name": "tag",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/tag.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/tag.rb",
       "line": 2,
       "type": "ruby3x",
       "signatures": [
@@ -13341,7 +13342,7 @@
     },
     {
       "name": "tagged",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/tagged.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/tagged.rb",
       "line": 2,
       "type": "ruby3x",
       "signatures": [
@@ -13373,11 +13374,11 @@
           }
         ]
       },
-      "source": "Puppet::Parser::Functions::newfunction(:tagged, :type => :rvalue, :arity => -2, :doc => \"A boolean function that\n  tells you whether the current container is tagged with the specified tags.\n  The tags are ANDed, so that all of the specified tags must be included for\n  the function to return true.\") do |vals|\n    if Puppet[:tasks]\n      raise Puppet::ParseErrorWithIssue.from_issue_and_stack(\n        Puppet::Pops::Issues::CATALOG_OPERATION_NOT_SUPPORTED_WHEN_SCRIPTING,\n        {:operation => 'tagged'})\n    end\n\n    configtags = compiler.catalog.tags\n    resourcetags = resource.tags\n\n    retval = true\n    vals.each do |val|\n      unless configtags.include?(val) or resourcetags.include?(val)\n        retval = false\n        break\n      end\n    end\n\n    return retval\nend"
+      "source": "Puppet::Parser::Functions::newfunction(:tagged, :type => :rvalue, :arity => -2, :doc => \"A boolean function that\n  tells you whether the current container is tagged with the specified tags.\n  The tags are ANDed, so that all of the specified tags must be included for\n  the function to return true.\") do |vals|\n    if Puppet[:tasks]\n      raise Puppet::ParseErrorWithIssue.from_issue_and_stack(\n        Puppet::Pops::Issues::CATALOG_OPERATION_NOT_SUPPORTED_WHEN_SCRIPTING,\n        {:operation => 'tagged'})\n    end\n\n    retval = true\n    vals.each do |val|\n      unless compiler.catalog.tagged?(val) or resource.tagged?(val)\n        retval = false\n        break\n      end\n    end\n\n    return retval\nend"
     },
     {
       "name": "template",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/template.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/template.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -13413,7 +13414,7 @@
     },
     {
       "name": "then",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/then.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/then.rb",
       "line": 67,
       "type": "ruby4x",
       "signatures": [
@@ -13491,7 +13492,7 @@
     },
     {
       "name": "then",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/then.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/then.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -13527,7 +13528,7 @@
     },
     {
       "name": "tree_each",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/tree_each.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/tree_each.rb",
       "line": 145,
       "type": "ruby4x",
       "signatures": [
@@ -13804,7 +13805,7 @@
     },
     {
       "name": "type",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/type.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/type.rb",
       "line": 45,
       "type": "ruby4x",
       "signatures": [
@@ -14024,7 +14025,7 @@
     },
     {
       "name": "type",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/type.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/type.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -14060,7 +14061,7 @@
     },
     {
       "name": "unique",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/unique.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/unique.rb",
       "line": 86,
       "type": "ruby4x",
       "signatures": [
@@ -14364,7 +14365,7 @@
     },
     {
       "name": "unwrap",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/unwrap.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/unwrap.rb",
       "line": 30,
       "type": "ruby4x",
       "signatures": [
@@ -14446,7 +14447,7 @@
     },
     {
       "name": "values",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/values.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/values.rb",
       "line": 17,
       "type": "ruby4x",
       "signatures": [
@@ -14503,7 +14504,7 @@
     },
     {
       "name": "versioncmp",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/versioncmp.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/versioncmp.rb",
       "line": 26,
       "type": "ruby4x",
       "signatures": [
@@ -14576,7 +14577,7 @@
     },
     {
       "name": "versioncmp",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/versioncmp.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/versioncmp.rb",
       "line": 3,
       "type": "ruby3x",
       "signatures": [
@@ -14612,7 +14613,7 @@
     },
     {
       "name": "warning",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/warning.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/warning.rb",
       "line": 2,
       "type": "ruby4x",
       "signatures": [
@@ -14664,7 +14665,7 @@
     },
     {
       "name": "with",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/parser/functions/with.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/parser/functions/with.rb",
       "line": 1,
       "type": "ruby3x",
       "signatures": [
@@ -14700,7 +14701,7 @@
     },
     {
       "name": "with",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/with.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/with.rb",
       "line": 23,
       "type": "ruby4x",
       "signatures": [
@@ -14777,7 +14778,7 @@
     },
     {
       "name": "yaml_data",
-      "file": "/Users/gguillotte/Documents/git/puppet-docs/vendor/puppet/lib/puppet/functions/yaml_data.rb",
+      "file": "/Users/michellefredette/puppet-docs/vendor/puppet/lib/puppet/functions/yaml_data.rb",
       "line": 9,
       "type": "ruby4x",
       "signatures": [

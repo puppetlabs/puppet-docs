@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
 title: 'Man Page: puppet cert'
 canonical: "/puppet/latest/man/cert.html"
 ---
@@ -8,7 +8,7 @@ canonical: "/puppet/latest/man/cert.html"
 <div class='mp'>
 <h2 id="NAME">NAME</h2>
 <p class="man-name">
-  <code>puppet-cert</code> - <span class="man-whatis">Manage certificates and requests</span>
+  <code>puppet-cert</code> - <span class="man-whatis">Manage certificates and requests (Deprecated)</span>
 </p>
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>

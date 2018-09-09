@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
 title: 'Man Page: puppet resource'
 canonical: "/puppet/latest/man/resource.html"
 ---

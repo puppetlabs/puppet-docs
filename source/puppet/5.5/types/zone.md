@@ -5,7 +5,7 @@ title: 'Resource Type: zone'
 canonical: "/puppet/latest/types/zone.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 15:52:20 -0700
 
 zone
 -----
@@ -242,8 +242,8 @@ And then call that:
       realhostname => 'fully.qualified.domain.name',
     }
 
-The `sysidcfg` matters only on the first booting of the zone,
-so Puppet checks for it only at that time.
+The `sysidcfg` only matters on the first booting of the zone,
+so Puppet only checks for it at that time.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
@@ -260,4 +260,4 @@ Provider for Solaris Zones.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

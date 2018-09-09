@@ -5,7 +5,7 @@ title: 'Resource Type: mcx'
 canonical: "/puppet/latest/types/mcx.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 mcx
 -----
@@ -140,7 +140,7 @@ Original Author: Jeff McCune (mccune.jeff@gmail.com)
 
 * Required binaries: `/usr/bin/dscl`
 * Confined to: `operatingsystem == darwin`
-* Default for: `operatingsystem` == `darwin`
+* Default for: `operatingsystem == darwin`
 * Supported features: `manages_content`
 
 <h3 id="mcx-provider-features">Provider Features</h3>
@@ -168,4 +168,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

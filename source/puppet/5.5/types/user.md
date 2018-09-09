@@ -5,7 +5,7 @@ title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 user
 -----
@@ -101,7 +101,7 @@ Allowed values:
 
 <h4 id="user-attribute-allowdupe">allowdupe</h4>
 
-Whether to allow duplicate UIDs.
+Whether to allow duplicate UIDs. 
 
 Default: `false`
 
@@ -497,6 +497,11 @@ with the `ssh_authorized_key` resource type. Allowed values are:
 
 Default: `false`
 
+Allowed values:
+
+* `true`
+* `false`
+
 ([↑ Back to user attributes](#user-attributes))
 
 <h4 id="user-attribute-role_membership">role_membership</h4>
@@ -857,4 +862,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
