@@ -357,11 +357,6 @@ Provider support:
 </table>
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 computer
 -----
 
@@ -475,11 +470,6 @@ type as per other platforms.
 * Default for `operatingsystem` == `darwin`.
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 cron
 -----
@@ -731,11 +721,6 @@ must be either:
 * Required binaries: `crontab`.
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 exec
 -----
@@ -1131,9 +1116,6 @@ command:
 * Default for `operatingsystem` == `windows`.
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 file
 -----
@@ -1884,8 +1866,6 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 filebucket
 -----
@@ -1971,9 +1951,6 @@ This setting is _only_ consulted if the `path` attribute is set to `false`.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 group
 -----
@@ -2280,8 +2257,6 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 host
 -----
@@ -2379,13 +2354,6 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 
 
-
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 interface
 -----
@@ -2571,10 +2539,6 @@ Cisco switch/router provider for interface.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 k5login
 -----
 
@@ -2706,10 +2670,6 @@ The k5login provider is the only provider for the k5login
 type.
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 macauthorization
 -----
@@ -2931,9 +2891,7 @@ Manage Mac OS X authorization database rules and rights.
 * Required binaries: `/usr/bin/security`.
 * Default for `operatingsystem` == `darwin`.
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 mailalias
 -----
@@ -3023,10 +2981,6 @@ those providers that write to disk.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 maillist
 -----
@@ -3121,10 +3075,6 @@ The name of the host providing web archives and the administrative interface.
 * Required binaries: `/var/lib/mailman/mail/mailman`, `list_lists`, `newlist`, `rmlist`.
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 mcx
 -----
@@ -3280,8 +3230,6 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 mount
 -----
@@ -3486,8 +3434,7 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
 
 nagios_command
 -----
@@ -3626,12 +3573,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_contact
 -----
@@ -3951,11 +3892,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 nagios_contactgroup
 -----
 
@@ -4112,10 +4048,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_host
 -----
@@ -4643,11 +4575,6 @@ Nagios configuration file parameter.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 nagios_hostdependency
 -----
 
@@ -4847,12 +4774,6 @@ Nagios configuration file parameter.
 <h4 id="nagios_hostdependency-provider-naginator">naginator</h4>
 
 
-
-
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_hostescalation
 -----
@@ -5063,12 +4984,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 nagios_hostextinfo
 -----
 
@@ -5252,11 +5167,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_hostgroup
 -----
@@ -5450,10 +5360,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_service
 -----
@@ -5991,9 +5897,6 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 nagios_servicedependency
 -----
 
@@ -6215,8 +6118,6 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_serviceescalation
 -----
@@ -6446,11 +6347,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 nagios_serviceextinfo
 -----
 
@@ -6643,11 +6539,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 nagios_servicegroup
 -----
 
@@ -6831,10 +6722,6 @@ Nagios configuration file parameter.
 
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 nagios_timeperiod
 -----
@@ -7048,9 +6935,6 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 notify
 -----
 
@@ -7097,8 +6981,6 @@ Valid values are `true`, `false`.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 package
 -----
@@ -8518,8 +8400,7 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
 
 resources
 -----
@@ -8585,9 +8466,6 @@ To specify a range of uids, consider using the range() function from stdlib.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 router
 -----
 
@@ -8616,9 +8494,6 @@ An SSH or telnet URL at which to access the router, in the form
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 schedule
 -----
@@ -8801,9 +8676,6 @@ at 2 AM on Saturday.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 scheduled_task
 -----
@@ -9025,8 +8897,6 @@ This provider manages scheduled tasks on Windows.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 selboolean
 -----
@@ -9100,9 +8970,6 @@ Manage SELinux booleans using the getsebool and setsebool binaries.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 selmodule
 -----
@@ -9205,9 +9072,6 @@ Manage SELinux policy modules using the semodule binary.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 service
 -----
@@ -9938,8 +9802,6 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 ssh_authorized_key
 -----
@@ -10098,8 +9960,6 @@ Parse and generate authorized_keys files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 sshkey
 -----
@@ -10212,8 +10072,6 @@ Parse and generate host-wide known hosts files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 stage
 -----
@@ -10262,9 +10120,6 @@ when assigning classes to this stage.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 tidy
 -----
@@ -10399,9 +10254,6 @@ Valid values are `atime`, `mtime`, `ctime`.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 user
 -----
@@ -11213,8 +11065,7 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
+
 
 vlan
 -----
@@ -11293,8 +11144,6 @@ Cisco switch/router provider for vlans.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 yumrepo
 -----
@@ -11901,8 +11750,6 @@ section will be created in '/etc/yum.conf'.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 zfs
 -----
@@ -12257,9 +12104,6 @@ Provider for zfs.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 zone
 -----
 
@@ -12494,10 +12338,6 @@ Provider for Solaris Zones.
 * Default for `osfamily` == `solaris`.
 
 
-
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
 zpool
 -----
