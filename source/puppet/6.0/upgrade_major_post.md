@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 3.8.x to 5.x: Post-upgrade clean-up"
+title: "Puppet 3.8.x to 6.x: Post-upgrade clean-up"
 ---
 
 [moved]: ./whered_it_go.html

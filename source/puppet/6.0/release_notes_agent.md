@@ -3,15 +3,6 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 5.0.0]: /docs/puppet/5.0/release_notes.html#puppet-500
-[Puppet 5.1.0]: /docs/puppet/5.1/release_notes.html#puppet-510
-[Puppet 5.2.0]: /docs/puppet/5.2/release_notes.html#puppet-520
-[Puppet 5.3.1]: /docs/puppet/5.3/release_notes.html#puppet-531
-[Puppet 5.4.0]: /docs/puppet/5.4/release_notes.html#puppet-540
-[Puppet 5.5.0]: /docs/puppet/5.5/release_notes.html#puppet-550
-[Puppet 5.5.1]: /docs/puppet/5.5/release_notes.html#puppet-551
-[Puppet 5.5.2]: /docs/puppet/5.5/release_notes.html#puppet-552
-[Puppet 5.5.3]: /docs/puppet/5.5/release_notes.html#puppet-553
 [Puppet 5.5.6]: /docs/puppet/5.5/release_notes.html#puppet-556
 
 [Facter 3.10.0]: /docs/facter/3.10/release_notes.html#facter-3100
@@ -37,7 +28,7 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 The `puppet-agent` package installs the latest version of Puppet 5.
 
-Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
+Also of interest: [About Agent](./about_agent.html) and the [Puppet 5.5.6][] release notes.
 
 ## Puppet agent 5.5.6
 

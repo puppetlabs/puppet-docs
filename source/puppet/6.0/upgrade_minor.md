@@ -1,12 +1,12 @@
 ---
 layout: default
-title: "Minor upgrades: From Puppet 4 and within Puppet 5.x"
+title: "Minor upgrades: From Puppet 5 and within Puppet 6.x"
 ---
 
 [`puppetlabs/puppetdb`]: https://forge.puppetlabs.com/puppetlabs/puppetdb
 [major upgrades]: ./upgrade_major_pre.html
 
-A minor upgrade is an upgrade from Puppet 4 to Puppet 5, or from one Puppet 5 release to another. The order in which you upgrade packages is important. Always upgrade `puppetserver` on your masters _before_ you upgrade agents. You can upgrade PuppetDB before or after you upgrade other nodes.
+A minor upgrade is an upgrade from Puppet 5 to Puppet 6, or from one Puppet 6 release to another. The order in which you upgrade packages is important. Always upgrade `puppetserver` on your masters _before_ you upgrade agents. You can upgrade PuppetDB before or after you upgrade other nodes.
 
 ## Upgrade Puppet Server
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Puppet 3.8.x to 5.x: Get upgrade-ready"
+title: "Puppet 3.8.x to 6.x: Get upgrade-ready"
 ---
 
 Puppet 4 was a major upgrade from Puppet 3.8, with lots of configuration and functionality changes, and Puppet 5 removed a lot of features and settings that were deprecated in Puppet 4.x. Because Puppet likely manages your entire infrastructure, it should be **upgraded with care**. Specifically, you should try to:
@@ -11,7 +11,7 @@ Puppet 4 was a major upgrade from Puppet 3.8, with lots of configuration and fun
 
 This page provides steps you should take before starting the upgrade to help prepare for a safe transition. See the navigation to the left for the actual upgrade steps and post-upgrade tasks.
 
-## Update to the latest Puppet Server 1.1.x, Puppet 3.8.x, and PuppetDB 2.3.x
+## Update to the latest versions of Puppet Server 1.1.x, Puppet 3.8.x, and PuppetDB 2.3.x
 
 > **Before you begin:** Ensure all your Puppet components are running the latest Puppet 3 versions, checking and updating in the following order.
 
@@ -35,12 +35,12 @@ Puppet 3.8 [deprecated several features][deprecations] which are either removed 
 
 ## Stop stringifying facts, and check for breakage
 
-Puppet 5 always uses proper [data types](./lang_data.html) for facts, but Puppet 3 converts all facts to Strings by default. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
+Puppet 6 always uses proper [data types](./lang_data.html) for facts, but Puppet 3 converts all facts to Strings by default. If any of your modules or manifests rely on this behavior, you'll need to adjust them before you upgrade.
 
 If you've already set [`stringify_facts = false`](/puppet/3.8/deprecated_settings.html#stringifyfacts--true) in `puppet.conf` on every node in your deployment, skip to the [next section](#enable-directory-environments-and-move-code-into-them). Otherwise:
 
 1.  Check your Puppet code for any comparisons that _treat boolean facts like strings,_ like `if $::is_virtual == "true" {...}`, and change them so they'll work with true Boolean values.
-  - If you need to support Puppet 3 and 5 with the same code, you can instead use something like `if str2bool("$::is_virtual") {...}`.
+  - If you need to support Puppet 3 and 6 with the same code, you can instead use something like `if str2bool("$::is_virtual") {...}`.
 2.  Next, set `stringify_facts = false` in `puppet.conf` on every node in your deployment. To have Puppet change this setting, use an [`inifile` resource](https://forge.puppetlabs.com/puppetlabs/inifile).
 3.  Watch the next set of Puppet runs for any problems with your code.
 4.  Repeat until all of your Puppet code is working correctly!
@@ -57,7 +57,7 @@ Puppet now organizes all code into [directory environments](./environments.html)
 
 ## Enable the future parser and fix broken code
 
-The [future parser](/puppet/3.8/experiments_future.html) in Puppet 3 is the current parser in Puppet 5. If you haven't [enabled the future parser](/puppet/3.8/experiments_future.html#enabling-the-future-parser) yet, do so now and check for problems in your current Puppet code during the next Puppet run.
+The [future parser](/puppet/3.8/experiments_future.html) in Puppet 3 is the current parser in Puppet 6. If you haven't [enabled the future parser](/puppet/3.8/experiments_future.html#enabling-the-future-parser) yet, do so now and check for problems in your current Puppet code during the next Puppet run.
 
 To change the parser per-environment:
 
