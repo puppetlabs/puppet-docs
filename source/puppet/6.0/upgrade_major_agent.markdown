@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Upgrading Puppet 3.8.x agents to 5.x"
+title: "Upgrading Puppet 3.8.x agents to 6.x"
 ---
 
 [Hiera]: /hiera/

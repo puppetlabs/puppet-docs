@@ -11,7 +11,7 @@ title: "Updating Puppet 3.x manifests"
 [expressions]: ./lang_expressions.html
 [boolean]: ./lang_data_boolean.html
 
-Several breaking changes were introduced in Puppet 4.0, which remain true in Puppet 5.x. If you are upgrading from Puppet 3.x, update your manifests with new implementations introduced by those changes. This page lists the most important steps to update your manifests to be compatible with Puppet 5.
+Several breaking changes were introduced in Puppet 4.0, which remain true in Puppet 6.x. If you are upgrading from Puppet 3.x, update your manifests with new implementations introduced by those changes. This page lists the most important steps to update your manifests to be compatible with Puppet 6.
 
 ## Make sure everything is in the right place
 
