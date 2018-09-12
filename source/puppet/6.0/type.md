@@ -119,6 +119,31 @@ declare which features they provide.
 
 > **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
+Supported and bundled
+--------------------
+
+- `augeas`: https://forge.puppet.com/puppetlabs/augeas_core
+- `cron`: https://forge.puppet.com/puppetlabs/cron_core
+- `host`: https://forge.puppet.com/puppetlabs/host_core
+- `mount`: https://forge.puppet.com/puppetlabs/mount_core
+- `scheduled_task`: https://forge.puppet.com/puppetlabs/scheduled_task
+- `selboolean`: https://forge.puppet.com/puppetlabs/selinux_core
+- `selmodule`: https://forge.puppet.com/puppetlabs/selinux_core
+- `ssh_authorized_key`: https://forge.puppet.com/puppetlabs/sshkeys_core
+- `sshkey`: https://forge.puppet.com/puppetlabs/sshkeys_core
+- `yumrepo`: https://forge.puppet.com/puppetlabs/yumrepo_core
+- `zfs`: https://forge.puppet.com/puppetlabs/zfs_core
+- `zone`: https://forge.puppet.com/puppetlabs/zone_core
+- `zpool`: https://forge.puppet.com/puppetlabs/zfs_core
+
+
+
+Unbundled but active
+-----------
+
+- `k5login`: https://forge.puppet.com/puppetlabs/k5login_core
+- `mailalias`: https://forge.puppet.com/puppetlabs/mailalias_core
+- `maillist`: https://forge.puppet.com/puppetlabs/maillist_core
 
 
 
@@ -5552,38 +5577,3 @@ Cisco switch/router provider for vlans.
 
 
 
-Supported and bundled
---------------------
-
-- `augeas`: https://forge.puppet.com/puppetlabs/augeas_core
-- `cron`: https://forge.puppet.com/puppetlabs/cron_core
-- `host`: https://forge.puppet.com/puppetlabs/host_core
-- `mount`: https://forge.puppet.com/puppetlabs/mount_core
-- `scheduled_task`: https://forge.puppet.com/puppetlabs/scheduled_task
-- `selboolean`: https://forge.puppet.com/puppetlabs/selinux_core
-- `selmodule`: https://forge.puppet.com/puppetlabs/selinux_core
-- `sshkey`: https://forge.puppet.com/puppetlabs/sshkeys_core
-- `yumrepo`: https://forge.puppet.com/puppetlabs/yumrepo_core
-- `zfs`: https://forge.puppet.com/puppetlabs/zfs_core
-- `zone`: https://forge.puppet.com/puppetlabs/zone_core
-- `zpool`: https://forge.puppet.com/puppetlabs/zfs_core
-
-
-
-Unbundled but active
------------
-
-- `k5login`: https://forge.puppet.com/puppetlabs/k5login_core
-- `mailalias`: https://forge.puppet.com/puppetlabs/mailalias_core
-- `maillist`: https://forge.puppet.com/puppetlabs/maillist_core
-
-
-
-Deprecated
-----------
-
-- `computer`
-- `macauthorization`
-- `mcx`
-- Nagios types
-- Cisco network device types
