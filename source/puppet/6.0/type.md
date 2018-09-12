@@ -1,10 +1,3 @@
----
-layout: default
-built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
-title: Resource Type Reference (Single-Page)
-toc_levels: 2
-toc: columns
----
 
 ---
 layout: default
