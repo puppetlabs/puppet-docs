@@ -29,17 +29,8 @@ Released 18 September 2018
 
 ### New features and improvements
 
+The following subcommands were deprecated in Puppet 5.5.6. They are now un-deprecated. 
 
-
-### Bug fixes
-
-
-
-
-
-### Deprecations
-
--   All Puppet subcommands that perform actions on the CA are deprecated. This includes `cert`, `ca`, `certificate`, `certificate_revocation_list`, and `certificate_request`. Their functionality will be replaced in Puppet 6 by a new CA command-line interface under Puppet Server, and a new client-side subcommand for SSL client tasks. This change deprecates `puppet.conf` settings:
 
     -   `ca_name`
     -   `cadir`
@@ -57,6 +48,17 @@ Released 18 September 2018
     -   `ca_ttl`
     -   `cert_inventory`
 
+### Bug fixes
+
+
+
+
+
+### Deprecations
+
+- The `computer`, `macauthorization`, and `mcx` types and providers have been moved to a module: https://forge.puppet.com/puppetlabs/macdslocal_core. It is not being repackaged into puppet-agent for 6.0
+- The Nagios types no longer ship with Puppet, and are now available as the `puppetlabs/nagios_core` module from the Forge.
+- The Cisco network device types no longer ship with Puppet. These types and providers have been deprecated in favor of the `puppetlabs/cisco_ios` module, which is available on the Forge.
     
 
 
