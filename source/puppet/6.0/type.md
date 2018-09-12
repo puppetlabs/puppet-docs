@@ -1,4 +1,3 @@
-
 ---
 layout: default
 built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
