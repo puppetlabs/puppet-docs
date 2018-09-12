@@ -1,24 +1,22 @@
 ---
 layout: default
 built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
-title: Resource Type Reference (Single-Page)
+title: Resource Type Reference 
 canonical: "/puppet/latest/type.html"
 toc_levels: 2
 toc: columns
 ---
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
-
 ## About resource types
 
-### Built-in types and custom types
+### Built-in, repackaged, and custom types
 
-This is the documentation for the _built-in_ resource types and providers, keyed
-to a specific Puppet version. (See sidebar.) Additional resource types are
-distributed in Puppet modules; you can find and install modules by browsing the
+This is the documentation for the _built-in_ resource types and providers. Additional resource types are distributed in Puppet modules, including some types that were built-in before Puppet 6.0. These are now repackaged from modules into Puppet agent.
+
+You can find and install modules by browsing the
 [Puppet Forge](http://forge.puppetlabs.com). See each module's documentation for
-information on how to use its custom resource types.
+information on how to use its custom resource types. For more information about creating custom types, see [Custom resources](/docs/puppet/latest/custom_resources.html). 
 
 ### Declaring resources
 
@@ -109,35 +107,39 @@ package.
 Resource types define the set of features they can use, and providers can
 declare which features they provide.
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:47:28 -0700
 
-Supported and bundled
---------------------
+Supported types in modules
+---------
 
-- `augeas`: https://forge.puppet.com/puppetlabs/augeas_core
-- `cron`: https://forge.puppet.com/puppetlabs/cron_core
-- `host`: https://forge.puppet.com/puppetlabs/host_core
-- `mount`: https://forge.puppet.com/puppetlabs/mount_core
-- `scheduled_task`: https://forge.puppet.com/puppetlabs/scheduled_task
-- `selboolean`: https://forge.puppet.com/puppetlabs/selinux_core
-- `selmodule`: https://forge.puppet.com/puppetlabs/selinux_core
-- `ssh_authorized_key`: https://forge.puppet.com/puppetlabs/sshkeys_core
-- `sshkey`: https://forge.puppet.com/puppetlabs/sshkeys_core
-- `yumrepo`: https://forge.puppet.com/puppetlabs/yumrepo_core
-- `zfs`: https://forge.puppet.com/puppetlabs/zfs_core
-- `zone`: https://forge.puppet.com/puppetlabs/zone_core
-- `zpool`: https://forge.puppet.com/puppetlabs/zfs_core
+The following types are included in supported modules on the Forge. They are repackaged back into Puppet agent, so you do not have to install them separately. See the module readme for information.
+
+- [`augeas`](https://forge.puppet.com/puppetlabs/augeas_core) 
+- [`cron`](https://forge.puppet.com/puppetlabs/cron_core)
+- [`host`](https://forge.puppet.com/puppetlabs/host_core)
+- [`mount`](https://forge.puppet.com/puppetlabs/mount_core)
+- [`scheduled_task`](https://forge.puppet.com/puppetlabs/scheduled_task)
+- [`selboolean`](https://forge.puppet.com/puppetlabs/selinux_core)
+- [`selmodule`](https://forge.puppet.com/puppetlabs/selinux_core)
+- [`ssh_authorized_key`](https://forge.puppet.com/puppetlabs/sshkeys_core)
+- [`sshkey`](https://forge.puppet.com/puppetlabs/sshkeys_core)
+- [`yumrepo`](https://forge.puppet.com/puppetlabs/yumrepo_core)
+- [`zfs`](https://forge.puppet.com/puppetlabs/zfs_core)
+- [`zone`](https://forge.puppet.com/puppetlabs/zone_core)
+- [`zpool`](https://forge.puppet.com/puppetlabs/zfs_core)
 
 
 
-Unbundled but active
+Types not repackaged into Puppet agent
 -----------
 
-- `k5login`: https://forge.puppet.com/puppetlabs/k5login_core
-- `mailalias`: https://forge.puppet.com/puppetlabs/mailalias_core
-- `maillist`: https://forge.puppet.com/puppetlabs/maillist_core
+The following types are contained in modules that are not repackaged into Puppet agent. If you need to use them, you must install the modules separately. 
+
+- [`k5login`](https://forge.puppet.com/puppetlabs/k5login_core)
+- [`mailalias`](https://forge.puppet.com/puppetlabs/mailalias_core)
+- [`maillist`](https://forge.puppet.com/puppetlabs/maillist_core)
 
 
+The following types are located in the core Puppet code base.
 
 exec
 -----
