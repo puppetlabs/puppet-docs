@@ -3,11 +3,11 @@ layout: default
 title: "About Puppet Platform and its packages"
 ---
 
-> **Note:** This document covers the Puppet Platform repository of open source Puppet 5-compatible software packages.
+> **Note:** This document covers the Puppet Platform repository of open source Puppet 6-compatible software packages.
 > -   For Puppet 3.8 open source packages, see its [repository documentation](https://docs.puppet.com/puppet/3.8/puppet_repositories.html).
 > -   For Puppet Enterprise installation tarballs, see its [installation documentation](/pe/latest/install_basic.html).
 
-Puppet maintains official Puppet 5 Platform package repositories for several operating systems and distributions. Puppet 5 Platform has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other.
+Puppet maintains official Puppet 6 Platform package repositories for several operating systems and distributions. Puppet 6 Platform has all of the software you need to run a functional Puppet deployment, in versions that are known to work well with each other.
 
 Puppet publishes updates for operating systems starting from the time a package is first published, to 30 days after the end of the operating system's vendor-determined lifespan.
 
@@ -18,95 +18,95 @@ To receive the most up-to-date Puppet software without introducing breaking chan
 ```puppet
 class { '::puppet_agent':
   collection      => 'latest',
-  package_version => '5.5.0',
+  package_version => '6.0.0',
 }
 ```
 
-If you're upgrading from a 1.x version of `puppet-agent`, just update the `package_version` when you're ready to upgrade to the 5.x series.
+If you're upgrading from a 1.x version of `puppet-agent`, just update the `package_version` when you're ready to upgrade to the 6.x series.
 
-## Puppet 5 Platform contents
+## Puppet 6 Platform contents
 
-Puppet 5 Platform contains the following components:
+Puppet 6 Platform contains the following components:
 
 Package                              | Contents
 -------------------------------------|----------------------------------------------
-[`puppet-agent`](./about_agent.html) | Puppet, [Facter](/facter/), [Hiera](/puppet/latest/hiera_intro.html), [MCollective](/mcollective), `pxp-agent`, root certificates, and prerequisites like [Ruby](https://www.ruby-lang.org/) and [Augeas](http://augeas.net/)
-`puppetserver`                       | [Puppet Server](/puppetserver/); depends on `puppet-agent` 5 or greater
+[`puppet-agent`](./about_agent.html) | Puppet, [Facter](/facter/), [Hiera](/puppet/latest/hiera_intro.html), `pxp-agent`, root certificates, and prerequisites like [Ruby](https://www.ruby-lang.org/) and [Augeas](http://augeas.net/)
+`puppetserver`                       | [Puppet Server](/puppetserver/); depends on `puppet-agent` 6 or greater
 `puppetdb`                           | [PuppetDB](/puppetdb/)
 `puppetdb-termini`                   | Plugins to let [Puppet Server talk to PuppetDB](/puppetdb/latest/connect_puppet_master.html)
 
-> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
+> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective was deprecated and has been removed in Puppet agent 6.0. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
 
-## Using Puppet 5 Platform
+## Using Puppet 6 Platform
 
-The way you access Puppet 5 Platform depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
+The way you access Puppet 6 Platform depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
 
 > **Note:** macOS and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/about_agent.html). macOS `puppet-agent` packages are organized by Puppet Platform; for more information, see [the macOS installation instructions](./install_osx.html).
 
 ### Yum-based systems
 
-To enable the Puppet 5 Platform repository:
+To enable the Puppet 6 Platform repository:
 
-1.  Choose the package based on your operating system and version. The packages are located in the `puppet5` directory of the [`yum.puppet.com`](https://yum.puppet.com/puppet5/) repository and named using the following convention:
+1.  Choose the package based on your operating system and version. The packages are located in the `puppet6` directory of the [`yum.puppet.com`](https://yum.puppet.com/puppet6/) repository and named using the following convention:
 
     ```
     <PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm
     ```
 
-    For instance, the package for Puppet 5 Platform on Red Hat Enterprise Linux 7 (RHEL 7) is `puppet5-release-el-7.noarch.rpm`.
+    For instance, the package for Puppet 6 Platform on Red Hat Enterprise Linux 7 (RHEL 7) is `puppet6-release-el-7.noarch.rpm`.
 
 2.  Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
 
 #### Enterprise Linux 7
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-el-7.noarch.rpm
 
 #### Enterprise Linux 6
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-6.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-el-6.noarch.rpm
 
 #### Enterprise Linux 5
 
 ```
-wget https://yum.puppet.com/puppet5/puppet5-release-el-5.noarch.rpm
-sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
+wget https://yum.puppet.com/puppet6/puppet6-release-el-5.noarch.rpm
+sudo rpm -Uvh puppet6-release-el-5.noarch.rpm
 ```
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
 
 #### Fedora 28
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-28.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-fedora-28.noarch.rpm
 
 #### Fedora 27
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-27.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-fedora-27.noarch.rpm
 
 #### Fedora 26
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-26.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-fedora-26.noarch.rpm
 
 #### SuSE Enterprise Linux 12
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-sles-12.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-sles-12.noarch.rpm
 
 #### SuSE Enterprise Linux 11
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-sles-11.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-sles-11.noarch.rpm
 
 ### Apt-based systems
 
-To enable the Puppet 5 Platform repository:
+To enable the Puppet 6 Platform repository:
 
 1.  Choose the package based on your operating system and version. The packages are located in the [`apt.puppet.com`](https://apt.puppet.com) repository and named using the convention `<PLATFORM_VERSION>-release-<VERSION CODE NAME>.deb`
 
-    For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `puppet5-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
+    For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `puppet6-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
 
 2.  Download the release package and install it as root using the `dpkg` tool and the `install` flag (`-i`). For example, to download and install the release package for Debian 7 "Wheezy", run:
 
     ```
-    wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
-    sudo dpkg -i puppet5-release-wheezy.deb
+    wget https://apt.puppetlabs.com/puppet6-release-wheezy.deb
+    sudo dpkg -i puppet6-release-wheezy.deb
     ```
 
 3.  Run `apt-get update` after installing the release package to update the `apt` package lists.
@@ -114,48 +114,48 @@ To enable the Puppet 5 Platform repository:
 #### Ubuntu 18.04 Bionic Beaver
 
 ```
-wget https://apt.puppetlabs.com/puppet5-release-bionic.deb
-sudo dpkg -i puppet5-release-bionic.deb
+wget https://apt.puppetlabs.com/puppet6-release-bionic.deb
+sudo dpkg -i puppet6-release-bionic.deb
 sudo apt update
 ```
 
 #### Ubuntu 16.04 Xenial Xerus
 
 ```
-wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
-sudo dpkg -i puppet5-release-xenial.deb
+wget https://apt.puppetlabs.com/puppet6-release-xenial.deb
+sudo dpkg -i puppet6-release-xenial.deb
 sudo apt update
 ```
 
 #### Ubuntu 14.04 Trusty Tahr
 
 ```
-wget https://apt.puppetlabs.com/puppet5-release-trusty.deb
-sudo dpkg -i puppet5-release-trusty.deb
+wget https://apt.puppetlabs.com/puppet6-release-trusty.deb
+sudo dpkg -i puppet6-release-trusty.deb
 sudo apt-get update
 ```
 
 #### Debian 9 Stretch
 
 ```
-wget https://apt.puppetlabs.com/puppet5-release-stretch.deb
-sudo dpkg -i puppet5-release-stretch.deb
+wget https://apt.puppetlabs.com/puppet6-release-stretch.deb
+sudo dpkg -i puppet6-release-stretch.deb
 sudo apt-get update
 ```
 
 #### Debian 8 Jessie
 
 ```
-wget https://apt.puppetlabs.com/puppet5-release-jessie.deb
-sudo dpkg -i puppet5-release-jessie.deb
+wget https://apt.puppetlabs.com/puppet6-release-jessie.deb
+sudo dpkg -i puppet6-release-jessie.deb
 sudo apt-get update
 ```
 
 #### Debian 7 Wheezy
 
 ```
-wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
-sudo dpkg -i puppet5-release-wheezy.deb
+wget https://apt.puppetlabs.com/puppet6-release-wheezy.deb
+sudo dpkg -i puppet6-release-wheezy.deb
 sudo apt-get update
 ```
 
@@ -163,13 +163,13 @@ sudo apt-get update
 
 While the [`puppet-agent` package](./about_agent.html) is the only component of the Puppet Platform available on macOS and Windows, you can still use Puppet Platform to ensure the version of `package-agent` you install is compatible with the rest of your infrastructure.
 
-To download `puppet-agent` for Puppet 5 Platform on macOS:
+To download `puppet-agent` for Puppet 6 Platform on macOS:
 
--   [macOS packages](https://downloads.puppetlabs.com/mac/puppet5/)
+-   [macOS packages](https://downloads.puppetlabs.com/mac/puppet6/)
 
-To download `puppet-agent` for Puppet 5 Platform on Windows:
+To download `puppet-agent` for Puppet 6 Platform on Windows:
 
--   [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet5/)
+-   [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet6/)
 
 ## Verifying Puppet packages
 

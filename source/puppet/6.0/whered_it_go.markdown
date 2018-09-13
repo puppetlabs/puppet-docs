@@ -18,9 +18,9 @@ This page is a summary, to quickly orient users arriving from Puppet 3.
 
 On managed \*nix systems, install `puppet-agent` instead of `puppet`. (This package also provides `puppet apply`, suitable for standalone Puppet systems.)
 
-This is a new name for a new thing. Instead of using package dependencies to bring in tools like Facter, Hiera, and Ruby, it includes private versions of all of them. It also includes MCollective.
+This is a new name for a new thing. Instead of using package dependencies to bring in tools like Facter, Hiera, and Ruby, it includes private versions of all of them. 
 
-On Windows, use the same package as before. The open source package now includes MCollective.
+On Windows, use the same package as before. 
 
 ## \*nix executables are in `/opt/puppetlabs/bin/`
 
@@ -50,7 +50,7 @@ On some Linux distros, our default config in Puppet 3.x set Puppet's `ssldir` as
 
 ### Other configurations in `/etc/puppetlabs`
 
-Other related configurations were also moved into the `/etc/puppetlabs` directory in Puppet 4.0. Puppet Server now uses `/etc/puppetlabs/puppetserver`, and MCollective uses `/etc/puppetlabs/mcollective`.
+Other related configurations were also moved into the `/etc/puppetlabs` directory in Puppet 4.0. Puppet Server now uses `/etc/puppetlabs/puppetserver`.
 
 ## New `codedir` holds all modules, manifests, and data
 

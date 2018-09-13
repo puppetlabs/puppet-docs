@@ -114,7 +114,6 @@ Directory   | Description
 bin         | scripts for running Puppet and Facter
 facter      | Facter source
 hiera       | Hiera source
-mcollective | MCollective source
 misc        | resources
 puppet      | Puppet source
 service     | code to run puppet agent as a service

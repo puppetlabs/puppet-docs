@@ -29,7 +29,29 @@ Released 18 September 2018
 
 ### New features and improvements
 
-The following subcommands were deprecated in Puppet 5.5.6. They are now un-deprecated. 
+- The following types were moved from the Puppet core codeblock to supported modules on the Forge. This change enables easier composability and reusability of the Puppet codebase and enables development to proceed more quickly without fear of destabilizing the rest of Puppet. These types are repackaged back into Puppet agent, so you don't have to install them separately. See the module readmes for information.
+
+    - augeas
+    - cron
+    - host
+    - mount
+    - scheduled_task
+    - selboolean
+    - selmodule
+    - ssh_authorized_key
+    - sshkey
+    - yumrepo
+    - zfs
+    - zone
+    - zpool
+
+- The following types were also moved to modules, but these are not supported and they are not repackaged into Puppet agent. If you need to use them, you must install the modules separately.
+
+    - k5login
+    - mailalias
+    - maillist
+
+- The following subcommands were deprecated in Puppet 5.5.6. They are now un-deprecated. 
 
 
     -   `ca_name`

@@ -4,7 +4,6 @@ title: "Upgrading Puppet 3.8.x agents to 6.x"
 ---
 
 [Hiera]: /hiera/
-[MCollective]: /mcollective/
 [puppet_agent]: https://forge.puppet.com/puppetlabs/puppet_agent
 [moved]: ./whered_it_go.html
 [facter]: /facter/
@@ -18,7 +17,7 @@ We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades f
 
 > *Note:* This module has not yet been tested for upgrades to Puppet 5, but the process should be the same.
 
-If you're running Puppet on Windows or [any supported Linux operating system](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agents.
+If you're running Puppet on Windows or [any supported Linux operating system](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, and all of their dependencies on agents.
 
 If you're running Puppet on other operating systems, you can't upgrade them with the module. You can either upgrade your agents manually or automate the process yourself.
 
@@ -31,11 +30,10 @@ The next steps explain both methods.
 The `puppet_agent` module does the following things for you:
 
 -   Enables the [Puppet Platform][] repository, if applicable.
--   Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][], and [MCollective][].
+-   Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][].
 -   Copies Puppet's SSL files to their new location.
 -   Copies your old `puppet.conf` to its [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
--   Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/docs/mcollective/deploy/plugins.html) to the `libdir` setting.
--   Ensures the Puppet and MCollective services are running.
+-   Ensures the Puppet service is running.
 
 1.  Install the module on Puppet servers.
 
@@ -91,10 +89,5 @@ Find your operating system in the sidebar navigation to the left and follow the 
 
     If you use a cron job to periodically run `puppet agent -t` on your \*nix systems, edit the job and update the `puppet` binary's path to `/opt/puppetlabs/bin/puppet`.
 
-5.  Reconcile MCollective configuration files (\*nix only)
 
-    On \*nix systems, we moved MCollective's configuration files from `/etc/mcollective` to `/etc/puppetlabs/mcollective`.
-
-    Edit the new configuration files to port over any settings you need from the old configuration files. The default plugin and library directories also changed; update your settings to use the new directories and any other directories you wish to use.
-
-6.  After you've upgraded your entire deployment, do the [post-upgrade clean-up tasks](./upgrade_major_post.html).
+5.  After you've upgraded your entire deployment, do the [post-upgrade clean-up tasks](./upgrade_major_post.html).

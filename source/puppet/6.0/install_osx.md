@@ -52,7 +52,7 @@ These instructions cover installing Puppet agent on macOS machines.
     -   On the command line.
     -   With Puppet (if upgrading).
 
-    Regardless which you choose, installing the package will start the `puppet` and `mcollective` services. You can later disable these services with `launchctl` or with `sudo puppet resource service <NAME> ensure=stopped enable=false`.
+    Regardless which you choose, installing the package will start the `puppet` service. You can later disable these services with `launchctl` or with `sudo puppet resource service <NAME> ensure=stopped enable=false`.
 
 5.  Configure critical agent settings.
 
@@ -77,7 +77,7 @@ The Puppet installer on macOS provides a graphic user interface to help with man
 
     A Finder window appears showing the disk's contents: a single `puppet-agent-<VERSION>-installer.pkg` file.
 
-2.  Double-click the package file, and follow the installer prompts to install it. When installation finishes, Puppet agent and MCollective will be running.
+2.  Double-click the package file, and follow the installer prompts to install it. When installation finishes, Puppet agent will be running.
 
 3.  After installing, unmount and delete the disk image.
 
@@ -89,7 +89,7 @@ Alternately, you can use the `hdiutil` and `installer` commands to mount the dis
 
 2.  Locate the `.pkg` file in the mounted volume and install it by running `sudo installer -pkg /Volumes/<IMAGE>/<PKG FILE> -target /`.
 
-    When installation finishes, Puppet agent and MCollective will be running.
+    When installation finishes, Puppet agent will be running.
 
 3.  After installing, run `sudo hdiutil unmount /Volumes/<IMAGE>` to unmount the disk image.
 

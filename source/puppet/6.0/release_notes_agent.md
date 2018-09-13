@@ -12,9 +12,6 @@ title: "Puppet agent release notes"
 [Facter 3.11.3]: /docs/facter/3.11/release_notes.html#facter-3113
 [Facter 3.11.4]: /docs/facter/3.11/release_notes.html#facter-3114
 
-[MCollective 2.12.0]: /docs/mcollective/current/releasenotes.html#2_12_0
-[MCollective 2.12.1]: /docs/mcollective/current/releasenotes.html#2_12_1
-[MCollective 2.12.2]: /docs/mcollective/current/releasenotes.html#2_12_2
 
 [pxp-agent]: https://github.com/puppetlabs/pxp-agent
 
@@ -61,11 +58,11 @@ This release of Puppet Platform contains several bug fixes, some new features, a
 
 Puppet Platform 5.5.4 includes puppet-agent 5.5.4, [PuppetDB 5.2.3](/docs/puppetdb/5.2/release_notes.html), and [Puppet Server 5.3.4](/docs/puppetserver/5.3/release_notes.html).
 
-`puppet-agent` 5.5.4 includes updates to [Puppet 5.5.3][], [Facter 3.11.3][], `cpp-pcp-client` 1.5.6, [`pxp-agent`][pxp-agent] 1.9.3, and `leatherman` 1.4.2. It also includes Hiera 3.4.3 and MCollective 2.12.2, which were not updated.
+`puppet-agent` 5.5.4 includes updates to [Puppet 5.5.3][], [Facter 3.11.3][], `cpp-pcp-client` 1.5.6, [`pxp-agent`][pxp-agent] 1.9.3, and `leatherman` 1.4.2. It also includes Hiera , which were not updated.
 
 See the linked release notes for details about each component release.
 
-> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use MCollective with Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use MCollective with open source Puppet, consider migrating MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/latest/api/query/tutorial-pql.html).
+> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective was deprecated, and was removed in Puppet agent 6.0. If you use MCollective with Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use MCollective with open source Puppet, consider migrating MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/latest/api/query/tutorial-pql.html).
 
 ### Platform updates
 
@@ -103,7 +100,7 @@ This release of Puppet Platform contained several Puppet and Facter security and
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.5.2][], [Facter 3.11.2][], [MCollective 2.12.2][], and [pxp-agent][] 1.9.2.
+This release includes component updates to [Puppet 5.5.2][], [Facter 3.11.2][], and [pxp-agent][] 1.9.2.
 
 ### Known issues
 
@@ -129,7 +126,7 @@ This release of Puppet Platform contains several new features and bug fixes.
 
 ### Component updates
 
-This release includes component updates to [Puppet 5.5.1][], [Facter 3.11.1][], Hiera 3.4.3, [MCollective 2.12.1][], [pxp-agent][] 1.9.1, and LTH 1.4.1.
+This release includes component updates to [Puppet 5.5.1][], [Facter 3.11.1][], Hiera 3.4.3, [pxp-agent][] 1.9.1, and LTH 1.4.1.
 
 ### Platform updates
 
