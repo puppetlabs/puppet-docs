@@ -2,20 +2,20 @@
 title: "Hiera: Legacy config file syntax (hiera.yaml v3)"
 ---
 
-[hierarchy]: ./hiera_hierarchy.html
-[layers]: ./hiera_layers.html
+[hierarchy]: ./puppet/5.5/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backe
+[layers]: ./puppet/5.5/hiera_intro.html#hiera-s-three-config-layers
 [v4]: ./hiera_config_yaml_4.html
 [v5]: ./hiera_config_yaml_5.html
 [merge]: ./hiera_merging.html
 [confdir]: ./dirs_confdir.html
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
-[custom_backends]: {{hiera}}/custom_backends.html
+[custom_backends]: ./puppet/latest/hiera_custom_backends.html
 [puppetserver_gem]: {{puppetserver}}/gems.html#installing-and-removing-gems
 [deep_merge_gem_docs]: https://github.com/danielsdeleo/deep_merge/blob/master/README.md
 [interpolate]: ./hiera_interpolation.html
 
 
-Hiera's config file is called hiera.yaml. It configures the [hierarchy][] for a given [layer][layers] of data.
+Hiera's config file is called hiera.yaml. It configures the hierarchy for a given [layer][layers] of data.
 
 This version of Puppet supports three formats for hiera.yaml --- you can use any of them, although [v4][] and v3 are deprecated. This page is about version 3, the legacy version.
 

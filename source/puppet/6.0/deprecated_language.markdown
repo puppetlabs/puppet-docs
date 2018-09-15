@@ -7,16 +7,16 @@ These features of the Puppet language are deprecated in this version of Puppet.
 
 ## Hiera 3.x features
 
-[hiera_functions]: ./hiera_use_hiera_functions.html
+[hiera_functions]: ./hiera_automatic.html
 [v3]: ./hiera_config_yaml_3.html
 [v4]: ./hiera_config_yaml_4.html
 [v5]: ./hiera_config_yaml_5.html
 [custom_backend]: ./hiera_custom_backends.html
 [merging]: ./hiera_merging.html
-[module layer]: ./hiera_layers.html#the-module-layer
-[lookup_function]: ./hiera_migrate_functions.html
+[module layer]: ./hiera_intro.html#hiera-s-three-config-layers
+[lookup_function]: ./hiera_automatic.html
 [lookup_command]: ./man/lookup.html
-[backend_3]: {{hiera}}/custom_backends.html
+[backend_3]: ./hiera/3.3/custom_backends.html
 
 These Hiera features are deprecated, because we replaced them with improved equivalents in [Hiera 5](./hiera_intro.html).
 

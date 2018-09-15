@@ -4,7 +4,6 @@ title: "Component versions in puppet-agent"
 ---
 
 [Facter]: {{facter}}/
-[Hiera]: {{hiera}}/
 [agent]: ./services_agent_unix.html
 [apply]: ./services_apply.html
 [Puppet Server]: {{puppetserver}}/

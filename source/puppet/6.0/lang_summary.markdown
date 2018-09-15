@@ -25,7 +25,6 @@ title: "Language: Basics"
 [declared]: /references/glossary.html#declare
 [string_newline]: ./lang_data_string.html#line-breaks
 [node]: ./lang_node_definitions.html
-[hiera]: {{hiera}}/
 [compilation]: ./subsystem_catalog_compilation.html
 
 Puppet uses its own configuration language, which was designed to be accessible to sysadmins. The Puppet language does not require much formal programming experience and its syntax was inspired by the Nagios configuration file format.
@@ -36,7 +35,7 @@ The core of the Puppet language is **declaring [resources][].** Every other part
 
 Groups of resources can be organized into **[classes][],** which are larger units of configuration. While a resource might describe a single file or package, a class can describe everything needed to configure an entire service or application (including any number of packages, config files, service daemons, and maintenance tasks). Smaller classes can then be combined into larger classes which describe entire custom system roles, such as "database server" or "web application worker."
 
-Nodes that serve different roles will generally get different sets of classes. The task of configuring which classes will be applied to a given node is called **node classification.**  Nodes can be classified in the Puppet language using [node definitions][node]; they can also be classified using node-specific data from outside your manifests, such as that from an [ENC][] or [Hiera][].
+Nodes that serve different roles will generally get different sets of classes. The task of configuring which classes will be applied to a given node is called **node classification.**  Nodes can be classified in the Puppet language using [node definitions][node]; they can also be classified using node-specific data from outside your manifests, such as that from an [ENC][] or [Hiera](/puppet/6.0/hiera_intro.html).
 
 ## Ordering
 

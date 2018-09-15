@@ -83,7 +83,7 @@ If you install Puppet via the official packages, you don't need to worry about p
 * Mandatory libraries:
 
   * CFPropertyList 2.2 or later
-  * [Hiera]({{hiera}}/) 3.2.1 or later
+  * Hiera 3.2.1 or later
   * [Facter]({{facter}}/) 2.0 or later
 
 

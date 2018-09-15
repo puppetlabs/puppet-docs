@@ -36,10 +36,8 @@ title: "Language: Classes"
 [setting_parameters]: #include-like-vs-resource-like
 [override]: #using-resource-like-declarations
 [ldap_nodes]: ./nodes_ldap.html
-[hiera]: {{hiera}}/
-[external_data]: {{hiera}}/puppet.html
-[array_search]: {{hiera}}/lookup_types.html#array-merge
-[hiera_hierarchy]: {{hiera}}/hierarchy.html
+[array_search]: ./puppet/latest/hiera_automatic.html#arguments
+[hiera_hierarchy]: ./puppet/latest/hiera_intro.html
 
 **Classes** are named blocks of Puppet code that are stored in [modules][] for later use and are not applied until they are invoked by name. They can be added to a node's [catalog][] by either **declaring** them in your manifests or **assigning** them from an [ENC][].
 
@@ -110,7 +108,7 @@ The general form of a class definition is:
 
 Each class parameter can be used as a normal [variable][] inside the class definition. The values of these variables are not set with [normal assignment statements][variable_assignment] or looked up from top or node scope; instead, they are [set based on user input when the class is declared][setting_parameters].
 
-Note that if a class parameter lacks a default value, the module's user **must** set a value themselves (either in their [external data][external_data] or an [override][]). As such, you should supply defaults wherever possible.
+Note that if a class parameter lacks a default value, the module's user **must** set a value themselves (either in their external data or an [override][]). As such, you should supply defaults wherever possible.
 
 Each parameter can be preceeded by an optional [**data type**][literal_types]. If you include one, Puppet will check the parameter's value at runtime to make sure that it has the right data type, and raise an error if the value is illegal. If no data type is provided, the parameter will accept values of any data type.
 
@@ -243,9 +241,9 @@ Puppet has two main ways to declare classes: include-like and resource-like.
 
 The `include`, `require`, `contain`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node can have more than one role.
 
-Include-like behavior relies on [external data][external_data] and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet will try the following for each of its parameters:
+Include-like behavior relies on external data and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet will try the following for each of its parameters:
 
-1. Request a value from [the external data source][external_data], using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
+1. Request a value from the external data source, using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
 2. Use the default value.
 3. Fail compilation with an error if no value can be found.
 
@@ -253,10 +251,10 @@ Include-like behavior relies on [external data][external_data] and defaults for 
 
 [resource-like]: #resource-like-behavior
 
-Resource-like class declarations require that you **only declare a given class once.** They allow you to override class parameters at compile time, and will fall back to [external data][external_data] for any parameters you don't override.  When a class is declared, Puppet will try the following for each of its parameters:
+Resource-like class declarations require that you **only declare a given class once.** They allow you to override class parameters at compile time, and will fall back to external_data for any parameters you don't override.  When a class is declared, Puppet will try the following for each of its parameters:
 
 1. Use the override value from the declaration, if present.
-2. Request a value from [the external data source][external_data], using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
+2. Request a value from the external data source, using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
 3. Use the default value.
 4. Fail compilation with an error if no value can be found.
 
@@ -335,7 +333,7 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 
 ### Using `hiera_include`
 
-The `hiera_include` function requests a list of class names from [Hiera][], then declares all of them. Since it uses the [array lookup type][array_search], it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
+The `hiera_include` function requests a list of class names from Hiera, then declares all of them. Since it uses the [array lookup type](/puppet/latest/hiera_automatic.html#arguments), it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
 
 ``` yaml
 # /etc/puppetlabs/puppet/hiera.yaml

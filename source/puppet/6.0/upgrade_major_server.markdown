@@ -11,8 +11,7 @@ title: "Puppet 3.8 to 5: Upgrade Puppet Server and PuppetDB"
 [main manifest]: ./dirs_manifest.html
 [default_manifest]: ./configuration.html#defaultmanifest
 [retrieve and apply a catalog]: /puppet/latest/man/agent.html#USAGE-NOTES
-[hiera.yaml]: {{hiera}}/configuring.html
-[Hiera]: {{hiera}}/
+[hiera.yaml]: /puppet/latest/hiera_config_yaml_5.html
 [r10k]: {{pe}}/r10k.html
 [puppetdb-terminus]: {{puppetdb}}/connect_puppet_master.html#on-platforms-with-packages
 [puppetdb-termini]: {{puppetdb}}/connect_puppet_master.html#on-platforms-with-packages
@@ -174,9 +173,9 @@ If you're using [r10k][] or some other code deployment tool, change its configur
 
 #### Move Hiera
 
-If you use [Hiera][], move its configuration and data files:
+If you use Hiera, move its [configuration and data files](docs/puppet/6.0/hiera_config_yaml_5.html):
 
-1. Make sure your [`hiera.yaml`][hiera.yaml] file is in `/etc/puppetlabs/puppet/hiera.yaml`.
+1. Make sure your `hiera.yaml` file is in `/etc/puppetlabs/puppet/hiera.yaml`.
 2. Move your Hiera data files to somewhere inside `/etc/puppetlabs/code`.
 3. Update file references in `hiera.yaml` accordingly.
 

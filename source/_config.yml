@@ -324,7 +324,6 @@ documents:
     nav: ./_puppet_toc.html
     my_versions:
       facter: "3.12"
-      hiera: "3.4"
       puppetserver: "6.0"
     hide: true
   /puppet/5.5:

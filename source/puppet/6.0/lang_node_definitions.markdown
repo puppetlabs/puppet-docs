@@ -3,7 +3,6 @@ layout: default
 title: "Language: Node definitions"
 ---
 
-[hiera]: {{hiera}}/
 [sitepp]: ./dirs_manifest.html
 [certname]: ./config_important_settings.html#basics
 [classes]: ./lang_classes.html
