@@ -9,8 +9,16 @@ This page documents the history of the Facter 3.11 series.
 
 Released 18 September, 2018
 
-This is a bug fix release that shipped with Puppet Platform 6.0.0
+This release includes one new feature and three bug fixes. It shipped with Puppet Platform 6.0.0
 
+### New feature
+
+- Key type will now be included as part of the facts for each SSH key. ([FACT-1377](https://tickets.puppetlabs.com/browse/FACT-1377))
+
+### Bug fixes
+
+- Systems relying entirely on `systemd-networkd` for DHCP management do not use `dhclient`. This checks the DHCP leases directory of `systemd-networkd` (`/run/systemd/netif/leases`) in addition to the lease files of `dhclient` when attempting to identify DHCP servers. ([FACT-1851](https://tickets.puppetlabs.com/browse/FACT-1851)) 
+- Facter no longer checks for missing `dmidecode` and does not report a warning when it's missing on POWER Linux machines.([FACT-1765](https://tickets.puppetlabs.com/browse/FACT-1765))
 
 
 ## Facter 3.11.4
