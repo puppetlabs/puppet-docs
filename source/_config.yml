@@ -320,7 +320,7 @@ documents:
 
   /puppet/6.0:
     doc: puppet
-    version: "5.5"
+    version: "6.0"
     nav: ./_puppet_toc.html
     my_versions:
       facter: "3.12"
@@ -480,6 +480,11 @@ documents:
       puppetserver: "5.1"
     hide: true
 
+   /facter/3.12:
+    doc: facter
+    version: "3.12"
+    nav: ./_facter_toc.html
+    hide: true
   /facter/3.11:
     doc: facter
     version: "3.11"
