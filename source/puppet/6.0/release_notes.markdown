@@ -31,7 +31,7 @@ Released 18 September 2018
 
 - In this release, many types were moved out of the Puppet core codeblock and to modules on the [Puppet Forge](https://forge.puppet.com/). This change enables easier composability and reusability of the Puppet codebase and enables development to proceed more quickly without fear of destabilizing the rest of Puppet. Some types are now in supported modules and are repackaged back into Puppet agent. Some are now in modules that are updated, but are not repackaged into Puppet agent. And some are in modules that are deprecated, not updated, and not repackaged back into Puppet agent. 
 
-
+See the [Resource Type Reference](/puppet/6.0/type.html) page for the full list, and links to the Forge modules for those types that moved.
 
 
 - The `puppet node clean` command will now go through Puppet Server's CA API to clean up certs for a given node. This will help avoid issues where multiple entities attempt to revoke certs at once, since all of these updates are now funneled through the API, which handles concurrent requests correctly. See https://tickets.puppetlabs.com/browse/SERVER-115. ([PUP-9108](https://tickets.puppetlabs.com/browse/PUP-9108))
