@@ -33,12 +33,19 @@ Released 18 September 2018
 
 This is primarily a bug fix release. Note that there is no Puppet agent 5.5.5 release.
 
-### Component updates
+### New features
 
+- Boost was updated to version 1.67 in puppet-agent#master. yaml-cpp was updated to version 0.6.2. ([PA-2055]https://tickets.puppetlabs.com/browse/PA-2055)
+- We have updated the version of OpenSSL used in puppet-agent to version 1.1.0h. ([PA-1941](https://tickets.puppetlabs.com/browse/PA-1941)
+- The directory structure of Windows package installations have changed. The default installation directory is now Drive:\Program Files\Puppet Labs\Puppet\puppet. This directory is now where facter, pxp-agent, hiera and ruby are installed. ([PA-1923](https://tickets.puppetlabs.com/browse/PA-1923)
+
+### Deprecations
+
+- Removed MCollective as an agent component for Platform 6, and all other related files. ([PA-1918](https://tickets.puppetlabs.com/browse/PA-1918))
 
 
 ### Bug fixes
 
-
+- Update the vendored semantic_puppet gem in the puppet-agent package to the most recent version 1.0.2 ([PA-1881](https://tickets.puppetlabs.com/browse/PA-1881)
 
 

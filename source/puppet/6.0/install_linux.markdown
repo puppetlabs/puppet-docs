@@ -52,7 +52,7 @@ Install the Puppet agent so that your master can communicate with your Linux nod
 
    On the Puppet master:
 
-   1. Run `sudo /opt/puppetlabs/bin/puppet cert list` to see any outstanding requests.
-   2. Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
+   1. Run `sudo /opt/puppetlabs/bin/puppetserver ca list` to see any outstanding requests.
+   2. Run `sudo /opt/puppetlabs/bin/puppetserver ca sign <NAME>` to sign a request.
 
    As each Puppet agent runs for the first time, it submits a certificate signing request (CSR) to the CA Puppet master. You must log into that server to check for and sign certificates. After an agent's certificate is signed, it regularly fetches and applies configuration catalogs from the Puppet master.

@@ -64,8 +64,8 @@ These instructions cover installing Puppet agent on macOS machines.
 
     As each agent runs for the first time, it will submit a certificate signing request (CSR) to the certificate authority (CA) Puppet master. You'll need to log into that server to check for certs and sign them.
 
-    -   Run `sudo /opt/puppetlabs/bin/puppet cert list` to see any outstanding requests.
-    -   Run `sudo /opt/puppetlabs/bin/puppet cert sign <NAME>` to sign a request.
+    -   Run `sudo /opt/puppetlabs/bin/puppetserver ca list` to see any outstanding requests.
+    -   Run `sudo /opt/puppetlabs/bin/puppetserver ca sign <NAME>` to sign a request.
 
     After an agent's certificate is signed, it regularly fetches and applies configurations from the Puppet master.
 
