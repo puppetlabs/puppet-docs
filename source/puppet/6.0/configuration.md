@@ -126,7 +126,7 @@ _on stdin._ It should exit with a status of 0 if the cert should be autosigned
 and non-zero if the cert should not be autosigned.
 
 If a certificate request is not autosigned, it will persist for review. An admin
-user can use the `puppet cert sign` command to manually sign it, or can delete
+user can use the `puppetserver ca sign` command to manually sign it, or can delete
 the request.
 
 For info on autosign configuration files, see
