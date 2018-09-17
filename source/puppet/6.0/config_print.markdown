@@ -51,7 +51,7 @@ This will show `name = value` pairs for all settings.
 The `--section` option specifies which [section of puppet.conf][config_sections] to use when finding settings. It is optional, and defaults to `main`. Valid sections are:
 
 * `main` **(default)** --- used by all commands and services
-* `master` --- used by the Puppet master service and the `puppet cert` command
+* `master` --- used by the Puppet master service and the `puppetserver ca` command
 * `agent` --- used by the Puppet agent service
 * `user` --- used by the Puppet apply command and most other commands
 
@@ -66,10 +66,10 @@ Note that you can only specify environments that already exist.
 This option is generally only useful when looking up settings used by the Puppet master service, since it's rare to use environment config sections for Puppet apply and Puppet agent.
 
 
-Imitating Puppet Master and Puppet Cert
+Imitating Puppet Master and `puppetserver ca`
 -----
 
-To see the settings the Puppet master service and the Puppet cert command would use:
+To see the settings the Puppet master service and the `puppetserver ca` command would use:
 
 * Specify `--section master`.
 * Use the `--environment` option to specify the environment you want settings for, or let it default to `production`.

@@ -22,7 +22,7 @@ If the CA signs a certificate with extensions included, those extensions are ava
 
 By default, the [Puppet-specific registered OIDs][registered] appear as keys with convenient short names in the `$trusted[extensions]` hash, and any other OIDs appear as raw numerical IDs. You can use the `custom_trusted_oid_mapping.yaml` file to map other OIDs to short names, which will replace the numerical OIDs in `$trusted[extensions]`.
 
-The output of `puppet cert print` reflects changes made in `custom_trusted_oid_mapping.yaml` immediatly without requiring a restart.
+The output of `puppetserver ca print` reflects changes made in `custom_trusted_oid_mapping.yaml` immediatly without requiring a restart.
 
 For more information, see:
 

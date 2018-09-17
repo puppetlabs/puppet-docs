@@ -34,7 +34,7 @@ This will declaratively set the value of `<SETTING NAME>` to `<VALUE>` (in the s
 The `--section` option specifies which [section of puppet.conf][config_sections] to modify. It is optional, and defaults to `main`. Valid sections are:
 
 * `main` **(default)** --- used by all commands and services
-* `master` --- used by the Puppet master service and the `puppet cert` command
+* `master` --- used by the Puppet master service and the `puppetserver ca ` command
 * `agent` --- used by the Puppet agent service
 * `user` --- used by the Puppet apply command and most other commands
 

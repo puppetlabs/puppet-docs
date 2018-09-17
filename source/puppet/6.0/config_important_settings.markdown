@@ -146,8 +146,8 @@ These settings should usually go in `[master]`. However, if you're using Puppet 
 
 * [`dns_alt_names`][dns_alt_names] --- A list of hostnames the server is allowed to use when acting as a Puppet master. The hostname your agents use in their `server` setting **must** be included in either this setting or the master's `certname` setting. Note that this setting is only used when initially generating the Puppet master's certificate --- if you need to change the DNS names, you must:
     1. Turn off the Puppet server service (or your Rack server).
-    2. Run `sudo puppet cert clean <MASTER'S CERTNAME>`.
-    3. Run `sudo puppet cert generate <MASTER'S CERTNAME> --dns_alt_names <ALT NAME 1>,<ALT NAME 2>,...`.
+    2. Run `sudo puppetserver ca clean <MASTER'S CERTNAME>`.
+    3. Run `sudo puppetserver ca generate <MASTER'S CERTNAME> --dns-alt-names <ALT NAME 1>,<ALT NAME 2>,...`.
     4. Re-start the Puppet server service.
 * [`environment_timeout`][environment_timeout] --- For better performance, you can set this to `unlimited` and make refreshing the Puppet master a part of your standard code deployment process. See [the timeout section of the Configuring Environments page][configuring_timeout] for more details.
 * [`environmentpath`][environmentpath] --- Controls where Puppet finds directory environments. See [the page on directory environments][environments] for details.

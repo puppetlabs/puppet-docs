@@ -58,7 +58,7 @@ The Puppet master provides an HTTP interface, with [various endpoints][master_ht
 
 Client-verified HTTPS means each master or agent must have an identifying SSL certificate. They each examine their counterpart's certificate to decide whether to allow an exchange of information.
 
-Puppet includes a built-in certificate authority for managing certificates. Agents can automatically request certificates through the master's HTTP API. You can use the **puppet cert** command to inspect requests and sign new certificates. And agents can then download the signed certificates.
+Puppet includes a built-in certificate authority for managing certificates. Agents can automatically request certificates through the master's HTTP API. You can use the `pupetserver ca` command to inspect requests and sign new certificates. And agents can then download the signed certificates.
 
 For more information, see:
 

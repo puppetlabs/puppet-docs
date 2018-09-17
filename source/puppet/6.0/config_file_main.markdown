@@ -15,7 +15,7 @@ title: "Config files: The main config file (puppet.conf)"
 [environmentpath]: ./configuration.html#environmentpath
 [puppetserver_diff]: {{puppetserver}}/puppet_conf_setting_diffs.html
 
-The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet commands and services, including Puppet agent, Puppet master, Puppet apply, and Puppet cert. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.
+The `puppet.conf` file is Puppet's main config file. It configures all of the Puppet commands and services, including Puppet agent, Puppet master, Puppet apply, and `puppetserver ca`. Nearly all of the settings listed in the [configuration reference][conf_ref] can be set in puppet.conf.
 
 It resembles a standard INI file, with a few syntax extensions. Settings can go into application-specific sections, or into a `[main]` section that affects all applications.
 
@@ -85,7 +85,7 @@ As soon as a new config section `[name]` appears in the file, the former config 
 Puppet uses four **config sections**:
 
 * `main` is the global section used by all commands and services. It can be overridden by the other sections.
-* `master` is used by the Puppet master service and the Puppet cert command.
+* `master` is used by the Puppet master service and the Puppet  command.
 * `agent` is used by the Puppet agent service.
 * `user` is used by the Puppet apply command, as well as many of the less common [Puppet subcommands][subcommands].
 

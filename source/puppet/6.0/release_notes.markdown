@@ -20,7 +20,7 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
-## Puppet 6.0
+## Puppet 6.0.0
 
 Released 18 September 2018
 
@@ -29,7 +29,9 @@ Released 18 September 2018
 
 ### New features and improvements
 
-- The following types were moved from the Puppet core codeblock to supported modules on the Forge. This change enables easier composability and reusability of the Puppet codebase and enables development to proceed more quickly without fear of destabilizing the rest of Puppet. These types are repackaged back into Puppet agent, so you don't have to install them separately. See the module readmes for information.
+- In this release, many types were moved out of the Puppet core codeblock and to modules on the [Puppet Forge](https://forge.puppet.com/). This change enables easier composability and reusability of the Puppet codebase and enables development to proceed more quickly without fear of destabilizing the rest of Puppet. Some types are now in supported modules and are repackaged back into Puppet agent. Some are now in modules that are updated, but are not repackaged into Puppet agent. And some are in modules that are deprecated, not updated, and not repackaged back into Puppet agent. 
+
+The following is the list of types that were moved from the Puppet core codeblock to supported modules on the Forge. They are repackaged back into Puppet agent, so you don't have to install them separately.  See the module readmes for information.
 
     - augeas
     - cron
@@ -45,30 +47,13 @@ Released 18 September 2018
     - zone
     - zpool
 
-- The following types were also moved to modules, but these are not supported and they are not repackaged into Puppet agent. If you need to use them, you must install the modules separately.
+- The following is the list of types that were moved to modules, but are updated and they are not repackaged into Puppet agent. If you need to use them, you must install the modules separately.
 
     - k5login
     - mailalias
     - maillist
 
-- The following subcommands were deprecated in Puppet 5.5.6 and slated for removal in Puppet 6.0. While they are still deprecated, they have not yet been removed. 
 
-
-    -   `ca_name`
-    -   `cadir`
-    -   `cacert`
-    -   `cakey`
-    -   `capub`
-    -   `cacrl`
-    -   `caprivatedir`
-    -   `csrdir`
-    -   `signeddir`
-    -   `capass`
-    -   `serial`
-    -   `autosign`
-    -   `allow_duplicate_certs`
-    -   `ca_ttl`
-    -   `cert_inventory`
 
 - The `puppet node clean` command will now go through Puppet Server's CA API to clean up certs for a given node. This will help avoid issues where multiple entities attempt to revoke certs at once, since all of these updates are now funneled through the API, which handles concurrent requests correctly. See https://tickets.puppetlabs.com/browse/SERVER-115. ([PUP-9108](https://tickets.puppetlabs.com/browse/PUP-9108))
 - When requesting task-details, puppet master now returns a list of all files from the tasks metadata `files` and `implementations['files']` keys. ([PUP-9081](https://tickets.puppetlabs.com/browse/PUP-9081))
@@ -170,7 +155,7 @@ Previously the result of the block was always cached. With this change only true
 
 - The `computer`, `macauthorization`, and `mcx` types and providers have been moved to a module: https://forge.puppet.com/puppetlabs/macdslocal_core. It is not being repackaged into puppet-agent for 6.0
 - The Nagios types no longer ship with Puppet, and are now available as the `puppetlabs/nagios_core` module from the Forge.
-- The Cisco network device types no longer ship with Puppet. These types and providers have been deprecated in favor of the `puppetlabs/cisco_ios` module, which is available on the Forge.
+- The Cisco network device types no longer ship with Puppet. These types and providers have been deprecated in favor of the `puppetlabs/cisco_ios` module, which is available on the Forge. ([PUP-8575](https://tickets.puppetlabs.com/browse/PUP-8575))
     
 - In versions before Puppet 6.0.0 values from manifests assigned to resource attributes that contained undef values nested in arrays and hashes would use the Ruby symbol :undef to represent those values. When using puppet apply types and providers would see those as :undef or as the string "undef" depending on the implementation of the type. When using a puppet master, the same values were correctly handled. In Puppet 6.0.0 Ruby {{nil}} is used consistently for this. (Top level undef values are still encoded as empty string for backwards compatibility). ([PUP-9112](https://tickets.puppetlabs.com/browse/PUP-9112))
 
@@ -205,5 +190,21 @@ Previously the result of the block was always cached. With this change only true
 
 - As a part of the larger CA rework (so probably this won't end up wanting separate notes), the v1 CA HTTP API is removed (everything under the ca url /v1) ([PUP-3650](https://tickets.puppetlabs.com/browse/PUP-3650))
 
+- The following subcommands were deprecated in Puppet 5.5.6 and slated for removal in Puppet 6.0. While they are still deprecated, they have not yet been removed. 
 
 
+    -   `ca_name`
+    -   `cadir`
+    -   `cacert`
+    -   `cakey`
+    -   `capub`
+    -   `cacrl`
+    -   `caprivatedir`
+    -   `csrdir`
+    -   `signeddir`
+    -   `capass`
+    -   `serial`
+    -   `autosign`
+    -   `allow_duplicate_certs`
+    -   `ca_ttl`
+    -   `cert_inventory`
