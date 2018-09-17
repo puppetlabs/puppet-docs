@@ -132,14 +132,24 @@ The following types are included in supported modules on the Forge. They are rep
 Types not repackaged into Puppet agent
 -----------
 
-The following types are contained in modules that are not repackaged into Puppet agent. If you need to use them, you must install the modules separately. 
+The following types are contained in modules that are maintained, but are not repackaged into Puppet agent. If you need to use them, you must install the modules separately. 
 
 - [`k5login`](https://forge.puppet.com/puppetlabs/k5login_core)
 - [`mailalias`](https://forge.puppet.com/puppetlabs/mailalias_core)
 - [`maillist`](https://forge.puppet.com/puppetlabs/maillist_core)
 
+Deprecated types
+-------------
 
-The following types are located in the core Puppet code base.
+The following types were deprecated with Puppet 6.0.0. They are included in modules, but are not updated. If you need to use them, you must install the modules separately.
+
+- [`computer`](https://forge.puppet.com/puppetlabs/macdslocal_core)
+- [`macauthorization`](https://forge.puppet.com/puppetlabs/macdslocal_core)
+- [`mcx`](https://forge.puppet.com/puppetlabs/macdslocal_core)
+- [The Nagios types](https://forge.puppet.com/puppetlabs/nagios_core)
+- [Cisco device types](https://forge.puppet.com/puppetlabs/cisco_ios)
+
+The following types continue to be located in the core Puppet code base.
 
 exec
 -----
