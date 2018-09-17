@@ -479,7 +479,7 @@ documents:
       puppetserver: "5.1"
     hide: true
 
-   /facter/3.12:
+  /facter/3.12:
     doc: facter
     version: "3.12"
     nav: ./_facter_toc.html
