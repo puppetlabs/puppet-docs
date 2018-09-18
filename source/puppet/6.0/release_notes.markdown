@@ -56,10 +56,10 @@ Instead, use `puppetserver ca` and `puppet ssl`. ([PUP-8998](https://tickets.pup
 
 - The `input_method` property of Tasks now defaults to `undef` rather than the string `both`. This allows more flexibility in defaults and what `input_methods` we choose to support in the future. ([PUP-8898](https://tickets.puppetlabs.com/browse/PUP-8898))
 - `convert_to()` function now accepts additional arguments where earlier it only accepted the data type to convert to. ([PUP-8761](https://tickets.puppetlabs.com/browse/PUP-8761))
-- A `{{compare(a,b)}}` function has been added that returns `-1`, `0`, or `1` depending on if `a` is before `b`, same as `b`, or after `b`. The function works with the comparable types: `String`, `Numeric`, `Semver`, `Timestamp`, and `Timespan`. For `String` comparison it is possible to ignore or take case into account. ([PUP-8693](https://tickets.puppetlabs.com/browse/PUP-8693))
-- A new data type `{{Deferred}}` has been added. It is used to describe a function call that can be invoked at a later point in time. ([PUP-8635](https://tickets.puppetlabs.com/browse/PUP-8635))
-- It is now possible to resolve a `{{Deferred}}` value by using the `{{call}}` function. It can resolve a `deferred` function call, and a `deferred` variable dereference (with support to `{{dig}}` into a structured value). ([PUP-8641](https://tickets.puppetlabs.com/browse/PUP-8641))
-- It is now possible to use `operator {{+}}` to concatenate two `Binary` data type values.
+- A `compare(a,b)` function has been added that returns `-1`, `0`, or `1` depending on if `a` is before `b`, same as `b`, or after `b`. The function works with the comparable types: `String`, `Numeric`, `Semver`, `Timestamp`, and `Timespan`. For `String` comparison it is possible to ignore or take case into account. ([PUP-8693](https://tickets.puppetlabs.com/browse/PUP-8693))
+- A new data type `Deferred` has been added. It is used to describe a function call that can be invoked at a later point in time. ([PUP-8635](https://tickets.puppetlabs.com/browse/PUP-8635))
+- It is now possible to resolve a `Deferred` value by using the `call` function. It can resolve a `deferred` function call, and a `deferred` variable dereference (with support to `dig` into a structured value). ([PUP-8641](https://tickets.puppetlabs.com/browse/PUP-8641))
+- It is now possible to use `operator `+` to concatenate two `Binary` data type values.
 ([PUP-8605](https://tickets.puppetlabs.com/browse/PUP-8605))	
 -The `sort()` function has been moved from `stdlib` to Puppet. The function now also accepts a lambda for the purpose of using a custom compare. ([PUP-8622](https://tickets.puppetlabs.com/browse/PUP-8622))
 - The functions `upcase()`, `downcase()`, `capitalize()`, `camelcase()`, `lstrip()`, `rstrip()`, `strip()`, `chop()`, `chomp()`, and `size()` have been updated to the modern function API and the new versions are in Puppet and no longer require `stdlib`). The functions are generally backwards compatible. ([PUP-8604](https://tickets.puppetlabs.com/browse/PUP-8604))
@@ -79,7 +79,7 @@ Instead, use `puppetserver ca` and `puppet ssl`. ([PUP-8998](https://tickets.pup
 
 - With rich-data turned on for a catalog (now the default) a Report could contain rich data in reported events, and that was not good because nothing downstream from the agent is prepared to handle rich data. This is now fixed so that data in reported events are stringified when needed. ([PUP-9093](https://tickets.puppetlabs.com/browse/PUP-9093))
 - The deprecation for illegal top level constructs is now an error. ([PUP-9091](https://tickets.puppetlabs.com/browse/PUP-9091))
-- Attempt to use the reserved attribute names {{__ptype}} and {{__pvalue}} in custom {{Object}} data types will now raise an error instead of producing bad result when serializing such objects. ([PUP-9079](https://tickets.puppetlabs.com/browse/PUP-9079))
+- Attempt to use the reserved attribute names `__ptype` and `__pvalue` in custom `Object` data types will now raise an error instead of producing bad result when serializing such objects. ([PUP-9079](https://tickets.puppetlabs.com/browse/PUP-9079))
 - It was not possible to use a hash key `__pcore_type` in a hash as that would trigger the special handling during serialization. Now in Puppet 6.0.0, the special key has changed to `__ptype` and it is not also possible to use that as a key in a hash and still be able to serialize it (for example use it in a catalog). ([PUP-8976](https://tickets.puppetlabs.com/browse/PUP-8976))
 - When the agent is configured with a list of servers (using `server_list`), it will now request server status from the `status` endpoint instead of the "node" endpoint. ([PUP-8967](https://tickets.puppetlabs.com/browse/PUP-8967))
 - The selmodule type is now more strict about checking if a module has already been loaded, and should no longer consider modules such as "bar" and "foobar" to be the same module. ([PUP-8943](https://tickets.puppetlabs.com/browse/PUP-8943))
@@ -87,31 +87,21 @@ Instead, use `puppetserver ca` and `puppet ssl`. ([PUP-8998](https://tickets.pup
 - Fix an issue running in JRuby where we didn't store autoloaded paths in the same way that the JRuby implementation did, leading to a bug where a type or provider could get loaded more than once. ([PUP-8733](https://tickets.puppetlabs.com/browse/PUP-8733))
 - Puppet's autoloader methods now require a non-nil environment. This is a breaking API change, but should not affect any user extensions like 3x functions.
 Puppet sometimes used the configured environment instead of the current environment to autoload. This mainly affected agents when loading provider features. 
-Calling Puppet::Parser::Functions.autoloader.load* methods are deprecated, and will issue a warning if strict mode is set to warning or error. Instead use Scope#call_function("myfunction") to call other functions from within a function. ([PUP-8696](https://tickets.puppetlabs.com/browse/PUP-8696))
+Calling Puppet::Parser::Functions.autoloader.load* methods are deprecated, and will issue a warning if strict mode is set to warning or error. Instead use `Scope#call_function("myfunction")` to call other functions from within a function. ([PUP-8696](https://tickets.puppetlabs.com/browse/PUP-8696))
 - When comparing Numeric to Timestamp or Timespan it did not work to compare with the Numeric value first. This is now fixed. ([PUP-8694](https://tickets.puppetlabs.com/browse/PUP-8694))
-- The http_read_timeout default changed from infinite to 10 minutes. This prevents the agent from hanging if there are network disruptions after the agent has sent an HTTP request and is waiting for a response which might never arrive. 
-
-Similarly, the runtimeout default also changed from infinite to 1 hour. ([PUP-8683](https://tickets.puppetlabs.com/browse/PUP-8683))
+- The `http_read_timeout` default changed from infinite to 10 minutes. This prevents the agent from hanging if there are network disruptions after the agent has sent an HTTP request and is waiting for a response which might never arrive. Similarly, the `runtimeout` default also changed from infinite to 1 hour. ([PUP-8683](https://tickets.puppetlabs.com/browse/PUP-8683))
 - The Tidy resource type now uses the debug log level for its "File does not exist" message, instead of the info level. This means that resources of this type will no longer emit the message by default when the target of the resource has already been cleaned from disk. ([PUP-8667](https://tickets.puppetlabs.com/browse/PUP-8667))
-- With this change - if the user has distributed the CRL chain "out of band" - then the agent will successfully load it and use it to verify its connection to other Puppet infrastructure (for example the master). It expects the CRL chain to be one or more PEM encoded CRLs concatenated together (the same format as a cert bundle). This fixes the "Agent-side CRL checking is not possible" caveat on in our External CA documentation: https://puppet.com/docs/puppet/5.5/config_ssl_external_ca.html#option-2-puppet-server-functioning-as-an-intermediate-ca ([PUP-8656](https://tickets.puppetlabs.com/browse/PUP-8656))
+- With this change - if the user has distributed the CRL chain "out of band" - then the agent will successfully load it and use it to verify its connection to other Puppet infrastructure (for example the master). It expects the CRL chain to be one or more PEM encoded CRLs concatenated together (the same format as a cert bundle). This fixes the "Agent-side CRL checking is not possible" caveat on in our [External CA documentation]( https://puppet.com/docs/puppet/5.5/config_ssl_external_ca.html#option-2-puppet-server-functioning-as-an-intermediate-ca). ([PUP-8656](https://tickets.puppetlabs.com/browse/PUP-8656))
 - When processing malformed plist files, we used to use /dev/stdout which can cause Ruby to complain. We now use '-' instead which means to use stdout when processing the plist file with plutil. ([PUP-8545](https://tickets.puppetlabs.com/browse/PUP-8545))
-- Trusted server facts are always enabled and have been deprecated since 5.0. Removes the setting and conditional logic. ([PUP-8530](https://tickets.puppetlabs.com/browse/PUP-8530))
+- Trusted server facts are always enabled and have been deprecated since 5.0. This removes the setting and conditional logic. ([PUP-8530](https://tickets.puppetlabs.com/browse/PUP-8530))
 - The write_only_yaml node terminus was used to "determine the list of 
 nodes that the master knows about" and predated widespread puppetdb 
 adoption. The write_only_yaml has been deprecated since 4.10.5, and 
 this commit removes it. Note this should result in a puppetserver speedup as it no longer will need to serialize node data as YAML to disk during a compile. ([PUP-8528](https://tickets.puppetlabs.com/browse/PUP-8528))
 - Puppet 6 now requires ruby 2.3 or greater, and will error when running on older ruby versions. Several code paths relating to old ruby behavior have been removed. ([PUP-8484](https://tickets.puppetlabs.com/browse/PUP-8484))
 - Puppet requires ruby 2.3 or greater. ([PUP-8483](https://tickets.puppetlabs.com/browse/PUP-8483))
-- EPP comments {{<%# Like this %>}} always trimmed preceding whitespace. This is different from ERB making it more difficult to migrate ERB templates to EPP. There was also no way of making EPP preserve those spaces.  
-
-Now, EPP comment does not trim preceding whitespace by default, and a new left trimming tag {{<%#-}} has been added. 
-
-This is a backwards incompatibility in that code like this: 
-{code} 
-Before <%# comment %>after 
-{code} 
-resulted in the string {{"Beforeafter"}}, whereas now it will be "Before after". ([PUP-8476](https://tickets.puppetlabs.com/browse/PUP-8476))
-- The {{filter}} function did not accept truthy value returned from the block as indication of values to include in the result. Only exactly boolean {{true}} was earlier accepted. ([PUP-8320](https://tickets.puppetlabs.com/browse/PUP-8320))
+- EPP comments `<%# Like this %>` always trimmed preceding whitespace. This is different from ERB making it more difficult to migrate ERB templates to EPP. There was also no way of making EPP preserve those spaces. Now, EPP comment does not trim preceding whitespace by default, and a new left trimming tag `<%#-` has been added. This is a backwards incompatibility in that code like, `Before <%# comment %>after` resulted in the string `"Beforeafter"`, whereas now it will be `"Before after"`. ([PUP-8476](https://tickets.puppetlabs.com/browse/PUP-8476))
+- The `filter` function did not accept truthy value returned from the block as indication of values to include in the result. Only exactly boolean `true` was earlier accepted. ([PUP-8320](https://tickets.puppetlabs.com/browse/PUP-8320))
 - Puppet now uses YAML.safe_load consistently to ensure only known classes are loaded. ([PUP-7834](https://tickets.puppetlabs.com/browse/PUP-7834))
 - The LDAP node terminus has been removed. ([PUP-7601](https://tickets.puppetlabs.com/browse/PUP-7601))
 - Restructure puppet's Gemfile so that bundler installs puppet's runtime, feature-related, and test dependencies by default. The development and documentation groups can be installed using: bundle install --with development documentation. ([PUP-7433](https://tickets.puppetlabs.com/browse/PUP-7433))
@@ -121,14 +111,16 @@ resulted in the string {{"Beforeafter"}}, whereas now it will be "Before after".
 - Total time now reports the measured time of the run instead of a sum of other run times. ([PUP-6344](https://tickets.puppetlabs.com/browse/PUP-6344))
 - Features defined using a block or a list of libraries now behave the same, so the following are equivalent: 
 
-```
-Puppet.features.add(:my_feature) do 
-require 'mylib' 
-end 
-```
-`Puppet.features.add(:my_feature, libs: ['my_lib'])` 
-
-Previously the result of the block was always cached. With this change only true or false return values are cached. To indicate that the state of the feature is unknown and may become available later, the block should return nil. ([PUP-5985](https://tickets.puppetlabs.com/browse/PUP-5985)
+    ``
+    Puppet.features.add(:my_feature) do 
+    require 'mylib' 
+    end 
+    ``
+    and 
+    
+    `Puppet.features.add(:my_feature, libs: ['my_lib'])` 
+    
+    Previously the result of the block was always cached. With this change only true or false return values are cached. To indicate that the state of the feature is unknown and may become available later, the block should return nil. ([PUP-5985](https://tickets.puppetlabs.com/browse/PUP-5985)
 - Errors will be reported for module puppet files declaring things in a namespace inconsistent with their directory and file location. ([PUP-4242](https://tickets.puppetlabs.com/browse/PUP-4242))
 - Generating graphs of catalogs (Eg: puppet apply --graph) now correctly handles resources with double quotes in the title. ([PUP-2838](https://tickets.puppetlabs.com/browse/PUP-2838))
 
@@ -139,11 +131,9 @@ Previously the result of the block was always cached. With this change only true
 - The Nagios types no longer ship with Puppet, and are now available as the `puppetlabs/nagios_core` module from the Forge.
 - The Cisco network device types no longer ship with Puppet. These types and providers have been deprecated in favor of the `puppetlabs/cisco_ios` module, which is available on the Forge. ([PUP-8575](https://tickets.puppetlabs.com/browse/PUP-8575))
     
-- In versions before Puppet 6.0.0 values from manifests assigned to resource attributes that contained undef values nested in arrays and hashes would use the Ruby symbol :undef to represent those values. When using puppet apply types and providers would see those as :undef or as the string "undef" depending on the implementation of the type. When using a puppet master, the same values were correctly handled. In Puppet 6.0.0 Ruby {{nil}} is used consistently for this. (Top level undef values are still encoded as empty string for backwards compatibility). ([PUP-9112](https://tickets.puppetlabs.com/browse/PUP-9112))
+- In versions before Puppet 6.0.0 values from manifests assigned to resource attributes that contained undef values nested in arrays and hashes would use the Ruby symbol :undef to represent those values. When using puppet apply types and providers would see those as :undef or as the string "undef" depending on the implementation of the type. When using a puppet master, the same values were correctly handled. In Puppet 6.0.0 Ruby `nil` is used consistently for this. (Top level undef values are still encoded as empty string for backwards compatibility). ([PUP-9112](https://tickets.puppetlabs.com/browse/PUP-9112))
 
-- To reduce the amount of developer tooling installed on all agents, this version of puppet removes the `puppet module build` command. To continue building module packages for the forge and other repositories, install the [pdk](https://puppet.com/docs/pdk/1.x/pdk_install.html), or the community provided [puppet-blacksmith](https://rubygems.org/gems/puppet-blacksmith) on your development systems. 
-
-[Needs PDK-1100 resolved before the `puppet-blacksmith` part is true.] ([PUP-8763](https://tickets.puppetlabs.com/browse/PUP-8763))
+- To reduce the amount of developer tooling installed on all agents, this version of puppet removes the `puppet module build` command. To continue building module packages for the forge and other repositories, install the [pdk](https://puppet.com/docs/pdk/1.x/pdk_install.html), or the community provided [puppet-blacksmith](https://rubygems.org/gems/puppet-blacksmith) on your development systems. [Needs PDK-1100 resolved before the `puppet-blacksmith` part is true.] ([PUP-8763](https://tickets.puppetlabs.com/browse/PUP-8763))
 
 - The earlier experimental --rich_data format used the tags __pcore_type__ and __pcore_value__, these are now shortened to __ptype and __pvalue respectively. If you are using this experimental feature and have stored serializations you need to change them or write them again with the updated version. ([PUP-8597](https://tickets.puppetlabs.com/browse/PUP-8597)
 
@@ -159,9 +149,9 @@ Previously the result of the block was always cached. With this change only true
 
 - The deprecated app_management setting has now been removed. Previously, this setting was ignored, and always treated as though it was set to be on. ([PUP-8531](https://tickets.puppetlabs.com/browse/PUP-8531)
 
-- Types and Provider implementations must not mutate the parameter values of a resource. In Puppet 6.0.0 it is more likely that the parameters of a resource will have frozen (i.e. immutable) string values and any type or provider that directly mutates a resource parameter may fail. Before Puppet 6.0.0 every resource attribute was copied to not make application break even if they did mutate. Look for use of {{gsub!}} in your modules and replace logic with non mutating version, or operate on a copy of the value. (All modules authors of modules on the forge having this problem have been notified). ([PUP-7141](https://tickets.puppetlabs.com/browse/PUP-7141))
+- Types and Provider implementations must not mutate the parameter values of a resource. In Puppet 6.0.0 it is more likely that the parameters of a resource will have frozen (i.e. immutable) string values and any type or provider that directly mutates a resource parameter may fail. Before Puppet 6.0.0 every resource attribute was copied to not make application break even if they did mutate. Look for use of `gsub!` in your modules and replace logic with non mutating version, or operate on a copy of the value. (All modules authors of modules on the forge having this problem have been notified). ([PUP-7141](https://tickets.puppetlabs.com/browse/PUP-7141))
 
-- The deprecated method {{Puppet.newtype}} (deprecated since 2011), has now been removed. ([PUP-7078](https://tickets.puppetlabs.com/browse/PUP-7078))
+- The deprecated method `Puppet.newtype` (deprecated since 2011), has now been removed. ([PUP-7078](https://tickets.puppetlabs.com/browse/PUP-7078))
 
 - The deprecated `ordering` setting has been removed, and catalogs now always have the ordering previously provided by the "manifest" value of this setting. ([PUP-6165](https://tickets.puppetlabs.com/browse/PUP-6165))
 
