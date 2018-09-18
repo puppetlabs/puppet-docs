@@ -558,6 +558,18 @@ documents:
     version: "1"
     nav: /_includes/hiera1.html
 
+  /puppetserver/6.0:
+    doc: puppetserver
+    version: "6.0"
+    nav: /puppet/6.0/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: origin/6.0.x
+      subdirectory: documentation
+    my_versions:
+      puppet: "6.0"
+      facter: "3.12"
+    hide: true
   /puppetserver/5.3:
     doc: puppetserver
     version: "5.3"

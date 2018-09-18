@@ -155,7 +155,7 @@ If you're configuring an exact replacement for an older Puppet master---you're k
 
 If this is a new Puppet master but _isn't_ serving as a certificate authority, use `puppet agent` to request a new certificate. (You should have already upgraded the CA server.)
 
-1. Run `puppet agent --test --certname=<NAME> --dns_alt_names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>` to request the certificate.
+1. Run `puppet agent --test --certname=<NAME> --dns-alt-names=<NAME>,<NAME>,<NAME> --server=<UPGRADED CA SERVER>` to request the certificate.
 
 2. Sign the certificate on the CA, then run the `puppet agent` command in Step 1 again from the new Puppet master to fetch the signed certificate. Remember to [disable the internal Puppet CA service]({{puppetserver}}/external_ca_configuration.html#disabling-the-internal-puppet-ca-service) in `bootstrap.cfg`.
 
