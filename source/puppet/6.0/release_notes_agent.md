@@ -35,9 +35,9 @@ This release includes new features, a deprecation, and a bug fix.
 
 ### New features
 
-- Boost was updated to version 1.67 in puppet-agent#master. yaml-cpp was updated to version 0.6.2. ([PA-2055](https://tickets.puppetlabs.com/browse/PA-2055)
-- We have updated the version of OpenSSL used in puppet-agent to version 1.1.0h. ([PA-1941](https://tickets.puppetlabs.com/browse/PA-1941)
-- The directory structure of Windows package installations has changed. The default installation directory is now `Drive:\Program Files\Puppet Labs\Puppet\puppet`. This directory is now where Facter, pxp-agent, Hiera and Ruby are installed. ([PA-1923](https://tickets.puppetlabs.com/browse/PA-1923)
+- Boost was updated to version 1.67 in puppet-agent#master. yaml-cpp was updated to version 0.6.2. ([PA-2055](https://tickets.puppetlabs.com/browse/PA-2055))
+- We have updated the version of OpenSSL used in puppet-agent to version 1.1.0h. ([PA-1941](https://tickets.puppetlabs.com/browse/PA-1941))
+- The directory structure of Windows package installations has changed. The default installation directory is now `Drive:\Program Files\Puppet Labs\Puppet\puppet`. This directory is now where Facter, pxp-agent, Hiera and Ruby are installed. ([PA-1923](https://tickets.puppetlabs.com/browse/PA-1923))
 
 ### Deprecations
 
@@ -46,6 +46,6 @@ This release includes new features, a deprecation, and a bug fix.
 
 ### Bug fixes
 
-- We have updated the vendored `semantic_puppet` gem in the `puppet-agent` package to the most recent version, 1.0.2. ([PA-1881](https://tickets.puppetlabs.com/browse/PA-1881)
+- We have updated the vendored `semantic_puppet` gem in the `puppet-agent` package to the most recent version, 1.0.2. ([PA-1881](https://tickets.puppetlabs.com/browse/PA-1881))
 
 
