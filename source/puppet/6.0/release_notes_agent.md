@@ -41,7 +41,7 @@ This release includes new features, a deprecation, and a bug fix.
 
 ### Deprecations
 
-- We have removed MCollective as an agent component for Puppet Platform 6, and all other related files. ([PA-1918](https://tickets.puppetlabs.com/browse/PA-1918))
+- We have removed MCollective as an agent component for Puppet Platform 6, and all other related files. See [Removing MCollective](/pe/2018.1/removing_mcollective.html) in the PE documentation for more information. If you use open source Puppet, we recommend that you migrate MCollective agents and filters using tools like [Bolt](/bolt/latest/bolt.html) and [PuppetDB’s Puppet Query Language](/puppetdb/6.0/index.html).([PA-1918](https://tickets.puppetlabs.com/browse/PA-1918))
 
 
 ### Bug fixes
