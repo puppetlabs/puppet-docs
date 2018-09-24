@@ -39,9 +39,9 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 | Operating system                           | Tested versions                                   | Untested versions       |
 |--------------------------------------------|---------------------------------------------------|-------------------------|
 | Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                           |                         |
-| SUSE Linux Enterprise Server               | 15                                           |                         |
+| SUSE Linux Enterprise Server               | 11, 12, 15                                        |                         |
 | Debian                                     | Wheezy (7), Jessie (8), Stretch (9)               |                         |
-| Ubuntu                                     | 14.04, 16.04                                      |                         |
+| Ubuntu                                     | 14.04, 16.04, 18.04                               |                         |
 | Fedora                                     | 27, 28                                            |                         |
 | Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016                              | 2008, 2012              |
 | Microsoft Windows (Consumer OS)            | 10 Enterprise                                     | 7, 8, 10         |
@@ -78,7 +78,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 If you install Puppet via the official packages, you don't need to worry about prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-* **Ruby:** We currently only test and package with 2.4.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
+* **Ruby:** We currently only test and package with 2.5.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
 * Mandatory libraries:
 

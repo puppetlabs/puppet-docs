@@ -82,9 +82,9 @@ sudo rpm -Uvh puppet6-release-el-5.noarch.rpm
 
     sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-fedora-27.noarch.rpm
 
-#### Fedora 26
+#### SuSE Enterprise Linux 15
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-fedora-26.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-sles-15.noarch.rpm
 
 #### SuSE Enterprise Linux 12
 

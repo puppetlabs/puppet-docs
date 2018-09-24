@@ -21,7 +21,7 @@ See the table for details about which components shipped in which `puppet-agent`
 
 We distribute Puppet as two core packages.
 
--   `puppet-agent` --- This package contains Puppet's main code and all of the dependencies needed to run it, including [Facter][], [Hiera][], and bundled versions of Ruby and OpenSSL. Once it's installed, you have everything you need to run [the Puppet agent service][agent] and the [`puppet apply` command][apply].
+-   `puppet-agent` --- This package contains Puppet's main code and all of the dependencies needed to run it, including [Facter][], Hiera, and bundled versions of Ruby and OpenSSL. Once it's installed, you have everything you need to run [the Puppet agent service][agent] and the [`puppet apply` command][apply].
 -   `puppetserver` --- This package depends on `puppet-agent`, and adds the JVM-based [Puppet Server][] application. Once it's installed, Puppet Server can serve catalogs to nodes running the Puppet agent service.
 
 > **Deprecation Note:** As of Puppet agent 5.5.4, MCollective was deprecated. It has been removed in Puppet agent 6.0. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
