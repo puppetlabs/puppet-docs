@@ -78,7 +78,7 @@ Puppet and its prerequisites are known to run on the following platforms, but we
 
 If you install Puppet via the official packages, you don't need to worry about prerequisites; your system's package manager handles all of them. These are only listed for those running Puppet from source or on unsupported systems.
 
-* **Ruby:** We currently only test and package with 2.4.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
+* **Ruby:** We currently only test and package with 2.5.x versions of Ruby, therefore you should only use this version. Other interpreters and versions of Ruby are not covered by our tests.
 
 * Mandatory libraries:
 
