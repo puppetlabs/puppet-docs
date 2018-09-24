@@ -144,10 +144,12 @@ Deprecated types
 The following types were deprecated with Puppet 6.0.0. They are included in modules, but are not updated. If you need to use them, you must install the modules separately.
 
 - [`computer`](https://forge.puppet.com/puppetlabs/macdslocal_core)
+- [`interface`](https://forge.puppet.com/puppetlabs/cisco_ios)
 - [`macauthorization`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [`mcx`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [The Nagios types](https://forge.puppet.com/puppetlabs/nagios_core)
-- [Cisco device types](https://forge.puppet.com/puppetlabs/cisco_ios)
+- [`router`](https://forge.puppet.com/puppetlabs/cisco_ios)
+- [`vlan`](https://forge.puppet.com/puppetlabs/cisco_ios)
 
 The following types continue to be located in the core Puppet code base.
 
