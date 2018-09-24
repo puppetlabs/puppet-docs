@@ -121,8 +121,8 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
     `Puppet.features.add(:my_feature, libs: ['my_lib'])` 
     
     Previously the result of the block was always cached. With this change only true or false return values are cached. To indicate that the state of the feature is unknown and may become available later, the block should return nil. ([PUP-5985](https://tickets.puppetlabs.com/browse/PUP-5985)
-- Errors will be reported for module puppet files declaring things in a namespace inconsistent with their directory and file location. ([PUP-4242](https://tickets.puppetlabs.com/browse/PUP-4242))
-- Generating graphs of catalogs (Eg: puppet apply --graph) now correctly handles resources with double quotes in the title. ([PUP-2838](https://tickets.puppetlabs.com/browse/PUP-2838))
+- Errors will be reported for module files declarations that have a namespace inconsistent with their directory and file location. ([PUP-4242](https://tickets.puppetlabs.com/browse/PUP-4242))
+- Generating graphs of catalogs (such as `puppet apply --graph`) now correctly handles resources with double quotes in the title. ([PUP-2838](https://tickets.puppetlabs.com/browse/PUP-2838))
 
 
 ### Deprecations
@@ -131,13 +131,13 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
 - The Nagios types no longer ship with Puppet, and are now available as the `puppetlabs/nagios_core` module from the Forge.
 - The Cisco network device types no longer ship with Puppet. These types and providers have been deprecated in favor of the `puppetlabs/cisco_ios` module, which is available on the Forge. ([PUP-8575](https://tickets.puppetlabs.com/browse/PUP-8575))
     
-- In versions before Puppet 6.0.0 values from manifests assigned to resource attributes that contained undef values nested in arrays and hashes would use the Ruby symbol :undef to represent those values. When using puppet apply types and providers would see those as :undef or as the string "undef" depending on the implementation of the type. When using a puppet master, the same values were correctly handled. In Puppet 6.0.0 Ruby `nil` is used consistently for this. (Top level undef values are still encoded as empty string for backwards compatibility). ([PUP-9112](https://tickets.puppetlabs.com/browse/PUP-9112))
+- In versions before Puppet 6.0.0, values from manifests assigned to resource attributes that contained undef values nested in arrays and hashes would use the Ruby symbol :undef to represent those values. When using puppet apply types and providers would see those as :undef or as the string "undef" depending on the implementation of the type. When using a puppet master, the same values were correctly handled. In Puppet 6.0.0 Ruby `nil` is used consistently for this. (Top level undef values are still encoded as empty string for backwards compatibility). ([PUP-9112](https://tickets.puppetlabs.com/browse/PUP-9112))
 
-- To reduce the amount of developer tooling installed on all agents, this version of puppet removes the `puppet module build` command. To continue building module packages for the forge and other repositories, install the [pdk](https://puppet.com/docs/pdk/1.x/pdk_install.html), or the community provided [puppet-blacksmith](https://rubygems.org/gems/puppet-blacksmith) on your development systems. [Needs PDK-1100 resolved before the `puppet-blacksmith` part is true.] ([PUP-8763](https://tickets.puppetlabs.com/browse/PUP-8763))
+- To reduce the amount of developer tooling installed on all agents, this version of puppet removes the `puppet module build` command. To continue building module packages for the forge and other repositories, install [Puppet Development Kit (PDK)](https://puppet.com/docs/pdk/1.x/pdk_install.html). <!--- or the community provided [puppet-blacksmith](https://rubygems.org/gems/puppet-blacksmith) on your development systems. [Needs PDK-1100 resolved before the `puppet-blacksmith` part is true.]---> ([PUP-8763](https://tickets.puppetlabs.com/browse/PUP-8763))
 
 - The earlier experimental --rich_data format used the tags __pcore_type__ and __pcore_value__, these are now shortened to __ptype and __pvalue respectively. If you are using this experimental feature and have stored serializations you need to change them or write them again with the updated version. ([PUP-8597](https://tickets.puppetlabs.com/browse/PUP-8597)
 
-- Webrick support (previous deprecated) has been removed. This means that the `puppet master` command no longer exists. To run puppet as a server you must use puppetserver. ([PUP-8591](https://tickets.puppetlabs.com/browse/PUP-8591))
+- Webrick support (previous deprecated) has been removed. This means that the `puppet master` command no longer exists. To run Puppet as a server you must use puppetserver. ([PUP-8591](https://tickets.puppetlabs.com/browse/PUP-8591))
 
 - The --strict flag in `puppet module` has been removed. The default behavior remains intact, but the tool no longer accepts non-strict versioning (such as release candidates, beta versions, etc) ([PUP-8558](https://tickets.puppetlabs.com/browse/PUP-8558))
 
@@ -149,7 +149,7 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
 
 - The deprecated app_management setting has now been removed. Previously, this setting was ignored, and always treated as though it was set to be on. ([PUP-8531](https://tickets.puppetlabs.com/browse/PUP-8531)
 
-- Types and Provider implementations must not mutate the parameter values of a resource. In Puppet 6.0.0 it is more likely that the parameters of a resource will have frozen (i.e. immutable) string values and any type or provider that directly mutates a resource parameter may fail. Before Puppet 6.0.0 every resource attribute was copied to not make application break even if they did mutate. Look for use of `gsub!` in your modules and replace logic with non mutating version, or operate on a copy of the value. (All modules authors of modules on the forge having this problem have been notified). ([PUP-7141](https://tickets.puppetlabs.com/browse/PUP-7141))
+- Types and Provider implementations must not mutate the parameter values of a resource. In Puppet 6.0.0 it is more likely that the parameters of a resource will have frozen (that is, immutable) string values and any type or provider that directly mutates a resource parameter may fail. Before Puppet 6.0.0, every resource attribute was copied to not make application break even if they did mutate. Look for use of `gsub!` in your modules and replace logic with non mutating version, or operate on a copy of the value. (All modules authors of modules on the forge having this problem have been notified). ([PUP-7141](https://tickets.puppetlabs.com/browse/PUP-7141))
 
 - The deprecated method `Puppet.newtype` (deprecated since 2011), has now been removed. ([PUP-7078](https://tickets.puppetlabs.com/browse/PUP-7078))
 
@@ -160,7 +160,7 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
 * masterhttplog
 ([PUP-3658](https://tickets.puppetlabs.com/browse/PUP-3658))
 
-- As a part of the larger CA rework (so probably this won't end up wanting separate notes), the v1 CA HTTP API is removed (everything under the ca url /v1) ([PUP-3650](https://tickets.puppetlabs.com/browse/PUP-3650))
+- As a part of the larger CA rework, the v1 CA HTTP API is removed (everything under the ca url /v1) ([PUP-3650](https://tickets.puppetlabs.com/browse/PUP-3650))
 
 - The following subcommands were deprecated in Puppet 5.5.6 and slated for removal in Puppet 6.0. While they are still deprecated, they have not yet been removed. 
 
