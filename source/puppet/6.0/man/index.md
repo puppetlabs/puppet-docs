@@ -1,7 +1,7 @@
 ---
 layout: default
 built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
-title: Puppet Man Pages
+title: Puppet man pages
 canonical: "/puppet/latest/man/index.html"
 ---
 
@@ -9,7 +9,7 @@ canonical: "/puppet/latest/man/index.html"
 
 Puppet's command line tools consist of a single `puppet` binary with many subcommands. The following subcommands are available in this version of Puppet:
 
-Core Tools
+Core tools
 -----
 
 These subcommands form the core of Puppet's tool set, and every user should understand what they do.

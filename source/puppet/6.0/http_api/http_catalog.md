@@ -18,11 +18,11 @@ Retrieve a catalog.
     POST /puppet/v3/catalog/:nodename
     GET /puppet/v3/catalog/:nodename?environment=:environment
 
-### Supported HTTP Methods
+### Supported HTTP methods
 
 POST, GET
 
-### Supported Response Formats
+### Supported response formats
 
 `application/json`, `text/pson`
 
@@ -60,7 +60,7 @@ Optional parameters that may be provided to the POST or GET:
   which might differ from what the client believes is its current environment.
 - `job_id`: which orchestration job triggered this catalog request.
 
-### Example Response
+### Example response
 
 #### Catalog found
 
@@ -169,7 +169,7 @@ Optional parameters that may be provided to the POST or GET:
       ]
     }
 
-#### Static Catalog found
+#### Static catalog found
 
 ~~~
 POST /puppet/v3/catalog/elmo.mydomain.com

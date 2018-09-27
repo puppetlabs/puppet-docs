@@ -17,7 +17,7 @@ remain low for the foreseeable future.
 Puppet will often send garbage URL parameters, such as `fail_on_404` and
 `ignore_cache`. The server will ignore any parameters it isn't expecting.
 
-V1/V2 HTTP APIs (Removed)
+V1/V2 HTTP APIs (removed)
 ---------------
 
 The V1 and V2 APIs were removed in Puppet 4.0.0. The routes that were previously
@@ -79,7 +79,7 @@ Using this API requires significant understanding of how Puppet's internal
 services are structured, but the following documents attempt to specify what is
 available and how to interact with it.
 
-### Configuration Management Services
+### Configuration management services
 
 These services are all directly used by the Puppet agent application, in order
 to manage the configuration of a node.
@@ -96,14 +96,14 @@ These endpoints accept payload formats formatted as JSON or PSON (MIME types of
 * [File Metadata](./http_file_metadata.md)
 * [Report](./http_report.md)
 
-### Informational Services
+### Informational services
 
 These services are not directly used by Puppet agent, but may be used by other
 tools.
 
 * [Status](./http_status.md)
 
-### Environment Endpoints
+### Environment endpoints
 
 The endpoints with a different format are the `/puppet/v3/environments` and
 the `/puppet/v3/environment/:environment` endpoints.
@@ -122,7 +122,7 @@ as a Puppet master, Puppet Server adds additional `/puppet/v3/` endpoints:
 * [Static File Content](https://puppet.com/docs/puppetserver/latest/puppet-api/v3/static_file_content.md)
 * [Environment Classes](https://puppet.com/docs/puppetserver/latest/puppet-api/v3/environment_classes.md)
 
-#### Error Responses
+#### Error responses
 
 The `environments` endpoint will respond to error conditions in a uniform manner
 and use standard HTTP response code to signify those errors.
@@ -169,7 +169,7 @@ As with the Puppet V3 API, using this API requires a significant amount of
 understanding of how Puppet's internal services are structured. The following
 documents provide additional specification.
 
-### SSL Certificate Related Services
+### SSL Certificate related services
 
 These endpoints only accept plain text payload formats. Historically, Puppet has
 used the MIME type `s` to mean `text/plain`. In Puppet 5, it will always use
@@ -180,7 +180,7 @@ used the MIME type `s` to mean `text/plain`. In Puppet 5, it will always use
 * [Certificate Status](./http_certificate_status.md)
 * [Certificate Revocation List](./http_certificate_revocation_list.md)
 
-Serialization Formats
+Serialization formats
 ---------------------
 
 Puppet sends messages using several different serialization formats. Not all
