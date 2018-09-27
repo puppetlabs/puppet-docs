@@ -20,11 +20,11 @@ Get status for a master
 The `environment` parameter and the `:name` are both required, but have no
 effect on the response. The `environment` must be a valid environment.
 
-### Supported HTTP Methods
+### Supported HTTP methods
 
 GET
 
-### Supported Response Formats
+### Supported response formats
 
 `application/json`, `text/pson`
 
@@ -32,7 +32,7 @@ GET
 
 None
 
-### Example Response
+### Example response
 
     GET /puppet/v3/status/whatever?environment=env
 

@@ -23,11 +23,11 @@ Retrieve data for a node
     GET /puppet/v3/node/:certname?environment=:environment&transaction_uuid=:transaction_uuid&configured_environment=:environment
 
 
-### Supported HTTP Methods
+### Supported HTTP methods
 
 GET
 
-### Supported Response Formats
+### Supported response formats
 
 `application/json`, `text/pson`
 

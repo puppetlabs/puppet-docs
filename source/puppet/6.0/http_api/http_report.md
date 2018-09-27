@@ -22,11 +22,11 @@ The http(s) endpoint for sending reports to the master is:
 
     PUT /puppet/v3/report/:nodename?environment=:environment
 
-### Supported HTTP Methods
+### Supported HTTP methods
 
 PUT
 
-### Supported Format(s)
+### Supported formats
 
 `application/json`, `text/pson`
 

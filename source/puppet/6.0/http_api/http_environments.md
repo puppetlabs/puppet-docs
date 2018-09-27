@@ -19,7 +19,7 @@ Get the list of known environments.
 
     GET /puppet/v3/environments
 
-### Supported Response Formats
+### Supported response formats
 
 `application/json`
 
@@ -27,7 +27,7 @@ Get the list of known environments.
 
 None
 
-### Example Request & Response
+### Example request and response
 
     GET /puppet/v3/environments
 
