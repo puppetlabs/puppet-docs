@@ -27,7 +27,7 @@ Microsoft recommends against using negative/very large exit codes, and you shoul
 
 Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.) When using `cmd.exe` and specifying a file path in the command line, be sure to use backslashes. (For example, `'cmd.exe /c type c:\path\to\file.txt'`.) If you use forward slashes, `cmd.exe` will error.
 
-## The Optional PowerShell Exec Provider
+## The optional PowerShell exec provider
 
 An optional PowerShell exec provider is available as a plugin and is is particularly helpful if you need to run PowerShell commands easily from within Puppet. To use it, install:
 

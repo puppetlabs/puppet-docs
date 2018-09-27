@@ -22,7 +22,7 @@ Related topics:
 * [Type reference](./type.html)
 
 {:.concept}
-## The Trifecta
+## The trifecta
 
 Package/file/service: Learn it, live it, love it. Even if this is the only Puppet you know, you can still get a whole lot done.
 
@@ -54,7 +54,7 @@ service { 'sshd':
 Manages files, directories, and symlinks.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`ensure`](./type.html#file-attribute-ensure) -- Whether the file should exist, and what it should be. Allowed values:
     * `file` (a normal file)
@@ -68,28 +68,28 @@ Manages files, directories, and symlinks.
 * [`mode`](./type.html#file-attribute-mode) -- Must be specified exactly. Does the right thing for directories.
 
 {:.section}
-#### For Normal Files
+#### For normal files
 
 * [`source`](./type.html#file-attribute-source) -- Where to download contents for the file. Usually a `puppet:///` URL.
 * [`content`](./type.html#file-attribute-content) -- The file's desired contents, as a string. Most useful when paired with [templates](./lang_template.html), but you can also use the output of the [file function](./function.html#file).
 
 {:.section}
-#### For Directories
+#### For directories
 
 * [`source`](./type.html#file-attribute-source) -- Where to download contents for the directory, when `recurse => true`.
 * [`recurse`](./type.html#file-attribute-recurse) -- Whether to recursively manage files in the directory.
 * [`purge`](./type.html#file-attribute-purge) -- Whether unmanaged files in the directory should be deleted, when `recurse => true`.
 
 {:.section}
-#### For Symlinks
+#### For symlinks
 
 * [`target`](./type.html#file-attribute-target) -- The symlink target. (Required when `ensure => link`.)
 
 {:.section}
-#### Other Notable Attributes
+#### Other notable attributes
 
 * [`backup`](./type.html#file-attribute-backup)
-* [`checksum`](./type.html#file-attribute-checksum) 
+* [`checksum`](./type.html#file-attribute-checksum)
 * [`force`](./type.html#file-attribute-force)
 * [`ignore`](./type.html#file-attribute-ignore)
 * [`links`](./type.html#file-attribute-links)
@@ -102,7 +102,7 @@ Manages files, directories, and symlinks.
 Manages software packages.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`name`](./type.html#package-attribute-name) -- The name of the package, as known to your packaging system; **defaults to title.**
 * [`ensure`](./type.html#package-attribute-ensure) -- Whether the package should be installed, and what version to use. Allowed values:
@@ -126,7 +126,7 @@ Related topics:
 * [Relationships](./lang_relationships.html)
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`name`](./type.html#service-attribute-name) -- The name of the service to run; **defaults to title.**
 * [`ensure`](./type.html#service-attribute-ensure) -- The desired status of the service. Allowed values:
@@ -137,13 +137,13 @@ Related topics:
 * [`hasstatus`](./type.html#service-attribute-hasstatus) -- Whether to use the init script's status command. Defaults to true.
 
 {:.section}
-#### Other Notable Attributes
+#### Other notable attributes
 
 If a service has a bad init script, you can work around it and manage almost anything using the [`status`](./type.html#service-attribute-status), [`start`](./type.html#service-attribute-start), [`stop`](./type.html#service-attribute-stop), [`restart`](./type.html#service-attribute-restart), [`pattern`](./type.html#service-attribute-pattern), and [`binary`](./type.html#service-attribute-binary) attributes.
 
 
 {:.concept}
-## Hello World
+## Hello, world
 
 {:.concept}
 ### notify
@@ -155,7 +155,7 @@ notify { "This message is getting logged on the agent node.": }
 ```
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`message`](./type.html#notify-attribute-message) -- **Defaults to title.**
 
@@ -168,7 +168,7 @@ notify { "This message is getting logged on the agent node.": }
 Executes an arbitrary command on the agent node. When using execs, you must either make sure the command can be safely run multiple times, or specify that it should only run under certain conditions.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`command`](./type.html#exec-attribute-command) -- The command to run; **defaults to title.** If this isn't a fully-qualified path, use the `path` attribute.
 * [`path`](./type.html#exec-attribute-path) -- Where to look for executables, as a colon-separated list or an array.
@@ -176,7 +176,7 @@ Executes an arbitrary command on the agent node. When using execs, you must eith
 * [`environment`](./type.html#exec-attribute-environment) -- An array of environment variables to set (for example, `['MYVAR=somevalue', 'OTHERVAR=othervalue']`).
 
 {:.section}
-#### Attributes to Limit When a Command Should Run
+#### Attributes to limit when a command should run
 
 * [`creates`](./type.html#exec-attribute-creates) -- A file to look for before running the command. The command only runs if the file doesn’t exist.
 * [`refreshonly`](./type.html#exec-attribute-refreshonly) -- If `true`, the command only run if a resource it subscribes to (or a resource which notifies it) has changed.
@@ -184,7 +184,7 @@ Executes an arbitrary command on the agent node. When using execs, you must eith
 * [`unless`](./type.html#exec-attribute-unless) -- The opposite of onlyif.
 
 {:.section}
-#### Other Notable Attributes:
+#### Other notable attributes:
 
 [`cwd`](./type.html#exec-attribute-cwd), [`group`](./type.html#exec-attribute-group), [`logoutput`](./type.html#exec-attribute-logoutput), , [`timeout`](./type.html#exec-attribute-timeout), [`tries`](./type.html#exec-attribute-tries), [`try_sleep`](./type.html#exec-attribute-try_sleep), [`user`](./type.html#exec-attribute-user).
 
@@ -201,7 +201,7 @@ Manages cron jobs. Largely self-explanatory. On Windows, you should use [`schedu
     }
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`command`](./type.html#cron-attribute-command) -- The command to execute.
 * [`ensure`](./type.html#cron-attribute-ensure) -- Whether the job should exist.
@@ -210,7 +210,7 @@ Manages cron jobs. Largely self-explanatory. On Windows, you should use [`schedu
 * [`hour`](./type.html#cron-attribute-hour), [`minute`](./type.html#cron-attribute-minute), [`month`](./type.html#cron-attribute-month), [`monthday`](./type.html#cron-attribute-monthday), and [`weekday`](./type.html#cron-attribute-weekday) -- The timing of the cron job.
 
 {:.section}
-#### Other Notable Attributes
+#### Other notable attributes
 
 [`environment`](./type.html#cron-attribute-environment), [`name`](./type.html#cron-attribute-name), [`special`](./type.html#cron-attribute-special), [`target`](./type.html#cron-attribute-target), [`user`](./type.html#cron-attribute-user).
 
@@ -229,7 +229,7 @@ Manages user accounts; mostly used for system users.
     }
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`name`](./type.html#user-attribute-name) -- The name of the user; **defaults to title.**
 * [`ensure`](./type.html#user-attribute-ensure) -- Whether the user should exist. Allowed values:
@@ -244,7 +244,7 @@ Manages user accounts; mostly used for system users.
 * [`shell`](./type.html#user-attribute-shell) -- The user's login shell.
 
 {:.section}
-#### Other Notable Attributes
+#### Other notable attributes
 
 [`comment`](./type.html#user-attribute-comment), [`expiry`](./type.html#user-attribute-expiry), [`membership`](./type.html#user-attribute-membership), [`password`](./type.html#user-attribute-password), [`password_max_age`](./type.html#user-attribute-password_max_age), [`password_min_age`](./type.html#user-attribute-password_min_age), [`purge_ssh_keys`](./type.html#user-attribute-purge_ssh_keys), [`salt`](./type.html#user-attribute-salt).
 
@@ -254,7 +254,7 @@ Manages user accounts; mostly used for system users.
 Manages groups.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
 * [`name`](./type.html#group-attribute-name) -- The name of the group; **defaults to title.**
 * [`ensure`](./type.html#group-attribute-ensure) -- Whether the group should exist. Allowed values:
