@@ -1,7 +1,7 @@
 ---
 layout: default
 toc_levels: 1234
-title: "Puppet 6.0 Release Notes"
+title: "Puppet 6.0 release notes"
 ---
 
 This page lists the changes in Puppet 6.0 and its patch releases. You can also view [known issues](known_issues.html) in this release.
@@ -29,18 +29,18 @@ This release is a major Puppet release including many new features, improvements
 
 ### New features and improvements
 
-- In this release, many types were moved out of the Puppet core codeblock and to modules on the [Puppet Forge](https://forge.puppet.com/). This change enables easier composability and reusability of the Puppet codebase and enables development to proceed more quickly without fear of destabilizing the rest of Puppet. Some types are now in supported modules and are repackaged back into Puppet agent. Some are now in modules that are updated, but are not repackaged into Puppet agent. And some are in modules that are deprecated, not updated, and not repackaged back into Puppet agent. 
+- In this release, many types were moved out of the Puppet core codeblock and to modules on the [Puppet Forge](https://forge.puppet.com/). This change enables easier composability and reusability of the Puppet codebase and enables development to proceed more quickly without fear of destabilizing the rest of Puppet. Some types are now in supported modules and are repackaged back into Puppet agent. Some are now in modules that are updated, but are not repackaged into Puppet agent. And some are in modules that are deprecated, not updated, and not repackaged back into Puppet agent.
 
 See the [Resource Type Reference](/puppet/6.0/type.html) page for the full list, and links to the Forge modules for those types that moved.
 
 - Resource API has been added, providing a new, recommended method to create custom types and providers. The Resource API is built on top of Puppet core and is easier, faster, and safer than the old types and providers method. See the [Resource API documentation](/puppet/6.0/create_types_and_providers_resource_api.html) for more information.
 
-- Recently introduced `puppetserver ca` command is the default now, and CA-related subcommands have been removed from Puppet. These are: 
+- Recently introduced `puppetserver ca` command is the default now, and CA-related subcommands have been removed from Puppet. These are:
     * `cert`
-    * `ca` 
-    * `certificate` 
-    * `certificate_request` 
-    * `certificate_revocation_list` 
+    * `ca`
+    * `certificate`
+    * `certificate_request`
+    * `certificate_revocation_list`
 Instead, use `puppetserver ca` and `puppet ssl`. ([PUP-8998](https://tickets.puppetlabs.com/browse/PUP-8998))
 - The `puppet cert` command will now error with instructions on alternative commands to use, mostly `puppetserver ca <subcommand>`. A couple of the actions (fingerprint, print) have not been directly replaced because openssl already provides good equivalents. For verifying certs, use `puppet ssl verify`. ([PUP-9022](https://tickets.puppetlabs.com/browse/PUP-9022))
 - Puppet no longer has a Ruby CA. All CA actions now rely entirely on the Clojure implementation in Puppet Server. It can be interacted with by means of the CA API and the `puppetserver ca` command, which leverages the API using subcommands like those provided by `puppet cert`. ([PUP-8912](https://tickets.puppetlabs.com/browse/PUP-8912))
@@ -60,10 +60,10 @@ Instead, use `puppetserver ca` and `puppet ssl`. ([PUP-8998](https://tickets.pup
 - A new data type `Deferred` has been added. It is used to describe a function call that can be invoked at a later point in time. ([PUP-8635](https://tickets.puppetlabs.com/browse/PUP-8635))
 - It is now possible to resolve a `Deferred` value by using the `call` function. It can resolve a `deferred` function call, and a `deferred` variable dereference (with support to `dig` into a structured value). ([PUP-8641](https://tickets.puppetlabs.com/browse/PUP-8641))
 - It is now possible to use `operator `+` to concatenate two `Binary` data type values.
-([PUP-8605](https://tickets.puppetlabs.com/browse/PUP-8605))	
+([PUP-8605](https://tickets.puppetlabs.com/browse/PUP-8605))
 -The `sort()` function has been moved from `stdlib` to Puppet. The function now also accepts a lambda for the purpose of using a custom compare. ([PUP-8622](https://tickets.puppetlabs.com/browse/PUP-8622))
 - The functions `upcase()`, `downcase()`, `capitalize()`, `camelcase()`, `lstrip()`, `rstrip()`, `strip()`, `chop()`, `chomp()`, and `size()` have been updated to the modern function API and the new versions are in Puppet and no longer require `stdlib`). The functions are generally backwards compatible. ([PUP-8604](https://tickets.puppetlabs.com/browse/PUP-8604))
-- The math functions `ab`s, `ceil`, `floor`, `round`, `min`, and `max` are now available in puppet. The functions are compatible with the functions with the same name in `stdlib` with the added feature in `min/max` if calling them with a single array and being able to use a lambda with a custom compare. These `stdlib` math functions used inconsistent string to numeric conversions that were also unintentionally making the functions compare values in strange ways. The automatic conversions are now deprecated and will issue a warning. ([PUP-8603](https://tickets.puppetlabs.com/browse/PUP-8603)) 
+- The math functions `ab`s, `ceil`, `floor`, `round`, `min`, and `max` are now available in puppet. The functions are compatible with the functions with the same name in `stdlib` with the added feature in `min/max` if calling them with a single array and being able to use a lambda with a custom compare. These `stdlib` math functions used inconsistent string to numeric conversions that were also unintentionally making the functions compare values in strange ways. The automatic conversions are now deprecated and will issue a warning. ([PUP-8603](https://tickets.puppetlabs.com/browse/PUP-8603))
 - The `rich_data` setting is now enabled by default. Catalog requests have two new content-types, `application/vnd.puppet.rich+json` and `application/vnd.puppet.rich+msgpack`, that are used when both master and agent have this enabled (and depending on whether `preferred_serialization_format` is `json` or `msgpack`). ([PUP-8601](https://tickets.puppetlabs.com/browse/PUP-8601))
 - Puppet's default `basemodulepath` now includes a vendored modules directory, which enables puppet to load modules that are vendored in the puppet-agent package. To prevent puppet from loading modules from this directory, change the `basemodulepath` back to its previous value, for example, on *nix `$codedir/modules:/opt/puppetlabs/puppet/modules`. On Windows: `$codedir/modules`. ([PUP-8582](https://tickets.puppetlabs.com/browse/PUP-8582))
 - The `modulepath` as defined in `environment.conf` can now accept globs in the path name. ([PUP-8556](https://tickets.puppetlabs.com/browse/PUP-8556))
@@ -86,7 +86,7 @@ Instead, use `puppetserver ca` and `puppet ssl`. ([PUP-8998](https://tickets.pup
 - Puppet now considers resources that have failed to restart when notified from another resource as failed, and will mark them as such in reports. Reports also now include the `failed_to_restart` status for individual resources, instead of only including a total count of `failed_to_restart` resources in the resource metrics section. This also bumps the report format version to 10. ([PUP-8908](https://tickets.puppetlabs.com/browse/PUP-8908))
 - Fix an issue running in JRuby where we didn't store autoloaded paths in the same way that the JRuby implementation did, leading to a bug where a type or provider could get loaded more than once. ([PUP-8733](https://tickets.puppetlabs.com/browse/PUP-8733))
 - Puppet's autoloader methods now require a non-nil environment. This is a breaking API change, but should not affect any user extensions like 3x functions.
-Puppet sometimes used the configured environment instead of the current environment to autoload. This mainly affected agents when loading provider features. 
+Puppet sometimes used the configured environment instead of the current environment to autoload. This mainly affected agents when loading provider features.
 Calling Puppet::Parser::Functions.autoloader.load* methods are deprecated, and will issue a warning if strict mode is set to warning or error. Instead use `Scope#call_function("myfunction")` to call other functions from within a function. ([PUP-8696](https://tickets.puppetlabs.com/browse/PUP-8696))
 - When comparing Numeric to Timestamp or Timespan it did not work to compare with the Numeric value first. This is now fixed. ([PUP-8694](https://tickets.puppetlabs.com/browse/PUP-8694))
 - The `http_read_timeout` default changed from infinite to 10 minutes. This prevents the agent from hanging if there are network disruptions after the agent has sent an HTTP request and is waiting for a response which might never arrive. Similarly, the `runtimeout` default also changed from infinite to 1 hour. ([PUP-8683](https://tickets.puppetlabs.com/browse/PUP-8683))
@@ -94,9 +94,9 @@ Calling Puppet::Parser::Functions.autoloader.load* methods are deprecated, and w
 - With this change - if the user has distributed the CRL chain "out of band" - then the agent will successfully load it and use it to verify its connection to other Puppet infrastructure (for example the master). It expects the CRL chain to be one or more PEM encoded CRLs concatenated together (the same format as a cert bundle). This fixes the "Agent-side CRL checking is not possible" caveat on in our [External CA documentation]( https://puppet.com/docs/puppet/5.5/config_ssl_external_ca.html#option-2-puppet-server-functioning-as-an-intermediate-ca). ([PUP-8656](https://tickets.puppetlabs.com/browse/PUP-8656))
 - When processing malformed plist files, we used to use /dev/stdout which can cause Ruby to complain. We now use '-' instead which means to use stdout when processing the plist file with plutil. ([PUP-8545](https://tickets.puppetlabs.com/browse/PUP-8545))
 - Trusted server facts are always enabled and have been deprecated since 5.0. This removes the setting and conditional logic. ([PUP-8530](https://tickets.puppetlabs.com/browse/PUP-8530))
-- The write_only_yaml node terminus was used to "determine the list of 
-nodes that the master knows about" and predated widespread puppetdb 
-adoption. The write_only_yaml has been deprecated since 4.10.5, and 
+- The write_only_yaml node terminus was used to "determine the list of
+nodes that the master knows about" and predated widespread puppetdb
+adoption. The write_only_yaml has been deprecated since 4.10.5, and
 this commit removes it. Note this should result in a puppetserver speedup as it no longer will need to serialize node data as YAML to disk during a compile. ([PUP-8528](https://tickets.puppetlabs.com/browse/PUP-8528))
 - Puppet 6 now requires ruby 2.3 or greater, and will error when running on older ruby versions. Several code paths relating to old ruby behavior have been removed. ([PUP-8484](https://tickets.puppetlabs.com/browse/PUP-8484))
 - Puppet requires ruby 2.3 or greater. ([PUP-8483](https://tickets.puppetlabs.com/browse/PUP-8483))
@@ -109,17 +109,17 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
 - Puppet now loads semantic_puppet from a shared gem directory, so that Puppet, Puppet agent, and Puppet Server all require and use the same version of the gem. (~>1.0.x) ([PUP-7115](https://tickets.puppetlabs.com/browse/PUP-7115))
 - Puppet now requires ruby 2.3 or greater. We removed code paths for older ruby support, e.g. 1.8.7, relaxed our gem dependencies to include gems that require ruby 2 or up, and now test puppet PRs against JRuby 9k. ([PUP-6893](https://tickets.puppetlabs.com/browse/PUP-6893))
 - Total time now reports the measured time of the run instead of a sum of other run times. ([PUP-6344](https://tickets.puppetlabs.com/browse/PUP-6344))
-- Features defined using a block or a list of libraries now behave the same, so the following are equivalent: 
+- Features defined using a block or a list of libraries now behave the same, so the following are equivalent:
 
     ``
-    Puppet.features.add(:my_feature) do 
-    require 'mylib' 
-    end 
+    Puppet.features.add(:my_feature) do
+    require 'mylib'
+    end
     ``
-    and 
-    
-    `Puppet.features.add(:my_feature, libs: ['my_lib'])` 
-    
+    and
+
+    `Puppet.features.add(:my_feature, libs: ['my_lib'])`
+
     Previously the result of the block was always cached. With this change only true or false return values are cached. To indicate that the state of the feature is unknown and may become available later, the block should return nil. ([PUP-5985](https://tickets.puppetlabs.com/browse/PUP-5985)
 - Errors will be reported for module files declarations that have a namespace inconsistent with their directory and file location. ([PUP-4242](https://tickets.puppetlabs.com/browse/PUP-4242))
 - Generating graphs of catalogs (such as `puppet apply --graph`) now correctly handles resources with double quotes in the title. ([PUP-2838](https://tickets.puppetlabs.com/browse/PUP-2838))
@@ -130,7 +130,7 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
 - The `computer`, `macauthorization`, and `mcx` types and providers have been moved to a module: https://forge.puppet.com/puppetlabs/macdslocal_core. It is not being repackaged into puppet-agent for 6.0
 - The Nagios types no longer ship with Puppet, and are now available as the `puppetlabs/nagios_core` module from the Forge.
 - The Cisco network device types no longer ship with Puppet. These types and providers have been deprecated in favor of the `puppetlabs/cisco_ios` module, which is available on the Forge. ([PUP-8575](https://tickets.puppetlabs.com/browse/PUP-8575))
-    
+
 - In versions before Puppet 6.0.0, values from manifests assigned to resource attributes that contained undef values nested in arrays and hashes would use the Ruby symbol :undef to represent those values. When using puppet apply types and providers would see those as :undef or as the string "undef" depending on the implementation of the type. When using a puppet master, the same values were correctly handled. In Puppet 6.0.0 Ruby `nil` is used consistently for this. (Top level undef values are still encoded as empty string for backwards compatibility). ([PUP-9112](https://tickets.puppetlabs.com/browse/PUP-9112))
 
 - To reduce the amount of developer tooling installed on all agents, this version of puppet removes the `puppet module build` command. To continue building module packages for the forge and other repositories, install [Puppet Development Kit (PDK)](https://puppet.com/docs/pdk/1.x/pdk_install.html). <!--- or the community provided [puppet-blacksmith](https://rubygems.org/gems/puppet-blacksmith) on your development systems. [Needs PDK-1100 resolved before the `puppet-blacksmith` part is true.]---> ([PUP-8763](https://tickets.puppetlabs.com/browse/PUP-8763))
@@ -155,14 +155,14 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
 
 - The deprecated `ordering` setting has been removed, and catalogs now always have the ordering previously provided by the "manifest" value of this setting. ([PUP-6165](https://tickets.puppetlabs.com/browse/PUP-6165))
 
-- We have removed settings related to the rack webserver from Puppet. These are: 
-* binaddress 
+- We have removed settings related to the rack webserver from Puppet. These are:
+* binaddress
 * masterhttplog
 ([PUP-3658](https://tickets.puppetlabs.com/browse/PUP-3658))
 
 - As a part of the larger CA rework, the v1 CA HTTP API is removed (everything under the ca url /v1) ([PUP-3650](https://tickets.puppetlabs.com/browse/PUP-3650))
 
-- The following subcommands were deprecated in Puppet 5.5.6 and slated for removal in Puppet 6.0. While they are still deprecated, they have not yet been removed. 
+- The following subcommands were deprecated in Puppet 5.5.6 and slated for removal in Puppet 6.0. While they are still deprecated, they have not yet been removed.
 
 
     -   `ca_name`
