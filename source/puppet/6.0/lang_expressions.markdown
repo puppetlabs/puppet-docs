@@ -43,7 +43,7 @@ Most of this page is about **expressions constructed with operators.** Operators
 
 Other kinds of expressions (function calls, etc.) are described in more detail on other pages of this manual. This page will mostly focus on the available operators and how they work.
 
-### Expressions with Side Effects
+### Expressions with side effects
 
 Some (non-operator) expressions always have side effects when evaluated. For example:
 
@@ -53,7 +53,7 @@ Some (non-operator) expressions always have side effects when evaluated. For exa
 
 These statements are usually used _only_ for their side effects, with their values ignored. However, the values are sometimes useful for things like forming relationships to resources whose names can't be predicted until runtime.
 
-### List of Non-Expressions
+### List of non-expressions
 
 The following statements are NOT normal expressions: they don't resolve to usable values, and can only be used in certain contexts.
 
@@ -115,7 +115,7 @@ When creating compound expressions by using other expressions as operands, you s
 ```
 
 
-## Order of Operations
+## Order of operations
 
 
 Compound expressions are evaluated in a standard order of operations. However, parentheses will override the order of operations:
@@ -273,10 +273,10 @@ Integer[100, 199] in [1, 2, 125] # resolves to true
 Integer[100, 199] in [1, 2, 25]  # resolves to false
 ```
 
-Boolean Operators
+Boolean operators
 -----
 
-Boolean Operators have the following traits:
+Boolean operators have the following traits:
 
 * They take [**boolean**][boolean] operands; if a value of another data type is given, it will be [automatically converted to boolean][bool_convert].
 * They resolve to [**boolean**][boolean] values.
@@ -342,7 +342,7 @@ Left bitwise shift: shifts the left operand by the number of places specified by
 
 Right bitwise shift: shifts the left operand by the number of places specified by the right operand. This is equivalent to rounding each operand down to the nearest integer and dividing the left operand by 2 to the power of the right operand.
 
-Array Operators
+Array operators
 -----
 
 Array operators take [arrays][] as operands; with the exception of `*` (unary splat), they resolve to array values.
@@ -425,7 +425,7 @@ If the left operand isn't an array, Puppet will interpret `-` as arithmetic subt
 
 This operator does not change its operands; it only creates a new value.
 
-## Hash Operators
+## Hash operators
 
 
 Hash operators take:
