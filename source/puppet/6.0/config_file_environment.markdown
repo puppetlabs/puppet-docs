@@ -51,7 +51,7 @@ The most useful variables to interpolate into environment.conf settings are:
 * `$environment` --- useful as a command line argument to your `config_version` script. *You can interpolate this variable only in the `config_version` setting.*
 * `$codedir` --- useful for locating files.
 
-Allowed Settings
+Allowed settings
 -----
 
 {% partial ./_environment_conf_settings.md %}
