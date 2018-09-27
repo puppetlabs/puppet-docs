@@ -10,7 +10,7 @@ title: "Configuration: Editing settings on the command line"
 
 Puppet loads most of its settings from [the puppet.conf config file.][puppet.conf] You can edit this file directly, or you can change individual settings with the `puppet config set` command.
 
-> When to Use This
+> When to use this
 > -----
 >
 > We recommend using `puppet config set` for:
