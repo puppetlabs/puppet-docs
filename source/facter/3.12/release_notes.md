@@ -5,7 +5,7 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.11 series.
 
-## Factor 3.12.0
+## Facter 3.12.0
 
 Released 18 September, 2018
 
@@ -17,7 +17,7 @@ This release includes one new feature and three bug fixes. It shipped with Puppe
 
 ### Bug fixes
 
-- Systems relying entirely on `systemd-networkd` for DHCP management do not use `dhclient`. This checks the DHCP leases directory of `systemd-networkd` (`/run/systemd/netif/leases`) in addition to the lease files of `dhclient` when attempting to identify DHCP servers. ([FACT-1851](https://tickets.puppetlabs.com/browse/FACT-1851)) 
+- Systems relying entirely on `systemd-networkd` for DHCP management do not use `dhclient`. This checks the DHCP leases directory of `systemd-networkd` (`/run/systemd/netif/leases`) in addition to the lease files of `dhclient` when attempting to identify DHCP servers. ([FACT-1851](https://tickets.puppetlabs.com/browse/FACT-1851))
 - Facter no longer checks for missing `dmidecode` and does not report a warning when it's missing on POWER Linux machines.([FACT-1765](https://tickets.puppetlabs.com/browse/FACT-1765))
 
 
@@ -37,7 +37,7 @@ This is a bug-fix release that shipped with Puppet Platform 5.5.6.
 
 - Facter has been updated to correctly read the format of `/etc/system-release` under Amazon Linux 2. This corrects the OS release fact, which previously fell back to the kernel version. ([FACT-1865](https://tickets.puppetlabs.com/browse/FACT-1865))
 
-- The `os.architecture` fact is now determined from the `processors.models[0]` fact. This addresses a problem where Puppet agent wasn't working with dynamic CPU allocations on AIX. ([FACT-1550](https://tickets.puppetlabs.com/browse/FACT-1550)) 
+- The `os.architecture` fact is now determined from the `processors.models[0]` fact. This addresses a problem where Puppet agent wasn't working with dynamic CPU allocations on AIX. ([FACT-1550](https://tickets.puppetlabs.com/browse/FACT-1550))
 
 - The `memory` fact was occasionally failing on AIX. This has been fixed. ([FACT-1821](https://tickets.puppetlabs.com/browse/FACT-1821))
 
