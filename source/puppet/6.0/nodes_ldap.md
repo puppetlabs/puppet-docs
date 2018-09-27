@@ -39,7 +39,7 @@ You can probably still use this effectively, but please consider the following:
 
 -   [ruby-ldap](http://ruby-ldap.sourceforge.net)
 
-## Pre-Puppet Ruby/LDAP Validation
+## Pre-Puppet Ruby/LDAP validation
 
 You can run the following tests to make sure that the Ruby-LDAP Library and your LDAP software are configured properly:
 
