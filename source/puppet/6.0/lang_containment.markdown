@@ -41,13 +41,13 @@ In this example, `Exec['/usr/local/bin/update_custom_timestamps.sh']` would happ
 
 This feature also allows you to [notify and subscribe to][notify] classes and defined resource types as though they were a single resource.
 
-## Containing Resources
+## Containing resources
 
 
 Resources of both native and defined resource types are automatically contained by the class or defined type in which they are declared.
 
 
-## Containing Classes
+## Containing classes
 
 Having classes contain other classes can be very useful, especially in larger modules where you want to improve code readability by moving chunks of implementation into separate files.
 
