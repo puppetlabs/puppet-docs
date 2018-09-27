@@ -32,7 +32,7 @@ Arrays are written as comma-separated lists of values surrounded by square brack
 The values in an array can be any data type.
 
 
-## Accessing Values
+## Accessing values
 
 You can access items in an array by their numerical index (counting from zero). Square brackets are used for accessing.
 
@@ -90,7 +90,7 @@ if $foo =~ Array[String] {
 
 This manifest would log `foo` as a notice, because the regex matches the empty array.
 
-## Array Sectioning
+## Array sectioning
 
 You can also access sections of an array by numerical index. Like accessing, sectioning uses square brackets, but it uses two indexes (separated by a comma) instead of one (e.g. `$array[3,10]`).
 
@@ -114,14 +114,14 @@ notice( $foo[2,-1] ) # evaluates to ['three', 'four', 'five']
 notice( $foo[-2,1] ) # evaluates to ['four']
 ```
 
-## Array Operators
+## Array operators
 
 There are three expression operators that can act on array values: `*` (splat), `+` (concatenation), and `-` (removal).
 
 For details, [see the relevant section of the Expressions and Operators page.](./lang_expressions.html#array-operators)
 
 
-## Additional Functions
+## Additional functions
 
 The [puppetlabs-stdlib][stdlib] module contains several additional functions for dealing with arrays, including:
 
@@ -144,7 +144,7 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `values_at`
 * `zip`
 
-## The `Array` Data Type
+## The `Array` data type
 
 The [data type][] of arrays is `Array`.
 
@@ -176,7 +176,7 @@ Position | Parameter        | Data Type | Default Value | Description
 * `Array[Variant[String, Integer]]` --- matches an array of any size that contains only strings and/or integers.
 * `Array[Any, 2]` --- matches an array containing at least two elements, allowing any data type (including `Type` and `Resource`).
 
-### Related Data Types
+### Related data types
 
 The abstract [`Tuple` data type][tuple] lets you specify data types for every element in an array, in order.
 
