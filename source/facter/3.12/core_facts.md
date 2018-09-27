@@ -16,7 +16,7 @@ You can access facts in your Puppet manifests as `$fact_name` or `$facts[fact_na
 
 * * *
 
-## Modern Facts
+## Modern facts
 
 ### `aio_agent_version`
 
@@ -1025,7 +1025,7 @@ Return the version for ZFS storage pools.
 
 ([↑ Back to top](#page-nav))
 
-## Legacy Facts
+## Legacy facts
 
 ### `architecture`
 
