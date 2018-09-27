@@ -201,7 +201,7 @@ Although "unless" statements receive regex capture variables like "if" statement
 
 
 
-Case Statements
+Case statements
 -----
 
 Like "if" statements, **case statements** choose one of several blocks of arbitrary Puppet code to execute. They take a control expression and a list of cases and code blocks, and will execute the first block whose case value matches the control expression.
