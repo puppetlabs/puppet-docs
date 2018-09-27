@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Language: Type Aliases"
+title: "Language: Type aliases"
 ---
 
 [reserved]: ./lang_reserved.html
