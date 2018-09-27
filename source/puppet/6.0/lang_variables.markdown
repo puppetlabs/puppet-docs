@@ -23,7 +23,7 @@ Variables store values so they can be accessed later.
 
 In the Puppet language, variables are actually constants, since they [can't be reassigned](#no-reassignment). But since "variable" is more comfortable and familiar to most people, the name has stuck.
 
-> Facts and Built-In Variables
+> Facts and built-in variables
 > -----
 >
 > Puppet has many built-in variables that you can use in your manifests. For a list of these, see [the page on facts and built-in variables.](./lang_facts_and_builtin_vars.html)
