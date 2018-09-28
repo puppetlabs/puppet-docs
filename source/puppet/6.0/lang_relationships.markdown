@@ -19,6 +19,7 @@ title: "Language: Relationships and ordering"
 [moar]: ./configuration.html#ordering
 [lambdas]: ./lang_lambdas.html
 [containment]: ./lang_containment.html
+[Puppet Language Style Guide]:(https://puppet.com/docs/puppet/5.3/style_guide.html#chaining-arrow-syntax)
 
 
 By default, Puppet applies resources in the order they're declared in their manifest. However, if a group of resources must _always_ be managed in a specific order, you should explicitly declare such relationships with relationship metaparameters, chaining arrows, and the `require` function.
@@ -141,13 +142,13 @@ Since resource declarations can be chained, you can use chaining arrows to make 
 # first:
 package { 'openssh-server':
   ensure => present,
-} -> # and then:
-file { '/etc/ssh/sshd_config':
+} # and then:
+-> file { '/etc/ssh/sshd_config':
   ensure => file,
   mode   => '0600',
   source => 'puppet:///modules/sshd/sshd_config',
-} ~> # and then:
-service { 'sshd':
+} # and then:
+~> service { 'sshd':
   ensure => running,
   enable => true,
 }
@@ -160,6 +161,8 @@ Yumrepo <| |> -> Package <| |>
 ```
 
 This example applies all yum repository resources before applying any package resources, which protects any packages that rely on custom repositories.
+
+> Note: Most of the time, you should use relationship metaparameters, not chaining arrows. See the [Puppet Language Style Guide](https://puppet.com/docs/puppet/5.3/style_guide.html#chaining-arrow-syntax) for information on when and how to use chaining arrows.
 
 ### Capturing resource references for generated resources
 
