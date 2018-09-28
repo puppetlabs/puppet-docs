@@ -75,7 +75,7 @@ file { '/etc/passwd':
 }
 ```
 
-## "If" statements
+## If/else statements
 
 
 **"If" statements** take a [boolean][] condition and an arbitrary block of Puppet code, and will only execute the block if the condition is **true.** They can optionally include `elsif` and `else` clauses.
