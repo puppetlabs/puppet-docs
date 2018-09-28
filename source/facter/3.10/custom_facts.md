@@ -211,7 +211,7 @@ the resolution with the highest weight is evaluated first. If that resolution re
 Facter moves on to the next resolution (by descending weight) until it gets a value for the fact.
 
 By default, the weight of a fact is the number of confines for that resolution, so
-that more specific resolutions take priority over less specific resolutions.
+that more specific resolutions take priority over less specific resolutions. Note that external facts have a weight of 1000 — to override these set a weight above 1000.
 
 ``` ruby
 # Check to see if this server has been marked as a postgres server
