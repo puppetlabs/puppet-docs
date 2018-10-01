@@ -75,7 +75,7 @@ Data types are useful in parameter lists, match (`=~`) expressions, case stateme
 
 ### When and how to use data types
 
-We recommend using data types whenever you can, and aligning them in columns. Class parameters should be typed wherever possible, and the type used should be as specific as possible, for example, using an Enum for input validation, instead of using a String and checking the contents of the string in the code. You have the option to specify String[1] instead of String, because you may want non empty string — this is fine to use but we do not recommend you ensure it. You should also type variables as deep as possible, without affecting readability. If this is not possible, consider creating your own custom data type alias.
+We recommend using data types whenever you can, and aligning them in columns. Class parameters should be typed wherever possible, and the type used should be as specific as possible, for example, using an Enum for input validation, instead of using a String and checking the contents of the string in the code. You have the option to specify String[1] instead of String, because you may want to enforce non-empty strings. You should also specify data types as deeply as possible, without affecting readability. If this is not possible, consider creating your own custom data type alias.
 
 ### Parameter lists
 
