@@ -209,7 +209,7 @@ documents:
       puppet: "4.10"
       facter: "3.6"
       hiera: "3.3"
-      puppetserver: "2.8"
+      puppetserver: "2.6"
       puppetdb: "4.4"
     hide: true
 
@@ -387,7 +387,7 @@ documents:
     my_versions:
       facter: "3.6"
       hiera: "3.3"
-      puppetserver: "2.8"
+      puppetserver: "2.6"
     hide: true
   /puppet/4.9:
     doc: puppet
