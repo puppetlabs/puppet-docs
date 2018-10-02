@@ -40,18 +40,19 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 |--------------------------------------------|---------------------------------------------------|-------------------------|
 | Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                           |                         |
 | SUSE Linux Enterprise Server               | 11, 12, 15                                        |                         |
-| Debian                                     | Wheezy (7), Jessie (8), Stretch (9)               |                         |
-| Ubuntu                                     | 14.04, 16.04, 18.04                               |                         |
+| Debian                                     | Jessie (8), Stretch (9)               |                         |
+| Ubuntu                                     | 16.04, 18.04                               |                         |
 | Fedora                                     | 27, 28                                            |                         |
 | Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016                              | 2008, 2012              |
 | Microsoft Windows (Consumer OS)            | 10 Enterprise                                     | 7, 8, 10         |
 | macOS                                      | 10.12 Sierra, 10.13 High Sierra |                         |
+| SLES                                       | 11, 12                                            |                         |
 
 Red Hat Enterprise Linux derivatives include Amazon Linux v1 (using RHEL 6 packages) and v2 (using RHEL 7 packages).
 
 ### Platforms without packages
 
-Puppet and its prerequisites are known to run on the following platforms, but we do not provide official open source packages or perform automated testing.
+Puppet and its prerequisites are known to run on other Linux and Unix platforms, but we do not provide official open source packages or perform automated testing on the following: 
 
 -   Other Linux:
     -   Gentoo Linux
@@ -59,11 +60,11 @@ Puppet and its prerequisites are known to run on the following platforms, but we
     -   Arch Linux
 
 -   Other Unix:
-    -   Oracle Solaris, version 10 and higher
-    -   AIX, version 6.1 and higher
     -   FreeBSD 4.7 and later
     -   OpenBSD 4.1 and later
     -   HP-UX
+
+We do perform automated testing on Oracle Solaris 10 and 11 (SPARC and x86), and AIX 6.1 and 7.1, but we only support those agents for PE.
 
 > **Note:** While installing `puppet-agent` on Solaris, you might see an error like the following:
 > 
