@@ -20,6 +20,37 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 6.0.1
+
+Released 2 October 2018
+
+This release contains new features and bug fixes.
+
+### New features and improvements
+
+- The `Puppet::Util::Windows::ADSI::User` class now supports setting and unsetting ADSI userflags. ([PUP-9177](https://tickets.puppetlabs.com/browse/PUP-9177))
+- `Puppet::Util::Execution.execute` now supports a `cwd` option to specify the current working directory that the command will run in. This option is only available on the agent. It cannot be used on the master, meaning it cannot be used in, for example, regular functions, Hiera backends, or report processors. ([PUP-6919](https://tickets.puppetlabs.com/browse/PUP-6919))
+- We are now doing translations for extracted modules. ([PUP-9053](https://tickets.puppetlabs.com/browse/PUP-9053))
+
+### Bug fixes
+
+- Tests (or Ruby logic in one function calling other functions) that assumed that calling a function with a nested `:undef` would convert it to either `nil` or leave it as `:undef` where no longer true in Puppet 6.0.0. This was changed in PUP-9112 where certain transformations were no longer needed because the language did not need them. Turned out tests, and possibly custom logic in Ruby would benefit from keeping conversions. The fix is that `:undef` in nested array and hash values will be converted to `nil` and this makes a difference when calling 3x functions from Ruby. ([PUP-9180](https://tickets.puppetlabs.com/browse/PUP-9180))
+- When using interpolation inside a heredoc the position and location information for the interpolated expressions were wrong. This could lead to two problems; 
+* if using `[]` expressions a mysterious syntax error would be raised if a 
+seemingly arbitrary position after the interpolation contained white-space. 
+* If there were errors in the interpolation they could end up being reported for the wrong line and position on the line. This is now fixed. ([PUP-9163](https://tickets.puppetlabs.com/browse/PUP-9163))
+- Previously, an agent configured to use one or more compiler servers with the `server_list` setting could skip an available server under certain conditions. Now the agent requests status of the "master" service specifically, which accurately reports if the compiler service is available. ([PUP-9159](https://tickets.puppetlabs.com/browse/PUP-9159))
+- Previously, the helpful error text from `puppet cert` describing the new command alternatives would only appear when `puppet cert` was called with no arguments. It will now appear with any `puppet cert` invocation. ([PUP-9155](https://tickets.puppetlabs.com/browse/PUP-9155))
+- For Bolt: the task object returned by PAL's `ScriptCompiler#task_signature` method has been changed to pass through metadata to enable support for revision 3 of the task specification. ([PUP-9153](https://tickets.puppetlabs.com/browse/PUP-9153))
+- 3x functions loaded as a side effect of calling `function_<name>()` in Ruby were again loaded when called from the Puppet Language or when using `call_function` in Ruby from another function. This caused warnings for overwrite of already loaded functions to appear in some circumstances, and it impacted performance when reloading. ([PUP-9137](https://tickets.puppetlabs.com/browse/PUP-9137))
+- `puppet apply --catalog` did not resolve `deferred` values when applying the catalog. ([PUP-9121](https://tickets.puppetlabs.com/browse/PUP-9121))
+- Restarting services on OSX would frequently fail due to a race condition in Puppet. This is fixed. ([PUP-9111](https://tickets.puppetlabs.com/browse/PUP-9111))
+- We have updates the Portage package provider for changes to Gentoo package management. ([PUP-9044](https://tickets.puppetlabs.com/browse/PUP-9044))
+- The AIX user provider now handles the `groups` property in a manner that's consistent with other Linux user providers. Specifically, it reads the user's groups from the `/etc/group` file and implements `inclusive/minimum` membership correctly, even when the user's primary group changes. ([PUP-7393](https://tickets.puppetlabs.com/browse/PUP-7393))
+- The members property in the group resource has now been fixed to report the right change notifications to Puppet. ([PUP-6542](https://tickets.puppetlabs.com/browse/PUP-6542))
+- Previously, the `state.yaml` file could grow unbounded. The new `statettl` setting controls how long entries are cached (default: 32 days). If you use resource schedules, please see the `statettl` documentation to see how this setting interacts with the schedule type. ([PUP-3647](https://tickets.puppetlabs.com/browse/PUP-3647))
+
+
 ## Puppet 6.0.0
 
 Released 18 September 2018
