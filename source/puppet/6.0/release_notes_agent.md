@@ -27,6 +27,18 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 6.0.0][] release notes.
 
+## Puppet agent 6.0.1
+
+Release 2 October 2018
+
+This release contains component updates.
+
+### Component updates
+
+- Resource API was updated to 1.6.0.
+- `augeas_core` module was updated to 1.0.2.
+- PXP agent was updated to 1.10.1.
+
 ## Puppet agent 6.0.0
 
 Released 18 September 2018
