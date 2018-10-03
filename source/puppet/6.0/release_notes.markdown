@@ -20,6 +20,22 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 6.0.2
+
+Released 4 October 2018
+
+This is a release to address a regression that resulted from Puppet 6.0.1. This issue has been fixed. See the bug fix in the following section for details.
+
+### Bug fixes
+
+- Puppet 6.0.1 contained a regression that made `unless` and `onlyif` of the `exec` resource not respect the specified `cwd`. This has now been fixed. ([PUP-9194](https://tickets.puppetlabs.com/browse/PUP-9194))
+- The Windows service provider now returns `enable = false, ensure = stopped` for nonexistent services, and errors when setting `enable = true` or `ensure = running` on nonexistent services. ([PUP-6822](https://tickets.puppetlabs.com/browse/PUP-6822))
+
+### New features
+
+- The `Puppet::Util::Windows::Service` module now supports an `exists?` method, which returns `true` if a given service exists, `false` otherwise. ([PUP-9179](https://tickets.puppetlabs.com/browse/PUP-9179))
+
+
 ## Puppet 6.0.1
 
 Released 2 October 2018

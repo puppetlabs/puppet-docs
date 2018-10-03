@@ -3,7 +3,7 @@ layout: default
 title: "Puppet agent release notes"
 ---
 
-[Puppet 6.0.0]: /docs/puppet/6.0/release_notes.html#puppet-556
+[Puppet 6.0.2]: /docs/puppet/6.0/release_notes.html#puppet-602
 
 [Facter 3.10.0]: /docs/facter/3.10/release_notes.html#facter-3100
 [Facter 3.11.0]: /docs/facter/3.11/release_notes.html#facter-3110
@@ -26,6 +26,12 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 6.0.0][] release notes.
+
+## Puppet agent 6.0.2
+
+Released 4 October 2018
+
+This release addresses a regression bug. See the [Puppet 6.0.][] release notes for information.
 
 ## Puppet agent 6.0.1
 
