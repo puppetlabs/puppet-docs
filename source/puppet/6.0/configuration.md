@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 3d5d32624f799d4669df79eeba05caef99f2f9bc
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -67,7 +67,7 @@ disabled.  File contains a JSON object with state information.
 
 ### allow_duplicate_certs
 
-Whether to allow a new certificate request to overwrite an existing certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Whether to allow a new certificate request to overwrite an existing certificate.
 
 - *Default*: false
 
@@ -91,12 +91,6 @@ features that are checked frequently.
 
 - *Default*: true
 
-### app_management
-
-This setting has no effect and will be removed in a future Puppet version.
-
-- *Default*: false
-
 ### autoflush
 
 Whether log files should always flush to disk.
@@ -107,8 +101,6 @@ Whether log files should always flush to disk.
 
 Whether (and how) to autosign certificate requests. This setting
 is only relevant on a puppet master acting as a certificate authority (CA).
-This setting is also deprecated and will be replaced by one in Puppet Server's
-configs in Puppet 6.
 
 Valid values are true (autosigns all certificate requests; not recommended),
 false (disables autosigning certificates), or the absolute path to a file.
@@ -147,19 +139,13 @@ any global directories. For more info, see
 
 - *Default*: $codedir/modules:/opt/puppetlabs/puppet/modules
 
-### bindaddress
-
-The address a listening server should bind to.
-
-- *Default*: *
-
 ### binder_config
 
 The binder configuration file. Puppet reads this file on each request to configure the bindings system.
 If set to nil (the default), a $confdir/binder_config.yaml is optionally loaded. If it does not exists, a default configuration
 is used. If the setting :binding_config is specified, it must reference a valid and existing yaml file.
 
-- *Default*: 
+- *Default*:
 
 ### bucketdir
 
@@ -167,15 +153,9 @@ Where FileBucket files are stored.
 
 - *Default*: $vardir/bucket
 
-### ca
-
-Whether the master should function as a certificate authority.
-
-- *Default*: true
-
 ### ca_name
 
-The name to use the Certificate Authority certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The name to use for the Certificate Authority certificate.
 
 - *Default*: Puppet CA: $certname
 
@@ -196,31 +176,31 @@ and does not need to horizontally scale.
 ### ca_ttl
 
 The default TTL for new certificates.
-This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y). This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
 - *Default*: 5y
 
 ### cacert
 
-The CA certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The CA certificate.
 
 - *Default*: $cadir/ca_crt.pem
 
 ### cacrl
 
-The certificate revocation list (CRL) for the CA. Will be used if present but otherwise ignored. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The certificate revocation list (CRL) for the CA.
 
 - *Default*: $cadir/ca_crl.pem
 
 ### cadir
 
-The root directory for the certificate authority. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The root directory for the certificate authority.
 
 - *Default*: $ssldir/ca
 
 ### cakey
 
-The CA private key. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The CA private key.
 
 - *Default*: $cadir/ca_key.pem
 
@@ -238,7 +218,7 @@ Where the CA stores private certificate information. This setting is deprecated 
 
 ### capub
 
-The CA public key. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The CA public key.
 
 - *Default*: $cadir/ca_pub.pem
 
@@ -246,7 +226,7 @@ The CA public key. This setting is deprecated and will be replaced by one in Pup
 
 How to store cached catalogs. Valid values are 'json', 'msgpack' and 'yaml'. The agent application defaults to 'json'.
 
-- *Default*: 
+- *Default*:
 
 ### catalog_terminus
 
@@ -258,7 +238,7 @@ you'd like to pre-compile catalogs and store them in memcached or some other eas
 ### cert_inventory
 
 The inventory file. This is a text file to which the CA writes a
-complete listing of all certificates. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+complete listing of all certificates.
 
 - *Default*: $cadir/inventory.txt
 
@@ -270,23 +250,24 @@ The certificate directory.
 
 ### certificate_revocation
 
-Whether certificate revocation checking should be enabled, and what level of checking should be performed.
+Whether certificate revocation checking should be enabled, and what level of
+checking should be performed.
 
-When certificate_revocation is set to 'true' or 'chain', Puppet will download the CA CRL and will perform revocation
-checking against each certificate in the chain.
+When certificate revocation is enabled Puppet expects the contents of its CRL
+to be one or more PEM encoded CRLs concatenated together. When using a cert
+bundle CRLs for all CAs in the chain of trust must be included in the crl file
+with the first CRL listed being for the root of the chain, the last being for
+the leaf CA.
 
-Puppet is unable to load multiple CRLs, so if certificate_revocation is set to 'chain' and Puppet attempts to verify
-a certificate signed by a root CA the behavior is equivalent to the 'leaf' setting, and if Puppet attempts to verify
-a certificate signed by an intermediate CA then verification will fail as Puppet will be unable to load the multiple
-CRLs required for full chain checking. As such the 'chain' setting is limited in functionality and is meant as a stand
-in pending the implementation of full chain checking.
+When certificate_revocation is set to 'true' or 'chain', Puppet will ensure
+that each CA in the chain of trust has not been revoked by its issuing CA.
 
-When certificate_revocation is set to 'leaf', Puppet will download the CA CRL and will verify the leaf certificate
-against that CRL. CRLs will not be fetched or checked for the rest of the certificates in the chain. If you are using
-an intermediate CA certificate and want to enable certificate revocation checking, this setting must be set to 'leaf'.
+When certificate_revocation is set to 'leaf', Puppet will verify certs against
+the issuing CA's revocation list but not verify the revocation status of the
+issuing CA or any CA above it within the chain of trust.
 
-When certificate_revocation is set to 'false', Puppet will disable all certificate revocation checking and will not
-attempt to download the CRL.
+When certificate_revocation is set to 'false', Puppet will disable all
+certificate revocation checking and will not attempt to download the CRL.
 
 - *Default*: chain
 
@@ -413,15 +394,6 @@ exits.  Comma-separate multiple values.  For a list of all values,
 specify 'all'. This setting is deprecated, the 'puppet config' command replaces this functionality.
 
 
-### configtimeout
-
-How long the client should wait for the configuration to be retrieved
-before considering it a failure. This setting is deprecated and has been replaced
-by http_connect_timeout and http_read_timeout.
-This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
-
-- *Default*: 2m
-
 ### csr_attributes
 
 An optional file containing custom attributes to add to certificate signing
@@ -453,7 +425,7 @@ for site-specific extensions.
 
 ### csrdir
 
-Where the CA stores certificate requests. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Where the CA stores certificate requests.
 
 - *Default*: $cadir/requests
 
@@ -599,12 +571,12 @@ certificate is signed. If you need to change the list later, you can't just
 change this setting; you also need to:
 
 * On the server: Stop Puppet Server.
-* On the CA server: Revoke and clean the server's old certificate:`puppetserver ca clean <NAME>`
+* On the CA server: Revoke and clean the server's old certificate: `puppetserver ca clean <NAME>`
 * On the server: Delete the old certificate (and any old certificate signing requests)
   from the [ssldir](https://puppet.com/docs/puppet/latest/dirs_ssldir.html).
 * On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to request a new certificate
 * On the CA server: Sign the certificate request, explicitly allowing alternate names:
-  `puppetserver ca sign --allow-dns-alt-names <NAME>`. 
+  `puppetserver ca sign --allow-dns-alt-names <NAME>`.
 * On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to retrieve the cert.
 * On the server: Start Puppet Server again.
 
@@ -654,7 +626,7 @@ provider configured using a hiera.yaml file in root of the environment).
 Other environment data providers may be registered in modules on the module path. For such
 custom data providers see the respective module documentation. This setting is deprecated.
 
-- *Default*: 
+- *Default*:
 
 ### environment_timeout
 
@@ -761,9 +733,9 @@ a file (such as manifests or templates) has changed on disk. This setting can be
 
 ### forge_authorization
 
-The authorization key to connect to the Puppet Forge. Leave blank for unauthorized or license based connections
+The authorization key to connect to the Puppet Forge. Leave blank for unauthorized or license based connections.
 
-- *Default*: 
+- *Default*:
 
 ### freeze_main
 
@@ -926,23 +898,17 @@ The user name for an authenticated HTTP proxy. Requires the `http_proxy_host` se
 
 ### http_read_timeout
 
-The time to wait for one block to be read from an HTTP connection. If nothing is
-read after the elapsed interval then the connection will be closed. The default value is unlimited.
+The time to wait for data to be read from an HTTP connection. If nothing is
+read after the elapsed interval then the connection will be closed. The default value is 10 minutes.
 This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
-- *Default*: 
+- *Default*: 10m
 
 ### http_user_agent
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/5.5.6 Ruby/2.4.1-p111 (x86_64-darwin15)
-
-### ignorecache
-
-This setting has no effect and will be removed in a future Puppet version.
-
-- *Default*: false
+- *Default*: `Puppet/6.0.1 Ruby/<RUBY VERSION AND PLATFORM>`
 
 ### ignoremissingtypes
 
@@ -1014,13 +980,13 @@ The password to use to connect to LDAP.
 
 ### ldapport
 
-The LDAP port.  Only used if `node_terminus` is set to `ldap`.
+The LDAP port.
 
 - *Default*: 389
 
 ### ldapserver
 
-The LDAP server.  Only used if `node_terminus` is set to `ldap`.
+The LDAP server.
 
 - *Default*: ldap
 
@@ -1131,16 +1097,7 @@ environment's `manifests` directory as the main manifest, you can set
 `manifest` in environment.conf. For more info, see
 <https://puppet.com/docs/puppet/latest/environments_about.html>
 
-- *Default*: 
-
-### masterhttplog
-
-Where the puppet master web server saves its access log. This is
-only used when running a WEBrick puppet master. When puppet master is
-running under a Rack server like Passenger, that web server will have
-its own logging behavior.
-
-- *Default*: $logdir/masterhttp.log
+- *Default*:
 
 ### masterport
 
@@ -1194,19 +1151,13 @@ Whether to create the necessary user and group that puppet agent will run as.
 
 Extra module groups to request from the Puppet Forge. This is an internal setting, and users should never change it.
 
-- *Default*: 
+- *Default*:
 
 ### module_repository
 
 The module repository
 
 - *Default*: https://forgeapi.puppet.com
-
-### module_skeleton_dir
-
-The directory which the skeleton for module tool generate is stored.
-
-- *Default*: $module_working_dir/skeleton
 
 ### module_working_dir
 
@@ -1233,14 +1184,14 @@ you can set `modulepath` in environment.conf. For more info, see
 The name of the application, if we are running as one.  The
 default is essentially $0 without the path or `.rb`.
 
-- *Default*: 
+- *Default*:
 
 ### node_cache_terminus
 
 How to store cached nodes.
-Valid values are (none), 'json', 'msgpack', 'yaml' or write only yaml ('write_only_yaml').
+Valid values are (none), 'json', 'msgpack', or 'yaml'.
 
-- *Default*: 
+- *Default*:
 
 ### node_name
 
@@ -1332,28 +1283,6 @@ running puppet agent from cron.
 
 - *Default*: false
 
-### ordering
-
-How unrelated resources should be ordered when applying a catalog.
-Allowed values are `title-hash`, `manifest`, and `random`. This
-setting affects puppet agent and puppet apply, but not puppet master.
-
-* `manifest` (the default) will use the order in which the resources were
-  declared in their manifest files.
-* `title-hash` (the default in 3.x) will order resources randomly, but
-  will use the same order across runs and across nodes. It is only of
-  value if you're migrating from 3.x and have errors running with
-  `manifest`.
-* `random` will order resources randomly and change their order with each
-  run. This can work like a fuzzer for shaking out undeclared dependencies.
-
-Regardless of this setting's value, Puppet will always obey explicit
-dependencies set with the before/require/notify/subscribe metaparameters
-and the `->`/`~>` chaining arrows; this setting only affects the relative
-ordering of _unrelated_ resources.
-
-- *Default*: manifest
-
 ### passfile
 
 Where puppet agent stores the password for its private key.
@@ -1413,13 +1342,6 @@ be used here.
 
 - *Default*: puppet:///plugins
 
-### pluginsync
-
-Whether plugins should be synced with the central server. This setting is
-deprecated.
-
-- *Default*: true
-
 ### postrun_command
 
 A command to run after every agent run.  If this command returns a non-zero
@@ -1457,7 +1379,7 @@ values.  The priority can also be specified as an integer value and
 will be passed as is, e.g. -5.  Puppet must be running as a privileged
 user in order to increase scheduling priority.
 
-- *Default*: 
+- *Default*:
 
 ### privatedir
 
@@ -1578,11 +1500,11 @@ uses its own auth.conf that must be placed within its configuration directory.
 ### rich_data
 
 Enables having extended data in the catalog by storing them as a hash with the special key
-`__pcore_type__`. When enabled, resource containing values of the data types `Binary`, `Regexp`,
+`__ptype`. When enabled, resource containing values of the data types `Binary`, `Regexp`,
 `SemVer`, `SemVerRange`, `Timespan` and `Timestamp`, as well as instances of types derived
 from `Object` retain their data type.
 
-- *Default*: false
+- *Default*: true
 
 ### route_file
 
@@ -1608,14 +1530,14 @@ it with the `--no-client` option. This setting can be a time interval in seconds
 ### runtimeout
 
 The maximum amount of time an agent run is allowed to take.
-A Puppet agent run that exceeds this timeout will be aborted.
-Defaults to 0, which is unlimited. This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+A Puppet agent run that exceeds this timeout will be aborted. A value
+of 0 disables the timeout. Defaults to 1 hour. This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
-- *Default*: 0
+- *Default*: 1h
 
 ### serial
 
-Where the serial number for certificates is stored. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Where the serial number for certificates is stored.
 
 - *Default*: $cadir/serial
 
@@ -1651,7 +1573,7 @@ library.
 
 ### signeddir
 
-Where the CA stores signed certificates. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Where the CA stores signed certificates.
 
 - *Default*: $cadir/signed
 
@@ -1666,7 +1588,7 @@ Values must be comma-separated.
 
 The address the agent should use to initiate requests.
 
-- *Default*: 
+- *Default*:
 
 ### splay
 
@@ -1714,7 +1636,7 @@ considered authentic unless they possess a certificate issued by an authority
 listed in this file.  If this setting has no value then the Puppet master's CA
 certificate (localcacert) will be used.
 
-- *Default*: 
+- *Default*:
 
 ### ssl_client_header
 
@@ -1752,7 +1674,7 @@ considered authentic unless they possess a certificate issued by an authority
 listed in this file.  If this setting has no value then the Puppet master's CA
 certificate (localcacert) will be used.
 
-- *Default*: 
+- *Default*:
 
 ### ssldir
 
@@ -1776,6 +1698,20 @@ this file reflects the state discovered through interacting
 with clients.
 
 - *Default*: $statedir/state.yaml
+
+### statettl
+
+How long the Puppet agent should cache when a resource was last checked or synced.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+A value of `0` or `unlimited` will disable cache pruning.
+
+This setting affects the usage of `schedule` resources, as the information
+about when a resource was last checked (and therefore when it needs to be
+checked again) is stored in the `statefile`. The `statettl` needs to be
+large enough to ensure that a resource will not trigger multiple times
+during a schedule due to its entry expiring from the cache.
+
+- *Default*: 32d
 
 ### static_catalogs
 
@@ -1904,13 +1840,6 @@ File that provides mapping between custom SSL oids and user-friendly names
 
 - *Default*: $confdir/custom_trusted_oid_mapping.yaml
 
-### trusted_server_facts
-
-The 'trusted_server_facts' setting is deprecated and has no effect as the
-feature this enabled is now always on. The setting will be removed in a future version of puppet.
-
-- *Default*: true
-
 ### use_cached_catalog
 
 Whether to only use the cached catalog rather than compiling a new catalog
@@ -1950,6 +1879,15 @@ Where Puppet stores dynamic and growing data.  The default for this
 setting is calculated specially, like `confdir`_.
 
 - *Default*: Unix/Linux: /opt/puppetlabs/puppet/cache -- Windows: C:\ProgramData\PuppetLabs\puppet\cache -- Non-root user: ~/.puppetlabs/opt/puppet/cache
+
+### vendormoduledir
+
+The directory containing **vendored** modules. These modules will
+be used by _all_ environments like those in the `basemodulepath`. The only
+difference is that modules in the `basemodulepath` are pluginsynced, while
+vendored modules are not
+
+- *Default*: /opt/puppetlabs/puppet/vendor_modules
 
 ### waitforcert
 
