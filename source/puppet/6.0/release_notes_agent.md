@@ -25,13 +25,13 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 
 The `puppet-agent` package installs the latest version of Puppet 5.
 
-Also of interest: [About Agent](./about_agent.html) and the [Puppet 6.0.0][] release notes.
+Also of interest: [About Agent](./about_agent.html) and the [Puppet 6.0.2][] release notes.
 
 ## Puppet agent 6.0.2
 
 Released 4 October 2018
 
-This release addresses a regression bug. See the [Puppet 6.0.][] release notes for information.
+This release addresses a regression bug. See the [Puppet 6.0.2][] release notes for information.
 
 ## Puppet agent 6.0.1
 
