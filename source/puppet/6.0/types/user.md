@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 user
 -----
@@ -484,16 +484,19 @@ Available providers are:
 <h4 id="user-attribute-purge_ssh_keys">purge_ssh_keys</h4>
 
 Whether to purge authorized SSH keys for this user if they are not managed
-with the `ssh_authorized_key` resource type. Allowed values are:
+with the `ssh_authorized_key` resource type. This parameter is a noop if the
+ssh_authorized_key type is not available.
+
+Allowed values are:
 
 * `false` (default) --- don't purge SSH keys for this user.
 * `true` --- look for keys in the `.ssh/authorized_keys` file in the user's
   home directory. Purge any keys that aren't managed as `ssh_authorized_key`
   resources.
-* An array of file paths --- look for keys in all of the files listed.
-  Purge any keys that aren't managed as `ssh_authorized_key` resources.
-  If any of these paths starts with `~` or `%h`, that token will be
-  replaced with the user's home directory.
+* An array of file paths --- look for keys in all of the files listed. Purge
+  any keys that aren't managed as `ssh_authorized_key` resources. If any of
+  these paths starts with `~` or `%h`, that token will be replaced with
+  the user's home directory.
 
 Default: `false`
 
@@ -862,4 +865,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

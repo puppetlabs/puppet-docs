@@ -1,11 +1,12 @@
 ---
 layout: default
-built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+
 service
 -----
 
@@ -790,4 +791,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

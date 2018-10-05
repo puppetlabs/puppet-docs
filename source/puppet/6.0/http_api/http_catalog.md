@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Puppet HTTP API: Catalog'
 canonical: "/puppet/latest/http_api/http_catalog.html"
 ---
@@ -18,11 +18,11 @@ Retrieve a catalog.
     POST /puppet/v3/catalog/:nodename
     GET /puppet/v3/catalog/:nodename?environment=:environment
 
-### Supported HTTP methods
+### Supported HTTP Methods
 
 POST, GET
 
-### Supported response formats
+### Supported Response Formats
 
 `application/json`, `text/pson`
 
@@ -60,7 +60,7 @@ Optional parameters that may be provided to the POST or GET:
   which might differ from what the client believes is its current environment.
 - `job_id`: which orchestration job triggered this catalog request.
 
-### Example response
+### Example Response
 
 #### Catalog found
 
@@ -169,7 +169,7 @@ Optional parameters that may be provided to the POST or GET:
       ]
     }
 
-#### Static catalog found
+#### Static Catalog found
 
 ~~~
 POST /puppet/v3/catalog/elmo.mydomain.com

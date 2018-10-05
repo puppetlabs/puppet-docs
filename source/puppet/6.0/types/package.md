@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 package
 -----
@@ -236,7 +236,6 @@ A read-only parameter set by the package.
 
 Whether to keep or replace modified config files when installing or
 upgrading a package. This only affects the `apt` and `dpkg` providers.
-Defaults to `keep`.
 
 Default: `keep`
 
@@ -269,7 +268,7 @@ vendor.  One commonly implemented option is `INSTALLDIR`:
     package { 'mysql':
       ensure          => installed,
       source          => 'N:/packages/mysql-5.5.16-winx64.msi',
-      install_options => [ '/S', { 'INSTALLDIR' => 'C:\mysql-5.5' } ],
+      install_options => [ '/S', { 'INSTALLDIR' => 'C:\\mysql-5.5' } ],
     }
 
 Each option in the array can either be a string or a hash, where each
@@ -1471,4 +1470,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

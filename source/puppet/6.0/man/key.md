@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Man Page: puppet key'
 canonical: "/puppet/latest/man/key.html"
 ---
@@ -114,8 +114,6 @@ and <code>destroy</code> actions for an indirected subsystem of Puppet. Valid te
 this face include:</p>
 
 <ul>
-<li><code>ca</code></li>
-<li><code>disabled_ca</code></li>
 <li><code>file</code></li>
 <li><code>memory</code></li>
 </ul>

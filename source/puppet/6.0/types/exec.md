@@ -1,11 +1,12 @@
 ---
 layout: default
-built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+
 exec
 -----
 
@@ -150,7 +151,7 @@ running commands as different users in the shell.
 <h4 id="exec-attribute-logoutput">logoutput</h4>
 
 Whether to log command output in addition to logging the
-exit code.  Defaults to `on_failure`, which only logs the output
+exit code. Defaults to `on_failure`, which only logs the output
 when the command has an exit code that does not match any value
 specified by the `returns` attribute. As with any resource type,
 the log level can be controlled with the `loglevel` metaparameter.
@@ -423,4 +424,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
-title: 'Puppet HTTP API: File metadata'
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+title: 'Puppet HTTP API: File Metadata'
 canonical: "/puppet/latest/http_api/http_file_metadata.html"
 ---
 
-File metadata
+File Metadata
 =============
 
 The `file_metadata` endpoint returns select metadata for a single file or many files. There are find and search variants
@@ -35,11 +35,11 @@ Get file metadata for a single file
 
     GET /puppet/v3/file_metadata/:mount/path/to/file?environment=:environment
 
-### Supported HTTP methods
+### Supported HTTP Methods
 
 GET
 
-### Supported response formats
+### Supported Response Formats
 
 `application/json`, `text/pson`
 
@@ -54,7 +54,7 @@ Optional parameters to GET:
   * `use` will cause Puppet to apply the owner, group, and mode from the source to any files it is managing.
   * `use_when_creating` will only apply the owner, group, and mode from the source when creating a file; existing files will not have their permissions overwritten.
 
-### Example response
+### Example Response
 
 #### File metadata found for a file
 
@@ -137,11 +137,11 @@ Get a list of metadata for multiple files
 
     GET /puppet/v3/file_metadatas/foo.txt?environment=env
 
-### Supported HTTP methods
+### Supported HTTP Methods
 
 GET
 
-### Supported response formats
+### Supported Response Formats
 
 `application/json`, `text/pson`
 
@@ -156,7 +156,7 @@ GET
   * `use` will cause Puppet to apply the owner, group, and mode from the source to any files it is managing.
   * `use_when_creating` will only apply the owner, group, and mode from the source when creating a file; existing files will not have their permissions overwritten.
 
-### Example response
+### Example Response
 
 #### Basic search
 
@@ -359,7 +359,7 @@ Schema
 The file metadata response body conforms to
 [the `file_metadata` schema.](../schemas/file_metadata.json)
 
-Sample module
+Sample Module
 -------------
 
 The examples above use this (faux) module:

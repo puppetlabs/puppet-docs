@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
-title: 'Puppet HTTP API: File content'
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+title: 'Puppet HTTP API: File Content'
 canonical: "/puppet/latest/http_api/http_file_content.html"
 ---
 
-File content
+File Content
 =============
 
 The `file_content` endpoint returns the contents of the specified file.
@@ -27,11 +27,11 @@ The endpoint path includes a `:mount_point` which can be one of the following ty
 
 `:name` is the path to the file within the `:mount_point` that is requested.
 
-### Supported HTTP methods
+### Supported HTTP Methods
 
 GET
 
-### Supported response formats
+### Supported Response Formats
 
 `application/octet-stream`
 

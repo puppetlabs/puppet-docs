@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: Indirection Reference
 toc: columns
 canonical: "/puppet/latest/indirection.html"
@@ -88,16 +88,6 @@ The indirection key is the certificate CN (generally a hostname).
 
 * **Indirected Class**: `Puppet::SSL::Certificate`
 
-### `ca` terminus
-
-Manage the CA collection of signed SSL certificates on disk.
-
-### `disabled_ca` terminus
-
-Manage SSL certificates on disk, but reject any remote access
-to the SSL data store.  Used when a master has an explicitly disabled
-CA to prevent clients getting confusing 'success' behaviour.
-
 ### `file` terminus
 
 Manage SSL certificates on disk.
@@ -113,16 +103,6 @@ The indirection key is the certificate CN (generally a hostname).
 
 * **Indirected Class**: `Puppet::SSL::CertificateRequest`
 
-### `ca` terminus
-
-Manage the CA collection of certificate requests on disk.
-
-### `disabled_ca` terminus
-
-Manage SSL certificate requests on disk, but reject any remote access
-to the SSL data store. Used when a master has an explicitly disabled CA to
-prevent clients getting confusing 'success' behaviour.
-
 ### `file` terminus
 
 Manage the collection of certificate requests on disk.
@@ -134,47 +114,6 @@ Store certificate requests in memory. This is used for testing puppet.
 ### `rest` terminus
 
 Find and save certificate requests over HTTP via REST.
-
-## certificate_revocation_list
-
-This indirection wraps an `OpenSSL::X509::CRL` object, representing a certificate revocation list (CRL).
-The indirection key is the CA name (usually literally `ca`).
-
-* **Indirected Class**: `Puppet::SSL::CertificateRevocationList`
-
-### `ca` terminus
-
-Manage the CA collection of certificate requests on disk.
-
-### `disabled_ca` terminus
-
-Manage SSL certificate revocation lists, but reject any remote access
-to the SSL data store. Used when a master has an explicitly disabled CA to
-prevent clients getting confusing 'success' behaviour.
-
-### `file` terminus
-
-Manage the global certificate revocation list.
-
-### `rest` terminus
-
-Find and save certificate revocation lists over HTTP via REST.
-
-## certificate_status
-
-This indirection represents the host that ties a key, certificate, and certificate request together.
-The indirection key is the certificate CN (generally a hostname).
-
-* **Indirected Class**: `Puppet::SSL::Host`
-
-### `file` terminus
-
-Manipulate certificate status on the local filesystem. Only functional
-on the CA.
-
-### `rest` terminus
-
-Sign, revoke, search for, or clean certificates & certificate requests over HTTP.
 
 ## data_binding
 
@@ -297,18 +236,6 @@ The indirection key is the certificate CN (generally a hostname).
 
 * **Indirected Class**: `Puppet::SSL::Key`
 
-### `ca` terminus
-
-Manage the CA's private key on disk. This terminus works with the
-CA key *only*, because that's the only key that the CA ever interacts
-with.
-
-### `disabled_ca` terminus
-
-Manage the CA private key, but reject any remote access
-to the SSL data store. Used when a master has an explicitly disabled CA to
-prevent clients getting confusing 'success' behaviour.
-
 ### `file` terminus
 
 Manage SSL private and public keys on disk.
@@ -329,14 +256,6 @@ A node is composed of its name, its facts, and its environment.
 
 Call an external program to get node information.  See
 the [External Nodes](https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html) page for more information.
-
-### `ldap` terminus
-
-Search in LDAP for node configuration information.  See
-the [LDAP Nodes](https://puppet.com/docs/puppet/latest/nodes_ldap.html) page for more information.  This will first
-search for whatever the certificate name is, then (if that name
-contains a `.`) for the short name, then `default`.
-Requires ruby-ldap with MRI ruby or jruby-ldap with puppetserver/jruby
 
 ### `memory` terminus
 
@@ -369,11 +288,6 @@ to override its environment.
 ### `store_configs` terminus
 
 Part of the "storeconfigs" feature. Should not be directly set by end users.
-
-### `write_only_yaml` terminus
-
-(Deprecated) Store node information as flat files, serialized using YAML,
-does not deserialize (write only).
 
 ### `yaml` terminus
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 3d5d32624f799d4669df79eeba05caef99f2f9bc
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -118,7 +118,7 @@ _on stdin._ It should exit with a status of 0 if the cert should be autosigned
 and non-zero if the cert should not be autosigned.
 
 If a certificate request is not autosigned, it will persist for review. An admin
-user can use the `puppetserver ca sign` command to manually sign it, or can delete
+user can use the `puppet cert sign` command to manually sign it, or can delete
 the request.
 
 For info on autosign configuration files, see
@@ -145,7 +145,7 @@ The binder configuration file. Puppet reads this file on each request to configu
 If set to nil (the default), a $confdir/binder_config.yaml is optionally loaded. If it does not exists, a default configuration
 is used. If the setting :binding_config is specified, it must reference a valid and existing yaml file.
 
-- *Default*:
+- *Default*: 
 
 ### bucketdir
 
@@ -155,7 +155,7 @@ Where FileBucket files are stored.
 
 ### ca_name
 
-The name to use for the Certificate Authority certificate.
+The name to use the Certificate Authority certificate.
 
 - *Default*: Puppet CA: $certname
 
@@ -204,18 +204,6 @@ The CA private key.
 
 - *Default*: $cadir/ca_key.pem
 
-### capass
-
-Where the CA stores the password for the private key. This setting is deprecated and will be removed in Puppet 6.
-
-- *Default*: $caprivatedir/ca.pass
-
-### caprivatedir
-
-Where the CA stores private certificate information. This setting is deprecated and will be removed in Puppet 6.
-
-- *Default*: $cadir/private
-
 ### capub
 
 The CA public key.
@@ -226,7 +214,7 @@ The CA public key.
 
 How to store cached catalogs. Valid values are 'json', 'msgpack' and 'yaml'. The agent application defaults to 'json'.
 
-- *Default*:
+- *Default*: 
 
 ### catalog_terminus
 
@@ -399,7 +387,7 @@ specify 'all'. This setting is deprecated, the 'puppet config' command replaces 
 An optional file containing custom attributes to add to certificate signing
 requests (CSRs). You should ensure that this file does not exist on your CA
 puppet master; if it does, unwanted certificate extensions may leak into
-certificates created with the `puppetserver ca generate` command.
+certificates created with the `puppet cert generate` command.
 
 If present, this file must be a YAML hash containing a `custom_attributes` key
 and/or an `extension_requests` key. The value of each key must be a hash, where
@@ -555,7 +543,7 @@ A comma-separated list of alternate DNS names for Puppet Server. These are extra
 hostnames (in addition to its `certname`) that the server is allowed to use when
 serving agents. Puppet checks this setting when automatically requesting a
 certificate for Puppet agent or Puppet Server, and when manually generating a
-certificate with `puppetserver ca generate`. These can be either IP or DNS, and the type
+certificate with `puppet cert generate`. These can be either IP or DNS, and the type
 should be specified and followed with a colon. Untyped inputs will default to DNS.
 
 In order to handle agent requests at a given hostname (like
@@ -571,17 +559,20 @@ certificate is signed. If you need to change the list later, you can't just
 change this setting; you also need to:
 
 * On the server: Stop Puppet Server.
-* On the CA server: Revoke and clean the server's old certificate: `puppetserver ca clean <NAME>`
+* On the CA server: Revoke and clean the server's old certificate. (`puppet cert clean <NAME>`)
+  (Note `puppet cert clean` is deprecated and will be replaced with `puppetserver ca clean`
+  in Puppet 6.)
 * On the server: Delete the old certificate (and any old certificate signing requests)
   from the [ssldir](https://puppet.com/docs/puppet/latest/dirs_ssldir.html).
 * On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to request a new certificate
-* On the CA server: Sign the certificate request, explicitly allowing alternate names:
-  `puppetserver ca sign --allow-dns-alt-names <NAME>`.
+* On the CA server: Sign the certificate request, explicitly allowing alternate names
+  (`puppet cert sign --allow-dns-alt-names <NAME>`). (Note `puppet cert sign` is deprecated
+  and will be replaced with `puppetserver ca sign` in Puppet 6.)
 * On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to retrieve the cert.
 * On the server: Start Puppet Server again.
 
 To see all the alternate names your servers are using, log into your CA server
-and run `puppetserver ca list -a`, then check the output for `(alt names: ...)`.
+and run `puppet cert list -a`, then check the output for `(alt names: ...)`.
 Most agent nodes should NOT have alternate names; the only certs that should
 have them are Puppet Server nodes that you want other agents to trust.
 
@@ -626,7 +617,7 @@ provider configured using a hiera.yaml file in root of the environment).
 Other environment data providers may be registered in modules on the module path. For such
 custom data providers see the respective module documentation. This setting is deprecated.
 
-- *Default*:
+- *Default*: 
 
 ### environment_timeout
 
@@ -733,9 +724,9 @@ a file (such as manifests or templates) has changed on disk. This setting can be
 
 ### forge_authorization
 
-The authorization key to connect to the Puppet Forge. Leave blank for unauthorized or license based connections.
+The authorization key to connect to the Puppet Forge. Leave blank for unauthorized or license based connections
 
-- *Default*:
+- *Default*: 
 
 ### freeze_main
 
@@ -908,7 +899,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: `Puppet/6.0.1 Ruby/<RUBY VERSION AND PLATFORM>`
+- *Default*: Puppet/6.0.0 Ruby/2.4.1-p111 (x86_64-darwin15)
 
 ### ignoremissingtypes
 
@@ -1097,7 +1088,7 @@ environment's `manifests` directory as the main manifest, you can set
 `manifest` in environment.conf. For more info, see
 <https://puppet.com/docs/puppet/latest/environments_about.html>
 
-- *Default*:
+- *Default*: 
 
 ### masterport
 
@@ -1151,7 +1142,7 @@ Whether to create the necessary user and group that puppet agent will run as.
 
 Extra module groups to request from the Puppet Forge. This is an internal setting, and users should never change it.
 
-- *Default*:
+- *Default*: 
 
 ### module_repository
 
@@ -1184,14 +1175,14 @@ you can set `modulepath` in environment.conf. For more info, see
 The name of the application, if we are running as one.  The
 default is essentially $0 without the path or `.rb`.
 
-- *Default*:
+- *Default*: 
 
 ### node_cache_terminus
 
 How to store cached nodes.
 Valid values are (none), 'json', 'msgpack', or 'yaml'.
 
-- *Default*:
+- *Default*: 
 
 ### node_name
 
@@ -1379,7 +1370,7 @@ values.  The priority can also be specified as an integer value and
 will be passed as is, e.g. -5.  Puppet must be running as a privileged
 user in order to increase scheduling priority.
 
-- *Default*:
+- *Default*: 
 
 ### privatedir
 
@@ -1588,7 +1579,7 @@ Values must be comma-separated.
 
 The address the agent should use to initiate requests.
 
-- *Default*:
+- *Default*: 
 
 ### splay
 
@@ -1636,7 +1627,7 @@ considered authentic unless they possess a certificate issued by an authority
 listed in this file.  If this setting has no value then the Puppet master's CA
 certificate (localcacert) will be used.
 
-- *Default*:
+- *Default*: 
 
 ### ssl_client_header
 
@@ -1674,7 +1665,7 @@ considered authentic unless they possess a certificate issued by an authority
 listed in this file.  If this setting has no value then the Puppet master's CA
 certificate (localcacert) will be used.
 
-- *Default*:
+- *Default*: 
 
 ### ssldir
 
@@ -1698,20 +1689,6 @@ this file reflects the state discovered through interacting
 with clients.
 
 - *Default*: $statedir/state.yaml
-
-### statettl
-
-How long the Puppet agent should cache when a resource was last checked or synced.
-This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
-A value of `0` or `unlimited` will disable cache pruning.
-
-This setting affects the usage of `schedule` resources, as the information
-about when a resource was last checked (and therefore when it needs to be
-checked again) is stored in the `statefile`. The `statettl` needs to be
-large enough to ensure that a resource will not trigger multiple times
-during a schedule due to its entry expiring from the cache.
-
-- *Default*: 32d
 
 ### static_catalogs
 

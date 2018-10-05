@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
-title: 'Puppet HTTP API: File bucket file'
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+title: 'Puppet HTTP API: File Bucket File'
 canonical: "/puppet/latest/http_api/http_file_bucket_file.html"
 ---
 
-File bucket file
+File Bucket File
 =============
 
 The `file_bucket_file` endpoint manages the contents of files in the
@@ -51,11 +51,11 @@ md5 sum of the file contents. If `:original_path` is provided, it adds
 the path to a list for the given file. If the md5 sum in the request is
 incorrect, the file will be instead saved under the correct checksum.
 
-### Supported HTTP methods
+### Supported HTTP Methods
 
 GET, HEAD, PUT
 
-### Supported response formats
+### Supported Response Formats
 
 `application/octet-stream`
 

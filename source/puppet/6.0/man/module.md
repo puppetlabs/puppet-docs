@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Man Page: puppet module'
 canonical: "/puppet/latest/man/module.html"
 ---
@@ -78,24 +78,11 @@ you can set <code>modulepath</code> in environment.conf. For more info, see
 <dl>
 <dt><code>build</code> - Build a module release package.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet module build [<var>path</var>]</p>
+<p>puppet module build</p>
 
 <p><code>DESCRIPTION</code></p>
 
-<p>Prepares a local module for release on the Puppet Forge by building a
-ready-to-upload archive file.
-Note: Module build uses MD5 checksums, which are prohibited on FIPS enabled systems.</p>
-
-<p>This action uses the metadata.json file in the module directory to set metadata
-used by the Forge. See <a href="https://puppet.com/docs/puppet/latest/modules_publishing.html" data-bare-link="true">https://puppet.com/docs/puppet/latest/modules_publishing.html</a> for more
-about writing metadata.json files.</p>
-
-<p>After being built, the release archive file can be found in the module's
-<code>pkg</code> directory.</p>
-
-<p><code>RETURNS</code></p>
-
-<p>Pathname object representing the path to the release archive.</p></dd>
+<p>This action has been replaced by Puppet Development Kit. For more information visit https://puppet.com/docs/pdk/latest/pdk.html.</p></dd>
 <dt><code>changes</code> - Show modified files of an installed module.</dt><dd><p><code>SYNOPSIS</code></p>
 
 <p>puppet module changes <var>path</var></p>
@@ -112,31 +99,17 @@ metadata.json.</p>
 <p>Array of strings representing paths of modified files.</p></dd>
 <dt><code>generate</code> - Generate boilerplate for a new module.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet module generate [--skip-interview] <var>name</var></p>
+<p>puppet module generate</p>
 
 <p><code>DESCRIPTION</code></p>
 
-<p>Generates boilerplate for a new module by creating the directory
-structure and files recommended for the Puppet community's best practices.</p>
-
-<p>A module may need additional directories beyond this boilerplate
-if it provides plugins, files, or templates.</p>
-
-<p><code>OPTIONS</code>
-<var>--skip-interview</var> -
-Do not attempt to perform a metadata interview.  Primarily useful for automatic
-execution of <code>puppet module generate</code>.</p>
-
-<p><code>RETURNS</code></p>
-
-<p>Array of Pathname objects representing paths of generated files.</p></dd>
+<p>This action has been replaced by Puppet Development Kit. For more information visit https://puppet.com/docs/pdk/latest/pdk.html.</p></dd>
 <dt><code>install</code> - Install a module from the Puppet Forge or a release archive.</dt><dd><p><code>SYNOPSIS</code></p>
 
 <p>puppet module install [--force | -f]
 [--target-dir DIR | -i DIR]
 [--ignore-dependencies]
 [--version VER | -v VER]
-[--strict-semver]
 <var>name</var></p>
 
 <p><code>DESCRIPTION</code></p>
@@ -156,9 +129,6 @@ Implies --ignore-dependencies.</p>
 <p><var>--ignore-dependencies</var> -
 Do not attempt to install dependencies. Implied by --force.</p>
 
-<p><var>--strict-semver</var> -
-Whether version ranges should exclude pre-release versions</p>
-
 <p><var>--target-dir DIR</var> | <var>-i DIR</var> -
 The directory into which modules are installed; defaults to the first
 directory in the modulepath.</p>
@@ -177,7 +147,7 @@ eg '>= 1.0.3'. Defaults to latest version.</p>
 <p>Pathname object representing the path to the installed module.</p></dd>
 <dt><code>list</code> - List installed modules</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet module list [--tree] [--strict-semver]</p>
+<p>puppet module list [--tree]</p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -189,10 +159,7 @@ option to change which directories are scanned.</p>
 metadata, including version numbers and unmet module dependencies.</p>
 
 <p><code>OPTIONS</code>
-<var>--strict-semver</var> -
-Whether version ranges should exclude pre-release versions</p>
-
-<p><var>--tree</var> -
+<var>--tree</var> -
 Whether to show dependencies as a tree view</p>
 
 <p><code>RETURNS</code></p>
@@ -215,7 +182,6 @@ match the provided search term.</p>
 <p>puppet module uninstall [--force | -f]
 [--ignore-changes | -c]
 [--version=]
-[--strict-semver]
 <var>name</var></p>
 
 <p><code>DESCRIPTION</code></p>
@@ -232,9 +198,6 @@ changes or the possibility of causing broken dependencies.</p>
 <p><var>--ignore-changes</var> | <var>-c</var> -
 Uninstall an installed module even if there are local changes to it.  (Implied by --force.)</p>
 
-<p><var>--strict-semver</var> -
-Whether version ranges should exclude pre-release versions</p>
-
 <p><var>--version=</var> -
 The version of the module to uninstall. When using this option, a module
 matching the specified version must be installed or else an error is raised.</p>
@@ -248,7 +211,6 @@ matching the specified version must be installed or else an error is raised.</p>
 [--ignore-dependencies]
 [--ignore-changes | -c]
 [--version=]
-[--strict-semver]
 <var>name</var></p>
 
 <p><code>DESCRIPTION</code></p>
@@ -268,9 +230,6 @@ Upgrade an installed module even if there are local changes to it.  (Implied by 
 <p><var>--ignore-dependencies</var> -
 Do not attempt to install dependencies. Implied by --force.</p>
 
-<p><var>--strict-semver</var> -
-Whether version ranges should exclude pre-release versions</p>
-
 <p><var>--version=</var> -
 The version of the module to upgrade to.</p>
 
@@ -282,21 +241,6 @@ The version of the module to upgrade to.</p>
 
 <h2 id="EXAMPLES">EXAMPLES</h2>
 
-<p><code>build</code></p>
-
-<p>Build a module release:</p>
-
-<p>$ puppet module build puppetlabs-apache
-notice: Building /Users/kelseyhightower/puppetlabs-apache for release
-Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0.1.tar.gz</p>
-
-<p>Build the module in the current working directory:</p>
-
-<p>$ cd /Users/kelseyhightower/puppetlabs-apache
-$ puppet module build
-notice: Building /Users/kelseyhightower/puppetlabs-apache for release
-Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0.1.tar.gz</p>
-
 <p><code>changes</code></p>
 
 <p>Show modified files of an installed module:</p>
@@ -304,72 +248,6 @@ Module built: /Users/kelseyhightower/puppetlabs-apache/pkg/puppetlabs-apache-0.0
 <p>$ puppet module changes /etc/puppetlabs/code/modules/vcsrepo/
 warning: 1 files modified
 lib/puppet/provider/vcsrepo.rb</p>
-
-<p><code>generate</code></p>
-
-<p>Generate a new module in the current directory:</p>
-
-<p>$ puppet module generate puppetlabs-ssh
-We need to create a metadata.json file for this module.  Please answer the
-following questions; if the question is not applicable to this module, feel free
-to leave it blank.</p>
-
-<p>Puppet uses Semantic Versioning (semver.org) to version modules.
-What version is this module?  [0.1.0]
---></p>
-
-<p>Who wrote this module?  [puppetlabs]
---></p>
-
-<p>What license does this module code fall under?  [Apache-2.0]
---></p>
-
-<p>How would you describe this module in a single sentence?
---></p>
-
-<p>Where is this module's source code repository?
---></p>
-
-<p>Where can others go to learn more about this module?
---></p>
-
-<p>Where can others go to file issues about this module?
---></p>
-
-<hr />
-
-<p>{
-  "name": "puppetlabs-ssh",
-  "version": "0.1.0",
-  "author": "puppetlabs",
-  "summary": null,
-  "license": "Apache-2.0",
-  "source": "",
-  "project_page": null,
-  "issues_url": null,
-  "dependencies": [
-    {
-      "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
-    }
-  ]</p>
-
-<h2 id="-">}</h2>
-
-<p>About to generate this metadata; continue? [n/Y]
---></p>
-
-<p>Notice: Generating module at /Users/username/Projects/puppet/puppetlabs-ssh...
-Notice: Populating ERB templates...
-Finished; module generated in puppetlabs-ssh.
-puppetlabs-ssh/manifests
-puppetlabs-ssh/manifests/init.pp
-puppetlabs-ssh/metadata.json
-puppetlabs-ssh/README.md
-puppetlabs-ssh/spec
-puppetlabs-ssh/spec/spec_helper.rb
-puppetlabs-ssh/tests
-puppetlabs-ssh/tests/init.pp</p>
 
 <p><code>install</code></p>
 

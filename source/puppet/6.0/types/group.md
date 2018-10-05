@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 group
 -----
@@ -88,7 +88,7 @@ Allowed values:
 
 AIX only. Configures the behavior of the `attributes` parameter.
 
-* `minimum` --- The provided list of attributes is partial, and Puppet
+* `minimum` (default) --- The provided list of attributes is partial, and Puppet
   **ignores** any attributes that aren't listed there.
 * `inclusive` --- The provided list of attributes is comprehensive, and
   Puppet **purges** any attributes that aren't listed there.
@@ -117,7 +117,7 @@ Requires features manages_aix_lam.
 
 Configures the behavior of the `members` parameter.
 
-* `false` --- The provided list of group members is partial,
+* `false` (default) --- The provided list of group members is partial,
   and Puppet **ignores** any members that aren't listed there.
 * `true` --- The provided list of of group members is comprehensive, and
   Puppet **purges** any members that aren't listed there.
@@ -342,4 +342,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Puppet HTTP API: Status'
 canonical: "/puppet/latest/http_api/http_status.html"
 ---
@@ -20,11 +20,11 @@ Get status for a master
 The `environment` parameter and the `:name` are both required, but have no
 effect on the response. The `environment` must be a valid environment.
 
-### Supported HTTP methods
+### Supported HTTP Methods
 
 GET
 
-### Supported response formats
+### Supported Response Formats
 
 `application/json`, `text/pson`
 
@@ -32,7 +32,7 @@ GET
 
 None
 
-### Example response
+### Example Response
 
     GET /puppet/v3/status/whatever?environment=env
 

@@ -1,7 +1,7 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
-title: Puppet man pages
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+title: Puppet Man Pages
 canonical: "/puppet/latest/man/index.html"
 ---
 
@@ -9,7 +9,7 @@ canonical: "/puppet/latest/man/index.html"
 
 Puppet's command line tools consist of a single `puppet` binary with many subcommands. The following subcommands are available in this version of Puppet:
 
-Core tools
+Core Tools
 -----
 
 These subcommands form the core of Puppet's tool set, and every user should understand what they do.
@@ -17,7 +17,6 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 - [puppet agent](./agent.html)
 - [puppet apply](./apply.html)
 - [puppet cert](./cert.html)
-- [puppet master](./master.html)
 - [puppet module](./module.html)
 - [puppet resource](./resource.html)
 - [puppet lookup](./lookup.html)
@@ -45,11 +44,7 @@ Niche subcommands
 
 Most users can ignore these subcommands. They're only useful for certain niche workflows, and most of them are interfaces to Puppet's internal subsystems.
 
-- [puppet ca](./ca.html)
 - [puppet catalog](./catalog.html)
-- [puppet certificate](./certificate.html)
-- [puppet certificate_request](./certificate_request.html)
-- [puppet certificate_revocation_list](./certificate_revocation_list.html)
 - [puppet facts](./facts.html)
 - [puppet filebucket](./filebucket.html)
 - [puppet key](./key.html)
@@ -66,6 +61,7 @@ Unknown or new subcommands
 
 These subcommands have not yet been added to any of the categories above.
 
+- [puppet ssl](./ssl.html)
 - [puppet script](./script.html)
 - [puppet generate](./generate.html)
 

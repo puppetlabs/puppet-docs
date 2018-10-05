@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 schedule
 -----
@@ -168,7 +168,7 @@ ranges, you can cross midnight (for example, `range => "22:00 - 04:00"`).
 <h4 id="schedule-attribute-repeat">repeat</h4>
 
 How often a given resource may be applied in this schedule's `period`.
-Defaults to 1; must be an integer.
+Must be an integer.
 
 Default: `1`
 
@@ -202,4 +202,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

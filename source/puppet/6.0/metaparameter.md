@@ -1,7 +1,7 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
-title: Metaparameter reference
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+title: Metaparameter Reference
 toc: columns
 canonical: "/puppet/latest/metaparameter.html"
 ---
@@ -23,7 +23,7 @@ resource. Metaparameters do things like add metadata to a resource (`alias`,
 etc.), prevent Puppet from making changes (`noop`), and change logging verbosity
 (`loglevel`).
 
-## Available metaparameters
+## Available Metaparameters
 
 ### alias
 

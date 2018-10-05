@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Puppet HTTP API: Node'
 canonical: "/puppet/latest/http_api/http_node.html"
 ---
@@ -23,11 +23,11 @@ Retrieve data for a node
     GET /puppet/v3/node/:certname?environment=:environment&transaction_uuid=:transaction_uuid&configured_environment=:environment
 
 
-### Supported HTTP methods
+### Supported HTTP Methods
 
 GET
 
-### Supported response formats
+### Supported Response Formats
 
 `application/json`, `text/pson`
 

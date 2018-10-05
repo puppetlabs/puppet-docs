@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Puppet HTTP API: PSON'
 canonical: "/puppet/latest/http_api/pson.html"
 ---
@@ -43,7 +43,7 @@ digits of the hex number of the desired character. For example the ASCII
 Record Separator character (0x1E) is represented as \u001E (0x5C, 0x75, 0x30,
 0x30, 0x31, 0x45).
 
-Decoding PSON using JSON parsers
+Decoding PSON Using JSON Parsers
 --------------------------------
 
 Many languages have JSON parsers already, which can often be used to parse PSON
@@ -57,13 +57,13 @@ PSON (the value is an invalid unicode sequence). In bytes the data is:
 
     0x7b 0x22 0x64 0x61 0x74 0x61 0x22 0x3a 0x22 0x5c 0x75 0x30 0x30 0x30 0x37 0x5c 0x62 0xc3 0xc3 0x22 0x7d
 
-Python example:
+Python Example:
 
     >>> import json
     >>> json.load(open("data.pson"), "latin_1")
     {u'data': u'\x07\x08\xc3\xc3'}
 
-Clojure example:
+Clojure Example:
 
     user> (parse-string (slurp "data.pson" :encoding "ISO-8859-1"))
     {"data" "^G\bÃÃ"}

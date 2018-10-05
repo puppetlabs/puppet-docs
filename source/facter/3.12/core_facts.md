@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 43cb338787f6b4f713d40da8a9f5850dc003df85
+built_from_commit: ed54e99786708fbbd29c6d7331ab47d8d1549601
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
@@ -16,7 +16,7 @@ You can access facts in your Puppet manifests as `$fact_name` or `$facts[fact_na
 
 * * *
 
-## Modern facts
+## Modern Facts
 
 ### `aio_agent_version`
 
@@ -1025,7 +1025,7 @@ Return the version for ZFS storage pools.
 
 ([↑ Back to top](#page-nav))
 
-## Legacy facts
+## Legacy Facts
 
 ### `architecture`
 

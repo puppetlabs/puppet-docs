@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: 'Man Page: puppet node'
 canonical: "/puppet/latest/man/node.html"
 ---
@@ -78,7 +78,9 @@ face's manpage for more details.</p></dd>
 
 <p><var>Cached node objects</var> - ($vardir/yaml/node/node.domain.yaml)</p>
 
-<p><var>Reports</var> - ($vardir/reports/node.domain)</p></dd>
+<p><var>Reports</var> - ($vardir/reports/node.domain)</p>
+
+<p>NOTE: this action now cleans up certs via Puppet Server's CA API. A running server is required for certs to be cleaned.</p></dd>
 <dt><code>find</code> - Retrieve a node object.</dt><dd><p><code>SYNOPSIS</code></p>
 
 <p>puppet node find [--terminus _TERMINUS] [--extra HASH] <var>host</var></p>
@@ -132,13 +134,11 @@ this face include:</p>
 
 <ul>
 <li><code>exec</code></li>
-<li><code>ldap</code></li>
 <li><code>memory</code></li>
 <li><code>msgpack</code></li>
 <li><code>plain</code></li>
 <li><code>rest</code></li>
 <li><code>store_configs</code></li>
-<li><code>write_only_yaml</code></li>
 <li><code>yaml</code></li>
 </ul>
 
