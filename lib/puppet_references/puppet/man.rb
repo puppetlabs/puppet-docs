@@ -27,7 +27,6 @@ module PuppetReferences
             core: %w(
           agent
           apply
-          cert
           master
           module
           resource
@@ -122,6 +121,8 @@ EOADDENDUM
         applications = application_files.map {|f| f.basename('.rb').to_s}
         applications.delete('face_base')
         applications.delete('indirection_base')
+        # DOC-3771: Puppet cert still has a Ruby file, but is disabled. Don't build or list a man page for it.
+        applications.delete('cert')
         applications
       end
 
