@@ -27,6 +27,16 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html) and the [Puppet 6.0.2][] release notes.
 
+## Puppet agent 6.0.3
+
+Released 23 October 2018.
+
+This release contains a new feature.
+
+### New features
+
+- The eyaml executable of the vendored hiera-eyaml gem is now included in the `/opt/puppetlabs/puppet/bin` directory. [PA-2129](https://tickets.puppetlabs.com/browse/PA-2129)
+
 ## Puppet agent 6.0.2
 
 Released 4 October 2018

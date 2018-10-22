@@ -20,6 +20,24 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 6.0.3
+
+Released 23 October 2018.
+
+This release contains bug fixes and new features.
+
+### Bug fixes
+
+- Fixed issue where overlapping module paths caused an incorrect illegal location deprecation warning or error. [PUP-9211](https://tickets.puppetlabs.com/browse/PUP-9211)
+- Empty or comments only files will no longer emit a deprecation warning or error about illegal top level construct. [PUP-9190](https://tickets.puppetlabs.com/browse/PUP-9190)
+- In 6.0, Puppet logged an exception at the error level every time it needed to fall back to encoding a catalog in PSON. This could cause the logs to fill up with errors when nothing was wrong. This has now changed to log at the debug level. [PUP-9185](https://tickets.puppetlabs.com/browse/PUP-9185)
+- Puppet will no longer leak sensitive data into the resource file. [PUP-7580](https://tickets.puppetlabs.com/browse/PUP-7580)
+
+### New features and improvements
+
+- Added `puppet ssl clean` command to the `puppet ssl` application. This will remove an agent's private key, public key, certificate or certificate signing request. If the `--localca` option is specified, the action will also remove the agent's copy of the CA certificate(s) and CRL bundle that it previously downloaded from the CA. This way users will not accidentally delete their entire CA directory when trying to clean the agent that's running on the CA host. Note that `puppet ssl clean` is a companion to `puppetserver ca clean`. The former should be run on an agent host to clean that agent's ssl directory. The latter should be run on the CA to manage certificates and requests for *all* agents. [PUP-9156](https://tickets.puppetlabs.com/browse/PUP-9156)
+- The `--logdest` argument can be set in the `puppet.conf` file as the `logdest` setting. [PUP-2997](https://tickets.puppetlabs.com/browse/PUP-2997)
+
 ## Puppet 6.0.2
 
 Released 4 October 2018
