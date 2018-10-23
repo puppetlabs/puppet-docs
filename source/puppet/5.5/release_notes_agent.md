@@ -39,6 +39,16 @@ The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
 
+## Puppet agent 5.5.7
+
+Released 23 October 2018.
+
+This release contains a new feature.
+
+### New features 
+
+- The eyaml executable of the vendored hiera-eyaml gem is now included in the `/opt/puppetlabs/puppet/bin` directory. [PA-2129](https://tickets.puppetlabs.com/browse/PA-2129)
+
 ## Puppet agent 5.5.6
 
 Released 22 August 2018
@@ -58,7 +68,6 @@ See the linked release notes for details about each component release.
 - After installing `puppet-agent-5.5.3-1.el6.s390x.rpm` on a CentOS 6 s390 box, all Puppet commands failed with a Ruby error. This is now fixed. ([PA-2126](https://tickets.puppetlabs.com/browse/PA-2126))
 
 - The Puppet agent installer now idempotently sets permissions on the install folder on Windows. Previously it would run `takeown` and `icacls` against the folder recursively, potentially taking many minutes to run. ([PA-2113](https://tickets.puppetlabs.com/browse/PA-2113))
-
 
 ## Puppet agent 5.5.4
 
