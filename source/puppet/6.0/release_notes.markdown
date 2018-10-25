@@ -186,7 +186,9 @@ this commit removes it. Note this should result in a puppetserver speedup as it 
 
 - The earlier experimental --rich_data format used the tags __pcore_type__ and __pcore_value__, these are now shortened to __ptype and __pvalue respectively. If you are using this experimental feature and have stored serializations you need to change them or write them again with the updated version. ([PUP-8597](https://tickets.puppetlabs.com/browse/PUP-8597)
 
-- Webrick support (previous deprecated) has been removed. This means that the `puppet master` command no longer exists. To run Puppet as a server you must use puppetserver. ([PUP-8591](https://tickets.puppetlabs.com/browse/PUP-8591))
+- Webrick support (previously deprecated) has been removed. To run Puppet as a server you must use `puppetserver`. ([PUP-8591](https://tickets.puppetlabs.com/browse/PUP-8591))
+
+- The `puppet master` command, and its supported sub commands, have been removed. Instead, use a [`puppet-config`](https://puppet.com/docs/puppet/6.0/man/config.html) command. [PE-24280](https://tickets.puppetlabs.com/browse/PE-24280)
 
 - The --strict flag in `puppet module` has been removed. The default behavior remains intact, but the tool no longer accepts non-strict versioning (such as release candidates, beta versions, etc) ([PUP-8558](https://tickets.puppetlabs.com/browse/PUP-8558))
 
