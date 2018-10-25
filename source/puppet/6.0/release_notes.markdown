@@ -22,7 +22,7 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 ## Puppet 6.0.3
 
-Released 23 October 2018.
+Released 25 October 2018.
 
 This release contains bug fixes and new features.
 
