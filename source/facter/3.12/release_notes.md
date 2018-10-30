@@ -50,11 +50,11 @@ This is a bug-fix release that shipped with Puppet Platform 5.5.6.
 
 - Facter now indicates if SELinux is enabled on the system by also checking for the existence of the `/etc/selinux/config` file in addition to checking for the presence of the SELinux file system. ([FACT-1477](https://tickets.puppetlabs.com/browse/FACT-1477))
 
-- Facter returned the wrong IPv6 information when IPV6 stack was disabled. Now,Facter correctly validates the IP command's output for the IPv6 family. If the IP command's output is invalid (for example, if it contains IPv4 info), then Facter ignores it. ([FACT-1475](https://tickets.puppetlabs.com/browse/FACT-1475))
+- Facter returned the wrong IPv6 information when IPV6 stack was disabled. Now, Facter correctly validates the IP command's output for the IPv6 family. If the IP command's output is invalid (for example, if it contains IPv4 info), then Facter ignores it. ([FACT-1475](https://tickets.puppetlabs.com/browse/FACT-1475))
 
 - Facter failed on Solaris 11.3 patch 29.0.4.0 native zone. Now, Facter does not try to read kstat entries that it does not need to process. This avoids potential permissions issues when run in a zone or as non-root on Solaris. ([FACT-1832](https://tickets.puppetlabs.com/browse/FACT-1832))
 
-- Facter has been updated to correctly read the format of `/etc/system-release` under Amazon Linux 2. This corrects the OS release fact, which previously fell back to the kernel version. ([FACT-1865](https://tickets.puppetlabs.com/browse/FACT-1865))
+- Facter has been updated to correctly read the format of `/etc/system-release` under Amazon Linux 2. This corrects the operating system release fact, which previously fell back to the kernel version. ([FACT-1865](https://tickets.puppetlabs.com/browse/FACT-1865))
 
 - The `os.architecture` fact is now determined from the `processors.models[0]` fact. This addresses a problem where Puppet agent wasn't working with dynamic CPU allocations on AIX. ([FACT-1550](https://tickets.puppetlabs.com/browse/FACT-1550))
 
