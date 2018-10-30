@@ -8,7 +8,7 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with [modulename]](#beginning-with-[modulename])
 1. [Usage - Configuration options and additional functionality](#usage)
-1. [Limitations - OS compatibility, etc.](#limitations)
+1. [Limitations - operating system compatibility, etc.](#limitations)
 1. [Development - Guide for contributing to the module](#development)
 
 ## Description

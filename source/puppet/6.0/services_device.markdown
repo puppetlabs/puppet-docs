@@ -33,7 +33,7 @@ You should run `puppet device` as:
 
 By default, the `puppet device` command logs directly to the terminal. This is valuable for interactive use, but less valuable when running as a `cron` job or scheduled task.
 
-When run with the `--logdest syslog` option, `puppet device` logs to the \*nix syslog service. Your syslog configuration dictates where these messages are saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on OS X/macOS, and `/var/adm/messages` on Solaris.
+When run with the `--logdest syslog` option, `puppet device` logs to the \*nix syslog service. Your syslog configuration dictates where these messages are saved, but the default location is `/var/log/messages` on Linux, `/var/log/system.log` on OS X or macOS, and `/var/adm/messages` on Solaris.
 
 When run with the `--logdest eventlog` option, `puppet device` logs to the Windows Event Log. You can view its logs by browsing the Event Viewer (Control Panel → System and Security → Administrative Tools → Event Viewer).
 

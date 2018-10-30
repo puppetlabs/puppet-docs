@@ -19,7 +19,7 @@ Puppet can manage [services][service] on nearly all operating systems.
 
 ### Normal operation
 
-If your OS has a good system for managing services, and all the services you care about have working init scripts or service configs, you can write small service resources with just the [`ensure`][ensure] and [`enable`][enable] attributes:
+If your operating systems has a good system for managing services, and all the services you care about have working init scripts or service configs, you can write small service resources with just the [`ensure`][ensure] and [`enable`][enable] attributes:
 
 ``` puppet
 service { 'apache2':
@@ -28,7 +28,7 @@ service { 'apache2':
 }
 ```
 
-(Note that some OSes don't support the `enable` attribute.)
+(Note that some operating systems don't support the `enable` attribute.)
 
 ### Defective init script
 
@@ -75,7 +75,7 @@ If a service needs to be reloaded, Puppet defaults to stopping it and starting i
 
 ## Mac OS X
 
-OS X handles services much like most Linuxes; the main difference is that `enable` and `ensure` are much more closely linked --- running services are always enabled, and stopped ones are always disabled. For best results, either leave `enable` blank or make sure it's set to `true` whenever `ensure => running`.
+OS X handles services much like most Linux-based systems; the main difference is that `enable` and `ensure` are much more closely linked --- running services are always enabled, and stopped ones are always disabled. For best results, either leave `enable` blank or make sure it's set to `true` whenever `ensure => running`.
 
 Also, note that the launchd plists that configure your services must be in one of the following four directories:
 

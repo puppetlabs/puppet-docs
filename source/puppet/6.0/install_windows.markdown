@@ -21,7 +21,7 @@ Install the Puppet agent so that your master can communicate with your Windows n
 
 1. Download the Windows `puppet-agent` package
 
-   [Puppet's Windows packages can be found here.][downloads] You need the most recent package for your OS's architecture:
+   [Puppet's Windows packages can be found here.][downloads] You need the most recent package for your operating system's architecture:
 
    * 64-bit versions of Windows must use `puppet-agent-<VERSION>-x64.msi`.
    * 32-bit versions of Windows must use `puppet-agent-<VERSION>-x86.msi`.

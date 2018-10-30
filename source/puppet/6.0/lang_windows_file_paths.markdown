@@ -113,7 +113,7 @@ Prior to 3.7.3, you can manually compensate. On systems affected by file system 
 
 **However,** note that `sysnative` is **only** a valid path when used within a 32-bit process running on a 64-bit Windows version. It **does not exist** when running an architecture-appropriate Puppet package. This means you can't simply use `sysnative` everywhere to access the correct files; you'll need to use different file paths depending on Puppet's run environment.
 
-Prior to 3.7.3, there's no easy way for Puppet manifests to detect whether `sysnative` is available or necessary. Authors of public modules can choose to only support 3.7.3+, or can ship a renamed version of the `$system32` fact to support older versions. Private users can predict the mix of OS versions and architectures where their code will be run, and simply do the right thing for that environment.
+Prior to 3.7.3, there's no easy way for Puppet manifests to detect whether `sysnative` is available or necessary. Authors of public modules can choose to only support 3.7.3+, or can ship a renamed version of the `$system32` fact to support older versions. Private users can predict the mix of operating system versions and architectures where their code will be run, and simply do the right thing for that environment.
 
 One consideration for `exec` when you can't use `$system32` is to use `path =>` and set it appropriately, the first search path item first followed by others in the order you want them searched in. For instance, if you want to always use the 64-bit version of `cmd.exe` you can use:
 

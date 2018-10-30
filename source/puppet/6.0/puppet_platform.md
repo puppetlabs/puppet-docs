@@ -41,7 +41,7 @@ Package                              | Contents
 
 The way you access Puppet 6 Platform depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
 
-> **Note:** macOS and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/about_agent.html). macOS `puppet-agent` packages are organized by Puppet Platform; for more information, see [the macOS installation instructions](./install_osx.html).
+> **Note:** MacOS and Windows support the Puppet agent software only, via the [`puppet-agent` package](/puppet/latest/about_agent.html). MacOS `puppet-agent` packages are organized by Puppet Platform; for more information, see [the macOS installation instructions](./install_osx.html).
 
 ### Yum-based systems
 

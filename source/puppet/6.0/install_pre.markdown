@@ -28,7 +28,7 @@ To ease your Puppet installation, complete these tasks before installing Puppet 
 
    A Puppet master is a dedicated machine, so it must be reachable at a reliable hostname. Agent nodes default to contacting the master at the hostname `puppet`. If you make sure this hostname resolves to the master, you can skip changing [the `server` setting][server_setting] and reduce your setup time.
 
-3. Check OS versions and system requirements.
+3. Check operating system versions and system requirements.
 
    See the [system requirements][sysreqs] for the version of Puppet you are installing, and consider the following:
 
