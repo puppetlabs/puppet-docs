@@ -5,6 +5,16 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.11 series.
 
+## Facter 3.12.1
+
+Released 25 October, 2018
+
+This is a bug-fix release that shipped with Puppet Platform 6.0.3.
+
+### Bug fixes
+
+- Facter now correctly distinguishes between Windows Server 2016 and Windows Server 2019. ([FACT-1889](https://tickets.puppetlabs.com/browse/FACT-1889))
+
 ## Facter 3.12.0
 
 Released 18 September, 2018
@@ -20,6 +30,15 @@ This release includes one new feature and three bug fixes. It shipped with Puppe
 - Systems relying entirely on `systemd-networkd` for DHCP management do not use `dhclient`. This checks the DHCP leases directory of `systemd-networkd` (`/run/systemd/netif/leases`) in addition to the lease files of `dhclient` when attempting to identify DHCP servers. ([FACT-1851](https://tickets.puppetlabs.com/browse/FACT-1851))
 - Facter no longer checks for missing `dmidecode` and does not report a warning when it's missing on POWER Linux machines.([FACT-1765](https://tickets.puppetlabs.com/browse/FACT-1765) and [FACT-1763](https://tickets.puppetlabs.com/browse/FACT-1763))
 
+## Facter 3.11.5
+
+Released 23 October, 2018
+
+This is a bug-fix release that shipped with Puppet Platform 5.5.7.
+
+### Bug fixes
+
+- Facter now correctly distinguishes between Windows Server 2016 and Windows Server 2019. ([FACT-1889](https://tickets.puppetlabs.com/browse/FACT-1889))
 
 ## Facter 3.11.4
 
