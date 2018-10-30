@@ -58,7 +58,7 @@ Many modules, including Apache, contain directories other than `manifests` and `
         # ************************************
 
 4. Collect the following facts about your agent:
-   - on your Puppet agent, run `facter osfamily`. This returns your agent's OS.
+   - on your Puppet agent, run `facter osfamily`. This returns your agent's operating system.
    - on your Puppet agent, run `facter id`. This returns the id of the currently logged in user.
 5. Edit the header of `_file_header.erb` so that it contains the following variables for Facter lookups:
 
@@ -81,7 +81,7 @@ At this point, Puppet configures Apache and starts the httpd service. When this 
    - Redhat-based: `/etc/httpd/conf.d`
    - Debian-based: `/etc/apache2/sites-available`
 
-2. View `15-default.conf`. Depending on the node's OS, the header will show some variation of the following contents:
+2. View `15-default.conf`. Depending on the node's operating system, the header will show some variation of the following contents:
 
         # ************************************
         # Vhost template in module puppetlabs-apache

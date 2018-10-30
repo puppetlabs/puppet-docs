@@ -4828,7 +4828,7 @@ Requires features manages_shell.
 
 <h4 id="user-attribute-system">system</h4>
 
-Whether the user is a system user, according to the OS's criteria;
+Whether the user is a system user, according to the operating system's criteria;
 on most platforms, a UID less than or equal to 500 indicates a system
 user. This parameter is only used when the resource is created and will
 not affect the UID when the user is present. Defaults to `false`.
