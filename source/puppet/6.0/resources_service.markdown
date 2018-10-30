@@ -19,7 +19,7 @@ Puppet can manage [services][service] on nearly all operating systems.
 
 ### Normal operation
 
-If your operating systems has a good system for managing services, and all the services you care about have working init scripts or service configs, you can write small service resources with just the [`ensure`][ensure] and [`enable`][enable] attributes:
+If your operating system has a good system for managing services, and all the services you care about have working init scripts or service configs, you can write small service resources with just the [`ensure`][ensure] and [`enable`][enable] attributes:
 
 ``` puppet
 service { 'apache2':
