@@ -5,6 +5,16 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.11 series.
 
+## Facter 3.12.2
+
+Released 1 November, 2018
+
+This is a bug-fix release that shipped with Puppet Platform 6.0.4
+
+### Bug fixes
+
+- Prior to this release, Facter overrode built-in facts with custom fact values, even if the custom fact had no valid implementation. Now if custom facts conflict with built-in facts, but do not resolve, Facter ignores the empty value and returns the built-in fact value. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
+
 ## Facter 3.12.1
 
 Released 25 October, 2018
@@ -29,6 +39,16 @@ This release includes one new feature and three bug fixes. It shipped with Puppe
 
 - Systems relying entirely on `systemd-networkd` for DHCP management do not use `dhclient`. This checks the DHCP leases directory of `systemd-networkd` (`/run/systemd/netif/leases`) in addition to the lease files of `dhclient` when attempting to identify DHCP servers. ([FACT-1851](https://tickets.puppetlabs.com/browse/FACT-1851))
 - Facter no longer checks for missing `dmidecode` and does not report a warning when it's missing on POWER Linux machines.([FACT-1765](https://tickets.puppetlabs.com/browse/FACT-1765) and [FACT-1763](https://tickets.puppetlabs.com/browse/FACT-1763))
+
+## Facter 3.11.6
+
+Released 1 November, 2018
+
+This is a bug-fix release that shipped with Puppet Platform 5.5.8
+
+### Bug fixes
+
+- Prior to this release, Facter overrode built-in facts with custom fact values, even if the custom fact had no valid implementation. Now if custom facts conflict with built-in facts, but do not resolve, Facter ignores the empty value and returns the built-in fact value. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
 
 ## Facter 3.11.5
 
