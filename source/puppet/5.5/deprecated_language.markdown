@@ -39,25 +39,25 @@ If you set the `strict_variables` setting to `true`, Puppet raises an error if y
 
 ## Automatic symbolic links for `ensure` values in `file` resources
 
-Puppet doesn't validate the value of the [`ensure` attribute in `file` resources](/puppet/latest/type.html#file-attribute-ensure). If the value is not `present`, `absent`, `file`, `directory`, or `link`, Puppet treats the value as an arbitrary path and creates a symbolic link to that path.
+Puppet doesn't validate the value of the [`ensure` attribute in `file` resources](./types/file.html#file-attribute-ensure). If the value is not `present`, `absent`, `file`, `directory`, or `link`, Puppet treats the value as an arbitrary path and creates a symbolic link to that path.
 
 For example, these resource declarations are equivalent:
 
 ``` puppet
-file { "/etc/inetd.conf":
+file { '/etc/inetd.conf':
   ensure => link,
-  target => "/etc/inet/inetd.conf",
+  target => '/etc/inet/inetd.conf',
 }
 
-file { "/etc/inetd.conf":
-  ensure => "/etc/inet/inetd.conf",
+file { '/etc/inetd.conf':
+  ensure => '/etc/inet/inetd.conf',
 }
 ```
 
 However, syntax errors in the `ensure` attribute's value can lead to unexpected behaviors. For instance, mistyping a value can lead Puppet to create a symbolic link that treats the typo as the link's target:
 
 ``` puppet
-file { "/etc/inetd.conf":
+file { '/etc/inetd.conf':
   ensure => filer,
 }
 ```
@@ -79,17 +79,17 @@ lrwxrwxrwx 1 root root 10 Nov  9 20:53 /etc/inetd.conf -> filer
 Likewise, using the `source` parameter with `ensure => link` can result in unexpected behavior, depending on the content of the `source` parameter's value. The result of this example is a regular file --- not a symlink --- being created at `/etc/inetd.conf` with the copied contents of `/tmp/inetd.conf`:
 
 ``` puppet
-file { "/etc/inetd.conf":
+file { '/etc/inetd.conf':
   ensure => link,
   links  => manage,
-  source => "file:///tmp/inetd.conf",
+  source => 'file:///tmp/inetd.conf',
 }
 ```
 
 Alternatively, this example creates a broken symlink --- not a file --- to whatever path `inetd_file` points to on the Puppet master, but only if a file doesn't exist at the same path on the agent:
 
 ``` puppet
-file { "/etc/inetd.conf":
+file { '/etc/inetd.conf':
   ensure => link,
   links  => manage,
   source => 'puppet:///modules/inetd/inetd_file',

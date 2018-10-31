@@ -3,13 +3,13 @@ layout: default
 title: "Resource tips and examples: User and group on Windows"
 ---
 
-[user]: ./type.html#user
-[groups]: ./type.html#user-attribute-groups
-[auth_membership_user]: /puppet/latest/type.html#user-attribute-auth_membership
-[group]: ./type.html#group
-[members]: ./type.html#group-attribute-members
-[auth_membership_group]: /puppet/latest/type.html#group-attribute-auth_membership
-[relationships]: /puppet/latest/lang_relationships.html
+[user]: ./types/user.html
+[groups]: ./types/user.html#user-attribute-groups
+[auth_membership_user]: ./types/user.html#user-attribute-auth_membership
+[group]: ./types/group.html
+[members]: ./types/group.html#group-attribute-members
+[auth_membership_group]: ./types/group.html#group-attribute-auth_membership
+[relationships]: ./lang_relationships.html
 
 Puppet's built-in [`user`][user] and [`group`][group] resource types can manage user and group accounts on Windows.
 
@@ -27,9 +27,9 @@ You can't write a Puppet resource that describes a **domain** user or group. How
 
 Windows can manage group membership by specifying the groups to which a user belongs, or specifying the members of a group. Puppet supports both cases.
 
-If Puppet is managing a local [`user`][user], you can list the [`groups`][groups] that the user belongs to. Each group can be a local group account, e.g. `Administrators`, or a domain group account.
+If Puppet is managing a local [`user`][user], you can list the [`groups`][groups] that the user belongs to. Each group can be a local group account, such as `Administrators`, or a domain group account.
 
-If Puppet is managing a local [`group`][group], you can list the [`members`][members] that belong to the group. Each member can be a local account, e.g. `Administrator`, or a domain account, where each account can be a user or group account.
+If Puppet is managing a local [`group`][group], you can list the [`members`][members] that belong to the group. Each member can be a local account, such as `Administrator`, or a domain account, where each account can be a user or group account.
 
 When managing a `user`, Puppet will make sure the user belongs to all of the `groups` listed in the manifest. If the user belongs to a group not specified in the manifest, Puppet will not remove the user from the group.
 
@@ -41,33 +41,33 @@ Similarly, when managing a `group`, Puppet will make sure all of the `members` l
 
 When managing Windows [**user**][user] accounts, you can use the following attributes:
 
-* [`name`](./type.html#user-attribute-name)
-* [`ensure`](./type.html#user-attribute-ensure)
-* [`comment`](./type.html#user-attribute-comment)
-* [`groups`](./type.html#user-attribute-groups) --- note that you can't use the `gid` attribute.
-* [`home`](./type.html#user-attribute-home)
-* [`managehome`](./type.html#user-attribute-managehome)
-* [`password`](./type.html#user-attribute-password) --- note that passwords can only be specified in cleartext, since Windows has no API for setting the password hash.
-*[`auth_membership`][auth_membership_user]
+* [`name`](./types/user.html#user-attribute-name)
+* [`ensure`](./types/user.html#user-attribute-ensure)
+* [`comment`](./types/user.html#user-attribute-comment)
+* [`groups`](./types/user.html#user-attribute-groups) --- note that you can't use the `gid` attribute.
+* [`home`](./types/user.html#user-attribute-home)
+* [`managehome`](./types/user.html#user-attribute-managehome)
+* [`password`](./types/user.html#user-attribute-password) --- note that passwords can only be specified in cleartext, since Windows has no API for setting the password hash.
+* [`auth_membership`][auth_membership_user]
 
 Additionally, the `uid` attribute is available as a read-only property when inspecting a user with `puppet resource user <NAME>`. Its value will be the user's SID (see below).
 
 When managing Windows [**group**][group] accounts, you can use the following attributes:
 
-* [`name`](./type.html#group-attribute-name)
-* [`ensure`](./type.html#group-attribute-ensure)
-* [`members`](./type.html#group-attribute-members)
+* [`name`](./types/group.html#group-attribute-name)
+* [`ensure`](./types/group.html#group-attribute-ensure)
+* [`members`](./types/group.html#group-attribute-members)
 * [`auth_membership`][auth_membership_group]
 
 Additionally, the `gid` attribute is available as a read-only property when inspecting a group with `puppet resource group <NAME>`. Its value will be the group's SID (see below).
 
 ## Names and security identifiers (SIDs)
 
-On Windows, user and group account names can take multiple forms, e.g. `Administrators`, `<host>\Administrators`, `BUILTIN\Administrators`, `S-1-5-32-544` --- the last is called a security identifier (SID). Puppet treats all these forms as equivalent: when comparing two account names, it first transforms account names into their canonical SID form and compares the SIDs instead.
+On Windows, user and group account names can take multiple forms, such as `Administrators`, `<host>\Administrators`, `BUILTIN\Administrators`, `S-1-5-32-544` --- the last is called a security identifier (SID). Puppet treats all these forms as equivalent: when comparing two account names, it first transforms account names into their canonical SID form and compares the SIDs instead.
 
-If you need to refer to a user or group in multiple places in a manifest (e.g. when creating [relationships between resources][relationships]), be consistent with the case of the name. Names are case-sensitive in Puppet manifests, but case-insensitive on Windows. It's important that the cases match, however, because autorequire will attempt to match users with fully qualified names (`User[BUILTIN\Administrators]`) in addition to SIDs (`User[S-1-5-32-544]`). It might not match in cases where domain accounts and local accounts have the same name, such as `Domain\Bob` versus `LOCAL\Bob`.
+If you need to refer to a user or group in multiple places in a manifest (such as when creating [relationships between resources][relationships]), be consistent with the case of the name. Names are case-sensitive in Puppet manifests, but case-insensitive on Windows. It's important that the cases match, however, because autorequire will attempt to match users with fully qualified names (`User[BUILTIN\Administrators]`) in addition to SIDs (`User[S-1-5-32-544]`). It might not match in cases where domain accounts and local accounts have the same name, such as `Domain\Bob` versus `LOCAL\Bob`.
 
->**Note**: For reporting and for `puppet resource`, groups always come back in fully qualified form when describing a user, so it looks like `BUILTIN\Administrators`. In other words, it doesn’t always look the same as in the manifest.
+> **Note**: For reporting and for `puppet resource`, groups always come back in fully qualified form when describing a user, so it looks like `BUILTIN\Administrators`. In other words, it doesn’t always look the same as in the manifest.
 
 ## Errata
 

@@ -13,9 +13,9 @@ title: "Language: Basics"
 [resources]: ./lang_resources.html
 [chaining]: ./lang_relationships.html#chaining-arrows
 [modules]: ./modules_fundamentals.html
-[package]: ./type.html#package
-[file]: ./type.html#file
-[service]: ./type.html#service
+[package]: ./types/package.html
+[file]: ./types/file.html
+[service]: ./types/service.html
 [case]: ./lang_conditional.html#case-statements
 [fact]: ./lang_variables.html#facts-and-built-in-variables
 [variables]: ./lang_variables.html
@@ -63,7 +63,7 @@ Windows uses CRLF line endings instead of \*nix's LF line endings.
 
 * If the contents of a file are specified with the `content` attribute, Puppet will write the content in "binary" mode. To create files with CRLF line endings, the `\r\n` escape sequence should be specified as part of the content.
 * If a file is being downloaded to a Windows node with the `source` attribute, Puppet will transfer the file in "binary" mode, leaving the original newlines untouched.
-* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](./type.html#host) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
+* Non-`file` resource types that make partial edits to a system file (most notably the [`host`](./types/host.html) resource type, which manages the `%windir%\system32\drivers\etc\hosts` file) manage their files in text mode, and will automatically translate between Windows and \*nix line endings.
 
 > **Note:** When writing your own resource types, you can get this behavior by using the `flat` filetype.
 
