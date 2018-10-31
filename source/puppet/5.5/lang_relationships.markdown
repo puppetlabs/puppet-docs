@@ -259,6 +259,8 @@ Certain resource types can have automatic relationships with other resources, us
 
 When Puppet prepares to sync a resource whose type supports an auto relationship, it searches the catalog for any resources that match certain rules. If it finds any, it processes them in the correct order, sending refresh events if necessary. If Puppet _doesn't_ find any resources that could use an auto relationship, that's fine; they aren't considered a failed dependency.
 
+When explicit relationships, such as those created by chaining arrows, and automatic relationships conflict, explicit relationships take precedence.
+
 ### Evaluation-order independence
 
 Relationships are not limited by evaluation-order. You can declare a relationship with a resource before that resource has been declared.

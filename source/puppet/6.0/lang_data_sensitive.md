@@ -1,0 +1,50 @@
+---
+layout: default
+title: "Language: Data types: Sensitive"
+---
+
+[arithmetic]: ./lang_expressions.html#arithmetic-operators
+[data type]: ./lang_data_type.html
+[variant]: ./lang_data_abstract.html#variant
+
+
+Sensitive types in the Puppet language are strings marked as sensitive. The value is displayed in plain text in the catalog and manifest, but is redacted from logs and reports. Because the value is currently maintained as plain text, you should only use it as an aid to ensure that sensitive values are not inadvertently disclosed.
+
+## Syntax
+
+The Sensitive type can be written as `Sensitive.new(val)`, or the shortform `Sensitive(val)`
+
+### Parameters
+
+The full signature for `Sensitive` is:
+
+    Sensitive.new([<ANY VALUE>])
+
+The Sensitive type is parameterized, but the parameterized type (the type of the value it contains) only retains the basic type, but sensitive information about the length or details about the contained data value can be leaked.
+
+Because of this, it's not possible to have detailed data types and expect that the data type match. For example, `Sensitive[Enum[red, blue, green]]` will fail if a value of `Sensitive('red')` is given. When a sensitive type is used, the type parameter must be generic, in this example a `Sensitive[String]` instead would match `Sensitive('red')`.
+
+## Example
+
+If you assign a sensitive value, and call notice:
+
+```puppet
+$secret = Sensitive('myPassword')
+notice($secret)
+```
+
+This outputs `Notice: Scope(Class[main]): Sensitive [value redacted]`.
+
+However, you can still unwrap this with the `unwrap` function and gain access to the original data.
+
+```
+$secret = Sensitive('myPassword')
+$processed = $secret.unwrap
+notice $processed
+```
+
+
+In future implementations, this info might be encrypted, removing access to the original data with this method, but it currently is not and therefore you should only use it as an aid for logs and reports.
+
+
+

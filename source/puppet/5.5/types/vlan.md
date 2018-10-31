@@ -5,7 +5,7 @@ title: 'Resource Type: vlan'
 canonical: "/puppet/latest/types/vlan.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 vlan
 -----
@@ -91,4 +91,4 @@ Cisco switch/router provider for vlans.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

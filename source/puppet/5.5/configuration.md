@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -16,6 +16,12 @@ canonical: "/puppet/latest/configuration.html"
 
 * Each of these settings can be specified in `puppet.conf` or on the
   command line.
+* Puppet Enterprise (PE) and open source Puppet share the configuration settings
+  that are documented here. However, PE defaults for some settings differ from
+  the open source Puppet defaults. Some examples of settings that have different
+  PE defaults include `disable18n`, `environment_timeout`, `always_retry_plugins`,
+  and the Puppet Server JRuby `max-active-instances` setting. To verify PE
+  configuration defaults, check the `puppet.conf` file after installation.
 * When using boolean settings on the command line, use `--setting` and
   `--no-setting` instead of `--setting (true|false)`. (Using `--setting false`
   results in "Error: Could not parse application options: needless argument".)
@@ -61,8 +67,7 @@ disabled.  File contains a JSON object with state information.
 
 ### allow_duplicate_certs
 
-Whether to allow a new certificate
-request to overwrite an existing certificate.
+Whether to allow a new certificate request to overwrite an existing certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: false
 
@@ -102,6 +107,8 @@ Whether log files should always flush to disk.
 
 Whether (and how) to autosign certificate requests. This setting
 is only relevant on a puppet master acting as a certificate authority (CA).
+This setting is also deprecated and will be replaced by one in Puppet Server's
+configs in Puppet 6.
 
 Valid values are true (autosigns all certificate requests; not recommended),
 false (disables autosigning certificates), or the absolute path to a file.
@@ -168,7 +175,7 @@ Whether the master should function as a certificate authority.
 
 ### ca_name
 
-The name to use the Certificate Authority certificate.
+The name to use the Certificate Authority certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: Puppet CA: $certname
 
@@ -189,49 +196,49 @@ and does not need to horizontally scale.
 ### ca_ttl
 
 The default TTL for new certificates.
-This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y). This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: 5y
 
 ### cacert
 
-The CA certificate.
+The CA certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/ca_crt.pem
 
 ### cacrl
 
-The certificate revocation list (CRL) for the CA. Will be used if present but otherwise ignored.
+The certificate revocation list (CRL) for the CA. Will be used if present but otherwise ignored. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/ca_crl.pem
 
 ### cadir
 
-The root directory for the certificate authority.
+The root directory for the certificate authority. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $ssldir/ca
 
 ### cakey
 
-The CA private key.
+The CA private key. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/ca_key.pem
 
 ### capass
 
-Where the CA stores the password for the private key.
+Where the CA stores the password for the private key. This setting is deprecated and will be removed in Puppet 6.
 
 - *Default*: $caprivatedir/ca.pass
 
 ### caprivatedir
 
-Where the CA stores private certificate information.
+Where the CA stores private certificate information. This setting is deprecated and will be removed in Puppet 6.
 
 - *Default*: $cadir/private
 
 ### capub
 
-The CA public key.
+The CA public key. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/ca_pub.pem
 
@@ -251,7 +258,7 @@ you'd like to pre-compile catalogs and store them in memcached or some other eas
 ### cert_inventory
 
 The inventory file. This is a text file to which the CA writes a
-complete listing of all certificates.
+complete listing of all certificates. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/inventory.txt
 
@@ -400,10 +407,10 @@ per-environment value in environment.conf instead. For more info, see
 
 ### configprint
 
-Print the value of a specific configuration setting.  If the name of a
+Prints the value of a specific configuration setting.  If the name of a
 setting is provided for this, then the value is printed and puppet
 exits.  Comma-separate multiple values.  For a list of all values,
-specify 'all'.
+specify 'all'. This setting is deprecated, the 'puppet config' command replaces this functionality.
 
 
 ### configtimeout
@@ -446,7 +453,7 @@ for site-specific extensions.
 
 ### csrdir
 
-Where the CA stores certificate requests
+Where the CA stores certificate requests. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/requests
 
@@ -576,7 +583,8 @@ A comma-separated list of alternate DNS names for Puppet Server. These are extra
 hostnames (in addition to its `certname`) that the server is allowed to use when
 serving agents. Puppet checks this setting when automatically requesting a
 certificate for Puppet agent or Puppet Server, and when manually generating a
-certificate with `puppet cert generate`.
+certificate with `puppet cert generate`. These can be either IP or DNS, and the type
+should be specified and followed with a colon. Untyped inputs will default to DNS.
 
 In order to handle agent requests at a given hostname (like
 "puppet.example.com"), Puppet Server needs a certificate that proves it's
@@ -592,11 +600,14 @@ change this setting; you also need to:
 
 * On the server: Stop Puppet Server.
 * On the CA server: Revoke and clean the server's old certificate. (`puppet cert clean <NAME>`)
+  (Note `puppet cert clean` is deprecated and will be replaced with `puppetserver ca clean`
+  in Puppet 6.)
 * On the server: Delete the old certificate (and any old certificate signing requests)
   from the [ssldir](https://puppet.com/docs/puppet/latest/dirs_ssldir.html).
 * On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to request a new certificate
 * On the CA server: Sign the certificate request, explicitly allowing alternate names
-  (`puppet cert sign --allow-dns-alt-names <NAME>`).
+  (`puppet cert sign --allow-dns-alt-names <NAME>`). (Note `puppet cert sign` is deprecated
+  and will be replaced with `puppetserver ca sign` in Puppet 6.)
 * On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to retrieve the cert.
 * On the server: Start Puppet Server again.
 
@@ -821,7 +832,9 @@ Where to save .dot-format graphs (when the `graph` setting is enabled).
 
 ### group
 
-The group puppet master should run as.
+The group Puppet Server will run as. Used to ensure
+the agent side processes (agent, apply, etc) create files and
+directories readable by Puppet Server when necessary.
 
 - *Default*: puppet
 
@@ -926,7 +939,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/5.5.2 Ruby/2.3.3-p222 (x86_64-darwin15)
+- *Default*: Puppet/5.5.6 Ruby/2.4.1-p111 (x86_64-darwin15)
 
 ### ignorecache
 
@@ -1134,9 +1147,9 @@ its own logging behavior.
 
 ### masterport
 
-The port for puppet master traffic. For puppet master,
-this is the port to listen on; for puppet agent, this is the port
-to make requests on. Both applications use this setting to get the port.
+The default port puppet subcommands use to communicate
+with Puppet Server. (eg `puppet facts upload`, `puppet agent`). May be
+overridden by more specific settings (see `ca_port`, `report_port`).
 
 - *Default*: 8140
 
@@ -1559,8 +1572,9 @@ associated with the retrieved configuration.
 ### rest_authconfig
 
 The configuration file that defines the rights to the different
-rest indirections.  This can be used as a fine-grained
-authorization system for `puppet master`.
+rest indirections.  This can be used as a fine-grained authorization system for
+`puppet master`.  The `puppet master` command is deprecated and Puppet Server
+uses its own auth.conf that must be placed within its configuration directory.
 
 - *Default*: $confdir/auth.conf
 
@@ -1604,7 +1618,7 @@ Defaults to 0, which is unlimited. This setting can be a time interval in second
 
 ### serial
 
-Where the serial number for certificates is stored.
+Where the serial number for certificates is stored. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/serial
 
@@ -1640,7 +1654,7 @@ library.
 
 ### signeddir
 
-Where the CA stores signed certificates.
+Where the CA stores signed certificates. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
 
 - *Default*: $cadir/signed
 
@@ -1904,7 +1918,9 @@ feature this enabled is now always on. The setting will be removed in a future v
 
 Whether to only use the cached catalog rather than compiling a new catalog
 on every run.  Puppet can be run with this enabled by default and then selectively
-disabled when a recompile is desired.
+disabled when a recompile is desired. Because a Puppet agent using cached catalogs
+does not contact the master for a new catalog, it also does not upload facts at
+the beginning of the Puppet run.
 
 - *Default*: false
 
@@ -1925,7 +1941,9 @@ rather than reverting to a known-good one.
 
 ### user
 
-The user puppet master should run as.
+The user Puppet Server will run as. Used to ensure
+the agent side processes (agent, apply, etc) create files and
+directories readable by Puppet Server when necessary.
 
 - *Default*: puppet
 

@@ -20,9 +20,90 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.7
+
+Released 23 October 2018.
+
+This release contains new features, bug fixes, and deprecations.
+
+### Bug fixes
+
+- Fixed issue where overlapping module paths caused an incorrect illegal location deprecation warning or error. [PUP-9211](https://tickets.puppetlabs.com/browse/PUP-9211)
+- Empty or comments only files will no longer emit a deprecation warning or error about illegal top level construct. [PUP-9190](https://tickets.puppetlabs.com/browse/PUP-9190)
+- When using interpolation inside a heredoc, the position and location information for the interpolated expressions was wrong. This is now fixed. [PUP-9163](https://tickets.puppetlabs.com/browse/PUP-9163)
+- We have removed the deprecation warnings for most of the CA settings that were shipped prematurely in 5.5.6. All the CA settings, besides `capass` and `caprivatedir`, will still continue to function in Puppet 6. [PUP-9158](https://tickets.puppetlabs.com/browse/PUP-9158)
+- When called from the Puppet Language, the 3x functions were loaded when calling `function_<name>` (in Ruby) or when using `call_function` (in Ruby) from another function. In some circumstances this caused warnings for overwrite of already loaded functions. [PUP-9137](https://tickets.puppetlabs.com/browse/PUP-9137)
+- Fixed a race condition between Puppet and launchd when restarting services on OSX. [PUP-9111](https://tickets.puppetlabs.com/browse/PUP-9111)
+- Previously Puppet took at least one second to execute external processes, even if the process completed more quickly than that. This is now fixed and significantly decreases the time it takes the Puppet agent to apply a catalog if the catalog contains a large number of exec resources, and each child process completes in less than one second. [PUP-9092](https://tickets.puppetlabs.com/browse/PUP-9092)
+- Updated Puppet portage package provider for changes to Gentoo package management. [PUP-9044](https://tickets.puppetlabs.com/browse/PUP-9044)
+- The AIX user provider now handles the groups property in a manner that is consistent with other Linux user providers. Specifically, it reads the user's groups from the `/etc/group` file and implements inclusive/minimum membership correctly, even when the user's primary group changes. [PUP-7393](https://tickets.puppetlabs.com/browse/PUP-7393)
+- The members property in the group resource has been fixed to report the right change notifications to Puppet. [PUP-6542](https://tickets.puppetlabs.com/browse/PUP-6542)
+- Previously, the `state.yaml` file could grow unbounded. The new `statettl` setting controls how long entries are cached (default: 32 days). If you use resource schedules, see the `statettl` documentation to see how this setting interacts with the schedule type. [PUP-3647](https://tickets.puppetlabs.com/browse/PUP-3647)
+- `Puppet::Util.safe_posix_fork` now ensures that the stdin, stdout, and stderr streams are redirected to the passed-in files by referencing the corresponding STDIN, STDOUT and STDERR Ruby constants, instead of the mutable global variables $stdin, $stdout and $stderr. [PUP-9250](https://tickets.puppetlabs.com/browse/PUP-9250)
+- Puppet will no longer leak sensitive data into the resource file. [PUP-7580](https://tickets.puppetlabs.com/browse/PUP-7580)
+
+### New features and improvements
+
+- The `Puppet::Util::Windows::ADSI::User` class now supports setting/unsetting ADSI userflags. [PUP-9177](https://tickets.puppetlabs.com/browse/PUP-9177)
+- It is no longer required to have a dependency listed in a module's metadata.json on another module, in order to use functions or data types from that module. [PUP-6964](https://tickets.puppetlabs.com/browse/PUP-6964)
+- `Puppet::Util::Execution.execute` now supports a `cwd` option to specify the current working directory that the command will run in. This option is only available on the agent. It cannot be used on the master, including regular functions, Hiera backends, or report processors. [PUP-6919](https://tickets.puppetlabs.com/browse/PUP-6919)
+- The `--logdest` argument can now be set in the puppet.conf file as the `logdest` setting. [PUP-2997](https://tickets.puppetlabs.com/browse/PUP-2997)
+
+### Deprecations
+
+- A deprecation warning will be given during Puppet code validation when top level constructs that are not defined are found in auto loaded module files. [PUP-9020](https://tickets.puppetlabs.com/browse/PUP-9020)
+
+## Puppet 5.5.6
+
+Released 22 August 2018
+
+This is a bug-fix release of Puppet. It contains several deprecations.
+
+**Note**: Puppet 5.5.4 and 5.5.5 releases do not exist. To keep Puppet and Puppet agent versions synchronized, we have skipped to version 5.5.6.
+
+### Bug fixes
+
+- The `tagged` function is no longer case sensitive. The `tagged` function will now return `true` if the string case-insensitively matches a resource or catalog tag. Previously, the function was case sensitive. ([PUP-9024](https://tickets.puppetlabs.com/browse/PUP-9024))
+
+- Puppet Server catalog failed to compile when `disable_i18n = true` in the main section in `puppet.conf`. This is now fixed. ([PUP-9010](https://tickets.puppetlabs.com/browse/PUP-9010))
+
+- puppet-agent-5.5.4-1.el6.x86_64 on Scientfic Linux 6 failed to use `upstart`. This is fixed. Note that the `upstart` provider only works on platforms that have the `upstart daemon` running. Puppet checks this with `initctl version --quiet`. ([PUP-9008](https://tickets.puppetlabs.com/browse/PUP-9008))
+
+- This fix eliminates the use of `Kernel.eval` to convert stringified arrays to Ruby arrays when specified in Augeas resources in the manifest. ([PUP-8974](https://tickets.puppetlabs.com/browse/PUP-8974))
+
+### New features and improvements
+
+- We added deprecation warnings for manifests declaring things in the wrong namespace so that strict naming can be enforced. ([PUP-8894](https://tickets.puppetlabs.com/browse/PUP-8894))
+
+### Deprecations
+
+-   All Puppet subcommands that perform actions on the CA are deprecated. This includes `cert`, `ca`, `certificate`, `certificate_revocation_list`, and `certificate_request`. Their functionality will be replaced in Puppet 6 by a new CA command-line interface under Puppet Server, and a new client-side subcommand for SSL client tasks. This change deprecates `puppet.conf` settings:
+
+    -   `ca_name`
+    -   `cadir`
+    -   `cacert`
+    -   `cakey`
+    -   `capub`
+    -   `cacrl`
+    -   `caprivatedir`
+    -   `csrdir`
+    -   `signeddir`
+    -   `capass`
+    -   `serial`
+    -   `autosign`
+    -   `allow_duplicate_certs`
+    -   `ca_ttl`
+    -   `cert_inventory`
+
+    ([PUP-9027](https://tickets.puppetlabs.com/browse/PUP-9027) and [PUP-8997](https://tickets.puppetlabs.com/browse/PUP-8997))
+
+- The LDAP Node Terminus is deprecated. ([PUP-7600](https://tickets.puppetlabs.com/browse/PUP-7600))
+
+- Setting `source_permissions` to `use` or `use_when_creating` is deprecated. If you need to manage permissions, set them explicitly using `owner`, `group`, and `mode`. ([PUP-5921](https://tickets.puppetlabs.com/browse/PUP-5921))
+
 ## Puppet 5.5.3
 
-Released July 17, 2018.
+Released 17 July 2018
 
 This is a bug-fix release of Puppet.
 

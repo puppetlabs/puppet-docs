@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
 title: 'Man Page: puppet config'
 canonical: "/puppet/latest/man/config.html"
 ---
@@ -80,7 +80,7 @@ configuration domains.</p></dd>
 
 <p>Prints the value of a single setting or a list of settings.</p>
 
-<p>This action is an alternate interface to the information available with
+<p>This action is a replacement interface to the information available with
 <code>puppet &lt;subcommand> --configprint</code>.</p>
 
 <p><code>NOTES</code></p>

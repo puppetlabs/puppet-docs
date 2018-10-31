@@ -5,8 +5,7 @@ title: 'Resource Type: cron'
 canonical: "/puppet/latest/types/cron.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 cron
 -----
 
@@ -264,4 +263,4 @@ must be either:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

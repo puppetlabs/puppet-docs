@@ -12,12 +12,14 @@ title: "Puppet agent release notes"
 [Puppet 5.5.1]: /docs/puppet/5.5/release_notes.html#puppet-551
 [Puppet 5.5.2]: /docs/puppet/5.5/release_notes.html#puppet-552
 [Puppet 5.5.3]: /docs/puppet/5.5/release_notes.html#puppet-553
+[Puppet 5.5.6]: /docs/puppet/5.5/release_notes.html#puppet-556
 
 [Facter 3.10.0]: /docs/facter/3.10/release_notes.html#facter-3100
 [Facter 3.11.0]: /docs/facter/3.11/release_notes.html#facter-3110
 [Facter 3.11.1]: /docs/facter/3.11/release_notes.html#facter-3111
 [Facter 3.11.2]: /docs/facter/3.11/release_notes.html#facter-3112
 [Facter 3.11.3]: /docs/facter/3.11/release_notes.html#facter-3113
+[Facter 3.11.4]: /docs/facter/3.11/release_notes.html#facter-3114
 
 [MCollective 2.12.0]: /docs/mcollective/current/releasenotes.html#2_12_0
 [MCollective 2.12.1]: /docs/mcollective/current/releasenotes.html#2_12_1
@@ -36,6 +38,36 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
+
+## Puppet agent 5.5.7
+
+Released 23 October 2018.
+
+This release contains a new feature.
+
+### New features 
+
+- The eyaml executable of the vendored hiera-eyaml gem is now included in the `/opt/puppetlabs/puppet/bin` directory. [PA-2129](https://tickets.puppetlabs.com/browse/PA-2129)
+
+## Puppet agent 5.5.6
+
+Released 22 August 2018
+
+This is primarily a bug fix release. Note that there is no Puppet agent 5.5.5 release.
+
+### Component updates
+
+Puppet Platform 5.5.6 includes puppet-agent 5.5.6, [PuppetDB 5.2.4](/docs/puppetdb/5.2/release_notes.html), and [Puppet Server 5.3.5](/docs/puppetserver/5.3/release_notes.html).
+
+`puppet-agent` 5.5.6 includes updates to [Puppet 5.5.6][], [Facter 3.11.4][], [Hiera 3.4.4][], `cpp-pcp-client` 1.5.7, and [`pxp-agent`][pxp-agent] 1.9.4.
+
+See the linked release notes for details about each component release.
+
+### Bug fixes
+
+- After installing `puppet-agent-5.5.3-1.el6.s390x.rpm` on a CentOS 6 s390 box, all Puppet commands failed with a Ruby error. This is now fixed. ([PA-2126](https://tickets.puppetlabs.com/browse/PA-2126))
+
+- The Puppet agent installer now idempotently sets permissions on the install folder on Windows. Previously it would run `takeown` and `icacls` against the folder recursively, potentially taking many minutes to run. ([PA-2113](https://tickets.puppetlabs.com/browse/PA-2113))
 
 ## Puppet agent 5.5.4
 

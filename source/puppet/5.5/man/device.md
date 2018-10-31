@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -22,7 +22,7 @@ a scheduled task, or a similar tool.</p>
 
 <p>  puppet device [-d|--debug] [--detailed-exitcodes] [--deviceconfig <var>file</var>]
                 [-h|--help] [-l|--logdest syslog|<var>file</var>|console]
-                [-v|--verbose] [-w|--waitforcert <var>seconds</var>]
+                [-v|--verbose] [-w|--waitforcert <var>seconds</var>] [-f|--facts]
                 [-a|--apply <var>file</var>] [-r|--resource <var>type</var> [name]]
                 [-t|--target <var>device</var>] [--user=<var>user</var>] [-V|--version]</p>
 
@@ -78,6 +78,7 @@ log file will not have an ending ']' automatically written to it due to the
 appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
 <dt class="flush">--apply</dt><dd><p>Apply a manifest against a remote target. Target must be specified.</p></dd>
+<dt class="flush">--facts</dt><dd><p>Displays the facts of a remote target. Target must be specified.</p></dd>
 <dt>--resource</dt><dd><p>Displays a resource state as Puppet code, roughly equivalent to
 <code>puppet resource</code>.  Can be filterd by title. Requires --target be specified.</p></dd>
 <dt>--target</dt><dd><p>Target a specific device/certificate in the device.conf. Doing so will perform a

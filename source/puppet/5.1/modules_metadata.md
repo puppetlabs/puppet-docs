@@ -137,7 +137,7 @@ The main JSON object in `metadata.json` can contain only certain keys.
   <tr>
     <td>tags</td>
     <td>Recommended: four to six tags</td>
-    <td> <p>An array of key words to help people find your module (not case sensitive). For example: ["msyql", "database", "monitoring"]</p> <p>Tags cannot contain whitespace. Certain tags are prohibited, including profanity and anything resembling the $::operatingsystem fact (such as redhat, rhel, debian, solaris, aix, windows, or osx). Use of prohibited tags lowers your module's quality score on the Forge.</p>
+    <td> <p>An array of key words to help people find your module (not case sensitive). For example: ["mysql", "database", "monitoring"]</p> <p>Tags cannot contain whitespace. Certain tags are prohibited, including profanity and anything resembling the $::operatingsystem fact (such as redhat, rhel, debian, solaris, aix, windows, or osx). Use of prohibited tags lowers your module's quality score on the Forge.</p>
     </td>
   </tr>
 </table>

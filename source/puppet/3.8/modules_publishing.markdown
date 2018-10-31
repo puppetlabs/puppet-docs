@@ -137,7 +137,7 @@ Your metadata.json will look something like
 * `project_page` --- A link to your module's website. This will typically be the Puppet Forge.
 * `issues_url` --- A link to your module's issue tracker.
 * `operatingsystem_support` --- A list of operating system compatibility for your module. See [Operating system compatibility in metadata.json](#operating-system-compatibility-in-metadatajson) below for more details.
-* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“msyql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited including profanity, and anything resembling the `$::operatingsystem` fact, including, but not necessarily limited to: `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`. Use of prohibited tags will lower your module's quality score on the Forge.
+* `tags` --- A list of key words that will help others find your module (not case sensitive)(e.g. [“mysql”, “database”, “monitoring”]). Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited including profanity, and anything resembling the `$::operatingsystem` fact, including, but not necessarily limited to: `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`. Use of prohibited tags will lower your module's quality score on the Forge.
 
 
 ##### DEPRECATED

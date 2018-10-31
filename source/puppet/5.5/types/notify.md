@@ -5,7 +5,7 @@ title: 'Resource Type: notify'
 canonical: "/puppet/latest/types/notify.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 notify
 -----
@@ -58,4 +58,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

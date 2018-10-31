@@ -5,7 +5,7 @@ title: 'Resource Type: macauthorization'
 canonical: "/puppet/latest/types/macauthorization.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 macauthorization
 -----
@@ -252,9 +252,8 @@ Manage Mac OS X authorization database rules and rights.
 
 * Required binaries: `/usr/bin/security`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for: `operatingsystem` == `darwin`
+* Default for: `["operatingsystem", "darwin"] == `
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

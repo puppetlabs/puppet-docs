@@ -5,7 +5,7 @@ title: 'Resource Type: ssh_authorized_key'
 canonical: "/puppet/latest/types/ssh_authorized_key.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 ssh_authorized_key
 -----
@@ -181,4 +181,4 @@ Parse and generate authorized_keys files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

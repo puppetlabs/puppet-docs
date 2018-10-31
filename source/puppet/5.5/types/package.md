@@ -5,7 +5,7 @@ title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-08-03 15:52:19 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 package
 -----
@@ -621,7 +621,7 @@ Opkg packaging support. Common on OpenWrt and OpenEmbedded platforms
 
 * Required binaries: `opkg`
 * Confined to: `operatingsystem == openwrt`
-* Default for `operatingsystem` == `openwrt`.
+* Default for `operatingsystem == openwrt`.
 * Supported features: `installable`, `uninstallable`, `upgradeable`
 
 <h4 id="package-provider-pacman">pacman</h4>
@@ -634,7 +634,7 @@ or an array where each element is either a string or a hash.
 
 * Required binaries: `/usr/bin/pacman`
 * Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
-* Default for: `operatingsystem` == `archlinux, manjarolinux`
+* Default for: `["operatingsystem", "[:archlinux, :manjarolinux]"] == `
 * Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `virtual_packages`
 
 <h4 id="package-provider-pip">pip</h4>
@@ -663,7 +663,7 @@ OpenSolaris image packaging system. See pkg(5) for more information.
 
 * Required binaries: `/usr/bin/pkg`
 * Confined to: `osfamily == solaris`
-* Default for: `kernelrelease` == `5.11, 5.12` and `osfamily` == `solaris`
+* Default for: `["osfamily", "solaris"] == ["kernelrelease", "['5.11', '5.12']"]`
 * Supported features: `holdable`, `installable`, `uninstallable`, `upgradeable`, `versionable`
 
 <h4 id="package-provider-pkgdmg">pkgdmg</h4>
@@ -1471,4 +1471,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

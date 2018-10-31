@@ -21,7 +21,6 @@ title: "Language: Reserved words and acceptable names"
 
 ## Reserved words
 
-
 Several words in the Puppet language are **reserved**. This means they:
 
 * Cannot be used as bare word strings --- you must quote these words if you wish to use them as strings.
@@ -66,7 +65,6 @@ Additionally:
 
 ## Reserved class names
 
-
 The following are built-in namespaces used by Puppet and so must not be used as class names:
 
 * `main` --- Puppet automatically creates a `main` [class][], which [contains][] any [resources][] not contained by any other class.
@@ -100,9 +98,7 @@ Additionally, the names of data types can't be used as class names:
 * `undef`, `Undef`
 * `variant`, `Variant`
 
-
 ## Reserved variable names
-
 
 The following variable names are reserved. Unless otherwise noted, you can't assign values to them or use them as parameters in classes or defined types.
 
@@ -115,13 +111,11 @@ The following variable names are reserved. Unless otherwise noted, you can't ass
 
 [trusted_on]: ./config_important_settings.html#getting-new-features-early
 
-
 ## Acceptable characters in names
-
 
 Puppet limits the characters you can use when naming language constructs.
 
-> Note: In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and might cease to work at any time. Removal of these bug cases will not be limited to major releases.
+> **Note:** In some cases, names containing unsupported characters will still work. These cases should be considered bugs, and might cease to work at any time. Removal of these bug cases will not be limited to major releases.
 
 ### Variables
 
@@ -136,17 +130,17 @@ The names of classes and defined resource types can consist of one or more [name
 * Digits
 * Underscores
 
-Namespace segments should match the following regular expression:
+In other words, namespace segments should match the following Ruby regular expression:
 
-    \A[a-z][a-z0-9_]*\Z
+    \A[a-z]\w*\Z
 
 The one exception is the top namespace, whose name is the empty string.
 
 Multiple namespace segments can be joined together in a class or defined type name with the `::` (double colon) [namespace][] separator.
 
-Class names with multiple namespaces should match the following regular expression:
+For example, class names with multiple namespaces should match the following Ruby regular expression:
 
-    \A([a-z][a-z0-9_]*)?(::[a-z][a-z0-9_]*)*\Z
+    \A((::)?[a-z]\w*)(::[a-z]\w*)*\z
 
 Note that [some class names are reserved](#reserved-class-names), and [reserved words](#reserved-words) cannot be used as class or defined type names.
 
@@ -161,7 +155,7 @@ Module names obey the same rules as individual namespace segments (like in a cla
 * Digits
 * Underscores
 
-Module names should match the following regular expression:
+Module names should match the following Ruby regular expression:
 
     \A[a-z][a-z0-9_]*\Z
 
@@ -176,7 +170,7 @@ Class and defined type parameters begin with a `$` (dollar sign), and their firs
 * Digits
 * Underscores
 
-Parameter names should match the following regular expression:
+Parameter names should match the following Ruby regular expression:
 
     \A\$[a-z][a-z0-9_]*\Z
 
@@ -192,7 +186,7 @@ Parameter names should match the following regular expression:
 * Periods
 * Hyphens
 
-Tag names should match the following regular expression:
+Tag names should match the following Ruby regular expression:
 
     \A[[:alnum:]_][[:alnum:]_:.-]*\Z
 
@@ -208,6 +202,6 @@ Resource names (or namevars) might be limited by the underlying system being man
 
 ### Environments
 
-[Environment][] names can contain lowercase letters, numbers, and underscores. That is, they must match the following regular expression:
+[Environment][] names can contain lowercase letters, numbers, and underscores. That is, they must match the following Ruby regular expression:
 
     \A[a-z0-9_]+\Z
