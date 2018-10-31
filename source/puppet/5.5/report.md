@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
 title: Report Reference
 toc: columns
 canonical: "/puppet/latest/report.html"
@@ -22,7 +22,7 @@ Puppet master and Puppet apply will handle every report with a set of report
 processors, configurable with the `reports` setting in puppet.conf. This page
 documents the built-in report processors.
 
-See [About Reporting](https://docs.puppetlabs.com/puppet/latest/reference/reporting_about.html)
+See [About Reporting](https://puppet.com/docs/puppet/latest/reporting_about.html)
 for more details.
 
 http

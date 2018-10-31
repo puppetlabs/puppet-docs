@@ -3,8 +3,8 @@ layout: default
 title: "Updating Puppet 3.x manifests"
 ---
 
-[str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
-[file_mode]: ./type.html#file-attribute-mode
+[str2bool]: https://forge.puppet.com/puppetlabs/stdlib#str2bool
+[file_mode]: ./types/file.html#file-attribute-mode
 [where]: ./whered_it_go.html
 [reserved]: ./lang_reserved.html
 [numeric]: ./lang_data_number.html
@@ -19,7 +19,7 @@ The locations of code directories and important config files have changed. Read 
 
 ## Double-check to make sure it's safe before purging `cron` resources
 
-Previously, using [`resources {'cron': purge => true}`](./type.html#resources) to purge `cron` resources would only purge jobs belonging to the current user performing the Puppet run (usually `root`). [In Puppet 4.0](/puppet/4.0/release_notes.html), this action is more aggressive and causes **all** unmanaged cron jobs to be purged.
+Previously, using [`resources {'cron': purge => true}`](./types/resources.html) to purge `cron` resources would only purge jobs belonging to the current user performing the Puppet run (usually `root`). [In Puppet 4.0](/docs/puppet/4.0/release_notes.html), this action is more aggressive and causes **all** unmanaged cron jobs to be purged.
 
 Make sure this is what you want. You might want to set `noop => true` on the purge resource to keep an eye on it.
 
@@ -31,7 +31,7 @@ Make sure this is what you want. You might want to set `noop => true` on the pur
 
 In Puppet 3, facts with boolean true/false values (like `$is_virtual`) were converted to strings unless the `stringify_facts` setting was disabled. This meant it was common to test for these facts with the `==` operator, like `if $is_virtual == 'true' { ... }`.
 
-In Puppet 4, boolean facts are never turned into strings, and those `==` comparisons will always evaluate to `false`. This can cause serious problems. Check your manifests for any comparisons that treat boolean facts like strings; if you need a manifest to work with both Puppet 3 and Puppet 4, you can convert a boolean to a string and then pass it to [the stdlib module's `str2bool` function][str2bool]:
+In Puppet 4 and newer, boolean facts are never turned into strings, and those `==` comparisons will always evaluate to `false`. This can cause serious problems. Check your manifests for any comparisons that treat boolean facts like strings; if you need a manifest to work with both Puppet 3 and Puppet since 4.0, you can convert a boolean to a string and then pass it to [the stdlib module's `str2bool` function][str2bool]:
 
 ``` puppet
 if str2bool("$is_virtual") { ... }
@@ -185,7 +185,7 @@ If the Ruby version changed since upgrading, the YAML parser will be more strict
 
 In Puppet 3, resources with `noop` set to true could escape no-op mode and cause changes if they received a refresh event (via the `notify` or `subscribe` metaparameters or the `~>` arrow).
 
-This is no longer possible in Puppet 4; no-op resources always stay no-op. For most users, there's no downside to this change. However, you should confirm that your Puppet 3.x manifests did not rely on this unintended behavior.
+This is no longer possible in Puppet 4 and newer; no-op resources always stay no-op. For most users, there's no downside to this change. However, you should confirm that your Puppet 3.x manifests did not rely on this unintended behavior.
 
 ## Check for removed features
 
@@ -226,4 +226,4 @@ The `+=` and `-=` operators were removed in Puppet 4.0. You can run the puppet-l
 
 ### Modules using the Ruby DSL
 
-Finally, the long-deprecated Ruby DSL was fully removed from Puppet 4.0.
+The long-deprecated Ruby DSL was fully removed from Puppet 4.0.

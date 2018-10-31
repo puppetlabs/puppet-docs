@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: vlan'
 canonical: "/puppet/latest/types/vlan.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 vlan
 -----
@@ -20,10 +20,11 @@ Manages a VLAN on a router or switch.
 <h3 id="vlan-attributes">Attributes</h3>
 
 <pre><code>vlan { 'resource title':
-  <a href="#vlan-attribute-name">name</a>        =&gt; <em># <strong>(namevar)</strong> The numeric VLAN ID.  Allowed values:  ...</em>
+  <a href="#vlan-attribute-name">name</a>        =&gt; <em># <strong>(namevar)</strong> The numeric VLAN ID.  Values can match...</em>
   <a href="#vlan-attribute-ensure">ensure</a>      =&gt; <em># The basic property that the resource should be...</em>
   <a href="#vlan-attribute-description">description</a> =&gt; <em># The VLAN's...</em>
   <a href="#vlan-attribute-device_url">device_url</a>  =&gt; <em># The URL of the router or switch maintaining this </em>
+  <a href="#vlan-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `vlan...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -68,6 +69,18 @@ The URL of the router or switch maintaining this VLAN.
 
 ([↑ Back to vlan attributes](#vlan-attributes))
 
+<h4 id="vlan-attribute-provider">provider</h4>
+
+The specific backend to use for this `vlan`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`cisco`](#vlan-provider-cisco)
+
+([↑ Back to vlan attributes](#vlan-attributes))
+
 
 <h3 id="vlan-providers">Providers</h3>
 
@@ -78,4 +91,4 @@ Cisco switch/router provider for vlans.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

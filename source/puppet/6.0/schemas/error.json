@@ -1,0 +1,18 @@
+{
+    "$schema":     "http://json-schema.org/draft-04/schema#",
+    "title":       "HTTP Error Response Object",
+    "description": "A description of the error encountered when attempting to service an HTTP request.",
+    "type":        "object",
+    "properties": {
+        "message": {
+            "description": "A human-readable message explaining the error",
+            "type": "string"
+        },
+        "issue_kind": {
+            "description": "A unique label to identify the error class",
+            "type": "string"
+        }
+    },
+    "required": ["message", "issue_kind"],
+    "additionalProperties": false
+}

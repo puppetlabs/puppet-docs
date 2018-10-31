@@ -3,9 +3,8 @@ layout: default
 title: "Resource tips and examples: Exec on Windows"
 ---
 
-[package]: ./type.html#package
-[exec]: ./type.html#exec
-
+[package]: ./types/package.html
+[exec]: ./types/exec.html
 
 Puppet can execute binaries (exe, com, bat, etc.), and can log the child process output and exit status. To ensure the resource is idempotent, specify one of the `creates`, `onlyif`, or `unless` attributes.
 
@@ -27,11 +26,11 @@ Microsoft recommends against using negative/very large exit codes, and you shoul
 
 Puppet does not support a shell provider for Windows, so if you want to execute shell built-ins (e.g. `echo`), you must provide a complete `cmd.exe` invocation as the command. (For example, `command => 'cmd.exe /c echo "foo"'`.) When using `cmd.exe` and specifying a file path in the command line, be sure to use backslashes. (For example, `'cmd.exe /c type c:\path\to\file.txt'`.) If you use forward slashes, `cmd.exe` will error.
 
-## The Optional PowerShell Exec Provider
+## Optional PowerShell exec provider
 
 An optional PowerShell exec provider is available as a plugin and is is particularly helpful if you need to run PowerShell commands easily from within Puppet. To use it, install:
 
-* [The puppetlabs/powershell module](https://forge.puppetlabs.com/puppetlabs/powershell)
+* [The puppetlabs/powershell module](https://forge.puppet.com/puppetlabs/powershell)
 
 ## Inline PowerShell scripts
 

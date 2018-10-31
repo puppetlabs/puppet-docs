@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: macauthorization'
 canonical: "/puppet/latest/types/macauthorization.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 macauthorization
 -----
@@ -39,6 +39,7 @@ macauthorization resource will autorequire it.
   <a href="#macauthorization-attribute-group">group</a>             =&gt; <em># A group which the user must authenticate as a...</em>
   <a href="#macauthorization-attribute-k_of_n">k_of_n</a>            =&gt; <em># How large a subset of rule mechanisms must...</em>
   <a href="#macauthorization-attribute-mechanisms">mechanisms</a>        =&gt; <em># An array of suitable...</em>
+  <a href="#macauthorization-attribute-provider">provider</a>          =&gt; <em># The specific backend to use for this...</em>
   <a href="#macauthorization-attribute-rule">rule</a>              =&gt; <em># The rule(s) that this right refers...</em>
   <a href="#macauthorization-attribute-session_owner">session_owner</a>     =&gt; <em># Whether the session owner automatically matches...</em>
   <a href="#macauthorization-attribute-shared">shared</a>            =&gt; <em># Whether the Security Server should mark the...</em>
@@ -172,6 +173,18 @@ An array of suitable mechanisms.
 
 ([↑ Back to macauthorization attributes](#macauthorization-attributes))
 
+<h4 id="macauthorization-attribute-provider">provider</h4>
+
+The specific backend to use for this `macauthorization`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`macauthorization`](#macauthorization-provider-macauthorization)
+
+([↑ Back to macauthorization attributes](#macauthorization-attributes))
+
 <h4 id="macauthorization-attribute-rule">rule</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -243,5 +256,4 @@ Manage Mac OS X authorization database rules and rights.
 
 
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

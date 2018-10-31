@@ -17,13 +17,12 @@ title: "Language: Resources"
 [class]: ./lang_classes.html
 [defined_type]: ./lang_defined_types.html
 [catalog]: ./lang_summary.html#compilation-and-catalogs
-[files]: ./type.html#file
-[cron jobs]: ./type.html#cron
-[services]: ./type.html#service
+[files]: ./types/file.html
+[cron jobs]: ./types/cron.html
+[services]: ./types/service.html
 [custom_types]: ./custom_types.html
 [resource_advanced]: ./lang_resources_advanced.html
 [expressions]: ./lang_expressions.html
-
 
 **Resources** are the fundamental unit for modeling system configurations. Each resource describes some aspect of a system, like a specific service or package.
 
@@ -31,9 +30,7 @@ A **resource declaration** is an expression that describes the desired state for
 
 This page describes the basics of using resource declarations. For more advanced syntax, see [Resources (Advanced).][resource_advanced]
 
-
 ## Resource types
-
 
 Every resource is associated with a **resource type,** which determines the kind of configuration it manages.
 
@@ -45,7 +42,6 @@ You can also add new resource types to Puppet:
 * [Custom resource types][custom_types] are written in Ruby, and have access to the same capabilities as Puppet's built-in types.
 
 ## Simplified syntax
-
 
 [inpage_simplified]: #simplified-syntax
 
@@ -71,16 +67,16 @@ Every resource has a **resource type,** a **title,** and a set of **attributes:*
 
 The form of a resource declaration is:
 
-* The **resource type,** which is a word with no quotes.
-* An opening curly brace (`{`).
-* The **title,** which is a [string][].
-* A colon (`:`).
-* Optionally, any number of **attribute and value pairs,** each of which consists of:
-    * An attribute name, which is a lowercase word with no quotes.
-    * A `=>` (called an arrow, "fat comma," or "hash rocket").
-    * A value, which can have any [data type][datatype].
-    * A trailing comma.
-* A closing curly brace (`}`).
+-   The **resource type,** which is a word with no quotes.
+-   An opening curly brace (`{`).
+-   The **title,** which is a [string][].
+-   A colon (`:`).
+-   Optionally, any number of **attribute and value pairs,** each of which consists of:
+    -   An attribute name, which is a lowercase word with no quotes.
+    -   A `=>` (called an arrow, "fat comma," or "hash rocket").
+    -   A value, which can have any [data type][datatype].
+    -   A trailing comma.
+-   A closing curly brace (`}`).
 
 Note that you can use any amount of whitespace in the Puppet language.
 
@@ -92,7 +88,7 @@ A title doesn't have to match the name of what you're managing on the target sys
 
 Titles **must be unique per resource type.** You can have a package and a service both titled "ntp," but you can only have one service titled "ntp." Duplicate titles will cause a compilation failure.
 
-**Note:** If a resource type has multiple namevars, the type gets to specify how (and if) the title will map to those namevars. For example, the `package` type uses the `provider` attribute to help determine uniqueness, but that attribute has no special relationship with the title. See a type's documentation for details about how it maps title to namevars.
+> **Note:** If a resource type has multiple namevars, the type gets to specify how (and if) the title will map to those namevars. For example, the `package` type uses the `provider` attribute to help determine uniqueness, but that attribute has no special relationship with the title. See a type's documentation for details about how it maps title to namevars.
 
 ### Attributes
 
@@ -110,12 +106,11 @@ Every attribute you declare must have a value; the [data type][datatype] of the 
 
 ## Behavior
 
-
 A resource declaration adds a resource to the catalog, and tells Puppet to manage that resource's state. When Puppet applies the compiled catalog, it will:
 
-* Read the actual state of the resource on the target system
-* Compare the actual state to the desired state
-* If necessary, change the system to enforce the desired state
+-   Read the actual state of the resource on the target system
+-   Compare the actual state to the desired state
+-   If necessary, change the system to enforce the desired state
 
 ### Unmanaged resources
 
@@ -155,12 +150,10 @@ Resources can be contained by [classes][class] and [defined types][defined_type]
 
 The Puppet language includes some constructs that let you describe a resource but delay adding it to the catalog. For example:
 
-* [Classes][class] and [defined types][defined_type] can contain groups of resources. These resources will only be managed if you add that class (or defined resource) to the catalog.
-* [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
-
+-   [Classes][class] and [defined types][defined_type] can contain groups of resources. These resources will only be managed if you add that class (or defined resource) to the catalog.
+-   [Virtual resources][virtual] are only added to the catalog once they are [realized][realize].
 
 ## Special resource attributes
-
 
 ### Name/namevar
 
@@ -203,5 +196,3 @@ Some attributes in Puppet can be used with every resource type. These are called
 The most commonly used metaparameters are for specifying [order relationships][relationships] between resources.
 
 You can see the full list of all metaparameters in the [Metaparameter Reference](./metaparameter.html).
-
-

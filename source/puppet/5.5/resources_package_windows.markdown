@@ -3,8 +3,8 @@ layout: default
 title: "Resource tips and examples: Package on Windows"
 ---
 
-[package]: ./type.html#package
-[source]: ./type.html#package-attribute-source
+[package]: ./types/package.html#package
+[source]: ./types/package.html#package-attribute-source
 
 Puppet's built-in [`package`][package] resource type can manage software packages on Windows.
 
@@ -15,15 +15,14 @@ package { 'mysql':
   install_options => ['INSTALLDIR=C:\mysql-5.5'],
 }
 
-package { "Git version 1.8.4-preview20130916":
+package { 'Git version 1.8.4-preview20130916':
  ensure          => installed,
  source          => 'C:\code\puppetlabs\temp\windowsexample\Git-1.8.4-preview20130916.exe',
- install_options => ['/VERYSILENT']
+ install_options => ['/VERYSILENT'],
 }
 ```
 
 The `package` type handles a lot of very different packaging systems on many operating systems, so not all features are relevant everywhere. Here's what you'll want to know before using it on Windows.
-
 
 ## Supported package types: MSI and EXE
 
@@ -45,7 +44,6 @@ If you've set up [Chocolatey](https://chocolatey.org/), there's a Puppet-support
 When managing packages using the `windows` package provider, you **must** specify a package file using [the `source` attribute.][source]
 
 The source can be a local file or a file on a mapped network drive. For MSI installers, you can use a UNC path. Puppet URLs are not currently supported for the `package` type's `source` attribute, although you can use `file` resources to copy packages to the local system. The `source` attribute accepts both forward- and backslashes.
-
 
 ## Package name must be the `DisplayName`
 
@@ -87,7 +85,6 @@ The next time Puppet runs, it will notice that the names don't match and will in
 
 The name you use in the title must exactly match the name that the package reports when you inspect it with Puppet resource. If it doesn't, Puppet will get confused and repeatedly try to re-install.
 
-
 ## Install and uninstall options
 
 The Windows package provider also supports package-specific `install_options` (such as install directory) and `uninstall_options`. These options vary across packages, so see the documentation for the specific package you're installing. Options are specified as an array of strings or hashes.
@@ -118,9 +115,11 @@ Prior to Puppet 3.4.0 / Puppet Enterprise 3.2, you couldn't specify package vers
 
 To manage MySQL-like packages on older Puppet versions, you can specify the package's PackageCode as the name/title, instead of using the DisplayName. The PackageCode is a GUID that's unique per MSI file. You can use Ruby to find the PackageCode from an MSI:
 
-	require 'win32ole'
-	installer = WIN32OLE.new('WindowsInstaller.Installer')
-	db = installer.OpenDatabase('<PATH>', 0) # where '<PATH>' is the path to the MSI
-	puts db.SummaryInformation.Property(9)
+```
+require 'win32ole'
+installer = WIN32OLE.new('WindowsInstaller.Installer')
+db = installer.OpenDatabase('<PATH>', 0) # where '<PATH>' is the path to the MSI
+puts db.SummaryInformation.Property(9)
+```
 
 Alternately, you can use Orca to view the package code.

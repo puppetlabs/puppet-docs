@@ -24,7 +24,7 @@ Although many Forge modules are exact solutions that fit your site, many are *al
 >
 >**Note:** Puppet also creates another module directory: `/opt/puppetlabs/puppet/modules`. Don't modify or add anything in this directory, including modules of your own.
 >
->There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html), and the [Puppet Forge](https://forge.puppetlabs.com/).
+>There are plenty of resources about modules and the creation of modules that you can reference. Check out [Module Fundamentals](./modules_fundamentals.html), the [Beginner's Guide to Modules](./bgtm.html), and the [Puppet Forge](https://forge.puppet.com/).
 
 
 
@@ -41,7 +41,7 @@ Every manifest (.pp file) in a module contains a single class. File names map to
 Many modules, including Apache, contain directories other than `manifests` and `templates`. For simplicity's sake, we do not cover them in this introductory guide.
 
 * For more on how modules work, see [Module Fundamentals](./modules_fundamentals.html) in the Puppet documentation.
-* For more on best practices, methods, and approaches to writing modules, see the [Beginners Guide to Modules](/guides/module_guides/bgtm.html).
+* For more on best practices, methods, and approaches to writing modules, see the [Beginner's Guide to Modules](./bgtm.html).
 
 ### Writing a Puppet module
 

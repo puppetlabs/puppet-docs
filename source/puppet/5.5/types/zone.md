@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: zone'
 canonical: "/puppet/latest/types/zone.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 15:52:20 -0700
 
 zone
 -----
@@ -34,12 +34,13 @@ autorequire that directory.
   <a href="#zone-attribute-inherit">inherit</a>      =&gt; <em># The list of directories that the zone inherits...</em>
   <a href="#zone-attribute-install_args">install_args</a> =&gt; <em># Arguments to the `zoneadm` install command....</em>
   <a href="#zone-attribute-ip">ip</a>           =&gt; <em># The IP address of the zone.  IP addresses...</em>
-  <a href="#zone-attribute-iptype">iptype</a>       =&gt; <em># The IP stack type of the zone.  Default...</em>
+  <a href="#zone-attribute-iptype">iptype</a>       =&gt; <em># The IP stack type of the zone.  Valid values are </em>
   <a href="#zone-attribute-path">path</a>         =&gt; <em># The root of the zone's filesystem.  Must be a...</em>
   <a href="#zone-attribute-pool">pool</a>         =&gt; <em># The resource pool for this...</em>
+  <a href="#zone-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `zone...</em>
   <a href="#zone-attribute-realhostname">realhostname</a> =&gt; <em># The actual hostname of the...</em>
   <a href="#zone-attribute-shares">shares</a>       =&gt; <em># Number of FSS CPU shares allocated to the...</em>
-  <a href="#zone-attribute-sysidcfg">sysidcfg</a>     =&gt; <em># %{The text to go into the `sysidcfg` file when...</em>
+  <a href="#zone-attribute-sysidcfg">sysidcfg</a>     =&gt; <em># The text to go into the `sysidcfg` file when the </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -62,6 +63,13 @@ only then can be `running`.  Note also that `halt` is currently
 used to stop zones.
 
 Default: `running`
+
+Allowed values:
+
+* `absent`
+* `configured`
+* `installed`
+* `running`.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
@@ -179,6 +187,18 @@ The resource pool for this zone.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
+<h4 id="zone-attribute-provider">provider</h4>
+
+The specific backend to use for this `zone`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`solaris`](#zone-provider-solaris)
+
+([↑ Back to zone attributes](#zone-attributes))
+
 <h4 id="zone-attribute-realhostname">realhostname</h4>
 
 The actual hostname of the zone.
@@ -195,7 +215,7 @@ Number of FSS CPU shares allocated to the zone.
 
 <h4 id="zone-attribute-sysidcfg">sysidcfg</h4>
 
-%{The text to go into the `sysidcfg` file when the zone is first
+The text to go into the `sysidcfg` file when the zone is first
 booted.  The best way is to use a template:
 
     # $confdir/modules/site/templates/sysidcfg.erb
@@ -223,7 +243,7 @@ And then call that:
     }
 
 The `sysidcfg` only matters on the first booting of the zone,
-so Puppet only checks for it at that time.}
+so Puppet only checks for it at that time.
 
 ([↑ Back to zone attributes](#zone-attributes))
 
@@ -235,9 +255,9 @@ so Puppet only checks for it at that time.}
 Provider for Solaris Zones.
 
 * Required binaries: `/usr/sbin/zoneadm`, `/usr/sbin/zonecfg`
-* Default for: `["osfamily", "solaris"] == `
+* Default for `osfamily` == `solaris`.
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

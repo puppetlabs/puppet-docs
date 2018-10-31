@@ -1,12 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 service
 -----
 
@@ -44,7 +43,7 @@ can be configured:
 
 <pre><code>service { 'resource title':
   <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Allowed...</em>
+  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Valid...</em>
   <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
   <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
   <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
@@ -54,6 +53,7 @@ can be configured:
   <a href="#service-attribute-manifest">manifest</a>   =&gt; <em># Specify a command to config a service, or a path </em>
   <a href="#service-attribute-path">path</a>       =&gt; <em># The search path for finding init scripts....</em>
   <a href="#service-attribute-pattern">pattern</a>    =&gt; <em># The pattern to search for in the process table...</em>
+  <a href="#service-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `service...</em>
   <a href="#service-attribute-restart">restart</a>    =&gt; <em># Specify a *restart* command manually.  If left...</em>
   <a href="#service-attribute-start">start</a>      =&gt; <em># Specify a *start* command manually.  Most...</em>
   <a href="#service-attribute-status">status</a>     =&gt; <em># Specify a *status* command manually.  This...</em>
@@ -82,10 +82,8 @@ Whether a service should be running.
 
 Allowed values:
 
-* `stopped`
-* `running`
-* `false`
-* `true`
+* `stopped` or `false`
+* `running` or `true`
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -122,6 +120,8 @@ Allowed values:
 * `manual`
 * `mask`
 
+Requires features enableable.
+
 ([↑ Back to service attributes](#service-attributes))
 
 <h4 id="service-attribute-flags">flags</h4>
@@ -129,6 +129,8 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify a string of flags to pass to the startup script.
+
+Requires features flaggable.
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -203,6 +205,37 @@ be quoted without enclosing slashes).
 
 ([↑ Back to service attributes](#service-attributes))
 
+<h4 id="service-attribute-provider">provider</h4>
+
+The specific backend to use for this `service`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`base`](#service-provider-base)
+* [`bsd`](#service-provider-bsd)
+* [`daemontools`](#service-provider-daemontools)
+* [`debian`](#service-provider-debian)
+* [`freebsd`](#service-provider-freebsd)
+* [`gentoo`](#service-provider-gentoo)
+* [`init`](#service-provider-init)
+* [`launchd`](#service-provider-launchd)
+* [`openbsd`](#service-provider-openbsd)
+* [`openrc`](#service-provider-openrc)
+* [`openwrt`](#service-provider-openwrt)
+* [`rcng`](#service-provider-rcng)
+* [`redhat`](#service-provider-redhat)
+* [`runit`](#service-provider-runit)
+* [`service`](#service-provider-service)
+* [`smf`](#service-provider-smf)
+* [`src`](#service-provider-src)
+* [`systemd`](#service-provider-systemd)
+* [`upstart`](#service-provider-upstart)
+* [`windows`](#service-provider-windows)
+
+([↑ Back to service attributes](#service-attributes))
+
 <h4 id="service-attribute-restart">restart</h4>
 
 Specify a *restart* command manually.  If left
@@ -255,6 +288,7 @@ service.  As with `init`-style services, it is preferable to specify start,
 stop, and status commands.
 
 * Required binaries: `kill`
+* Supported features: `refreshable`
 
 <h4 id="service-provider-bsd">bsd</h4>
 
@@ -263,6 +297,7 @@ Generic BSD form of `init`-style service management with `rc.d`.
 Uses `rc.conf.d` for service enabling and disabling.
 
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-daemontools">daemontools</h4>
 
@@ -301,6 +336,7 @@ If a service has `ensure => "stopped"`, it will only shut down the service, not
 remove the `/path/to/service` link.
 
 * Required binaries: `/usr/bin/svc`, `/usr/bin/svstat`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-debian">debian</h4>
 
@@ -312,13 +348,15 @@ services via `update-rc.d` and the ability to determine enabled status via
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
 * Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
 
 Provider for FreeBSD and DragonFly BSD. Uses the `rcvar` argument of init scripts and parses/edits rc files.
 
 * Confined to: `operatingsystem == [:freebsd, :dragonfly]`
-* Default for: `["operatingsystem", "[:freebsd, :dragonfly]"] == `
+* Default for `operatingsystem` == `freebsd, dragonfly`.
+* Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-gentoo">gentoo</h4>
 
@@ -328,16 +366,22 @@ Uses `rc-update` for service enabling and disabling.
 
 * Required binaries: `/sbin/rc-update`
 * Confined to: `operatingsystem == gentoo`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-init">init</h4>
 
 Standard `init`-style service management.
 
-* Confined to: `true == begin
+* Confined to:
+
+  ```
+  true == begin
       os = Facter.value(:operatingsystem).downcase
       family = Facter.value(:osfamily).downcase
       !(os == 'debian' || os == 'ubuntu' || family == 'redhat')
-  end`
+  end
+  ```
+* Supported features: `refreshable`
 
 <h4 id="service-provider-launchd">launchd</h4>
 
@@ -378,7 +422,8 @@ Note that this provider does not support overriding 'restart'
 
 * Required binaries: `/bin/launchctl`
 * Confined to: `operatingsystem == darwin`, `feature == cfpropertylist`
-* Default for: `["operatingsystem", "darwin"] == `
+* Default for `operatingsystem` == `darwin`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-openbsd">openbsd</h4>
 
@@ -386,7 +431,8 @@ Provider for OpenBSD's rc.d daemon control scripts
 
 * Required binaries: `/usr/sbin/rcctl`
 * Confined to: `operatingsystem == openbsd`
-* Default for: `["operatingsystem", "openbsd"] == `
+* Default for `operatingsystem` == `openbsd`
+* Supported features: `enableable`, `flaggable`, `refreshable`
 
 <h4 id="service-provider-openrc">openrc</h4>
 
@@ -395,7 +441,8 @@ Support for Gentoo's OpenRC initskripts
 Uses rc-update, rc-status and rc-service to manage services.
 
 * Required binaries: `/sbin/rc-service`, `/sbin/rc-update`
-* Default for: `["operatingsystem", "gentoo"] == `, `["operatingsystem", "funtoo"] == `
+* Default for `operatingsystem` == `gentoo`, `operatingsystem` == `funtoo`.
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-openwrt">openwrt</h4>
 
@@ -404,14 +451,16 @@ Support for OpenWrt flavored init scripts.
 Uses /etc/init.d/service_name enable, disable, and enabled.
 
 * Confined to: `operatingsystem == openwrt`
-* Default for: `["operatingsystem", "openwrt"] == `
+* Default for `operatingsystem` == `openwrt`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-rcng">rcng</h4>
 
 RCng service management with rc.d
 
 * Confined to: `operatingsystem == [:netbsd, :cargos]`
-* Default for: `["operatingsystem", "[:netbsd, :cargos]"] == `
+* Default for `operatingsystem` == `netbsd, cargos`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-redhat">redhat</h4>
 
@@ -419,7 +468,8 @@ Red Hat's (and probably many others') form of `init`-style service
 management. Uses `chkconfig` for service enabling and disabling.
 
 * Required binaries: `/sbin/chkconfig`, `/sbin/service`
-* Default for: `["osfamily", "redhat"] == `, `["osfamily", "suse"] == ["operatingsystemmajrelease", "[\"10\", \"11\"]"]`
+* Default for `osfamily` == `redhat`, `operatingsystemmajrelease` == `10, 11` and `osfamily` == `suse`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-runit">runit</h4>
 
@@ -452,10 +502,13 @@ This provider supports out of the box:
 * status
 
 * Required binaries: `/usr/bin/sv`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-service">service</h4>
 
 The simplest form of service support.
+
+* Supported features: `refreshable`
 
 <h4 id="service-provider-smf">smf</h4>
 
@@ -470,7 +523,8 @@ be imported if it does not exist.
 
 * Required binaries: `/usr/sbin/svcadm`, `/usr/bin/svcs`, `/usr/sbin/svccfg`
 * Confined to: `osfamily == solaris`
-* Default for: `["osfamily", "solaris"] == `
+* Default for `osfamily` == `solaris`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-src">src</h4>
 
@@ -483,8 +537,10 @@ Enabling and disabling services is not supported, as it requires
 modifications to `/etc/inittab`. Starting and stopping groups of subsystems
 is not yet supported.
 
+* Required binaries: `/usr/bin/lssrc`, `/usr/bin/refresh`, `/usr/bin/startsrc`, `/usr/bin/stopsrc`, `/usr/sbin/chitab`, `/usr/sbin/lsitab`, `/usr/sbin/mkitab`, `/usr/sbin/rmitab`
 * Confined to: `operatingsystem == aix`
-* Default for: `["operatingsystem", "aix"] == `
+* Default for `operatingsystem` == `aix`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-systemd">systemd</h4>
 
@@ -495,7 +551,17 @@ may be omitted.  Other unit types (such as `.path`) may be managed by
 providing the proper suffix.
 
 * Required binaries: `systemctl`
-* Default for: `["osfamily", "[:archlinux]"] == `, `["osfamily", "redhat"] == ["operatingsystemmajrelease", "7"]`, `["osfamily", "redhat"] == ["operatingsystem", "fedora"]`, `["osfamily", "suse"] == `, `["osfamily", "coreos"] == `, `["operatingsystem", "amazon"] == ["operatingsystemmajrelease", "[\"2\"]"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "[\"8\", \"stretch/sid\", \"9\", \"buster/sid\"]"]`, `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"15.04\",\"15.10\",\"16.04\",\"16.10\",\"17.04\",\"17.10\"]"]`, `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "[\"3\"]"]`
+* Default for
+  * `osfamily` == `archlinux`
+  * `operatingsystemmajrelease` == `7` and `osfamily` == `redhat`
+  * `operatingsystem` == `fedora` and `osfamily` == `redhat`
+  * `osfamily` == `suse`
+  * `osfamily` == `coreos`
+  * `operatingsystem` == `amazon` and `operatingsystemmajrelease` == `2`
+  * `operatingsystem` == `debian` and `operatingsystemmajrelease` == `8, stretch/sid, 9, buster/sid`
+  * `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `15.04, 15.10, 16.04, 16.10, 17.04, 17.10, 18.04`
+  * `operatingsystem` == `cumuluslinux` and `operatingsystemmajrelease` == `3`.
+* Supported features: `enableable`, `maskable`, `refreshable`
 
 <h4 id="service-provider-upstart">upstart</h4>
 
@@ -505,13 +571,21 @@ This provider manages `upstart` jobs on Ubuntu. For `upstart` documentation,
 see <http://upstart.ubuntu.com/>.
 
 * Required binaries: `/sbin/start`, `/sbin/stop`, `/sbin/restart`, `/sbin/status`, `/sbin/initctl`
-* Confined to: `any == [
+* Confined to:
+  ```
+  any == [
     Facter.value(:operatingsystem) == 'Ubuntu',
     (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
     (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
     Facter.value(:operatingsystem) == 'LinuxMint',
-  ]`
-* Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`
+  ]
+  ```
+
+  ```
+  exists == /var/run/upstart-socket-bridge.pid
+  ```
+* Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `10.04, 12.04, 14.04, 14.10`
+* Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-windows">windows</h4>
 
@@ -524,7 +598,8 @@ services as a specific user.
 
 * Required binaries: `net.exe`
 * Confined to: `operatingsystem == windows`
-* Default for: `["operatingsystem", "windows"] == `
+* Default for `operatingsystem` == `windows`
+* Supported features: `enableable`, `refreshable`
 
 <h3 id="service-provider-features">Provider Features</h3>
 
@@ -556,47 +631,47 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>bsd</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>daemontools</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>debian</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>freebsd</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>gentoo</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>init</td>
@@ -604,7 +679,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>launchd</td>
@@ -617,18 +692,18 @@ Provider support:
     <tr>
       <td>openbsd</td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>openrc</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>openwrt</td>
@@ -636,31 +711,31 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>rcng</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>redhat</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>runit</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>service</td>
@@ -668,12 +743,12 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>smf</td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -681,7 +756,7 @@ Provider support:
     <tr>
       <td>src</td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -689,10 +764,10 @@ Provider support:
     <tr>
       <td>systemd</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>upstart</td>
@@ -700,12 +775,12 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>windows</td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -715,4 +790,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

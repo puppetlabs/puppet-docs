@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: scheduled_task'
 canonical: "/puppet/latest/types/scheduled_task.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 scheduled_task
 -----
@@ -28,6 +28,7 @@ of the `trigger` attribute for details on setting schedules.
   <a href="#scheduled_task-attribute-command">command</a>     =&gt; <em># The full path to the application to run, without </em>
   <a href="#scheduled_task-attribute-enabled">enabled</a>     =&gt; <em># Whether the triggers for this task should be...</em>
   <a href="#scheduled_task-attribute-password">password</a>    =&gt; <em># The password for the user specified in the...</em>
+  <a href="#scheduled_task-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this...</em>
   <a href="#scheduled_task-attribute-trigger">trigger</a>     =&gt; <em># One or more triggers defining when the task...</em>
   <a href="#scheduled_task-attribute-user">user</a>        =&gt; <em># The user to run the scheduled task as.  Please...</em>
   <a href="#scheduled_task-attribute-working_dir">working_dir</a> =&gt; <em># The full path of the directory in which to start </em>
@@ -99,6 +100,18 @@ This is only used if specifying a user other than 'SYSTEM'.
 Since there is no way to retrieve the password used to set the
 account information for a task, this parameter will not be used
 to determine if a scheduled task is in sync or not.
+
+([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
+
+<h4 id="scheduled_task-attribute-provider">provider</h4>
+
+The specific backend to use for this `scheduled_task`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`win32_taskscheduler`](#scheduled_task-provider-win32_taskscheduler)
 
 ([↑ Back to scheduled_task attributes](#scheduled_task-attributes))
 
@@ -222,9 +235,9 @@ The full path of the directory in which to start the command.
 This provider manages scheduled tasks on Windows.
 
 * Confined to: `operatingsystem == windows`
-* Default for: `["operatingsystem", "windows"] == `
+* Default for: `operatingsystem` == `windows`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

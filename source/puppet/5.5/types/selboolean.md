@@ -1,12 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: selboolean'
 canonical: "/puppet/latest/types/selboolean.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 selboolean
 -----
 
@@ -23,6 +22,7 @@ are any of the ones found in `/selinux/booleans/`.
 <pre><code>selboolean { 'resource title':
   <a href="#selboolean-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the SELinux boolean to be...</em>
   <a href="#selboolean-attribute-persistent">persistent</a> =&gt; <em># If set true, SELinux booleans will be written to </em>
+  <a href="#selboolean-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this...</em>
   <a href="#selboolean-attribute-value">value</a>      =&gt; <em># Whether the SELinux boolean should be enabled or </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -37,8 +37,7 @@ The name of the SELinux boolean to be managed.
 
 <h4 id="selboolean-attribute-persistent">persistent</h4>
 
-If set true, SELinux booleans will be written to disk and persist across reboots.
-The default is `false`.
+If set to true, SELinux booleans will be written to disk and persist across reboots.
 
 Default: `false`
 
@@ -46,6 +45,18 @@ Allowed values:
 
 * `true`
 * `false`
+
+([↑ Back to selboolean attributes](#selboolean-attributes))
+
+<h4 id="selboolean-attribute-provider">provider</h4>
+
+The specific backend to use for this `selboolean`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`getsetsebool`](#selboolean-provider-getsetsebool)
 
 ([↑ Back to selboolean attributes](#selboolean-attributes))
 
@@ -74,4 +85,4 @@ Manage SELinux booleans using the getsebool and setsebool binaries.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

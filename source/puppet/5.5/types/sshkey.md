@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: sshkey'
 canonical: "/puppet/latest/types/sshkey.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 sshkey
 -----
@@ -28,6 +28,7 @@ type to manage authorized keys.
   <a href="#sshkey-attribute-ensure">ensure</a>       =&gt; <em># The basic property that the resource should be...</em>
   <a href="#sshkey-attribute-host_aliases">host_aliases</a> =&gt; <em># Any aliases the host might have.  Multiple...</em>
   <a href="#sshkey-attribute-key">key</a>          =&gt; <em># The key itself; generally a long string of...</em>
+  <a href="#sshkey-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `sshkey...</em>
   <a href="#sshkey-attribute-target">target</a>       =&gt; <em># The file in which to store the ssh key.  Only...</em>
   <a href="#sshkey-attribute-type">type</a>         =&gt; <em># The encryption type used.  Probably ssh-dss or...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
@@ -81,6 +82,18 @@ other attributes):
 
 ([↑ Back to sshkey attributes](#sshkey-attributes))
 
+<h4 id="sshkey-attribute-provider">provider</h4>
+
+The specific backend to use for this `sshkey`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`parsed`](#sshkey-provider-parsed)
+
+([↑ Back to sshkey attributes](#sshkey-attributes))
+
 <h4 id="sshkey-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -120,4 +133,4 @@ Parse and generate host-wide known hosts files for SSH.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

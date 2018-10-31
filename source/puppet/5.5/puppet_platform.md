@@ -15,7 +15,7 @@ See [The Puppet Enterprise Lifecycle](https://puppet.com/misc/puppet-enterprise-
 
 To receive the most up-to-date Puppet software without introducing breaking changes, use the `latest` platform, pin your infrastructure to known versions, and update the pinned version manually when you're ready to update. For example, if you're using the [`puppetlabs-puppet_agent` module](https://forge.puppet.com/puppetlabs/puppet_agent) to manage the installed `puppet-agent` package, use this resource to pin it to version 5.5.0:
 
-```
+```puppet
 class { '::puppet_agent':
   collection      => 'latest',
   package_version => '5.5.0',
@@ -35,6 +35,8 @@ Package                              | Contents
 `puppetdb`                           | [PuppetDB](/puppetdb/)
 `puppetdb-termini`                   | Plugins to let [Puppet Server talk to PuppetDB](/puppetdb/latest/connect_puppet_master.html)
 
+> **Deprecation Note:** As of Puppet agent 5.5.4, MCollective is deprecated and will be removed in a future version of Puppet agent. If you use Puppet Enterprise, consider [moving from MCollective to Puppet orchestrator](/docs/pe/2018.1/migrating_from_mcollective_to_orchestrator.html). If you use open source Puppet, migrate MCollective agents and filters using tools like [Bolt](/docs/bolt/) and PuppetDB's [Puppet Query Language](/docs/puppetdb/).
+
 ## Using Puppet 5 Platform
 
 The way you access Puppet 5 Platform depends on your operating system, and its distribution, version, and installation methods. If you use a *nix operating system with a package manager, for example, you access a Puppet Platform by adding it as a package repository.
@@ -45,13 +47,15 @@ The way you access Puppet 5 Platform depends on your operating system, and its d
 
 To enable the Puppet 5 Platform repository:
 
-1. Choose the package based on your operating system and version. The packages are located in the `puppet5` directory of the [`yum.puppet.com`](https://yum.puppet.com/puppet5/) repository and named using the following convention:
+1.  Choose the package based on your operating system and version. The packages are located in the `puppet5` directory of the [`yum.puppet.com`](https://yum.puppet.com/puppet5/) repository and named using the following convention:
 
-   `<PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm`
+    ```
+    <PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm
+    ```
 
-   For instance, the package for Puppet 5 Platform on Red Hat Enterprise Linux 7 (RHEL 7) is `puppet5-release-el-7.noarch.rpm`.
+    For instance, the package for Puppet 5 Platform on Red Hat Enterprise Linux 7 (RHEL 7) is `puppet5-release-el-7.noarch.rpm`.
 
-2. Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
+2.  Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
 
 #### Enterprise Linux 7
 
@@ -63,10 +67,16 @@ To enable the Puppet 5 Platform repository:
 
 #### Enterprise Linux 5
 
-    wget https://yum.puppet.com/puppet5/puppet5-release-el-5.noarch.rpm
-    sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
+```
+wget https://yum.puppet.com/puppet5/puppet5-release-el-5.noarch.rpm
+sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
+```
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
+
+#### Fedora 28
+
+    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-28.noarch.rpm
 
 #### Fedora 27
 
@@ -88,54 +98,66 @@ To enable the Puppet 5 Platform repository:
 
 To enable the Puppet 5 Platform repository:
 
-1. Choose the package based on your operating system and version. The packages are located in the [`apt.puppet.com`](https://apt.puppet.com) repository and named using the convention `<PLATFORM_VERSION>-release-<VERSION CODE NAME>.deb`
+1.  Choose the package based on your operating system and version. The packages are located in the [`apt.puppet.com`](https://apt.puppet.com) repository and named using the convention `<PLATFORM_VERSION>-release-<VERSION CODE NAME>.deb`
 
-   For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `puppet5-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
+    For instance, the release package for Puppet Platform on Debian 7 "Wheezy" is `puppet5-release-wheezy.deb`. For Ubuntu releases, the code name is the adjective, not the animal.
 
-2. Download the release package and install it as root using the `dpkg` tool and the `install` flag (`-i`). For example, to download and install the release package for Debian 7 "Wheezy", run:
+2.  Download the release package and install it as root using the `dpkg` tool and the `install` flag (`-i`). For example, to download and install the release package for Debian 7 "Wheezy", run:
 
-   ~~~
-   wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
-   sudo dpkg -i puppet5-release-wheezy.deb
-   ~~~
+    ```
+    wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
+    sudo dpkg -i puppet5-release-wheezy.deb
+    ```
 
-3. Run `apt-get update` after installing the release package to update the `apt` package lists.
+3.  Run `apt-get update` after installing the release package to update the `apt` package lists.
 
 #### Ubuntu 18.04 Bionic Beaver
 
-    wget https://apt.puppetlabs.com/puppet5-release-bionic.deb
-    sudo dpkg -i puppet5-release-bionic.deb
-    sudo apt update
+```
+wget https://apt.puppetlabs.com/puppet5-release-bionic.deb
+sudo dpkg -i puppet5-release-bionic.deb
+sudo apt update
+```
 
 #### Ubuntu 16.04 Xenial Xerus
 
-    wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
-    sudo dpkg -i puppet5-release-xenial.deb
-    sudo apt update
+```
+wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
+sudo dpkg -i puppet5-release-xenial.deb
+sudo apt update
+```
 
 #### Ubuntu 14.04 Trusty Tahr
 
-    wget https://apt.puppetlabs.com/puppet5-release-trusty.deb
-    sudo dpkg -i puppet5-release-trusty.deb
-    sudo apt-get update
+```
+wget https://apt.puppetlabs.com/puppet5-release-trusty.deb
+sudo dpkg -i puppet5-release-trusty.deb
+sudo apt-get update
+```
 
 #### Debian 9 Stretch
 
-    wget https://apt.puppetlabs.com/puppet5-release-stretch.deb
-    sudo dpkg -i puppet5-release-stretch.deb
-    sudo apt-get update
+```
+wget https://apt.puppetlabs.com/puppet5-release-stretch.deb
+sudo dpkg -i puppet5-release-stretch.deb
+sudo apt-get update
+```
 
 #### Debian 8 Jessie
 
-    wget https://apt.puppetlabs.com/puppet5-release-jessie.deb
-    sudo dpkg -i puppet5-release-jessie.deb
-    sudo apt-get update
+```
+wget https://apt.puppetlabs.com/puppet5-release-jessie.deb
+sudo dpkg -i puppet5-release-jessie.deb
+sudo apt-get update
+```
 
 #### Debian 7 Wheezy
 
-    wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
-    sudo dpkg -i puppet5-release-wheezy.deb
-    sudo apt-get update
+```
+wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
+sudo dpkg -i puppet5-release-wheezy.deb
+sudo apt-get update
+```
 
 ### Windows and macOS systems
 
@@ -143,11 +165,11 @@ While the [`puppet-agent` package](./about_agent.html) is the only component of 
 
 To download `puppet-agent` for Puppet 5 Platform on macOS:
 
-* [macOS packages](https://downloads.puppetlabs.com/mac/puppet5/)
+-   [macOS packages](https://downloads.puppetlabs.com/mac/puppet5/)
 
 To download `puppet-agent` for Puppet 5 Platform on Windows:
 
-* [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet5/)
+-   [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet5/)
 
 ## Verifying Puppet packages
 
@@ -250,11 +272,13 @@ Puppet RPM packages include an embedded signature. To verify it, you must import
 
 If you don't import the Puppet public key, you can still verify the package's integrity using `rpm -vK`. However, you won't be able to validate the package's origin:
 
-    puppet-agent-1.5.1-1.el6.x86_64.rpm:
-        Header V4 RSA/SHA512 Signature, key ID ef8d349f: NOKEY
-        Header SHA1 digest: OK (95b492a1fff452d029aaeb59598f1c78dbfee0c5)
-        V4 RSA/SHA512 Signature, key ID ef8d349f: NOKEY
-        MD5 digest: OK (4878909ccdd0af24fa9909790dd63a12)
+```
+puppet-agent-1.5.1-1.el6.x86_64.rpm:
+    Header V4 RSA/SHA512 Signature, key ID ef8d349f: NOKEY
+    Header SHA1 digest: OK (95b492a1fff452d029aaeb59598f1c78dbfee0c5)
+    V4 RSA/SHA512 Signature, key ID ef8d349f: NOKEY
+    MD5 digest: OK (4878909ccdd0af24fa9909790dd63a12)
+```
 
 #### Verify a macOS `puppet-agent` package
 
@@ -264,17 +288,19 @@ Puppet signs `puppet-agent` packages for macOS with a developer ID and certifica
 
 The tool confirms the signature and outputs fingerprints for each certificate in the chain:
 
-    Package "puppet-agent-<AGENT-VERSION>-1-installer.pkg":
-       Status: signed by a certificate trusted by Mac OS X
-       Certificate Chain:
-        1. Developer ID Installer: PUPPET LABS, INC. (VKGLGN2B6Y)
-           SHA1 fingerprint: AF 91 BF B7 7E CF 87 9F A8 0A 06 C3 03 5A B4 C7 11 34 0A 6F
-           -----------------------------------------------------------------------------
-        2. Developer ID Certification Authority
-           SHA1 fingerprint: 3B 16 6C 3B 7D C4 B7 51 C9 FE 2A FA B9 13 56 41 E3 88 E1 86
-           -----------------------------------------------------------------------------
-        3. Apple Root CA
-           SHA1 fingerprint: 61 1E 5B 66 2C 59 3A 08 FF 58 D1 4A E2 24 52 D1 98 DF 6C 60
+```
+Package "puppet-agent-<AGENT-VERSION>-1-installer.pkg":
+   Status: signed by a certificate trusted by Mac OS X
+   Certificate Chain:
+    1. Developer ID Installer: PUPPET LABS, INC. (VKGLGN2B6Y)
+       SHA1 fingerprint: AF 91 BF B7 7E CF 87 9F A8 0A 06 C3 03 5A B4 C7 11 34 0A 6F
+       -----------------------------------------------------------------------------
+    2. Developer ID Certification Authority
+       SHA1 fingerprint: 3B 16 6C 3B 7D C4 B7 51 C9 FE 2A FA B9 13 56 41 E3 88 E1 86
+       -----------------------------------------------------------------------------
+    3. Apple Root CA
+       SHA1 fingerprint: 61 1E 5B 66 2C 59 3A 08 FF 58 D1 4A E2 24 52 D1 98 DF 6C 60
+```
 
 You can also confirm the certificate when installing the package by clicking the lock icon in the top-right corner of the installer:
 

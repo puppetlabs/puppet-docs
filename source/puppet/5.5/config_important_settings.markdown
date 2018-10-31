@@ -7,7 +7,7 @@ title: "Configuration: Short list of important settings"
 [trusted_and_facts]: ./lang_facts_and_builtin_vars.html
 [config_reference]: ./configuration.html
 [environments]: ./environments.html
-[multi_master]: /guides/scaling_multiple_masters.html
+[multi_master]: https://docs.puppet.com/puppet/3/scaling_multiple_masters.html
 [enc]: ./nodes_external.html
 [meta_noop]: ./metaparameter.html#noop
 [meta_schedule]: ./metaparameter.html#schedule
@@ -96,7 +96,6 @@ This page lists the most important ones. (We assume here that you're okay with d
 
 ## Settings for agents (all nodes)
 
-
 Roughly in order of importance. Most of these can go in either `[main]` or `[agent]`, or be [specified on the command line][cli_settings].
 
 ### Basics
@@ -138,7 +137,6 @@ These settings affect the way Puppet agent acts when running as a long-lived ser
 * [`onetime`][onetime] --- Whether to exit after finishing the current Puppet run. Set this to true when running the agent from cron.
 
 ## Settings for Puppet master servers
-
 
 Many of these settings are also important for standalone Puppet apply nodes, since they act as their own Puppet master.
 
@@ -185,4 +183,3 @@ These features configure add-ons and optional features.
 
 * [`ca_ttl`][ca_ttl] --- How long newly signed certificates should be valid for.
 * [`autosign`][autosign] --- Whether (and how) to autosign certificates. See [the autosigning page][ssl_autosign] for details.
-

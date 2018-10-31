@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
 title: 'Puppet HTTP API: Catalog'
 canonical: "/puppet/latest/http_api/http_catalog.html"
 ---
@@ -48,7 +48,7 @@ Four parameters should be provided to the POST or GET:
 
 Two optional parameters are required for static catalogs:
 - `static_catalog`: a boolean requesting a
-[static catalog](https://docs.puppetlabs.com/puppet/latest/reference/static_catalogs.html) if available; should always
+[static catalog](https://puppet.com/docs/puppet/latest/static_catalogs.html) if available; should always
 be `true`.
 - `checksum_type`: a dot-separated list of checksum types supported by the agent, for use in file resources of a static
 catalog. The order signifies preference, highest first.

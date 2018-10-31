@@ -4,7 +4,7 @@ title: "Resource tips and examples: Scheduled task on Windows"
 toc: false
 ---
 
-[scheduledtask]: ./type.html#scheduledtask
+[scheduledtask]: ./types/scheduledtask.html#scheduledtask
 
 Puppet can create, edit, and delete scheduled tasks, which are a Windows-only resource type.
 
@@ -17,12 +17,12 @@ scheduled_task { 'An every-other-day task':
   command   => 'C:\path\to\command.exe',
   arguments => '/flags /to /pass',
   trigger   => {
-    schedule   => daily,
-    every      => 2,            # Specifies every other day. Defaults to 1 (every day).
-    start_date => '2011-08-31', # Defaults to 'today'
-    start_time => '08:00',      # Must be specified
-    minutes_interval => '60',   # Repeat this task every 60 minutes
-    minutes_duration => '300',  # The task will run for a total of five hours
+    schedule         => daily,
+    every            => 2,            # Specifies every other day. Defaults to 1 (every day).
+    start_date       => '2011-08-31', # Defaults to 'today'
+    start_time       => '08:00',      # Must be specified
+    minutes_interval => '60',         # Repeat this task every 60 minutes
+    minutes_duration => '300',        # The task will run for a total of five hours
   }
 }
 ```

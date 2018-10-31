@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 schedule
 -----
@@ -15,7 +15,7 @@ schedule
 <h3 id="schedule-description">Description</h3>
 
 Define schedules for Puppet. Resources can be limited to a schedule by using the
-[`schedule`](https://docs.puppetlabs.com/puppet/latest/reference/metaparameter.html#schedule)
+[`schedule`](https://puppet.com/docs/puppet/latest/metaparameter.html#schedule)
 metaparameter.
 
 Currently, **schedules can only be used to stop a resource from being
@@ -202,4 +202,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

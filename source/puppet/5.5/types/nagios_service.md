@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 8c9dd1ff315b738818307cc895942164aba30730
 title: 'Resource Type: nagios_service'
 canonical: "/puppet/latest/types/nagios_service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:06:58 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700
 
 nagios_service
 -----
@@ -543,4 +543,4 @@ Nagios configuration file parameter.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:06:58 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-06-20 11:51:22 -0700

@@ -1,12 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: computer'
 canonical: "/puppet/latest/types/computer.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 computer
 -----
 
@@ -42,6 +41,7 @@ the Computer resource will autorequire it.
   <a href="#computer-attribute-ensure">ensure</a>     =&gt; <em># Control the existences of this computer record...</em>
   <a href="#computer-attribute-en_address">en_address</a> =&gt; <em># The MAC address of the primary network...</em>
   <a href="#computer-attribute-ip_address">ip_address</a> =&gt; <em># The IP Address of the Computer...</em>
+  <a href="#computer-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `computer...</em>
   <a href="#computer-attribute-realname">realname</a>   =&gt; <em># The 'long' name of the computer...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -85,6 +85,18 @@ The IP Address of the Computer object.
 
 ([↑ Back to computer attributes](#computer-attributes))
 
+<h4 id="computer-attribute-provider">provider</h4>
+
+The specific backend to use for this `computer`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`directoryservice`](#computer-provider-directoryservice)
+
+([↑ Back to computer attributes](#computer-attributes))
+
 <h4 id="computer-attribute-realname">realname</h4>
 
 The 'long' name of the computer record.
@@ -108,9 +120,9 @@ If you wish to manage /etc/hosts on Mac OS X, then simply use the host
 type as per other platforms.
 
 * Confined to: `operatingsystem == darwin`
-* Default for: `["operatingsystem", "darwin"] == `
+* Default for `operatingsystem` == `darwin`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

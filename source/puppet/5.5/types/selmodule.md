@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: selmodule'
 canonical: "/puppet/latest/types/selmodule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 selmodule
 -----
@@ -29,6 +29,7 @@ resource will autorequire that file.
 <pre><code>selmodule { 'resource title':
   <a href="#selmodule-attribute-name">name</a>          =&gt; <em># <strong>(namevar)</strong> The name of the SELinux policy to be managed....</em>
   <a href="#selmodule-attribute-ensure">ensure</a>        =&gt; <em># The basic property that the resource should be...</em>
+  <a href="#selmodule-attribute-provider">provider</a>      =&gt; <em># The specific backend to use for this `selmodule` </em>
   <a href="#selmodule-attribute-selmoduledir">selmoduledir</a>  =&gt; <em># The directory to look for the compiled pp module </em>
   <a href="#selmodule-attribute-selmodulepath">selmodulepath</a> =&gt; <em># The full path to the compiled .pp policy module. </em>
   <a href="#selmodule-attribute-syncversion">syncversion</a>   =&gt; <em># If set to `true`, the policy will be reloaded if </em>
@@ -56,6 +57,18 @@ Allowed values:
 
 * `present`
 * `absent`
+
+([↑ Back to selmodule attributes](#selmodule-attributes))
+
+<h4 id="selmodule-attribute-provider">provider</h4>
+
+The specific backend to use for this `selmodule`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`semodule`](#selmodule-provider-semodule)
 
 ([↑ Back to selmodule attributes](#selmodule-attributes))
 
@@ -106,4 +119,4 @@ Manage SELinux policy modules using the semodule binary.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

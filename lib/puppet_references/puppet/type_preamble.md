@@ -1,6 +1,6 @@
-## About Resource Types
+## About resource types
 
-### Built-in Types and Custom Types
+### Built-in types and custom types
 
 This is the documentation for the _built-in_ resource types and providers, keyed
 to a specific Puppet version. (See sidebar.) Additional resource types can be
@@ -8,46 +8,67 @@ distributed in Puppet modules; you can find and install modules by browsing the
 [Puppet Forge](http://forge.puppetlabs.com). See each module's documentation for
 information on how to use its custom resource types.
 
-### Declaring Resources
+### Declaring resources
 
 To manage resources on a target system, you should declare them in Puppet
 manifests. For more details, see
-[the resources page of the Puppet language reference.](/puppet/latest/lang_resources.html)
+[the resources page of the Puppet language reference.](/docs/puppet/latest/lang_resources.html)
 
 You can also browse and manage resources interactively using the
 `puppet resource` subcommand; run `puppet resource --help` for more information.
 
-### Namevars and Titles
+### Namevars and titles
 
-All types have a special attribute called the *namevar.* This is the attribute
-used to uniquely identify a resource _on the target system._ If you don't
-specifically assign a value for the namevar, its value will default to the
-_title_ of the resource.
+All types have a special attribute called the _namevar_. This is the attribute
+used to uniquely identify a resource on the target system.
 
-Example:
+Each resource has a specific namevar attribute, which is listed on this page in
+each resource's reference. If you don't specify a value for the namevar, its
+value defaults to the resource's _title_.
 
-    file { '/etc/passwd':
-      owner => 'root',
-      group => 'root',
-      mode  => '0644',
-    }
+**Example of a title as a default namevar:**
 
-In this code, `/etc/passwd` is the _title_ of the file resource; other Puppet
-code can refer to the resource as `File['/etc/passwd']` to declare
-relationships. Because `path` is the namevar for the file type and we did not
-provide a value for it, the value of `path` will default to `/etc/passwd`.
+```puppet
+file { '/etc/passwd':
+  owner => 'root',
+  group => 'root',
+  mode  => '0644',
+}
+```
 
-### Attributes, Parameters, Properties
+In this code, `/etc/passwd` is the _title_ of the file resource.
 
-The *attributes* (sometimes called *parameters*) of a resource determine its
-desired state.  They either directly modify the system (internally, these are
-called "properties") or they affect how the resource behaves (e.g., adding a
-search path for `exec` resources or controlling directory recursion on `file`
-resources).
+The file type's namevar is `path`. Because we didn't provide a `path` value in
+this example, the value defaults to the title, `/etc/passwd`.
+
+**Example of a namevar:**
+
+```puppet
+file { 'passwords':
+  path  => '/etc/passwd',
+  owner => 'root',
+  group => 'root',
+  mode  => '0644',
+```
+
+This example is functionally similar to the previous example. Its `path`
+namevar attribute has an explicitly set value separate from the title, so
+its name is still `/etc/passwd`.
+
+Other Puppet code can refer to this resource as `File['/etc/passwd']` to
+declare relationships.
+
+### Attributes, parameters, properties
+
+The _attributes_ (sometimes called _parameters_) of a resource determine its
+desired state. They either directly modify the system (internally, these are
+called "properties") or they affect how the resource behaves (for instance,
+adding a search path for `exec` resources or controlling directory recursion
+on `file` resources).
 
 ### Providers
 
-*Providers* implement the same resource type on different kinds of systems.
+_Providers_ implement the same resource type on different kinds of systems.
 They usually do this by calling out to external commands.
 
 Although Puppet will automatically select an appropriate default provider, you
@@ -62,10 +83,16 @@ shell path.
 
 ### Features
 
-*Features* are abilities that some providers may not support. Generally, a
-feature will correspond to some allowed values for a resource attribute; for
+_Features_ are abilities that some providers might not support. Generally, a
+feature corresponds to some allowed values for a resource attribute.
+
+This is often the case with the `ensure` attribute. In most types, Puppet
+doesn't create new resources when omitting `ensure` but still modifies existing
+resources to match specifications in the manifest. However, in some types this
+isn't always the case, or additional values provide more granular control. For
 example, if a `package` provider supports the `purgeable` feature, you can
-specify `ensure => purged` to delete config files installed by the package.
+specify `ensure => purged` to delete configuration files installed by the
+package.
 
 Resource types define the set of features they can use, and providers can
 declare which features they provide.

@@ -4,9 +4,12 @@ title: "Custom facts walkthrough"
 ---
 
 [Facter 3.0.2 release notes]: ../3.0/release_notes.html#facter--p-restored
-[Plugins in Modules]: /puppet/latest/plugins_in_modules.html
+[Plugins in Modules]: /docs/puppet/latest/plugins_in_modules.html
+[Adding plug-ins to a module]: /docs/puppet/latest/plugins_in_modules.html#adding-plug-ins-to-a-module
 
 You can add custom facts by writing snippets of Ruby code on the Puppet master. Puppet then uses [Plugins in Modules][] to distribute the facts to the client.
+
+For information on how to add custom facts to modules, see [Adding plug-ins to a module][].
 
 ## Adding custom facts to Facter
 
@@ -178,6 +181,20 @@ available on the given system. Since this is only available on Linux systems,
 we use the confine statement to ensure that this fact isn't needlessly run on
 systems that don't support this type of enumeration.
 
+To confine structured facts like `['os']['family']`, you can use `Facter.value`:
+
+``` ruby
+confine Facter.value(:os)['family'] => 'RedHat'
+```
+
+You can also use a Ruby block:
+
+``` ruby
+confine :os do |os|
+  os['family'] == 'RedHat'
+end
+```
+
 ### Fact precedence
 
 A single fact can have multiple **resolutions**, each of which is a different way
@@ -194,7 +211,7 @@ the resolution with the highest weight is evaluated first. If that resolution re
 Facter moves on to the next resolution (by descending weight) until it gets a value for the fact.
 
 By default, the weight of a fact is the number of confines for that resolution, so
-that more specific resolutions take priority over less specific resolutions.
+that more specific resolutions take priority over less specific resolutions. Note that external facts have a weight of 1000 — to override these set a weight above 1000.
 
 ``` ruby
 # Check to see if this server has been marked as a postgres server

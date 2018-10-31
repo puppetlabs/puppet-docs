@@ -1,12 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: augeas'
 canonical: "/puppet/latest/types/augeas.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 augeas
 -----
 
@@ -46,17 +45,29 @@ Sample usage with an array and custom lenses:
 <h3 id="augeas-attributes">Attributes</h3>
 
 <pre><code>augeas { 'resource title':
+  <a href="#augeas-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of this task. Used for...</em>
   <a href="#augeas-attribute-changes">changes</a>    =&gt; <em># The changes which should be applied to the...</em>
+  <a href="#augeas-attribute-context">context</a>    =&gt; <em># Optional context path. This value is prepended...</em>
   <a href="#augeas-attribute-force">force</a>      =&gt; <em># Optional command to force the augeas type to...</em>
   <a href="#augeas-attribute-incl">incl</a>       =&gt; <em># Load only a specific file, such as `/etc/hosts`. </em>
   <a href="#augeas-attribute-lens">lens</a>       =&gt; <em># Use a specific lens, such as `Hosts.lns`. When...</em>
   <a href="#augeas-attribute-load_path">load_path</a>  =&gt; <em># Optional colon-separated list or array of...</em>
+  <a href="#augeas-attribute-onlyif">onlyif</a>     =&gt; <em># Optional augeas command and comparisons to...</em>
+  <a href="#augeas-attribute-provider">provider</a>   =&gt; <em># The specific backend to use for this `augeas...</em>
   <a href="#augeas-attribute-returns">returns</a>    =&gt; <em># The expected return code from the augeas...</em>
   <a href="#augeas-attribute-root">root</a>       =&gt; <em># A file system path; all files loaded by Augeas...</em>
   <a href="#augeas-attribute-show_diff">show_diff</a>  =&gt; <em># Whether to display differences when the file...</em>
   <a href="#augeas-attribute-type_check">type_check</a> =&gt; <em># Whether augeas should perform typechecking...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
+
+<h4 id="augeas-attribute-name">name</h4>
+
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The name of this task. Used for uniqueness.
+
+([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-changes">changes</h4>
 
@@ -79,6 +90,14 @@ can be a command or an array of commands. The following commands are supported:
 * `defnode <NAME> <PATH> <VALUE>` --- Sets Augeas variable `$NAME` to `PATH`, creating it with `VALUE` if needed
 
 If the `context` parameter is set, that value is prepended to any relative `PATH`s.
+
+([↑ Back to augeas attributes](#augeas-attributes))
+
+<h4 id="augeas-attribute-context">context</h4>
+
+Optional context path. This value is prepended to the paths of all
+changes if the path is relative. If the `incl` parameter is set,
+defaults to `/files + incl`; otherwise, defaults to the empty string.
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
@@ -115,6 +134,49 @@ Default: `""`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
+<h4 id="augeas-attribute-onlyif">onlyif</h4>
+
+Optional augeas command and comparisons to control the execution of this type.
+
+Note: `values` is not an actual augeas API command. It calls `match` to retrieve an array of paths
+       in <MATCH_PATH> and then `get` to retrieve the values from each of the returned paths.
+
+Supported onlyif syntax:
+
+* `get <AUGEAS_PATH> <COMPARATOR> <STRING>`
+* `values <MATCH_PATH> include <STRING>`
+* `values <MATCH_PATH> not_include <STRING>`
+* `values <MATCH_PATH> == <AN_ARRAY>`
+* `values <MATCH_PATH> != <AN_ARRAY>`
+* `match <MATCH_PATH> size <COMPARATOR> <INT>`
+* `match <MATCH_PATH> include <STRING>`
+* `match <MATCH_PATH> not_include <STRING>`
+* `match <MATCH_PATH> == <AN_ARRAY>`
+* `match <MATCH_PATH> != <AN_ARRAY>`
+
+where:
+
+* `AUGEAS_PATH` is a valid path scoped by the context
+* `MATCH_PATH` is a valid match syntax scoped by the context
+* `COMPARATOR` is one of `>, >=, !=, ==, <=,` or `<`
+* `STRING` is a string
+* `INT` is a number
+* `AN_ARRAY` is in the form `['a string', 'another']`
+
+([↑ Back to augeas attributes](#augeas-attributes))
+
+<h4 id="augeas-attribute-provider">provider</h4>
+
+The specific backend to use for this `augeas`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`augeas`](#augeas-provider-augeas)
+
+([↑ Back to augeas attributes](#augeas-attributes))
+
 <h4 id="augeas-attribute-returns">returns</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -145,16 +207,14 @@ Default: `true`
 
 Allowed values:
 
-* `true`
-* `false`
-* `yes`
-* `no`
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to augeas attributes](#augeas-attributes))
 
 <h4 id="augeas-attribute-type_check">type_check</h4>
 
-Whether augeas should perform typechecking. Defaults to false.
+Whether augeas should perform typechecking.
 
 Default: `false`
 
@@ -170,9 +230,8 @@ Allowed values:
 
 <h4 id="augeas-provider-augeas">augeas</h4>
 
-
-
 * Confined to: `feature == augeas`
+* Supported features: `execute_changes`, `need_to_run?`, `parse_commands`
 
 <h3 id="augeas-provider-features">Provider Features</h3>
 
@@ -205,4 +264,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

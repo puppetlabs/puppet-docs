@@ -4,9 +4,12 @@ title: "Custom facts walkthrough"
 ---
 
 [Facter 3.0.2 release notes]: ../3.0/release_notes.html#facter--p-restored
-[Plugins in Modules]: /puppet/latest/plugins_in_modules.html
+[Plugins in Modules]: /docs/puppet/latest/plugins_in_modules.html
+[Adding plug-ins to a module]: /docs/puppet/latest/plugins_in_modules.html#adding-plug-ins-to-a-module
 
 You can add custom facts by writing snippets of Ruby code on the Puppet master. Puppet then uses [Plugins in Modules][] to distribute the facts to the client.
+
+For information on how to add custom facts to modules, see [Adding plug-ins to a module][].
 
 ## Adding custom facts to Facter
 
@@ -15,6 +18,16 @@ Sometimes you need to be able to write conditional expressions based on site-spe
 Because you can't include arbitrary Ruby code in your manifests, the best solution is to add a new fact to Facter. These additional facts can then be distributed to Puppet clients and are available for use in manifests and templates, just like any other fact is.
 
 > **Note:** Facter 3.0 removed the Ruby implementations of some features and replaced them with a [custom facts API](https://github.com/puppetlabs/facter/blob/master/Extensibility.md#custom-facts-compatibility). Any custom fact that requires one of the Ruby files previously stored in `lib/facter/util` fails with an error. For more information, see the [Facter 3.0 release notes](../3.0/release_notes.html).
+
+### Structured and flat facts
+
+A typical fact extracts a piece of information about a system and returns it as either as a simple value ("flat" fact) or data organized as a hash or array ("structured" fact). There are several types of facts classified by how they collect information, including:
+
+-   [Core facts](./core_facts.html), which are built into Facter and are common to almost all systems
+-   [Custom facts](#loading-custom-facts), which run Ruby code to produce a value
+-   [External facts](#external-facts), which return values from pre-defined static data, or the result of an executable script or program
+
+All fact types can produce flat or structured values.
 
 ## Loading custom facts
 
@@ -98,7 +111,7 @@ execute shell commands:
 -   If your fact is more complicated than that, you can call `Facter::Core::Execution.execute('uname --hardware-platform')` from within the `setcode do`...`end` block. Whatever the `setcode` statement returns is used as the fact's value.
 -   Your shell command is also a Ruby string, so you need to escape special characters if you want to pass them through.
 
->**Note:** Not everything that works in the terminal works in a fact. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements do not work. The best way to handle this limitation is to write your conditional logic in Ruby.
+> **Note:** Not everything that works in the terminal works in a fact. You can use the pipe (`|`) and similar operators as you normally would, but Bash-specific syntax like `if` statements do not work. The best way to handle this limitation is to write your conditional logic in Ruby.
 
 ### Example
 
@@ -167,6 +180,20 @@ This fact uses sysfs on linux to get a list of the power states that are
 available on the given system. Since this is only available on Linux systems,
 we use the confine statement to ensure that this fact isn't needlessly run on
 systems that don't support this type of enumeration.
+
+To confine structured facts like `['os']['family']`, you can use `Facter.value`:
+
+``` ruby
+confine Facter.value(:os)['family'] => 'RedHat'
+```
+
+You can also use a Ruby block:
+
+``` ruby
+confine :os do |os|
+  os['family'] == 'RedHat'
+end
+```
 
 ### Fact precedence
 
@@ -290,8 +317,6 @@ For more examples of aggregate resolutions, see the [aggregate resolutions](./fa
 If your Puppet masters are configured to use [PuppetDB][puppetdb], you can view and search all of the facts for any node, including custom facts. See [the PuppetDB docs][puppetdb] for more info.
 
 ## External facts
-
-### What are external facts?
 
 External facts provide a way to use arbitrary executables or scripts as facts, or set facts statically with structured data. If you've ever wanted to write a custom fact in Perl, C, or a one-line text file, this is how.
 

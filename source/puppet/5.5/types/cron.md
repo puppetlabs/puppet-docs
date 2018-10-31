@@ -1,12 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: cron'
 canonical: "/puppet/latest/types/cron.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 cron
 -----
 
@@ -76,6 +75,7 @@ that user.
   <a href="#cron-attribute-minute">minute</a>      =&gt; <em># The minute at which to run the cron job...</em>
   <a href="#cron-attribute-month">month</a>       =&gt; <em># The month of the year. Optional; if specified...</em>
   <a href="#cron-attribute-monthday">monthday</a>    =&gt; <em># The day of the month on which to run the...</em>
+  <a href="#cron-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `cron...</em>
   <a href="#cron-attribute-special">special</a>     =&gt; <em># A special value such as 'reboot' or 'annually'...</em>
   <a href="#cron-attribute-target">target</a>      =&gt; <em># The name of the crontab file in which the cron...</em>
   <a href="#cron-attribute-user">user</a>        =&gt; <em># The user who owns the cron job.  This user must...</em>
@@ -187,6 +187,18 @@ command.  Optional; if specified, must be between 1 and 31.
 
 ([↑ Back to cron attributes](#cron-attributes))
 
+<h4 id="cron-attribute-provider">provider</h4>
+
+The specific backend to use for this `cron`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`crontab`](#cron-provider-crontab)
+
+([↑ Back to cron attributes](#cron-attributes))
+
 <h4 id="cron-attribute-special">special</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -246,11 +258,9 @@ must be either:
 
 <h4 id="cron-provider-crontab">crontab</h4>
 
-
-
 * Required binaries: `crontab`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

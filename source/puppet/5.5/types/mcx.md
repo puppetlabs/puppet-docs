@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: mcx'
 canonical: "/puppet/latest/types/mcx.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 
 mcx
 -----
@@ -33,11 +33,12 @@ MCX settings refer to, the MCX resource will autorequire that user, group, or co
 <h3 id="mcx-attributes">Attributes</h3>
 
 <pre><code>mcx { 'resource title':
-  <a href="#mcx-attribute-name">name</a>    =&gt; <em># <strong>(namevar)</strong> The name of the resource being managed. The...</em>
-  <a href="#mcx-attribute-ensure">ensure</a>  =&gt; <em># Create or remove the MCX setting.  Allowed...</em>
-  <a href="#mcx-attribute-content">content</a> =&gt; <em># The XML Plist used as the value of MCXSettings...</em>
-  <a href="#mcx-attribute-ds_name">ds_name</a> =&gt; <em># The name to attach the MCX Setting to. (For...</em>
-  <a href="#mcx-attribute-ds_type">ds_type</a> =&gt; <em># The DirectoryService type this MCX setting...</em>
+  <a href="#mcx-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> The name of the resource being managed. The...</em>
+  <a href="#mcx-attribute-ensure">ensure</a>   =&gt; <em># Create or remove the MCX setting.  Valid values...</em>
+  <a href="#mcx-attribute-content">content</a>  =&gt; <em># The XML Plist used as the value of MCXSettings...</em>
+  <a href="#mcx-attribute-ds_name">ds_name</a>  =&gt; <em># The name to attach the MCX Setting to. (For...</em>
+  <a href="#mcx-attribute-ds_type">ds_type</a>  =&gt; <em># The DirectoryService type this MCX setting...</em>
+  <a href="#mcx-attribute-provider">provider</a> =&gt; <em># The specific backend to use for this `mcx...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -81,6 +82,8 @@ This is the standard output from the system command:
 
 Note that `ds_type` is capitalized and plural in the dscl command.
 
+Requires features manages_content.
+
 ([↑ Back to mcx attributes](#mcx-attributes))
 
 <h4 id="mcx-attribute-ds_name">ds_name</h4>
@@ -105,6 +108,18 @@ Allowed values:
 
 ([↑ Back to mcx attributes](#mcx-attributes))
 
+<h4 id="mcx-attribute-provider">provider</h4>
+
+The specific backend to use for this `mcx`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`mcxcontent`](#mcx-provider-mcxcontent)
+
+([↑ Back to mcx attributes](#mcx-attributes))
+
 
 <h3 id="mcx-providers">Providers</h3>
 
@@ -125,7 +140,8 @@ Original Author: Jeff McCune (mccune.jeff@gmail.com)
 
 * Required binaries: `/usr/bin/dscl`
 * Confined to: `operatingsystem == darwin`
-* Default for: `["operatingsystem", "darwin"] == `
+* Default for: `operatingsystem == darwin`
+* Supported features: `manages_content`
 
 <h3 id="mcx-provider-features">Provider Features</h3>
 
@@ -145,11 +161,11 @@ Provider support:
   <tbody>
     <tr>
       <td>mcxcontent</td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
   </tbody>
 </table>
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

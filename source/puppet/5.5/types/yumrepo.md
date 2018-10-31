@@ -1,12 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: yumrepo'
 canonical: "/puppet/latest/types/yumrepo.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 yumrepo
 -----
 
@@ -34,36 +33,37 @@ existence of files listed in the `include` attribute.
   <a href="#yumrepo-attribute-ensure">ensure</a>                       =&gt; <em># The basic property that the resource should be...</em>
   <a href="#yumrepo-attribute-assumeyes">assumeyes</a>                    =&gt; <em># Determines if yum prompts for confirmation of...</em>
   <a href="#yumrepo-attribute-bandwidth">bandwidth</a>                    =&gt; <em># Use to specify the maximum available network...</em>
-  <a href="#yumrepo-attribute-baseurl">baseurl</a>                      =&gt; <em># The URL for this repository.  Allowed values:  * </em>
-  <a href="#yumrepo-attribute-cost">cost</a>                         =&gt; <em># Cost of this repository.  Allowed values:  ...</em>
+  <a href="#yumrepo-attribute-baseurl">baseurl</a>                      =&gt; <em># The URL for this repository. Set this to...</em>
+  <a href="#yumrepo-attribute-cost">cost</a>                         =&gt; <em># Cost of this repository. Set this to `absent` to </em>
   <a href="#yumrepo-attribute-deltarpm_metadata_percentage">deltarpm_metadata_percentage</a> =&gt; <em># Percentage value that determines when to...</em>
   <a href="#yumrepo-attribute-deltarpm_percentage">deltarpm_percentage</a>          =&gt; <em># Percentage value that determines when to use...</em>
   <a href="#yumrepo-attribute-descr">descr</a>                        =&gt; <em># A human-readable description of the repository...</em>
-  <a href="#yumrepo-attribute-enabled">enabled</a>                      =&gt; <em># Whether this repository is enabled.  Allowed...</em>
+  <a href="#yumrepo-attribute-enabled">enabled</a>                      =&gt; <em># Whether this repository is enabled. Valid values </em>
   <a href="#yumrepo-attribute-enablegroups">enablegroups</a>                 =&gt; <em># Whether yum will allow the use of package groups </em>
   <a href="#yumrepo-attribute-exclude">exclude</a>                      =&gt; <em># The string of package names or shell globs...</em>
   <a href="#yumrepo-attribute-failovermethod">failovermethod</a>               =&gt; <em># The failover method for this repository; should...</em>
-  <a href="#yumrepo-attribute-gpgcakey">gpgcakey</a>                     =&gt; <em># The URL for the GPG CA key for this repository.  </em>
+  <a href="#yumrepo-attribute-gpgcakey">gpgcakey</a>                     =&gt; <em># The URL for the GPG CA key for this repository...</em>
   <a href="#yumrepo-attribute-gpgcheck">gpgcheck</a>                     =&gt; <em># Whether to check the GPG signature on packages...</em>
   <a href="#yumrepo-attribute-gpgkey">gpgkey</a>                       =&gt; <em># The URL for the GPG key with which packages from </em>
-  <a href="#yumrepo-attribute-http_caching">http_caching</a>                 =&gt; <em># What to cache from this repository.  Allowed...</em>
+  <a href="#yumrepo-attribute-http_caching">http_caching</a>                 =&gt; <em># What to cache from this repository. Set this to...</em>
   <a href="#yumrepo-attribute-include">include</a>                      =&gt; <em># The URL of a remote file containing additional...</em>
   <a href="#yumrepo-attribute-includepkgs">includepkgs</a>                  =&gt; <em># The string of package names or shell globs...</em>
   <a href="#yumrepo-attribute-keepalive">keepalive</a>                    =&gt; <em># Whether HTTP/1.1 keepalive should be used with...</em>
   <a href="#yumrepo-attribute-metadata_expire">metadata_expire</a>              =&gt; <em># Number of seconds after which the metadata will...</em>
-  <a href="#yumrepo-attribute-metalink">metalink</a>                     =&gt; <em># Metalink for mirrors.  Allowed values:  * `/.*/` </em>
+  <a href="#yumrepo-attribute-metalink">metalink</a>                     =&gt; <em># Metalink for mirrors. Set this to `absent` to...</em>
   <a href="#yumrepo-attribute-mirrorlist">mirrorlist</a>                   =&gt; <em># The URL that holds the list of mirrors for this...</em>
   <a href="#yumrepo-attribute-mirrorlist_expire">mirrorlist_expire</a>            =&gt; <em># Time (in seconds) after which the mirrorlist...</em>
   <a href="#yumrepo-attribute-password">password</a>                     =&gt; <em># Password to use with the username for basic...</em>
   <a href="#yumrepo-attribute-payload_gpgcheck">payload_gpgcheck</a>             =&gt; <em># Whether to check the GPG signature of the...</em>
-  <a href="#yumrepo-attribute-priority">priority</a>                     =&gt; <em># Priority of this repository from 1-99. Requires...</em>
+  <a href="#yumrepo-attribute-priority">priority</a>                     =&gt; <em># Priority of this repository. Can be any integer...</em>
   <a href="#yumrepo-attribute-protect">protect</a>                      =&gt; <em># Enable or disable protection for this...</em>
+  <a href="#yumrepo-attribute-provider">provider</a>                     =&gt; <em># The specific backend to use for this `yumrepo...</em>
   <a href="#yumrepo-attribute-proxy">proxy</a>                        =&gt; <em># URL of a proxy server that Yum should use when...</em>
-  <a href="#yumrepo-attribute-proxy_password">proxy_password</a>               =&gt; <em># Password for this proxy.  Allowed values:  ...</em>
-  <a href="#yumrepo-attribute-proxy_username">proxy_username</a>               =&gt; <em># Username for this proxy.  Allowed values:  ...</em>
-  <a href="#yumrepo-attribute-repo_gpgcheck">repo_gpgcheck</a>                =&gt; <em># Whether to check the GPG signature on repodata.  </em>
+  <a href="#yumrepo-attribute-proxy_password">proxy_password</a>               =&gt; <em># Password for this proxy. Set this to `absent` to </em>
+  <a href="#yumrepo-attribute-proxy_username">proxy_username</a>               =&gt; <em># Username for this proxy. Set this to `absent` to </em>
+  <a href="#yumrepo-attribute-repo_gpgcheck">repo_gpgcheck</a>                =&gt; <em># Whether to check the GPG signature on repodata...</em>
   <a href="#yumrepo-attribute-retries">retries</a>                      =&gt; <em># Set the number of times any attempt to retrieve...</em>
-  <a href="#yumrepo-attribute-s3_enabled">s3_enabled</a>                   =&gt; <em># Access the repository via S3.  Allowed values:...</em>
+  <a href="#yumrepo-attribute-s3_enabled">s3_enabled</a>                   =&gt; <em># Access the repository via S3. Valid values are...</em>
   <a href="#yumrepo-attribute-skip_if_unavailable">skip_if_unavailable</a>          =&gt; <em># Should yum skip this repository if unable to...</em>
   <a href="#yumrepo-attribute-sslcacert">sslcacert</a>                    =&gt; <em># Path to the directory containing the databases...</em>
   <a href="#yumrepo-attribute-sslclientcert">sslclientcert</a>                =&gt; <em># Path  to the SSL client certificate yum should...</em>
@@ -105,11 +105,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Determines if yum prompts for confirmation of critical actions.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -121,7 +120,9 @@ Use to specify the maximum available network bandwidth
 in bytes/second. Used with the `throttle` option. If `throttle`
 is a percentage and `bandwidth` is `0` then bandwidth throttling
 will be disabled. If `throttle` is expressed as a data rate then
-this option is ignored.\n
+this option is ignored.
+
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -134,7 +135,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The URL for this repository.
+The URL for this repository. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -147,7 +148,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Cost of this repository.
+Cost of this repository. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -163,6 +164,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Percentage value that determines when to download deltarpm metadata.
 When the deltarpm metadata is larger than this percentage value of the
 package, deltarpm metadata is not downloaded.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -178,6 +180,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Percentage value that determines when to use deltas for this repository.
 When the delta is larger than this percentage value of the package, the
 delta is not used.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -192,6 +195,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 A human-readable description of the repository.
 This corresponds to the name parameter in `yum.conf(5)`.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -205,11 +209,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether this repository is enabled.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -219,11 +222,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether yum will allow the use of package groups for this
 repository.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -234,6 +236,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The string of package names or shell globs separated by spaces to exclude.
 Packages that match the package name given or shell globs will never be
 considered in updates or installs for this repo.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -247,7 +250,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The failover method for this repository; should be either
-`roundrobin` or `priority`.
+`roundrobin` or `priority`. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -260,7 +263,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-The URL for the GPG CA key for this repository.
+The URL for the GPG CA key for this repository. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -275,11 +278,10 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether to check the GPG signature on packages installed
 from this repository.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -288,7 +290,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The URL for the GPG key with which packages from this
-repository are signed.
+repository are signed. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -301,7 +303,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-What to cache from this repository.
+What to cache from this repository. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -316,6 +318,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 The URL of a remote file containing additional yum configuration
 settings. Puppet does not check for this file's existence or validity.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -331,7 +334,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 The string of package names or shell globs separated by spaces to
 include. If this is set, only packages matching one of the package
 names or shell globs will be considered for update or install
-from this repository.
+from this repository. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -345,11 +348,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether HTTP/1.1 keepalive should be used with this repository.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -358,6 +360,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Number of seconds after which the metadata will expire.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -370,7 +373,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Metalink for mirrors.
+Metalink for mirrors. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -384,6 +387,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The URL that holds the list of mirrors for this repository.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -397,7 +401,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Time (in seconds) after which the mirrorlist locally cached
-will expire.\n
+will expire. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -411,6 +415,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Password to use with the username for basic authentication.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -424,11 +429,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether to check the GPG signature of the packages payload.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -436,12 +440,14 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Priority of this repository from 1-99. Requires that
-the `priorities` plugin is installed and enabled.
+Priority of this repository. Can be any integer value
+(including negative). Requires that the `priorities` plugin
+is installed and enabled.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
-* `/.*/`
+* `/^-?\d+$/`
 * `absent`
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
@@ -452,11 +458,22 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Enable or disable protection for this repository. Requires
 that the `protectbase` plugin is installed and enabled.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
-* `YUM_BOOLEAN`
-* `absent`
+([↑ Back to yumrepo attributes](#yumrepo-attributes))
+
+<h4 id="yumrepo-attribute-provider">provider</h4>
+
+The specific backend to use for this `yumrepo`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`inifile`](#yumrepo-provider-inifile)
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -467,6 +484,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 URL of a proxy server that Yum should use when accessing this repository.
 This attribute can also be set to `'_none_'`, which will make Yum bypass any
 global proxy settings when accessing this repository.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -479,7 +497,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Password for this proxy.
+Password for this proxy. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -492,7 +510,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Username for this proxy.
+Username for this proxy. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -506,11 +524,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Whether to check the GPG signature on repodata.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -519,8 +536,9 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Set the number of times any attempt to retrieve a file should
- retry before returning an error. Setting this to `0` makes yum
-try forever.\n
+retry before returning an error. Setting this to `0` makes yum
+try forever.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -534,11 +552,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Access the repository via S3.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -547,11 +564,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Should yum skip this repository if unable to reach it.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -561,6 +577,7 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Path to the directory containing the databases of the
 certificate authorities yum should use to verify SSL certificates.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -574,7 +591,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Path  to the SSL client certificate yum should use to connect
-to repositories/remote sites.
+to repositories/remote sites. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -588,7 +605,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Path to the SSL client key yum should use to connect
-to repositories/remote sites.
+to repositories/remote sites. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -602,11 +619,10 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Should yum verify SSL certificates/hosts at all.
+Valid values are: false/0/no or true/1/yes.
+Set this to `absent` to remove it from the file completely.
 
-Allowed values:
-
-* `YUM_BOOLEAN`
-* `absent`
+Valid values are `absent`. Values can match `/^(true|false|0|1|no|yes)$/`.
 
 ([↑ Back to yumrepo attributes](#yumrepo-attributes))
 
@@ -625,7 +641,8 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 Enable bandwidth throttling for downloads. This option
 can be expressed as a absolute data rate in bytes/sec or a
 percentage `60%`. An SI prefix (k, M or G) may be appended
-to the data rate values.\n
+to the data rate values.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -639,7 +656,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Number of seconds to wait for a connection before timing
-out.
+out. Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -653,6 +670,7 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 Username to use for basic authentication to a repo or really any url.
+Set this to `absent` to remove it from the file completely.
 
 Allowed values:
 
@@ -687,4 +705,4 @@ section will be created in '/etc/yum.conf'.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700

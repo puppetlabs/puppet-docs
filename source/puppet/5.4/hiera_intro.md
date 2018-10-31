@@ -148,11 +148,11 @@ Supported config formats: hiera.yaml v5,  hiera.yaml v5, hiera.yaml v3  (depreca
 * The module layer comes last in Hiera’s lookup order, so environment data set by a user overrides the default data set by the module’s author.
 * Every module can have its own hierarchy configuration. You can only bind data for keys in the module's namespace.For example:
 
-```Lookup key	Relevant module hierarchy
-ntp::servers	ntp
-jenkins::port	jenkins
-secure_server	(none)
-```
+| Lookup key        | Relevant module hierarchy | 
+| ----------------- |:-------------------------:|
+| `ntp::servers`    | `ntp`                     | 
+| `jenkins::port`   | `jenkins`                 |   
+| `secure_server`   | `(none)`                  |   
 
 * Hiera uses the `ntp` module’s hierarchy when looking up `ntp::servers`, but uses the `jenkins` module’s hierarchy when looking up `jenkins::port`. Hiera never checks the `ntp` module for a key beginning with `jenkins::`.
 * When you use the lookup function for keys that don’t have a namespace (for example, `secure_server`), the module layer is not consulted.

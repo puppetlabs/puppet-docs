@@ -3,14 +3,14 @@ layout: default
 title: Core types cheat sheet
 ---
 
-[notify]: ./type.html#notify
-[file]: ./type.html#file
-[package]: ./type.html#package
-[service]: ./type.html#service
-[exec]: ./type.html#exec
-[cron]: ./type.html#cron
-[user]: ./type.html#user
-[group]: ./type.html#group
+[notify]: ./types/notify.html
+[file]: ./types/file.html
+[package]: ./types/package.html
+[service]: ./types/service.html
+[exec]: ./types/exec.html
+[cron]: ./types/cron.html
+[user]: ./types/user.html
+[group]: ./types/group.html
 [other]: ./type.html
 
 A quick reference guide for the core Puppet types.
@@ -19,10 +19,10 @@ For detailed information about these types, see the related topic Type reference
 
 Related topics:
 
-* [Type reference](./type.html)
+-   [Type reference][other]
 
 {:.concept}
-## The Trifecta
+## The trifecta
 
 Package/file/service: Learn it, live it, love it. Even if this is the only Puppet you know, you can still get a whole lot done.
 
@@ -41,8 +41,8 @@ file { '/etc/ssh/sshd_config':
 }
 
 service { 'sshd':
-  ensure     => running,
-  enable     => true,
+  ensure => running,
+  enable => true,
 }
 ```
 
@@ -54,47 +54,47 @@ service { 'sshd':
 Manages files, directories, and symlinks.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
-* [`ensure`](./type.html#file-attribute-ensure) -- Whether the file should exist, and what it should be. Allowed values:
-    * `file` (a normal file)
-    * `directory` (a directory)
-    * `link` (a symlink)
-    * `present` (anything)
-    * `absent`
-* [`path`](./type.html#file-attribute-path) -- The full path to the file on disk; **defaults to title.**
-* [`owner`](./type.html#file-attribute-owner) -- By name or UID.
-* [`group`](./type.html#file-attribute-group) -- By name or GID.
-* [`mode`](./type.html#file-attribute-mode) -- Must be specified exactly. Does the right thing for directories.
-
-{:.section}
-#### For Normal Files
-
-* [`source`](./type.html#file-attribute-source) -- Where to download contents for the file. Usually a `puppet:///` URL.
-* [`content`](./type.html#file-attribute-content) -- The file's desired contents, as a string. Most useful when paired with [templates](https://docs.puppet.com/guides/templating.html), but you can also use the output of the [file function](./function.html#file).
+-   [`ensure`](./types/file.html#file-attribute-ensure) -- Whether the file should exist, and what it should be. Allowed values:
+    -   `file` (a normal file)
+    -   `directory` (a directory)
+    -   `link` (a symlink)
+    -   `present` (anything)
+    -   `absent`
+-   [`path`](./types/file.html#file-attribute-path) -- The full path to the file on disk; **defaults to title.**
+-   [`owner`](./types/file.html#file-attribute-owner) -- By name or UID.
+-   [`group`](./types/file.html#file-attribute-group) -- By name or GID.
+-   [`mode`](./types/file.html#file-attribute-mode) -- Must be specified exactly. Does the right thing for directories.
 
 {:.section}
-#### For Directories
+#### For normal files
 
-* [`source`](./type.html#file-attribute-source) -- Where to download contents for the directory, when `recurse => true`.
-* [`recurse`](./type.html#file-attribute-recurse) -- Whether to recursively manage files in the directory.
-* [`purge`](./type.html#file-attribute-purge) -- Whether unmanaged files in the directory should be deleted, when `recurse => true`.
-
-{:.section}
-#### For Symlinks
-
-* [`target`](./type.html#file-attribute-target) -- The symlink target. (Required when `ensure => link`.)
+-   [`source`](./types/file.html#file-attribute-source) -- Where to download contents for the file. Usually a `puppet:///` URL.
+-   [`content`](./types/file.html#file-attribute-content) -- The file's desired contents, as a string. Most useful when paired with [templates](./lang_template.html), but you can also use the output of the [file function](./function.html#file).
 
 {:.section}
-#### Other Notable Attributes
+#### For directories
 
-* [`backup`](./type.html#file-attribute-backup)
-* [`checksum`](./type.html#file-attribute-checksum) 
-* [`force`](./type.html#file-attribute-force)
-* [`ignore`](./type.html#file-attribute-ignore)
-* [`links`](./type.html#file-attribute-links)
-* [`recurselimit`](./type.html#file-attribute-recurselimit)
-* [`replace`](./type.html#file-attribute-replace)
+-   [`source`](./types/file.html#file-attribute-source) -- Where to download contents for the directory, when `recurse => true`.
+-   [`recurse`](./types/file.html#file-attribute-recurse) -- Whether to recursively manage files in the directory.
+-   [`purge`](./types/file.html#file-attribute-purge) -- Whether unmanaged files in the directory should be deleted, when `recurse => true`.
+
+{:.section}
+#### For symlinks
+
+-   [`target`](./types/file.html#file-attribute-target) -- The symlink target. (Required when `ensure => link`.)
+
+{:.section}
+#### Other notable attributes
+
+-   [`backup`](./types/file.html#file-attribute-backup)
+-   [`checksum`](./types/file.html#file-attribute-checksum)
+-   [`force`](./types/file.html#file-attribute-force)
+-   [`ignore`](./types/file.html#file-attribute-ignore)
+-   [`links`](./types/file.html#file-attribute-links)
+-   [`recurselimit`](./types/file.html#file-attribute-recurselimit)
+-   [`replace`](./types/file.html#file-attribute-replace)
 
 {:.concept}
 ### package
@@ -102,17 +102,17 @@ Manages files, directories, and symlinks.
 Manages software packages.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
-* [`name`](./type.html#package-attribute-name) -- The name of the package, as known to your packaging system; **defaults to title.**
-* [`ensure`](./type.html#package-attribute-ensure) -- Whether the package should be installed, and what version to use. Allowed values:
-    * `present`
-    * `latest` (implies `present`)
-    * any version string (implies `present`)
-    * `absent`
-    * `purged` (Potentially dangerous. Ensures absent, then zaps configuration files and dependencies, including those that other packages depend on. Provider-dependent.)
-* [`source`](./type.html#package-attribute-source) -- Where to obtain the package, if your system's packaging tools don't use a repository.
-* [`provider`](./type.html#package-attribute-provider) -- Which packaging system to use (e.g. Yum vs. Rubygems), if a system has more than one available.
+-   [`name`](./types/package.html#package-attribute-name) -- The name of the package, as known to your packaging system; **defaults to title.**
+-   [`ensure`](./types/package.html#package-attribute-ensure) -- Whether the package should be installed, and what version to use. Allowed values:
+    -   `present`
+    -   `latest` (implies `present`)
+    -   any version string (implies `present`)
+    -   `absent`
+    -   `purged` (Potentially dangerous. Ensures absent, then zaps configuration files and dependencies, including those that other packages depend on. Provider-dependent.)
+-   [`source`](./types/package.html#package-attribute-source) -- Where to obtain the package, if your system's packaging tools don't use a repository.
+-   [`provider`](./types/package.html#package-attribute-provider) -- Which packaging system to use (e.g. Yum vs. Rubygems), if a system has more than one available.
 
 {:.concept}
 ### service
@@ -123,24 +123,23 @@ You can make services restart whenever a file changes, with the `subscribe` or `
 
 Related topics:
 
-* [Relationships](./lang_relationships.html)
+-   [Relationships](./lang_relationships.html)
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
-* [`name`](./type.html#service-attribute-name) -- The name of the service to run; **defaults to title.**
-* [`ensure`](./type.html#service-attribute-ensure) -- The desired status of the service. Allowed values:
-    * `running` (or `true`)
-    * `stopped` (or `false`)
-* [`enable`](./type.html#service-attribute-enable) -- Whether the service should start on boot. Doesn't work on all systems.
-* [`hasrestart`](./type.html#service-attribute-hasrestart) -- Whether to use the init script's restart command instead of stop+start. Defaults to false.
-* [`hasstatus`](./type.html#service-attribute-hasstatus) -- Whether to use the init script's status command. Defaults to true.
+-   [`name`](./types/service.html#service-attribute-name) -- The name of the service to run; **defaults to title.**
+-   [`ensure`](./types/service.html#service-attribute-ensure) -- The desired status of the service. Allowed values:
+    -   `running` (or `true`)
+    -   `stopped` (or `false`)
+-   [`enable`](./types/service.html#service-attribute-enable) -- Whether the service should start on boot. Doesn't work on all systems.
+-   [`hasrestart`](./types/service.html#service-attribute-hasrestart) -- Whether to use the init script's restart command instead of stop+start. Defaults to false.
+-   [`hasstatus`](./types/service.html#service-attribute-hasstatus) -- Whether to use the init script's status command. Defaults to true.
 
 {:.section}
-#### Other Notable Attributes
+#### Other notable attributes
 
-If a service has a bad init script, you can work around it and manage almost anything using the [`status`](./type.html#service-attribute-status), [`start`](./type.html#service-attribute-start), [`stop`](./type.html#service-attribute-stop), [`restart`](./type.html#service-attribute-restart), [`pattern`](./type.html#service-attribute-pattern), and [`binary`](./type.html#service-attribute-binary) attributes.
-
+If a service has a bad init script, you can work around it and manage almost anything using the [`status`](./types/service.html#service-attribute-status), [`start`](./types/service.html#service-attribute-start), [`stop`](./types/service.html#service-attribute-stop), [`restart`](./types/service.html#service-attribute-restart), [`pattern`](./types/service.html#service-attribute-pattern), and [`binary`](./types/service.html#service-attribute-binary) attributes.
 
 {:.concept}
 ## Hello World
@@ -155,9 +154,9 @@ notify { "This message is getting logged on the agent node.": }
 ```
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
-* [`message`](./type.html#notify-attribute-message) -- **Defaults to title.**
+-   [`message`](./types/notify.html#notify-attribute-message) -- **Defaults to title.**
 
 {:.concept}
 ## Grab bag
@@ -168,85 +167,89 @@ notify { "This message is getting logged on the agent node.": }
 Executes an arbitrary command on the agent node. When using execs, you must either make sure the command can be safely run multiple times, or specify that it should only run under certain conditions.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
-* [`command`](./type.html#exec-attribute-command) -- The command to run; **defaults to title.** If this isn't a fully-qualified path, use the `path` attribute.
-* [`path`](./type.html#exec-attribute-path) -- Where to look for executables, as a colon-separated list or an array.
-* [`returns`](./type.html#exec-attribute-returns) -- Which exit codes indicate success. Defaults to `0`.
-* [`environment`](./type.html#exec-attribute-environment) -- An array of environment variables to set (for example, `['MYVAR=somevalue', 'OTHERVAR=othervalue']`).
-
-{:.section}
-#### Attributes to Limit When a Command Should Run
-
-* [`creates`](./type.html#exec-attribute-creates) -- A file to look for before running the command. The command only runs if the file doesn’t exist.
-* [`refreshonly`](./type.html#exec-attribute-refreshonly) -- If `true`, the command only run if a resource it subscribes to (or a resource which notifies it) has changed.
-* [`onlyif`](./type.html#exec-attribute-onlyif) -- A command or array of commands; if any have a non-zero return value, the command won't run.
-* [`unless`](./type.html#exec-attribute-unless) -- The opposite of onlyif.
+-   [`command`](./types/exec.html#exec-attribute-command) -- The command to run; **defaults to title.**   If this isn't a fully-qualified path, use the `path` attribute.
+-   [`path`](./types/exec.html#exec-attribute-path) -- Where to look for executables, as a colon-separated list or an array.
+-   [`returns`](./types/exec.html#exec-attribute-returns) -- Which exit codes indicate success. Defaults to `0`.
+-   [`environment`](./types/exec.html#exec-attribute-environment) -- An array of environment variables to set (for example, `['MYVAR=somevalue', 'OTHERVAR=othervalue']`).
 
 {:.section}
-#### Other Notable Attributes:
+#### Attributes to limit when a command should run
 
-[`cwd`](./type.html#exec-attribute-cwd), [`group`](./type.html#exec-attribute-group), [`logoutput`](./type.html#exec-attribute-logoutput), , [`timeout`](./type.html#exec-attribute-timeout), [`tries`](./type.html#exec-attribute-tries), [`try_sleep`](./type.html#exec-attribute-try_sleep), [`user`](./type.html#exec-attribute-user).
+-   [`creates`](./types/exec.html#exec-attribute-creates) -- A file to look for before running the command. The command only runs if the file doesn’t exist.
+-   [`refreshonly`](./types/exec.html#exec-attribute-refreshonly) -- If `true`, the command only run if a resource it subscribes to (or a resource which notifies it) has changed.
+-   [`onlyif`](./types/exec.html#exec-attribute-onlyif) -- A command or array of commands; if any have a non-zero return value, the command won't run.
+-   [`unless`](./types/exec.html#exec-attribute-unless) -- The opposite of onlyif.
+
+{:.section}
+#### Other notable attributes
+
+[`cwd`](./types/exec.html#exec-attribute-cwd), [`group`](./types/exec.html#exec-attribute-group), [`logoutput`](./types/exec.html#exec-attribute-logoutput), , [`timeout`](./types/exec.html#exec-attribute-timeout), [`tries`](./types/exec.html#exec-attribute-tries), [`try_sleep`](./types/exec.html#exec-attribute-try_sleep), [`user`](./types/exec.html#exec-attribute-user).
 
 {:.concept}
 ### [cron][]
 
-Manages cron jobs. Largely self-explanatory. On Windows, you should use [`scheduled_task`](./type.html#scheduledtask) instead.
+Manages cron jobs. Largely self-explanatory. On Windows, you should use [`scheduled_task`](./types/scheduledtask.html) instead.
 
-    cron { 'logrotate':
-      command => "/usr/sbin/logrotate",
-      user    => "root",
-      hour    => 2,
-      minute  => 0,
-    }
-
-{:.section}
-#### Important Attributes
-
-* [`command`](./type.html#cron-attribute-command) -- The command to execute.
-* [`ensure`](./type.html#cron-attribute-ensure) -- Whether the job should exist.
-    * present
-    * absent
-* [`hour`](./type.html#cron-attribute-hour), [`minute`](./type.html#cron-attribute-minute), [`month`](./type.html#cron-attribute-month), [`monthday`](./type.html#cron-attribute-monthday), and [`weekday`](./type.html#cron-attribute-weekday) -- The timing of the cron job.
+``` puppet
+cron { 'logrotate':
+  command => "/usr/sbin/logrotate",
+  user    => "root",
+  hour    => 2,
+  minute  => 0,
+}
+```
 
 {:.section}
-#### Other Notable Attributes
+#### Important attributes
 
-[`environment`](./type.html#cron-attribute-environment), [`name`](./type.html#cron-attribute-name), [`special`](./type.html#cron-attribute-special), [`target`](./type.html#cron-attribute-target), [`user`](./type.html#cron-attribute-user).
+-   [`command`](./types/cron.html#cron-attribute-command) -- The command to execute.
+-   [`ensure`](./types/cron.html#cron-attribute-ensure) -- Whether the job should exist.
+    -   present
+    -   absent
+-   [`hour`](./types/cron.html#cron-attribute-hour), [`minute`](./types/cron.html#cron-attribute-minute), [`month`](./types/cron.html#cron-attribute-month), [`monthday`](./types/cron.html#cron-attribute-monthday), and [`weekday`](./types/cron.html#cron-attribute-weekday) -- The timing of the cron job.
+
+{:.section}
+#### Other notable attributes
+
+[`environment`](./types/cron.html#cron-attribute-environment), [`name`](./types/cron.html#cron-attribute-name), [`special`](./types/cron.html#cron-attribute-special), [`target`](./types/cron.html#cron-attribute-target), [`user`](./types/cron.html#cron-attribute-user).
 
 {:.concept}
 ### [user][]
 
 Manages user accounts; mostly used for system users.
 
-    user { "jane":
-        ensure     => present,
-        uid        => '507',
-        gid        => 'admin',
-        shell      => '/bin/zsh',
-        home       => '/home/jane',
-        managehome => true,
-    }
+``` puppet
+user { 'jane':
+    ensure     => present,
+    uid        => '507',
+    gid        => 'admin',
+    shell      => '/bin/zsh',
+    home       => '/home/jane',
+    managehome => true,
+}
+```
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
-* [`name`](./type.html#user-attribute-name) -- The name of the user; **defaults to title.**
-* [`ensure`](./type.html#user-attribute-ensure) -- Whether the user should exist. Allowed values:
-    * `present`
-    * `absent`
-    * `role`
-* [`uid`](./type.html#user-attribute-uid) -- The user ID. Must be specified numerically; chosen automatically if omitted. Read-only on Windows.
-* [`gid`](./type.html#user-attribute-gid) -- The user’s primary group. Can be specified numerically or by name. (Not used on Windows; use `groups` instead.)
-* [`groups`](./type.html#user-attribute-groups) -- An array of other groups to which the user belongs. (Don't include the group specified as the `gid`.)
-* [`home`](./type.html#user-attribute-home) -- The user's home directory.
-* [`managehome`](./type.html#user-attribute-managehome) -- Whether to manage the home directory when managing the user; if you don't set this to true, you'll need to create the user's home directory manually.
-* [`shell`](./type.html#user-attribute-shell) -- The user's login shell.
+-   [`name`](./types/user.html#user-attribute-name) -- The name of the user; **defaults to title.**
+-   [`ensure`](./types/user.html#user-attribute-ensure) -- Whether the user should exist. Allowed values:
+    -   `present`
+    -   `absent`
+    -   `role`
+-   [`uid`](./types/user.html#user-attribute-uid) -- The user ID. Must be specified numerically; chosen automatically if omitted. Read-only on Windows.
+-   [`gid`](./types/user.html#user-attribute-gid) -- The user’s primary group. Can be specified numerically or by name. (Not used on Windows; use `groups` instead.)
+-   [`groups`](./types/user.html#user-attribute-groups) -- An array of other groups to which the user belongs. (Don't include the group specified as the `gid`.)
+-   [`home`](./types/user.html#user-attribute-home) -- The user's home directory.
+-   [`managehome`](./types/user.html#user-attribute-managehome) -- Whether to manage the home directory when managing the user; if you don't set this to true, you'll need to create the user's home directory manually.
+-   [`shell`](./types/user.html#user-attribute-shell) -- The user's login shell.
 
 {:.section}
-#### Other Notable Attributes
+#### Other notable attributes
 
-[`comment`](./type.html#user-attribute-comment), [`expiry`](./type.html#user-attribute-expiry), [`membership`](./type.html#user-attribute-membership), [`password`](./type.html#user-attribute-password), [`password_max_age`](./type.html#user-attribute-password_max_age), [`password_min_age`](./type.html#user-attribute-password_min_age), [`purge_ssh_keys`](./type.html#user-attribute-purge_ssh_keys), [`salt`](./type.html#user-attribute-salt).
+[`comment`](./types/user.html#user-attribute-comment), [`expiry`](./types/user.html#user-attribute-expiry), [`membership`](./types/user.html#user-attribute-membership), [`password`](./types/user.html#user-attribute-password), [`password_max_age`](./types/user.html#user-attribute-password_max_age), [`password_min_age`](./types/user.html#user-attribute-password_min_age), [`purge_ssh_keys`](./types/user.html#user-attribute-purge_ssh_keys), [`salt`](./types/user.html#user-attribute-salt).
 
 {:.concept}
 ### [group][]
@@ -254,11 +257,11 @@ Manages user accounts; mostly used for system users.
 Manages groups.
 
 {:.section}
-#### Important Attributes
+#### Important attributes
 
-* [`name`](./type.html#group-attribute-name) -- The name of the group; **defaults to title.**
-* [`ensure`](./type.html#group-attribute-ensure) -- Whether the group should exist. Allowed values:
-    * `present`
-    * `absent`
-* [`gid`](./type.html#group-attribute-gid) -- The group ID; must be specified numerically, and is chosen automatically if omitted. Read-only on Windows.
-* [`members`](./type.html#group-attribute-members) -- Users and groups that should be members of the group. Only applicable to certain operating systems; see the full type reference for details.
+-   [`name`](./types/group.html#group-attribute-name) -- The name of the group; **defaults to title.**
+-   [`ensure`](./types/group.html#group-attribute-ensure) -- Whether the group should exist. Allowed values:
+    -   `present`
+    -   `absent`
+-   [`gid`](./types/group.html#group-attribute-gid) -- The group ID; must be specified numerically, and is chosen automatically if omitted. Read-only on Windows.
+-   [`members`](./types/group.html#group-attribute-members) -- Users and groups that should be members of the group. Only applicable to certain operating systems; see the full type reference for details.

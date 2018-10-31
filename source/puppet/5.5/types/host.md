@@ -1,12 +1,11 @@
 ---
 layout: default
-built_from_commit: 28833b083d1ed4cd328af45fbe26cfa00679c6b3
+built_from_commit: 30034e39d725e0107d5e961eaf5cf0866534282b
 title: 'Resource Type: host'
 canonical: "/puppet/latest/types/host.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
-
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
 host
 -----
 
@@ -17,6 +16,10 @@ host
 
 The host's IP address, IPv4 or IPv6.
 
+Installs and manages host entries.  For most systems, these
+entries will just be in `/etc/hosts`, but some systems (notably OS X)
+will have different solutions.
+
 <h3 id="host-attributes">Attributes</h3>
 
 <pre><code>host { 'resource title':
@@ -25,6 +28,7 @@ The host's IP address, IPv4 or IPv6.
   <a href="#host-attribute-comment">comment</a>      =&gt; <em># A comment that will be attached to the line with </em>
   <a href="#host-attribute-host_aliases">host_aliases</a> =&gt; <em># Any aliases the host might have.  Multiple...</em>
   <a href="#host-attribute-ip">ip</a>           =&gt; <em># The host's IP address, IPv4 or...</em>
+  <a href="#host-attribute-provider">provider</a>     =&gt; <em># The specific backend to use for this `host...</em>
   <a href="#host-attribute-target">target</a>       =&gt; <em># The file in which to store service information.  </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -77,6 +81,18 @@ The host's IP address, IPv4 or IPv6.
 
 ([↑ Back to host attributes](#host-attributes))
 
+<h4 id="host-attribute-provider">provider</h4>
+
+The specific backend to use for this `host`
+resource. You will seldom need to specify this --- Puppet will usually
+discover the appropriate provider for your platform.
+
+Available providers are:
+
+* [`parsed`](#host-provider-parsed)
+
+([↑ Back to host attributes](#host-attributes))
+
 <h4 id="host-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -91,11 +107,9 @@ those providers that write to disk. On most systems this defaults to `/etc/hosts
 
 <h4 id="host-provider-parsed">parsed</h4>
 
-
-
 * Confined to: `exists == hosts`
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-03-20 07:07:39 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-08-28 06:48:02 -0700
