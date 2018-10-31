@@ -20,6 +20,21 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.8
+
+Released 1 November 2018.
+
+This is a bug-fix and new feature release.
+
+### Bug fixes
+
+- When `forcelocal` is true and `expiry` is set, use `usermod` to manage a user instead of  `lusermod`. `lusermod` does not support `-e` and causes the Puppet run to fail. [PUP-9195](https://tickets.puppetlabs.com/browse/PUP-9195)
+- Puppet 5.5.7 failed with a faulty error message when a legacy function did not comply with the standard rules. This is now fixed in Puppet 5.5.8 and accepts the illegal implementation of the function. [PUP-9270](https://tickets.puppetlabs.com/browse/PUP-9270)
+
+### New feature
+
+- RHEL 8 now has DNF as the default package provider. [PUP-9198](https://tickets.puppetlabs.com/browse/PUP-9198)
+
 ## Puppet 5.5.7
 
 Released 23 October 2018.
