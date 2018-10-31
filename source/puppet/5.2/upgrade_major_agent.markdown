@@ -8,25 +8,25 @@ title: "Upgrading Puppet 3.8.x agents to 5.x"
 [puppet_agent]: https://forge.puppet.com/puppetlabs/puppet_agent
 [moved]: ./whered_it_go.html
 [facter]: /facter/
-[Puppet Platform]: ./puppet_platform.md
+[Puppet Platform]: ./puppet_platform.html
 
-Although there are a lot of changes to Puppet agent configuration from Puppet 3.8 to Puppet 4, the process of upgrading agents to Puppet 5 can be automated in a way that server upgrades can't.
+Although there have been a lot of changes to Puppet agent configuration since Puppet 3.8, the process of upgrading Puppet 3 agents to the latest versions of Puppet can be automated in a way that server upgrades can't.
 
-### Decide how to upgrade your nodes
+## Decide how to upgrade your nodes
 
 We provide a module called [`puppet_agent`][puppet_agent] to simplify upgrades from Puppet 3 to 4.
 
-> *Note:* This module has not yet been tested for upgrades to Puppet 5, but the process should be the same.
+> **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
-If you're running Puppet on Windows or [any supported Linux operating system](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agents.
+If you're running Puppet on Windows or [any Linux operating system for which we publish puppet-agent packages](./system_requirements.html#platforms-with-packages), this module can automatically upgrade Puppet, MCollective, and all of their dependencies on agents.
 
 If you're running Puppet on other operating systems, you can't upgrade them with the module. You can either upgrade your agents manually or automate the process yourself.
 
 The next steps explain both methods.
 
-### Upgrade with the `puppet_agent` module
+> **WARNING:** Other methods of automatically installing and upgrading Puppet agent, such as through Chocolatey on Windows, are unstable and untested.
 
-> **Note**: This module works on Windows and supported Linux distributions. If your agents run any other operating systems, skip to ["Upgrade Manually or Build Your Own Automation"](#upgrade-manually-or-build-your-own-automation).
+## Upgrade with the `puppet_agent` module
 
 The `puppet_agent` module does the following things for you:
 
@@ -34,8 +34,12 @@ The `puppet_agent` module does the following things for you:
 -   Installs the latest version of the `puppet-agent` package, which replaces the installed versions of Puppet, [Facter][], [Hiera][], and [MCollective][].
 -   Copies Puppet's SSL files to their new location.
 -   Copies your old `puppet.conf` to its [new location][moved], and cleans out old settings that we either removed in Puppet 4 or needed to revert to their default values.
--   Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/mcollective/deploy/plugins.html) to the `libdir` setting.
+-   Copies your MCollective server and client configuration files to their new locations, and adds [the new plugin path](/docs/mcollective/current/deploy/plugins.html) to the `libdir` setting.
 -   Ensures the Puppet and MCollective services are running.
+
+> **Note**: This module works on Windows and supported Linux distributions. If your agents run any other operating systems, skip to ["Upgrade Manually or Build Your Own Automation"](#upgrade-manually-or-build-your-own-automation).
+
+> **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
 1.  Install the module on Puppet servers.
 
@@ -51,17 +55,17 @@ The `puppet_agent` module does the following things for you:
 
     Carefully control and monitor the rollout. Assign the class in a development or test environment to ensure it works as expected on systems similar to your production environment. Roll it out to your live agents in phases, and monitor the upgraded agents for issues.
 
-3.  Post-upgrade clean-up
+3.  After you've upgraded your entire deployment, do the [post-upgrade clean-up tasks](./upgrade_major_post.html).
 
-    After you've upgraded your entire deployment, do the [post-upgrade clean-up tasks](./upgrade_major_post.html).
+## Upgrade manually or build your own automation
 
-### Upgrade manually or build your own automation
+> **Puppet Enterprise Note:** If you're using Puppet Enterprise (PE), instead read [its documentation on upgrading agents](/docs/pe/latest/upgrading/upgrading_agents.html) for supported agent upgrade procedures.
 
 To upgrade agents without using the `puppet_agent` module, you can either install the upgrades manually or design your own upgrade automation.
 
 1.  Install the new version of Puppet.
 
-Find your operating system in the sidebar navigation to the left and follow the Puppet agent installation instructions.
+    Find your operating system in the sidebar navigation to the left and follow the Puppet agent installation instructions.
 
 2.  Move SSL files (\*nix only).
 
@@ -71,17 +75,17 @@ Find your operating system in the sidebar navigation to the left and follow the 
 
     Locate your [`ssldir`](./dirs_ssldir.html) in `/etc/puppet/puppet.conf` and move that directory's contents to `/etc/puppetlabs/puppet/ssl` without changing the files' permissions. For example, run `sudo cp -rp /var/lib/puppet/ssl /etc/puppetlabs/puppet/ssl`.
 
-3.  Reconcile `puppet.conf`
+3.  Reconcile `puppet.conf`.
 
     On \*nix systems, we moved [`puppet.conf`](./config_file_main.html) from `/etc/puppet/puppet.conf` to `/etc/puppetlabs/puppet/puppet.conf`. Either edit the new `puppet.conf` file or copy your old version. (We didn't change `puppet.conf`'s location on Windows.)
 
     Examine the new `puppet.conf` regardless of your operating system and confirm that:
 
     -   It includes any necessary modifications.
-    -   It excludes any settings that were [removed in Puppet 4.0](/puppet/3.8/deprecated_settings.html). Notably, if you set `stringify_facts=false` [before upgrading](./upgrade_major_pre.html), remove this setting.
+    -   It excludes any settings that were [removed in Puppet 4.0](https://docs.puppet.com/puppet/3.8/deprecated_settings.html). Notably, if you set `stringify_facts=false` [before upgrading](./upgrade_major_pre.html), remove this setting.
     -   All [important settings](./config_important_settings.html#settings-for-puppet-master-servers) are correctly configured for your site.
 
-4.  Start service or update cron job.
+4.  Start the service or update the cron job.
 
     We also moved Puppet binaries to `/opt/puppetlabs/bin` in Puppet 4. If you run Puppet as a service, configure it to launch at boot using `/opt/puppetlabs/bin/puppet resource`:
 
@@ -91,7 +95,7 @@ Find your operating system in the sidebar navigation to the left and follow the 
 
     If you use a cron job to periodically run `puppet agent -t` on your \*nix systems, edit the job and update the `puppet` binary's path to `/opt/puppetlabs/bin/puppet`.
 
-5.  Reconcile MCollective configuration files (\*nix only)
+5.  Reconcile MCollective configuration files (\*nix only).
 
     On \*nix systems, we moved MCollective's configuration files from `/etc/mcollective` to `/etc/puppetlabs/mcollective`.
 
