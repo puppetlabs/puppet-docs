@@ -70,7 +70,7 @@ Required keys are labeled as such; the rest are optional.
 * `project_page` --- A link to your module's website that will be linked on the Forge.
 * `issues_url` --- A link to your module's issue tracker.
 * `operatingsystem_support` --- An array of operating systems your module is compatible with. See [Specifying Operating System Compatibility][inpage_os] below for more details.
-* `tags` --- An array of key words to help people find your module (not case sensitive). For example: `["msyql", "database", "monitoring"]`
+* `tags` --- An array of key words to help people find your module (not case sensitive). For example: `["mysql", "database", "monitoring"]`
 
     Tags cannot contain whitespace. We recommend using four to six tags. Note that certain tags are prohibited, including profanity and anything resembling the `$::operatingsystem` fact (including but not limited to `redhat`, `centos`, `rhel`, `debian`, `ubuntu`, `solaris`, `sles`, `aix`, `windows`, `darwin`, and `osx`). Use of prohibited tags will lower your module's quality score on the Forge.
 * `data_provider` --- The name of a [Puppet lookup][] data provider for your module, which it can use to set default values for class parameters. For more details, see the docs on [Puppet lookup][] and [module data][]. This can have the following values:
