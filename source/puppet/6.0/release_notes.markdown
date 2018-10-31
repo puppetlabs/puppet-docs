@@ -20,6 +20,16 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 6.0.4
+
+Released 1 November 2018.
+
+This is a bug-fix release.
+
+### Bug fixes
+
+- Puppet 6.6.0 failed with a faulty error message when a legacy function did not comply with the standard rules. In Puppet 6.0.4 the intended error will be raised. [PUP-9270](https://tickets.puppetlabs.com/browse/PUP-9270)
+
 ## Puppet 6.0.3
 
 Released 25 October 2018.
