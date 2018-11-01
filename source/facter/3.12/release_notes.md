@@ -13,7 +13,7 @@ This is a bug-fix release that shipped with Puppet Platform 6.0.4
 
 ### Bug fixes
 
-- Prior to this release, Facter overrode built-in facts with custom fact values, even if the custom fact had no valid implementation. Now if custom facts conflict with built-in facts, but do not resolve, Facter ignores the empty value and returns the built-in fact value. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
+- Previously, if you had multiple custom versions of a built-in fact, and only those with a weight of 0 could resolve, Facter used those zero-weighted values. Now, if only zero-weighted custom facts resolve, Facter uses built-in fact values instead. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
 
 ## Facter 3.12.1
 
@@ -48,7 +48,7 @@ This is a bug-fix release that shipped with Puppet Platform 5.5.8
 
 ### Bug fixes
 
-- Prior to this release, Facter overrode built-in facts with custom fact values, even if the custom fact had no valid implementation. Now if custom facts conflict with built-in facts, but do not resolve, Facter ignores the empty value and returns the built-in fact value. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
+- Previously, if you had multiple custom versions of a built-in fact, and only those with a weight of 0 could resolve, Facter used those zero-weighted values. Now, if only zero-weighted custom facts resolve, Facter uses built-in fact values instead. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
 
 ## Facter 3.11.5
 
