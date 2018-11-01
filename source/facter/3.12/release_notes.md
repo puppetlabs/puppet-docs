@@ -5,16 +5,6 @@ title: "Facter release notes"
 
 This page documents the history of the Facter 3.11 series.
 
-## Facter 3.12.2
-
-Released 1 November, 2018
-
-This is a bug-fix release that shipped with Puppet Platform 6.0.4
-
-### Bug fixes
-
-- Previously, if you had multiple custom versions of a built-in fact, and only those with a weight of 0 could resolve, Facter used those zero-weighted values. Now, if only zero-weighted custom facts resolve, Facter uses built-in fact values instead. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
-
 ## Facter 3.12.1
 
 Released 25 October, 2018
