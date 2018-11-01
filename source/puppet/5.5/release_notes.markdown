@@ -24,7 +24,7 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 Released 1 November 2018.
 
-This is a bug-fix and new feature release.
+This is a bug-fix, new feature, and deprecation release.
 
 ### Bug fixes
 
@@ -36,6 +36,10 @@ This is a bug-fix and new feature release.
 ### New feature
 
 - RHEL 8 now has DNF as the default package provider. [PUP-9198](https://tickets.puppetlabs.com/browse/PUP-9198)
+
+### Deprecation
+ 
+- A regression was triggered by illegal constructs in functions that used the legacy 3.x function API. This has been fixed but will raise errors for the illegal constructs in Puppet 6. If you have 3.x functions that define methods inside the function body, or outside of the call to `newfunction`, they *must* be updated to work with Puppet 6 - and preferably use the modern 4x function API. [PUP-9268](https://tickets.puppetlabs.com/browse/PUP-9268)
 
 ## Puppet 5.5.7
 
