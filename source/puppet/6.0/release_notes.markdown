@@ -24,7 +24,7 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 Released 1 November 2018.
 
-This is a bug-fix release.
+This is a bug-fix and new feature release.
 
 ### Bug fixes
 
@@ -32,6 +32,9 @@ This is a bug-fix release.
 - Puppet will now only set the user, group, and mode of log files if Puppet creates them. [PUP-7331](https://tickets.puppetlabs.com/browse/PUP-7331)
 - The members property has been fixed to have the same API for `retrieve` and `should` as it did prior to the breaking changes in 5.5.7, while also reporting the right change notification. Providers can now return an array for `getter` and accept an array for `setter`. [PUP-9267](https://tickets.puppetlabs.com/browse/PUP-9267). 
 
+### New feature
+
+- RHEL 8 has DNF as the default package provider. [PUP-9198](https://tickets.puppetlabs.com/browse/PUP-9198)
 
 ## Puppet 6.0.3
 
