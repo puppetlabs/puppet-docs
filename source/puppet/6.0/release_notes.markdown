@@ -29,6 +29,9 @@ This is a bug-fix release.
 ### Bug fixes
 
 - Puppet 6.6.0 failed with a faulty error message when a legacy function did not comply with the standard rules. In Puppet 6.0.4 the intended error will be raised. [PUP-9270](https://tickets.puppetlabs.com/browse/PUP-9270)
+- Puppet will now only set the user, group, and mode of log files if Puppet creates them. [PUP-7331](https://tickets.puppetlabs.com/browse/PUP-7331)
+- The members property has been fixed to have the same API for `retrieve` and `should` as it did prior to the breaking changes in 5.5.7, while also reporting the right change notification. Providers can now return an array for `getter` and accept an array for `setter`. [PUP-9267](https://tickets.puppetlabs.com/browse/PUP-9267). 
+
 
 ## Puppet 6.0.3
 
