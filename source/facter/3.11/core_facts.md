@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 43cb338787f6b4f713d40da8a9f5850dc003df85
+built_from_commit: ce0ae8365e76d64e1fd0da9b6d9d647c7a86d643
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
