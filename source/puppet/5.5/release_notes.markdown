@@ -20,6 +20,27 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.8
+
+Released 1 November 2018.
+
+This is a bug-fix, new feature, and deprecation release.
+
+### Bug fixes
+
+- When `forcelocal` is true and `expiry` is set, use `usermod` to manage a user instead of  `lusermod`. `lusermod` does not support `-e` and causes the Puppet run to fail. [PUP-9195](https://tickets.puppetlabs.com/browse/PUP-9195)
+- Puppet 5.5.7 failed with a faulty error message when a legacy function did not comply with the standard rules. This is now fixed in Puppet 5.5.8 and accepts the illegal implementation of the function. [PUP-9270](https://tickets.puppetlabs.com/browse/PUP-9270)
+- Puppet will now only set the user, group, and mode of log files if Puppet creates them. [PUP-7331](https://tickets.puppetlabs.com/browse/PUP-7331)
+- The members property has been fixed to have the same API for `retrieve` and `should` as it did prior to the breaking changes in 5.5.7, while also reporting the right change notification. Providers can now return an array for `getter` and accept an array for `setter`. [PUP-9267](https://tickets.puppetlabs.com/browse/PUP-9267). 
+
+### New feature
+
+- RHEL 8 now has DNF as the default package provider. [PUP-9198](https://tickets.puppetlabs.com/browse/PUP-9198)
+
+### Deprecation
+ 
+- A regression was triggered by illegal constructs in functions that used the legacy 3.x function API. This has been fixed but will raise errors for the illegal constructs in Puppet 6. If you have 3.x functions that define methods inside the function body, or outside of the call to `newfunction`, they *must* be updated to work with Puppet 6 - and preferably use the modern 4x function API. [PUP-9268](https://tickets.puppetlabs.com/browse/PUP-9268)
+
 ## Puppet 5.5.7
 
 Released 23 October 2018.
