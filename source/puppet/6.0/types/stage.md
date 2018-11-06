@@ -5,7 +5,7 @@ title: 'Resource Type: stage'
 canonical: "/puppet/latest/types/stage.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 stage
 -----
@@ -55,4 +55,4 @@ when assigning classes to this stage.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

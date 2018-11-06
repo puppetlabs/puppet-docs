@@ -5,7 +5,7 @@ title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 exec
 -----
@@ -263,8 +263,8 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The expected exit code(s).  An error will be returned if the
-executed command has some other exit code. Can be specified as an array
-of acceptable exit codes or a single value.
+executed command has some other exit code.  Defaults to 0. Can be
+specified as an array of acceptable exit codes or a single value.
 
 On POSIX systems, exit codes are always integers between 0 and 255.
 
@@ -302,9 +302,10 @@ Default: `300`
 <h4 id="exec-attribute-tries">tries</h4>
 
 The number of times execution of the command should be tried.
-This many attempts will be made to execute the command until an
-acceptable return code is returned. Note that the timeout parameter
-applies to each try rather than to the complete set of tries.
+This many attempts will be made to execute
+the command until an acceptable return code is returned.
+Note that the timeout parameter applies to each try rather than
+to the complete set of tries.
 
 Default: `1`
 
@@ -354,13 +355,14 @@ non-zero exit code.
 
 <h4 id="exec-attribute-user">user</h4>
 
-Note that if you use this attribute, any error output is not captured
-due to a bug within Ruby. If you use Puppet to create this user, the
-exec automatically requires the user, as long as it is specified by
-name.
+The user to run the command as.  Note that if you
+use this then any error output is not currently captured.  This
+is because of a bug within Ruby.  If you are using Puppet to
+create this user, the exec will automatically require the user,
+as long as it is specified by name.
 
-The $HOME environment variable is not automatically set when using
-this attribute.
+Please note that the $HOME environment variable is not automatically set
+when using this attribute.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -422,4 +424,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

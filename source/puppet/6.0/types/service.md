@@ -5,7 +5,7 @@ title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 service
 -----
@@ -44,7 +44,7 @@ can be configured:
 
 <pre><code>service { 'resource title':
   <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Allowed...</em>
+  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Valid...</em>
   <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
   <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
   <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
@@ -83,10 +83,8 @@ Whether a service should be running.
 
 Allowed values:
 
-* `stopped`
-* `running`
-* `false`
-* `true`
+* `stopped` or `false`
+* `running` or `true`
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -155,7 +153,8 @@ Allowed values:
 <h4 id="service-attribute-hasstatus">hasstatus</h4>
 
 Declare whether the service's init script has a functional status
-command. This attribute's default value changed in Puppet 2.7.0.
+command; defaults to `true`. This attribute's default value changed in
+Puppet 2.7.0.
 
 The init script's status command must return 0 if the service is
 running and a nonzero value otherwise. Ideally, these exit codes
@@ -792,4 +791,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

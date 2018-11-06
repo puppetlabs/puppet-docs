@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: b181d6fade9c572a402099ff5aea40f5d0e51676
+built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:42 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -25,6 +25,43 @@ The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `St
 * Arguments that start with an asterisk (like `*$values`) can be repeated any number of times.
 * Arguments that start with an ampersand (like `&$block`) aren't normal arguments; they represent a code block, provided with [Puppet's lambda syntax.](./lang_lambdas.html)
 
+
+## `abs`
+
+* `abs(Numeric $val)`
+    * Return type(s): `Any`. 
+* `abs(String $val)`
+    * Return type(s): `Any`. 
+
+Returns the absolute value of a Numeric value, for example -34.56 becomes
+34.56. Takes a single `Integer` or `Float` value as an argument.
+
+*Deprecated behavior*
+
+For backwards compatibility reasons this function also works when given a
+number in `String` format such that it first attempts to covert it to either a `Float` or
+an `Integer` and then taking the absolute value of the result. Only strings representing
+a number in decimal format is supported - an error is raised if
+value is not decimal (using base 10). Leading 0 chars in the string
+are ignored. A floating point value in string form can use some forms of
+scientific notation but not all.
+
+Callers should convert strings to `Numeric` before calling
+this function to have full control over the conversion.
+
+```puppet
+abs(Numeric($str_val))
+```
+
+It is worth noting that `Numeric` can convert to absolute value
+directly as in the following examples:
+
+```puppet
+Numeric($strval, true)     # Converts to absolute Integer or Float
+Integer($strval, 10, true) # Converts to absolute Integer using base 10 (decimal)
+Integer($strval, 16, true) # Converts to absolute Integer using base 16 (hex)
+Float($strval, true)       # Converts to absolute Float
+```puppet
 
 ## `alert`
 
@@ -334,6 +371,8 @@ Would notice the value `[10]`
 
 * `call(String $function_name, Any *$arguments, Optional[Callable] &$block)`
     * Return type(s): `Any`. 
+* `call(Deferred $deferred)`
+    * Return type(s): `Any`. 
 
 Calls an arbitrary Puppet function by name.
 
@@ -342,6 +381,10 @@ This function takes one mandatory argument and one or more optional arguments:
 1. A string corresponding to a function name.
 2. Any number of arguments to be passed to the called function.
 3. An optional lambda, if the function being called supports it.
+
+This function can also be used to resolve a `Deferred` given as
+the only argument to the function (does not accept arguments nor
+a block).
 
 ```puppet
 $a = 'notice'
@@ -358,6 +401,215 @@ call($a, $b) |$item| {
 
 The `call` function can be used to call either Ruby functions or Puppet language
 functions.
+
+When used with `Deferred` values, the deferred value can either describe
+a function call, or a dig into a variable.
+
+```puppet
+$d = Deferred('join', [[1,2,3], ':']) # A future call to join that joins the arguments 1,2,3 with ':'
+notice($d.call())
+```
+
+Would notice the string "1:2:3".
+
+```puppet
+$d = Deferred('$facts', ['processors', 'count'])
+notice($d.call())
+```
+
+Would notice the value of `$facts['processors']['count']` at the time when the `call` is made.
+
+* Deferred values supported since Puppet 5.6.0
+
+## `camelcase`
+
+* `camelcase(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `camelcase(String $arg)`
+    * Return type(s): `Any`. 
+* `camelcase(Iterable[Variant[String, Numeric]] $arg)`
+    * Return type(s): `Any`. 
+
+Creates a Camel Case version of a String
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String` the conversion replaces all combinations of *_<char>* with an upcased version of the
+  character following the _.  This is done using Ruby system locale which handles some, but not all
+  special international up-casing rules (for example German double-s ß is upcased to "Ss").
+* For an `Iterable[Variant[String, Numeric]]` (for example an `Array`) each value is capitalized and the conversion is not recursive.
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+* The result will not contain any underscore characters.
+
+Please note: This function relies directly on Ruby's String implementation and as such may not be entirely UTF8 compatible.
+To ensure best compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
+
+```puppet
+'hello_friend'.camelcase()
+camelcase('hello_friend')
+```
+Would both result in `"HelloFriend"`
+
+```puppet
+['abc_def', 'bcd_xyz'].capitalize()
+capitalize(['abc_def', 'bcd_xyz'])
+```
+Would both result in `['AbcDef', 'BcdXyz']`
+
+## `capitalize`
+
+* `capitalize(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `capitalize(String $arg)`
+    * Return type(s): `Any`. 
+* `capitalize(Iterable[Variant[String, Numeric]] $arg)`
+    * Return type(s): `Any`. 
+
+Capitalizes the first character of a String, or the first character of every String in an Iterable value (such as an Array).
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String`, a string with its first character in upper case version is returned. 
+  This is done using Ruby system locale which handles some, but not all
+  special international up-casing rules (for example German double-s ß is capitalized to "Ss").
+* For an `Iterable[Variant[String, Numeric]]` (for example an `Array`) each value is capitalized and the conversion is not recursive.
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+Please note: This function relies directly on Ruby's String implementation and as such may not be entirely UTF8 compatible.
+To ensure best compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
+
+```puppet
+'hello'.capitalize()
+upcase('hello')
+```
+Would both result in "Hello"
+
+```puppet
+['abc', 'bcd'].capitalize()
+capitalize(['abc', 'bcd'])
+```
+Would both result in ['Abc', 'Bcd']
+
+## `ceiling`
+
+* `ceiling(Numeric $val)`
+    * Return type(s): `Any`. 
+* `ceiling(String $val)`
+    * Return type(s): `Any`. 
+
+Returns the smallest `Integer` greater or equal to the argument.
+Takes a single numeric value as an argument.
+
+This function is backwards compatible with the same function in stdlib
+and accepts a `Numeric` value. A `String` that can be converted
+to a floating point number can also be used in this version - but this
+is deprecated.
+
+In general convert string input to `Numeric` before calling this function
+to have full control over how the conversion is done.
+
+## `chomp`
+
+* `chomp(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `chomp(String $arg)`
+    * Return type(s): `Any`. 
+* `chomp(Iterable[Variant[String, Numeric]] $arg)`
+    * Return type(s): `Any`. 
+
+Returns a new string with the record separator character(s) removed.
+The record separator is the line ending characters `\r` and `\n`.
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String` the conversion removes `\r\n`, `\n` or `\r` from the end of a string.
+* For an `Iterable[Variant[String, Numeric]]` (for example an `Array`) each value is processed and the conversion is not recursive.
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+```puppet
+"hello\r\n".chomp()
+chomp("hello\r\n")
+```
+Would both result in `"hello"`
+
+```puppet
+["hello\r\n", "hi\r\n"].chomp()
+chomp(["hello\r\n", "hi\r\n"])
+```
+Would both result in `['hello', 'hi']`
+
+## `chop`
+
+* `chop(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `chop(String $arg)`
+    * Return type(s): `Any`. 
+* `chop(Iterable[Variant[String, Numeric]] $arg)`
+    * Return type(s): `Any`. 
+
+Returns a new string with the last character removed.
+If the string ends with `\r\n`, both characters are removed. Applying chop to an empty
+string returns an empty string. If you wish to merely remove record
+separators then you should use the `chomp` function.
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String` the conversion removes the last character, or if it ends with \r\n` it removes both. If String is empty
+  an empty string is returned.
+* For an `Iterable[Variant[String, Numeric]]` (for example an `Array`) each value is processed and the conversion is not recursive.
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+```puppet
+"hello\r\n".chop()
+chop("hello\r\n")
+```
+Would both result in `"hello"`
+
+```puppet
+"hello".chop()
+chop("hello")
+```
+Would both result in `"hell"`
+
+```puppet
+["hello\r\n", "hi\r\n"].chop()
+chop(["hello\r\n", "hi\r\n"])
+```
+Would both result in `['hello', 'hi']`
+
+## `compare`
+
+* `compare(Numeric $a, Numeric $b)`
+    * Return type(s): `Any`. 
+* `compare(String $a, String $b, Optional[Boolean] $ignore_case)`
+    * Return type(s): `Any`. 
+* `compare(Semver $a, Semver $b)`
+    * Return type(s): `Any`. 
+* `compare(Numeric $a, Variant[Timespan, Timestamp] $b)`
+    * Return type(s): `Any`. 
+* `compare(Timestamp $a, Variant[Timestamp, Numeric] $b)`
+    * Return type(s): `Any`. 
+* `compare(Timespan $a, Variant[Timespan, Numeric] $b)`
+    * Return type(s): `Any`. 
+
+Compares two values and returns -1, 0 or 1 if first value is smaller, equal or larger than the second value.
+The compare function accepts arguments of the data types `String`, `Numeric`, `Timespan`, `Timestamp`, and `Semver`,
+such that:
+
+* two of the same data type can be compared
+* `Timespan` and `Timestamp` can be compared with each other and with `Numeric`
+
+When comparing two `String` values the comparison can be made to consider case by passing a third (optional)
+boolean `false` value - the default is `true` which ignores case as the comparison operators
+in the Puppet Language.
 
 ## `contain`
 
@@ -386,7 +638,7 @@ allowing the function call to `contain` to directly continue.
 
 ## `convert_to`
 
-* `convert_to(Any $value, Type $type, Optional[Callable[1,1]] &$block)`
+* `convert_to(Any $value, Type $type, Optional[Any] *$args, Optional[Callable[1,1]] &$block)`
     * Return type(s): `Any`. 
 
 The `convert_to(value, type)` is a convenience function that does the same as `new(type, value)`.
@@ -606,6 +858,58 @@ exists in a structure without mandating that it always exists.
     * Return type(s): `Any`. 
 
 Returns a hash value from a provided string using the digest_algorithm setting from the Puppet config file.
+
+## `downcase`
+
+* `downcase(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `downcase(String $arg)`
+    * Return type(s): `Any`. 
+* `downcase(Array[StringData] $arg)`
+    * Return type(s): `Any`. 
+* `downcase(Hash[StringData, StringData] $arg)`
+    * Return type(s): `Any`. 
+
+Converts a String, Array or Hash (recursively) into lower case.
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String`, its lower case version is returned. This is done using Ruby system locale which handles some, but not all
+  special international up-casing rules (for example German double-s ß is upcased to "SS", whereas upper case double-s
+  is downcased to ß).
+* For `Array` and `Hash` the conversion to lower case is recursive and each key and value must be convertible by
+  this function.
+* When a `Hash` is converted, some keys could result in the same key - in those cases, the
+  latest key-value wins. For example if keys "aBC", and "abC" where both present, after downcase there would only be one
+  key "abc".
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+Please note: This function relies directly on Ruby's String implementation and as such may not be entirely UTF8 compatible.
+To ensure best compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
+
+```puppet
+'HELLO'.downcase()
+downcase('HEllO')
+```
+Would both result in "hello"
+
+```puppet
+['A', 'B'].downcase()
+downcase(['A', 'B'])
+```
+Would both result in ['a', 'b']
+
+```puppet
+{'A' => 'HEllO', 'B' => 'GOODBYE'}.downcase()
+```
+Would result in `{'a' => 'hello', 'b' => 'goodbye'}`
+
+```puppet
+['A', 'B', ['C', ['D']], {'X' => 'Y'}].downcase
+```
+Would result in `['a', 'b', ['c', ['d']], {'x' => 'y'}]`
 
 ## `each`
 
@@ -836,7 +1140,7 @@ found, skipping any files that don't exist.
 
 Applies a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 to every value in a data structure and returns an array or hash containing any elements
-for which the lambda evaluates to `true`.
+for which the lambda evaluates to a truthy value (not `false` or `undef`).
 
 This function takes two mandatory arguments, in this order:
 
@@ -966,6 +1270,24 @@ flatten([42])
 # Would also return [42]
 ```
 
+## `floor`
+
+* `floor(Numeric $val)`
+    * Return type(s): `Any`. 
+* `floor(String $val)`
+    * Return type(s): `Any`. 
+
+Returns the largest `Integer` less or equal to the argument.
+Takes a single numeric value as an argument.
+
+This function is backwards compatible with the same function in stdlib
+and accepts a `Numeric` value. A `String` that can be converted
+to a floating point number can also be used in this version - but this
+is deprecated.
+
+In general convert string input to `Numeric` before calling this function
+to have full control over how the conversion is done.
+
 ## `fqdn_rand`
 
 * `fqdn_rand()`
@@ -1001,6 +1323,160 @@ malicious generator calls (e.g., those with '..' in them), but it can
 never be entirely safe.  No subshell is used to execute
 generators, so all shell metacharacters are passed directly to
 the generator.
+
+## `get`
+
+* `get(Any $value, String $dotted_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
+    * Return type(s): `Any`. 
+
+Digs into a value with dot notation to get a value from within a structure.
+
+**To dig into a given value**, call the function with (at least) two arguments:
+
+* The **first** argument must be an Array, or Hash. Value can also be `undef`
+  (which also makes the result `undef` unless a _default value_ is given).
+* The **second** argument must be a _dot notation navigation string_.
+* The **optional third** argument can be any type of value and it is used
+  as the _default value_ if the function would otherwise return `undef`.
+* An **optional lambda** for error handling taking one `Error` argument.
+
+**Dot notation navigation string** -
+The dot string consists of period `.` separated segments where each
+segment is either the index into an array or the value of a hash key.
+If a wanted key contains a period it must be quoted to avoid it being
+taken as a segment separator. Quoting can be done with either
+single quotes `'` or double quotes `"`. If a segment is
+a decimal number it is converted to an Integer index. This conversion
+can be prevented by quoting the value.
+
+```puppet
+#get($facts, 'os.family')
+$facts.get('os.family')
+```
+Would both result in the value of $facts['os']['family']
+
+```puppet
+get([1,2,[{'name' =>'waldo'}]], '2.0.name')
+```
+Would result in 'waldo'
+
+```puppet
+get([1,2,[{'name' =>'waldo'}]], '2.1.name', 'not waldo')
+
+```
+Would result in 'not waldo'
+
+```puppet
+$x = [1, 2, { 'readme.md' => "This is a readme."}]
+$x.get('2."readme.md"')
+```
+
+```puppet
+$x = [1, 2, { '10' => "ten"}]
+$x.get('2."0"')
+```
+
+**Error Handling** - There are two types of common errors that can
+be handled by giving the function a code block to execute.
+(A third kind or error; when the navigation string has syntax errors
+(for example an empty segment or unbalanced quotes) will always raise
+an error).
+
+The given block will be given an instance of the `Error` data type,
+and it has methods to extract `msg`, `issue_code`, `kind`, and
+`details`.
+
+The `msg` will be a preformatted message describing the error.
+This is the error message that would have surfaced if there was
+no block to handle the error.
+
+The `kind` is the string `'SLICE_ERROR'` for both kinds of errors,
+and the `issue_code` is either the string `'EXPECTED_INTEGER_INDEX'`
+for an attempt to index into an array with a String,
+or `'EXPECTED_COLLECTION'` for an attempt to index into something that
+is not a Collection.
+
+The `details` is a Hash that for both issue codes contain the
+entry `'walked_path'` which is an Array with each key in the
+progression of the dig up to the place where the error occurred.
+
+For an `EXPECTED_INTEGER_INDEX`-issue the detail `'index_type'` is
+set to the data type of the index value and for an
+`'EXPECTED_COLLECTION'`-issue the detail `'value_type'` is set
+to the type of the value.
+
+The logic in the error handling block can inspect the details,
+and either call `fail()` with a custom error message or produce
+the wanted value.
+
+If the block produces `undef` it will not be replaced with a
+given default value.
+
+```puppet
+$x = 'blue'
+$x.get('0.color', 'green') |$error| { undef } # result is undef
+
+$y = ['blue']
+$y.get('color', 'green') |$error| { undef } # result is undef
+```
+
+```puppet
+$x = [1, 2, ['blue']]
+$x.get('2.color') |$error| {
+  notice("Walked path is ${error.details['walked_path']}")
+}
+```
+Would notice `Walked path is [2, color]`
+
+Also see:
+* `getvar()` that takes the first segment to be the name of a variable
+  and then delegates to this function.
+* `dig()` function which is similar but uses an
+  array of navigation values instead of a dot notation string.
+
+## `getvar`
+
+* `getvar(Pattern[/\A(?:::)?(?:[a-z]\w*::)*[a-z_]\w*(?:\.|\Z)/] $get_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
+    * Return type(s): `Any`. 
+
+Digs into a variable with dot notation to get a value from a structure.
+
+**To get the value from a variable** (that may or may not exist), call the function with
+one or two arguments:
+
+* The **first** argument must be a string, and must start with a variable name without leading `$`,
+  for example `get('facts')`. The variable name can be followed
+  by a _dot notation navigation string_ to dig out a value in the array or hash value
+  of the variable.
+* The **optional second** argument can be any type of value and it is used as the
+  _default value_ if the function would otherwise return `undef`.
+* An **optional lambda** for error handling taking one `Error` argument.
+
+**Dot notation navigation string** -
+The dot string consists of period `.` separated segments where each
+segment is either the index into an array or the value of a hash key.
+If a wanted key contains a period it must be quoted to avoid it being
+taken as a segment separator. Quoting can be done with either
+single quotes `'` or double quotes `"`. If a segment is
+a decimal number it is converted to an Integer index. This conversion
+can be prevented by quoting the value.
+
+```puppet
+getvar('facts') # results in the value of $facts
+```
+
+```puppet
+getvar('facts.os.family') # results in the value of $facts['os']['family']
+```
+
+```puppet
+$x = [1,2,[{'name' =>'waldo'}]]
+getvar('x.2.1.name', 'not waldo')
+# results in 'not waldo'
+```
+
+For further examples and how to perform error handling, see the `get()` function
+which this function delegates to after having resolved the variable value.
 
 ## `hiera`
 
@@ -1695,6 +2171,39 @@ but can adjust the merge with additional options. The available options are:
     * `'merge_hash_arrays'` (boolean) --- Whether to merge hashes within arrays.
     Defaults to `false`.
 
+## `lstrip`
+
+* `lstrip(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `lstrip(String $arg)`
+    * Return type(s): `Any`. 
+* `lstrip(Iterable[Variant[String, Numeric]] $arg)`
+    * Return type(s): `Any`. 
+
+Strips leading spaces from a String
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String` the conversion removes all leading ASCII white space characters such as space, tab, newline, and return.
+  It does not remove other space-like characters like hard space (Unicode U+00A0). (Tip, `/^[[:space:]]/` regular expression
+  matches all space-like characters).
+* For an `Iterable[Variant[String, Numeric]]` (for example an `Array`) each value is processed and the conversion is not recursive.
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+```puppet
+"\n\thello".lstrip()
+camelcase("\n\thello")
+```
+Would both result in `"hello"`
+
+```puppet
+["\n\thello", "\n\thi"].lstrip()
+lstrip(["\n\thello", "\n\thi"])
+```
+Would both result in `['hello', 'hi']`
+
 ## `map`
 
 * `map(Hash[Any, Any] $hash, Callable[2,2] &$block)`
@@ -1797,12 +2306,179 @@ $matches = ["abc123","def456"].match(/([a-z]+)([1-9]+)/)
 # $matches contains [[abc123, abc, 123], [def456, def, 456]]
 ```
 
+## `max`
+
+* `max(Numeric *$values)`
+    * Return type(s): `Any`. 
+* `max(String *$values)`
+    * Return type(s): `Any`. 
+* `max(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+* `max(Array[String] $values, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+* `max(Array $values, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+* `max(Any *$values, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `max(Any *$values)`
+    * Return type(s): `Any`. 
+
+Returns the highest value among a variable number of arguments.
+Takes at least one argument.
+
+This function is (with one exception) compatible with the stdlib function
+with the same name and performs deprecated type conversion before
+comparison as follows:
+
+* If a value converted to String is an optionally '-' prefixed,
+  string of digits, one optional decimal point, followed by optional
+  decimal digits - then the comparison is performed on the values
+  converted to floating point.
+* If a value is not considered convertible to float, it is converted
+  to a `String` and the comparison is a lexical compare where min is
+  the lexicographical later value.
+* A lexicographical compare is performed in a system locale - international
+  characters may therefore not appear in what a user thinks is the correct order.
+* The conversion rules apply to values in pairs - the rule must hold for both
+  values - a value may therefore be compared using different rules depending
+  on the "other value".
+* The returned result found to be the "highest" is the original unconverted value.
+
+The above rules have been deprecated in Puppet 6.0.0 as they produce strange results when
+given values of mixed data types. In general, either convert values to be
+all `String` or all `Numeric` values before calling the function, or call the
+function with a lambda that performs type conversion and comparison. This because one
+simply cannot compare `Boolean` with `Regexp` and with any arbitrary `Array`, `Hash` or
+`Object` and getting a meaningful result.
+
+The one change in the function's behavior is when the function is given a single
+array argument. The stdlib implementation would return that array as the result where
+it now instead returns the max value from that array.
+
+```puppet
+notice(max(1)) # would notice 1
+notice(max(1,2)) # would notice 2
+notice(max("1", 2)) # would notice 2
+notice(max("0777", 512)) # would notice "0777", since "0777" is not converted from octal form
+notice(max(0777, 512)) # would notice 512, since 0777 is decimal 511
+notice(max('aa', 'ab')) # would notice 'ab'
+notice(max(['a'], ['b'])) # would notice ['b'], since "['b']" is after "['a']"
+```
+
+```puppet
+$x = [1,2,3,4]
+notice(max(*$x)) # would notice 4
+```
+
+```puppet
+$x = [1,2,3,4]
+notice(max($x)) # would notice 4
+notice($x.max) # would notice 4
+```
+This example shows that a single array argument is used as the set of values
+as opposed to being a single returned value.
+
+When calling with a lambda, it must accept two variables and it must return
+one of -1, 0, or 1 depending on if first argument is before/lower than, equal to,
+or higher/after the second argument.
+
+```puppet
+notice(max("2", "10", "100") |$a, $b| { compare($a, $b) })
+```
+
+Would notice "2" as higher since it is lexicographically higher/after the other values. Without the
+lambda the stdlib compatible (deprecated) behavior would have been to return "100" since number conversion
+kicks in.
+
 ## `md5`
 
 * `md5()`
     * Return type(s): `Any`. 
 
 Returns a MD5 hash value from a provided string.
+
+## `min`
+
+* `min(Numeric *$values)`
+    * Return type(s): `Any`. 
+* `min(String *$values)`
+    * Return type(s): `Any`. 
+* `min(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+* `min(Array[String] $values, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+* `min(Array $values, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+* `min(Any *$values, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `min(Any *$values)`
+    * Return type(s): `Any`. 
+
+Returns the lowest value among a variable number of arguments.
+Takes at least one argument.
+
+This function is (with one exception) compatible with the stdlib function
+with the same name and performs deprecated type conversion before
+comparison as follows:
+
+* If a value converted to String is an optionally '-' prefixed,
+  string of digits, one optional decimal point, followed by optional
+  decimal digits - then the comparison is performed on the values
+  converted to floating point.
+* If a value is not considered convertible to float, it is converted
+  to a `String` and the comparison is a lexical compare where min is
+  the lexicographical earlier value.
+* A lexicographical compare is performed in a system locale - international
+  characters may therefore not appear in what a user thinks is the correct order.
+* The conversion rules apply to values in pairs - the rule must hold for both
+  values - a value may therefore be compared using different rules depending
+  on the "other value".
+* The returned result found to be the "lowest" is the original unconverted value.
+
+The above rules have been deprecated in Puppet 6.0.0 as they produce strange results when
+given values of mixed data types. In general, either convert values to be
+all `String` or all `Numeric` values before calling the function, or call the
+function with a lambda that performs type conversion and comparison. This because one
+simply cannot compare `Boolean` with `Regexp` and with any arbitrary `Array`, `Hash` or
+`Object` and getting a meaningful result.
+
+The one change in the function's behavior is when the function is given a single
+array argument. The stdlib implementation would return that array as the result where
+it now instead returns the max value from that array.
+
+```puppet
+notice(min(1)) # would notice 1
+notice(min(1,2)) # would notice 1
+notice(min("1", 2)) # would notice 1
+notice(min("0777", 512)) # would notice 512, since "0777" is not converted from octal form
+notice(min(0777, 512)) # would notice 511, since 0777 is decimal 511
+notice(min('aa', 'ab')) # would notice 'aa'
+notice(min(['a'], ['b'])) # would notice ['a'], since "['a']" is before "['b']"
+```
+
+```puppet
+$x = [1,2,3,4]
+notice(min(*$x)) # would notice 1
+```
+
+```puppet
+$x = [1,2,3,4]
+notice(min($x)) # would notice 1
+notice($x.min) # would notice 1
+```
+This example shows that a single array argument is used as the set of values
+as opposed to being a single returned value.
+
+When calling with a lambda, it must accept two variables and it must return
+one of -1, 0, or 1 depending on if first argument is before/lower than, equal to,
+or higher/after the second argument.
+
+```puppet
+notice(min("2", "10", "100") |$a, $b| { compare($a, $b) })
+```
+
+Would notice "10" as lower since it is lexicographically lower/before the other values. Without the
+lambda the stdlib compatible (deprecated) behavior would have been to return "2" since number conversion kicks in.
 
 ## `module_directory`
 
@@ -3070,6 +3746,53 @@ $transformed_data = map(reverse_each($data)) |$item| { $item * 10 }
 # $transformed_data is set to [30,20,10]
 ```
 
+## `round`
+
+* `round(Numeric $val)`
+    * Return type(s): `Any`. 
+
+Returns an `Integer` value rounded to the nearest value.
+Takes a single `Numeric` value as an argument.
+
+```puppet
+notice(round(2.9)) # would notice 3
+notice(round(2.1)) # would notice 2
+notice(round(-2.9)) # would notice -3
+```
+
+## `rstrip`
+
+* `rstrip(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `rstrip(String $arg)`
+    * Return type(s): `Any`. 
+* `rstrip(Iterable[Variant[String, Numeric]] $arg)`
+    * Return type(s): `Any`. 
+
+Strips trailing spaces from a String
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String` the conversion removes all trailing ASCII white space characters such as space, tab, newline, and return.
+  It does not remove other space-like characters like hard space (Unicode U+00A0). (Tip, `/^[[:space:]]/` regular expression
+  matches all space-like characters).
+* For an `Iterable[Variant[String, Numeric]]` (for example an `Array`) each value is processed and the conversion is not recursive.
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+```puppet
+"hello\n\t".lstrip()
+camelcase("hello\n\t")
+```
+Would both result in `"hello"`
+
+```puppet
+["hello\n\t", "hi\n\t"].lstrip()
+lstrip(["hello\n\t", "hi\n\t"])
+```
+Would both result in `['hello', 'hi']`
+
 ## `scanf`
 
 * `scanf(String $data, String $format, Optional[Callable] &$block)`
@@ -3125,6 +3848,13 @@ it possible to have an array of arguments and pass that array to
 shellquote instead of having to specify each argument
 individually in the call.
 
+## `size`
+
+* `size(Variant[Collection, String, Binary] $arg)`
+    * Return type(s): `Any`. 
+
+The same as length() - returns the size of an Array, Hash, String, or Binary value.
+
 ## `slice`
 
 * `slice(Hash[Any, Any] $hash, Integer[1, default] $slice_size, Optional[Callable] &$block)`
@@ -3167,6 +3897,56 @@ to empty arrays for a hash.
 ```puppet
     $a.slice(2) |$first, $second| { ... }
 ```
+
+## `sort`
+
+* `sort(String $string_value, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+* `sort(Array $array_value, Optional[Callable[2,2]] &$block)`
+    * Return type(s): `Any`. 
+
+Sorts an Array numerically or lexicographically or the characters of a String lexicographically.
+Please note: This function is based on Ruby String comparison and as such may not be entirely UTF8 compatible.
+To ensure compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
+
+This function is compatible with the function sort() in stdlib.
+* Comparison of characters in a string always uses a system locale and may not be what is expected for a particular locale
+* Sorting is based on Ruby's <=> operator unless a lambda is given that performs the comparison.
+  * comparison of strings is case dependent (use lambda with `compare($a,$b)` to ignore case)
+  * comparison of mixed data types raises an error (if there is the need to sort mixed data types use a lambda)
+
+Also see the `compare()` function for information about comparable data types in general.
+
+```puppet
+notice(sort("xadb")) # notices 'abdx'
+```
+
+```puppet
+notice(sort([3,6,2])) # notices [2, 3, 6]
+```
+
+```puppet
+notice(sort([3,6,2]) |$a,$b| { compare($a, $b) }) # notices [2, 3, 6]
+notice(sort([3,6,2]) |$a,$b| { compare($b, $a) }) # notices [6, 3, 2]
+```
+
+```puppet
+notice(sort(['A','b','C']))                                    # notices ['A', 'C', 'b']
+notice(sort(['A','b','C']) |$a,$b| { compare($a, $b) })        # notices ['A', 'b', 'C']
+notice(sort(['A','b','C']) |$a,$b| { compare($a, $b, true) })  # notices ['A', 'b', 'C']
+notice(sort(['A','b','C']) |$a,$b| { compare($a, $b, false) }) # notices ['A','C', 'b']
+```
+
+```puppet
+notice(sort(['b', 3, 'a', 2]) |$a, $b| {
+  case [$a, $b] {
+    [String, Numeric] : { 1 }
+    [Numeric, String] : { -1 }
+    default:            { compare($a, $b) }
+  }
+})
+```
+Would notice [2,3,'a','b']
 
 ## `split`
 
@@ -3424,6 +4204,39 @@ notice($duration.strftime('%M:%S')) # outputs '200:30'
 ```
 
 - Since 4.8.0
+
+## `strip`
+
+* `strip(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `strip(String $arg)`
+    * Return type(s): `Any`. 
+* `strip(Iterable[Variant[String, Numeric]] $arg)`
+    * Return type(s): `Any`. 
+
+Strips leading and trailing spaces from a String
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String` the conversion removes all leading and trailing ASCII white space characters such as space, tab, newline, and return.
+  It does not remove other space-like characters like hard space (Unicode U+00A0). (Tip, `/^[[:space:]]/` regular expression
+  matches all space-like characters).
+* For an `Iterable[Variant[String, Numeric]]` (for example an `Array`) each value is processed and the conversion is not recursive.
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+```puppet
+" hello\n\t".lstrip()
+camelcase(" hello\n\t")
+```
+Would both result in `"hello"`
+
+```puppet
+[" hello\n\t", " hi\n\t"].lstrip()
+lstrip([" hello\n\t", " hi\n\t"])
+```
+Would both result in `['hello', 'hi']`
 
 ## `tag`
 
@@ -3823,6 +4636,58 @@ $pw.unwrap |$unwrapped| {
 # $unwrapped is now out of scope
 ```
 
+## `upcase`
+
+* `upcase(Numeric $arg)`
+    * Return type(s): `Any`. 
+* `upcase(String $arg)`
+    * Return type(s): `Any`. 
+* `upcase(Array[StringData] $arg)`
+    * Return type(s): `Any`. 
+* `upcase(Hash[StringData, StringData] $arg)`
+    * Return type(s): `Any`. 
+
+Converts a String, Array or Hash (recursively) into upper case.
+
+This function is compatible with the stdlib function with the same name.
+
+The function does the following:
+* For a `String`, its upper case version is returned. This is done using Ruby system locale which handles some, but not all
+  special international up-casing rules (for example German double-s ß is upcased to "SS", whereas upper case double-s
+  is downcased to ß).
+* For `Array` and `Hash` the conversion to upper case is recursive and each key and value must be convertible by
+  this function.
+* When a `Hash` is converted, some keys could result in the same key - in those cases, the
+  latest key-value wins. For example if keys "aBC", and "abC" where both present, after upcase there would only be one
+  key "ABC".
+* If the value is `Numeric` it is simply returned (this is for backwards compatibility).
+* An error is raised for all other data types.
+
+Please note: This function relies directly on Ruby's String implementation and as such may not be entirely UTF8 compatible.
+To ensure best compatibility please use this function with Ruby 2.4.0 or greater - https://bugs.ruby-lang.org/issues/10085.
+
+```puppet
+'hello'.upcase()
+upcase('hello')
+```
+Would both result in "HELLO"
+
+```puppet
+['a', 'b'].upcase()
+upcase(['a', 'b'])
+```
+Would both result in ['A', 'B']
+
+```puppet
+{'a' => 'hello', 'b' => 'goodbye'}.upcase()
+```
+Would result in `{'A' => 'HELLO', 'B' => 'GOODBYE'}`
+
+```puppet
+['a', 'b', ['c', ['d']], {'x' => 'y'}].upcase
+```
+Would result in `['A', 'B', ['C', ['D']], {'X' => 'Y'}]`
+
 ## `values`
 
 * `values(Hash $hsh)`
@@ -3902,4 +4767,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:42 -0700

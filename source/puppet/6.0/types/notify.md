@@ -5,7 +5,7 @@ title: 'Resource Type: notify'
 canonical: "/puppet/latest/types/notify.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 notify
 -----
@@ -21,7 +21,7 @@ Sends an arbitrary message to the agent run-time log.
 <pre><code>notify { 'resource title':
   <a href="#notify-attribute-name">name</a>     =&gt; <em># <strong>(namevar)</strong> An arbitrary tag for your own reference; the...</em>
   <a href="#notify-attribute-message">message</a>  =&gt; <em># The message to be sent to the...</em>
-  <a href="#notify-attribute-withpath">withpath</a> =&gt; <em># Whether to show the full object path.  Default...</em>
+  <a href="#notify-attribute-withpath">withpath</a> =&gt; <em># Whether to show the full object path. Defaults...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -58,4 +58,4 @@ Allowed values:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700

@@ -5,7 +5,7 @@ title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
 
 group
 -----
@@ -28,8 +28,8 @@ a group record.
 
 <pre><code>group { 'resource title':
   <a href="#group-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The group name. While naming limitations vary by </em>
-  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Default: `present`  </em>
-  <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs.  Default...</em>
+  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Valid values are...</em>
+  <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs. Defaults to...</em>
   <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># AIX only. Configures the behavior of the...</em>
   <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes, as an array of...</em>
   <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># Configures the behavior of the `members...</em>
@@ -73,16 +73,14 @@ Allowed values:
 
 <h4 id="group-attribute-allowdupe">allowdupe</h4>
 
-Whether to allow duplicate GIDs.
+Whether to allow duplicate GIDs. Defaults to `false`.
 
 Default: `false`
 
 Allowed values:
 
-* `true`
-* `false`
-* `yes`
-* `no`
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -128,10 +126,8 @@ Default: `false`
 
 Allowed values:
 
-* `true`
-* `false`
-* `yes`
-* `no`
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -144,10 +140,10 @@ Default: `false`
 
 Allowed values:
 
-* `true`
-* `false`
-* `yes`
-* `no`
+* `true` or `yes`
+* `false` or `no`
+
+Requires features libuser.
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -211,10 +207,8 @@ Default: `false`
 
 Allowed values:
 
-* `true`
-* `false`
-* `yes`
-* `no`
+* `true` or `yes`
+* `false` or `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -227,7 +221,8 @@ Group management for AIX.
 
 * Required binaries: `/usr/sbin/lsgroup`, `/usr/bin/mkgroup`, `/usr/sbin/rmgroup`, `/usr/bin/chgroup`
 * Confined to: `operatingsystem == aix`
-* Default for: `["operatingsystem", "aix"] == `
+* Default for: `operatingsystem` == `aix`
+* Supported features: `manages_aix_lam`, `manages_members`
 
 <h4 id="group-provider-directoryservice">directoryservice</h4>
 
@@ -347,4 +342,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
