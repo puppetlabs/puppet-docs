@@ -5,7 +5,7 @@ title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800
 
 file
 -----
@@ -431,8 +431,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -802,4 +804,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-11-05 13:21:05 -0800

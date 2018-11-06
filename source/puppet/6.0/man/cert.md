@@ -1,8 +1,8 @@
 ---
 layout: default
 built_from_commit: 4c6a439852c8609e8cefbbc8701d89a7a46f49a3
-title: 'Man Page: puppet describe'
-canonical: "/puppet/latest/man/describe.html"
+title: 'Man Page: puppet cert'
+canonical: "/puppet/latest/man/cert.html"
 ---
 
 <div class='mp'>
