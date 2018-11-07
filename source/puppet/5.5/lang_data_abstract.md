@@ -19,7 +19,6 @@ Each of those core data types will only match a particular set of values. They l
 
 If you're using data types to match or restrict values and need more flexibility, you can use one of the _abstract data types_ on this page to construct a data type that suits your needs and matches the values you want.
 
-
 ## Flexible data types
 
 These abstract data types can match values with a variety of concrete data types. Some of them are similar to a concrete type but offer alternate ways to restrict them (like `Enum`), and some of them let you combine types and match a union of what they would individually match (like `Variant` and `Optional`).
@@ -116,73 +115,6 @@ Note that you can use capture groups in the regular expressions, but they won't 
 
 * `Pattern[/\A[a-z].*/]` --- matches any string that begins with a lowercase letter.
 * `Pattern[/\A[a-z].*/, /\Anone\Z/]` --- matches the above **or** the exact string `"none"`.
-
-### `Timespan`
-
-The `Timespan` data type matches a Timespan; [strings][], or [numbers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
-
-It takes up to two parameters, and defaults to an infinite range to the past and future.
-
-#### Parameters
-
-The full signature for `Timespan` is:
-
-    Timespan[ (<TIMESPAN START OR LENGTH>, (<TIMESPAN END>)) ]
-
-Position | Parameter | Data Type | Default Value | Description
----------|-----------|-----------|---------------|------------
-1 | Timespan Start or Length | String, Float, Integer, or `default` | `default` (-Infinity in a span) | Length of the timespan if passed alone, or the `from` value in a range if passed with a second parameter
-2 | Timespan End | String, Float, Integer, or `default` | `default` (+Infinity), or none if only one value is passed | The `to` value in a range
-
-`Timespan` values are interpreted depending on their format.
-
-* A String in the format of `D-HH:MM:SS` represents a span of days (`D`), hours (`HH`), minutes (`MM`), and seconds (`SS`)
-* An Integer or Float represents a number of seconds
-
-A `Timespan` range with either end defined as `default` (infinity) is an _open range_, while any other span is a _closed range_. The span's range is inclusive.
-
-The `Timespan` type is not enumerable.
-
-#### Examples:
-
-* `Timespan[2]` --- a timespan of 2 seconds
-* `Timespan[77.3]` --- a timespan of 1 minute, 17 seconds, and 300 milliseconds (77.3 seconds)
-* `Timespan['1-00:00:00', '2-00:00:00']` --- a timespan between 1 and 2 days
-
-### `Timestamp`
-
-The `Timestamp` data type matches a Timestamp; [strings][] or [numbers][] that represent a time and date; or `default`, which represents an infinite point in the past or future.
-
-It takes up to two parameters, and defaults to an infinite range to the past and future. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of time, with the first parameter being the `from` value and the second being the `to` value.
-
-#### Parameters
-
-The full signature for `Timestamp` is:
-
-    Timestamp[ (<TIMESTAMP VALUE>, (<RANGE LIMIT>)) ]
-
-Position | Parameter | Data Type | Default Value | Description
----------|-----------|-----------|---------------|------------
-1 | Timestamp Value | String, Float, Integer, or `default` | `default` (-Infinity in a range) | Point in time if passed alone, or `from` value in a range if passed with a second parameter
-2 | Range Limit | String, Float, Integer, or `default` | `default` (+Infinity), or none if only one value is passed | The `to` value in a range
-
-`Timestamp` values are interpreted depending on their format.
-
-* A String in the format of `YYYY-MM-DD` represents the time 00:00:00.0 UTC on the specified year (`YYYY`), month (`MM`), and day (`DD`)
-* A String in the format of `YYYY-MM-DD`T`HH:MM:SS.SSS` represents a specific hour (`HH`), minute (`MM`), and decimal second (`SS.SSS`) of UTC on the specified date
-* An Integer or Float represents the seconds passed since the Unix epoch
-* `default` is used in ranges and represents infinity as the maximum floating point value, either negative (as the `from` value of a range) or positive (as the `to` value)
-
-A `Timestamp` range with either end defined as `default` (infinity) is an _open range_, while a range with both ends defined as an exact timestamp is a _closed range_. Range values can be negative, and the range is inclusive.
-
-The `Timestamp` type is not enumerable.
-
-#### Examples:
-
-* `Timestamp['2000-01-01T00:00:00.000', default]` --- an open range of time from the start of the 21st century to an infinte point in the future
-* `Timestamp['2012-10-10']` --- the exact Timestamp 2012-10-10T00:00:00.0 UTC
-* `Timestamp[default, 1433116800]` --- an open range of time from an infinite point in the past to 2015-06-01T00:00:00 UTC, here expressed as seconds since the Unix epoch
-* `Timestamp['2010-01-01', '2015-12-31T23:59:59.999999999']` --- a closed range of time between the start of 2010 and the end of 2015
 
 ### `Enum`
 
