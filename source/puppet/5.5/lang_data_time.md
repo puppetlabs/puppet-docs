@@ -13,7 +13,7 @@ title: "Language: Data types: Time-related data types"
 [hash_missing_key_access]: ./lang_data_hash.html#accessing-values
 [numbers]: ./lang_data_number.html
 
-A `Timespan` defines the length of a duration of time, and a `Timestamp` defines a point in time. To describe it simply, "two hours" is a duration that can be represented as a `Timespan`, while "three o'clock in the afternoon on November 8" is a point in time that can be represented as a `Timestamp`.
+A `Timespan` defines the length of a duration of time, and a `Timestamp` defines a point in time. To describe it simply, "two hours" is a duration that can be represented as a `Timespan`, while "three o'clock in the afternoon UTC on November 8, 2018" is a point in time that can be represented as a `Timestamp`.
 
 Both can use nanosecond values if available on the platform.
 
