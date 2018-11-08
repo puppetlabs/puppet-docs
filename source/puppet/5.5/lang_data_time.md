@@ -13,15 +13,15 @@ title: "Language: Data types: Time-related data types"
 [hash_missing_key_access]: ./lang_data_hash.html#accessing-values
 [numbers]: ./lang_data_number.html
 
-Timespans define a duration of time, and Timestamps define a point in time. Both use nanosecond values if available on the platform.
+A `Timespan` defines the length of a duration of time, and a `Timestamp` defines a point in time. To describe it simply, "two hours" is a duration that can be represented as a `Timespan`, while "three o'clock in the afternoon on November 8" is a point in time that can be represented as a `Timestamp`.
 
-> **Details about syntax and interpolation or casting needed from dev here, if relevant to users**
+Both can use nanosecond values if available on the platform.
 
 ## `Timespan`
 
-The `Timespan` data type matches Timespan values within a given range, or `default`, which represents a positive or infinite duration. A `Timespan` value can be specified with [strings][] or [numbers][] that represent duration.
+A `Timespan` value represents a duration of time. The `Timespan` data type matches a specified duration; `Timespan` values within a given range; or `default`, which represents a positive or infinite duration. A `Timespan` value can be specified with [strings][] or [numbers][] that can represent a `Timespan`.
 
-It takes up to two parameters.
+The type takes up to two parameters.
 
 ### Parameters
 
@@ -36,26 +36,28 @@ Position | Parameter | Data Type | Default Value | Description
 
 `Timespan` values are interpreted depending on their format.
 
-* A String in the format of `D-HH:MM:SS` represents a span of days (`D`), hours (`HH`), minutes (`MM`), and seconds (`SS`)
-* An Integer or Float represents a number of seconds
+* A String in the format of `D-HH:MM:SS` represents a duration of days (`D`), hours (`HH`), minutes (`MM`), and seconds (`SS`)
+* An Integer or Float represents a duration in seconds
 
-A `Timespan` range with either end defined as `default` (infinity) is an _open range_, while any other span is a _closed range_. The span's range is inclusive.
+A `Timespan` defined as a range matches any `Timespan` durations that can fit within that range. If either end of a range is defined as `default` (infinity), it is an _open range_, while any other range is a _closed range_. The range is inclusive.
+
+In other words, `Timespan[2]` matches a duration of two seconds, but `Timespan[0, 2]` can match _any_ `Timespan` from zero to two seconds, inclusive.
 
 The `Timespan` type is not enumerable.
 
-For details about converting values of other types to `Timespan`, see [the `new()` function documentation](./function.html#conversion-to-timespan).
+For details about converting values of other types to `Timespan`, see [the `new()` function documentation](./function.html#conversion-to-timespan) for `Timespan`. To convert a `Timespan` to a `String`, see [the `strftime()` function documentation](./function.html#strftime).
 
 ### Examples:
 
-* `Timespan[2]` --- matches a Timespan value of 2 seconds
-* `Timespan[77.3]` --- matches a Timespan value of 1 minute, 17 seconds, and 300 milliseconds (77.3 seconds)
-* `Timespan['1-00:00:00', '2-00:00:00']` --- matches a Timespan value between 1 and 2 days
+* `Timespan[2]` --- matches a `Timespan` value of 2 seconds
+* `Timespan[77.3]` --- matches a `Timespan` value of 1 minute, 17 seconds, and 300 milliseconds (77.3 seconds)
+* `Timespan['1-00:00:00', '2-00:00:00']` --- matches a closed range of `Timespan` values between 1 and 2 days
 
 ## `Timestamp`
 
-The `Timestamp` data type matches Timestamp values within a given range, or `default`, which represents a positive or infinite range of Timestamps. A `Timestamp` value can be specified with [strings][] or [numbers][] that represent the points in time limiting the range.
+A `Timestamp` value represents a specific point in time. The `Timestamp` data type matches a specified value; `Timestamp` values within a given range; or `default`, which represents a positive or infinite range of Timestamps. A `Timestamp` value can be specified with [strings][] or [numbers][] that represent a point in time, or points in time limiting a range.
 
-It takes up to two parameters, and defaults to an infinite range to the past and future. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of Timestamps, with the first parameter being the `from` value and the second being the `to` value.
+The type takes up to two parameters, and defaults to an infinite range to the past and future. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of Timestamps, with the first parameter being the `from` value and the second being the `to` value.
 
 ### Parameters
 
@@ -68,13 +70,19 @@ Position | Parameter | Data Type | Default Value | Description
 1 | Timestamp Value | String, Float, Integer, or `default` | `default` (-Infinity in a range) | Point in time if passed alone, or `from` value in a range if passed with a second parameter
 2 | Range Limit | String, Float, Integer, or `default` | `default` (+Infinity), or none if only one value is passed | The `to` value in a range
 
+A `Timestamp` defined as a single point in time matches exactly that point.
+
+A `Timestamp` defined as a range matches any point in time within that range. If either end of a range is defined as `default` (infinity), it is an _open range_, while any other range is a _closed range_. The range is inclusive.
+
+In other words, `Timestamp['2000-01-01T00:00:00.000']` matches 0:00 UTC on January 1, 2000, while `Timestamp['2000-01-01T00:00:00.000', '2001-01-01T00:00:00.000]` matches `Timestamp` values from that point in time to a point in time one year later, inclusive.
+
 `Timestamp` values are interpreted depending on their format.
 
-For details about converting values of other types to `Timestamp`, see [the `new()` function documentation](./function.html#conversion-to-timestamp).
+For details about converting values of other types to `Timestamp`, see [the `new()` function documentation](./function.html#conversion-to-timestamp). To convert a `Timespan` to a `String`, see [the `strftime()` function documentation](./function.html#strftime).
 
 ### Examples:
 
-* `Timestamp['2000-01-01T00:00:00.000', default]` --- matches an open range of Timestamps from the start of the 21st century to an infinte point in the future
-* `Timestamp['2012-10-10']` --- matches the exact Timestamp 2012-10-10T00:00:00.0 UTC
-* `Timestamp[default, 1433116800]` --- matches an open range of Timestamps from an infinite point in the past to 2015-06-01T00:00:00 UTC, here expressed as seconds since the Unix epoch
-* `Timestamp['2010-01-01', '2015-12-31T23:59:59.999999999']` --- matches a closed range of Timestamps between the start of 2010 and the end of 2015 
+* `Timestamp['2000-01-01T00:00:00.000', default]` --- matches an open range of `Timestamps` from the start of the 21st century to an infinte point in the future
+* `Timestamp['2012-10-10']` --- matches the exact `Timestamp` 2012-10-10T00:00:00.0 UTC
+* `Timestamp[default, 1433116800]` --- matches an open range of `Timestamps` from an infinite point in the past to 2015-06-01T00:00:00 UTC, here expressed as seconds since the Unix epoch
+* `Timestamp['2010-01-01', '2015-12-31T23:59:59.999999999']` --- matches a closed range of `Timestamps` between the start of 2010 and the end of 2015
