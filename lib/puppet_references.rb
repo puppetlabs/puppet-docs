@@ -17,7 +17,6 @@ module PuppetReferences
   require 'puppet_references/puppet/puppet_doc'
   require 'puppet_references/puppet/strings'
   require 'puppet_references/puppet/man'
-  require 'puppet_references/puppet/yard'
   require 'puppet_references/puppet/type'
   require 'puppet_references/puppet/type_strings'
   require 'puppet_references/puppet/functions'
@@ -44,8 +43,7 @@ module PuppetReferences
         PuppetReferences::Puppet::PuppetDoc,
         PuppetReferences::Puppet::Type,
         PuppetReferences::Puppet::TypeStrings,
-        PuppetReferences::Puppet::Functions,
-        PuppetReferences::Puppet::Yard
+        PuppetReferences::Puppet::Functions
     ]
     repo = PuppetReferences::Repo.new('puppet', PUPPET_DIR)
     real_commit = repo.checkout(commit)
