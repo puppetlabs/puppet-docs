@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 6acf62c4a6573bb3c54e84a875935da7fc71aa0d
+built_from_commit: b181d6fade9c572a402099ff5aea40f5d0e51676
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -67,7 +67,7 @@ disabled.  File contains a JSON object with state information.
 
 ### allow_duplicate_certs
 
-Whether to allow a new certificate request to overwrite an existing certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Whether to allow a new certificate request to overwrite an existing certificate.
 
 - *Default*: false
 
@@ -107,8 +107,6 @@ Whether log files should always flush to disk.
 
 Whether (and how) to autosign certificate requests. This setting
 is only relevant on a puppet master acting as a certificate authority (CA).
-This setting is also deprecated and will be replaced by one in Puppet Server's
-configs in Puppet 6.
 
 Valid values are true (autosigns all certificate requests; not recommended),
 false (disables autosigning certificates), or the absolute path to a file.
@@ -175,7 +173,7 @@ Whether the master should function as a certificate authority.
 
 ### ca_name
 
-The name to use the Certificate Authority certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The name to use the Certificate Authority certificate.
 
 - *Default*: Puppet CA: $certname
 
@@ -196,31 +194,31 @@ and does not need to horizontally scale.
 ### ca_ttl
 
 The default TTL for new certificates.
-This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y). This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 
 - *Default*: 5y
 
 ### cacert
 
-The CA certificate. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The CA certificate.
 
 - *Default*: $cadir/ca_crt.pem
 
 ### cacrl
 
-The certificate revocation list (CRL) for the CA. Will be used if present but otherwise ignored. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The certificate revocation list (CRL) for the CA. Will be used if present but otherwise ignored.
 
 - *Default*: $cadir/ca_crl.pem
 
 ### cadir
 
-The root directory for the certificate authority. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The root directory for the certificate authority.
 
 - *Default*: $ssldir/ca
 
 ### cakey
 
-The CA private key. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The CA private key.
 
 - *Default*: $cadir/ca_key.pem
 
@@ -238,7 +236,7 @@ Where the CA stores private certificate information. This setting is deprecated 
 
 ### capub
 
-The CA public key. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+The CA public key.
 
 - *Default*: $cadir/ca_pub.pem
 
@@ -258,7 +256,7 @@ you'd like to pre-compile catalogs and store them in memcached or some other eas
 ### cert_inventory
 
 The inventory file. This is a text file to which the CA writes a
-complete listing of all certificates. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+complete listing of all certificates.
 
 - *Default*: $cadir/inventory.txt
 
@@ -453,7 +451,7 @@ for site-specific extensions.
 
 ### csrdir
 
-Where the CA stores certificate requests. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Where the CA stores certificate requests.
 
 - *Default*: $cadir/requests
 
@@ -939,7 +937,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/5.5.6 Ruby/2.4.1-p111 (x86_64-darwin15)
+- *Default*: Puppet/5.5.8 Ruby/2.4.1-p111 (x86_64-darwin17)
 
 ### ignorecache
 
@@ -1108,6 +1106,14 @@ Default logging level for messages from Puppet. Allowed values are:
 * crit
 
 - *Default*: notice
+
+### logdest
+
+Where to send log messages. Choose between 'syslog' (the POSIX syslog
+service), 'eventlog' (the Windows Event Log), 'console', or the path to a log
+file.
+
+- *Default*: 
 
 ### logdir
 
@@ -1354,6 +1360,9 @@ Regardless of this setting's value, Puppet will always obey explicit
 dependencies set with the before/require/notify/subscribe metaparameters
 and the `->`/`~>` chaining arrows; this setting only affects the relative
 ordering of _unrelated_ resources.
+
+This setting is deprecated, and will always have a value of `manifest` in
+6.0 and up.
 
 - *Default*: manifest
 
@@ -1618,7 +1627,7 @@ Defaults to 0, which is unlimited. This setting can be a time interval in second
 
 ### serial
 
-Where the serial number for certificates is stored. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Where the serial number for certificates is stored.
 
 - *Default*: $cadir/serial
 
@@ -1654,7 +1663,7 @@ library.
 
 ### signeddir
 
-Where the CA stores signed certificates. This setting is deprecated and will be replaced by one in Puppet Server's configs in Puppet 6.
+Where the CA stores signed certificates.
 
 - *Default*: $cadir/signed
 
@@ -1708,7 +1717,7 @@ restarted. This setting can be a time interval in seconds (30 or 30s), minutes (
 
 The domain which will be queried to find the SRV records of servers to use.
 
-- *Default*: (the system's own domain)
+- *Default*: 
 
 ### ssl_client_ca_auth
 
@@ -1779,6 +1788,20 @@ this file reflects the state discovered through interacting
 with clients.
 
 - *Default*: $statedir/state.yaml
+
+### statettl
+
+How long the Puppet agent should cache when a resource was last checked or synced.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+A value of `0` or `unlimited` will disable cache pruning.
+
+This setting affects the usage of `schedule` resources, as the information
+about when a resource was last checked (and therefore when it needs to be
+checked again) is stored in the `statefile`. The `statettl` needs to be
+large enough to ensure that a resource will not trigger multiple times
+during a schedule due to its entry expiring from the cache.
+
+- *Default*: 32d
 
 ### static_catalogs
 
