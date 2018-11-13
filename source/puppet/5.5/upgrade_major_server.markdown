@@ -44,7 +44,7 @@ If you have multiple Puppet masters, upgrade or replace the certificate authorit
 
 Repeat the following steps for each Puppet Server until you're running a pure Puppet 5/Puppet Server 5 infrastructure.
 
-### Install the latest Puppet Server
+### Install the latest Puppet Server 2.x
 
 Our software releases are grouped into the Puppet Platform.
 
@@ -180,7 +180,17 @@ If you use [Hiera][], move its configuration and data files:
 2. Move your Hiera data files to somewhere inside `/etc/puppetlabs/code`.
 3. Update file references in `hiera.yaml` accordingly.
 
->**Note**: In Puppet 4.0, the default location of hiera.yaml changed from `/etc/puppetlabs/puppet/hiera.yaml` to `/etc/puppetlabs/code/hiera.yaml`. In Puppet 4.5, its location was reverted to `/etc/puppetlabs/puppet/hiera.yaml`. If you are upgrading with a package from puppet-agent 1.5.0 or newer, it will **not** move your hiera.yaml file. If you are starting with a new installation, it will place it in the correct location.
+> **Note**: In Puppet 4.0, the default location of hiera.yaml changed from `/etc/puppetlabs/puppet/hiera.yaml` to `/etc/puppetlabs/code/hiera.yaml`. In Puppet 4.5, its location was reverted to `/etc/puppetlabs/puppet/hiera.yaml`. If you are upgrading with a package from puppet-agent 1.5.0 or newer, it will **not** move your hiera.yaml file. If you are starting with a new installation, it will place it in the correct location.
+
+## Upgrade PuppetDB
+
+In the pre-upgrade steps, you upgraded to PuppetDB 2.3.x, including the [`puppetdb-terminus`][puppetdb-terminus] package on your Puppet Servers. This means the upgraded Puppet Server can already communicate with your existing PuppetDB server.
+
+Now that you've upgraded Puppet Server, [upgrade PuppetDB][] to the latest version 3.x. Note that this also retires older API versions, which can break older integrations. See the [PuppetDB 3.0 release notes][] for details.
+
+Use the [`puppetlabs/puppetdb`][puppetdb_module] module to manage your PuppetDB version. Also, note that the terminus package's name is now [`puppetdb-termini`][puppetdb-termini] instead of `puppetdb-terminus`.
+
+After successfully upgrading PuppetDB to version 3, upgrade it to the latest v4 edition of PuppetDB and `puppetdb-termini`.
 
 ### Start Puppet Server
 
@@ -200,17 +210,15 @@ Log into any Puppet agent and test its connection to the upgraded Puppet Server:
 
 Enter the Puppet Server's hostname or IP address and confirm the agent can [retrieve and apply a catalog][].
 
+### Upgrade to Puppet Platform 5
+
+Compared to the upgrade from Puppet 3 to 4, there are fewer changes when upgrading between Puppet 4 and 5. See the [Puppet 5.0 release notes](../5.0/release_notes.html), [Puppet Server 5.0 release notes](/docs/puppetserver/5.0/release_notes.html), and [PuppetDB 5.0 release notes](/docs/puppetdb/5.0/release_notes.html) for details, then review the latest version of each product's release notes.
+
+Finally, upgrade PuppetDB to the latest version of PuppetDB 5, then upgrade Puppet Server and `puppetdb-termini` together on each Puppet master.
+
 ### Go live!
 
 At this point, Puppet Server is ready to serve nodes in production. If you pulled the server back to stage the upgrade, you can now push the node back into use.
-
-##  Optional: Upgrade PuppetDB
-
-In the pre-upgrade steps, you upgraded to PuppetDB 2.3.x, including the [`puppetdb-terminus`][puppetdb-terminus] package on your Puppet Servers. This means the upgraded Puppet Server can already communicate with your existing PuppetDB server.
-
-Now that you've upgraded Puppet Server, you can [upgrade PuppetDB][] to version 3 if you want. Be careful: it adds some cool improvements, but it also retires older API versions, which can break older integrations. See the [PuppetDB 3.0 release notes][] for details.
-
-Use the [`puppetlabs/puppetdb`][puppetdb_module] module to manage your PuppetDB version. Also, note that the terminus package's name is now [`puppetdb-termini`][puppetdb-termini] instead of `puppetdb-terminus`.
 
 ## You're done upgrading Puppet Server!
 
