@@ -5,8 +5,7 @@ title: "Resource tips and examples: User and group on Windows"
 
 [user]: ./types/user.html
 [groups]: ./types/user.html#user-attribute-groups
-[auth_membership_user]: ./types/user.html#user-attribute-auth_membership
-[group]: ./types/group.html
+[membership_user]: /puppet/latest/type.html#user-attribute-membership[group]: ./types/group.html
 [members]: ./types/group.html#group-attribute-members
 [auth_membership_group]: ./types/group.html#group-attribute-auth_membership
 [relationships]: ./lang_relationships.html
@@ -33,7 +32,7 @@ If Puppet is managing a local [`group`][group], you can list the [`members`][mem
 
 When managing a `user`, Puppet will make sure the user belongs to all of the `groups` listed in the manifest. If the user belongs to a group not specified in the manifest, Puppet will not remove the user from the group.
 
-If you want to ensure a `user` belongs to only the `groups` listed in the manifest, and no more, you can specify the [`auth_membership`][auth_membership_user] attribute for the `user`. If set to `inclusive`, Puppet will remove the user from any group not listed in the manifest.
+If you want to ensure a `user` belongs to only the `groups` listed in the manifest, and no more, you can specify the [`membership`][membership_user] attribute for the `user`. If set to `inclusive`, Puppet removes the user from any group not listed in the manifest.
 
 Similarly, when managing a `group`, Puppet will make sure all of the `members` listed in the manifest are added to the group. Existing members of the group not listed in the manifest will be ignored. If you want to ensure a `group` contains only the `members` listed in the manifest, and no more, you can specify the [`auth_membership`][auth_membership_group] attribute for the `group`. If set to `true`, Puppet will remove existing members of the group that are not listed in the manifest.
 
