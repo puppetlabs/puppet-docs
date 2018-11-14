@@ -19,7 +19,7 @@ Both can use nanosecond values if available on the platform.
 
 ## `Timespan`
 
-A `Timespan` value represents a duration of time. The `Timespan` data type matches a specified duration; `Timespan` values within a given range; or `default`, which represents a positive or infinite duration. A `Timespan` value can be specified with [strings][] or [numbers][] that can represent a `Timespan`.
+A `Timespan` value represents a duration of time. The `Timespan` data type matches a specified range of durations; `Timespan` values within a given range; where `default` represents a positive or negative infinite duration. A `Timespan` value can be specified with [strings][] or [numbers][] in various forms.
 
 The type takes up to two parameters.
 
