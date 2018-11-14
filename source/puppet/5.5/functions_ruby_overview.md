@@ -19,6 +19,8 @@ title: "Writing functions in Ruby: Overview and examples"
 [hash]: ./lang_data_hash.html
 [default]: ./lang_data_default.html
 [regexp]: ./lang_data_regexp.html
+[timespan]: ./lang_data_time.html
+[timestamp]: ./lang_data_time.html
 [resource reference]: ./lang_data_resource_reference.html
 [lambda]: ./lang_lambdas.html
 [data type]: ./lang_data_type.html

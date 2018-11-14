@@ -19,7 +19,6 @@ Each of those core data types will only match a particular set of values. They l
 
 If you're using data types to match or restrict values and need more flexibility, you can use one of the _abstract data types_ on this page to construct a data type that suits your needs and matches the values you want.
 
-
 ## Flexible data types
 
 These abstract data types can match values with a variety of concrete data types. Some of them are similar to a concrete type but offer alternate ways to restrict them (like `Enum`), and some of them let you combine types and match a union of what they would individually match (like `Variant` and `Optional`).
@@ -116,7 +115,6 @@ Note that you can use capture groups in the regular expressions, but they won't 
 
 * `Pattern[/\A[a-z].*/]` --- matches any string that begins with a lowercase letter.
 * `Pattern[/\A[a-z].*/, /\Anone\Z/]` --- matches the above **or** the exact string `"none"`.
-
 
 ### `Enum`
 
@@ -281,7 +279,6 @@ It takes no parameters.
 ### `Any`
 
 The `Any` data type matches _any_ value of _any_ data type.
-
 
 ## Unusual types
 
