@@ -55,7 +55,7 @@ For details about converting values of other types to `Timespan`, see [the `new(
 
 ## `Timestamp`
 
-A `Timestamp` value represents a specific point in time. The `Timestamp` data type matches a specified value; `Timestamp` values within a given range; or `default`, which represents a positive or infinite range of Timestamps. A `Timestamp` value can be specified with [strings][] or [numbers][] that represent a point in time, or points in time limiting a range.
+A `Timestamp` value represents a specific point in time. The `Timestamp` data type matches a specified range of points in time; `Timestamp` values within a given range; where `default`, represents a positive or infinite range of Timestamps. A `Timestamp` value can be specified with [strings][] or [numbers][] in various forms.
 
 The type takes up to two parameters, and defaults to an infinite range to the past and future. A `Timestamp` with one parameter represents a single point in time, while two parameters represent a range of Timestamps, with the first parameter being the `from` value and the second being the `to` value.
 
