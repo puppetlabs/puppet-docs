@@ -34,10 +34,10 @@ Puppet URIs are constructed like this:
 -   `<MOUNT POINT>` is a unique identifier for some collection of files. There are several types:
     -   Custom mount points correspond to an arbitrary directory. The rest of this page is about these.
     -   The special `modules` mount point serves files from the `files` directory of every module. It behaves as if someone had copied the `files` directory from every module into one big directory, renaming each of them with the name of their module. (So the files in `apache/files/...` are available at `puppet:///modules/apache/...`)
+    - The `task` mount point works in a similar way to the `module` mount point but for files that live under the modules `tasks` directory, rather than the `files` directory.  
     -   The special `plugins` mount point serves files from the `lib` directory of every module. It behaves as if someone had copied the _contents_ of every `lib` directory into one big directory, with no additional namespacing. Puppet agent uses this mount point when syncing plugins before a run, but there's no reason to use it in a `file` resource.
     -   The special `pluginfacts` mount point serves files from the `facts.d` directory of every module, to support [external facts][]. It behaves like the `plugins` mount point, but with a different source directory.
     -   The special `locales` mount point serves files from the `locales` directory of every module, to support automatic downloading of module translations to agents. It also behaves like the `plugins` mount point, and also has a different source directory.
-    - Use the `task` mount point to pull tasks from the master servers.   
 -   `<PATH>` is the remainder of the path to the file, starting from the directory (or imaginary directory) that corresponds to the mount point.
 
 ## Creating a new mount point in `fileserver.conf`
