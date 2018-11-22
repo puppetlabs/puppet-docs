@@ -732,7 +732,7 @@ Documentation [comments](#documentation-comments) for Puppet Strings should be i
 1. Following lines, if applicable: Define parameters. Parameters should be [typed](https://docs.puppet.com/puppet/latest/lang_data_type.html#language:-data-types:-data-type-syntax).
 1. Next lines: Includes and validation come after parameters are defined. Includes may come before or after validation, but should be grouped separately, with all includes and requires in one group and all validations in another. 
    * Validations should validate any parameters and fail catalog compilation if any
-    parameters are invalid. (See [ntp](https://github.com/puppetlabs/puppetlabs-ntp/blob/3.3.0/manifests/init.pp#L28-L49) for an example.)
+    parameters are invalid. See [ntp](https://github.com/puppetlabs/puppetlabs-ntp/blob/master/manifests/init.pp#L212:L274) for an example.
 1. Next lines, if applicable: Should declare local variables and perform variable munging.
 1. Next lines: Should declare resource defaults.
 1. Next lines:  Should override resources if necessary.
