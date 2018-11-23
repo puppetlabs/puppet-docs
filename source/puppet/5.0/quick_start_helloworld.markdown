@@ -48,7 +48,6 @@ Every manifest (.pp file) in a module contains a single class. File names map to
 5. In the `manifests` directory, use your text editor to create the `motd.pp` file, and edit it so that it contains the following Puppet code:
 
         class helloworld::motd {
-
            file { '/etc/motd':
            owner  => 'root',
            group  => 'root',
