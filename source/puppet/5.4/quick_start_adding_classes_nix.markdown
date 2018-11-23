@@ -21,11 +21,13 @@ Every module contains one or more **classes**. [Classes](./lang_classes.html) ar
 1. From the command line of your Puppet master, navigate to the main manifest directory: `cd /etc/puppetlabs/code/environments/production/manifests`.
 2. Use your text editor to open the `site.pp` file, and edit it so that it contains the following Puppet code:
 
-        node default {
-		  include apache
-        }
+```
+node default {
+  include apache
+}
+```
 
-	>**Note**: If you have already created the default node class, simply add `include apache` to it. Code from the [Hello World! exercise](./quick_start_helloworld.html) does not need to be removed, but a class cannot be declared twice. We will explore this later in the guide.
+> **Note**: If you have already created the default node class, simply add `include apache` to it. Code from the [Hello World! exercise](./quick_start_helloworld.html) does not need to be removed, but a class cannot be declared twice. We will explore this later in the guide.
 
 3. Ensure that there are no errors in the Puppet code by running `puppet parser validate site.pp` on the command line of your Puppet master. The parser will return nothing if there are no errors. If it does detect a syntax error, open the file and fix the problem before continuing.
 4. From the command line of your Puppet agent, run `puppet agent -t` to trigger a Puppet run.
@@ -49,11 +51,13 @@ You can edit the [parameters](./lang_classes.html#defining-classes) of a class i
 2. Use your text editor to open `site.pp`.
 3. Replace the `include apache` command with the following Puppet code:
 
-        class { 'apache':
-    	  docroot => '/var/www'
-		}
+```
+class { 'apache':
+  docroot => '/var/www'
+  }
+```
 
-	>**Note**: You must remove `include apache` because Puppet will only allow you to [declare a class once](./lang_classes.html#declaring-classes).
+> **Note**: You must remove `include apache` because Puppet will only allow you to [declare a class once](./lang_classes.html#declaring-classes).
 
 > That's it! You have set the Apache web server's root directory to `/var/www` instead of its default `/var/www/html`. If you refresh `http://myagentnodeIP:80/` in your web browser, it shows the list of files in `/var/www`. If you click `html`, the browser will again show the contents of `/var/www/html/index.html`.
 >
