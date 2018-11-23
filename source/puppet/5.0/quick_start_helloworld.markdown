@@ -49,8 +49,8 @@ Every manifest (.pp file) in a module contains a single class. File names map to
 
         class helloworld::motd {
           file { '/etc/motd':
-          owner  => 'root',
-          group  => 'root',
+          owner   => 'root',
+          group   => 'root',
           mode    => '0644',
           content => "hello, world!\n",
           }
