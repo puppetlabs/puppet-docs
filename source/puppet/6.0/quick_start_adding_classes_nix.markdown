@@ -54,7 +54,7 @@ You can edit the [parameters](./lang_classes.html#defining-classes) of a class i
 ```
 class { 'apache':
   docroot => '/var/www'
-  }
+}
 ```
 > **Note**: You must remove `include apache` because Puppet will only allow you to [declare a class once](./lang_classes.html#declaring-classes).
 
