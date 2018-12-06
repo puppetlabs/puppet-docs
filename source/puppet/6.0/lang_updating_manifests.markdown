@@ -5,7 +5,7 @@ title: "Updating Puppet 3.x manifests"
 
 [str2bool]: https://forge.puppetlabs.com/puppetlabs/stdlib#str2bool
 [file_mode]: ./type.html#file-attribute-mode
-[where]: ./whered_it_go.html
+[where]: https://puppet.com/docs/puppet/5.5/whered_it_go.html
 [reserved]: ./lang_reserved.html
 [numeric]: ./lang_data_number.html
 [expressions]: ./lang_expressions.html
@@ -15,7 +15,7 @@ Several breaking changes were introduced in Puppet 4.0, which remain true in Pup
 
 ## Make sure everything is in the right place
 
-The locations of code directories and important config files have changed. Read about [where everything went][where] to make sure your files are in the correct place before tackling updates to your manifests.
+The locations of code directories and important config files have changed. Read about [where everything went][where] (in Puppet 5.x docs) to make sure your files are in the correct place before tackling updates to your manifests.
 
 ## Double-check to make sure it's safe before purging `cron` resources
 
