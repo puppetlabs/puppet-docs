@@ -9,7 +9,7 @@ title: "The hiera.yaml config file"
 [interpolate]: ./variables.html
 [custom_backends]: ./custom_backends.html
 [puppetserver_gem]: /puppetserver/latest/gems.html#installing-and-removing-gems
-[deep_merge_gem_docs]: https://github.com/danielsdeleo/deep_merge/blob/master/README.md
+[deep_merge_gem_docs]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/vendor/deep_merge
 
 {% partial ./_hiera_deprecation.md %}
 

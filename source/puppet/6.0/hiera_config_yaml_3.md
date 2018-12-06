@@ -11,7 +11,7 @@ title: "Hiera: Legacy config file syntax (hiera.yaml v3)"
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
 [custom_backends]: ./puppet/latest/hiera_custom_backends.html
 [puppetserver_gem]: {{puppetserver}}/gems.html#installing-and-removing-gems
-[deep_merge_gem_docs]: https://github.com/danielsdeleo/deep_merge/blob/master/README.md
+[deep_merge_gem_docs]: https://github.com/puppetlabs/puppet/tree/master/lib/puppet/vendor/deep_merge
 [interpolate]: ./hiera_interpolation.html
 
 
