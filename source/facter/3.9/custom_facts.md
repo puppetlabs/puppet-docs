@@ -161,14 +161,17 @@ An example of the confine statement would be something like the following:
 Facter.add(:powerstates) do
   confine :kernel => 'Linux'
   setcode do
+    # Put your fact code here.
     Facter::Core::Execution.execute('cat /sys/power/states')
   end
 end
 ```
 
+> Note: As shown in the example above, put everything underneath the `confine` statement and inside the `setcode` block of your fact. Otherwise anything before it will be executed regardless of your confine options.
+
 This fact uses sysfs on linux to get a list of the power states that are
 available on the given system. Since this is only available on Linux systems,
-we use the confine statement to ensure that this fact isn't needlessly run on
+we use the `confine` statement to ensure that this fact isn't needlessly run on
 systems that don't support this type of enumeration.
 
 ### Fact precedence
