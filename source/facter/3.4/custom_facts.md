@@ -439,7 +439,7 @@ key3: val3
 }
 ```
 
-`.txt`: Key value pairs, in the following format:
+`.txt`: Key value pairs, of the `String` data type, in the following format:
 
 ```
 key1=value1
