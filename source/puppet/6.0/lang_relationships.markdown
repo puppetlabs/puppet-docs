@@ -24,10 +24,6 @@ title: "Language: Relationships and ordering"
 
 By default, Puppet applies resources in the order they're declared in their manifest. However, if a group of resources must _always_ be managed in a specific order, you should explicitly declare such relationships with relationship metaparameters, chaining arrows, and the `require` function.
 
-> **Aside: Default ordering**
->
-> To make Puppet apply unrelated resources in a more-or-less random order, set [the `ordering` setting][moar] to `title-hash` or `random`.
-
 ## Syntax: Relationship metaparameters
 
 ``` puppet
@@ -162,7 +158,7 @@ Yumrepo <| |> -> Package <| |>
 
 This example applies all yum repository resources before applying any package resources, which protects any packages that rely on custom repositories.
 
-> Note: Most of the time, you should use relationship metaparameters, not chaining arrows. See the [Puppet Language Style Guide](https://puppet.com/docs/puppet/5.3/style_guide.html#chaining-arrow-syntax) for information on when and how to use chaining arrows.
+> Note: Most of the time, you should use relationship metaparameters, not chaining arrows. See the [Puppet Language Style Guide](https://puppet.com/docs/puppet/6.0/style_guide.html) for information on when and how to use chaining arrows.
 
 ### Capturing resource references for generated resources
 
