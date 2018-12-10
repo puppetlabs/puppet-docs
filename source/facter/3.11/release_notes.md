@@ -3,11 +3,32 @@ layout: default
 title: "Facter release notes"
 ---
 
-This page documents the history of the Facter 3.11 series.
+These are the new features, resolved issues, and deprecations in this version of Facter. 
+
+
+## Facter 3.11.6
+
+Released 1 November 2018
+
+This is a bug-fix release that shipped with Puppet Platform 5.5.8
+
+### Bug fixes
+
+- Previously, if you had multiple custom versions of a built-in fact, and only those with a weight of 0 could resolve, Facter used those zero-weighted values. Now, if only zero-weighted custom facts resolve, Facter uses built-in fact values instead. ([FACT-1873](https://tickets.puppetlabs.com/browse/FACT-1873))
+
+## Facter 3.11.5
+
+Released 23 October 2018
+
+This is a bug-fix release that shipped with Puppet Platform 5.5.7.
+
+### Bug fixes
+
+- Facter now correctly distinguishes between Windows Server 2016 and Windows Server 2019. ([FACT-1889](https://tickets.puppetlabs.com/browse/FACT-1889))
 
 ## Facter 3.11.4
 
-Released 21 August, 2018
+Released 21 August 2018
 
 This is a bug-fix release that shipped with Puppet Platform 5.5.6.
 
@@ -19,7 +40,7 @@ This is a bug-fix release that shipped with Puppet Platform 5.5.6.
 
 - Facter failed on Solaris 11.3 patch 29.0.4.0 native zone. Now, Facter does not try to read kstat entries that it does not need to process. This avoids potential permissions issues when run in a zone or as non-root on Solaris. ([FACT-1832](https://tickets.puppetlabs.com/browse/FACT-1832))
 
-- Facter has been updated to correctly read the format of `/etc/system-release` under Amazon Linux 2. This corrects the OS release fact, which previously fell back to the kernel version. ([FACT-1865](https://tickets.puppetlabs.com/browse/FACT-1865))
+- Facter has been updated to correctly read the format of `/etc/system-release` under Amazon Linux 2. This corrects the operating system release fact, which previously fell back to the kernel version. ([FACT-1865](https://tickets.puppetlabs.com/browse/FACT-1865))
 
 - The `os.architecture` fact is now determined from the `processors.models[0]` fact. This addresses a problem where Puppet agent wasn't working with dynamic CPU allocations on AIX. ([FACT-1550](https://tickets.puppetlabs.com/browse/FACT-1550)) 
 
