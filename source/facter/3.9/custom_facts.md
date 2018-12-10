@@ -167,7 +167,7 @@ Facter.add(:powerstates) do
 end
 ```
 
-> Note: As shown in the example above, put everything underneath the `confine` statement and inside the `setcode` block of your fact. Otherwise anything before it will be executed regardless of your confine options.
+Note that everything you put inside the `setcode` block is confined. Everything outside of the `setcode` block is not confined.
 
 This fact uses sysfs on linux to get a list of the power states that are
 available on the given system. Since this is only available on Linux systems,
