@@ -6,7 +6,7 @@ Curated documentation for Puppet.
 
 This repo has been split into two distinct branches of documentation, archived and current. The master branch contains only documentation that is presently being generated into HTML and delivered to our Drupal integration. The archive branch contains older versions of documentation that are to be migrated to a new archive site.
 
-Starting in Puppet 5.5, and continuing into current releases, we are migrating much of the Puppet the documentation into DITA format in a CMS called easyDITA. When we have migrated a Markdown page in the docs to DITA, we delete it from here so that it's clear what page to update when changes come (and so that the old content isn't accidentally published). 
+Starting in Puppet 5.5, and continuing into current releases, we are migrating much of the Puppet documentation into DITA format in a CMS called easyDITA. When we have migrated a Markdown page in the docs to DITA, we delete it from here so that it's clear what page to update when changes come (and so that the old content isn't accidentally published). 
 
 ## Contributions from the Puppet community are still very welcome.
 
