@@ -20,6 +20,24 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.9
+
+Released 15 January 2019
+
+This is a bug-fix release
+
+### Bug fixes
+
+- When compiling a catalog, Puppet sometimes raised the error "Attempt to redefine entity." This issue has been fixed with an update to the internal logic. [PUP-8002](https://tickets.puppetlabs.com/browse/PUP-8002)
+
+- SELinux utilities within the Puppet codebase now recognize that the `tmpfs` supports extended attributes and SELinux labels. The query `selinux_label_support?` returns `true` for a file mounted on `tmpfs`. [PUP-9330](https://tickets.puppetlabs.com/browse/PUP-9330)
+
+- This release fixes a regression in the string formatting rules that caused a short form for an Array or Hash to not be recognized. For example, `String([1,[2,3],4], '%#a")` would not format with indentation, but would format the long form `String([1,[2,3],4], {Array =&gt; { format =&gt; '%#a"}})`. Now the short form works for Array and Hash as intended.​[PUP-9329](https://tickets.puppetlabs.com/browse/PUP-9329)
+
+- Prior to this release, the data types `Timestamp` and `Timespan` raised errors if time range was specified with `Integer` or `Float` values. These data types now support time ranges specified with these values. [PUP-9310](https://tickets.puppetlabs.com/browse/PUP-9310)
+
+- This release fixes an issue where refreshed resources, such as reboot or some execs, did not create a status event in the event report. If the refresh fails, the failure is also[PUP-9339](https://tickets.puppetlabs.com/browse/PUP-9339)​
+
 ## Puppet 5.5.8
 
 Released 1 November 2018.
