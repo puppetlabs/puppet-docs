@@ -706,6 +706,15 @@ documents:
       commit: bbc73f6da0a17eac4fbf84758b477ec9dd4cebb2
       subdirectory: documentation
 
+  /puppetdb/6.1:
+    doc: puppetdb
+    version: "6.1"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: "c943f424ccb0e5f5d53da5410593b0ccc5fa9a11"
+      subdirectory: documentation
+    hide: true
   /puppetdb/6.0:
     doc: puppetdb
     version: "6.0"
