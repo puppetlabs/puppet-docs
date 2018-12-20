@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
 
 file
 -----
@@ -802,4 +802,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800

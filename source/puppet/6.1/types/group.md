@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
 
 group
 -----
@@ -28,8 +28,8 @@ a group record.
 
 <pre><code>group { 'resource title':
   <a href="#group-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The group name. While naming limitations vary by </em>
-  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Valid values are...</em>
-  <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs. Defaults to...</em>
+  <a href="#group-attribute-ensure">ensure</a>               =&gt; <em># Create or remove the group.  Default: `present`  </em>
+  <a href="#group-attribute-allowdupe">allowdupe</a>            =&gt; <em># Whether to allow duplicate GIDs.  Default...</em>
   <a href="#group-attribute-attribute_membership">attribute_membership</a> =&gt; <em># AIX only. Configures the behavior of the...</em>
   <a href="#group-attribute-attributes">attributes</a>           =&gt; <em># Specify group AIX attributes, as an array of...</em>
   <a href="#group-attribute-auth_membership">auth_membership</a>      =&gt; <em># Configures the behavior of the `members...</em>
@@ -79,8 +79,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -126,8 +128,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to group attributes](#group-attributes))
 
@@ -342,4 +346,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800

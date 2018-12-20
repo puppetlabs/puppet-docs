@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
 
 exec
 -----
@@ -80,10 +80,9 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
-  <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between...</em>
+  <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between 'tries'....</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
-  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
-  <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  Note that if...</em>
+  <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  > **Note:*...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -302,10 +301,9 @@ Default: `300`
 <h4 id="exec-attribute-tries">tries</h4>
 
 The number of times execution of the command should be tried.
-This many attempts will be made to execute
-the command until an acceptable return code is returned.
-Note that the timeout parameter applies to each try rather than
-to the complete set of tries.
+This many attempts will be made to execute the command until an
+acceptable return code is returned. Note that the timeout parameter
+applies to each try rather than to the complete set of tries.
 
 Default: `1`
 
@@ -419,9 +417,9 @@ command:
     }
 
 * Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
+* Default for: `["operatingsystem", "windows"] == `
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -20,10 +20,11 @@ a scheduled task, or a similar tool.</p>
 
 <h2 id="USAGE">USAGE</h2>
 
-<p>  puppet device [-d|--debug] [--detailed-exitcodes] [--deviceconfig <var>file</var>]
-                [-h|--help] [-l|--logdest syslog|<var>file</var>|console]
-                [-v|--verbose] [-w|--waitforcert <var>seconds</var>] [-f|--facts]
-                [-a|--apply <var>file</var>] [-r|--resource <var>type</var> [name]]
+<p>  puppet device [-h|--help] [-v|--verbose] [-d|--debug]
+                [-l|--logdest syslog|<var>file</var>|console] [--detailed-exitcodes]
+                [--deviceconfig <var>file</var>] [-w|--waitforcert <var>seconds</var>]
+                [--libdir <var>directory</var>]
+                [-a|--apply <var>file</var>] [-f|--facts] [-r|--resource <var>type</var> [name]]
                 [-t|--target <var>device</var>] [--user=<var>user</var>] [-V|--version]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
@@ -60,16 +61,10 @@ long argument. For example, 'server' is a valid configuration parameter, so
 you can specify '--server <var>servername</var>' as an argument.</p>
 
 <dl>
-<dt class="flush">--debug</dt><dd><p>Enable full debugging.</p></dd>
-<dt>--detailed-exitcodes</dt><dd><p>Provide transaction information via exit codes. If this is enabled, an exit
-code of '1' means at least one device had a compile failure, an exit code of
-'2' means at least one device had resource changes, and an exit code of '4'
-means at least one device had resource failures. Exit codes of '3', '5', '6',
-or '7' means that a bitwise combination of the preceding exit codes happened.</p></dd>
-<dt>--deviceconfig</dt><dd><p>Path to the device config file for puppet device.
-Default: $confdir/device.conf</p></dd>
-<dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
-<dt>--logdest</dt><dd><p>Where to send log messages. Choose between 'syslog' (the POSIX syslog
+<dt>--help, -h</dt><dd><p>Print this help message</p></dd>
+<dt>--verbose, -v</dt><dd><p>Turn on verbose reporting.</p></dd>
+<dt>--debug, -d</dt><dd><p>Enable full debugging.</p></dd>
+<dt>--logdest, -l</dt><dd><p>Where to send log messages. Choose between 'syslog' (the POSIX syslog
 service), 'console', or the path to a log file. If debugging or verbosity is
 enabled, this defaults to 'console'. Otherwise, it defaults to 'syslog'.</p>
 
@@ -77,6 +72,20 @@ enabled, this defaults to 'console'. Otherwise, it defaults to 'syslog'.</p>
 log file will not have an ending ']' automatically written to it due to the
 appending nature of logging. It must be appended manually to make the content
 valid JSON.</p></dd>
+<dt>--detailed-exitcodes</dt><dd><p>Provide transaction information via exit codes. If this is enabled, an exit
+code of '1' means at least one device had a compile failure, an exit code of
+'2' means at least one device had resource changes, and an exit code of '4'
+means at least one device had resource failures. Exit codes of '3', '5', '6',
+or '7' means that a bitwise combination of the preceding exit codes happened.</p></dd>
+<dt>--deviceconfig</dt><dd><p>Path to the device config file for puppet device.
+Default: $confdir/device.conf</p></dd>
+<dt>--waitforcert, -w</dt><dd><p>This option only matters for targets that do not yet have certificates
+and it is enabled by default, with a value of 120 (seconds).  This causes
++puppet device+ to poll the server every 2 minutes and ask it to sign a
+certificate request.  This is useful for the initial setup of a target.
+You can turn off waiting for certificates by specifying a time of 0.</p></dd>
+<dt>--libdir</dt><dd><p>Override the per-device libdir with a local directory. Specifying a libdir also
+disables pluginsync. This is useful for testing.</p></dd>
 <dt class="flush">--apply</dt><dd><p>Apply a manifest against a remote target. Target must be specified.</p></dd>
 <dt class="flush">--facts</dt><dd><p>Displays the facts of a remote target. Target must be specified.</p></dd>
 <dt>--resource</dt><dd><p>Displays a resource state as Puppet code, roughly equivalent to
@@ -86,12 +95,6 @@ device run against only that device/certificate.</p></dd>
 <dt>--to_yaml</dt><dd><p>Output found resources in yaml format, suitable to use with Hiera and
 create_resources.</p></dd>
 <dt class="flush">--user</dt><dd><p>The user to run as.</p></dd>
-<dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
-<dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
-and it is enabled by default, with a value of 120 (seconds).  This causes
-+puppet agent+ to connect to the server every 2 minutes and ask it to sign a
-certificate request.  This is useful for the initial setup of a puppet
-client.  You can turn off waiting for certificates by specifying a time of 0.</p></dd>
 </dl>
 
 
@@ -106,7 +109,7 @@ client.  You can turn off waiting for certificates by specifying a time of 0.</p
 
 <h2 id="COPYRIGHT">COPYRIGHT</h2>
 
-<p>Copyright (c) 2011 Puppet Inc., LLC
+<p>Copyright (c) 2011-2018 Puppet Inc., LLC
 Licensed under the Apache 2.0 License</p>
 
 </div>

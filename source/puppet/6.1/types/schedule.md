@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
 
 schedule
 -----
@@ -59,6 +59,13 @@ default, with the following attributes:
     }
 
 This will cause resources to be applied every 30 minutes by default.
+
+The `statettl` setting on the agent affects the ability of a schedule to
+determine if a resource has already been checked. If the `statettl` is
+set lower than the span of the associated schedule resource, then a
+resource could be checked & applied multiple times in the schedule as
+the information about when the resource was last checked will have
+expired from the cache.
 
 <h3 id="schedule-attributes">Attributes</h3>
 
@@ -202,4 +209,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800

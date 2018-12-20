@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
 
 service
 -----
@@ -44,7 +44,7 @@ can be configured:
 
 <pre><code>service { 'resource title':
   <a href="#service-attribute-name">name</a>       =&gt; <em># <strong>(namevar)</strong> The name of the service to run.  This name is...</em>
-  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Valid...</em>
+  <a href="#service-attribute-ensure">ensure</a>     =&gt; <em># Whether a service should be running.  Allowed...</em>
   <a href="#service-attribute-binary">binary</a>     =&gt; <em># The path to the daemon.  This is only used for...</em>
   <a href="#service-attribute-control">control</a>    =&gt; <em># The control variable used to manage services...</em>
   <a href="#service-attribute-enable">enable</a>     =&gt; <em># Whether a service should be enabled to start at...</em>
@@ -59,6 +59,7 @@ can be configured:
   <a href="#service-attribute-start">start</a>      =&gt; <em># Specify a *start* command manually.  Most...</em>
   <a href="#service-attribute-status">status</a>     =&gt; <em># Specify a *status* command manually.  This...</em>
   <a href="#service-attribute-stop">stop</a>       =&gt; <em># Specify a *stop* command...</em>
+  <a href="#service-attribute-timeout">timeout</a>    =&gt; <em># Specify an optional minimum timeout (in seconds) </em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -83,8 +84,10 @@ Whether a service should be running.
 
 Allowed values:
 
-* `stopped` or `false`
-* `running` or `true`
+* `stopped`
+* `running`
+* `false`
+* `true`
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -272,6 +275,12 @@ table.
 <h4 id="service-attribute-stop">stop</h4>
 
 Specify a *stop* command manually.
+
+([↑ Back to service attributes](#service-attributes))
+
+<h4 id="service-attribute-timeout">timeout</h4>
+
+Specify an optional minimum timeout (in seconds) for puppet to wait when syncing service properties
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -606,6 +615,7 @@ services as a specific user.
 
 Available features:
 
+* `configurable_timeout` --- The provider can specify a minumum timeout for syncing service properties
 * `controllable` --- The provider uses a control variable.
 * `enableable` --- The provider can enable and disable the service
 * `flaggable` --- The provider can pass flags to the service.
@@ -618,6 +628,7 @@ Provider support:
   <thead>
     <tr>
       <th>Provider</th>
+      <th>configurable timeout</th>
       <th>controllable</th>
       <th>enableable</th>
       <th>flaggable</th>
@@ -685,6 +696,7 @@ Provider support:
     <tr>
       <td>launchd</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
@@ -708,6 +720,7 @@ Provider support:
     </tr>
     <tr>
       <td>openwrt</td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -773,6 +786,7 @@ Provider support:
     <tr>
       <td>upstart</td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
@@ -780,6 +794,8 @@ Provider support:
     </tr>
     <tr>
       <td>windows</td>
+      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -791,4 +807,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800

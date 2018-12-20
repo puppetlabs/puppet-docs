@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: 'Puppet HTTP API: Catalog'
 canonical: "/puppet/latest/http_api/http_catalog.html"
 ---

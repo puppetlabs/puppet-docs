@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:42 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -61,7 +61,7 @@ Numeric($strval, true)     # Converts to absolute Integer or Float
 Integer($strval, 10, true) # Converts to absolute Integer using base 10 (decimal)
 Integer($strval, 16, true) # Converts to absolute Integer using base 16 (hex)
 Float($strval, true)       # Converts to absolute Float
-```puppet
+```
 
 ## `alert`
 
@@ -1314,15 +1314,16 @@ node. (For example, `fqdn_rand(30)`, `fqdn_rand(30, 'expensive job 1')`, and
     * Return type(s): `Any`. 
 
 Calls an external command on the Puppet master and returns
-the results of the command.  Any arguments are passed to the external command as
-arguments.  If the generator does not exit with return code of 0,
+the results of the command. Any arguments are passed to the external command as
+arguments. If the generator does not exit with return code of 0,
 the generator is considered to have failed and a parse error is
-thrown.  Generators can only have file separators, alphanumerics, dashes,
-and periods in them.  This function will attempt to protect you from
+thrown. Generators can only have file separators, alphanumerics, dashes,
+and periods in them. This function will attempt to protect you from
 malicious generator calls (e.g., those with '..' in them), but it can
-never be entirely safe.  No subshell is used to execute
+never be entirely safe. No subshell is used to execute
 generators, so all shell metacharacters are passed directly to
-the generator.
+the generator, and all metacharacters are returned by the function.
+Consider cleaning white space from any string generated.
 
 ## `get`
 
@@ -3098,7 +3099,7 @@ Defaults to `p`.
 | Format | String
 | ------ | ------
 | s      | Unquoted string, verbatim output of control chars.
-| p      | Programmatic representation - strings are quoted, interior quotes and control chars are escaped.
+| p      | Programmatic representation - strings are quoted, interior quotes and control chars are escaped. Selects single or double quotes based on content, or uses double quotes if alternative flag `#` is used.
 | C      | Each `::` name segment capitalized, quoted if alternative flag `#` is used.
 | c      | Capitalized string, quoted if alternative flag `#` is used.
 | d      | Downcased string, quoted if alternative flag `#` is used.
@@ -4767,4 +4768,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:42 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
