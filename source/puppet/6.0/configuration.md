@@ -899,7 +899,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.0.0 Ruby/2.4.1-p111 (x86_64-darwin15)
+- *Default*: Puppet/6.0.0 Ruby/2.4.1-p111 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -1618,7 +1618,7 @@ restarted. This setting can be a time interval in seconds (30 or 30s), minutes (
 
 The domain which will be queried to find the SRV records of servers to use.
 
-- *Default*: (the system's own domain)
+- *Default*: 
 
 ### ssl_client_ca_auth
 

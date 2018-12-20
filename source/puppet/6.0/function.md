@@ -7,7 +7,7 @@ toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:42 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 09:14:50 -0800
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -4767,4 +4767,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:42 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 09:14:50 -0800

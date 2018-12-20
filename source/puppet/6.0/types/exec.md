@@ -5,7 +5,7 @@ title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 09:14:50 -0800
 
 exec
 -----
@@ -80,10 +80,9 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-returns">returns</a>     =&gt; <em># The expected exit code(s).  An error will be...</em>
   <a href="#exec-attribute-timeout">timeout</a>     =&gt; <em># The maximum time the command should take.  If...</em>
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
-  <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between...</em>
+  <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between 'tries'....</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
-  <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
-  <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  Note that if...</em>
+  <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  > **Note:*...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -97,28 +96,6 @@ succeeds, any output produced will be logged at the instance's
 normal log level (usually `notice`), but if the command fails
 (meaning its return code does not match the specified code) then
 any output is logged at the `err` log level.
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-creates">creates</h4>
-
-A file to look for before running the command. The command will
-only run if the file **doesn't exist.**
-
-This parameter doesn't cause Puppet to create a file; it is only
-useful if **the command itself** creates a file.
-
-    exec { 'tar -xf /Volumes/nfs02/important.tar':
-      cwd     => '/var/tmp',
-      creates => '/var/tmp/myfile',
-      path    => ['/usr/bin', '/usr/sbin',],
-    }
-
-In this example, `myfile` is assumed to be a file inside
-`important.tar`. If it is ever deleted, the exec will bring it
-back by re-extracting the tarball. If `important.tar` does **not**
-actually contain `myfile`, the exec will keep running every time
-Puppet runs.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -198,21 +175,7 @@ exit code of 0 (success).
 
 The search path used for command execution.
 Commands must be fully qualified if no path is specified.  Paths
-can be specified as an array or as a ':' separated list.
-
-([↑ Back to exec attributes](#exec-attributes))
-
-<h4 id="exec-attribute-provider">provider</h4>
-
-The specific backend to use for this `exec`
-resource. You will seldom need to specify this --- Puppet will usually
-discover the appropriate provider for your platform.
-
-Available providers are:
-
-* [`posix`](#exec-provider-posix)
-* [`shell`](#exec-provider-shell)
-* [`windows`](#exec-provider-windows)
+can be specified as an array or as a '
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -263,8 +226,8 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The expected exit code(s).  An error will be returned if the
-executed command has some other exit code.  Defaults to 0. Can be
-specified as an array of acceptable exit codes or a single value.
+executed command has some other exit code. Can be specified as an array
+of acceptable exit codes or a single value.
 
 On POSIX systems, exit codes are always integers between 0 and 255.
 
@@ -302,10 +265,9 @@ Default: `300`
 <h4 id="exec-attribute-tries">tries</h4>
 
 The number of times execution of the command should be tried.
-This many attempts will be made to execute
-the command until an acceptable return code is returned.
-Note that the timeout parameter applies to each try rather than
-to the complete set of tries.
+This many attempts will be made to execute the command until an
+acceptable return code is returned. Note that the timeout parameter
+applies to each try rather than to the complete set of tries.
 
 Default: `1`
 
@@ -355,14 +317,13 @@ non-zero exit code.
 
 <h4 id="exec-attribute-user">user</h4>
 
-The user to run the command as.  Note that if you
-use this then any error output is not currently captured.  This
-is because of a bug within Ruby.  If you are using Puppet to
-create this user, the exec will automatically require the user,
-as long as it is specified by name.
+Note that if you use this attribute, any error output is not captured
+due to a bug within Ruby. If you use Puppet to create this user, the
+exec automatically requires the user, as long as it is specified by
+name.
 
-Please note that the $HOME environment variable is not automatically set
-when using this attribute.
+The $HOME environment variable is not automatically set when using
+this attribute.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -377,7 +338,7 @@ to execute most commands, but prevents the use of globbing and shell
 built-ins (including control logic like "for" and "if" statements).
 
 * Confined to: `feature == posix`
-* Default for: `feature` == `posix`
+* Default for: `["feature", "posix"] == `
 
 <h4 id="exec-provider-shell">shell</h4>
 
@@ -419,9 +380,9 @@ command:
     }
 
 * Confined to: `operatingsystem == windows`
-* Default for: `operatingsystem` == `windows`
+* Default for: `["operatingsystem", "windows"] == `
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 09:14:50 -0800

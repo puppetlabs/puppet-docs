@@ -5,7 +5,7 @@ title: 'Resource Types: Index'
 canonical: "/puppet/latest/types/index.html"
 ---
 
-## List of built-in resource types
+## List of resource types
 
 * [exec](./exec.html)
 * [file](./file.html)

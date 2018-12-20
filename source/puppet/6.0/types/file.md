@@ -5,7 +5,7 @@ title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 09:14:50 -0800
 
 file
 -----
@@ -35,38 +35,19 @@ parent directories of a file, the file resource will autorequire them.
 <h3 id="file-attributes">Attributes</h3>
 
 <pre><code>file { 'resource title':
-  <a href="#file-attribute-path">path</a>                    =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
-  <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether the file should exist, and if so what...</em>
-  <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
-  <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
-  <a href="#file-attribute-checksum_value">checksum_value</a>          =&gt; <em># The checksum of the source contents. Only md5...</em>
-  <a href="#file-attribute-content">content</a>                 =&gt; <em># The desired contents of a file, as a string...</em>
-  <a href="#file-attribute-ctime">ctime</a>                   =&gt; <em># A read-only state to check the file ctime. On...</em>
-  <a href="#file-attribute-force">force</a>                   =&gt; <em># Perform the file operation even if it will...</em>
-  <a href="#file-attribute-group">group</a>                   =&gt; <em># Which group should own the file.  Argument can...</em>
-  <a href="#file-attribute-ignore">ignore</a>                  =&gt; <em># A parameter which omits action on files matching </em>
-  <a href="#file-attribute-links">links</a>                   =&gt; <em># How to handle links during file actions.  During </em>
-  <a href="#file-attribute-mode">mode</a>                    =&gt; <em># The desired permissions mode for the file, in...</em>
-  <a href="#file-attribute-mtime">mtime</a>                   =&gt; <em># A read-only state to check the file mtime. On...</em>
-  <a href="#file-attribute-owner">owner</a>                   =&gt; <em># The user to whom the file should belong....</em>
-  <a href="#file-attribute-provider">provider</a>                =&gt; <em># The specific backend to use for this `file...</em>
-  <a href="#file-attribute-purge">purge</a>                   =&gt; <em># Whether unmanaged files should be purged. This...</em>
-  <a href="#file-attribute-recurse">recurse</a>                 =&gt; <em># Whether to recursively manage the _contents_ of...</em>
-  <a href="#file-attribute-recurselimit">recurselimit</a>            =&gt; <em># How far Puppet should descend into...</em>
-  <a href="#file-attribute-replace">replace</a>                 =&gt; <em># Whether to replace a file or symlink that...</em>
-  <a href="#file-attribute-selinux_ignore_defaults">selinux_ignore_defaults</a> =&gt; <em># If this is set then Puppet will not ask SELinux...</em>
-  <a href="#file-attribute-selrange">selrange</a>                =&gt; <em># What the SELinux range component of the context...</em>
-  <a href="#file-attribute-selrole">selrole</a>                 =&gt; <em># What the SELinux role component of the context...</em>
-  <a href="#file-attribute-seltype">seltype</a>                 =&gt; <em># What the SELinux type component of the context...</em>
-  <a href="#file-attribute-seluser">seluser</a>                 =&gt; <em># What the SELinux user component of the context...</em>
-  <a href="#file-attribute-show_diff">show_diff</a>               =&gt; <em># Whether to display differences when the file...</em>
-  <a href="#file-attribute-source">source</a>                  =&gt; <em># A source file, which will be copied into place...</em>
-  <a href="#file-attribute-source_permissions">source_permissions</a>      =&gt; <em># Whether (and how) Puppet should copy owner...</em>
-  <a href="#file-attribute-sourceselect">sourceselect</a>            =&gt; <em># Whether to copy all valid sources, or just the...</em>
-  <a href="#file-attribute-target">target</a>                  =&gt; <em># The target for creating a link.  Currently...</em>
-  <a href="#file-attribute-type">type</a>                    =&gt; <em># A read-only state to check the file...</em>
-  <a href="#file-attribute-validate_cmd">validate_cmd</a>            =&gt; <em># A command for validating the file's syntax...</em>
-  <a href="#file-attribute-validate_replacement">validate_replacement</a>    =&gt; <em># The replacement string in a `validate_cmd` that...</em>
+  <a href="#file-attribute-path">path</a>                 =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
+  <a href="#file-attribute-backup">backup</a>               =&gt; <em># Whether (and how) file content should be backed...</em>
+  <a href="#file-attribute-force">force</a>                =&gt; <em># Perform the file operation even if it will...</em>
+  <a href="#file-attribute-ignore">ignore</a>               =&gt; <em># A parameter which omits action on files matching </em>
+  <a href="#file-attribute-links">links</a>                =&gt; <em># How to handle links during file actions.  During </em>
+  <a href="#file-attribute-purge">purge</a>                =&gt; <em># Whether unmanaged files should be purged. This...</em>
+  <a href="#file-attribute-recurse">recurse</a>              =&gt; <em># Whether to recursively manage the _contents_ of...</em>
+  <a href="#file-attribute-recurselimit">recurselimit</a>         =&gt; <em># How far Puppet should descend into...</em>
+  <a href="#file-attribute-replace">replace</a>              =&gt; <em># Whether to replace a file or symlink that...</em>
+  <a href="#file-attribute-show_diff">show_diff</a>            =&gt; <em># Whether to display differences when the file...</em>
+  <a href="#file-attribute-sourceselect">sourceselect</a>         =&gt; <em># Whether to copy all valid sources, or just the...</em>
+  <a href="#file-attribute-validate_cmd">validate_cmd</a>         =&gt; <em># A command for validating the file's syntax...</em>
+  <a href="#file-attribute-validate_replacement">validate_replacement</a> =&gt; <em># The replacement string in a `validate_cmd` that...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -252,23 +233,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
-
-([↑ Back to file attributes](#file-attributes))
-
-<h4 id="file-attribute-group">group</h4>
-
-_(**Property:** This attribute represents concrete state on the target system.)_
-
-Which group should own the file.  Argument can be either a group
-name or a group ID.
-
-On Windows, a user (such as "Administrator") can be set as a file's group
-and a group (such as "Administrators") can be set as a file's owner;
-however, a file's owner and group shouldn't be the same. (If the owner
-is also the group, files with modes like `"0640"` will cause log churn, as
-they will always appear out of sync.)
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -431,8 +399,10 @@ Default: `false`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -590,80 +560,10 @@ Default: `true`
 
 Allowed values:
 
-* `true` or `yes`
-* `false` or `no`
-
-([↑ Back to file attributes](#file-attributes))
-
-<h4 id="file-attribute-source">source</h4>
-
-A source file, which will be copied into place on the local system. This
-attribute is mutually exclusive with `content` and `target`. Allowed
-values are:
-
-* `puppet:` URIs, which point to files in modules or Puppet file server
-mount points.
-* Fully qualified paths to locally available files (including files on NFS
-shares or Windows mapped drives).
-* `file:` URIs, which behave the same as local file paths.
-* `http:` URIs, which point to files served by common web servers
-
-The normal form of a `puppet:` URI is:
-
-`puppet:///modules/<MODULE NAME>/<FILE PATH>`
-
-This will fetch a file from a module on the Puppet master (or from a
-local module when using Puppet apply). Given a `modulepath` of
-`/etc/puppetlabs/code/modules`, the example above would resolve to
-`/etc/puppetlabs/code/modules/<MODULE NAME>/files/<FILE PATH>`.
-
-Unlike `content`, the `source` attribute can be used to recursively copy
-directories if the `recurse` attribute is set to `true` or `remote`. If
-a source directory contains symlinks, use the `links` attribute to
-specify whether to recreate links or follow them.
-
-*HTTP* URIs cannot be used to recursively synchronize whole directory
-trees. It is also not possible to use `source_permissions` values other
-than `ignore`. That's because HTTP servers do not transfer any metadata
-that translates to ownership or permission details.
-
-Multiple `source` values can be specified as an array, and Puppet will
-use the first source that exists. This can be used to serve different
-files to different system types:
-
-    file { '/etc/nfs.conf':
-      source => [
-        "puppet:///modules/nfs/conf.${host}",
-        "puppet:///modules/nfs/conf.${operatingsystem}",
-        'puppet:///modules/nfs/conf'
-      ]
-    }
-
-Alternately, when serving directories recursively, multiple sources can
-be combined by setting the `sourceselect` attribute to `all`.
-
-([↑ Back to file attributes](#file-attributes))
-
-<h4 id="file-attribute-source_permissions">source_permissions</h4>
-
-Whether (and how) Puppet should copy owner, group, and mode permissions from
-the `source` to `file` resources when the permissions are not explicitly
-specified. (In all cases, explicit permissions will take precedence.)
-Valid values are `use`, `use_when_creating`, and `ignore`:
-
-* `ignore` (the default) will never apply the owner, group, or mode from
-  the `source` when managing a file. When creating new files without explicit
-  permissions, the permissions they receive will depend on platform-specific
-  behavior. On POSIX, Puppet will use the umask of the user it is running as.
-  On Windows, Puppet will use the default DACL associated with the user it is
-  running as.
-* `use` will cause Puppet to apply the owner, group,
-  and mode from the `source` to any files it is managing.
-* `use_when_creating` will only apply the owner, group, and mode from the
-  `source` when creating a file; existing files will not have their permissions
-  overwritten.
-
-Valid values are `use`, `use_when_creating`, `ignore`.
+* `true`
+* `false`
+* `yes`
+* `no`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -802,4 +702,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-10-02 15:03:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 09:14:50 -0800
