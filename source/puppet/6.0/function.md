@@ -61,7 +61,7 @@ Numeric($strval, true)     # Converts to absolute Integer or Float
 Integer($strval, 10, true) # Converts to absolute Integer using base 10 (decimal)
 Integer($strval, 16, true) # Converts to absolute Integer using base 16 (hex)
 Float($strval, true)       # Converts to absolute Float
-```puppet
+```
 
 ## `alert`
 
