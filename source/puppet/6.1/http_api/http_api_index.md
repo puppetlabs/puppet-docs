@@ -151,34 +151,7 @@ A [JSON schema for the error objects](../schemas/error.json) is also available.
 CA V1 HTTP API
 --------------
 
-The CA API contains all of the endpoints used in support of Puppet's PKI
-system.
-
-The CA V1 endpoints share the same basic format as the Puppet V3 API, since
-they are also based off of Puppet's internal "indirector". However, they have
-a different prefix and version. The endpoints thus follow the form:
-`/puppet-ca/v1/:indirection/:key?environment=:environment` where:
-
-* `:environment` is an arbitrary placeholder word, required for historical
-  reasons. No CA endpoints actually use an environment, but the query parameter
-  must always be specified.
-* `:indirection` is the indirection to dispatch the request to.
-* `:key` is the "key" portion of the indirection call.
-
-As with the Puppet V3 API, using this API requires a significant amount of
-understanding of how Puppet's internal services are structured. The following
-documents provide additional specification.
-
-### SSL Certificate Related Services
-
-These endpoints only accept plain text payload formats. Historically, Puppet has
-used the MIME type `s` to mean `text/plain`. In Puppet 5, it will always use
-`text/plain`, but will continue to accept `s` to mean the same thing.
-
-* [Certificate](./http_certificate.md)
-* [Certificate Signing Requests](./http_certificate_request.md)
-* [Certificate Status](./http_certificate_status.md)
-* [Certificate Revocation List](./http_certificate_revocation_list.md)
+The certificate authority (CA) API contains all of the endpoints supporting Puppet's public key infrastructure (PKI) system. This endpoint is now handled entirely through Puppet Server. See Puppet Server's [HTTP API](https://puppet.com/docs/puppetserver/latest/http_api_index.md) docs for detailed information.
 
 Serialization Formats
 ---------------------
