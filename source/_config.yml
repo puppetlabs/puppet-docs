@@ -318,6 +318,14 @@ documents:
       puppetdb: "4.3"
     hide: true
 
+  /puppet/6.2:
+    doc: puppet
+    version: "6.2"
+    nav: ./_puppet_toc.html
+    my_versions:
+      facter: "3.12"
+      puppetserver: "6.2"
+    hide: true
   /puppet/6.1:
     doc: puppet
     version: "6.1"
