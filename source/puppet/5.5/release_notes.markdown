@@ -20,7 +20,7 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
-## Puppet 5.5.9
+## Puppet 5.5.10
 
 Released 15 January 2019
 
@@ -49,6 +49,10 @@ This is a bug-fix release.
 - Prior to this release, the data types `Timestamp` and `Timespan` raised errors if time range was specified with `Integer` or `Float` values. These data types now support time ranges specified with these values. [PUP-9310](https://tickets.puppetlabs.com/browse/PUP-9310)
 
 - This release fixes an issue where refreshed resources, such as reboot or some execs, did not create a status event in the event report. If the refresh fails, the failure is also[PUP-9339](https://tickets.puppetlabs.com/browse/PUP-9339)​
+
+## Puppet 5.5.9
+
+This version of Puppet was never released.
 
 ## Puppet 5.5.8
 
