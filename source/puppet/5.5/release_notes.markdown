@@ -20,6 +20,40 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.10
+
+Released 15 January 2019
+
+This is a bug-fix release.
+
+### Bug fixes
+
+- The `puppet module install` command now downloads only the release metadata it needs to perform dependency resolution, drastically reducing data download and improving installation time. For the `puppetlabs-stdlib` module, this change reduces the data download from 25MB to 68KB, and any module that depends on `stdlib` will benefit when installed. [PUP-9364](https://tickets.puppetlabs.com/browse/PUP-9364)
+
+- When compiling a catalog, Puppet sometimes raised the error "Attempt to redefine entity." This issue has been fixed with an update to the internal logic. [PUP-8002](https://tickets.puppetlabs.com/browse/PUP-8002)
+
+- Puppet now treats incomplete services the same way as nonexistent services, returning `enabled => false` and `ensure => :stopped` in either case. If you try to set `ensure => running` or `enabled => true` on an incomplete or nonexistent service, Puppet raises an error. [PUP-9240](https://tickets.puppetlabs.com/browse/PUP-9240)
+
+- Prior to this release, the `puppet device` command failed if the environment specified in `puppet.conf` or with the `--environment` option was not 'production'. This issue is fixed. Now `puppet device` uses its own device-specific cache for pluginsynced code (facts, types, and providers). Additionally, `puppet device` now supports a `--libdir` option for overriding any pluginsynced code with a local directory for testing. [PUP-8766](https://tickets.puppetlabs.com/browse/PUP-8766)
+
+- Failed dependency resources are now reported only once. After that resource has been reported, other resources that depend on the failed resource will not be reported again. However, you still get the skip message for each skipped resource. [PUP-6562](https://tickets.puppetlabs.com/browse/PUP-6562)
+
+- Error messages and logging are improved for some sync errors. Previously, Puppet provided no log message and an uninformative error. [PUP-1542](https://tickets.puppetlabs.com/browse/PUP-1542)
+
+- When compiling a catalog, Puppet sometimes raised the error "Attempt to redefine entity." This issue has been fixed with an update to the internal logic. [PUP-8002](https://tickets.puppetlabs.com/browse/PUP-8002)
+
+- SELinux utilities within the Puppet codebase now recognize that the `tmpfs` supports extended attributes and SELinux labels. The query `selinux_label_support?` returns `true` for a file mounted on `tmpfs`. [PUP-9330](https://tickets.puppetlabs.com/browse/PUP-9330)
+
+- This release fixes a regression in the string formatting rules that caused a short form for an Array or Hash to not be recognized. For example, `String([1,[2,3],4], '%#a")` would not format with indentation, but would format the long form `String([1,[2,3],4], {Array =&gt; { format =&gt; '%#a"}})`. Now the short form works for Array and Hash as intended.​[PUP-9329](https://tickets.puppetlabs.com/browse/PUP-9329)
+
+- Prior to this release, the data types `Timestamp` and `Timespan` raised errors if time range was specified with `Integer` or `Float` values. These data types now support time ranges specified with these values. [PUP-9310](https://tickets.puppetlabs.com/browse/PUP-9310)
+
+- This release fixes an issue where refreshed resources, such as reboot or some execs, did not create a status event in the event report. If the refresh fails, the failure is also[PUP-9339](https://tickets.puppetlabs.com/browse/PUP-9339)​
+
+## Puppet 5.5.9
+
+This version of Puppet was never released.
+
 ## Puppet 5.5.8
 
 Released 1 November 2018.
