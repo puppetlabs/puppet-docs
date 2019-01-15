@@ -16,7 +16,6 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 
 - [puppet agent](./agent.html)
 - [puppet apply](./apply.html)
-- [puppet cert](./cert.html)
 - [puppet module](./module.html)
 - [puppet resource](./resource.html)
 - [puppet lookup](./lookup.html)
