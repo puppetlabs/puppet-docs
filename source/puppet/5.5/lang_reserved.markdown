@@ -53,7 +53,7 @@ The following words are reserved:
 * `produces` --- language keyword
 * `site` --- language keyword
 * `true` --- boolean value
-* `type` --- reserved for future use
+* `type` --- language keyword
 * `undef` --- special value
 * `unless` --- language keyword
 
