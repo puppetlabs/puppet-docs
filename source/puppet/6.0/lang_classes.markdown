@@ -377,21 +377,15 @@ class {'apache':
 class {'base::linux':}
 ```
 
-Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters can be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
+Resource-like declarations use [resource-like behavior][resource-like]: multiple declarations are prohibited, and parameters can be overridden at compile-time. You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified follow the normal external/default/fail lookup path.
 
-In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class will also have that metaparameter:
-
-``` puppet
-# Cause the entire class to be noop:
-class {'apache':
-  noop => true,
-}
-```
+In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class also has that metaparameter.
 
 However, note that:
 
 * Any resource can specifically override metaparameter values received from its container.
-* Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any resource-specific values.
+* Metaparameters that can take more than one value (such as the [relationship][relationships] metaparameters) merge the values from the container and any resource-specific values.
+* You cannot apply the `noop` metaparameter to resource-like class declarations.
 
 ## Assigning classes from an ENC
 

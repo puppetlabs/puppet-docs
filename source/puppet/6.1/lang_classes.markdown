@@ -91,8 +91,8 @@ The general form of a class definition is:
 * The [name][allowed] of the class
 * An optional **parameter list,** which consists of:
     * An opening parenthesis
-    * A comma-separated list of **parameters** (e.g. `String $myparam = "default value"`). Each parameter consists of:
-        * An optional [data type][literal_types], which will restrict the allowed values for the parameter (defaults to `Any`)
+    * A comma-separated list of **parameters** (for example, `String $myparam = "default value"`). Each parameter consists of:
+        * An optional [data type][literal_types], which restrict the allowed values for the parameter (defaults to `Any`)
         * A [variable][] name to represent the parameter, including the `$` prefix
         * An optional equals (`=`) sign and **default value** (which must match the data type, if one was specified)
     * An optional trailing comma after the last parameter
@@ -110,7 +110,7 @@ Each class parameter can be used as a normal [variable][] inside the class defin
 
 Note that if a class parameter lacks a default value, the module's user **must** set a value themselves (either in their external data or an [override][]). As such, you should supply defaults wherever possible.
 
-Each parameter can be preceeded by an optional [**data type**][literal_types]. If you include one, Puppet will check the parameter's value at runtime to make sure that it has the right data type, and raise an error if the value is illegal. If no data type is provided, the parameter will accept values of any data type.
+Each parameter can be preceeded by an optional [**data type**][literal_types]. If you include one, Puppet checks the parameter's value at runtime to make sure that it has the right data type, and raise an error if the value is illegal. If no data type is provided, the parameter accepts values of any data type.
 
 The special variables `$title` and `$name` are both set to the class name automatically, so they can't be used as parameters.
 
@@ -134,7 +134,7 @@ A class definition statement isn't an expression and can't be used where a value
 
 ### Containment
 
-A class [contains][] all of its resources. This means any [relationships][] formed with the class as a whole will be extended to every resource in the class.
+A class [contains][] all of its resources. This means any [relationships][] formed with the class as a whole is extended to every resource in the class.
 
 Classes can also contain other classes, but _you must manually specify that a class should be contained._ For details, [see the "Containing Classes" section of the Containment page][contain_classes].
 
@@ -167,7 +167,7 @@ Inheritance causes three things to happen:
 >
 >   This pattern works by guaranteeing that the params class is evaluated before Puppet attempts to evaluate the main class's parameter list. It is especially useful when you want your default values to change based on system facts and other data, since it lets you isolate and encapsulate all that conditional logic.
 >
-> **In nearly all other cases, inheritance is unnecessary complexity.** If you need some class's resources declared before proceeding further, you can [include](#using-include) it inside another class's definition. If you need to read internal data from another class, you should generally use [qualified variable names][qualified_var] instead of assigning parent scopes. If you need to use an "anti-class" pattern (e.g. to disable a service that is normally enabled), you can use a class parameter to override the standard behavior.
+> **In nearly all other cases, inheritance is unnecessary complexity.** If you need some class's resources declared before proceeding further, you can [include](#using-include) it inside another class's definition. If you need to read internal data from another class, you should generally use [qualified variable names][qualified_var] instead of assigning parent scopes. If you need to use an "anti-class" pattern (for example, to disable a service that is normally enabled), you can use a class parameter to override the standard behavior.
 >
 > Note also that you can [use resource collectors to override resource attributes][collector_override] in unrelated classes, although this feature should be handled with care.
 
@@ -217,7 +217,7 @@ class apache::ssl inherits apache {
   # host certificate is required for SSL to function
   Service['apache'] {
     require +> [ File['apache.pem'], File['httpd.conf'] ],
-    # Since `require` will retain its previous values, this is equivalent to:
+    # Since `require` retains its previous values, this is equivalent to:
     # require => [ Package['httpd'], File['apache.pem'], File['httpd.conf'] ],
   }
 }
@@ -227,21 +227,21 @@ class apache::ssl inherits apache {
 
 **Declaring** a class in a Puppet manifest adds all of its resources to the catalog. You can declare classes in [node definitions][node], at top scope in the [site manifest][sitedotpp], and in other classes or [defined types][definedtype]. Declaring classes isn't the only way to add them to the catalog; you can also [assign classes to nodes with an ENC](#assigning-classes-from-an-enc).
 
-Classes are singletons --- although a given class can have very different behavior depending on how its parameters are set, the resources in it will only be evaluated **once per compilation.**
+Classes are singletons --- although a given class can have very different behavior depending on how its parameters are set, the resources in it are evaluated only once per compilation.
 
 ### Include-like vs. resource-like
 
 Puppet has two main ways to declare classes: include-like and resource-like.
 
-> **Note:** These two behaviors **should not be mixed** for a given class. Puppet's behavior when declaring or assigning a class with both styles is undefined, and will sometimes work and sometimes cause compilation failures.
+> **Note:** Do not mix these two behaviors for a given class. Puppet's behavior when declaring or assigning a class with both styles is undefined and can cause compilation failures.
 
 #### Include-like behavior
 
 [include-like]: #include-like-behavior
 
-The `include`, `require`, `contain`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class will only be added to the catalog once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node can have more than one role.
+The `include`, `require`, `contain`, and `hiera_include` functions let you safely declare a class **multiple times;** no matter how many times you declare it, a class is added to the catalog only once. This can allow classes or defined types to manage their own dependencies, and lets you create overlapping "role" classes where a given node can have more than one role.
 
-Include-like behavior relies on external data and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet will try the following for each of its parameters:
+Include-like behavior relies on external data and defaults for class parameter values, which allows the external data source to act like cascading configuration files for all of your classes. When a class is declared, Puppet tries the following for each of its parameters:
 
 1. Request a value from the external data source, using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
 2. Use the default value.
@@ -251,7 +251,7 @@ Include-like behavior relies on external data and defaults for class parameter v
 
 [resource-like]: #resource-like-behavior
 
-Resource-like class declarations require that you **only declare a given class once.** They allow you to override class parameters at compile time, and will fall back to external_data for any parameters you don't override.  When a class is declared, Puppet will try the following for each of its parameters:
+Resource-like class declarations require that you **declare a given class only once.** They allow you to override class parameters at compile time, falling back to external data for any parameters you don't override. When a class is declared, Puppet tries the following for each of its parameters:
 
 1. Use the override value from the declaration, if present.
 2. Request a value from the external data source, using the key `<class name>::<parameter name>`. (For example, to get the `apache` class's `version` parameter, Puppet would search for `apache::version`.)
@@ -297,7 +297,7 @@ define apache::vhost (Integer $port, String $docroot, String $servername, String
 }
 ```
 
-In the above example, Puppet will ensure that every resource in the `apache` class gets applied before every resource in **any** `apache::vhost` instance.
+In the above example, Puppet ensures that every resource in the `apache` class gets applied before every resource in **any** `apache::vhost` instance.
 
 The `require` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
@@ -323,7 +323,7 @@ class ntp {
 }
 ```
 
-In the above example, any resource that forms a `before` or `require` relationship with class `ntp` will also be applied before or after class `ntp::service`, respectively.
+In the above example, any resource that forms a `before` or `require` relationship with class `ntp` is also applied before or after class `ntp::service`, respectively.
 
 The `contain` function uses [include-like behavior][include-like]. (Multiple declarations OK; relies on external data for parameters.) It can accept:
 
@@ -333,7 +333,7 @@ The `contain` function uses [include-like behavior][include-like]. (Multiple dec
 
 ### Using `hiera_include`
 
-The `hiera_include` function requests a list of class names from Hiera, then declares all of them. Since it uses the [array lookup type](/puppet/latest/hiera_automatic.html#arguments), it will get a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
+The `hiera_include` function requests a list of class names from Hiera, then declares all of them. Since it uses the [array lookup type](/puppet/latest/hiera_automatic.html#arguments), it gets a combined list that includes classes from **every level** of the [hierarchy][hiera_hierarchy]. This allows you to abandon [node definitions][node] and use Hiera like a lightweight ENC.
 
 ``` yaml
 # /etc/puppetlabs/puppet/hiera.yaml
@@ -377,21 +377,15 @@ class {'apache':
 class {'base::linux':}
 ```
 
-Resource-like declarations use [resource-like behavior][resource-like]. (Multiple declarations prohibited; parameters can be overridden at compile-time.) You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified will follow the normal external/default/fail lookup path.
+Resource-like declarations use [resource-like behavior][resource-like]: multiple declarations are prohibited, and parameters can be overridden at compile-time. You can provide a value for any class parameter by specifying it as resource attribute; any parameters not specified follow the normal external/default/fail lookup path.
 
-In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class will also have that metaparameter:
-
-``` puppet
-# Cause the entire class to be noop:
-class {'apache':
-  noop => true,
-}
-```
+In addition to class-specific parameters, you can also specify a value for any [metaparameter][metaparameters]. In such cases, every resource contained in the class also has that metaparameter.
 
 However, note that:
 
 * Any resource can specifically override metaparameter values received from its container.
-* Metaparameters which can take more than one value (like the [relationship][relationships] metaparameters) will merge the values from the container and any resource-specific values.
+* Metaparameters that can take more than one value (such as the [relationship][relationships] metaparameters) merge the values from the container and any resource-specific values.
+* You cannot apply the `noop` metaparameter to resource-like class declarations.
 
 ## Assigning classes from an ENC
 
