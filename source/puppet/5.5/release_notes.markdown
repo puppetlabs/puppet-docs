@@ -48,7 +48,7 @@ This is a bug-fix release.
 
 - Prior to this release, the data types `Timestamp` and `Timespan` raised errors if time range was specified with `Integer` or `Float` values. These data types now support time ranges specified with these values. [PUP-9310](https://tickets.puppetlabs.com/browse/PUP-9310)
 
-- This release fixes an issue where refreshed resources, such as reboot or some execs, did not create a status event in the event report. If the refresh fails, the failure is also[PUP-9339](https://tickets.puppetlabs.com/browse/PUP-9339)​
+- This release fixes an issue where refreshed resources, such as reboot or some execs, did not create a status event in the event report. If the refresh fails, an event is also created for the failure. [PUP-9339](https://tickets.puppetlabs.com/browse/PUP-9339)​
 
 ## Puppet 5.5.9
 
