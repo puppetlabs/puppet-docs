@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: d1069b760c7327b1552ad1cb4c2eab21083b6e50
 title: 'Man Page: puppet config'
 canonical: "/puppet/latest/man/config.html"
 ---
@@ -46,7 +46,7 @@ sometimes available.</dd>
 <p>The three most commonly used sections are 'main', 'master', and 'agent'.
 'Main' is the default, and is used by all Puppet applications. Other
 sections can override 'main' values for specific applications --- the
-'master' section affects puppet master and puppet cert, and the 'agent'
+'master' section affects Puppet Server, and the 'agent'
 section affects puppet agent.</p>
 
 <p>Less commonly used is the 'user' section, which affects puppet apply. Any
@@ -61,7 +61,7 @@ other section will be treated as the name of a legacy environment
 <dl>
 <dt><code>delete</code> - Delete a Puppet setting.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet config delete [--section SECTION_NAME] (<var>setting</var></p>
+<p>puppet config delete [--section SECTION_NAME] <var>setting</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
@@ -74,7 +74,7 @@ configuration domain. Use the '--section' flags to delete settings from other
 configuration domains.</p></dd>
 <dt><code>print</code> - Examine Puppet's current settings.</dt><dd><p><code>SYNOPSIS</code></p>
 
-<p>puppet config print [--section SECTION_NAME] (all | <var>setting</var> [<var>setting</var> ...]</p>
+<p>puppet config print [--section SECTION_NAME] all | <var>setting</var> [<var>setting</var> ...]</p>
 
 <p><code>DESCRIPTION</code></p>
 

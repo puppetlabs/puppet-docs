@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: d1069b760c7327b1552ad1cb4c2eab21083b6e50
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -118,7 +118,7 @@ _on stdin._ It should exit with a status of 0 if the cert should be autosigned
 and non-zero if the cert should not be autosigned.
 
 If a certificate request is not autosigned, it will persist for review. An admin
-user can use the `puppet cert sign` command to manually sign it, or can delete
+user can use the `puppetserver ca sign` command to manually sign it, or can delete
 the request.
 
 For info on autosign configuration files, see
@@ -387,7 +387,7 @@ specify 'all'. This setting is deprecated, the 'puppet config' command replaces 
 An optional file containing custom attributes to add to certificate signing
 requests (CSRs). You should ensure that this file does not exist on your CA
 puppet master; if it does, unwanted certificate extensions may leak into
-certificates created with the `puppet cert generate` command.
+certificates created with the `puppetserver ca generate` command.
 
 If present, this file must be a YAML hash containing a `custom_attributes` key
 and/or an `extension_requests` key. The value of each key must be a hash, where
@@ -541,9 +541,8 @@ Valid values for this setting are:
 
 A comma-separated list of alternate DNS names for Puppet Server. These are extra
 hostnames (in addition to its `certname`) that the server is allowed to use when
-serving agents. Puppet checks this setting when automatically requesting a
-certificate for Puppet agent or Puppet Server, and when manually generating a
-certificate with `puppet cert generate`. These can be either IP or DNS, and the type
+serving agents. Puppet checks this setting when automatically creating a
+certificate for Puppet agent or Puppet Server. These can be either IP or DNS, and the type
 should be specified and followed with a colon. Untyped inputs will default to DNS.
 
 In order to handle agent requests at a given hostname (like
@@ -556,23 +555,12 @@ names.
 
 **Note:** The list of alternate names is locked in when the server's
 certificate is signed. If you need to change the list later, you can't just
-change this setting; you also need to:
-
-* On the server: Stop Puppet Server.
-* On the CA server: Revoke and clean the server's old certificate. (`puppet cert clean <NAME>`)
-  (Note `puppet cert clean` is deprecated and will be replaced with `puppetserver ca clean`
-  in Puppet 6.)
-* On the server: Delete the old certificate (and any old certificate signing requests)
-  from the [ssldir](https://puppet.com/docs/puppet/latest/dirs_ssldir.html).
-* On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to request a new certificate
-* On the CA server: Sign the certificate request, explicitly allowing alternate names
-  (`puppet cert sign --allow-dns-alt-names <NAME>`). (Note `puppet cert sign` is deprecated
-  and will be replaced with `puppetserver ca sign` in Puppet 6.)
-* On the server: Run `puppet agent -t --ca_server <CA HOSTNAME>` to retrieve the cert.
-* On the server: Start Puppet Server again.
+change this setting; you also need to regenerate the certificate. For more
+information on that process, see the [cert regen docs]
+(https://puppet.com/docs/puppet/latest/ssl_regenerate_certificates.html).
 
 To see all the alternate names your servers are using, log into your CA server
-and run `puppet cert list -a`, then check the output for `(alt names: ...)`.
+and run `puppetserver ca list --all`, then check the output for `(alt names: ...)`.
 Most agent nodes should NOT have alternate names; the only certs that should
 have them are Puppet Server nodes that you want other agents to trust.
 
@@ -819,7 +807,7 @@ This is distinct from the certificate authority's CRL.
 
 ### hostcsr
 
-Where individual hosts store and look for their certificate requests.
+This setting is deprecated.
 
 - *Default*: $ssldir/csr_$certname.pem
 
@@ -899,7 +887,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.0.0 Ruby/2.4.1-p111 (x86_64-darwin17)
+- *Default*: Puppet/6.0.5 Ruby/2.4.1-p111 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -1062,6 +1050,14 @@ Default logging level for messages from Puppet. Allowed values are:
 * crit
 
 - *Default*: notice
+
+### logdest
+
+Where to send log messages. Choose between 'syslog' (the POSIX syslog
+service), 'eventlog' (the Windows Event Log), 'console', or the path to a log
+file.
+
+- *Default*: 
 
 ### logdir
 
@@ -1618,7 +1614,7 @@ restarted. This setting can be a time interval in seconds (30 or 30s), minutes (
 
 The domain which will be queried to find the SRV records of servers to use.
 
-- *Default*: 
+- *Default*: (the system's own domain)
 
 ### ssl_client_ca_auth
 
@@ -1689,6 +1685,20 @@ this file reflects the state discovered through interacting
 with clients.
 
 - *Default*: $statedir/state.yaml
+
+### statettl
+
+How long the Puppet agent should cache when a resource was last checked or synced.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+A value of `0` or `unlimited` will disable cache pruning.
+
+This setting affects the usage of `schedule` resources, as the information
+about when a resource was last checked (and therefore when it needs to be
+checked again) is stored in the `statefile`. The `statettl` needs to be
+large enough to ensure that a resource will not trigger multiple times
+during a schedule due to its entry expiring from the cache.
+
+- *Default*: 32d
 
 ### static_catalogs
 

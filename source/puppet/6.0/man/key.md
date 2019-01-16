@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 5bfb65354358d6544a36b0195b4d703708a4123d
+built_from_commit: d1069b760c7327b1552ad1cb4c2eab21083b6e50
 title: 'Man Page: puppet key'
 canonical: "/puppet/latest/man/key.html"
 ---
@@ -19,7 +19,7 @@ canonical: "/puppet/latest/man/key.html"
 
 <p>This subcommand manages certificate private keys. Keys are created
 automatically by puppet agent and when certificate requests are generated
-with 'puppet certificate generate'; it should not be necessary to use this
+with 'puppet ssl submit_request'; it should not be necessary to use this
 subcommand directly.</p>
 
 <h2 id="OPTIONS">OPTIONS</h2>
