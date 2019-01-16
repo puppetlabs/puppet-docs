@@ -27,12 +27,17 @@ module PuppetReferences
             core: %w(
           agent
           apply
+          cert
           lookup
           master
           module
           resource
         ),
             occasional: %w(
+          ca
+          certificate
+          certificate_request
+          certificate_revocation_list
           config
           describe
           device
@@ -53,6 +58,7 @@ module PuppetReferences
           filebucket
           inspect
           key
+          man
           report
           resource_type
           status
