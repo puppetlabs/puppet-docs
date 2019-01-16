@@ -85,10 +85,12 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 
 #{ categories[:core].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
 
+> Note: The `puppet cert` command is available only in Puppet versions prior to 6.0. For 6.0 and later, use the [`puppetserver cert`command](https://puppet.com/docs/puppet/6.0/puppet_server_ca_cli.html).
+
 Secondary subcommands
 -----
 
-Many or most users will need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
+Many or most users need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
 
 #{ categories[:occasional].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
 
