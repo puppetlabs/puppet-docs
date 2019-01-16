@@ -27,11 +27,10 @@ module PuppetReferences
             core: %w(
           agent
           apply
-          cert
+          lookup
           master
           module
           resource
-          lookup
         ),
             occasional: %w(
           config
@@ -39,18 +38,16 @@ module PuppetReferences
           device
           doc
           epp
+          generate
           help
-          man
           node
           parser
           plugin
+          script
+          ssl
         ),
             weird: %w(
-          ca
           catalog
-          certificate
-          certificate_request
-          certificate_revocation_list
           facts
           file
           filebucket
