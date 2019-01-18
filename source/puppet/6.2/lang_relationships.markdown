@@ -158,7 +158,7 @@ Yumrepo <| |> -> Package <| |>
 
 This example applies all yum repository resources before applying any package resources, which protects any packages that rely on custom repositories.
 
-> Note: Most of the time, you should use relationship metaparameters, not chaining arrows. See the [Puppet Language Style Guide](https://puppet.com/docs/puppet/6.1/style_guide.html) for information on when and how to use chaining arrows.
+> Note: Most of the time, you should use relationship metaparameters, not chaining arrows. See the [Puppet Language Style Guide](./style_guide.html) for information on when and how to use chaining arrows.
 
 ### Capturing resource references for generated resources
 
