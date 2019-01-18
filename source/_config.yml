@@ -747,7 +747,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/6.2-release
+      commit: origin/6.2.0-release
       subdirectory: documentation
     hide: true
   /puppetdb/6.1:
