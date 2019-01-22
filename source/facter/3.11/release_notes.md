@@ -6,6 +6,16 @@ title: "Facter release notes"
 These are the new features, resolved issues, and deprecations in this version of Facter. 
 
 
+## Facter 3.11.7
+
+Released 15 January 2019
+
+This is a bug-fix release that shipped with Puppet Platform 5.5.10
+
+### Bug fixes
+
+- Facter now correctly returns the path to system32 on 64-bit systems when a user has manually created the "sysnative" folder. [FACT-1900](https://tickets.puppetlabs.com/browse/FACT-1900)
+
 ## Facter 3.11.6
 
 Released 1 November 2018
