@@ -28,6 +28,8 @@ This is a bug-fix release
 
 ### Bug fixes
 
+- Puppet commands now fail if Puppet Server is  unable to read the `puppet.conf` file. Only the `help` and `--version` commands work if the `puppet.conf` file is unreadable. [PUP-5575](https://tickets.puppetlabs.com/browse/PUP-5575)
+
 Exceptions encountered during  resource pre-fetch are loggedIf the   agent encounters exceptions when pre-fetching resources for catalog application, it now logs the exceptions and returns a more useful error message. PUP-8962Improved error handling for PNTransformer     When parsing  into structured AST, the  parser produced an error on some empty constructs because the PNTransformer could not resolve them. Now it generates a Nop expression instead. [PUP-9400](https://tickets.puppetlabs.com/browse/PUP-8962)
 
 ## Puppet 5.5.10
