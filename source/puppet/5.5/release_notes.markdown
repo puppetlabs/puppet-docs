@@ -28,6 +28,8 @@ This is a bug-fix release.
 
 ### Bug fixes
 
+- `puppet-agent` packages for Fedora have been updated. As of this release, a `puppet-agent` package for Fedora 29 is available. Updated packages for Fedora 27, which reached end of life in November 2018, are no longer available.
+
 - The `puppet module install` command now downloads only the release metadata it needs to perform dependency resolution, drastically reducing data download and improving installation time. For the `puppetlabs-stdlib` module, this change reduces the data download from 25MB to 68KB, and any module that depends on `stdlib` will benefit when installed. [PUP-9364](https://tickets.puppetlabs.com/browse/PUP-9364)
 
 - When compiling a catalog, Puppet sometimes raised the error "Attempt to redefine entity." This issue has been fixed with an update to the internal logic. [PUP-8002](https://tickets.puppetlabs.com/browse/PUP-8002)

@@ -42,7 +42,7 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 | SUSE Linux Enterprise Server               | 11, 12, 15                                        |                         |
 | Debian                                     | Wheezy (7), Jessie (8), Stretch (9)               |                         |
 | Ubuntu                                     | 14.04, 16.04, 18.04 (since 5.5.2)                 |                         |
-| Fedora                                     | 26, 27, 28                                        |                         |
+| Fedora                                     | 26 (5.5.7 and earlier), 27 (5.5.8 and earlier), 28, 29 (5.5.10 and later)                                        |                         |
 | Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016, 2019                        | 2008, 2012              |
 | Microsoft Windows (Consumer OS)            | 10 Enterprise                                     | 7, 8, 10         |
 | macOS                                      | 10.12 Sierra, 10.13 High Sierra |                         |
