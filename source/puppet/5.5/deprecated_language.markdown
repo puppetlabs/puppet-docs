@@ -14,7 +14,7 @@ These features of the Puppet language are deprecated in this version of Puppet.
 [custom_backend]: ./hiera_custom_backends.html
 [merging]: ./hiera_merging.html
 [module layer]: ./hiera_layers.html#the-module-layer
-[lookup_function]: ./hiera_migrate_functions.html
+[lookup_function]: ./hiera_automatic.html#looking-up-data-with-hiera
 [lookup_command]: ./man/lookup.html
 [backend_3]: {{hiera}}/custom_backends.html
 
