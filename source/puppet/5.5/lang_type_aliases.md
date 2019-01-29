@@ -47,7 +47,7 @@ notice MyModule::MyType == Integer
 
 > **Note:** The internal types `TypeReference` and `TypeAlias` are never values in Puppet code.
 
-## Organizing type alias defintiions
+## Organizing type alias definitions
 
 If you define type aliases inside of manifests that contain other Puppet code, you make it more difficult to find where and how they are defined. It's easier to maintain and diagnose problems with type aliases by placing them into files within their own directory of your Puppet module.
 
