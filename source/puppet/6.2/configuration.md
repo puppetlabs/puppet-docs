@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -241,21 +241,21 @@ The certificate directory.
 Whether certificate revocation checking should be enabled, and what level of
 checking should be performed.
 
-When certificate revocation is enabled Puppet expects the contents of its CRL
-to be one or more PEM encoded CRLs concatenated together. When using a cert
-bundle CRLs for all CAs in the chain of trust must be included in the crl file
-with the first CRL listed being for the root of the chain, the last being for
-the leaf CA.
+When certificate revocation is enabled, Puppet expects the contents of its CRL
+to be one or more PEM-encoded CRLs concatenated together. When using a cert
+bundle, CRLs for all CAs in the chain of trust must be included in the crl file.
+The chain should be ordered from least to most authoritative, with the first CRL
+listed being for the root of the chain and the last being for the leaf CA.
 
-When certificate_revocation is set to 'true' or 'chain', Puppet will ensure
+When certificate_revocation is set to 'true' or 'chain', Puppet ensures
 that each CA in the chain of trust has not been revoked by its issuing CA.
 
-When certificate_revocation is set to 'leaf', Puppet will verify certs against
-the issuing CA's revocation list but not verify the revocation status of the
-issuing CA or any CA above it within the chain of trust.
+When certificate_revocation is set to 'leaf', Puppet verifies certs against
+the issuing CA's revocation list, but it does not verify the revocation status
+of the issuing CA or any CA above it within the chain of trust.
 
-When certificate_revocation is set to 'false', Puppet will disable all
-certificate revocation checking and will not attempt to download the CRL.
+When certificate_revocation is set to 'false', Puppet disables all
+certificate revocation checking and does not attempt to download the CRL.
 
 - *Default*: chain
 
@@ -724,6 +724,15 @@ class, or definition other than in the site manifest.
 
 - *Default*: false
 
+### func3x_check
+
+Causes validation of loaded legacy Ruby functions (3x API) to raise errors about illegal constructs that
+could cause harm or that simply does not work. This flag is on by default. This flag is made available
+so that the validation can be turned off in case the method of validation is faulty - if encountered, please
+file a bug report.
+
+- *Default*: true
+
 ### future_features
 
 Whether or not to enable all features currently being developed for future
@@ -887,7 +896,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.1.0 Ruby/2.4.1-p111 (x86_64-darwin17)
+- *Default*: Puppet/6.2.0 Ruby/2.4.1-p111 (x86_64-darwin17)
 
 ### ignoremissingtypes
 

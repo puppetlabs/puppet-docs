@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
 title: 'Man Page: puppet device'
 canonical: "/puppet/latest/man/device.html"
 ---
@@ -85,7 +85,10 @@ and it is enabled by default, with a value of 120 (seconds).  This causes
 certificate request.  This is useful for the initial setup of a target.
 You can turn off waiting for certificates by specifying a time of 0.</p></dd>
 <dt>--libdir</dt><dd><p>Override the per-device libdir with a local directory. Specifying a libdir also
-disables pluginsync. This is useful for testing.</p></dd>
+disables pluginsync. This is useful for testing.</p>
+
+<p>A path ending with '.jsonl' will receive structured output in JSON Lines
+format.</p></dd>
 <dt class="flush">--apply</dt><dd><p>Apply a manifest against a remote target. Target must be specified.</p></dd>
 <dt class="flush">--facts</dt><dd><p>Displays the facts of a remote target. Target must be specified.</p></dd>
 <dt>--resource</dt><dd><p>Displays a resource state as Puppet code, roughly equivalent to

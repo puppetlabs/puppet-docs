@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
 
 file
 -----
@@ -585,7 +585,6 @@ other secret data, which might otherwise be included in Puppet reports or
 other insecure outputs.  If the global `show_diff` setting
 is false, then no diffs will be shown even if this parameter is true.
 
-
 Default: `true`
 
 Allowed values:
@@ -802,4 +801,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800

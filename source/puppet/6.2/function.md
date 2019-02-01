@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -4768,4 +4768,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800

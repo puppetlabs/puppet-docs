@@ -5,7 +5,7 @@ title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
 
 package
 -----
@@ -1470,4 +1470,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800

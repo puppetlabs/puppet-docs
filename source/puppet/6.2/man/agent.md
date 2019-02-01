@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
 title: 'Man Page: puppet agent'
 canonical: "/puppet/latest/man/agent.html"
 ---
@@ -152,7 +152,10 @@ Otherwise, it defaults to 'syslog' on POSIX systems and 'eventlog' on Windows.</
 <p>A path ending with '.json' will receive structured output in JSON format. The
 log file will not have an ending ']' automatically written to it due to the
 appending nature of logging. It must be appended manually to make the content
-valid JSON.</p></dd>
+valid JSON.</p>
+
+<p>A path ending with '.jsonl' will receive structured output in JSON Lines
+format.</p></dd>
 <dt>--masterport</dt><dd><p>The port on which to contact the puppet master.
 (This is a Puppet setting, and can go in puppet.conf.)</p></dd>
 <dt class="flush">--noop</dt><dd><p>Use 'noop' mode where the daemon runs in a no-op or dry-run mode. This

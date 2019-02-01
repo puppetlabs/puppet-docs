@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
 title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
 
 user
 -----
@@ -307,6 +307,9 @@ user if `ensure => present` and the user does not exist at the time of the Puppe
 If the home directory is then deleted manually, Puppet will not recreate it on the next
 run.
 
+Note that on Windows, this manages creation/deletion of the user profile instead of the
+home directory. The user profile is stored in the `C:\Users\<username>` directory.
+
 Default: `false`
 
 Allowed values:
@@ -599,7 +602,7 @@ security identifier (SID).
 
 User management for AIX.
 
-* Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/usr/sbin/lsgroup`, `/bin/chpasswd`
+* Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/bin/chpasswd`
 * Confined to: `operatingsystem == aix`
 * Default for `operatingsystem` == `aix`.
 * Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`.
@@ -865,4 +868,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800

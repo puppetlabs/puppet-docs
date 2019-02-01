@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
 
 exec
 -----
@@ -262,8 +262,8 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The expected exit code(s).  An error will be returned if the
-executed command has some other exit code.  Defaults to 0. Can be
-specified as an array of acceptable exit codes or a single value.
+executed command has some other exit code. Can be specified as an array
+of acceptable exit codes or a single value.
 
 On POSIX systems, exit codes are always integers between 0 and 255.
 
@@ -346,21 +346,20 @@ This parameter can also take an array of commands. For example:
 
     unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
-This `exec` would only run if every command in the array has a
+This `exec` runs only if every command in the array has a
 non-zero exit code.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-user">user</h4>
 
-The user to run the command as.  Note that if you
-use this then any error output is not currently captured.  This
-is because of a bug within Ruby.  If you are using Puppet to
-create this user, the exec will automatically require the user,
-as long as it is specified by name.
+Note that if you use this attribute, any error output is not captured
+due to a bug within Ruby. If you use Puppet to create this user, the
+exec automatically requires the user, as long as it is specified by
+name.
 
-Please note that the $HOME environment variable is not automatically set
-when using this attribute.
+The $HOME environment variable is not automatically set when using
+this attribute.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -422,4 +421,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800

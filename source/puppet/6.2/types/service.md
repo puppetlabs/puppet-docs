@@ -156,8 +156,7 @@ Allowed values:
 <h4 id="service-attribute-hasstatus">hasstatus</h4>
 
 Declare whether the service's init script has a functional status
-command; defaults to `true`. This attribute's default value changed in
-Puppet 2.7.0.
+command. This attribute's default value changed in Puppet 2.7.0.
 
 The init script's status command must return 0 if the service is
 running and a nonzero value otherwise. Ideally, these exit codes
@@ -807,4 +806,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2018-12-20 12:41:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
