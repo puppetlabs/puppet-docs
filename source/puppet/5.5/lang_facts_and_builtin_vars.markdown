@@ -206,7 +206,7 @@ The `$server_facts` variable provides a hash of server-side facts that cannot be
 
 For example, the Puppet master sets the global `$::environment` variable to contain the name of the node's environment. However, if a node provides a fact with the name `environment`, that fact's value overrides the server-set `environment` fact. The same happens with other server-set global variables, like `$::servername` and `$::serverip`. As a result, modules couldn't reliably use these variables for whatever their intended purpose was.
 
-The `$server_facts` variable is opt-in. Its `trusted_server_facts` setting is set to false by default. If you set `trusted_server_facts` to `true`, the `$server_facts` variable will be populated, and will ensure that you get trusted server facts.
+The `$server_facts` variable is opt-in. Its `trusted_server_facts` setting is deprecated and setting it has no effect. The feature this setting previously enabled is now always on.
 
 In addition, a warning will be issued any time a node parameter is overwritten.
 
