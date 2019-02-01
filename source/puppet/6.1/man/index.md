@@ -16,26 +16,31 @@ These subcommands form the core of Puppet's tool set, and every user should unde
 
 - [puppet agent](./agent.html)
 - [puppet apply](./apply.html)
+- [puppet cert](./cert.html)
+- [puppet lookup](./lookup.html)
 - [puppet module](./module.html)
 - [puppet resource](./resource.html)
-- [puppet lookup](./lookup.html)
 
+
+> Note: The `puppet cert` command is available only in Puppet versions prior to 6.0. For 6.0 and later, use the [`puppetserver cert`command](https://puppet.com/docs/puppet/6.0/puppet_server_ca_cli.html).
 
 Secondary subcommands
 -----
 
-Many or most users will need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
+Many or most users need to use these subcommands at some point, but they aren't needed for daily use the way the core tools are.
 
 - [puppet config](./config.html)
 - [puppet describe](./describe.html)
 - [puppet device](./device.html)
 - [puppet doc](./doc.html)
 - [puppet epp](./epp.html)
+- [puppet generate](./generate.html)
 - [puppet help](./help.html)
-- [puppet man](./man.html)
 - [puppet node](./node.html)
 - [puppet parser](./parser.html)
 - [puppet plugin](./plugin.html)
+- [puppet script](./script.html)
+- [puppet ssl](./ssl.html)
 
 
 Niche subcommands
@@ -47,20 +52,9 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 - [puppet facts](./facts.html)
 - [puppet filebucket](./filebucket.html)
 - [puppet key](./key.html)
+- [puppet man](./man.html)
 - [puppet report](./report.html)
 - [puppet status](./status.html)
 
 
-## Puppet Enterprise-specific subcommands
-
-Puppet Enterprise (PE) has some unique subcommands, such as `puppet infrastructure`. For reference information about these commands, use the `puppet help` command, such as `puppet help infrastructure`. For usage information, see the [Puppet Enterprise documentation](https://puppet.com/docs/pe/).
-
-Unknown or new subcommands
------
-
-These subcommands have not yet been added to any of the categories above.
-
-- [puppet ssl](./ssl.html)
-- [puppet script](./script.html)
-- [puppet generate](./generate.html)
 
