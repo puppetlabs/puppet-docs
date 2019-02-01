@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: ed54e99786708fbbd29c6d7331ab47d8d1549601
+built_from_commit: 1cc5e7b951992033c5299b995e464ca11693e4fa
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/facter/latest/core_facts.html"
@@ -622,10 +622,10 @@ Return information about the host operating system.
 
 **Resolution:**
 
-* Linux: use the `lsb_release` utility and parse the contents of release files in `/etc` to retrieve the operating system information.
-* OSX: use the `sw_vers` utility to retrieve the operating system information.
-* Solaris: parse the contents of `/etc/release` to retrieve the operating system information.
-* Windows: use WMI to retrieve the operating system information.
+* Linux: use the `lsb_release` utility and parse the contents of release files in `/etc` to retrieve the OS information.
+* OSX: use the `sw_vers` utility to retrieve the OS information.
+* Solaris: parse the contents of `/etc/release` to retrieve the OS information.
+* Windows: use WMI to retrieve the OS information.
 
 
 ([↑ Back to top](#page-nav))
@@ -1463,8 +1463,8 @@ Return the operating system's hardware model.
 
 **Resolution:**
 
-* POSIX platforms: use the `uname` function to retrieve the operating system hardware model.
-* Windows: use the `GetNativeSystemInfo` function to retrieve the operating system hardware model.
+* POSIX platforms: use the `uname` function to retrieve the OS hardware model.
+* Windows: use the `GetNativeSystemInfo` function to retrieve the OS hardware model.
 
 
 ([↑ Back to top](#page-nav))
@@ -2224,7 +2224,7 @@ Return the name of the operating system.
 **Resolution:**
 
 * All platforms: default to the kernel name.
-* Linux: use various release files in `/etc` to retrieve the operating system name.
+* Linux: use various release files in `/etc` to retrieve the OS name.
 
 
 ([↑ Back to top](#page-nav))
@@ -2243,9 +2243,9 @@ Return the major release of the operating system.
 **Resolution:**
 
 * All platforms: default to the major version of the kernel release.
-* Linux: parse the contents of release files in `/etc` to retrieve the operating system major release.
-* Solaris: parse the contents of `/etc/release` to retrieve the operating system major release.
-* Windows: use WMI to retrieve the operating system major release.
+* Linux: parse the contents of release files in `/etc` to retrieve the OS major release.
+* Solaris: parse the contents of `/etc/release` to retrieve the OS major release.
+* Windows: use WMI to retrieve the OS major release.
 
 **Caveats:**
 
@@ -2267,9 +2267,9 @@ Return the release of the operating system.
 **Resolution:**
 
 * All platforms: default to the kernel release.
-* Linux: parse the contents of release files in `/etc` to retrieve the operating system release.
-* Solaris: parse the contents of `/etc/release` to retrieve the operating system release.
-* Windows: use WMI to retrieve the operating system release.
+* Linux: parse the contents of release files in `/etc` to retrieve the OS release.
+* Solaris: parse the contents of `/etc/release` to retrieve the OS release.
+* Windows: use WMI to retrieve the OS release.
 
 
 ([↑ Back to top](#page-nav))
@@ -2283,6 +2283,7 @@ This legacy fact is hidden by default in Facter's command-line output.
 **Purpose:**
 
 Return the family of the operating system.
+
 
 **Resolution:**
 
