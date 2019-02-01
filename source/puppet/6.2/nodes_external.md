@@ -58,7 +58,7 @@ To tell Puppet Server to use an ENC, you need to set two [settings](./config_abo
 
 ## ENC output format
 
-ENCs must return either a [YAML](http://www.yaml.org) hash or nothing. This hash can contain `classes`, `parameters`, and `environment` keys, and must contain at least either `classes` or `parameters`. ENCs should exit with an exit code of 0 when functioning normally, and can exit with a non-zero exit code if you want Puppet to behave as though the requested node was not found.
+ENCs must return either a [YAML](http://www.yaml.org) hash or nothing to standard out. This hash can contain `classes`, `parameters`, and `environment` keys, and must contain at least either `classes` or `parameters`. ENCs should exit with an exit code of 0 when functioning normally, and can exit with a non-zero exit code if you want Puppet to behave as though the requested node was not found.
 
 If an ENC returns nothing or exits with a non-zero exit code, the catalog compilation fails with a "could not find node" error, and the node is unable to retrieve configurations.
 
