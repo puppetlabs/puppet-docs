@@ -408,8 +408,8 @@ Allowed values:
 _(**Property:** This attribute represents concrete state on the target system.)_
 
 The expected exit code(s).  An error will be returned if the
-executed command has some other exit code.  Defaults to 0. Can be
-specified as an array of acceptable exit codes or a single value.
+executed command has some other exit code. Can be specified as an array
+of acceptable exit codes or a single value.
 
 On POSIX systems, exit codes are always integers between 0 and 255.
 
@@ -492,21 +492,20 @@ This parameter can also take an array of commands. For example:
 
     unless => ['test -f /tmp/file1', 'test -f /tmp/file2'],
 
-This `exec` would only run if every command in the array has a
+This `exec` runs only if every command in the array has a
 non-zero exit code.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
 <h4 id="exec-attribute-user">user</h4>
 
-The user to run the command as.  Note that if you
-use this then any error output is not currently captured.  This
-is because of a bug within Ruby.  If you are using Puppet to
-create this user, the exec will automatically require the user,
-as long as it is specified by name.
+Note that if you use this attribute, any error output is not captured
+due to a bug within Ruby. If you use Puppet to create this user, the
+exec automatically requires the user, as long as it is specified by
+name.
 
-Please note that the $HOME environment variable is not automatically set
-when using this attribute.
+The $HOME environment variable is not automatically set when using
+this attribute.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -1143,7 +1142,6 @@ other secret data, which might otherwise be included in Puppet reports or
 other insecure outputs.  If the global `show_diff` setting
 is false, then no diffs will be shown even if this parameter is true.
 
-
 Default: `true`
 
 Allowed values:
@@ -1358,6 +1356,7 @@ Provider support:
   </tbody>
 </table>
 
+
 filebucket
 -----
 
@@ -1507,7 +1506,7 @@ Allowed values:
 
 <h4 id="group-attribute-allowdupe">allowdupe</h4>
 
-Whether to allow duplicate GIDs. Defaults to `false`.
+Whether to allow duplicate GIDs.
 
 Default: `false`
 
@@ -1824,7 +1823,6 @@ Allowed values:
 * `false`
 
 ([↑ Back to notify attributes](#notify-attributes))
-
 
 package
 -----
@@ -3287,6 +3285,7 @@ Provider support:
   </tbody>
 </table>
 
+
 resources
 -----
 
@@ -3357,6 +3356,8 @@ Accepts integers, integer strings, and arrays of integers or integer strings.
 To specify a range of uids, consider using the range() function from stdlib.
 
 ([↑ Back to resources attributes](#resources-attributes))
+
+
 
 schedule
 -----
@@ -3556,6 +3557,7 @@ at 2 AM on Saturday.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
+
 service
 -----
 
@@ -3705,8 +3707,7 @@ Allowed values:
 <h4 id="service-attribute-hasstatus">hasstatus</h4>
 
 Declare whether the service's init script has a functional status
-command; defaults to `true`. This attribute's default value changed in
-Puppet 2.7.0.
+command. This attribute's default value changed in Puppet 2.7.0.
 
 The init script's status command must return 0 if the service is
 running and a nonzero value otherwise. Ideally, these exit codes
@@ -4354,6 +4355,7 @@ Provider support:
   </tbody>
 </table>
 
+
 stage
 -----
 
@@ -4543,6 +4545,7 @@ Allowed values:
 * `ctime`
 
 ([↑ Back to tidy attributes](#tidy-attributes))
+
 
 user
 -----
@@ -4844,6 +4847,9 @@ user if `ensure => present` and the user does not exist at the time of the Puppe
 If the home directory is then deleted manually, Puppet will not recreate it on the next
 run.
 
+Note that on Windows, this manages creation/deletion of the user profile instead of the
+home directory. The user profile is stored in the `C:\Users\<username>` directory.
+
 Default: `false`
 
 Allowed values:
@@ -5136,7 +5142,7 @@ security identifier (SID).
 
 User management for AIX.
 
-* Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/usr/sbin/lsgroup`, `/bin/chpasswd`
+* Required binaries: `/usr/sbin/lsuser`, `/usr/bin/mkuser`, `/usr/sbin/rmuser`, `/usr/bin/chuser`, `/bin/chpasswd`
 * Confined to: `operatingsystem == aix`
 * Default for `operatingsystem` == `aix`.
 * Supported features: `manages_aix_lam`, `manages_expiry`, `manages_homedir`, `manages_password_age`, `manages_passwords`, `manages_shell`.
