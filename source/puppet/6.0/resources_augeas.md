@@ -31,7 +31,7 @@ with Augeas to the new version.
 Assuming you want to work with Augeas, this is a description of how
 to perform Augeas changes using Puppet. Augeas itself is included in the puppet-agent package, so you don't need to install any extra packages to use it. The command-line utility `augtool` will be used to demonstrate things here, but it is not required to use Augeas within Puppet. On most Linux distributions, `augtool` can be found in a separate package.
 
-The basic usage for the Augeas resource type is in the [resource type reference](./types/augeas.html).
+The basic usage for the Augeas resource type is in the `puppetlabs-augeas_core` [resource type module](https://forge.puppet.com/puppetlabs/augeas_core).
 
 The somewhat more important, and unfortunately complicated, part is
 figuring out what the tree for a file looks like so you can
