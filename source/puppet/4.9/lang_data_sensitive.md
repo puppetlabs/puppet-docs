@@ -10,6 +10,8 @@ title: "Language: Data types: Sensitive"
 
 Sensitive types in the Puppet language are strings marked as sensitive. The value is displayed in plain text in the catalog and manifest, but is redacted from logs and reports. Because the value is currently maintained as plain text, you should only use it as an aid to ensure that sensitive values are not inadvertently disclosed.
 
+> PuppetDB versions earlier than 4.4.0 have a known issue storing the sensitive data type. Make sure you are using a PuppetDB versions 4.4.0 or later with sensitive types.
+
 ## Syntax
 
 The Sensitive type can be written as `Sensitive.new(val)`, or the shortform `Sensitive(val)`
