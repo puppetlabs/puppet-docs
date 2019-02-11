@@ -74,8 +74,6 @@ The `ssldir` has the following structure:
     * `ca_key.pem` --- The CA's private key. Tied for most security-critical file in the entire Puppet certificate infrastructure. Mode: 0640. Setting: [`cakey`][cakey].
     * `ca_pub.pem` --- The CA's public key. Mode: 0644. Setting: [`capub`][capub].
     * `inventory.txt` --- A list of all certificates the CA has signed, along with their serial numbers and validity periods. Mode: 0644. Setting: [`cert_inventory`][cert_inventory].
-    * `private` _(directory)_ --- Contains only one file. Mode: 0750. Setting: [`caprivatedir`][caprivatedir].
-        * `ca.pass` --- The (randomly generated) password to the CA's private key. Tied for most security-critical file in the entire Puppet certificate infrastructure. Mode: 0640. Setting: [`capass`][capass].
     * `requests` _(directory)_ --- Contains certificate signing requests (CSRs) that were received but have not yet been signed. The CA deletes CSRs from this directory after signing them. Mode: 0755. Setting: [`csrdir`][csrdir].
         * `<name>.pem` --- Individual CSR files.
     * `serial` --- A file containing the serial number for the next certificate the CA will sign. This is incremented with each new certificate signed. Mode: 0644. Setting: [`serial`][serial].
