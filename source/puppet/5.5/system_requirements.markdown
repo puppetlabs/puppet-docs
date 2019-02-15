@@ -45,9 +45,11 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 | Fedora                                     | 26 (5.5.7 and earlier), 27 (5.5.8 and earlier), 28, 29 (5.5.10 and later)                                        |                         |
 | Microsoft Windows (Server OS)              | 2008R2, 2012R2, 2016, 2019                        | 2008, 2012              |
 | Microsoft Windows (Consumer OS)            | 10 Enterprise                                     | 7, 8, 10         |
-| macOS                                      | 10.12 Sierra, 10.13 High Sierra |                         |
+| macOS                                      | 10.12 Sierra, 10.13 High Sierra, 10.14 Mojave |                         |
 
 Red Hat Enterprise Linux derivatives include Amazon Linux v1 (using RHEL 6 packages) and v2 (using RHEL 7 packages).
+
+On macOS 10.14 Mojave, you must grant Puppet Full Disk Access to be able to manage users and groups. To give Puppet access on a machine running macOS 10.14, go to `System Preferences > Security & Privacy > Privacy > Full Disk Access`, and add the path to the Puppet executable.
 
 ### Platforms without packages
 
