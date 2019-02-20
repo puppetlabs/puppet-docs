@@ -28,7 +28,18 @@ This is a bug-fix release
 
 ### Bug fixes
 
-- If you passed an invalid path to `--logdest` option, Puppet silently ignored it. Now, if you give a `--logdest` location that Puppet cannot find or write to, the run fails with an error. [PUP-6571](https://tickets.puppetlabs.com/browse/PUP-6571)
+- This release adds a `puppet-agent` package for macOS 10.14 Mojave. On macOS 10.14 Mojave, you must grant Puppet Full Disk Access to be able to manage users and groups. To give Puppet access on a machine running  10.14, go to `System Preferences > Security & Privacy > Privacy > Full Disk Access`, and add the path to the Puppet executable. Alternatively, set up automatic access using Privacy Preferences Control Profiles and a Mobile Device Management Server. [PA-2226](https://tickets.puppetlabs.com/browse/PA-2226), [PA-2227](https://tickets.puppetlabs.com/browse/PA-2227)
+
+- This release fixes an issue where `call()` function could call only functions that existed in Puppet core; custom functions could not be called. Now any function in the environment is visible and can be called. [PUP-9477](https://tickets.puppetlabs.com/browse/PUP-9477)
+
+
+- Previously, if you used the type `Optional` without any arguments, it could result in an internal error. This is now fixed. On its own, `Optional`, means the same as `Any`. You should always supply a type argument with the desired type if the value is not `undef`. [PUP-9467](https://tickets.puppetlabs.com/browse/PUP-9467)
+
+- Prior to this release, agent runs provided the same output for both intentional and corrective changes. Now corrective changes are now explicitly called out in the logs as corrective. [PUP-9324](https://tickets.puppetlabs.com/browse/PUP-9324)
+                            
+- The upstart provider was being evaluated when loaded, causing issues with testing and availability during transactions. This  has been fixed so that the provider is evaluated only when provider suitability is being checked. [PUP-9336](https://tickets.puppetlabs.com/browse/PUP-9336)
+ 
+ - If you passed an invalid path to `--logdest` option, Puppet silently ignored it. Now, if you give a `--logdest` location that Puppet cannot find or write to, the run fails with an error. [PUP-6571](https://tickets.puppetlabs.com/browse/PUP-6571)
 
      
 - Heredoc expressions with interpolation using an access expression such as `$facts['somefact']` sometimes failed with a syntax error. This error was related to the relative location of the heredoc and surrounding whitespace and is now resolved. [PUP-9303](https://tickets.puppetlabs.com/browse/PUP-9303)

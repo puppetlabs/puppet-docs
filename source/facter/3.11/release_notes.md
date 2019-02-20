@@ -6,6 +6,12 @@ title: "Facter release notes"
 These are the new features, resolved issues, and deprecations in this version of Facter. 
 
 
+## Facter 3.11.8
+
+Released 16 April 2019
+
+Previously, Facter incorrectly reported operating system facts (such as `os.name` and `os.release`) on Ubuntu systems that did not have the `lsb_release` executable. Operating system facts are now resolved without relying on `lsb_release`. FACT-1899 
+
 ## Facter 3.11.7
 
 Released 15 January 2019
