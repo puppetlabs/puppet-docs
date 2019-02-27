@@ -10,17 +10,19 @@ toc: columns
 
 ## About resource types
 
-### Built-in, repackaged, and custom types
+### Built-in types and custom types
 
-This is the documentation for the _built-in_ resource types and providers. Additional resource types are distributed in Puppet modules, including some types that were built-in before Puppet 6.0. These are now repackaged from modules into Puppet agent.
+This is the documentation for Puppet's built-in resource types and providers. Additional resource types are distributed in Puppet modules.
 
 You can find and install modules by browsing the
-[Puppet Forge](http://forge.puppetlabs.com). See each module's documentation for
-information on how to use its custom resource types. For more information about creating custom types, see [Custom resources](/docs/puppet/latest/custom_resources.html). 
+[Puppet Forge](http://forge.puppet.com). See each module's documentation for
+information on how to use its custom resource types. For more information about creating custom types, see [Custom resources](/docs/puppet/latest/custom_resources.html).
+
+> As of Puppet 6.0, some resource types were removed from Puppet and repackaged as individual modules. These supported type modules are still included in the `puppet-agent` package, so you don't have to download them from the Forge. See the complete list of affected types in the [supported type modules](#supported-type-modules) section.
 
 ### Declaring resources
 
-To manage resources on a target system, you should declare them in Puppet
+To manage resources on a target system, declare them in Puppet
 manifests. For more details, see
 [the resources page of the Puppet language reference.](/docs/puppet/latest/lang_resources.html)
 
@@ -81,14 +83,14 @@ on `file` resources).
 _Providers_ implement the same resource type on different kinds of systems.
 They usually do this by calling out to external commands.
 
-Although Puppet will automatically select an appropriate default provider, you
+Although Puppet automatically selects an appropriate default provider, you
 can override the default with the `provider` attribute. (For example, `package`
 resources on Red Hat systems default to the `yum` provider, but you can specify
 `provider => gem` to install Ruby libraries with the `gem` command.)
 
 Providers often specify binaries that they require. Fully qualified binary
 paths indicate that the binary must exist at that specific path, and
-unqualified paths indicate that Puppet will search for the binary using the
+unqualified paths indicate that Puppet searches for the binary using the
 shell path.
 
 ### Features
@@ -106,7 +108,6 @@ package.
 
 Resource types define the set of features they can use, and providers can
 declare which features they provide.
-
 
 ## Puppet 6.0 type changes
 
@@ -153,6 +154,7 @@ The following types were deprecated with Puppet 6.0.0. They are available in mod
 ## Puppet core types
 
 The following types are located in the core Puppet code base.
+
 
 exec
 -----
