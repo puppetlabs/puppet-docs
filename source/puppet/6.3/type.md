@@ -108,12 +108,15 @@ Resource types define the set of features they can use, and providers can
 declare which features they provide.
 
 
-Supported types in modules
----------
+## Puppet 6.0 type changes
 
-The following types are included in supported modules on the Forge. They are repackaged back into Puppet agent, so you do not have to install them separately. See the module readme for information.
+In Puppet 6.0, we removed some of Puppet's built-in types and moved them into individual modules.
 
-- [`augeas`](https://forge.puppet.com/puppetlabs/augeas_core) 
+### Supported type modules in `puppet-agent`
+
+The following types are included in supported modules on the Forge. However, they are also included in the `puppet-agent` package, so you do not have to install them separately. See each module's README for detailed information about that type.
+
+- [`augeas`](https://forge.puppet.com/puppetlabs/augeas_core)
 - [`cron`](https://forge.puppet.com/puppetlabs/cron_core)
 - [`host`](https://forge.puppet.com/puppetlabs/host_core)
 - [`mount`](https://forge.puppet.com/puppetlabs/mount_core)
@@ -127,10 +130,7 @@ The following types are included in supported modules on the Forge. They are rep
 - [`zone`](https://forge.puppet.com/puppetlabs/zone_core)
 - [`zpool`](https://forge.puppet.com/puppetlabs/zfs_core)
 
-
-
-Types not repackaged into Puppet agent
------------
+### Type modules available on the Forge
 
 The following types are contained in modules that are maintained, but are not repackaged into Puppet agent. If you need to use them, you must install the modules separately. 
 
@@ -138,10 +138,9 @@ The following types are contained in modules that are maintained, but are not re
 - [`mailalias`](https://forge.puppet.com/puppetlabs/mailalias_core)
 - [`maillist`](https://forge.puppet.com/puppetlabs/maillist_core)
 
-Deprecated types
--------------
+### Deprecated types
 
-The following types were deprecated with Puppet 6.0.0. They are included in modules, but are not updated. If you need to use them, you must install the modules separately.
+The following types were deprecated with Puppet 6.0.0. They are available in modules, but are not updated. If you need to use them, you must install the modules separately.
 
 - [`computer`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [`interface`](https://forge.puppet.com/puppetlabs/cisco_ios)
@@ -151,7 +150,9 @@ The following types were deprecated with Puppet 6.0.0. They are included in modu
 - [`router`](https://forge.puppet.com/puppetlabs/cisco_ios)
 - [`vlan`](https://forge.puppet.com/puppetlabs/cisco_ios)
 
-The following types continue to be located in the core Puppet code base.
+## Puppet core types
+
+The following types are located in the core Puppet code base.
 
 exec
 -----
