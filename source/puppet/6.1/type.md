@@ -18,7 +18,8 @@ You can find and install modules by browsing the
 [Puppet Forge](http://forge.puppet.com). See each module's documentation for
 information on how to use its custom resource types. For more information about creating custom types, see [Custom resources](/docs/puppet/latest/custom_resources.html).
 
-> As of Puppet 6.0, some resource types were removed from Puppet and repackaged as individual modules. These supported type modules are still included in the `puppet-agent` package, so you don't have to download them from the Forge. See the complete list of affected types in the [supported type modules](#supported-type-modules) section.
+> As of Puppet 6.0, some resource types were removed from Puppet and repackaged as individual modules. These supported type modules are still included in the `puppet-agent` package, so you don't have to download them from the Forge. See the complete list of affected types in the [supported type modules](#supported-type-modules-in-puppet-agent) section.
+
 
 ### Declaring resources
 
