@@ -101,13 +101,13 @@ declare which features they provide.
 
 ## Puppet 6.0 type changes
 
-In Puppet 6.0, we removed many types from Puppet and moved them into individual modules.
+In Puppet 6.0, we removed some of Puppet's built-in types and moved them into individual modules.
 
-### Supported types in modules
+### Supported type modules in `puppet-agent`
 
-The following types are included in supported modules on the Forge. They are repackaged back into the `puppet-agent` package, so you do not have to install them separately. See each module's README for detailed information about that type.
+The following types are included in supported modules on the Forge. However, they are also included in the `puppet-agent` package, so you do not have to install them separately. See each module's README for detailed information about that type.
 
-- [`augeas`](https://forge.puppet.com/puppetlabs/augeas_core) 
+- [`augeas`](https://forge.puppet.com/puppetlabs/augeas_core)
 - [`cron`](https://forge.puppet.com/puppetlabs/cron_core)
 - [`host`](https://forge.puppet.com/puppetlabs/host_core)
 - [`mount`](https://forge.puppet.com/puppetlabs/mount_core)
@@ -121,7 +121,7 @@ The following types are included in supported modules on the Forge. They are rep
 - [`zone`](https://forge.puppet.com/puppetlabs/zone_core)
 - [`zpool`](https://forge.puppet.com/puppetlabs/zfs_core)
 
-### Types not repackaged into Puppet agent
+### Type modules available on the Forge
 
 The following types are contained in modules that are maintained, but are not repackaged into Puppet agent. If you need to use them, you must install the modules separately. 
 
@@ -131,7 +131,7 @@ The following types are contained in modules that are maintained, but are not re
 
 ### Deprecated types
 
-The following types were deprecated with Puppet 6.0.0. They are included in modules, but are not updated. If you need to use them, you must install the modules separately.
+The following types were deprecated with Puppet 6.0.0. They are available in modules, but are not updated. If you need to use them, you must install the modules separately.
 
 - [`computer`](https://forge.puppet.com/puppetlabs/macdslocal_core)
 - [`interface`](https://forge.puppet.com/puppetlabs/cisco_ios)
@@ -144,3 +144,4 @@ The following types were deprecated with Puppet 6.0.0. They are included in modu
 ## Puppet core types
 
 The following types are located in the core Puppet code base.
+
