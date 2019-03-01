@@ -593,14 +593,13 @@ documents:
   /puppetserver/6.3:
     doc: puppetserver
     version: "6.3"
-    nav: /puppet/6.3/_puppet_toc.html
+    nav: /puppet/6.4/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
       commit: origin/master
       subdirectory: documentation
     my_versions:
       puppet: "6.4"
-      facter: "3.13"
     hide: true
 
   /puppetserver/6.2:
