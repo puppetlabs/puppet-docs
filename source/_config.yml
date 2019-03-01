@@ -323,7 +323,6 @@ documents:
     version: "6.4"
     nav: ./_puppet_toc.html
     my_versions:
-      facter: "3.13"
       puppetserver: "6.3"
     hide: true
   /puppet/6.3:
@@ -769,13 +768,13 @@ documents:
       commit: bbc73f6da0a17eac4fbf84758b477ec9dd4cebb2
       subdirectory: documentation
 
-  /puppetdb/6.3:
+  /puppetdb/6.4:
     doc: puppetdb
-    version: "6.3"
+    version: "6.4"
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/6.3.0-release
+      commit: origin/6.4.0-release
       subdirectory: documentation
     hide: true
   /puppetdb/6.2:
