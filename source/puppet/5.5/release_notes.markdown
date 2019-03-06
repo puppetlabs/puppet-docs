@@ -28,6 +28,10 @@ This is a bug-fix release
 
 ### Bug fixes
 
+- For the `filebucket` type, `server` and `port` no longer have explicit default values in the type definition. If `server` is not set, it defaults to the first entry in `server_list` if set; otherwise, it defaults to `server`. If `port` is not set, it defaults to the port in the first entry of `server_list` if set; otherwise, it defaults to `masterport`. [PUP-9025](https://tickets.puppetlabs.com/browse/PUP-9025)
+
+- This release modifies the `pxp-agent` service to kill all `pxp-agent` processes when the service is restarted, rather than only the current process. [PCP-833](https://tickets.puppetlabs.com/browse/PCP-833)
+ 
 - This release adds a `puppet-agent` package for macOS 10.14 Mojave. On macOS 10.14 Mojave, you must grant Puppet Full Disk Access to be able to manage users and groups. To give Puppet access on a machine running  10.14, go to `System Preferences > Security & Privacy > Privacy > Full Disk Access`, and add the path to the Puppet executable. Alternatively, set up automatic access using Privacy Preferences Control Profiles and a Mobile Device Management Server. [PA-2226](https://tickets.puppetlabs.com/browse/PA-2226), [PA-2227](https://tickets.puppetlabs.com/browse/PA-2227)
 
 - This release fixes an issue where `call()` function could call only functions that existed in Puppet core; custom functions could not be called. Now any function in the environment is visible and can be called. [PUP-9477](https://tickets.puppetlabs.com/browse/PUP-9477)
