@@ -239,7 +239,7 @@ mymodule/tests/init.pp
 
 > **Note:** The `tests` directory is deprecated in favor of `examples`. If you've just generated your module, rename the directory to `examples`.
 
-For help getting started writing your module, see the [Beginner's Guide to Modules](/guides/module_guides/bgtm.html).
+For help getting started writing your module, see the [Beginner's Guide to Modules](./bgtm.html).
 
 You also have the option of writing classes and defined types by hand and placing them in properly named manifest files as [described in the "Module Layout" section above](#module-layout). If you take this route, you **must** ensure that your `metadata.json` file is properly formatted or your module **will not work**.
 
@@ -254,4 +254,4 @@ Manifests in one module should never reference files or templates stored in anot
 
 Be wary of having classes declare classes from other modules, as this makes modules harder to redistribute. When possible, it's best to isolate "super-classes" that declare many other classes in a local "site" module.
 
-For more best practices, see the [Puppet Modules Style Guide](/guides/style_guide.html).
+For more best practices, see the [Puppet Language Style Guide](./style_guide.html).
