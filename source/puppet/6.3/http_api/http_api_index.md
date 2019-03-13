@@ -24,10 +24,8 @@ The V1 and V2 APIs were removed in Puppet 4.0.0. The routes that were previously
 under `/` or `/v2.0` can now be found under the [`/puppet/v3`](#puppet-v3-http-api)
 API or [`/puppet-ca/v1`](#ca-v1-http-api) API.
 
-Starting with version 2.1, the Puppet Server 2.x series provides both the
-current and previous API endpoints, and can serve nodes running Puppet agent 3.x
-and 4.x. However, Rack masters, WEBrick masters, and Puppet Server 2.0 cannot
-serve nodes running Puppet 3.x.
+Starting with version 2.1, the Puppet Server 6.x series provides both the
+current and previous API endpoints, and can serve nodes running Puppet agent 3.x to 6.x.
 
 Puppet and Puppet CA APIs
 ------------------
@@ -48,8 +46,7 @@ authorization system.
 
 Puppet Server ignores `auth.conf` for `/puppet-ca` endpoints. Access to the
 `certificate_status` endpoint is configured in Puppet Server's `ca.conf` file,
-and the remaining CA endpoints are always accessible. Rack Puppet master servers
-still use `auth.conf` for `/puppet-ca`.
+and the remaining CA endpoints are always accessible.
 
 When specifying authorization in `auth.conf`, the prefix and the version number
 (e.g. `/puppet/v3`) on the paths must be retained, since Puppet matches
