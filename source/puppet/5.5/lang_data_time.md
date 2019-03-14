@@ -82,7 +82,7 @@ For details about converting values of other types to `Timestamp`, see [the `new
 
 ### Examples:
 
-* `Timestamp['2000-01-01T00:00:00.000', default]` --- matches an open range of `Timestamps` from the start of the 21st century to an infinte point in the future
+* `Timestamp['2000-01-01T00:00:00.000', default]` --- matches an open range of `Timestamps` from the start of the 21st century to an infinite point in the future
 * `Timestamp['2012-10-10']` --- matches the exact `Timestamp` 2012-10-10T00:00:00.0 UTC
 * `Timestamp[default, 1433116800]` --- matches an open range of `Timestamps` from an infinite point in the past to 2015-06-01T00:00:00 UTC, here expressed as seconds since the Unix epoch
 * `Timestamp['2010-01-01', '2015-12-31T23:59:59.999999999']` --- matches a closed range of `Timestamps` between the start of 2010 and the end of 2015
