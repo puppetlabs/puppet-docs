@@ -24,7 +24,7 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 Released 26 March 2019
 
-This is a bug-fix, new feature, and deprecation release.
+This is a bug-fix and new feature release.
 
 ### Bug fixes
 
