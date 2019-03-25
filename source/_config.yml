@@ -596,7 +596,7 @@ documents:
     nav: /puppet/6.4/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: origin/master
+      commit: origin/6.3.x
       subdirectory: documentation
     my_versions:
       puppet: "6.4"
