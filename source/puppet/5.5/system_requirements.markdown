@@ -39,7 +39,7 @@ For platforms supported in Puppet Enterprise, see its [system requirements]({{pe
 | Operating system                           | Tested versions                                   | Untested versions       |
 |--------------------------------------------|---------------------------------------------------|-------------------------|
 | Red Hat Enterprise Linux (and derivatives) | 5, 6, 7                                           |                         |
-| SUSE Linux Enterprise Server               | 11, 12, 15                                        |                         |
+| SUSE Linux Enterprise Server               | 11 (5.5.10 and earlier), 12 (5.5.10 and earlier), 15                                        |                         |
 | Debian                                     | Wheezy (7), Jessie (8), Stretch (9)               |                         |
 | Ubuntu                                     | 14.04, 16.04, 18.04 (since 5.5.2)                 |                         |
 | Fedora                                     | 26 (5.5.7 and earlier), 27 (5.5.8 and earlier), 28, 29 (5.5.10 and later)                                        |                         |

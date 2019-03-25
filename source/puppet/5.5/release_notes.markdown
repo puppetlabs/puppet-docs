@@ -30,7 +30,7 @@ This is a bug-fix and new feature release.
 
 - Running the `exec` resource with `--debug` and `--noop` now prints a debug message with the command if checks prevent it from being executed. If `command`, `onlyif`, or `unless` are marked as sensitive, all commands are redacted from the log output. [PUP-9357](https://tickets.puppetlabs.com/browse/PUP-9357)
 
-- This release of the `puppet-agent` package removes support for SLES 11/12 s390x. [PA-2489](https://tickets.puppetlabs.com/browse/PA-2489)
+- This release of the `puppet-agent` package removes support for SUSE Linux Enterprise Server 11/12 s390x. [PA-2489](https://tickets.puppetlabs.com/browse/PA-2489)
 
 - This release adds a `puppet-agent` package for macOS 10.14 Mojave. On macOS 10.14 Mojave, you must grant Puppet Full Disk Access to be able to manage users and groups. To give Puppet access on a machine running  10.14, go to `System Preferences > Security & Privacy > Privacy > Full Disk Access`, and add the path to the Puppet executable. Alternatively, set up automatic access using Privacy Preferences Control Profiles and a Mobile Device Management Server. [PA-2226](https://tickets.puppetlabs.com/browse/PA-2226), [PA-2227](https://tickets.puppetlabs.com/browse/PA-2227)
 
