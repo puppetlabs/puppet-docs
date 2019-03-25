@@ -20,11 +20,17 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
-## Puppet 5.5.11
+## Puppet 5.5.12
 
 Released 26 March 2019
 
 This is a bug-fix and new feature release.
+
+### New features
+
+- Running the `exec` resource with `--debug` and `--noop` now prints a debug message with the command if checks prevent it from being executed. If `command`, `onlyif`, or `unless` are marked as sensitive, all commands are redacted from the log output. [PUP-9357](https://tickets.puppetlabs.com/browse/PUP-9357)
+
+- Augeas 1.11.0 has been released with a number of fixes and improvements. Update agent to get the new version. [PA-2364](https://tickets.puppetlabs.com/browse/PUP-2364)
 
 ### Bug fixes
 
@@ -71,14 +77,9 @@ This is a bug-fix and new feature release.
 
 - The `pxp-agent init` script started more than one process if the `pidfile` was missing. This release modifies the `pxp-agent` service to kill all `pxp-agent` processes when the service is restarted, rather than only the current process. [PCP-833](https://tickets.puppetlabs.com/browse/PCP-833)
 
+## Puppet 5.5.10
 
-
-### New features
-
-- Running the `exec` resource with `--debug` and `--noop` now prints a debug message with the command if checks prevent it from being executed. If `command`, `onlyif`, or `unless` are marked as sensitive, all commands are redacted from the log output. [PUP-9357](https://tickets.puppetlabs.com/browse/PUP-9357)
-
-- Augeas 1.11.0 has been released with a number of fixes and improvements. Update 
-agent to get the new version. [PA-2364](https://tickets.puppetlabs.com/browse/PUP-2364) 
+This version of Puppet was never released.
 
 ## Puppet 5.5.10
 
