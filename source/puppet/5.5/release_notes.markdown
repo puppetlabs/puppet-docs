@@ -34,6 +34,8 @@ This is a bug-fix and new feature release.
 
 ### Bug fixes
 
+- This `puppet-agent` package release includes a security patch for Ruby 2.4.5. To learn more about the CVEs that this patch address, see the Ruby [security advisories](https://blog.rubygems.org/2019/03/05/security-advisories-2019-03.html). [PA-2510](https://tickets.puppetlabs.com/browse/PA-2510)
+
 - For the `filebucket` type, `server` and `port` no longer have explicit default values in the type definition. If `server` is not set, it defaults to the first entry in `server_list` if set; otherwise, it defaults to `server`. If `port` is not set, it defaults to the port in the first entry of `server_list` if set; otherwise, it defaults to `masterport`. [PUP-9025](https://tickets.puppetlabs.com/browse/PUP-9025)
 
 - This release modifies the `pxp-agent` service to kill all `pxp-agent` processes when the service is restarted, rather than only the current process. [PCP-833](https://tickets.puppetlabs.com/browse/PCP-833)
