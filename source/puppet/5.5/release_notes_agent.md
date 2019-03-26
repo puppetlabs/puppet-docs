@@ -43,7 +43,7 @@ Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [
 
 ## Puppet agent 5.5.8 and later
 
-For release notes and changes to `puppet-agent` package versions 5.5.8 and later, see the main [Puppet release notes](/release_notes.html).
+For release notes and changes to `puppet-agent` package versions 5.5.8 and later, see the main [Puppet release notes](./release_notes.html).
 
 ## Puppet agent 5.5.7
 
