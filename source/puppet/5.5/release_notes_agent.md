@@ -14,6 +14,8 @@ title: "Puppet agent release notes"
 [Puppet 5.5.3]: /docs/puppet/5.5/release_notes.html#puppet-553
 [Puppet 5.5.6]: /docs/puppet/5.5/release_notes.html#puppet-556
 
+
+
 [Facter 3.10.0]: /docs/facter/3.10/release_notes.html#facter-3100
 [Facter 3.11.0]: /docs/facter/3.11/release_notes.html#facter-3110
 [Facter 3.11.1]: /docs/facter/3.11/release_notes.html#facter-3111
@@ -38,6 +40,10 @@ The `puppet-agent` package's version numbers use the format X.Y.Z, where:
 The `puppet-agent` package installs the latest version of Puppet 5.
 
 Also of interest: [About Agent](./about_agent.html), and the [Puppet 5.4.0][], [Puppet 5.3.1][], [Puppet 5.2.0][], [Puppet 5.1.0][], and [Puppet 5.0.0][] release notes.
+
+## Puppet agent 5.5.8 and later
+
+For release notes and changes to `puppet-agent` package versions 5.5.8 and later, see the main [Puppet release notes](/release_notes.html).
 
 ## Puppet agent 5.5.7
 

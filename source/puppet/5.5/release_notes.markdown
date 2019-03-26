@@ -20,6 +20,71 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.12
+
+Released 26 March 2019
+
+This is a bug-fix and new feature release.
+
+### New features
+
+- Running the `exec` resource with `--debug` and `--noop` now prints a debug message with the command if checks prevent it from being executed. If `command`, `onlyif`, or `unless` are marked as sensitive, all commands are redacted from the log output. [PUP-9357](https://tickets.puppetlabs.com/browse/PUP-9357)
+
+- This release of the `puppet-agent` package removes support for SUSE Linux Enterprise Server 11/12 s390x. [PA-2489](https://tickets.puppetlabs.com/browse/PA-2489)
+
+- This release adds a `puppet-agent` package for macOS 10.14 Mojave. On macOS 10.14 Mojave, you must grant Puppet Full Disk Access to be able to manage users and groups. To give Puppet access on a machine running  10.14, go to `System Preferences > Security & Privacy > Privacy > Full Disk Access`, and add the path to the Puppet executable. Alternatively, set up automatic access using Privacy Preferences Control Profiles and a Mobile Device Management Server. [PA-2226](https://tickets.puppetlabs.com/browse/PA-2226), [PA-2227](https://tickets.puppetlabs.com/browse/PA-2227)
+
+### Bug fixes
+
+- Augeas 1.11.0 has been released with a number of fixes and improvements. Update the puppet-agent package to get the new version. [PA-2364](https://tickets.puppetlabs.com/browse/PUP-2364)
+
+- This `puppet-agent` package release includes a security patch for Ruby 2.4.5. To learn more about the CVEs that this patch address, see the Ruby [security advisories](https://blog.rubygems.org/2019/03/05/security-advisories-2019-03.html). [PA-2510](https://tickets.puppetlabs.com/browse/PA-2510)
+
+- For the `filebucket` type, `server` and `port` no longer have explicit default values in the type definition. If `server` is not set, it defaults to the first entry in `server_list` if set; otherwise, it defaults to `server`. If `port` is not set, it defaults to the port in the first entry of `server_list` if set; otherwise, it defaults to `masterport`. [PUP-9025](https://tickets.puppetlabs.com/browse/PUP-9025)
+
+- This release modifies the `pxp-agent` service to kill all `pxp-agent` processes when the service is restarted, rather than only the current process. [PCP-833](https://tickets.puppetlabs.com/browse/PCP-833)
+
+- This release fixes an issue where `call()` function could call only functions that existed in Puppet core; custom functions could not be called. Now any function in the environment is visible and can be called. [PUP-9477](https://tickets.puppetlabs.com/browse/PUP-9477)
+
+- This release fixes a regression that prevented installing MSI packages from an HTTP URL on Windows. [PUP-9496](https://tickets.puppetlabs.com/browse/PUP-9496)
+
+- For the `filebucket` type, `server` and `port` no longer have explicit default values in the type definition. If `server` is not set, it defaults to the first entry in `server_list` if set; otherwise, it defaults to `server`. If `port` is not set, it defaults to the port in the first entry of `server_list` if set; otherwise, it defaults to `masterport`. [PUP-9025](https://tickets.puppetlabs.com/browse/PUP-9025)
+
+- Previously, if you used the type `Optional` without any arguments, it could result in an internal error. This is now fixed. On its own, `Optional`, means the same as `Any`. You should always supply a type argument with the desired type if the value is not `undef`. [PUP-9467](https://tickets.puppetlabs.com/browse/PUP-9467)
+
+- Prior to this release, agent runs provided the same output for both intentional and corrective changes. Now corrective changes are now explicitly called out in the logs as corrective. [PUP-9324](https://tickets.puppetlabs.com/browse/PUP-9324)
+                            
+- The upstart provider was being evaluated when loaded, causing issues with testing and availability during transactions. This  has been fixed so that the provider is evaluated only when provider suitability is being checked. [PUP-9336](https://tickets.puppetlabs.com/browse/PUP-9336)
+ 
+- If you passed an invalid path to `--logdest` option, Puppet silently ignored it. Now, if you give a `--logdest` location that Puppet cannot find or write to, the run fails with an error. [PUP-6571](https://tickets.puppetlabs.com/browse/PUP-6571)
+ 
+- The Windows group resource was incorrectly printing an array of SIDs for members. The resource now correctly prints members as <DOMAIN>/<user>. [PUP-9435](https://tickets.puppetlabs.com/browse/PUP-9435)
+     
+- Heredoc expressions with interpolation using an access expression such as `$facts['somefact']` sometimes failed with a syntax error. This error was related to the relative location of the heredoc and surrounding whitespace and is now resolved. [PUP-9303](https://tickets.puppetlabs.com/browse/PUP-9303)
+
+- The `SublocatedExpression` class is no longer generated by the parser. The `SublocatedExpression` class itself will not be removed until 7.0.0, but it no longer appears in AST produced by the parser. [PUP-9303](https://tickets.puppetlabs.com/browse/PUP-9303)
+
+- Puppet commands now fail if Puppet Server is  unable to read the `puppet.conf` file. Only the `help` and `--version` commands work if the `puppet.conf` file is unreadable. [PUP-5575](https://tickets.puppetlabs.com/browse/PUP-5575)
+
+- If the agent encounters exceptions when pre-fetching resources for catalog application, it now logs the exceptions and returns a more useful error message. [PUP-8962](https://tickets.puppetlabs.com/browse/PUP-8962)
+
+- Improved error handling for PNTransformer     When parsing  into structured AST, the  parser produced an error on some empty constructs because the PNTransformer could not resolve them. Now it generates a Nop expression instead. [PUP-9400](https://tickets.puppetlabs.com/browse/PUP-9400)
+
+- Puppet now treats `owner` and `group` on the file resource as in-sync in the following scenario:
+  - The `owner` and `group` are not set in the resource.
+  - Either the `owner` or the `group` is set to the `System` user on the running mode.
+  - The `System` user `ACE` is set to `FullControl`.
+
+  Puppet now allows users to specifically configure the `System` user to less than `FullControl` by setting the `owner` and/or `group` parameters to `System` in the file resource. In this case, Puppet emits a warning since setting `System` to less than `FullControl` may have unintended consequences. [PUP-9337](https://tickets.puppetlabs.com/browse/PUP-9337)
+  
+- If a functional server was not found, Puppet agent fell back to the `server` setting. Puppet agent now returns an error if `server_list` is set and a functional server is not found. [PUP-9076](https://tickets.puppetlabs.com/browse/PUP-9076)
+
+- The `pxp-agent init` script started more than one process if the `pidfile` was missing. This release modifies the `pxp-agent` service to kill all `pxp-agent` processes when the service is restarted, rather than only the current process. [PCP-833](https://tickets.puppetlabs.com/browse/PCP-833)
+
+## Puppet 5.5.10
+
+This version of Puppet was never released.
+
 ## Puppet 5.5.10
 
 Released 15 January 2019
