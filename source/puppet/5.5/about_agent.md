@@ -17,7 +17,8 @@ See the table for details about which components shipped in which `puppet-agent`
 
 {% partial /puppet-agent/_agent5.x.html %}
 
-> **Note:** [Hiera 5](./hiera_intro.html) is a backward-compatible evolution of Hiera, which is built into Puppet. To provide some backward-compatible features, it uses the classic Hiera 3 codebase. This means "Hiera" is still shown as version 3.x in the table above, even though this Puppet version uses Hiera 5.
+
+> **Note:** [Hiera 5](./hiera_intro.html) is a backward-compatible evolution of Hiera, which is built into Puppet. To provide some backward-compatible features, it uses the classic Hiera 3 codebase. This means Hiera is still shown as version 3.x in the table above, even though this Puppet version uses Hiera 5.
 
 ### What `puppet-agent` and Puppet Server are
 
