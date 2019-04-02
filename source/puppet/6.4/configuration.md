@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -896,7 +896,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.2.0 Ruby/2.4.1-p111 (x86_64-darwin17)
+- *Default*: Puppet/6.4.0 Ruby/2.4.1-p111 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -1076,7 +1076,9 @@ The directory in which to store log files
 
 ### manage_internal_file_permissions
 
-Whether Puppet should manage the owner, group, and mode of files it uses internally
+Whether Puppet should manage the owner, group, and mode of files it uses internally.
+
+**Note**: For Windows agents, the default is `false` for versions 4.10.13 and greater, versions 5.5.6 and greater, and versions 6.0 and greater.
 
 - *Default*: true
 

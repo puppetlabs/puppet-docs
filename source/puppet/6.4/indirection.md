@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
 title: Indirection Reference
 toc: columns
 canonical: "/puppet/latest/indirection.html"

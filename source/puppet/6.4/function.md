@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 12:34:08 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -1479,6 +1479,13 @@ getvar('x.2.1.name', 'not waldo')
 For further examples and how to perform error handling, see the `get()` function
 which this function delegates to after having resolved the variable value.
 
+## `group_by`
+
+* `group_by()`
+
+Groups the collection by result of the block. Returns a hash where the keys are the evaluated result from the block
+and the values are arrays of elements in the collection that correspond to the key.
+
 ## `hiera`
 
 * `hiera()`
@@ -1848,6 +1855,96 @@ the resource and relationship expressions.
 - Since < 3.0.0
 - Since 4.0.0 support for class and resource type values, absolute names
 - Since 4.7.0 returns an `Array[Type[Class]]` of all included classes
+
+## `index`
+
+* `index(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `index(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+    * Return type(s): `Any`. 
+* `index(Iterable $enumerable, Callable[2,2] &$block)`
+    * Return type(s): `Any`. 
+* `index(Iterable $enumerable, Callable[1,1] &$block)`
+    * Return type(s): `Any`. 
+* `index(String $str, Variant[String,Regexp] $match)`
+    * Return type(s): `Any`. 
+* `index(Iterable $enumerable, Any $match)`
+    * Return type(s): `Any`. 
+
+Returns the index (or key in a hash) to a first-found value in an `Iterable` value.
+
+When called with a  [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
+the lambda is called repeatedly using each value in a data structure until the lambda returns a "truthy" value which
+makes the function return the index or key, or if the end of the iteration is reached, undef is returned.
+
+This function can be called in two different ways; with a value to be searched for, or with
+a lambda that determines if an entry in the iterable matches.
+
+When called with a lambda the function takes two mandatory arguments, in this order:
+
+1. An array, hash, string, or other iterable object that the function will iterate over.
+2. A lambda, which the function calls for each element in the first argument. It can request one (value) or two (index/key, value) parameters.
+
+`$data.index |$parameter| { <PUPPET CODE BLOCK> }`
+
+or
+
+`index($data) |$parameter| { <PUPPET CODE BLOCK> }`
+
+```puppet
+$data = ["routers", "servers", "workstations"]
+notice $data.index |$value| { $value == 'servers' } # notices 1
+notice $data.index |$value| { $value == 'hosts'  }  # notices undef
+```
+
+```puppet
+$data = {types => ["routers", "servers", "workstations"], colors => ['red', 'blue', 'green']}
+notice $data.index |$value| { 'servers' in $value } # notices 'types'
+notice $data.index |$value| { 'red' in $value }     # notices 'colors'
+```
+Note that the lambda gets the value and not an array with `[key, value]` as in other
+iterative functions.
+
+Using a lambda that accepts two values works the same way, it simply gets the index/key 
+as the first parameter, and the value as the second.
+
+```puppet
+# Find the first even numbered index that has a non String value
+$data = [key1, 1, 3, 5]
+notice $data.index |$idx, $value| { $idx % 2 == 0 and $value !~ String } # notices 2
+```
+
+When called on a `String`, the lambda is given each character as a value. What is typically wanted is to
+find a sequence of characters which is achieved by calling the function with a value to search for instead
+of giving a lambda.
+
+
+```puppet
+# Find first occurrence of 'ah'
+$data = "blablahbleh"
+notice $data.index('ah') # notices 5
+```
+
+```puppet
+# Find first occurrence of 'la' or 'le'
+$data = "blablahbleh"
+notice $data.index(/l(a|e)/ # notices 1
+```
+
+When searching in a `String` with a given value that is neither `String` nor `Regexp` the answer is always `undef`.
+When searching in any other iterable, the value is matched against each value in the iteration using strict
+Ruby `==` semantics. If Puppet Language semantics are wanted (where string compare is case insensitive) use a
+lambda and the `==` operator in Puppet.
+
+```puppet
+$data = ['routers', 'servers', 'WORKstations']
+notice $data.index('servers')      # notices 1
+notice $data.index('workstations') # notices undef (not matching case)
+```
+
+For an general examples that demonstrates iteration, see the Puppet
+[iteration](https://puppet.com/docs/puppet/latest/lang_iteration.html)
+documentation.
 
 ## `info`
 
@@ -3473,6 +3570,13 @@ If a value is not given it defaults to `undef`
 
 Logs a message on the server at level `notice`.
 
+## `partition`
+
+* `partition()`
+
+Returns two arrays, the first containing the elements of enum for which the block evaluates to true,
+the second containing the rest.
+
 ## `realize`
 
 * `realize()`
@@ -4768,4 +4872,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 12:34:08 -0700
