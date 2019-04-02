@@ -81,7 +81,7 @@ This is a bug-fix and new feature release.
 
 - The `pxp-agent init` script started more than one process if the `pidfile` was missing. This release modifies the `pxp-agent` service to kill all `pxp-agent` processes when the service is restarted, rather than only the current process. [PCP-833](https://tickets.puppetlabs.com/browse/PCP-833)
 
-## Puppet 5.5.10
+## Puppet 5.5.11
 
 This version of Puppet was never released.
 
