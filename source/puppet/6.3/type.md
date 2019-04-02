@@ -568,6 +568,7 @@ command:
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
 
+
 file
 -----
 
@@ -591,43 +592,29 @@ line endings.
 
 **Autorequires:** If Puppet is managing the user or group that owns a
 file, the file resource will autorequire them. If Puppet is managing any
-parent directories of a file, the file resource will autorequire them.
+parent directories of a file, the file resource autorequires them.
+
+Warning: Enabling `recurse` on directories containing large numbers of
+files slows agent runs. To manage file attributes for many files,
+consider using alternative methods such as the `chmod_r`, `chown_r`,
+ or `recursive_file_permissions` modules from the Forge.
 
 <h3 id="file-attributes">Attributes</h3>
 
 <pre><code>file { 'resource title':
-  <a href="#file-attribute-path">path</a>                    =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
-  <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether the file should exist, and if so what...</em>
-  <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
-  <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
-  <a href="#file-attribute-checksum_value">checksum_value</a>          =&gt; <em># The checksum of the source contents. Only md5...</em>
-  <a href="#file-attribute-content">content</a>                 =&gt; <em># The desired contents of a file, as a string...</em>
-  <a href="#file-attribute-ctime">ctime</a>                   =&gt; <em># A read-only state to check the file ctime. On...</em>
-  <a href="#file-attribute-force">force</a>                   =&gt; <em># Perform the file operation even if it will...</em>
-  <a href="#file-attribute-group">group</a>                   =&gt; <em># Which group should own the file.  Argument can...</em>
-  <a href="#file-attribute-ignore">ignore</a>                  =&gt; <em># A parameter which omits action on files matching </em>
-  <a href="#file-attribute-links">links</a>                   =&gt; <em># How to handle links during file actions.  During </em>
-  <a href="#file-attribute-mode">mode</a>                    =&gt; <em># The desired permissions mode for the file, in...</em>
-  <a href="#file-attribute-mtime">mtime</a>                   =&gt; <em># A read-only state to check the file mtime. On...</em>
-  <a href="#file-attribute-owner">owner</a>                   =&gt; <em># The user to whom the file should belong....</em>
-  <a href="#file-attribute-provider">provider</a>                =&gt; <em># The specific backend to use for this `file...</em>
-  <a href="#file-attribute-purge">purge</a>                   =&gt; <em># Whether unmanaged files should be purged. This...</em>
-  <a href="#file-attribute-recurse">recurse</a>                 =&gt; <em># Whether to recursively manage the _contents_ of...</em>
-  <a href="#file-attribute-recurselimit">recurselimit</a>            =&gt; <em># How far Puppet should descend into...</em>
-  <a href="#file-attribute-replace">replace</a>                 =&gt; <em># Whether to replace a file or symlink that...</em>
-  <a href="#file-attribute-selinux_ignore_defaults">selinux_ignore_defaults</a> =&gt; <em># If this is set then Puppet will not ask SELinux...</em>
-  <a href="#file-attribute-selrange">selrange</a>                =&gt; <em># What the SELinux range component of the context...</em>
-  <a href="#file-attribute-selrole">selrole</a>                 =&gt; <em># What the SELinux role component of the context...</em>
-  <a href="#file-attribute-seltype">seltype</a>                 =&gt; <em># What the SELinux type component of the context...</em>
-  <a href="#file-attribute-seluser">seluser</a>                 =&gt; <em># What the SELinux user component of the context...</em>
-  <a href="#file-attribute-show_diff">show_diff</a>               =&gt; <em># Whether to display differences when the file...</em>
-  <a href="#file-attribute-source">source</a>                  =&gt; <em># A source file, which will be copied into place...</em>
-  <a href="#file-attribute-source_permissions">source_permissions</a>      =&gt; <em># Whether (and how) Puppet should copy owner...</em>
-  <a href="#file-attribute-sourceselect">sourceselect</a>            =&gt; <em># Whether to copy all valid sources, or just the...</em>
-  <a href="#file-attribute-target">target</a>                  =&gt; <em># The target for creating a link.  Currently...</em>
-  <a href="#file-attribute-type">type</a>                    =&gt; <em># A read-only state to check the file...</em>
-  <a href="#file-attribute-validate_cmd">validate_cmd</a>            =&gt; <em># A command for validating the file's syntax...</em>
-  <a href="#file-attribute-validate_replacement">validate_replacement</a>    =&gt; <em># The replacement string in a `validate_cmd` that...</em>
+  <a href="#file-attribute-path">path</a>                 =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
+  <a href="#file-attribute-backup">backup</a>               =&gt; <em># Whether (and how) file content should be backed...</em>
+  <a href="#file-attribute-force">force</a>                =&gt; <em># Perform the file operation even if it will...</em>
+  <a href="#file-attribute-ignore">ignore</a>               =&gt; <em># A parameter which omits action on files matching </em>
+  <a href="#file-attribute-links">links</a>                =&gt; <em># How to handle links during file actions.  During </em>
+  <a href="#file-attribute-purge">purge</a>                =&gt; <em># Whether unmanaged files should be purged. This...</em>
+  <a href="#file-attribute-recurse">recurse</a>              =&gt; <em># Whether to recursively manage the _contents_ of...</em>
+  <a href="#file-attribute-recurselimit">recurselimit</a>         =&gt; <em># How far Puppet should descend into...</em>
+  <a href="#file-attribute-replace">replace</a>              =&gt; <em># Whether to replace a file or symlink that...</em>
+  <a href="#file-attribute-show_diff">show_diff</a>            =&gt; <em># Whether to display differences when the file...</em>
+  <a href="#file-attribute-sourceselect">sourceselect</a>         =&gt; <em># Whether to copy all valid sources, or just the...</em>
+  <a href="#file-attribute-validate_cmd">validate_cmd</a>         =&gt; <em># A command for validating the file's syntax...</em>
+  <a href="#file-attribute-validate_replacement">validate_replacement</a> =&gt; <em># The replacement string in a `validate_cmd` that...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -1428,8 +1415,7 @@ this attribute to `false`.
 
 <h4 id="filebucket-attribute-port">port</h4>
 
-The port on which the remote server is listening. Defaults to the
-value of the `masterport` setting, which is usually 8140.
+
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
 
@@ -1827,6 +1813,7 @@ Allowed values:
 * `false`
 
 ([↑ Back to notify attributes](#notify-attributes))
+
 
 package
 -----
@@ -2481,6 +2468,10 @@ or an array where each element is either a string or a hash.
 
 OpenSolaris image packaging system. See pkg(5) for more information.
 
+This provider supports the `install_options` attribute, which allows
+command-line flags to be passed to pkg. These options should be specified as an
+array where each element is either a string or a hash.
+
 * Required binaries: `/usr/bin/pkg`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == ["kernelrelease", "['5.11', '5.12']"]`
@@ -2545,8 +2536,7 @@ Package management using Peter Bonivart's ``pkgutil`` command on Solaris.
 Provides packaging support for Gentoo's portage system.
 
 This provider supports the `install_options` and `uninstall_options` attributes, which allows command-line
-flags to be passed to emerge.  These options should be specified as a string (e.g. '--flag'), a hash
-(e.g. {'--flag' => 'value'}), or an array where each element is either a string or a hash.
+flags to be passed to emerge. These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`, `/usr/bin/qatom`
 * Confined to: `operatingsystem == gentoo`
@@ -2582,10 +2572,9 @@ gems needed by the ruby provided in the puppet-agent package.
 RPM packaging support; should work anywhere with a working `rpm`
 binary.
 
-This provider supports the `install_options` and `uninstall_options`
-attributes, which allow command-line flags to be passed to rpm.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+    This provider supports the `install_options` and `uninstall_options`
+    attributes, which allow command-line flags to be passed to rpm.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `rpm`
 * Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
@@ -2604,8 +2593,8 @@ Sun's packaging system.  Requires that you specify the source for
 the packages you're managing.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pkgadd.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string
+ or a hash.
 
 * Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`
 * Confined to: `osfamily == solaris`
@@ -2663,8 +2652,8 @@ It accepts paths to local files, mapped drives, or UNC paths.
 
 This provider supports the `install_options` and `uninstall_options`
 attributes, which allow command-line flags to be passed to the installer.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either
+a string or a hash.
 
 If the executable requires special arguments to perform a silent install or
 uninstall, then the appropriate arguments should be specified using the
@@ -2684,8 +2673,7 @@ remove dependent packages with this provider use the `purgeable` feature, but no
 feature is destructive and should be used with the utmost care.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to yum.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `yum`, `rpm`
 * Default for: `osfamily` == `redhat`
@@ -2696,8 +2684,8 @@ or an array where each element is either a string or a hash.
 Support for SuSE `zypper` package manager. Found in SLES10sp2+ and SLES11.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to zypper.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a
+string or a hash.
 
 * Required binaries: `/usr/bin/zypper`
 * Confined to: `operatingsystem == [:suse, :sles, :sled, :opensuse]`
@@ -3023,6 +3011,9 @@ Provider support:
     <tr>
       <td>pkg</td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -3360,7 +3351,6 @@ Accepts integers, integer strings, and arrays of integers or integer strings.
 To specify a range of uids, consider using the range() function from stdlib.
 
 ([↑ Back to resources attributes](#resources-attributes))
-
 
 
 schedule
@@ -5384,6 +5374,9 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
