@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: ec151137e55e1f7e0651e03f2d56ae439b6c61cf
 title: 'Resource Type: group'
 canonical: "/puppet/latest/types/group.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
 
 group
 -----
@@ -346,4 +346,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700

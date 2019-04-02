@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: ec151137e55e1f7e0651e03f2d56ae439b6c61cf
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -896,7 +896,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.2.0 Ruby/2.4.1-p111 (x86_64-darwin17)
+- *Default*: Puppet/6.3.0 Ruby/2.4.1-p111 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -1623,7 +1623,7 @@ restarted. This setting can be a time interval in seconds (30 or 30s), minutes (
 
 The domain which will be queried to find the SRV records of servers to use.
 
-- *Default*: (the system's own domain)
+- *Default*: 
 
 ### ssl_client_ca_auth
 

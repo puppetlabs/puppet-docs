@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: ec151137e55e1f7e0651e03f2d56ae439b6c61cf
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
 
 package
 -----
@@ -660,6 +660,10 @@ or an array where each element is either a string or a hash.
 
 OpenSolaris image packaging system. See pkg(5) for more information.
 
+This provider supports the `install_options` attribute, which allows
+command-line flags to be passed to pkg. These options should be specified as an
+array where each element is either a string or a hash.
+
 * Required binaries: `/usr/bin/pkg`
 * Confined to: `osfamily == solaris`
 * Default for: `["osfamily", "solaris"] == ["kernelrelease", "['5.11', '5.12']"]`
@@ -724,8 +728,7 @@ Package management using Peter Bonivart's ``pkgutil`` command on Solaris.
 Provides packaging support for Gentoo's portage system.
 
 This provider supports the `install_options` and `uninstall_options` attributes, which allows command-line
-flags to be passed to emerge.  These options should be specified as a string (e.g. '--flag'), a hash
-(e.g. {'--flag' => 'value'}), or an array where each element is either a string or a hash.
+flags to be passed to emerge. These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `/usr/bin/eix-update`, `/usr/bin/eix`, `/usr/bin/emerge`, `/usr/bin/qatom`
 * Confined to: `operatingsystem == gentoo`
@@ -761,10 +764,9 @@ gems needed by the ruby provided in the puppet-agent package.
 RPM packaging support; should work anywhere with a working `rpm`
 binary.
 
-This provider supports the `install_options` and `uninstall_options`
-attributes, which allow command-line flags to be passed to rpm.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+    This provider supports the `install_options` and `uninstall_options`
+    attributes, which allow command-line flags to be passed to rpm.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `rpm`
 * Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`, `virtual_packages`
@@ -783,8 +785,8 @@ Sun's packaging system.  Requires that you specify the source for
 the packages you're managing.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pkgadd.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string
+ or a hash.
 
 * Required binaries: `/usr/bin/pkginfo`, `/usr/sbin/pkgadd`, `/usr/sbin/pkgrm`
 * Confined to: `osfamily == solaris`
@@ -842,8 +844,8 @@ It accepts paths to local files, mapped drives, or UNC paths.
 
 This provider supports the `install_options` and `uninstall_options`
 attributes, which allow command-line flags to be passed to the installer.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either
+a string or a hash.
 
 If the executable requires special arguments to perform a silent install or
 uninstall, then the appropriate arguments should be specified using the
@@ -863,8 +865,7 @@ remove dependent packages with this provider use the `purgeable` feature, but no
 feature is destructive and should be used with the utmost care.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to yum.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `yum`, `rpm`
 * Default for: `osfamily` == `redhat`
@@ -875,8 +876,8 @@ or an array where each element is either a string or a hash.
 Support for SuSE `zypper` package manager. Found in SLES10sp2+ and SLES11.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to zypper.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a
+string or a hash.
 
 * Required binaries: `/usr/bin/zypper`
 * Confined to: `operatingsystem == [:suse, :sles, :sled, :opensuse]`
@@ -1202,6 +1203,9 @@ Provider support:
     <tr>
       <td>pkg</td>
       <td><em>X</em> </td>
+      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1470,4 +1474,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-02-01 11:08:12 -0800
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
