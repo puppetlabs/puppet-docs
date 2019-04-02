@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: ec151137e55e1f7e0651e03f2d56ae439b6c61cf
+built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
 
 exec
 -----
@@ -353,6 +353,10 @@ non-zero exit code.
 
 <h4 id="exec-attribute-user">user</h4>
 
+The user to run the command as.
+
+> **Note:** Puppet cannot execute commands as other users on Windows.
+
 Note that if you use this attribute, any error output is not captured
 due to a bug within Ruby. If you use Puppet to create this user, the
 exec automatically requires the user, as long as it is specified by
@@ -421,4 +425,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700

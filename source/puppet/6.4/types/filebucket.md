@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: ec151137e55e1f7e0651e03f2d56ae439b6c61cf
+built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
 title: 'Resource Type: filebucket'
 canonical: "/puppet/latest/types/filebucket.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
 
 filebucket
 -----
@@ -51,7 +51,7 @@ restricted `auth.conf` file, you may need to allow access to the
 <pre><code>filebucket { 'resource title':
   <a href="#filebucket-attribute-name">name</a>   =&gt; <em># <strong>(namevar)</strong> The name of the...</em>
   <a href="#filebucket-attribute-path">path</a>   =&gt; <em># The path to the _local_ filebucket; defaults to...</em>
-  <a href="#filebucket-attribute-port">port</a>   =&gt; <em># </em>
+  <a href="#filebucket-attribute-port">port</a>   =&gt; <em># The port on which the remote server is...</em>
   <a href="#filebucket-attribute-server">server</a> =&gt; <em># The server providing the remote filebucket...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
@@ -74,7 +74,13 @@ this attribute to `false`.
 
 <h4 id="filebucket-attribute-port">port</h4>
 
+The port on which the remote server is listening.
 
+This setting is _only_ consulted if the `path` attribute is set to `false`.
+
+If this attribute is not specified, the first entry in the `server_list`
+configuration setting is used, followed by the value of the `masterport`
+setting if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
 
@@ -86,10 +92,14 @@ puppet master server).
 
 This setting is consulted only if the `path` attribute is set to `false`.
 
+If this attribute is not specified, the first entry in the `server_list`
+configuration setting is used, followed by the value of the `server` setting
+if `server_list` is not set.
+
 ([↑ Back to filebucket attributes](#filebucket-attributes))
 
 
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700

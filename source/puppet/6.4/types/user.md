@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: ec151137e55e1f7e0651e03f2d56ae439b6c61cf
+built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
 title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
 
 user
 -----
@@ -135,7 +135,17 @@ _(**Property:** This attribute represents concrete state on the target system.)_
 
 Specify AIX attributes for the user in an array of attribute = value pairs.
 
-Requires features manages_aix_lam.
+ For example:
+
+ ```
+ ['minage=0', 'maxage=5', 'SYSTEM=compat']
+ ```
+
+ or
+
+```
+attributes => { 'minage' => '0', 'maxage' => '5', 'SYSTEM' => 'compat' }
+```
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -871,4 +881,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 11:43:01 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
