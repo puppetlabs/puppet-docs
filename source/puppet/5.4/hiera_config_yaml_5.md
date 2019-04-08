@@ -35,6 +35,8 @@ Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/et
 
 > Note: You can change the location for the global layer's hiera.yaml with Puppet's `hiera_config` setting.
 
+Hiera searches for data in the following order: global → environment → module. For more information, see [Hiera configuration layers](https://puppet.com/docs/puppet/latest/hiera_intro.html#hiera-s-three-config-layers)
+
 Related topics: [$confdir][confdir], [`<MODULE>`][module].
 
 {:.concept}
