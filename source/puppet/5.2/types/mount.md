@@ -47,8 +47,10 @@ point, the mount resource will autobefore them.
   <a href="#mount-attribute-provider">provider</a>    =&gt; <em># The specific backend to use for this `mount...</em>
   <a href="#mount-attribute-remounts">remounts</a>    =&gt; <em># Whether the mount can be remounted  `mount -o...</em>
   <a href="#mount-attribute-target">target</a>      =&gt; <em># The file in which to store the mount table....</em>
-  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
+  # ...plus any applicable metaparameters.
 }</code></pre>
+
+To learn more about the applicable metaparameters, see the <a href="{{puppet}}/metaparameter.html">Metaparameters reference</a>.
 
 <h4 id="mount-attribute-name">name</h4>
 

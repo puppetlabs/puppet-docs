@@ -50,7 +50,7 @@ Consequently, the agent's Puppet runs might produce different results each time 
 
 Additionally, each time a Puppet agent applies a non-static cached catalog that contains file resources sourced from `puppet:///` locations, the agent requests [file metadata][] from the master, even though nothing's changed in the cached catalog. This causes the master to perform unnecessary resource-intensive checksum calculations for each such file resource.
 
-Static catalogs avoid these problems by including metadata that refers to a specific version of the resource's file. This prevents the a newer version from being incorrectly applied, and avoids having the agent request the metadata on each Puppet run.
+Static catalogs avoid these problems by including metadata that refers to a specific version of the resource's file. This prevents a newer version from being incorrectly applied, and avoids having the agent request the metadata on each Puppet run.
 
 We call this type of catalog "static" because it contains all of the information that an agent needs to determine whether the node's configuration matches the instructions and **static** state of file resources **at the point in time when the catalog was compiled.**
 

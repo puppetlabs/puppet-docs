@@ -23,7 +23,7 @@ Related topics: [hierarchy][hierarchy], [layers][layers].
 {:.reference}
 ## Location of hiera.yaml files
 
-There are several hiera.yaml files in a typical deployment. Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances.
+There are several hiera.yaml files in a typical deployment. Hiera uses three layers of configuration, and the module and environment layers typically have multiple instances. 
 
 The configuration file locations for each layer:
 
@@ -34,6 +34,8 @@ Environment | [`<ENVIRONMENT>`](https://puppet.com/docs/puppet/latest/environmen
 Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\modules\ntp\hiera.yaml`
 
 > Note: You can change the location for the global layer's hiera.yaml with Puppet's `hiera_config` setting.
+
+Hiera searches for data in the following order: global → environment → module. For more information, see [Hiera configuration layers](https://puppet.com/docs/puppet/latest/hiera_intro.html#hiera-s-three-config-layers). 
 
 Related topics: [$confdir][confdir], [`<MODULE>`][module].
 
