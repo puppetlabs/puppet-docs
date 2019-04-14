@@ -76,7 +76,7 @@ module PuppetReferences
           }
           memo
         end
-        JSON.dump(type_hash)
+        JSON.pretty_generate(type_hash)
       end
 
     end
