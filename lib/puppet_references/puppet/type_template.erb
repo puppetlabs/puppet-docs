@@ -32,6 +32,10 @@
 <% end -%>
 <% if this_type['attributes'][attribute_name]['kind'] == 'property' %>_(**Property:** This attribute represents concrete state on the target system.)_<%= "\n\n" %><% end -%>
 <%= this_type['attributes'][attribute_name]['description'] %>
+<% if this_type['attributes'][attribute_name]['required_features'] -%>
+
+Requires features <%= this_type['attributes'][attribute_name]['required_features'] %>.
+<% end -%>
 
 <% if attribute_name == 'provider' and !this_type['providers'].empty? -%>Available providers are:<%= "\n\n" %><%= this_type['providers'].keys.sort.collect {|prov| "* [`#{prov}`](##{name}-provider-#{prov})"}.sort.join("\n") %><%= "\n\n" %><% end -%>
 ([↑ Back to <%= name %> attributes](#<%= name %>-attributes))
