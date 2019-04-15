@@ -28,7 +28,7 @@ This is a bug-fix and new feature release.
 
 ### New features
 
-This release of the `puppet-agent` package removes support for `Cumulus-2.2-amd64` [PA-2574](https://tickets.puppetlabs.com/browse/PA-2574)
+This release of the `puppet-agent` package removes support for Cumulus-2.2-amd64 and Debian 7 (Wheezy). [PA-2574](https://tickets.puppetlabs.com/browse/PA-2574), [PA-2567](https://tickets.puppetlabs.com/browse/PA-2567)
 
 ### Resolved issues
 
