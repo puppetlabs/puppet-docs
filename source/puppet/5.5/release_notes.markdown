@@ -20,6 +20,23 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.13
+
+Released 16 April 2019
+
+This is a bug-fix and new feature release.
+
+### New features
+
+This release of the `puppet-agent` package removes support for `Cumulus-2.2-amd64` [PA-2574](https://tickets.puppetlabs.com/browse/PA-2574)
+
+### Resolved issues
+
+- Prior to this release, use of the `server_list` setting could cause misleading agent errors. Now, when running in debug mode, Puppet prints the exception that caused it to skip an entry in the server_list setting. [PUP-8036](https://tickets.puppetlabs.com/browse/PUP-8036)
+
+- This release adds information to debug output that specifies whether the server 
+setting originates from the `server` or `server_list` setting in the configuration. [PUP-9470](https://tickets.puppetlabs.com/browse/PUP-9470)
+
 ## Puppet 5.5.12
 
 Released 26 March 2019
