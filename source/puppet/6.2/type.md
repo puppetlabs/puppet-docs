@@ -3491,6 +3491,10 @@ Allowed values:
 * `monthly`
 * `never`
 
+> **Tip**: You can use `period => never,` to prevent a resource from being applied
+in the given `range`. This is useful if you need to create a blackout window to
+perform sensitive operations without interruption.
+
 ([↑ Back to schedule attributes](#schedule-attributes))
 
 <h4 id="schedule-attribute-periodmatch">periodmatch</h4>

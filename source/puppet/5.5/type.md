@@ -8601,7 +8601,17 @@ start, that next run will be suppressed).
 See the `periodmatch` attribute for tuning whether to match
 times by their distance apart or by their specific value.
 
-Valid values are `hourly`, `daily`, `weekly`, `monthly`, `never`.
+Allowed values:
+
+* `hourly`
+* `daily`
+* `weekly`
+* `monthly`
+* `never`
+
+> **Tip**: You can use `period => never,` to prevent a resource from being applied
+in the given `range`. This is useful if you need to create a blackout window to
+perform sensitive operations without interruption.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
 
