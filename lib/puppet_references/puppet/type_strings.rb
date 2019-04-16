@@ -55,7 +55,8 @@ module PuppetReferences
                 memo[attribute['name']] = {
                     'description' => description,
                     'kind' => 'parameter',
-                    'namevar' => attribute['isnamevar'] ? true : false
+                    'namevar' => attribute['isnamevar'] ? true : false,
+                    'required_features' => attribute['required_features'],
                 }
                 memo
               }.merge( (type['properties'] || []).reduce(Hash.new) {|memo, attribute|
@@ -69,7 +70,8 @@ module PuppetReferences
                 memo[attribute['name']] = {
                     'description' => description,
                     'kind' => 'property',
-                    'namevar' => false
+                    'namevar' => false,
+                    'required_features' => attribute['required_features'],
                 }
                 memo
               } )
