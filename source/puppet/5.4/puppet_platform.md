@@ -45,7 +45,7 @@ The way you access Puppet 5 Platform depends on your operating system, and its d
 
 To enable the Puppet 5 Platform repository:
 
-1. Choose the package based on your operating system and version. The packages are located in the `puppet5` directory of the [`yum.puppet.com`](https://yum.puppet.com/puppet5/) repository and named using the following convention:
+1. Choose the package based on your operating system and version. The packages are located in the `puppet5` directory of the [`yum.puppet.com`](http://yum.puppet.com/) repository and named using the following convention:
 
    `<PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm`
 
@@ -55,34 +55,34 @@ To enable the Puppet 5 Platform repository:
 
 #### Enterprise Linux 7
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-7.noarch.rpm
+    sudo rpm -Uvh http://yum.puppet.com/puppet5-release-el-7.noarch.rpm
 
 #### Enterprise Linux 6
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-el-6.noarch.rpm
+    sudo rpm -Uvh http://yum.puppet.com/puppet5-release-el-6.noarch.rpm
 
 #### Enterprise Linux 5
 
-    wget https://yum.puppet.com/puppet5/puppet5-release-el-5.noarch.rpm
+    wget http://yum.puppet.com/puppet5-release-el-5.noarch.rpm
     sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
 
 #### Fedora 26
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-26.noarch.rpm
+    sudo rpm -Uvh http://yum.puppet.com/puppet5-release-fedora-26.noarch.rpm
 
 #### Fedora 25
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-fedora-25.noarch.rpm
+    sudo rpm -Uvh http://yum.puppet.com/puppet5-release-fedora-25.noarch.rpm
 
 #### SuSE Enterprise Linux 12
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-sles-12.noarch.rpm
+    sudo rpm -Uvh http://yum.puppet.com/puppet5-release-sles-12.noarch.rpm
 
 #### SuSE Enterprise Linux 11
 
-    sudo rpm -Uvh https://yum.puppet.com/puppet5/puppet5-release-sles-11.noarch.rpm
+    sudo rpm -Uvh http://yum.puppet.com/puppet5-release-sles-11.noarch.rpm
 
 ### Apt-based systems
 

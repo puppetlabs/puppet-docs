@@ -47,7 +47,7 @@ The way you access Puppet 5 Platform  depends on your operating system, and its 
 
 To enable the Puppet 5 Platform repository:
 
-1. Choose the package based on your operating system and version. The packages are located in the [`yum.puppet.com`](https://yum.puppet.com/puppet5/) repository and named using the following convention:
+1. Choose the package based on your operating system and version. The packages are located in the [`yum.puppet.com`](http://yum.puppet.com/) repository and named using the following convention:
 
    `<PLATFORM_NAME>-release-<OS ABBREVIATION>-<OS VERSION>.noarch.rpm`
 
@@ -55,30 +55,30 @@ To enable the Puppet 5 Platform repository:
 
 2. Use the `rpm` tool as root with the `upgrade` (`-U`) flag, and optionally the `verbose` (`-v`), and `hash` (`-h`) flags:
 
-    `sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm`
+    `sudo rpm -Uvh https://yum.puppet.com/puppet5-release-el-7.noarch.rpm`
 
 #### Enterprise Linux 7
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5-release-el-7.noarch.rpm
 
 #### Enterprise Linux 6
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-6.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5-release-el-6.noarch.rpm
 
 #### Enterprise Linux 5
 
-    wget https://yum.puppetlabs.com/puppet5/puppet5-release-el-5.noarch.rpm
+    wget https://yum.puppet.com/puppet5-release-el-5.noarch.rpm
     sudo rpm -Uvh puppet5-release-el-5.noarch.rpm
 
 > **Note:** For recent versions of Puppet, we no longer ship Puppet master components for RHEL 5. However, we continue to ship new versions of the `puppet-agent` package for RHEL 5 agents.
 
 #### Fedora 25
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-25.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5-release-fedora-25.noarch.rpm
 
 #### Fedora 24
 
-    sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-fedora-24.noarch.rpm
+    sudo rpm -Uvh https://yum.puppet.com/puppet5-release-fedora-24.noarch.rpm
 
 ### Apt-based systems
 
@@ -91,7 +91,7 @@ To enable the Puppet 5 Platform repository:
 2. Download the release package and install it as root using the `dpkg` tool and the `install` flag (`-i`):
 
    ~~~
-   wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
+   wget https://apt.puppet.com/puppet5-release-wheezy.deb
    sudo dpkg -i puppet5-release-wheezy.deb
    ~~~
 
@@ -99,31 +99,31 @@ To enable the Puppet 5 Platform repository:
 
 #### Ubuntu 16.04 Xenial Xerus
 
-    wget https://apt.puppetlabs.com/puppet5-release-xenial.deb
+    wget https://apt.puppet.com/puppet5-release-xenial.deb
     sudo dpkg -i puppet5-release-xenial.deb
     sudo apt update
 
 #### Ubuntu 14.04 Trusty Tahr
 
-    wget https://apt.puppetlabs.com/puppet5-release-trusty.deb
+    wget https://apt.puppet.com/puppet5-release-trusty.deb
     sudo dpkg -i puppet5-release-trusty.deb
     sudo apt-get update
 
 #### Debian 9 Stretch
 
-    wget https://apt.puppetlabs.com/puppet5-release-stretch.deb
+    wget https://apt.puppet.com/puppet5-release-stretch.deb
     sudo dpkg -i puppet5-release-stretch.deb
     sudo apt-get update
 
 #### Debian 8 Jessie
 
-    wget https://apt.puppetlabs.com/puppet5-release-jessie.deb
+    wget https://apt.puppet.com/puppet5-release-jessie.deb
     sudo dpkg -i puppet5-release-jessie.deb
     sudo apt-get update
 
 #### Debian 7 Wheezy
 
-    wget https://apt.puppetlabs.com/puppet5-release-wheezy.deb
+    wget https://apt.puppet.com/puppet5-release-wheezy.deb
     sudo dpkg -i puppet5-release-wheezy.deb
     sudo apt-get update
 
@@ -134,11 +134,11 @@ While the [`puppet-agent` package](./about_agent.html) is the only component of 
 
 To download `puppet-agent` for Puppet 5 Platform on macOS:
 
-* [macOS packages](https://downloads.puppetlabs.com/mac/puppet5/)
+* [macOS packages](https://downloads.puppet.com/mac/puppet5/)
 
 To download `puppet-agent` for Puppet 5 Platform on Windows:
 
-* [Microsoft Windows packages](http://downloads.puppetlabs.com/windows/puppet5/)
+* [Microsoft Windows packages](http://downloads.puppet.com/windows/puppet5/)
 
 
 ## Verifying Puppet packages
@@ -194,7 +194,7 @@ The fingerprint of the Puppet release signing key is `6F6B 1550 9CF8 E59E 6E46  
 
 #### Verify a source tarball or gem
 
-To verify a source tarball or Ruby gem, you must download both it and its corresponding `.asc` file. These files are available from <https://downloads.puppetlabs.com/puppet/>.
+To verify a source tarball or Ruby gem, you must download both it and its corresponding `.asc` file. These files are available from <https://downloads.puppet.com/puppet/>.
 
 Next, verify the tarball or gem, replacing `<VERSION>` with the Puppet version number, and `<FILE TYPE>` with `tar.gz` for a tarball or `gem` for a Ruby gem:
 
