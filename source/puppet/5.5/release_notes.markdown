@@ -30,9 +30,15 @@ This is a security and bug-fix release.
 
 - This release updates the `libxslt` version packaged in `puppet-runtime` to version 1.11.33 . This update patches a critical security issue in `libxslt`. See [CVE-2019-11068](https://nvd.nist.gov/vuln/detail/CVE-2019-11068) for details about this vulnerability. [PA-2667](https://tickets.puppetlabs.com/browse/PA-2667)
 
+- To address security fixes, Open SSL has been updated to 1.0.2r.
+
 - This release fixes an issue where you could no longer specify multiple logging destinations on the command line with the `--logdest` option. This feature was temporarily broken when we added the ability to specify a logging destination in `puppet.conf`. [PUP-9565](https://tickets.puppetlabs.com/browse/PUP-9565)
 
 - Because parameters for task execution may be sensitive, the `pxp-agent` no longer logs or writes parameter values to disk. [PCP-814](https://tickets.puppetlabs.com/browse/PCP-814)
+
+
+
+
 
 ## Puppet 5.5.13
 
