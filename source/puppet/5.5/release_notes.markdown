@@ -20,6 +20,20 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.14
+
+Released 30 April 2019
+
+This is a security and bug-fix release.
+
+### Resolved issues
+
+- This release updates the `libxslt` version packaged in `puppet-runtime` to version 1.11.33 . This update patches a critical security issue in `libxslt`. See [CVE-2019-11068](https://nvd.nist.gov/vuln/detail/CVE-2019-11068) for details about this vulnerability. [PA-2667](https://tickets.puppetlabs.com/browse/PA-2667)
+
+- This release fixes an issue where you could no longer specify multiple logging destinations on the command line with the `--logdest` option. This feature was temporarily broken when we added the ability to specify a logging destination in `puppet.conf`. [PUP-9565](https://tickets.puppetlabs.com/browse/PUP-9565)
+
+- Because parameters for task execution may be sensitive, the `pxp-agent` no longer logs or writes parameter values to disk. [PCP-814](https://tickets.puppetlabs.com/browse/PCP-814)
+
 ## Puppet 5.5.13
 
 Released 16 April 2019
