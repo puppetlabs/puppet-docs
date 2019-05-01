@@ -36,6 +36,8 @@ This is a security and bug-fix release.
 
 - Because parameters for task execution may be sensitive, the `pxp-agent` no longer logs or writes parameter values to disk. [PCP-814](https://tickets.puppetlabs.com/browse/PCP-814)
 
+- Puppet now uses the `--no-document` option to exclude documentation when installing gems, instead of the deprecated `--no-rdoc` and `--no-ri` options. This change allows compatibility with `rubygems` 3.0 and greater. [PUP-9395](https://tickets.puppetlabs.com/browse/PUP-9395)
+
 
 
 
