@@ -4,7 +4,7 @@ title: "Configuring Hiera"
 
 [hierarchy]: ./hiera_intro.html#Hiera-hierarchies
 [layers]: ./hiera_intro.html#Hiera's-three-config-layers
-[confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html
 [module]: ./modules_fundamentals.html
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
 [variables]: ./hiera_merging.html#interpolating-variables
