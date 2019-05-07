@@ -78,7 +78,7 @@ To replace the certs on agents, you'll need to log into each agent node and do t
 
 1. Stop the Puppet agent service. On \*nix nodes, run `sudo puppet resource service puppet ensure=stopped`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
 2. Locate Puppet's ssldir and delete everything in it. The ssldir can be located by running `puppet config print ssldir --section agent` or `puppet agent --configprint ssldir` --- be sure to run that command with `sudo` on \*nix nodes and with Administrator privileges on Windows nodes.
-3. Re-start the Puppet agent service. On \*nix nodes, run `sudo puppet resource service pe-puppet ensure=running`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
+3. Re-start the Puppet agent service. On \*nix nodes, run `sudo puppet resource service puppet ensure=running`. On Windows nodes, run the same command (minus `sudo`) with Administrator privileges.
 
    Once the Puppet agent starts, it will automatically generate keys and request a new certificate from the CA Puppet master.
 4. If you are not using autosigning, you will need to sign each agent node's certificate request. You can do this by logging into the CA Puppet master server, running `sudo puppet cert list` to see pending requests, and running `sudo puppet cert sign <NAME>` to sign requests.
