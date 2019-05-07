@@ -29,7 +29,7 @@ The configuration file locations for each layer:
 
 Layer       | Location                                        | Example
 ------------|-------------------------------------------------|--------
-Global      | [`$confdir`][confdir]`/hiera.yaml`              | `/etc/puppetlabs/puppet/hiera.yaml` `C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml`
+Global      | [`$codedir`][codedir]`/hiera.yaml`              | `/etc/puppetlabs/code/hiera.yaml`, `C:\ProgramData\PuppetLabs\code\hiera.yaml`
 Environment | [`<ENVIRONMENT>`](https://puppet.com/docs/puppet/latest/environments_about.html) `/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\hiera.yaml`
 Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml` `C:\ProgramData\PuppetLabs\code\environments\production\modules\ntp\hiera.yaml`
 
@@ -37,7 +37,7 @@ Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/et
 
 Hiera searches for data in the following order: global → environment → module. For more information, see [Hiera configuration layers](https://puppet.com/docs/puppet/latest/hiera_intro.html#hiera-s-three-config-layers)
 
-Related topics: [$confdir][confdir], [`<MODULE>`][module].
+Related topics: [$codedir][codedir], [`<MODULE>`][module].
 
 {:.concept}
 ## Config file syntax (hiera.yaml v5)

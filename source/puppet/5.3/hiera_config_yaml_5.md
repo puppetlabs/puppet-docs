@@ -37,7 +37,7 @@ Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/et
 
 Hiera searches for data in the following order: global → environment → module. For more information, see [Hiera configuration layers](https://puppet.com/docs/puppet/latest/hiera_intro.html#hiera-s-three-config-layers). 
 
-Related topics: [$confdir][confdir], [`<MODULE>`][module].
+Related topics: [$codedir][codedir], [`<MODULE>`][module].
 
 {:.concept}
 ## Config file syntax (hiera.yaml v5)
