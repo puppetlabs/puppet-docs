@@ -36,7 +36,7 @@ Note that this process **destroys the certificate authority and all other certif
 
 **On the Puppet master hosting the CA:**
 
-1. Back up the `/etc/puppetlabs/puppet/ssl/` directory. If something goes wrong, you may need to restore this directory so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should get some assistance as soon as possible so you can keep your site secure.
+1. Back up the directory printed by this command: `sudo puppet master --configprint ssldir`. This is your ssl directory. If something goes wrong, you may need to restore this directory so your deployment can stay functional. **However,** if you needed to regenerate your certs for security reasons and couldn't, you should get some assistance as soon as possible so you can keep your site secure.
 2. Stop the Puppet agent service with `sudo puppet resource service puppet ensure=stopped`.
 3. Stop the Puppet master service. Your Puppet master is probably managed by a Rack-supporting web server, such as Apache with Passenger; you'll need to stop that web server. (For example, `sudo puppet resource service apache2 ensure=stopped`.)
 4. Locate Puppet's ssldir by [reading the setting from Puppet][config_print]; run either `sudo puppet config print ssldir --section master` or `sudo puppet master --configprint ssldir`.
