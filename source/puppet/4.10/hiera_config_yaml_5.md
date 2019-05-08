@@ -6,7 +6,7 @@ title: "Hiera: Config file syntax (hiera.yaml v5)"
 [layers]: ./hiera_layers.html
 [v4]: ./hiera_config_yaml_4.html
 [v3]: ./hiera_config_yaml_3.html
-[codedir]: ./dirs_codedir.html
+[confdir]: ./dirs_confdir.html
 [environment]: ./environments.html
 [module]: ./modules_fundamentals.html
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
@@ -39,11 +39,11 @@ The config file locations for each layer are as follows:
 
 Layer       | Location                                        | Example
 ------------|-------------------------------------------------|--------
-Global      | [`$codedir`][codedir]`/hiera.yaml`              | `/etc/puppetlabs/code/hiera.yaml`, `C:\ProgramData\PuppetLabs\code\hiera.yaml`
+Global      | [`$confdir`][confdir]`/hiera.yaml`              | `/etc/puppetlabs/puppet/hiera.yaml`, `C:\ProgramData\PuppetLabs\puppet\etc\hiera.yaml`
 Environment | [`<ENVIRONMENT>`][environment]`/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml`
 Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml`
 
-> **Note:** You can change the location for the global layer with Puppet's `hiera_config` setting. If no codedir exists, 
+> **Note:** You can change the location for the global layer with Puppet's `hiera_config` setting.
 
 {:.concept}
 ## Syntax
