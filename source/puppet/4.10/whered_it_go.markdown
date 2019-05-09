@@ -15,7 +15,7 @@ This page is a summary, to quickly orient users arriving from Puppet 3.
 
 > If you want full details, [we've written a specification of the directories used by all of Puppet's tools.][spec]
 
-## New All-in-One `puppet-agent` package
+## New all-in-one `puppet-agent` package
 
 On managed \*nix systems, you'll now install `puppet-agent` instead of `puppet`. (This package also provides `puppet apply`, suitable for standalone Puppet systems.)
 
@@ -40,7 +40,7 @@ On Windows, executables stayed in the same location, and the MSI package still a
 
 The executables in `/opt/puppetlabs/bin` are just the "public" applications that make up Puppet. Private supporting commands like `ruby` and `gem` are in `/opt/puppetlabs/puppet/bin`, to keep them from accidentally overriding system tools if you add the public bin dir to your PATH.
 
-\*nix `confdir` is Now `/etc/puppetlabs/puppet`
+\*nix `confdir` is now `/etc/puppetlabs/puppet`
 -----
 
 Puppet's system [`confdir`][confdir] (used by `root` and the `puppet` user) is now `/etc/puppetlabs/puppet`, instead of `/etc/puppet`. Open source Puppet now uses the same `confdir` as Puppet Enterprise.
@@ -74,7 +74,6 @@ The main contents of the `codedir` are:
 * The `environments` directory
 * The global `modules` directory
     * Note: This is only for module versions you specifically want in _all_ environments.
-* The `hiera.yaml` config file
 
 ### Directory environments are always on
 

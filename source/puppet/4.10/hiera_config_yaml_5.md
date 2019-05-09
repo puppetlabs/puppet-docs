@@ -7,6 +7,7 @@ title: "Hiera: Config file syntax (hiera.yaml v5)"
 [v4]: ./hiera_config_yaml_4.html
 [v3]: ./hiera_config_yaml_3.html
 [confdir]: ./dirs_confdir.html
+[codedir]: ./dirs_codedir.html_
 [environment]: ./environments.html
 [module]: ./modules_fundamentals.html
 [yaml]: http://www.yaml.org/YAML_for_ruby.html
@@ -43,7 +44,9 @@ Global      | [`$confdir`][confdir]`/hiera.yaml`              | `/etc/puppetlabs
 Environment | [`<ENVIRONMENT>`][environment]`/hiera.yaml` | `/etc/puppetlabs/code/environments/production/hiera.yaml`
 Module      | [`<MODULE>`][module]`/hiera.yaml`                           | `/etc/puppetlabs/code/environments/production/modules/ntp/hiera.yaml`
 
-> **Note:** You can change the location for the global layer with Puppet's `hiera_config` setting.
+> **Note:**  You can change the location for the global layer with Puppet's `hiera_config` setting.
+> 
+> To provide backward compatibility for Puppet versions 4.0 to 4.4, if the `hiera.yaml` file exists in the global [codedir][codedir], it takes precedence over a `hiera.yaml` in the global confdir. For Puppet to honor the `hiera.yaml` in the confdir, there must be no `hiera.yaml` file in the codedir.
 
 {:.concept}
 ## Syntax

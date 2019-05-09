@@ -66,7 +66,6 @@ The main contents of the `codedir` are:
 
 -   The `environments` directory.
 -   The global `modules` directory. Use this location only for modules you want deployed in _all_ environments.
--   The `hiera.yaml` config file.
 
 ### Directory environments are always enabled
 
