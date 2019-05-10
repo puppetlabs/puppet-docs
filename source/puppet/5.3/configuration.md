@@ -828,7 +828,7 @@ The group puppet master should run as.
 
 The hiera configuration file. Puppet only reads this file on startup, so you must restart the puppet master every time you edit it.
 
-- *Default*: $confdir/hiera.yaml. However, if a file exists at $codedir/hiera.yaml, Puppet uses that instead.
+- *Default*: $confdir/hiera.yaml. However for backwards compatibility, if a file exists at $codedir/hiera.yaml, Puppet uses that instead.
 
 ### hostcert
 
