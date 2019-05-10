@@ -234,6 +234,7 @@ exec resource will autorequire that user.
   <a href="#exec-attribute-tries">tries</a>       =&gt; <em># The number of times execution of the command...</em>
   <a href="#exec-attribute-try_sleep">try_sleep</a>   =&gt; <em># The time to sleep in seconds between 'tries'....</em>
   <a href="#exec-attribute-umask">umask</a>       =&gt; <em># Sets the umask to be used while executing this...</em>
+    <a href="#exec-attribute-unless">unless</a>      =&gt; <em># A test command that checks the state of the...</em>
   <a href="#exec-attribute-user">user</a>        =&gt; <em># The user to run the command as.  > **Note:*...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
