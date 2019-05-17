@@ -55,4 +55,5 @@ Items labeled "master only" below may also be present on standalone Puppet apply
 * [`device.conf`](./config_file_device.html) --- configuration for network devices managed by the `puppet device` command. (All nodes.)
 * [`fileserver.conf`](./config_file_fileserver.html) --- configuration for additional fileserver mount points. (Master only.)
 * [`hiera.yaml`](./config_file_hiera.html) --- configuration for the Hiera data lookup system. (All nodes.)
+   > To provide backward compatibility for Puppet versions 4.0 to 4.4, if a `hiera.yaml` file exists in the global [codedir][codedir], it takes precedence over the `hiera.yaml` in the global confdir. For Puppet to honor the `hiera.yaml` in the confdir, there must be no `hiera.yaml` file in the codedir.
 * [`routes.yaml`](./config_file_routes.html) --- advanced configuration of indirector behavior. (Master only.)
