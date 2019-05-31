@@ -9,6 +9,7 @@ module PuppetReferences
   PE_SERVER_DIR = BASE_DIR + 'vendor/pe-puppetserver'
   OUTPUT_DIR = BASE_DIR + 'references_output'
 
+  require 'puppet_references/config'
   require 'puppet_references/util'
   require 'puppet_references/repo'
   require 'puppet_references/reference'
@@ -45,7 +46,8 @@ module PuppetReferences
         PuppetReferences::Puppet::TypeStrings,
         PuppetReferences::Puppet::Functions
     ]
-    repo = PuppetReferences::Repo.new('puppet', PUPPET_DIR)
+    config = PuppetReferences::Config.read
+    repo = PuppetReferences::Repo.new('puppet', PUPPET_DIR, nil, config['puppet']['repo'])
     real_commit = repo.checkout(commit)
     repo.update_bundle
     build_from_list_of_classes(references, real_commit)
