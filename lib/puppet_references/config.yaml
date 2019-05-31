@@ -1,0 +1,5 @@
+---
+puppet:
+  repo:
+    # False defaults make true overrides easier to read/code
+    skip_download: false
