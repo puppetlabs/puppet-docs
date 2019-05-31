@@ -24,7 +24,7 @@ To install on other operating systems, see the product navigation.
 Step 1: Enable Dependencies (RHEL Only)
 -----
 
-CentOS and other community forks have several packages Puppet depends on in their main repos, but RHEL itself is split into channels. If you're installing Puppet on RHEL, you'll want to make sure the "optional" channel is enabled. [Instructions are available here.](https://access.redhat.com/documentation/en-US/Red_Hat_Subscription_Management/1/html/RHSM/supplementary-repos.html)
+CentOS and other community forks have several packages Puppet depends on in their main repos, but RHEL itself is split into channels. If you're installing Puppet on RHEL, you'll want to make sure the "optional" channel is enabled. [Instructions are available here.](https://access.redhat.com/documentation/en-us/red_hat_subscription_management/1/html/rhsm/yum-enable)
 
 Step 2: Enable the Puppet Package Repository
 -----
