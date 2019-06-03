@@ -775,7 +775,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/6.3.x
+      commit: doc-6.3
       subdirectory: documentation
     hide: true
 
@@ -785,7 +785,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/6.2.0-release
+      commit: doc-6.2
       subdirectory: documentation
     hide: true
   /puppetdb/6.1:
@@ -794,7 +794,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: "c943f424ccb0e5f5d53da5410593b0ccc5fa9a11"
+      commit: doc-6.1
       subdirectory: documentation
     hide: true
   /puppetdb/6.0:
@@ -803,7 +803,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/6.0.x
+      commit: doc-6.0
       subdirectory: documentation
     hide: true
   /puppetdb/5.2:
@@ -812,7 +812,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/5.2.x
+      commit: doc-5.2
       subdirectory: documentation
     hide: true
   /puppetdb/5.1:
@@ -821,7 +821,8 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/5.1.x
+      # Stop just before the facts-blacklist regex docs (unreleased)
+      commit: doc-5.1
       subdirectory: documentation
     hide: true
   /puppetdb/5.0:
@@ -830,7 +831,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/5.0.x
+      commit: doc-5.0
       subdirectory: documentation
     hide: true
   /puppetdb/4.4:
@@ -839,7 +840,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/4.4.x
+      commit: doc-4.4
       subdirectory: documentation
     hide: true
   /puppetdb/4.3:
@@ -848,7 +849,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/4.3.x
+      commit: doc-4.3
       subdirectory: documentation
     hide: true
   /puppetdb/4.2:
@@ -857,7 +858,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/4.2.x
+      commit: doc-4.2
       subdirectory: documentation
     hide: true
   /puppetdb/4.1:
@@ -866,7 +867,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/4.1.x
+      commit: doc-4.1
       subdirectory: documentation
   /puppetdb/2.3:
     doc: puppetdb
@@ -874,7 +875,7 @@ documents:
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
-      commit: origin/2.3.x
+      commit: doc-2.3
       subdirectory: documentation
 
 ---
