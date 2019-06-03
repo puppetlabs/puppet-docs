@@ -13,7 +13,6 @@ These features of the Puppet language are deprecated in this version of Puppet.
 [v5]: ./hiera_config_yaml_5.html
 [custom_backend]: ./hiera_custom_backends.html
 [merging]: ./hiera_merging.html
-[module layer]: ./hiera_layers.html#the-module-layer
 [lookup_function]: ./hiera_automatic.html#looking-up-data-with-hiera
 [lookup_command]: ./man/lookup.html
 [backend_3]: {{hiera}}/custom_backends.html
@@ -27,7 +26,7 @@ The `hiera` command line tool.                              | [The `puppet looku
 [Version 3][v3] and [version 4][v4] of the hiera.yaml file. | [Version 5][v5].
 [Hiera 3 custom backends][backend_3].                       | [Hiera 5 custom backends][custom_backend].
 Setting a global hash merge behavior in hiera.yaml.         | [Per-key and per-lookup merge behavior][merging].
-The `calling_module`, `calling_class`, and `calling_class_path` pseudo-variables. | [The module data layer][module layer].
+The `calling_module`, `calling_class`, and `calling_class_path` pseudo-variables. | [The module data layer](https://puppet.com/docs/puppet/6.4/hiera_intro.html#the-module-layer).
 
 ## Non-strict variables
 
