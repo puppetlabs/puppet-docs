@@ -26,7 +26,7 @@ The `hiera` command line tool.                              | [The `puppet looku
 [Version 3][v3] and [version 4][v4] of the hiera.yaml file. | [Version 5][v5].
 [Hiera 3 custom backends][backend_3].                       | [Hiera 5 custom backends][custom_backend].
 Setting a global hash merge behavior in hiera.yaml.         | [Per-key and per-lookup merge behavior][merging].
-The `calling_module`, `calling_class`, and `calling_class_path` pseudo-variables. | [The module data layer](https://puppet.com/docs/puppet/6.4/hiera_intro.html#the-module-layer).
+The `calling_module`, `calling_class`, and `calling_class_path` pseudo-variables. | [The module data layer](https://puppet.com/docs/puppet/5.5/hiera_intro.html#the-module-layer).
 
 ## Non-strict variables
 
