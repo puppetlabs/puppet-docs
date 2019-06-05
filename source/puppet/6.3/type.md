@@ -597,29 +597,43 @@ line endings.
 
 **Autorequires:** If Puppet is managing the user or group that owns a
 file, the file resource will autorequire them. If Puppet is managing any
-parent directories of a file, the file resource autorequires them.
-
-Warning: Enabling `recurse` on directories containing large numbers of
-files slows agent runs. To manage file attributes for many files,
-consider using alternative methods such as the `chmod_r`, `chown_r`,
- or `recursive_file_permissions` modules from the Forge.
+parent directories of a file, the file resource will autorequire them.
 
 <h3 id="file-attributes">Attributes</h3>
 
 <pre><code>file { 'resource title':
-  <a href="#file-attribute-path">path</a>                 =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
-  <a href="#file-attribute-backup">backup</a>               =&gt; <em># Whether (and how) file content should be backed...</em>
-  <a href="#file-attribute-force">force</a>                =&gt; <em># Perform the file operation even if it will...</em>
-  <a href="#file-attribute-ignore">ignore</a>               =&gt; <em># A parameter which omits action on files matching </em>
-  <a href="#file-attribute-links">links</a>                =&gt; <em># How to handle links during file actions.  During </em>
-  <a href="#file-attribute-purge">purge</a>                =&gt; <em># Whether unmanaged files should be purged. This...</em>
-  <a href="#file-attribute-recurse">recurse</a>              =&gt; <em># Whether to recursively manage the _contents_ of...</em>
-  <a href="#file-attribute-recurselimit">recurselimit</a>         =&gt; <em># How far Puppet should descend into...</em>
-  <a href="#file-attribute-replace">replace</a>              =&gt; <em># Whether to replace a file or symlink that...</em>
-  <a href="#file-attribute-show_diff">show_diff</a>            =&gt; <em># Whether to display differences when the file...</em>
-  <a href="#file-attribute-sourceselect">sourceselect</a>         =&gt; <em># Whether to copy all valid sources, or just the...</em>
-  <a href="#file-attribute-validate_cmd">validate_cmd</a>         =&gt; <em># A command for validating the file's syntax...</em>
-  <a href="#file-attribute-validate_replacement">validate_replacement</a> =&gt; <em># The replacement string in a `validate_cmd` that...</em>
+  <a href="#file-attribute-path">path</a>                    =&gt; <em># <strong>(namevar)</strong> The path to the file to manage.  Must be fully...</em>
+  <a href="#file-attribute-ensure">ensure</a>                  =&gt; <em># Whether the file should exist, and if so what...</em>
+  <a href="#file-attribute-backup">backup</a>                  =&gt; <em># Whether (and how) file content should be backed...</em>
+  <a href="#file-attribute-checksum">checksum</a>                =&gt; <em># The checksum type to use when determining...</em>
+  <a href="#file-attribute-checksum_value">checksum_value</a>          =&gt; <em># The checksum of the source contents. Only md5...</em>
+  <a href="#file-attribute-content">content</a>                 =&gt; <em># The desired contents of a file, as a string...</em>
+  <a href="#file-attribute-ctime">ctime</a>                   =&gt; <em># A read-only state to check the file ctime. On...</em>
+  <a href="#file-attribute-force">force</a>                   =&gt; <em># Perform the file operation even if it will...</em>
+  <a href="#file-attribute-group">group</a>                   =&gt; <em># Which group should own the file.  Argument can...</em>
+  <a href="#file-attribute-ignore">ignore</a>                  =&gt; <em># A parameter which omits action on files matching </em>
+  <a href="#file-attribute-links">links</a>                   =&gt; <em># How to handle links during file actions.  During </em>
+  <a href="#file-attribute-mode">mode</a>                    =&gt; <em># The desired permissions mode for the file, in...</em>
+  <a href="#file-attribute-mtime">mtime</a>                   =&gt; <em># A read-only state to check the file mtime. On...</em>
+  <a href="#file-attribute-owner">owner</a>                   =&gt; <em># The user to whom the file should belong....</em>
+  <a href="#file-attribute-provider">provider</a>                =&gt; <em># The specific backend to use for this `file...</em>
+  <a href="#file-attribute-purge">purge</a>                   =&gt; <em># Whether unmanaged files should be purged. This...</em>
+  <a href="#file-attribute-recurse">recurse</a>                 =&gt; <em># Whether to recursively manage the _contents_ of...</em>
+  <a href="#file-attribute-recurselimit">recurselimit</a>            =&gt; <em># How far Puppet should descend into...</em>
+  <a href="#file-attribute-replace">replace</a>                 =&gt; <em># Whether to replace a file or symlink that...</em>
+  <a href="#file-attribute-selinux_ignore_defaults">selinux_ignore_defaults</a> =&gt; <em># If this is set then Puppet will not ask SELinux...</em>
+  <a href="#file-attribute-selrange">selrange</a>                =&gt; <em># What the SELinux range component of the context...</em>
+  <a href="#file-attribute-selrole">selrole</a>                 =&gt; <em># What the SELinux role component of the context...</em>
+  <a href="#file-attribute-seltype">seltype</a>                 =&gt; <em># What the SELinux type component of the context...</em>
+  <a href="#file-attribute-seluser">seluser</a>                 =&gt; <em># What the SELinux user component of the context...</em>
+  <a href="#file-attribute-show_diff">show_diff</a>               =&gt; <em># Whether to display differences when the file...</em>
+  <a href="#file-attribute-source">source</a>                  =&gt; <em># A source file, which will be copied into place...</em>
+  <a href="#file-attribute-source_permissions">source_permissions</a>      =&gt; <em># Whether (and how) Puppet should copy owner...</em>
+  <a href="#file-attribute-sourceselect">sourceselect</a>            =&gt; <em># Whether to copy all valid sources, or just the...</em>
+  <a href="#file-attribute-target">target</a>                  =&gt; <em># The target for creating a link.  Currently...</em>
+  <a href="#file-attribute-type">type</a>                    =&gt; <em># A read-only state to check the file...</em>
+  <a href="#file-attribute-validate_cmd">validate_cmd</a>            =&gt; <em># A command for validating the file's syntax...</em>
+  <a href="#file-attribute-validate_replacement">validate_replacement</a>    =&gt; <em># The replacement string in a `validate_cmd` that...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
 
@@ -1351,7 +1365,6 @@ Provider support:
     </tr>
   </tbody>
 </table>
-
 
 filebucket
 -----
