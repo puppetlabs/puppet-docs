@@ -20,6 +20,30 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.15
+
+Released 16 July 2019
+
+This is a bug-fix and new feature release.
+
+## New features
+
+Previously, using config print to view your server_list would output a nested array that was difficult to read. Using config print now outputs the text in the same human-readable format as its entry in puppet.conf. Puppetnow uses the same human-readable output for errors you receive from being unable to connect to a server in server_list. [PUP-9495](https://tickets.puppetlabs.com/browse/PUP-9495)
+
+## Resolved issues
+
+- This release fixes an issue where trying to remove a user resource on a Solaris 11 installation using a home directory configuration resulted in an error. [PUP-9706](https://tickets.puppetlabs.com/browse/PUP-9706)
+  
+- If you used a Hiera 3 lookup or Hiera handled an alias and the key was configured with `convert_to`,  you'd get an error: "`undefined method 'call_function' for Hiera::Scope`" [PUP-9693](https://tickets.puppetlabs.com/browse/PUP-9693).
+
+- Conversions from a string to an integer would result in an error when asking for conversion of a decimal string with leading zeros. For example, converting `Integer("08", 10)` would result in an error. [PUP-9689](https://tickets.puppetlabs.com/browse/PUP-9689)
+
+- When initialising new device certificates, `puppet device` would sometimes set permissions in a way that prevented the `pe-puppet` user from reading some directories. [PUP-9642](https://tickets.puppetlabs.com/browse/PUP-9642)  
+
+- This release updates the Windows registry `read` method to replace null byte sequences with a space. This issue was causing PuppetDB to discard updated facts from affected nodes. [PUP-9639](https://tickets.puppetlabs.com/browse/PUP-9639)
+
+- Prior to this release, if you set a Debian package on hold with `ensure => held` and the package had a pending upgrade, Puppet would install the upgrade before locking the package [PUP-9564](https://tickets.puppetlabs.com/browse/PUP-9564).
+
 ## Puppet 5.5.14
 
 Released 30 April 2019
@@ -37,10 +61,6 @@ This is a security and bug-fix release.
 - Because parameters for task execution may be sensitive, the `pxp-agent` no longer logs or writes parameter values to disk. [PCP-814](https://tickets.puppetlabs.com/browse/PCP-814)
 
 - Puppet now uses the `--no-document` option to exclude documentation when installing gems, instead of the deprecated `--no-rdoc` and `--no-ri` options. This change allows compatibility with `rubygems` 3.0 and greater. [PUP-9395](https://tickets.puppetlabs.com/browse/PUP-9395)
-
-
-
-
 
 ## Puppet 5.5.13
 
