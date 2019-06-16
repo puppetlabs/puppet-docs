@@ -158,8 +158,8 @@ Facter.add(:networking, :type => :aggregate) do
     interfaces = {}
     Facter::Util::IP.get_interfaces.each do |interface|
       interfaces[interface] = {
-        'ipaddress' => Facter::Util::IP.get_ipaddress_value(interface),
-        'netmask'   => Facter::Util::IP.get_netmask_value(interface),
+        'ipaddress' => Facter::Util::IP.get_interface_value(interface, 'ipaddress'),
+        'netmask'   => Facter::Util::IP.get_interface_value(interface, 'netmask'),
       }
     end
 
