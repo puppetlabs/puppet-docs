@@ -46,6 +46,8 @@ Previously, using config print to view your server_list would output a nested ar
 
 - Prior to this release, if you set a Debian package on hold with `ensure => held` and the package had a pending upgrade, Puppet would install the upgrade before locking the package [PUP-9564](https://tickets.puppetlabs.com/browse/PUP-9564).
 
+- This release fixes an issue where the `gem update --system` command used in the Puppet agent caused conflicts with software that depends on gems in Puppet's vendored Ruby directory, such as r10k. Now gem paths always contain the path for this directory, even after updating. [PA-2628](https://tickets.puppetlabs.com/browse/PA-2628)
+
 ## Puppet 5.5.14
 
 Released 30 April 2019
