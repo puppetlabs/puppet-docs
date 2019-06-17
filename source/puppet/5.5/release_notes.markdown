@@ -38,6 +38,8 @@ Previously, using config print to view your server_list would output a nested ar
 
 - Conversions from a string to an integer would result in an error when asking for conversion of a decimal string with leading zeros. For example, converting `Integer("08", 10)` would result in an error. [PUP-9689](https://tickets.puppetlabs.com/browse/PUP-9689)
 
+- This release includes an update to curl to address security issues. See [CVE-2019-5435](https://curl.haxx.se/docs/CVE-2019-5435.html) and [CVE-2019-5436](https://curl.haxx.se/docs/CVE-2019-5436.html) for information about the CVEs. [PA-2689]((https://tickets.puppetlabs.com/browse/PA-2689)
+
 - When initialising new device certificates, `puppet device` would sometimes set permissions in a way that prevented the `pe-puppet` user from reading some directories. [PUP-9642](https://tickets.puppetlabs.com/browse/PUP-9642)  
 
 - This release updates the Windows registry `read` method to replace null byte sequences with a space. This issue was causing PuppetDB to discard updated facts from affected nodes. [PUP-9639](https://tickets.puppetlabs.com/browse/PUP-9639)
