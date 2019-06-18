@@ -318,6 +318,12 @@ documents:
       puppetdb: "4.3"
     hide: true
 
+  /puppet/6.5:
+    doc: puppet
+    version: "6.5"
+    nav: ./_puppet_toc.html
+    my_versions:
+      puppetserver: "6.4"
   /puppet/6.4:
     doc: puppet
     version: "6.4"
@@ -590,6 +596,17 @@ documents:
     nav: /_includes/hiera1.html
 
 
+  /puppetserver/6.4:
+    doc: puppetserver
+    version: "6.4"
+    nav: /puppet/6.5/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: origin/6.4.x
+      subdirectory: documentation
+    my_versions:
+      puppet: "6.5"
+    hide: true
   /puppetserver/6.3:
     doc: puppetserver
     version: "6.3"
@@ -778,7 +795,6 @@ documents:
       commit: doc-6.3
       subdirectory: documentation
     hide: true
-
   /puppetdb/6.2:
     doc: puppetdb
     version: "6.2"
