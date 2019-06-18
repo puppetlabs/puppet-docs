@@ -6,11 +6,31 @@ title: "Facter release notes"
 These are the new features, resolved issues, and deprecations in this version of Facter. 
 
 
+## Facter 3.11.9
+
+Released 16 July 2019 with Puppet 5.5.15.
+
+### New features
+
+This release adds new facts for Windows 10/2016+ :
+
+- `ReleaseID`: The 4 digit Windows build Version in the form `YYMM`
+- `InstallationType`: Differentiates Server, Server Core, Client (Desktop): `Server|Server Core|Client`.
+- `EditionID`: Server or Desktop Edition variant: `(ServerStandard|Professional|Enterprise)`.
+- `ProductName`: Textual Product Name.
+
+Exception: on Windows 10 1511-x86_64, `ReleaseID` is not displayed, as is not present in Windows registry. [FACT-1881](https://tickets.puppetlabs.com/browse/FACT-1881)
+
+### Bug fixes
+
+
 ## Facter 3.11.8
 
 Released 16 April 2019
 
-Previously, Facter incorrectly reported operating system facts (such as `os.name` and `os.release`) on Ubuntu systems that did not have the `lsb_release` executable. Operating system facts are now resolved without relying on `lsb_release`. FACT-1899 
+### Bug fixes
+
+- Previously, Facter incorrectly reported operating system facts (such as `os.name` and `os.release`) on Ubuntu systems that did not have the `lsb_release` executable. Operating system facts are now resolved without relying on `lsb_release`. FACT-1899 
 
 ## Facter 3.11.7
 
