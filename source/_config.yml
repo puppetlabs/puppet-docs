@@ -602,7 +602,7 @@ documents:
     nav: /puppet/6.5/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: refs/tags/6.4.0
+      commit: origin/master
       subdirectory: documentation
     my_versions:
       puppet: "6.5"
