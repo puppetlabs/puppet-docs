@@ -32,7 +32,7 @@ defaultnav:
   /mcollective1.2: /_includes/mcollective_1.2.html
   /upgrade: /upgrade/_upgrade_toc.html
 
-#Anatomy of an external source:
+# Anatomy of an external source:
 #  /puppetdb/2.2:                                   # The absolute URL where the source's contents should be mounted in the final site.
 #    repo: git://github.com/puppetlabs/puppetdb.git # The URL of the upstream repo, in any form `git clone` understands. This must be accessible to anyone who will need to build the site.
 #    commit: origin/2.2.x                           # A git treeish (in any form `git checkout` understands) that the external source should track. This should almost always be either a tag, which will never update, or an upstream tracking branch on the default "origin" remote (origin/<branch>), which will update every time someone builds the site.
@@ -78,7 +78,7 @@ document_names:
 #    nav: ./_pe_toc.html          # Nav snippet. Can be an absolute URL, or relative to the base URL.
 #    hide: false                  # Whether to hide this version in the version switcher. Optional; defaults to false.
 #    draft: false                 # Whether to warn in the version note that this is a draft for an unreleased version. Optional; defaults to false.
-#    external_source:             # External source. (Works the same as external sources above.) Optional; if absent, we use content from this repo instead of an external repo.
+#    external_source:             # External source. (See Anatomy of an external source, above.) Optional; if absent, we use content from this repo instead of an external repo.
 #      repo: git@github.com:puppetlabs/pe-docs-private.git   # A git repo
 #      commit: origin/pe2015.3.1
 #      subdirectory: source
@@ -602,7 +602,7 @@ documents:
     nav: /puppet/6.5/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: origin/master
+      commit: 6.4.0
       subdirectory: documentation
     my_versions:
       puppet: "6.5"
@@ -625,7 +625,7 @@ documents:
     nav: /puppet/6.2/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: origin/master
+      commit: 6.2.1
       subdirectory: documentation
     my_versions:
       puppet: "6.2"
