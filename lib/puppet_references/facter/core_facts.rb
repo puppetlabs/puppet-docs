@@ -7,7 +7,7 @@ module PuppetReferences
       PREAMBLE = PREAMBLE_FILE.read
 
       def initialize(*args)
-        @latest = '/facter/latest'
+        @latest = '/puppet/latest'
         super(*args)
       end
 
