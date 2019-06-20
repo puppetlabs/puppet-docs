@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: 'Resource Type: schedule'
 canonical: "/puppet/latest/types/schedule.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 schedule
 -----
@@ -128,6 +128,10 @@ start, that next run will be suppressed).
 See the `periodmatch` attribute for tuning whether to match
 times by their distance apart or by their specific value.
 
+> **Tip**: You can use `period => never,` to prevent a resource from being applied
+in the given `range`. This is useful if you need to create a blackout window to
+perform sensitive operations without interruption.
+
 Allowed values:
 
 * `hourly`
@@ -209,4 +213,4 @@ at 2 AM on Saturday.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700

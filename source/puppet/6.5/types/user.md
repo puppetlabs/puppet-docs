@@ -5,7 +5,7 @@ title: 'Resource Type: user'
 canonical: "/puppet/latest/types/user.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 user
 -----
@@ -133,7 +133,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Specify AIX attributes for the user in an array of attribute = value pairs.
+Specify AIX attributes for the user in an array or hash of attribute = value pairs.
 
  For example:
 
@@ -805,10 +805,10 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -846,20 +846,17 @@ Provider support:
     <tr>
       <td>useradd</td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>windows_adsi</td>
@@ -881,4 +878,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700

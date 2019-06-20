@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: 'Resource Type: service'
 canonical: "/puppet/latest/types/service.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 service
 -----
@@ -356,7 +356,7 @@ services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
-* Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`
+* Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
 * Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
@@ -581,19 +581,22 @@ see <http://upstart.ubuntu.com/>.
 
 * Required binaries: `/sbin/start`, `/sbin/stop`, `/sbin/restart`, `/sbin/status`, `/sbin/initctl`
 * Confined to:
+
   ```
   any == [
     Facter.value(:operatingsystem) == 'Ubuntu',
     (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
     (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
     Facter.value(:operatingsystem) == 'LinuxMint',
-  ]
+  ]`, `true == lambda { has_initctl? }
   ```
 
   ```
   exists == /var/run/upstart-socket-bridge.pid
   ```
-* Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `10.04, 12.04, 14.04, 14.10`
+  
+* Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`, `["operatingsystem", "LinuxMint"] == ["operatingsystemmajrelease", "[\"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\"]"]`
+
 * Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-windows">windows</h4>
@@ -806,4 +809,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700

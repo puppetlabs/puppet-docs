@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 file
 -----
@@ -30,9 +30,12 @@ line endings.
 
 **Autorequires:** If Puppet is managing the user or group that owns a
 file, the file resource will autorequire them. If Puppet is managing any
-parent directories of a file, the file resource will autorequire them.
+parent directories of a file, the file resource autorequires them.
 
-Warning: Enabling `recurse` on directories containing large numbers of files slows agent runs. To manage file attributes for many files, consider using alternative methods such as the `chmod_r`, `chown_r`, or `recursive_file_permissions` modules from the Forge.
+Warning: Enabling `recurse` on directories containing large numbers of
+files slows agent runs. To manage file attributes for many files,
+consider using alternative methods such as the `chmod_r`, `chown_r`,
+ or `recursive_file_permissions` modules from the Forge.
 
 <h3 id="file-attributes">Attributes</h3>
 
@@ -686,6 +689,18 @@ Allowed values:
 
 ([↑ Back to file attributes](#file-attributes))
 
+<h4 id="file-attribute-staging_location">staging_location</h4>
+
+When rendering a file first render it to this location. The default
+location is the same path as the desired location with a unique filename.
+This parameter is useful in conjuction with validate_cmd to test a
+file before moving the file to it's final location.
+WARNING: File replacement is only guaranteed to be atomic if the staging
+location is on the same filesystem as the final location.
+
+([↑ Back to file attributes](#file-attributes))
+
+
 <h4 id="file-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -803,4 +818,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 exec
 -----
@@ -34,6 +34,9 @@ works fine for simple tasks, but once your exec pile gets complex enough
 that you really have to think to understand what's happening, you should
 consider developing a custom resource type instead, as it will be much
 more predictable and maintainable.
+
+**Duplication:** Even though `command` is the namevar, Puppet allows
+multiple `exec` resources with the same `command` value.
 
 **Refresh:** `exec` resources can respond to refresh events (via
 `notify`, `subscribe`, or the `~>` arrow). The refresh behavior of execs
@@ -97,6 +100,9 @@ succeeds, any output produced will be logged at the instance's
 normal log level (usually `notice`), but if the command fails
 (meaning its return code does not match the specified code) then
 any output is logged at the `err` log level.
+
+Multiple `exec` resources can use the same `command` value; Puppet
+only uses the resource title to ensure `exec`s are unique.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -426,4 +432,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700

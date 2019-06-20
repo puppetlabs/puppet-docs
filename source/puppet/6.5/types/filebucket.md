@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: 'Resource Type: filebucket'
 canonical: "/puppet/latest/types/filebucket.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 filebucket
 -----
@@ -86,9 +86,7 @@ setting if `server_list` is not set.
 
 <h4 id="filebucket-attribute-server">server</h4>
 
-The server providing the remote filebucket service. Defaults to the
-value of the `server` setting (that is, the currently configured
-puppet master server).
+The server providing the remote filebucket service.
 
 This setting is consulted only if the `path` attribute is set to `false`.
 
@@ -102,4 +100,4 @@ if `server_list` is not set.
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700

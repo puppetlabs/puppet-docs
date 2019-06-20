@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 package
 -----
@@ -28,8 +28,8 @@ using the `provider` parameter; each provider defines what it
 requires in order to function, and you must meet those requirements
 to use a given provider.
 
-You can declare multiple package resources with the same `name`, as long
-as they specify different providers and have unique titles.
+You can declare multiple package resources with the same `name` as long
+as they have unique titles, and specify different providers and commands.
 
 Note that you must use the _title_ to make a reference to a package
 resource; `Package[<NAME>]` is not a synonym for `Package[<TITLE>]` like
@@ -42,6 +42,7 @@ resource will autorequire those files.
 <h3 id="package-attributes">Attributes</h3>
 
 <pre><code>package { 'resource title':
+  <a href="#package-attribute-command">command</a>              =&gt; <em># <strong>(namevar)</strong> The targeted command to use when managing a...</em>
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-ensure">ensure</a>               =&gt; <em># What state the package should be in. On...</em>
@@ -65,6 +66,33 @@ resource will autorequire those files.
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
+
+<h4 id="package-attribute-command">command</h4>
+
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The targeted command to use when managing a package:
+
+  package { 'mysql':
+    provider => gem,
+  }
+
+  package { 'mysql-opt':
+    name     => 'mysql',
+    provider => gem,
+    command  => '/opt/ruby/bin/gem',
+  }
+
+Each provider defines a package management command; and uses the first
+instance of the command found in the PATH.
+
+Providers supporting the targetable feature allow you to specify the
+absolute path of the package management command; useful when multiple
+instances of the command are installed, or the command is not in the PATH.
+
+Default: `default`
+
+([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-name">name</h4>
 
@@ -471,8 +499,8 @@ the package name.
 Package management via `apt-get`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to apt-get.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a
+ string or a hash.
 
 * Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`
 * Default for: `osfamily` == `debian`
@@ -509,8 +537,8 @@ remove dependent packages with this provider use the `purgeable` feature, but no
 feature is destructive and should be used with the utmost care.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to dnf.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either
+ a string or a hash.
 
 * Required binaries: `dnf`, `rpm`
 * Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24, 25, 26, 27, 28, 29, 30`.
@@ -555,11 +583,8 @@ installed from the default gem repositories. Note that to modify this for Window
 
 This provider supports the `install_options` and `uninstall_options` attributes,
 which allow command-line flags to be passed to the gem command.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
-
-* Required binaries: `gem`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+These options should be specified as an array where each element is either a
+string or a hash.
 
 <h4 id="package-provider-hpux">hpux</h4>
 
@@ -606,8 +631,8 @@ OpenBSD's form of `pkg_add` support.
 
 This provider supports the `install_options` and `uninstall_options`
 attributes, which allow command-line flags to be passed to pkg_add and pkg_delete.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a
+ string or a hash.
 
 * Required binaries: `pkg_info`, `pkg_add`, `pkg_delete`
 * Confined to: `operatingsystem == openbsd`
@@ -628,8 +653,7 @@ Opkg packaging support. Common on OpenWrt and OpenEmbedded platforms
 Support for the Package Manager Utility (pacman) used in Archlinux.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pacman.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `/usr/bin/pacman`
 * Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
@@ -641,18 +665,14 @@ or an array where each element is either a string or a hash.
 Python packages via `pip`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
-
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
+These options should be specified as an array where each element is either a string or a hash.
 
 <h4 id="package-provider-pip3">pip3</h4>
 
 Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
 
@@ -761,8 +781,7 @@ gems needed by the ruby provided in the puppet-agent package.
 
 <h4 id="package-provider-rpm">rpm</h4>
 
-RPM packaging support; should work anywhere with a working `rpm`
-binary.
+RPM packaging support; should work anywhere with a working `rpm` binary.
 
     This provider supports the `install_options` and `uninstall_options`
     attributes, which allow command-line flags to be passed to rpm.
@@ -912,6 +931,7 @@ Provider support:
       <th>package settings</th>
       <th>purgeable</th>
       <th>reinstallable</th>
+      <th>targetable</th>
       <th>uninstall options</th>
       <th>uninstallable</th>
       <th>upgradeable</th>
@@ -924,13 +944,14 @@ Provider support:
       <td>aix</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -938,7 +959,8 @@ Provider support:
       <td>appdmg</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -952,7 +974,8 @@ Provider support:
       <td>apple</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -964,29 +987,31 @@ Provider support:
     </tr>
     <tr>
       <td>apt</td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
       <td>aptitude</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -994,13 +1019,14 @@ Provider support:
       <td>aptrpm</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1008,13 +1034,14 @@ Provider support:
       <td>blastwave</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1022,13 +1049,14 @@ Provider support:
       <td>dnf</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1036,27 +1064,29 @@ Provider support:
       <td>dpkg</td>
       <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td>fink</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1064,13 +1094,14 @@ Provider support:
       <td>freebsd</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1078,13 +1109,14 @@ Provider support:
       <td>gem</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1092,12 +1124,13 @@ Provider support:
       <td>hpux</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1111,6 +1144,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -1120,13 +1154,14 @@ Provider support:
       <td>nim</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1134,12 +1169,13 @@ Provider support:
       <td>openbsd</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1148,13 +1184,14 @@ Provider support:
       <td>opkg</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1162,12 +1199,13 @@ Provider support:
       <td>pacman</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -1180,6 +1218,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -1194,6 +1233,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -1207,13 +1247,11 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1221,7 +1259,8 @@ Provider support:
       <td>pkgdmg</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1240,6 +1279,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -1249,12 +1289,13 @@ Provider support:
       <td>pkgng</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -1263,13 +1304,14 @@ Provider support:
       <td>pkgutil</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1277,13 +1319,14 @@ Provider support:
       <td>portage</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1291,13 +1334,14 @@ Provider support:
       <td>ports</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1305,13 +1349,14 @@ Provider support:
       <td>portupgrade</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1319,13 +1364,14 @@ Provider support:
       <td>puppet_gem</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1333,13 +1379,14 @@ Provider support:
       <td>rpm</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1347,13 +1394,14 @@ Provider support:
       <td>rug</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1361,13 +1409,14 @@ Provider support:
       <td>sun</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1375,13 +1424,14 @@ Provider support:
       <td>sunfreeware</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1389,13 +1439,14 @@ Provider support:
       <td>tdnf</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1403,13 +1454,14 @@ Provider support:
       <td>up2date</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -1417,13 +1469,14 @@ Provider support:
       <td>urpmi</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -1432,6 +1485,7 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -1445,13 +1499,14 @@ Provider support:
       <td>yum</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1459,13 +1514,14 @@ Provider support:
       <td>zypper</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -1474,4 +1530,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 15:39:53 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
