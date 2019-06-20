@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -42,7 +42,7 @@ canonical: "/puppet/latest/configuration.html"
 * Settings that take a single file or directory can optionally set the owner,
   group, and mode for their value: `rundir = $vardir/run { owner = puppet,
   group = puppet, mode = 644 }`
-* The Puppet executables will ignore any setting that isn't relevant to
+* The Puppet executables ignores any setting that isn't relevant to
   their function.
 
 See the [configuration guide][confguide] for more details.
@@ -67,7 +67,9 @@ disabled.  File contains a JSON object with state information.
 
 ### allow_duplicate_certs
 
-Whether to allow a new certificate request to overwrite an existing certificate.
+Whether to allow a new certificate request to overwrite an existing
+certificate request. If true, then the old certificate must be cleaned using
+`puppetserver ca clean`, and the new request signed using `puppetserver ca sign`.
 
 - *Default*: false
 
@@ -285,7 +287,7 @@ for more details.)
 
 Defaults to the node's fully qualified domain name.
 
-- *Default*: the Host's fully qualified domain name, as determined by facter
+- *Default*: the Host's fully qualified domain name, as determined by Facter
 
 ### classfile
 
@@ -381,6 +383,25 @@ setting is provided for this, then the value is printed and puppet
 exits.  Comma-separate multiple values.  For a list of all values,
 specify 'all'. This setting is deprecated, the 'puppet config' command replaces this functionality.
 
+
+### crl_refresh_interval
+
+How often the Puppet agent refreshes its local CRL. By
+default the CRL is only downloaded once, and never refreshed. If a
+duration is specified, then the agent will refresh its CRL whenever it
+next runs and the elapsed time since the CRL was last refreshed exceeds
+the duration.
+
+In general, the duration should be greater than the `runinterval`.
+Setting it to an equal or lesser value will cause the CRL to be
+refreshed on every run.
+
+If the agent downloads a new CRL, the agent will use it for subsequent
+network requests. If the refresh request fails or if the CRL is
+unchanged on the server, then the agent run will continue using the
+local CRL it already has.This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+
+- *Default*: 
 
 ### csr_attributes
 
@@ -611,7 +632,7 @@ custom data providers see the respective module documentation. This setting is d
 
 How long the Puppet master should cache data it loads from an
 environment.
-This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+
 A value of `0` will disable caching. This setting can also be set to
 `unlimited`, which will cache environments until the master is restarted
 or told to refresh the cache.
@@ -627,14 +648,10 @@ Puppet master as part of your code deployment process.
 * With Puppet Server, you should refresh environments by calling the
   `environment-cache` API endpoint. See the docs for the Puppet Server
   administrative API.
-* With a Rack Puppet master, you should restart the web server or the
-  application server. Passenger lets you touch a `restart.txt` file to
-  refresh an application without restarting Apache; see the Passenger docs
-  for details.
 
-We don't recommend using any value other than `0` or `unlimited`, since
-most Puppet masters use a pool of Ruby interpreters which all have their
-own cache timers. When these timers drift out of sync, agents can be served
+Any value other than `0` or `unlimited` is deprecated, since most Puppet
+servers use a pool of Ruby interpreters which all have their own cache
+timers. When these timers drift out of sync, agents can be served
 inconsistent catalogs.
 
 - *Default*: 0
@@ -706,7 +723,11 @@ Where the fileserver configuration is stored.
 
 The minimum time to wait between checking for updates in
 configuration files.  This timeout determines how quickly Puppet checks whether
-a file (such as manifests or templates) has changed on disk. This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+a file (such as manifests or puppet.conf) has changed on disk. The default will
+change in a future release to be 'unlimited', requiring a reload of the Puppet
+service to pick up changes to its internal configuration. Currently we do not
+accept a value of 'unlimited'. To reparse files within an environment in
+Puppet Server please use the environment_cache endpoint
 
 - *Default*: 15s
 
@@ -799,7 +820,7 @@ directories readable by Puppet Server when necessary.
 
 The hiera configuration file. Puppet only reads this file on startup, so you must restart the puppet master every time you edit it.
 
-- *Default*: $confdir/hiera.yaml. However for backwards compatibility, if a file exists at $codedir/hiera.yaml, Puppet uses that instead.
+- *Default*: $confdir/hiera.yaml. However, for backwards compatibility, if a file exists at $codedir/hiera.yaml, Puppet uses that instead.
 
 ### hostcert
 
@@ -896,7 +917,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.4.0 Ruby/2.4.1-p111 (x86_64-darwin17)
+- *Default*: Puppet/6.5.0 Ruby/2.5.1-p57 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -912,6 +933,12 @@ Boolean; whether puppet agent should ignore schedules.  This is useful
 for initial puppet agent runs.
 
 - *Default*: false
+
+### key_type
+
+The type of private key. Valid values are `rsa` and `ec`. Default is `rsa`.
+
+- *Default*: rsa
 
 ### keylength
 
@@ -1139,6 +1166,15 @@ way when that happens.
 
 - *Default*: 4294967290
 
+### maxwaitforcert
+
+The maximum amount of time the Puppet agent should wait for its
+certificate request to be signed. A value of `unlimited` will cause puppet agent
+to ask for a signed certificate indefinitely.
+This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
+
+- *Default*: unlimited
+
 ### mkusers
 
 Whether to create the necessary user and group that puppet agent will run as.
@@ -1183,6 +1219,14 @@ The name of the application, if we are running as one.  The
 default is essentially $0 without the path or `.rb`.
 
 - *Default*: 
+
+### named_curve
+
+The short name for the EC curve used to generate the EC private key. Valid
+values must be one of the curves in `OpenSSL::PKey::EC.builtin_curves`.
+Default is `prime256v1`.
+
+- *Default*: prime256v1
 
 ### node_cache_terminus
 
@@ -1665,6 +1709,12 @@ to underscores, and all letters are uppercased.  Thus, to use the
 
 - *Default*: HTTP_X_CLIENT_VERIFY
 
+### ssl_lockfile
+
+A lock file to indicate that the ssl bootstrap process is currently in progress.
+
+- *Default*: $ssldir/ssl.lock
+
 ### ssl_server_ca_auth
 
 Certificate authorities who issue client certificates.  SSL clients will not be
@@ -1899,7 +1949,8 @@ approved by a human, depending on the CA server's configuration.
 Puppet agent cannot apply configurations until its approved certificate is
 available. Since the certificate may or may not be available immediately,
 puppet agent will repeatedly try to fetch it at this interval. You can
-turn off waiting for certificates by specifying a time of 0, in which case
+turn off waiting for certificates by specifying a time of 0, or a maximum
+amount of time to wait in the `maxwaitforcert` setting, in which case
 puppet agent will exit if it cannot get a cert.
 This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours (6h), days (2d), or years (5y).
 

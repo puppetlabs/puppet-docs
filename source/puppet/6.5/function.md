@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 321d3fb313ee6513c02dac363ae3b122b6168281
+built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 12:34:08 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -1107,7 +1107,8 @@ how to use this function.
 * `fail()`
     * Return type(s): `Any`. 
 
-Fail with a parse error.
+Fail with a parse error. Any parameters will be stringified,
+concatenated, and passed to the exception-handler.
 
 ## `file`
 
@@ -3723,14 +3724,6 @@ $merged = $data.reduce( {} ) |$memo, $x| {
 
 Performs regexp replacement on a string or array of strings.
 
-```puppet
-$i3 = regsubst($ipaddress,'^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)$','\\3')
-```
-
-```puppet
-$x = regsubst($ipaddress, /([0-9]+)/, '<\\1>', 'G')
-```
-
 ## `require`
 
 * `require(Any *$names)`
@@ -4872,4 +4865,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-04-02 12:34:08 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700

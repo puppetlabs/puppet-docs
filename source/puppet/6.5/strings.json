@@ -26,7 +26,7 @@
       "file": "/Users/jeanbond/Documents/puppet-docs/vendor/puppet/lib/puppet/type/exec.rb",
       "line": 2,
       "docstring": {
-        "text": "Executes external commands.\n\nAny command in an `exec` resource **must** be able to run multiple times\nwithout causing harm --- that is, it must be *idempotent*. There are three\nmain ways for an exec to be idempotent:\n\n* The command itself is already idempotent. (For example, `apt-get update`.)\n* The exec has an `onlyif`, `unless`, or `creates` attribute, which prevents\n  Puppet from running the command unless some condition is met.\n* The exec has `refreshonly => true`, which only allows Puppet to run the\n  command when some other resource is changed. (See the notes on refreshing\n  below.)\n\nA caution: There's a widespread tendency to use collections of execs to\nmanage resources that aren't covered by an existing resource type. This\nworks fine for simple tasks, but once your exec pile gets complex enough\nthat you really have to think to understand what's happening, you should\nconsider developing a custom resource type instead, as it will be much\nmore predictable and maintainable.\n\n**Refresh:** `exec` resources can respond to refresh events (via\n`notify`, `subscribe`, or the `~>` arrow). The refresh behavior of execs\nis non-standard, and can be affected by the `refresh` and\n`refreshonly` attributes:\n\n* If `refreshonly` is set to true, the exec will _only_ run when it receives an\n  event. This is the most reliable way to use refresh with execs.\n* If the exec already would have run and receives an event, it will run its\n  command **up to two times.** (If an `onlyif`, `unless`, or `creates` condition\n  is no longer met after the first run, the second run will not occur.)\n* If the exec already would have run, has a `refresh` command, and receives an\n  event, it will run its normal command, then run its `refresh` command\n  (as long as any `onlyif`, `unless`, or `creates` conditions are still met\n  after the normal command finishes).\n* If the exec would **not** have run (due to an `onlyif`, `unless`, or `creates`\n  attribute) and receives an event, it still will not run.\n* If the exec has `noop => true`, would otherwise have run, and receives\n  an event from a non-noop resource, it will run once (or run its `refresh`\n  command instead, if it has one).\n\nIn short: If there's a possibility of your exec receiving refresh events,\nit becomes doubly important to make sure the run conditions are restricted.\n\n**Autorequires:** If Puppet is managing an exec's cwd or the executable\nfile used in an exec's command, the exec resource will autorequire those\nfiles. If Puppet is managing the user that an exec should run as, the\nexec resource will autorequire that user."
+        "text": "Executes external commands.\n\nAny command in an `exec` resource **must** be able to run multiple times\nwithout causing harm --- that is, it must be *idempotent*. There are three\nmain ways for an exec to be idempotent:\n\n* The command itself is already idempotent. (For example, `apt-get update`.)\n* The exec has an `onlyif`, `unless`, or `creates` attribute, which prevents\n  Puppet from running the command unless some condition is met.\n* The exec has `refreshonly => true`, which only allows Puppet to run the\n  command when some other resource is changed. (See the notes on refreshing\n  below.)\n\nA caution: There's a widespread tendency to use collections of execs to\nmanage resources that aren't covered by an existing resource type. This\nworks fine for simple tasks, but once your exec pile gets complex enough\nthat you really have to think to understand what's happening, you should\nconsider developing a custom resource type instead, as it will be much\nmore predictable and maintainable.\n\n**Duplication:** Even though `command` is the namevar, Puppet allows\nmultiple `exec` resources with the same `command` value.\n\n**Refresh:** `exec` resources can respond to refresh events (via\n`notify`, `subscribe`, or the `~>` arrow). The refresh behavior of execs\nis non-standard, and can be affected by the `refresh` and\n`refreshonly` attributes:\n\n* If `refreshonly` is set to true, the exec will _only_ run when it receives an\n  event. This is the most reliable way to use refresh with execs.\n* If the exec already would have run and receives an event, it will run its\n  command **up to two times.** (If an `onlyif`, `unless`, or `creates` condition\n  is no longer met after the first run, the second run will not occur.)\n* If the exec already would have run, has a `refresh` command, and receives an\n  event, it will run its normal command, then run its `refresh` command\n  (as long as any `onlyif`, `unless`, or `creates` conditions are still met\n  after the normal command finishes).\n* If the exec would **not** have run (due to an `onlyif`, `unless`, or `creates`\n  attribute) and receives an event, it still will not run.\n* If the exec has `noop => true`, would otherwise have run, and receives\n  an event from a non-noop resource, it will run once (or run its `refresh`\n  command instead, if it has one).\n\nIn short: If there's a possibility of your exec receiving refresh events,\nit becomes doubly important to make sure the run conditions are restricted.\n\n**Autorequires:** If Puppet is managing an exec's cwd or the executable\nfile used in an exec's command, the exec resource will autorequire those\nfiles. If Puppet is managing the user that an exec should run as, the\nexec resource will autorequire that user."
       },
       "properties": [
         {
@@ -38,7 +38,7 @@
       "parameters": [
         {
           "name": "command",
-          "description": "The actual command to execute.  Must either be fully qualified\nor a search path for the command must be provided.  If the command\nsucceeds, any output produced will be logged at the instance's\nnormal log level (usually `notice`), but if the command fails\n(meaning its return code does not match the specified code) then\nany output is logged at the `err` log level.",
+          "description": "The actual command to execute.  Must either be fully qualified\nor a search path for the command must be provided.  If the command\nsucceeds, any output produced will be logged at the instance's\nnormal log level (usually `notice`), but if the command fails\n(meaning its return code does not match the specified code) then\nany output is logged at the `err` log level.\n\nMultiple `exec` resources can use the same `command` value; Puppet\nonly uses the resource title to ensure `exec`s are unique.",
           "isnamevar": true
         },
         {
@@ -195,6 +195,10 @@
             "no"
           ],
           "default": "true"
+        },
+        {
+          "name": "staging_location",
+          "description": "When rendering a file first render it to this location. The default\nlocation is the same path as the desired location with a unique filename.\nThis parameter is useful in conjuction with validate_cmd to test a\nfile before moving the file to it's final location.\nWARNING: File replacement is only guaranteed to be atomic if the staging\nlocation is on the same filesystem as the final location."
         },
         {
           "name": "validate_cmd",
@@ -358,7 +362,7 @@
       "file": "/Users/jeanbond/Documents/puppet-docs/vendor/puppet/lib/puppet/type/notify.rb",
       "line": 6,
       "docstring": {
-        "text": "Sends an arbitrary message to the agent run-time log."
+        "text": "Sends an arbitrary message to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run."
       },
       "properties": [
         {
@@ -388,7 +392,7 @@
       "file": "/Users/jeanbond/Documents/puppet-docs/vendor/puppet/lib/puppet/type/package.rb",
       "line": 10,
       "docstring": {
-        "text": "Manage packages.  There is a basic dichotomy in package\nsupport right now:  Some package types (such as yum and apt) can\nretrieve their own package files, while others (such as rpm and sun)\ncannot.  For those package formats that cannot retrieve their own files,\nyou can use the `source` parameter to point to the correct file.\n\nPuppet will automatically guess the packaging format that you are\nusing based on the platform you are on, but you can override it\nusing the `provider` parameter; each provider defines what it\nrequires in order to function, and you must meet those requirements\nto use a given provider.\n\nYou can declare multiple package resources with the same `name`, as long\nas they specify different providers and have unique titles.\n\nNote that you must use the _title_ to make a reference to a package\nresource; `Package[<NAME>]` is not a synonym for `Package[<TITLE>]` like\nit is for many other resource types.\n\n**Autorequires:** If Puppet is managing the files specified as a\npackage's `adminfile`, `responsefile`, or `source`, the package\nresource will autorequire those files."
+        "text": "Manage packages.  There is a basic dichotomy in package\nsupport right now:  Some package types (such as yum and apt) can\nretrieve their own package files, while others (such as rpm and sun)\ncannot.  For those package formats that cannot retrieve their own files,\nyou can use the `source` parameter to point to the correct file.\n\nPuppet will automatically guess the packaging format that you are\nusing based on the platform you are on, but you can override it\nusing the `provider` parameter; each provider defines what it\nrequires in order to function, and you must meet those requirements\nto use a given provider.\n\nYou can declare multiple package resources with the same `name` as long\nas they have unique titles, and specify different providers and commands.\n\nNote that you must use the _title_ to make a reference to a package\nresource; `Package[<NAME>]` is not a synonym for `Package[<TITLE>]` like\nit is for many other resource types.\n\n**Autorequires:** If Puppet is managing the files specified as a\npackage's `adminfile`, `responsefile`, or `source`, the package\nresource will autorequire those files."
       },
       "properties": [
         {
@@ -418,6 +422,12 @@
           "name": "name",
           "description": "The package name.  This is the name that the packaging\nsystem uses internally, which is sometimes (especially on Solaris)\na name that is basically useless to humans.  If a package goes by\nseveral names, you can use a single title and then set the name\nconditionally:\n\n    # In the 'openssl' class\n    $ssl = $operatingsystem ? {\n      solaris => SMCossl,\n      default => openssl\n    }\n\n    package { 'openssl':\n      ensure => installed,\n      name   => $ssl,\n    }\n\n    ...\n\n    $ssh = $operatingsystem ? {\n      solaris => SMCossh,\n      default => openssh\n    }\n\n    package { 'openssh':\n      ensure  => installed,\n      name    => $ssh,\n      require => Package['openssl'],\n    }",
           "isnamevar": true
+        },
+        {
+          "name": "command",
+          "description": "The targeted command to use when managing a package:\n\n  package { 'mysql':\n    provider => gem,\n  }\n\n  package { 'mysql-opt':\n    name     => 'mysql',\n    provider => gem,\n    command  => '/opt/ruby/bin/gem',\n  }\n\nEach provider defines a package management command; and uses the first\ninstance of the command found in the PATH.\n\nProviders supporting the targetable feature allow you to specify the\nabsolute path of the package management command; useful when multiple\ninstances of the command are installed, or the command is not in the PATH.",
+          "isnamevar": true,
+          "default": "default"
         },
         {
           "name": "source",
@@ -553,6 +563,10 @@
         {
           "name": "virtual_packages",
           "description": "The provider accepts virtual package names for install and uninstall."
+        },
+        {
+          "name": "targetable",
+          "description": "The provider accepts a targeted package management command."
         }
       ]
     },
@@ -623,7 +637,7 @@
         },
         {
           "name": "period",
-          "description": "The period of repetition for resources on this schedule. The default is\nfor resources to get applied every time Puppet runs.\n\nNote that the period defines how often a given resource will get\napplied but not when; if you would like to restrict the hours\nthat a given resource can be applied (for instance, only at night\nduring a maintenance window), then use the `range` attribute.\n\nIf the provided periods are not sufficient, you can provide a\nvalue to the *repeat* attribute, which will cause Puppet to\nschedule the affected resources evenly in the period the\nspecified number of times.  Take this schedule:\n\n    schedule { 'veryoften':\n      period => hourly,\n      repeat => 6,\n    }\n\nThis can cause Puppet to apply that resource up to every 10 minutes.\n\nAt the moment, Puppet cannot guarantee that level of repetition; that\nis, the resource can applied _up to_ every 10 minutes, but internal\nfactors might prevent it from actually running that often (for instance,\nif a Puppet run is still in progress when the next run is scheduled to\nstart, that next run will be suppressed).\n\nSee the `periodmatch` attribute for tuning whether to match\ntimes by their distance apart or by their specific value.",
+          "description": "The period of repetition for resources on this schedule. The default is\nfor resources to get applied every time Puppet runs.\n\nNote that the period defines how often a given resource will get\napplied but not when; if you would like to restrict the hours\nthat a given resource can be applied (for instance, only at night\nduring a maintenance window), then use the `range` attribute.\n\nIf the provided periods are not sufficient, you can provide a\nvalue to the *repeat* attribute, which will cause Puppet to\nschedule the affected resources evenly in the period the\nspecified number of times.  Take this schedule:\n\n    schedule { 'veryoften':\n      period => hourly,\n      repeat => 6,\n    }\n\nThis can cause Puppet to apply that resource up to every 10 minutes.\n\nAt the moment, Puppet cannot guarantee that level of repetition; that\nis, the resource can applied _up to_ every 10 minutes, but internal\nfactors might prevent it from actually running that often (for instance,\nif a Puppet run is still in progress when the next run is scheduled to\nstart, that next run will be suppressed).\n\nSee the `periodmatch` attribute for tuning whether to match\ntimes by their distance apart or by their specific value.\n\n> **Tip**: You can use `period => never,` to prevent a resource from being applied\nin the given `range`. This is useful if you need to create a blackout window to\nperform sensitive operations without interruption.",
           "values": [
             "hourly",
             "daily",
@@ -1586,11 +1600,9 @@
       "features": [
         "versionable",
         "install_options",
-        "uninstall_options"
-      ],
-      "commands": {
-        "gemcmd": "gem"
-      }
+        "uninstall_options",
+        "targetable"
+      ]
     },
     {
       "name": "gentoo",
@@ -1979,7 +1991,7 @@
       "name": "pip",
       "type_name": "package",
       "file": "/Users/jeanbond/Documents/puppet-docs/vendor/puppet/lib/puppet/provider/package/pip.rb",
-      "line": 7,
+      "line": 8,
       "docstring": {
         "text": "Python packages via `pip`.\n\nThis provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.\nThese options should be specified as an array where each element is either a string or a hash."
       },
@@ -1988,7 +2000,8 @@
         "uninstallable",
         "upgradeable",
         "versionable",
-        "install_options"
+        "install_options",
+        "targetable"
       ]
     },
     {
@@ -2004,7 +2017,8 @@
         "uninstallable",
         "upgradeable",
         "versionable",
-        "install_options"
+        "install_options",
+        "targetable"
       ]
     },
     {
@@ -2670,7 +2684,7 @@
       },
       "confines": {
         "any": "[\n    Facter.value(:operatingsystem) == 'Ubuntu',\n    (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\\./),\n    (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\\d{4}/),\n    Facter.value(:operatingsystem) == 'LinuxMint',\n  ]",
-        "true": "lambda {\n    # Puppet::Util::Execution.execute does not currently work on jRuby.\n    # Unfortunately, since this confine is invoked whenever we check for\n    # provider suitability and since provider suitability is still checked\n    # on the master, this confine will still be invoked on the master. Thus\n    # to avoid raising an exception, we do an early return if we're running\n    # on jRuby.\n    next false if Puppet::Util::Platform.jruby?\n\n    begin\n      initctl('version', '--quiet')\n      true\n    rescue\n      false\n    end\n  }"
+        "true": "lambda { has_initctl? }"
       },
       "features": [
         "enableable"
@@ -2930,6 +2944,12 @@
         "virtual_packages"
       ],
       "defaults": [
+        [
+          [
+            "operatingsystem",
+            "amazon"
+          ]
+        ],
         [
           [
             "osfamily",
@@ -7526,7 +7546,7 @@
         {
           "signature": "fail()",
           "docstring": {
-            "text": "Fail with a parse error.",
+            "text": "Fail with a parse error. Any parameters will be stringified,\nconcatenated, and passed to the exception-handler.",
             "tags": [
               {
                 "tag_name": "return",
@@ -7540,7 +7560,7 @@
         }
       ],
       "docstring": {
-        "text": "Fail with a parse error.",
+        "text": "Fail with a parse error. Any parameters will be stringified,\nconcatenated, and passed to the exception-handler.",
         "tags": [
           {
             "tag_name": "return",
@@ -7551,7 +7571,7 @@
           }
         ]
       },
-      "source": "Puppet::Parser::Functions::newfunction(:fail, :arity => -1, :doc => \"Fail with a parse error.\") do |vals|\n    vals = vals.collect { |s| s.to_s }.join(\" \") if vals.is_a? Array\n    raise Puppet::ParseError, vals.to_s\nend"
+      "source": "Puppet::Parser::Functions::newfunction(\n    :fail,\n    :arity => -1,\n    :doc   => <<DOC\nFail with a parse error. Any parameters will be stringified,\nconcatenated, and passed to the exception-handler.\nDOC\n) do |vals|\n    vals = vals.collect { |s| s.to_s }.join(\" \") if vals.is_a? Array\n    raise Puppet::ParseError, vals.to_s\nend"
     },
     {
       "name": "file",
@@ -13049,7 +13069,7 @@
     {
       "name": "regsubst",
       "file": "/Users/jeanbond/Documents/puppet-docs/vendor/puppet/lib/puppet/functions/regsubst.rb",
-      "line": 41,
+      "line": 39,
       "type": "ruby4x",
       "signatures": [
         {
@@ -13156,16 +13176,16 @@
         }
       ],
       "docstring": {
-        "text": "Performs regexp replacement on a string or array of strings.\n\n```puppet\n$i3 = regsubst($ipaddress,'^(\\\\d+)\\\\.(\\\\d+)\\\\.(\\\\d+)\\\\.(\\\\d+)$','\\\\3')\n```\n\n```puppet\n$x = regsubst($ipaddress, /([0-9]+)/, '<\\\\1>', 'G')\n```",
+        "text": "Performs regexp replacement on a string or array of strings.",
         "tags": [
           {
             "tag_name": "example",
-            "text": "",
+            "text": "```puppet\n$i3 = regsubst($ipaddress,'^(\\\\d+)\\\\.(\\\\d+)\\\\.(\\\\d+)\\\\.(\\\\d+)$','\\\\3')\n```",
             "name": "Get the third octet from the node's IP address:"
           },
           {
             "tag_name": "example",
-            "text": "",
+            "text": "```puppet\n$x = regsubst($ipaddress, /([0-9]+)/, '<\\\\1>', 'G')\n```",
             "name": "Put angle brackets around each octet in the node's IP address:"
           },
           {
