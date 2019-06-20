@@ -1,9 +1,9 @@
 ---
 layout: default
-built_from_commit: 1b244597afcfe4b1745bafc544ed801a1e762cd8
+built_from_commit: 66d97043ff247672a330498144bae2dd35626100
 title: 'Facter: Core Facts'
 toc: columns
-canonical: "/facter/latest/core_facts.html"
+canonical: "/puppet/latest/core_facts.html"
 ---
 
 This is a list of all of the built-in facts that ship with Facter, which includes both legacy facts and newer structured facts.
@@ -617,6 +617,10 @@ Return information about the host operating system.
     * `enforced` (boolean) --- True if SELinux policy is enforced or false if not.
     * `policy_version` (string) --- The version of the SELinux policy.
 * `windows` (map) --- Represents information about Windows.
+    * `edition_id` (string) --- Specify the edition variant. (ServerStandard|Professional|Enterprise)
+    * `installation_type` (string) --- Specify the installation type. (Server|Server Core|Client)
+    * `product_name` (string) --- Specify the textual product name.
+    * `release_id` (string) --- Windows Build Version of the form YYMM.
     * `system32` (string) --- The path to the System32 directory.
 
 
@@ -2736,6 +2740,78 @@ Return the size of the total swap memory, in mebibytes.
 * Linux: parse the contents of `/proc/meminfo` to retrieve the total swap memory.
 * Mac OSX: use the `sysctl` function to retrieve the total swap memory.
 * Solaris: use the `swapctl` function to retrieve the total swap memory.
+
+
+([↑ Back to top](#page-nav))
+
+### `windows_edition_id`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the type of Windows edition, Server or Desktop Edition variant.
+
+
+**Resolution:**
+
+* Windows: query the registry to retrieve the type of edition (ServerStandard|Professional|Enterprise).
+
+
+([↑ Back to top](#page-nav))
+
+### `windows_installation_type`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return Windows installation type (Server|Server Core|Client).
+
+
+**Resolution:**
+
+* Windows: query the registry to retrive data to differentiate Server, Server Core, Client.
+
+
+([↑ Back to top](#page-nav))
+
+### `windows_product_name`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return Windows textual product name.
+
+
+**Resolution:**
+
+* Windows: uery the registry to retrive textual product name.
+
+
+([↑ Back to top](#page-nav))
+
+### `windows_release_id`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return Windows Build Version of the form YYMM.
+
+
+**Resolution:**
+
+* Windows: query the registry to retrieve the build version number.
 
 
 ([↑ Back to top](#page-nav))
