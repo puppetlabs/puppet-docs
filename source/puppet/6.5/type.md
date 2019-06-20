@@ -156,7 +156,6 @@ The following types were deprecated with Puppet 6.0.0. They are available in mod
 
 The following types are located in the core Puppet code base.
 
-
 exec
 -----
 
@@ -184,6 +183,9 @@ works fine for simple tasks, but once your exec pile gets complex enough
 that you really have to think to understand what's happening, you should
 consider developing a custom resource type instead, as it will be much
 more predictable and maintainable.
+
+**Duplication:** Even though `command` is the namevar, Puppet allows
+multiple `exec` resources with the same `command` value.
 
 **Refresh:** `exec` resources can respond to refresh events (via
 `notify`, `subscribe`, or the `~>` arrow). The refresh behavior of execs
@@ -247,6 +249,9 @@ succeeds, any output produced will be logged at the instance's
 normal log level (usually `notice`), but if the command fails
 (meaning its return code does not match the specified code) then
 any output is logged at the `err` log level.
+
+Multiple `exec` resources can use the same `command` value; Puppet
+only uses the resource title to ensure `exec`s are unique.
 
 ([↑ Back to exec attributes](#exec-attributes))
 
@@ -573,6 +578,7 @@ command:
 * Confined to: `operatingsystem == windows`
 * Default for: `["operatingsystem", "windows"] == `
 
+
 file
 -----
 
@@ -596,9 +602,12 @@ line endings.
 
 **Autorequires:** If Puppet is managing the user or group that owns a
 file, the file resource will autorequire them. If Puppet is managing any
-parent directories of a file, the file resource will autorequire them.
+parent directories of a file, the file resource autorequires them.
 
-Warning: Enabling `recurse` on directories containing large numbers of files slows agent runs. To manage file attributes for many files, consider using alternative methods such as the `chmod_r`, `chown_r`, or `recursive_file_permissions` modules from the Forge.
+Warning: Enabling `recurse` on directories containing large numbers of
+files slows agent runs. To manage file attributes for many files,
+consider using alternative methods such as the `chmod_r`, `chown_r`,
+ or `recursive_file_permissions` modules from the Forge.
 
 <h3 id="file-attributes">Attributes</h3>
 
@@ -1252,6 +1261,18 @@ Allowed values:
 
 ([↑ Back to file attributes](#file-attributes))
 
+<h4 id="file-attribute-staging_location">staging_location</h4>
+
+When rendering a file first render it to this location. The default
+location is the same path as the desired location with a unique filename.
+This parameter is useful in conjuction with validate_cmd to test a
+file before moving the file to it's final location.
+WARNING: File replacement is only guaranteed to be atomic if the staging
+location is on the same filesystem as the final location.
+
+([↑ Back to file attributes](#file-attributes))
+
+
 <h4 id="file-attribute-target">target</h4>
 
 _(**Property:** This attribute represents concrete state on the target system.)_
@@ -1367,6 +1388,7 @@ Provider support:
   </tbody>
 </table>
 
+
 filebucket
 -----
 
@@ -1446,9 +1468,7 @@ setting if `server_list` is not set.
 
 <h4 id="filebucket-attribute-server">server</h4>
 
-The server providing the remote filebucket service. Defaults to the
-value of the `server` setting (that is, the currently configured
-puppet master server).
+The server providing the remote filebucket service.
 
 This setting is consulted only if the `path` attribute is set to `false`.
 
@@ -1457,6 +1477,7 @@ configuration setting is used, followed by the value of the `server` setting
 if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
+
 
 
 group
@@ -1795,16 +1816,16 @@ Provider support:
     </tr>
   </tbody>
 </table>
-
-
-notify
+  
+  
+  notify
 -----
 
 * [Attributes](#notify-attributes)
 
 <h3 id="notify-description">Description</h3>
 
-Sends an arbitrary message to the agent run-time log.
+Sends an arbitrary message to the agent run-time log. It's important to note that the notify resource type is not idempotent. As a result, notifications are shown as a change on every Puppet run.
 
 <h3 id="notify-attributes">Attributes</h3>
 
@@ -1867,8 +1888,8 @@ using the `provider` parameter; each provider defines what it
 requires in order to function, and you must meet those requirements
 to use a given provider.
 
-You can declare multiple package resources with the same `name`, as long
-as they specify different providers and have unique titles.
+You can declare multiple package resources with the same `name` as long
+as they have unique titles, and specify different providers and commands.
 
 Note that you must use the _title_ to make a reference to a package
 resource; `Package[<NAME>]` is not a synonym for `Package[<TITLE>]` like
@@ -1881,6 +1902,7 @@ resource will autorequire those files.
 <h3 id="package-attributes">Attributes</h3>
 
 <pre><code>package { 'resource title':
+  <a href="#package-attribute-command">command</a>              =&gt; <em># <strong>(namevar)</strong> The targeted command to use when managing a...</em>
   <a href="#package-attribute-name">name</a>                 =&gt; <em># <strong>(namevar)</strong> The package name.  This is the name that the...</em>
   <a href="#package-attribute-provider">provider</a>             =&gt; <em># <strong>(namevar)</strong> The specific backend to use for this `package...</em>
   <a href="#package-attribute-ensure">ensure</a>               =&gt; <em># What state the package should be in. On...</em>
@@ -1904,6 +1926,33 @@ resource will autorequire those files.
   <a href="#package-attribute-vendor">vendor</a>               =&gt; <em># A read-only parameter set by the...</em>
   # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
 }</code></pre>
+
+<h4 id="package-attribute-command">command</h4>
+
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The targeted command to use when managing a package:
+
+  package { 'mysql':
+    provider => gem,
+  }
+
+  package { 'mysql-opt':
+    name     => 'mysql',
+    provider => gem,
+    command  => '/opt/ruby/bin/gem',
+  }
+
+Each provider defines a package management command; and uses the first
+instance of the command found in the PATH.
+
+Providers supporting the targetable feature allow you to specify the
+absolute path of the package management command; useful when multiple
+instances of the command are installed, or the command is not in the PATH.
+
+Default: `default`
+
+([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-name">name</h4>
 
@@ -2310,8 +2359,8 @@ the package name.
 Package management via `apt-get`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to apt-get.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a
+ string or a hash.
 
 * Required binaries: `/usr/bin/apt-get`, `/usr/bin/apt-cache`, `/usr/bin/debconf-set-selections`
 * Default for: `osfamily` == `debian`
@@ -2348,8 +2397,8 @@ remove dependent packages with this provider use the `purgeable` feature, but no
 feature is destructive and should be used with the utmost care.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to dnf.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either
+ a string or a hash.
 
 * Required binaries: `dnf`, `rpm`
 * Default for `operatingsystem` == `fedora` and `operatingsystemmajrelease` == `22, 23, 24, 25, 26, 27, 28, 29, 30`.
@@ -2394,11 +2443,8 @@ installed from the default gem repositories. Note that to modify this for Window
 
 This provider supports the `install_options` and `uninstall_options` attributes,
 which allow command-line flags to be passed to the gem command.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
-
-* Required binaries: `gem`
-* Supported features: `install_options`, `installable`, `uninstall_options`, `uninstallable`, `upgradeable`, `versionable`
+These options should be specified as an array where each element is either a
+string or a hash.
 
 <h4 id="package-provider-hpux">hpux</h4>
 
@@ -2445,8 +2491,8 @@ OpenBSD's form of `pkg_add` support.
 
 This provider supports the `install_options` and `uninstall_options`
 attributes, which allow command-line flags to be passed to pkg_add and pkg_delete.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a
+ string or a hash.
 
 * Required binaries: `pkg_info`, `pkg_add`, `pkg_delete`
 * Confined to: `operatingsystem == openbsd`
@@ -2467,8 +2513,7 @@ Opkg packaging support. Common on OpenWrt and OpenEmbedded platforms
 Support for the Package Manager Utility (pacman) used in Archlinux.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pacman.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Required binaries: `/usr/bin/pacman`
 * Confined to: `operatingsystem == [:archlinux, :manjarolinux]`
@@ -2480,18 +2525,14 @@ or an array where each element is either a string or a hash.
 Python packages via `pip`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
-
-* Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
+These options should be specified as an array where each element is either a string or a hash.
 
 <h4 id="package-provider-pip3">pip3</h4>
 
 Python packages via `pip3`.
 
 This provider supports the `install_options` attribute, which allows command-line flags to be passed to pip3.
-These options should be specified as a string (e.g. '--flag'), a hash (e.g. {'--flag' => 'value'}),
-or an array where each element is either a string or a hash.
+These options should be specified as an array where each element is either a string or a hash.
 
 * Supported features: `install_options`, `installable`, `uninstallable`, `upgradeable`, `versionable`
 
@@ -2600,8 +2641,7 @@ gems needed by the ruby provided in the puppet-agent package.
 
 <h4 id="package-provider-rpm">rpm</h4>
 
-RPM packaging support; should work anywhere with a working `rpm`
-binary.
+RPM packaging support; should work anywhere with a working `rpm` binary.
 
     This provider supports the `install_options` and `uninstall_options`
     attributes, which allow command-line flags to be passed to rpm.
@@ -2751,6 +2791,7 @@ Provider support:
       <th>package settings</th>
       <th>purgeable</th>
       <th>reinstallable</th>
+      <th>targetable</th>
       <th>uninstall options</th>
       <th>uninstallable</th>
       <th>upgradeable</th>
@@ -2763,13 +2804,14 @@ Provider support:
       <td>aix</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -2777,7 +2819,8 @@ Provider support:
       <td>appdmg</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2791,7 +2834,8 @@ Provider support:
       <td>apple</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2803,29 +2847,31 @@ Provider support:
     </tr>
     <tr>
       <td>apt</td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
     <tr>
       <td>aptitude</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -2833,13 +2879,14 @@ Provider support:
       <td>aptrpm</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -2847,13 +2894,14 @@ Provider support:
       <td>blastwave</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -2861,13 +2909,14 @@ Provider support:
       <td>dnf</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -2875,27 +2924,29 @@ Provider support:
       <td>dpkg</td>
       <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
     <tr>
       <td>fink</td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -2903,13 +2954,14 @@ Provider support:
       <td>freebsd</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -2917,13 +2969,14 @@ Provider support:
       <td>gem</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -2931,12 +2984,13 @@ Provider support:
       <td>hpux</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -2950,6 +3004,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -2959,13 +3014,14 @@ Provider support:
       <td>nim</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -2973,12 +3029,13 @@ Provider support:
       <td>openbsd</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -2987,13 +3044,14 @@ Provider support:
       <td>opkg</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -3001,12 +3059,13 @@ Provider support:
       <td>pacman</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -3019,6 +3078,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -3033,6 +3093,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -3046,13 +3107,11 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -3060,7 +3119,8 @@ Provider support:
       <td>pkgdmg</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3079,6 +3139,7 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
@@ -3088,12 +3149,13 @@ Provider support:
       <td>pkgng</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -3102,13 +3164,14 @@ Provider support:
       <td>pkgutil</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -3116,13 +3179,14 @@ Provider support:
       <td>portage</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -3130,13 +3194,14 @@ Provider support:
       <td>ports</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -3144,13 +3209,14 @@ Provider support:
       <td>portupgrade</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -3158,13 +3224,14 @@ Provider support:
       <td>puppet_gem</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -3172,13 +3239,14 @@ Provider support:
       <td>rpm</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -3186,13 +3254,14 @@ Provider support:
       <td>rug</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -3200,13 +3269,14 @@ Provider support:
       <td>sun</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -3214,13 +3284,14 @@ Provider support:
       <td>sunfreeware</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -3228,13 +3299,14 @@ Provider support:
       <td>tdnf</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -3242,13 +3314,14 @@ Provider support:
       <td>up2date</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
     </tr>
@@ -3256,13 +3329,14 @@ Provider support:
       <td>urpmi</td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
     </tr>
@@ -3271,6 +3345,7 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
@@ -3284,13 +3359,14 @@ Provider support:
       <td>yum</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -3298,13 +3374,14 @@ Provider support:
       <td>zypper</td>
       <td> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
     </tr>
@@ -3382,7 +3459,6 @@ Accepts integers, integer strings, and arrays of integers or integer strings.
 To specify a range of uids, consider using the range() function from stdlib.
 
 ([↑ Back to resources attributes](#resources-attributes))
-
 
 
 schedule
@@ -3506,6 +3582,10 @@ start, that next run will be suppressed).
 See the `periodmatch` attribute for tuning whether to match
 times by their distance apart or by their specific value.
 
+> **Tip**: You can use `period => never,` to prevent a resource from being applied
+in the given `range`. This is useful if you need to create a blackout window to
+perform sensitive operations without interruption.
+
 Allowed values:
 
 * `hourly`
@@ -3582,6 +3662,7 @@ This will match at 11 PM on Saturday and 2 AM on Sunday, but not
 at 2 AM on Saturday.
 
 ([↑ Back to schedule attributes](#schedule-attributes))
+
 
 
 service
@@ -3933,7 +4014,7 @@ services via `update-rc.d` and the ability to determine enabled status via
 `invoke-rc.d`.
 
 * Required binaries: `/usr/sbin/update-rc.d`, `/usr/sbin/invoke-rc.d`, `/usr/sbin/service`
-* Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`
+* Default for: `["operatingsystem", "cumuluslinux"] == ["operatingsystemmajrelease", "['1','2']"]`, `["operatingsystem", "debian"] == ["operatingsystemmajrelease", "['5','6','7']"]`, `["operatingsystem", "devuan"] == `
 * Supported features: `enableable`, `refreshable`.
 
 <h4 id="service-provider-freebsd">freebsd</h4>
@@ -4158,19 +4239,22 @@ see <http://upstart.ubuntu.com/>.
 
 * Required binaries: `/sbin/start`, `/sbin/stop`, `/sbin/restart`, `/sbin/status`, `/sbin/initctl`
 * Confined to:
+
   ```
   any == [
     Facter.value(:operatingsystem) == 'Ubuntu',
     (Facter.value(:osfamily) == 'RedHat' and Facter.value(:operatingsystemrelease) =~ /^6\./),
     (Facter.value(:operatingsystem) == 'Amazon' and Facter.value(:operatingsystemmajrelease) =~ /\d{4}/),
     Facter.value(:operatingsystem) == 'LinuxMint',
-  ]
+  ]`, `true == lambda { has_initctl? }
   ```
 
   ```
   exists == /var/run/upstart-socket-bridge.pid
   ```
-* Default for `operatingsystem` == `ubuntu` and `operatingsystemmajrelease` == `10.04, 12.04, 14.04, 14.10`
+  
+* Default for: `["operatingsystem", "ubuntu"] == ["operatingsystemmajrelease", "[\"10.04\", \"12.04\", \"14.04\", \"14.10\"]"]`, `["operatingsystem", "LinuxMint"] == ["operatingsystemmajrelease", "[\"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\"]"]`
+
 * Supported features: `enableable`, `refreshable`
 
 <h4 id="service-provider-windows">windows</h4>
@@ -4381,6 +4465,52 @@ Provider support:
   </tbody>
 </table>
 
+
+stage
+-----
+
+* [Attributes](#stage-attributes)
+
+<h3 id="stage-description">Description</h3>
+
+A resource type for creating new run stages.  Once a stage is available,
+classes can be assigned to it by declaring them with the resource-like syntax
+and using
+[the `stage` metaparameter](https://puppet.com/docs/puppet/latest/metaparameter.html#stage).
+
+Note that new stages are not useful unless you also declare their order
+in relation to the default `main` stage.
+
+A complete run stage example:
+
+    stage { 'pre':
+      before => Stage['main'],
+    }
+
+    class { 'apt-updates':
+      stage => 'pre',
+    }
+
+Individual resources cannot be assigned to run stages; you can only set stages
+for classes.
+
+<h3 id="stage-attributes">Attributes</h3>
+
+<pre><code>stage { 'resource title':
+  <a href="#stage-attribute-name">name</a> =&gt; <em># <strong>(namevar)</strong> The name of the stage. Use this as the value for </em>
+  # ...plus any applicable <a href="{{puppet}}/metaparameter.html">metaparameters</a>.
+}</code></pre>
+
+<h4 id="stage-attribute-name">name</h4>
+
+_(**Namevar:** If omitted, this attribute's value defaults to the resource's title.)_
+
+The name of the stage. Use this as the value for the `stage` metaparameter
+when assigning classes to this stage.
+
+([↑ Back to stage attributes](#stage-attributes))
+
+
 tidy
 -----
 
@@ -4528,7 +4658,6 @@ Allowed values:
 ([↑ Back to tidy attributes](#tidy-attributes))
 
 
-
 user
 -----
 
@@ -4655,7 +4784,7 @@ Allowed values:
 
 _(**Property:** This attribute represents concrete state on the target system.)_
 
-Specify AIX attributes for the user in an array of attribute = value pairs.
+Specify AIX attributes for the user in an array or hash of attribute = value pairs.
 
  For example:
 
@@ -5327,10 +5456,10 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -5368,20 +5497,17 @@ Provider support:
     <tr>
       <td>useradd</td>
       <td><em>X</em> </td>
-      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>windows_adsi</td>
@@ -5400,4 +5526,5 @@ Provider support:
     </tr>
   </tbody>
 </table>
+
 
