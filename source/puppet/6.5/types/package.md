@@ -92,6 +92,8 @@ instances of the command are installed, or the command is not in the PATH.
 
 Default: `default`
 
+Requires features targetable.
+
 ([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-name">name</h4>
@@ -239,6 +241,8 @@ Allowed values:
 * `false`
 * `yes`
 * `no`
+
+Requires features virtual_packages.
 
 ([↑ Back to package attributes](#package-attributes))
 

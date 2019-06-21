@@ -281,6 +281,8 @@ Specify a *stop* command manually.
 
 Specify an optional minimum timeout (in seconds) for puppet to wait when syncing service properties
 
+Requires features configurable_timeout.
+
 ([↑ Back to service attributes](#service-attributes))
 
 

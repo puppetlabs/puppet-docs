@@ -147,6 +147,8 @@ Specify AIX attributes for the user in an array or hash of attribute = value pai
 attributes => { 'minage' => '0', 'maxage' => '5', 'SYSTEM' => 'compat' }
 ```
 
+Requires features manages_aix_lam.
+
 ([↑ Back to user attributes](#user-attributes))
 
 <h4 id="user-attribute-auth_membership">auth_membership</h4>
