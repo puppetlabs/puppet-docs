@@ -7,7 +7,7 @@ title: "Hiera: Add Hiera data to an existing module"
 [conditional logic]: ./lang_conditional.html
 [module layer]: ./hiera_layers.html#the-module-layer
 [custom backend system]: ./hiera_custom_backends.html
-[data_hash]: ./hiera_custom_data_dash.html
+[data_hash]: ./hiera_custom_data_hash.html
 [functions_puppet]: ./lang_write_functions_in_puppet.html
 [automatic class parameter lookup]: ./hiera_automatic.html
 
