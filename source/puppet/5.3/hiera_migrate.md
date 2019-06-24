@@ -464,7 +464,7 @@ Modules need default values for their class parameters. Before, the preferred wa
 
 > Note: The “params.pp” pattern is still valid, and the features it relies on remain in Puppet. But if you want to use Hiera data instead, you now have that option.
 
-## Module data with the “params.pp” pattern
+### Module data with the “params.pp” pattern
 
 The “params.pp” pattern takes advantage of the Puppet class inheritance behavior. In short:
 
