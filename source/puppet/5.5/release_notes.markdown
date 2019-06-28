@@ -28,9 +28,11 @@ This is a bug-fix and new feature release.
 
 ## New features
 
-Previously, using config print to view your server_list would output a nested array that was difficult to read. Using config print now outputs the text in the same human-readable format as its entry in puppet.conf. Puppetnow uses the same human-readable output for errors you receive from being unable to connect to a server in server_list. [PUP-9495](https://tickets.puppetlabs.com/browse/PUP-9495)
+Previously, using `config print` to view your server list output a nested array that was difficult to read. Using `config print` now outputs the text in the same human-readable format as its entry in the `puppet.conf` file. Puppet uses the same human-readable output for errors you receive from being unable to connect to a server in `server_list``. [PUP-9495](https://tickets.puppetlabs.com/browse/PUP-9495)
 
 ## Resolved issues
+
+- This release fixes an issue where if a Puppet run is killed, the lockfile containing the PID that was being used for the process remains. If another process subsequently starts and uses this PID, the agent fails. Puppet now checks that the PID belongs to Puppet so it can lock the PID correctly. This fix works for Puppet even if you run it as a gem. [PUP-9691](https://tickets.puppetlabs.com/browse/PUP-9691)
 
 - This release fixes an issue where trying to remove a user resource on a Solaris 11 installation using a home directory configuration resulted in an error. [PUP-9706](https://tickets.puppetlabs.com/browse/PUP-9706)
   
