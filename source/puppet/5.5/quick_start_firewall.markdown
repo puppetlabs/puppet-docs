@@ -153,6 +153,8 @@ Modules are directory trees. For this task, you'll create the following files:
 5. Add the `firewall` class to your `site.pp` to ensure the correct packages are installed:
 
 		  class { 'firewall': }
+		  
+6. To apply the configuration, run Puppet on the agent: `puppet agent -t`.
 
 > That's it! To check your firewall configuration, run `iptables --list` from the command line of your Puppet agent. The result should look similar to this:
 
