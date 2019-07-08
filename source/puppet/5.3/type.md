@@ -1300,8 +1300,8 @@ the manifest...
     }
 
 ...but for larger files, this attribute is more useful when combined with the
-[template](https://docs.puppetlabs.com/puppet/latest/reference/function.html#template)
-or [file](https://docs.puppetlabs.com/puppet/latest/reference/function.html#file)
+[template](https://docs.puppetlabs.com/puppet/latest/function.html#template)
+or [file](https://docs.puppetlabs.com/puppet/latest/function.html#file)
 function.
 
 ([↑ Back to file attributes](#file-attributes))
