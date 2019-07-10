@@ -35,6 +35,7 @@ The following words are reserved:
 * `attr` --- reserved for future use
 * `case` --- language keyword
 * `class` --- language keyword
+* `component` --- reserved
 * `consumes` --- language keyword
 * `default` --- language keyword
 * `define` --- language keyword
@@ -51,10 +52,12 @@ The following words are reserved:
 * `or` --- expression operator
 * `private` --- reserved for future use
 * `produces` --- language keyword
+* `regexp` --- reserved
 * `site` --- language keyword
 * `true` --- boolean value
 * `type` --- language keyword
 * `undef` --- special value
+* `unit` --- reserved
 * `unless` --- language keyword
 
 Additionally:
