@@ -627,10 +627,6 @@ Puppet master as part of your code deployment process.
 * With Puppet Server, you should refresh environments by calling the
   `environment-cache` API endpoint. See the docs for the Puppet Server
   administrative API.
-* With a Rack Puppet master, you should restart the web server or the
-  application server. Passenger lets you touch a `restart.txt` file to
-  refresh an application without restarting Apache; see the Passenger docs
-  for details.
 
 We don't recommend using any value other than `0` or `unlimited`, since
 most Puppet masters use a pool of Ruby interpreters which all have their

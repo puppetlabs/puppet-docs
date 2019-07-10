@@ -647,7 +647,7 @@ Puppet master as part of your code deployment process.
 
 * With Puppet Server, you should refresh environments by calling the
   `environment-cache` API endpoint. See the docs for the Puppet Server
-  administrative API.
+  [administrative API](https://puppet.com/docs/puppetserver/latest/admin-api/v1/environment-cache.html).
 
 Any value other than `0` or `unlimited` is deprecated, since most Puppet
 servers use a pool of Ruby interpreters which all have their own cache

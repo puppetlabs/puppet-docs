@@ -675,8 +675,8 @@ We recommend setting this to `unlimited` and explicitly refreshing your
 Puppet master as part of your code deployment process.
 
 * With Puppet Server, you should refresh environments by calling the
-  `environment-cache` API endpoint. See the docs for the Puppet Server
-  administrative API.
+  See the docs for the Puppet Server
+  [administrative API](https://puppet.com/docs/puppetserver/latest/admin-api/v1/environment-cache.html).
 * With a Rack Puppet master, you should restart the web server or the
   application server. Passenger lets you touch a `restart.txt` file to
   refresh an application without restarting Apache; see the Passenger docs
