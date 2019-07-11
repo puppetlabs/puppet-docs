@@ -314,8 +314,7 @@ first, and only runs the main command if the test has an exit code of 0
 
 This would run `logrotate` only if that test returns true.
 
-Note that this test command runs with the same `provider`, `path`,
-`user`, and `group` as the main command. If the `path` isn't set, you
+Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
 must fully qualify the command's name.
 
 This parameter can also take an array of commands. For example:
@@ -458,8 +457,7 @@ first, then runs the main command unless the test has an exit code of 0
 This would add `root` to the cron.allow file (on Solaris) unless
 `grep` determines it's already there.
 
-Note that this test command runs with the same `provider`, `path`,
-`user`, and `group` as the main command. If the `path` isn't set, you
+Note that this test command runs with the same `provider`, `path`, `cwd`, `user`, and `group` as the main command. If the `path` isn't set, you
 must fully qualify the command's name.
 
 This parameter can also take an array of commands. For example:
