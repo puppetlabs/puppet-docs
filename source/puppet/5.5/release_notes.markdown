@@ -30,9 +30,22 @@ This is a bug-fix and new feature release.
 
 Previously, using `config print` to view your server list output a nested array that was difficult to read. Using `config print` now outputs the text in the same human-readable format as its entry in the `puppet.conf` file. Puppet uses the same human-readable output for errors you receive from being unable to connect to a server in `server_list``. [PUP-9495](https://tickets.puppetlabs.com/browse/PUP-9495)
 
+- When the agent is configured with a list of servers, with the `server_list` setting, it now requests server status from the "status" endpoint instead of the "node" endpoint. [PUP-9698](https://tickets.puppetlabs.com/browse/PUP-9698)
+
+
 ## Resolved issues
 
-- Prior to this release, Puppet agent required find, but didn't correctly declare it as a dependency. The agent now requires `findutils` as a dependency. [PA-2629](https://tickets.puppetlabs.com/browse/PA-2629)
+- Some Puppet commands, such as `puppet-infra`, might not be found in the system PATH. This fix ensures that the relevant directory, `opt/puppetlabs/bin`, is available in the PATH. [PA-2750](https://tickets.puppetlabs.com/browse/PA-2750)
+
+- Custom MSI actions did not correctly log `STDERR` to the MSI log. [PA-2691](https://tickets.puppetlabs.com/browse/PA-2691)
+
+- If `LD_LIBRARY_PATH` is set on an AIX 7.y node, running Puppet might fail with the following error: `libfacter was not found. Please make sure it was installed to the expected location.` This is now fixed. [PA-2668](https://tickets.puppetlabs.com/browse/PA-2668)
+
+- Previously, Puppet agent failed to run if the Regional language was changed to Arabic (United Arab Emirates). Now if the code page is not available in Ruby, the handler reverts to UTF-8 and the agent does not fail. [PA-2191](https://tickets.puppetlabs.com/browse/PA-2191)
+
+- This release fixes an issue where incorrectly named spec files caused gem dependency lookup failures. [PA-2670](https://tickets.puppetlabs.com/browse/PA-2670)
+
+For facterdb this means facter 2.5.1 would be installed which then tries to overwrite the bin/facter binary upon installation because facter is a dependency of facterdb (regardless of version).- Prior to this release, Puppet agent required find, but didn't correctly declare it as a dependency. The agent now requires `findutils` as a dependency. [PA-2629](https://tickets.puppetlabs.com/browse/PA-2629)
 
 - Fixed reading of crontabs using Puppet for Solaris 11. Now crontabs for all users are listed when running 'puppet resource cron'. [PUP-9697](https://tickets.puppetlabs.com/browse/PUP-9697)
 

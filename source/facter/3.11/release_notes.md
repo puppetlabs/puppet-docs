@@ -8,7 +8,7 @@ These are the new features, resolved issues, and deprecations in this version of
 
 ## Facter 3.11.9
 
-Released 16 July 2019 with Puppet 5.5.15.
+Released 16 July 2019 with Puppet 5.5.16.
 
 ### New features
 
@@ -23,7 +23,13 @@ Exception: on Windows 10 1511-x86_64, `ReleaseID` is not displayed, as is not pr
 
 ### Bug fixes
 
+- This release fixes an issue with Facter gem installation errors, which occurred because Facter was pinned to Ruby 2.1.7. The pinned version is now 2.1. [FACT-1918](https://tickets.puppetlabs.com/browse/FACT-1918)
+- Prior to this release, Facter returned warnings if `ip route show` output was not in a key-value format. However, this format does not apply to all configurations, and Facter no longer returns warnings about this. [FACT-1916](https://tickets.puppetlabs.com/browse/FACT-1916)
+- Previously, the `mountpoint` fact showed only temporary file systems and physical mounts. Now Facter returns mount points for all mounts on the systems. [FACT-1910](https://tickets.puppetlabs.com/browse/FACT-1910)
+- This release adds support for Virtuzzo Linux facts. [FACT-1888](https://tickets.puppetlabs.com/browse/FACT-1888)
 
+
+`
 ## Facter 3.11.8
 
 Released 16 April 2019
