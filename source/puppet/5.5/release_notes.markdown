@@ -26,14 +26,13 @@ Released 16 July 2019
 
 This is a bug-fix and new feature release.
 
-## New features
+### New features
 
 Previously, using `config print` to view your server list output a nested array that was difficult to read. Using `config print` now outputs the text in the same human-readable format as its entry in the `puppet.conf` file. Puppet uses the same human-readable output for errors you receive from being unable to connect to a server in `server_list``. [PUP-9495](https://tickets.puppetlabs.com/browse/PUP-9495)
 
 - When the agent is configured with a list of servers, with the `server_list` setting, it now requests server status from the "status" endpoint instead of the "node" endpoint. [PUP-9698](https://tickets.puppetlabs.com/browse/PUP-9698)
 
-
-## Resolved issues
+### Resolved issues
 
 - Some Puppet commands, such as `puppet-infra`, might not be found in the system PATH. This fix ensures that the relevant directory, `opt/puppetlabs/bin`, is available in the PATH. [PA-2750](https://tickets.puppetlabs.com/browse/PA-2750)
 
