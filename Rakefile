@@ -303,6 +303,7 @@ task :build_and_check_links do
   Rake::Task['build'].invoke
 end
 
+# Removing link report. We don't think this does anything at this point, as the Jenkins link report job wasn't working and was removed from Jenkins in July 2019
 # namespace :links do
 #  desc 'Format a link report for latest versions of all projects'
 #  task :report_latest_all do
