@@ -312,11 +312,11 @@ end
 #    puts `#{top_dir}/util/link_report.rb #{prefixes}`
 #  end
 
-  desc 'Format a link report for latest version of just PE'
-  task :report_latest_pe do
-    puts `#{top_dir}/util/link_report.rb #{@config_data['document_version_index']['pe']['latest']}`
-  end
-end
+#  desc 'Format a link report for latest version of just PE'
+#  task :report_latest_pe do
+#    puts `#{top_dir}/util/link_report.rb #{@config_data['document_version_index']['pe']['latest']}`
+#  end
+#end
 
 desc "Instead of building real pages, build naked HTML fragments (with no nav, etc.)"
 task :build_html_fragments do
