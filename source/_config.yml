@@ -614,7 +614,7 @@ documents:
     nav: /puppet/6.7/_puppet_toc.html
     external_source:
       repo: git://github.com/puppetlabs/puppetserver.git
-      commit: TK
+      commit: bad680d0d0acd06085b31a6694bf8f86528ae6ae
       subdirectory: documentation
     my_versions:
       puppet: "6.7"
