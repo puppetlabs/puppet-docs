@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Man Page: puppet ssl'
 canonical: "/puppet/latest/man/ssl.html"
 ---
@@ -39,6 +39,12 @@ Clean the specified device certificate instead of this host's certificate.</p></
 <h2 id="ACTIONS">ACTIONS</h2>
 
 <dl>
+<dt>bootstrap</dt><dd><p>Perform all of the steps necessary to request and download a client
+certificate. If autosigning is disabled, then puppet will wait every
+<code>waitforcert</code> seconds for its certificate to be signed. To only attempt
+once and never wait, specify a time of 0. Since <code>waitforcert</code> is a
+Puppet setting, it can be specified as a time interval, such as 30s,
+5m, 1h.</p></dd>
 <dt>submit_request</dt><dd><p>Generate a certificate signing request (CSR) and submit it to the CA. If
 a private and public key pair already exist, they will be used to generate
 the CSR. Otherwise a new key pair will be generated. If a CSR has already

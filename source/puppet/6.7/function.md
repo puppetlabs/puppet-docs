@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 14:45:54 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -1482,7 +1482,13 @@ which this function delegates to after having resolved the variable value.
 
 ## `group_by`
 
-* `group_by()`
+* `group_by(Collection $collection, Callable[1,1] &$block)`
+    * `collection` --- A collection of things to group.
+    * Return type(s): `Hash`. 
+* `group_by(Array $array, Callable[2,2] &$block)`
+    * Return type(s): `Hash`. 
+* `group_by(Collection $collection, Callable[2,2] &$block)`
+    * Return type(s): `Hash`. 
 
 Groups the collection by result of the block. Returns a hash where the keys are the evaluated result from the block
 and the values are arrays of elements in the collection that correspond to the key.
@@ -3573,7 +3579,13 @@ Logs a message on the server at level `notice`.
 
 ## `partition`
 
-* `partition()`
+* `partition(Collection $collection, Callable[1,1] &$block)`
+    * `collection` --- A collection of things to partition.
+    * Return type(s): `Tuple[Array, Array]`. 
+* `partition(Array $array, Callable[2,2] &$block)`
+    * Return type(s): `Tuple[Array, Array]`. 
+* `partition(Collection $collection, Callable[2,2] &$block)`
+    * Return type(s): `Tuple[Array, Array]`. 
 
 Returns two arrays, the first containing the elements of enum for which the block evaluates to true,
 the second containing the rest.
@@ -4865,4 +4877,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 14:45:54 -0700

@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -154,6 +154,15 @@ is used. If the setting :binding_config is specified, it must reference a valid 
 Where FileBucket files are stored.
 
 - *Default*: $vardir/bucket
+
+### ca_fingerprint
+
+The expected fingerprint of the CA certificate. If specified, the agent
+will compare the CA certificate fingerprint that it downloads against this value
+and reject the CA certificate if the values do not match. This only applies
+during the first download of the CA certificate.
+
+- *Default*: 
 
 ### ca_name
 
@@ -647,7 +656,7 @@ Puppet master as part of your code deployment process.
 
 * With Puppet Server, you should refresh environments by calling the
   `environment-cache` API endpoint. See the docs for the Puppet Server
-  [administrative API](https://puppet.com/docs/puppetserver/latest/admin-api/v1/environment-cache.html).
+  administrative API.
 
 Any value other than `0` or `unlimited` is deprecated, since most Puppet
 servers use a pool of Ruby interpreters which all have their own cache
@@ -917,7 +926,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.5.0 Ruby/2.5.1-p57 (x86_64-darwin17)
+- *Default*: Puppet/6.7.0 Ruby/2.5.1-p57 (x86_64-darwin17)
 
 ### ignoremissingtypes
 

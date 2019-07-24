@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Man Page: puppet catalog'
 canonical: "/puppet/latest/man/catalog.html"
 ---
@@ -81,6 +81,17 @@ the source of the catalog can be managed with the <code>--terminus</code> option
 
 <p>Nothing. When used from the Ruby API, returns a
 Puppet::Transaction::Report object.</p></dd>
+<dt><code>compile</code> - Compile a catalog.</dt><dd><p><code>SYNOPSIS</code></p>
+
+<p>puppet catalog compile [--terminus _TERMINUS] [--extra HASH]</p>
+
+<p><code>DESCRIPTION</code></p>
+
+<p>Compiles a catalog locally for a node, requiring access to modules, node classifier, etc.</p>
+
+<p><code>RETURNS</code></p>
+
+<p>A serialized catalog.</p></dd>
 <dt><code>download</code> - Download this node's catalog from the puppet master server.</dt><dd><p><code>SYNOPSIS</code></p>
 
 <p>puppet catalog download [--terminus _TERMINUS] [--extra HASH]</p>
@@ -103,13 +114,13 @@ alternate termini.</p>
 <p>When used from the Ruby API, this action has a side effect of leaving
 Puppet::Resource::Catalog.indirection.terminus_class set to yaml. The
 terminus must be explicitly re-set for subsequent catalog actions.</p></dd>
-<dt><code>find</code> - Retrieve the catalog for a node.</dt><dd><p><code>SYNOPSIS</code></p>
+<dt><code>find</code> - Retrieve the catalog for the node from which the command is run.</dt><dd><p><code>SYNOPSIS</code></p>
 
 <p>puppet catalog find [--terminus _TERMINUS] [--extra HASH] <var>certname</var></p>
 
 <p><code>DESCRIPTION</code></p>
 
-<p>Retrieve the catalog for a node.</p>
+<p>Retrieve the catalog for the node from which the command is run.</p>
 
 <p><code>RETURNS</code></p>
 
@@ -181,6 +192,12 @@ Puppet::Face[:catalog, '0.0.1'].download
 report  = Puppet::Face[:catalog, '0.0.1'].apply
 # ...
 </code></pre>
+
+<p><code>compile</code></p>
+
+<p>Compile catalog for node 'mynode':</p>
+
+<p>$ puppet catalog compile mynode --codedir ...</p>
 
 <p><code>download</code></p>
 

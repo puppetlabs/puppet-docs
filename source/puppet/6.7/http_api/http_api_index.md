@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Puppet HTTP API: Index'
 canonical: "/puppet/latest/http_api/http_api_index.html"
 ---
@@ -9,13 +9,9 @@ A Puppet master server provides several services via HTTP API, and the Puppet
 agent application uses those services to resolve a node's credentials, retrieve
 a configuration catalog, retrieve file data, and submit reports.
 
-In general, these APIs aren't designed for use by tools other than Puppet agent,
-and they've historically relied on a lot of shared code to work correctly.
+In general, these APIs aren't designed for use by tools other than Puppet agent.
 This is gradually changing, although we expect external use of these APIs to
-remain low for the foreseeable future.
-
-Puppet will often send garbage URL parameters, such as `fail_on_404` and
-`ignore_cache`. The server will ignore any parameters it isn't expecting.
+remain low for the foreseeable future. The server ignores any parameters it isn't expecting.
 
 V1/V2 HTTP APIs (Removed)
 ---------------
@@ -38,7 +34,7 @@ and a separate one for the certificate authority (CA).
 
 All configuration endpoints are prefixed with `/puppet`, while all CA endpoints are
 prefixed with `/puppet-ca`. All endpoints are explicitly versioned: the prefix
-is always immediately followed by a string like `/v3` (a directory separator,
+is always immediately followed by a string such as `/v3` (a directory separator,
 the letter `v`, and the version number of the API).
 
 ### Authorization
@@ -48,11 +44,10 @@ authorization system.
 
 Puppet Server ignores `auth.conf` for `/puppet-ca` endpoints. Access to the
 `certificate_status` endpoint is configured in Puppet Server's `ca.conf` file,
-and the remaining CA endpoints are always accessible. Rack Puppet master servers
-still use `auth.conf` for `/puppet-ca`.
+and the remaining CA endpoints are always accessible.
 
 When specifying authorization in `auth.conf`, the prefix and the version number
-(e.g. `/puppet/v3`) on the paths must be retained, since Puppet matches
+(such as `/puppet/v3`) on the paths must be retained, since Puppet matches
 authorization rules against the full request path.
 
 Puppet V3 HTTP API

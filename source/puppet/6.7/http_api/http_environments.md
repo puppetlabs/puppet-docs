@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2445e3a9d9ce2f4072ade234575ca8f34f22550a
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Puppet HTTP API: Environments'
 canonical: "/puppet/latest/http_api/http_environments.html"
 ---

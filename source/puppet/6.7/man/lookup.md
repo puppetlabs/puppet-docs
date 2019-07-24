@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Man Page: puppet lookup'
 canonical: "/puppet/latest/man/lookup.html"
 ---
@@ -8,7 +8,7 @@ canonical: "/puppet/latest/man/lookup.html"
 <div class='mp'>
 <h2 id="NAME">NAME</h2>
 <p class="man-name">
-  <code>puppet-lookup</code> - <span class="man-whatis">Interactive Hiera lookup</span>
+  <code>lookup</code> - <span class="man-whatis">Interactive Hiera lookup</span>
 </p>
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>

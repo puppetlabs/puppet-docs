@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: e08055f43b0d05a8496a3be38ed5a28747bcdf36
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Man Page: puppet filebucket'
 canonical: "/puppet/latest/man/filebucket.html"
 ---
@@ -83,7 +83,10 @@ path instead.</p></dd>
 <dt>--remote</dt><dd><p>Use a remote filebucket. This uses the default configuration
 information and the bucket located at the '$bucketdir' setting
 by default.</p></dd>
-<dt>--server</dt><dd><p>The server to send the file to, instead of locally.</p></dd>
+<dt>--server_list</dt><dd><p>A list of comma seperated servers; only the first entry is used for file storage.
+This setting takes precidence over <code>server</code>.</p></dd>
+<dt>--server</dt><dd><p>The server to use for file storage. This setting is only used if <code>server_list</code>
+is not set.</p></dd>
 <dt>--todate</dt><dd><p>(list only) Select bucket files until 'todate'.</p></dd>
 <dt>--verbose</dt><dd><p>Print extra information.</p></dd>
 <dt>--version</dt><dd><p>Print version information.</p></dd>
