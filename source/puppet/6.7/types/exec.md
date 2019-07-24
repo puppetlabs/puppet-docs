@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Resource Type: exec'
 canonical: "/puppet/latest/types/exec.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 15:17:23 -0700
 
 exec
 -----
@@ -62,7 +62,7 @@ In short: If there's a possibility of your exec receiving refresh events,
 it becomes doubly important to make sure the run conditions are restricted.
 
 **Autorequires:** If Puppet is managing an exec's cwd or the executable
-file used in an exec's command, the exec resource will autorequire those
+file used in an exec's command, the exec resource autorequires those
 files. If Puppet is managing the user that an exec should run as, the
 exec resource will autorequire that user.
 
@@ -430,4 +430,4 @@ command:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 15:17:23 -0700

@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Resource Type: package'
 canonical: "/puppet/latest/types/package.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 15:17:23 -0700
 
 package
 -----
@@ -314,8 +314,6 @@ like they are in `file` resources.) Note also that backslashes in
 double-quoted strings _must_ be escaped and backslashes in single-quoted
 strings _can_ be escaped.
 
-
-
 Requires features install_options.
 
 ([↑ Back to package attributes](#package-attributes))
@@ -349,8 +347,6 @@ settings.
 
 Again, check the documentation of your platform's package provider to see
 the actual usage.
-
-
 
 Requires features package_settings.
 
@@ -917,6 +913,7 @@ Available features:
 * `package_settings` --- The provider accepts package_settings to be ensured for the given package. The meaning and format of these settings is provider-specific.
 * `purgeable` --- The provider can purge packages.  This generally means that all traces of the package are removed, including existing configuration files.  This feature is thus destructive and should be used with the utmost care.
 * `reinstallable` --- The provider can reinstall packages.
+* `targetable` --- The provider accepts a targeted package management command.
 * `uninstall_options` --- The provider accepts options to be passed to the uninstaller command.
 * `uninstallable` --- The provider can uninstall packages.
 * `upgradeable` --- The provider can upgrade to the latest version of a package.  This feature is used by specifying `latest` as the desired value for the package.
@@ -1534,4 +1531,4 @@ Provider support:
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 15:17:23 -0700

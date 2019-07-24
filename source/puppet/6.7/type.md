@@ -211,7 +211,7 @@ In short: If there's a possibility of your exec receiving refresh events,
 it becomes doubly important to make sure the run conditions are restricted.
 
 **Autorequires:** If Puppet is managing an exec's cwd or the executable
-file used in an exec's command, the exec resource will autorequire those
+file used in an exec's command, the exec resource autorequires those
 files. If Puppet is managing the user that an exec should run as, the
 exec resource will autorequire that user.
 
@@ -638,6 +638,7 @@ consider using alternative methods such as the `chmod_r`, `chown_r`,
   <a href="#file-attribute-source">source</a>                  =&gt; <em># A source file, which will be copied into place...</em>
   <a href="#file-attribute-source_permissions">source_permissions</a>      =&gt; <em># Whether (and how) Puppet should copy owner...</em>
   <a href="#file-attribute-sourceselect">sourceselect</a>            =&gt; <em># Whether to copy all valid sources, or just the...</em>
+  <a href="#file-attribute-staging_location">staging_location</a>        =&gt; <em># When rendering a file first render it to this...</em>
   <a href="#file-attribute-target">target</a>                  =&gt; <em># The target for creating a link.  Currently...</em>
   <a href="#file-attribute-type">type</a>                    =&gt; <em># A read-only state to check the file...</em>
   <a href="#file-attribute-validate_cmd">validate_cmd</a>            =&gt; <em># A command for validating the file's syntax...</em>
@@ -757,7 +758,18 @@ The checksum type to use when determining whether to replace a file's contents.
 
 The default checksum type is md5.
 
-Valid values are `md5`, `md5lite`, `sha224`, `sha256`, `sha256lite`, `sha384`, `sha512`, `mtime`, `ctime`, `none`.
+Allowed values:
+
+* `md5`
+* `md5lite`
+* `sha224`
+* `sha256`
+* `sha256lite`
+* `sha384`
+* `sha512`
+* `mtime`
+* `ctime`
+* `none`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -908,7 +920,7 @@ Numeric modes should use the standard octal notation of
 Symbolic modes should be represented as a string of comma-separated
 permission clauses, in the form `<WHO><OP><PERM>`:
 
-* "Who" should be u (user), g (group), o (other), and/or a (all)
+* "Who" should be any combination of u (user), g (group), and o (other), or a (all)
 * "Op" should be = (set exact permissions), + (add select permissions),
   or - (remove select permissions)
 * "Perm" should be one or more of:
@@ -1196,10 +1208,14 @@ directories if the `recurse` attribute is set to `true` or `remote`. If
 a source directory contains symlinks, use the `links` attribute to
 specify whether to recreate links or follow them.
 
-*HTTP* URIs cannot be used to recursively synchronize whole directory
-trees. It is also not possible to use `source_permissions` values other
-than `ignore`. That's because HTTP servers do not transfer any metadata
-that translates to ownership or permission details.
+_HTTP_ URIs cannot be used to recursively synchronize whole directory
+trees. You cannot use `source_permissions` values other than `ignore`
+because HTTP servers do not transfer any metadata that translates to
+ownership or permission details.
+
+The `http` source uses the server `Content-MD5` header as a checksum to
+determine if the remote file has changed. If the server response does not
+include that header, Puppet defaults to using the `Last-Modified` header.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -1237,7 +1253,13 @@ Valid values are `use`, `use_when_creating`, and `ignore`:
   `source` when creating a file; existing files will not have their permissions
   overwritten.
 
-Valid values are `use`, `use_when_creating`, `ignore`.
+Default: `ignore`
+
+Allowed values:
+
+* `use`
+* `use_when_creating`
+* `ignore`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -1381,18 +1403,11 @@ Provider support:
     </tr>
     <tr>
       <td>windows</td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
-
-filebucket
------
-
-* [Attributes](#filebucket-attributes)
-
-<h3 id="filebucket-description">Description</h3>
 
 A repository for storing and retrieving file content by MD5 checksum. Can
 be local to each agent node, or centralized on a puppet master server. All
@@ -1475,7 +1490,6 @@ configuration setting is used, followed by the value of the `server` setting
 if `server_list` is not set.
 
 ([↑ Back to filebucket attributes](#filebucket-attributes))
-
 
 
 group
@@ -1814,9 +1828,8 @@ Provider support:
     </tr>
   </tbody>
 </table>
-  
-  
-  notify
+
+notify
 -----
 
 * [Attributes](#notify-attributes)
@@ -1862,7 +1875,6 @@ Allowed values:
 * `false`
 
 ([↑ Back to notify attributes](#notify-attributes))
-
 
 
 package
@@ -1949,6 +1961,8 @@ absolute path of the package management command; useful when multiple
 instances of the command are installed, or the command is not in the PATH.
 
 Default: `default`
+
+Requires features targetable.
 
 ([↑ Back to package attributes](#package-attributes))
 
@@ -2098,6 +2112,8 @@ Allowed values:
 * `yes`
 * `no`
 
+Requires features virtual_packages.
+
 ([↑ Back to package attributes](#package-attributes))
 
 <h4 id="package-attribute-allowcdrom">allowcdrom</h4>
@@ -2168,8 +2184,6 @@ like they are in `file` resources.) Note also that backslashes in
 double-quoted strings _must_ be escaped and backslashes in single-quoted
 strings _can_ be escaped.
 
-
-
 Requires features install_options.
 
 ([↑ Back to package attributes](#package-attributes))
@@ -2203,8 +2217,6 @@ settings.
 
 Again, check the documentation of your platform's package provider to see
 the actual usage.
-
-
 
 Requires features package_settings.
 
@@ -2771,6 +2783,7 @@ Available features:
 * `package_settings` --- The provider accepts package_settings to be ensured for the given package. The meaning and format of these settings is provider-specific.
 * `purgeable` --- The provider can purge packages.  This generally means that all traces of the package are removed, including existing configuration files.  This feature is thus destructive and should be used with the utmost care.
 * `reinstallable` --- The provider can reinstall packages.
+* `targetable` --- The provider accepts a targeted package management command.
 * `uninstall_options` --- The provider accepts options to be passed to the uninstaller command.
 * `uninstallable` --- The provider can uninstall packages.
 * `upgradeable` --- The provider can upgrade to the latest version of a package.  This feature is used by specifying `latest` as the desired value for the package.
@@ -3662,7 +3675,6 @@ at 2 AM on Saturday.
 ([↑ Back to schedule attributes](#schedule-attributes))
 
 
-
 service
 -----
 
@@ -3936,6 +3948,8 @@ Specify a *stop* command manually.
 <h4 id="service-attribute-timeout">timeout</h4>
 
 Specify an optional minimum timeout (in seconds) for puppet to wait when syncing service properties
+
+Requires features configurable_timeout.
 
 ([↑ Back to service attributes](#service-attributes))
 
@@ -4301,47 +4315,53 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>bsd</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>daemontools</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>debian</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>freebsd</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>gentoo</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>init</td>
@@ -4349,7 +4369,8 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>launchd</td>
@@ -4363,18 +4384,20 @@ Provider support:
     <tr>
       <td>openbsd</td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>openrc</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>openwrt</td>
@@ -4383,31 +4406,34 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>rcng</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>redhat</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>runit</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>service</td>
@@ -4415,12 +4441,14 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>smf</td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -4428,7 +4456,8 @@ Provider support:
     <tr>
       <td>src</td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -4436,10 +4465,11 @@ Provider support:
     <tr>
       <td>systemd</td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
-      <td><em>X</em> </td>
-      <td><em>X</em> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>upstart</td>
@@ -4448,21 +4478,19 @@ Provider support:
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
     <tr>
       <td>windows</td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
     </tr>
   </tbody>
 </table>
-
 
 stage
 -----
@@ -4795,6 +4823,8 @@ Specify AIX attributes for the user in an array or hash of attribute = value pai
 ```
 attributes => { 'minage' => '0', 'maxage' => '5', 'SYSTEM' => 'compat' }
 ```
+
+Requires features manages_aix_lam.
 
 ([↑ Back to user attributes](#user-attributes))
 
@@ -5524,5 +5554,4 @@ Provider support:
     </tr>
   </tbody>
 </table>
-
 

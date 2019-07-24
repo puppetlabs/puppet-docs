@@ -1,11 +1,11 @@
 ---
 layout: default
-built_from_commit: 8cc7b7262e229a3d8e5de54a14e7b3e3053572bd
+built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
 title: 'Resource Type: file'
 canonical: "/puppet/latest/types/file.html"
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 15:17:23 -0700
 
 file
 -----
@@ -68,6 +68,7 @@ consider using alternative methods such as the `chmod_r`, `chown_r`,
   <a href="#file-attribute-source">source</a>                  =&gt; <em># A source file, which will be copied into place...</em>
   <a href="#file-attribute-source_permissions">source_permissions</a>      =&gt; <em># Whether (and how) Puppet should copy owner...</em>
   <a href="#file-attribute-sourceselect">sourceselect</a>            =&gt; <em># Whether to copy all valid sources, or just the...</em>
+  <a href="#file-attribute-staging_location">staging_location</a>        =&gt; <em># When rendering a file first render it to this...</em>
   <a href="#file-attribute-target">target</a>                  =&gt; <em># The target for creating a link.  Currently...</em>
   <a href="#file-attribute-type">type</a>                    =&gt; <em># A read-only state to check the file...</em>
   <a href="#file-attribute-validate_cmd">validate_cmd</a>            =&gt; <em># A command for validating the file's syntax...</em>
@@ -187,7 +188,18 @@ The checksum type to use when determining whether to replace a file's contents.
 
 The default checksum type is md5.
 
-Valid values are `md5`, `md5lite`, `sha224`, `sha256`, `sha256lite`, `sha384`, `sha512`, `mtime`, `ctime`, `none`.
+Allowed values:
+
+* `md5`
+* `md5lite`
+* `sha224`
+* `sha256`
+* `sha256lite`
+* `sha384`
+* `sha512`
+* `mtime`
+* `ctime`
+* `none`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -338,7 +350,7 @@ Numeric modes should use the standard octal notation of
 Symbolic modes should be represented as a string of comma-separated
 permission clauses, in the form `<WHO><OP><PERM>`:
 
-* "Who" should be u (user), g (group), o (other), and/or a (all)
+* "Who" should be any combination of u (user), g (group), and o (other), or a (all)
 * "Op" should be = (set exact permissions), + (add select permissions),
   or - (remove select permissions)
 * "Perm" should be one or more of:
@@ -626,10 +638,14 @@ directories if the `recurse` attribute is set to `true` or `remote`. If
 a source directory contains symlinks, use the `links` attribute to
 specify whether to recreate links or follow them.
 
-*HTTP* URIs cannot be used to recursively synchronize whole directory
-trees. It is also not possible to use `source_permissions` values other
-than `ignore`. That's because HTTP servers do not transfer any metadata
-that translates to ownership or permission details.
+_HTTP_ URIs cannot be used to recursively synchronize whole directory
+trees. You cannot use `source_permissions` values other than `ignore`
+because HTTP servers do not transfer any metadata that translates to
+ownership or permission details.
+
+The `http` source uses the server `Content-MD5` header as a checksum to
+determine if the remote file has changed. If the server response does not
+include that header, Puppet defaults to using the `Last-Modified` header.
 
 Multiple `source` values can be specified as an array, and Puppet will
 use the first source that exists. This can be used to serve different
@@ -667,7 +683,13 @@ Valid values are `use`, `use_when_creating`, and `ignore`:
   `source` when creating a file; existing files will not have their permissions
   overwritten.
 
-Valid values are `use`, `use_when_creating`, `ignore`.
+Default: `ignore`
+
+Allowed values:
+
+* `use`
+* `use_when_creating`
+* `ignore`
 
 ([↑ Back to file attributes](#file-attributes))
 
@@ -811,11 +833,11 @@ Provider support:
     </tr>
     <tr>
       <td>windows</td>
-      <td><em>X</em> </td>
+      <td> </td>
     </tr>
   </tbody>
 </table>
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-06-20 13:09:20 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 15:17:23 -0700
