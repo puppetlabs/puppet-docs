@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 66d97043ff247672a330498144bae2dd35626100
+built_from_commit: 06135c2bd3fd385d701e91829833beb78e57bebb
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/puppet/latest/core_facts.html"
@@ -84,6 +84,7 @@ Return the disk (block) devices attached to the system.
 * `<devicename>` (map) --- Represents a disk or block device.
     * `model` (string) --- The model of the disk or block device.
     * `product` (string) --- The product name of the disk or block device.
+    * `serial_number` (string) --- The serial number of the disk or block device.
     * `size` (string) --- The display size of the disk or block device, such as "1 GiB".
     * `size_bytes` (integer) --- The size of the disk or block device, in bytes.
     * `vendor` (string) --- The vendor of the disk or block device.
