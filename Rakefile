@@ -12,7 +12,7 @@ require 'puppet_docs/config'
 #  Vlad.load :scm => :git
 #rescue LoadError
 #  # do nothing
-#end
+# end
 
 top_dir = Dir.pwd
 
