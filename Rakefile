@@ -7,12 +7,12 @@ require 'fileutils'
 require 'yaml'
 require 'puppet_docs/config'
 
-begin
-  require "vlad"
-  Vlad.load :scm => :git
-rescue LoadError
-  # do nothing
-end
+# begin
+#  require "vlad"
+#  Vlad.load :scm => :git
+#rescue LoadError
+#  # do nothing
+#end
 
 top_dir = Dir.pwd
 
@@ -406,16 +406,16 @@ namespace :references do
   end
 end
 
-desc "Deploy the site to the production servers"
-task :deploy do
-  mirrors = ['mirror0','mirror1']
-  Rake::Task['build'].invoke
-  mirrors.each do |mirror|
-    sh "rake #{mirror} vlad:release"
-    # Note that the below will always fail on the second mirror, even though it should totally work. Life is filled with mystery. >:|
+# desc "Deploy the site to the production servers"
+# task :deploy do
+#  mirrors = ['mirror0','mirror1']
+#  Rake::Task['build'].invoke
+#  mirrors.each do |mirror|
+#    sh "rake #{mirror} vlad:release"
+#    # Note that the below will always fail on the second mirror, even though it should totally work. Life is filled with mystery. >:|
     # Rake::Task[mirror].invoke
     # Rake::Task['vlad:release'].reenable # so we can invoke it again if this isn't the last mirror
     # Rake::Task['vlad:release'].invoke
-  end
-end
+#  end
+# end
 
