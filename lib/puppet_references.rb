@@ -21,7 +21,6 @@ module PuppetReferences
   require 'puppet_references/puppet/type'
   require 'puppet_references/puppet/type_strings'
   require 'puppet_references/puppet/functions'
-  require 'puppet_references/puppet/http'
   require 'puppet_references/facter/core_facts'
   require 'puppet_references/version_tables/config'
   require 'puppet_references/version_tables/data/pe'
@@ -39,7 +38,6 @@ module PuppetReferences
 
   def self.build_puppet_references(commit)
     references = [
-        PuppetReferences::Puppet::Http,
         PuppetReferences::Puppet::Man,
         PuppetReferences::Puppet::PuppetDoc,
         PuppetReferences::Puppet::Type,
