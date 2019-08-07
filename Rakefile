@@ -7,13 +7,6 @@ require 'fileutils'
 require 'yaml'
 require 'puppet_docs/config'
 
-# begin
-#  require "vlad"
-#  Vlad.load :scm => :git
-#rescue LoadError
-#  # do nothing
-# end
-
 top_dir = Dir.pwd
 
 SOURCE_DIR = "#{top_dir}/source"
@@ -303,21 +296,7 @@ task :build_and_check_links do
   Rake::Task['build'].invoke
 end
 
-# Removing link report. We don't think this does anything at this point, as the Jenkins link report job wasn't working and was removed from Jenkins in July 2019
-# namespace :links do
-#  desc 'Format a link report for latest versions of all projects'
-#  task :report_latest_all do
-#    prefixes = ['pe', 'puppet', 'puppetdb', 'puppetserver', 'facter', 'hiera'].map {|proj|
-#      @config_data['document_version_index'][proj]['latest']
-#    }.join(' ')
-#    puts `#{top_dir}/util/link_report.rb #{prefixes}`
-#  end
 
-#  desc 'Format a link report for latest version of just PE'
-#  task :report_latest_pe do
-#    puts `#{top_dir}/util/link_report.rb #{@config_data['document_version_index']['pe']['latest']}`
-#  end
-#end
 
 desc "Instead of building real pages, build naked HTML fragments (with no nav, etc.)"
 task :build_html_fragments do
@@ -406,16 +385,5 @@ namespace :references do
   end
 end
 
-# desc "Deploy the site to the production servers"
-# task :deploy do
-#  mirrors = ['mirror0','mirror1']
-#  Rake::Task['build'].invoke
-#  mirrors.each do |mirror|
-#    sh "rake #{mirror} vlad:release"
-#    # Note that the below will always fail on the second mirror, even though it should totally work. Life is filled with mystery. >:|
-    # Rake::Task[mirror].invoke
-    # Rake::Task['vlad:release'].reenable # so we can invoke it again if this isn't the last mirror
-    # Rake::Task['vlad:release'].invoke
-#  end
-# end
+
 
