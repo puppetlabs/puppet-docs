@@ -109,7 +109,7 @@ EOT
 
 Puppet Enterprise (PE) has some unique subcommands, such as `puppet infrastructure`. For reference information about these commands, use the `puppet help` command, such as `puppet help infrastructure`. For usage information, see the [Puppet Enterprise documentation](https://puppet.com/docs/pe/).
 
-Unknown or new subcommands
+New or uncategorized subcommands
 -----
 
 These subcommands have not yet been added to any of the categories above.
