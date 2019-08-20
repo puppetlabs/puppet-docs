@@ -318,6 +318,12 @@ documents:
       puppetdb: "4.3"
     hide: true
 
+  /puppet/latest:
+    doc: puppet
+    version: "latest"
+    nav: ./_puppet_toc.html
+    my_versions:
+      puppetserver: "6.5"
   /puppet/6.7:
     doc: puppet
     version: "6.7"
@@ -809,6 +815,15 @@ documents:
       commit: bbc73f6da0a17eac4fbf84758b477ec9dd4cebb2
       subdirectory: documentation
 
+  /puppetdb/6.5:
+    doc: puppetdb
+    version: "6.5"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: doc-6.5
+      subdirectory: documentation
+    hide: true
   /puppetdb/6.4:
     doc: puppetdb
     version: "6.4"
