@@ -20,6 +20,23 @@ Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_no
 
 Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
 
+## Puppet 5.5.17
+
+Released 21 August 2019
+
+This is a bug-fix and new feature release.
+
+### New features
+
+- You can now specify `no_proxy` as a Puppet setting, consistent with other `http_proxy_*` Puppet settings. The `NO_PROXY` environment variable takes precedence over the `no_proxy` Puppet setting. [PUP-9316](https://tickets.puppetlabs.com/browse/PUP-9316)
+
+### Resolved issues
+
+- If the agent is configured to use an HTTP proxy, and it attempts to connect to a host that matches an entry in the "NO_PROXY" environment variable, then Puppet connects directly to the host instead of using the proxy. This feature was originally introduced in Puppet 4.2, but it did not work. [PUP-9942](https://tickets.puppetlabs.com/browse/PUP-9942)
+
+- Agents could not connect through an authenticating HTTP proxy when making REST requests to Puppet infrastructure, such as when requesting a catalog. Now agents will observe the `http_proxy_user` and `http_proxy_password` settings or `HTTP_PROXY_USER/PASSWORD` environment variables when making those requests. [PUP-4470](https://tickets.puppetlabs.com/browse/PUP-4470)
+
+
 ## Puppet 5.5.16
 
 Released 16 July 2019
