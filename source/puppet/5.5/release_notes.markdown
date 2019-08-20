@@ -32,9 +32,11 @@ This is a bug-fix and new feature release.
 
 ### Resolved issues
 
-- If the agent is configured to use an HTTP proxy, and it attempts to connect to a host that matches an entry in the "NO_PROXY" environment variable, then Puppet connects directly to the host instead of using the proxy. This feature was originally introduced in Puppet 4.2, but it did not work. [PUP-9942](https://tickets.puppetlabs.com/browse/PUP-9942)
+- If the agent is configured to use an HTTP proxy, and it attempts to connect to a host that matches an entry in the `NO_PROXY` environment variable, then Puppet connects directly to the host instead of using the proxy. This feature was originally introduced in Puppet 4.2, but it did not work. [PUP-9942](https://tickets.puppetlabs.com/browse/PUP-9942)
 
 - Agents could not connect through an authenticating HTTP proxy when making REST requests to Puppet infrastructure, such as when requesting a catalog. Now agents will observe the `http_proxy_user` and `http_proxy_password` settings or `HTTP_PROXY_USER/PASSWORD` environment variables when making those requests. [PUP-4470](https://tickets.puppetlabs.com/browse/PUP-4470)
+
+- If an HTTP proxy is configured either in Puppet settings or the `HTTP_PROXY_*` environment variables, then Puppet does not use the proxy when connecting to localhost or 127.0.0.1. This behavior can be modified by changing the `no_proxy` setting in puppet.conf or the `NO_PROXY` environment variable. [PUP-2172](https://tickets.puppetlabs.com/browse/PUP-2172)
 
 
 ## Puppet 5.5.16
