@@ -444,50 +444,6 @@ documents:
       hiera: "3.3"
       puppetserver: "2.6"
     hide: true
-  /puppet/4.9:
-    doc: puppet
-    version: "4.9"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.7"
-    hide: true
-  /puppet/4.8:
-    doc: puppet
-    version: "4.8"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.5"
-      hiera: "3.2"
-      puppetserver: "2.7"
-    hide: true
-  /puppet/4.7:
-    doc: puppet
-    version: "4.7"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.4"
-      hiera: "3.2"
-      puppetserver: "2.6"
-    hide: true
-  /puppet/4.6:
-    doc: puppet
-    version: "4.6"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.4"
-      hiera: "3.2"
-      puppetserver: "2.6"
-    hide: true
-  /puppet/4.5:
-    doc: puppet
-    version: "4.5"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.3"
-      hiera: "3.2"
-      puppetserver: "2.4"
   /puppet/3.8:
     doc: puppet
     version: "3.8"
