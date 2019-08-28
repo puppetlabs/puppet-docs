@@ -301,34 +301,6 @@ If your Puppet masters are configured to use [PuppetDB][puppetdb], you can view 
 
 External facts provide a way to use arbitrary executables or scripts as facts, or set facts statically with structured data. If you've ever wanted to write a custom fact in Perl, C, or a one-line text file, this is how.
 
-### Fact locations
-
-The best way to distribute external facts is with pluginsync, which added support for them in [Puppet 3.4](/puppet/3/reference/release_notes.html#preparations-for-syncing-external-facts)/[Facter 2.0.1](../2.0/release_notes.html#pluginsync-for-external-facts). To add external facts to your Puppet modules, just place them in `<MODULEPATH>/<MODULE>/facts.d/`.
-
-If you're not using pluginsync, then external facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator. When calling facter from the command line, you can specify the external facts directory with the `--external-dir` option.
-
-> **Note:** These directories don't necessarily exist by default; you may need to create them. If you create the directory, make sure to restrict access so that only Administrators can write to the directory.
-
-In a module (recommended):
-
-    <MODULEPATH>/<MODULE>/facts.d/
-
-On Unix/Linux/OS X, there are three directories:
-
-    /opt/puppetlabs/facter/facts.d/
-    /etc/puppetlabs/facter/facts.d/
-    /etc/facter/facts.d/
-
-On Windows:
-
-    C:\ProgramData\PuppetLabs\facter\facts.d\
-
-When running as a non-root / non-Administrator user:
-
-    <HOME DIRECTORY>/.facter/facts.d/
-
-> **Note:** You can only use custom facts as a non-root user if you have first [configured non-root user access]({{pe}}/deploy_nonroot-agent.html) and previously run Puppet agent as that same user.
-
 ### Executable facts --- Unix
 
 Executable facts on Unix work by dropping an executable file into the standard
@@ -372,6 +344,34 @@ As with Unix facts, each script must return key/value pairs on STDOUT in the for
     key3=value3
 
 Using this format, a single script can return multiple facts in one return.
+
+#### Executable fact locations
+
+The best way to distribute external executable facts is with pluginsync, which added support for them in [Puppet 3.4] (/puppet/3/reference/release_notes.html#preparations-for-syncing-external-facts)/[Facter 2.0.1](../2.0/release_notes.html#pluginsync-for-external-facts). To add external executable facts to your Puppet modules, just place them in <MODULEPATH>/<MODULE>/facts.d/.
+
+If you're not using pluginsync, then external facts must go in a standard directory. The location of this directory varies depending on your operating system, whether your deployment uses Puppet Enterprise or open source releases, and whether you are running as root/Administrator. When calling facter from the command line, you can specify the external facts directory with the `--external-dir` option.
+
+> **Note:** These directories don't necessarily exist by default; you may need to create them. If you create the directory, make sure to restrict access so that only Administrators can write to the directory.
+
+In a module (recommended):
+
+    <MODULEPATH>/<MODULE>/facts.d/
+
+On Unix/Linux/OS X, there are three directories:
+
+    /opt/puppetlabs/facter/facts.d/
+    /etc/puppetlabs/facter/facts.d/
+    /etc/facter/facts.d/
+
+On Windows:
+
+    C:\ProgramData\PuppetLabs\facter\facts.d\
+
+When running as a non-root / non-Administrator user:
+
+    <HOME DIRECTORY>/.facter/facts.d/
+
+> **Note:** You can only use custom facts as a non-root user if you have first [configured non-root user access]({{pe}}/deploy_nonroot-agent.html) and previously run Puppet agent as that same user.
 
 #### Batch scripts
 
