@@ -614,6 +614,17 @@ documents:
     nav: /_includes/hiera1.html
 
 
+  /puppetserver/latest:
+    doc: puppetserver
+    version: "latest"
+    nav: /puppet/latest/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: master
+      subdirectory: documentation
+    my_versions:
+      puppet: "latest"
+    hide: true
   /puppetserver/6.5:
     doc: puppetserver
     version: "6.5"
@@ -815,6 +826,15 @@ documents:
       commit: bbc73f6da0a17eac4fbf84758b477ec9dd4cebb2
       subdirectory: documentation
 
+  /puppetdb/latest:
+    doc: puppetdb
+    version: "latest"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: doc-latest
+      subdirectory: documentation
+    hide: true
   /puppetdb/6.5:
     doc: puppetdb
     version: "6.5"
