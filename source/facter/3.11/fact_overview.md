@@ -84,7 +84,7 @@ Simple facts are typically made up of the following parts:
     * Can execute shell commands within a `setcode` block, using the `Facter::Core::Execution.exec` function.
     * If multiple `setcode` statements are evaluated for a single resolution, only the last `setcode` block is used. 
 
->Note: Set all code inside the sections outlined above ⁠— there should not be any code outside setcode, confine, and `has_weight` in a custom fact.
+>Note: Set all code inside the sections outlined above ⁠— there should not be any code outside setcode and confine blocks other than an optional `has_weight` statement in a custom fact.
 
 ## Writing structured facts
 
