@@ -82,7 +82,9 @@ Simple facts are typically made up of the following parts:
     * If given a string, Facter executes it as a shell command. If the command succeeds, the output of the command is the value of the fact. If the command fails, the next suitable resolution is evaluated.
     * If given a block, the block's return value is the value of the fact unless the block returns `nil`. If `nil` is returned, the next suitable resolution is evalutated.
     * Can execute shell commands within a `setcode` block, using the `Facter::Core::Execution.exec` function.
-    * If multiple `setcode` statements are evaluated for a single resolution, only the last `setcode` block is used.
+    * If multiple `setcode` statements are evaluated for a single resolution, only the last `setcode` block is used. 
+
+>Note: Set all code inside the sections outlined above ⁠— there should not be any code outside `setcode` and `confine` blocks other than an optional `has_weight` statement in a custom fact.
 
 ## Writing structured facts
 
