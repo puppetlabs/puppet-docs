@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
+built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
 title: Configuration Reference
 toc: columns
 canonical: "/puppet/latest/configuration.html"
@@ -496,6 +496,12 @@ false is useful for keeping external report processors clean of skipped schedule
 
 - *Default*: true
 
+### deviceconfdir
+
+The root directory of devices' $confdir.
+
+- *Default*: $confdir/devices
+
 ### deviceconfig
 
 Path to the device config file for puppet device.
@@ -656,7 +662,7 @@ Puppet master as part of your code deployment process.
 
 * With Puppet Server, you should refresh environments by calling the
   `environment-cache` API endpoint. See the docs for the Puppet Server
-  administrative API.
+  [administrative API](https://puppet.com/docs/puppetserver/latest/admin-api/v1/environment-cache.html).
 
 Any value other than `0` or `unlimited` is deprecated, since most Puppet
 servers use a pool of Ruby interpreters which all have their own cache
@@ -926,7 +932,7 @@ This setting can be a time interval in seconds (30 or 30s), minutes (30m), hours
 
 The HTTP User-Agent string to send when making network requests.
 
-- *Default*: Puppet/6.7.0 Ruby/2.5.1-p57 (x86_64-darwin17)
+- *Default*: Puppet/6.8.0 Ruby/2.5.1-p57 (x86_64-darwin17)
 
 ### ignoremissingtypes
 
@@ -1236,6 +1242,12 @@ values must be one of the curves in `OpenSSL::PKey::EC.builtin_curves`.
 Default is `prime256v1`.
 
 - *Default*: prime256v1
+
+### no_proxy
+
+List of domain names that should not go through `http_proxy_host`. Environment variable no_proxy or NO_PROXY will override this value.
+
+- *Default*: localhost, 127.0.0.1
 
 ### node_cache_terminus
 
@@ -1678,7 +1690,7 @@ restarted. This setting can be a time interval in seconds (30 or 30s), minutes (
 
 The domain which will be queried to find the SRV records of servers to use.
 
-- *Default*: (the system's own domain)
+- *Default*: vpn.puppet.net
 
 ### ssl_client_ca_auth
 
@@ -1726,10 +1738,9 @@ A lock file to indicate that the ssl bootstrap process is currently in progress.
 
 ### ssl_server_ca_auth
 
-Certificate authorities who issue client certificates.  SSL clients will not be
-considered authentic unless they possess a certificate issued by an authority
-listed in this file.  If this setting has no value then the Puppet master's CA
-certificate (localcacert) will be used.
+The setting is deprecated and has no effect. Ensure all root and
+intermediate certificate authorities used to issue client certificates are
+contained in the server's `cacert` file on the server.
 
 - *Default*: 
 

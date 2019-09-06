@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 922313f3b1cc7f14c799bddb4e354e45b29be180
+built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 14:45:54 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -3729,12 +3729,35 @@ $merged = $data.reduce( {} ) |$memo, $x| {
 
 ## `regsubst`
 
-* `regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
-    * Return type(s): `Any`. 
-* `regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
+* `regsubst()`
     * Return type(s): `Any`. 
 
-Performs regexp replacement on a string or array of strings.
+Perform regexp replacement on a string or array of strings.
+
+* *Parameters* (in order):
+    * _target_  The string or array of strings to operate on.  If an array, the replacement will be performed on each of the elements in the array, and the return value will be an array.
+    * _regexp_  The regular expression matching the target string.  If you want it anchored at the start and or end of the string, you must do that with ^ and $ yourself.
+    * _replacement_  Replacement string. Can contain backreferences to what was matched using \\0 (whole match), \\1 (first set of parentheses), and so on.
+    * _flags_  Optional. String of single letter flags for how the regexp is interpreted:
+        - *E*         Extended regexps
+        - *I*         Ignore case in regexps
+        - *M*         Multiline regexps
+        - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
+    * _encoding_  Optional.  How to handle multibyte characters.  A single-character string with the following values:
+        - *N*         None
+        - *E*         EUC
+        - *S*         SJIS
+        - *U*         UTF-8
+
+* *Examples*
+
+Get the third octet from the node's IP address:
+
+    $i3 = regsubst($ipaddress,'^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)$','\\3')
+
+Put angle brackets around each octet in the node's IP address:
+
+    $x = regsubst($ipaddress, '([0-9]+)', '<\\1>', 'G')
 
 ## `require`
 
@@ -4877,4 +4900,4 @@ $check_var = $x
 
 
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-07-24 14:45:54 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
