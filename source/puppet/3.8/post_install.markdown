@@ -14,13 +14,12 @@ title: "Installing Puppet: Post-Install Tasks"
 [directory environments]: ./environments.html
 [modulepath]: ./dirs_modulepath.html
 [rack]: http://rack.github.io/
-[multi_masters]: /guides/scaling_multiple_masters.html
 [puppet classes]: ./lang_classes.html
 [modules_fundamentals]: ./modules_fundamentals.html
 [node definitions]: ./lang_node_definitions.html
-[external node classifier]: /guides/external_nodes.html
+[external node classifier]: ./external_nodes.html
 [ssldir]: ./dirs_ssldir.html
-[install-latest]: /puppet/latest/reference/install_pre.html
+[install-latest]: /puppet/3.8/install_pre.html
 
 > #### **Note:** This document covers *open source* releases of Puppet version 3.8 and lower. For current versions, you should see instructions for [installing the latest version of Puppet][install-latest] or [installing Puppet Enterprise][peinstall].
 
@@ -86,7 +85,7 @@ Relevant reference pages:
 
 Puppet includes a basic puppet master web server, but you cannot use it for real-life loads. You must configure a production quality web server before you start managing your nodes with Puppet.
 
-If you have no particular preference, you should use Passenger with Apache, since it works well and is simple to set up. If you installed the puppetmaster-passenger package on Debian or Ubuntu, this is already configured; otherwise, [follow the instructions in the Puppet with Passenger setup guide.](/guides/passenger.html)
+If you have no particular preference, you should use Passenger with Apache, since it works well and is simple to set up. If you installed the `puppetmaster-passenger` package on Debian or Ubuntu, this is already configured; otherwise, [follow the instructions in the Puppet with Passenger setup guide.](./passenger.html)
 
 Alternately, Puppet supports the [Rack][] interface, and you can configure your puppet master with any Rack web server stack. You can follow the Passenger guide for general guidelines. You will need to:
 
@@ -96,17 +95,9 @@ Alternately, Puppet supports the [Rack][] interface, and you can configure your 
 
 [ext_rack]: https://github.com/puppetlabs/puppet/tree/master/ext/rack
 
-### Configure Load Balancing and CA Service Routing
-
-If you're using multiple masters, you'll need to make sure traffic is being directed properly. See [the guide to configuring multiple masters][multi_masters] for details.
-
 ### Start the Puppet Master Service
 
 The exact service you need to start will depend on the web server you configured. If you followed the Passenger guide, you'll want to start the `httpd` or `apache2` service, depending on your OS.
-
-
-
-
 
 
 Configure a Puppet Agent Node
