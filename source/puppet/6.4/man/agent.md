@@ -138,6 +138,9 @@ causing 'puppet agent' to start managing the local system again
 not start for another half hour).</p>
 
 <p>'puppet agent' exits after executing this.</p></dd>
+<dt>--evaltrace</dt><dd><p>Logs each resource as it is being evaluated. This allows you to interactively see exactly what is being done. (This is a Puppet setting, and can go in puppet.conf. Note the special 'no-' prefix for boolean settings on the command line.)
+</p></dd>
+<dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
 <dt>--fingerprint</dt><dd><p>Display the current certificate or certificate signing request
 fingerprint and then exit. Use the '--digest' option to change the
 digest algorithm used.</p></dd>
@@ -173,6 +176,9 @@ prefix for boolean settings on the command line.)</p></dd>
 <dt class="flush">--test</dt><dd><p>Enable the most common options used for testing. These are 'onetime',
 'verbose', 'no-daemonize', 'no-usecacheonfailure', 'detailed-exitcodes',
 'no-splay', and 'show_diff'.</p></dd>
+<dt>--trace</dt><dd><p>Prints stack traces on some errors. (This is a Puppet setting, and can go in puppet.conf. Note the special 'no-' prefix for boolean settings on the command line.)
+</p></dd>
+<dt class="flush">--help</dt><dd><p>Print this help message</p></dd>
 <dt>--verbose</dt><dd><p>Turn on verbose reporting.</p></dd>
 <dt>--version</dt><dd><p>Print the puppet version number and exit.</p></dd>
 <dt>--waitforcert</dt><dd><p>This option only matters for daemons that do not yet have certificates
