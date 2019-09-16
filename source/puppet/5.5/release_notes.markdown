@@ -28,9 +28,16 @@ This is a bug-fix and new feature release.
 
 ### New features
 
+- The `exec` type's `onlyif` and `unless` checks now return redacted output if it is marked sensitive. [PUP-9956](https://tickets.puppetlabs.com/browse/PUP-9956)
+
 - You can now specify `no_proxy` as a Puppet setting, consistent with other `http_proxy_*` Puppet settings. The `NO_PROXY` environment variable takes precedence over the `no_proxy` Puppet setting. [PUP-9316](https://tickets.puppetlabs.com/browse/PUP-9316)
 
 ### Resolved issues
+
+
+- Prior to this release, Puppet silently ignored truncated file downloads, such as when using a file resource whose source parameter contained a `puppet://`, `http://`, or `https://` URL. This issue was caused by a Ruby issue and is fixed in this release. [PA-2849](https://tickets.puppetlabs.com/browse/PA-2849)
+
+- The `puppet plugin download` command now reuses HTTPS connections. This significantly speeds up the download process. [PUP-8662](https://tickets.puppetlabs.com/browse/PUP-8662)
 
 - If the agent is configured to use an HTTP proxy, and it attempts to connect to a host that matches an entry in the `NO_PROXY` environment variable, then Puppet connects directly to the host instead of using the proxy. This feature was originally introduced in Puppet 4.2, but it did not work. [PUP-9942](https://tickets.puppetlabs.com/browse/PUP-9942)
 
