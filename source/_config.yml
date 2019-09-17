@@ -323,7 +323,13 @@ documents:
     version: "latest"
     nav: ./_puppet_toc.html
     my_versions:
-      puppetserver: "6.5"
+      puppetserver: "latest"
+  /puppet/6.9:
+    doc: puppet
+    version: "6.9"
+    nav: ./_puppet_toc.html
+    my_versions:
+      puppetserver: "6.6"
   /puppet/6.7:
     doc: puppet
     version: "6.7"
@@ -625,6 +631,17 @@ documents:
     my_versions:
       puppet: "latest"
     hide: true
+  /puppetserver/6.6:
+    doc: puppetserver
+    version: "6.6"
+    nav: /puppet/6.9/_puppet_toc.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetserver.git
+      commit: master
+      subdirectory: documentation
+    my_versions:
+      puppet: "latest"
+    hide: true
   /puppetserver/6.5:
     doc: puppetserver
     version: "6.5"
@@ -820,6 +837,15 @@ documents:
   /puppetdb/latest:
     doc: puppetdb
     version: "latest"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: doc-latest
+      subdirectory: documentation
+    hide: true
+  /puppetdb/6.6:
+    doc: puppetdb
+    version: "6.6"
     nav: ./_puppetdb_nav.html
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
