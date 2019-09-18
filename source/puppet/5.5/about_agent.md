@@ -18,7 +18,7 @@ Open source Puppet has two release tracks:
 * Developmental releases: Puppet versions not associated with any PE version release new minor (or "y") version about once a month. Developmental releases typically do not get patch (or "z") releases. Each minor release in this stream supersedes the previous minor release. Documentation for the current developmental release is available at `puppet.com/docs/puppet/latest`. See the release notes for updates to this release stream.
 * Long-term releases: Puppet versions associated with Puppet Enterprise get patch (or "z") releases a few times a year. Each release contains fixes and features from several developmental releases. Versioned documentation for long-term releases is available at `puppet.com/docs/puppet/<X.Y>` (for example, puppet.com/docs/puppet/6.4).
 
-> *Important**: To ensure that you have the most recent features, fixes, and security patches, update your Puppet version whenever there is a new version in your release track.
+> **Important**: To ensure that you have the most recent features, fixes, and security patches, update your Puppet version whenever there is a new version in your release track.
 
 This version of Puppet is a long-term release. The table below lists the associated Puppet, Puppet Server, PuppetDB, and Puppet Enterprise versions, with links to their respective documentation. Open source releases that are associated with PE versions have projected End of Life (EOL) dates.
 
