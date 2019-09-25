@@ -625,28 +625,7 @@ documents:
     my_versions:
       puppet: "latest"
     hide: true
-  /puppetserver/6.5:
-    doc: puppetserver
-    version: "6.5"
-    nav: /puppet/6.7/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: fd33c7c78fa5fdd1369f1a1095edab4fab3dd8b2
-      subdirectory: documentation
-    my_versions:
-      puppet: "6.7"
-    hide: true
-  /puppetserver/6.4:
-    doc: puppetserver
-    version: "6.4"
-    nav: /puppet/6.5/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: d436f3e82b6ef7169bba032bfeaca99163d3fa2b
-      subdirectory: documentation
-    my_versions:
-      puppet: "6.5"
-    hide: true
+
   /puppetserver/6.3:
     doc: puppetserver
     version: "6.3"
@@ -659,31 +638,6 @@ documents:
       puppet: "6.4"
     hide: true
 
-  /puppetserver/6.2:
-    doc: puppetserver
-    version: "6.2"
-    nav: /puppet/6.2/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 5c89e0f170250b0716437df467e7321145cc87c5
-      subdirectory: documentation
-    my_versions:
-      puppet: "6.2"
-      facter: "3.12"
-    hide: true
-    
-  /puppetserver/6.1:
-    doc: puppetserver
-    version: "6.1"
-    nav: /puppet/6.1/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 6.1.0
-      subdirectory: documentation
-    my_versions:
-      puppet: "6.1"
-      facter: "3.12"
-    hide: true
   /puppetserver/6.0:
     doc: puppetserver
     version: "6.0"
@@ -710,112 +664,6 @@ documents:
       facter: "3.11"
       hiera: "3.4"
     hide: true
-  /puppetserver/5.2:
-    doc: puppetserver
-    version: "5.2"
-    nav: /puppet/5.4/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: d5a633fdbfed4850dbfc401e8410c5bede1d8a4e
-      subdirectory: documentation
-    my_versions:
-      puppet: "5.4"
-      facter: "3.10"
-      hiera: "3.4"
-    hide: true
-  /puppetserver/5.1:
-    doc: puppetserver
-    version: "5.1"
-    nav: /puppet/5.3/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: a7c0b28b167ab23631600c3563bb33736538c991
-      subdirectory: documentation
-    my_versions:
-      puppet: "5.3"
-      facter: "3.9"
-      hiera: "3.4"
-    hide: true
-  /puppetserver/5.0:
-    doc: puppetserver
-    version: "5.0"
-    nav: /puppet/5.0/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: be96921aab5d434cd8ddf5a87de40132dfa5bd43
-      subdirectory: documentation
-    my_versions:
-      puppet: "5.0"
-      facter: "3.7"
-      hiera: "3.4"
-    hide: true
-  /puppetserver/2.8:
-    doc: puppetserver
-    version: "2.8"
-    nav: /puppet/4.10/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: e0cd7cb971c83d2ff0ff6221c84f54d53db9d8d6
-      subdirectory: documentation
-    hide: true
-  /puppetserver/2.7:
-    doc: puppetserver
-    version: "2.7"
-    nav: /puppet/4.9/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: b4fbbf035287318694e4313d5d3d3a9eea2d707a
-      subdirectory: documentation
-    my_versions:
-      puppet: "4.9"
-      facter: "3.5"
-      hiera: "3.2"
-    hide: true
-  /puppetserver/2.6:
-    doc: puppetserver
-    version: "2.6"
-    nav: /puppet/4.6/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 2d3bc286bc5822f35ff04273156f8921e1603d19
-      subdirectory: documentation
-    my_versions:
-      puppet: "4.6"
-      facter: "3.3"
-      hiera: "3.2"
-    hide: true
-  /puppetserver/2.5:
-    doc: puppetserver
-    version: "2.5"
-    nav: /puppet/4.6/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: ba86848
-      subdirectory: documentation
-    my_versions:
-      puppet: "4.6"
-      facter: "3.3"
-      hiera: "3.2"
-  /puppetserver/2.4:
-    doc: puppetserver
-    version: "2.4"
-    nav: /puppet/4.5/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 522083d
-      subdirectory: documentation
-    my_versions:
-      puppet: "4.5"
-      facter: "3.1"
-      hiera: "3.2"
-  /puppetserver/1.1:
-    doc: puppetserver
-    version: "1.1"
-    nav: /_includes/puppet_3_8.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: bbc73f6da0a17eac4fbf84758b477ec9dd4cebb2
-      subdirectory: documentation
 
   /puppetdb/latest:
     doc: puppetdb
