@@ -34,6 +34,7 @@ This is a bug-fix and new feature release.
 
 ### Resolved issues
 
+- Previously, the `puppet resource --to_yaml` and `puppet device --to_yaml` commands did not generate valid YAML if the output contained special characters such as a single quote. [PUP-7808](https://tickets.puppetlabs.com/browse/PUP-7808)
 
 - Prior to this release, Puppet silently ignored truncated file downloads, such as when using a file resource whose source parameter contained a `puppet://`, `http://`, or `https://` URL. This issue was caused by a Ruby issue and is fixed in this release. [PA-2849](https://tickets.puppetlabs.com/browse/PA-2849)
 
