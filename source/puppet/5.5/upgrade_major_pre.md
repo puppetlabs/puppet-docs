@@ -76,13 +76,13 @@ Some of the changes to look out for include:
 -   [Facts having additional data types](/puppet/3.8/experiments_future.html#check-your-comparisons).
 -   [Quoting required for octal numbers in `file` resources' `mode` attributes](/puppet/3.8/experiments_future.html#quote-any-octal-numbers-in-file-modes).
 
-For a more complete list, see [Updating 3.x Manifests for Puppet 4+.](./lang_updating_manifests.html)
+For a more complete list, see [Updating 3.x Manifests for Puppet 4+.](/puppet/4.10/lang_updating_manifests.html)
 
 Run Puppet for several runs with the future parser enabled to ensure you've got any kinks worked out.
 
 ## Read the release notes
 
-Puppet 4.0 introduced several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/release_notes.html), [4.1](/puppet/4.1/release_notes.html), [4.2](/puppet/4.2/release_notes.html), [4.3](/puppet/4.3/release_notes.html), [4.4](/puppet/4.4/release_notes.html), and [4.5](./release_notes.html) and prepare accordingly.
+Puppet 4.0 introduced several breaking changes, some of which didn't go through a formal deprecation period---for example, we moved the [tagmail report handler](/puppet/3.8/lang_tags.html#sending-tagmail-reports) out of Puppet's core and into an optional [module](https://forge.puppetlabs.com/puppetlabs/tagmail). Read the release notes for [4.0](/puppet/4.0/release_notes.html), [4.1](/puppet/4.1/release_notes.html), [4.2](/puppet/4.2/release_notes.html), [4.3](/puppet/4.3/release_notes.html), [4.4](/puppet/4.4/release_notes.html), and [4.5](puppet/4.5/release_notes.html) and prepare accordingly.
 
 Also read the [Puppet 5 release notes](./release_notes.html) to see breaking changes since Puppet 4.
 
