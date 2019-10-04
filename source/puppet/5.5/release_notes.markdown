@@ -14,11 +14,11 @@ Puppet's version numbers use the format X.Y.Z, where:
 
 ## If you're upgrading from Puppet 4.x
 
-Read the [Puppet 5.0.0 release notes](/puppet/5.0/release_notes.html#puppet-500), because they cover breaking changes since Puppet 4.10.
+Read the [Puppet 5.0.0 release notes](https://github.com/puppetlabs/docs-archive/blob/master/puppet/5.0/release_notes.markdown), because they cover breaking changes since Puppet 4.10.
 
-Read the [Puppet 5.1](../5.1/release_notes.html), [Puppet 5.2](../5.2/release_notes.html), [Puppet 5.3](../5.3/release_notes.html), and [Puppet 5.4](../5.4/release_notes.html) release notes, because they cover important new features and changes since Puppet 5.0.
+Read the [Puppet 5.1](https://github.com/puppetlabs/docs-archive/blob/master/puppet/5.1/release_notes.markdown), [Puppet 5.2](https://github.com/puppetlabs/docs-archive/blob/master/puppet/5.2/release_notes.markdown), [Puppet 5.3](https://github.com/puppetlabs/docs-archive/blob/master/puppet/5.3/release_notes.markdown), and [Puppet 5.4](https://github.com/puppetlabs/docs-archive/blob/master/puppet/5.4/release_notes.markdown) release notes, because they cover important new features and changes since Puppet 5.0.
 
-Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](../4.9/release_notes.html).
+Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) and [Puppet 4.9 release notes](https://github.com/puppetlabs/docs-archive/blob/master/puppet/4.9/release_notes.markdown).
 
 ## Puppet 5.5.16
 
@@ -53,14 +53,14 @@ For facterdb this means facter 2.5.1 would be installed which then tries to over
 - This release fixes an issue where if a Puppet run is killed, the lockfile containing the PID that was being used for the process remains. If another process subsequently starts and uses this PID, the agent fails. Puppet now checks that the PID belongs to Puppet so it can lock the PID correctly. This fix works for Puppet even if you run it as a gem. [PUP-9691](https://tickets.puppetlabs.com/browse/PUP-9691)
 
 - This release fixes an issue where trying to remove a user resource on a Solaris 11 installation using a home directory configuration resulted in an error. [PUP-9706](https://tickets.puppetlabs.com/browse/PUP-9706)
-  
+
 - If you used a Hiera 3 lookup or Hiera handled an alias and the key was configured with `convert_to`,  you'd get an error: "`undefined method 'call_function' for Hiera::Scope`" [PUP-9693](https://tickets.puppetlabs.com/browse/PUP-9693).
 
 - Conversions from a string to an integer would result in an error when asking for conversion of a decimal string with leading zeros. For example, converting `Integer("08", 10)` would result in an error. [PUP-9689](https://tickets.puppetlabs.com/browse/PUP-9689)
 
 - This release includes an update to curl to address security issues. See [CVE-2019-5435](https://curl.haxx.se/docs/CVE-2019-5435.html) and [CVE-2019-5436](https://curl.haxx.se/docs/CVE-2019-5436.html) for information about the CVEs. [PA-2689]((https://tickets.puppetlabs.com/browse/PA-2689)
 
-- When initialising new device certificates, `puppet device` would sometimes set permissions in a way that prevented the `pe-puppet` user from reading some directories. [PUP-9642](https://tickets.puppetlabs.com/browse/PUP-9642)  
+- When initialising new device certificates, `puppet device` would sometimes set permissions in a way that prevented the `pe-puppet` user from reading some directories. [PUP-9642](https://tickets.puppetlabs.com/browse/PUP-9642)
 
 - This release updates the Windows registry `read` method to replace null byte sequences with a space. This issue was causing PuppetDB to discard updated facts from affected nodes. [PUP-9639](https://tickets.puppetlabs.com/browse/PUP-9639)
 
@@ -104,7 +104,7 @@ This release of the `puppet-agent` package removes support for Cumulus-2.2-amd64
 
 - Prior to this release, use of the `server_list` setting could cause misleading agent errors. Now, when running in debug mode, Puppet prints the exception that caused it to skip an entry in the server_list setting. [PUP-8036](https://tickets.puppetlabs.com/browse/PUP-8036)
 
-- This release adds information to debug output that specifies whether the server 
+- This release adds information to debug output that specifies whether the server
 setting originates from the `server` or `server_list` setting in the configuration. [PUP-9470](https://tickets.puppetlabs.com/browse/PUP-9470)
 
 ## Puppet 5.5.12
@@ -140,13 +140,13 @@ This is a bug-fix and new feature release.
 - Previously, if you used the type `Optional` without any arguments, it could result in an internal error. This is now fixed. On its own, `Optional`, means the same as `Any`. You should always supply a type argument with the desired type if the value is not `undef`. [PUP-9467](https://tickets.puppetlabs.com/browse/PUP-9467)
 
 - Prior to this release, agent runs provided the same output for both intentional and corrective changes. Now corrective changes are now explicitly called out in the logs as corrective. [PUP-9324](https://tickets.puppetlabs.com/browse/PUP-9324)
-                            
+
 - The upstart provider was being evaluated when loaded, causing issues with testing and availability during transactions. This  has been fixed so that the provider is evaluated only when provider suitability is being checked. [PUP-9336](https://tickets.puppetlabs.com/browse/PUP-9336)
- 
+
 - If you passed an invalid path to `--logdest` option, Puppet silently ignored it. Now, if you give a `--logdest` location that Puppet cannot find or write to, the run fails with an error. [PUP-6571](https://tickets.puppetlabs.com/browse/PUP-6571)
- 
+
 - The Windows group resource was incorrectly printing an array of SIDs for members. The resource now correctly prints members as <DOMAIN>/<user>. [PUP-9435](https://tickets.puppetlabs.com/browse/PUP-9435)
-     
+
 - Heredoc expressions with interpolation using an access expression such as `$facts['somefact']` sometimes failed with a syntax error. This error was related to the relative location of the heredoc and surrounding whitespace and is now resolved. [PUP-9303](https://tickets.puppetlabs.com/browse/PUP-9303)
 
 - The `SublocatedExpression` class is no longer generated by the parser. The `SublocatedExpression` class itself will not be removed until 7.0.0, but it no longer appears in AST produced by the parser. [PUP-9303](https://tickets.puppetlabs.com/browse/PUP-9303)
@@ -163,7 +163,7 @@ This is a bug-fix and new feature release.
   - The `System` user `ACE` is set to `FullControl`.
 
   Puppet now allows users to specifically configure the `System` user to less than `FullControl` by setting the `owner` and/or `group` parameters to `System` in the file resource. In this case, Puppet emits a warning since setting `System` to less than `FullControl` may have unintended consequences. [PUP-9337](https://tickets.puppetlabs.com/browse/PUP-9337)
-  
+
 - If a functional server was not found, Puppet agent fell back to the `server` setting. Puppet agent now returns an error if `server_list` is set and a functional server is not found. [PUP-9076](https://tickets.puppetlabs.com/browse/PUP-9076)
 
 - The `pxp-agent init` script started more than one process if the `pidfile` was missing. This release modifies the `pxp-agent` service to kill all `pxp-agent` processes when the service is restarted, rather than only the current process. [PCP-833](https://tickets.puppetlabs.com/browse/PCP-833)
@@ -204,7 +204,7 @@ This is a bug-fix release.
 
 - Prior to this release, the data types `Timestamp` and `Timespan` raised errors if time range was specified with `Integer` or `Float` values. These data types now support time ranges specified with these values. [PUP-9310](https://tickets.puppetlabs.com/browse/PUP-9310)
 
-- This release fixes an issue where refreshed resources, such as reboot or some execs, did not create a status event in the event report. If the refresh fails, an event is also created for the failure. [PUP-9339](https://tickets.puppetlabs.com/browse/PUP-9339)​
+- This release fixes an issue where refreshed resources, such as reboot or some execs, did not create a status event in the event report. If the refresh fails, an event is also created for the failure. [PUP-9339](https://tickets.puppetlabs.com/browse/PUP-9339)
 
 ## Puppet 5.5.9
 
@@ -221,14 +221,14 @@ This is a bug-fix, new feature, and deprecation release.
 - When `forcelocal` is true and `expiry` is set, use `usermod` to manage a user instead of  `lusermod`. `lusermod` does not support `-e` and causes the Puppet run to fail. [PUP-9195](https://tickets.puppetlabs.com/browse/PUP-9195)
 - Puppet 5.5.7 failed with a faulty error message when a legacy function did not comply with the standard rules. This is now fixed in Puppet 5.5.8 and accepts the illegal implementation of the function. [PUP-9270](https://tickets.puppetlabs.com/browse/PUP-9270)
 - Puppet will now only set the user, group, and mode of log files if Puppet creates them. [PUP-7331](https://tickets.puppetlabs.com/browse/PUP-7331)
-- The members property has been fixed to have the same API for `retrieve` and `should` as it did prior to the breaking changes in 5.5.7, while also reporting the right change notification. Providers can now return an array for `getter` and accept an array for `setter`. [PUP-9267](https://tickets.puppetlabs.com/browse/PUP-9267). 
+- The members property has been fixed to have the same API for `retrieve` and `should` as it did prior to the breaking changes in 5.5.7, while also reporting the right change notification. Providers can now return an array for `getter` and accept an array for `setter`. [PUP-9267](https://tickets.puppetlabs.com/browse/PUP-9267).
 
 ### New feature
 
 - RHEL 8 now has DNF as the default package provider. [PUP-9198](https://tickets.puppetlabs.com/browse/PUP-9198)
 
 ### Deprecation
- 
+
 - A regression was triggered by illegal constructs in functions that used the legacy 3.x function API. This has been fixed but will raise errors for the illegal constructs in Puppet 6. If you have 3.x functions that define methods inside the function body, or outside of the call to `newfunction`, they *must* be updated to work with Puppet 6 - and preferably use the modern 4x function API. [PUP-9268](https://tickets.puppetlabs.com/browse/PUP-9268)
 
 ## Puppet 5.5.7
