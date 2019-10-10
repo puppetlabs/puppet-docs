@@ -22,7 +22,7 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 ## Puppet 5.5.17
 
-Released 21 August 2019
+Released 15 October 2019
 
 This is a bug-fix and new feature release.
 
@@ -32,7 +32,24 @@ This is a bug-fix and new feature release.
 
 - You can now specify `no_proxy` as a Puppet setting, consistent with other `http_proxy_*` Puppet settings. The `NO_PROXY` environment variable takes precedence over the `no_proxy` Puppet setting. [PUP-9316](https://tickets.puppetlabs.com/browse/PUP-9316)
 
+- Installation time on larger modules has been improved. Previously, on platforms that had the minitar gem installed, mintar would fsync every directory and file, causing long extraction times during module installation. Puppet now uses minitar 0.9, with this fsync option turned off by default. [PUP-10013](https://tickets.puppetlabs.com/browse/PUP-10013)
+
+- Puppet can now set Windows service startup type to Auto-Start (Delayed). To set a service to use this setting, set the `enable` parameter of the `service` resource to "delayed". [PUP-6382](https://tickets.puppetlabs.com/browse/PUP-6382)
+
+- When running in daemon mode, Puppet logs the configuration used on agent startup at the debug level. The log is sent to the output specified by the `--logdest` option. Configuration is reloaded and also logged on SIGHUP. [PUP-9754](https://tickets.puppetlabs.com/browse/PUP-9754)
+
 ### Resolved issues
+
+- This version upgrades the Ruby version to 2.5.7 to address the following security issues:
+* [CVE-2019-16255](https://www.ruby-lang.org/en/news/2019/10/01/code-injection-shell-test-cve-2019-16255/): A code injection vulnerability of Shell#[] and Shell#test
+* [CVE-2019-16201](https://www.ruby-lang.org/en/news/2019/10/01/webrick-regexp-digestauth-dos-cve-2019-16201/): Regular Expression Denial of Service vulnerability of WEBrick's Digest access authentication
+* [CVE-2019-16254](https://www.ruby-lang.org/en/news/2019/10/01/http-response-splitting-in-webrick-cve-2019-16254/): HTTP response splitting in WEBrick (Additional fix)
+* [CVE-2019-15845](https://www.ruby-lang.org/en/news/2019/10/01/nul-injection-file-fnmatch-cve-2019-15845/): A NUL injection vulnerability of File.fnmatch and File.fnmatch?
+* [RDoc vulnerabilities](https://www.ruby-lang.org/en/news/2019/08/28/multiple-jquery-vulnerabilities-in-rdoc/).
+
+- This version upgrades OpenSSL to 1.0.2t to address CVE-2019-1547, CVE-2019-1549 and CVE-2019-1563. For more details, see the [OpenSSL Security Advisory](https://www.openssl.org/news/secadv/20190910.txt).
+
+- This version includes a security update to curl 7.66.0 to address [CVE-2019-5481](https://curl.haxx.se/docs/CVE-2019-5481.html) and [CVE-2019-5482](https://curl.haxx.se/docs/CVE-2019-5482.html).
 
 - Previously, the `puppet resource --to_yaml` and `puppet device --to_yaml` commands did not generate valid YAML if the output contained special characters such as a single quote. [PUP-7808](https://tickets.puppetlabs.com/browse/PUP-7808)
 
@@ -45,6 +62,8 @@ This is a bug-fix and new feature release.
 - Agents could not connect through an authenticating HTTP proxy when making REST requests to Puppet infrastructure, such as when requesting a catalog. Now agents will observe the `http_proxy_user` and `http_proxy_password` settings or `HTTP_PROXY_USER/PASSWORD` environment variables when making those requests. [PUP-4470](https://tickets.puppetlabs.com/browse/PUP-4470)
 
 - If an HTTP proxy is configured either in Puppet settings or the `HTTP_PROXY_*` environment variables, then Puppet does not use the proxy when connecting to localhost or 127.0.0.1. This behavior can be modified by changing the `no_proxy` setting in puppet.conf or the `NO_PROXY` environment variable. [PUP-2172](https://tickets.puppetlabs.com/browse/PUP-2172)
+
+
 
 
 ## Puppet 5.5.16
