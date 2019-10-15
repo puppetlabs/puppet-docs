@@ -40,7 +40,7 @@ This is a bug-fix and new feature release.
 
 ### Resolved issues
 
-- This version upgrades the Ruby version to 2.5.7 to address the following security issues:
+- This version upgrades the Ruby version to 2.4.9 to address the following security issues:
    * [CVE-2019-16255](https://www.ruby-lang.org/en/news/2019/10/01/code-injection-shell-test-cve-2019-16255/): A code injection vulnerability of Shell#[] and Shell#test
    * [CVE-2019-16201](https://www.ruby-lang.org/en/news/2019/10/01/webrick-regexp-digestauth-dos-cve-2019-16201/): Regular Expression Denial of Service vulnerability of WEBrick's Digest access authentication
    * [CVE-2019-16254](https://www.ruby-lang.org/en/news/2019/10/01/http-response-splitting-in-webrick-cve-2019-16254/): HTTP response splitting in WEBrick (Additional fix)
