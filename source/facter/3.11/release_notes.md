@@ -6,6 +6,17 @@ title: "Facter release notes"
 These are the new features, resolved issues, and deprecations in this version of Facter. 
 
 
+## Facter 3.11.10
+
+Released 15 October 2019 with Puppet 5.5.17.
+
+### Resolved issues
+
+- Google Compute Engine's internal metadata service is deprecating the v1beta1 endpoint sometime before the end of 2019. To prepare for this, Facter now uses the v1 endpoint instead. [FACT-2018](https://tickets.puppetlabs.com/browse/FACT-2018)
+
+- When Facter starts a mountpoint to get the size and available space, it automatically mounts type `autofs` mountpoints, which is not the intended behavior. Automounts are now skipped by Facter when resolving mountpoints. [FACT-1992](https://tickets.puppetlabs.com/browse/FACT-1992)
+
+
 ## Facter 3.11.9
 
 Released 16 July 2019 with Puppet 5.5.16.
