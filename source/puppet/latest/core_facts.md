@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 06135c2bd3fd385d701e91829833beb78e57bebb
+built_from_commit: 2134ad63f6c8252b88388cd85e22990e749e4fd7
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/puppet/latest/core_facts.html"
