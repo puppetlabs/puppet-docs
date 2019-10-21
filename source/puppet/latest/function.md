@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 4c1b0ace7275f9646c9f6630e11f41556d88d2ac
+built_from_commit: 4e37b34522a55bc9a10407daa83f4f81a055cd03
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-10-21 12:56:41 -0700
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -1484,6 +1484,14 @@ which this function delegates to after having resolved the variable value.
 
 * `group_by(Collection $collection, Callable[1,1] &$block)`
     * `collection` --- A collection of things to group.
+    `Group array of strings by length, results in e.g. { 1 => [a, b], 2 => [ab] }`
+      [a, b, ab].group_by |$s| { $s.length }
+    `Group array of strings by length and index, results in e.g. {1 => ['a'], 2 => ['b', 'ab']}`
+      [a, b, ab].group_by |$i, $s| { $i%2 + $s.length }
+    `Group hash iterating by key-value pair, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }`
+      { a => [1, 2], b => [1] }.group_by |$kv| { $kv[1].length }
+    `Group hash iterating by key and value, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }`
+      { a => [1, 2], b => [1] }.group_by |$k, $v| { $v.length }
     * Return type(s): `Hash`. 
 * `group_by(Array $array, Callable[2,2] &$block)`
     * Return type(s): `Hash`. 
@@ -3581,6 +3589,14 @@ Logs a message on the server at level `notice`.
 
 * `partition(Collection $collection, Callable[1,1] &$block)`
     * `collection` --- A collection of things to partition.
+    `Partition array of empty strings, results in e.g. [[''], [b, c]]`
+      ['', b, c].partition |$s| { $s.empty }
+    `Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]`
+      ['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }
+    `Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]`
+      { a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }
+    `Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]`
+      { a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }
     * Return type(s): `Tuple[Array, Array]`. 
 * `partition(Array $array, Callable[2,2] &$block)`
     * Return type(s): `Tuple[Array, Array]`. 
@@ -3729,35 +3745,58 @@ $merged = $data.reduce( {} ) |$memo, $x| {
 
 ## `regsubst`
 
-* `regsubst()`
-    * Return type(s): `Any`. 
+* `regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
+    * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
+performed on each of the elements in the array, and the return value will be an array.
+    * `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
+and or end of the string, you must do that with ^ and $ yourself.
+    * `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
+\\1 (first set of parentheses), and so on.
+If the second argument is a Hash, and the matched text is one of its keys, the corresponding value is the replacement string.
+    * `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
+if pattern is a precompiled regexp):
+  - *E*         Extended regexps
+  - *I*         Ignore case in regexps
+  - *M*         Multiline regexps
+  - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
+    * `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
+precompiled regexp). A single-character string with the following values:
+  - *N*         None
+  - *E*         EUC
+  - *S*         SJIS
+  - *U*         UTF-8
+    `Get the third octet from the node's IP address:`
+      ```puppet
+$i3 = regsubst($ipaddress,'^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)$','\\3')
+```
+    * Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
+* `regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
+    * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
+performed on each of the elements in the array, and the return value will be an array.
+    * `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
+and or end of the string, you must do that with ^ and $ yourself.
+    * `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
+\\1 (first set of parentheses), and so on.
+If the second argument is a Hash, and the matched text is one of its keys, the corresponding value is the replacement string.
+    * `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
+if pattern is a precompiled regexp):
+  - *E*         Extended regexps
+  - *I*         Ignore case in regexps
+  - *M*         Multiline regexps
+  - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
+    * `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
+precompiled regexp). A single-character string with the following values:
+  - *N*         None
+  - *E*         EUC
+  - *S*         SJIS
+  - *U*         UTF-8
+    `Put angle brackets around each octet in the node's IP address:`
+      ```puppet
+$x = regsubst($ipaddress, /([0-9]+)/, '<\\1>', 'G')
+```
+    * Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
 
-Perform regexp replacement on a string or array of strings.
-
-* *Parameters* (in order):
-    * _target_  The string or array of strings to operate on.  If an array, the replacement will be performed on each of the elements in the array, and the return value will be an array.
-    * _regexp_  The regular expression matching the target string.  If you want it anchored at the start and or end of the string, you must do that with ^ and $ yourself.
-    * _replacement_  Replacement string. Can contain backreferences to what was matched using \\0 (whole match), \\1 (first set of parentheses), and so on.
-    * _flags_  Optional. String of single letter flags for how the regexp is interpreted:
-        - *E*         Extended regexps
-        - *I*         Ignore case in regexps
-        - *M*         Multiline regexps
-        - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
-    * _encoding_  Optional.  How to handle multibyte characters.  A single-character string with the following values:
-        - *N*         None
-        - *E*         EUC
-        - *S*         SJIS
-        - *U*         UTF-8
-
-* *Examples*
-
-Get the third octet from the node's IP address:
-
-    $i3 = regsubst($ipaddress,'^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)$','\\3')
-
-Put angle brackets around each octet in the node's IP address:
-
-    $x = regsubst($ipaddress, '([0-9]+)', '<\\1>', 'G')
+Performs regexp replacement on a string or array of strings.
 
 ## `require`
 
@@ -4843,6 +4882,11 @@ values($hsh)
 ## `versioncmp`
 
 * `versioncmp(String $a, String $b)`
+    `Using versioncmp`
+      
+if versioncmp('2.6-1', '2.4.5') > 0 {
+    notice('2.6-1 is > than 2.4.5')
+}
     * Return type(s): `Any`. 
 
 Compares two version numbers.
@@ -4898,7 +4942,8 @@ $check_var = $x
 * `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
     * Return type(s): `Any`. 
 
-The `yaml_data` is a hiera 5 `data_hash` data provider function. See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for how to use this function.
+The `yaml_data` is a hiera 5 `data_hash` data provider function.
+See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
+how to use this function.
 
-
-> **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-10-21 12:56:41 -0700
