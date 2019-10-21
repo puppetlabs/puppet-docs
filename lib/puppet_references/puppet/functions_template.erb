@@ -8,6 +8,10 @@ func['signatures'].each do |signature| -%>
 signature['docstring']['tags'].select {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil}.each do |param| -%>
     * `<%= param['name'] %>` --- <%= param['text'] %>
 <% end # each param
+signature['docstring']['tags'].select {|tag| tag['tag_name'] == 'example' && tag['text'] != '' && tag['text'] != nil}.each do |example| -%>
+    `<%= example['name'] %>`
+      <%= example['text'] %>
+<% end # each example
 return_types = signature['docstring']['tags'].detect {|tag| tag['tag_name'] == 'return'}
 if return_types -%>
     * Return type(s): <%= return_types['types'].map {|t| "`#{t}`"}.join(', ') %>. <%= return_types['text'] %>
