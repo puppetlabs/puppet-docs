@@ -4,18 +4,22 @@ Curated documentation for Puppet.
 
 ## Where is everything?
 
-This repo has been split into two distinct branches of documentation, archived and current. The master branch contains only documentation that is presently being generated into HTML and delivered to our Drupal integration. The archive branch contains older versions of documentation that are to be migrated to a new archive site.
+Most of our documentation has been moved out of this repository. This repo contains:
+  * Some of our older, unmaintained documentation, which is deprecated and may be removed from this repo without further notice. For archived docs for unmaintained, unsupported versions of Puppet, see the [Puppet docs archive](https://github.com/puppetlabs/docs-archive).
+  * Reference documentation generated from code. This reference documentation is then rendered into HTML and included in the Puppet docs website.
 
-Starting in Puppet 5.5, and continuing into current releases, we are migrating much of the Puppet documentation into DITA format in a CMS called easyDITA. When we have migrated a Markdown page in the docs to DITA, we delete it from here so that it's clear what page to update when changes come (and so that the old content isn't accidentally published). 
+As of Puppet 5.5, Puppet docs were migrated into the DITA XML format and have been maintained in a CMS. We removed each migrated page from this repository, so that the old content wasn't accidentally published.
 
-Starting in Facter 3.12, the Facter docs have been migrated to easyDITA (in the Puppet doc set), so updates to 3.12 (and later) should be made there instead of here. The generated core_facts.md file is still in github, but has moved to the puppet/x.y folder instead of facter/x.y.
+As of Facter 3.12, the Facter docs were migrated to DITA and organized as part of the Puppet doc set. Updates to 3.12 (and later) should be made in DITA, not in this repo. The generated `core_facts.md` file is still this repository, but has moved to the `puppet/x.y` folder instead of `facter/x.y`.
 
-## Contributions from the Puppet community are still very welcome.
+## Contributions from the Puppet community are welcome
 
-- If something in the documentation doesn't seem right, or if you think something important is missing, open a Jira ticket in the DOCUMENT project here: https://tickets.puppetlabs.com/projects/DOCUMENT/ Let us know the URL of the page, and describe the changes you think it needs.
-- Or email docs@puppet.com if you have questions about contributing to the documentation.
+If something in the documentation doesn't seem right, or if you think something important is missing, we want to hear from you! Please send us feedback in any of the following ways:
+* Use the feedback form on the relevant page to send us details of the issue.
+* Open a Jira ticket in the DOCUMENT project here: https://tickets.puppetlabs.com/projects/DOCUMENT/ Let us know the URL of the page, and describe the changes you think it needs.
+* Email `docs@puppet.com` if you have questions about contributing to the documentation.
 
 
 ## Copyright
 
-Copyright (c) 2009-2018 Puppet, Inc. See LICENSE for details.
+Copyright (c) 2009-2019 Puppet, Inc. See LICENSE for details.
