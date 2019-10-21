@@ -3745,58 +3745,69 @@ $merged = $data.reduce( {} ) |$memo, $x| {
 
 ## `regsubst`
 
-* `regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
-    * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
+`regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
+
+### Parameters
+
+* `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
-    * `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
+* `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
 and or end of the string, you must do that with ^ and $ yourself.
-    * `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
+* `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
 \\1 (first set of parentheses), and so on.
 If the second argument is a Hash, and the matched text is one of its keys, the corresponding value is the replacement string.
-    * `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
+* `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
 if pattern is a precompiled regexp):
   - *E*         Extended regexps
   - *I*         Ignore case in regexps
   - *M*         Multiline regexps
   - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
-    * `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
+* `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
 precompiled regexp). A single-character string with the following values:
   - *N*         None
   - *E*         EUC
   - *S*         SJIS
   - *U*         UTF-8
-    `Get the third octet from the node's IP address:`
-      ```puppet
+
+Get the third octet from the node's IP address:
+
+```puppet
 $i3 = regsubst($ipaddress,'^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)$','\\3')
 ```
-    * Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
-* `regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
-    * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
+
+Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
+
+
+`regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
+
+### Parameters
+
+* `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
-    * `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
+* `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
 and or end of the string, you must do that with ^ and $ yourself.
-    * `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
+* `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
 \\1 (first set of parentheses), and so on.
 If the second argument is a Hash, and the matched text is one of its keys, the corresponding value is the replacement string.
-    * `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
+* `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
 if pattern is a precompiled regexp):
   - *E*         Extended regexps
   - *I*         Ignore case in regexps
   - *M*         Multiline regexps
   - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
-    * `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
+* `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
 precompiled regexp). A single-character string with the following values:
   - *N*         None
   - *E*         EUC
   - *S*         SJIS
   - *U*         UTF-8
-    `Put angle brackets around each octet in the node's IP address:`
-      ```puppet
+
+Put angle brackets around each octet in the node's IP address:
+
+```puppet
 $x = regsubst($ipaddress, /([0-9]+)/, '<\\1>', 'G')
 ```
-    * Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
-
-Performs regexp replacement on a string or array of strings.
+Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
 
 ## `require`
 
