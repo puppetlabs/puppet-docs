@@ -8,7 +8,7 @@ gem 'git'
 gem 'json'
 
 group(:build_site) do
-  gem "jekyll", ">= 3.6.3"
+  gem 'jekyll', '>= 3.6.3'
   gem 'kramdown', '>=1.14.0'
   gem 'vlad'
   gem 'vlad-git'
