@@ -324,6 +324,12 @@ documents:
     nav: ./_puppet_toc.html
     my_versions:
       puppetserver: "latest"
+  /puppet/6.10:
+    doc: puppet
+    version: "6.10"
+    nav: ./_puppet_toc.html
+    my_versions:
+      puppetserver: "latest"
   /puppet/6.7:
     doc: puppet
     version: "6.7"
