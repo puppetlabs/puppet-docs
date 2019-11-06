@@ -858,7 +858,7 @@ Provider support:
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>windows_adsi</td>
