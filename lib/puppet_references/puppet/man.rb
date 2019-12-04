@@ -27,7 +27,6 @@ module PuppetReferences
             core: %w(
           agent
           apply
-          cert
           lookup
           master
           module
@@ -66,7 +65,7 @@ module PuppetReferences
         }
         all_in_categories = categories.values.flatten
         # Don't let new commands drop off into The Nothing:
-        leftovers = commands - all_in_categories
+        # leftovers = commands - all_in_categories
         # Clean up any commands that don't exist in this version of Puppet:
         categories.values.each do |list|
           list.reject! {|sub| !commands.include?(sub)}
@@ -102,21 +101,6 @@ Most users can ignore these subcommands. They're only useful for certain niche w
 #{ categories[:weird].reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
 
 EOT
-        # Handle any leftovers that aren't in categories
-        unless leftovers.empty?
-          index_text << <<EOADDENDUM
-## Puppet Enterprise-specific subcommands
-
-Puppet Enterprise (PE) has some unique subcommands, such as `puppet infrastructure`. For reference information about these commands, use the `puppet help` command, such as `puppet help infrastructure`. For usage information, see the [Puppet Enterprise documentation](https://puppet.com/docs/pe/).
-
-New or uncategorized subcommands
------
-
-These subcommands have not yet been added to any of the categories above.
-
-#{ leftovers.reduce('') {|memo, item| memo << "- [puppet #{item}](./#{item}.html)\n"} }
-EOADDENDUM
-        end
         # write index
         filename = OUTPUT_DIR + 'index.md'
         filename.open('w') {|f| f.write(index_text)}
