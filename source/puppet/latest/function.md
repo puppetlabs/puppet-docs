@@ -1,13 +1,13 @@
 ---
 layout: default
-built_from_commit: 4e37b34522a55bc9a10407daa83f4f81a055cd03
+built_from_commit: db86fe9ef121365ed4c2822c56fc35f2fe28f5cb
 title: List of built-in functions
 canonical: "/puppet/latest/function.html"
 toc_levels: 2
 toc: columns
 ---
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-10-21 12:56:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-12-06 11:15:56 -0800
 
 This page is a list of Puppet's built-in functions, with descriptions of what they do and how to use them.
 
@@ -28,10 +28,9 @@ The `<DATA TYPE>` is a [Puppet data type value](./lang_data_type.html), like `St
 
 ## `abs`
 
-* `abs(Numeric $val)`
-    * Return type(s): `Any`. 
-* `abs(String $val)`
-    * Return type(s): `Any`. 
+`abs(Numeric $val)`
+
+`abs(String $val)`
 
 Returns the absolute value of a Numeric value, for example -34.56 becomes
 34.56. Takes a single `Integer` or `Float` value as an argument.
@@ -65,22 +64,25 @@ Float($strval, true)       # Converts to absolute Float
 
 ## `alert`
 
-* `alert(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`alert(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `alert`.
 
 ## `all`
 
-* `all(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `all(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `all(Iterable $enumerable, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `all(Iterable $enumerable, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`all(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+`all(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+`all(Iterable $enumerable, Callable[2,2] &$block)`
+
+`all(Iterable $enumerable, Callable[1,1] &$block)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 repeatedly using each value in a data structure until the lambda returns a non "truthy" value which
@@ -135,12 +137,11 @@ documentation.
 
 ## `annotate`
 
-* `annotate(Type[Annotation] $type, Any $value, Optional[Callable[0, 0]] &$block)`
-    * Return type(s): `Any`. 
-* `annotate(Type[Annotation] $type, Any $value, Variant[Enum[clear],Hash[Pcore::MemberName,Any]] $annotation_hash)`
-    * Return type(s): `Any`. 
-* `annotate(Type[Pcore] $type, Any $value, Hash[Type[Annotation], Hash[Pcore::MemberName,Any]] $annotations)`
-    * Return type(s): `Any`. 
+`annotate(Type[Annotation] $type, Any $value, Optional[Callable[0, 0]] &$block)`
+
+`annotate(Type[Annotation] $type, Any $value, Variant[Enum[clear],Hash[Pcore::MemberName,Any]] $annotation_hash)`
+
+`annotate(Type[Pcore] $type, Any $value, Hash[Type[Annotation], Hash[Pcore::MemberName,Any]] $annotations)`
 
 Handles annotations on objects. The function can be used in four different ways.
 
@@ -197,14 +198,13 @@ is initialized with the nested hash for the respective type. The annotated objec
 
 ## `any`
 
-* `any(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `any(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `any(Iterable $enumerable, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `any(Iterable $enumerable, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`any(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+`any(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+`any(Iterable $enumerable, Callable[2,2] &$block)`
+
+`any(Iterable $enumerable, Callable[1,1] &$block)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 repeatedly using each value in a data structure until the lambda returns a "truthy" value which
@@ -264,10 +264,9 @@ documentation.
 
 ## `assert_type`
 
-* `assert_type(Type $type, Any $value, Optional[Callable[Type, Type]] &$block)`
-    * Return type(s): `Any`. 
-* `assert_type(String $type_string, Any $value, Optional[Callable[Type, Type]] &$block)`
-    * Return type(s): `Any`. 
+`assert_type(Type $type, Any $value, Optional[Callable[Type, Type]] &$block)`
+
+`assert_type(String $type_string, Any $value, Optional[Callable[Type, Type]] &$block)`
 
 Returns the given value if it is of the given
 [data type](https://puppet.com/docs/puppet/latest/lang_data.html), or
@@ -317,8 +316,7 @@ For more information about data types, see the
 
 ## `binary_file`
 
-* `binary_file(String $path)`
-    * Return type(s): `Any`. 
+`binary_file(String $path)`
 
 Loads a binary file from a module or file system and returns its contents as a `Binary`.
 The argument to this function should be a `<MODULE NAME>/<FILE>`
@@ -337,8 +335,7 @@ To search for the existence of files, use the `find_file()` function.
 
 ## `break`
 
-* `break()`
-    * Return type(s): `Any`. 
+`break()`
 
 Breaks an innermost iteration as if it encountered an end of input.
 This function does not return to the caller.
@@ -369,10 +366,9 @@ Would notice the value `[10]`
 
 ## `call`
 
-* `call(String $function_name, Any *$arguments, Optional[Callable] &$block)`
-    * Return type(s): `Any`. 
-* `call(Deferred $deferred)`
-    * Return type(s): `Any`. 
+`call(String $function_name, Any *$arguments, Optional[Callable] &$block)`
+
+`call(Deferred $deferred)`
 
 Calls an arbitrary Puppet function by name.
 
@@ -423,12 +419,11 @@ Would notice the value of `$facts['processors']['count']` at the time when the `
 
 ## `camelcase`
 
-* `camelcase(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `camelcase(String $arg)`
-    * Return type(s): `Any`. 
-* `camelcase(Iterable[Variant[String, Numeric]] $arg)`
-    * Return type(s): `Any`. 
+`camelcase(Numeric $arg)`
+
+`camelcase(String $arg)`
+
+`camelcase(Iterable[Variant[String, Numeric]] $arg)`
 
 Creates a Camel Case version of a String
 
@@ -460,12 +455,11 @@ Would both result in `['AbcDef', 'BcdXyz']`
 
 ## `capitalize`
 
-* `capitalize(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `capitalize(String $arg)`
-    * Return type(s): `Any`. 
-* `capitalize(Iterable[Variant[String, Numeric]] $arg)`
-    * Return type(s): `Any`. 
+`capitalize(Numeric $arg)`
+
+`capitalize(String $arg)`
+
+`capitalize(Iterable[Variant[String, Numeric]] $arg)`
 
 Capitalizes the first character of a String, or the first character of every String in an Iterable value (such as an Array).
 
@@ -496,10 +490,9 @@ Would both result in ['Abc', 'Bcd']
 
 ## `ceiling`
 
-* `ceiling(Numeric $val)`
-    * Return type(s): `Any`. 
-* `ceiling(String $val)`
-    * Return type(s): `Any`. 
+`ceiling(Numeric $val)`
+
+`ceiling(String $val)`
 
 Returns the smallest `Integer` greater or equal to the argument.
 Takes a single numeric value as an argument.
@@ -514,12 +507,11 @@ to have full control over how the conversion is done.
 
 ## `chomp`
 
-* `chomp(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `chomp(String $arg)`
-    * Return type(s): `Any`. 
-* `chomp(Iterable[Variant[String, Numeric]] $arg)`
-    * Return type(s): `Any`. 
+`chomp(Numeric $arg)`
+
+`chomp(String $arg)`
+
+`chomp(Iterable[Variant[String, Numeric]] $arg)`
 
 Returns a new string with the record separator character(s) removed.
 The record separator is the line ending characters `\r` and `\n`.
@@ -546,12 +538,11 @@ Would both result in `['hello', 'hi']`
 
 ## `chop`
 
-* `chop(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `chop(String $arg)`
-    * Return type(s): `Any`. 
-* `chop(Iterable[Variant[String, Numeric]] $arg)`
-    * Return type(s): `Any`. 
+`chop(Numeric $arg)`
+
+`chop(String $arg)`
+
+`chop(Iterable[Variant[String, Numeric]] $arg)`
 
 Returns a new string with the last character removed.
 If the string ends with `\r\n`, both characters are removed. Applying chop to an empty
@@ -587,18 +578,17 @@ Would both result in `['hello', 'hi']`
 
 ## `compare`
 
-* `compare(Numeric $a, Numeric $b)`
-    * Return type(s): `Any`. 
-* `compare(String $a, String $b, Optional[Boolean] $ignore_case)`
-    * Return type(s): `Any`. 
-* `compare(Semver $a, Semver $b)`
-    * Return type(s): `Any`. 
-* `compare(Numeric $a, Variant[Timespan, Timestamp] $b)`
-    * Return type(s): `Any`. 
-* `compare(Timestamp $a, Variant[Timestamp, Numeric] $b)`
-    * Return type(s): `Any`. 
-* `compare(Timespan $a, Variant[Timespan, Numeric] $b)`
-    * Return type(s): `Any`. 
+`compare(Numeric $a, Numeric $b)`
+
+`compare(String $a, String $b, Optional[Boolean] $ignore_case)`
+
+`compare(Semver $a, Semver $b)`
+
+`compare(Numeric $a, Variant[Timespan, Timestamp] $b)`
+
+`compare(Timestamp $a, Variant[Timestamp, Numeric] $b)`
+
+`compare(Timespan $a, Variant[Timespan, Numeric] $b)`
 
 Compares two values and returns -1, 0 or 1 if first value is smaller, equal or larger than the second value.
 The compare function accepts arguments of the data types `String`, `Numeric`, `Timespan`, `Timestamp`, and `Semver`,
@@ -613,8 +603,7 @@ in the Puppet Language.
 
 ## `contain`
 
-* `contain(Any *$names)`
-    * Return type(s): `Any`. 
+`contain(Any *$names)`
 
 Makes one or more classes be contained inside the current class.
 If any of these classes are undeclared, they will be declared as if
@@ -638,8 +627,7 @@ allowing the function call to `contain` to directly continue.
 
 ## `convert_to`
 
-* `convert_to(Any $value, Type $type, Optional[Any] *$args, Optional[Callable[1,1]] &$block)`
-    * Return type(s): `Any`. 
+`convert_to(Any $value, Type $type, Optional[Any] *$args, Optional[Callable[1,1]] &$block)`
 
 The `convert_to(value, type)` is a convenience function that does the same as `new(type, value)`.
 The difference in the argument ordering allows it to be used in chained style for
@@ -660,8 +648,7 @@ returns what the lambda returns, otherwise the converted value.
 
 ## `create_resources`
 
-* `create_resources()`
-    * Return type(s): `Any`. 
+`create_resources()`
 
 Converts a hash into a set of resources and adds them to the catalog.
 
@@ -713,24 +700,31 @@ resource declaration).
 
 ## `crit`
 
-* `crit(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`crit(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `crit`.
 
 ## `debug`
 
-* `debug(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`debug(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `debug`.
 
 ## `defined`
 
-* `defined(Variant[String, Type[CatalogEntry], Type[Type[CatalogEntry]]] *$vals)`
-    * Return type(s): `Any`. 
+`defined(Variant[String, Type[CatalogEntry], Type[Type[CatalogEntry]]] *$vals)`
 
 Determines whether a given class or resource type is defined and returns a Boolean
 value. You can also use `defined` to determine whether a specific resource is defined,
@@ -824,8 +818,7 @@ defined('$tmp_file2')
 
 ## `dig`
 
-* `dig(Optional[Collection] $data, Any *$arg)`
-    * Return type(s): `Any`. 
+`dig(Optional[Collection] $data, Any *$arg)`
 
 Returns a value for a sequence of given keys/indexes into a structure, such as
 an array or hash.
@@ -854,21 +847,19 @@ exists in a structure without mandating that it always exists.
 
 ## `digest`
 
-* `digest()`
-    * Return type(s): `Any`. 
+`digest()`
 
 Returns a hash value from a provided string using the digest_algorithm setting from the Puppet config file.
 
 ## `downcase`
 
-* `downcase(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `downcase(String $arg)`
-    * Return type(s): `Any`. 
-* `downcase(Array[StringData] $arg)`
-    * Return type(s): `Any`. 
-* `downcase(Hash[StringData, StringData] $arg)`
-    * Return type(s): `Any`. 
+`downcase(Numeric $arg)`
+
+`downcase(String $arg)`
+
+`downcase(Array[StringData] $arg)`
+
+`downcase(Hash[StringData, StringData] $arg)`
 
 Converts a String, Array or Hash (recursively) into lower case.
 
@@ -913,14 +904,13 @@ Would result in `['a', 'b', ['c', ['d']], {'x' => 'y'}]`
 
 ## `each`
 
-* `each(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `each(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `each(Iterable $enumerable, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `each(Iterable $enumerable, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`each(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+`each(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+`each(Iterable $enumerable, Callable[2,2] &$block)`
+
+`each(Iterable $enumerable, Callable[1,1] &$block)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 repeatedly using each value in a data structure, then returns the values unchanged.
@@ -1008,24 +998,27 @@ documentation.
 
 ## `emerg`
 
-* `emerg(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`emerg(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `emerg`.
 
 ## `empty`
 
-* `empty(Collection $coll)`
-    * Return type(s): `Any`. 
-* `empty(String $str)`
-    * Return type(s): `Any`. 
-* `empty(Numeric $num)`
-    * Return type(s): `Any`. 
-* `empty(Binary $bin)`
-    * Return type(s): `Any`. 
-* `empty(Undef $x)`
-    * Return type(s): `Any`. 
+`empty(Collection $coll)`
+
+`empty(String $str)`
+
+`empty(Numeric $num)`
+
+`empty(Binary $bin)`
+
+`empty(Undef $x)`
 
 Returns `true` if the given argument is an empty collection of values.
 
@@ -1048,8 +1041,7 @@ notice(empty([]))
 
 ## `epp`
 
-* `epp(String $path, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
-    * Return type(s): `Any`. 
+`epp(String $path, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
 
 Evaluates an Embedded Puppet (EPP) template file and returns the rendered text
 result as a String.
@@ -1087,16 +1079,19 @@ function fails to pass any required parameter.
 
 ## `err`
 
-* `err(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`err(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `err`.
 
 ## `eyaml_lookup_key`
 
-* `eyaml_lookup_key(String[1] $key, Hash[String[1],Any] $options, Puppet::LookupContext $context)`
-    * Return type(s): `Any`. 
+`eyaml_lookup_key(String[1] $key, Hash[String[1],Any] $options, Puppet::LookupContext $context)`
 
 The `eyaml_lookup_key` is a hiera 5 `lookup_key` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-hiera-eyaml) for
@@ -1104,16 +1099,14 @@ how to use this function.
 
 ## `fail`
 
-* `fail()`
-    * Return type(s): `Any`. 
+`fail()`
 
 Fail with a parse error. Any parameters will be stringified,
 concatenated, and passed to the exception-handler.
 
 ## `file`
 
-* `file()`
-    * Return type(s): `Any`. 
+`file()`
 
 Loads a file from a module and returns its contents as a string.
 
@@ -1130,14 +1123,13 @@ found, skipping any files that don't exist.
 
 ## `filter`
 
-* `filter(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `filter(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `filter(Iterable $enumerable, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `filter(Iterable $enumerable, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`filter(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+`filter(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+`filter(Iterable $enumerable, Callable[2,2] &$block)`
+
+`filter(Iterable $enumerable, Callable[1,1] &$block)`
 
 Applies a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 to every value in a data structure and returns an array or hash containing any elements
@@ -1199,10 +1191,9 @@ $filtered_data = $data.filter |$keys, $values| { $keys =~ /berry$/ and $values <
 
 ## `find_file`
 
-* `find_file(String *$paths)`
-    * Return type(s): `Any`. 
-* `find_file(Array[String] *$paths_array)`
-    * Return type(s): `Any`. 
+`find_file(String *$paths)`
+
+`find_file(Array[String] *$paths_array)`
 
 Finds an existing file from a module and returns its path.
 
@@ -1223,8 +1214,7 @@ The function returns `undef` if none of the given paths were found
 
 ## `flatten`
 
-* `flatten(Any *$args)`
-    * Return type(s): `Any`. 
+`flatten(Any *$args)`
 
 Returns a flat Array produced from its possibly deeply nested given arguments.
 
@@ -1273,10 +1263,9 @@ flatten([42])
 
 ## `floor`
 
-* `floor(Numeric $val)`
-    * Return type(s): `Any`. 
-* `floor(String $val)`
-    * Return type(s): `Any`. 
+`floor(Numeric $val)`
+
+`floor(String $val)`
 
 Returns the largest `Integer` less or equal to the argument.
 Takes a single numeric value as an argument.
@@ -1291,8 +1280,7 @@ to have full control over how the conversion is done.
 
 ## `fqdn_rand`
 
-* `fqdn_rand()`
-    * Return type(s): `Any`. 
+`fqdn_rand()`
 
 Usage: `fqdn_rand(MAX, [SEED])`. MAX is required and must be a positive
 integer; SEED is optional and may be any number or string.
@@ -1311,8 +1299,7 @@ node. (For example, `fqdn_rand(30)`, `fqdn_rand(30, 'expensive job 1')`, and
 
 ## `generate`
 
-* `generate()`
-    * Return type(s): `Any`. 
+`generate()`
 
 Calls an external command on the Puppet master and returns
 the results of the command. Any arguments are passed to the external command as
@@ -1328,8 +1315,7 @@ Consider cleaning white space from any string generated.
 
 ## `get`
 
-* `get(Any $value, String $dotted_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
-    * Return type(s): `Any`. 
+`get(Any $value, String $dotted_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
 
 Digs into a value with dot notation to get a value from within a structure.
 
@@ -1438,8 +1424,7 @@ Also see:
 
 ## `getvar`
 
-* `getvar(Pattern[/\A(?:::)?(?:[a-z]\w*::)*[a-z_]\w*(?:\.|\Z)/] $get_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
-    * Return type(s): `Any`. 
+`getvar(Pattern[/\A(?:::)?(?:[a-z]\w*::)*[a-z_]\w*(?:\.|\Z)/] $get_string, Optional[Any] $default_value, Optional[Callable[1,1]] &$block)`
 
 Digs into a variable with dot notation to get a value from a structure.
 
@@ -1482,28 +1467,35 @@ which this function delegates to after having resolved the variable value.
 
 ## `group_by`
 
-* `group_by(Collection $collection, Callable[1,1] &$block)`
-    * `collection` --- A collection of things to group.
-    `Group array of strings by length, results in e.g. { 1 => [a, b], 2 => [ab] }`
-      [a, b, ab].group_by |$s| { $s.length }
-    `Group array of strings by length and index, results in e.g. {1 => ['a'], 2 => ['b', 'ab']}`
-      [a, b, ab].group_by |$i, $s| { $i%2 + $s.length }
-    `Group hash iterating by key-value pair, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }`
-      { a => [1, 2], b => [1] }.group_by |$kv| { $kv[1].length }
-    `Group hash iterating by key and value, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }`
-      { a => [1, 2], b => [1] }.group_by |$k, $v| { $v.length }
-    * Return type(s): `Hash`. 
-* `group_by(Array $array, Callable[2,2] &$block)`
-    * Return type(s): `Hash`. 
-* `group_by(Collection $collection, Callable[2,2] &$block)`
-    * Return type(s): `Hash`. 
+`group_by(Collection $collection, Callable[1,1] &$block)`
+
+## Parameters
+
+* `collection` --- A collection of things to group.
+
+Return type(s): `Hash`. 
+
+## Examples
+
+Group array of strings by length, results in e.g. { 1 => [a, b], 2 => [ab] }
+`[a, b, ab].group_by |$s| { $s.length }`
+Group array of strings by length and index, results in e.g. {1 => ['a'], 2 => ['b', 'ab']}
+`[a, b, ab].group_by |$i, $s| { $i%2 + $s.length }`
+Group hash iterating by key-value pair, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }
+`{ a => [1, 2], b => [1] }.group_by |$kv| { $kv[1].length }`
+Group hash iterating by key and value, results in e.g. { 2 => [['a', [1, 2]]], 1 => [['b', [1]]] }
+`{ a => [1, 2], b => [1] }.group_by |$k, $v| { $v.length }`
+
+`group_by(Array $array, Callable[2,2] &$block)`
+
+`group_by(Collection $collection, Callable[2,2] &$block)`
 
 Groups the collection by result of the block. Returns a hash where the keys are the evaluated result from the block
 and the values are arrays of elements in the collection that correspond to the key.
 
 ## `hiera`
 
-* `hiera()`
+`hiera()`
 
 Performs a standard priority lookup of the hierarchy and returns the most specific value
 for a given key. The returned value can be any type of data.
@@ -1585,7 +1577,7 @@ for more information about the Hiera 3 functions.
 
 ## `hiera_array`
 
-* `hiera_array()`
+`hiera_array()`
 
 Finds all matches of a key throughout the hierarchy and returns them as a single flattened
 array of unique values. If any of the matched values are arrays, they're flattened and
@@ -1655,7 +1647,7 @@ for more information about the Hiera 3 functions.
 
 ## `hiera_hash`
 
-* `hiera_hash()`
+`hiera_hash()`
 
 Finds all matches of a key throughout the hierarchy and returns them in a merged hash.
 
@@ -1736,7 +1728,7 @@ for more information about the Hiera 3 functions.
 
 ## `hiera_include`
 
-* `hiera_include()`
+`hiera_include()`
 
 Assigns classes to a node using an
 [array merge lookup](https://puppet.com/docs/hiera/latest/lookup_types.html#array-merge)
@@ -1822,8 +1814,7 @@ for more information about the Hiera 3 functions.
 
 ## `hocon_data`
 
-* `hocon_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
-    * Return type(s): `Any`. 
+`hocon_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
 The `hocon_data` is a hiera 5 `data_hash` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
@@ -1833,15 +1824,13 @@ Note that this function is not supported without a hocon library being present.
 
 ## `import`
 
-* `import(Any *$args)`
-    * Return type(s): `Any`. 
+`import(Any *$args)`
 
 The import function raises an error when called to inform the user that import is no longer supported.
 
 ## `include`
 
-* `include(Any *$names)`
-    * Return type(s): `Any`. 
+`include(Any *$names)`
 
 Declares one or more classes, causing the resources in them to be
 evaluated and added to the catalog. Accepts a class name, an array of class
@@ -1873,18 +1862,17 @@ the resource and relationship expressions.
 
 ## `index`
 
-* `index(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `index(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `index(Iterable $enumerable, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `index(Iterable $enumerable, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `index(String $str, Variant[String,Regexp] $match)`
-    * Return type(s): `Any`. 
-* `index(Iterable $enumerable, Any $match)`
-    * Return type(s): `Any`. 
+`index(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+`index(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+`index(Iterable $enumerable, Callable[2,2] &$block)`
+
+`index(Iterable $enumerable, Callable[1,1] &$block)`
+
+`index(String $str, Variant[String,Regexp] $match)`
+
+`index(Iterable $enumerable, Any $match)`
 
 Returns the index (or key in a hash) to a first-found value in an `Iterable` value.
 
@@ -1963,16 +1951,19 @@ documentation.
 
 ## `info`
 
-* `info(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`info(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `info`.
 
 ## `inline_epp`
 
-* `inline_epp(String $template, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
-    * Return type(s): `Any`. 
+`inline_epp(String $template, Optional[Hash[Pattern[/^\w+$/], Any]] $parameters)`
 
 Evaluates an Embedded Puppet (EPP) template string and returns the rendered
 text result as a String.
@@ -2021,8 +2012,7 @@ END
 
 ## `inline_template`
 
-* `inline_template()`
-    * Return type(s): `Any`. 
+`inline_template()`
 
 Evaluate a template string and return its value.  See
 [the templating docs](https://puppet.com/docs/puppet/latest/lang_template.html) for
@@ -2031,8 +2021,7 @@ output is all concatenated and returned as the output of the function.
 
 ## `join`
 
-* `join(Array $arg, Optional[String] $delimiter)`
-    * Return type(s): `Any`. 
+`join(Array $arg, Optional[String] $delimiter)`
 
 Joins the values of an Array into a string with elements separated by a delimiter.
 
@@ -2074,8 +2063,7 @@ see the `new` function for `String` and its formatting options for `Array` and `
 
 ## `json_data`
 
-* `json_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
-    * Return type(s): `Any`. 
+`json_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
 The `json_data` is a hiera 5 `data_hash` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
@@ -2083,8 +2071,7 @@ how to use this function.
 
 ## `keys`
 
-* `keys(Hash $hsh)`
-    * Return type(s): `Any`. 
+`keys(Hash $hsh)`
 
 Returns the keys of a hash as an Array
 
@@ -2102,12 +2089,11 @@ keys($hsh)
 
 ## `length`
 
-* `length(Collection $arg)`
-    * Return type(s): `Any`. 
-* `length(String $arg)`
-    * Return type(s): `Any`. 
-* `length(Binary $arg)`
-    * Return type(s): `Any`. 
+`length(Collection $arg)`
+
+`length(String $arg)`
+
+`length(Binary $arg)`
 
 Returns the length of an Array, Hash, String, or Binary value.
 
@@ -2125,8 +2111,7 @@ length("violets")       # 7
 
 ## `lest`
 
-* `lest(Any $arg, Callable[0,0] &$block)`
-    * Return type(s): `Any`. 
+`lest(Any $arg, Callable[0,0] &$block)`
 
 Calls a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 without arguments if the value given to `lest` is `undef`.
@@ -2167,16 +2152,15 @@ Would notice the value `20`
 
 ## `lookup`
 
-* `lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge)`
-    * Return type(s): `Any`. 
-* `lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, DefaultValueType $default_value)`
-    * Return type(s): `Any`. 
-* `lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, BlockType &$block)`
-    * Return type(s): `Any`. 
-* `lookup(OptionsWithName $options_hash, Optional[BlockType] &$block)`
-    * Return type(s): `Any`. 
-* `lookup(Variant[String,Array[String]] $name, OptionsWithoutName $options_hash, Optional[BlockType] &$block)`
-    * Return type(s): `Any`. 
+`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge)`
+
+`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, DefaultValueType $default_value)`
+
+`lookup(NameType $name, Optional[ValueType] $value_type, Optional[MergeType] $merge, BlockType &$block)`
+
+`lookup(OptionsWithName $options_hash, Optional[BlockType] &$block)`
+
+`lookup(Variant[String,Array[String]] $name, OptionsWithoutName $options_hash, Optional[BlockType] &$block)`
 
 Uses the Puppet lookup system to retrieve a value for a given key. By default,
 this returns the first value found (and fails compilation if no values are
@@ -2286,12 +2270,11 @@ but can adjust the merge with additional options. The available options are:
 
 ## `lstrip`
 
-* `lstrip(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `lstrip(String $arg)`
-    * Return type(s): `Any`. 
-* `lstrip(Iterable[Variant[String, Numeric]] $arg)`
-    * Return type(s): `Any`. 
+`lstrip(Numeric $arg)`
+
+`lstrip(String $arg)`
+
+`lstrip(Iterable[Variant[String, Numeric]] $arg)`
 
 Strips leading spaces from a String
 
@@ -2319,14 +2302,13 @@ Would both result in `['hello', 'hi']`
 
 ## `map`
 
-* `map(Hash[Any, Any] $hash, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `map(Hash[Any, Any] $hash, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `map(Iterable $enumerable, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `map(Iterable $enumerable, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`map(Hash[Any, Any] $hash, Callable[2,2] &$block)`
+
+`map(Hash[Any, Any] $hash, Callable[1,1] &$block)`
+
+`map(Iterable $enumerable, Callable[2,2] &$block)`
+
+`map(Iterable $enumerable, Callable[1,1] &$block)`
 
 Applies a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 to every value in a data structure and returns an array containing the results.
@@ -2386,10 +2368,9 @@ $transformed_data = $data.map |$key,$value| { $value }
 
 ## `match`
 
-* `match(String $string, Variant[Any, Type] $pattern)`
-    * Return type(s): `Any`. 
-* `match(Array[String] $string, Variant[Any, Type] $pattern)`
-    * Return type(s): `Any`. 
+`match(String $string, Variant[Any, Type] $pattern)`
+
+`match(Array[String] $string, Variant[Any, Type] $pattern)`
 
 Matches a regular expression against a string and returns an array containing the match
 and any matched capturing groups.
@@ -2421,20 +2402,19 @@ $matches = ["abc123","def456"].match(/([a-z]+)([1-9]+)/)
 
 ## `max`
 
-* `max(Numeric *$values)`
-    * Return type(s): `Any`. 
-* `max(String *$values)`
-    * Return type(s): `Any`. 
-* `max(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
-* `max(Array[String] $values, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
-* `max(Array $values, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
-* `max(Any *$values, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `max(Any *$values)`
-    * Return type(s): `Any`. 
+`max(Numeric *$values)`
+
+`max(String *$values)`
+
+`max(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
+
+`max(Array[String] $values, Optional[Callable[2,2]] &$block)`
+
+`max(Array $values, Optional[Callable[2,2]] &$block)`
+
+`max(Any *$values, Callable[2,2] &$block)`
+
+`max(Any *$values)`
 
 Returns the highest value among a variable number of arguments.
 Takes at least one argument.
@@ -2505,27 +2485,25 @@ kicks in.
 
 ## `md5`
 
-* `md5()`
-    * Return type(s): `Any`. 
+`md5()`
 
 Returns a MD5 hash value from a provided string.
 
 ## `min`
 
-* `min(Numeric *$values)`
-    * Return type(s): `Any`. 
-* `min(String *$values)`
-    * Return type(s): `Any`. 
-* `min(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
-* `min(Array[String] $values, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
-* `min(Array $values, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
-* `min(Any *$values, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `min(Any *$values)`
-    * Return type(s): `Any`. 
+`min(Numeric *$values)`
+
+`min(String *$values)`
+
+`min(Array[Numeric] $values, Optional[Callable[2,2]] &$block)`
+
+`min(Array[String] $values, Optional[Callable[2,2]] &$block)`
+
+`min(Array $values, Optional[Callable[2,2]] &$block)`
+
+`min(Any *$values, Callable[2,2] &$block)`
+
+`min(Any *$values)`
 
 Returns the lowest value among a variable number of arguments.
 Takes at least one argument.
@@ -2595,10 +2573,9 @@ lambda the stdlib compatible (deprecated) behavior would have been to return "2"
 
 ## `module_directory`
 
-* `module_directory(String *$names)`
-    * Return type(s): `Any`. 
-* `module_directory(Array[String] *$names)`
-    * Return type(s): `Any`. 
+`module_directory(String *$names)`
+
+`module_directory(Array[String] *$names)`
 
 Finds an existing module and returns the path to its root directory.
 
@@ -2618,8 +2595,7 @@ The function returns `undef` if none of the given modules were found
 
 ## `new`
 
-* `new(Type $type, Any *$args, Optional[Callable] &$block)`
-    * Return type(s): `Any`. 
+`new(Type $type, Any *$args, Optional[Callable] &$block)`
 
 Creates a new instance/object of a given data type.
 
@@ -3571,45 +3547,54 @@ notice($fmt(256)) # will notice '0x100'
 
 ## `next`
 
-* `next(Optional[Any] $value)`
-    * Return type(s): `Any`. 
+`next(Optional[Any] $value)`
 
 Makes iteration continue with the next value, optionally with a given value for this iteration.
 If a value is not given it defaults to `undef`
 
 ## `notice`
 
-* `notice(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`notice(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `notice`.
 
 ## `partition`
 
-* `partition(Collection $collection, Callable[1,1] &$block)`
-    * `collection` --- A collection of things to partition.
-    `Partition array of empty strings, results in e.g. [[''], [b, c]]`
-      ['', b, c].partition |$s| { $s.empty }
-    `Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]`
-      ['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }
-    `Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]`
-      { a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }
-    `Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]`
-      { a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }
-    * Return type(s): `Tuple[Array, Array]`. 
-* `partition(Array $array, Callable[2,2] &$block)`
-    * Return type(s): `Tuple[Array, Array]`. 
-* `partition(Collection $collection, Callable[2,2] &$block)`
-    * Return type(s): `Tuple[Array, Array]`. 
+`partition(Collection $collection, Callable[1,1] &$block)`
+
+## Parameters
+
+* `collection` --- A collection of things to partition.
+
+Return type(s): `Tuple[Array, Array]`. 
+
+## Examples
+
+Partition array of empty strings, results in e.g. [[''], [b, c]]
+`['', b, c].partition |$s| { $s.empty }`
+Partition array of strings using index, results in e.g. [['', 'ab'], ['b']]
+`['', b, ab].partition |$i, $s| { $i == 2 or $s.empty }`
+Partition hash of strings by key-value pair, results in e.g. [[['b', []]], [['a', [1, 2]]]]
+`{ a => [1, 2], b => [] }.partition |$kv| { $kv[1].empty }`
+Partition hash of strings by key and value, results in e.g. [[['b', []]], [['a', [1, 2]]]]
+`{ a => [1, 2], b => [] }.partition |$k, $v| { $v.empty }`
+
+`partition(Array $array, Callable[2,2] &$block)`
+
+`partition(Collection $collection, Callable[2,2] &$block)`
 
 Returns two arrays, the first containing the elements of enum for which the block evaluates to true,
 the second containing the rest.
 
 ## `realize`
 
-* `realize()`
-    * Return type(s): `Any`. 
+`realize()`
 
 Make a virtual object real.  This is useful
 when you want to know the name of the virtual object and don't want to
@@ -3619,10 +3604,9 @@ reference; e.g.: `realize User[luke]`.
 
 ## `reduce`
 
-* `reduce(Iterable $enumerable, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `reduce(Iterable $enumerable, Any $memo, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
+`reduce(Iterable $enumerable, Callable[2,2] &$block)`
+
+`reduce(Iterable $enumerable, Any $memo, Callable[2,2] &$block)`
 
 Applies a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 to every value in a data structure from the first argument, carrying over the returned
@@ -3745,63 +3729,85 @@ $merged = $data.reduce( {} ) |$memo, $x| {
 
 ## `regsubst`
 
-* `regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
-    * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
+`regsubst(Variant[Array[String],String] $target, String $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Optional[Pattern[/^[GEIM]*$/]]] $flags, Optional[Enum['N','E','S','U']] $encoding)`
+
+## Parameters
+
+* `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
-    * `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
+
+* `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
 and or end of the string, you must do that with ^ and $ yourself.
-    * `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
+
+* `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
 \\1 (first set of parentheses), and so on.
 If the second argument is a Hash, and the matched text is one of its keys, the corresponding value is the replacement string.
-    * `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
+
+* `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
 if pattern is a precompiled regexp):
   - *E*         Extended regexps
   - *I*         Ignore case in regexps
   - *M*         Multiline regexps
   - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
-    * `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
+
+* `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
 precompiled regexp). A single-character string with the following values:
   - *N*         None
   - *E*         EUC
   - *S*         SJIS
   - *U*         UTF-8
-    `Get the third octet from the node's IP address:`
-      ```puppet
+
+Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
+
+## Examples
+
+Get the third octet from the node's IP address:
+````puppet
 $i3 = regsubst($ipaddress,'^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)$','\\3')
-```
-    * Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
-* `regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
-    * `target` --- The string or array of strings to operate on.  If an array, the replacement will be
+````
+
+`regsubst(Variant[Array[String],String] $target, Variant[Regexp,Type[Regexp]] $pattern, Variant[String,Hash[String,String]] $replacement, Optional[Pattern[/^G?$/]] $flags)`
+
+## Parameters
+
+* `target` --- The string or array of strings to operate on.  If an array, the replacement will be
 performed on each of the elements in the array, and the return value will be an array.
-    * `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
+
+* `pattern` --- The regular expression matching the target string.  If you want it anchored at the start
 and or end of the string, you must do that with ^ and $ yourself.
-    * `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
+
+* `replacement` --- Replacement string. Can contain backreferences to what was matched using \\0 (whole match),
 \\1 (first set of parentheses), and so on.
 If the second argument is a Hash, and the matched text is one of its keys, the corresponding value is the replacement string.
-    * `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
+
+* `flags` --- Optional. String of single letter flags for how the regexp is interpreted (E, I, and M cannot be used
 if pattern is a precompiled regexp):
   - *E*         Extended regexps
   - *I*         Ignore case in regexps
   - *M*         Multiline regexps
   - *G*         Global replacement; all occurrences of the regexp in each target string will be replaced.  Without this, only the first occurrence will be replaced.
-    * `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
+
+* `encoding` --- Optional. How to handle multibyte characters when compiling the regexp (must not be used when pattern is a
 precompiled regexp). A single-character string with the following values:
   - *N*         None
   - *E*         EUC
   - *S*         SJIS
   - *U*         UTF-8
-    `Put angle brackets around each octet in the node's IP address:`
-      ```puppet
+
+Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
+
+## Examples
+
+Put angle brackets around each octet in the node's IP address:
+````puppet
 $x = regsubst($ipaddress, /([0-9]+)/, '<\\1>', 'G')
-```
-    * Return type(s): `Array[String]`, `String`. The result of the substitution. Result type is the same as for the target parameter.
+````
 
 Performs regexp replacement on a string or array of strings.
 
 ## `require`
 
-* `require(Any *$names)`
-    * Return type(s): `Any`. 
+`require(Any *$names)`
 
 Requires the specified classes.
 Evaluate one or more classes, adding the required class as a dependency.
@@ -3841,18 +3847,16 @@ resource and relationship expressions.
 
 ## `return`
 
-* `return(Optional[Any] $value)`
-    * Return type(s): `Any`. 
+`return(Optional[Any] $value)`
 
 Makes iteration continue with the next value, optionally with a given value for this iteration.
 If a value is not given it defaults to `undef`
 
 ## `reverse_each`
 
-* `reverse_each(Iterable $iterable)`
-    * Return type(s): `Any`. 
-* `reverse_each(Iterable $iterable, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`reverse_each(Iterable $iterable)`
+
+`reverse_each(Iterable $iterable, Callable[1,1] &$block)`
 
 Reverses the order of the elements of something that is iterable and optionally runs a
 [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html) for each
@@ -3920,8 +3924,7 @@ $transformed_data = map(reverse_each($data)) |$item| { $item * 10 }
 
 ## `round`
 
-* `round(Numeric $val)`
-    * Return type(s): `Any`. 
+`round(Numeric $val)`
 
 Returns an `Integer` value rounded to the nearest value.
 Takes a single `Numeric` value as an argument.
@@ -3934,12 +3937,11 @@ notice(round(-2.9)) # would notice -3
 
 ## `rstrip`
 
-* `rstrip(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `rstrip(String $arg)`
-    * Return type(s): `Any`. 
-* `rstrip(Iterable[Variant[String, Numeric]] $arg)`
-    * Return type(s): `Any`. 
+`rstrip(Numeric $arg)`
+
+`rstrip(String $arg)`
+
+`rstrip(Iterable[Variant[String, Numeric]] $arg)`
 
 Strips trailing spaces from a String
 
@@ -3967,8 +3969,7 @@ Would both result in `['hello', 'hi']`
 
 ## `scanf`
 
-* `scanf(String $data, String $format, Optional[Callable] &$block)`
-    * Return type(s): `Any`. 
+`scanf(String $data, String $format, Optional[Callable] &$block)`
 
 Scans a string and returns an array of one or more converted values based on the given format string.
 See the documentation of Ruby's String#scanf method for details about the supported formats (which
@@ -3993,22 +3994,19 @@ You can also optionally pass a lambda to scanf, to do additional validation or p
 
 ## `sha1`
 
-* `sha1()`
-    * Return type(s): `Any`. 
+`sha1()`
 
 Returns a SHA1 hash value from a provided string.
 
 ## `sha256`
 
-* `sha256()`
-    * Return type(s): `Any`. 
+`sha256()`
 
 Returns a SHA256 hash value from a provided string.
 
 ## `shellquote`
 
-* `shellquote()`
-    * Return type(s): `Any`. 
+`shellquote()`
 
 \
 Quote and concatenate arguments for use in Bourne shell.
@@ -4022,17 +4020,15 @@ individually in the call.
 
 ## `size`
 
-* `size(Variant[Collection, String, Binary] $arg)`
-    * Return type(s): `Any`. 
+`size(Variant[Collection, String, Binary] $arg)`
 
 The same as length() - returns the size of an Array, Hash, String, or Binary value.
 
 ## `slice`
 
-* `slice(Hash[Any, Any] $hash, Integer[1, default] $slice_size, Optional[Callable] &$block)`
-    * Return type(s): `Any`. 
-* `slice(Iterable $enumerable, Integer[1, default] $slice_size, Optional[Callable] &$block)`
-    * Return type(s): `Any`. 
+`slice(Hash[Any, Any] $hash, Integer[1, default] $slice_size, Optional[Callable] &$block)`
+
+`slice(Iterable $enumerable, Integer[1, default] $slice_size, Optional[Callable] &$block)`
 
 Slices an array or hash into pieces of a given size.
 
@@ -4072,10 +4068,9 @@ to empty arrays for a hash.
 
 ## `sort`
 
-* `sort(String $string_value, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
-* `sort(Array $array_value, Optional[Callable[2,2]] &$block)`
-    * Return type(s): `Any`. 
+`sort(String $string_value, Optional[Callable[2,2]] &$block)`
+
+`sort(Array $array_value, Optional[Callable[2,2]] &$block)`
 
 Sorts an Array numerically or lexicographically or the characters of a String lexicographically.
 Please note: This function is based on Ruby String comparison and as such may not be entirely UTF8 compatible.
@@ -4122,12 +4117,11 @@ Would notice [2,3,'a','b']
 
 ## `split`
 
-* `split(String $str, String $pattern)`
-    * Return type(s): `Any`. 
-* `split(String $str, Regexp $pattern)`
-    * Return type(s): `Any`. 
-* `split(String $str, Type[Regexp] $pattern)`
-    * Return type(s): `Any`. 
+`split(String $str, String $pattern)`
+
+`split(String $str, Regexp $pattern)`
+
+`split(String $str, Type[Regexp] $pattern)`
 
 Splits a string into an array using a given pattern.
 The pattern can be a string, regexp or regexp type.
@@ -4150,8 +4144,7 @@ brackets; a backslash will also escape a single character.
 
 ## `sprintf`
 
-* `sprintf()`
-    * Return type(s): `Any`. 
+`sprintf()`
 
 Perform printf-style formatting of text.
 
@@ -4170,10 +4163,9 @@ This statement produces a notice of `value is : 42`.
 
 ## `step`
 
-* `step(Iterable $iterable, Integer[1] $step)`
-    * Return type(s): `Any`. 
-* `step(Iterable $iterable, Integer[1] $step, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`step(Iterable $iterable, Integer[1] $step)`
+
+`step(Iterable $iterable, Integer[1] $step, Callable[1,1] &$block)`
 
 When no block is given, Puppet returns a new `Iterable` which allows it to be directly chained into
 another function that takes an `Iterable` as an argument.
@@ -4196,12 +4188,11 @@ $transformed_data contains [0,50,100,150,200]
 
 ## `strftime`
 
-* `strftime(Timespan $time_object, String $format)`
-    * Return type(s): `Any`. 
-* `strftime(Timestamp $time_object, String $format, Optional[String] $timezone)`
-    * Return type(s): `Any`. 
-* `strftime(String $format, Optional[String] $timezone)`
-    * Return type(s): `Any`. 
+`strftime(Timespan $time_object, String $format)`
+
+`strftime(Timestamp $time_object, String $format, Optional[String] $timezone)`
+
+`strftime(String $format, Optional[String] $timezone)`
 
 Formats timestamp or timespan according to the directives in the given format string. The directives begins with a percent (%) character.
 Any text not listed as a directive will be passed through to the output string.
@@ -4379,12 +4370,11 @@ notice($duration.strftime('%M:%S')) # outputs '200:30'
 
 ## `strip`
 
-* `strip(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `strip(String $arg)`
-    * Return type(s): `Any`. 
-* `strip(Iterable[Variant[String, Numeric]] $arg)`
-    * Return type(s): `Any`. 
+`strip(Numeric $arg)`
+
+`strip(String $arg)`
+
+`strip(Iterable[Variant[String, Numeric]] $arg)`
 
 Strips leading and trailing spaces from a String
 
@@ -4412,16 +4402,14 @@ Would both result in `['hello', 'hi']`
 
 ## `tag`
 
-* `tag()`
-    * Return type(s): `Any`. 
+`tag()`
 
 Add the specified tags to the containing class
 or definition.  All contained objects will then acquire that tag, also.
 
 ## `tagged`
 
-* `tagged()`
-    * Return type(s): `Any`. 
+`tagged()`
 
 A boolean function that
 tells you whether the current container is tagged with the specified tags.
@@ -4430,8 +4418,7 @@ the function to return true.
 
 ## `template`
 
-* `template()`
-    * Return type(s): `Any`. 
+`template()`
 
 Loads an ERB template from a module, evaluates it, and returns the resulting
 value as a string.
@@ -4449,8 +4436,7 @@ return their outputs concatenated into a single string.
 
 ## `then`
 
-* `then(Any $arg, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
+`then(Any $arg, Callable[1,1] &$block)`
 
 Calls a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 with the given argument unless the argument is `undef`.
@@ -4516,12 +4502,11 @@ was not a String.
 
 ## `tree_each`
 
-* `tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[2,2] &$block)`
-    * Return type(s): `Any`. 
-* `tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[1,1] &$block)`
-    * Return type(s): `Any`. 
-* `tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options)`
-    * Return type(s): `Any`. 
+`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[2,2] &$block)`
+
+`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options, Callable[1,1] &$block)`
+
+`tree_each(Variant[Iterator, Array, Hash, Object] $tree, Optional[OptionsType] $options)`
 
 Runs a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 recursively and repeatedly using values from a data structure, then returns the unchanged data structure, or if
@@ -4653,12 +4638,11 @@ documentation.
 
 ## `type`
 
-* `type(Any $value, Optional[Enum[detailed]] $inference_method)`
-    * Return type(s): `Any`. 
-* `type(Any $value, Enum[reduced] $inference_method)`
-    * Return type(s): `Any`. 
-* `type(Any $value, Enum[generalized] $inference_method)`
-    * Return type(s): `Any`. 
+`type(Any $value, Optional[Enum[detailed]] $inference_method)`
+
+`type(Any $value, Enum[reduced] $inference_method)`
+
+`type(Any $value, Enum[generalized] $inference_method)`
 
 Returns the data type of a given value with a given degree of generality.
 
@@ -4700,14 +4684,13 @@ Would notice the four values:
 
 ## `unique`
 
-* `unique(String $string, Optional[Callable[String]] &$block)`
-    * Return type(s): `Any`. 
-* `unique(Hash $hash, Optional[Callable[Any]] &$block)`
-    * Return type(s): `Any`. 
-* `unique(Array $array, Optional[Callable[Any]] &$block)`
-    * Return type(s): `Any`. 
-* `unique(Iterable $iterable, Optional[Callable[Any]] &$block)`
-    * Return type(s): `Any`. 
+`unique(String $string, Optional[Callable[String]] &$block)`
+
+`unique(Hash $hash, Optional[Callable[Any]] &$block)`
+
+`unique(Array $array, Optional[Callable[Any]] &$block)`
+
+`unique(Iterable $iterable, Optional[Callable[Any]] &$block)`
 
 Produces a unique set of values from an `Iterable` argument.
 
@@ -4782,8 +4765,7 @@ Hash(Array("abc").map |$i,$v| { [$i, $v]})
 
 ## `unwrap`
 
-* `unwrap(Sensitive $arg, Optional[Callable] &$block)`
-    * Return type(s): `Any`. 
+`unwrap(Sensitive $arg, Optional[Callable] &$block)`
 
 Unwraps a Sensitive value and returns the wrapped object.
 
@@ -4810,14 +4792,13 @@ $pw.unwrap |$unwrapped| {
 
 ## `upcase`
 
-* `upcase(Numeric $arg)`
-    * Return type(s): `Any`. 
-* `upcase(String $arg)`
-    * Return type(s): `Any`. 
-* `upcase(Array[StringData] $arg)`
-    * Return type(s): `Any`. 
-* `upcase(Hash[StringData, StringData] $arg)`
-    * Return type(s): `Any`. 
+`upcase(Numeric $arg)`
+
+`upcase(String $arg)`
+
+`upcase(Array[StringData] $arg)`
+
+`upcase(Hash[StringData, StringData] $arg)`
 
 Converts a String, Array or Hash (recursively) into upper case.
 
@@ -4862,8 +4843,7 @@ Would result in `['A', 'B', ['C', ['D']], {'X' => 'Y'}]`
 
 ## `values`
 
-* `values(Hash $hsh)`
-    * Return type(s): `Any`. 
+`values(Hash $hsh)`
 
 Returns the values of a hash as an Array
 
@@ -4881,13 +4861,7 @@ values($hsh)
 
 ## `versioncmp`
 
-* `versioncmp(String $a, String $b)`
-    `Using versioncmp`
-      
-if versioncmp('2.6-1', '2.4.5') > 0 {
-    notice('2.6-1 is > than 2.4.5')
-}
-    * Return type(s): `Any`. 
+`versioncmp(String $a, String $b)`
 
 Compares two version numbers.
 
@@ -4908,16 +4882,19 @@ This function uses the same version comparison algorithm used by Puppet's
 
 ## `warning`
 
-* `warning(Any *$values)`
-    * `*values` --- The values to log.
-    * Return type(s): `Undef`. 
+`warning(Any *$values)`
+
+## Parameters
+
+* `*values` --- The values to log.
+
+Return type(s): `Undef`. 
 
 Logs a message on the server at level `warning`.
 
 ## `with`
 
-* `with(Any *$arg, Callable &$block)`
-    * Return type(s): `Any`. 
+`with(Any *$arg, Callable &$block)`
 
 Calls a [lambda](https://puppet.com/docs/puppet/latest/lang_lambdas.html)
 with the given arguments and returns the result.
@@ -4939,11 +4916,10 @@ $check_var = $x
 
 ## `yaml_data`
 
-* `yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
-    * Return type(s): `Any`. 
+`yaml_data(Struct[{path=>String[1]}] $options, Puppet::LookupContext $context)`
 
 The `yaml_data` is a hiera 5 `data_hash` data provider function.
 See [the configuration guide documentation](https://puppet.com/docs/puppet/latest/hiera_config_yaml_5.html#configuring-a-hierarchy-level-built-in-backends) for
 how to use this function.
 
-> **NOTE:** This page was generated from the Puppet source code on 2019-10-21 12:56:41 -0700
+> **NOTE:** This page was generated from the Puppet source code on 2019-12-06 11:15:56 -0800
