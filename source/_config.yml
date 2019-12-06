@@ -387,7 +387,7 @@ documents:
       facter: "3.12"
       puppetserver: "6.0"
     hide: true
-  /puppet/5.5:
+  /docs/puppet/5.5:
     doc: puppet
     version: "5.5"
     nav: ./_puppet_toc.html
