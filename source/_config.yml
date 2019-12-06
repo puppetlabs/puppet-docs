@@ -4,7 +4,7 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
-url: "https://docs.puppet.com"
+url: "https://puppet.com/docs"
 safe: false
 # YAML frontmatter defaults:
 defaults: [ {scope: {path: ""},
