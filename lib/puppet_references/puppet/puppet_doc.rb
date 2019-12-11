@@ -2,7 +2,7 @@ require 'puppet_references'
 module PuppetReferences
   module Puppet
     class PuppetDoc < PuppetReferences::Reference
-      REFERENCES = %w(configuration function)
+      REFERENCES = %w(configuration)
       OUTPUT_DIR = PuppetReferences::OUTPUT_DIR + 'puppet'
 
       def initialize(*args)

@@ -18,8 +18,7 @@ module PuppetReferences
       end
 
       def build_all
-        build_variant('function_strings_prefer_v3.md', 'ruby3x')
-        build_variant('function_strings_prefer_v4.md')
+        build_variant('function.md')
       end
 
       def build_variant(filename, preferred_version = 'ruby4x')
