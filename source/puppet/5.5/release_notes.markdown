@@ -22,9 +22,9 @@ Also of interest: the [Puppet 4.10 release notes](../4.10/release_notes.html) an
 
 ## Puppet 5.5.18
 
-Released TBA
+Released 14 January 2020
 
-### New Features
+### New features
 
 - Puppet now supports managing DNF modules, which are groups of packages that represent
     an application, a language runtime, or any logical group. 
@@ -41,6 +41,8 @@ Released TBA
 - This release removes a dependency on .bat files when running Puppet as a service on
     Windows. [PUP-9940](https://tickets.puppetlabs.com/browse/PUP-9940)
 
+- This release introduces a new setting, `puppet_trace`, which prints the Puppet stack without the Ruby frames interleaved. If the `trace` setting is enabled, it overrides the value of `puppet_trace`. [PUP-10150](https://tickets.puppetlabs.com/browse/PUP-10150)
+
 - Resubmit facts after an agent's run.
     
     Puppet submits facts when requesting a catalog, but if
@@ -50,16 +52,32 @@ Released TBA
     agent's run, after the catalog has been applied. To enable this feature, set
     `resubmit_facts=true` in the agent's
     `puppet.conf`. Resubmitting facts doubles the fact submission load on
-    PuppetDB, since each agent will submit facts
+    PuppetDB, since each agent submits facts
     twice per run. This feature is disabled by default. [PUP-5934](https://tickets.puppetlabs.com/browse/PUP-5934)
 
-### Resolved Issues
+### Resolved issues
 
-- Previously, when Puppet encountered a connection error, it would create a new 
+- This version of the `puppet-agent` package upgrades OpenSSL to version 1.1.1d. [PA-3029](https://tickets.puppetlabs.com/browse/PA-3029)
+
+- This release includes improvements to the evaluator, meaning some compilation warnings now take less time to compute. [PUP-10213](https://tickets.puppetlabs.com/browse/PUP-10213)
+
+- The HP-UX provider forced command line arguments to `usermod` to be in a specific order. This is now fixed. [PUP-9391](https://tickets.puppetlabs.com/browse/PUP-9391)
+
+- This release fixes a bug where stacktraces from errors no longer had the Ruby stack frames interleaved with the Puppet stack frames when using `trace`. [PUP-10150](https://tickets.puppetlabs.com/browse/PUP-10150)
+
+- Performance of manifests that use the `PuppetStack.top_of_stack` function have been greatly improved. This includes manifests that use the puppetlabs-stdlib `deprecation` function or the pseudo keywords `break`, `return`, and `next`. [PUP-10170](https://tickets.puppetlabs.com/browse/PUP-10170)
+
+- Previously, Puppet agents might fail to apply a catalog if the agent switched environments based on node classification and those environments contained different versions of a module. With this fix, an agent converges to its server-assigned environment more quickly, loads types and providers only once, and updates its cached catalog only after the environment converges. [PUP-10160](https://tickets.puppetlabs.com/browse/PUP-10160)
+
+- Puppet agent packages for Debian and Ubuntu now include Ruby SELinux libraries. [PA-2985](https://tickets.puppetlabs.com/browse/PA-2985)
+
+- Puppet no longer checks for domain users or groups when managing local resources on Windows. This fixes a local user management issue where an Active Directory account existed with the same name as the local user. [PUP-10057](https://tickets.puppetlabs.com/browse/PUP-10057)
+
+- Previously, when Puppet encountered a connection error, it created a new 
     exception with additional contextual information around what was causing the error.
     However, this new exception could cause an additional "Wrong number of arguments"
     error. Puppet now raises the original error and logs it with any additional
-    contextual information. [PUP-10121]("(https://tickets.puppetlabs.com/browse/PUP-1012)1")
+    contextual information. [PUP-10121](https://tickets.puppetlabs.com/browse/PUP-1012)
 
 - This release fixes a bug where Puppet would attempt to
     use a proxy specified in the `http_proxy` environment variable, even
