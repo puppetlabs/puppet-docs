@@ -6,6 +6,29 @@ title: "Facter release notes"
 These are the new features, resolved issues, and deprecations in this version of Facter. 
 
 
+## Facter 3.11.11
+
+Released 14 January 2020
+
+### New features
+
+- This release adds support for the `fips_enabled` fact on Windows. The check examines the contents of `HKEY_LOCAL_MACHINE/System/CurrentControlSet/Control/Lsa/FipsAlgorithmPolicy/Enabled`. If the returned value is 1, it means that FIPS mode is enabled. [FACT-2065](https://tickets.puppetlabs.com/browse/FACT-2065)
+
+- Facter can now return the new `scope6` fact to display IPv6 address scope. [FACT-2016](https://tickets.puppetlabs.com/browse/FACT-2016)
+
+- Facter command execution now accepts a Boolean parameter, `expand`. By default, Facter searches the command and expands it to absolute path. When `expand` is set to false, Facter verifies whether the command is a shell command and, if so, passes the command as is.[FACT-1824](https://tickets.puppetlabs.com/browse/FACT-1824)
+
+
+### Resolved issues
+
+- Facter incorrectly reported disabled CPU cores as physical CPU cores. Now, Facter correctly reports physical and logical CPUs and ignores disabled CPUs. [FACT-1824](https://tickets.puppetlabs.com/browse/FACT-1824)
+
+- In previous releases, Facter did not report the `cloud` fact on Azure. This issue is now fixed. [FACT-2004](https://tickets.puppetlabs.com/browse/FACT-2004)
+
+- In previous versions, Facter could not always determine the primary network interface on Solaris, so it sometimes failed to return any valid interface. This is now fixed. [FACT-2146](https://tickets.puppetlabs.com/browse/FACT-2146)
+
+-In systems using Windows Remote Desktop Services (RDS),  Facter returned an incorrect operating system fact. This was due to a Windows API deprecation that caused issues in mixed 32- and 64-bit application environments, such as RDS. [FACT-2096](https://tickets.puppetlabs.com/browse/FACT-2096)
+
 ## Facter 3.11.10
 
 Released 15 October 2019 with Puppet 5.5.17.
