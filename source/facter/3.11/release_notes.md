@@ -5,6 +5,7 @@ title: "Facter release notes"
 
 These are the new features, resolved issues, and deprecations in this version of Facter. 
 
+> For Facter releases later than version 3.11.x, release notes are included in the corresponding Puppet documentation set. For the most recent Facter documentation, see the [Facter](https://puppet.com/docs/puppet/latest/facter.html) page.
 
 ## Facter 3.11.11
 
