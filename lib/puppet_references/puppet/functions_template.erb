@@ -10,6 +10,7 @@ func['signatures'].each_with_index do |signature, index| -%>
 
 <% if multiple_signatures -%>
 Signature <%= index+1 %>
+
 <% end -%>
 `<%= signature['signature'] %>`
 <% has_parameters = signature['docstring']['tags'].detect {|tag| tag['tag_name'] == 'param' && tag['text'] != '' && tag['text'] != nil }
@@ -40,4 +41,5 @@ end # if has_examples
 end-%>
 <% end # each signature
 end -%>
+
 <% end -%>
