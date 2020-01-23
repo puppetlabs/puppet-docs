@@ -131,7 +131,6 @@ The [puppetlabs-stdlib][stdlib] module contains several additional functions for
 * `grep`
 * `hash`
 * `is_array`
-* `join`
 * `member`
 * `prefix`
 * `range`
