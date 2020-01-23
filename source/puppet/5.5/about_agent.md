@@ -32,7 +32,7 @@ For a complete list of the maintained versions of Puppet, PuppetDB, and Puppet S
   </thead>
 
   <tbody>
-  <tr><td><a href="/puppet/5.5/release_notes.html">5.5.x</a> </td> <td><a href="/puppetserver/5.3">5.3.x</a></td> <td><a href="/puppetdb/5.2">5.2.x</a></td> <td><a href="/pe/2018.1">2018.1.x</a></td> <td>May 2020</td></tr> 
+  <tr><td><a href="/puppet/5.5/release_notes.html">5.5.x</a> </td> <td><a href="/puppetserver/5.3">5.3.x</a></td> <td><a href="/puppetdb/5.2">5.2.x</a></td> <td><a href="/pe/2018.1">2018.1.x</a></td> <td>November 2020</td></tr> 
   </tbody>
 </table>
 
