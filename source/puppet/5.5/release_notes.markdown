@@ -631,6 +631,19 @@ This is a feature and bug-fix release of Puppet.
 -   In previous versions of Puppet, if Hiera read a YAML data file and the result was neither a hash nor completely empty, Hiera issued a warning. In Puppet 5.5, if the `--strict=error` flag is enabled, Hiera will instead produce an error if the file was read by the built-in YAML or eYAML backend functions. If the `--strict` flag is set to `warning` or `off`, Hiera issues a warning as before.
 
     Note that Ruby's YAML parser does not fully comply with the YAML spec, and some faulty YAML files can still be loaded with unexpected results instead of errors. See [PUP-8547]((https://tickets.puppetlabs.com/browse/PUP-8547)) for details. ([PUP-8541]((https://tickets.puppetlabs.com/browse/PUP-8541)))
+    
+-   The `hiera-eyaml` gem was included with Puppet agent 5.5.0, but is not installed to a location in the working environment's PATH until Puppet agent 5.5.7, which can lead to unexpected Puppet agent failures [PA-2129](https://tickets.puppetlabs.com/browse/PA-2129):
+
+    ```
+    Error: Could not find command 'eyaml'
+    Error: /Stage[main]/Hiera::Eyaml/Exec[createkeys]/returns: change from 'notrun' to ['0'] failed: Could not find command       'eyaml'
+    ```
+
+    The preferred solution is to update Puppet to 5.5.7 or newer. To work around this issue on Puppet agent 5.5.0 to 5.5.6, link the installed hiera-eyaml gem executable to that path:
+
+    ```
+    ln -s /opt/puppetlabs/puppet/lib/ruby/vendor_gems/bin/eyaml /opt/puppetlabs/puppet/bin/eyaml
+    ```
 
 ### Improvements
 
