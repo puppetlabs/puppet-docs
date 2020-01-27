@@ -181,70 +181,6 @@ documents:
       subdirectory: container-reg
     hide: true
 
-  /pe/2017.3:
-    doc: pe
-    version: "2017.3"
-    nav: ./_pe_toc.html
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/hoyt
-      subdirectory: source
-    my_versions:
-      puppet: "4.10"
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.7"
-      puppetdb: "4.4"
-
-
-  /pe/2017.2:
-    doc: pe
-    version: "2017.2"
-    nav: ./_pe_toc.html
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2017.2.5
-      subdirectory: source
-    my_versions:
-      puppet: "4.10"
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.6"
-      puppetdb: "4.4"
-    hide: true
-
-  /pe/2017.1:
-    doc: pe
-    version: "2017.1"
-    nav: ./_pe_toc.html
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2017.1.1
-      subdirectory: source
-    my_versions:
-      puppet: "4.9"
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.7"
-      puppetdb: "4.3"
-    hide: true
-
-  /pe/2016.5:
-    doc: pe
-    version: "2016.5"
-    nav: ./_pe_toc.html
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.5.2
-      subdirectory: source
-    my_versions:
-      puppet: "4.8"
-      facter: "3.5"
-      hiera: "3.2"
-      puppetserver: "2.6"
-      puppetdb: "4.2"
-    hide: true
-
   /pe/2016.4:
     doc: pe
     version: "2016.4"
@@ -260,21 +196,6 @@ documents:
       puppetserver: "2.6"
       puppetdb: "4.2"
     hide: true
-
-  /pe/2016.2:
-    doc: pe
-    version: "2016.2"
-    nav: ./_pe_toc.html
-    external_source:
-      repo: git@github.com:puppetlabs/pe-docs-private.git
-      commit: origin/pe2016.2.1
-      subdirectory: source
-    my_versions:
-      puppet: "4.5"
-      facter: "3.1"
-      hiera: "3.2"
-      puppetserver: "2.4"
-      puppetdb: "4.1"
 
   /pe/3.8:
     doc: pe
@@ -303,19 +224,6 @@ documents:
       hiera: "3.3"
       puppetserver: "2.7"
       puppetdb: "4.4"
-    hide: true
-
-  /ja/pe/2017.1:
-    doc: pe_ja
-    version: "2017.1"
-    nav: ./_ja_docs_toc.html
-    my_versions:
-      pe: "2017.1"
-      puppet: "4.9"
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.7"
-      puppetdb: "4.3"
     hide: true
 
   /puppet/latest:
@@ -387,6 +295,7 @@ documents:
       facter: "3.12"
       puppetserver: "6.0"
     hide: true
+
   /docs/puppet/5.5:
     doc: puppet
     version: "5.5"
@@ -395,51 +304,6 @@ documents:
       facter: "3.11"
       hiera: "3.4"
       puppetserver: "5.3"
-    hide: true
-  /puppet/5.4:
-    doc: puppet
-    version: "5.4"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.10"
-      hiera: "3.4"
-      puppetserver: "5.2"
-    hide: true
-  /puppet/5.3:
-    doc: puppet
-    version: "5.3"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.9"
-      hiera: "3.4"
-      puppetserver: "5.1"
-    hide: true
-  /puppet/5.2:
-    doc: puppet
-    version: "5.2"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.9"
-      hiera: "3.4"
-      puppetserver: "5.1"
-    hide: true
-  /puppet/5.1:
-    doc: puppet
-    version: "5.1"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.8"
-      hiera: "3.4"
-      puppetserver: "5.0"
-    hide: true
-  /puppet/5.0:
-    doc: puppet
-    version: "5.0"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.7"
-      hiera: "3.4"
-      puppetserver: "5.0"
     hide: true
   /puppet/4.10:
     doc: puppet
@@ -450,50 +314,6 @@ documents:
       hiera: "3.3"
       puppetserver: "2.6"
     hide: true
-  /puppet/4.9:
-    doc: puppet
-    version: "4.9"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.6"
-      hiera: "3.3"
-      puppetserver: "2.7"
-    hide: true
-  /puppet/4.8:
-    doc: puppet
-    version: "4.8"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.5"
-      hiera: "3.2"
-      puppetserver: "2.7"
-    hide: true
-  /puppet/4.7:
-    doc: puppet
-    version: "4.7"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.4"
-      hiera: "3.2"
-      puppetserver: "2.6"
-    hide: true
-  /puppet/4.6:
-    doc: puppet
-    version: "4.6"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.4"
-      hiera: "3.2"
-      puppetserver: "2.6"
-    hide: true
-  /puppet/4.5:
-    doc: puppet
-    version: "4.5"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.3"
-      hiera: "3.2"
-      puppetserver: "2.4"
   /puppet/3.8:
     doc: puppet
     version: "3.8"
@@ -585,18 +405,6 @@ documents:
     version: "3.4"
     nav: ./_facter_toc.html
     hide: true
-  /facter/3.3:
-    doc: facter
-    version: "3.3"
-    nav: ./_facter_toc.html
-  /facter/3.1:
-    doc: facter
-    version: "3.1"
-    nav: ./_facter_toc.html
-  /facter/2.4:
-    doc: facter
-    version: "2.4"
-    nav: /_includes/facter24.html
 
   /pdk/1.0:
     doc: pdk
@@ -716,19 +524,6 @@ documents:
       facter: "3.11"
       hiera: "3.4"
     hide: true
-  /puppetserver/5.2:
-    doc: puppetserver
-    version: "5.2"
-    nav: /puppet/5.4/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: d5a633fdbfed4850dbfc401e8410c5bede1d8a4e
-      subdirectory: documentation
-    my_versions:
-      puppet: "5.4"
-      facter: "3.10"
-      hiera: "3.4"
-    hide: true
   /puppetserver/5.1:
     doc: puppetserver
     version: "5.1"
@@ -790,30 +585,6 @@ documents:
       facter: "3.3"
       hiera: "3.2"
     hide: true
-  /puppetserver/2.5:
-    doc: puppetserver
-    version: "2.5"
-    nav: /puppet/4.6/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: ba86848
-      subdirectory: documentation
-    my_versions:
-      puppet: "4.6"
-      facter: "3.3"
-      hiera: "3.2"
-  /puppetserver/2.4:
-    doc: puppetserver
-    version: "2.4"
-    nav: /puppet/4.5/_puppet_toc.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetserver.git
-      commit: 522083d
-      subdirectory: documentation
-    my_versions:
-      puppet: "4.5"
-      facter: "3.1"
-      hiera: "3.2"
   /puppetserver/1.1:
     doc: puppetserver
     version: "1.1"
@@ -832,24 +603,6 @@ documents:
       commit: doc-latest
       subdirectory: documentation
     hide: true
-  /puppetdb/6.5:
-    doc: puppetdb
-    version: "6.5"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.5
-      subdirectory: documentation
-    hide: true
-  /puppetdb/6.4:
-    doc: puppetdb
-    version: "6.4"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.4
-      subdirectory: documentation
-    hide: true
   /puppetdb/6.3:
     doc: puppetdb
     version: "6.3"
@@ -857,24 +610,6 @@ documents:
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: doc-6.3
-      subdirectory: documentation
-    hide: true
-  /puppetdb/6.2:
-    doc: puppetdb
-    version: "6.2"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.2
-      subdirectory: documentation
-    hide: true
-  /puppetdb/6.1:
-    doc: puppetdb
-    version: "6.1"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-6.1
       subdirectory: documentation
     hide: true
   /puppetdb/6.0:
@@ -886,34 +621,6 @@ documents:
       commit: doc-6.0
       subdirectory: documentation
     hide: true
-  /puppetdb/5.2:
-    doc: puppetdb
-    version: "5.2"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-5.2
-      subdirectory: documentation
-    hide: true
-  /puppetdb/5.1:
-    doc: puppetdb
-    version: "5.1"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      # Stop just before the facts-blacklist regex docs (unreleased)
-      commit: doc-5.1
-      subdirectory: documentation
-    hide: true
-  /puppetdb/5.0:
-    doc: puppetdb
-    version: "5.0"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-5.0
-      subdirectory: documentation
-    hide: true
   /puppetdb/4.4:
     doc: puppetdb
     version: "4.4"
@@ -921,15 +628,6 @@ documents:
     external_source:
       repo: git://github.com/puppetlabs/puppetdb.git
       commit: doc-4.4
-      subdirectory: documentation
-    hide: true
-  /puppetdb/4.3:
-    doc: puppetdb
-    version: "4.3"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-4.3
       subdirectory: documentation
     hide: true
   /puppetdb/4.2:
@@ -941,14 +639,6 @@ documents:
       commit: doc-4.2
       subdirectory: documentation
     hide: true
-  /puppetdb/4.1:
-    doc: puppetdb
-    version: "4.1"
-    nav: ./_puppetdb_nav.html
-    external_source:
-      repo: git://github.com/puppetlabs/puppetdb.git
-      commit: doc-4.1
-      subdirectory: documentation
   /puppetdb/2.3:
     doc: puppetdb
     version: "2.3"
