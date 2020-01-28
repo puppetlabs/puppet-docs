@@ -1,6 +1,6 @@
 The content in this documentation project is
 
-Copyright (c) 2009-2016 Puppet, Inc.
+Copyright (c) Puppet, Inc.
 
 Licensed under the Creative Commons 3.0
 with Attribution and Share Alike Clauses
@@ -15,11 +15,7 @@ OR COPYRIGHT LAW IS PROHIBITED.
 
 ==============================================
 
-The application to develop this content is
-
-Copyright (c) 2009-2017 Puppet, Inc.
-
-Based on Rails Guides:
+The application to develop this content is based on Rails Guides:
 
 Copyright (c) 2004-2009 David Heinemeier Hansson
 
