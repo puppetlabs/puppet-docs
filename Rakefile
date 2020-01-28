@@ -21,7 +21,7 @@ VERSION_FILE = "#{OUTPUT_DIR}/VERSION.txt"
 def jekyll(command = 'build', source = SOURCE_DIR, destination = OUTPUT_DIR, *args)
   amended_config = "#{SOURCE_DIR}/_config_amended.yml"
   File.write(amended_config, YAML.dump(@config_data))
-  system("set -x; bundle exec jekyll #{command} --source #{source} --destination #{destination} #{args.join(' ')} --config #{amended_config} --verbose")
+  system("set -x; bundle exec jekyll #{command} --source #{source} --destination #{destination} #{args.join(' ')} --config #{amended_config} --verbose | tee puppet-docs-build.log")
   FileUtils.rm(amended_config)
 end
 
