@@ -390,7 +390,7 @@ documents:
       puppet: "6.2"
       facter: "3.12"
     hide: true
-    
+
   /puppetserver/6.1:
     doc: puppetserver
     version: "6.1"
@@ -451,6 +451,26 @@ documents:
       subdirectory: documentation
     hide: true
 
+  /puppetdb/6.2:
+    doc: puppetdb
+    version: "6.2"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: doc-6.2
+      subdirectory: documentation
+    hide: true
+
+  /puppetdb/6.1:
+    doc: puppetdb
+    version: "6.1"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: doc-6.1
+      subdirectory: documentation
+    hide: true
+
   /puppetdb/6.0:
     doc: puppetdb
     version: "6.0"
@@ -461,4 +481,13 @@ documents:
       subdirectory: documentation
     hide: true
 
+  /puppetdb/5.2:
+    doc: puppetdb
+    version: "5.2"
+    nav: ./_puppetdb_nav.html
+    external_source:
+      repo: git://github.com/puppetlabs/puppetdb.git
+      commit: doc-5.2
+      subdirectory: documentation
+    hide: true
 ---
