@@ -205,60 +205,12 @@ documents:
     my_versions:
       puppetserver: "latest"
 
-  /puppet/6.7:
-    doc: puppet
-    version: "6.7"
-    nav: ./_puppet_toc.html
-    my_versions:
-      puppetserver: "6.5"
-
-  /puppet/6.6:
-    doc: puppet
-    version: "6.6"
-    nav: ./_puppet_toc.html
-    my_versions:
-      puppetserver: "6.4"
-
-  /puppet/6.5:
-    doc: puppet
-    version: "6.5"
-    nav: ./_puppet_toc.html
-    my_versions:
-      puppetserver: "6.4"
-
   /puppet/6.4:
     doc: puppet
     version: "6.4"
     nav: ./_puppet_toc.html
     my_versions:
       puppetserver: "6.3"
-    hide: true
-
-  /puppet/6.3:
-    doc: puppet
-    version: "6.3"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.12"
-      puppetserver: "6.2"
-    hide: true
-
-  /puppet/6.2:
-    doc: puppet
-    version: "6.2"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.12"
-      puppetserver: "6.2"
-    hide: true
-
-  /puppet/6.1:
-    doc: puppet
-    version: "6.1"
-    nav: ./_puppet_toc.html
-    my_versions:
-      facter: "3.12"
-      puppetserver: "6.1"
     hide: true
 
   /puppet/6.0:
