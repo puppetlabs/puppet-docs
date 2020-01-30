@@ -19,9 +19,30 @@ VERSION_FILE = "#{OUTPUT_DIR}/VERSION.txt"
 @config_data = PuppetDocs::Config.new("#{SOURCE_DIR}/_config.yml")
 
 def jekyll(command = 'build', source = SOURCE_DIR, destination = OUTPUT_DIR, *args)
+
+  about_verbose_mode = <<-ABOUT_VERBOSE_MODE
+
+    -*-*-*-*-*-*-*-*-*-*-*-*-
+
+    To turn on verbose mode and logging,
+    $ export DEBUG_PUPPET_DOCS_RAKEFILE=1
+
+    To turn off,
+    $ unset DEBUG_PUPPET_DOCS_RAKEFILE
+
+    -*-*-*-*-*-*-*-*-*-*-*-*-
+
+  ABOUT_VERBOSE_MODE
+
+  puts about_verbose_mode
+
+  if ENV['DEBUG_PUPPET_DOCS_RAKEFILE']
+    verbose_mode = '--verbose | tee puppet-docs-build.log'
+  end
+
   amended_config = "#{SOURCE_DIR}/_config_amended.yml"
   File.write(amended_config, YAML.dump(@config_data))
-  system("set -x; bundle exec jekyll #{command} --source #{source} --destination #{destination} #{args.join(' ')} --config #{amended_config} --verbose | tee puppet-docs-build.log")
+  system("set -x; bundle exec jekyll #{command} --source #{source} --destination #{destination} #{args.join(' ')} --config #{amended_config} #{verbose_mode}")
   FileUtils.rm(amended_config)
 end
 
