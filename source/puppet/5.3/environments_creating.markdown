@@ -210,7 +210,7 @@ Related topics: [default_manifest setting][default_manifest].
 * `environment_timeout` sets how often the Puppet master refreshes information about environments. It can be overridden per-environment.
 * This setting defaults to 0 (caching disabled), which lowers the performance of your Puppet master but makes it easy for new users to deploy updated Puppet code.
 * Once your code deployment process is mature, change this setting to unlimited.
-
+* All code in Ruby and Puppet loaded from the environment is cached. Inputs to compilation (for example, facts and looked up values) and the resulting catalog, are not cached.
 
 {:.task}
 ## Configuring `environment_timeout`
