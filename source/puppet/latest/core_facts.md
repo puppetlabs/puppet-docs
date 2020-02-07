@@ -1,6 +1,6 @@
 ---
 layout: default
-built_from_commit: 2134ad63f6c8252b88388cd85e22990e749e4fd7
+built_from_commit: 0bddb3e47d69a64cc2e3221ec4dcf2cc71d01b88
 title: 'Facter: Core Facts'
 toc: columns
 canonical: "/puppet/latest/core_facts.html"
@@ -258,6 +258,7 @@ Return whether the platform is in FIPS mode
 **Resolution:**
 
 * Linux: parse the contents of `/proc/sys/crypto/fips_enabled` which if non-zero indicates fips mode has been enabled.
+* Windows: check if key `HKEY_LOCAL_MACHINE/System/CurrentControlSet/Control/Lsa/FipsAlgorithmPolicy/Enabled` is 1 or 0
 
 **Caveats:**
 
@@ -552,6 +553,7 @@ Return the networking information for the system.
         * `netmask6` (ip6) --- The IPv6 netmask for the network interface.
         * `network` (ip) --- The IPv4 network for the network interface.
         * `network6` (ip6) --- The IPv6 network for the network interface.
+        * `scope6` (string) --- The IPv6 scope for the network interface.
 * `ip` (ip) --- The IPv4 address of the default network interface.
 * `ip6` (ip6) --- The IPv6 address of the default network interface.
 * `mac` (mac) --- The MAC address of the default network interface.
@@ -561,6 +563,7 @@ Return the networking information for the system.
 * `network` (ip) --- The IPv4 network of the default network interface.
 * `network6` (ip6) --- The IPv6 network of the default network interface.
 * `primary` (string) --- The name of the primary interface.
+* `scope6` (string) --- The IPv6 scope of the default network interface.
 
 
 **Resolution:**
@@ -2453,6 +2456,48 @@ Return the version of Ruby.
 **Caveats:**
 
 * All platforms: facter must be able to locate `libruby`.
+
+([↑ Back to top](#page-nav))
+
+### `scope6`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the IPv6 scope for the default network interface.
+
+
+**Resolution:**
+
+* Linux: parse the contents of /proc/net/if_inet6 to retrieve the network interface scope.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface scope.
+* Solaris: use the `ioctl` function to retrieve the network interface scope.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface scope.
+
+
+([↑ Back to top](#page-nav))
+
+### `scope6_<interface>`
+
+This legacy fact is hidden by default in Facter's command-line output.
+
+**Type:** string
+
+**Purpose:**
+
+Return the IPv6 scope for the default network interface.
+
+
+**Resolution:**
+
+* Linux: parse the contents of /proc/net/if_inet6 to retrieve the network interface scope.
+* Mac OSX: use the `getifaddrs` function to retrieve the network interface scope.
+* Solaris: use the `ioctl` function to retrieve the network interface scope.
+* Windows: use the `GetAdaptersAddresses` function to retrieve the network interface scope.
+
 
 ([↑ Back to top](#page-nav))
 
