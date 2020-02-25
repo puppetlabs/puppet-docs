@@ -632,7 +632,6 @@ Provider support:
   <thead>
     <tr>
       <th>Provider</th>
-      <th>configurable timeout</th>
       <th>controllable</th>
       <th>enableable</th>
       <th>flaggable</th>
@@ -647,53 +646,47 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>bsd</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>daemontools</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>debian</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>freebsd</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>gentoo</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>init</td>
@@ -701,12 +694,10 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>launchd</td>
-      <td> </td>
       <td> </td>
       <td><em>X</em> </td>
       <td> </td>
@@ -716,56 +707,50 @@ Provider support:
     <tr>
       <td>openbsd</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td><em>X</em> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>openrc</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>openwrt</td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>rcng</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>redhat</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>runit</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>service</td>
@@ -773,14 +758,12 @@ Provider support:
       <td> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>smf</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -788,8 +771,7 @@ Provider support:
     <tr>
       <td>src</td>
       <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
@@ -797,33 +779,29 @@ Provider support:
     <tr>
       <td>systemd</td>
       <td> </td>
+      <td><em>X</em> </td>
       <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>upstart</td>
       <td> </td>
-      <td> </td>
       <td><em>X</em> </td>
       <td> </td>
       <td> </td>
-      <td> </td>
+      <td><em>X</em> </td>
     </tr>
     <tr>
       <td>windows</td>
+      <td> </td>
       <td><em>X</em> </td>
-      <td> </td>
-      <td> </td>
       <td> </td>
       <td> </td>
       <td><em>X</em> </td>
     </tr>
   </tbody>
 </table>
-
 
 
 > **NOTE:** This page was generated from the Puppet source code on 2019-09-06 09:16:04 -0700
